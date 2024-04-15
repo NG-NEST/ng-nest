@@ -33,9 +33,9 @@ const X_CONFIG_NAME = 'table';
 export class XTableProperty extends XPaginationProperty implements XTableOption {
   /**
    * @zh_CN 行数据
-   * 11223344567
+   * 这是一个描述信息
    * @en_US Row data
-   * 8899756705679
+   * This is a description information
    */
   @Input() data: XData<XTableRow> = [];
   /**

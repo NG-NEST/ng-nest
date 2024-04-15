@@ -50,6 +50,10 @@ export interface NcProp {
    * 返回类型，仅当 type 等于 'function' 时
    */
   returnType?: string;
+  /**
+   * 示例
+   */
+  example?: string;
 }
 
 export interface NcPrope {
@@ -90,6 +94,10 @@ export interface NcPrope {
    * 针对 interface 中属性配置的说明 @withConfig true
    */
   withConfig?: boolean;
+  /**
+   * 示例
+   */
+  example?: string;
 }
 
 /**

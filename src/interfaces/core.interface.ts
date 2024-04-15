@@ -104,6 +104,10 @@ export interface AppPrope {
    * 针对 interface 中属性配置的说明 @withConfig true
    */
   withConfig?: boolean;
+  /**
+   * 示例
+   */
+  example?: string;
 }
 
 /**

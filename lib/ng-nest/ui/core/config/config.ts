@@ -293,6 +293,8 @@ export interface XDialogConfig {
   width?: string;
   minWidth?: string;
   minHeight?: string;
+  maxWidth?: string;
+  maxHeight?: string;
   effect?: XEffect;
   showCancel?: XBoolean;
   cancelText?: string;

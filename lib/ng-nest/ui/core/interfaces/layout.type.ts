@@ -18,6 +18,7 @@ export type XPosition = XPositionTopBottom | XPositionLeftRight;
 
 /**
  * @zh_CN 风格类型
+ * 'initial'
  * @en_US Style type
  */
 export type XType = 'initial' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';

@@ -2,10 +2,15 @@ import { Injectable } from '@angular/core';
 import { XIsString } from '@ng-nest/ui/core';
 import { zh_CN, en_US, AppProp, AppPrope } from '@interfaces';
 import { ConfigService } from './config.service';
+import { XDialogService } from '@ng-nest/ui/dialog';
+import { NsReferenceComponent } from '@share';
 
 @Injectable({ providedIn: 'root' })
 export class TypesService {
-  constructor(private config: ConfigService) {}
+  constructor(
+    private config: ConfigService,
+    private dialog: XDialogService
+  ) {}
 
   data = {
     zh_CN,
@@ -22,12 +27,31 @@ export class TypesService {
 
   getTypes(propType: string, propName: string) {
     let key = `${this.lang}-${propType}-${propName}`;
-    let type = this.typeMap.get(key);
-    if (!type) {
-      type = this.setTypes(this.lang, propType, propName)!;
-      this.typeMap.set(key, type);
+    const isExist = this.typeMap.has(key);
+    if (isExist) {
+      this.prop = this.typeMap.get(key);
+    } else {
+      this.prop = this.setTypes(this.lang, propType, propName)!;
+      this.typeMap.set(key, this.prop);
     }
-    this.prop = type;
+  }
+
+  reference(propType: string, propName: string) {
+    let key = `${this.lang}-${propType}-${propName}`;
+    const isExist = this.typeMap.has(key);
+    if (isExist) {
+      this.prop = this.typeMap.get(key);
+    } else {
+      this.prop = this.setTypes(this.lang, propType, propName)!;
+      this.typeMap.set(key, this.prop);
+    }
+    this.dialog.create(NsReferenceComponent, {
+      minWidth: '10rem',
+      maxWidth: '50rem',
+      data: {
+        prop: this.prop
+      }
+    });
   }
 
   private setTypes(lang: 'zh_CN' | 'en_US', propType: string, propName?: string) {
@@ -60,6 +84,8 @@ export class TypesService {
               }
             }
           }
+        } else if (type === 'interface') {
+          console.log(ty);
         }
 
         return ty;
@@ -76,19 +102,32 @@ export class TypesService {
 
   private splitParts(value: string) {
     if (value.indexOf('|') < 0) return [value];
-    const regex = /(\w+)\[\]|(\w+)<([^>]+)>|(\w+)/g;
     const parts = [];
-    let match;
-
-    while ((match = regex.exec(value)) !== null) {
-      if (match[1]) {
-        parts.push(match[1] + '[]');
-      } else if (match[2]) {
-        const innerParts = match[3].split(' | ').map((p) => p.trim());
-        parts.push(match[2] + '<' + innerParts.join(' | ') + '>');
-      } else if (match[4]) {
-        parts.push(match[4]);
+    let str = value;
+    let i = 0;
+    const max = str.length;
+    let item = '';
+    let special = false;
+    while (i < max) {
+      const char = str[i];
+      if (char === '<') {
+        special = true;
       }
+      if (special) {
+        if (char === '>') {
+          special = false;
+        }
+      }
+      if (char !== '|' || special) {
+        item += char;
+        if (i === max - 1) {
+          parts.push(item.trim());
+        }
+      } else {
+        parts.push(item.trim());
+        item = '';
+      }
+      i++;
     }
 
     return parts;

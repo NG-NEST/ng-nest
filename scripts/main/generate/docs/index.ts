@@ -14,7 +14,6 @@ import {
   handlerCore,
   generateCore
 } from '../../utils';
-import { NcCore } from '../../interfaces/core';
 import { join, resolve } from 'node:path';
 import { readdirSync, statSync } from 'fs-extra';
 

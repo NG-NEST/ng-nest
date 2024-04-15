@@ -1,0 +1,48 @@
+<div x-dialog-content class="ns-reference-content">
+  <ng-container *ngTemplateOutlet="typeChild; context: { prop: prop() }"></ng-container>
+
+  <ng-template #typeChild let-prop="prop">
+    @if (prop) {
+      @if (prop.type === 'type') {
+        <div class="property">
+          <ng-container *ngTemplateOutlet="typeTitle; context: { prop }"></ng-container>
+          @if (prop.actualValue) {
+            <div class="value">
+              @for (val of prop.actualValue; track val) {
+                <code>{{ val }}{{ $last ? '' : ' | ' }}</code>
+              }
+            </div>
+          }
+          @if (prop.extends) {
+            <div class="extends"><span>extends</span><code [innerText]="prop.extends"></code></div>
+          }
+          @if (prop.description) {
+            <div class="description app-markdown" [innerHTML]="prop.description"></div>
+          }
+          @if (prop.example) {
+            <div class="example app-markdown" [innerHTML]="prop.example"></div>
+          }
+        </div>
+      } @else if (prop.type === 'interface') {
+        <div class="property">
+          <ng-container *ngTemplateOutlet="typeTitle; context: { prop }"></ng-container>
+        </div>
+      } @else if (prop.type === 'group') {
+        @for (child of prop.children; track child.name) {
+          <ng-container *ngTemplateOutlet="typeChild; context: { prop: child }"></ng-container>
+        }
+      }
+    }
+  </ng-template>
+
+  <ng-template #typeTitle let-prop="prop">
+    <div class="label">
+      <code [innerText]="prop.name"></code>
+      <span class="type">{{ prop.type }}</span>
+      <span>{{ prop.label }}</span>
+    </div>
+  </ng-template>
+</div>
+<div class="ns-reference-close">
+  <x-button x-dialog-close plain circle icon="fto-x"></x-button>
+</div>

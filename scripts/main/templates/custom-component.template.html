@@ -1,39 +1,3 @@
 <x-doc>
   <x-anchor [affixTop]="'5.75rem'" [affixBottom]="'3.75rem'"> {{ __custom }} </x-anchor>
 </x-doc>
-
-<ng-template #typeTpl>
-  <ng-container *ngTemplateOutlet="typeChild; context: { prop: types.prop }"></ng-container>
-</ng-template>
-
-<ng-template #typeChild let-prop="prop">
-  @if (prop) {
-    @if (prop.type === 'type') {
-      <div class="x-api-popover">
-        <ng-container *ngTemplateOutlet="typeTitle; context: { prop }"></ng-container>
-        <p class="value" *ngIf="prop.actualValue">
-          @for (val of prop.actualValue; track val) {
-            <code>{{ val }}{{ $last ? '' : ' | ' }}</code>
-          }
-        </p>
-      </div>
-    } @else if (prop.type === 'interface') {
-      <div class="x-api-popover">
-        <ng-container *ngTemplateOutlet="typeTitle; context: { prop }"></ng-container>
-      </div>
-    } @else if (prop.type === 'group') {
-      @for (child of prop.children; track child.name) {
-        <ng-container *ngTemplateOutlet="typeChild; context: { prop: child }"></ng-container>
-      }
-    }
-  }
-</ng-template>
-
-<ng-template #typeTitle let-prop="prop">
-  <p class="label">
-    <code [innerText]="prop.name"></code>
-    <span class="type">{{ prop.type }}</span>
-    <span>{{ prop.label }}</span>
-  </p>
-  <p class="description" *ngIf="prop.description">{{ prop.description }}</p>
-</ng-template>

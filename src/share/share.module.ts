@@ -15,6 +15,7 @@ import { XTooltipDirective } from '@ng-nest/ui/tooltip';
 import { XAnchorComponent } from '@ng-nest/ui/anchor';
 import { XTreeFileComponent } from '@ng-nest/ui/tree-file';
 import { XPopoverDirective } from '@ng-nest/ui/popover';
+import { NsReferenceComponent } from './reference/reference.component';
 
 const modules = [
   CommonModule,
@@ -23,6 +24,7 @@ const modules = [
   HttpClientModule,
   ReactiveFormsModule,
   RouterOutlet,
+  NsReferenceComponent,
   XDocComponent,
   XExamplesComponent,
   XAnchorComponent,

@@ -1,0 +1,71 @@
+@import '../../styles/index.scss';
+
+:host {
+  .ns-reference-content {
+    .property {
+      &.interface {
+      }
+      &:not(:first-child) {
+        margin-top: $--x-padding-large;
+      }
+      > div:not(:first-child) {
+        margin-top: $--x-padding-mini;
+      }
+      .label {
+        color: $--x-text;
+        display: flex;
+        align-items: center;
+        padding: 0 $--x-padding-mini;
+        > code {
+          color: #f637e3;
+        }
+        > span {
+          margin-left: 1rem;
+        }
+        .type {
+          margin-left: 1rem;
+          padding: 0 0.5rem;
+          color: $--x-danger;
+          background: $--x-danger-900;
+          border-radius: $--x-border-small-radius;
+          line-height: 1.5rem;
+        }
+      }
+      .value {
+        color: #fa2c05;
+        padding: $--x-padding-mini $--x-padding-medium;
+        border-radius: $--x-border-small-radius;
+        background-color: $--x-danger-900;
+      }
+      .description {
+        color: $--x-text-200;
+        padding: $--x-padding-mini $--x-padding-medium;
+        border-radius: $--x-border-small-radius;
+        background-color: $--x-background-a200;
+      }
+      .example {
+        padding: $--x-padding-mini $--x-padding-medium;
+        border-radius: $--x-border-small-radius;
+        border: $--x-border-deep-base;
+      }
+      .extends {
+        color: $--x-text;
+        display: flex;
+        align-items: center;
+        padding: 0 $--x-padding-mini;
+        > span {
+          color: #3b82f6;
+        }
+        > code {
+          color: #f637e3;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+  .ns-reference-close {
+    position: absolute;
+    right: -3rem;
+    top: 1rem;
+  }
+}

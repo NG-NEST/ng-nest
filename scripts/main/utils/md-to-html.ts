@@ -1,7 +1,8 @@
-import * as fs from 'fs-extra';
-import * as md from 'marked';
+import { existsSync, readFileSync } from 'fs-extra';
+import { Marked } from 'marked';
 
 export function mdToHtml(path: string) {
-  if (!fs.existsSync(path)) return;
-  return md(fs.readFileSync(path, 'utf8'));
+  if (!existsSync(path)) return;
+  const md = new Marked();
+  return md.parse(readFileSync(path, 'utf8'));
 }

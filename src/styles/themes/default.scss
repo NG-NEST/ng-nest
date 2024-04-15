@@ -3,21 +3,32 @@ $prefix: ns;
 // Color
 $--x-primary-active: var(--x-primary-a100);
 $--x-primary: var(--x-primary);
+$--x-primary-900: var(--x-primary-900);
 $--x-primary-hover: var(--x-primary-400);
+$--x-danger: var(--x-danger);
+$--x-danger-900: var(--x-danger-900);
 $--x-text: var(--x-text);
+$--x-text-200: var(--x-text-200);
 $--x-text-300: var(--x-text-300);
+$--x-text-400: var(--x-text-400);
 $--x-text-500: var(--x-text-500);
 $--x-primary-text: var(--x-primary-900);
 $--x-text-disabled: var(--x-text-500);
 $--x-border: var(--x-border);
+$--x-border-radius: var(--x-border-radius);
+$--x-border-small-radius: var(--x-border-small-radius);
+$--x-border-deep-base: var(--x-border-deep-width) var(--x-border-style) var(--x-border-500);
 $--x-background: var(--x-background);
 $--x-background-100: var(--x-background-100);
 $--x-background-a100: var(--x-background-a100);
+$--x-background-a200: var(--x-background-a200);
 $--x-background-a500: var(--x-background-a500);
 $--x-background-200: var(--x-background-200);
 $--x-background-500: var(--x-background-500);
 $--x-box-shadow: var(--x-box-shadow);
-
+$--x-padding-mini: var(--x-padding-mini);
+$--x-padding-medium: var(--x-padding-medium);
+$--x-padding-large: var(--x-padding-large);
 // ----  1rem = 16px  -----
 // |  px  |     rem       |
 // ------------------------

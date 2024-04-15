@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XFindPrefix, XFindSearchOption } from './find.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XDialogOption } from '@ng-nest/ui/dialog';
 import {
   XRepositoryAbstract,
   XQuery,
@@ -350,9 +349,6 @@ interface User extends XId {
   providers: [UsersServiceTest, TreeServiceTest]
 })
 class TestXFindComponent {
-  dialog: XDialogOption = {
-    width: '65rem'
-  };
   searchOption: XFindSearchOption = {
     label: '用户',
     button: '搜索',

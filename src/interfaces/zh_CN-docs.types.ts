@@ -6,6 +6,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Badge 动画",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XBadgeAnimation",
     "value": "trigger('x-badge-animation', [transition(':enter', [style({ opacity: 0, transform: 'scale(0) translate(50%, -50%)' }),animate(XDURATION_SLOW_EASE_IN,style({opacity: 1,transform: 'scale(1) translate(50%, -50%)'}))]),transition(':leave', [style({ opacity: 1, transform: 'scale(1) translate(50%, -50%)' }),animate(XDURATION_SLOW_EASE_OUT,style({opacity: 0,transform: 'scale(0) translate(50%, -50%)'}))])])"
@@ -14,6 +15,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "弹框连接时的动画，只处理 Y 轴",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XConnectBaseAnimation",
     "value": "trigger('x-connect-base-animation', [transition(':enter', [style({ opacity: 0, transform: 'scaleY(0.8)' }), animate(XDURATION_FAST_EASE_IN)]),transition(':leave', [animate(XDURATION_FAST_EASE_OUT, style({ opacity: 0 }))])])"
@@ -22,6 +24,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "enum",
     "label": "动画执行时间",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDuration",
     "value": "{Slow = '0.3s',Base = '0.2s',Fast = '0.1s'}"
@@ -30,6 +33,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "移入移出动画",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMoveAnimation",
     "value": "trigger('x-move-animation', [transition('void => top-start, void => top, void => top-end, void => center', [style({transform: 'translateY(-200%)',opacity: 0}),animate(`${XDuration.Base}`,style({transform: 'translateY(0%)',opacity: 1}))]),transition('top-start => void, top => void, top-end => void, center => void', [style({transform: 'translateY(0%)',opacity: 1,height: '*'}),animate(`${XDuration.Base}`,style({transform: 'translateY(-200%)',opacity: 0,height: 0}))]),transition('void => left', [style({transform: 'translateX(-30%)',opacity: 0}),animate(`${XDuration.Base}`,style({transform: 'translateX(0%)',opacity: 1}))]),transition('left => void', [style({transform: 'translateX(0%)',opacity: 1,height: '*'}),animate(`${XDuration.Base}`,style({transform: 'translateX(-30%)',opacity: 0,height: 0}))]),transition('void => right', [style({transform: 'translateX(30%)',opacity: 0}),animate(`${XDuration.Base}`,style({transform: 'translateX(0%)',opacity: 1}))]),transition('right => void', [style({transform: 'translateX(0%)',opacity: 1,height: '*'}),animate(`${XDuration.Base}`,style({transform: 'translateX(30%)',opacity: 0,height: 0}))]),transition('void => bottom-start, void => bottom, void => bottom-end', [style({transform: 'translateY(200%)',opacity: 0,height: 0}),animate(`${XDuration.Base}`,style({transform: 'translateY(0%)',opacity: 1,height: '*'}))]),transition('bottom-start => void, bottom => void, bottom-end => void', [style({transform: 'translateY(0%)',opacity: 1}),animate(`${XDuration.Base}`,style({transform: 'translateY(200%)',opacity: 0}))])])"
@@ -38,6 +42,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "组件和主题全局配置信息",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "components",
@@ -48,7 +53,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "components",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "theme",
@@ -59,7 +65,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "theme",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XConfig"
@@ -68,6 +75,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "组件全局配置",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XComponentConfig"
   },
@@ -75,6 +83,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "该函数用于将给定的数组拆分成多个小数组",
     "description": "每个小数组的长度由函数的第二个参数指定，默认为 1。\n如果给定的数组为空或者小数组长度小于等于 0，则函数返回一个空数组。\n函数通过循环遍历给定的数组，并使用 slice 方法将数组拆分成小数组，然后将小数组添加到结果数组中，最后返回结果数组。",
+    "example": "",
     "properties": [],
     "name": "XChunk<T>",
     "params": {
@@ -86,6 +95,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "该函数是一个深拷贝函数，用于克隆一个对象或数组",
     "description": "它会递归地复制对象的所有属性，包括嵌套对象和数组，生成一个全新的独立副本。\n对于非对象和非数组类型的值，直接返回该值。\n函数接受一个参数 value，表示需要进行深拷贝的值。\n首先创建一个空的结果对象 result，如果 value 是数组，则 result 也是一个空数组。\n遍历 value 的所有属性，如果属性是对象，则递归调用 XCloneDeep 函数进行深拷贝，并将结果赋值给 result 对应的属性。\n最后返回 result，即深拷贝后的对象或数组。",
+    "example": "",
     "properties": [],
     "name": "XCloneDeep",
     "params": {
@@ -97,6 +107,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 value 为指定的 list 数据 [{ label: any; id: any }, ....]",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XToDataConvert<T>",
     "params": {
@@ -108,6 +119,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据 data 的类型获取实际的数据",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSetData<T>",
     "params": {
@@ -121,6 +133,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据 id、pid 获取子节点",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XGetChildren<T extends XParentIdentityProperty<T>>",
     "params": {
@@ -134,6 +147,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "将对象键值对反转",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInvertKeyValues",
     "params": {
@@ -145,6 +159,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "设置样式名称为 false",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XClearClass",
     "params": {
@@ -156,6 +171,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "属性装饰器返回类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPropDecorator",
     "value": "(target: any, propName: string) => void"
@@ -164,6 +180,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "创建 XInputBoolean 属性装饰器",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInputBoolean",
     "params": {},
@@ -173,6 +190,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "创建 XInputNumber 属性装饰器",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInputNumber",
     "params": {},
@@ -182,6 +200,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "创建 XDataConvert 属性装饰器",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDataConvert",
     "params": {},
@@ -191,6 +210,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "限制给定数值 value 的范围",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XClamp",
     "params": {
@@ -204,6 +224,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "日期类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDate",
     "value": "string | Date | number"
@@ -212,6 +233,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 Date",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XToDate",
     "params": {
@@ -223,6 +245,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加毫秒数，负数为减少",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAddMilliseconds",
     "params": {
@@ -235,6 +258,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加秒数，负数为减少",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAddSeconds",
     "params": {
@@ -247,6 +271,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加分钟数，负数为减少",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAddMinutes",
     "params": {
@@ -259,6 +284,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加小时数，负数为减少",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAddHours",
     "params": {
@@ -271,6 +297,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加天数，负数为减少",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAddDays",
     "params": {
@@ -283,6 +310,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加月数，负数为减少",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAddMonths",
     "params": {
@@ -295,6 +323,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加年数，负数为减少",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAddYears",
     "params": {
@@ -307,6 +336,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取给定日期的 ISO 周数",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDateWeek",
     "params": {
@@ -318,6 +348,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取指定日期的 ISO 周年份",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDateWeekYear",
     "params": {
@@ -329,6 +360,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取指定日期的年份和周数",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDateYearWeek",
     "params": {
@@ -340,6 +372,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取指定日期的年份和季度",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDateYearQuarter",
     "params": {
@@ -351,6 +384,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取指定日期所属的季度",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDateQuarter",
     "params": {
@@ -362,6 +396,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "通过参数 n 来截取数组",
     "description": "如果 n 未定义或为 0，则返回与原数组相同的数组\n如果原数组长度小于 1 或小于等于 n 的绝对值，则返回一个空数组\n如果 n 大于 0，则截取从第 n 个元素开始到数组末尾的子数组\n如果 n 小于等于 0，则截取从第 0 个元素到倒数第 n 个元素",
+    "example": "",
     "properties": [],
     "name": "XDrop<T>",
     "params": {
@@ -373,6 +408,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "用于设置元素的 flex 样式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSetFlex",
     "params": {
@@ -385,6 +421,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据属性 name 来对数组分组",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XGroupBy<T>",
     "params": {
@@ -397,6 +434,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "生成 GUID",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XGuid",
     "params": {},
@@ -406,6 +444,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断一个对象是否包含指定的属性",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XHasIn",
     "params": {
@@ -418,6 +457,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据指定元素来排序",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XOrderBy<T>",
     "params": {
@@ -430,6 +470,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取元素的父节点路径",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XParentPath",
     "params": {
@@ -441,6 +482,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取元素的父元素路径",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XParents",
     "params": {
@@ -452,6 +494,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "组件公共属性",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "classMap",
@@ -462,7 +505,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "classMap",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XProperty"
@@ -471,6 +515,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "从数组中移除满足条件的元素，并返回被移除的元素组成的数组",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XRemove<T>",
     "params": {
@@ -483,6 +528,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "监听元素大小边界尺寸的变化",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XResizeObserver",
     "value": "ResizeObserver | null"
@@ -491,6 +537,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "ResizeObserver 回调函数参数的对象",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XResizeObserverEntry",
     "value": "ResizeObserverEntry | null"
@@ -499,6 +546,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "这个函数的功能是创建一个Observable，用于监听多个元素的尺寸变化",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XResize",
     "params": {
@@ -511,6 +559,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "data 数据类型",
     "description": "通用的泛型数据类型，一般是指数组、可订阅对象并且流数据为数组类型、函数等",
+    "example": "",
     "properties": [],
     "name": "XData<T>",
     "value": "T[] | Observable<T[] | any[]> | any[] | Function"
@@ -518,7 +567,8 @@ export const zh_CN: {[key: string]: AppProp} = {
   "XBoolean": {
     "type": "type",
     "label": "boolean 数据类型",
-    "description": "",
+    "description": "此类型作为组件的输入参数，一般会配合 `@XInputBoolean()` 装饰器来处理参数，转换成 true 或 false",
+    "example": "```html\n// true\n<my-com disabled></my-com>\n<my-com disabled=\"true\"></my-com>\n<my-com [disabled]=\"true\"></my-com>\n\n// false\n<my-com disabled=\"false\"></my-com>\n<my-com [disabled]=\"false\"></my-com>\n```\n\n",
     "properties": [],
     "name": "XBoolean",
     "value": "boolean | string"
@@ -527,6 +577,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "number 数据类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XNumber",
     "value": "number | string"
@@ -535,6 +586,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "模板类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTemplate",
     "value": "string | number | Date | TemplateRef<any>"
@@ -543,6 +595,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "函数返回类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTypeFunc",
     "value": "(object: any) => boolean"
@@ -551,6 +604,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "类型判断",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsType",
     "params": {
@@ -562,6 +616,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "值改变判断",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsChange",
     "params": {
@@ -573,6 +628,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为字符串类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsString",
     "params": {
@@ -584,6 +640,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为数组类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsArray",
     "params": {
@@ -595,6 +652,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为数字类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsNumber",
     "params": {
@@ -606,6 +664,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为布尔类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsBoolean",
     "params": {
@@ -617,6 +676,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为对象类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsObject<T>",
     "params": {
@@ -628,6 +688,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为 null 类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsNull",
     "params": {
@@ -639,6 +700,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为函数类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsFunction",
     "params": {
@@ -650,6 +712,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为日期类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsDate",
     "params": {
@@ -661,6 +724,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为正则表达式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsRegExp",
     "params": {
@@ -672,6 +736,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为 undefined",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsUndefined",
     "params": {
@@ -683,6 +748,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为字符串、数字、布尔值或日期",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsValue<T>",
     "params": {
@@ -694,6 +760,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断一个对象是否为空",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsEmpty",
     "params": {},
@@ -703,6 +770,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为非空数组",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsValueArray<T>",
     "params": {
@@ -714,6 +782,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为非空对象数组",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsObjectArray<T>",
     "params": {
@@ -725,6 +794,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为 Observable",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsObservable<T>",
     "params": {
@@ -736,6 +806,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为 TemplateRef",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsTemplateRef<T>",
     "params": {
@@ -747,6 +818,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为 XTemplateRef",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsXTemplate",
     "params": {
@@ -758,6 +830,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "标识对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "id",
@@ -768,7 +841,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "id",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "label",
@@ -779,7 +853,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "label",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XIdentityProperty"
@@ -788,6 +863,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "父节点标识对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "pid",
@@ -798,7 +874,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "pid",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "level",
@@ -809,7 +886,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "level",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "leaf",
@@ -820,7 +898,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "leaf",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "children",
@@ -831,7 +910,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "children",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "childrenLoaded",
@@ -842,7 +922,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "childrenLoaded",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "selected",
@@ -853,7 +934,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "selected",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -864,7 +946,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "open",
@@ -875,7 +958,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "open",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XParentIdentityProperty<T>",
@@ -885,6 +969,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "标识对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "id",
@@ -895,7 +980,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "id",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "label",
@@ -906,7 +992,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "label",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XIdentity"
@@ -915,6 +1002,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "方位 左右",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPositionLeftRight",
     "value": "'left' | 'right'"
@@ -923,6 +1011,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "方位 上下",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPositionTopBottom",
     "value": "'top' | 'bottom'"
@@ -931,6 +1020,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "方位",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPosition",
     "value": "XPositionTopBottom | XPositionLeftRight"
@@ -939,6 +1029,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "风格类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XType",
     "value": "'initial' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'"
@@ -947,6 +1038,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "状态类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XStatus",
     "value": "'success' | 'info' | 'warning' | 'error' | 'loading'"
@@ -955,6 +1047,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式名映射类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XClassMap",
     "value": "{ [property: string]: boolean }"
@@ -963,6 +1056,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式映射类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XStyleMap",
     "value": "{ [property: string]: any }"
@@ -971,6 +1065,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式主题",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XEffect",
     "value": "'light' | 'dark' | 'white'"
@@ -979,6 +1074,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式属性",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XStyle",
     "value": "{ [property: string]: any }"
@@ -987,6 +1083,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "尺寸",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSize",
     "value": "'big' | 'large' | 'medium' | 'small' | 'mini'"
@@ -995,6 +1092,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "响应尺寸",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XResponseSize",
     "value": "{ xs?: number; sm?: number; md?: number; lg?: number; xl?: number }"
@@ -1003,6 +1101,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "flex 布局下的子元素水平排列方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XJustify",
     "value": "'start' | 'end' | 'center' | 'space-around' | 'space-between'"
@@ -1011,6 +1110,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "flex 布局下的子元素垂直排列方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAlign",
     "value": "'start' | 'center' | 'end'"
@@ -1019,6 +1119,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "flex 布局下的子元素排列方向",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDirection",
     "value": "'column' | 'column-reverse' | 'row' | 'row-reverse'"
@@ -1027,6 +1128,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "相对与连接元素的位置",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPlacement",
     "value": "XPosition | XCorner | 'left-start' | 'left-end' | 'right-start' | 'right-end'"
@@ -1035,6 +1137,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "四个角落",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCorner",
     "value": "'top-start' | 'top-end' | 'bottom-start' | 'bottom-end'"
@@ -1043,6 +1146,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "九宫格方位",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPlace",
     "value": "XPosition | XCorner | 'center'"
@@ -1051,6 +1155,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "形状",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XShape",
     "value": "'circle' | 'square'"
@@ -1059,6 +1164,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "适应方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFit",
     "value": "'fill' | 'contain' | 'cover' | 'none' | 'scale-down'"
@@ -1067,6 +1173,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "阴影显示配置",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XShadow",
     "value": "'always' | 'hover' | 'never'"
@@ -1075,6 +1182,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "切换方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTrigger",
     "value": "'hover' | 'click'"
@@ -1083,6 +1191,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "展示的方向",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDisplayDirection",
     "value": "'horizontal' | 'vertical'"
@@ -1091,6 +1200,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "标识",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "id",
@@ -1101,7 +1211,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "id",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XId"
@@ -1110,6 +1221,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列表返回数据",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "list",
@@ -1120,7 +1232,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "list",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "total",
@@ -1131,7 +1244,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "total",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "query",
@@ -1142,7 +1256,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "query",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XResultList<Entity",
@@ -1152,6 +1267,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "查询条件",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "index",
@@ -1162,7 +1278,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "index",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "size",
@@ -1173,7 +1290,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "size",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "sort",
@@ -1184,7 +1302,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "sort",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "filter",
@@ -1195,7 +1314,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "filter",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "group",
@@ -1206,7 +1326,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "group",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XQuery"
@@ -1215,6 +1336,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "过滤规则",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "field",
@@ -1225,7 +1347,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "field",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "value",
@@ -1236,7 +1359,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "value",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "operation",
@@ -1247,7 +1371,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "operation",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "relation",
@@ -1258,7 +1383,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "relation",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XFilter"
@@ -1267,6 +1393,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "比较符号",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XOperation",
     "value": "'%' | '=' | '>' | '>=' | '<' | '<='"
@@ -1275,6 +1402,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "分组数据",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "count",
@@ -1285,7 +1413,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "count",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -1296,7 +1425,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XSort",
@@ -1306,6 +1436,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "RGB 颜色值",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "r",
@@ -1316,7 +1447,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "r",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "g",
@@ -1327,7 +1459,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "g",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "b",
@@ -1338,7 +1471,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "b",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XRGBColor"
@@ -1347,6 +1481,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据权重混合2种颜色",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "mixColors",
     "params": {
@@ -1360,6 +1495,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "RGB 颜色转换为 Hex",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "toHex",
     "params": {
@@ -1373,6 +1509,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "Hex 颜色转换为 RGB",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "toRgb",
     "params": {
@@ -1384,6 +1521,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断值不为 null 或 undefined",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsNotNil<T>",
     "params": {
@@ -1395,6 +1533,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断值为 null 或 undefined",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIsNil",
     "params": {
@@ -1406,6 +1545,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取元素的指定样式的计算值",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XComputedStyle",
     "params": {
@@ -1418,6 +1558,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取元素的计算样式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XComputed",
     "params": {
@@ -1429,6 +1570,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "删除当前标签，保留内容",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XRemoveNgTag",
     "params": {
@@ -1440,6 +1582,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "去除 HTML 标签",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XStripTags",
     "params": {
@@ -1452,6 +1595,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "svg 标签不存在的警告信息",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XWarnSVGTagNotFound",
     "params": {},
@@ -1461,6 +1605,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "icon 不存在的警告信息",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XWarnIconTypeNotFound",
     "params": {},
@@ -1470,6 +1615,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "填充默认值",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFillDefault",
     "params": {
@@ -1481,16 +1627,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Affix",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAffixPrefix",
     "selector": "x-affix",
-    "decorator": "component",
     "value": "'x-affix'"
   },
   "XAffixProperty": {
     "type": "class",
     "label": "Affix Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "top",
@@ -1504,7 +1651,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "top",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "left",
@@ -1518,7 +1666,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "left",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XAffixProperty",
@@ -1528,16 +1677,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Alert",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAlertPrefix",
     "selector": "x-alert",
-    "decorator": "component",
     "value": "'x-alert'"
   },
   "XAlertProperty": {
     "type": "class",
     "label": "Alert Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "hide",
@@ -1551,7 +1701,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "hide",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "title",
@@ -1564,7 +1715,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "title",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "content",
@@ -1577,7 +1729,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "content",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -1590,7 +1743,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "effect",
@@ -1604,7 +1758,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XEffect>(X_CONFIG_NAME,'light')"
         ],
         "attr": "effect",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hideClose",
@@ -1619,7 +1774,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "hideClose",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "closeText",
@@ -1632,7 +1788,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "closeText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showIcon",
@@ -1647,7 +1804,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showIcon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledAnimation",
@@ -1662,7 +1820,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabledAnimation",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "duration",
@@ -1677,7 +1836,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "duration",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "manual",
@@ -1691,7 +1851,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "manual",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "draggable",
@@ -1706,7 +1867,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "draggable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "resizable",
@@ -1721,7 +1883,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "resizable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "offsetLeft",
@@ -1735,7 +1898,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "offsetLeft",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "offsetTop",
@@ -1749,7 +1913,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "offsetTop",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minWidth",
@@ -1763,7 +1928,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'0rem')"
         ],
         "attr": "minWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minHeight",
@@ -1777,7 +1943,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'0rem')"
         ],
         "attr": "minHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dragBoundary",
@@ -1790,7 +1957,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "dragBoundary",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dragFreeDragPosition",
@@ -1803,7 +1971,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "dragFreeDragPosition",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "operationTpl",
@@ -1816,7 +1985,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "operationTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "close",
@@ -1829,7 +1999,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "close",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "dragEnded",
@@ -1842,7 +2013,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "dragEnded",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "resizing",
@@ -1855,16 +2027,231 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "resizing",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XAlertProperty",
     "extends": "XProperty"
   },
+  "XAlertOption": {
+    "type": "interface",
+    "label": "Alert Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "hide",
+        "type": "boolean",
+        "label": "隐藏",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "hide",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "title",
+        "type": "XTemplate",
+        "label": "标题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "title",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "content",
+        "type": "XTemplate",
+        "label": "内容",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "content",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "type",
+        "type": "XAlertType",
+        "label": "类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "effect",
+        "type": "XEffect",
+        "label": "主题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "effect",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "hideClose",
+        "type": "boolean",
+        "label": "隐藏关闭按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "hideClose",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "closeText",
+        "type": "string",
+        "label": "关闭按钮文字替换",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "closeText",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "showIcon",
+        "type": "boolean",
+        "label": "显示图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "showIcon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabledAnimation",
+        "type": "boolean",
+        "label": "禁用动画",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabledAnimation",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "label": "延迟关闭，默认 0 表示不关闭",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "duration",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "manual",
+        "type": "boolean",
+        "label": "手动处理关闭事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "manual",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "draggable",
+        "type": "boolean",
+        "label": "拖动提示框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "draggable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "resizable",
+        "type": "boolean",
+        "label": "调整提示框大小",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "resizable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "offsetLeft",
+        "type": "number",
+        "label": "开启 resizable 调整大小，偏移屏幕左边",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "offsetLeft",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "offsetTop",
+        "type": "number",
+        "label": "开启 resizable 调整大小，偏移屏幕顶部",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "offsetTop",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "minWidth",
+        "type": "string",
+        "label": "最小宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "minWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "minHeight",
+        "type": "string",
+        "label": "最小高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "minHeight",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XAlertOption"
+  },
   "XAlertType": {
     "type": "type",
     "label": "类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAlertType",
     "value": "XStatus"
@@ -1873,16 +2260,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Anchor",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAnchorPrefix",
     "selector": "x-anchor",
-    "decorator": "component",
     "value": "'x-anchor'"
   },
   "XAnchorProperty": {
     "type": "class",
     "label": "Anchor Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "scroll",
@@ -1895,7 +2283,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "scroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "affixTop",
@@ -1909,7 +2298,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'0')"
         ],
         "attr": "affixTop",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "affixBottom",
@@ -1923,7 +2313,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'0')"
         ],
         "attr": "affixBottom",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "affixWidth",
@@ -1937,7 +2328,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME)"
         ],
         "attr": "affixWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "layout",
@@ -1951,7 +2343,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XAnchorLayout>(X_CONFIG_NAME,'right')"
         ],
         "attr": "layout",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -1965,7 +2358,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XJustify>(X_CONFIG_NAME,'start')"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XAnchorProperty",
@@ -1975,16 +2369,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Anchor inner",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAnchorInnerPrefix",
     "selector": "x-anchor-inner",
-    "decorator": "component",
     "value": "'x-anchor-inner'"
   },
   "XAnchorInnerProperty": {
     "type": "class",
     "label": "Anchor inner Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "left",
@@ -1995,7 +2390,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "left",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "icon",
@@ -2006,7 +2402,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "icon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "link",
@@ -2017,7 +2414,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "link",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XAnchorInnerProperty"
@@ -2026,16 +2424,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "AutoComplete",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAutoCompletePrefix",
     "selector": "x-auto-complete",
-    "decorator": "component",
     "value": "'x-auto-complete'"
   },
   "XAutoCompleteProperty": {
     "type": "class",
     "label": "AutoComplete Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -2049,7 +2448,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "debounceTime",
@@ -2063,7 +2463,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME,200)"
         ],
         "attr": "debounceTime",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -2077,7 +2478,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPositionTopBottom>(X_CONFIG_NAME,'bottom')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -2090,7 +2492,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -2104,7 +2507,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -2119,7 +2523,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "caseSensitive",
@@ -2134,7 +2539,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "caseSensitive",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "onlySelect",
@@ -2149,7 +2555,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
         ],
         "attr": "onlySelect",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -2162,7 +2569,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -2175,7 +2583,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -2188,7 +2597,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -2201,7 +2611,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -2214,7 +2625,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -2227,7 +2639,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -2240,7 +2653,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -2254,7 +2668,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -2268,7 +2683,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -2282,7 +2698,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -2295,7 +2712,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -2308,7 +2726,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -2321,7 +2740,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -2334,7 +2754,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -2347,7 +2768,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -2360,7 +2782,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -2374,7 +2797,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -2388,7 +2812,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -2401,7 +2826,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeEmit",
@@ -2414,7 +2840,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -2427,37 +2854,109 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XAutoCompleteProperty",
     "extends": "XControlValueAccessor<any>"
   },
+  "XAutoCompleteOption": {
+    "type": "interface",
+    "label": "AutoComplete Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XAutoCompleteNode>",
+        "label": "节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "debounceTime",
+        "type": "number",
+        "label": "输入延迟执行时间，ms",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "debounceTime",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XPositionTopBottom",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeTpl",
+        "type": "TemplateRef<any>",
+        "label": "节点模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeClick",
+        "type": "(value: XAutoCompleteNode) => void",
+        "label": "选择节点事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeClick",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XAutoCompleteOption",
+    "extends": "XFormOption"
+  },
   "XAutoCompletePortalPrefix": {
     "type": "const",
     "label": "AutoComplete Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAutoCompletePortalPrefix",
     "extends": "XParentIdentityProperty<XAutoCompleteNode>",
     "selector": "x-auto-complete-portal",
-    "decorator": "component",
     "value": "'x-auto-complete-portal'"
   },
   "XAvatarPrefix": {
     "type": "const",
     "label": "Avatar",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAvatarPrefix",
     "selector": "x-avatar",
-    "decorator": "component",
     "value": "'x-avatar'"
   },
   "XAvatarProperty": {
     "type": "class",
     "label": "Avatar Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "label",
@@ -2470,7 +2969,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -2484,7 +2984,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XAvatarSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -2497,7 +2998,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "shape",
@@ -2511,7 +3013,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XAvatarShape>(X_CONFIG_NAME,'circle')"
         ],
         "attr": "shape",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "src",
@@ -2524,7 +3027,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "src",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "fit",
@@ -2538,7 +3042,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XAvatarFit>(X_CONFIG_NAME,'cover')"
         ],
         "attr": "fit",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "gap",
@@ -2553,7 +3058,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "gap",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "backgroundColor",
@@ -2567,7 +3073,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'#999999')"
         ],
         "attr": "backgroundColor",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XAvatarProperty",
@@ -2577,6 +3084,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "头像形状",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAvatarShape",
     "value": "XShape"
@@ -2585,6 +3093,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "当展示类型为图片的时候，设置图片如何适应容器框",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAvatarFit",
     "value": "XFit"
@@ -2593,6 +3102,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "尺寸类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAvatarSize",
     "value": "number | XSize | XResponseSize"
@@ -2601,26 +3111,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Avatar Group",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAvatarGroupPrefix",
     "selector": "x-avatar-group",
-    "decorator": "component",
     "value": "'x-avatar-group'"
   },
   "XBackTopPrefix": {
     "type": "const",
     "label": "BackTop",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XBackTopPrefix",
     "selector": "x-back-top",
-    "decorator": "component",
     "value": "'x-back-top'"
   },
   "XBackTopProperty": {
     "type": "class",
     "label": "BackTop Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "right",
@@ -2634,7 +3145,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'2.5rem')"
         ],
         "attr": "right",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bottom",
@@ -2648,7 +3160,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'2.5rem')"
         ],
         "attr": "bottom",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "visibilityHeight",
@@ -2662,7 +3175,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME,200)"
         ],
         "attr": "visibilityHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "template",
@@ -2675,7 +3189,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "template",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "target",
@@ -2688,7 +3203,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "target",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XBackTopProperty",
@@ -2698,16 +3214,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Badge",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XBadgePrefix",
     "selector": "x-badge",
-    "decorator": "component",
     "value": "'x-badge'"
   },
   "XBadgeProperty": {
     "type": "class",
     "label": "Badge Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -2721,7 +3238,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBadgeType>(X_CONFIG_NAME,'danger')"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "max",
@@ -2735,7 +3253,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "max",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "value",
@@ -2748,7 +3267,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "value",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "offset",
@@ -2761,7 +3281,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "offset",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dot",
@@ -2775,7 +3296,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "dot",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "standalone",
@@ -2789,7 +3311,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "standalone",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XBadgeProperty",
@@ -2799,16 +3322,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Button",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XButtonPrefix",
     "selector": "x-button",
-    "decorator": "component",
     "value": "'x-button'"
   },
   "XButtonProperty": {
     "type": "class",
     "label": "Button Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -2822,7 +3346,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XButtonType>(X_CONFIG_NAME,'initial')"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -2835,7 +3360,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "title",
@@ -2848,7 +3374,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "title",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -2861,7 +3388,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tabindex",
@@ -2874,7 +3402,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tabindex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -2888,7 +3417,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "onlyIcon",
@@ -2902,7 +3432,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "onlyIcon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activated",
@@ -2916,7 +3447,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "activated",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -2930,7 +3462,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "plain",
@@ -2945,7 +3478,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "plain",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "flat",
@@ -2960,7 +3494,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "flat",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "text",
@@ -2975,7 +3510,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "text",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "round",
@@ -2990,7 +3526,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "round",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "circle",
@@ -3004,7 +3541,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "circle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "loading",
@@ -3018,7 +3556,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "loading",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "closable",
@@ -3032,7 +3571,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "closable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "attrType",
@@ -3046,17 +3586,184 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XButtonAttrType>(X_CONFIG_NAME,'button')"
         ],
         "attr": "attrType",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XButtonProperty",
     "extends": "XProperty",
     "implements": "XButtonOption"
   },
+  "XButtonOption": {
+    "type": "interface",
+    "label": "Button Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "type",
+        "type": "XButtonType",
+        "label": "类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "label": "图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "label": "提示",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "title",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "布局方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "onlyIcon",
+        "type": "XBoolean",
+        "label": "仅显示图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "onlyIcon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "activated",
+        "type": "XBoolean",
+        "label": "激活的按钮（样式差异）",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "activated",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "XBoolean",
+        "label": "禁用按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "plain",
+        "type": "XBoolean",
+        "label": "朴素按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "plain",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "round",
+        "type": "XBoolean",
+        "label": "圆角按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "round",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "circle",
+        "type": "XBoolean",
+        "label": "圆型按钮（配合图标来使用）",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "circle",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "loading",
+        "type": "XBoolean",
+        "label": "加载中",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "loading",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "closable",
+        "type": "XBoolean",
+        "label": "关闭按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "closable",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XButtonOption"
+  },
   "XButtonType": {
     "type": "type",
     "label": "按钮类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XButtonType",
     "value": "XType"
@@ -3065,6 +3772,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "按钮类型属性",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XButtonAttrType",
     "value": "'submit' | 'button' | 'reset'"
@@ -3073,16 +3781,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Buttons",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XButtonsPrefix",
     "selector": "x-buttons",
-    "decorator": "component",
     "value": "'x-buttons'"
   },
   "XButtonsProperty": {
     "type": "class",
     "label": "Buttons Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "space",
@@ -3097,7 +3806,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "space",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hiddenBorder",
@@ -3112,7 +3822,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "hiddenBorder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "boxShadow",
@@ -3127,7 +3838,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "boxShadow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "round",
@@ -3142,7 +3854,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "round",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XButtonsProperty",
@@ -3152,16 +3865,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Calendar",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCalendarPrefix",
     "selector": "x-calendar",
-    "decorator": "component",
     "value": "'x-calendar'"
   },
   "XCalendarProperty": {
     "type": "class",
     "label": "Calendar Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -3174,7 +3888,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "model",
@@ -3187,7 +3902,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "model",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "displayType",
@@ -3200,7 +3916,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "displayType",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "headerLeftTemp",
@@ -3213,7 +3930,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "headerLeftTemp",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dateChange",
@@ -3226,7 +3944,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "dateChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeChange",
@@ -3239,7 +3958,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XCalendarProperty",
@@ -3249,6 +3969,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Calendar 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "[property: string]",
@@ -3259,7 +3980,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XCalendarData"
@@ -3268,6 +3990,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "显示模式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCalendarModel",
     "extends": "XIdentityProperty",
@@ -3277,16 +4000,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Card",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCardPrefix",
     "selector": "x-card",
-    "decorator": "component",
     "value": "'x-card'"
   },
   "XCardProperty": {
     "type": "class",
     "label": "Card Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "width",
@@ -3299,7 +4023,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "width",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bodyStyle",
@@ -3312,7 +4037,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "bodyStyle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "header",
@@ -3325,7 +4051,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "header",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "shadow",
@@ -3339,7 +4066,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCardShadow>(X_CONFIG_NAME,'always')"
         ],
         "attr": "shadow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XCardProperty",
@@ -3349,16 +4077,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Carousel",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCarouselPrefix",
     "selector": "x-carousel",
-    "decorator": "component",
     "value": "'x-carousel'"
   },
   "XCarouselProperty": {
     "type": "class",
     "label": "Carousel Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "active",
@@ -3372,7 +4101,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "height",
@@ -3386,7 +4116,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'15rem')"
         ],
         "attr": "height",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "trigger",
@@ -3400,7 +4131,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCarouselTrigger>(X_CONFIG_NAME,'hover')"
         ],
         "attr": "trigger",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "arrow",
@@ -3414,7 +4146,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCarouselArrow>(X_CONFIG_NAME,'hover')"
         ],
         "attr": "arrow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -3428,7 +4161,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCarouselDirection>(X_CONFIG_NAME,'horizontal')"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "autoplay",
@@ -3442,7 +4176,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "autoplay",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "interval",
@@ -3455,7 +4190,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "interval",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "outside",
@@ -3469,7 +4205,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "outside",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "card",
@@ -3483,7 +4220,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "card",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "text",
@@ -3496,7 +4234,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "text",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "progress",
@@ -3510,7 +4249,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "progress",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "progressColor",
@@ -3523,7 +4263,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "progressColor",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "current",
@@ -3537,7 +4278,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "current",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -3550,7 +4292,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XCarouselProperty",
@@ -3560,6 +4303,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "指示器切换方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCarouselTrigger",
     "value": "XTrigger"
@@ -3568,6 +4312,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "切换箭头显示方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCarouselArrow",
     "value": "XShadow"
@@ -3576,6 +4321,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "走马灯展示的方向",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCarouselDirection",
     "value": "XDisplayDirection"
@@ -3584,16 +4330,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Carousel Panel",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCarouselPanelPrefix",
     "selector": "x-carousel-panel",
-    "decorator": "component",
     "value": "'x-carousel-panel'"
   },
   "XCarouselPanelProperty": {
     "type": "class",
     "label": "Carousel Panel Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "active",
@@ -3607,7 +4354,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XCarouselPanelProperty",
@@ -3617,16 +4365,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Cascade",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCascadePrefix",
     "selector": "x-cascade",
-    "decorator": "component",
     "value": "'x-cascade'"
   },
   "XCascadeProperty": {
     "type": "class",
     "label": "Cascade Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -3640,7 +4389,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -3654,7 +4404,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCorner>(X_CONFIG_NAME,'bottom-start')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -3668,7 +4419,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -3683,7 +4435,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTrigger",
@@ -3697,7 +4450,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCascadeNodeTrigger>(X_CONFIG_NAME,'click')"
         ],
         "attr": "nodeTrigger",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeHoverDelay",
@@ -3711,7 +4465,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME,200)"
         ],
         "attr": "nodeHoverDelay",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -3724,7 +4479,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -3737,7 +4493,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -3750,7 +4507,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -3763,7 +4521,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -3776,7 +4535,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -3789,7 +4549,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -3802,7 +4563,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -3815,7 +4577,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -3829,7 +4592,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -3843,7 +4607,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -3857,7 +4622,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -3870,7 +4636,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -3883,7 +4650,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -3896,7 +4664,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -3909,7 +4678,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -3922,7 +4692,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -3935,7 +4706,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -3949,7 +4721,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -3963,7 +4736,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -3976,7 +4750,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -3989,7 +4764,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeEmit",
@@ -4002,17 +4778,65 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XCascadeProperty",
     "extends": "XControlValueAccessor<any>",
     "implements": "XCascadeOption"
   },
+  "XCascadeOption": {
+    "type": "interface",
+    "label": "Cascade Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XCascadeNode>",
+        "label": "节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XCorner",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeClick",
+        "type": "(node: XCascadeNode) => void",
+        "label": "节点点击的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeClick",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XCascadeOption",
+    "extends": "XFormOption"
+  },
   "XCascadeNodeTrigger": {
     "type": "type",
     "label": "子节点触发方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCascadeNodeTrigger",
     "extends": "XParentIdentityProperty<XCascadeNode>",
@@ -4022,26 +4846,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Cascade-Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCascadePortalPrefix",
     "selector": "x-cascade-portal",
-    "decorator": "component",
     "value": "'x-cascade-portal'"
   },
   "XCheckboxPrefix": {
     "type": "const",
     "label": "Checkbox",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCheckboxPrefix",
     "selector": "x-checkbox",
-    "decorator": "component",
     "value": "'x-checkbox'"
   },
   "XCheckboxProperty": {
     "type": "class",
     "label": "Checkbox Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -4055,7 +4880,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "button",
@@ -4069,7 +4895,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "button",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -4083,7 +4910,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tag",
@@ -4097,7 +4925,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "tag",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "indeterminate",
@@ -4111,7 +4940,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "indeterminate",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -4125,7 +4955,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -4138,7 +4969,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tagBordered",
@@ -4152,7 +4984,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "tagBordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tagDark",
@@ -4166,7 +4999,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "tagDark",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "single",
@@ -4180,7 +5014,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "single",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "vertical",
@@ -4194,7 +5029,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "vertical",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -4207,7 +5043,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -4220,7 +5057,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -4233,7 +5071,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -4246,7 +5085,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -4259,7 +5099,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -4272,7 +5113,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -4285,7 +5127,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -4298,7 +5141,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -4311,7 +5155,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -4325,7 +5170,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -4339,7 +5185,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -4353,7 +5200,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -4366,7 +5214,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -4379,7 +5228,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -4392,7 +5242,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -4405,7 +5256,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -4419,7 +5271,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -4433,7 +5286,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -4446,7 +5300,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -4459,16 +5314,160 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XCheckboxProperty",
     "extends": "XControlValueAccessor<boolean"
   },
+  "XCheckboxOption": {
+    "type": "interface",
+    "label": "Checkbox Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XCheckboxNode>",
+        "label": "单选框数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "button",
+        "type": "XBoolean",
+        "label": "按钮样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "button",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "icon",
+        "type": "XBoolean",
+        "label": "图标样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tag",
+        "type": "XBoolean",
+        "label": "tag 标签样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tag",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "indeterminate",
+        "type": "XBoolean",
+        "label": "不确定状态的样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "indeterminate",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "type",
+        "type": "XButtonType",
+        "label": "按钮/图标/ tag 标签样式时生效",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tagBordered",
+        "type": "XBoolean",
+        "label": "tag 标签边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tagBordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tagDark",
+        "type": "XBoolean",
+        "label": "tag 标签深色主题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tagDark",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XCheckboxOption",
+    "extends": "XFormOption"
+  },
   "XCheckboxNode": {
     "type": "interface",
     "label": "Checkbox 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "disabled",
@@ -4479,7 +5478,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "icon",
@@ -4490,7 +5490,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "icon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "title",
@@ -4501,7 +5502,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "title",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "label",
@@ -4512,7 +5514,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "label",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XCheckboxNode",
@@ -4522,16 +5525,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Collapse",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCollapsePrefix",
     "selector": "x-collapse",
-    "decorator": "component",
     "value": "'x-collapse'"
   },
   "XCollapseProperty": {
     "type": "class",
     "label": "Collapse Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "accordion",
@@ -4545,7 +5549,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "accordion",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -4558,7 +5563,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showIcon",
@@ -4573,7 +5579,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<Boolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "showIcon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "iconPosition",
@@ -4587,7 +5594,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCollapseIconPosition>(X_CONFIG_NAME,'right')"
         ],
         "attr": "iconPosition",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "ghost",
@@ -4602,7 +5610,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<Boolean>(X_CONFIG_NAME,false)"
         ],
         "attr": "ghost",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -4617,7 +5626,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<Boolean>(X_CONFIG_NAME,false)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -4630,7 +5640,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -4643,7 +5654,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XCollapseProperty",
@@ -4653,6 +5665,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "图标位置",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCollapseIconPosition",
     "value": "'left' | 'right'"
@@ -4661,16 +5674,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Collapse Panel",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCollapsePanelPrefix",
     "selector": "x-collapse-panel",
-    "decorator": "component",
     "value": "'x-collapse-panel'"
   },
   "XCollapsePanelProperty": {
     "type": "class",
     "label": "Collapse Panel Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "label",
@@ -4683,7 +5697,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -4697,7 +5712,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -4711,7 +5727,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XCollapsePanelProperty",
@@ -4721,16 +5738,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Color",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XColorPrefix",
     "selector": "x-color",
-    "decorator": "component",
     "value": "'x-color'"
   },
   "XAmounts": {
     "type": "const",
     "label": "颜色权重比例",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAmounts",
     "value": "[-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]"
@@ -4739,6 +5757,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Color Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "label",
@@ -4751,7 +5770,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hex",
@@ -4764,7 +5784,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "hex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "merge",
@@ -4778,7 +5799,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'#ffffff')"
         ],
         "attr": "merge",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "amounts",
@@ -4792,7 +5814,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number[]>(X_CONFIG_NAME,XAmounts)"
         ],
         "attr": "amounts",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XColorProperty",
@@ -4802,16 +5825,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "ColorPicker",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XColorPickerPrefix",
     "selector": "x-color-picker",
-    "decorator": "component",
     "value": "'x-color-picker'"
   },
   "XColorPickerProperty": {
     "type": "class",
     "label": "ColorPicker Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "placement",
@@ -4825,7 +5849,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCorner>(X_CONFIG_NAME,'bottom-start')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -4839,7 +5864,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -4854,7 +5880,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -4867,7 +5894,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -4880,7 +5908,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -4893,7 +5922,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -4906,7 +5936,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -4919,7 +5950,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -4932,7 +5964,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -4945,7 +5978,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -4959,7 +5993,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -4973,7 +6008,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -4987,7 +6023,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -5000,7 +6037,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -5013,7 +6051,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -5026,7 +6065,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -5039,7 +6079,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -5052,7 +6093,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -5065,7 +6107,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -5079,7 +6122,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -5093,7 +6137,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -5106,7 +6151,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -5119,17 +6165,41 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XColorPickerProperty",
     "extends": "XControlValueAccessor<string>",
     "implements": "XColorPickerOption"
   },
+  "XColorPickerOption": {
+    "type": "interface",
+    "label": "ColorPicker Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "placement",
+        "type": "XCorner",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XColorPickerOption",
+    "extends": "XFormOption"
+  },
   "XColorType": {
     "type": "type",
     "label": "颜色种类",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XColorType",
     "value": "'hex' | 'rgba' | 'hsla'"
@@ -5138,26 +6208,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "ColorPicker-Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XColorPickerPortalPrefix",
     "selector": "x-color-picker-portal",
-    "decorator": "component",
     "value": "'x-color-picker-portal'"
   },
   "XCommentPrefix": {
     "type": "const",
     "label": "Comment",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCommentPrefix",
     "selector": "x-comment",
-    "decorator": "component",
     "value": "'x-comment'"
   },
   "XCommentProperty": {
     "type": "class",
     "label": "Comment Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -5171,7 +6242,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "contentMax",
@@ -5185,7 +6257,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig(X_CONFIG_NAME,512)"
         ],
         "attr": "contentMax",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "likeClick",
@@ -5198,7 +6271,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "likeClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "commentClick",
@@ -5211,7 +6285,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "commentClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "replyClick",
@@ -5224,7 +6299,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "replyClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "sureClick",
@@ -5237,7 +6313,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "sureClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "moreClick",
@@ -5250,7 +6327,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "moreClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XCommentProperty",
@@ -5260,6 +6338,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Comment 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "author",
@@ -5270,7 +6349,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "author",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "src",
@@ -5281,7 +6361,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "src",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "datetime",
@@ -5292,7 +6373,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "datetime",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "content",
@@ -5303,7 +6385,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "content",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "likes",
@@ -5314,7 +6397,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "likes",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "count",
@@ -5325,7 +6409,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "count",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "replyAuthor",
@@ -5336,7 +6421,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "replyAuthor",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "replyContent",
@@ -5347,7 +6433,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "replyContent",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "commentShow",
@@ -5358,7 +6445,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "commentShow",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XCommentNode",
@@ -5368,16 +6456,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Comment Reply",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCommentReplyPrefix",
     "selector": "x-comment-reply",
-    "decorator": "component",
     "value": "'x-comment-reply'"
   },
   "XCommentReplyProperty": {
     "type": "class",
     "label": "Comment Reply Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "maxlength",
@@ -5391,7 +6480,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "maxlength",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "sureClick",
@@ -5404,7 +6494,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "sureClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XCommentReplyProperty",
@@ -5414,16 +6505,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Container",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XContainerPrefix",
     "selector": "x-container",
-    "decorator": "component",
     "value": "'x-container'"
   },
   "XContainerProperty": {
     "type": "class",
     "label": "Container Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "direction",
@@ -5437,7 +6529,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XDirection>(X_CONFIG_NAME)"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XContainerProperty",
@@ -5447,16 +6540,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Header",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XHeaderPrefix",
     "selector": "x-header",
-    "decorator": "component",
     "value": "'x-header'"
   },
   "XHeaderProperty": {
     "type": "class",
     "label": "Header Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "height",
@@ -5470,7 +6564,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME_HEADER,3)"
         ],
         "attr": "height",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XHeaderProperty",
@@ -5480,16 +6575,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Aside",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAsidePrefix",
     "selector": "x-aside",
-    "decorator": "component",
     "value": "'x-aside'"
   },
   "XAsideProperty": {
     "type": "class",
     "label": "Aside Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "width",
@@ -5503,7 +6599,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME_ASIDE,12)"
         ],
         "attr": "width",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XAsideProperty",
@@ -5513,26 +6610,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "main",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMainPrefix",
     "selector": "x-main",
-    "decorator": "component",
     "value": "'x-main'"
   },
   "XFooterPrefix": {
     "type": "const",
     "label": "Footer",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFooterPrefix",
     "selector": "x-footer",
-    "decorator": "component",
     "value": "'x-footer'"
   },
   "XFooterProperty": {
     "type": "class",
     "label": "Footer Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "height",
@@ -5546,7 +6644,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME_FOOTER,3)"
         ],
         "attr": "height",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XFooterProperty",
@@ -5556,16 +6655,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Crumb",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCrumbPrefix",
     "selector": "x-crumb",
-    "decorator": "component",
     "value": "'x-crumb'"
   },
   "XCrumbProperty": {
     "type": "class",
     "label": "Crumb Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -5579,7 +6679,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -5592,7 +6693,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "separator",
@@ -5606,7 +6708,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTemplate>(X_CONFIG_NAME,'/')"
         ],
         "attr": "separator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeClick",
@@ -5619,7 +6722,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XCrumbProperty",
@@ -5629,6 +6733,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Crumb 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "icon",
@@ -5639,7 +6744,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "icon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -5650,7 +6756,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -5661,7 +6768,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XCrumbNode",
@@ -5671,6 +6779,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Crumb 点击返回的对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "event",
@@ -5681,7 +6790,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "event",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "node",
@@ -5692,7 +6802,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "node",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XCrumbNodeClick"
@@ -5701,16 +6812,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "DatePicker",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDatePickerPrefix",
     "selector": "x-date-picker",
-    "decorator": "component",
     "value": "'x-date-picker'"
   },
   "XDatePickerProperty": {
     "type": "class",
     "label": "DatePicker Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -5723,7 +6835,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "format",
@@ -5737,7 +6850,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'yyyy-MM-dd')"
         ],
         "attr": "format",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "clearable",
@@ -5752,7 +6866,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "clearable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -5766,7 +6881,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCorner>(X_CONFIG_NAME,'bottom-start')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -5780,7 +6896,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -5795,7 +6912,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "preset",
@@ -5809,7 +6927,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "preset",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "extraFooter",
@@ -5822,7 +6941,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "extraFooter",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledDate",
@@ -5835,7 +6955,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "disabledDate",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledTime",
@@ -5848,7 +6969,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "disabledTime",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -5861,7 +6983,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -5874,7 +6997,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -5887,7 +7011,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -5900,7 +7025,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -5913,7 +7039,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -5926,7 +7053,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -5939,7 +7067,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -5953,7 +7082,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -5967,7 +7097,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -5981,7 +7112,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -5994,7 +7126,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -6007,7 +7140,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -6020,7 +7154,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -6033,7 +7168,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -6046,7 +7182,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -6059,7 +7196,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -6073,7 +7211,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -6087,7 +7226,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -6100,7 +7240,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -6113,7 +7254,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeEmit",
@@ -6126,27 +7268,147 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XDatePickerProperty",
     "extends": "XControlValueAccessor<any>",
     "implements": "XDatePickerOption"
   },
+  "XDatePickerOption": {
+    "type": "interface",
+    "label": "DatePicker Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "type",
+        "type": "XDatePickerType",
+        "label": "选择类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "label": "格式化类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "format",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearable",
+        "type": "XBoolean",
+        "label": "清除按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XCorner",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "XBoolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeClick",
+        "type": "(value: number) => void",
+        "label": "节点点击的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeClick",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XDatePickerOption",
+    "extends": "XFormOption"
+  },
   "XDateRangePrefix": {
     "type": "const",
     "label": "DateRange",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDateRangePrefix",
     "selector": "x-date-range",
-    "decorator": "component",
     "value": "'x-date-range'"
   },
   "XDateRangeProperty": {
     "type": "class",
     "label": "DateRange Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -6159,7 +7421,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "format",
@@ -6173,7 +7436,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_RANGE_NAME,'yyyy-MM-dd')"
         ],
         "attr": "format",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "clearable",
@@ -6188,7 +7452,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "clearable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -6202,7 +7467,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCorner>(X_CONFIG_RANGE_NAME,'bottom-start')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -6216,7 +7482,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_RANGE_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -6231,7 +7498,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "preset",
@@ -6245,7 +7513,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "preset",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -6258,7 +7527,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "extraFooter",
@@ -6271,7 +7541,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "extraFooter",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledDate",
@@ -6284,7 +7555,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "disabledDate",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledTime",
@@ -6297,7 +7569,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "disabledTime",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -6310,7 +7583,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -6323,7 +7597,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -6336,7 +7611,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -6349,7 +7625,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -6362,7 +7639,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -6375,7 +7653,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -6389,7 +7668,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -6403,7 +7683,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -6417,7 +7698,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -6430,7 +7712,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -6443,7 +7726,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -6456,7 +7740,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -6469,7 +7754,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -6482,7 +7768,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -6495,7 +7782,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -6509,7 +7797,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -6523,7 +7812,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -6536,7 +7826,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -6549,7 +7840,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeEmit",
@@ -6562,17 +7854,53 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XDateRangeProperty",
     "extends": "XControlValueAccessor<any>",
     "implements": "XDateRangeOption"
   },
+  "XDateRangeOption": {
+    "type": "interface",
+    "label": "DateRange Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "tabindex",
+        "type": "number",
+        "label": "tab 键控制次序",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tabindex",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string[]",
+        "label": "日期提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XDateRangeOption",
+    "extends": "XFormOption"
+  },
   "XDatePickerDisabledDate": {
     "type": "type",
     "label": "禁用日期的自定义类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDatePickerDisabledDate",
     "value": "(current: Date) => boolean"
@@ -6581,6 +7909,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "禁用时间的自定义类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDatePickerDisabledTime",
     "value": "(type?: XDatePickerRangType) => XDatePickerDisabledTimeFn"
@@ -6589,6 +7918,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "禁用时间的自定义函数",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDatePickerDisabledTimeFn",
     "value": "XDatePickerDisabledTimeFn = {/*** @zh_CN 禁用小时的自定义函数* @en_US Disable hour custom function*/disabledHours?: () => number[];/*** @zh_CN 禁用分钟的自定义函数* @en_US Disable the custom function of the minute*/disabledMinutes?: () => number[];/*** @zh_CN 禁用秒的自定义函数* @en_US Custom function of disable seconds*/disabledSeconds?: () => number[];};"
@@ -6597,6 +7927,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "快捷选择按钮",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "func",
@@ -6607,7 +7938,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "func",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XDatePickerPreset",
@@ -6617,6 +7949,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "快捷范围选择按钮",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "func",
@@ -6627,7 +7960,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "func",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XDateRangePreset",
@@ -6637,6 +7971,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "日期选择类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDatePickerType",
     "value": "XDatePickerType =| 'date'| 'week'| 'month'| 'quarter'| 'year'| 'date-time'| 'date-hour'| 'date-minute';"
@@ -6645,6 +7980,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "日期数据类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDatePickerModelType",
     "value": "'date' | 'number' | 'string'"
@@ -6653,36 +7989,37 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "DatePicker Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDatePickerPortalPrefix",
     "selector": "x-date-picker-portal",
-    "decorator": "component",
     "value": "'x-date-picker-portal'"
   },
   "XDateRangePortalPrefix": {
     "type": "const",
     "label": "DateRange Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDateRangePortalPrefix",
     "selector": "x-date-range-portal",
-    "decorator": "component",
     "value": "'x-date-range-portal'"
   },
   "XPickerDatePrefix": {
     "type": "const",
     "label": "PickerDate",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPickerDatePrefix",
     "selector": "x-picker-date",
-    "decorator": "component",
     "value": "'x-picker-date'"
   },
   "XPickerDateProperty": {
     "type": "class",
     "label": "PickerDate Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -6695,7 +8032,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "Date()",
@@ -6708,7 +8046,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "Date()",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "model",
@@ -6721,7 +8060,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "model",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dateTemp",
@@ -6734,7 +8074,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "dateTemp",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showHeader",
@@ -6748,7 +8089,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showHeader",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangePicker",
@@ -6762,7 +8104,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "rangePicker",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "lastYearBtn",
@@ -6776,7 +8119,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "lastYearBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "lastMonthBtn",
@@ -6790,7 +8134,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "lastMonthBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nextYearBtn",
@@ -6804,7 +8149,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "nextYearBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nextMonthBtn",
@@ -6818,7 +8164,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "nextMonthBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangeHover",
@@ -6832,7 +8179,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "rangeHover",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangeValue",
@@ -6845,7 +8193,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rangeValue",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangeType",
@@ -6858,7 +8207,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rangeType",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledDate",
@@ -6871,7 +8221,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "disabledDate",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "typeChange",
@@ -6884,7 +8235,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "typeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "modelChange",
@@ -6897,7 +8249,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "modelChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeChange",
@@ -6910,7 +8263,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "yearChange",
@@ -6923,7 +8277,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "yearChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "monthChange",
@@ -6936,7 +8291,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "monthChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "displayChange",
@@ -6949,7 +8305,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "displayChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeTdMouseenter",
@@ -6962,7 +8319,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeTdMouseenter",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeTdMouseleave",
@@ -6975,7 +8333,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeTdMouseleave",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeDateClick",
@@ -6988,7 +8347,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeDateClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XPickerDateProperty",
@@ -6998,6 +8358,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "单个日期数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "date",
@@ -7008,7 +8369,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "date",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isLastOrNext",
@@ -7019,7 +8381,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isLastOrNext",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isNow",
@@ -7030,7 +8393,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isNow",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isFirstDay",
@@ -7041,7 +8405,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isFirstDay",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isLastDay",
@@ -7052,7 +8417,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isLastDay",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isInRange",
@@ -7063,7 +8429,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isInRange",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isInRangeHover",
@@ -7074,7 +8441,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isInRangeHover",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isInRangeHoverLeft",
@@ -7085,7 +8453,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isInRangeHoverLeft",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isInRangeHoverRight",
@@ -7096,7 +8465,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isInRangeHoverRight",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeStartLeft",
@@ -7107,7 +8477,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeStartLeft",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeStartRight",
@@ -7118,7 +8489,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeStartRight",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeEndLeft",
@@ -7129,7 +8501,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeEndLeft",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeEndRight",
@@ -7140,7 +8513,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeEndRight",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeHover",
@@ -7151,7 +8525,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeHover",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeHoverStart",
@@ -7162,7 +8537,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeHoverStart",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeHoverEnd",
@@ -7173,7 +8549,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeHoverEnd",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeHoverStartLeft",
@@ -7184,7 +8561,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeHoverStartLeft",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeHoverStartRight",
@@ -7195,7 +8573,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeHoverStartRight",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeHoverEndLeft",
@@ -7206,7 +8585,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeHoverEndLeft",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isRangeHoverEndRight",
@@ -7217,7 +8597,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isRangeHoverEndRight",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isActive",
@@ -7228,7 +8609,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isActive",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "isDisabled",
@@ -7239,7 +8621,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "isDisabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "type",
@@ -7250,7 +8633,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "type",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "week",
@@ -7261,7 +8645,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "week",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XDateCell"
@@ -7270,6 +8655,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "当前选择的是开始/结束日期",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDatePickerRangType",
     "value": "'start' | 'end'"
@@ -7278,16 +8664,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "PickerMonth",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPickerMonthPrefix",
     "selector": "x-picker-month",
-    "decorator": "component",
     "value": "'x-picker-month'"
   },
   "XPickerMonthProperty": {
     "type": "class",
     "label": "PickerMonth Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -7300,7 +8687,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "display",
@@ -7313,7 +8701,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "display",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "model",
@@ -7326,7 +8715,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "model",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "monthTemp",
@@ -7339,7 +8729,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "monthTemp",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showHeader",
@@ -7353,7 +8744,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showHeader",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangePicker",
@@ -7367,7 +8759,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "rangePicker",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "lastYearBtn",
@@ -7381,7 +8774,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "lastYearBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nextYearBtn",
@@ -7395,7 +8789,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "nextYearBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangeValue",
@@ -7408,7 +8803,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rangeValue",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangeType",
@@ -7421,7 +8817,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rangeType",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledDate",
@@ -7434,7 +8831,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "disabledDate",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "modelChange",
@@ -7447,7 +8845,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "modelChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "typeChange",
@@ -7460,7 +8859,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "typeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeChange",
@@ -7473,7 +8873,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "yearChange",
@@ -7486,7 +8887,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "yearChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "monthChange",
@@ -7499,7 +8901,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "monthChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "displayChange",
@@ -7512,7 +8915,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "displayChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeTdMouseenter",
@@ -7525,7 +8929,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeTdMouseenter",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeTdMouseleave",
@@ -7538,7 +8943,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeTdMouseleave",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeDateClick",
@@ -7551,7 +8957,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeDateClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XPickerMonthProperty",
@@ -7561,16 +8968,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "PickerQuarter",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPickerQuarterPrefix",
     "selector": "x-picker-quarter",
-    "decorator": "component",
     "value": "'x-picker-quarter'"
   },
   "XPickerQuarterProperty": {
     "type": "class",
     "label": "PickerQuarter Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -7583,7 +8991,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "display",
@@ -7596,7 +9005,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "display",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "model",
@@ -7609,7 +9019,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "model",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "quarterTemp",
@@ -7622,7 +9033,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "quarterTemp",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showHeader",
@@ -7636,7 +9048,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showHeader",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangePicker",
@@ -7650,7 +9063,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "rangePicker",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "lastYearBtn",
@@ -7664,7 +9078,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "lastYearBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nextYearBtn",
@@ -7678,7 +9093,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "nextYearBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangeValue",
@@ -7691,7 +9107,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rangeValue",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangeType",
@@ -7704,7 +9121,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rangeType",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledDate",
@@ -7717,7 +9135,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "disabledDate",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "modelChange",
@@ -7730,7 +9149,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "modelChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "typeChange",
@@ -7743,7 +9163,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "typeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeChange",
@@ -7756,7 +9177,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "yearChange",
@@ -7769,7 +9191,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "yearChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "monthChange",
@@ -7782,7 +9205,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "monthChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "displayChange",
@@ -7795,7 +9219,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "displayChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeTdMouseenter",
@@ -7808,7 +9233,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeTdMouseenter",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeTdMouseleave",
@@ -7821,7 +9247,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeTdMouseleave",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeDateClick",
@@ -7834,7 +9261,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeDateClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XPickerQuarterProperty",
@@ -7844,26 +9272,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "DateQuarter",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDateQuarterPrefix",
     "selector": "xDateQuarter",
-    "decorator": "pipe",
     "value": "'xDateQuarter'"
   },
   "XPickerYearPrefix": {
     "type": "const",
     "label": "PickerYear",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPickerYearPrefix",
     "selector": "x-picker-year",
-    "decorator": "component",
     "value": "'x-picker-year'"
   },
   "XPickerYearProperty": {
     "type": "class",
     "label": "PickerYear Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -7876,7 +9305,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "display",
@@ -7889,7 +9319,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "display",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "model",
@@ -7902,7 +9333,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "model",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "yearTemp",
@@ -7915,7 +9347,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "yearTemp",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showHeader",
@@ -7929,7 +9362,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showHeader",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangePicker",
@@ -7943,7 +9377,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "rangePicker",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "lastYearBtn",
@@ -7957,7 +9392,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "lastYearBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nextYearBtn",
@@ -7971,7 +9407,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "nextYearBtn",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangeValue",
@@ -7984,7 +9421,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rangeValue",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rangeType",
@@ -7997,7 +9435,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rangeType",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledDate",
@@ -8010,7 +9449,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "disabledDate",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "modelChange",
@@ -8023,7 +9463,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "modelChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "typeChange",
@@ -8036,7 +9477,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "typeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "startChange",
@@ -8049,7 +9491,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "startChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeChange",
@@ -8062,7 +9505,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "yearChange",
@@ -8075,7 +9519,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "yearChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "monthChange",
@@ -8088,7 +9533,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "monthChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "displayChange",
@@ -8101,7 +9547,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "displayChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeTdMouseenter",
@@ -8114,7 +9561,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeTdMouseenter",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeTdMouseleave",
@@ -8127,7 +9575,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeTdMouseleave",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rangeDateClick",
@@ -8140,7 +9589,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "rangeDateClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XPickerYearProperty",
@@ -8150,16 +9600,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Description",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDescriptionPrefix",
     "selector": "x-description",
-    "decorator": "component",
     "value": "'x-description'"
   },
   "XDescriptionProperty": {
     "type": "class",
     "label": "Description Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "title",
@@ -8172,7 +9623,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "title",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -8187,7 +9639,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "gridTemplateColumns",
@@ -8200,7 +9653,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "gridTemplateColumns",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -8214,7 +9668,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XDescriptionProperty",
@@ -8224,16 +9679,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Description Item",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDescriptionItemPrefix",
     "selector": "x-description-item",
-    "decorator": "component",
     "value": "'x-description-item'"
   },
   "XDescriptionItemProperty": {
     "type": "class",
     "label": "Description Item Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "gridArea",
@@ -8246,7 +9702,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "gridArea",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -8259,7 +9716,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -8272,7 +9730,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -8285,7 +9744,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -8298,7 +9758,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "width",
@@ -8311,7 +9772,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "width",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "flex",
@@ -8324,7 +9786,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "flex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "heading",
@@ -8338,7 +9801,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "heading",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XDescriptionItemProperty"
@@ -8347,16 +9811,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Dialog",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDialogPrefix",
     "selector": "x-dialog",
-    "decorator": "component",
     "value": "'x-dialog'"
   },
   "XDialogProperty": {
     "type": "class",
     "label": "Dialog Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "placement",
@@ -8370,7 +9835,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPlace>(X_DIALOG_CONFIG_NAME,'center')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "offset",
@@ -8384,7 +9850,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_DIALOG_CONFIG_NAME,'1rem')"
         ],
         "attr": "offset",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -8397,21 +9864,23 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "width",
         "type": "string",
         "label": "宽度",
-        "default": "'32rem'",
+        "default": "",
         "withConfig": false,
         "description": "",
         "decorator": [
           "@Input()",
-          "@XWithConfig<string>(X_DIALOG_CONFIG_NAME,'32rem')"
+          "@XWithConfig<string>(X_DIALOG_CONFIG_NAME)"
         ],
         "attr": "width",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "height",
@@ -8424,21 +9893,38 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "height",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minWidth",
         "type": "string",
         "label": "最小宽度",
-        "default": "'18rem'",
+        "default": "'32rem'",
         "withConfig": false,
         "description": "",
         "decorator": [
           "@Input()",
-          "@XWithConfig<string>(X_DIALOG_CONFIG_NAME,'18rem')"
+          "@XWithConfig<string>(X_DIALOG_CONFIG_NAME,'32rem')"
         ],
         "attr": "minWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
+      },
+      {
+        "name": "maxWidth",
+        "type": "string",
+        "label": "最大宽度",
+        "default": "'32rem'",
+        "withConfig": false,
+        "description": "",
+        "decorator": [
+          "@Input()",
+          "@XWithConfig<string>(X_DIALOG_CONFIG_NAME,'32rem')"
+        ],
+        "attr": "maxWidth",
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minHeight",
@@ -8452,7 +9938,23 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_DIALOG_CONFIG_NAME,'8rem')"
         ],
         "attr": "minHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
+      },
+      {
+        "name": "maxHeight",
+        "type": "string",
+        "label": "最大高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [
+          "@Input()",
+          "@XWithConfig<string>(X_DIALOG_CONFIG_NAME)"
+        ],
+        "attr": "maxHeight",
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "effect",
@@ -8466,7 +9968,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XEffect>(X_DIALOG_CONFIG_NAME,'white')"
         ],
         "attr": "effect",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "footer",
@@ -8479,7 +9982,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "footer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showCancel",
@@ -8493,13 +9997,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME,true)"
         ],
         "attr": "showCancel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "cancelText",
         "type": "string",
         "label": "取消按钮文字",
-        "default": "'取消'",
+        "default": "'取消'\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -8507,7 +10012,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_DIALOG_CONFIG_NAME)"
         ],
         "attr": "cancelText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showConfirm",
@@ -8521,13 +10027,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME,true)"
         ],
         "attr": "showConfirm",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "confirmText",
         "type": "string",
         "label": "确认按钮文字",
-        "default": "'确认'",
+        "default": "'确认'\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -8535,7 +10042,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_DIALOG_CONFIG_NAME)"
         ],
         "attr": "confirmText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "backdropClose",
@@ -8549,7 +10057,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME,true)"
         ],
         "attr": "backdropClose",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hasBackdrop",
@@ -8563,7 +10072,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME,true)"
         ],
         "attr": "hasBackdrop",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "className",
@@ -8577,7 +10087,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_DIALOG_CONFIG_NAME,'')"
         ],
         "attr": "className",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "buttonsCenter",
@@ -8592,7 +10103,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "buttonsCenter",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "@Input(",
@@ -8603,7 +10115,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "&#64;Input(",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "@Input(",
@@ -8614,7 +10127,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "&#64;Input(",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "maximize",
@@ -8629,7 +10143,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "maximize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "beforeClose",
@@ -8642,7 +10157,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "beforeClose",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "cancel",
@@ -8655,7 +10171,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "cancel",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "confirm",
@@ -8668,7 +10185,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "confirm",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "close",
@@ -8681,7 +10199,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "close",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "visibleChange",
@@ -8694,7 +10213,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "visibleChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "showDone",
@@ -8707,7 +10227,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "showDone",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "closeDone",
@@ -8720,7 +10241,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "closeDone",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XDialogProperty",
@@ -8730,16 +10252,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Dialog Container",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDialogContainerPrefix",
     "selector": "x-dialog-container",
-    "decorator": "component",
     "value": "'x-dialog-container'"
   },
   "XDialogContainerProperty": {
     "type": "class",
     "label": "Dialog Container Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "placement",
@@ -8750,7 +10273,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "placement",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "offset",
@@ -8761,18 +10285,20 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "offset",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "width",
         "type": "string",
         "label": "宽度",
-        "default": "'32rem'",
+        "default": "",
         "withConfig": true,
         "description": "",
         "decorator": [],
         "attr": "width",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "height",
@@ -8783,7 +10309,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "height",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "className",
@@ -8794,7 +10321,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "className",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "backdropClose",
@@ -8805,7 +10333,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "backdropClose",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hasBackdrop",
@@ -8816,7 +10345,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "hasBackdrop",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "draggable",
@@ -8827,7 +10357,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "draggable",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "resizable",
@@ -8838,18 +10369,32 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "resizable",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "minWidth",
         "type": "string",
         "label": "最小宽度",
-        "default": "'18rem'",
+        "default": "'32rem'",
         "withConfig": true,
         "description": "",
         "decorator": [],
         "attr": "minWidth",
-        "propType": ""
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxWidth",
+        "type": "string",
+        "label": "最大宽度",
+        "default": "'32rem'",
+        "withConfig": true,
+        "description": "",
+        "decorator": [],
+        "attr": "maxWidth",
+        "propType": "",
+        "example": ""
       },
       {
         "name": "minHeight",
@@ -8860,7 +10405,20 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "minHeight",
-        "propType": ""
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxHeight",
+        "type": "string",
+        "label": "最大高度",
+        "default": "",
+        "withConfig": true,
+        "description": "",
+        "decorator": [],
+        "attr": "maxHeight",
+        "propType": "",
+        "example": ""
       },
       {
         "name": "data",
@@ -8871,7 +10429,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "data",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "viewContainerRef",
@@ -8882,7 +10441,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "viewContainerRef",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XDialogContainerProperty",
@@ -8892,6 +10452,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "弹框动画状态",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDialogAnimationState",
     "value": "XPlace | 'void'"
@@ -8900,6 +10461,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "弹框动画事件",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDialogAnimationEvent"
   },
@@ -8907,6 +10469,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "关闭的回调函数类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDialogCallback"
   },
@@ -8914,6 +10477,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发关闭的类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDialogAction",
     "value": "'confirm' | 'cancel' | 'close'"
@@ -8922,16 +10486,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Drawer",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDrawerPrefix",
     "selector": "x-drawer",
-    "decorator": "component",
     "value": "'x-drawer'"
   },
   "XDrawerProperty": {
     "type": "class",
     "label": "Drawer Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "title",
@@ -8944,7 +10509,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "title",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "visible",
@@ -8958,7 +10524,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "visible",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -8972,7 +10539,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPosition>(X_DRAWER_CONFIG_NAME,'right')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -8986,7 +10554,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_DRAWER_CONFIG_NAME,'30%')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "backdropClose",
@@ -9000,7 +10569,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_DRAWER_CONFIG_NAME,true)"
         ],
         "attr": "backdropClose",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hasBackdrop",
@@ -9014,7 +10584,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_DRAWER_CONFIG_NAME,true)"
         ],
         "attr": "hasBackdrop",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "className",
@@ -9028,7 +10599,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_DRAWER_CONFIG_NAME,'')"
         ],
         "attr": "className",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "close",
@@ -9041,7 +10613,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "close",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "visibleChange",
@@ -9054,7 +10627,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "visibleChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XDrawerProperty",
@@ -9064,6 +10638,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Drawer Option",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "placement",
@@ -9074,7 +10649,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "placement",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "size",
@@ -9085,7 +10661,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "size",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "className",
@@ -9096,7 +10673,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "className",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "backdropClose",
@@ -9107,7 +10685,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "backdropClose",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hasBackdrop",
@@ -9118,7 +10697,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "hasBackdrop",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "data",
@@ -9129,7 +10709,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "data",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "viewContainerRef",
@@ -9140,7 +10721,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "viewContainerRef",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XDrawerOption"
@@ -9149,16 +10731,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Drawer Container",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDrawerContainerPrefix",
     "selector": "x-drawer-container",
-    "decorator": "component",
     "value": "'x-drawer-container'"
   },
   "XDrawerContainerProperty": {
     "type": "class",
     "label": "Drawer Container Property",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDrawerContainerProperty",
     "extends": "XProperty"
@@ -9167,6 +10750,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "抽屉动画状态",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDrawerAnimationState",
     "value": "XPosition | 'void'"
@@ -9175,6 +10759,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "抽屉动画事件",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDrawerAnimationEvent"
   },
@@ -9182,16 +10767,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Dropdown",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDropdownPrefix",
     "selector": "x-dropdown",
-    "decorator": "component",
     "value": "'x-dropdown'"
   },
   "XDropdownProperty": {
     "type": "class",
     "label": "Dropdown Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -9205,7 +10791,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "trigger",
@@ -9219,7 +10806,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XDropdownTrigger>(X_CONFIG_NAME,'hover')"
         ],
         "attr": "trigger",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -9233,7 +10821,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPlacement>(X_CONFIG_NAME,'bottom-start')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -9247,7 +10836,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "children",
@@ -9261,7 +10851,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "children",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "portalMinWidth",
@@ -9274,7 +10865,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "portalMinWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "portalMaxWidth",
@@ -9287,7 +10879,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "portalMaxWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "portalMinHeight",
@@ -9300,7 +10893,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "portalMinHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "portalMaxHeight",
@@ -9313,7 +10907,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "portalMaxHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hoverDelay",
@@ -9326,7 +10921,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "hoverDelay",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedId",
@@ -9339,7 +10935,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "activatedId",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -9353,7 +10950,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeClick",
@@ -9366,7 +10964,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "activatedIdChange",
@@ -9379,7 +10978,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activatedIdChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XDropdownProperty",
@@ -9389,6 +10989,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "显示方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDropdownTrigger",
     "extends": "XListNode",
@@ -9398,26 +10999,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Dropdown Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDropdownPortalPrefix",
     "selector": "x-dropdown-portal",
-    "decorator": "component",
     "value": "'x-dropdown-portal'"
   },
   "XEmptyPrefix": {
     "type": "const",
     "label": "Empty",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XEmptyPrefix",
     "selector": "x-empty",
-    "decorator": "component",
     "value": "'x-empty'"
   },
   "XEmptyProperty": {
     "type": "class",
     "label": "Empty Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "img",
@@ -9431,7 +11033,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTemplate>(X_CONFIG_NAME)"
         ],
         "attr": "img",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "content",
@@ -9445,7 +11048,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTemplate>(X_CONFIG_NAME)"
         ],
         "attr": "content",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XEmptyProperty"
@@ -9454,16 +11058,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Find",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFindPrefix",
     "selector": "x-find",
-    "decorator": "component",
     "value": "'x-find'"
   },
   "XFindSearchOption": {
     "type": "interface",
     "label": "Find search option",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFindSearchOption",
     "extends": "XFilter"
@@ -9472,6 +11077,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Find Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "size",
@@ -9485,7 +11091,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -9500,7 +11107,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "multiple",
@@ -9514,7 +11122,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "multiple",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "columnLabel",
@@ -9528,7 +11137,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'label')"
         ],
         "attr": "columnLabel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dialogTitle",
@@ -9542,7 +11152,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'查找选择')"
         ],
         "attr": "dialogTitle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dialogCheckboxLabel",
@@ -9556,7 +11167,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'选择')"
         ],
         "attr": "dialogCheckboxLabel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dialogCheckboxWidth",
@@ -9571,7 +11183,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "dialogCheckboxWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dialogEmptyContent",
@@ -9585,7 +11198,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'请选择数据')"
         ],
         "attr": "dialogEmptyContent",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dialogWidth",
@@ -9598,7 +11212,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "dialogWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dialogHeight",
@@ -9611,7 +11226,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "dialogHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dialogVisible",
@@ -9625,7 +11241,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "dialogVisible",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dialogVisibleChange",
@@ -9638,7 +11255,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "dialogVisibleChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "dialogButtonsCenter",
@@ -9653,7 +11271,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "dialogButtonsCenter",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableData",
@@ -9666,7 +11285,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableData",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableIndex",
@@ -9680,7 +11300,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME,1)"
         ],
         "attr": "tableIndex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableSize",
@@ -9694,7 +11315,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME,10)"
         ],
         "attr": "tableSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableQuery",
@@ -9707,7 +11329,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableQuery",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableTotal",
@@ -9720,7 +11343,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableTotal",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableIndexChange",
@@ -9733,7 +11357,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "tableIndexChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "tableSizeChange",
@@ -9746,7 +11371,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "tableSizeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "tableSortChange",
@@ -9759,7 +11385,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "tableSortChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "tableColumns",
@@ -9772,7 +11399,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableColumns",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableActivatedRow",
@@ -9785,7 +11413,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableActivatedRow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableRowEmit",
@@ -9798,7 +11427,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "tableRowEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "tableCheckedRow",
@@ -9811,7 +11441,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableCheckedRow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableLoading",
@@ -9826,7 +11457,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "tableLoading",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableVirtualScroll",
@@ -9841,7 +11473,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "tableVirtualScroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableBodyHeight",
@@ -9855,7 +11488,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "tableBodyHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableMinBufferPx",
@@ -9868,7 +11502,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableMinBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableMaxBufferPx",
@@ -9881,7 +11516,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableMaxBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableAdaptionHeight",
@@ -9895,7 +11531,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "tableAdaptionHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableDocPercent",
@@ -9909,7 +11546,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "tableDocPercent",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableRowHeight",
@@ -9924,7 +11562,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "tableRowHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "treeData",
@@ -9938,7 +11577,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "treeData",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "treeActivatedChange",
@@ -9951,7 +11591,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "treeActivatedChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "treeActivatedId",
@@ -9964,7 +11605,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "treeActivatedId",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "treeExpandedLevel",
@@ -9979,7 +11621,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "treeExpandedLevel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "treeChecked",
@@ -9992,7 +11635,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "treeChecked",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "treeCheckbox",
@@ -10006,7 +11650,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "treeCheckbox",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "treeTableConnect",
@@ -10019,7 +11664,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "treeTableConnect",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "search",
@@ -10032,7 +11678,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "search",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -10045,7 +11692,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -10058,7 +11706,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -10071,7 +11720,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -10084,7 +11734,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -10097,7 +11748,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -10110,7 +11762,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -10123,7 +11776,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -10137,7 +11791,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -10151,7 +11806,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -10165,7 +11821,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -10178,7 +11835,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -10191,7 +11849,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -10204,7 +11863,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -10217,7 +11877,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -10230,7 +11891,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -10243,7 +11905,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -10257,7 +11920,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -10271,7 +11935,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -10284,7 +11949,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -10297,26 +11963,446 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XFindProperty",
     "extends": "XControlValueAccessor<any"
   },
+  "XFindOption": {
+    "type": "interface",
+    "label": "Find Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "XBoolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "multiple",
+        "type": "XBoolean",
+        "label": "多选",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "multiple",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "columnLabel",
+        "type": "string",
+        "label": "选中 label 名称字段",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "columnLabel",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogTitle",
+        "type": "string",
+        "label": "弹框标题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogTitle",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogCheckboxLabel",
+        "type": "string",
+        "label": "弹框表格选择框列头名称",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogCheckboxLabel",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogCheckboxWidth",
+        "type": "number",
+        "label": "弹框表格选择框列头宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogCheckboxWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogEmptyContent",
+        "type": "string",
+        "label": "弹框选择数据为空的提示内容",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogEmptyContent",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogWidth",
+        "type": "string",
+        "label": "弹框宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogHeight",
+        "type": "string",
+        "label": "弹框高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogVisible",
+        "type": "boolean",
+        "label": "弹框显示，隐藏",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogVisible",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogButtonsCenter",
+        "type": "XBoolean",
+        "label": "按钮居中",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogButtonsCenter",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableData",
+        "type": "XData<XTableRow>",
+        "label": "表格行数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableData",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableIndex",
+        "type": "number",
+        "label": "表格页码",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableIndex",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableSize",
+        "type": "number",
+        "label": "表每页数据条数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableSize",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableTotal",
+        "type": "number",
+        "label": "表格数据总条数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableTotal",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableColumns",
+        "type": "XTableColumn[]",
+        "label": "表格列参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableColumns",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableActivatedRow",
+        "type": "any",
+        "label": "当前选中行数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableActivatedRow",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableCheckedRow",
+        "type": "{ [property: string]: any[] }",
+        "label": "表格行点击事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableCheckedRow",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableLoading",
+        "type": "XBoolean",
+        "label": "是否启用加载 loading",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableLoading",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableVirtualScroll",
+        "type": "boolean",
+        "label": "表格开启虚拟滚动",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableVirtualScroll",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableBodyHeight",
+        "type": "number",
+        "label": "表格 body 数据高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableBodyHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableMinBufferPx",
+        "type": "number",
+        "label": "表格超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableMinBufferPx",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableMaxBufferPx",
+        "type": "number",
+        "label": "表格渲染新数据缓冲区的像素，对应 cdk scroll 中的参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableMaxBufferPx",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableAdaptionHeight",
+        "type": "XNumber",
+        "label": "表格自适应高度，table 高度等于屏幕高度减掉此处设置的数值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableAdaptionHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableDocPercent",
+        "type": "XNumber",
+        "label": "表格文档高度百分比，弹窗百分比高度用到",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableDocPercent",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableRowHeight",
+        "type": "XNumber",
+        "label": "表格行高度，单位 px",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableRowHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeData",
+        "type": "XData<XTreeNode>",
+        "label": "树节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeData",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeActivatedId",
+        "type": "any",
+        "label": "树当前激活的节点 Id",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeActivatedId",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeExpandedLevel",
+        "type": "XNumber",
+        "label": "树默认展开的层级",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeExpandedLevel",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeChecked",
+        "type": "any[]",
+        "label": "树 checkbox 选中的节点",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeChecked",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeCheckbox",
+        "type": "XBoolean",
+        "label": "树显示多选框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeCheckbox",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeTableConnect",
+        "type": "any",
+        "label": "树和表格同时存在的时候，树节点 id 对应表格的属性，用来做表格数据过滤",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeTableConnect",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "search",
+        "type": "XFindSearchOption",
+        "label": "数据查询过滤表单",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "search",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XFindOption",
+    "extends": "XFormOption"
+  },
   "XFormPrefix": {
     "type": "const",
     "label": "Form",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFormPrefix",
     "selector": "x-form",
-    "decorator": "component",
     "value": "'x-form'"
   },
   "XFormProperty": {
     "type": "class",
     "label": "Form Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "formGroup",
@@ -10329,7 +12415,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "formGroup",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "title",
@@ -10342,7 +12429,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "title",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "space",
@@ -10357,7 +12445,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "space",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "span",
@@ -10371,7 +12460,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "span",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelSuffix",
@@ -10385,7 +12475,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME,'')"
         ],
         "attr": "labelSuffix",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "controls",
@@ -10398,7 +12489,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "controls",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "width",
@@ -10412,7 +12504,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'100%')"
         ],
         "attr": "width",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "controlTpl",
@@ -10425,7 +12518,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "controlTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "xSubmit",
@@ -10438,7 +12532,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "xSubmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XFormProperty",
@@ -10450,6 +12545,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "控件对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "value",
@@ -10460,7 +12556,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "value",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "defaultValue",
@@ -10471,7 +12568,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "defaultValue",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "control",
@@ -10482,7 +12580,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "control",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -10493,7 +12592,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -10504,7 +12604,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "readonly",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "required",
@@ -10515,7 +12616,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "required",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hidden",
@@ -10526,7 +12628,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "hidden",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "span",
@@ -10537,7 +12640,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "span",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -10548,7 +12652,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "pattern",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "message",
@@ -10559,7 +12664,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "message",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -10570,7 +12676,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "inputValidator",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "change",
@@ -10581,7 +12688,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "change",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -10592,7 +12700,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XControlOption",
@@ -10602,6 +12711,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "控件对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "value",
@@ -10612,7 +12722,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "value",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "nonNullable",
@@ -10623,7 +12734,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "nonNullable",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "control",
@@ -10634,7 +12746,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "control",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -10645,7 +12758,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -10656,7 +12770,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "readonly",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "required",
@@ -10667,7 +12782,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "required",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hidden",
@@ -10678,7 +12794,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "hidden",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "span",
@@ -10689,7 +12806,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "span",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -10700,7 +12818,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "pattern",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "message",
@@ -10711,7 +12830,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "message",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -10722,7 +12842,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "inputValidator",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "change",
@@ -10733,7 +12854,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "change",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "setValidators",
@@ -10744,7 +12866,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "setValidators",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -10755,7 +12878,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XControl",
@@ -10766,6 +12890,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "表单行对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "title",
@@ -10776,7 +12901,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "title",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "icon",
@@ -10787,7 +12913,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "icon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "controls",
@@ -10798,7 +12925,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "controls",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hidden",
@@ -10809,7 +12937,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "hidden",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XFormRow"
@@ -10818,16 +12947,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XControlPrefix",
     "selector": "x-control",
-    "decorator": "component",
     "value": "'x-control'"
   },
   "XControlProperty": {
     "type": "class",
     "label": "Control Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "option",
@@ -10840,7 +12970,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "option",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XControlProperty"
@@ -10849,6 +12980,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Form control",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "messages",
@@ -10859,7 +12991,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "messages",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XFormControl",
@@ -10869,6 +13002,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "表单控件参数",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFormControlOption",
     "value": "XFormControlOption =| XInputControlOption| XSelectControlOption| XCascadeControlOption| XCheckboxControlOption| XColorPickerControlOption| XDatePickerControlOption| XInputNumberControlOption| XRadioControlOption| XRateControlOption| XSliderSelectControlOption| XSwitchControlOption| XTimePickerControlOption| XFindControlOption| XTemplateControlOption;"
@@ -10877,6 +13011,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "表单控件组件",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFormControlComponent",
     "value": "XFormControlComponent =| XInputComponent| XSelectComponent| XCascadeComponent| XCheckboxComponent| XColorPickerComponent| XDatePickerComponent| XInputNumberComponent| XRadioComponent| XRateComponent| XSliderSelectComponent| XSwitchComponent| XTimePickerComponent| XTextareaComponent| XFindComponent| XAutoCompleteComponent;"
@@ -10885,6 +13020,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "表单控件类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFormControlType",
     "value": "XFormControlType =| XInputControl| XSelectControl| XCascadeControl| XCheckboxControl| XColorPickerControl| XDatePickerControl| XInputNumberControl| XRadioControl| XRateControl| XSliderSelectControl| XSwitchControl| XTimePickerControl| XTextareaControl| XFindControl| XAutoCompleteControl;"
@@ -10893,6 +13029,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "表单控件类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XControlType",
     "value": "XControlType =| 'input'| 'select'| 'cascade'| 'checkbox'| 'color-picker'| 'date-picker'| 'input-number'| 'radio'| 'rate'| 'slider-select'| 'switch'| 'time-picker'| 'textarea'| 'find'| 'auto-complete'| 'template';"
@@ -10901,6 +13038,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Input Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInputControlOption",
     "extends": "XControlOption,"
@@ -10909,6 +13047,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Select Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSelectControlOption",
     "extends": "XControlOption,"
@@ -10917,6 +13056,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Cascade Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCascadeControlOption",
     "extends": "XControlOption,"
@@ -10925,6 +13065,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Checkbox Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCheckboxControlOption",
     "extends": "XControlOption,"
@@ -10933,6 +13074,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "ColorPicker Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XColorPickerControlOption",
     "extends": "XControlOption,"
@@ -10941,6 +13083,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "DatePicker Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XDatePickerControlOption",
     "extends": "XControlOption,"
@@ -10949,6 +13092,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "InputNumber Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInputNumberControlOption",
     "extends": "XControlOption,"
@@ -10957,6 +13101,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Radio Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XRadioControlOption",
     "extends": "XControlOption,"
@@ -10965,6 +13110,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Rate Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XRateControlOption",
     "extends": "XControlOption,"
@@ -10973,6 +13119,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "SliderSelect Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSliderSelectControlOption",
     "extends": "XControlOption,"
@@ -10981,6 +13128,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Switch Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSwitchControlOption",
     "extends": "XControlOption,"
@@ -10989,6 +13137,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "TimePicker Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTimePickerControlOption",
     "extends": "XControlOption,"
@@ -10997,6 +13146,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Textarea Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTextareaControlOption",
     "extends": "XControlOption,"
@@ -11005,6 +13155,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Find Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XFindControlOption",
     "extends": "XControlOption,"
@@ -11013,6 +13164,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "AutoComplete Control",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XAutoCompleteControlOption",
     "extends": "XControlOption,"
@@ -11021,16 +13173,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Highlight",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XHighlightPrefix",
     "selector": "x-highlight",
-    "decorator": "component",
     "value": "'x-highlight'"
   },
   "XHighlightProperty": {
     "type": "class",
     "label": "Highlight Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -11043,7 +13196,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "data",
@@ -11056,7 +13210,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "highlightLines",
@@ -11069,7 +13224,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "highlightLines",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showCopy",
@@ -11083,7 +13239,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showCopy",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XHighlightProperty",
@@ -11093,16 +13250,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Icon",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XIconPrefix",
     "selector": "x-icon",
-    "decorator": "component",
     "value": "'x-icon'"
   },
   "XIconProperty": {
     "type": "class",
     "label": "Icon Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "href",
@@ -11116,7 +13274,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,XIconHref)"
         ],
         "attr": "href",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -11129,7 +13288,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "color",
@@ -11142,7 +13302,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "color",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rotate",
@@ -11156,7 +13317,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "rotate",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "spin",
@@ -11170,7 +13332,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "spin",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "to",
@@ -11183,7 +13346,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "to",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XIconProperty",
@@ -11193,16 +13357,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Image",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XImagePrefix",
     "selector": "x-image",
-    "decorator": "component",
     "value": "'x-image'"
   },
   "XImageProperty": {
     "type": "class",
     "label": "Image Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "src",
@@ -11215,7 +13380,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "src",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "width",
@@ -11228,7 +13394,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "width",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "height",
@@ -11241,7 +13408,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "height",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "alt",
@@ -11254,7 +13422,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "alt",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "fallback",
@@ -11267,13 +13436,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "fallback",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "previewText",
         "type": "string",
         "label": "预览文字",
-        "default": "'预览'",
+        "default": "'预览'\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -11281,7 +13451,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "previewText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -11294,7 +13465,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "previewTpl",
@@ -11307,7 +13479,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "previewTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "error",
@@ -11320,7 +13493,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "error",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "load",
@@ -11333,7 +13507,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "load",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XImageProperty",
@@ -11343,6 +13518,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "图片节点数据",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "src",
@@ -11353,7 +13529,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "src",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "alt",
@@ -11364,7 +13541,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "alt",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "fallback",
@@ -11375,7 +13553,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "fallback",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "activated",
@@ -11386,7 +13565,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "activated",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XImageNode"
@@ -11395,26 +13575,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Image Preview",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XImagePreviewPrefix",
     "selector": "x-image-preview",
-    "decorator": "component",
     "value": "'x-image-preview'"
   },
   "XInputPrefix": {
     "type": "const",
     "label": "Input",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInputPrefix",
     "selector": "x-input",
-    "decorator": "component",
     "value": "'x-input'"
   },
   "XInputProperty": {
     "type": "class",
     "label": "Input Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -11427,7 +13608,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "clearable",
@@ -11442,7 +13624,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "clearable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -11455,7 +13638,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "@Input(",
@@ -11466,7 +13650,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "&#64;Input(",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "iconSpin",
@@ -11480,7 +13665,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "iconSpin",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxlength",
@@ -11494,7 +13680,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "maxlength",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "max",
@@ -11508,7 +13695,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "max",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "min",
@@ -11522,7 +13710,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "min",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "width",
@@ -11536,7 +13725,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "width",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -11550,7 +13740,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -11565,7 +13756,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputStyle",
@@ -11578,7 +13770,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputStyle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -11592,7 +13785,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "validator",
@@ -11606,7 +13800,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "validator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputPadding",
@@ -11621,7 +13816,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME,0.75)"
         ],
         "attr": "inputPadding",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputIconPadding",
@@ -11636,7 +13832,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME,2.15)"
         ],
         "attr": "inputIconPadding",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -11649,7 +13846,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -11662,7 +13860,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -11675,7 +13874,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -11688,7 +13888,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -11701,7 +13902,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -11714,7 +13916,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -11727,7 +13930,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -11740,7 +13944,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -11753,7 +13958,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -11767,7 +13973,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -11781,7 +13988,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -11795,7 +14003,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -11808,7 +14017,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -11821,7 +14031,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -11834,7 +14045,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -11847,7 +14059,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -11861,7 +14074,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -11874,7 +14088,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -11887,7 +14102,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "clearEmit",
@@ -11900,7 +14116,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "clearEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "xFocus",
@@ -11913,7 +14130,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "xFocus",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "xBlur",
@@ -11926,7 +14144,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "xBlur",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "xInput",
@@ -11939,7 +14158,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "xInput",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "xKeydown",
@@ -11952,7 +14172,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "xKeydown",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "xClick",
@@ -11965,7 +14186,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "xClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "xMouseenter",
@@ -11978,7 +14200,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "xMouseenter",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "xMouseleave",
@@ -11991,7 +14214,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "xMouseleave",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "xComposition",
@@ -12004,17 +14228,197 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "xComposition",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XInputProperty",
     "extends": "XControlValueAccessor<any>",
     "implements": "XInputOption"
   },
+  "XInputOption": {
+    "type": "interface",
+    "label": "Input Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "type",
+        "type": "XInputType",
+        "label": "输入类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearable",
+        "type": "XBoolean",
+        "label": "清除按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "XBoolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "label": "图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "iconLayout",
+        "type": "XInputIconLayoutType",
+        "label": "图标布局方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconLayout",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "iconSpin",
+        "type": "XBoolean",
+        "label": "图标动画",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconSpin",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxlength",
+        "type": "XNumber",
+        "label": "输入最大长度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxlength",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "width",
+        "type": "XNumber",
+        "label": "宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "width",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "XBoolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearClick",
+        "type": "(value: any) => void",
+        "label": "清除按钮的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearClick",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XInputOption",
+    "extends": "XFormOption"
+  },
   "XInputType": {
     "type": "type",
     "label": "输入框类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInputType",
     "value": "'text' | 'password' | 'number'"
@@ -12023,6 +14427,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "图标布局方式，指在输入框中的位置",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInputIconLayoutType",
     "value": "XPositionLeftRight"
@@ -12031,16 +14436,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Input Group",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInputGroupPrefix",
     "selector": "x-input-group",
-    "decorator": "component",
     "value": "'x-input-group'"
   },
   "XInputGroupProperty": {
     "type": "class",
     "label": "Input Group Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "size",
@@ -12054,7 +14460,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_GROUP_NAME)"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -12069,7 +14476,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_GROUP_NAME)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "compact",
@@ -12084,7 +14492,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_GROUP_NAME)"
         ],
         "attr": "compact",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XInputGroupProperty",
@@ -12094,16 +14503,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "InputNumber",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XInputNumberPrefix",
     "selector": "x-input-number",
-    "decorator": "component",
     "value": "'x-input-number'"
   },
   "XInputNumberProperty": {
     "type": "class",
     "label": "InputNumber Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "min",
@@ -12117,7 +14527,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "min",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "max",
@@ -12131,7 +14542,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "max",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "step",
@@ -12145,7 +14557,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "step",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "debounce",
@@ -12159,7 +14572,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "debounce",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "precision",
@@ -12173,7 +14587,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "precision",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -12187,7 +14602,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -12202,7 +14618,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "formatter",
@@ -12215,7 +14632,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "formatter",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -12228,7 +14646,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -12241,7 +14660,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -12254,7 +14674,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -12267,7 +14688,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -12280,7 +14702,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -12293,7 +14716,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -12306,7 +14730,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -12320,7 +14745,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -12334,7 +14760,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -12348,7 +14775,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -12361,7 +14789,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -12374,7 +14803,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -12387,7 +14817,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -12400,7 +14831,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -12413,7 +14845,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -12426,7 +14859,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -12440,7 +14874,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -12454,7 +14889,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -12467,7 +14903,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -12480,27 +14917,111 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XInputNumberProperty",
     "extends": "XControlValueAccessor<any>",
     "implements": "XInputNumberOption"
   },
+  "XInputNumberOption": {
+    "type": "interface",
+    "label": "InputNumber Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "min",
+        "type": "XNumber",
+        "label": "最小值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "min",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "max",
+        "type": "XNumber",
+        "label": "最大值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "max",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "step",
+        "type": "XNumber",
+        "label": "步数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "step",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "debounce",
+        "type": "XNumber",
+        "label": "按住后步进速度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "debounce",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "precision",
+        "type": "XNumber",
+        "label": "精度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "precision",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "xFormatter",
+        "type": "(value: number) => XNumber",
+        "label": "数字格式化",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "xFormatter",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XInputNumberOption",
+    "extends": "XFormOption"
+  },
   "XRowPrefix": {
     "type": "const",
     "label": "Row",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XRowPrefix",
     "selector": "x-row",
-    "decorator": "component",
     "value": "'x-row'"
   },
   "XRowProperty": {
     "type": "class",
     "label": "Row Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "space",
@@ -12514,7 +15035,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "space",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -12527,7 +15049,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -12540,7 +15063,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XRowProperty",
@@ -12550,16 +15074,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Col",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XColPrefix",
     "selector": "x-col",
-    "decorator": "component",
     "value": "'x-col'"
   },
   "XColProperty": {
     "type": "class",
     "label": "Col Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "span",
@@ -12573,7 +15098,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "span",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "offset",
@@ -12587,7 +15113,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "offset",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "xs",
@@ -12601,7 +15128,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "xs",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "sm",
@@ -12615,7 +15143,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "sm",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "md",
@@ -12629,7 +15158,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "md",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "lg",
@@ -12643,7 +15173,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "lg",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "xl",
@@ -12657,7 +15188,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "xl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inherit",
@@ -12671,7 +15203,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "inherit",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XColProperty",
@@ -12681,16 +15214,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Link",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XLinkPrefix",
     "selector": "x-link",
-    "decorator": "component",
     "value": "'x-link'"
   },
   "XLinkProperty": {
     "type": "class",
     "label": "Link Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "href",
@@ -12703,7 +15237,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "href",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -12716,7 +15251,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "underline",
@@ -12731,7 +15267,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "underline",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -12745,7 +15282,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "iconRight",
@@ -12760,7 +15298,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "iconRight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "preventDefault",
@@ -12775,7 +15314,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "preventDefault",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -12788,7 +15328,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "target",
@@ -12801,7 +15342,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "target",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XLinkProperty",
@@ -12811,16 +15353,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "List",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XListPrefix",
     "selector": "x-list",
-    "decorator": "component",
     "value": "'x-list'"
   },
   "XListProperty": {
     "type": "class",
     "label": "List Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -12834,7 +15377,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "multiple",
@@ -12848,7 +15392,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "multiple",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "selectAll",
@@ -12862,13 +15407,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "selectAll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "selectAllText",
         "type": "string",
         "label": "全选的文字",
-        "default": "'全选'",
+        "default": "'全选'\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -12876,7 +15422,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "selectAllText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "checked",
@@ -12890,7 +15437,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "checked",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "drag",
@@ -12904,7 +15452,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "drag",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "objectArray",
@@ -12918,7 +15467,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "objectArray",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -12931,7 +15481,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "header",
@@ -12944,7 +15495,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "header",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "footer",
@@ -12957,7 +15509,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "footer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "scrollElement",
@@ -12970,7 +15523,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "scrollElement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -12984,7 +15538,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "loadMore",
@@ -12998,13 +15553,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "loadMore",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "loadMoreText",
         "type": "string",
         "label": "加载更多的文字",
-        "default": "'加载更多'",
+        "default": "'加载更多'\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -13012,13 +15568,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "loadMoreText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "loadingMoreText",
         "type": "string",
         "label": "正在加载中的文字",
-        "default": "'正在加载中'",
+        "default": "'正在加载中'\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -13026,7 +15583,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "loadingMoreText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "virtualScroll",
@@ -13041,7 +15599,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "virtualScroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "scrollHeight",
@@ -13056,7 +15615,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "scrollHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "heightAdaption",
@@ -13069,7 +15629,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "heightAdaption",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minBufferPx",
@@ -13082,7 +15643,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "minBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxBufferPx",
@@ -13095,7 +15657,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "maxBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "keywordText",
@@ -13108,7 +15671,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "keywordText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "caseSensitive",
@@ -13123,7 +15687,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "caseSensitive",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inPortal",
@@ -13137,7 +15702,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "inPortal",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "onSelectAll",
@@ -13150,7 +15716,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "onSelectAll",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeMouseenter",
@@ -13163,7 +15730,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeMouseenter",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeMouseleave",
@@ -13176,7 +15744,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeMouseleave",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeClick",
@@ -13189,7 +15758,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "dropListDropped",
@@ -13202,7 +15772,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "dropListDropped",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "keyManagerTabOut",
@@ -13215,7 +15786,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "keyManagerTabOut",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "keyManagerChange",
@@ -13228,7 +15800,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "keyManagerChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XListProperty",
@@ -13238,6 +15811,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "List 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "icon",
@@ -13248,7 +15822,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "icon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "divided",
@@ -13259,7 +15834,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "divided",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "event",
@@ -13270,7 +15846,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "event",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hover",
@@ -13281,7 +15858,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "hover",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "openPortal",
@@ -13292,7 +15870,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "openPortal",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "active",
@@ -13303,7 +15882,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "active",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "change",
@@ -13314,7 +15894,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "change",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XListNode",
@@ -13324,16 +15905,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "List Option",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XListOptionPrefix",
     "selector": "x-list-option",
-    "decorator": "component",
     "value": "'x-list-option'"
   },
   "XListOptionProperty": {
     "type": "class",
     "label": "List Option Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "node",
@@ -13346,7 +15928,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "node",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "checked",
@@ -13360,7 +15943,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "checked",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -13373,7 +15957,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "selected",
@@ -13387,7 +15972,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "selected",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -13401,7 +15987,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -13415,7 +16002,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "openPortal",
@@ -13429,7 +16017,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "openPortal",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "optionClass",
@@ -13442,7 +16031,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "optionClass",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -13455,7 +16045,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "divided",
@@ -13468,7 +16059,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "divided",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -13481,7 +16073,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "leaf",
@@ -13495,7 +16088,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "leaf",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -13509,7 +16103,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "keywordText",
@@ -13522,7 +16117,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "keywordText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "caseSensitive",
@@ -13537,7 +16133,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "caseSensitive",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -13550,7 +16147,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XListOptionProperty"
@@ -13559,16 +16157,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Loading",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XLoadingPrefix",
     "selector": "x-loading",
-    "decorator": "component",
     "value": "'x-loading'"
   },
   "XLoadingProperty": {
     "type": "class",
     "label": "Loading Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "loading",
@@ -13582,7 +16181,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "x-loading",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "zIndex",
@@ -13596,7 +16196,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME,10)"
         ],
         "attr": "zIndex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -13610,7 +16211,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "text",
@@ -13624,7 +16226,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTemplate>(X_CONFIG_NAME)"
         ],
         "attr": "text",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -13638,7 +16241,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "color",
@@ -13652,7 +16256,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "color",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "fullScreen",
@@ -13666,7 +16271,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "fullScreen",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "radius",
@@ -13679,7 +16285,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "radius",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "background",
@@ -13693,7 +16300,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "background",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XLoadingProperty",
@@ -13703,16 +16311,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Menu",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMenuPrefix",
     "selector": "x-menu",
-    "decorator": "component",
     "value": "'x-menu'"
   },
   "XMenuProperty": {
     "type": "class",
     "label": "Menu Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -13726,7 +16335,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "layout",
@@ -13739,7 +16349,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "layout",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -13753,7 +16364,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "width",
@@ -13767,7 +16379,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'12rem')"
         ],
         "attr": "width",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "collapsed",
@@ -13781,7 +16394,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "collapsed",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "trigger",
@@ -13795,7 +16409,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XMenuTrigger>(X_CONFIG_NAME,'hover')"
         ],
         "attr": "trigger",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -13808,7 +16423,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedAll",
@@ -13822,7 +16438,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "expandedAll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedLevel",
@@ -13836,7 +16453,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "expandedLevel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedId",
@@ -13849,7 +16467,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "activatedId",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "target",
@@ -13862,7 +16481,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "target",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "portalMinWidth",
@@ -13875,7 +16495,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "portalMinWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeClick",
@@ -13888,7 +16509,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "activatedIdChange",
@@ -13901,7 +16523,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activatedIdChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XMenuProperty",
@@ -13911,6 +16534,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "MenuNode 节点数据",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "icon",
@@ -13921,7 +16545,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "icon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "open",
@@ -13932,7 +16557,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "open",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "childrenLoaded",
@@ -13943,7 +16569,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "childrenLoaded",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "category",
@@ -13954,7 +16581,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "category",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "categoryNode",
@@ -13965,7 +16593,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "categoryNode",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "change",
@@ -13976,7 +16605,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "change",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "routerLink",
@@ -13987,7 +16617,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "routerLink",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XMenuNode",
@@ -13997,6 +16628,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "布局方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMenuLayout",
     "value": "'row' | 'column'"
@@ -14005,6 +16637,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMenuTrigger",
     "value": "XTrigger"
@@ -14013,16 +16646,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Menu Node",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMenuNodePrefix",
     "selector": "x-menu-node",
-    "decorator": "component",
     "value": "'x-menu-node'"
   },
   "XMenuNodeProperty": {
     "type": "class",
     "label": "Menu Node Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "node",
@@ -14035,7 +16669,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "node",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XMenuNodeProperty",
@@ -14045,16 +16680,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Message",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMessagePrefix",
     "selector": "x-message",
-    "decorator": "component",
     "value": "'x-message'"
   },
   "XMessageOption": {
     "type": "interface",
     "label": "Message Option",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "id",
@@ -14065,7 +16701,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "id",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "placement",
@@ -14076,7 +16713,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "placement",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "offset",
@@ -14087,7 +16725,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "offset",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "type",
@@ -14098,7 +16737,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "type",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "displayType",
@@ -14109,7 +16749,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "displayType",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "width",
@@ -14120,7 +16761,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "width",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "height",
@@ -14131,7 +16773,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "height",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "duration",
@@ -14142,7 +16785,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "duration",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hideClose",
@@ -14153,7 +16797,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "hideClose",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "showIcon",
@@ -14164,7 +16809,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "showIcon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "duration$",
@@ -14175,7 +16821,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "duration$",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "durationSub",
@@ -14186,7 +16833,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "durationSub",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XMessageOption",
@@ -14196,6 +16844,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "九宫格中的消息对象",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMessageOverlayRef",
     "extends": "XPortalOverlayRef<XMessageComponent>"
@@ -14204,6 +16853,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "九宫格中的消息对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "ref",
@@ -14214,7 +16864,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "ref",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "list",
@@ -14225,7 +16876,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "list",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "closeAll",
@@ -14236,7 +16888,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "closeAll",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XMessagePlacementRef"
@@ -14245,6 +16898,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMessageType",
     "value": "XStatus"
@@ -14253,60 +16907,65 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "MessageBox",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMessageBoxPrefix",
     "selector": "x-message-box",
-    "decorator": "component",
     "value": "'x-message-box'"
   },
   "XMessageBoxOption": {
     "type": "interface",
     "label": "MessageBox Option",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "placement",
         "type": "XPlace",
         "label": "方位，九宫格",
-        "default": "'top'",
+        "default": "'top'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "placement",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "offset",
         "type": "string | string[]",
         "label": "偏移距离",
-        "default": "'2rem'",
+        "default": "'2rem'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "offset",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "type",
         "type": "XMessageBoxType",
         "label": "类型",
-        "default": "'info'",
+        "default": "'info'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "type",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "width",
         "type": "string",
         "label": "宽度",
-        "default": "'16rem'",
+        "default": "'16rem'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "width",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "height",
@@ -14317,29 +16976,32 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "height",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hideClose",
         "type": "boolean",
         "label": "隐藏关闭按钮",
-        "default": "true",
+        "default": "true\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "hideClose",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "showIcon",
         "type": "boolean",
         "label": "显示图标",
-        "default": "true",
+        "default": "true\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "showIcon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "showCancel",
@@ -14350,7 +17012,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "showCancel",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "callback",
@@ -14361,40 +17024,44 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "callback",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "backdropClose",
         "type": "boolean",
         "label": "点击遮罩关闭",
-        "default": "false",
+        "default": "false\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "backdropClose",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "confirmText",
         "type": "string",
         "label": "确认按钮文字",
-        "default": "'确定'",
+        "default": "'确定'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "confirmText",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "cancelText",
         "type": "string",
         "label": "取消按钮文字",
-        "default": "'取消'",
+        "default": "'取消'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "cancelText",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "showInput",
@@ -14405,7 +17072,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "showInput",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "inputPattern",
@@ -14416,7 +17084,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "inputPattern",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "inputInvalidMessage",
@@ -14427,7 +17096,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "inputInvalidMessage",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "inputPlaceholder",
@@ -14438,7 +17108,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "inputPlaceholder",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "inputType",
@@ -14449,7 +17120,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "inputType",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "inputValue",
@@ -14460,7 +17132,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "inputValue",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -14471,7 +17144,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "inputValidator",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "beforeClose",
@@ -14482,7 +17156,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "beforeClose",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "confirmLoading",
@@ -14493,7 +17168,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "confirmLoading",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XMessageBoxOption",
@@ -14503,6 +17179,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "关闭的回调函数类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMessageBoxCallback"
   },
@@ -14510,6 +17187,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "确认加载",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMessageBoxConfirmLoading",
     "value": "() => Observable<boolean>"
@@ -14518,6 +17196,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发关闭的类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMessageBoxAction",
     "value": "'confirm' | 'cancel' | 'close'"
@@ -14526,6 +17205,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "创建的消息对象",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XMessageBoxOverlayRef",
     "extends": "XPortalOverlayRef<XMessageBoxComponent>"
@@ -14534,60 +17214,65 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Notification",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XNotificationPrefix",
     "selector": "x-notification",
-    "decorator": "component",
     "value": "'x-notification'"
   },
   "XNotificationOption": {
     "type": "interface",
     "label": "Notification Option",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "placement",
         "type": "XCorner",
         "label": "方位",
-        "default": "'top-end'",
+        "default": "'top-end'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "placement",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "offset",
         "type": "string | string[]",
         "label": "偏移距离",
-        "default": "'0.5rem'",
+        "default": "'0.5rem'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "offset",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "type",
         "type": "XNotificationType",
         "label": "类型",
-        "default": "'info'",
+        "default": "'info'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "type",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "width",
         "type": "string",
         "label": "宽度",
-        "default": "'20rem'",
+        "default": "'20rem'\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "width",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "height",
@@ -14598,40 +17283,44 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "height",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "duration",
         "type": "number",
         "label": "延迟关闭时间",
-        "default": "4500",
+        "default": "4500\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "duration",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hideClose",
         "type": "boolean",
         "label": "隐藏关闭按钮",
-        "default": "true",
+        "default": "true\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "hideClose",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "showIcon",
         "type": "boolean",
         "label": "显示图标",
-        "default": "true",
+        "default": "true\n",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "showIcon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "duration$",
@@ -14642,7 +17331,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "duration$",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "durationSub",
@@ -14653,7 +17343,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "durationSub",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XNotificationOption",
@@ -14663,6 +17354,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "九宫格中的消息对象",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XNotificationOverlayRef",
     "extends": "XPortalOverlayRef<XNotificationComponent>"
@@ -14671,26 +17363,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Outlet 指令名称",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XOutletPrefix",
     "selector": "x-outlet",
-    "decorator": "directive",
     "value": "'x-outlet'"
   },
   "XPageHeaderPrefix": {
     "type": "const",
     "label": "PageHeader",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPageHeaderPrefix",
     "selector": "x-page-header",
-    "decorator": "component",
     "value": "'x-page-header'"
   },
   "XPageHeaderProperty": {
     "type": "class",
     "label": "PageHeader Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "backIcon",
@@ -14704,7 +17397,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'fto-arrow-left')"
         ],
         "attr": "backIcon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "backText",
@@ -14718,7 +17412,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "backText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "title",
@@ -14731,7 +17426,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "title",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "subTitle",
@@ -14744,7 +17440,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "subTitle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "backClick",
@@ -14757,7 +17454,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "backClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XPageHeaderProperty"
@@ -14766,16 +17464,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Pagination",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPaginationPrefix",
     "selector": "x-pagination",
-    "decorator": "component",
     "value": "'x-pagination'"
   },
   "XPaginationSizeData": {
     "type": "const",
     "label": "分页选择条数",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPaginationSizeData",
     "value": "[10, 20, 50, 100]"
@@ -14784,6 +17483,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Pagination Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "index",
@@ -14798,7 +17498,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "index",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -14813,7 +17514,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "total",
@@ -14827,7 +17529,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "total",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "query",
@@ -14840,7 +17543,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "query",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pageLinkSize",
@@ -14855,7 +17559,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "pageLinkSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showEllipsis",
@@ -14870,7 +17575,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showEllipsis",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showTotal",
@@ -14885,7 +17591,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showTotal",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "space",
@@ -14900,7 +17607,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "space",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showBackground",
@@ -14915,7 +17623,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showBackground",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showSize",
@@ -14930,7 +17639,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "sizeWidth",
@@ -14945,7 +17655,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "sizeWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showInputSize",
@@ -14960,7 +17671,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showInputSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputSizeWidth",
@@ -14975,7 +17687,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "inputSizeWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "sizeData",
@@ -14989,7 +17702,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XData<XSelectNode>>(X_CONFIG_NAME,XPaginationSizeData)"
         ],
         "attr": "sizeData",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -15003,7 +17717,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showJump",
@@ -15018,7 +17733,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showJump",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "jumpWidth",
@@ -15033,7 +17749,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "jumpWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "totalTpl",
@@ -15046,7 +17763,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "totalTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "simple",
@@ -15061,7 +17779,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "simple",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "simpleIndexWidth",
@@ -15076,7 +17795,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "simpleIndexWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "queryChange",
@@ -15089,7 +17809,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "queryChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "indexChange",
@@ -15102,7 +17823,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "indexChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "sizeChange",
@@ -15115,7 +17837,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "sizeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XPaginationProperty",
@@ -15125,6 +17848,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "PaginationOption",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "index",
@@ -15135,7 +17859,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "index",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "size",
@@ -15146,7 +17871,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "size",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "total",
@@ -15157,7 +17883,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "total",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XPaginationOption"
@@ -15166,16 +17893,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Popconfirm",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPopconfirmPrefix",
     "selector": "x-popconfirm",
-    "decorator": "component",
     "value": "'x-popconfirm'"
   },
   "XPopconfirmProperty": {
     "type": "class",
     "label": "Popconfirm Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "title",
@@ -15188,7 +17916,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "title",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "content",
@@ -15201,7 +17930,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "content",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -15215,7 +17945,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPlacement>(X_CONFIG_NAME,'bottom')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "trigger",
@@ -15229,7 +17960,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPopoverTrigger>(X_CONFIG_NAME,'click')"
         ],
         "attr": "trigger",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxWidth",
@@ -15243,7 +17975,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'12rem')"
         ],
         "attr": "maxWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minWidth",
@@ -15257,7 +17990,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'12rem')"
         ],
         "attr": "minWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -15271,7 +18005,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'fto-help-circle')"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "iconColor",
@@ -15285,7 +18020,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'#e6a23c')"
         ],
         "attr": "iconColor",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "cancelText",
@@ -15299,7 +18035,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "cancelText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "confirmText",
@@ -15313,7 +18050,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "confirmText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "confirmAsync",
@@ -15326,7 +18064,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "confirmAsync",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "condition",
@@ -15340,7 +18079,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "condition",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "cancel",
@@ -15353,7 +18093,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "cancel",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "confirm",
@@ -15366,7 +18107,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "confirm",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XPopconfirmProperty",
@@ -15376,16 +18118,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Popover",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPopoverPrefix",
     "selector": "x-popover",
-    "decorator": "directive",
     "value": "'x-popover'"
   },
   "XPopoverProperty": {
     "type": "class",
     "label": "Popover Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "title",
@@ -15398,7 +18141,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "title",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "content",
@@ -15411,7 +18155,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "content",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "footer",
@@ -15424,7 +18169,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "footer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "panelClass",
@@ -15437,7 +18183,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "panelClass",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "connectTo",
@@ -15450,7 +18197,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "connectTo",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -15464,7 +18212,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPlacement>(X_CONFIG_NAME,'top')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "trigger",
@@ -15478,7 +18227,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPopoverTrigger>(X_CONFIG_NAME,'hover')"
         ],
         "attr": "trigger",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxWidth",
@@ -15492,7 +18242,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'10rem')"
         ],
         "attr": "maxWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minWidth",
@@ -15506,7 +18257,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'10rem')"
         ],
         "attr": "minWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "visible",
@@ -15520,7 +18272,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "visible",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "condition",
@@ -15534,7 +18287,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "condition",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "mouseEnterDelay",
@@ -15547,7 +18301,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "mouseEnterDelay",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "mouseLeaveDelay",
@@ -15560,7 +18315,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "mouseLeaveDelay",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "visibleChange",
@@ -15573,7 +18329,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "visibleChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XPopoverProperty",
@@ -15583,6 +18340,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "激活方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPopoverTrigger",
     "value": "'hover' | 'click' | 'focus'"
@@ -15591,26 +18349,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Popover Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPopoverPortalPrefix",
     "selector": "x-popover-portal",
-    "decorator": "component",
     "value": "'x-popover-portal'"
   },
   "XProgressPrefix": {
     "type": "const",
     "label": "Progress",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XProgressPrefix",
     "selector": "x-progress",
-    "decorator": "component",
     "value": "'x-progress'"
   },
   "XProgressProperty": {
     "type": "class",
     "label": "Progress Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -15623,7 +18382,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "percent",
@@ -15637,7 +18397,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "percent",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "height",
@@ -15651,7 +18412,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'1rem')"
         ],
         "attr": "height",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "status",
@@ -15664,7 +18426,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "status",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "info",
@@ -15678,7 +18441,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "info",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inside",
@@ -15692,7 +18456,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "inside",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "format",
@@ -15705,7 +18470,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "format",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "color",
@@ -15718,7 +18484,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "color",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "gradient",
@@ -15731,7 +18498,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "gradient",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "steps",
@@ -15744,7 +18512,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "steps",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "stepWidth",
@@ -15758,7 +18527,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'1rem')"
         ],
         "attr": "stepWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "stepFlex",
@@ -15772,7 +18542,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "stepFlex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "thickness",
@@ -15785,7 +18556,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "thickness",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -15798,7 +18570,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "notchAngle",
@@ -15811,7 +18584,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "notchAngle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "subsection",
@@ -15825,7 +18599,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "subsection",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XProgressProperty",
@@ -15835,6 +18610,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "进度条类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XProgressType",
     "value": "'line' | 'circle' | 'dashboard'"
@@ -15843,6 +18619,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "进度条颜色",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XProgressColor",
     "value": "string | XProgressColorNode[] | Function"
@@ -15851,6 +18628,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "进度条节点颜色",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "color",
@@ -15861,7 +18639,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "color",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "percent",
@@ -15872,7 +18651,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "percent",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XProgressColorNode"
@@ -15881,6 +18661,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "状态",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XProgressStatus",
     "value": "'normal' | 'active' | 'success' | 'exception' | 'warning'"
@@ -15889,16 +18670,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Radio",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XRadioPrefix",
     "selector": "x-radio",
-    "decorator": "component",
     "value": "'x-radio'"
   },
   "XRadioProperty": {
     "type": "class",
     "label": "Radio Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -15912,7 +18694,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "button",
@@ -15926,7 +18709,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "button",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -15940,7 +18724,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tag",
@@ -15954,7 +18739,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "tag",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -15968,7 +18754,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -15981,7 +18768,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tagBordered",
@@ -15995,7 +18783,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "tagBordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tagDark",
@@ -16009,7 +18798,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "tagDark",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "allowCancel",
@@ -16023,7 +18813,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "allowCancel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "vertical",
@@ -16037,7 +18828,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "vertical",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -16050,7 +18842,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -16063,7 +18856,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -16076,7 +18870,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -16089,7 +18884,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -16102,7 +18898,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -16115,7 +18912,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -16128,7 +18926,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -16141,7 +18940,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -16154,7 +18954,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -16168,7 +18969,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -16182,7 +18984,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -16196,7 +18999,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -16209,7 +19013,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -16222,7 +19027,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -16235,7 +19041,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -16248,7 +19055,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -16262,7 +19070,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -16276,7 +19085,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -16289,7 +19099,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -16302,17 +19113,149 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XRadioProperty",
     "extends": "XControlValueAccessor<any>",
     "implements": "XRadioOption"
   },
+  "XRadioOption": {
+    "type": "interface",
+    "label": "Radio Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XRadioNode>",
+        "label": "单选框数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "button",
+        "type": "XBoolean",
+        "label": "按钮样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "button",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "icon",
+        "type": "XBoolean",
+        "label": "图标样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tag",
+        "type": "XBoolean",
+        "label": "tag 标签样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tag",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "type",
+        "type": "XButtonType",
+        "label": "按钮/图标/ tag 标签样式时生效",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tagBordered",
+        "type": "XBoolean",
+        "label": "tag 标签边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tagBordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tagDark",
+        "type": "XBoolean",
+        "label": "tag 标签深色主题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tagDark",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XRadioOption",
+    "extends": "XFormOption"
+  },
   "XRadioNode": {
     "type": "interface",
     "label": "Radio 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "disabled",
@@ -16323,7 +19266,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "icon",
@@ -16334,7 +19278,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "icon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "title",
@@ -16345,7 +19290,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "title",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XRadioNode",
@@ -16355,16 +19301,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Rate",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XRatePrefix",
     "selector": "x-rate",
-    "decorator": "component",
     "value": "'x-rate'"
   },
   "XRateProperty": {
     "type": "class",
     "label": "Rate Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "count",
@@ -16378,7 +19325,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "count",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "half",
@@ -16392,7 +19340,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "half",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "color",
@@ -16406,7 +19355,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XRateColor>(X_CONFIG_NAME)"
         ],
         "attr": "color",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "customTemp",
@@ -16419,7 +19369,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "customTemp",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -16432,7 +19383,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -16445,7 +19397,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -16458,7 +19411,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -16471,7 +19425,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -16484,7 +19439,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -16497,7 +19453,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -16510,7 +19467,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -16524,7 +19482,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -16538,7 +19497,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -16552,7 +19512,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -16565,7 +19526,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -16578,7 +19540,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -16591,7 +19554,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -16604,7 +19568,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -16617,7 +19582,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -16630,7 +19596,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -16644,7 +19611,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -16658,7 +19626,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -16671,7 +19640,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -16684,7 +19654,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XRateProperty",
@@ -16695,24 +19666,72 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "颜色类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XRateColor",
     "value": "string | { [color: string]: (rate: number) => boolean }"
+  },
+  "XRateOption": {
+    "type": "interface",
+    "label": "Rate Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "count",
+        "type": "XNumber",
+        "label": "评分个数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "count",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "half",
+        "type": "XBoolean",
+        "label": "半星模式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "half",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "customTemp",
+        "type": "XTemplate",
+        "label": "自定义模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "customTemp",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XRateOption",
+    "extends": "XFormOption"
   },
   "XResultPrefix": {
     "type": "const",
     "label": "Result",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XResultPrefix",
     "selector": "x-result",
-    "decorator": "component",
     "value": "'x-result'"
   },
   "XResultProperty": {
     "type": "class",
     "label": "Result Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "status",
@@ -16725,7 +19744,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "status",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "title",
@@ -16738,7 +19758,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "title",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -16751,7 +19772,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "subTitle",
@@ -16764,7 +19786,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "subTitle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XResultProperty",
@@ -16774,16 +19797,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Select",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSelectPrefix",
     "selector": "x-select",
-    "decorator": "component",
     "value": "'x-select'"
   },
   "XSelectProperty": {
     "type": "class",
     "label": "Select Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -16797,7 +19821,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "clearable",
@@ -16812,7 +19837,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "clearable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "async",
@@ -16826,7 +19852,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "async",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -16840,7 +19867,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPlacement>(X_CONFIG_NAME,'bottom')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "multiple",
@@ -16854,7 +19882,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "multiple",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "selectAll",
@@ -16868,7 +19897,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "selectAll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "selectAllText",
@@ -16882,7 +19912,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "selectAllText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -16895,7 +19926,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -16909,7 +19941,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -16924,7 +19957,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "portalMaxHeight",
@@ -16938,7 +19972,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'12rem')"
         ],
         "attr": "portalMaxHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "portalWidth",
@@ -16951,7 +19986,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "portalWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "search",
@@ -16966,7 +20002,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
         ],
         "attr": "search",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "caseSensitive",
@@ -16981,7 +20018,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "caseSensitive",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "debounceTime",
@@ -16995,7 +20033,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME,200)"
         ],
         "attr": "debounceTime",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxTagCount",
@@ -17010,13 +20049,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME)"
         ],
         "attr": "maxTagCount",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxTagContent",
         "type": "XTemplate",
         "label": "多选时显示的个数超过指定个数，显示的文字模版",
-        "default": "'更多{{surplus}}个选中'",
+        "default": "'更多{{surplus}}个选中'\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -17024,7 +20064,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTemplate>(X_CONFIG_NAME)"
         ],
         "attr": "maxTagContent",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "virtualScroll",
@@ -17039,7 +20080,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "virtualScroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -17052,7 +20094,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -17065,7 +20108,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -17078,7 +20122,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -17091,7 +20136,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -17104,7 +20150,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -17117,7 +20164,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -17130,7 +20178,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -17144,7 +20193,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -17158,7 +20208,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -17172,7 +20223,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -17185,7 +20237,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -17198,7 +20251,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -17211,7 +20265,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -17224,7 +20279,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -17237,7 +20293,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -17250,7 +20307,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -17264,7 +20322,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -17278,7 +20337,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -17291,7 +20351,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -17304,37 +20365,181 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XSelectProperty",
     "extends": "XControlValueAccessor<any>"
   },
+  "XSelectOption": {
+    "type": "interface",
+    "label": "Select Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XSelectNode>",
+        "label": "节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "async",
+        "type": "XBoolean",
+        "label": "异步加载",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "async",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XPlacement",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "multiple",
+        "type": "XBoolean",
+        "label": "多选功能",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "multiple",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "selectAll",
+        "type": "XBoolean",
+        "label": "多选添加全选功能",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "selectAll",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "selectAllText",
+        "type": "string",
+        "label": "全选的文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "selectAllText",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeTpl",
+        "type": "TemplateRef<any>",
+        "label": "节点模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "XBoolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "portalMaxHeight",
+        "type": "string",
+        "label": "下拉框的最大高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "portalMaxHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "search",
+        "type": "XBoolean",
+        "label": "输入搜索",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "search",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XSelectOption",
+    "extends": "XFormOption"
+  },
   "XSelectPortalPrefix": {
     "type": "const",
     "label": "Select Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSelectPortalPrefix",
     "extends": "XParentIdentityProperty<XSelectNode>",
     "selector": "x-select-portal",
-    "decorator": "component",
     "value": "'x-select-portal'"
   },
   "XSkeletonPrefix": {
     "type": "const",
     "label": "Skeleton",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSkeletonPrefix",
     "selector": "x-skeleton",
-    "decorator": "component",
     "value": "'x-skeleton'"
   },
   "XSkeletonProperty": {
     "type": "class",
     "label": "Skeleton Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -17347,7 +20552,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "loading",
@@ -17361,7 +20567,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "loading",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -17375,7 +20582,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "border",
@@ -17389,7 +20597,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "border",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XSkeletonProperty",
@@ -17399,6 +20608,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "行",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "cols",
@@ -17409,7 +20619,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "cols",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "flex",
@@ -17420,7 +20631,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "flex",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "space",
@@ -17431,7 +20643,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "space",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "margin",
@@ -17442,7 +20655,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "margin",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "style",
@@ -17453,7 +20667,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "style",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XSkeletonRow"
@@ -17462,6 +20677,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "span",
@@ -17472,7 +20688,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "span",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "width",
@@ -17483,7 +20700,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "width",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "height",
@@ -17494,7 +20712,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "height",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "type",
@@ -17505,7 +20724,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "type",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "rows",
@@ -17516,7 +20736,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "rows",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "style",
@@ -17527,7 +20748,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "style",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XSkeletonCol"
@@ -17536,16 +20758,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Slider",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSliderPrefix",
     "selector": "x-slider",
-    "decorator": "component",
     "value": "'x-slider'"
   },
   "XSliderProperty": {
     "type": "class",
     "label": "Slider Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -17559,7 +20782,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "animated",
@@ -17574,7 +20798,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "animated",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedIndex",
@@ -17588,7 +20813,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "activatedIndex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "trigger",
@@ -17602,7 +20828,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSliderTrigger>(X_CONFIG_NAME,'click')"
         ],
         "attr": "trigger",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "layout",
@@ -17615,7 +20842,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "layout",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -17628,7 +20856,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeJustify",
@@ -17641,7 +20870,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeJustify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -17654,7 +20884,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -17668,7 +20899,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showExpand",
@@ -17683,7 +20915,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showExpand",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "autoShowArrow",
@@ -17698,7 +20931,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "autoShowArrow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandMaxHeight",
@@ -17712,7 +20946,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'15rem')"
         ],
         "attr": "expandMaxHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showAnchor",
@@ -17726,7 +20961,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showAnchor",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "indexChange",
@@ -17739,7 +20975,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "indexChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeChange",
@@ -17752,7 +20989,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XSliderProperty",
@@ -17762,6 +21000,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Slider 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "label",
@@ -17772,7 +21011,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "label",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -17783,7 +21023,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XSliderNode",
@@ -17793,6 +21034,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSliderTrigger",
     "value": "XTrigger"
@@ -17801,16 +21043,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "SliderSelect",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSliderSelectPrefix",
     "selector": "x-slider-select",
-    "decorator": "component",
     "value": "'x-slider-select'"
   },
   "XSliderSelectProperty": {
     "type": "class",
     "label": "SliderSelect Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "min",
@@ -17824,7 +21067,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "min",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "max",
@@ -17838,7 +21082,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "max",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "step",
@@ -17852,7 +21097,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "step",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "precision",
@@ -17866,7 +21112,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "precision",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showTooltip",
@@ -17880,7 +21127,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showTooltip",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "reverse",
@@ -17894,7 +21142,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "reverse",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "vertical",
@@ -17908,7 +21157,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "vertical",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "range",
@@ -17922,7 +21172,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "range",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "customButton",
@@ -17935,7 +21186,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "customButton",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "marks",
@@ -17948,7 +21200,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "marks",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tooltipCustom",
@@ -17961,7 +21214,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tooltipCustom",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -17974,7 +21228,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -17987,7 +21242,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -18000,7 +21256,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -18013,7 +21270,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -18026,7 +21284,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -18039,7 +21298,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -18052,7 +21312,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -18066,7 +21327,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -18080,7 +21342,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -18094,7 +21357,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -18107,7 +21371,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -18120,7 +21385,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -18133,7 +21399,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -18146,7 +21413,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -18159,7 +21427,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -18172,7 +21441,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -18186,7 +21456,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -18200,7 +21471,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -18213,7 +21485,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -18226,7 +21499,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "dragStartEmit",
@@ -18239,7 +21513,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "dragStartEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "dragMoveEmit",
@@ -18252,7 +21527,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "dragMoveEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "dragEndEmit",
@@ -18265,16 +21541,112 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "dragEndEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XSliderSelectProperty",
     "extends": "XControlValueAccessor<number"
   },
+  "XSliderSelectOption": {
+    "type": "interface",
+    "label": "SliderSelect Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "min",
+        "type": "XNumber",
+        "label": "最小值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "min",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "max",
+        "type": "XNumber",
+        "label": "最大值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "max",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "step",
+        "type": "XNumber",
+        "label": "步数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "step",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "precision",
+        "type": "XNumber",
+        "label": "精度，默认根据步数来计算",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "precision",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dragStart",
+        "type": "(dragStart: CdkDragStart) => void",
+        "label": "开始拖动的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragStart",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dragMove",
+        "type": "(dragMove: CdkDragMove) => void",
+        "label": "按住移动中的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragMove",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dragEnd",
+        "type": "(dragEnd: CdkDragEnd) => void",
+        "label": "移动结束的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragEnd",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XSliderSelectOption",
+    "extends": "XFormOption"
+  },
   "XSliderSelectMark": {
     "type": "interface",
     "label": "刻度标记",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "value",
@@ -18285,7 +21657,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "value",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "label",
@@ -18296,7 +21669,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "label",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "style",
@@ -18307,7 +21681,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "style",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "offset",
@@ -18318,7 +21693,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "offset",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XSliderSelectMark"
@@ -18327,16 +21703,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Statistic",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XStatisticPrefix",
     "selector": "x-statistic",
-    "decorator": "component",
     "value": "'x-statistic'"
   },
   "XStatisticProperty": {
     "type": "class",
     "label": "Statistic Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "value",
@@ -18349,7 +21726,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "value",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -18362,7 +21740,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "prefix",
@@ -18375,7 +21754,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "prefix",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "suffix",
@@ -18388,7 +21768,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "suffix",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueStyle",
@@ -18401,7 +21782,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueStyle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XStatisticProperty"
@@ -18410,16 +21792,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Countdown",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XCountdownPrefix",
     "selector": "x-countdown",
-    "decorator": "component",
     "value": "'x-countdown'"
   },
   "XCountdownProperty": {
     "type": "class",
     "label": "Countdown Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "format",
@@ -18433,7 +21816,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'HH:mm:ss')"
         ],
         "attr": "format",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "finish",
@@ -18446,7 +21830,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "finish",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XCountdownProperty",
@@ -18456,16 +21841,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Steps",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XStepsPrefix",
     "selector": "x-steps",
-    "decorator": "component",
     "value": "'x-steps'"
   },
   "XStepsProperty": {
     "type": "class",
     "label": "Steps Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -18479,7 +21865,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "layout",
@@ -18492,7 +21879,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "layout",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedIndex",
@@ -18506,7 +21894,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "activatedIndex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "startIndex",
@@ -18520,7 +21909,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "startIndex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "status",
@@ -18533,7 +21923,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "status",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "customTpl",
@@ -18546,7 +21937,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "customTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeStatus",
@@ -18560,7 +21952,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "nodeStatus",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XStepsProperty",
@@ -18570,6 +21963,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "布局方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XStepsLayout",
     "value": "'row' | 'column'"
@@ -18578,16 +21972,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Switch",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XSwitchPrefix",
     "selector": "x-switch",
-    "decorator": "component",
     "value": "'x-switch'"
   },
   "XSwitchProperty": {
     "type": "class",
     "label": "Switch Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "loading",
@@ -18601,7 +21996,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "loading",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "manual",
@@ -18615,7 +22011,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "manual",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -18629,7 +22026,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "checkedText",
@@ -18642,7 +22040,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "checkedText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "unCheckedText",
@@ -18655,7 +22054,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "unCheckedText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -18668,7 +22068,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -18681,7 +22082,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -18694,7 +22096,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -18707,7 +22110,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -18720,7 +22124,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -18733,7 +22138,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -18746,7 +22152,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -18760,7 +22167,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -18774,7 +22182,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -18788,7 +22197,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -18801,7 +22211,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -18814,7 +22225,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -18827,7 +22239,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -18840,7 +22253,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -18853,7 +22267,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -18866,7 +22281,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -18880,7 +22296,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -18894,7 +22311,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -18907,7 +22325,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -18920,27 +22339,87 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XSwitchProperty",
     "extends": "XControlValueAccessor<boolean>",
     "implements": "XSwitchOption"
   },
+  "XSwitchOption": {
+    "type": "interface",
+    "label": "Switch Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "loading",
+        "type": "XBoolean",
+        "label": "显示加载中",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "loading",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "manual",
+        "type": "XBoolean",
+        "label": "手动控制",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "manual",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "checkedText",
+        "type": "XTemplate",
+        "label": "显示文字或者自定义模版（开启状态）",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "checkedText",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "unCheckedText",
+        "type": "XTemplate",
+        "label": "显示文字或者自定义模版（关闭状态）",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "unCheckedText",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XSwitchOption",
+    "extends": "XFormOption"
+  },
   "XTablePrefix": {
     "type": "const",
     "label": "Table",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTablePrefix",
     "selector": "x-table",
-    "decorator": "component",
     "value": "'x-table'"
   },
   "XTableProperty": {
     "type": "class",
     "label": "Table Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -18948,12 +22427,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "label": "行数据",
         "default": "[]",
         "withConfig": false,
-        "description": "11223344567",
+        "description": "这是一个描述信息",
         "decorator": [
           "@Input()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "columns",
@@ -18966,7 +22446,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "columns",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rowHeight",
@@ -18981,7 +22462,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "rowHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "loading",
@@ -18996,7 +22478,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "loading",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -19011,7 +22494,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showHeader",
@@ -19026,7 +22510,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showHeader",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "headerPosition",
@@ -19040,7 +22525,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTableHeaderPosition>(X_CONFIG_NAME,'top')"
         ],
         "attr": "headerPosition",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedRow",
@@ -19053,7 +22539,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "activatedRow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedRowChange",
@@ -19066,7 +22553,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activatedRowChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "headColumnTpl",
@@ -19079,7 +22567,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "headColumnTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bodyColumnTpl",
@@ -19092,7 +22581,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "bodyColumnTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bodyTdTpl",
@@ -19105,7 +22595,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "bodyTdTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rowClass",
@@ -19118,7 +22609,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rowClass",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "headSearchTpl",
@@ -19131,7 +22623,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "headSearchTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "sortChange",
@@ -19144,7 +22637,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "sortChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "headCheckboxChange",
@@ -19157,7 +22651,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "headCheckboxChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "bodyCheckboxChange",
@@ -19170,7 +22665,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "bodyCheckboxChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "allowSelectRow",
@@ -19185,7 +22681,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "allowSelectRow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "allowCheckRow",
@@ -19200,7 +22697,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "allowCheckRow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "virtualScroll",
@@ -19215,7 +22713,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "virtualScroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bodyHeight",
@@ -19229,7 +22728,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "bodyHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "itemSize",
@@ -19244,7 +22744,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "itemSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minBufferPx",
@@ -19257,7 +22758,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "minBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxBufferPx",
@@ -19270,7 +22772,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "maxBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "adaptionHeight",
@@ -19284,7 +22787,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "adaptionHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "docPercent",
@@ -19298,7 +22802,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "docPercent",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "checkedRow",
@@ -19311,7 +22816,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "checkedRow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "manual",
@@ -19325,7 +22831,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "manual",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "scroll",
@@ -19338,7 +22845,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "scroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "header",
@@ -19351,7 +22859,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "header",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "footer",
@@ -19364,7 +22873,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "footer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "manualChange",
@@ -19377,7 +22887,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "manualChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "cellConfig",
@@ -19390,7 +22901,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "cellConfig",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rowSize",
@@ -19404,7 +22916,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "rowSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "paginationPosition",
@@ -19417,7 +22930,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "paginationPosition",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hiddenWrapBorder",
@@ -19432,7 +22946,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "hiddenWrapBorder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hiddenPaginationBorder",
@@ -19447,7 +22962,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "hiddenPaginationBorder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showPagination",
@@ -19462,7 +22978,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showPagination",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "treeTable",
@@ -19477,7 +22994,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "treeTable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedAll",
@@ -19492,7 +23010,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "expandedAll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedLevel",
@@ -19507,7 +23026,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "expandedLevel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expanded",
@@ -19520,7 +23040,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "expanded",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandTpl",
@@ -19533,7 +23054,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "expandTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showEmpty",
@@ -19548,7 +23070,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showEmpty",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "emptyImg",
@@ -19562,7 +23085,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTemplate>(X_CONFIG_NAME)"
         ],
         "attr": "emptyImg",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "emptyContent",
@@ -19576,7 +23100,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTemplate>(X_CONFIG_NAME)"
         ],
         "attr": "emptyContent",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "index",
@@ -19591,7 +23116,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "index",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -19606,7 +23132,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "total",
@@ -19620,7 +23147,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "total",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "query",
@@ -19633,7 +23161,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "query",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pageLinkSize",
@@ -19648,7 +23177,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "pageLinkSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showEllipsis",
@@ -19663,7 +23193,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showEllipsis",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showTotal",
@@ -19678,7 +23209,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showTotal",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "space",
@@ -19693,7 +23225,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "space",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showBackground",
@@ -19708,7 +23241,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showBackground",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showSize",
@@ -19723,7 +23257,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "sizeWidth",
@@ -19738,7 +23273,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "sizeWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showInputSize",
@@ -19753,7 +23289,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showInputSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputSizeWidth",
@@ -19768,7 +23305,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "inputSizeWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "sizeData",
@@ -19782,7 +23320,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XData<XSelectNode>>(X_CONFIG_NAME,XPaginationSizeData)"
         ],
         "attr": "sizeData",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -19796,7 +23335,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showJump",
@@ -19811,7 +23351,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showJump",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "jumpWidth",
@@ -19826,7 +23367,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "jumpWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "totalTpl",
@@ -19839,7 +23381,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "totalTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "simple",
@@ -19854,7 +23397,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "simple",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "simpleIndexWidth",
@@ -19869,7 +23413,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "simpleIndexWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "queryChange",
@@ -19882,7 +23427,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "queryChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "indexChange",
@@ -19895,7 +23441,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "indexChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "sizeChange",
@@ -19908,7 +23455,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "sizeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "columnDragStarted",
@@ -19921,7 +23469,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "columnDragStarted",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "columnDragEnded",
@@ -19934,7 +23483,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "columnDragEnded",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "columnDropListDropped",
@@ -19947,7 +23497,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "columnDropListDropped",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "columnDragWidthStarted",
@@ -19960,7 +23511,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "columnDragWidthStarted",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "columnDragWidthMoved",
@@ -19973,7 +23525,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "columnDragWidthMoved",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "columnDragWidthEnded",
@@ -19986,17 +23539,221 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "columnDragWidthEnded",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XTableProperty",
     "extends": "XPaginationProperty",
     "implements": "XTableOption"
   },
+  "XTableOption": {
+    "type": "interface",
+    "label": "Table Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XTableRow>",
+        "label": "行数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "columns",
+        "type": "XTableColumn[]",
+        "label": "列集合",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "columns",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "rowHeight",
+        "type": "number",
+        "label": "表头和行高，单位 px",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "rowHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "loading",
+        "type": "XBoolean",
+        "label": "是否启用加载 loading",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "loading",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "activatedRow",
+        "type": "XTableRow",
+        "label": "当前选中行数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "activatedRow",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "headColumnTpl",
+        "type": "XTableTemplate",
+        "label": "列头自定义模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "headColumnTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bodyColumnTpl",
+        "type": "XTableTemplate",
+        "label": "列内容自定义模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bodyColumnTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "rowClass",
+        "type": "(row: XTableRow, index: number) => { [className: string]: boolean }",
+        "label": "行条件样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "rowClass",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "virtualScroll",
+        "type": "XBoolean",
+        "label": "开启虚拟滚动",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "virtualScroll",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bodyHeight",
+        "type": "number",
+        "label": "body 数据高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bodyHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "minBufferPx",
+        "type": "number",
+        "label": "超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "minBufferPx",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxBufferPx",
+        "type": "number",
+        "label": "渲染新数据缓冲区的像素，对应 cdk scroll 中的参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxBufferPx",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "adaptionHeight",
+        "type": "XNumber",
+        "label": "自适应高度，table 高度等于屏幕高度减掉此处设置的数值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "adaptionHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "docPercent",
+        "type": "XNumber",
+        "label": "文档高度百分比，弹窗百分比高度用到",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "docPercent",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "cellConfig",
+        "type": "XTableCellConfig",
+        "label": "单元格配置",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "cellConfig",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "rowSize",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "rowSize",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XTableOption",
+    "extends": "XPaginationOption"
+  },
   "XTableRow": {
     "type": "interface",
     "label": "行数据",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "expanded",
@@ -20007,7 +23764,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "expanded",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -20018,7 +23776,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTableRow",
@@ -20028,6 +23787,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列参数",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -20038,7 +23798,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "type",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "width",
@@ -20049,7 +23810,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "width",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "flex",
@@ -20060,7 +23822,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "flex",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "search",
@@ -20071,7 +23834,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "search",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "sort",
@@ -20082,7 +23846,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "sort",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "left",
@@ -20093,7 +23858,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "left",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "right",
@@ -20104,7 +23870,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "right",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "action",
@@ -20115,7 +23882,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "action",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "rowChecked",
@@ -20126,7 +23894,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "rowChecked",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "rowExpand",
@@ -20137,7 +23906,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "rowExpand",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "textAlign",
@@ -20148,7 +23918,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "textAlign",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "dragWidth",
@@ -20159,7 +23930,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dragWidth",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "draggingWidth",
@@ -20170,7 +23942,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "draggingWidth",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "dragWidthStarted",
@@ -20181,7 +23954,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dragWidthStarted",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "dragWidthMoved",
@@ -20192,7 +23966,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dragWidthMoved",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "dragWidthEnded",
@@ -20203,7 +23978,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dragWidthEnded",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "dragColumn",
@@ -20214,7 +23990,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dragColumn",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "dragging",
@@ -20225,7 +24002,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dragging",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "headChecked",
@@ -20236,7 +24014,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "headChecked",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "headExpand",
@@ -20247,7 +24026,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "headExpand",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -20258,7 +24038,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTableColumn",
@@ -20268,6 +24049,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列头宽度拖动事件",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "column",
@@ -20278,7 +24060,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "column",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "position",
@@ -20289,7 +24072,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "position",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTableDragWidthEvent"
@@ -20298,6 +24082,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列头 checkbox 事件数据",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "rows",
@@ -20308,7 +24093,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "rows",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "checkbox",
@@ -20319,7 +24105,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "checkbox",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTableHeadCheckbox"
@@ -20328,6 +24115,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "单元格配置",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "thead",
@@ -20338,7 +24126,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "thead",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "tbody",
@@ -20349,7 +24138,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "tbody",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTableCellConfig"
@@ -20358,6 +24148,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "单元格配置规则",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "gridTemplateColumns",
@@ -20368,7 +24159,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "gridTemplateColumns",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "cells",
@@ -20379,7 +24171,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "cells",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTableCellConfigRule"
@@ -20388,6 +24181,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "单元格合并配置",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "gridArea",
@@ -20398,7 +24192,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "gridArea",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "label",
@@ -20409,7 +24204,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "label",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "width",
@@ -20420,7 +24216,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "width",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "left",
@@ -20431,7 +24228,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "left",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "right",
@@ -20442,7 +24240,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "right",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "id",
@@ -20453,7 +24252,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "id",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "dragWidth",
@@ -20464,7 +24264,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dragWidth",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -20475,7 +24276,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTableCell"
@@ -20484,6 +24286,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "列类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XColumnType",
     "value": "'label' | 'index' | 'checkbox' | 'expand'"
@@ -20492,6 +24295,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "列头显示位置",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTableHeaderPosition",
     "value": "'top' | 'bottom' | 'top-bottom'"
@@ -20500,6 +24304,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "分页器位置",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XPaginationPosition",
     "value": "XPaginationPosition =| 'top-left'| 'top-center'| 'top-right'| 'bottom-left'| 'bottom-center'| 'bottom-right';"
@@ -20508,6 +24313,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "模板",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTableTemplate",
     "value": "{ [property: string]: TemplateRef<any> }"
@@ -20516,16 +24322,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Table Head",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTableHeadPrefix",
     "selector": "x-table-head",
-    "decorator": "component",
     "value": "'x-table-head'"
   },
   "XTableHeadProperty": {
     "type": "class",
     "label": "Table Head Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "columns",
@@ -20538,7 +24345,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "columns",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rowHeight",
@@ -20552,7 +24360,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "rowHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "columnTpl",
@@ -20565,7 +24374,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "columnTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "scrollYWidth",
@@ -20578,7 +24388,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "scrollYWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "scrollXWidth",
@@ -20591,7 +24402,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "scrollXWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "cellConfig",
@@ -20604,7 +24416,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "cellConfig",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "position",
@@ -20617,7 +24430,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "position",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTableHeadProperty",
@@ -20627,16 +24441,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Table Body",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTableBodyPrefix",
     "selector": "x-table-body",
-    "decorator": "component",
     "value": "'x-table-body'"
   },
   "XTableBodyProperty": {
     "type": "class",
     "label": "Table Body Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -20649,7 +24464,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "columns",
@@ -20662,7 +24478,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "columns",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "columnTpl",
@@ -20675,7 +24492,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "columnTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedRow",
@@ -20688,7 +24506,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "activatedRow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedRowChange",
@@ -20701,7 +24520,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activatedRowChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "rowHeight",
@@ -20715,7 +24535,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "rowHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bodyHeight",
@@ -20729,7 +24550,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "bodyHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "allowSelectRow",
@@ -20743,7 +24565,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "allowSelectRow",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "virtualScroll",
@@ -20757,7 +24580,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "virtualScroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "itemSize",
@@ -20771,7 +24595,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "itemSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minBufferPx",
@@ -20784,7 +24609,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "minBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxBufferPx",
@@ -20797,7 +24623,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "maxBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "adaptionHeight",
@@ -20811,7 +24638,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "adaptionHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "docPercent",
@@ -20825,7 +24653,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "docPercent",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "scroll",
@@ -20838,7 +24667,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "scroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "cellConfig",
@@ -20851,7 +24681,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "cellConfig",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rowClass",
@@ -20864,7 +24695,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rowClass",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "level",
@@ -20877,7 +24709,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "level",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedAll",
@@ -20891,7 +24724,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "expandedAll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandTpl",
@@ -20904,7 +24738,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "expandTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTableBodyProperty",
@@ -20914,16 +24749,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Table Foot",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTableFootPrefix",
     "selector": "x-table-foot",
-    "decorator": "component",
     "value": "'x-table-foot'"
   },
   "XTableFootProperty": {
     "type": "class",
     "label": "Table Foot Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "footer",
@@ -20936,7 +24772,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "footer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "rowHeight",
@@ -20949,7 +24786,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "rowHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTableFootProperty",
@@ -20959,16 +24797,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tabs",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTabsPrefix",
     "selector": "x-tabs",
-    "decorator": "component",
     "value": "'x-tabs'"
   },
   "XTabsProperty": {
     "type": "class",
     "label": "Tabs Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -20981,7 +24820,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -20994,7 +24834,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -21007,7 +24848,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "layout",
@@ -21020,7 +24862,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "layout",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "trigger",
@@ -21034,7 +24877,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTabsTrigger>(X_CONFIG_NAME,'click')"
         ],
         "attr": "trigger",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedIndex",
@@ -21048,7 +24892,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "activatedIndex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "animated",
@@ -21062,7 +24907,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "animated",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -21075,7 +24921,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -21089,7 +24936,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeJustify",
@@ -21102,7 +24950,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeJustify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "sliderHidden",
@@ -21116,7 +24965,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "sliderHidden",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "actionTpl",
@@ -21129,7 +24979,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "actionTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showExpand",
@@ -21144,7 +24995,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showExpand",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandMaxHeight",
@@ -21158,7 +25010,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'15rem')"
         ],
         "attr": "expandMaxHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "linkRouter",
@@ -21172,7 +25025,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "linkRouter",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "linkExact",
@@ -21186,7 +25040,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "linkExact",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "indexChange",
@@ -21199,7 +25054,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "indexChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XTabsProperty",
@@ -21209,6 +25065,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tabs 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "disabled",
@@ -21219,7 +25076,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -21230,7 +25088,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTabsNode",
@@ -21240,6 +25099,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTabsTrigger",
     "value": "XTrigger"
@@ -21248,6 +25108,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "激活的tab",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XActivatedTab"
   },
@@ -21255,6 +25116,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTabsType",
     "value": "'block' | 'tag' | 'card'"
@@ -21263,6 +25125,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "布局方式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTabsLayout",
     "value": "'top' | 'right' | 'bottom' | 'left'"
@@ -21271,16 +25134,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tab",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTabPrefix",
     "selector": "x-tab",
-    "decorator": "component",
     "value": "'x-tab'"
   },
   "XTabProperty": {
     "type": "class",
     "label": "Tab Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "label",
@@ -21293,7 +25157,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -21307,7 +25172,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTabProperty"
@@ -21316,16 +25182,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tag",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTagPrefix",
     "selector": "x-tag",
-    "decorator": "component",
     "value": "'x-tag'"
   },
   "XTagProperty": {
     "type": "class",
     "label": "Tag Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -21338,7 +25205,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -21352,7 +25220,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -21367,7 +25236,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "closable",
@@ -21382,7 +25252,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "closable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dark",
@@ -21397,7 +25268,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "dark",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -21411,7 +25283,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "checked",
@@ -21425,7 +25298,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "checked",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "manual",
@@ -21439,7 +25313,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "manual",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "selected",
@@ -21452,7 +25327,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "selected",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "style",
@@ -21465,7 +25341,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "style",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "close",
@@ -21478,7 +25355,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "close",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "selectedChange",
@@ -21491,7 +25369,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "selectedChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XTagProperty",
@@ -21501,16 +25380,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TextRetract",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTextRetractPrefix",
     "selector": "x-text-retract",
-    "decorator": "component",
     "value": "'x-text-retract'"
   },
   "XTextRetractProperty": {
     "type": "class",
     "label": "TextRetract Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "content",
@@ -21523,7 +25403,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "content",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "max",
@@ -21538,7 +25419,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "max",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTextRetractProperty"
@@ -21547,16 +25429,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Textarea",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTextareaPrefix",
     "selector": "x-textarea",
-    "decorator": "component",
     "value": "'x-textarea'"
   },
   "XTextareaProperty": {
     "type": "class",
     "label": "Textarea Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "clearable",
@@ -21571,7 +25454,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "clearable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "icon",
@@ -21584,7 +25468,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "icon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "iconLayout",
@@ -21598,7 +25483,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTextareaIconLayoutType>(X_CONFIG_NAME,'right')"
         ],
         "attr": "iconLayout",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "iconSpin",
@@ -21612,7 +25498,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "iconSpin",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxlength",
@@ -21626,7 +25513,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "maxlength",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "height",
@@ -21639,7 +25527,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "height",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -21652,7 +25541,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -21665,7 +25555,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -21678,7 +25569,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -21691,7 +25583,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -21704,7 +25597,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -21717,7 +25611,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -21730,7 +25625,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -21744,7 +25640,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -21758,7 +25655,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -21772,7 +25670,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -21785,7 +25684,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -21798,7 +25698,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -21811,7 +25712,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -21824,7 +25726,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -21838,7 +25741,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -21852,7 +25756,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -21865,7 +25770,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -21878,7 +25784,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "clearEmit",
@@ -21891,27 +25798,135 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "clearEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XTextareaProperty",
     "extends": "XControlValueAccessor<any>",
     "implements": "XTextareaOption"
   },
+  "XTextareaOption": {
+    "type": "interface",
+    "label": "Textarea Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "clearable",
+        "type": "XBoolean",
+        "label": "清除按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "XBoolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "label": "图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "iconLayout",
+        "type": "XTextareaIconLayoutType",
+        "label": "图标布局方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconLayout",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "iconSpin",
+        "type": "XBoolean",
+        "label": "图标动画",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconSpin",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxlength",
+        "type": "XNumber",
+        "label": "输入最大长度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxlength",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearClick",
+        "type": "(value: any) => void",
+        "label": "清除按钮的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearClick",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XTextareaOption",
+    "extends": "XFormOption"
+  },
   "XThemePrefix": {
     "type": "const",
     "label": "Theme",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XThemePrefix",
     "selector": "x-theme",
-    "decorator": "component",
     "value": "'x-theme'"
   },
   "XThemeAmounts": {
     "type": "const",
     "label": "混合的颜色占比",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XThemeAmounts",
     "value": "[-0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]"
@@ -21920,6 +25935,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Theme Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "prefix",
@@ -21932,7 +25948,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "prefix",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "amounts",
@@ -21946,7 +25963,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber[]>(X_CONFIG_NAME,XThemeAmounts)"
         ],
         "attr": "amounts",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showDark",
@@ -21960,7 +25978,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showDark",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showDetail",
@@ -21974,7 +25993,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showDetail",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "dark",
@@ -21988,7 +26008,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "dark",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "defaultClick",
@@ -22001,7 +26022,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "defaultClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "darkChange",
@@ -22014,7 +26036,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "darkChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XThemeProperty",
@@ -22024,26 +26047,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TimeAgo",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTimeAgoPrefix",
     "selector": "xTimeAgo",
-    "decorator": "pipe",
     "value": "'xTimeAgo'"
   },
   "XTimePickerPrefix": {
     "type": "const",
     "label": "TimePicker",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTimePickerPrefix",
     "selector": "x-time-picker",
-    "decorator": "component",
     "value": "'x-time-picker'"
   },
   "XTimePickerProperty": {
     "type": "class",
     "label": "TimePicker Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "type",
@@ -22056,7 +26080,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "format",
@@ -22070,7 +26095,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'HH:mm:ss')"
         ],
         "attr": "format",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -22084,7 +26110,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XCorner>(X_CONFIG_NAME,'bottom-start')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -22098,7 +26125,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "use12Hours",
@@ -22113,7 +26141,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
         ],
         "attr": "use12Hours",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -22128,7 +26157,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hourStep",
@@ -22143,7 +26173,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME,1)"
         ],
         "attr": "hourStep",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minuteStep",
@@ -22158,7 +26189,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME,1)"
         ],
         "attr": "minuteStep",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "secondStep",
@@ -22173,7 +26205,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME,1)"
         ],
         "attr": "secondStep",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "preset",
@@ -22187,7 +26220,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "preset",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabledTime",
@@ -22200,7 +26234,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "disabledTime",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -22213,7 +26248,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -22226,7 +26262,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -22239,7 +26276,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -22252,7 +26290,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -22265,7 +26304,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -22278,7 +26318,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -22291,7 +26332,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -22305,7 +26347,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -22319,7 +26362,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -22333,7 +26377,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -22346,7 +26391,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -22359,7 +26405,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -22372,7 +26419,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -22385,7 +26433,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -22398,7 +26447,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -22411,7 +26461,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -22425,7 +26476,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -22439,7 +26491,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -22452,7 +26505,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -22465,7 +26519,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeEmit",
@@ -22478,16 +26533,76 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeEmit",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XTimePickerProperty",
     "extends": "XControlValueAccessor<any>"
   },
+  "XTimePickerOption": {
+    "type": "interface",
+    "label": "TimePicker Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "type",
+        "type": "XTimePickerType",
+        "label": "时间类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "label": "格式化",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "format",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XCorner",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeClick",
+        "type": "(date: number) => void",
+        "label": "节点点击的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeClick",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XTimePickerOption",
+    "extends": "XFormOption"
+  },
   "XTimePickerType": {
     "type": "type",
     "label": "时间选择",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTimePickerType",
     "value": "'time' | 'hour' | 'minute'"
@@ -22496,6 +26611,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "快捷选择按钮",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "func",
@@ -22506,7 +26622,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "func",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTimePickerPreset",
@@ -22516,26 +26633,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TimePickerPortal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTimePickerPortalPrefix",
     "selector": "x-time-picker-portal",
-    "decorator": "component",
     "value": "'x-time-picker-portal'"
   },
   "XTimePickerFramePrefix": {
     "type": "const",
     "label": "TimePickerFrame",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTimePickerFramePrefix",
     "selector": "x-time-picker-frame",
-    "decorator": "component",
     "value": "'x-time-picker-frame'"
   },
   "XTimePickerDisabledTime": {
     "type": "type",
     "label": "禁用时间的自定义类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTimePickerDisabledTime",
     "value": "(param?: any) => XTimePickerDisabledTimeFn"
@@ -22544,26 +26662,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TimeRange",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTimeRangePrefix",
     "selector": "xTimeRange",
-    "decorator": "pipe",
     "value": "'xTimeRange'"
   },
   "XTimelinePrefix": {
     "type": "const",
     "label": "Timeline",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTimelinePrefix",
     "selector": "x-timeline",
-    "decorator": "component",
     "value": "'x-timeline'"
   },
   "XTimelineProperty": {
     "type": "class",
     "label": "Timeline Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -22577,7 +26696,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -22590,7 +26710,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -22604,7 +26725,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "wrapper",
@@ -22617,7 +26739,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "wrapper",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "mode",
@@ -22631,7 +26754,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTimelineMode>(X_CONFIG_NAME,'left')"
         ],
         "attr": "mode",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTimelineProperty",
@@ -22641,6 +26765,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Timeline 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "time",
@@ -22651,7 +26776,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "time",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "content",
@@ -22662,7 +26788,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "content",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "size",
@@ -22673,7 +26800,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "size",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "type",
@@ -22684,7 +26812,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "type",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "icon",
@@ -22695,7 +26824,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "icon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "color",
@@ -22706,7 +26836,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "color",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "loading",
@@ -22717,7 +26848,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "loading",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "dashed",
@@ -22728,7 +26860,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dashed",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -22739,7 +26872,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTimelineNode",
@@ -22749,16 +26883,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tooltip",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTooltipPrefix",
     "selector": "x-tooltip",
-    "decorator": "directive",
     "value": "'x-tooltip'"
   },
   "XTooltipProperty": {
     "type": "class",
     "label": "Tooltip Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "content",
@@ -22771,7 +26906,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "content",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -22785,7 +26921,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPlacement>(X_CONFIG_NAME,'top')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "visible",
@@ -22799,7 +26936,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "visible",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "panelClass",
@@ -22812,7 +26950,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "panelClass",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "connectTo",
@@ -22825,7 +26964,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "connectTo",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "backgroundColor",
@@ -22838,7 +26978,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "backgroundColor",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "color",
@@ -22851,7 +26992,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "color",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "manual",
@@ -22865,7 +27007,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "manual",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "mouseEnterDelay",
@@ -22878,7 +27021,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "mouseEnterDelay",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "mouseLeaveDelay",
@@ -22891,7 +27035,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "mouseLeaveDelay",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -22905,7 +27050,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTooltipProperty"
@@ -22914,26 +27060,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tooltip Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTooltipPortalPrefix",
     "selector": "x-tooltip-portal",
-    "decorator": "component",
     "value": "'x-tooltip-portal'"
   },
   "XTransferPrefix": {
     "type": "const",
     "label": "Transfer",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTransferPrefix",
     "selector": "x-transfer",
-    "decorator": "component",
     "value": "'x-transfer'"
   },
   "XTransferProperty": {
     "type": "class",
     "label": "Transfer Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -22947,7 +27094,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -22961,13 +27109,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTransferType>(X_CONFIG_NAME,'list')"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "titles",
         "type": "string[]",
         "label": "标题",
-        "default": "['List', 'Selected']",
+        "default": "['List', 'Selected']\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -22975,7 +27124,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string[]>(X_CONFIG_NAME)"
         ],
         "attr": "titles",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "listStyle",
@@ -22989,7 +27139,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTransferListStyle>(X_CONFIG_NAME)"
         ],
         "attr": "listStyle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "hiddenCheckAll",
@@ -23002,7 +27153,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "hiddenCheckAll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "drag",
@@ -23017,7 +27169,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "drag",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "search",
@@ -23031,7 +27184,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "search",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableHeadSearchTpl",
@@ -23044,7 +27198,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableHeadSearchTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -23057,7 +27212,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "titleTpl",
@@ -23070,7 +27226,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "titleTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "footerTpl",
@@ -23083,7 +27240,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "footerTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableColumns",
@@ -23096,7 +27254,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableColumns",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableIndex",
@@ -23110,7 +27269,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME,1)"
         ],
         "attr": "tableIndex",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableSize",
@@ -23124,7 +27284,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME,10)"
         ],
         "attr": "tableSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableQuery",
@@ -23137,7 +27298,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableQuery",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "tableTotal",
@@ -23150,7 +27312,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "tableTotal",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inverse",
@@ -23164,7 +27327,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "inverse",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTransferProperty",
@@ -23174,6 +27338,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Transfer Node",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "checked",
@@ -23184,7 +27349,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "checked",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "index",
@@ -23195,7 +27361,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "index",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -23206,7 +27373,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTransferNode",
@@ -23216,6 +27384,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Transfer Source",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "title",
@@ -23226,7 +27395,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "title",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "searchInput",
@@ -23237,7 +27407,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "searchInput",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "checkedAll",
@@ -23248,7 +27419,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "checkedAll",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "checkedCount",
@@ -23259,7 +27431,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "checkedCount",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "count",
@@ -23270,7 +27443,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "count",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "indeterminate",
@@ -23281,7 +27455,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "indeterminate",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "list",
@@ -23292,7 +27467,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "list",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "searchList",
@@ -23303,7 +27479,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "searchList",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "disabledButton",
@@ -23314,7 +27491,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabledButton",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "hiddenCheckAll",
@@ -23325,7 +27503,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "hiddenCheckAll",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "listStyle",
@@ -23336,7 +27515,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "listStyle",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "direction",
@@ -23347,7 +27527,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "direction",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "footerTpl",
@@ -23358,7 +27539,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "footerTpl",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "tableHeadSearchTpl",
@@ -23369,7 +27551,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "tableHeadSearchTpl",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTransferSource"
@@ -23378,6 +27561,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "数据方向",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTransferDirection",
     "value": "'left' | 'right'"
@@ -23386,6 +27570,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "数据类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTransferType",
     "value": "'list' | 'tree' | 'table'"
@@ -23394,16 +27579,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tree",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTreePrefix",
     "selector": "x-tree",
-    "decorator": "component",
     "value": "'x-tree'"
   },
   "XTreeProperty": {
     "type": "class",
     "label": "Tree Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -23417,7 +27603,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "checkbox",
@@ -23431,7 +27618,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "checkbox",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "lazy",
@@ -23445,7 +27633,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "lazy",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedId",
@@ -23458,7 +27647,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "activatedId",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expanded",
@@ -23471,7 +27661,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "expanded",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "checked",
@@ -23484,7 +27675,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "checked",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedAll",
@@ -23498,7 +27690,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "expandedAll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedLevel",
@@ -23512,7 +27705,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "expandedLevel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeOpen",
@@ -23526,7 +27720,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "nodeOpen",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "spacing",
@@ -23541,7 +27736,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "spacing",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelTpl",
@@ -23554,7 +27750,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeHeight",
@@ -23569,7 +27766,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "nodeHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "allowManyActivated",
@@ -23583,7 +27781,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "allowManyActivated",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "drag",
@@ -23597,7 +27796,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "drag",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedChange",
@@ -23610,7 +27810,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activatedChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "checkboxChange",
@@ -23623,7 +27824,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "checkboxChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "manual",
@@ -23637,7 +27839,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "manual",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "levelCheck",
@@ -23651,7 +27854,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "levelCheck",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeNowrap",
@@ -23665,7 +27869,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "nodeNowrap",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeAlignItems",
@@ -23679,7 +27884,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XAlign>(X_CONFIG_NAME,'center')"
         ],
         "attr": "nodeAlignItems",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "actions",
@@ -23692,7 +27898,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "actions",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "scrollElement",
@@ -23705,7 +27912,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "scrollElement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "virtualScroll",
@@ -23720,7 +27928,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "virtualScroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "virtualScrollHeight",
@@ -23735,7 +27944,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "virtualScrollHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "heightAdaption",
@@ -23748,7 +27958,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "heightAdaption",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "itemSize",
@@ -23763,7 +27974,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "itemSize",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "minBufferPx",
@@ -23776,7 +27988,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "minBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxBufferPx",
@@ -23789,7 +28002,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "maxBufferPx",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "multiple",
@@ -23803,7 +28017,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "multiple",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "objectArray",
@@ -23817,7 +28032,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "objectArray",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "keywordText",
@@ -23830,7 +28046,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "keywordText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "caseSensitive",
@@ -23845,7 +28062,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "caseSensitive",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "onlyLeaf",
@@ -23860,7 +28078,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
         ],
         "attr": "onlyLeaf",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedIcon",
@@ -23873,7 +28092,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "expandedIcon",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showLine",
@@ -23888,7 +28108,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
         ],
         "attr": "showLine",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "manualChange",
@@ -23901,7 +28122,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "manualChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeClick",
@@ -23914,7 +28136,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "activatedIdChange",
@@ -23927,7 +28150,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activatedIdChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeDragStarted",
@@ -23940,7 +28164,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeDragStarted",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeDragEnded",
@@ -23953,7 +28178,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeDragEnded",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "nodeDragMoved",
@@ -23966,7 +28192,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "nodeDragMoved",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XTreeProperty",
@@ -23976,6 +28203,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tree 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "activated",
@@ -23986,7 +28214,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "activated",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "change",
@@ -23997,7 +28226,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "change",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "checked",
@@ -24008,7 +28238,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "checked",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -24019,7 +28250,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "indeterminate",
@@ -24030,7 +28262,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "indeterminate",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "height",
@@ -24041,7 +28274,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "height",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "nowrap",
@@ -24052,7 +28286,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "nowrap",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "alignItems",
@@ -24063,7 +28298,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "alignItems",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "loading",
@@ -24074,7 +28310,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "loading",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "showDragIndicator",
@@ -24085,7 +28322,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "showDragIndicator",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -24096,7 +28334,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTreeNode",
@@ -24106,6 +28345,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tree 节点操作",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "handler",
@@ -24116,7 +28356,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "handler",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "icon",
@@ -24127,7 +28368,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "icon",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTreeAction",
@@ -24137,6 +28379,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tree 节点拖动事件",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "event",
@@ -24147,7 +28390,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "event",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "from",
@@ -24158,7 +28402,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "from",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "to",
@@ -24169,7 +28414,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "to",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "position",
@@ -24180,7 +28426,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "position",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTreeNodeDragEvent"
@@ -24189,16 +28436,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TreeNode",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTreeNodePrefix",
     "selector": "x-tree-node",
-    "decorator": "directive",
     "value": "'x-tree-node'"
   },
   "XTreeNodeProperty": {
     "type": "class",
     "label": "TreeNode Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "node",
@@ -24211,7 +28459,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "node",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "level",
@@ -24224,7 +28473,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "level",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "lazy",
@@ -24238,7 +28488,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "lazy",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeHeight",
@@ -24252,7 +28503,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "nodeHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeNowrap",
@@ -24266,7 +28518,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "nodeNowrap",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeAlignItems",
@@ -24279,7 +28532,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeAlignItems",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "lazyData",
@@ -24292,7 +28546,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "lazyData",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "virtualScroll",
@@ -24306,7 +28561,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "virtualScroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTreeNodeProperty",
@@ -24316,16 +28572,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TreeFile",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTreeFilePrefix",
     "selector": "x-tree-file",
-    "decorator": "component",
     "value": "'x-tree-file'"
   },
   "XTreeFileProperty": {
     "type": "class",
     "label": "TreeFile Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -24339,7 +28596,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "domain",
@@ -24352,7 +28610,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "domain",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "toggle",
@@ -24366,7 +28625,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "toggle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showToggle",
@@ -24380,7 +28640,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showToggle",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showTree",
@@ -24394,7 +28655,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showTree",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showCrumb",
@@ -24408,7 +28670,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showCrumb",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxHeight",
@@ -24423,7 +28686,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "maxHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "spacing",
@@ -24438,7 +28702,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "spacing",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activatedId",
@@ -24451,7 +28716,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "activatedId",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expanded",
@@ -24464,7 +28730,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "expanded",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedAll",
@@ -24478,7 +28745,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "expandedAll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedLevel",
@@ -24492,7 +28760,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "expandedLevel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       }
     ],
     "name": "XTreeFileProperty",
@@ -24502,6 +28771,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "TreeFile 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "children",
@@ -24512,7 +28782,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "children",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "content",
@@ -24523,7 +28794,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "content",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "type",
@@ -24534,7 +28806,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "type",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "fileType",
@@ -24545,7 +28818,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "fileType",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "url",
@@ -24556,7 +28830,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "url",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "crumbData",
@@ -24567,7 +28842,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "crumbData",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "contentLoaded",
@@ -24578,7 +28854,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "contentLoaded",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "highlightLines",
@@ -24589,7 +28866,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "highlightLines",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTreeFileNode",
@@ -24599,6 +28877,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "文件分类",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTreeFileType",
     "value": "'code' | 'img'"
@@ -24607,6 +28886,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "支持显示的图片格式",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTreeFileImgs",
     "value": "['webp', 'png', 'jpg', 'gif', 'jpeg', 'ico']"
@@ -24615,16 +28895,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tree Select",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTreeSelectPrefix",
     "selector": "x-tree-select",
-    "decorator": "component",
     "value": "'x-tree-select'"
   },
   "XTreeSelectProperty": {
     "type": "class",
     "label": "Tree Select Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "data",
@@ -24638,7 +28919,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XDataConvert()"
         ],
         "attr": "data",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "clearable",
@@ -24653,7 +28935,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "clearable",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "async",
@@ -24667,7 +28950,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "async",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placement",
@@ -24681,7 +28965,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XPositionTopBottom>(X_CONFIG_NAME,'bottom')"
         ],
         "attr": "placement",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "multiple",
@@ -24695,7 +28980,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "multiple",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "selectAll",
@@ -24709,7 +28995,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "selectAll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "selectAllText",
@@ -24723,7 +29010,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "selectAllText",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "nodeTpl",
@@ -24736,7 +29024,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "nodeTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "size",
@@ -24750,7 +29039,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
         ],
         "attr": "size",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "expandedLevel",
@@ -24764,7 +29054,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "expandedLevel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "bordered",
@@ -24779,7 +29070,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "bordered",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "portalMaxHeight",
@@ -24793,7 +29085,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME,'12rem')"
         ],
         "attr": "portalMaxHeight",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "search",
@@ -24808,7 +29101,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
         ],
         "attr": "search",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "caseSensitive",
@@ -24823,7 +29117,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
         ],
         "attr": "caseSensitive",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "debounceTime",
@@ -24837,7 +29132,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<number>(X_CONFIG_NAME,200)"
         ],
         "attr": "debounceTime",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxTagCount",
@@ -24852,13 +29148,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XNumber>(X_CONFIG_NAME)"
         ],
         "attr": "maxTagCount",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxTagContent",
         "type": "XTemplate",
         "label": "多选时显示的个数超过指定个数，显示的文字模版",
-        "default": "'更多{{surplus}}个选中'",
+        "default": "'更多{{surplus}}个选中'\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -24866,7 +29163,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XTemplate>(X_CONFIG_NAME)"
         ],
         "attr": "maxTagContent",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "virtualScroll",
@@ -24881,7 +29179,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "virtualScroll",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "showPath",
@@ -24896,13 +29195,14 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "showPath",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "separator",
         "type": "string",
         "label": "路径分隔符",
-        "default": "' / '",
+        "default": "' / '\n",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -24910,7 +29210,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<string>(X_CONFIG_NAME)"
         ],
         "attr": "separator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "onlyLeaf",
@@ -24925,7 +29226,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
         ],
         "attr": "onlyLeaf",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "label",
@@ -24938,7 +29240,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "label",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelWidth",
@@ -24951,7 +29254,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelWidth",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "labelAlign",
@@ -24964,7 +29268,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "labelAlign",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "justify",
@@ -24977,7 +29282,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "justify",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "align",
@@ -24990,7 +29296,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "align",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "direction",
@@ -25003,7 +29310,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "direction",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "placeholder",
@@ -25016,7 +29324,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "placeholder",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "disabled",
@@ -25030,7 +29339,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "disabled",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "required",
@@ -25044,7 +29354,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "required",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "readonly",
@@ -25058,7 +29369,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "readonly",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTpl",
@@ -25071,7 +29383,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "valueTplContext",
@@ -25084,7 +29397,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "valueTplContext",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "before",
@@ -25097,7 +29411,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "before",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "after",
@@ -25110,7 +29425,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "after",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pattern",
@@ -25123,7 +29439,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "pattern",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "message",
@@ -25136,7 +29453,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "message",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "active",
@@ -25150,7 +29468,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "active",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "pointer",
@@ -25164,7 +29483,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "pointer",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "inputValidator",
@@ -25177,7 +29497,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "inputValidator",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "activeChange",
@@ -25190,16 +29511,160 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "activeChange",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XTreeSelectProperty",
     "extends": "XControlValueAccessor<any>"
   },
+  "XTreeSelectOption": {
+    "type": "interface",
+    "label": "Tree Select Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XTreeSelectNode>",
+        "label": "节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "async",
+        "type": "XBoolean",
+        "label": "异步加载",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "async",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XPositionTopBottom",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "multiple",
+        "type": "XBoolean",
+        "label": "多选功能",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "multiple",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "selectAll",
+        "type": "XBoolean",
+        "label": "多选添加全选功能",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "selectAll",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "selectAllText",
+        "type": "string",
+        "label": "全选的文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "selectAllText",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeTpl",
+        "type": "TemplateRef<any>",
+        "label": "节点模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "XBoolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "portalMaxHeight",
+        "type": "string",
+        "label": "下拉框的最大高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "portalMaxHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "search",
+        "type": "XBoolean",
+        "label": "输入搜索",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "search",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XTreeSelectOption",
+    "extends": "XFormOption"
+  },
   "XTreeSelectNode": {
     "type": "interface",
     "label": "Tree Select 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "path",
@@ -25210,7 +29675,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "path",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "[property: string]",
@@ -25221,7 +29687,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "[property: string]",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XTreeSelectNode",
@@ -25231,26 +29698,27 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tree Select Portal",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XTreeSelectPortalPrefix",
     "selector": "x-tree-select-portal",
-    "decorator": "component",
     "value": "'x-tree-select-portal'"
   },
   "XUploadPrefix": {
     "type": "const",
     "label": "Upload",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XUploadPrefix",
     "selector": "x-upload",
-    "decorator": "component",
     "value": "'x-upload'"
   },
   "XUploadProperty": {
     "type": "class",
     "label": "Upload Property",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "text",
@@ -25263,7 +29731,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "text",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "action",
@@ -25276,7 +29745,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "action",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "accept",
@@ -25289,7 +29759,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "accept",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "type",
@@ -25302,7 +29773,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "type",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "imgFallback",
@@ -25315,7 +29787,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "imgFallback",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "imgCut",
@@ -25329,7 +29802,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "imgCut",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "multiple",
@@ -25343,7 +29817,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "multiple",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "download",
@@ -25358,7 +29833,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputBoolean()"
         ],
         "attr": "download",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "multipleModel",
@@ -25372,7 +29848,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XWithConfig<XUploadMultipleModel>(X_CONFIG_NAME,'cover')"
         ],
         "attr": "multipleModel",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "filesTpl",
@@ -25385,7 +29862,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "filesTpl",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "maxLimit",
@@ -25399,7 +29877,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@XInputNumber()"
         ],
         "attr": "maxLimit",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "headers",
@@ -25412,7 +29891,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Input()"
         ],
         "attr": "headers",
-        "propType": "Input"
+        "propType": "Input",
+        "example": ""
       },
       {
         "name": "removeClick",
@@ -25425,7 +29905,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "removeClick",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "uploadReady",
@@ -25438,7 +29919,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "uploadReady",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "uploading",
@@ -25451,7 +29933,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "uploading",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "uploadSuccess",
@@ -25464,7 +29947,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "uploadSuccess",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       },
       {
         "name": "uploadError",
@@ -25477,7 +29961,8 @@ export const zh_CN: {[key: string]: AppProp} = {
           "@Output()"
         ],
         "attr": "uploadError",
-        "propType": "Output"
+        "propType": "Output",
+        "example": ""
       }
     ],
     "name": "XUploadProperty",
@@ -25487,6 +29972,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Upload 数据对象",
     "description": "",
+    "example": "",
     "properties": [
       {
         "name": "url",
@@ -25497,7 +29983,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "url",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "state",
@@ -25508,7 +29995,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "state",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "percent",
@@ -25519,7 +30007,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "percent",
-        "propType": ""
+        "propType": "",
+        "example": ""
       },
       {
         "name": "body",
@@ -25530,7 +30019,8 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "body",
-        "propType": ""
+        "propType": "",
+        "example": ""
       }
     ],
     "name": "XUploadNode",
@@ -25540,6 +30030,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "文件状态",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XStateType",
     "value": "'ready' | 'uploading' | 'success' | 'error'"
@@ -25548,6 +30039,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "文件显示类型",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XUploadType",
     "value": "'list' | 'img'"
@@ -25556,6 +30048,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "多次上传的模式，cover 覆盖现有 add 继续添加",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XUploadMultipleModel",
     "value": "'cover' | 'add'"
@@ -25564,6 +30057,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "剪裁的方位",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XUploadCutType",
     "value": "XPosition | XCorner | ''"
@@ -25572,10 +30066,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "上传显示窗口",
     "description": "",
+    "example": "",
     "properties": [],
     "name": "XUploadPortalPrefix",
     "selector": "x-upload-portal",
-    "decorator": "component",
     "value": "'x-upload-portal'"
   }
 }

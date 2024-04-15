@@ -33,15 +33,20 @@ export function generateProps(...types: NcProp[]) {
             if (!isWithConfig && y.withConfig) {
               isWithConfig = true;
             }
+            const description = y.description ? `<p [innerHTML]="'${replaceEscape(y.description)}'"></p>` : '';
+            // let ty = y.type.startsWith('X')
+            //   ? `<code class="popover" x-popover [content]="typeTpl"
+            //   [minWidth]="'10rem'"
+            //   [maxWidth]="'30rem'"
+            //   (mouseenter)="types.getTypes('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
+            //   : `<code [innerText]="'${y.type}'"></code>`;
             let ty = y.type.startsWith('X')
-              ? `<code class="popover" x-popover [content]="typeTpl"
-              [minWidth]="'10rem'"
-              [maxWidth]="'30rem'"
-              (mouseenter)="types.getTypes('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
+              ? `<code class="popover"
+              (click)="types.reference('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
               : `<code [innerText]="'${y.type}'"></code>`;
             let tr = `<tr>
               <td><span><code>${y.attr}</code></span></td>
-              <td>${y.label}<span>${y.description}</span></td>
+              <td>${y.label}${description}</td>
               <td>${ty}</td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
               <td>${isWithConfig ? '✔' : ''}</td>

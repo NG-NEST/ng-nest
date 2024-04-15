@@ -12,7 +12,24 @@ export type XData<T> = T[] | Observable<T[] | any[]> | any[] | Function;
 
 /**
  * @zh_CN boolean 数据类型
+ * 此类型作为组件的输入参数，一般会配合 `@XInputBoolean()` 装饰器来处理参数，转换成 true 或 false
  * @en_US Boolean data type
+ * This type as a component of the input parameters,
+ * usually with `@XInputBoolean()` decorator to process parameters,
+ * directly into true or false
+ * @example
+ *
+ * ```html
+ * // true
+ * <my-com disabled></my-com>
+ * <my-com disabled="true"></my-com>
+ * <my-com [disabled]="true"></my-com>
+ *
+ * // false
+ * <my-com disabled="false"></my-com>
+ * <my-com [disabled]="false"></my-com>
+ * ```
+ *
  */
 export type XBoolean = boolean | string;
 

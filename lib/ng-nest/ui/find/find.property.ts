@@ -409,11 +409,6 @@ export interface XFindOption extends XFormOption {
    */
   dialogVisible?: boolean;
   /**
-   * @zh_CN 弹框显示，隐藏
-   * @en_US Bullet box show, hide
-   */
-  // dialogVisibleChange = new EventEmitter<boolean>();
-  /**
    * @zh_CN 按钮居中
    * @en_US Button center
    */
@@ -440,21 +435,6 @@ export interface XFindOption extends XFormOption {
    */
   tableTotal?: number;
   /**
-   * @zh_CN 页码变化的事件
-   * @en_US Page number change event
-   */
-  // tableIndexChange = new EventEmitter<number>();
-  /**
-   * @zh_CN 每页显示条数变化的事件
-   * @en_US Show the number of events on each page
-   */
-  // tableSizeChange = new EventEmitter<number>();
-  /**
-   * @zh_CN 排序点击的事件
-   * @en_US Sort click events
-   */
-  // tableSortChange = new EventEmitter<XSort[]>();
-  /**
    * @zh_CN 表格列参数
    * @en_US Table column parameters
    */
@@ -464,11 +444,6 @@ export interface XFindOption extends XFormOption {
    * @en_US Currently selected row data
    */
   tableActivatedRow?: any;
-  /**
-   * @zh_CN 表格行点击事件
-   * @en_US Table row click event
-   */
-  // tableRowEmit = new EventEmitter<any>();
   /**
    * @zh_CN 表格行点击事件
    * @en_US Table row click event
@@ -520,11 +495,6 @@ export interface XFindOption extends XFormOption {
    * @en_US Tree node data
    */
   treeData?: XData<XTreeNode>;
-  /**
-   * @zh_CN 树当前点击选中的节点变化的事件
-   * @en_US The event of the tree currently clicked on the selected node change
-   */
-  // treeActivatedChange = new EventEmitter<XTreeNode>();
   /**
    * @zh_CN 树当前激活的节点 Id
    * @en_US Id of the currently active node of the tree

@@ -6,7 +6,8 @@ ns-header {
   width: 100%;
   z-index: 10;
   display: flex;
-  position: fixed;
+  position: sticky;
+  top: 0;
   align-items: center;
   box-sizing: border-box;
   opacity: 1;
@@ -118,7 +119,7 @@ ns-sider {
   background-color: $--x-background;
   margin-left: -#{$sider-width};
   opacity: 0;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 9;

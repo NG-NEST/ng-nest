@@ -1,26 +1,28 @@
-import * as md from 'marked';
-import * as yfm from 'yaml-front-matter';
-import * as fs from 'fs-extra';
+import { Marked } from 'marked';
+import { loadFront } from 'yaml-front-matter';
+import { existsSync, readFileSync } from 'fs-extra';
 
 export function parseMdDoc(path: string) {
-  let lstat = fs.existsSync(path);
+  let lstat = existsSync(path);
   if (!lstat) return false;
-  const file = fs.readFileSync(path, 'utf8');
-  const meta = yfm.loadFront(file);
+  const file = readFileSync(path, 'utf8');
+  const meta = loadFront(file);
   const content = meta.__content;
-  delete meta.__content;
+  const mt = { ...meta };
+  delete mt.__content;
 
   const remark = require('remark')();
   const ast = remark.parse(content);
   let contentStr = '';
+  const md = new Marked();
 
   for (let i = 0; i < ast.children.length; i++) {
     const child = ast.children[i];
-    contentStr += md(remark.stringify(child));
+    contentStr += md.parse(remark.stringify(child));
   }
   contentStr = contentStr.replace(/@/g, '&#64;');
   return {
-    meta: meta,
+    meta: mt,
     content: contentStr
   };
 }

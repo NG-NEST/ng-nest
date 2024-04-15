@@ -1,6 +1,28 @@
 import * as fs from 'fs-extra';
 import * as readline from 'readline';
-import { NcProp, NcPropType, NcDecorator, NcPrope } from '../interfaces/prop';
+import { NcProp, NcPropType, NcPrope } from '../interfaces/prop';
+
+const DocKeywords = [
+  '@zh_CN',
+  '@en_US',
+  '@selector',
+  '@decorator',
+  '@example',
+  '@default',
+  '@withConfig',
+  '@undocument'
+];
+
+function startWithKeyword(line: string) {
+  let res = false;
+  for (let key of DocKeywords) {
+    if (line.startsWith(key)) {
+      res = true;
+      break;
+    }
+  }
+  return res;
+}
 
 /**
  * 属性文件处理
@@ -111,7 +133,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
         isReadComDir = true;
       } else if (line.startsWith('export ')) {
         let docItem = doc.find((x) => x.end == index - (isReadComDir ? 2 : 1));
-        let undocument = getDocs(docItem, 'undocument') as string;
+        let undocument = getDocs(docItem, '@undocument') as string;
         if (docItem && undocument !== 'true') {
           const tmatch = line.match(/\S+\s+\S+/);
           if (tmatch) {
@@ -119,8 +141,10 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           }
           let eline = line.replace(/^.*? \S+ \s*/, '');
           const { label, description } = getLabelAndDescription(docItem, lang);
+          const example = getDocs(docItem, '@example') as string;
           prop.label = label ? label : docItem[docItem.start + 1];
           prop.description = description;
+          prop.example = example;
           prop.properties = [];
           switch (prop.type) {
             case NcPropType.Const:
@@ -131,8 +155,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
                   prop.name = prop.name.slice(0, prop.name.indexOf(':'));
                 }
                 if (prop.name.endsWith('Prefix')) {
-                  prop.selector = getDocs(docItem, 'selector') as string;
-                  prop.decorator = getDocs(docItem, 'decorator') as NcDecorator;
+                  prop.selector = getDocs(docItem, '@selector') as string;
                 }
                 prop.value = eline.match(/=\s*(.*)/)[1].trim();
                 if (prop.value.endsWith(';')) {
@@ -237,22 +260,25 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           type = type.indexOf('<') !== -1 ? type.replace(/(.*)\<(.*)\>(.*)/, '$2') : '';
         }
         if (docItem) {
-          let def = getDocs(docItem, 'default') as string;
-          let withConfig = getDocs(docItem, 'withConfig') as string;
+          let def = getDocs(docItem, '@default') as string;
+          let withConfig = getDocs(docItem, '@withConfig') as string;
+          let example = getDocs(docItem, '@example', true) as string;
           const { label, description } = getLabelAndDescription(docItem, lang);
           const attr = (
             propd.length > 1 && propd[0].indexOf("'") !== -1 ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name
           ).replace(/@/g, '&#64;');
+
           const property: NcPrope = {
-            name: name,
-            type: type,
+            name,
+            type,
             label: label ? label : docItem[docItem.start + 1],
             default: def ? def : val,
             withConfig: Boolean(withConfig),
-            description: description,
+            description,
             decorator: propd.length > 1 ? propd.filter((x) => x.indexOf('@') !== -1) : [],
-            attr: attr,
-            propType: propType
+            attr,
+            propType,
+            example
           };
 
           prop.properties.push(property);
@@ -272,25 +298,32 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
  * @export
  * @param {object} doc
  * @param {string} prop
- * @param {boolean} all
  * @returns
  */
-export function getDocs(doc: object, prop: string, all: boolean = false) {
+export function getDocs(doc: object, prop: string, md: boolean = false) {
   let result = '';
-  let results = [];
+  let start = false;
   for (const key in doc) {
-    if (doc[key].toString().startsWith(`@${prop}`)) {
-      let value = doc[key].replace(`@${prop}`, '').trim();
-      value = value.replace(/@/g, '&#64;');
-      if (all) {
-        results.push(value);
+    let val = doc[key].toString();
+    if (startWithKeyword(val) && val.startsWith(prop)) {
+      result = val.replace(prop, '').trim().replace(/@/g, '&#64;');
+      if (!md) {
+        result = result.replace(/@/g, '&#64;');
+      }
+      start = true;
+    } else if (start) {
+      if (!startWithKeyword(val) && !['start', 'end'].includes(key)) {
+        if (!md) {
+          val = val.replace(/@/g, '&#64;');
+        }
+        result += `${result !== '' ? '\n' : ''}${val}`;
       } else {
-        result = value;
+        start = false;
         break;
       }
     }
   }
-  return all ? results : result;
+  return result;
 }
 
 /**
@@ -318,7 +351,7 @@ export function getLabelAndDescription(doc: object, lang: string) {
     }
   }
   result.label = result.label.replace(/@/g, '&#64;');
-  result.description = result.description.replace(/@/g, '&#64;');
+  result.description = result.description;
 
   return result;
 }
