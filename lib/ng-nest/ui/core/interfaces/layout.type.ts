@@ -18,8 +18,21 @@ export type XPosition = XPositionTopBottom | XPositionLeftRight;
 
 /**
  * @zh_CN 风格类型
- * 'initial'
+ * - `'initial'` : 默认
+ * - `'primary'` : 主要
+ * - `'success'` : 成功
+ * - `'info'` : 信息
+ * - `'warning'` : 警告
+ * - `'danger'` : 危险
+ * - `'text'` : 文本
  * @en_US Style type
+ * - `'initial'` : Initial
+ * - `'primary'` : Primary
+ * - `'success'` : Success
+ * - `'info'` : Info
+ * - `'warning'` : Warning
+ * - `'danger'` : Danger
+ * - `'text'` : Text
  */
 export type XType = 'initial' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
 

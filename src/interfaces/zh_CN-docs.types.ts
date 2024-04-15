@@ -567,7 +567,7 @@ export const zh_CN: {[key: string]: AppProp} = {
   "XBoolean": {
     "type": "type",
     "label": "boolean 数据类型",
-    "description": "此类型作为组件的输入参数，一般会配合 `@XInputBoolean()` 装饰器来处理参数，转换成 true 或 false",
+    "description": "此类型作为组件的输入参数，一般会配合 `@XInputBoolean()` 装饰器来使用，转换成 true 或 false",
     "example": "```html\n// true\n<my-com disabled></my-com>\n<my-com disabled=\"true\"></my-com>\n<my-com [disabled]=\"true\"></my-com>\n\n// false\n<my-com disabled=\"false\"></my-com>\n<my-com [disabled]=\"false\"></my-com>\n```\n\n",
     "properties": [],
     "name": "XBoolean",
@@ -1028,7 +1028,7 @@ export const zh_CN: {[key: string]: AppProp} = {
   "XType": {
     "type": "type",
     "label": "风格类型",
-    "description": "",
+    "description": "- `'initial'` : 默认\n- `'primary'` : 主要\n- `'success'` : 成功\n- `'info'` : 信息\n- `'warning'` : 警告\n- `'danger'` : 危险\n- `'text'` : 文本",
     "example": "",
     "properties": [],
     "name": "XType",

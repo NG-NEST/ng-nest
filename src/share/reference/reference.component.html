@@ -1,11 +1,31 @@
 <div x-dialog-content class="ns-reference-content">
   <ng-container *ngTemplateOutlet="typeChild; context: { prop: prop() }"></ng-container>
 
-  <ng-template #typeChild let-prop="prop">
+  <ng-template #typeChild let-prop="prop" let-excludeTitle="excludeTitle">
     @if (prop) {
       @if (prop.type === 'type') {
         <div class="property">
-          <ng-container *ngTemplateOutlet="typeTitle; context: { prop }"></ng-container>
+          @if (!excludeTitle) {
+            <ng-container *ngTemplateOutlet="typeTitle; context: { prop }"></ng-container>
+          }
+          @if (prop.children && prop.children.length > 0) {
+            <div class="children">
+              <x-collapse bordered>
+                @for (child of prop.children; track child) {
+                  <x-collapse-panel [label]="labelTpl">
+                    <ng-container
+                      *ngTemplateOutlet="typeChild; context: { prop: child, excludeTitle: true }"
+                    ></ng-container>
+                    <ng-template #labelTpl>
+                      <ng-container
+                        *ngTemplateOutlet="typeTitle; context: { prop: child, isChildren: true }"
+                      ></ng-container>
+                    </ng-template>
+                  </x-collapse-panel>
+                }
+              </x-collapse>
+            </div>
+          }
           @if (prop.actualValue) {
             <div class="value">
               @for (val of prop.actualValue; track val) {
@@ -35,7 +55,7 @@
     }
   </ng-template>
 
-  <ng-template #typeTitle let-prop="prop">
+  <ng-template #typeTitle let-prop="prop" let-isChildren="isChildren">
     <div class="label">
       <code [innerText]="prop.name"></code>
       <span class="type">{{ prop.type }}</span>

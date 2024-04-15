@@ -61,6 +61,10 @@ export interface AppProp {
    */
   children?: AppProp[];
   /**
+   * 示例
+   */
+  example?: string;
+  /**
    * 其它属性
    */
   [property: string]: any;

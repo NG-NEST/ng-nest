@@ -567,7 +567,7 @@ export const en_US: {[key: string]: AppProp} = {
   "XBoolean": {
     "type": "type",
     "label": "Boolean data type",
-    "description": "This type as a component of the input parameters,\nusually with `&#64;XInputBoolean()` decorator to process parameters,\ndirectly into true or false",
+    "description": "This type as a component of the input parameters,\nusually with `@XInputBoolean()` decorator to process parameters,\ndirectly into true or false",
     "example": "```html\n// true\n<my-com disabled></my-com>\n<my-com disabled=\"true\"></my-com>\n<my-com [disabled]=\"true\"></my-com>\n\n// false\n<my-com disabled=\"false\"></my-com>\n<my-com [disabled]=\"false\"></my-com>\n```\n\n",
     "properties": [],
     "name": "XBoolean",
@@ -1028,7 +1028,7 @@ export const en_US: {[key: string]: AppProp} = {
   "XType": {
     "type": "type",
     "label": "Style type",
-    "description": "",
+    "description": "- `'initial'` : Initial\n- `'primary'` : Primary\n- `'success'` : Success\n- `'info'` : Info\n- `'warning'` : Warning\n- `'danger'` : Danger\n- `'text'` : Text",
     "example": "",
     "properties": [],
     "name": "XType",

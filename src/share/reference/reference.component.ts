@@ -7,16 +7,18 @@ import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 import { PrismService } from '@services';
 import { DomSanitizer } from '@angular/platform-browser';
+import { XIsEmpty } from '@ng-nest/ui/core';
+import { XCollapseModule } from '@ng-nest/ui/collapse';
 
 @Component({
   selector: 'ns-reference',
   standalone: true,
-  imports: [NgTemplateOutlet, XButtonComponent, XDialogModule],
+  imports: [NgTemplateOutlet, XButtonComponent, XCollapseModule, XDialogModule],
   templateUrl: './reference.component.html',
   styleUrl: './reference.component.scss'
 })
 export class NsReferenceComponent {
-  data = inject(X_DIALOG_DATA);
+  data = inject<{ prop: AppProp }>(X_DIALOG_DATA);
   dialogRef = inject(XDialogRef<NsReferenceComponent>);
   ps = inject(PrismService);
   domSanitizer = inject(DomSanitizer);
@@ -45,6 +47,11 @@ export class NsReferenceComponent {
     if (this.data?.prop?.description) {
       this.data.prop.description = this.marked.parse(this.data.prop.description) as string;
     }
+    if (XIsEmpty(this.data.prop.description) && !XIsEmpty(this.data.prop.children)) {
+      this.data.prop.description = this.data.prop.children!.map((x: AppProp) => x.description).join('\n\n');
+      this.data.prop.description = this.marked.parse(this.data.prop.description) as string;
+    }
+    console.log(this.data.prop);
     this.prop.set(this.data.prop);
   }
 
