@@ -1,5 +1,6 @@
-import { XIdentityProperty, XProperty, XJustify, XWithConfig, XPositionLeftRight, XNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
+import { XProperty, XWithConfig } from '@ng-nest/ui/core';
+import type { XIdentityProperty, XJustify, XPositionLeftRight, XNumber } from '@ng-nest/ui/core';
 
 /**
  * Anchor

@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { XTimePickerDisabledTime, XTimePickerFramePrefix, XTimePickerType } from './time-picker.property';
 import {
-  reqAnimFrame,
+  XRequestAnimationFrame,
   XBoolean,
   XIdentity,
   XIsChange,
@@ -330,7 +330,7 @@ export class XTimePickerFrameComponent {
     const difference = to - element.scrollTop;
     const perTick = (difference / duration) * 10;
     this.scrollAnimating[clsName] = true;
-    reqAnimFrame(() => {
+    XRequestAnimationFrame(() => {
       const num = element.scrollTop + perTick;
       if (XIsNumber(num) && num !== Infinity) {
         element.scrollTop = num;

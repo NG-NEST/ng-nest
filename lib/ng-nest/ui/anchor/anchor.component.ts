@@ -13,8 +13,16 @@ import {
   inject
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorNode, XAnchorProperty } from './anchor.property';
-import { XComputedStyle, XIsEmpty, reqAnimFrame, XIsNumber, XIsUndefined, XConfigService } from '@ng-nest/ui/core';
-import { XSliderNode, XSliderComponent } from '@ng-nest/ui/slider';
+import {
+  XComputedStyle,
+  XIsEmpty,
+  XRequestAnimationFrame,
+  XIsNumber,
+  XIsUndefined,
+  XConfigService
+} from '@ng-nest/ui/core';
+import { XSliderComponent } from '@ng-nest/ui/slider';
+import type { XSliderNode } from '@ng-nest/ui/slider';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
@@ -188,7 +196,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   private scrollTo(element: HTMLElement, to: number, duration: number) {
     const difference = to - element.scrollTop;
     const perTick = (difference / duration) * 10;
-    reqAnimFrame(() => {
+    XRequestAnimationFrame(() => {
       const num = element.scrollTop + perTick;
       if (XIsNumber(num) && num !== Infinity) {
         element.scrollTop = num;

@@ -4,13 +4,15 @@ import {
   ViewEncapsulation,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  inject
+  inject,
+  signal
 } from '@angular/core';
 import { XCollapsePanelPrefix, XCollapsePanelProperty } from './collapse.property';
 import { XDropAnimation } from '@ng-nest/ui/core';
 import { XCollapseComponent } from './collapse.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import type { AnimationEvent } from '@angular/animations';
 
 @Component({
   selector: `${XCollapsePanelPrefix}`,
@@ -26,6 +28,11 @@ export class XCollapsePanelComponent extends XCollapsePanelProperty implements O
   index!: number;
   collapseComponent = inject(XCollapseComponent, { optional: true, host: true });
   private cdr = inject(ChangeDetectorRef);
+  show = signal<boolean>(false);
+
+  done(event: AnimationEvent) {
+    if (!event.toState) this.show.set(false);
+  }
 
   ngOnInit() {
     if (!this.collapseComponent) return;
@@ -37,11 +44,15 @@ export class XCollapsePanelComponent extends XCollapsePanelProperty implements O
         this.headerClick();
       }
     ];
-    if (this.active) this.collapseComponent.change(this.index);
+    if (this.active) {
+      this.show.set(true);
+      this.collapseComponent.change(this.index);
+    }
   }
 
   headerClick() {
     this.active = !this.active;
+    if (this.active) this.show.set(true);
     if (!this.collapseComponent) return;
     if (this.active) this.collapseComponent.change(this.index);
     else this.collapseComponent.change(this.index, false);

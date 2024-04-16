@@ -6,15 +6,15 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
   SimpleChanges,
-  ViewChild,
   inject,
-  PLATFORM_ID
+  PLATFORM_ID,
+  viewChild
 } from '@angular/core';
 import { XAlertPrefix, XAlertProperty } from './alert.property';
 import { XFadeAnimation, XIsEmpty, XConfigService, XIsChange, XClearClass } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
-import { CdkDrag } from '@angular/cdk/drag-drop';
+import type { CdkDrag } from '@angular/cdk/drag-drop';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -41,7 +41,7 @@ import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
   animations: [XFadeAnimation]
 })
 export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy {
-  @ViewChild('alert') alert!: CdkDrag;
+  alert = viewChild.required<CdkDrag>('alert');
   private _unSubject = new Subject<void>();
   private cdr = inject(ChangeDetectorRef);
   configService = inject(XConfigService);

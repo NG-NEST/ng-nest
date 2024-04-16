@@ -13,7 +13,7 @@ import {
   inject
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
-import { reqAnimFrame, XConfigService, XIsChange, XIsNumber } from '@ng-nest/ui/core';
+import { XRequestAnimationFrame, XConfigService, XIsChange, XIsNumber } from '@ng-nest/ui/core';
 import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil } from 'rxjs/operators';
@@ -123,7 +123,7 @@ export class XBackTopComponent extends XBackTopProperty implements OnInit, OnCha
   private scrollTo(to: number, duration: number) {
     const difference = to - this.scrollTop;
     const perTick = (difference / duration) * 10;
-    reqAnimFrame(() => {
+    XRequestAnimationFrame(() => {
       const num = this.scrollTop + perTick;
       if (XIsNumber(num) && num !== Infinity) {
         this.scrollTop = num;

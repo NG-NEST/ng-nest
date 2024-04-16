@@ -105,8 +105,8 @@ export class XButtonProperty extends XProperty implements XButtonOption {
    */
   @Input() @XInputBoolean() closable?: XBoolean;
   /**
-   * @zh_CN 按钮类型属性 submit,button,reset
-   * @en_US Button type attribute. submit,button,reset
+   * @zh_CN 按钮类型属性 submit, button, reset
+   * @en_US Button type attribute. submit, button, reset
    */
   @Input() @XWithConfig<XButtonAttrType>(X_CONFIG_NAME, 'button') attrType?: XButtonAttrType;
 }
@@ -191,7 +191,13 @@ export type XButtonType = XType;
 
 /**
  * @zh_CN 按钮类型属性
+ * - `'submit'` : 此类型用于提交表单数据
+ * - `'reset'` : 此类型用于重置表单中的数据
+ * - `'button'` : 此类型用于自定义按钮行为
  * @en_US Button attr type
+ * - `'submit'` : This type is used to submit the form data
+ * - `'reset'` : This type is used to reset the form data
+ * - `'button'` : This type is used to the custom button
  */
 export type XButtonAttrType = 'submit' | 'button' | 'reset';
 

@@ -55,7 +55,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 最大宽度
    * @en_US Min width
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '32rem') maxWidth?: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) maxWidth?: string;
   /**
    * @zh_CN 最小高度
    * @en_US Min height
@@ -263,7 +263,6 @@ export interface XDialogRefOption {
   /**
    * @zh_CN 最大宽度
    * @en_US Max width
-   * @default '32rem'
    * @withConfig true
    */
   maxWidth?: string;

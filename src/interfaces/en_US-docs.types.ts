@@ -568,7 +568,7 @@ export const en_US: {[key: string]: AppProp} = {
     "type": "type",
     "label": "Boolean data type",
     "description": "This type as a component of the input parameters,\nusually with `@XInputBoolean()` decorator to process parameters,\ndirectly into true or false",
-    "example": "```html\n// true\n<my-com disabled></my-com>\n<my-com disabled=\"true\"></my-com>\n<my-com [disabled]=\"true\"></my-com>\n\n// false\n<my-com disabled=\"false\"></my-com>\n<my-com [disabled]=\"false\"></my-com>\n```\n\n",
+    "example": "```html\n// true\n<my-com disabled></my-com>\n<my-com disabled=\"true\"></my-com>\n<my-com [disabled]=\"true\"></my-com>\n\n// false\n<my-com disabled=\"false\"></my-com>\n<my-com [disabled]=\"false\"></my-com>\n```\n",
     "properties": [],
     "name": "XBoolean",
     "value": "boolean | string"
@@ -1082,7 +1082,7 @@ export const en_US: {[key: string]: AppProp} = {
   "XSize": {
     "type": "type",
     "label": "Size",
-    "description": "",
+    "description": "- `'big'` : Big\n- `'large'` : Large\n- `'medium'` : Medium\n- `'small'` : Small\n- `'mini'` : Mini",
     "example": "",
     "properties": [],
     "name": "XSize",
@@ -1091,7 +1091,7 @@ export const en_US: {[key: string]: AppProp} = {
   "XResponseSize": {
     "type": "type",
     "label": "Response size",
-    "description": "",
+    "description": "- `xs` <768px\n- `sm` ≥768px\n- `md` ≥992px\n- `lg` ≥1200px\n- `xl` ≥1920px",
     "example": "",
     "properties": [],
     "name": "XResponseSize",
@@ -1118,7 +1118,7 @@ export const en_US: {[key: string]: AppProp} = {
   "XDirection": {
     "type": "type",
     "label": "The direction of the sub element arrangement under flex layout",
-    "description": "",
+    "description": "- `'column'` : Arranges flex items vertically from top to bottom, like columns. This is the default value\n- `'column-reverse'` : Opposite of column, arranges flex items vertically from bottom to top\n- `'row'` : Arranges flex items horizontally from left to right, like a row\n- `'row-reverse'` : Opposite of row, arranges flex items horizontally from right to",
     "example": "",
     "properties": [],
     "name": "XDirection",
@@ -1631,6 +1631,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAffixPrefix",
     "selector": "x-affix",
+    "decorator": "component",
     "value": "'x-affix'"
   },
   "XAffixProperty": {
@@ -1681,6 +1682,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAlertPrefix",
     "selector": "x-alert",
+    "decorator": "component",
     "value": "'x-alert'"
   },
   "XAlertProperty": {
@@ -2034,219 +2036,6 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XAlertProperty",
     "extends": "XProperty"
   },
-  "XAlertOption": {
-    "type": "interface",
-    "label": "Alert Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "hide",
-        "type": "boolean",
-        "label": "隐藏",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "hide",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "title",
-        "type": "XTemplate",
-        "label": "标题",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "title",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "content",
-        "type": "XTemplate",
-        "label": "内容",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "content",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "type",
-        "type": "XAlertType",
-        "label": "类型",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "type",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "effect",
-        "type": "XEffect",
-        "label": "主题",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "effect",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "hideClose",
-        "type": "boolean",
-        "label": "隐藏关闭按钮",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "hideClose",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "closeText",
-        "type": "string",
-        "label": "关闭按钮文字替换",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "closeText",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "showIcon",
-        "type": "boolean",
-        "label": "显示图标",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "showIcon",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "disabledAnimation",
-        "type": "boolean",
-        "label": "禁用动画",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "disabledAnimation",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "duration",
-        "type": "number",
-        "label": "延迟关闭，默认 0 表示不关闭",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "duration",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "manual",
-        "type": "boolean",
-        "label": "手动处理关闭事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "manual",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "draggable",
-        "type": "boolean",
-        "label": "拖动提示框",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "draggable",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "resizable",
-        "type": "boolean",
-        "label": "调整提示框大小",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "resizable",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "offsetLeft",
-        "type": "number",
-        "label": "开启 resizable 调整大小，偏移屏幕左边",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "offsetLeft",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "offsetTop",
-        "type": "number",
-        "label": "开启 resizable 调整大小，偏移屏幕顶部",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "offsetTop",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "minWidth",
-        "type": "string",
-        "label": "最小宽度",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "minWidth",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "minHeight",
-        "type": "string",
-        "label": "最小高度",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "minHeight",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XAlertOption"
-  },
   "XAlertType": {
     "type": "type",
     "label": "Type",
@@ -2264,6 +2053,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAnchorPrefix",
     "selector": "x-anchor",
+    "decorator": "component",
     "value": "'x-anchor'"
   },
   "XAnchorProperty": {
@@ -2373,6 +2163,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAnchorInnerPrefix",
     "selector": "x-anchor-inner",
+    "decorator": "component",
     "value": "'x-anchor-inner'"
   },
   "XAnchorInnerProperty": {
@@ -2428,6 +2219,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAutoCompletePrefix",
     "selector": "x-auto-complete",
+    "decorator": "component",
     "value": "'x-auto-complete'"
   },
   "XAutoCompleteProperty": {
@@ -2861,76 +2653,6 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XAutoCompleteProperty",
     "extends": "XControlValueAccessor<any>"
   },
-  "XAutoCompleteOption": {
-    "type": "interface",
-    "label": "AutoComplete Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "data",
-        "type": "XData<XAutoCompleteNode>",
-        "label": "Node data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "data",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "debounceTime",
-        "type": "number",
-        "label": "Enter a delay execution time, ms",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "debounceTime",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "placement",
-        "type": "XPositionTopBottom",
-        "label": "Display position",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placement",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "nodeTpl",
-        "type": "TemplateRef<any>",
-        "label": "Node template",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "nodeTpl",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "nodeClick",
-        "type": "(value: XAutoCompleteNode) => void",
-        "label": "Node click event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "nodeClick",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XAutoCompleteOption",
-    "extends": "XFormOption"
-  },
   "XAutoCompletePortalPrefix": {
     "type": "const",
     "label": "AutoComplete Portal",
@@ -2940,6 +2662,7 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XAutoCompletePortalPrefix",
     "extends": "XParentIdentityProperty<XAutoCompleteNode>",
     "selector": "x-auto-complete-portal",
+    "decorator": "component",
     "value": "'x-auto-complete-portal'"
   },
   "XAvatarPrefix": {
@@ -2950,6 +2673,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAvatarPrefix",
     "selector": "x-avatar",
+    "decorator": "component",
     "value": "'x-avatar'"
   },
   "XAvatarProperty": {
@@ -3115,6 +2839,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAvatarGroupPrefix",
     "selector": "x-avatar-group",
+    "decorator": "component",
     "value": "'x-avatar-group'"
   },
   "XBackTopPrefix": {
@@ -3125,6 +2850,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XBackTopPrefix",
     "selector": "x-back-top",
+    "decorator": "component",
     "value": "'x-back-top'"
   },
   "XBackTopProperty": {
@@ -3218,6 +2944,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XBadgePrefix",
     "selector": "x-badge",
+    "decorator": "component",
     "value": "'x-badge'"
   },
   "XBadgeProperty": {
@@ -3326,6 +3053,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XButtonPrefix",
     "selector": "x-button",
+    "decorator": "component",
     "value": "'x-button'"
   },
   "XButtonProperty": {
@@ -3577,7 +3305,7 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "attrType",
         "type": "XButtonAttrType",
-        "label": "Button type attribute. submit,button,reset",
+        "label": "Button type attribute. submit, button, reset",
         "default": "'button'",
         "withConfig": false,
         "description": "",
@@ -3594,171 +3322,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XProperty",
     "implements": "XButtonOption"
   },
-  "XButtonOption": {
-    "type": "interface",
-    "label": "Button Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "type",
-        "type": "XButtonType",
-        "label": "Types of",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "type",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "icon",
-        "type": "string",
-        "label": "Icon",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "icon",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "title",
-        "type": "string",
-        "label": "Title",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "title",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "Layout",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "direction",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "onlyIcon",
-        "type": "XBoolean",
-        "label": "Icon only",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "onlyIcon",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "activated",
-        "type": "XBoolean",
-        "label": "Active button (style difference)",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "activated",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "disabled",
-        "type": "XBoolean",
-        "label": "Disable button",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "disabled",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "plain",
-        "type": "XBoolean",
-        "label": "Plain button",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "plain",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "round",
-        "type": "XBoolean",
-        "label": "Round button",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "round",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "circle",
-        "type": "XBoolean",
-        "label": "Round button (use with icon)",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "circle",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "loading",
-        "type": "XBoolean",
-        "label": "Loading",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "loading",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "closable",
-        "type": "XBoolean",
-        "label": "Close button",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "closable",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XButtonOption"
-  },
   "XButtonType": {
     "type": "type",
     "label": "Button type",
@@ -3771,7 +3334,7 @@ export const en_US: {[key: string]: AppProp} = {
   "XButtonAttrType": {
     "type": "type",
     "label": "Button attr type",
-    "description": "",
+    "description": "- `'submit'` : This type is used to submit the form data\n- `'reset'` : This type is used to reset the form data\n- `'button'` : This type is used to the custom button",
     "example": "",
     "properties": [],
     "name": "XButtonAttrType",
@@ -3785,6 +3348,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XButtonsPrefix",
     "selector": "x-buttons",
+    "decorator": "component",
     "value": "'x-buttons'"
   },
   "XButtonsProperty": {
@@ -3869,6 +3433,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCalendarPrefix",
     "selector": "x-calendar",
+    "decorator": "component",
     "value": "'x-calendar'"
   },
   "XCalendarProperty": {
@@ -4004,6 +3569,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCardPrefix",
     "selector": "x-card",
+    "decorator": "component",
     "value": "'x-card'"
   },
   "XCardProperty": {
@@ -4081,6 +3647,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCarouselPrefix",
     "selector": "x-carousel",
+    "decorator": "component",
     "value": "'x-carousel'"
   },
   "XCarouselProperty": {
@@ -4334,6 +3901,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCarouselPanelPrefix",
     "selector": "x-carousel-panel",
+    "decorator": "component",
     "value": "'x-carousel-panel'"
   },
   "XCarouselPanelProperty": {
@@ -4369,6 +3937,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCascadePrefix",
     "selector": "x-cascade",
+    "decorator": "component",
     "value": "'x-cascade'"
   },
   "XCascadeProperty": {
@@ -4786,52 +4355,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XControlValueAccessor<any>",
     "implements": "XCascadeOption"
   },
-  "XCascadeOption": {
-    "type": "interface",
-    "label": "Cascade Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "data",
-        "type": "XData<XCascadeNode>",
-        "label": "Node data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "data",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "placement",
-        "type": "XCorner",
-        "label": "Display position",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placement",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "nodeClick",
-        "type": "(node: XCascadeNode) => void",
-        "label": "Node click event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "nodeClick",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XCascadeOption",
-    "extends": "XFormOption"
-  },
   "XCascadeNodeTrigger": {
     "type": "type",
     "label": "Sub node triggering method",
@@ -4850,6 +4373,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCascadePortalPrefix",
     "selector": "x-cascade-portal",
+    "decorator": "component",
     "value": "'x-cascade-portal'"
   },
   "XCheckboxPrefix": {
@@ -4860,6 +4384,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCheckboxPrefix",
     "selector": "x-checkbox",
+    "decorator": "component",
     "value": "'x-checkbox'"
   },
   "XCheckboxProperty": {
@@ -5321,148 +4846,6 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XCheckboxProperty",
     "extends": "XControlValueAccessor<boolean"
   },
-  "XCheckboxOption": {
-    "type": "interface",
-    "label": "Checkbox Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "data",
-        "type": "XData<XCheckboxNode>",
-        "label": "Radio data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "data",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "button",
-        "type": "XBoolean",
-        "label": "Button style",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "button",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "icon",
-        "type": "XBoolean",
-        "label": "Icon style",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "icon",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tag",
-        "type": "XBoolean",
-        "label": "Tag style",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tag",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "indeterminate",
-        "type": "XBoolean",
-        "label": "Uncertain state style",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "indeterminate",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "type",
-        "type": "XButtonType",
-        "label": "Take effect when button style",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "type",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tagBordered",
-        "type": "XBoolean",
-        "label": "Tag bordered",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tagBordered",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tagDark",
-        "type": "XBoolean",
-        "label": "Tag dark theme",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tagDark",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "Before label",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "before",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "After label",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "after",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XCheckboxOption",
-    "extends": "XFormOption"
-  },
   "XCheckboxNode": {
     "type": "interface",
     "label": "Checkbox data object",
@@ -5529,6 +4912,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCollapsePrefix",
     "selector": "x-collapse",
+    "decorator": "component",
     "value": "'x-collapse'"
   },
   "XCollapseProperty": {
@@ -5678,6 +5062,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCollapsePanelPrefix",
     "selector": "x-collapse-panel",
+    "decorator": "component",
     "value": "'x-collapse-panel'"
   },
   "XCollapsePanelProperty": {
@@ -5742,6 +5127,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XColorPrefix",
     "selector": "x-color",
+    "decorator": "component",
     "value": "'x-color'"
   },
   "XAmounts": {
@@ -5829,6 +5215,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XColorPickerPrefix",
     "selector": "x-color-picker",
+    "decorator": "component",
     "value": "'x-color-picker'"
   },
   "XColorPickerProperty": {
@@ -6173,28 +5560,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XControlValueAccessor<string>",
     "implements": "XColorPickerOption"
   },
-  "XColorPickerOption": {
-    "type": "interface",
-    "label": "ColorPicker Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "placement",
-        "type": "XCorner",
-        "label": "Display position",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placement",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XColorPickerOption",
-    "extends": "XFormOption"
-  },
   "XColorType": {
     "type": "type",
     "label": "Color type",
@@ -6212,6 +5577,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XColorPickerPortalPrefix",
     "selector": "x-color-picker-portal",
+    "decorator": "component",
     "value": "'x-color-picker-portal'"
   },
   "XCommentPrefix": {
@@ -6222,6 +5588,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCommentPrefix",
     "selector": "x-comment",
+    "decorator": "component",
     "value": "'x-comment'"
   },
   "XCommentProperty": {
@@ -6460,6 +5827,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCommentReplyPrefix",
     "selector": "x-comment-reply",
+    "decorator": "component",
     "value": "'x-comment-reply'"
   },
   "XCommentReplyProperty": {
@@ -6509,6 +5877,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XContainerPrefix",
     "selector": "x-container",
+    "decorator": "component",
     "value": "'x-container'"
   },
   "XContainerProperty": {
@@ -6544,6 +5913,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XHeaderPrefix",
     "selector": "x-header",
+    "decorator": "component",
     "value": "'x-header'"
   },
   "XHeaderProperty": {
@@ -6579,6 +5949,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAsidePrefix",
     "selector": "x-aside",
+    "decorator": "component",
     "value": "'x-aside'"
   },
   "XAsideProperty": {
@@ -6614,6 +5985,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XMainPrefix",
     "selector": "x-main",
+    "decorator": "component",
     "value": "'x-main'"
   },
   "XFooterPrefix": {
@@ -6624,6 +5996,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XFooterPrefix",
     "selector": "x-footer",
+    "decorator": "component",
     "value": "'x-footer'"
   },
   "XFooterProperty": {
@@ -6659,6 +6032,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCrumbPrefix",
     "selector": "x-crumb",
+    "decorator": "component",
     "value": "'x-crumb'"
   },
   "XCrumbProperty": {
@@ -6816,6 +6190,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDatePickerPrefix",
     "selector": "x-date-picker",
+    "decorator": "component",
     "value": "'x-date-picker'"
   },
   "XDatePickerProperty": {
@@ -7276,124 +6651,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XControlValueAccessor<any>",
     "implements": "XDatePickerOption"
   },
-  "XDatePickerOption": {
-    "type": "interface",
-    "label": "DatePicker Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "type",
-        "type": "XDatePickerType",
-        "label": "Choose a type",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "type",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "format",
-        "type": "string",
-        "label": "Format type",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "format",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "clearable",
-        "type": "XBoolean",
-        "label": "Clear button",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "clearable",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "placement",
-        "type": "XCorner",
-        "label": "Display position",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placement",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "bordered",
-        "type": "XBoolean",
-        "label": "Display Border",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "bordered",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "Before label",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "before",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "After label",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "after",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "nodeClick",
-        "type": "(value: number) => void",
-        "label": "Node click event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "nodeClick",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XDatePickerOption",
-    "extends": "XFormOption"
-  },
   "XDateRangePrefix": {
     "type": "const",
     "label": "DateRange",
@@ -7402,6 +6659,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDateRangePrefix",
     "selector": "x-date-range",
+    "decorator": "component",
     "value": "'x-date-range'"
   },
   "XDateRangeProperty": {
@@ -7862,40 +7120,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XControlValueAccessor<any>",
     "implements": "XDateRangeOption"
   },
-  "XDateRangeOption": {
-    "type": "interface",
-    "label": "DateRange Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "tabindex",
-        "type": "number",
-        "label": "Tab key control order",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tabindex",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string[]",
-        "label": "Placeholder of date input",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placeholder",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XDateRangeOption",
-    "extends": "XFormOption"
-  },
   "XDatePickerDisabledDate": {
     "type": "type",
     "label": "Custom type of disabled date",
@@ -7993,6 +7217,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDatePickerPortalPrefix",
     "selector": "x-date-picker-portal",
+    "decorator": "component",
     "value": "'x-date-picker-portal'"
   },
   "XDateRangePortalPrefix": {
@@ -8003,6 +7228,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDateRangePortalPrefix",
     "selector": "x-date-range-portal",
+    "decorator": "component",
     "value": "'x-date-range-portal'"
   },
   "XPickerDatePrefix": {
@@ -8013,6 +7239,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XPickerDatePrefix",
     "selector": "x-picker-date",
+    "decorator": "component",
     "value": "'x-picker-date'"
   },
   "XPickerDateProperty": {
@@ -8668,6 +7895,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XPickerMonthPrefix",
     "selector": "x-picker-month",
+    "decorator": "component",
     "value": "'x-picker-month'"
   },
   "XPickerMonthProperty": {
@@ -8972,6 +8200,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XPickerQuarterPrefix",
     "selector": "x-picker-quarter",
+    "decorator": "component",
     "value": "'x-picker-quarter'"
   },
   "XPickerQuarterProperty": {
@@ -9276,6 +8505,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDateQuarterPrefix",
     "selector": "xDateQuarter",
+    "decorator": "pipe",
     "value": "'xDateQuarter'"
   },
   "XPickerYearPrefix": {
@@ -9286,6 +8516,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XPickerYearPrefix",
     "selector": "x-picker-year",
+    "decorator": "component",
     "value": "'x-picker-year'"
   },
   "XPickerYearProperty": {
@@ -9604,6 +8835,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDescriptionPrefix",
     "selector": "x-description",
+    "decorator": "component",
     "value": "'x-description'"
   },
   "XDescriptionProperty": {
@@ -9683,6 +8915,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDescriptionItemPrefix",
     "selector": "x-description-item",
+    "decorator": "component",
     "value": "'x-description-item'"
   },
   "XDescriptionItemProperty": {
@@ -9815,6 +9048,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDialogPrefix",
     "selector": "x-dialog",
+    "decorator": "component",
     "value": "'x-dialog'"
   },
   "XDialogProperty": {
@@ -9915,12 +9149,12 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "maxWidth",
         "type": "string",
         "label": "Min width",
-        "default": "'32rem'",
+        "default": "",
         "withConfig": false,
         "description": "",
         "decorator": [
           "@Input()",
-          "@XWithConfig<string>(X_DIALOG_CONFIG_NAME,'32rem')"
+          "@XWithConfig<string>(X_DIALOG_CONFIG_NAME)"
         ],
         "attr": "maxWidth",
         "propType": "Input",
@@ -10004,7 +9238,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "cancelText",
         "type": "string",
         "label": "Cancel button text",
-        "default": "'取消'\n",
+        "default": "'取消'",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -10034,7 +9268,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "confirmText",
         "type": "string",
         "label": "Confirm button text",
-        "default": "'确认'\n",
+        "default": "'确认'",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -10256,6 +9490,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDialogContainerPrefix",
     "selector": "x-dialog-container",
+    "decorator": "component",
     "value": "'x-dialog-container'"
   },
   "XDialogContainerProperty": {
@@ -10388,7 +9623,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "maxWidth",
         "type": "string",
         "label": "Max width",
-        "default": "'32rem'",
+        "default": "",
         "withConfig": true,
         "description": "",
         "decorator": [],
@@ -10490,6 +9725,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDrawerPrefix",
     "selector": "x-drawer",
+    "decorator": "component",
     "value": "'x-drawer'"
   },
   "XDrawerProperty": {
@@ -10735,6 +9971,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDrawerContainerPrefix",
     "selector": "x-drawer-container",
+    "decorator": "component",
     "value": "'x-drawer-container'"
   },
   "XDrawerContainerProperty": {
@@ -10771,6 +10008,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDropdownPrefix",
     "selector": "x-dropdown",
+    "decorator": "component",
     "value": "'x-dropdown'"
   },
   "XDropdownProperty": {
@@ -11003,6 +10241,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDropdownPortalPrefix",
     "selector": "x-dropdown-portal",
+    "decorator": "component",
     "value": "'x-dropdown-portal'"
   },
   "XEmptyPrefix": {
@@ -11013,6 +10252,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XEmptyPrefix",
     "selector": "x-empty",
+    "decorator": "component",
     "value": "'x-empty'"
   },
   "XEmptyProperty": {
@@ -11062,6 +10302,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XFindPrefix",
     "selector": "x-find",
+    "decorator": "component",
     "value": "'x-find'"
   },
   "XFindSearchOption": {
@@ -11970,424 +11211,6 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XFindProperty",
     "extends": "XControlValueAccessor<any"
   },
-  "XFindOption": {
-    "type": "interface",
-    "label": "Find Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "bordered",
-        "type": "XBoolean",
-        "label": "Display Border",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "bordered",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "multiple",
-        "type": "XBoolean",
-        "label": "Multiple select",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "multiple",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "columnLabel",
-        "type": "string",
-        "label": "Check the label name field",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "columnLabel",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dialogTitle",
-        "type": "string",
-        "label": "Bullet title",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dialogTitle",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dialogCheckboxLabel",
-        "type": "string",
-        "label": "Ball Form Select Box List Name",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dialogCheckboxLabel",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dialogCheckboxWidth",
-        "type": "number",
-        "label": "Ball Form Select Box List width",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dialogCheckboxWidth",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dialogEmptyContent",
-        "type": "string",
-        "label": "Ball box selection data empty prompt information",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dialogEmptyContent",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dialogWidth",
-        "type": "string",
-        "label": "Bullet frame width",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dialogWidth",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dialogHeight",
-        "type": "string",
-        "label": "Height of bullet frame",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dialogHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dialogVisible",
-        "type": "boolean",
-        "label": "Bullet box show, hide",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dialogVisible",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dialogButtonsCenter",
-        "type": "XBoolean",
-        "label": "Button center",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dialogButtonsCenter",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableData",
-        "type": "XData<XTableRow>",
-        "label": "Table row data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableData",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableIndex",
-        "type": "number",
-        "label": "Table page number",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableIndex",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableSize",
-        "type": "number",
-        "label": "Number of data items per page",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableSize",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableTotal",
-        "type": "number",
-        "label": "Total number of table data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableTotal",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableColumns",
-        "type": "XTableColumn[]",
-        "label": "Table column parameters",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableColumns",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableActivatedRow",
-        "type": "any",
-        "label": "Currently selected row data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableActivatedRow",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableCheckedRow",
-        "type": "{ [property: string]: any[] }",
-        "label": "Table row click event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableCheckedRow",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableLoading",
-        "type": "XBoolean",
-        "label": "Whether to enable loading",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableLoading",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableVirtualScroll",
-        "type": "boolean",
-        "label": "Table opens virtual scrolling",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableVirtualScroll",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableBodyHeight",
-        "type": "number",
-        "label": "Table body data height",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableBodyHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableMinBufferPx",
-        "type": "number",
-        "label": "The table exceeds the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableMinBufferPx",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableMaxBufferPx",
-        "type": "number",
-        "label": "The pixels of the new data buffer for the table rendering, corresponding to the parameters in cdk scroll",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableMaxBufferPx",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableAdaptionHeight",
-        "type": "XNumber",
-        "label": "Table adaptive height, table height is equal to the screen height minus the value set here",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableAdaptionHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableDocPercent",
-        "type": "XNumber",
-        "label": "Table document height percentage, used for pop-up window percentage height",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableDocPercent",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tableRowHeight",
-        "type": "XNumber",
-        "label": "Table row height, unit px",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tableRowHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "treeData",
-        "type": "XData<XTreeNode>",
-        "label": "Tree node data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "treeData",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "treeActivatedId",
-        "type": "any",
-        "label": "Id of the currently active node of the tree",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "treeActivatedId",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "treeExpandedLevel",
-        "type": "XNumber",
-        "label": "The level of the tree expanded by default",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "treeExpandedLevel",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "treeChecked",
-        "type": "any[]",
-        "label": "Tree checkbox selected node",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "treeChecked",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "treeCheckbox",
-        "type": "XBoolean",
-        "label": "Tree display checkbox",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "treeCheckbox",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "treeTableConnect",
-        "type": "any",
-        "label": "When the tree and the table exist at the same time, the tree node id corresponds to the attribute of the table, which is used to filter the table data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "treeTableConnect",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "search",
-        "type": "XFindSearchOption",
-        "label": "form for data filter",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "search",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XFindOption",
-    "extends": "XFormOption"
-  },
   "XFormPrefix": {
     "type": "const",
     "label": "Form",
@@ -12396,6 +11219,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XFormPrefix",
     "selector": "x-form",
+    "decorator": "component",
     "value": "'x-form'"
   },
   "XFormProperty": {
@@ -12951,6 +11775,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XControlPrefix",
     "selector": "x-control",
+    "decorator": "component",
     "value": "'x-control'"
   },
   "XControlProperty": {
@@ -13177,6 +12002,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XHighlightPrefix",
     "selector": "x-highlight",
+    "decorator": "component",
     "value": "'x-highlight'"
   },
   "XHighlightProperty": {
@@ -13254,6 +12080,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XIconPrefix",
     "selector": "x-icon",
+    "decorator": "component",
     "value": "'x-icon'"
   },
   "XIconProperty": {
@@ -13361,6 +12188,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XImagePrefix",
     "selector": "x-image",
+    "decorator": "component",
     "value": "'x-image'"
   },
   "XImageProperty": {
@@ -13443,7 +12271,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "previewText",
         "type": "string",
         "label": "Preview text",
-        "default": "'预览'\n",
+        "default": "'预览'",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -13579,6 +12407,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XImagePreviewPrefix",
     "selector": "x-image-preview",
+    "decorator": "component",
     "value": "'x-image-preview'"
   },
   "XInputPrefix": {
@@ -13589,6 +12418,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XInputPrefix",
     "selector": "x-input",
+    "decorator": "component",
     "value": "'x-input'"
   },
   "XInputProperty": {
@@ -14236,184 +13066,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XControlValueAccessor<any>",
     "implements": "XInputOption"
   },
-  "XInputOption": {
-    "type": "interface",
-    "label": "Input Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "type",
-        "type": "XInputType",
-        "label": "Input type",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "type",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "clearable",
-        "type": "XBoolean",
-        "label": "Clear button",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "clearable",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "Read only",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "readonly",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "icon",
-        "type": "string",
-        "label": "Icon",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "icon",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "iconLayout",
-        "type": "XInputIconLayoutType",
-        "label": "Icon layout",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "iconLayout",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "iconSpin",
-        "type": "XBoolean",
-        "label": "Icon animation",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "iconSpin",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "maxlength",
-        "type": "XNumber",
-        "label": "Enter the maximum length",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "maxlength",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "width",
-        "type": "XNumber",
-        "label": "width",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "width",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "bordered",
-        "type": "XBoolean",
-        "label": "Display Border",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "bordered",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "Before label",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "before",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "After label",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "after",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "clearClick",
-        "type": "(value: any) => void",
-        "label": "Clear button event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "clearClick",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "Input validation function",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "inputValidator",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XInputOption",
-    "extends": "XFormOption"
-  },
   "XInputType": {
     "type": "type",
     "label": "Input box type",
@@ -14440,6 +13092,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XInputGroupPrefix",
     "selector": "x-input-group",
+    "decorator": "component",
     "value": "'x-input-group'"
   },
   "XInputGroupProperty": {
@@ -14507,6 +13160,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XInputNumberPrefix",
     "selector": "x-input-number",
+    "decorator": "component",
     "value": "'x-input-number'"
   },
   "XInputNumberProperty": {
@@ -14925,88 +13579,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XControlValueAccessor<any>",
     "implements": "XInputNumberOption"
   },
-  "XInputNumberOption": {
-    "type": "interface",
-    "label": "InputNumber Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "min",
-        "type": "XNumber",
-        "label": "Minimum",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "min",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "max",
-        "type": "XNumber",
-        "label": "Max",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "max",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "step",
-        "type": "XNumber",
-        "label": "Step count",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "step",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "debounce",
-        "type": "XNumber",
-        "label": "Stepping speed after pressing",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "debounce",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "precision",
-        "type": "XNumber",
-        "label": "Precision",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "precision",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "xFormatter",
-        "type": "(value: number) => XNumber",
-        "label": "Display Formate",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "xFormatter",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XInputNumberOption",
-    "extends": "XFormOption"
-  },
   "XRowPrefix": {
     "type": "const",
     "label": "Row",
@@ -15015,6 +13587,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XRowPrefix",
     "selector": "x-row",
+    "decorator": "component",
     "value": "'x-row'"
   },
   "XRowProperty": {
@@ -15078,6 +13651,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XColPrefix",
     "selector": "x-col",
+    "decorator": "component",
     "value": "'x-col'"
   },
   "XColProperty": {
@@ -15218,6 +13792,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XLinkPrefix",
     "selector": "x-link",
+    "decorator": "component",
     "value": "'x-link'"
   },
   "XLinkProperty": {
@@ -15357,6 +13932,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XListPrefix",
     "selector": "x-list",
+    "decorator": "component",
     "value": "'x-list'"
   },
   "XListProperty": {
@@ -15414,7 +13990,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "selectAllText",
         "type": "string",
         "label": "Selected all text",
-        "default": "'全选'\n",
+        "default": "'全选'",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -15560,7 +14136,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "loadMoreText",
         "type": "string",
         "label": "Load more text",
-        "default": "'加载更多'\n",
+        "default": "'加载更多'",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -15575,7 +14151,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "loadingMoreText",
         "type": "string",
         "label": "Loading",
-        "default": "'正在加载中'\n",
+        "default": "'正在加载中'",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -15909,6 +14485,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XListOptionPrefix",
     "selector": "x-list-option",
+    "decorator": "component",
     "value": "'x-list-option'"
   },
   "XListOptionProperty": {
@@ -16161,6 +14738,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XLoadingPrefix",
     "selector": "x-loading",
+    "decorator": "component",
     "value": "'x-loading'"
   },
   "XLoadingProperty": {
@@ -16315,6 +14893,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XMenuPrefix",
     "selector": "x-menu",
+    "decorator": "component",
     "value": "'x-menu'"
   },
   "XMenuProperty": {
@@ -16650,6 +15229,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XMenuNodePrefix",
     "selector": "x-menu-node",
+    "decorator": "component",
     "value": "'x-menu-node'"
   },
   "XMenuNodeProperty": {
@@ -16684,6 +15264,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XMessagePrefix",
     "selector": "x-message",
+    "decorator": "component",
     "value": "'x-message'"
   },
   "XMessageOption": {
@@ -16911,6 +15492,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XMessageBoxPrefix",
     "selector": "x-message-box",
+    "decorator": "component",
     "value": "'x-message-box'"
   },
   "XMessageBoxOption": {
@@ -16923,7 +15505,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "placement",
         "type": "XPlace",
         "label": "Direction, nine grid",
-        "default": "'top'\n",
+        "default": "'top'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -16935,7 +15517,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "offset",
         "type": "string | string[]",
         "label": "Offset distance",
-        "default": "'2rem'\n",
+        "default": "'2rem'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -16947,7 +15529,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "type",
         "type": "XMessageBoxType",
         "label": "Types of",
-        "default": "'info'\n",
+        "default": "'info'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -16959,7 +15541,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "width",
         "type": "string",
         "label": "Width",
-        "default": "'16rem'\n",
+        "default": "'16rem'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -16983,7 +15565,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "hideClose",
         "type": "boolean",
         "label": "Hide close button",
-        "default": "true\n",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -16995,7 +15577,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "showIcon",
         "type": "boolean",
         "label": "Show icon",
-        "default": "true\n",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17031,7 +15613,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "backdropClose",
         "type": "boolean",
         "label": "Click the mask to close",
-        "default": "false\n",
+        "default": "false",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17043,7 +15625,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "confirmText",
         "type": "string",
         "label": "Confirm button text",
-        "default": "'确定'\n",
+        "default": "'确定'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17055,7 +15637,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "cancelText",
         "type": "string",
         "label": "Cancel button text",
-        "default": "'取消'\n",
+        "default": "'取消'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17218,6 +15800,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XNotificationPrefix",
     "selector": "x-notification",
+    "decorator": "component",
     "value": "'x-notification'"
   },
   "XNotificationOption": {
@@ -17230,7 +15813,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "placement",
         "type": "XCorner",
         "label": "Placement",
-        "default": "'top-end'\n",
+        "default": "'top-end'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17242,7 +15825,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "offset",
         "type": "string | string[]",
         "label": "Offset distance",
-        "default": "'0.5rem'\n",
+        "default": "'0.5rem'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17254,7 +15837,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "type",
         "type": "XNotificationType",
         "label": "Types of",
-        "default": "'info'\n",
+        "default": "'info'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17266,7 +15849,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "width",
         "type": "string",
         "label": "Width",
-        "default": "'20rem'\n",
+        "default": "'20rem'",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17290,7 +15873,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "duration",
         "type": "number",
         "label": "Delay off time",
-        "default": "4500\n",
+        "default": "4500",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17302,7 +15885,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "hideClose",
         "type": "boolean",
         "label": "Hide close button",
-        "default": "true\n",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17314,7 +15897,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "showIcon",
         "type": "boolean",
         "label": "Show icon",
-        "default": "true\n",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "decorator": [],
@@ -17367,6 +15950,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XOutletPrefix",
     "selector": "x-outlet",
+    "decorator": "directive",
     "value": "'x-outlet'"
   },
   "XPageHeaderPrefix": {
@@ -17377,6 +15961,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XPageHeaderPrefix",
     "selector": "x-page-header",
+    "decorator": "component",
     "value": "'x-page-header'"
   },
   "XPageHeaderProperty": {
@@ -17468,6 +16053,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XPaginationPrefix",
     "selector": "x-pagination",
+    "decorator": "component",
     "value": "'x-pagination'"
   },
   "XPaginationSizeData": {
@@ -17897,6 +16483,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XPopconfirmPrefix",
     "selector": "x-popconfirm",
+    "decorator": "component",
     "value": "'x-popconfirm'"
   },
   "XPopconfirmProperty": {
@@ -18122,6 +16709,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XPopoverPrefix",
     "selector": "x-popover",
+    "decorator": "directive",
     "value": "'x-popover'"
   },
   "XPopoverProperty": {
@@ -18353,6 +16941,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XPopoverPortalPrefix",
     "selector": "x-popover-portal",
+    "decorator": "component",
     "value": "'x-popover-portal'"
   },
   "XProgressPrefix": {
@@ -18363,6 +16952,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XProgressPrefix",
     "selector": "x-progress",
+    "decorator": "component",
     "value": "'x-progress'"
   },
   "XProgressProperty": {
@@ -18674,6 +17264,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XRadioPrefix",
     "selector": "x-radio",
+    "decorator": "component",
     "value": "'x-radio'"
   },
   "XRadioProperty": {
@@ -19121,136 +17712,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XControlValueAccessor<any>",
     "implements": "XRadioOption"
   },
-  "XRadioOption": {
-    "type": "interface",
-    "label": "Radio Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "data",
-        "type": "XData<XRadioNode>",
-        "label": "Radio data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "data",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "button",
-        "type": "XBoolean",
-        "label": "Button style",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "button",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "icon",
-        "type": "XBoolean",
-        "label": "Icon style",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "icon",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tag",
-        "type": "XBoolean",
-        "label": "Tag style",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tag",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "type",
-        "type": "XButtonType",
-        "label": "Take effect when button style",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "type",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tagBordered",
-        "type": "XBoolean",
-        "label": "Tag bordered",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tagBordered",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "tagDark",
-        "type": "XBoolean",
-        "label": "Tag dark theme",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "tagDark",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "Before label",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "before",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "After label",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "after",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XRadioOption",
-    "extends": "XFormOption"
-  },
   "XRadioNode": {
     "type": "interface",
     "label": "Radio data object",
@@ -19305,6 +17766,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XRatePrefix",
     "selector": "x-rate",
+    "decorator": "component",
     "value": "'x-rate'"
   },
   "XRateProperty": {
@@ -19671,52 +18133,6 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XRateColor",
     "value": "string | { [color: string]: (rate: number) => boolean }"
   },
-  "XRateOption": {
-    "type": "interface",
-    "label": "Rate Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "count",
-        "type": "XNumber",
-        "label": "Number of ratings",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "count",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "half",
-        "type": "XBoolean",
-        "label": "Number of ratings",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "half",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "customTemp",
-        "type": "XTemplate",
-        "label": "Custom template",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "customTemp",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XRateOption",
-    "extends": "XFormOption"
-  },
   "XResultPrefix": {
     "type": "const",
     "label": "Result",
@@ -19725,6 +18141,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XResultPrefix",
     "selector": "x-result",
+    "decorator": "component",
     "value": "'x-result'"
   },
   "XResultProperty": {
@@ -19801,6 +18218,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XSelectPrefix",
     "selector": "x-select",
+    "decorator": "component",
     "value": "'x-select'"
   },
   "XSelectProperty": {
@@ -20056,7 +18474,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "maxTagContent",
         "type": "XTemplate",
         "label": "The number displayed when multiple choices exceeds the specified number, the displayed text template displayed",
-        "default": "'更多{{surplus}}个选中'\n",
+        "default": "'更多{{surplus}}个选中'",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -20372,148 +18790,6 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XSelectProperty",
     "extends": "XControlValueAccessor<any>"
   },
-  "XSelectOption": {
-    "type": "interface",
-    "label": "Select Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "data",
-        "type": "XData<XSelectNode>",
-        "label": "Node data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "data",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "async",
-        "type": "XBoolean",
-        "label": "Asynchronous loading",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "async",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "placement",
-        "type": "XPlacement",
-        "label": "Display position",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placement",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "multiple",
-        "type": "XBoolean",
-        "label": "Multiple choice",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "multiple",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "selectAll",
-        "type": "XBoolean",
-        "label": "Multi choice to add full selection function",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "selectAll",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "selectAllText",
-        "type": "string",
-        "label": "Selected all text",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "selectAllText",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "nodeTpl",
-        "type": "TemplateRef<any>",
-        "label": "Node template",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "nodeTpl",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "bordered",
-        "type": "XBoolean",
-        "label": "Display Border",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "bordered",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "portalMaxHeight",
-        "type": "string",
-        "label": "The biggest height of the drop-down box",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "portalMaxHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "search",
-        "type": "XBoolean",
-        "label": "Input search",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "search",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XSelectOption",
-    "extends": "XFormOption"
-  },
   "XSelectPortalPrefix": {
     "type": "const",
     "label": "Select Portal",
@@ -20523,6 +18799,7 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XSelectPortalPrefix",
     "extends": "XParentIdentityProperty<XSelectNode>",
     "selector": "x-select-portal",
+    "decorator": "component",
     "value": "'x-select-portal'"
   },
   "XSkeletonPrefix": {
@@ -20533,6 +18810,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XSkeletonPrefix",
     "selector": "x-skeleton",
+    "decorator": "component",
     "value": "'x-skeleton'"
   },
   "XSkeletonProperty": {
@@ -20762,6 +19040,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XSliderPrefix",
     "selector": "x-slider",
+    "decorator": "component",
     "value": "'x-slider'"
   },
   "XSliderProperty": {
@@ -21047,6 +19326,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XSliderSelectPrefix",
     "selector": "x-slider-select",
+    "decorator": "component",
     "value": "'x-slider-select'"
   },
   "XSliderSelectProperty": {
@@ -21548,100 +19828,6 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XSliderSelectProperty",
     "extends": "XControlValueAccessor<number"
   },
-  "XSliderSelectOption": {
-    "type": "interface",
-    "label": "SliderSelect Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "min",
-        "type": "XNumber",
-        "label": "Minimum",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "min",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "max",
-        "type": "XNumber",
-        "label": "Max",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "max",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "step",
-        "type": "XNumber",
-        "label": "Step count",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "step",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "precision",
-        "type": "XNumber",
-        "label": "Precision, calculated based on the number of steps by default",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "precision",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dragStart",
-        "type": "(dragStart: CdkDragStart) => void",
-        "label": "Start drag event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dragStart",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dragMove",
-        "type": "(dragMove: CdkDragMove) => void",
-        "label": "Hold down the moving event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dragMove",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "dragEnd",
-        "type": "(dragEnd: CdkDragEnd) => void",
-        "label": "Mobile end event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "dragEnd",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XSliderSelectOption",
-    "extends": "XFormOption"
-  },
   "XSliderSelectMark": {
     "type": "interface",
     "label": "Scale marking",
@@ -21707,6 +19893,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XStatisticPrefix",
     "selector": "x-statistic",
+    "decorator": "component",
     "value": "'x-statistic'"
   },
   "XStatisticProperty": {
@@ -21796,6 +19983,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCountdownPrefix",
     "selector": "x-countdown",
+    "decorator": "component",
     "value": "'x-countdown'"
   },
   "XCountdownProperty": {
@@ -21845,6 +20033,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XStepsPrefix",
     "selector": "x-steps",
+    "decorator": "component",
     "value": "'x-steps'"
   },
   "XStepsProperty": {
@@ -21976,6 +20165,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XSwitchPrefix",
     "selector": "x-switch",
+    "decorator": "component",
     "value": "'x-switch'"
   },
   "XSwitchProperty": {
@@ -22347,64 +20537,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XControlValueAccessor<boolean>",
     "implements": "XSwitchOption"
   },
-  "XSwitchOption": {
-    "type": "interface",
-    "label": "Switch Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "loading",
-        "type": "XBoolean",
-        "label": "Show loading",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "loading",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "manual",
-        "type": "XBoolean",
-        "label": "Manual control",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "manual",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "checkedText",
-        "type": "XTemplate",
-        "label": "Display text or custom template (open state)",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "checkedText",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "unCheckedText",
-        "type": "XTemplate",
-        "label": "Display text or custom template (closed)",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "unCheckedText",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XSwitchOption",
-    "extends": "XFormOption"
-  },
   "XTablePrefix": {
     "type": "const",
     "label": "Table",
@@ -22413,6 +20545,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTablePrefix",
     "selector": "x-table",
+    "decorator": "component",
     "value": "'x-table'"
   },
   "XTableProperty": {
@@ -23547,208 +21680,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XPaginationProperty",
     "implements": "XTableOption"
   },
-  "XTableOption": {
-    "type": "interface",
-    "label": "Table Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "data",
-        "type": "XData<XTableRow>",
-        "label": "Row data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "data",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "columns",
-        "type": "XTableColumn[]",
-        "label": "Column set",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "columns",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "rowHeight",
-        "type": "number",
-        "label": "Header and row height, unit px",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "rowHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "loading",
-        "type": "XBoolean",
-        "label": "Whether to enable loading",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "loading",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "activatedRow",
-        "type": "XTableRow",
-        "label": "Currently selected row data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "activatedRow",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "headColumnTpl",
-        "type": "XTableTemplate",
-        "label": "Column header custom template",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "headColumnTpl",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "bodyColumnTpl",
-        "type": "XTableTemplate",
-        "label": "Column content custom template",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "bodyColumnTpl",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "rowClass",
-        "type": "(row: XTableRow, index: number) => { [className: string]: boolean }",
-        "label": "Row condition class",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "rowClass",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "virtualScroll",
-        "type": "XBoolean",
-        "label": "Turn on virtual scrolling",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "virtualScroll",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "bodyHeight",
-        "type": "number",
-        "label": "body data height",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "bodyHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "minBufferPx",
-        "type": "number",
-        "label": "Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "minBufferPx",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "maxBufferPx",
-        "type": "number",
-        "label": "Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "maxBufferPx",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "adaptionHeight",
-        "type": "XNumber",
-        "label": "Adaptive height, table height is equal to the screen height minus the value set here",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "adaptionHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "docPercent",
-        "type": "XNumber",
-        "label": "Document height percentage, used by pop-up window percentage height",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "docPercent",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "cellConfig",
-        "type": "XTableCellConfig",
-        "label": "Cell config",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "cellConfig",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "rowSize",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "rowSize",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XTableOption",
-    "extends": "XPaginationOption"
-  },
   "XTableRow": {
     "type": "interface",
     "label": "Row data",
@@ -24326,6 +22257,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTableHeadPrefix",
     "selector": "x-table-head",
+    "decorator": "component",
     "value": "'x-table-head'"
   },
   "XTableHeadProperty": {
@@ -24445,6 +22377,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTableBodyPrefix",
     "selector": "x-table-body",
+    "decorator": "component",
     "value": "'x-table-body'"
   },
   "XTableBodyProperty": {
@@ -24753,6 +22686,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTableFootPrefix",
     "selector": "x-table-foot",
+    "decorator": "component",
     "value": "'x-table-foot'"
   },
   "XTableFootProperty": {
@@ -24801,6 +22735,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTabsPrefix",
     "selector": "x-tabs",
+    "decorator": "component",
     "value": "'x-tabs'"
   },
   "XTabsProperty": {
@@ -25138,6 +23073,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTabPrefix",
     "selector": "x-tab",
+    "decorator": "component",
     "value": "'x-tab'"
   },
   "XTabProperty": {
@@ -25186,6 +23122,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTagPrefix",
     "selector": "x-tag",
+    "decorator": "component",
     "value": "'x-tag'"
   },
   "XTagProperty": {
@@ -25384,6 +23321,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTextRetractPrefix",
     "selector": "x-text-retract",
+    "decorator": "component",
     "value": "'x-text-retract'"
   },
   "XTextRetractProperty": {
@@ -25433,6 +23371,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTextareaPrefix",
     "selector": "x-textarea",
+    "decorator": "component",
     "value": "'x-textarea'"
   },
   "XTextareaProperty": {
@@ -25806,112 +23745,6 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": "XControlValueAccessor<any>",
     "implements": "XTextareaOption"
   },
-  "XTextareaOption": {
-    "type": "interface",
-    "label": "Textarea Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "clearable",
-        "type": "XBoolean",
-        "label": "Clear button",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "clearable",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "Read only",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "readonly",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "icon",
-        "type": "string",
-        "label": "Icon",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "icon",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "iconLayout",
-        "type": "XTextareaIconLayoutType",
-        "label": "Icon layout",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "iconLayout",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "iconSpin",
-        "type": "XBoolean",
-        "label": "Icon animation",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "iconSpin",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "maxlength",
-        "type": "XNumber",
-        "label": "Enter the maximum length",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "maxlength",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "clearClick",
-        "type": "(value: any) => void",
-        "label": "Clear button event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "clearClick",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XTextareaOption",
-    "extends": "XFormOption"
-  },
   "XThemePrefix": {
     "type": "const",
     "label": "Theme",
@@ -25920,6 +23753,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XThemePrefix",
     "selector": "x-theme",
+    "decorator": "component",
     "value": "'x-theme'"
   },
   "XThemeAmounts": {
@@ -26051,6 +23885,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTimeAgoPrefix",
     "selector": "xTimeAgo",
+    "decorator": "pipe",
     "value": "'xTimeAgo'"
   },
   "XTimePickerPrefix": {
@@ -26061,6 +23896,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTimePickerPrefix",
     "selector": "x-time-picker",
+    "decorator": "component",
     "value": "'x-time-picker'"
   },
   "XTimePickerProperty": {
@@ -26540,64 +24376,6 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XTimePickerProperty",
     "extends": "XControlValueAccessor<any>"
   },
-  "XTimePickerOption": {
-    "type": "interface",
-    "label": "TimePicker Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "type",
-        "type": "XTimePickerType",
-        "label": "Time type",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "type",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "format",
-        "type": "string",
-        "label": "Format",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "format",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "placement",
-        "type": "XCorner",
-        "label": "Display position",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placement",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "nodeClick",
-        "type": "(date: number) => void",
-        "label": "Node click event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "nodeClick",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XTimePickerOption",
-    "extends": "XFormOption"
-  },
   "XTimePickerType": {
     "type": "type",
     "label": "Time selection",
@@ -26637,6 +24415,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTimePickerPortalPrefix",
     "selector": "x-time-picker-portal",
+    "decorator": "component",
     "value": "'x-time-picker-portal'"
   },
   "XTimePickerFramePrefix": {
@@ -26647,6 +24426,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTimePickerFramePrefix",
     "selector": "x-time-picker-frame",
+    "decorator": "component",
     "value": "'x-time-picker-frame'"
   },
   "XTimePickerDisabledTime": {
@@ -26666,6 +24446,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTimeRangePrefix",
     "selector": "xTimeRange",
+    "decorator": "pipe",
     "value": "'xTimeRange'"
   },
   "XTimelinePrefix": {
@@ -26676,6 +24457,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTimelinePrefix",
     "selector": "x-timeline",
+    "decorator": "component",
     "value": "'x-timeline'"
   },
   "XTimelineProperty": {
@@ -26887,6 +24669,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTooltipPrefix",
     "selector": "x-tooltip",
+    "decorator": "directive",
     "value": "'x-tooltip'"
   },
   "XTooltipProperty": {
@@ -27064,6 +24847,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTooltipPortalPrefix",
     "selector": "x-tooltip-portal",
+    "decorator": "component",
     "value": "'x-tooltip-portal'"
   },
   "XTransferPrefix": {
@@ -27074,6 +24858,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTransferPrefix",
     "selector": "x-transfer",
+    "decorator": "component",
     "value": "'x-transfer'"
   },
   "XTransferProperty": {
@@ -27116,7 +24901,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "titles",
         "type": "string[]",
         "label": "Title",
-        "default": "['List', 'Selected']\n",
+        "default": "['List', 'Selected']",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -27583,6 +25368,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTreePrefix",
     "selector": "x-tree",
+    "decorator": "component",
     "value": "'x-tree'"
   },
   "XTreeProperty": {
@@ -28440,6 +26226,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTreeNodePrefix",
     "selector": "x-tree-node",
+    "decorator": "directive",
     "value": "'x-tree-node'"
   },
   "XTreeNodeProperty": {
@@ -28576,6 +26363,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTreeFilePrefix",
     "selector": "x-tree-file",
+    "decorator": "component",
     "value": "'x-tree-file'"
   },
   "XTreeFileProperty": {
@@ -28899,6 +26687,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTreeSelectPrefix",
     "selector": "x-tree-select",
+    "decorator": "component",
     "value": "'x-tree-select'"
   },
   "XTreeSelectProperty": {
@@ -29155,7 +26944,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "maxTagContent",
         "type": "XTemplate",
         "label": "The number displayed when multiple choices exceeds the specified number, the displayed text template displayed",
-        "default": "'更多{{surplus}}个选中'\n",
+        "default": "'更多{{surplus}}个选中'",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -29202,7 +26991,7 @@ export const en_US: {[key: string]: AppProp} = {
         "name": "separator",
         "type": "string",
         "label": "Path separator",
-        "default": "' / '\n",
+        "default": "' / '",
         "withConfig": false,
         "description": "",
         "decorator": [
@@ -29518,148 +27307,6 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XTreeSelectProperty",
     "extends": "XControlValueAccessor<any>"
   },
-  "XTreeSelectOption": {
-    "type": "interface",
-    "label": "Tree Select Option",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "data",
-        "type": "XData<XTreeSelectNode>",
-        "label": "Node data",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "data",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "async",
-        "type": "XBoolean",
-        "label": "Asynchronous loading",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "async",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "placement",
-        "type": "XPositionTopBottom",
-        "label": "Display position",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placement",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "multiple",
-        "type": "XBoolean",
-        "label": "Multiple choice",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "multiple",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "selectAll",
-        "type": "XBoolean",
-        "label": "Multi choice to add full selection function",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "selectAll",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "selectAllText",
-        "type": "string",
-        "label": "Selected all text",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "selectAllText",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "nodeTpl",
-        "type": "TemplateRef<any>",
-        "label": "Node template",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "nodeTpl",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "bordered",
-        "type": "XBoolean",
-        "label": "Display Border",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "bordered",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "portalMaxHeight",
-        "type": "string",
-        "label": "The biggest height of the drop-down box",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "portalMaxHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "search",
-        "type": "XBoolean",
-        "label": "Input search",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "search",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XTreeSelectOption",
-    "extends": "XFormOption"
-  },
   "XTreeSelectNode": {
     "type": "interface",
     "label": "Tree Select data object",
@@ -29702,6 +27349,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTreeSelectPortalPrefix",
     "selector": "x-tree-select-portal",
+    "decorator": "component",
     "value": "'x-tree-select-portal'"
   },
   "XUploadPrefix": {
@@ -29712,6 +27360,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XUploadPrefix",
     "selector": "x-upload",
+    "decorator": "component",
     "value": "'x-upload'"
   },
   "XUploadProperty": {
@@ -30070,6 +27719,7 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XUploadPortalPrefix",
     "selector": "x-upload-portal",
+    "decorator": "component",
     "value": "'x-upload-portal'"
   }
 }

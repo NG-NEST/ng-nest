@@ -1,24 +1,24 @@
 <div x-dialog-content class="ns-reference-content">
-  <ng-container *ngTemplateOutlet="typeChild; context: { prop: prop() }"></ng-container>
+  <ng-container *ngTemplateOutlet="typeChild; context: { property: property() }"></ng-container>
 
-  <ng-template #typeChild let-prop="prop" let-excludeTitle="excludeTitle">
-    @if (prop) {
-      @if (prop.type === 'type') {
+  <ng-template #typeChild let-property="property" let-excludeTitle="excludeTitle">
+    @if (property) {
+      @if (property.type === 'type') {
         <div class="property">
           @if (!excludeTitle) {
-            <ng-container *ngTemplateOutlet="typeTitle; context: { prop }"></ng-container>
+            <ng-container *ngTemplateOutlet="typeTitle; context: { property }"></ng-container>
           }
-          @if (prop.children && prop.children.length > 0) {
+          @if (property.children && property.children.length > 0) {
             <div class="children">
-              <x-collapse bordered>
-                @for (child of prop.children; track child) {
-                  <x-collapse-panel [label]="labelTpl">
+              <x-collapse ghost iconPosition="left">
+                @for (child of property.children; track child) {
+                  <x-collapse-panel [label]="labelTpl" active>
                     <ng-container
-                      *ngTemplateOutlet="typeChild; context: { prop: child, excludeTitle: true }"
+                      *ngTemplateOutlet="typeChild; context: { property: child, excludeTitle: true }"
                     ></ng-container>
                     <ng-template #labelTpl>
                       <ng-container
-                        *ngTemplateOutlet="typeTitle; context: { prop: child, isChildren: true }"
+                        *ngTemplateOutlet="typeTitle; context: { property: child, isChildren: true }"
                       ></ng-container>
                     </ng-template>
                   </x-collapse-panel>
@@ -26,40 +26,92 @@
               </x-collapse>
             </div>
           }
-          @if (prop.actualValue) {
+          @if (property.actualValue) {
             <div class="value">
-              @for (val of prop.actualValue; track val) {
+              @for (val of property.actualValue; track val) {
                 <code>{{ val }}{{ $last ? '' : ' | ' }}</code>
               }
             </div>
           }
-          @if (prop.extends) {
-            <div class="extends"><span>extends</span><code [innerText]="prop.extends"></code></div>
+          @if (property.extends) {
+            <div class="extends"><span>extends</span><code [innerText]="property.extends"></code></div>
           }
-          @if (prop.description) {
-            <div class="description app-markdown" [innerHTML]="prop.description"></div>
+          @if (property.description) {
+            <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
           }
-          @if (prop.example) {
-            <div class="example app-markdown" [innerHTML]="prop.example"></div>
+          @if (property.example) {
+            <div class="example app-markdown" [innerHTML]="property.example | mdToHtml"></div>
           }
         </div>
-      } @else if (prop.type === 'interface') {
+      } @else if (property.type === 'interface') {
         <div class="property">
-          <ng-container *ngTemplateOutlet="typeTitle; context: { prop }"></ng-container>
+          @if (!excludeTitle) {
+            <ng-container *ngTemplateOutlet="typeTitle; context: { property }"></ng-container>
+          }
+          @if (property.extends) {
+            <div class="extends"><span>extends</span><code [innerText]="property.extends"></code></div>
+          }
+          @if (property.description) {
+            <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
+          }
+          @if (property.example) {
+            <div class="example app-markdown" [innerHTML]="property.example | mdToHtml"></div>
+          }
+          @if (property.properties && property.properties.length > 0) {
+            <div class="properties">
+              @for (item of property.properties; track item.name) {
+                <div class="row">
+                  <code>{{ item.name }}</code>
+                  <code>{{ item.type }}</code>
+                  <span>{{ item.label }}</span>
+                  <code>{{ item.defaut }}</code>
+                </div>
+              }
+            </div>
+          }
         </div>
-      } @else if (prop.type === 'group') {
-        @for (child of prop.children; track child.name) {
-          <ng-container *ngTemplateOutlet="typeChild; context: { prop: child }"></ng-container>
-        }
+      } @else if (property.type === 'group') {
+        <div class="property">
+          @if (!excludeTitle) {
+            <ng-container *ngTemplateOutlet="typeTitle; context: { property }"></ng-container>
+          }
+          @if (property.extends) {
+            <div class="extends"><span>extends</span><code [innerText]="property.extends"></code></div>
+          }
+          @if (property.description) {
+            <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
+          }
+          @if (property.example) {
+            <div class="example app-markdown" [innerHTML]="property.example | mdToHtml"></div>
+          }
+          @if (property.children && property.children.length > 0) {
+            <div class="children">
+              <x-collapse ghost iconPosition="left">
+                @for (child of property.children; track child) {
+                  <x-collapse-panel [label]="labelTpl" active>
+                    <ng-container
+                      *ngTemplateOutlet="typeChild; context: { property: child, excludeTitle: true }"
+                    ></ng-container>
+                    <ng-template #labelTpl>
+                      <ng-container
+                        *ngTemplateOutlet="typeTitle; context: { property: child, isChildren: true }"
+                      ></ng-container>
+                    </ng-template>
+                  </x-collapse-panel>
+                }
+              </x-collapse>
+            </div>
+          }
+        </div>
       }
     }
   </ng-template>
 
-  <ng-template #typeTitle let-prop="prop" let-isChildren="isChildren">
+  <ng-template #typeTitle let-property="property" let-isChildren="isChildren">
     <div class="label">
-      <code [innerText]="prop.name"></code>
-      <span class="type">{{ prop.type }}</span>
-      <span>{{ prop.label }}</span>
+      <code [innerText]="property.name"></code>
+      <span class="type">{{ property.type }}</span>
+      <span>{{ property.label }}</span>
     </div>
   </ng-template>
 </div>

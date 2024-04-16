@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ViewEncapsulation, inject } from '@angula
 import { CommonModule, DOCUMENT, Location, PlatformLocation } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { X_THEME_DARK_COLORS, X_THEME_COLORS, XConfigService } from '@ng-nest/ui/core';
-import { ConfigService } from '@services/config.service';
+import { ConfigService } from '@services';
 import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
 import { AppMenu } from '@interfaces';
 import { LayoutService } from '../layout.service';

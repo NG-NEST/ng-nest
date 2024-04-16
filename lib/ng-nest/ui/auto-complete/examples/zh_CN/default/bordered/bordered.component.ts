@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { XAutoCompleteComponent, XAutoCompleteNode } from '@ng-nest/ui/auto-complete';
-import { XData } from '@ng-nest/ui/core';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
+import type { XAutoCompleteNode } from '@ng-nest/ui/auto-complete';
+import type { XData } from '@ng-nest/ui/core';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({

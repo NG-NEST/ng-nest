@@ -68,23 +68,33 @@ export type XStyle = { [property: string]: any };
 
 /**
  * @zh_CN 尺寸
+ * - `'big'` : 超大
+ * - `'large'` : 大型
+ * - `'medium'` : 中等
+ * - `'small'` : 小型
+ * - `'mini'` : 迷你
  * @en_US Size
- * @value "big" 超大
- * @value "large" 大型
- * @value "medium" 中等
- * @value "samll" 小型
- * @value "mini" 迷你
+ * - `'big'` : Big
+ * - `'large'` : Large
+ * - `'medium'` : Medium
+ * - `'small'` : Small
+ * - `'mini'` : Mini
  */
 export type XSize = 'big' | 'large' | 'medium' | 'small' | 'mini';
 
 /**
  * @zh_CN 响应尺寸
+ * - `xs` <768px
+ * - `sm` ≥768px
+ * - `md` ≥992px
+ * - `lg` ≥1200px
+ * - `xl` ≥1920px
  * @en_US Response size
- * @value "xs" <768px
- * @value "sm" ≥768px
- * @value "md" ≥992px
- * @value "lg" ≥1200px
- * @value "xl" ≥1920px
+ * - `xs` <768px
+ * - `sm` ≥768px
+ * - `md` ≥992px
+ * - `lg` ≥1200px
+ * - `xl` ≥1920px
  */
 export type XResponseSize = { xs?: number; sm?: number; md?: number; lg?: number; xl?: number };
 
@@ -102,7 +112,15 @@ export type XAlign = 'start' | 'center' | 'end';
 
 /**
  * @zh_CN flex 布局下的子元素排列方向
+ * - `'column'` : 将 flex 项目从上到下垂直排列，就像列一样
+ * - `'column-reverse'` : 与 `'column'` 相反，将 flex 项目从下到上垂直排列
+ * - `'row'` : 将 flex 项目从左到右水平排列，就像行一样
+ * - `'row-reverse'` : 与 `'row'` 相反，将 flex 项目从右到左水平排列
  * @en_US The direction of the sub element arrangement under flex layout
+ * - `'column'` : Arranges flex items vertically from top to bottom, like columns. This is the default value
+ * - `'column-reverse'` : Opposite of column, arranges flex items vertically from bottom to top
+ * - `'row'` : Arranges flex items horizontally from left to right, like a row
+ * - `'row-reverse'` : Opposite of row, arranges flex items horizontally from right to
  */
 export type XDirection = 'column' | 'column-reverse' | 'row' | 'row-reverse';
 

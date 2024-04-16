@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { XAutoCompleteComponent, XAutoCompleteNode } from '@ng-nest/ui/auto-complete';
-import { XData, XSize } from '@ng-nest/ui/core';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
+import type { XAutoCompleteNode } from '@ng-nest/ui/auto-complete';
+import type { XData, XSize } from '@ng-nest/ui/core';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 

@@ -16,6 +16,7 @@ import { XAnchorComponent } from '@ng-nest/ui/anchor';
 import { XTreeFileComponent } from '@ng-nest/ui/tree-file';
 import { XPopoverDirective } from '@ng-nest/ui/popover';
 import { NsReferenceComponent } from './reference/reference.component';
+import { MdToHtmlPipe } from './md-to-html.pipe';
 
 const modules = [
   CommonModule,
@@ -38,7 +39,8 @@ const modules = [
   XButtonComponent,
   XTooltipDirective,
   XTreeFileComponent,
-  XPopoverDirective
+  XPopoverDirective,
+  MdToHtmlPipe
 ];
 
 @NgModule({

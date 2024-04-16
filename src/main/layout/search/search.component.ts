@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { XMenuNode } from '@ng-nest/ui/menu';
 import { XConfigService } from '@ng-nest/ui/core';
-import { ConfigService } from '@services/config.service';
+import { ConfigService } from '@services';
 import { Observable } from 'rxjs';
 import { LayoutService } from '../layout.service';
 import { AppMenu } from '@interfaces';

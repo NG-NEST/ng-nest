@@ -13,7 +13,6 @@ export class XDialogService {
     placement: 'center',
     offset: '1rem',
     minWidth: '32rem',
-    maxWidth: '32rem',
     minHeight: '8rem',
     backdropClose: true,
     hasBackdrop: true,

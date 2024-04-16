@@ -35,6 +35,7 @@ export type XBoolean = boolean | string;
 
 /**
  * @zh_CN number 数据类型
+ * 此类型作为组件的输入参数，一般会配合 `@XInputNumber()` 装饰器来使用，转换成数字类型
  * @en_US Number data type
  */
 export type XNumber = number | string;

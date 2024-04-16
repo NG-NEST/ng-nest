@@ -29,8 +29,7 @@
     "paths": {
       "@ng-nest/ui": ["./lib/ng-nest/ui/"],
       "@ng-nest/ui/*": ["./lib/ng-nest/ui/*"],
-      "@services": ["./src/services/"],
-      "@services/*": ["./src/services/*"],
+      "@services": ["./src/services/index"],
       "@utils": ["./src/utils/"],
       "@utils/*": ["./src/utils/*"],
       "@environments": ["./src/environments/"],

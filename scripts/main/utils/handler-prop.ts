@@ -1,6 +1,6 @@
 import * as fs from 'fs-extra';
 import * as readline from 'readline';
-import { NcProp, NcPropType, NcPrope } from '../interfaces/prop';
+import { NcDecorator, NcProp, NcPropType, NcPrope } from '../interfaces/prop';
 
 const DocKeywords = [
   '@zh_CN',
@@ -156,6 +156,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
                 }
                 if (prop.name.endsWith('Prefix')) {
                   prop.selector = getDocs(docItem, '@selector') as string;
+                  prop.decorator = getDocs(docItem, '@decorator') as NcDecorator;
                 }
                 prop.value = eline.match(/=\s*(.*)/)[1].trim();
                 if (prop.value.endsWith(';')) {
@@ -322,6 +323,9 @@ export function getDocs(doc: object, prop: string, md: boolean = false) {
         break;
       }
     }
+  }
+  if (result.endsWith('\n')) {
+    result = result.substring(0, result.length - 1);
   }
   return result;
 }

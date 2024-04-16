@@ -27,4 +27,4 @@ function getRequestAnimationFrame(): typeof requestAnimationFrame {
   return prefix ? (window as any)[`${prefix}RequestAnimationFrame`] : requestAnimationFramePolyfill();
 }
 
-export const reqAnimFrame = getRequestAnimationFrame();
+export const XRequestAnimationFrame = getRequestAnimationFrame();

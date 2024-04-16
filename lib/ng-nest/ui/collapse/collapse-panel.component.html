@@ -12,9 +12,11 @@
       </ng-container>
     }
   </div>
-  <div class="x-collapse-panel-body">
-    <div class="x-collapse-panel-content" [@x-drop-animation]="active">
-      <ng-content></ng-content>
+  @if (show()) {
+    <div class="x-collapse-panel-body">
+      <div class="x-collapse-panel-content" [@x-drop-animation]="active" (@x-drop-animation.done)="done($event)">
+        <ng-content></ng-content>
+      </div>
     </div>
-  </div>
+  }
 </div>

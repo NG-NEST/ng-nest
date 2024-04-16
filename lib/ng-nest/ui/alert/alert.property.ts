@@ -1,17 +1,8 @@
-import {
-  XStatus,
-  XTemplate,
-  XEffect,
-  XProperty,
-  XInputBoolean,
-  XInputNumber,
-  XBoolean,
-  XNumber,
-  XWithConfig
-} from '@ng-nest/ui/core';
+import { XProperty, XInputBoolean, XInputNumber, XWithConfig } from '@ng-nest/ui/core';
 import { Input, EventEmitter, Output, Component, ElementRef } from '@angular/core';
-import { CdkDragEnd } from '@angular/cdk/drag-drop';
-import { XResizableEvent } from '@ng-nest/ui/resizable';
+import type { CdkDragEnd } from '@angular/cdk/drag-drop';
+import type { XResizableEvent } from '@ng-nest/ui/resizable';
+import type { XBoolean, XNumber, XEffect, XTemplate, XStatus } from '@ng-nest/ui/core';
 
 /**
  * Alert

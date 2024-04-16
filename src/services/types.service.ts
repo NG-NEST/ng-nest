@@ -19,8 +19,9 @@ export class TypesService {
 
   prop?: AppProp;
 
-  get lang() {
-    return this.config.lang as 'zh_CN' | 'en_US';
+  get lang(): 'zh_CN' | 'en_US' {
+    // return this.config.lang as 'zh_CN' | 'en_US';
+    return this.config.lang ? 'en_US' : 'en_US';
   }
 
   typeMap = new Map<string, AppProp>();
@@ -46,10 +47,9 @@ export class TypesService {
       this.typeMap.set(key, this.prop);
     }
     this.dialog.create(NsReferenceComponent, {
-      minWidth: '10rem',
-      maxWidth: '50rem',
+      width: '45rem',
       data: {
-        prop: this.prop
+        property: this.prop
       }
     });
   }
@@ -85,7 +85,6 @@ export class TypesService {
             }
           }
         } else if (type === 'interface') {
-          console.log(ty);
         }
 
         return ty;
@@ -135,8 +134,8 @@ export class TypesService {
 
   private setGroup(property?: AppPrope): AppProp | null {
     if (!property) return null;
-    const { type, label, description } = property;
-    let ty: AppProp = { name: type, label, description, type: 'group' };
+    const { type, label, description, example } = property;
+    let ty: AppProp = { name: type, label, description, example, type: 'group' };
     ty.children = [];
     if (!type) return null;
     let regex1 = /^\w+<[\w\[\]]+>$/; // ex: propType = "xxx<yyyy>"
