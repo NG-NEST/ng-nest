@@ -51,7 +51,7 @@ export class XAlertComponent extends XAlertProperty implements OnDestroy {
   }));
 
   private _unSubject = new Subject<void>();
-  private _durationSubject?: Subscription;
+  private _durationSubscription?: Subscription;
   isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   constructor() {
@@ -66,8 +66,8 @@ export class XAlertComponent extends XAlertProperty implements OnDestroy {
 
   setDuration() {
     if (this.duration() && this.isBrowser) {
-      this._durationSubject?.unsubscribe();
-      this._durationSubject = of(true)
+      this._durationSubscription?.unsubscribe();
+      this._durationSubscription = of(true)
         .pipe(delay(this.duration()), takeUntil(this._unSubject))
         .subscribe(() => {
           this.onClose();

@@ -1,5 +1,5 @@
-import { Input, Component } from '@angular/core';
-import { XProperty, XWithConfig } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import { XPropertyFunction, XToCssPixelValue } from '@ng-nest/ui/core';
 import type { XIdentityProperty, XJustify, XPositionLeftRight, XNumber } from '@ng-nest/ui/core';
 
 /**
@@ -8,43 +8,43 @@ import type { XIdentityProperty, XJustify, XPositionLeftRight, XNumber } from '@
  * @decorator component
  */
 export const XAnchorPrefix = 'x-anchor';
-const X_CONFIG_NAME = 'anchor';
+const X_ANCHOR_CONFIG_NAME = 'anchor';
 
 /**
  * Anchor Property
  */
 @Component({ selector: `${XAnchorPrefix}-property`, template: '' })
-export class XAnchorProperty extends XProperty {
+export class XAnchorProperty extends XPropertyFunction(X_ANCHOR_CONFIG_NAME) {
   /**
    * @zh_CN 滚动区域对象
    * @en_US Scroll area object
    */
-  @Input() scroll!: HTMLElement;
+  readonly scroll = input<HTMLElement>();
   /**
    * @zh_CN 顶部距离
    * @en_US Top distance
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0') affixTop!: string;
+  readonly affixTop = input<string, XNumber>(this.config?.affixTop ?? '0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 底部距离
    * @en_US Bottom distance
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0') affixBottom!: string;
+  readonly affixBottom = input<string, XNumber>(this.config?.affixBottom ?? '0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 导航宽度
    * @en_US Navigation Width
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME) affixWidth!: XNumber;
+  readonly affixWidth = input<string, XNumber>(this.config?.affixWidth!, { transform: XToCssPixelValue });
   /**
    * @zh_CN 导航相对内容位置
    * @en_US Navigation relative content position
    */
-  @Input() @XWithConfig<XAnchorLayout>(X_CONFIG_NAME, 'right') layout!: XAnchorLayout;
+  readonly layout = input<XAnchorLayout>(this.config?.layout ?? 'right');
   /**
    * @zh_CN 对齐方式
    * @en_US Alignment
    */
-  @Input() @XWithConfig<XJustify>(X_CONFIG_NAME, 'start') justify!: XJustify;
+  readonly justify = input<XJustify>(this.config?.justify ?? 'start');
 }
 
 /**

@@ -10,7 +10,8 @@ import {
   AfterViewInit,
   OnDestroy,
   AfterContentChecked,
-  inject
+  inject,
+  computed
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorNode, XAnchorProperty } from './anchor.property';
 import {
@@ -43,11 +44,33 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   hElements!: NodeListOf<HTMLElement>;
   sliderData: XSliderNode[] = [];
   activatedIndex: number = 0;
-  sliderHeight?: number;
+
   document: Document = inject(DOCUMENT);
   contentChange = new Subject();
+  scrollElement = computed(() => {
+    let scroll = this.scroll();
+    if (!scroll) {
+      scroll = this.document.documentElement;
+    }
+    return scroll;
+  });
+  sliderHeight = computed(() => {
+    if (XIsEmpty(this.sliderData)) {
+      return 0;
+    } else {
+      let height = this.scrollElement().offsetHeight;
+      let top = parseFloat(XComputedStyle(this.scrollElement(), 'padding-top'));
+      let borderTop = parseFloat(XComputedStyle(this.scrollElement(), 'border-top'));
+      let bottom = parseFloat(XComputedStyle(this.scrollElement(), 'padding-bottom'));
+      let borderBottom = parseFloat(XComputedStyle(this.scrollElement(), 'border-bottom'));
+      return height - top - bottom - borderTop - borderBottom - this.getTop() - this.getBottom();
+    }
+  });
+  classMapSignal = computed(() => ({
+    [`${XAnchorPrefix}-${this.layout()}`]: !XIsEmpty(this.layout())
+  }));
   private _scrolling = false;
-  private _fontSize!: number;
+  private _fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
   private _unSubject = new Subject<void>();
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
@@ -59,18 +82,14 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   }
 
   ngOnInit() {
-    this._fontSize = parseFloat(XComputedStyle(this.document.documentElement, 'font-size'));
-    this.setClassMap();
     this.setSliderData();
-    this.setHeight();
   }
 
   ngAfterViewInit() {
     this.setScroll();
     this.contentChange.pipe(distinctUntilChanged(), takeUntil(this._unSubject)).subscribe(() => {
+      console.log(111222);
       this.setSliderData();
-      this.setHeight();
-      this.cdr.detectChanges();
     });
   }
 
@@ -80,37 +99,30 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   }
 
   activatedChange(index: number) {
-    if (XIsEmpty(this.hElements) || XIsUndefined(this.scroll)) return;
+    if (XIsEmpty(this.hElements) || XIsUndefined(this.scrollElement())) return;
 
     this._scrolling = true;
     const hElement = this.hElements[index];
     let scrollTop =
       hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(XComputedStyle(hElement, 'margin-top'));
-    let maxScrollTop = this.scroll.scrollHeight - this.scroll.clientHeight;
+    let maxScrollTop = this.scrollElement().scrollHeight - this.scrollElement().clientHeight;
     if (scrollTop > maxScrollTop) scrollTop = maxScrollTop;
-    this.scrollTo(this.scroll, parseInt(`${scrollTop}`), 150);
-  }
-
-  private setClassMap() {
-    this.classMap[`${XAnchorPrefix}-${this.layout}`] = !XIsEmpty(this.layout);
+    this.scrollTo(this.scrollElement(), parseInt(`${scrollTop}`), 150);
   }
 
   private setScroll() {
-    fromEvent(this.scroll ? this.scroll : this.document.defaultView!, 'scroll')
+    fromEvent(this.scrollElement(), 'scroll')
       .pipe(throttleTime(10), takeUntil(this._unSubject))
       .subscribe(() => {
         if (this._scrolling) return;
         this.setActivatedByScroll();
       });
-    if (!this.scroll) {
-      this.scroll = this.document.documentElement;
-    }
   }
 
   private setActivatedByScroll() {
     let now = 0;
     this.hElements.forEach((h, index) => {
-      let distance = this.scroll.scrollTop + this.anchor.nativeElement.offsetTop;
+      let distance = this.scrollElement().scrollTop + this.anchor.nativeElement.offsetTop;
       if (distance >= h.offsetTop) {
         now = index;
         return;
@@ -144,6 +156,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     } else {
       this.sliderData = [];
     }
+    console.log(this.sliderData);
   }
 
   private setLeft(element: HTMLElement): number {
@@ -152,44 +165,21 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     return index + 1;
   }
 
-  private setHeight() {
-    if (this.scroll) {
-      if (XIsEmpty(this.sliderData)) {
-        this.sliderHeight = 0;
-      } else {
-        let height = this.scroll.offsetHeight;
-        let top = parseFloat(XComputedStyle(this.scroll, 'padding-top'));
-        let borderTop = parseFloat(XComputedStyle(this.scroll, 'border-top'));
-        let bottom = parseFloat(XComputedStyle(this.scroll, 'padding-bottom'));
-        let borderBottom = parseFloat(XComputedStyle(this.scroll, 'border-bottom'));
-        this.sliderHeight = height - top - bottom - borderTop - borderBottom - this.getTop() - this.getBottom();
-      }
-    }
-  }
-
-  getWidth() {
-    if (!this.affixWidth) return null;
-    if (this.affixWidth === '0') return 0;
-    if (XIsNumber(this.affixWidth)) return this.affixWidth;
-    else if (this.affixWidth.indexOf('rem') !== -1) return Number(this.affixWidth.replace(/rem/g, '')) * this._fontSize;
-    else if (this.affixWidth.indexOf('px') !== -1) return Number(this.affixWidth.replace(/px/g, ''));
-    else return Number(this.affixWidth);
-  }
-
   private getTop() {
-    if (this.affixTop === '0') return 0;
-    if (XIsNumber(this.affixTop)) return Number(this.affixTop);
-    else if (this.affixTop.indexOf('rem') !== -1) return Number(this.affixTop.replace(/rem/g, '')) * this._fontSize;
-    else if (this.affixTop.indexOf('px') !== -1) return Number(this.affixTop.replace(/px/g, ''));
+    const top = this.affixTop();
+    if (top === '0') return 0;
+    if (XIsNumber(top)) return Number(top);
+    else if (top.endsWith('rem')) return Number(top.replace(/rem/g, '')) * this._fontSize();
+    else if (top.endsWith('px')) return Number(top.replace(/px/g, ''));
     return 0;
   }
 
   private getBottom() {
-    if (this.affixBottom === '0') return 0;
-    if (XIsNumber(this.affixBottom)) return Number(this.affixBottom);
-    else if (this.affixBottom.indexOf('rem') !== -1)
-      return Number(this.affixBottom.replace(/rem/g, '')) * this._fontSize;
-    else if (this.affixBottom.indexOf('px') !== -1) return Number(this.affixBottom.replace(/px/g, ''));
+    const bottom = this.affixTop();
+    if (bottom === '0') return 0;
+    if (XIsNumber(bottom)) return Number(bottom);
+    else if (bottom.endsWith('rem')) return Number(bottom.replace(/rem/g, '')) * this._fontSize();
+    else if (bottom.endsWith('px')) return Number(bottom.replace(/px/g, ''));
     return 0;
   }
 

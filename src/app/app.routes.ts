@@ -11,7 +11,7 @@ export const ShareRoutes: Routes = [
   //   loadChildren: () => import('../main/exception/404-routes.module').then((x) => x.Exception404Routes)
   // },
   // { path: '**', loadChildren: () => import('../main/api/api-routes.module').then((x) => x.ApiRoutes) }
-  { path: '**', loadComponent: () => import('../main/test/alert/alert.component').then((x) => x.TeAlertComponent) }
+  { path: '**', loadComponent: () => import('../main/test/anchor/anchor.component').then((x) => x.TeAnchorComponent) }
 ];
 
 export const MainRoutes: Routes = [
