@@ -4,16 +4,16 @@ import {
   ViewEncapsulation,
   Renderer2,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   ViewChild,
   AfterViewInit,
   OnDestroy,
   AfterContentChecked,
   inject,
-  computed
+  computed,
+  signal
 } from '@angular/core';
-import { XAnchorPrefix, XAnchorNode, XAnchorProperty } from './anchor.property';
+import { XAnchorPrefix, XAnchorProperty } from './anchor.property';
 import {
   XComputedStyle,
   XIsEmpty,
@@ -23,11 +23,12 @@ import {
   XConfigService
 } from '@ng-nest/ui/core';
 import { XSliderComponent } from '@ng-nest/ui/slider';
-import type { XSliderNode } from '@ng-nest/ui/slider';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil, distinctUntilChanged } from 'rxjs/operators';
+import type { XSliderNode } from '@ng-nest/ui/slider';
+import type { XAnchorNode } from './anchor.property';
 
 @Component({
   selector: `${XAnchorPrefix}`,
@@ -42,11 +43,11 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   @ViewChild('anchor', { static: true }) anchor!: ElementRef<HTMLElement>;
   @ViewChild('content', { static: true }) content!: ElementRef<HTMLElement>;
   hElements!: NodeListOf<HTMLElement>;
-  sliderData: XSliderNode[] = [];
-  activatedIndex: number = 0;
+  sliderData = signal<XSliderNode[]>([]);
+  activatedIndex = signal(0);
 
   document: Document = inject(DOCUMENT);
-  contentChange = new Subject();
+  contentChange = new Subject<string>();
   scrollElement = computed(() => {
     let scroll = this.scroll();
     if (!scroll) {
@@ -55,7 +56,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     return scroll;
   });
   sliderHeight = computed(() => {
-    if (XIsEmpty(this.sliderData)) {
+    if (XIsEmpty(this.sliderData())) {
       return 0;
     } else {
       let height = this.scrollElement().offsetHeight;
@@ -74,11 +75,10 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   private _unSubject = new Subject<void>();
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
-  private cdr = inject(ChangeDetectorRef);
   configService = inject(XConfigService);
 
   ngAfterContentChecked(): void {
-    this.contentChange.next(this.elementRef.nativeElement.innerHTML);
+    this.contentChange.next(this.elementRef.nativeElement.innerText);
   }
 
   ngOnInit() {
@@ -88,14 +88,13 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   ngAfterViewInit() {
     this.setScroll();
     this.contentChange.pipe(distinctUntilChanged(), takeUntil(this._unSubject)).subscribe(() => {
-      console.log(111222);
       this.setSliderData();
     });
   }
 
   ngOnDestroy() {
     this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this._unSubject.complete();
   }
 
   activatedChange(index: number) {
@@ -128,8 +127,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
         return;
       }
     });
-    this.activatedIndex = now;
-    this.cdr.detectChanges();
+    this.activatedIndex.set(now);
   }
 
   private setSliderData() {
@@ -152,11 +150,10 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
           }
         ];
       });
-      this.sliderData = list;
+      this.sliderData.set(list);
     } else {
-      this.sliderData = [];
+      this.sliderData.set([]);
     }
-    console.log(this.sliderData);
   }
 
   private setLeft(element: HTMLElement): number {

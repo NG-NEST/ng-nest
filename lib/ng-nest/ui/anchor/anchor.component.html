@@ -5,9 +5,9 @@
   <x-affix class="x-anchor-affix" [top]="affixTop()">
     <div class="x-anchor-slider" [style.height.px]="sliderHeight()" [style.width]="affixWidth()">
       <x-slider
-        [data]="sliderData"
+        [data]="sliderData()"
         layout="column"
-        [activatedIndex]="activatedIndex"
+        [activatedIndex]="activatedIndex()"
         [nodeJustify]="justify()"
         [nodeTpl]="sliderNodeTpl"
         [showAnchor]="true"
