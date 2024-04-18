@@ -14,14 +14,7 @@ import {
   signal
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorProperty } from './anchor.property';
-import {
-  XComputedStyle,
-  XIsEmpty,
-  XRequestAnimationFrame,
-  XIsNumber,
-  XIsUndefined,
-  XConfigService
-} from '@ng-nest/ui/core';
+import { XComputedStyle, XIsEmpty, XRequestAnimationFrame, XIsNumber, XIsUndefined } from '@ng-nest/ui/core';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { DOCUMENT, NgClass } from '@angular/common';
@@ -75,7 +68,6 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   private _unSubject = new Subject<void>();
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
 
   ngAfterContentChecked(): void {
     this.contentChange.next(this.elementRef.nativeElement.innerText);

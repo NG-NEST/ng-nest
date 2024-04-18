@@ -2,14 +2,14 @@ import {
   XSize,
   XTemplate,
   XProperty,
-  XWithConfig,
   XShape,
   XFit,
   XResponseSize,
   XNumber,
-  XInputNumber
+  XPropertyFunction,
+  XToCssPixelValue
 } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 /**
  * Avatar
@@ -17,53 +17,53 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XAvatarPrefix = 'x-avatar';
-const X_CONFIG_NAME = 'avatar';
+export const X_AVATAR_CONFIG_NAME = 'avatar';
 
 /**
  * Avatar Property
  */
 @Component({ selector: `${XAvatarPrefix}-property`, template: '' })
-export class XAvatarProperty extends XProperty {
+export class XAvatarProperty extends XPropertyFunction(X_AVATAR_CONFIG_NAME) {
   /**
    * @zh_CN 显示字符
    * @en_US Display characters
    */
-  @Input() label?: XTemplate;
+  label = input<XTemplate>();
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XAvatarSize>(X_CONFIG_NAME, 'medium') size?: XAvatarSize;
+  size = input<XAvatarSize>(this.config?.size ?? 'medium');
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
    */
-  @Input() icon?: string;
+  icon = input<string>();
   /**
    * @zh_CN 形状
    * @en_US Shape
    */
-  @Input() @XWithConfig<XAvatarShape>(X_CONFIG_NAME, 'circle') shape?: XAvatarShape;
+  shape = input<XAvatarShape>(this.config?.shape ?? 'circle');
   /**
    * @zh_CN 图片地址
    * @en_US The map's address
    */
-  @Input() src?: string;
+  src = input<string>();
   /**
    * @zh_CN 图片适应方式
    * @en_US Image adaptation method
    */
-  @Input() @XWithConfig<XAvatarFit>(X_CONFIG_NAME, 'cover') fit?: XAvatarFit;
+  fit = input<XAvatarFit>(this.config?.fit ?? 'cover');
   /**
    * @zh_CN 字符类型的时候左右边距，px
    * @en_US When the character type is the left and right distance, PX
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 4) @XInputNumber() gap?: XNumber;
+  gap = input<string, XNumber>(this.config?.gap ?? '4px', { transform: XToCssPixelValue });
   /**
    * @zh_CN 背景颜色
    * @en_US Background color
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#999999') backgroundColor?: string;
+  backgroundColor = input<string>(this.config?.backgroundColor ?? '#999999');
 }
 
 /**

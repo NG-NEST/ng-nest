@@ -1,22 +1,22 @@
 <span
   #avatar
   class="x-avatar"
-  [class.x-avatar-label]="label"
+  [class.x-avatar-label]="label()"
   [ngClass]="classMap"
-  [class.x-avatar-error]="isImgError"
+  [class.x-avatar-error]="isImgError()"
   [ngStyle]="styleMap"
-  [style.backgroundColor]="backgroundColor"
+  [style.backgroundColor]="backgroundColor()"
 >
-  @if (src && !isImgError) {
-    <img [src]="src" [style.object-fit]="fit" (error)="imgError()" />
+  @if (src() && !isImgError()) {
+    <img [src]="src()" [style.object-fit]="fit()" (error)="imgError()" />
   }
-  @if (icon) {
-    <x-icon [type]="icon"></x-icon>
+  @if (icon()) {
+    <x-icon [type]="icon()"></x-icon>
   }
-  @if (isImgError) {
+  @if (isImgError()) {
     <x-icon type="fto-image"></x-icon>
   }
-  <span #labelRef *xOutlet="label; context: { $label: label }">
-    {{ label }}
+  <span #labelRef *xOutlet="label(); context: { $label: label() }">
+    {{ label() }}
   </span>
 </span>

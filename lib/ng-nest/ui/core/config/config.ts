@@ -168,7 +168,7 @@ export interface XAvatarConfig {
   size?: XSize;
   shape?: XShape;
   fit?: XFit;
-  gap?: number;
+  gap?: string;
   backgroundColor?: string;
 }
 
