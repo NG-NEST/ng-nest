@@ -1,5 +1,5 @@
-import { XProperty, XInputBoolean, XInputNumber, XWithConfig } from '@ng-nest/ui/core';
-import { Input, EventEmitter, Output, Component, ElementRef } from '@angular/core';
+import { XPropertyFunction, XToBoolean, XToCssPixelValue, XToNumber } from '@ng-nest/ui/core';
+import { Component, ElementRef, input, output } from '@angular/core';
 import type { CdkDragEnd } from '@angular/cdk/drag-drop';
 import type { XResizableEvent } from '@ng-nest/ui/resizable';
 import type { XBoolean, XNumber, XEffect, XTemplate, XStatus } from '@ng-nest/ui/core';
@@ -10,128 +10,130 @@ import type { XBoolean, XNumber, XEffect, XTemplate, XStatus } from '@ng-nest/ui
  * @decorator component
  */
 export const XAlertPrefix = 'x-alert';
-const X_CONFIG_NAME = 'alert';
+export const X_ALERT_CONFIG_NAME = 'alert';
 
 /**
  * Alert Property
  */
 @Component({ selector: `${XAlertPrefix}-property`, template: '' })
-export class XAlertProperty extends XProperty {
+export class XAlertProperty extends XPropertyFunction(X_ALERT_CONFIG_NAME) {
   /**
    * @zh_CN 隐藏
    * @en_US Hide
    */
-  @Input() @XInputBoolean() hide?: XBoolean;
+  readonly hide = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 标题
    * @en_US Title
    */
-  @Input() title?: XTemplate;
+  readonly title = input<XTemplate>();
   /**
    * @zh_CN 内容
    * @en_US Content
    */
-  @Input() content?: XTemplate;
+  readonly content = input<XTemplate>();
   /**
    * @zh_CN 类型
    * @en_US Alert type
    */
-  @Input() type?: XAlertType = 'info';
+  readonly type = input<XAlertType>('info');
   /**
    * @zh_CN 主题
    * @en_US Theme
    */
-  @Input() @XWithConfig<XEffect>(X_CONFIG_NAME, 'light') effect?: XEffect;
+  readonly effect = input<XEffect>(this.config?.effect ?? 'light');
   /**
    * @zh_CN 隐藏关闭按钮
    * @en_US Hide close button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() hideClose?: XBoolean;
+  readonly hideClose = input<boolean, XBoolean>(this.config?.hideClose ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 使用文本关闭按钮
    * @en_US Use the text to close button
    */
-  @Input() closeText?: string;
+  readonly closeText = input<string>();
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() showIcon?: XBoolean;
+  readonly showIcon = input<boolean, XBoolean>(this.config?.showIcon ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 禁用动画
    * @en_US Disable animation
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() disabledAnimation?: XBoolean;
+  readonly disabledAnimation = input<boolean, XBoolean>(this.config?.disabledAnimation ?? false, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 延迟关闭，默认 0 表示不关闭
    * @en_US Delay close, the default value of 0 means do not close
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() duration?: XNumber;
+  readonly duration = input<number, XNumber>(this.config?.duration ?? 0, { transform: XToNumber });
   /**
    * @zh_CN 手动处理关闭事件
    * @en_US Manually handle close events
    */
-  @Input() @XInputBoolean() manual?: XBoolean;
+  readonly manual = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 拖动提示框
    * @en_US Drag dialog
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() draggable?: XBoolean;
+  readonly draggable = input<boolean, XBoolean>(this.config?.draggable ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 调整提示框大小
    * @en_US Adjust the size of the box
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() resizable?: XBoolean;
+  readonly resizable = input<boolean, XBoolean>(this.config?.resizable ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 开启 resizable 调整大小，偏移屏幕左边
    * @en_US Open the resizable resize, offset screen left
    */
-  @Input() @XInputNumber() offsetLeft: XNumber = 0;
+  readonly offsetLeft = input<string, XNumber>('0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 开启 resizable 调整大小，偏移屏幕顶部
    * @en_US Open the resizable resize, offset screen top
    */
-  @Input() @XInputNumber() offsetTop: XNumber = 0;
+  readonly offsetTop = input<string, XNumber>('0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 最小宽度
    * @en_US Min width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0rem') minWidth?: string;
+  readonly minWidth = input<string, XNumber>(this.config?.minWidth ?? '0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 最小高度
    * @en_US Min height
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0rem') minHeight?: string;
+  readonly minHeight = input<string, XNumber>(this.config?.minHeight ?? '0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 拖动范围限制，父节点选择器或者对象
    * @en_US Drag dialog
    */
-  @Input() dragBoundary!: string | ElementRef<HTMLElement> | HTMLElement;
+  readonly dragBoundary = input<string | ElementRef<HTMLElement> | HTMLElement>();
   /**
    * @zh_CN 设置投放容器外部的 CdkDrag 的位置。可用于为返回的用户恢复元素的位置
    * @en_US Set the location of the CDKDRAG outside the container. Can be used to recover elements for returned users
    */
-  @Input() dragFreeDragPosition!: XAlertDragFreeDragPosition;
+  readonly dragFreeDragPosition = input<XAlertDragFreeDragPosition>();
   /**
    * @zh_CN 自定义操作
    * @en_US Custom operation
    */
-  @Input() operationTpl!: XTemplate;
+  readonly operationTpl = input<XTemplate>();
   /**
    * @zh_CN 关闭的事件
    * @en_US Closed events
    */
-  @Output() close = new EventEmitter();
+  readonly close = output();
   /**
    * @zh_CN 拖动结束的事件
    * @en_US Drag end event
    */
-  @Output() dragEnded = new EventEmitter<CdkDragEnd>();
+  readonly dragEnded = output<CdkDragEnd>();
   /**
    * @zh_CN 改变尺寸事件
    * @en_US Change the size event
    */
-  @Output() resizing = new EventEmitter<XResizableEvent>();
+  readonly resizing = output<XResizableEvent>();
 }
 
 /**
@@ -194,11 +196,11 @@ export interface XAlertOption {
   /**
    * 开启 resizable 调整大小，偏移屏幕左边
    */
-  offsetLeft?: number;
+  offsetLeft?: string;
   /**
    * 开启 resizable 调整大小，偏移屏幕顶部
    */
-  offsetTop?: number;
+  offsetTop?: string;
   /**
    * 最小宽度
    */
@@ -212,10 +214,6 @@ export interface XAlertOption {
 /**
  * @zh_CN 类型
  * @en_US Type
- * @value "success"
- * @value "info"
- * @value "warning"
- * @value "error"
  */
 export type XAlertType = XStatus;
 

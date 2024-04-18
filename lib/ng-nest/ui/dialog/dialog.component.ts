@@ -14,7 +14,9 @@ import {
   HostBinding,
   inject,
   OnInit,
-  AfterViewInit
+  AfterViewInit,
+  signal,
+  effect
 } from '@angular/core';
 import {
   XMoveBoxAnimation,
@@ -23,7 +25,8 @@ import {
   XConfigService,
   XIsEmpty,
   XClearClass,
-  XOpacityAnimation
+  XOpacityAnimation,
+  XToCssPixelValue
 } from '@ng-nest/ui/core';
 import {
   XDialogPrefix,
@@ -109,6 +112,19 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   private i18n = inject(XI18nService);
   container = inject<XDialogContainerComponent>(X_DIALOG_CONTAINER, { optional: true });
   configService = inject(XConfigService);
+
+  styleOffsetLeft = signal('');
+  styleOffsetTop = signal('');
+
+  constructor() {
+    super();
+    effect(() => {
+      this.styleOffsetLeft.set(XToCssPixelValue(this.offsetLeft()));
+    });
+    effect(() => {
+      this.styleOffsetTop.set(XToCssPixelValue(this.offsetTop()));
+    });
+  }
 
   ngOnInit() {
     this.scrollStrategy = this.protalService.overlay.scrollStrategies.block();
@@ -207,8 +223,8 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
       this.renderer.addClass(hostElement, PortalResizablePrefix);
       setTimeout(() => {
         Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement!, this.placement));
-        this.offsetLeft = this.overlayElement!.offsetLeft;
-        this.offsetTop = this.overlayElement!.offsetTop;
+        this.styleOffsetLeft.set(XToCssPixelValue(this.overlayElement!.offsetLeft));
+        this.styleOffsetTop.set(XToCssPixelValue(this.overlayElement!.offsetTop));
         const dialogDraggable = this.overlayElement?.querySelector('.x-alert-draggable')!;
         this.initHeight = dialogDraggable.clientHeight;
         this.dialogContent = this.overlayElement?.querySelector('.x-dialog-content')!;

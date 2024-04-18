@@ -1,6 +1,16 @@
-import { Input, Output, EventEmitter, Component, ViewContainerRef, InjectionToken } from '@angular/core';
-import { XStatus, XPlace, XInputBoolean, XTemplate, XEffect, XBoolean, XWithConfig, XProperty } from '@ng-nest/ui/core';
-import { XAlertProperty } from '@ng-nest/ui/alert';
+import { Input, Output, EventEmitter, Component, ViewContainerRef, InjectionToken, input } from '@angular/core';
+import {
+  XStatus,
+  XPlace,
+  XInputBoolean,
+  XTemplate,
+  XEffect,
+  XBoolean,
+  XWithConfig,
+  XProperty,
+  XPropertyFunction,
+  XNumber
+} from '@ng-nest/ui/core';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
 import { XDialogPortalComponent } from './dialog-portal.component';
@@ -19,7 +29,16 @@ export const X_DIALOG_DATA = new InjectionToken<any>('XDialogData');
  * Dialog Property
  */
 @Component({ selector: `${XDialogPrefix}-property`, template: '' })
-export class XDialogProperty extends XAlertProperty {
+export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
+  /**
+   * @zh_CN 标题
+   * @en_US Title
+   */
+  readonly title = input<XTemplate>();
+  /**
+   * @zh_CN 显示/隐藏
+   * @en_US Show/hide
+   */
   @Input() @XInputBoolean() visible: boolean = false;
   /**
    * @zh_CN 方位，九宫格
@@ -35,7 +54,35 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 类型
    * @en_US Types of
    */
-  @Input() override type: XDialogType = 'info';
+  readonly type = input<XDialogType>('info');
+  /**
+   * @zh_CN 隐藏关闭按钮
+   * @en_US Hide close button
+   */
+  readonly hideClose = input<XBoolean>(false);
+  /**
+   * @zh_CN 使用文本关闭按钮
+   * @en_US Use the text to close button
+   */
+  readonly closeText = input<string>();
+  /**
+   * @zh_CN 调整弹框的大小
+   * @en_US Adjust the size of the box
+   */
+  @Input()
+  @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false)
+  @XInputBoolean()
+  resizable?: XBoolean;
+  /**
+   * @zh_CN 开启 resizable 调整大小，偏移屏幕左边
+   * @en_US Open the resizable resize, offset screen left
+   */
+  readonly offsetLeft = input<XNumber>(0);
+  /**
+   * @zh_CN 开启 resizable 调整大小，偏移屏幕顶部
+   * @en_US Open the resizable resize, offset screen top
+   */
+  readonly offsetTop = input<XNumber>(0);
   /**
    * @zh_CN 宽度
    * @en_US Width
@@ -50,7 +97,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 最小宽度
    * @en_US Min width
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '32rem') override minWidth?: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '32rem') minWidth?: string;
   /**
    * @zh_CN 最大宽度
    * @en_US Min width
@@ -60,7 +107,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 最小高度
    * @en_US Min height
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '8rem') override minHeight?: string;
+  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '8rem') minHeight?: string;
   /**
    * @zh_CN 最大高度
    * @en_US Min height
@@ -70,7 +117,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 样式主题
    * @en_US Style theme
    */
-  @Input() @XWithConfig<XEffect>(X_DIALOG_CONFIG_NAME, 'white') override effect!: XEffect;
+  @Input() @XWithConfig<XEffect>(X_DIALOG_CONFIG_NAME, 'white') effect!: XEffect;
   /**
    * @zh_CN 底部自定义模板
    * @en_US Custom template at the bottom
@@ -125,15 +172,7 @@ export class XDialogProperty extends XAlertProperty {
   @Input()
   @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false)
   @XInputBoolean()
-  override draggable?: XBoolean;
-  /**
-   * @zh_CN 调整弹框的大小
-   * @en_US Adjust the size of the box
-   */
-  @Input()
-  @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false)
-  @XInputBoolean()
-  override resizable?: XBoolean;
+  draggable?: XBoolean;
   /**
    * @zh_CN 最大化弹出框按钮，当启用 resizable 时也会显示
    * @en_US Maximize the bullet box button, Will also display when resizable is enabled
@@ -159,7 +198,7 @@ export class XDialogProperty extends XAlertProperty {
    * @zh_CN 确认按钮的事件
    * @en_US Confirm button event
    */
-  @Output() override close = new EventEmitter();
+  @Output() close = new EventEmitter();
   /**
    * @zh_CN 显示/隐藏改变事件
    * @en_US Show/hide change events

@@ -1,4 +1,4 @@
-import { ApplicationConfig, isDevMode } from '@angular/core';
+import { isDevMode } from '@angular/core';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
@@ -12,6 +12,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 // import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { XPreloadingStrategyService } from '@ng-nest/ui/core';
+import type { ApplicationConfig } from '@angular/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [

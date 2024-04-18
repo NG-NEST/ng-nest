@@ -6,15 +6,15 @@
       (mouseenter)="onEnter(item)"
       (mouseleave)="onLeave(item)"
       (close)="onClose(item)"
-      [hide]="item.hide"
+      [hide]="item.hide!"
       [title]="item.title"
       [content]="item.content"
-      [type]="item.type"
-      [effect]="item.effect"
-      [hideClose]="item.hideClose"
+      [type]="item.type!"
+      [effect]="item.effect!"
+      [hideClose]="item.hideClose!"
       [closeText]="item.closeText"
-      [showIcon]="item.showIcon"
-      duration="0"
+      [showIcon]="item.showIcon!"
+      [duration]="0"
       manual
       disabledAnimation
     ></x-alert>

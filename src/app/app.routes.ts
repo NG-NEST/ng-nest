@@ -10,7 +10,8 @@ export const ShareRoutes: Routes = [
   //   path: '**',
   //   loadChildren: () => import('../main/exception/404-routes.module').then((x) => x.Exception404Routes)
   // },
-  { path: '**', loadChildren: () => import('../main/api/api-routes.module').then((x) => x.ApiRoutes) }
+  // { path: '**', loadChildren: () => import('../main/api/api-routes.module').then((x) => x.ApiRoutes) }
+  { path: '**', loadComponent: () => import('../main/test/alert/alert.component').then((x) => x.TeAlertComponent) }
 ];
 
 export const MainRoutes: Routes = [

@@ -1,26 +1,26 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   OnDestroy,
-  SimpleChanges,
   inject,
   PLATFORM_ID,
-  viewChild
+  viewChild,
+  computed,
+  signal,
+  effect
 } from '@angular/core';
 import { XAlertPrefix, XAlertProperty } from './alert.property';
-import { XFadeAnimation, XIsEmpty, XConfigService, XIsChange, XClearClass } from '@ng-nest/ui/core';
-import { of, Subject } from 'rxjs';
+import { XFadeAnimation, XIsEmpty } from '@ng-nest/ui/core';
+import { of, Subject, Subscription } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
-import type { CdkDrag } from '@angular/cdk/drag-drop';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XResizableDirective } from '@ng-nest/ui/resizable';
 import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
+import type { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XAlertPrefix}`,
@@ -40,42 +40,35 @@ import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XFadeAnimation]
 })
-export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy {
+export class XAlertComponent extends XAlertProperty implements OnDestroy {
   alert = viewChild.required<CdkDrag>('alert');
+  styleHide = signal(false);
+  classMapSignal = computed(() => ({
+    [`${XAlertPrefix}-${this.type()}`]: !XIsEmpty(this.type()),
+    [`x-${this.effect()}`]: !XIsEmpty(this.effect()),
+    [`${XAlertPrefix}-icon-medium`]: !XIsEmpty(this.title()) && !XIsEmpty(this.content()) && !XIsEmpty(this.showIcon()),
+    [`${XAlertPrefix}-draggable`]: this.draggable()
+  }));
+
   private _unSubject = new Subject<void>();
-  private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
+  private _durationSubject?: Subscription;
   isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  ngOnInit() {
-    this.setClassMap();
-    this.setDuration();
+  constructor() {
+    super();
+    effect(() => this.setDuration());
   }
 
   ngOnDestroy() {
     this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const { type, effect, title, content, showIcon, draggable } = changes;
-    XIsChange(type, effect, title, content, showIcon, draggable) && this.setClassMap();
-  }
-
-  setClassMap() {
-    XClearClass(this.classMap);
-    this.classMap = {
-      [`${XAlertPrefix}-${this.type}`]: !XIsEmpty(this.type),
-      [`x-${this.effect}`]: !XIsEmpty(this.effect),
-      [`${XAlertPrefix}-icon-medium`]: !XIsEmpty(this.title) && !XIsEmpty(this.content) && !XIsEmpty(this.showIcon),
-      [`${XAlertPrefix}-draggable`]: Boolean(this.draggable)
-    };
+    this._unSubject.complete();
   }
 
   setDuration() {
-    if (this.duration && this.isBrowser) {
-      of(true)
-        .pipe(delay(Number(this.duration)), takeUntil(this._unSubject))
+    if (this.duration() && this.isBrowser) {
+      this._durationSubject?.unsubscribe();
+      this._durationSubject = of(true)
+        .pipe(delay(this.duration()), takeUntil(this._unSubject))
         .subscribe(() => {
           this.onClose();
         });
@@ -83,16 +76,15 @@ export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy
   }
 
   onClose() {
-    if (this.manual) {
+    if (this.manual()) {
       this.close?.emit();
     } else {
-      this.hide = true;
-      this.cdr.detectChanges();
+      this.styleHide.set(true);
     }
   }
 
   onCloseAnimationDone() {
-    if (this.hide) {
+    if (this.hide()) {
       this.close?.emit();
     }
   }

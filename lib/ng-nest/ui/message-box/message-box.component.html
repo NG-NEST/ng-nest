@@ -8,12 +8,12 @@
       (close)="onClose()"
       [title]="msgInput.title"
       [content]="contentTpl"
-      [type]="msgInput.type"
-      [effect]="msgInput.effect"
-      [hideClose]="msgInput.hideClose"
+      [type]="msgInput.type!"
+      [effect]="msgInput.effect!"
+      [hideClose]="msgInput.hideClose!"
       [closeText]="msgInput.closeText"
-      showIcon="false"
-      duration="0"
+      [showIcon]="false"
+      [duration]="0"
       manual
       disabledAnimation
     ></x-alert>

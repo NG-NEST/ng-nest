@@ -576,7 +576,7 @@ export const zh_CN: {[key: string]: AppProp} = {
   "XNumber": {
     "type": "type",
     "label": "number 数据类型",
-    "description": "",
+    "description": "此类型作为组件的输入参数，一般会配合 `@XInputNumber()` 装饰器来使用，转换成数字类型",
     "example": "",
     "properties": [],
     "name": "XNumber",
