@@ -1,6 +1,5 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { XAffixPrefix, XAffixProperty } from './affix.property';
-import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XAffixPrefix}`,
@@ -10,6 +9,4 @@ import { XConfigService } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAffixComponent extends XAffixProperty {
-  configService = inject(XConfigService);
-}
+export class XAffixComponent extends XAffixProperty {}

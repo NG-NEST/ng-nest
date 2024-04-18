@@ -2,9 +2,11 @@
 
 import { Injectable, inject } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { XConfig, X_CONFIG, XComponentConfigKey, XComponentConfig } from './config';
-import { XThemeService, XTheme, X_THEME_COLORS, X_THEME_DARK_COLORS } from '../theme';
-import { filter, mapTo } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
+import { X_CONFIG } from './config';
+import { XThemeService, X_THEME_COLORS, X_THEME_DARK_COLORS } from '../theme';
+import type { XTheme } from '../theme';
+import type { XConfig, XComponentConfigKey, XComponentConfig } from './config';
 
 const isDefined = function (value?: any): boolean {
   return value !== undefined;
@@ -31,7 +33,7 @@ export class XConfigService {
   getConfigChangeEventForComponent(componentName: XComponentConfigKey): Observable<void> {
     return this.componentConfigUpdated$.pipe(
       filter((n) => n === componentName),
-      mapTo(undefined)
+      map(() => undefined)
     );
   }
 
@@ -84,11 +86,7 @@ export class XConfigService {
 
 // tslint:disable-next-line:typedef
 export function XWithConfig<T>(componentName: XComponentConfigKey, innerDefaultValue?: T) {
-  return function ConfigDecorator(
-    target: any,
-    propName: any,
-    originalDescriptor?: TypedPropertyDescriptor<T>
-  ): any {
+  return function ConfigDecorator(target: any, propName: any, originalDescriptor?: TypedPropertyDescriptor<T>): any {
     const privatePropName = `$$__assignedValue__${propName}`;
 
     Object.defineProperty(target, privatePropName, {
@@ -100,9 +98,7 @@ export function XWithConfig<T>(componentName: XComponentConfigKey, innerDefaultV
     return {
       get(): T | undefined {
         const originalValue =
-          originalDescriptor && originalDescriptor.get
-            ? originalDescriptor.get.bind(this)()
-            : this[privatePropName];
+          originalDescriptor && originalDescriptor.get ? originalDescriptor.get.bind(this)() : this[privatePropName];
 
         if (isDefined(originalValue)) {
           return originalValue;

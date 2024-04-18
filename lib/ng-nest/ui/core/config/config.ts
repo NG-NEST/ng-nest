@@ -145,13 +145,15 @@ export interface XAffixConfig {
 
 export interface XAlertConfig {
   effect?: XEffect;
-  hideClose?: XBoolean;
-  showIcon?: XBoolean;
-  disabledAnimation?: XBoolean;
-  draggable?: XBoolean;
-  resizable?: XBoolean;
-  dragHandleTitle?: XBoolean;
-  duration?: XNumber;
+  hideClose?: boolean;
+  showIcon?: boolean;
+  disabledAnimation?: boolean;
+  draggable?: boolean;
+  resizable?: boolean;
+  dragHandleTitle?: boolean;
+  duration?: number;
+  minWidth?: string;
+  minHeight?: string;
 }
 
 export interface XAnchorConfig {

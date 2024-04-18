@@ -1,5 +1,6 @@
 import { Observable, isObservable } from 'rxjs';
 import { TemplateRef, SimpleChange } from '@angular/core';
+import type { InputSignal } from '@angular/core';
 
 /**
  * @zh_CN data 数据类型
@@ -216,4 +217,12 @@ export function XIsTemplateRef<T>(object: any): object is TemplateRef<T> {
  */
 export function XIsXTemplate(object: any): object is XTemplate {
   return XIsString(object) || XIsNumber(object) || XIsDate(object) || XIsTemplateRef(object);
+}
+
+/**
+ * @zh_CN 判断给定的对象是否为 InputSignal
+ * @en_US Determine whether a given object for InputSignal
+ */
+export function XIsInputSignal(object: any): object is InputSignal<any> {
+  return XIsFunction(object) && object.name === 'inputValueFn';
 }

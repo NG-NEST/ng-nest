@@ -1,5 +1,5 @@
-import { XProperty, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XNumber, XPropertyFunction, XToCssPixelValue } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
 
 /**
  * Affix
@@ -7,21 +7,21 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XAffixPrefix = 'x-affix';
-const X_CONFIG_NAME = 'affix';
+export const X_AFFIX_CONFIG_NAME = 'affix';
 
 /**
  * Affix Property
  */
 @Component({ selector: `${XAffixPrefix}-property`, template: '' })
-export class XAffixProperty extends XProperty {
+export class XAffixProperty extends XPropertyFunction(X_AFFIX_CONFIG_NAME) {
   /**
-   * @zh_CN 距离顶部距离
+   * @zh_CN 顶部距离
    * @en_US Distance from top
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) top?: string;
+  readonly top = input<string, XNumber>(this.config?.top!, { transform: XToCssPixelValue });
   /**
-   * @zh_CN 距离左边距离
+   * @zh_CN 左边距离
    * @en_US Distance from left
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) left?: string;
+  readonly left = input<string, XNumber>(this.config?.left!, { transform: XToCssPixelValue });
 }

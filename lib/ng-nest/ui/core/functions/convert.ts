@@ -1,36 +1,47 @@
-import { coerceBooleanProperty, _isNumberValue } from '@angular/cdk/coercion';
+import { coerceCssPixelValue } from '@angular/cdk/coercion';
 import {
-  XData,
   XIsNull,
   XIsUndefined,
   XIsArray,
   XIsValue,
   XIsObject,
   XIsObservable,
-  XParentIdentityProperty,
-  XBoolean,
-  XClassMap,
-  XIsFunction
+  XIsFunction,
+  XIsNumber
 } from '../interfaces';
 import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
+import { WritableSignal, booleanAttribute, numberAttribute } from '@angular/core';
+import type { XData, XParentIdentityProperty, XBoolean, XClassMap, XNumber } from '../interfaces';
 
 /**
  * @zh_CN 转换 value 为 boolean 值
  * @en_US Convert the value to boolean value
  */
-function XToBoolean(value: XBoolean): boolean {
-  return coerceBooleanProperty(value);
+export function XToBoolean(value: XBoolean): boolean {
+  return booleanAttribute(value);
+}
+
+/**
+ * @zh_CN 转换 value 为 boolean 值
+ * @en_US Convert the value to boolean value
+ */
+export function XToCssPixelValue(value: XNumber): string {
+  if (!XIsNumber(value) && /^\d+(\.\d+)?$/.test(value)) {
+    return coerceCssPixelValue(Number(value));
+  } else {
+    return coerceCssPixelValue(value);
+  }
 }
 
 /**
  * @zh_CN 转换 value 为 number 值
  * @en_US Convert the value to Number value
  */
-function XToNumber(value: number | string): number;
-function XToNumber<D>(value: number | string, fallback: D): number | D;
-function XToNumber(value: number | string, fallbackValue: number = 0): number {
-  return _isNumberValue(value) ? Number(value) : fallbackValue;
+export function XToNumber(value: XNumber): number;
+export function XToNumber<D>(value: XNumber, fallback: D): number | D;
+export function XToNumber(value: XNumber, fallbackValue?: number): number {
+  return numberAttribute(value, fallbackValue);
 }
 
 /**
@@ -132,6 +143,20 @@ export function XClearClass(...classMaps: XClassMap[]): void {
 }
 
 /**
+ * @zh_CN 设置样式名称为 false
+ * @en_US Set style name is false
+ */
+export function XClearClassSignal(...classMaps: WritableSignal<XClassMap>[]): void {
+  classMaps.forEach((classMap) => {
+    const value = classMap();
+    for (const key in value) {
+      value[key] = false;
+    }
+    classMap.set(value);
+  });
+}
+
+/**
  * @zh_CN 属性装饰器返回类型
  * @en_US Attribute decorator return type
  */
@@ -186,6 +211,14 @@ export function XInputBoolean(): XPropDecorator {
  */
 export function XInputNumber(): XPropDecorator {
   return propDecoratorFactory('XInputNumber', XToNumber);
+}
+
+/**
+ * @zh_CN 创建 XInputNumber 属性装饰器
+ * @en_US Create XInputNumber Properties
+ */
+export function XInputCssPixelValue(): XPropDecorator {
+  return propDecoratorFactory('XInputCssPixelValue', XToCssPixelValue);
 }
 
 /**
