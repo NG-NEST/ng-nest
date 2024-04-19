@@ -1,5 +1,6 @@
-import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean, XType, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XPropertyFunction, XToNumber, XToString, XToCssPixelValue, XToBoolean } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import type { XNumber, XBoolean, XType } from '@ng-nest/ui/core';
 
 /**
  * Badge
@@ -7,43 +8,48 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XBadgePrefix = 'x-badge';
-const X_CONFIG_NAME = 'badge';
+const X_BADGE_CONFIG_NAME = 'badge';
 
 /**
  * Badge Property
  */
 @Component({ selector: `${XBadgePrefix}-property`, template: '' })
-export class XBadgeProperty extends XProperty {
+export class XBadgeProperty extends XPropertyFunction(X_BADGE_CONFIG_NAME) {
   /**
    * @zh_CN 背景颜色
    * @en_US Background color
    */
-  @Input() @XWithConfig<XBadgeType>(X_CONFIG_NAME, 'danger') type?: XBadgeType;
+  type = input<XBadgeType>(this.config?.type ?? 'danger');
   /**
    * @zh_CN 最大值
    * @en_US Max
    */
-  @Input() @XInputNumber() max?: XNumber;
+  max = input<number, XNumber>(99, { transform: XToNumber });
   /**
    * @zh_CN 显示值
    * @en_US Display value
    */
-  @Input() value: XNumber = '';
+  value = input<string, XNumber>('', { transform: XToString });
   /**
-   * @zh_CN 偏移值 [left, top]
-   * @en_US Offset value
+   * @zh_CN 偏移值 left
+   * @en_US Offset left value
    */
-  @Input() offset: (number | string)[] = [];
+  offsetLeft = input<string, XNumber>('', { transform: XToCssPixelValue });
+  /**
+   * @zh_CN 偏移值 top
+   * @en_US Offset right value
+   */
+  offsetTop = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 是否显示小红点
    * @en_US Whether to show the small red dot
    */
-  @Input() @XInputBoolean() dot?: XBoolean;
+  dot = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 独立使用
    * @en_US Independent use
    */
-  @Input() @XInputBoolean() standalone?: XBoolean;
+  standalone = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }
 
 /**
