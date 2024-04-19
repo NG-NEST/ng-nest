@@ -5,7 +5,6 @@ import {
   OnDestroy,
   inject,
   PLATFORM_ID,
-  viewChild,
   computed,
   signal,
   effect
@@ -20,7 +19,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XResizableDirective } from '@ng-nest/ui/resizable';
 import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
-import type { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XAlertPrefix}`,
@@ -41,7 +39,6 @@ import type { CdkDrag } from '@angular/cdk/drag-drop';
   animations: [XFadeAnimation]
 })
 export class XAlertComponent extends XAlertProperty implements OnDestroy {
-  alert = viewChild.required<CdkDrag>('alert');
   styleHide = signal(false);
   classMapSignal = computed(() => ({
     [`${XAlertPrefix}-${this.type()}`]: !XIsEmpty(this.type()),
@@ -50,9 +47,9 @@ export class XAlertComponent extends XAlertProperty implements OnDestroy {
     [`${XAlertPrefix}-draggable`]: this.draggable()
   }));
 
-  private _unSubject = new Subject<void>();
-  private _durationSubscription?: Subscription;
-  isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private unSubject = new Subject<void>();
+  private durationSubscription?: Subscription;
+  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   constructor() {
     super();
@@ -60,15 +57,15 @@ export class XAlertComponent extends XAlertProperty implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.complete();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   setDuration() {
     if (this.duration() && this.isBrowser) {
-      this._durationSubscription?.unsubscribe();
-      this._durationSubscription = of(true)
-        .pipe(delay(this.duration()), takeUntil(this._unSubject))
+      this.durationSubscription?.unsubscribe();
+      this.durationSubscription = of(true)
+        .pipe(delay(this.duration()), takeUntil(this.unSubject))
         .subscribe(() => {
           this.onClose();
         });

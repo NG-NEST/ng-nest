@@ -34,6 +34,10 @@ export function XToCssPixelValue(value: XNumber): string {
   }
 }
 
+export function XToString(value: XNumber): string {
+  return `${value}`;
+}
+
 /**
  * @zh_CN 转换 value 为 number 值
  * @en_US Convert the value to Number value

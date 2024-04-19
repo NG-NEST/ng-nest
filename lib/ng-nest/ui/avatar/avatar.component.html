@@ -2,9 +2,9 @@
   #avatar
   class="x-avatar"
   [class.x-avatar-label]="label()"
-  [ngClass]="classMap"
+  [ngClass]="classMapSignal()"
   [class.x-avatar-error]="isImgError()"
-  [ngStyle]="styleMap"
+  [ngStyle]="styleMap()"
   [style.backgroundColor]="backgroundColor()"
 >
   @if (src() && !isImgError()) {
@@ -16,7 +16,9 @@
   @if (isImgError()) {
     <x-icon type="fto-image"></x-icon>
   }
-  <span #labelRef *xOutlet="label(); context: { $label: label() }">
-    {{ label() }}
-  </span>
+  @if (label()) {
+    <span #labelRef [ngStyle]="labelStyleMap()" *xOutlet="label(); context: { $label: label() }">
+      {{ label() }}
+    </span>
+  }
 </span>

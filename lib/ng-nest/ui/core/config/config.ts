@@ -184,7 +184,7 @@ export interface XAutoCompleteConfig {
 export interface XBackTopConfig {
   right?: string;
   bottom?: string;
-  visibilityHeight?: XNumber;
+  visibilityHeight?: number;
 }
 
 export interface XBadgeConfgig {
