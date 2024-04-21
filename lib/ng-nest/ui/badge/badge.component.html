@@ -8,11 +8,11 @@
   <ng-content></ng-content>
   @if (valueNumber() > 0 || dot()) {
     @if (standalone()) {
-      <sup [@x-badge-standalone-animation] [style.marginLeft]="offsetLeft()" [style.marginTop]="offsetTop()">
+      <sup [@x-badge-standalone-animation] [style.marginRight]="offsetLeft()" [style.marginTop]="offsetTop()">
         <ng-container *ngTemplateOutlet="dotTpl"></ng-container>
       </sup>
     } @else {
-      <sup [@x-badge-animation] [style.marginLeft]="offsetLeft()" [style.marginTop]="offsetTop()">
+      <sup [@x-badge-animation] [style.marginRight]="offsetLeft()" [style.marginTop]="offsetTop()">
         <ng-container *ngTemplateOutlet="dotTpl"></ng-container>
       </sup>
     }
@@ -21,11 +21,8 @@
 
 <ng-template #dotTpl>
   @if (!dot()) {
-    @for (item of maxNums; track item; let i = $index) {
-      <span
-        class="x-badge-scroll"
-        [style.transform]="'translateY(-' + (displayNums[i] == '+' ? 10 : displayNums[i]) * 100 + '%)'"
-      >
+    @for (item of maxNums(); track item) {
+      <span class="x-badge-scroll" [style.transform]="'translateY(-' + translateYNumbers()[$index] + '%)'">
         @for (j of range(); track j) {
           <p>{{ j }}</p>
         }

@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed, signal } from '@angular/core';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { XBadgePrefix, XBadgeProperty } from './badge.property';
-import { XIsNumber, XIsEmpty, XBadgeAnimation, XBadgeStandaloneAnimation } from '@ng-nest/ui/core';
+import { XIsNumber, XIsEmpty, XBadgeAnimation, XBadgeStandaloneAnimation, XIsString } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
@@ -14,11 +14,7 @@ import { XIsNumber, XIsEmpty, XBadgeAnimation, XBadgeStandaloneAnimation } from 
   animations: [XBadgeAnimation, XBadgeStandaloneAnimation]
 })
 export class XBadgeComponent extends XBadgeProperty {
-  displayValue: string = '';
-  viewInit = false;
   range = signal([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '+']);
-  displayNums = signal<(string | number)[]>([]);
-  maxNums: number[] = [];
 
   valueNumber = computed(() => {
     return Number(this.value());
@@ -28,25 +24,42 @@ export class XBadgeComponent extends XBadgeProperty {
     [`${XBadgePrefix}-${this.type()}`]: !XIsEmpty(this.type())
   }));
 
-  setDisplayValue() {
-    let toNumber = Number(this.value);
-    if (XIsNumber(toNumber) && this.max && toNumber > Number(this.max)) {
-      this.displayValue = `${this.max}+`;
+  displayNums = computed(() => {
+    const value = this.value();
+    const max = this.max();
+    const toNumber = Number(value);
+    let displayValue = '';
+    if (XIsNumber(toNumber) && max && toNumber > max) {
+      displayValue = `${max}+`;
     } else {
-      this.displayValue = `${this.value}`;
+      displayValue = `${value}`;
     }
-    let res: (string | number)[] = [];
-    for (let i = 0; i < this.displayValue.length; i++) {
-      let str = this.displayValue[i];
+    const res: (string | number)[] = [];
+    for (let i = 0; i < displayValue.length; i++) {
+      const str = displayValue[i];
       if (str === '+') {
         res.push(str);
       } else {
         res.push(Number(str));
       }
     }
-    this.displayNums.set(res);
-    if (this.displayNums().length != this.maxNums.length) {
-      this.maxNums = this.displayNums().map((_x, index) => index) as number[];
+    return res;
+  });
+
+  translateYNumbers = computed(() => {
+    const displayNums = this.displayNums();
+    const nums: number[] = [];
+    for (let num of displayNums) {
+      if (XIsString(num) && num === '+') {
+        nums.push(10 * 100);
+      } else if (XIsNumber(num)) {
+        nums.push(num * 100);
+      }
     }
-  }
+    return nums;
+  });
+
+  maxNums = computed(() => {
+    return this.displayNums().map((_x, index) => index) as number[];
+  });
 }
