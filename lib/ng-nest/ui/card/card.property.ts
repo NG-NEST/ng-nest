@@ -1,5 +1,6 @@
-import { XTemplate, XProperty, XNumber, XShadow, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XPropertyFunction, XToCssPixelValue } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import type { XTemplate, XNumber, XShadow } from '@ng-nest/ui/core';
 
 /**
  * Card
@@ -7,33 +8,33 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XCardPrefix = 'x-card';
-const X_CONFIG_NAME = 'card';
+const X_CARD_CONFIG_NAME = 'card';
 
 /**
  * Card Property
  */
 @Component({ selector: `${XCardPrefix}-property`, template: '' })
-export class XCardProperty extends XProperty {
+export class XCardProperty extends XPropertyFunction(X_CARD_CONFIG_NAME) {
   /**
    * @zh_CN 卡片宽度
    * @en_US Card width
    */
-  @Input() width?: string;
+  width = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 内容样式
    * @en_US Content style
    */
-  @Input() bodyStyle: { [property: string]: XNumber } = {};
+  bodyStyle = input<XCardBodyStyle>({});
   /**
    * @zh_CN 头部模板
    * @en_US Head template
    */
-  @Input() header?: XTemplate;
+  header = input<XTemplate>();
   /**
    * @zh_CN 阴影显示方式
    * @en_US Shadow display method
    */
-  @Input() @XWithConfig<XCardShadow>(X_CONFIG_NAME, 'always') shadow?: XCardShadow;
+  shadow = input<XCardShadow>(this.config?.shadow ?? 'always');
 }
 
 /**
@@ -41,3 +42,9 @@ export class XCardProperty extends XProperty {
  * @en_US Shadow display configuration
  */
 export type XCardShadow = XShadow;
+
+/**
+ * @zh_CN 卡片内容样式类型
+ * @en_US Card content style type
+ */
+export type XCardBodyStyle = { [property: string]: XNumber };
