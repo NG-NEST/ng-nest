@@ -13,7 +13,7 @@ export const ShareRoutes: Routes = [
   // { path: '**', loadChildren: () => import('../main/api/api-routes.module').then((x) => x.ApiRoutes) }
   {
     path: '**',
-    loadComponent: () => import('../main/test/color/color.component').then((x) => x.TeColorComponent)
+    loadComponent: () => import('../main/test/comment/comment.component').then((x) => x.TeCommentComponent)
   }
 ];
 

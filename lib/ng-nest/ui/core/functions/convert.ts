@@ -79,6 +79,7 @@ export function XSetData<T>(
   funcParam: any = null
 ): Observable<T[]> {
   return new Observable((x: Observer<T[]>) => {
+    debugger;
     const result = (res: T[]) => {
       x.next(res);
       x.complete();

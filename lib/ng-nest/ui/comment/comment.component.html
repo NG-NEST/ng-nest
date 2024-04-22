@@ -1,6 +1,6 @@
 <div #comment class="x-comment">
   <div class="x-comment-list">
-    @for (node of nodes; track node.id) {
+    @for (node of nodes(); track node.id) {
       <div class="x-comment-item">
         <div class="x-comment-avatar">
           <x-avatar [src]="node.src"></x-avatar>
@@ -24,7 +24,7 @@
             </x-buttons>
           </div>
           @if (node.commentShow) {
-            <x-comment-reply [maxlength]="contentMax" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
+            <x-comment-reply [maxlength]="contentMax()" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
           }
           <ul>
             @for (child of node.children; track child.id) {
@@ -58,7 +58,7 @@
                   </div>
                   @if (child.commentShow) {
                     <x-comment-reply
-                      [maxlength]="contentMax"
+                      [maxlength]="contentMax()"
                       (sureClick)="sureOnClick($event, child)"
                     ></x-comment-reply>
                   }

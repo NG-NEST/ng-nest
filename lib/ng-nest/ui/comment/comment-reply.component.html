@@ -2,7 +2,7 @@
   <x-input
     class="x-comment-reply-input"
     [placeholder]="'comment.placeholder' | xI18n"
-    [maxlength]="maxlength"
+    [maxlength]="maxlength()"
     [(ngModel)]="inputValue"
   ></x-input>
   <div class="x-comment-reply-buttons">

@@ -1,14 +1,6 @@
-import {
-  XDate,
-  XData,
-  XProperty,
-  XParentIdentityProperty,
-  XDataConvert,
-  XInputNumber,
-  XNumber,
-  XWithConfig
-} from '@ng-nest/ui/core';
-import { Input, EventEmitter, Output, Component } from '@angular/core';
+import { XPropertyFunction, XToDataConvert, XToNumber } from '@ng-nest/ui/core';
+import { Component, input, output } from '@angular/core';
+import type { XDate, XParentIdentityProperty, XNumber, XData } from '@ng-nest/ui/core';
 
 /**
  * Comment
@@ -16,48 +8,48 @@ import { Input, EventEmitter, Output, Component } from '@angular/core';
  * @decorator component
  */
 export const XCommentPrefix = 'x-comment';
-const X_CONFIG_NAME = 'comment';
+const X_COMMENT_CONFIG_NAME = 'comment';
 
 /**
  * Comment Property
  */
 @Component({ selector: `${XCommentPrefix}-property`, template: '' })
-export class XCommentProperty extends XProperty {
+export class XCommentProperty extends XPropertyFunction(X_COMMENT_CONFIG_NAME) {
   /**
    * @zh_CN 评论数据
    * @en_US Comment data
    */
-  @Input() @XDataConvert() data: XData<XCommentNode> = [];
+  data = input<XCommentNode[]>([]);
   /**
    * @zh_CN 评论最大字数
    * @en_US Maximum number of comments
    */
-  @Input() @XWithConfig(X_CONFIG_NAME, 512) contentMax!: XNumber;
+  contentMax = input<number, XNumber>(this.config?.contentMax ?? 512, { transform: XToNumber });
   /**
    * @zh_CN 点赞的事件
    * @en_US Like events
    */
-  @Output() likeClick = new EventEmitter<XCommentNode>();
+  likeClick = output<XCommentNode>();
   /**
    * @zh_CN 评论的事件
    * @en_US Commented event
    */
-  @Output() commentClick = new EventEmitter<XCommentNode>();
+  commentClick = output<XCommentNode>();
   /**
    * @zh_CN 回复的事件
    * @en_US Reply event
    */
-  @Output() replyClick = new EventEmitter<XCommentNode>();
+  replyClick = output<XCommentNode>();
   /**
    * @zh_CN 确认提交的事件
    * @en_US Confirm the submitted event
    */
-  @Output() sureClick = new EventEmitter<XCommentNode>();
+  sureClick = output<XCommentNode>();
   /**
    * @zh_CN 更多的事件
    * @en_US More events
    */
-  @Output() moreClick = new EventEmitter<XCommentNode>();
+  moreClick = output<XCommentNode>();
 }
 
 /**
@@ -123,15 +115,15 @@ export const XCommentReplyPrefix = 'x-comment-reply';
  * Comment Reply Property
  */
 @Component({ selector: `${XCommentReplyPrefix}-property`, template: '' })
-export class XCommentReplyProperty extends XProperty {
+export class XCommentReplyProperty extends XPropertyFunction(X_COMMENT_CONFIG_NAME) {
   /**
    * @zh_CN 回复的最大字数
    * @en_US Maximum number of words to reply
    */
-  @Input() @XInputNumber() maxlength: XNumber = 512;
+  maxlength = input<number, XNumber>(this.config?.maxlength ?? 512, { transform: XToNumber });
   /**
    * @zh_CN 回复确认的事件
    * @en_US Reply to confirmed event
    */
-  @Output() sureClick = new EventEmitter<string>();
+  sureClick = output<string>();
 }

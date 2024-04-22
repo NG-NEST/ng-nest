@@ -252,6 +252,7 @@ export interface XColorPickerConfig {
 
 export interface XCommentConfig {
   contentMax?: number;
+  maxlength?: number;
 }
 
 export interface XContainerConfig {
