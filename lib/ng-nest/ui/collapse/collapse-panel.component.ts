@@ -27,8 +27,8 @@ import type { AnimationEvent } from '@angular/animations';
 export class XCollapsePanelComponent extends XCollapsePanelProperty implements OnInit {
   index!: number;
   collapseComponent = inject(XCollapseComponent, { optional: true, host: true });
-  private cdr = inject(ChangeDetectorRef);
-  show = signal<boolean>(false);
+  show = signal(false);
+  activeSignal = signal(this.active());
 
   done(event: AnimationEvent) {
     if (!event.toState) this.show.set(false);
@@ -44,18 +44,17 @@ export class XCollapsePanelComponent extends XCollapsePanelProperty implements O
         this.headerClick();
       }
     ];
-    if (this.active) {
+    if (this.activeSignal()) {
       this.show.set(true);
       this.collapseComponent.change(this.index);
     }
   }
 
   headerClick() {
-    this.active = !this.active;
-    if (this.active) this.show.set(true);
+    this.activeSignal.set(!this.activeSignal());
+    if (this.activeSignal()) this.show.set(true);
     if (!this.collapseComponent) return;
-    if (this.active) this.collapseComponent.change(this.index);
+    if (this.activeSignal()) this.collapseComponent.change(this.index);
     else this.collapseComponent.change(this.index, false);
-    this.cdr.detectChanges();
   }
 }
