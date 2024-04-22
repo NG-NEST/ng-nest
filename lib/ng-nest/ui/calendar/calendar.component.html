@@ -1,32 +1,47 @@
-<div #calendar class="x-calendar" [ngClass]="classMap">
+<div #calendar class="x-calendar" [ngClass]="classMapSignal()">
   <div class="x-calendar-header">
     <div class="x-calendar-header-left">
-      @if (headerLeftTemp) {
-        <ng-container *ngTemplateOutlet="headerLeftTemp"></ng-container>
+      @if (headerLeftTemp()) {
+        <ng-container *ngTemplateOutlet="headerLeftTemp()!"></ng-container>
       }
     </div>
     <div class="x-calendar-header-right">
-      <x-date-picker [(ngModel)]="datetime" [type]="model" showHeader="false" [clearable]="false"></x-date-picker>
+      <x-date-picker
+        [ngModel]="datetime()"
+        (ngModelChange)="datetime.set($event)"
+        [type]="modelSignal()"
+        showHeader="false"
+        [clearable]="false"
+      ></x-date-picker>
       <x-buttons [boxShadow]="false">
-        <x-button (click)="action(-1)" plain>{{ model === 'month' ? locale.lastMonth : locale.lastYear }}</x-button>
-        <x-button (click)="action(1)" plain>{{ model === 'month' ? locale.nextMonth : locale.nextYear }}</x-button>
+        <x-button (click)="action(-1)" plain>{{
+          modelSignal() === 'month' ? locale().lastMonth : locale().lastYear
+        }}</x-button>
+        <x-button (click)="action(1)" plain>{{
+          modelSignal() === 'month' ? locale().nextMonth : locale().nextYear
+        }}</x-button>
       </x-buttons>
-      <x-radio [data]="radioData" [(ngModel)]="model" (ngModelChange)="modelOnChange()" button></x-radio>
+      <x-radio
+        [data]="radioData()"
+        [ngModel]="modelSignal()"
+        (ngModelChange)="modelSignal.set($event)"
+        button
+      ></x-radio>
     </div>
   </div>
   <div class="x-calendar-body">
-    @if (model === 'month') {
+    @if (modelSignal() === 'month') {
       <x-picker-date
-        [display]="datetime"
+        [display]="datetime()"
         (modelChange)="dateOnChange($event)"
         (rangeChange)="rangeOnChange($event)"
         [dateTemp]="dateTemp"
         showHeader="false"
       ></x-picker-date>
     }
-    @if (model === 'year') {
+    @if (modelSignal() === 'year') {
       <x-picker-month
-        [display]="datetime"
+        [display]="datetime()"
         (modelChange)="dateOnChange($event)"
         (rangeChange)="rangeOnChange($event)"
         [monthTemp]="monthTemp"
@@ -37,9 +52,9 @@
 </div>
 
 <ng-template #dateTemp let-date="date$">
-  <div class="x-calendar-date" [class.x-activated]="(date | date: 'yyyyMMdd') === (activatedDate | date: 'yyyyMMdd')">
+  <div class="x-calendar-date" [class.x-activated]="(date | date: 'yyyyMMdd') === (activatedDate() | date: 'yyyyMMdd')">
     <span [title]="date | date: 'yyyy-MM-dd'">{{ date | date: 'd' }}</span>
-    @if (displayType === 'calendar') {
+    @if (displayType() === 'calendar') {
       <div class="x-calendar-date-content">
         @if (getDate(date)) {
           <ul>
@@ -56,9 +71,9 @@
 </ng-template>
 
 <ng-template #monthTemp let-date="date$">
-  <div class="x-calendar-month" [class.x-activated]="(date | date: 'yyyyMM') === (activatedDate | date: 'yyyyMM')">
+  <div class="x-calendar-month" [class.x-activated]="(date | date: 'yyyyMM') === (activatedDate() | date: 'yyyyMM')">
     <span [title]="date | date: 'yyyy-MM'">{{ getLocaleMonth(date) }}</span>
-    @if (displayType === 'calendar') {
+    @if (displayType() === 'calendar') {
       <div class="x-calendar-month-content">
         @if (getMonth(date)) {
           <ul>
