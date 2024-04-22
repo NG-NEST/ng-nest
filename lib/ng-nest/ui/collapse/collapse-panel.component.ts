@@ -1,12 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  inject,
-  signal
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 import { XCollapsePanelPrefix, XCollapsePanelProperty } from './collapse.property';
 import { XDropAnimation } from '@ng-nest/ui/core';
 import { XCollapseComponent } from './collapse.component';

@@ -243,7 +243,7 @@ export interface XCollapseConfig {
 
 export interface XColorConfig {
   merge?: string;
-  amounts?: string;
+  amounts?: number[];
 }
 
 export interface XColorPickerConfig {

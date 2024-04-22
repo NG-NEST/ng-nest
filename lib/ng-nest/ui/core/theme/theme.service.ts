@@ -86,8 +86,8 @@ export class XThemeService {
         if (amount === 0) {
           result[`${prefix}${color}`] = value;
         } else {
-          result[`${prefix}${color}${this.getSuffix(amount)}`] = toHex(
-            mixColors(amount > 0 ? X_THEME_MERGE : X_THEME_BLACK_MERGE, value, Math.abs(amount))
+          result[`${prefix}${color}${this.getSuffix(amount)}`] = XToHex(
+            XMixColors(amount > 0 ? X_THEME_MERGE : X_THEME_BLACK_MERGE, value, Math.abs(amount))
           );
         }
       }
@@ -201,9 +201,9 @@ export interface XRGBColor {
  * @zh_CN 根据权重混合2种颜色
  * @en_US Mix 2 colors according to heavy weights
  */
-export function mixColors(color1: string, color2: string, weight: number): XRGBColor {
-  let rgb1 = toRgb(color1);
-  let rgb2 = toRgb(color2);
+export function XMixColors(color1: string, color2: string, weight: number): XRGBColor {
+  let rgb1 = XToRgb(color1);
+  let rgb2 = XToRgb(color2);
   let weight1 = weight;
   let weight2 = 1 - weight;
   let result: { r: number; g: number; b: number };
@@ -225,7 +225,7 @@ export function mixColors(color1: string, color2: string, weight: number): XRGBC
  * @zh_CN RGB 颜色转换为 Hex
  * @en_US RGB color converts to hex
  */
-export function toHex(rgb: { r: number; g: number; b: number }): string {
+export function XToHex(rgb: { r: number; g: number; b: number }): string {
   return '#' + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
 }
 
@@ -233,7 +233,7 @@ export function toHex(rgb: { r: number; g: number; b: number }): string {
  * @zh_CN Hex 颜色转换为 RGB
  * @en_US Hex color converts to RGB
  */
-export function toRgb(hex: string): XRGBColor {
+export function XToRgb(hex: string): XRGBColor {
   if (hex.indexOf('#') == 0) hex = hex.slice(1);
   let num = parseInt(hex, 16);
   let r = num >> 16;
