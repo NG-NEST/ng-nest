@@ -46,9 +46,9 @@
           <x-buttons boxShadow="false">
             @for (item of nodes; track item.id) {
               <x-button
-                [icon]="item.icon"
-                [title]="item.title"
-                [size]="size"
+                [icon]="item.icon!"
+                [title]="item.title!"
+                [size]="size!"
                 [type]="type"
                 [activated]="getChecked(item.id)"
                 [disabled]="getDisabled(item.disabled)"
@@ -64,9 +64,9 @@
           <x-buttons boxShadow="false">
             @for (item of nodes; track item.id) {
               <x-button
-                [icon]="item.icon"
-                [title]="item.title"
-                [size]="size"
+                [icon]="item.icon!"
+                [title]="item.title!"
+                [size]="size!"
                 [type]="type"
                 [activated]="getChecked(item.id)"
                 [disabled]="getDisabled(item.disabled)"

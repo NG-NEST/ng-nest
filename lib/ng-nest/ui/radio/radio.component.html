@@ -41,11 +41,11 @@
           <x-buttons boxShadow="false">
             @for (item of nodes; track item.id) {
               <x-button
-                [icon]="item.icon"
-                [size]="size"
+                [icon]="item.icon!"
+                [size]="size!"
                 [type]="type"
                 [activated]="item.id === value"
-                [disabled]="disabled || item.disabled"
+                [disabled]="disabled! || item.disabled!"
                 attrType="button"
                 (click)="radioClick($event, item)"
                 plain
@@ -58,11 +58,11 @@
           <x-buttons boxShadow="false">
             @for (item of nodes; track item.id) {
               <x-button
-                [icon]="item.icon"
-                [size]="size"
+                [icon]="item.icon!"
+                [size]="size!"
                 [type]="type"
                 [activated]="item.id === value"
-                [disabled]="disabled || item.disabled"
+                [disabled]="disabled! || item.disabled!"
                 attrType="button"
                 (click)="radioClick($event, item)"
                 plain

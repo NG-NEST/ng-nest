@@ -194,18 +194,19 @@ export interface XBadgeConfgig {
 export interface XButtonConfig {
   size?: XSize;
   type?: XType;
-  plain?: XBoolean;
-  round?: XBoolean;
-  circle?: XBoolean;
-  flat?: XBoolean;
-  text?: XBoolean;
+  plain?: boolean;
+  round?: boolean;
+  circle?: boolean;
+  flat?: boolean;
+  text?: boolean;
   attrType?: 'submit' | 'button' | 'reset';
 }
 
 export interface XButtonsConfig {
-  space?: XNumber;
-  hiddenBorder?: XBoolean;
-  showBoxShadow?: XBoolean;
+  space?: string;
+  hiddenBorder?: boolean;
+  boxShadow?: boolean;
+  round?: boolean;
 }
 
 export interface XCalendarConfig {}
@@ -234,10 +235,10 @@ export interface XCheckboxConfig {
 }
 
 export interface XCollapseConfig {
-  showIcon?: Boolean;
-  ghost?: Boolean;
+  showIcon?: boolean;
+  ghost?: boolean;
   iconPosition?: 'left' | 'right';
-  bordered?: Boolean;
+  bordered?: boolean;
 }
 
 export interface XColorConfig {

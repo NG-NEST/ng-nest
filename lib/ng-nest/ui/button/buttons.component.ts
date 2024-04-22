@@ -1,15 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  HostBinding,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { XButtonsPrefix, XButtonsProperty } from './button.property';
-import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XButtonsPrefix}`,
@@ -19,32 +9,26 @@ import { XConfigService } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XButtonsComponent extends XButtonsProperty implements OnInit {
+export class XButtonsComponent extends XButtonsProperty {
+  @HostBinding('class.x-buttons') get getPrefix() {
+    return true;
+  }
   @HostBinding('class.x-buttons-space') get getSpace() {
-    return this.space;
+    return !!this.space();
   }
   @HostBinding('class.x-buttons-hiddenBorder') get getHiddenBorder() {
-    return this.hiddenBorder;
+    return this.hiddenBorder();
   }
   @HostBinding('class.x-buttons-box-shadow') get getBoxShadow() {
-    return this.boxShadow;
+    return this.boxShadow();
   }
   @HostBinding('class.x-buttons-round') get getRound() {
-    return this.round;
+    return this.round();
   }
-
-  private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
-
-  ngOnInit() {
-    this.renderer.addClass(this.elementRef.nativeElement, XButtonsPrefix);
-    this.setSpace();
+  @HostBinding('style.marginLeft') get getMarginLeft() {
+    return this.space();
   }
-
-  setSpace() {
-    if (!this.space) return;
-    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `-${Number(this.space) / 2}rem`);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `-${Number(this.space) / 2}rem`);
+  @HostBinding('style.marginRight') get getMarginRight() {
+    return this.space();
   }
 }

@@ -15,7 +15,7 @@
           </div>
           <div class="x-comment-action">
             <x-buttons boxShadow="false">
-              <x-button icon="fto-message-square" [activated]="node.commentShow" (click)="commentOnClick(node)" text>
+              <x-button icon="fto-message-square" [activated]="node.commentShow!" (click)="commentOnClick(node)" text>
                 {{ 'comment.comments' | xI18n }} {{ node.count ? node.count : '' }}
               </x-button>
               <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" text>
@@ -46,7 +46,7 @@
                     <x-buttons boxShadow="false">
                       <x-button
                         icon="fto-message-square"
-                        [activated]="child.commentShow"
+                        [activated]="child.commentShow!"
                         (click)="replyOnClick(child)"
                         text
                         >{{ 'comment.reply' | xI18n }}</x-button
