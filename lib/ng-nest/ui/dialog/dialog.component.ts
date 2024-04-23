@@ -13,20 +13,20 @@ import {
   HostBinding,
   inject,
   OnInit,
-  AfterViewInit,
   signal,
-  effect,
-  computed
+  computed,
+  afterRender,
+  effect
 } from '@angular/core';
 import {
   XMoveBoxAnimation,
-  XIsChange,
   XIsFunction,
   XConfigService,
   XIsEmpty,
   XClearClass,
   XOpacityAnimation,
-  XToCssPixelValue
+  XToCssPixelValue,
+  XIsChange
 } from '@ng-nest/ui/core';
 import {
   XDialogPrefix,
@@ -60,7 +60,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XMoveBoxAnimation, XOpacityAnimation]
 })
-export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class XDialogComponent extends XDialogProperty implements OnInit, OnChanges, OnDestroy {
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
   private viewContainerRef = inject(ViewContainerRef);
@@ -72,9 +72,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   @HostBinding('class.x-dialog-visible') get getVisible() {
     return this.visible();
   }
-  @HostBinding('class') get getClass() {
-    return !XIsEmpty(this.placement()) ? `${XDialogPrefix}-${this.placement}` : ``;
-  }
+
   @ViewChild('dialogTpl') dialogTpl!: TemplateRef<void>;
   dialogRef!: XDialogOverlayRef;
   backdropClick$!: Subscription;
@@ -95,7 +93,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   dialogBox: { [key: string]: any } = {};
   contentBox: XResizableEvent = {};
   distance = { x: 0, y: 0 };
-  viewInit = false;
+  viewInit = signal(false);
   action: XDialogAction | null = null;
   containerInit = false;
   resizableSignal = signal(this.resizable());
@@ -111,7 +109,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   });
 
   getStyle = computed(() => {
-    return this.container()
+    return this.container
       ? {
           ...this.protalService.setContainerStyle(this.placement(), this.offset()),
           width: this.width(),
@@ -121,20 +119,23 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
         }
       : {};
   });
-  container = signal(inject<XDialogContainerComponent>(X_DIALOG_CONTAINER, { optional: true }));
+  container = inject<XDialogContainerComponent>(X_DIALOG_CONTAINER, { optional: true });
   configService = inject(XConfigService);
 
-  styleOffsetLeft = signal('');
-  styleOffsetTop = signal('');
+  styleOffsetLeft = signal(this.offsetLeft());
+  styleOffsetTop = signal(this.offsetTop());
 
   constructor() {
     super();
-    effect(() => {
-      this.styleOffsetLeft.set(XToCssPixelValue(this.offsetLeft()));
+    afterRender(() => {
+      // console.log(123123000)
+      this.viewInit.set(true);
+      // this.visible() && this.create();
     });
-    effect(() => {
-      this.styleOffsetTop.set(XToCssPixelValue(this.offsetTop()));
-    });
+    effect(() => this.setVisible());
+    // effect(() => {
+    //   this.setClassMap();
+    // });
   }
 
   ngOnInit() {
@@ -145,10 +146,10 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { visible, placement } = changes;
-    XIsChange(visible) && this.setVisible();
-    if (XIsChange(placement)) {
-      this.setClassMap();
+    const { visible } = changes;
+    // XIsChange(visible) && this.setVisible();
+    if (XIsChange(visible)) {
+      console.log(this.visible());
     }
   }
 
@@ -158,22 +159,18 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     this.unSubject.complete();
   }
 
-  ngAfterViewInit() {
-    this.viewInit = true;
-    setTimeout(() => this.visible() && this.create());
-  }
-
   unsubscribe() {
     this.backdropClick$?.unsubscribe();
   }
 
   setClassMap() {
+    console.log(778899);
     for (let key in this.classMap) {
       this.renderer.removeClass(this.elementRef.nativeElement, key);
     }
     XClearClass(this.classMap);
     this.classMap = {
-      [`${XDialogPrefix}-${this.placement}`]: !XIsEmpty(this.placement)
+      [`${XDialogPrefix}-${this.placement()}`]: !XIsEmpty(this.placement())
     };
     for (let key in this.classMap) {
       this.renderer.addClass(this.elementRef.nativeElement, key);
@@ -181,7 +178,8 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   }
 
   setVisible() {
-    if (!this.viewInit) return;
+    console.log(445566);
+    if (!this.viewInit()) return;
     if (this.visible()) {
       this.create();
     } else {
@@ -190,7 +188,8 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   }
 
   create() {
-    if (this.container()) {
+    console.log(112233);
+    if (this.container) {
       this.containerInit = true;
       return;
     }
@@ -254,8 +253,8 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   }
 
   onClose(action: XDialogAction, execFunction = true) {
-    if (!this.portalAttached() && !this.container()) return;
-    if (this.container() && !this.containerInit) return;
+    if (!this.portalAttached() && !this.container) return;
+    if (this.container && !this.containerInit) return;
     if (XIsFunction(this.beforeClose()) && execFunction) {
       this.beforeClose()?.(action);
       this.action = action;

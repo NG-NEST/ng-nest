@@ -1,5 +1,5 @@
 <ng-template #dialogTpl>
-  @if (container() && hasBackdrop()) {
+  @if (container && hasBackdrop()) {
     <div class="x-dialog-backdrop" [@x-opacity-animation]="visible()" (click)="onClose('close')"></div>
   }
   <div
@@ -72,6 +72,6 @@
   }
 </ng-template>
 
-@if (container() && visible()) {
+@if (container && visible()) {
   <ng-container *ngTemplateOutlet="dialogTpl"></ng-container>
 }

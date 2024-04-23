@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef, InjectionToken, input, model, output } from '@angular/core';
-import { XProperty, XPropertyFunction, XToCssPixelValue, XToBoolean, XToNumber } from '@ng-nest/ui/core';
+import { XProperty, XPropertyFunction, XToCssPixelValue, XToBoolean } from '@ng-nest/ui/core';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
 import { XDialogPortalComponent } from './dialog-portal.component';
@@ -64,12 +64,12 @@ export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
    * @zh_CN 开启 resizable 调整大小，偏移屏幕左边
    * @en_US Open the resizable resize, offset screen left
    */
-  readonly offsetLeft = input<number, XNumber>(0, { transform: XToNumber });
+  readonly offsetLeft = input<string, XNumber>('0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 开启 resizable 调整大小，偏移屏幕顶部
    * @en_US Open the resizable resize, offset screen top
    */
-  readonly offsetTop = input<number, XNumber>(0, { transform: XToNumber });
+  readonly offsetTop = input<string, XNumber>('0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 宽度
    * @en_US Width
