@@ -8,7 +8,9 @@ import {
   AfterViewInit,
   OnDestroy,
   computed,
-  HostBinding
+  HostBinding,
+  signal,
+  afterRender
 } from '@angular/core';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XButtonPrefix, XButtonProperty } from './button.property';
@@ -31,6 +33,7 @@ export class XButtonComponent extends XButtonProperty implements AfterViewInit, 
   @ViewChild('buttonRef', { static: true }) buttonRef!: ElementRef;
   private buttons = inject(XButtonsComponent, { optional: true, host: true });
   private focusMontitor = inject(FocusMonitor);
+  transition = signal(false);
 
   @HostBinding('style.marginLeft') get marginLeft() {
     return this.buttons?.space();
@@ -40,6 +43,13 @@ export class XButtonComponent extends XButtonProperty implements AfterViewInit, 
   }
   @HostBinding('style.pointerEvents') get pointerEvents() {
     return this.loading() || this.disabled() ? 'none' : '';
+  }
+
+  constructor() {
+    super();
+    afterRender(() => {
+      this.transition.set(true);
+    });
   }
 
   classMapSignal = computed(() => ({
