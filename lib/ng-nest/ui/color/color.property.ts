@@ -25,20 +25,20 @@ export class XColorProperty extends XPropertyFunction(X_COLOR_CONFIG_NAME) {
    * @zh_CN 颜色名称
    * @en_US Color name
    */
-  label = input<string>('color');
+  readonly label = input<string>('color');
   /**
    * @zh_CN 十六进制颜色码，此处默认读取 css 变量中的主色
    * @en_US Hexadecimal color code, here the main color in the css variable is read by default
    */
-  hex = input<string>('var(--x-primary)');
+  readonly hex = input<string>('var(--x-primary)');
   /**
    * @zh_CN 混合的颜色
    * @en_US Mixed colors
    */
-  merge = input<string>(this.config?.merge ?? '#ffffff');
+  readonly merge = input<string>(this.config?.merge ?? '#ffffff');
   /**
    * @zh_CN 混合的颜色占比
    * @en_US Proportion of mixed colors
    */
-  amounts = input<number[]>(this.config?.amounts ?? XAmounts);
+  readonly amounts = input<number[]>(this.config?.amounts ?? XAmounts);
 }

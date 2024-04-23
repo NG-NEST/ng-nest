@@ -1,6 +1,6 @@
-import { XPropertyFunction, XToDataConvert, XToNumber } from '@ng-nest/ui/core';
+import { XPropertyFunction, XToDataNew, XToNumber } from '@ng-nest/ui/core';
 import { Component, input, output } from '@angular/core';
-import type { XDate, XParentIdentityProperty, XNumber, XData } from '@ng-nest/ui/core';
+import type { XDate, XParentIdentityProperty, XNumber, XDataNew } from '@ng-nest/ui/core';
 
 /**
  * Comment
@@ -19,37 +19,37 @@ export class XCommentProperty extends XPropertyFunction(X_COMMENT_CONFIG_NAME) {
    * @zh_CN 评论数据
    * @en_US Comment data
    */
-  data = input<XCommentNode[]>([]);
+  readonly data = input<XCommentNode[], XDataNew<XCommentNode>>([], { transform: XToDataNew });
   /**
    * @zh_CN 评论最大字数
    * @en_US Maximum number of comments
    */
-  contentMax = input<number, XNumber>(this.config?.contentMax ?? 512, { transform: XToNumber });
+  readonly contentMax = input<number, XNumber>(this.config?.contentMax ?? 512, { transform: XToNumber });
   /**
    * @zh_CN 点赞的事件
    * @en_US Like events
    */
-  likeClick = output<XCommentNode>();
+  readonly likeClick = output<XCommentNode>();
   /**
    * @zh_CN 评论的事件
    * @en_US Commented event
    */
-  commentClick = output<XCommentNode>();
+  readonly commentClick = output<XCommentNode>();
   /**
    * @zh_CN 回复的事件
    * @en_US Reply event
    */
-  replyClick = output<XCommentNode>();
+  readonly replyClick = output<XCommentNode>();
   /**
    * @zh_CN 确认提交的事件
    * @en_US Confirm the submitted event
    */
-  sureClick = output<XCommentNode>();
+  readonly sureClick = output<XCommentNode>();
   /**
    * @zh_CN 更多的事件
    * @en_US More events
    */
-  moreClick = output<XCommentNode>();
+  readonly moreClick = output<XCommentNode>();
 }
 
 /**
@@ -120,10 +120,10 @@ export class XCommentReplyProperty extends XPropertyFunction(X_COMMENT_CONFIG_NA
    * @zh_CN 回复的最大字数
    * @en_US Maximum number of words to reply
    */
-  maxlength = input<number, XNumber>(this.config?.maxlength ?? 512, { transform: XToNumber });
+  readonly maxlength = input<number, XNumber>(this.config?.maxlength ?? 512, { transform: XToNumber });
   /**
    * @zh_CN 回复确认的事件
    * @en_US Reply to confirmed event
    */
-  sureClick = output<string>();
+  readonly sureClick = output<string>();
 }

@@ -26,9 +26,9 @@ export class XButtonsComponent extends XButtonsProperty {
     return this.round();
   }
   @HostBinding('style.marginLeft') get getMarginLeft() {
-    return this.space();
+    return '-' + this.space();
   }
   @HostBinding('style.marginRight') get getMarginRight() {
-    return this.space();
+    return '-' + this.space();
   }
 }

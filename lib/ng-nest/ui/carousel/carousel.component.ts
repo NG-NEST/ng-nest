@@ -17,7 +17,7 @@ import { takeUntil, debounceTime, tap } from 'rxjs/operators';
 import { NgClass, isPlatformBrowser } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XProgressComponent } from '@ng-nest/ui/progress';
-import type { XNumber, XResizeObserver } from '@ng-nest/ui/core';
+import type { XResizeObserver } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCarouselPrefix}`,
@@ -78,21 +78,23 @@ export class XCarouselComponent extends XCarouselProperty {
     this.updatePanel.complete();
   }
 
-  action(index: XNumber, increase: number, event?: string): void {
+  action(index: number, increase: number, event?: string): void {
     if (!XIsUndefined(event) && this.trigger() !== event) return;
     this.autoplay() && this.resetInterval();
-    this.setActiveItem(Number(index) + increase);
+    this.setActiveItem(index + increase);
   }
 
   resetInterval(): void {
     if (!this.isBrowser) return;
     this.timer && clearInterval(this.timer);
-    this.precentTimer && clearInterval(this.precentTimer);
-    this.percent.set(0);
-    const js = this.interval() / 100;
-    this.precentTimer = setInterval(() => {
-      this.percent.update((x) => x + 1);
-    }, js);
+    if (this.progress()) {
+      this.precentTimer && clearInterval(this.precentTimer);
+      this.percent.set(0);
+      const js = this.interval() / 100;
+      this.precentTimer = setInterval(() => {
+        this.percent.update((x) => x + 1);
+      }, js);
+    }
     this.timer = setInterval(() => {
       this.percent.set(0);
       this.setActiveItem(this.active() + 1);
