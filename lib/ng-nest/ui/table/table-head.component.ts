@@ -52,6 +52,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   thClassMap: XClassMap = {};
   @ViewChild('thead') thead!: ElementRef<HTMLElement>;
   @Input() table: any;
+  initColumns: XTableColumn[] = [];
   get getRowHeight() {
     return this.rowHeight == 0 ? '' : this.rowHeight;
   }
@@ -61,6 +62,9 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
 
   ngOnChanges(simples: SimpleChanges) {
     const { columns, scrollYWidth, scrollXWidth, cellConfig } = simples;
+    if (XIsChange(columns)) {
+      this.initColumns = [...this.columns];
+    }
     XIsChange(columns, scrollYWidth, scrollXWidth, cellConfig) && this.cdr.detectChanges();
   }
 
@@ -175,9 +179,16 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     }
   }
 
-  dropListDropped(_event: CdkDragDrop<XTableColumn[]>) {
-    this.dragChange();
-    this.table.columnDropListDropped.emit(this.columns);
+  dropListDropped(event: CdkDragDrop<XTableColumn[]>) {
+    const previous = this.initColumns[event.previousIndex];
+    const current = this.initColumns[event.currentIndex];
+    const middle = { left: previous.left, right: previous.right };
+    previous.left = current.left;
+    previous.right = current.right;
+    current.left = middle.left;
+    current.right = middle.right;
+    moveItemInArray(this.initColumns, event.previousIndex, event.currentIndex);
+    this.table.columnDropListDropped.emit(this.initColumns);
   }
 
   dropListSorted(event: CdkDragSortEvent<XTableColumn[]>) {

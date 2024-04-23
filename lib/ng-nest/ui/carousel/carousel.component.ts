@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
 import { XIsUndefined, XIsChange, XIsEmpty, XResize } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
+import { Subject, Subscription, interval } from 'rxjs';
 import { takeUntil, debounceTime, tap } from 'rxjs/operators';
 import { NgClass, isPlatformBrowser } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -33,8 +33,8 @@ export class XCarouselComponent extends XCarouselProperty {
   content = viewChild.required<ElementRef<HTMLElement>>('content');
   start = signal(-1);
   before = signal(-1);
-  timer: any;
-  precentTimer: any;
+  timer?: Subscription;
+  precentTimer?: Subscription;
   platformId = inject(PLATFORM_ID);
   isBrowser = isPlatformBrowser(this.platformId);
   percent = signal(0);
@@ -71,7 +71,8 @@ export class XCarouselComponent extends XCarouselProperty {
   }
 
   ngOnDestroy(): void {
-    this.timer && clearInterval(this.timer);
+    this.timer?.unsubscribe();
+    this.precentTimer?.unsubscribe();
     this.unSubject.next();
     this.unSubject.complete();
     this.resizeObserver?.disconnect();
@@ -86,17 +87,23 @@ export class XCarouselComponent extends XCarouselProperty {
 
   resetInterval(): void {
     if (!this.isBrowser) return;
-    this.timer && clearInterval(this.timer);
-    this.precentTimer && clearInterval(this.precentTimer);
-    this.percent.set(0);
-    const js = this.interval() / 100;
-    this.precentTimer = setInterval(() => {
-      this.percent.update((x) => x + 1);
-    }, js);
-    this.timer = setInterval(() => {
+    this.timer?.unsubscribe();
+    if (this.progress()) {
+      this.precentTimer?.unsubscribe();
       this.percent.set(0);
-      this.setActiveItem(this.active() + 1);
-    }, this.interval());
+      const js = this.interval() / 100;
+      this.precentTimer = interval(js)
+        .pipe(takeUntil(this.unSubject))
+        .subscribe(() => {
+          this.percent.update((x) => x + 1);
+        });
+    }
+    this.timer = interval(this.interval())
+      .pipe(takeUntil(this.unSubject))
+      .subscribe(() => {
+        this.percent.set(0);
+        this.setActiveItem(this.active() + 1);
+      });
   }
 
   setActiveItem(index: number): void {
