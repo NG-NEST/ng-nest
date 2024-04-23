@@ -42,9 +42,9 @@
 <x-dialog
   #dialogCom
   [title]="dialogTitle"
-  [width]="dialogWidth"
-  [height]="dialogHeight"
-  [buttonsCenter]="dialogButtonsCenter"
+  [width]="dialogWidth!"
+  [height]="dialogHeight!"
+  [buttonsCenter]="dialogButtonsCenter!"
   [className]="'x-find-dialog-container'"
   [(visible)]="dialogVisible"
   (visibleChange)="dialogVisibleChange.emit($event)"
