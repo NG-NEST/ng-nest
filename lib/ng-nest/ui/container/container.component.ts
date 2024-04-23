@@ -1,15 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  SimpleChanges,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding, computed, signal } from '@angular/core';
 import { XContainerPrefix, XContainerProperty } from './container.property';
-import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XContainerPrefix}`,
@@ -19,26 +9,22 @@ import { XConfigService } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XContainerComponent extends XContainerProperty implements OnInit {
-  private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
-
-  ngOnInit() {
-    this.renderer.addClass(this.elementRef.nativeElement, XContainerPrefix);
-    this.setDirection();
+export class XContainerComponent extends XContainerProperty {
+  @HostBinding('class.x-container') has() {
+    return true;
+  }
+  @HostBinding('class') get className() {
+    return this.directionClass();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const { direction } = changes;
-    if (direction && direction.currentValue != direction.previousValue) {
-      this.setDirection();
+  directionSignal = signal(this.direction());
+
+  directionClass = computed(() => {
+    const direction = this.directionSignal();
+    if (direction) {
+      return `x-direction-${direction}`;
+    } else {
+      return ``;
     }
-  }
-
-  setDirection() {
-    if (this.direction) {
-      this.renderer.addClass(this.elementRef.nativeElement, `x-direction-${this.direction}`);
-    }
-  }
+  });
 }
