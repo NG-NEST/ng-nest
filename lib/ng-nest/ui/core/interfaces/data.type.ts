@@ -12,6 +12,15 @@ import type { InputSignal } from '@angular/core';
 export type XData<T> = T[] | Observable<T[] | any[]> | any[] | Function;
 
 /**
+ * @zh_CN data 数据类型
+ * 通用的泛型数据类型，一般是指数组、可订阅对象并且流数据为数组类型、函数等
+ * @en_US Data data type
+ * General generic data types, generally is index set,
+ * can subscribe to the object and flow data for the array, function, etc
+ */
+export type XDataNew<T> = string | number | (T | string | number)[];
+
+/**
  * @zh_CN boolean 数据类型
  * 此类型作为组件的输入参数，一般会配合 `@XInputBoolean()` 装饰器来使用，转换成 true 或 false
  * @en_US Boolean data type
