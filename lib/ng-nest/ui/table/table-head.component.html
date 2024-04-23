@@ -53,7 +53,7 @@
     [class.x-table-search]="case === 'search'"
   >
     <th
-      *ngFor="let column of columns; trackBy: trackByItem"
+      *ngFor="let column of initColumns; trackBy: trackByItem"
       cdkDrag
       [cdkDragDisabled]="column.draggingWidth || !column.dragColumn"
       (cdkDragStarted)="dragStarted($event, column)"

@@ -9,9 +9,29 @@ import {
   ViewChild,
   Input
 } from '@angular/core';
-import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell, XTablePrefix } from './table.property';
-import { removeNgTag, XIsEmpty, XSort, XIsChange, XConfigService, XNumber, XClassMap, XIsFunction } from '@ng-nest/ui/core';
-import { CdkDragDrop, CdkDragSortEvent, CdkDragStart, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  XTableHeadPrefix,
+  XTableHeadProperty,
+  XTableColumn,
+  XTableCell,
+  XTablePrefix
+} from './table.property';
+import {
+  removeNgTag,
+  XIsEmpty,
+  XSort,
+  XIsChange,
+  XConfigService,
+  XNumber,
+  XClassMap,
+  XIsFunction
+} from '@ng-nest/ui/core';
+import {
+  CdkDragDrop,
+  CdkDragSortEvent,
+  CdkDragStart,
+  moveItemInArray
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XTableHeadPrefix}`,
@@ -25,6 +45,8 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   thClassMap: XClassMap = {};
   @ViewChild('thead') thead!: ElementRef<HTMLElement>;
   @Input() table: any;
+  initColumns: XTableColumn[] = [];
+
   get getRowHeight() {
     return this.rowHeight == 0 ? '' : this.rowHeight;
   }
@@ -40,6 +62,9 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
 
   ngOnChanges(simples: SimpleChanges) {
     const { columns, scrollYWidth, scrollXWidth, cellConfig } = simples;
+    if (XIsChange(columns)) {
+      this.initColumns = [...this.columns];
+    }
     XIsChange(columns, scrollYWidth, scrollXWidth, cellConfig) && this.cdr.detectChanges();
   }
 
@@ -124,7 +149,10 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     this.cdr.detectChanges();
   }
 
-  dragWidthMoved(position: { x: number; y: number; offsetX: number; offsetY: number }, column: XTableColumn | XTableCell) {
+  dragWidthMoved(
+    position: { x: number; y: number; offsetX: number; offsetY: number },
+    column: XTableColumn | XTableCell
+  ) {
     if (column.width) {
       (column.width as number) += position.offsetX;
       if (column.width < 60) column.width = 60;
@@ -151,9 +179,16 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     }
   }
 
-  dropListDropped(_event: CdkDragDrop<XTableColumn[]>) {
-    this.dragChange();
-    this.table.columnDropListDropped.emit(this.columns);
+  dropListDropped(event: CdkDragDrop<XTableColumn[]>) {
+    const previous = this.initColumns[event.previousIndex];
+    const current = this.initColumns[event.currentIndex];
+    const middle = { left: previous.left, right: previous.right };
+    previous.left = current.left;
+    previous.right = current.right;
+    current.left = middle.left;
+    current.right = middle.right;
+    moveItemInArray(this.initColumns, event.previousIndex, event.currentIndex);
+    this.table.columnDropListDropped.emit(this.initColumns);
   }
 
   dropListSorted(event: CdkDragSortEvent<XTableColumn[]>) {

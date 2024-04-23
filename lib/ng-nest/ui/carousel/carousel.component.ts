@@ -13,8 +13,16 @@ import {
   inject
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
-import { XIsUndefined, XIsChange, XIsEmpty, XNumber, XResize, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import {
+  XIsUndefined,
+  XIsChange,
+  XIsEmpty,
+  XNumber,
+  XResize,
+  XConfigService,
+  XResizeObserver
+} from '@ng-nest/ui/core';
+import { BehaviorSubject, Subject, Subscription, interval } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -30,8 +38,8 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   @ViewChild('content') content!: ElementRef<HTMLElement>;
   start: number = -1;
   before!: number;
-  timer: any;
-  precentTimer: any;
+  timer?: Subscription;
+  precentTimer?: Subscription;
   panelChanges: BehaviorSubject<any>[] = [];
   platformId = inject(PLATFORM_ID);
   isBrowser = true;
@@ -75,7 +83,8 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
   }
 
   ngOnDestroy(): void {
-    this.timer && clearInterval(this.timer);
+    this.timer?.unsubscribe();
+    this.precentTimer?.unsubscribe();
     this.panelChanges.forEach((x) => x.complete());
     this._unSubject.complete();
     this._unSubject.unsubscribe();
@@ -90,18 +99,20 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
 
   resetInterval(): void {
     if (!this.isBrowser) return;
-    this.timer && clearInterval(this.timer);
-    this.precentTimer && clearInterval(this.precentTimer);
-    this.percent = 0;
-    const js = Number(this.interval) / 100;
-    this.precentTimer = setInterval(() => {
-      this.percent += 1;
-      this.cdr.detectChanges();
-    }, js);
-    this.timer = setInterval(() => {
+    this.timer?.unsubscribe();
+    if (this.progress) {
+      this.precentTimer?.unsubscribe();
+      this.percent = 0;
+      const js = Number(this.interval) / 100;
+      this.precentTimer = interval(js).subscribe(() => {
+        this.percent += 1;
+        this.cdr.markForCheck();
+      });
+    }
+    this.timer = interval(Number(this.interval)).subscribe(() => {
       this.percent = 0;
       this.setActiveItem(Number(this.active) + 1);
-    }, Number(this.interval));
+    });
   }
 
   setActiveItem(index: number): void {
@@ -111,7 +122,7 @@ export class XCarouselComponent extends XCarouselProperty implements OnInit, OnC
     this.active = nextValue;
     this.panelChanges.forEach((sub) => sub.next(true));
     this.activeChange.emit(this.active);
-    this.cdr.detectChanges();
+    this.cdr.markForCheck();
   }
 
   setClassMap() {

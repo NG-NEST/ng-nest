@@ -32,6 +32,7 @@ import { ExConfigTwoComponent } from './config/config-two/config-two.component';
 import { ExDefaultComponent } from './default/default.component';
 import { ExDragColumnComponent } from './drag-column/drag-column.component';
 import { ExDragWidthComponent } from './drag-width/drag-width.component';
+import { XCarouselModule } from '@ng-nest/ui/carousel';
 
 const routers = [
   {
@@ -64,7 +65,8 @@ const routers = [
     XInputModule,
     XSwitchModule,
     XSelectModule,
-    XInputNumberModule
+    XInputNumberModule,
+    XCarouselModule
   ],
   declarations: [
     TeTableComponent,
