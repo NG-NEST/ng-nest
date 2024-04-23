@@ -1,3 +1,12 @@
+## [16.0.15](https://github.com/NG-NEST/ng-nest/compare/16.0.14...16.0.15) (2024-04-23)
+
+
+### Bug Fixes
+
+* **module:table:** fix column drag ([4cb6d3d](https://github.com/NG-NEST/ng-nest/commit/4cb6d3dbf6769bc0657cd90bc547587b17a945fc))
+
+
+
 ## [16.0.14](https://github.com/NG-NEST/ng-nest/compare/16.0.13...16.0.14) (2024-04-10)
 
 
