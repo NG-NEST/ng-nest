@@ -1,5 +1,5 @@
-import { XData, XProperty, XDataConvert, XIdentityProperty, XTemplate, XWithConfig } from '@ng-nest/ui/core';
-import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
+import { XIdentityProperty, XTemplate, XPropertyFunction, XDataNew, XToDataNew } from '@ng-nest/ui/core';
+import { TemplateRef, Component, input, output } from '@angular/core';
 
 /**
  * Crumb
@@ -7,33 +7,33 @@ import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/co
  * @decorator component
  */
 export const XCrumbPrefix = 'x-crumb';
-const X_CONFIG_NAME = 'crumb';
+const X_CRUMB_CONFIG_NAME = 'crumb';
 
 /**
  * Crumb Property
  */
 @Component({ selector: `${XCrumbPrefix}-property`, template: '' })
-export class XCrumbProperty extends XProperty {
+export class XCrumbProperty extends XPropertyFunction(X_CRUMB_CONFIG_NAME) {
   /**
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  @Input() @XDataConvert() data: XData<XCrumbNode> = [];
+  readonly data = input<XCrumbNode[], XDataNew<XCrumbNode>>([], { transform: XToDataNew });
   /**
    * @zh_CN 节点自定义模板
    * @en_US Node custom template
    */
-  @Input() nodeTpl!: TemplateRef<any>;
+  readonly nodeTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 分隔符
    * @en_US Separator
    */
-  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME, '/') separator?: XTemplate;
+  readonly separator = input<XTemplate>(this.config?.separator ?? '/');
   /**
    * @zh_CN 节点点击事件
    * @en_US Node click event
    */
-  @Output() nodeClick = new EventEmitter<XCrumbNodeClick>();
+  readonly nodeClick = output<XCrumbNodeClick>();
 }
 
 /**

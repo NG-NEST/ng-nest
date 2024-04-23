@@ -1,16 +1,5 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
-  ChangeDetectorRef,
-  OnDestroy,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { XCrumbPrefix, XCrumbNode, XCrumbProperty } from './crumb.property';
-import { XIsChange, XSetData, XConfigService } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { NgTemplateOutlet } from '@angular/common';
@@ -24,22 +13,7 @@ import { NgTemplateOutlet } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCrumbComponent extends XCrumbProperty implements OnChanges, OnDestroy {
-  nodes: XCrumbNode[] = [];
-  private _unSubject = new Subject<void>();
-  private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const { data } = changes;
-    XIsChange(data) && this.setData();
-  }
-
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
-
+export class XCrumbComponent extends XCrumbProperty {
   action(type: string, option: XCrumbNode, event: Event) {
     switch (type) {
       case 'click':
@@ -49,12 +23,5 @@ export class XCrumbComponent extends XCrumbProperty implements OnChanges, OnDest
         });
         break;
     }
-  }
-
-  private setData() {
-    XSetData<XCrumbNode>(this.data, this._unSubject).subscribe((x) => {
-      this.nodes = x;
-      this.cdr.detectChanges();
-    });
   }
 }

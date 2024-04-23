@@ -1,7 +1,6 @@
 import { inject } from '@angular/core';
 import { XComponentConfigKey, XConfigService } from '../config';
 import type { XClassMap } from '../interfaces';
-
 /**
  * @zh_CN 组件公共属性
  * @en_US Component of public properties

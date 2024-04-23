@@ -12,7 +12,7 @@ import {
 import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { WritableSignal, booleanAttribute, numberAttribute } from '@angular/core';
-import type { XData, XParentIdentityProperty, XBoolean, XClassMap, XNumber } from '../interfaces';
+import type { XData, XParentIdentityProperty, XBoolean, XClassMap, XNumber, XDataNew } from '../interfaces';
 
 /**
  * @zh_CN 转换 value 为 boolean 值
@@ -69,6 +69,26 @@ export function XToDataConvert<T>(value: XData<T>): XData<T> {
 }
 
 /**
+ * @zh_CN 转换 value 为指定的 list 数据 [{ label: any; id: any }, ....]
+ * @en_US Convert value as the specified list data [{ label: any; id: any }, ....]
+ */
+export function XToDataNew<T>(value: XDataNew<T>): T[] {
+  if (XIsArray(value)) {
+    return value.map((x: any) => {
+      if (XIsValue(x)) {
+        return { label: x, id: x };
+      } else if (XIsObject<{ label: any; id: any }>(x)) {
+        x.label = XIsUndefined(x.label) || XIsNull(x.label) ? x.id : x.label;
+        x.id = XIsUndefined(x.id) || XIsNull(x.id) ? x.label : x.id;
+        return x;
+      }
+      return x;
+    });
+  }
+  return [{ label: value, id: value } as T];
+}
+
+/**
  * @zh_CN 根据 data 的类型获取实际的数据
  * @en_US Obtain actual data based on the type of data
  */
@@ -79,7 +99,6 @@ export function XSetData<T>(
   funcParam: any = null
 ): Observable<T[]> {
   return new Observable((x: Observer<T[]>) => {
-    debugger;
     const result = (res: T[]) => {
       x.next(res);
       x.complete();

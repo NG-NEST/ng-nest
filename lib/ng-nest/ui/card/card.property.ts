@@ -19,22 +19,22 @@ export class XCardProperty extends XPropertyFunction(X_CARD_CONFIG_NAME) {
    * @zh_CN 卡片宽度
    * @en_US Card width
    */
-  width = input<string, XNumber>('', { transform: XToCssPixelValue });
+  readonly width = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 内容样式
    * @en_US Content style
    */
-  bodyStyle = input<XCardBodyStyle>({});
+  readonly bodyStyle = input<XCardBodyStyle>({});
   /**
    * @zh_CN 头部模板
    * @en_US Head template
    */
-  header = input<XTemplate>();
+  readonly header = input<XTemplate>();
   /**
    * @zh_CN 阴影显示方式
    * @en_US Shadow display method
    */
-  shadow = input<XCardShadow>(this.config?.shadow ?? 'always');
+  readonly shadow = input<XCardShadow>(this.config?.shadow ?? 'always');
 }
 
 /**

@@ -12,9 +12,7 @@ import { XToHex, XMixColors, XComputed } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XColorComponent extends XColorProperty {
-  @HostBinding('class.x-color') has() {
-    return true;
-  }
+  @HostBinding('class.x-color') _has = true;
   private doc = inject(DOCUMENT);
 
   hexSignal = computed(() => {

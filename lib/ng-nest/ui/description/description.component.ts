@@ -4,14 +4,10 @@ import {
   ChangeDetectionStrategy,
   ContentChildren,
   QueryList,
-  SimpleChanges,
-  inject,
-  OnInit,
-  AfterViewInit,
-  OnChanges
+  computed
 } from '@angular/core';
 import { XDescriptionPrefix, XDescriptionProperty } from './description.property';
-import { XClearClass, XConfigService, XIsChange, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { XDescriptionItemComponent } from './description-item.component';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
@@ -25,49 +21,32 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDescriptionComponent extends XDescriptionProperty implements OnInit, AfterViewInit, OnChanges {
+export class XDescriptionComponent extends XDescriptionProperty {
   @ContentChildren(XDescriptionItemComponent) items!: QueryList<XDescriptionItemComponent>;
 
-  configService = inject(XConfigService);
+  classMapSignal = computed(() => ({
+    [`${XDescriptionPrefix}-${this.size()}`]: !XIsEmpty(this.size())
+  }));
 
-  ngOnInit() {
-    this.setClassMap();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const { size } = changes;
-    XIsChange(size) && this.setClassMap();
-  }
-
-  ngAfterViewInit() {
-    this.setMerge();
-  }
-
-  setClassMap() {
-    XClearClass(this.classMap);
-    this.classMap = {
-      [`${XDescriptionPrefix}-${this.size}`]: !XIsEmpty(this.size)
-    };
-  }
+  gridTemplateColumnsSignal = computed(() => {
+    let gridTemplateColumns = this.gridTemplateColumns();
+    if (gridTemplateColumns) return gridTemplateColumns;
+    const columns: string[] = [];
+    this.items.forEach((x) => {
+      if (x.width) {
+        columns.push(x.width());
+      } else if (x.flex) {
+        columns.push(`${x.flex()}fr`);
+      }
+    });
+    return columns.join(' ');
+  });
 
   setFlex(item: XDescriptionItemComponent) {
     let classes: { [property: string]: boolean } = {};
-    if (!XIsEmpty(item.justify)) classes[`x-justify-${item.justify}`] = true;
-    if (!XIsEmpty(item.align)) classes[`x-align-${item.align}`] = true;
-    if (!XIsEmpty(item.direction)) classes[`x-direction-${item.direction}`] = true;
+    if (!XIsEmpty(item.justify())) classes[`x-justify-${item.justify()}`] = true;
+    if (!XIsEmpty(item.align())) classes[`x-align-${item.align()}`] = true;
+    if (!XIsEmpty(item.direction())) classes[`x-direction-${item.direction()}`] = true;
     return classes;
-  }
-
-  setMerge() {
-    if (this.gridTemplateColumns) return;
-    let gridTemplateColumns: string[] = [];
-    this.items.forEach((x) => {
-      if (x.width) {
-        gridTemplateColumns.push(x.width);
-      } else if (x.flex) {
-        gridTemplateColumns.push(`${x.flex}fr`);
-      }
-    });
-    this.gridTemplateColumns = gridTemplateColumns.join(' ');
   }
 }

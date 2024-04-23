@@ -260,15 +260,15 @@ export interface XContainerConfig {
 }
 
 export interface XHeaderConfig {
-  height?: number;
+  height?: string;
 }
 
 export interface XAsideConfig {
-  width?: number;
+  width?: string;
 }
 
 export interface XFooterConfig {
-  height?: number;
+  height?: string;
 }
 
 export interface XCrumbComfig {
@@ -300,17 +300,17 @@ export interface XDialogConfig {
   maxWidth?: string;
   maxHeight?: string;
   effect?: XEffect;
-  showCancel?: XBoolean;
+  showCancel?: boolean;
   cancelText?: string;
-  showConfirm?: XBoolean;
+  showConfirm?: boolean;
   confirmText?: string;
-  backdropClose?: XBoolean;
-  draggable?: XBoolean;
-  resizable?: XBoolean;
-  maximize?: XBoolean;
-  hasBackdrop?: XBoolean;
+  backdropClose?: boolean;
+  draggable?: boolean;
+  resizable?: boolean;
+  maximize?: boolean;
+  hasBackdrop?: boolean;
   className?: string;
-  buttonsCenter?: XBoolean;
+  buttonsCenter?: boolean;
 }
 
 export interface XDrawerConfig {
@@ -328,7 +328,7 @@ export interface XDropdownConfig {
 }
 
 export interface XDescriptionConfig {
-  bordered?: XBoolean;
+  bordered?: boolean;
   size?: XSize;
 }
 

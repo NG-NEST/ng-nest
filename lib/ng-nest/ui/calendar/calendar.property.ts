@@ -18,32 +18,32 @@ export class XCalendarProperty extends XProperty {
    * @zh_CN 事务数据对象
    * @en_US Transaction data object
    */
-  data = input<XCalendarData>({});
+  readonly data = input<XCalendarData>({});
   /**
    * @zh_CN 显示模式
    * @en_US Display mode
    */
-  model = input<XCalendarModel>('month');
+  readonly model = input<XCalendarModel>('month');
   /**
    * @zh_CN 显示类型
    * @en_US Display type
    */
-  displayType = input<XCalendarType>('calendar');
+  readonly displayType = input<XCalendarType>('calendar');
   /**
    * @zh_CN 头部显示模版
    * @en_US Head display template
    */
-  headerLeftTemp = input<TemplateRef<any>>();
+  readonly headerLeftTemp = input<TemplateRef<any>>();
   /**
    * @zh_CN 选择日期变化的事件
    * @en_US Select the event of the date change
    */
-  dateChange = output<Date>();
+  readonly dateChange = output<Date>();
   /**
    * @zh_CN 日期范围变化的事件
    * @en_US Date range change event
    */
-  rangeChange = output<Date[]>();
+  readonly rangeChange = output<Date[]>();
 }
 
 /**

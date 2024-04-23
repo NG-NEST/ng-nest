@@ -28,42 +28,42 @@ export class XAvatarProperty extends XPropertyFunction(X_AVATAR_CONFIG_NAME) {
    * @zh_CN 显示字符
    * @en_US Display characters
    */
-  label = input<XTemplate>();
+  readonly label = input<XTemplate>();
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  size = input<XAvatarSize>(this.config?.size ?? 'medium');
+  readonly size = input<XAvatarSize>(this.config?.size ?? 'medium');
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
    */
-  icon = input<string>();
+  readonly icon = input<string>();
   /**
    * @zh_CN 形状
    * @en_US Shape
    */
-  shape = input<XAvatarShape>(this.config?.shape ?? 'circle');
+  readonly shape = input<XAvatarShape>(this.config?.shape ?? 'circle');
   /**
    * @zh_CN 图片地址
    * @en_US The map's address
    */
-  src = input<string>();
+  readonly src = input<string>();
   /**
    * @zh_CN 图片适应方式
    * @en_US Image adaptation method
    */
-  fit = input<XAvatarFit>(this.config?.fit ?? 'cover');
+  readonly fit = input<XAvatarFit>(this.config?.fit ?? 'cover');
   /**
    * @zh_CN 字符类型的时候左右边距，px
    * @en_US When the character type is the left and right distance, PX
    */
-  gap = input<string, XNumber>(this.config?.gap ?? '4px', { transform: XToCssPixelValue });
+  readonly gap = input<string, XNumber>(this.config?.gap ?? '4px', { transform: XToCssPixelValue });
   /**
    * @zh_CN 背景颜色
    * @en_US Background color
    */
-  backgroundColor = input<string>(this.config?.backgroundColor ?? '#999999');
+  readonly backgroundColor = input<string>(this.config?.backgroundColor ?? '#999999');
 }
 
 /**

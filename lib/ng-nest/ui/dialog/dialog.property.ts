@@ -1,19 +1,9 @@
-import { Input, Output, EventEmitter, Component, ViewContainerRef, InjectionToken, input } from '@angular/core';
-import {
-  XStatus,
-  XPlace,
-  XInputBoolean,
-  XTemplate,
-  XEffect,
-  XBoolean,
-  XWithConfig,
-  XProperty,
-  XPropertyFunction,
-  XNumber
-} from '@ng-nest/ui/core';
+import { Component, ViewContainerRef, InjectionToken, input, model, output } from '@angular/core';
+import { XProperty, XPropertyFunction, XToCssPixelValue, XToBoolean, XToNumber } from '@ng-nest/ui/core';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
 import { XDialogPortalComponent } from './dialog-portal.component';
+import type { XStatus, XPlace, XTemplate, XEffect, XBoolean, XNumber } from '@ng-nest/ui/core';
 
 /**
  * Dialog
@@ -39,17 +29,17 @@ export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
    * @zh_CN 显示/隐藏
    * @en_US Show/hide
    */
-  @Input() @XInputBoolean() visible: boolean = false;
+  readonly visible = model<boolean>(false);
   /**
    * @zh_CN 方位，九宫格
    * @en_US Direction, nine grid
    */
-  @Input() @XWithConfig<XPlace>(X_DIALOG_CONFIG_NAME, 'center') placement!: XPlace;
+  readonly placement = input<XPlace>(this.config?.placement ?? 'center');
   /**
    * @zh_CN 偏移距离
    * @en_US Offset distance
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '1rem') offset!: string;
+  readonly offset = input<string, XNumber>(this.config?.offset ?? '1rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 类型
    * @en_US Types of
@@ -59,7 +49,7 @@ export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
    * @zh_CN 隐藏关闭按钮
    * @en_US Hide close button
    */
-  readonly hideClose = input<XBoolean>(false);
+  readonly hideClose = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 使用文本关闭按钮
    * @en_US Use the text to close button
@@ -69,151 +59,144 @@ export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
    * @zh_CN 调整弹框的大小
    * @en_US Adjust the size of the box
    */
-  @Input()
-  @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false)
-  @XInputBoolean()
-  resizable?: XBoolean;
+  readonly resizable = input<boolean, XBoolean>(this.config?.resizable ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 开启 resizable 调整大小，偏移屏幕左边
    * @en_US Open the resizable resize, offset screen left
    */
-  readonly offsetLeft = input<XNumber>(0);
+  readonly offsetLeft = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 开启 resizable 调整大小，偏移屏幕顶部
    * @en_US Open the resizable resize, offset screen top
    */
-  readonly offsetTop = input<XNumber>(0);
+  readonly offsetTop = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 宽度
    * @en_US Width
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) width?: string;
+  readonly width = input<string, XNumber>(this.config?.width ?? '', { transform: XToCssPixelValue });
   /**
    * @zh_CN 高度
    * @en_US Height
    */
-  @Input() height?: string;
+  readonly height = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 最小宽度
    * @en_US Min width
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '32rem') minWidth?: string;
+  readonly minWidth = input<string, XNumber>(this.config?.minWidth ?? '32rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 最大宽度
    * @en_US Min width
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) maxWidth?: string;
+  readonly maxWidth = input<string, XNumber>(this.config?.maxWidth ?? '', { transform: XToCssPixelValue });
   /**
    * @zh_CN 最小高度
    * @en_US Min height
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '8rem') minHeight?: string;
+  readonly minHeight = input<string, XNumber>(this.config?.minHeight ?? '8rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 最大高度
    * @en_US Min height
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) maxHeight?: string;
+  readonly maxHeight = input<string, XNumber>(this.config?.maxHeight ?? '', { transform: XToCssPixelValue });
   /**
    * @zh_CN 样式主题
    * @en_US Style theme
    */
-  @Input() @XWithConfig<XEffect>(X_DIALOG_CONFIG_NAME, 'white') effect!: XEffect;
+  readonly effect = input<XEffect>(this.config?.effect ?? 'white');
   /**
    * @zh_CN 底部自定义模板
    * @en_US Custom template at the bottom
    */
-  @Input() footer?: XTemplate;
+  readonly footer = input<XTemplate>();
   /**
    * @zh_CN 显示取消按钮
    * @en_US Show cancel button
    */
-  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, true) showCancel!: XBoolean;
+  readonly showCancel = input<boolean, XBoolean>(this.config?.showCancel ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 取消按钮文字
    * @en_US Cancel button text
    * @default '取消'
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) cancelText?: string;
+  readonly cancelText = input<string>(this.config?.cancelText ?? '');
   /**
    * @zh_CN 显示确认按钮
    * @en_US Show confirmation button
    */
-  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, true) showConfirm!: XBoolean;
+  readonly showConfirm = input<boolean, XBoolean>(this.config?.showConfirm ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 确认按钮文字
    * @en_US Confirm button text
    * @default '确认'
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME) confirmText?: string;
+  readonly confirmText = input<string>(this.config?.confirmText ?? '');
   /**
    * @zh_CN 点击遮罩关闭
    * @en_US Click the mask to close
    */
-  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, true) backdropClose!: XBoolean;
+  readonly backdropClose = input<boolean, XBoolean>(this.config?.backdropClose ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 是否显示背景遮罩
    * @en_US Whether to display the background mask
    */
-  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, true) hasBackdrop!: XBoolean;
+  readonly hasBackdrop = input<boolean, XBoolean>(this.config?.hasBackdrop ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 自定义样式名
    * @en_US Custom style name
    */
-  @Input() @XWithConfig<string>(X_DIALOG_CONFIG_NAME, '') className!: string;
+  readonly className = input<string>(this.config?.className ?? '');
   /**
    * @zh_CN 按钮居中
    * @en_US Button center
    */
-  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME) @XInputBoolean() buttonsCenter?: XBoolean;
+  readonly buttonsCenter = input<boolean, XBoolean>(this.config?.buttonsCenter ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 拖动对话框
    * @en_US Drag dialog
    */
-  @Input()
-  @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false)
-  @XInputBoolean()
-  draggable?: XBoolean;
+  readonly draggable = input<boolean, XBoolean>(this.config?.draggable ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 最大化弹出框按钮，当启用 resizable 时也会显示
    * @en_US Maximize the bullet box button, Will also display when resizable is enabled
    */
-  @Input() @XWithConfig<XBoolean>(X_DIALOG_CONFIG_NAME, false) @XInputBoolean() maximize?: XBoolean;
+  readonly maximize = input<boolean, XBoolean>(this.config?.maximize ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 关闭前处理函数
    * @en_US Processing function before closing
    */
-  @Input() beforeClose!: (action: XDialogAction) => void;
-
+  readonly beforeClose = input<(action: XDialogAction) => void>();
   /**
    * @zh_CN 取消按钮的事件
    * @en_US Cancel button event
    */
-  @Output() cancel = new EventEmitter();
+  readonly cancel = output();
   /**
    * @zh_CN 确认按钮的事件
    * @en_US Confirm button event
    */
-  @Output() confirm = new EventEmitter();
+  readonly confirm = output();
   /**
    * @zh_CN 确认按钮的事件
    * @en_US Confirm button event
    */
-  @Output() close = new EventEmitter();
+  readonly close = output();
   /**
    * @zh_CN 显示/隐藏改变事件
    * @en_US Show/hide change events
    */
-  @Output() visibleChange = new EventEmitter<boolean>();
+  readonly visibleChange = output<boolean>();
   /**
    * @zh_CN 弹出完成动画加载
    * @en_US Pop up complete animation loading
    */
-  @Output() showDone = new EventEmitter<any>();
+  readonly showDone = output<any>();
   /**
    * @zh_CN 关闭完成动画
    * @en_US Close complete animation
    */
-  @Output() closeDone = new EventEmitter<any>();
+  readonly closeDone = output<any>();
 }
 
 /**
