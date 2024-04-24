@@ -1,5 +1,6 @@
-import { XBoolean, XInputBoolean, XProperty } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XProperty, XToBoolean } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import type { XBoolean } from '@ng-nest/ui/core';
 
 /**
  * Highlight
@@ -17,22 +18,22 @@ export class XHighlightProperty extends XProperty {
    * @zh_CN 代码类型
    * @en_US Code type
    */
-  @Input() type?: string;
+  type = input<string>();
   /**
    * @zh_CN 数据
    * @en_US Data
    */
-  @Input() data?: string;
+  data = input<string>();
   /**
    * @zh_CN 高亮行数据
    * @en_US Highlight row data
    */
-  @Input() highlightLines: XHighlightLines = {};
+  highlightLines = input<XHighlightLines>({});
   /**
    * @zh_CN 显示复制按钮
    * @en_US display copy
    */
-  @Input() @XInputBoolean() showCopy?: XBoolean;
+  showCopy = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }
 
 /**
@@ -41,4 +42,30 @@ export class XHighlightProperty extends XProperty {
  * @en_US Highlight row data
  * Example：{'danger': '1, 2, 4', 'primary': '7-10, 12, 15-20'}
  */
-export type XHighlightLines = { [property: string]: string };
+export interface XHighlightLines {
+  /**
+   * @zh_CN 主色
+   * @en_US Primary
+   */
+  primary?: string;
+  /**
+   * @zh_CN 成功
+   * @en_US Success
+   */
+  success?: string;
+  /**
+   * @zh_CN 警告
+   * @en_US Warning
+   */
+  warning?: string;
+  /**
+   * @zh_CN 危险
+   * @en_US Danger
+   */
+  danger?: string;
+  /**
+   * @zh_CN 信息
+   * @en_US Info
+   */
+  info?: string;
+}

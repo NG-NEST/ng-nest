@@ -1,8 +1,8 @@
 <pre>
-  <code #code class="language-{{ type }}" [innerHTML]="display"></code>
+  <code #code class="language-{{ type() }}" [innerHTML]="display()"></code>
 </pre>
 <div class="x-highlight-actions">
-  @if (showCopy) {
-    <x-button [icon]="iconCopy" onlyIcon flat (click)="onCopy()"></x-button>
+  @if (showCopy()) {
+    <x-button [icon]="iconCopy()" onlyIcon flat (click)="onCopy()"></x-button>
   }
 </div>
