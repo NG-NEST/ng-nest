@@ -88,12 +88,12 @@ export class XAlertProperty extends XPropertyFunction(X_ALERT_CONFIG_NAME) {
    * @zh_CN 开启 resizable 调整大小，偏移屏幕左边
    * @en_US Open the resizable resize, offset screen left
    */
-  readonly offsetLeft = input<string, XNumber>('0', { transform: XToCssPixelValue });
+  readonly offsetLeft = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 开启 resizable 调整大小，偏移屏幕顶部
    * @en_US Open the resizable resize, offset screen top
    */
-  readonly offsetTop = input<string, XNumber>('0', { transform: XToCssPixelValue });
+  readonly offsetTop = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 最小宽度
    * @en_US Min width

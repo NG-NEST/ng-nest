@@ -1,13 +1,4 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  OnInit,
-  inject
-} from '@angular/core';
-import { XDocPrefix } from './doc.property';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'x-doc',
@@ -17,11 +8,6 @@ import { XDocPrefix } from './doc.property';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDocComponent implements OnInit {
-  renderer = inject(Renderer2);
-  elementRef = inject(ElementRef);
-
-  ngOnInit(): void {
-    this.renderer.addClass(this.elementRef.nativeElement, XDocPrefix);
-  }
+export class XDocComponent {
+  @HostBinding('class.x-doc') _has = true;
 }

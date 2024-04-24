@@ -13,7 +13,7 @@ import {
 import { XAvatarPrefix, XAvatarProperty } from './avatar.property';
 import { XIsEmpty, XIsNumber, XIsString, XIsObject, XComputedStyle, XResize } from '@ng-nest/ui/core';
 import { DOCUMENT, NgClass, NgStyle } from '@angular/common';
-import { Subject, debounceTime, map, takeUntil } from 'rxjs';
+import { debounceTime, map } from 'rxjs';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -32,7 +32,6 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
   private document = inject(DOCUMENT);
   private labelRef = viewChild<ElementRef<HTMLElement>>('labelRef');
   private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
-  private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
   private elementRef = inject(ElementRef);
   private labelWidth = signal(this.labelRef()?.nativeElement.clientWidth);
@@ -42,8 +41,7 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
       map(({ resizeObserver }) => {
         this.resizeObserver = resizeObserver;
         return this.document.documentElement.clientWidth;
-      }),
-      takeUntil(this.unSubject)
+      })
     ),
     {
       initialValue: this.document.documentElement.clientWidth
@@ -122,8 +120,6 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unSubject.next();
-    this.unSubject.complete();
     this.resizeObserver?.disconnect();
   }
 

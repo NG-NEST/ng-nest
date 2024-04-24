@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef, InjectionToken, input, model, output } from '@angular/core';
-import { XProperty, XPropertyFunction, XToCssPixelValue, XToBoolean } from '@ng-nest/ui/core';
+import { XProperty, XPropertyFunction, XToCssPixelValue, XToBoolean, XToNumber } from '@ng-nest/ui/core';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XDialogComponent } from './dialog.component';
 import { XDialogPortalComponent } from './dialog-portal.component';
@@ -64,17 +64,17 @@ export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
    * @zh_CN 开启 resizable 调整大小，偏移屏幕左边
    * @en_US Open the resizable resize, offset screen left
    */
-  readonly offsetLeft = input<string, XNumber>('0', { transform: XToCssPixelValue });
+  readonly offsetLeft = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 开启 resizable 调整大小，偏移屏幕顶部
    * @en_US Open the resizable resize, offset screen top
    */
-  readonly offsetTop = input<string, XNumber>('0', { transform: XToCssPixelValue });
+  readonly offsetTop = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 宽度
    * @en_US Width
    */
-  readonly width = input<string, XNumber>(this.config?.width ?? '', { transform: XToCssPixelValue });
+  readonly width = input<string, XNumber>(this.config?.width ?? '32rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 高度
    * @en_US Height
@@ -84,22 +84,12 @@ export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
    * @zh_CN 最小宽度
    * @en_US Min width
    */
-  readonly minWidth = input<string, XNumber>(this.config?.minWidth ?? '32rem', { transform: XToCssPixelValue });
-  /**
-   * @zh_CN 最大宽度
-   * @en_US Min width
-   */
-  readonly maxWidth = input<string, XNumber>(this.config?.maxWidth ?? '', { transform: XToCssPixelValue });
+  readonly minWidth = input<string, XNumber>(this.config?.minWidth ?? '18rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 最小高度
    * @en_US Min height
    */
   readonly minHeight = input<string, XNumber>(this.config?.minHeight ?? '8rem', { transform: XToCssPixelValue });
-  /**
-   * @zh_CN 最大高度
-   * @en_US Min height
-   */
-  readonly maxHeight = input<string, XNumber>(this.config?.maxHeight ?? '', { transform: XToCssPixelValue });
   /**
    * @zh_CN 样式主题
    * @en_US Style theme
@@ -183,11 +173,6 @@ export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
    */
   readonly close = output();
   /**
-   * @zh_CN 显示/隐藏改变事件
-   * @en_US Show/hide change events
-   */
-  readonly visibleChange = output<boolean>();
-  /**
    * @zh_CN 弹出完成动画加载
    * @en_US Pop up complete animation loading
    */
@@ -234,6 +219,7 @@ export interface XDialogRefOption {
   /**
    * @zh_CN 宽度
    * @en_US Width
+   * @default '32rem'
    * @withConfig true
    */
   width?: string;
@@ -278,16 +264,10 @@ export interface XDialogRefOption {
   /**
    * @zh_CN 最小宽度
    * @en_US Min width
-   * @default '32rem'
+   * @default '18rem'
    * @withConfig true
    */
   minWidth?: string;
-  /**
-   * @zh_CN 最大宽度
-   * @en_US Max width
-   * @withConfig true
-   */
-  maxWidth?: string;
   /**
    * @zh_CN 最小高度
    * @en_US Min height
@@ -295,12 +275,6 @@ export interface XDialogRefOption {
    * @withConfig true
    */
   minHeight?: string;
-  /**
-   * @zh_CN 最大高度
-   * @en_US Max height
-   * @withConfig true
-   */
-  maxHeight?: string;
   /**
    * @zh_CN 数据，通过 "@Inject(X_DIALOG_DATA)" 来接收数据
    * @en_US Data. Receive data by "@Inject(X_DIALOG_DATA)"

@@ -6,13 +6,13 @@ import { XDragProperty } from './drag.property';
 
 @Directive({ selector: '[x-drag]', standalone: true })
 export class XDragDirective extends XDragProperty implements OnInit, OnDestroy {
-  private _unSubject = new Subject<void>();
+  private unSubject = new Subject<void>();
   private doc = inject(DOCUMENT);
   private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
 
   ngOnInit() {
-    const mouseDown = fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown');
+    const mouseDown = fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown').pipe(takeUntil(this.unSubject));
     mouseDown.subscribe((downMe: MouseEvent) => {
       let x = downMe.pageX;
       let y = downMe.pageY;
@@ -41,24 +41,10 @@ export class XDragDirective extends XDragProperty implements OnInit, OnDestroy {
           _unSub.complete();
         });
     });
-
-    // fromEvent(this.elementRef.nativeElement, 'mousedown')
-    //   .pipe(
-    //     tap((mouse: MouseEvent) => {
-    //       return { startX: mouse.clientX, startY: mouse.clientY };
-    //     }),
-    //     tap((x) => {
-    //       fromEvent(this.elementRef.nativeElement, 'mousemove').pipe()
-    //     }),
-    //     takeUntil(this._unSubject)
-    //   )
-    //   .subscribe((x) => {
-    //     console.log(x);
-    //   });
   }
 
   ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.complete();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 }

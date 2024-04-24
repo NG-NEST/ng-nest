@@ -4,8 +4,6 @@ import {
   Renderer2,
   ElementRef,
   ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
   ViewChild,
   TemplateRef,
   ViewContainerRef,
@@ -15,8 +13,7 @@ import {
   OnInit,
   signal,
   computed,
-  afterRender,
-  effect
+  AfterViewInit
 } from '@angular/core';
 import {
   XMoveBoxAnimation,
@@ -24,9 +21,7 @@ import {
   XConfigService,
   XIsEmpty,
   XClearClass,
-  XOpacityAnimation,
-  XToCssPixelValue,
-  XIsChange
+  XOpacityAnimation
 } from '@ng-nest/ui/core';
 import {
   XDialogPrefix,
@@ -48,7 +43,7 @@ import { XAlertComponent } from '@ng-nest/ui/alert';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { NgStyle, NgTemplateOutlet } from '@angular/common';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XDialogPrefix}`,
@@ -60,7 +55,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XMoveBoxAnimation, XOpacityAnimation]
 })
-export class XDialogComponent extends XDialogProperty implements OnInit, OnChanges, OnDestroy {
+export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit, OnDestroy {
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
   private viewContainerRef = inject(ViewContainerRef);
@@ -84,7 +79,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, OnChang
     ),
     { initialValue: zh_CN.dialog }
   );
-  overlayElement?: HTMLElement;
+  overlayElement = signal<HTMLElement | null>(null);
   dialogContent?: HTMLElement;
   initHeight? = 0;
   initContentHeight? = 0;
@@ -96,9 +91,9 @@ export class XDialogComponent extends XDialogProperty implements OnInit, OnChang
   viewInit = signal(false);
   action: XDialogAction | null = null;
   containerInit = false;
-  resizableSignal = signal(this.resizable());
-  draggableSignal = signal(this.draggable());
-  maximizeSignal = signal(this.maximize());
+  resizableSignal = signal(false);
+  draggableSignal = signal(false);
+  maximizeSignal = signal(false);
 
   getCancelText = computed(() => {
     return this.cancelText() || this.locale().cancelText;
@@ -122,49 +117,41 @@ export class XDialogComponent extends XDialogProperty implements OnInit, OnChang
   container = inject<XDialogContainerComponent>(X_DIALOG_CONTAINER, { optional: true });
   configService = inject(XConfigService);
 
-  styleOffsetLeft = signal(this.offsetLeft());
-  styleOffsetTop = signal(this.offsetTop());
+  styleOffsetLeft = signal(0);
+  styleOffsetTop = signal(0);
+
+  visibleChanged = toObservable(this.visible);
+  draggableChanged = toObservable(this.draggable);
 
   constructor() {
     super();
-    afterRender(() => {
-      // console.log(123123000)
-      this.viewInit.set(true);
-      // this.visible() && this.create();
+    this.visibleChanged.pipe(takeUntil(this.unSubject)).subscribe(() => {
+      this.setClassMap();
+      this.setVisible();
     });
-    effect(() => this.setVisible());
-    // effect(() => {
-    //   this.setClassMap();
-    // });
   }
 
   ngOnInit() {
     this.scrollStrategy = this.protalService.overlay.scrollStrategies.block();
-    this.dialogBox['draggable'] = this.draggableSignal;
-    this.dialogBox['resizable'] = this.resizableSignal;
+    this.draggableSignal.set(this.draggable());
+    this.resizableSignal.set(this.resizable());
+    this.maximizeSignal.set(this.maximize());
+    this.dialogBox['draggable'] = this.draggableSignal();
+    this.dialogBox['resizable'] = this.resizableSignal();
     this.setClassMap();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const { visible } = changes;
-    // XIsChange(visible) && this.setVisible();
-    if (XIsChange(visible)) {
-      console.log(this.visible());
-    }
+  ngAfterViewInit(): void {
+    this.viewInit.set(true);
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe();
+    this.backdropClick$?.unsubscribe();
     this.unSubject.next();
     this.unSubject.complete();
   }
 
-  unsubscribe() {
-    this.backdropClick$?.unsubscribe();
-  }
-
   setClassMap() {
-    console.log(778899);
     for (let key in this.classMap) {
       this.renderer.removeClass(this.elementRef.nativeElement, key);
     }
@@ -178,7 +165,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, OnChang
   }
 
   setVisible() {
-    console.log(445566);
     if (!this.viewInit()) return;
     if (this.visible()) {
       this.create();
@@ -188,7 +174,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, OnChang
   }
 
   create() {
-    console.log(112233);
     if (this.container) {
       this.containerInit = true;
       return;
@@ -203,32 +188,30 @@ export class XDialogComponent extends XDialogProperty implements OnInit, OnChang
         width: this.width(),
         height: this.height(),
         minWidth: this.minWidth(),
-        maxWidth: this.maxWidth(),
         minHeight: this.minHeight(),
-        maxHeight: this.maxHeight(),
         positionStrategy: this.protalService.setPlace(this.placement(), this.offset())
       }
     });
     const { hostElement, overlayElement } = this.dialogRef.overlayRef!;
-    this.overlayElement = overlayElement;
+    this.overlayElement.set(overlayElement);
     this.setWidthHeight();
     Object.assign(this.dialogBox, {
       width: this.width(),
       height: this.height(),
       minWidth: this.minWidth(),
-      minHeight: this.minHeight(),
-      maxWidth: this.maxWidth(),
-      maxHeight: this.maxHeight()
+      minHeight: this.minHeight()
     });
     if (this.resizableSignal() && !this.isDefaultMaximize()) {
       this.renderer.addClass(hostElement, PortalResizablePrefix);
       setTimeout(() => {
-        Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement!, this.placement()));
-        this.styleOffsetLeft.set(XToCssPixelValue(this.overlayElement!.offsetLeft));
-        this.styleOffsetTop.set(XToCssPixelValue(this.overlayElement!.offsetTop));
-        const dialogDraggable = this.overlayElement?.querySelector('.x-alert-draggable')!;
+        Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement()!, this.placement()));
+        this.styleOffsetLeft.set(this.overlayElement()?.offsetLeft!);
+        this.styleOffsetTop.set(this.overlayElement()?.offsetTop!);
+        console.log(this.styleOffsetLeft());
+        console.log(this.styleOffsetTop());
+        const dialogDraggable = this.overlayElement()?.querySelector('.x-alert-draggable')!;
         this.initHeight = dialogDraggable.clientHeight;
-        this.dialogContent = this.overlayElement?.querySelector('.x-dialog-content')!;
+        this.dialogContent = this.overlayElement()?.querySelector('.x-dialog-content')!;
         this.initContentHeight = this.dialogContent.clientHeight;
       });
     }
@@ -262,7 +245,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, OnChang
       this.visible.set(false);
       if (this.portalAttached()) {
         this.dialogRef?.overlayRef?.detach();
-        this.unsubscribe();
+        this.backdropClick$?.unsubscribe();
       }
       if ([action, this.action].includes('confirm')) {
         this.confirm.emit();
@@ -302,7 +285,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, OnChang
     this.dialogBox['draggable'] = false;
     this.dialogBox['resizable'] = false;
     if (this.resizableSignal()) {
-      this.renderer.setStyle(this.overlayElement, 'margin', '0 0 0 0');
+      this.renderer.setStyle(this.overlayElement(), 'margin', '0 0 0 0');
     }
     if (this.draggableSignal()) {
       this.dialogBox['distance'] = { x: 0, y: 0 };
@@ -325,16 +308,16 @@ export class XDialogComponent extends XDialogProperty implements OnInit, OnChang
     }
     if (this.resizableSignal()) {
       if (this.dialogBox['marginTop']) {
-        this.renderer.setStyle(this.overlayElement, 'margin-top', `${this.dialogBox['marginTop']}`);
+        this.renderer.setStyle(this.overlayElement(), 'margin-top', `${this.dialogBox['marginTop']}`);
       }
       if (this.dialogBox['marginLeft']) {
-        this.renderer.setStyle(this.overlayElement, 'margin-left', `${this.dialogBox['marginLeft']}`);
+        this.renderer.setStyle(this.overlayElement(), 'margin-left', `${this.dialogBox['marginLeft']}`);
       }
       if (this.dialogBox['marginRight']) {
-        this.renderer.setStyle(this.overlayElement, 'margin-right', `${this.dialogBox['marginRight']}`);
+        this.renderer.setStyle(this.overlayElement(), 'margin-right', `${this.dialogBox['marginRight']}`);
       }
       if (this.dialogBox['marginBottom']) {
-        this.renderer.setStyle(this.overlayElement, 'margin-bottom', `${this.dialogBox['marginBottom']}`);
+        this.renderer.setStyle(this.overlayElement(), 'margin-bottom', `${this.dialogBox['marginBottom']}`);
       }
     }
   }

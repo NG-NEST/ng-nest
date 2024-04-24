@@ -62,14 +62,14 @@
       border-radius: 0 !important;
     }
     .#{$--x-dialog}-content {
-      max-height: calc(100vh - 8rem) !important;
-      height: calc(100vh - 8rem) !important;
+      max-height: calc(100vh - 7.875rem) !important;
+      height: calc(100vh - 7.875rem) !important;
     }
   }
   &-default-maximize {
     .#{$--x-dialog}-content {
-      max-height: calc(100vh - 8rem) !important;
-      height: calc(100vh - 8rem) !important;
+      max-height: calc(100vh - 7.875rem) !important;
+      height: calc(100vh - 7.875rem) !important;
       flex: initial;
     }
     > x-alert .x-alert {
