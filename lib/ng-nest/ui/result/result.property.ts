@@ -1,5 +1,6 @@
-import { XStatus, XProperty, XTemplate } from '@ng-nest/ui/core';
-import { Input, Component, input } from '@angular/core';
+import { XProperty } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import type { XStatus, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * Result
