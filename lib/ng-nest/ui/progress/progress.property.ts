@@ -1,5 +1,6 @@
-import { Input, Component } from '@angular/core';
-import { XInputNumber, XProperty, XInputBoolean, XNumber, XBoolean, XWithConfig } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import { XPropertyFunction, XToNumber, XToCssPixelValue, XToBoolean } from '@ng-nest/ui/core';
+import type { XNumber, XBoolean } from '@ng-nest/ui/core';
 
 /**
  * Progress
@@ -7,93 +8,98 @@ import { XInputNumber, XProperty, XInputBoolean, XNumber, XBoolean, XWithConfig 
  * @decorator component
  */
 export const XProgressPrefix = 'x-progress';
-const X_CONFIG_NAME = 'progress';
+const X_PROGRESS_CONFIG_NAME = 'progress';
 
 /**
  * Progress Property
  */
 @Component({ selector: `${XProgressPrefix}-property`, template: '' })
-export class XProgressProperty extends XProperty {
+export class XProgressProperty extends XPropertyFunction(X_PROGRESS_CONFIG_NAME) {
   /**
    * @zh_CN 进度条类型
    * @en_US Progress bar type
    */
-  @Input() type: XProgressType = 'line';
+  readonly type = input<XProgressType>('line');
   /**
    * @zh_CN 显示进度 0-100
    * @en_US Show progress 0-100
    */
-  @Input() @XInputNumber() percent: XNumber = 0;
+  readonly percent = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 进度条高度
    * @en_US Height of progress bar
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') height?: string;
+  readonly height = input<string, XNumber>(this.config?.height ?? '1rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 状态
    * @en_US Status
    */
-  @Input() status: XProgressStatus = 'normal';
+  readonly status = input<XProgressStatus>('normal');
   /**
-   * @zh_CN 是否显示百分比文本
+   * @zh_CN 是否显示百分比文本信息
    * @en_US Whether to display percentage text
    */
-  @Input() @XInputBoolean() info: XBoolean = true;
+  readonly info = input<boolean, XBoolean>(true, { transform: XToBoolean });
+  /**
+   * @zh_CN 文本信息宽度
+   * @en_US The width of the text information
+   */
+  readonly infoWidth = input<string, XNumber>('3.5rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 百分比文本是否显示在进度条里面
    * @en_US Whether the percentage text is displayed in the progress bar
    */
-  @Input() @XInputBoolean() inside?: XBoolean;
+  readonly inside = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 自定义百分比文本内容
    * @en_US Custom percentage text content
    */
-  @Input() format?: Function;
+  readonly format = input<(percent: number) => string>();
   /**
    * @zh_CN 自定义颜色
    * @en_US Custom color
    */
-  @Input() color?: XProgressColor;
+  readonly color = input<XProgressColor>();
   /**
    * @zh_CN 渐变颜色
    * @en_US Gradient color
    */
-  @Input() gradient?: XProgressGradient;
+  readonly gradient = input<XProgressGradient>();
   /**
    * @zh_CN 步骤进度条
    * @en_US Steps progress bar
    */
-  @Input() steps?: number;
+  readonly steps = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 单个步骤的宽度
    * @en_US Single step width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') stepWidth?: string;
+  readonly stepWidth = input<string, XNumber>('2rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 单个步骤的宽度自适应
    * @en_US Single step width flex
    */
-  @Input() @XInputBoolean() stepFlex?: XBoolean;
+  readonly stepFlex = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 圆环/仪表盘厚度
    * @en_US Ring thickness
    */
-  @Input() thickness?: string = '0.5rem';
+  readonly thickness = input<string, XNumber>('1rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 圆环/仪表盘尺寸
    * @en_US Ring size
    */
-  @Input() size?: string = '5rem';
+  readonly size = input<string, XNumber>('8rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 仪表盘缺口角度 0~300
    * @en_US Dashboard notch angle
    */
-  @Input() notchAngle?: number = 80;
+  readonly notchAngle = input<number, XNumber>(80, { transform: XToNumber });
   /**
    * @zh_CN 分段显示颜色，只适用 type = 'line'
    * @en_US Segmentation display color, only use of type = 'line'
    */
-  @Input() @XInputBoolean() subsection?: XBoolean;
+  readonly subsection = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }
 
 /**
