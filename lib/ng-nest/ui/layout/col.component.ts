@@ -1,15 +1,8 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  HostBinding,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding, inject, computed } from '@angular/core';
 import { XColPrefix, XColProperty } from './layout.property';
 import { XRowComponent } from './row.component';
+import { XComputedStyle, XIsNumber } from '../core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XColPrefix}`,
@@ -19,68 +12,40 @@ import { XRowComponent } from './row.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XColComponent extends XColProperty implements OnInit {
-  @HostBinding(`class.x-col-24`) get getFlex() {
-    return this.xs || this.sm || this.md || this.lg || this.xl || this.span == 24 ? true : false;
-  }
-
+export class XColComponent extends XColProperty {
   private rowComponent = inject(XRowComponent, { optional: true, host: true });
-  private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
-
-  ngOnInit() {
-    this.renderer.addClass(this.elementRef.nativeElement, XColPrefix);
-    this.setSpan();
-    this.setOffset();
-    this.setSpace();
-    this.setLayout();
-    this.setInherit();
+  private document: Document = inject(DOCUMENT);
+  private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
+  @HostBinding('class.x-col') _has = true;
+  @HostBinding(`class.x-col-24`) get getFlex() {
+    return this.xs() || this.sm() || this.md() || this.lg() || this.xl() || this.span() == 24 ? true : false;
+  }
+  @HostBinding('class') get cls() {
+    let cls: string[] = [];
+    if (this.span()) cls.push(`${XColPrefix}-${this.span()}`);
+    if (this.offset()) cls.push(`${XColPrefix}-offset-${this.offset()}`);
+    if (this.xs()) cls.push(`${XColPrefix}-xs-${this.xs()}`);
+    if (this.sm()) cls.push(`${XColPrefix}-sm-${this.sm()}`);
+    if (this.md()) cls.push(`${XColPrefix}-md-${this.md()}`);
+    if (this.lg()) cls.push(`${XColPrefix}-lg-${this.lg()}`);
+    if (this.xl()) cls.push(`${XColPrefix}-xl-${this.xl()}`);
+    if (this.inherit()) cls.push(`${XColPrefix}-inherit}`);
+    return cls.join(' ');
+  }
+  @HostBinding('style.paddingLeft') get paddingLeft() {
+    return `${this.space() / 2}px`;
+  }
+  @HostBinding('style.paddingRight') get paddingRight() {
+    return `${this.space() / 2}px`;
   }
 
-  setSpan() {
-    if (!this.span) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-${this.span}`);
-  }
-
-  setOffset() {
-    if (!this.offset) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-offset-${this.offset}`);
-  }
-
-  setSpace() {
-    if (!this.rowComponent?.space) return;
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'padding-left',
-      `${Number(this.rowComponent.space) / 2}rem`
-    );
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'padding-right',
-      `${Number(this.rowComponent.space) / 2}rem`
-    );
-  }
-
-  setLayout() {
-    if (this.xs) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-xs-${this.xs}`);
-    }
-    if (this.sm) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-sm-${this.sm}`);
-    }
-    if (this.md) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-md-${this.md}`);
-    }
-    if (this.lg) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-lg-${this.lg}`);
-    }
-    if (this.xl) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-xl-${this.xl}`);
-    }
-  }
-
-  setInherit() {
-    if (!this.inherit) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `${XColPrefix}-inherit`);
-  }
+  space = computed(() => {
+    if (!this.rowComponent?.space()) return 0;
+    const space = this.rowComponent.space();
+    if (space === '0') return 0;
+    if (XIsNumber(space)) return Number(space);
+    else if (space.endsWith('rem')) return Number(space.replace(/rem/g, '')) * this.fontSize();
+    else if (space.endsWith('px')) return Number(space.replace(/px/g, ''));
+    return 0;
+  });
 }
