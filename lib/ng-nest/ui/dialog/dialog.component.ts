@@ -72,13 +72,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   dialogRef!: XDialogOverlayRef;
   backdropClick$!: Subscription;
   scrollStrategy!: BlockScrollStrategy;
-  locale = toSignal(
-    this.i18n.localeChange.pipe(
-      map((x) => x.dialog as XI18nDialog),
-      takeUntil(this.unSubject)
-    ),
-    { initialValue: zh_CN.dialog }
-  );
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.dialog as XI18nDialog)), { initialValue: zh_CN.dialog });
   overlayElement = signal<HTMLElement | null>(null);
   dialogContent?: HTMLElement;
   initHeight? = 0;
