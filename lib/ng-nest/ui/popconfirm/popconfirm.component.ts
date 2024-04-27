@@ -1,20 +1,21 @@
 import {
-  ChangeDetectorRef,
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   OnDestroy,
-  inject
+  inject,
+  computed,
+  signal
 } from '@angular/core';
 import { XPopconfirmProperty, XPopconfirmPrefix } from './popconfirm.property';
-import { XBoolean, XConfigService } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
-import { XI18nService, XI18nPopconfirm } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nPopconfirm, zh_CN } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
 import { XPopoverDirective } from '@ng-nest/ui/popover';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XPopconfirmPrefix}`,
@@ -26,64 +27,46 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPopconfirmComponent extends XPopconfirmProperty implements OnDestroy {
-  visible!: XBoolean;
-  locale: XI18nPopconfirm = {};
-  loading = false;
-
-  private _unSubject = new Subject<void>();
-  private _asyncUnSub = new Subject<void>();
-
-  get getCancelText() {
-    return this.cancelText || this.locale.cancelText;
-  }
-
-  get getConfirmText() {
-    return this.confirmText || this.locale.confirmText;
-  }
-
-  private cdr = inject(ChangeDetectorRef);
   private i18n = inject(XI18nService);
-  configService = inject(XConfigService);
+  visible = signal(false);
+  loading = signal(false);
 
-  ngOnInit() {
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.popconfirm as XI18nPopconfirm),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        this.cdr.markForCheck();
-      });
-  }
+  private asyncUnSub = new Subject<void>();
+
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.popconfirm as XI18nPopconfirm)), {
+    initialValue: zh_CN.popconfirm
+  });
+
+  cancelTextSignal = computed(() => this.cancelText || this.locale().cancelText);
+  confirmTextSignal = computed(() => this.confirmText || this.locale().confirmText);
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.complete();
+    this.asyncUnSub.next();
+    this.asyncUnSub.complete();
   }
 
-  onCancel() {
-    this.visible = false;
-    this.cancel.emit();
+  onCancel(event: Event) {
+    this.visible.set(false);
+    this.cancel.emit(event);
   }
 
-  onConfirm() {
-    if (this.confirmAsync) {
-      this.loading = true;
-      this.confirmAsync.pipe(takeUntil(this._asyncUnSub)).subscribe(() => {
-        this.loading = false;
-        this.visible = false;
-        this.confirm.emit();
-        this.cdr.detectChanges();
-        this._asyncUnSub.next();
+  onConfirm(event: Event) {
+    const confirmAsync = this.confirmAsync();
+    if (confirmAsync) {
+      this.loading.set(true);
+      confirmAsync.pipe(takeUntil(this.asyncUnSub)).subscribe(() => {
+        this.loading.set(false);
+        this.visible.set(false);
+        this.confirm.emit(event);
+        this.asyncUnSub.next();
       });
     } else {
-      this.visible = false;
-      this.confirm.emit();
+      this.visible.set(false);
+      this.confirm.emit(event);
     }
   }
 
-  onClick() {
-    this.condition && this.onConfirm();
+  onClick(event: Event) {
+    this.condition() && this.onConfirm(event);
   }
 }
