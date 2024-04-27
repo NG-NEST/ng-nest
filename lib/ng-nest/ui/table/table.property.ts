@@ -12,10 +12,15 @@ import {
   XParentIdentityProperty,
   XIdentityProperty,
   XTemplate,
-  XQuery
+  XQuery,
+  XPropertyFunction,
+  XToCssPixelValue,
+  XToBoolean,
+  XToNumber,
+  XDataNew
 } from '@ng-nest/ui/core';
-import { Input, Component, EventEmitter, TemplateRef, Output } from '@angular/core';
-import { XPaginationProperty, XPaginationOption, XPaginationSizeData } from '@ng-nest/ui/pagination';
+import { Input, Component, EventEmitter, TemplateRef, Output, input, model } from '@angular/core';
+import { XPaginationSizeData } from '@ng-nest/ui/pagination';
 import { XSelectNode } from '@ng-nest/ui/select';
 
 /**
@@ -24,13 +29,13 @@ import { XSelectNode } from '@ng-nest/ui/select';
  * @decorator component
  */
 export const XTablePrefix = 'x-table';
-const X_CONFIG_NAME = 'table';
+const X_TABLE_CONFIG_NAME = 'table';
 
 /**
  * Table Property
  */
 @Component({ selector: `${XTablePrefix}-property`, template: '' })
-export class XTableProperty extends XPaginationProperty implements XTableOption {
+export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
   /**
    * @zh_CN 行数据
    * 这是一个描述信息
@@ -47,27 +52,27 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 表头和行高，单位 px
    * @en_US Header and row height, unit px
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 42) @XInputNumber() rowHeight!: number;
+  @Input() @XWithConfig<number>(X_TABLE_CONFIG_NAME, 42) @XInputNumber() rowHeight!: number;
   /**
    * @zh_CN 是否启用加载 loading
    * @en_US Whether to enable loading
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() loading!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() loading!: XBoolean;
   /**
    * @zh_CN 是否展示列边框
    * @en_US Whether to show column borders
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() bordered!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() bordered!: XBoolean;
   /**
    * @zh_CN 是否显示列头
    * @en_US Whether to display the column headers
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showHeader!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() showHeader!: XBoolean;
   /**
    * @zh_CN 列头显示位置
    * @en_US Whether to display the column headers
    */
-  @Input() @XWithConfig<XTableHeaderPosition>(X_CONFIG_NAME, 'top') headerPosition!: XTableHeaderPosition;
+  @Input() @XWithConfig<XTableHeaderPosition>(X_TABLE_CONFIG_NAME, 'top') headerPosition!: XTableHeaderPosition;
   /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
@@ -122,17 +127,17 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 允许行点击选中当前行
    * @en_US Allow row click to select
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() allowSelectRow!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() allowSelectRow!: XBoolean;
   /**
    * @zh_CN 允许行点击选中 checkbox
    * @en_US Allow lines to click checkbox
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() allowCheckRow!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() allowCheckRow!: XBoolean;
   /**
    * @zh_CN 开启虚拟滚动
    * @en_US Turn on virtual scrolling
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
   /**
    * @zh_CN body 数据高度
    * @en_US body data height
@@ -142,7 +147,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN itemSize，对应 cdk scroll 中的参数
    * @en_US itemSize，corresponding to the parameters in cdk scroll
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 42) @XInputNumber() itemSize!: number;
+  @Input() @XWithConfig<number>(X_TABLE_CONFIG_NAME, 42) @XInputNumber() itemSize!: number;
   /**
    * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
@@ -202,7 +207,7 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') rowSize?: XSize;
+  @Input() @XWithConfig<XSize>(X_TABLE_CONFIG_NAME, 'medium') rowSize?: XSize;
   /**
    * @zh_CN 分页器位置
    * @en_US Pagination position
@@ -212,32 +217,32 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 隐藏表格外边框
    * @en_US Hidden table wrap border
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() hiddenWrapBorder?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() hiddenWrapBorder?: XBoolean;
   /**
    * @zh_CN 隐藏分页器按钮边框
    * @en_US Hidden pagination button border
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() hiddenPaginationBorder?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() hiddenPaginationBorder?: XBoolean;
   /**
    * @zh_CN 显示分页器
    * @en_US Pagination position
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showPagination?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() showPagination?: XBoolean;
   /**
    * @zh_CN 树形表格
    * @en_US Tree table
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() treeTable?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() treeTable?: XBoolean;
   /**
    * @zh_CN 树形表格展开所有节点
    * @en_US Tree table
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() expandedAll?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() expandedAll?: XBoolean;
   /**
    * @zh_CN 默认展开的层级，-1 不展开
    * @en_US Default expanded level
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, -1) @XInputNumber() expandedLevel!: XNumber;
+  @Input() @XWithConfig<XNumber>(X_TABLE_CONFIG_NAME, -1) @XInputNumber() expandedLevel!: XNumber;
   /**
    * @zh_CN 展开的节点
    * @en_US Expanded node
@@ -252,133 +257,122 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @zh_CN 显示数据为空的提示
    * @en_US Display a prompt with empty data
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() showEmpty?: XBoolean;
+  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() showEmpty?: XBoolean;
 
   /**
    * @zh_CN 数据为空的提示图片地址或自定义模板
    * @en_US Picture address or custom template
    */
-  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) emptyImg?: XTemplate;
+  @Input() @XWithConfig<XTemplate>(X_TABLE_CONFIG_NAME) emptyImg?: XTemplate;
   /**
    * @zh_CN 数据为空的提示内容或自定义模板
    * @en_US Content or custom template
    */
-  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) emptyContent?: XTemplate;
+  @Input() @XWithConfig<XTemplate>(X_TABLE_CONFIG_NAME) emptyContent?: XTemplate;
   /**
    * @zh_CN 当前页码
    * @en_US Current page number
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1) @XInputNumber() override index!: XNumber;
+  readonly index = model<number>(this.config?.index ?? 1);
   /**
    * @zh_CN 每页显示条数
    * @en_US Number of items displayed per page
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 10) @XInputNumber() override size!: XNumber;
+  readonly size = model<number>(this.config?.size ?? 10);
   /**
    * @zh_CN 总数
    * @en_US Total
    */
-  @Input() @XInputNumber() override total: XNumber = 0;
+  readonly total = model<number>(0);
   /**
    * @zh_CN 查询条件
    * @en_US Query conditions
    */
-  @Input() override query: XQuery = {};
+  readonly query = model<XQuery>({});
   /**
    * @zh_CN 最多显示的分页数量
    * @en_US The largest number of pages display
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 5) @XInputNumber() override pageLinkSize!: XNumber;
+  readonly pageLinkSize = input<number, XNumber>(this.config?.pageLinkSize ?? 5, { transform: XToNumber });
   /**
    * @zh_CN 显示首尾页跳转
    * @en_US Display the first and last page
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() override showEllipsis!: XBoolean;
+  readonly showEllipsis = input<boolean, XBoolean>(this.config?.showEllipsis ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 显示总条数
    * @en_US Display the total
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() override showTotal!: XBoolean;
+  readonly showTotal = input<boolean, XBoolean>(this.config?.showTotal ?? true, { transform: XToBoolean });
   /**
-   * @zh_CN 按钮间距，单位 rem （按 1rem = 16px 比例来计算）
-   * @en_US Button spacing, unit rem (calculated according to the ratio of 1rem = 16px)
+   * @zh_CN 按钮间距
+   * @en_US Button spacing
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.25) @XInputNumber() override space!: XNumber;
+  readonly space = input<string, XNumber>(this.config?.space ?? '0.25rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 添加背景色
    * @en_US Show background
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override showBackground!: XBoolean;
+  readonly showBackground = input<boolean, XBoolean>(this.config?.showBackground ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 显示分页条数
    * @en_US Show size
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override showSize!: XBoolean;
+  readonly showSize = input<boolean, XBoolean>(this.config?.showSize ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 分页条数选择框的宽度
    * @en_US size with select
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 110) @XInputNumber() override sizeWidth!: XNumber;
+  readonly sizeWidth = input<string, XNumber>(this.config?.sizeWidth ?? '6.875rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 显示输入分页条数（不能跟下拉选项同时使用）
    * @en_US Display the number of input page breaks (cannot exist with the drop-down options of page breaks)
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override showInputSize!: XBoolean;
+  readonly showInputSize = input<boolean, XBoolean>(this.config?.showInputSize ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 分页条数输入框的宽度
    * @en_US size with input
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 50) @XInputNumber() override inputSizeWidth!: XNumber;
+  readonly inputSizeWidth = input<string, XNumber>(this.config?.sizeWidth ?? '3.125rem', {
+    transform: XToCssPixelValue
+  });
   /**
-   * @zh_CN 分页条数的宽度
-   * @en_US size with
+   * @zh_CN 分页选择的数据项
+   * @en_US Paging choose items of data
    */
-  @Input() @XWithConfig<XData<XSelectNode>>(X_CONFIG_NAME, XPaginationSizeData) override sizeData!: XData<XSelectNode>;
+  readonly sizeData = input<XDataNew<XSelectNode>>(this.config?.sizeData ?? XPaginationSizeData);
   /**
    * @zh_CN 禁用整个分页
    * @en_US disabled
    */
-  @Input() @XInputBoolean() override disabled!: XBoolean;
+  readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 显示跳转输入框
    * @en_US Show size
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override showJump!: XBoolean;
+  readonly showJump = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 跳转页的宽度
    * @en_US size with
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 50) @XInputNumber() override jumpWidth!: XNumber;
+  readonly jumpWidth = input<string, XNumber>(this.config?.jumpWidth ?? '3.125rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 总数自定义模板
    * @en_US Total template
    */
-  @Input() override totalTpl?: XTemplate;
+  readonly totalTpl = input<XTemplate>();
   /**
    * @zh_CN 简单分页
    * @en_US Simple
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() override simple!: XBoolean;
+  readonly simple = input<boolean, XBoolean>(this.config?.simple ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 简单分页输入框宽度
    * @en_US Simple index with
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 130) @XInputNumber() override simpleIndexWidth!: XNumber;
-  /**
-   * @zh_CN 页码变化的事件
-   * @en_US Page number change event
-   */
-  @Output() override queryChange = new EventEmitter<XQuery>();
-  /**
-   * @zh_CN 页码变化的事件
-   * @en_US Page number change event
-   */
-  @Output() override indexChange = new EventEmitter<number>();
-  /**
-   * @zh_CN 每页显示条数变化的事件
-   * @en_US Show the number of events on each page
-   */
-  @Output() override sizeChange = new EventEmitter<number>();
+  readonly simpleIndexWidth = input<string, XNumber>(this.config?.simpleIndexWidth ?? '8.125rem', {
+    transform: XToCssPixelValue
+  });
   /**
    * @zh_CN 列头拖动开始事件，返回拖动的列
    * @en_US Column Header Drag End Event
@@ -409,93 +403,6 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    * @en_US Event to ended drag column width
    */
   @Output() columnDragWidthEnded = new EventEmitter<XTableDragWidthEvent>();
-}
-
-/**
- * Table Option
- * @undocument true
- */
-export interface XTableOption extends XPaginationOption {
-  /**
-   * @zh_CN 行数据
-   * @en_US Row data
-   */
-  data?: XData<XTableRow>;
-  /**
-   * @zh_CN 列集合
-   * @en_US Column set
-   */
-  columns?: XTableColumn[];
-  /**
-   * @zh_CN 表头和行高，单位 px
-   * @en_US Header and row height, unit px
-   */
-  rowHeight?: number;
-  /**
-   * @zh_CN 是否启用加载 loading
-   * @en_US Whether to enable loading
-   */
-  loading?: XBoolean;
-  /**
-   * @zh_CN 当前选中行数据
-   * @en_US Currently selected row data
-   */
-  activatedRow?: XTableRow;
-  /**
-   * @zh_CN 列头自定义模板
-   * @en_US Column header custom template
-   */
-  headColumnTpl?: XTableTemplate;
-  /**
-   * @zh_CN 列内容自定义模板
-   * @en_US Column content custom template
-   */
-  bodyColumnTpl?: XTableTemplate;
-  /**
-   * @zh_CN 行条件样式
-   * @en_US Row condition class
-   */
-  rowClass?: (row: XTableRow, index: number) => { [className: string]: boolean };
-  /**
-   * @zh_CN 开启虚拟滚动
-   * @en_US Turn on virtual scrolling
-   */
-  virtualScroll?: XBoolean;
-  /**
-   * @zh_CN body 数据高度
-   * @en_US body data height
-   */
-  bodyHeight?: number;
-  /**
-   * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
-   * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
-   */
-  minBufferPx?: number;
-  /**
-   * @zh_CN 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
-   * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
-   */
-  maxBufferPx?: number;
-  /**
-   * @zh_CN 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
-   * @en_US Adaptive height, table height is equal to the screen height minus the value set here
-   */
-  adaptionHeight?: XNumber;
-  /**
-   * @zh_CN 文档高度百分比，弹窗百分比高度用到
-   * @en_US Document height percentage, used by pop-up window percentage height
-   */
-  docPercent?: XNumber;
-  /**
-   * @zh_CN 单元格配置
-   * @en_US Cell config
-   */
-  cellConfig?: XTableCellConfig;
-  /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  rowSize?: XSize;
 }
 
 /**

@@ -18,7 +18,7 @@ import {
   XTableCell,
   XTableCellConfigRule
 } from './table.property';
-import { XIsChange, XIsEmpty, XResultList, XNumber, XSort, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XResultList, XSort, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XPaginationComponent } from '@ng-nest/ui/pagination';
 import { takeUntil } from 'rxjs/operators';
@@ -216,7 +216,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
       this.setChecked(this.data);
       this.setHeadCheckboxList(this.data);
       this.setExpand(this.data);
-      this.setHeadExpandList();
       this.detectChanges();
     } else if (this.data instanceof Function) {
       this.dataIsFunc = true;
@@ -232,7 +231,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     (this.data as Function)(this.index, this.size, this.query)
       .pipe(takeUntil(this._unSubject))
       .subscribe((x: XResultList<XTableRow>) => {
-        let [data, total] = [x.list as XTableRow[], x.total as XNumber];
+        let [data, total] = [x.list as XTableRow[], x.total!];
         if (this.virtualBody) {
           this.virtualBody.scrollToIndex(0);
           this.virtualBody.checkViewportSize();
@@ -242,8 +241,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
         this.setChecked(data);
         this.setHeadCheckboxList(data);
         this.setExpand(data);
-        this.setHeadExpandList();
-        this.total = total;
+        this.total.set(total);
         this.detectChanges();
       });
   }
@@ -298,20 +296,14 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.cellConfig.tbody = setRule(this.cellConfig.tbody);
   }
 
-  pageChange(type: 'index' | 'size') {
+  pageChange(_type: 'index' | 'size') {
     this.dataIsFunc && this.getDataByFunc();
-    if (type === 'index') {
-      this.indexChange.emit(Number(this.index));
-    } else if (type === 'size') {
-      this.sizeChange.emit(Number(this.size));
-    }
     this.resetScroll();
   }
 
   change(index: number) {
-    this.index = index;
+    this.index.set(index);
     this.dataIsFunc && this.getDataByFunc();
-    this.indexChange.emit(this.index);
     this.resetScroll();
   }
 
@@ -371,13 +363,12 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.detectChanges();
   }
 
-  setHeadExpandList() {}
-
   checkSort(sort: XSort[]) {
     if (!this.dataIsFunc) return;
-    if (typeof this.query === 'undefined') this.query = {};
-    this.query.sort = sort;
-    this.queryChange.emit(this.query);
+    let query = this.query();
+    if (typeof query === 'undefined') query = {};
+    query.sort = sort;
+    this.query.set(query);
     this.getDataByFunc();
   }
 

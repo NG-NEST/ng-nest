@@ -108,31 +108,31 @@
     ></div>
   }
 </table>
-@if (showPagination && size) {
+@if (showPagination && size()) {
   <x-pagination
     #pagination
     [(index)]="index"
     [(size)]="size"
     [(query)]="query"
-    [total]="total"
+    [total]="total()"
     (indexChange)="pageChange('index')"
     (sizeChange)="pageChange('size')"
-    [showEllipsis]="showEllipsis"
-    [showTotal]="showTotal"
-    [space]="space"
-    [showBackground]="showBackground"
-    [showSize]="showSize"
-    [showJump]="showJump"
-    [jumpWidth]="jumpWidth"
-    [showInputSize]="showInputSize"
-    [inputSizeWidth]="inputSizeWidth"
-    [sizeData]="sizeData"
-    [sizeWidth]="sizeWidth"
-    [pageLinkSize]="pageLinkSize"
-    [disabled]="disabled"
-    [totalTpl]="totalTpl"
-    [simple]="simple"
-    [simpleIndexWidth]="simpleIndexWidth"
+    [showEllipsis]="showEllipsis()"
+    [showTotal]="showTotal()"
+    [space]="space()"
+    [showBackground]="showBackground()"
+    [showSize]="showSize()"
+    [showJump]="showJump()"
+    [jumpWidth]="jumpWidth()"
+    [showInputSize]="showInputSize()"
+    [inputSizeWidth]="inputSizeWidth()"
+    [sizeData]="sizeData()"
+    [sizeWidth]="sizeWidth()"
+    [pageLinkSize]="pageLinkSize()"
+    [disabled]="disabled()"
+    [totalTpl]="totalTpl()"
+    [simple]="simple()"
+    [simpleIndexWidth]="simpleIndexWidth()"
   >
   </x-pagination>
 }

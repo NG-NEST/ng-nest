@@ -2,26 +2,20 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
-  ElementRef,
-  Renderer2,
-  ChangeDetectorRef,
-  inject,
   OnInit,
-  OnDestroy
+  signal,
+  computed,
+  HostBinding
 } from '@angular/core';
 import { XPaginationPrefix, XPaginationProperty } from './pagination.property';
-import { XIsChange, XConfigService } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
-import { XI18nPipe, XI18nService } from '@ng-nest/ui/i18n';
-import { takeUntil } from 'rxjs/operators';
+import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { ENTER } from '@angular/cdk/keycodes';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XToDataNew } from '../core';
 
 @Component({
   selector: `${XPaginationPrefix}`,
@@ -40,143 +34,111 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XPaginationComponent extends XPaginationProperty implements OnInit, OnChanges, OnDestroy {
-  lastIndex!: number;
-  indexes: number[] = [];
-  indexFirst: number = 1;
-  indexLast: number = 1;
-  jumpPage: number | null = null;
-  inputSize!: number;
+export class XPaginationComponent extends XPaginationProperty implements OnInit {
+  @HostBinding('class.x-pagination') _has = true;
 
-  private _unSubject = new Subject<void>();
+  indexFirst = signal(1);
+  indexLast = signal(1);
+  jumpPage = signal<string>('');
+  inputSize = signal<string>('');
 
-  get leftDisabled() {
-    return Number(this.index) === 1 || Number(this.total) === 0;
-  }
+  lastIndex = computed(() => Math.ceil(this.total() / this.size()) || 1);
+  leftDisabled = computed(() => this.index() === 1 || this.total() === 0);
+  rightDisabled = computed(() => this.index() === this.lastIndex() || this.total() === 0);
+  firstActivated = computed(() => this.index() === 1);
+  lastActivated = computed(() => this.index() === this.lastIndex());
 
-  get rightDisabled() {
-    return Number(this.index) === this.lastIndex || Number(this.total) === 0;
-  }
-
-  get firstActivated() {
-    return Number(this.index) === 1;
-  }
-
-  get lastActivated() {
-    return Number(this.index) === this.lastIndex;
-  }
-
-  private elementRef = inject(ElementRef);
-  private renderer = inject(Renderer2);
-  private cdr = inject(ChangeDetectorRef);
-  private i18n = inject(XI18nService);
-  configService = inject(XConfigService);
-
-  ngOnInit() {
-    this.renderer.addClass(this.elementRef.nativeElement, XPaginationPrefix);
-    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
-    this.inputSize = Number(this.size);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const { total, size, index } = changes;
-    XIsChange(total, size, index) && this.setIndexes();
-  }
-
-  ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
-
-  sizeChanged() {
-    this.setIndexes();
-    this.sizeChange.emit(this.size as number);
-    if (this.index !== 1) {
-      this.index = 1;
-      this.indexChange.emit(this.index);
-    }
-  }
-
-  setIndexes() {
-    this.lastIndex = Math.ceil(Number(this.total) / Number(this.size)) || 1;
+  indexes = computed(() => {
     const indexes: number[] = [];
-    const current = Number(this.index) - 1;
-    const maxSize = Number(this.pageLinkSize);
-    const pages = Math.min(maxSize, this.lastIndex);
+    const current = this.index() - 1;
+    const maxSize = this.pageLinkSize();
+    const pages = Math.min(maxSize, this.lastIndex());
     let start = Math.max(0, Math.ceil(current - pages / 2)),
-      end = Math.min(this.lastIndex - 1, start + pages - 1);
+      end = Math.min(this.lastIndex() - 1, start + pages - 1);
     var delta = maxSize - (end - start + 1);
     start = Math.max(0, start - delta);
 
     for (let i = start; i <= end; i++) {
       indexes.push(i + 1);
     }
-    this.indexes = indexes;
-    this.cdr.detectChanges();
+    return indexes;
+  });
+
+  sizeDataSignal = computed(() => XToDataNew(this.sizeData()));
+
+  // private i18n = inject(XI18nService);
+
+  ngOnInit() {
+    // this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
+    this.inputSize.set(this.size().toString());
+  }
+
+  sizeChanged() {
+    if (this.index() !== 1) {
+      this.index.set(1);
+    }
   }
 
   jump(index: number, isDiff = false) {
-    const ix = this.validateIndex(isDiff ? Number(this.index) + index : index);
-    if (ix !== this.index) {
-      this.index = ix;
-      this.setIndexes();
-      this.indexChange.emit(this.index);
+    const ix = this.validateIndex(isDiff ? this.index() + index : index);
+    if (ix !== this.index()) {
+      this.index.set(ix);
     }
   }
 
   onJumpKeydown(event: KeyboardEvent) {
-    if (this.jumpPage !== null && event.keyCode === ENTER) {
-      if (this.jumpPage <= this.indexFirst) {
-        this.jump(this.indexFirst);
-      } else if (this.jumpPage >= this.lastIndex) {
-        this.jump(this.lastIndex);
+    const jumpPage = this.jumpPage().trim();
+    if (jumpPage !== '' && event.keyCode === ENTER) {
+      if (Number(jumpPage) <= this.indexFirst()) {
+        this.jump(this.indexFirst());
+      } else if (Number(jumpPage) >= this.lastIndex()) {
+        this.jump(this.lastIndex());
       } else {
-        this.jump(this.jumpPage);
+        this.jump(Number(jumpPage));
       }
-      this.jumpPage = null;
-      this.cdr.detectChanges();
+      this.jumpPage.set('');
     }
   }
 
   onSimpleKeydown(event: KeyboardEvent) {
-    if (this.index !== null && event.keyCode === ENTER) {
-      if (Number(this.index) % 1 !== 0) {
-        this.index = Math.round(Number(this.index));
+    if (this.index() !== null && event.keyCode === ENTER) {
+      if (this.index() % 1 !== 0) {
+        this.index.update((x) => Math.round(x));
       }
-      if (isNaN(Number(this.index)) || this.index === 0) {
-        this.index = 1;
+      if (isNaN(this.index()) || this.index() === 0) {
+        this.index.set(1);
       }
-      if (Number(this.index) <= this.indexFirst) {
-        this.index = this.indexFirst;
-      } else if (Number(this.index) >= this.lastIndex) {
-        this.index = this.lastIndex;
+      if (this.index() <= this.indexFirst()) {
+        this.index.set(this.indexFirst());
+      } else if (this.index() >= this.lastIndex()) {
+        this.index.set(this.lastIndex());
       }
-      this.jump(this.index as number);
-      this.indexChange.emit(this.index as number);
-      this.cdr.detectChanges();
+      this.jump(this.index());
     }
   }
 
   onInputSizeKeydown(event: KeyboardEvent) {
-    if (this.inputSize !== null && event.keyCode === ENTER) {
-      if (this.inputSize % 1 !== 0) {
-        this.inputSize = Math.round(this.inputSize);
+    const inputSize = this.inputSize().trim();
+    if (inputSize !== '' && event.keyCode === ENTER) {
+      const inputNumber = Number(inputSize);
+      if (inputNumber % 1 !== 0) {
+        this.inputSize.set(`${Math.round(inputNumber)}`);
       }
-      if (isNaN(this.inputSize)) {
-        this.inputSize = Number(this.size);
+      if (isNaN(inputNumber)) {
+        this.inputSize.set(`${this.size()}`);
       }
-      if (this.inputSize <= 0) {
-        this.inputSize = Number(this.size);
-      } else if (this.inputSize !== Number(this.size)) {
-        this.size = this.inputSize;
+      if (inputNumber <= 0) {
+        this.inputSize.set(`${this.size()}`);
+      } else if (inputNumber !== this.size()) {
+        this.size.set(inputNumber);
         this.sizeChanged();
       }
     }
   }
 
   validateIndex(value: number): number {
-    if (value > this.lastIndex) {
-      return this.lastIndex;
+    if (value > this.lastIndex()) {
+      return this.lastIndex();
     } else if (value < 1) {
       return 1;
     } else {
@@ -185,6 +147,6 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit,
   }
 
   getActivated(index: number) {
-    return Number(this.index) === index;
+    return this.index() === index;
   }
 }

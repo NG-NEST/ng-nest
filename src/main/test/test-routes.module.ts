@@ -121,6 +121,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./highlight/highlight.component').then((x) => x.TeHighlightComponent)
       },
       {
+        path: 'icon',
+        loadComponent: () => import('./icon/icon.component').then((x) => x.TeIconComponent)
+      },
+      {
         path: 'image',
         loadComponent: () => import('./image/image.component').then((x) => x.TeImageComponent)
       },
