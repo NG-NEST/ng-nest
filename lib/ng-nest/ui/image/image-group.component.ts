@@ -13,21 +13,11 @@ import { XImageGroupPrefix } from './image.property';
 export class XImageGroupComponent {
   images: XImageComponent[] = [];
 
-  constructor() {
-    console.log('group cons');
-  }
-
-  ngOnInit() {
-    console.log('group');
-  }
-
   addImage(image: XImageComponent): void {
-    console.log('add');
     this.images.push(image);
   }
 
   removeImage(image: XImageComponent): void {
-    console.log('remove');
     this.images.splice(this.images.indexOf(image), 1);
   }
 }

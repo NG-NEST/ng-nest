@@ -1,5 +1,6 @@
-import { Input, Component, Output, EventEmitter } from '@angular/core';
-import { XProperty, XTemplate, XWithConfig } from '@ng-nest/ui/core';
+import { Component, input, output } from '@angular/core';
+import { XProperty, XPropertyFunction, XToCssPixelValue } from '@ng-nest/ui/core';
+import type { XNumber, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * Image
@@ -7,64 +8,64 @@ import { XProperty, XTemplate, XWithConfig } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XImagePrefix = 'x-image';
-const X_CONFIG_NAME = 'image';
+const X_IMAGE_CONFIG_NAME = 'image';
 
 /**
  * Image Property
  */
 @Component({ selector: `${XImagePrefix}-property`, template: '' })
-export class XImageProperty extends XProperty {
+export class XImageProperty extends XPropertyFunction(X_IMAGE_CONFIG_NAME) {
   /**
    * @zh_CN 图片显示地址
    * @en_US Picture display address
    */
-  @Input() src?: string;
+  readonly src = input<string>();
   /**
    * @zh_CN 图片宽度
    * @en_US Picture width
    */
-  @Input() width?: string;
+  readonly width = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 图片高度
    * @en_US Picture height
    */
-  @Input() height?: string;
+  readonly height = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 图像描述
    * @en_US Image description
    */
-  @Input() alt?: string;
+  readonly alt = input<string>();
   /**
    * @zh_CN 加载失败显示的地址
    * @en_US Load fault tolerance address
    */
-  @Input() fallback?: string;
+  readonly fallback = input<string>();
   /**
    * @zh_CN 预览文字
    * @en_US Preview text
    * @default '预览'
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) previewText?: string;
+  readonly previewText = input<string>(this.config?.previewText!);
   /**
    * @zh_CN 渐进加载显示的图片
    * @en_US Gradually loaded the display of the display
    */
-  @Input() placeholder?: string;
+  readonly placeholder = input<string>();
   /**
    * @zh_CN 自定义预览操作
    * @en_US Custom preview operation
    */
-  @Input() previewTpl?: XTemplate;
+  readonly previewTpl = input<XTemplate>();
   /**
    * @zh_CN 图片加载错误
    * @en_US Picture load failed
    */
-  @Output() error = new EventEmitter();
+  readonly error = output<ErrorEvent>();
   /**
    * @zh_CN 图片加载完成
    * @en_US Picture loading complete
    */
-  @Output() load = new EventEmitter();
+  readonly load = output<Event>();
 }
 
 /**

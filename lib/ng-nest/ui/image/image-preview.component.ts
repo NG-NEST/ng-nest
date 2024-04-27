@@ -5,10 +5,10 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   inject,
-  OnInit
+  OnInit,
+  signal
 } from '@angular/core';
 import { XImageNode, XImagePreviewPrefix, XImagePreviewProperty } from './image.property';
-import { XConfigService } from '@ng-nest/ui/core';
 import { XDialogCloseDirective, X_DIALOG_DATA } from '@ng-nest/ui/dialog';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
@@ -36,9 +36,9 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
     y: 0
   };
 
-  activated?: XImageNode;
-  total = 1;
-  current = 1;
+  activated = signal<XImageNode | undefined>(undefined);
+  total = signal(1);
+  current = signal(1);
 
   private document = inject(DOCUMENT);
 
@@ -52,7 +52,6 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
   @ViewChild('imageRef') imageRef!: ElementRef<HTMLImageElement>;
 
   data = inject<XImageNode[]>(X_DIALOG_DATA);
-  configService = inject(XConfigService);
 
   ngOnInit() {
     this.setActivated();
@@ -74,23 +73,26 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
   setActivated() {
     if (!this.data) return;
     if (this.data.length === 1) {
-      this.activated = this.data[0];
-      this.total = this.current = 1;
+      this.activated.set(this.data[0]);
+      this.total.set(1);
+      this.current.set(1);
     } else {
-      this.total = this.data.length;
-      this.activated = this.data.find((x, index) => {
-        if (x.activated) {
-          this.current = index + 1;
-          return true;
-        }
-        return false;
-      });
+      this.total.set(this.data.length);
+      this.activated.set(
+        this.data.find((x, index) => {
+          if (x.activated) {
+            this.current.set(index + 1);
+            return true;
+          }
+          return false;
+        })
+      );
     }
   }
 
   onCurrentChange(num: number) {
-    this.current += num;
-    this.activated = this.data[this.current - 1];
+    this.current.update((x) => x + num);
+    this.activated.set(this.data[this.current() - 1]);
     this.initialization();
   }
 

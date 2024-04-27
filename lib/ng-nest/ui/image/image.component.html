@@ -1,27 +1,27 @@
-<div class="x-image" [ngClass]="classMap">
+<div class="x-image">
   <img
-    [hidden]="placeholder && !isLoaded"
+    [hidden]="placeholder() && !isLoaded()"
     class="x-image-img"
-    [src]="src"
-    [style.width]="width"
-    [style.height]="height"
+    [src]="srcSignal()"
+    [style.width]="width()"
+    [style.height]="height()"
     (error)="onError($event)"
     (load)="onLoad($event)"
   />
-  @if (placeholder && !isLoaded) {
-    <img class="x-image-img" [src]="placeholder" [style.width]="width" [style.height]="height" />
+  @if (placeholder() && !isLoaded()) {
+    <img class="x-image-img" [src]="placeholder()" [style.width]="width()" [style.height]="height()" />
   }
-  @if (isError && !fallback) {
-    <div class="x-image-error-icon" [style.width]="width" [style.height]="height">
+  @if (isError() && !fallback()) {
+    <div class="x-image-error-icon" [style.width]="width()" [style.height]="height()">
       <x-icon type="fto-image"></x-icon>
     </div>
   }
-  <ng-container *xOutlet="previewTpl; context: { $image: this }">
-    @if (!isError) {
+  <ng-container *xOutlet="previewTpl(); context: { $image: this }">
+    @if (!isError()) {
       <div class="x-image-overlay" (click)="onPreview()">
         <div class="x-image-text">
           <x-icon type="fto-eye"></x-icon>
-          <span>{{ getPreviewText }}</span>
+          <span>{{ previewTextSignal() }}</span>
         </div>
       </div>
     }
