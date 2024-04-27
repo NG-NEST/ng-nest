@@ -28,4 +28,7 @@
 
 @mixin dropdown-portal-child {
   margin-top: -0.3125rem;
+  > x-dropdown-portal {
+    padding: 0 0.3125rem;
+  }
 }
