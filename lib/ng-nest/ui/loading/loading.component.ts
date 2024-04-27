@@ -1,19 +1,17 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
   HostBinding,
   ViewChild,
   TemplateRef,
   ViewContainerRef,
-  inject
+  inject,
+  computed,
+  effect
 } from '@angular/core';
 import { XLoadingPrefix, XLoadingProperty } from './loading.property';
-import { XIsChange, XIsEmpty, XConfigService, XIsNumber, XClearClass, XCorner } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsNumber, XCorner, XToNumber } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -28,60 +26,53 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XLoadingComponent extends XLoadingProperty implements OnInit, OnChanges {
+export class XLoadingComponent extends XLoadingProperty {
   @HostBinding('class.x-loading-parent') get getLoading() {
-    return this.loading;
+    return this.loading();
   }
   @ViewChild('loadingTpl') loadingTpl!: TemplateRef<void>;
   portalRef!: XPortalOverlayRef<any>;
 
-  get isRadius() {
-    return !(this.radius instanceof Array) && Boolean(this.radius);
-  }
+  isRadius = computed(() => !(this.radius() instanceof Array) && Boolean(this.radius()));
 
-  sizeNumber?: number;
+  sizeNumber = computed(() => {
+    const size = XToNumber(this.size());
+    if (XIsNumber(size)) {
+      return size;
+    }
+    return;
+  });
 
-  private cdr = inject(ChangeDetectorRef);
+  classMapSignal = computed(() => {
+    const size = this.size();
+    if (isNaN(XToNumber(size))) {
+      return { [`${XLoadingPrefix}-${size}`]: !XIsEmpty(size) };
+    }
+    return;
+  });
+
   private portal = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
-  configService = inject(XConfigService);
 
-  ngOnInit() {
-    this.setClassMap();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    const { loading, size } = changes;
-    XIsChange(loading) && this.setLoading();
-    XIsChange(size) && this.setClassMap();
-  }
-
-  setClassMap() {
-    XClearClass(this.classMap);
-    if (XIsNumber(this.size)) {
-      this.sizeNumber = this.size as number;
-    } else {
-      this.classMap[`${XLoadingPrefix}-${this.size}`] = !XIsEmpty(this.size);
-    }
-    this.cdr.markForCheck();
-  }
-
-  setLoading() {
-    if (this.fullScreen) {
-      if (this.loading) {
-        this.createFullScreen();
-      } else {
-        this.closeFullScreen();
+  constructor() {
+    super();
+    effect(() => {
+      if (this.fullScreen()) {
+        if (this.loading()) {
+          this.createFullScreen();
+        } else {
+          this.closeFullScreen();
+        }
       }
-    }
-    this.cdr.detectChanges();
+    });
   }
 
   includeRadius(cover: XCorner) {
-    if (!(this.radius instanceof Array)) {
+    const radius = this.radius();
+    if (!(radius instanceof Array)) {
       return false;
     }
-    return this.radius.includes(cover);
+    return radius.includes(cover);
   }
 
   createFullScreen() {
