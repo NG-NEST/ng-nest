@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XPopoverDirective } from '@ng-nest/ui/popover';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'ex-default',
@@ -9,4 +10,12 @@ import { XPopoverDirective } from '@ng-nest/ui/popover';
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })
-export class ExDefaultComponent {}
+export class ExDefaultComponent {
+  content = signal(123);
+
+  constructor() {
+    interval(1000).subscribe(() => {
+      this.content.update((x) => x + 1);
+    });
+  }
+}

@@ -38,7 +38,7 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
     this.portalHover(false);
   }
 
-  @HostBinding('@x-fade-animation') animation: any;
+  @HostBinding('@x-fade-animation') animation = true;
 
   @ViewChild('tooltipPortal', { static: true }) tooltipPortal!: ElementRef<HTMLElement>;
   @ViewChild('tooltipArrow') tooltipArrow!: ElementRef<HTMLElement>;
