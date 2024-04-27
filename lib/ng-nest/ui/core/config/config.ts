@@ -403,9 +403,9 @@ export interface XRippleConfig {
 }
 
 export interface XLinkConfig {
-  underline?: XBoolean;
-  iconRight?: XBoolean;
-  preventDefault?: XBoolean;
+  underline?: boolean;
+  iconRight?: boolean;
+  preventDefault?: boolean;
 }
 
 export interface XListConfig {
@@ -420,7 +420,7 @@ export interface XListOptionConfig {
 }
 
 export interface XLoadingConfig {
-  size?: XSize;
+  size?: XSize | number;
   text?: string;
   icon?: string;
   color?: string;
@@ -457,22 +457,23 @@ export interface XPageHeaderConfig {
 }
 
 export interface XPaginationConfig {
-  index?: XNumber;
-  size?: XNumber;
-  space?: XNumber;
-  pageLinkSize?: XNumber;
+  index?: number;
+  size?: number;
+  space?: string;
+  pageLinkSize?: number;
   hiddenBorder?: boolean;
   showEllipsis?: boolean;
   showTotal?: boolean;
   showSize?: boolean;
-  sizeWidth?: number;
+  showBackground?: boolean;
+  sizeWidth?: string;
   sizeData?: number[];
   showInputSize?: boolean;
   inputSizeWidth?: number;
   showJump?: boolean;
-  jumpWidth?: number;
+  jumpWidth?: string;
   simple?: boolean;
-  simpleIndexWidth?: number;
+  simpleIndexWidth?: string;
 }
 
 export interface XPatternConfig {}
@@ -480,17 +481,21 @@ export interface XPatternConfig {}
 export interface XPopconfirmConfig {
   placement?: XPlacement;
   trigger?: XTrigger;
-  width?: string;
   icon?: string;
   iconColor?: string;
   cancelText?: string;
   confirmText?: string;
+  width?: string;
+  maxWidth?: string;
+  minWidth?: string;
 }
 
 export interface XPopoverConfig {
   placement?: XPlacement;
   trigger?: XTrigger;
   width?: string;
+  minWidth?: string;
+  maxWidth?: string;
 }
 
 export interface XPortalConfig {}
@@ -569,6 +574,22 @@ export interface XTableConfig {
   showEmpty?: XBoolean;
   emptyImg?: XTemplate;
   emptyContent?: XTemplate;
+
+  space?: string;
+  pageLinkSize?: number;
+  hiddenBorder?: boolean;
+  showEllipsis?: boolean;
+  showTotal?: boolean;
+  showSize?: boolean;
+  showBackground?: boolean;
+  sizeWidth?: string;
+  sizeData?: number[];
+  showInputSize?: boolean;
+  inputSizeWidth?: number;
+  showJump?: boolean;
+  jumpWidth?: string;
+  simple?: boolean;
+  simpleIndexWidth?: string;
 }
 
 export interface XTabsConfig {

@@ -1,12 +1,6 @@
-import {
-  XProperty,
-  XInputNumber,
-  XInputBoolean,
-  XNumber,
-  XBoolean,
-  XWithConfig
-} from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XPropertyFunction, XToNumber, XToBoolean } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import type { XNumber, XBoolean } from '@ng-nest/ui/core';
 
 /**
  * Icon
@@ -14,46 +8,44 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XIconPrefix = 'x-icon';
+const X_ICON_CONFIG_NAME = 'icon';
 
-const X_CONFIG_NAME = 'icon';
-
+/**
+ * @zh_CN SVG 图标根路径地址
+ * @en_US The root address of the SVG icon
+ */
 export const XIconHref = 'https://ngnest.com/static/icons/';
 
 /**
  * Icon Property
  */
 @Component({ selector: `${XIconPrefix}-property`, template: '' })
-export class XIconProperty extends XProperty {
+export class XIconProperty extends XPropertyFunction(X_ICON_CONFIG_NAME) {
   /**
    * @zh_CN SVG 图标根路径地址，可以通过全局只配置一次，所有图标资源在 github 上的 ng-nest-icon 中
    * @en_US The root address of the SVG icon can be configured only once globally. All icon resources are in ng-nest-icon on github
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, XIconHref) href!: string;
+  readonly href = input<string>(this.config?.href ?? XIconHref);
   /**
    * @zh_CN 图标类型
    * @en_US Icon type
    */
-  @Input() type?: string;
+  readonly type = input<string>();
   /**
    * @zh_CN 图标颜色
    * @en_US Icon color
    */
-  @Input() color?: string | string[];
+  readonly color = input<string>();
   /**
    * @zh_CN 图标旋转角度
    * @en_US Icon rotation angle
    */
-  @Input() @XInputNumber() rotate?: XNumber;
+  readonly rotate = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN loading效果（图标一直旋转）
    * @en_US Loading effect (icon keeps rotating)
    */
-  @Input() @XInputBoolean() spin?: XBoolean;
-  /**
-   * @zh_CN 变化为的图标（未实现）
-   * @en_US Icon to change to (not implemented)
-   */
-  @Input() to?: string;
+  readonly spin = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }
 
 /**

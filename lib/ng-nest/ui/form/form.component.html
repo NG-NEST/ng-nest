@@ -29,7 +29,7 @@
 </ng-template>
 
 <ng-template #controlsTemp let-controls="controls">
-  <x-row [space]="space">
+  <x-row [space]="space!">
     @for (control of controls; track control.id) {
       <x-col [style.padding-top.rem]="space" [span]="!control.span ? span : control.span" [hidden]="control.hidden">
         <ng-container *xOutlet="controlTpl[control.id]; context: { $option: control }">
