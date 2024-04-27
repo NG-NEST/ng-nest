@@ -1,18 +1,16 @@
 import {
   Component,
-  OnInit,
-  AfterViewInit,
   ViewEncapsulation,
   Renderer2,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
-  HostListener,
-  ViewChild,
-  inject
+  inject,
+  computed,
+  viewChild,
+  effect
 } from '@angular/core';
 import { XLinkPrefix, XLinkProperty } from './link.property';
-import { XConfigService, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { NgClass } from '@angular/common';
 
@@ -25,42 +23,21 @@ import { NgClass } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XLinkComponent extends XLinkProperty implements OnInit, AfterViewInit {
-  hover: boolean = false;
+export class XLinkComponent extends XLinkProperty {
+  link = viewChild<ElementRef<HTMLLinkElement>>('link');
 
-  @ViewChild('link', { static: true }) link!: ElementRef<HTMLLinkElement>;
-
-  @HostListener('mouseenter') mouseenter() {
-    this.hover = true;
-    this.cdr.detectChanges();
-  }
-
-  @HostListener('mouseleave') mouseleave() {
-    this.hover = false;
-    this.cdr.detectChanges();
-  }
+  classMapSignal = computed(() => ({
+    [`${XLinkPrefix}-${this.type()}`]: !XIsEmpty(this.type())
+  }));
 
   private renderer = inject(Renderer2);
-  private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
 
-  ngOnInit() {
-    this.setClassMap();
-  }
-
-  ngAfterViewInit() {
-    if (XIsEmpty(this.href)) {
-      this.renderer.removeAttribute(this.link?.nativeElement, 'href');
-    }
-  }
-
-  onClick(event: Event) {
-    if (this.preventDefault) {
-      event.preventDefault();
-    }
-  }
-
-  setClassMap() {
-    this.classMap[`${XLinkPrefix}-${this.type}`] = this.type ? true : false;
+  constructor() {
+    super();
+    effect(() => {
+      if (XIsEmpty(this.href()) && this.link()) {
+        this.renderer.removeAttribute(this.link()?.nativeElement, 'href');
+      }
+    });
   }
 }
