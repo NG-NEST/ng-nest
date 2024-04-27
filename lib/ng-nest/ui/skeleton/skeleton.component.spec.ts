@@ -163,7 +163,7 @@ class TestXSkeletonComponent {
   dataCustom: XSkeletonRow[] = [
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [
         { type: 'avatar', width: '3rem', height: '3rem' },
         {
@@ -173,7 +173,7 @@ class TestXSkeletonComponent {
             { cols: [{}] },
             { cols: [{ span: 16 }] },
             {
-              space: 1,
+              space: "1rem",
               flex: true,
               cols: [
                 { width: '3rem' },
@@ -192,7 +192,7 @@ class TestXSkeletonComponent {
   dataTable: XSkeletonRow[] = [
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [
         { type: 'title', width: '3rem' },
         { type: 'title', span: 4 },
@@ -203,22 +203,22 @@ class TestXSkeletonComponent {
     },
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     }
   ];

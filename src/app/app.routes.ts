@@ -13,7 +13,7 @@ export const ShareRoutes: Routes = [
   // { path: '**', loadChildren: () => import('../main/api/api-routes.module').then((x) => x.ApiRoutes) }
   {
     path: '**',
-    loadComponent: () => import('../main/test/button/button.component').then((x) => x.TeButtonComponent)
+    loadComponent: () => import('../main/test/skeleton/skeleton.component').then((x) => x.TeSkeletonComponent)
   }
 ];
 
