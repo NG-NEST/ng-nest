@@ -1,5 +1,5 @@
-import { Input, Output, EventEmitter, Component } from '@angular/core';
-import { XWithConfig } from '@ng-nest/ui/core';
+import { Component, input, output } from '@angular/core';
+import { XPropertyFunction } from '@ng-nest/ui/core';
 
 /**
  * PageHeader
@@ -7,36 +7,36 @@ import { XWithConfig } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XPageHeaderPrefix = 'x-page-header';
-const X_CONFIG_NAME = 'header';
+const X_PAGE_HEADER_CONFIG_NAME = 'pageHeader';
 
 /**
  * PageHeader Property
  */
 @Component({ selector: `${XPageHeaderPrefix}-property`, template: '' })
-export class XPageHeaderProperty {
+export class XPageHeaderProperty extends XPropertyFunction(X_PAGE_HEADER_CONFIG_NAME) {
   /**
    * @zh_CN 返回图标
    * @en_US Back icon
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'fto-arrow-left') backIcon?: string;
+  readonly backIcon = input<string>(this.config?.backIcon ?? 'fto-arrow-left');
   /**
    * @zh_CN 返回文字
    * @en_US Return text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) backText?: string;
+  readonly backText = input<string>(this.config?.backText ?? '');
   /**
    * @zh_CN 标题
    * @en_US Title
    */
-  @Input() title?: string;
+  readonly title = input<string>('');
   /**
    * @zh_CN 副标题
    * @en_US Subtitle
    */
-  @Input() subTitle?: string;
+  readonly subTitle = input<string>('');
   /**
    * @zh_CN 点击返回的事件
    * @en_US Click to return event
    */
-  @Output() backClick = new EventEmitter();
+  readonly backClick = output<Event>();
 }

@@ -1,12 +1,12 @@
 <div class="x-page-header">
-  <x-button class="x-page-header-backIcon" [icon]="backIcon!" type="text" (click)="backClick.emit()">{{
-    getBackText
+  <x-button class="x-page-header-backIcon" [icon]="backIcon()" type="text" (click)="backClick.emit($event)">{{
+    backTextSignal()
   }}</x-button>
   <span class="x-page-header-divided"></span>
-  @if (title) {
-    <span class="x-page-header-title">{{ title }}</span>
+  @if (title()) {
+    <span class="x-page-header-title">{{ title() }}</span>
   }
-  @if (subTitle) {
-    <span class="x-page-header-subTitle">{{ subTitle }}</span>
+  @if (subTitle()) {
+    <span class="x-page-header-subTitle">{{ subTitle() }}</span>
   }
 </div>
