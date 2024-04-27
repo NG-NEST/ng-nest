@@ -2,14 +2,12 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   ElementRef,
-  Input,
   inject,
-  OnInit
+  OnInit,
+  input
 } from '@angular/core';
 import { XMenuNodeProperty, XMenuNodePrefix } from './menu.property';
-import { XConfigService } from '@ng-nest/ui/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { RouterModule } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
@@ -23,17 +21,19 @@ import { NgTemplateOutlet } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XMenuNodeComponent extends XMenuNodeProperty implements OnInit {
-  @Input() menu: any;
-  private cdr = inject(ChangeDetectorRef);
+  menu = input.required<any>();
+  routerLink = input<string>();
+  leaf = input<boolean>();
+  icon = input<string>();
+  label = input<string>();
+  open = input<boolean>();
+  id = input<any>();
+  
   private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
 
   ngOnInit() {
-    if (this.menu?.activatedId == this.node.id) {
-      this.menu.activatedElementRef = this.elementRef;
+    if (this.menu().activatedId() == this.id()) {
+      this.menu().activatedElementRef = this.elementRef;
     }
-    this.node.change = () => {
-      this.cdr.detectChanges();
-    };
   }
 }
