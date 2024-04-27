@@ -5,19 +5,20 @@ import {
   HostBinding,
   HostListener,
   OnDestroy,
-  OnInit,
   Renderer2,
   SimpleChanges,
+  computed,
   inject
 } from '@angular/core';
-import { XComputed, XIsArray, XIsChange, XIsString } from '@ng-nest/ui/core';
+import { XComputed, XComputedStyle, XIsArray, XIsChange, XIsString, XToCssPx } from '@ng-nest/ui/core';
 import { fromEvent, Subscription, takeUntil } from 'rxjs';
-import { XResizablePosition, XResizablePrefix, XResizableProperty } from './resizable.property';
+import { XResizablePosition, XResizableProperty } from './resizable.property';
 
 @Directive({ selector: '[xResizable]', standalone: true })
-export class XResizableDirective extends XResizableProperty implements OnInit, OnDestroy {
+export class XResizableDirective extends XResizableProperty implements OnDestroy {
+  @HostBinding('class.x-resizable') _has = true;
   @HostBinding('class.x-resizable-disabled') get getDisabled() {
-    return !this.xResizable;
+    return !this.xResizable();
   }
 
   cornerPositions: XResizablePosition[] = ['top-start', 'top-end', 'bottom-start', 'bottom-end'];
@@ -39,10 +40,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   private document = inject(DOCUMENT);
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
-
-  ngOnInit() {
-    this.setMapClass();
-  }
+  private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
 
   ngAfterViewInit() {
     this.setPosition();
@@ -60,7 +58,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   @HostListener('mousedown', ['$event'])
   @HostListener('touchstart', ['$event'])
   mousedown(event: MouseEvent | TouchEvent) {
-    if (!this.xResizable) return;
+    if (!this.xResizable()) return;
     const classList = (event.target as HTMLElement).classList;
     let direction: XResizablePosition | null = null;
     for (let pos of this.allPositions) {
@@ -71,9 +69,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     }
     if (!direction) return;
 
-    const evt = event.type.startsWith('touch')
-      ? (event as TouchEvent).targetTouches[0]
-      : (event as MouseEvent);
+    const evt = event.type.startsWith('touch') ? (event as TouchEvent).targetTouches[0] : (event as MouseEvent);
     const { clientWidth, clientHeight, offsetLeft, offsetTop } = this.elementRef.nativeElement;
     const { screenX, screenY } = evt;
     const isTouchEvent = event.type.startsWith('touch');
@@ -90,31 +86,19 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     const mouseMoveSub = fromEvent(document, moveEvent)
       .pipe(takeUntil(mouseup))
       .subscribe((ev) =>
-        this.move(
-          ev as MouseEvent | TouchEvent,
-          clientWidth,
-          clientHeight,
-          offsetTop,
-          offsetLeft,
-          screenX,
-          screenY
-        )
+        this.move(ev as MouseEvent | TouchEvent, clientWidth, clientHeight, offsetTop, offsetLeft, screenX, screenY)
       );
 
     this.mouseUpSub.add(mouseMoveSub);
   }
 
-  setMapClass() {
-    this.renderer.addClass(this.elementRef.nativeElement, XResizablePrefix);
-  }
-
   setPosition() {
     if (!this.xResizable || !this.firstLoaded) return;
     let positions: XResizablePosition[] = [];
-    if (XIsString(this.position)) {
-      positions.push(this.position as XResizablePosition);
-    } else if (XIsArray(this.position)) {
-      positions = this.position as XResizablePosition[];
+    if (XIsString(this.position())) {
+      positions.push(this.position() as XResizablePosition);
+    } else if (XIsArray(this.position())) {
+      positions = this.position() as XResizablePosition[];
     }
 
     if (positions.includes('all')) {
@@ -174,12 +158,13 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   }
 
   initResize(event: MouseEvent | TouchEvent, direction: XResizablePosition) {
+    const evt = event.type.startsWith('touch') ? (event as TouchEvent).targetTouches[0] : (event as MouseEvent);
     this.direction = direction;
     this.renderer.addClass(this.elementRef.nativeElement, `x-resizable-resizing`);
     let { clientWidth, clientHeight, offsetLeft, offsetTop } = this.elementRef.nativeElement;
     this.newBox = { clientWidth, clientHeight, offsetLeft, offsetTop };
     event.stopPropagation();
-    this.resizeBegin.emit();
+    this.resizeBegin.emit({ event: evt, ...this.newBox });
   }
 
   mouseup(event: MouseEvent | TouchEvent) {
@@ -188,9 +173,7 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
   }
 
   endResize(event: MouseEvent | TouchEvent) {
-    const evt = event.type.startsWith('touch')
-      ? (event as TouchEvent).targetTouches[0]
-      : (event as MouseEvent);
+    const evt = event.type.startsWith('touch') ? (event as TouchEvent).targetTouches[0] : (event as MouseEvent);
     this.direction = null;
     this.renderer.removeClass(this.elementRef.nativeElement, `x-resizable-resizing`);
     for (const node of this.activatingNodes) {
@@ -209,31 +192,23 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     screenX: number,
     screenY: number
   ) {
-    const evt = event.type.startsWith('touch')
-      ? (event as TouchEvent).targetTouches[0]
-      : (event as MouseEvent);
+    const evt = event.type.startsWith('touch') ? (event as TouchEvent).targetTouches[0] : (event as MouseEvent);
     const movementX = evt.screenX - screenX;
     const movementY = evt.screenY - screenY;
 
     this.newBox = {
       clientWidth:
-        width -
-        (['bottom-start', 'left', 'top-start'].includes(this.direction as string)
-          ? movementX
-          : -movementX),
+        width - (['bottom-start', 'left', 'top-start'].includes(this.direction as string) ? movementX : -movementX),
       clientHeight:
-        height -
-        (['top-start', 'top', 'top-end'].includes(this.direction as string)
-          ? movementY
-          : -movementY),
+        height - (['top-start', 'top', 'top-end'].includes(this.direction as string) ? movementY : -movementY),
       offsetLeft: left + movementX,
       offsetTop: top + movementY
     };
 
     const box = {
       ...this.newBox,
-      offsetLeft: this.newBox.offsetLeft - Number(this.offsetLeft),
-      offsetTop: this.newBox.offsetTop - Number(this.offsetTop)
+      offsetLeft: this.newBox.offsetLeft - XToCssPx(this.offsetLeft(), this.fontSize()),
+      offsetTop: this.newBox.offsetTop - XToCssPx(this.offsetTop(), this.fontSize())
     };
 
     this.resizeBox(box);
@@ -241,13 +216,8 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
     this.resizing.emit({ ...this.newBox, event: evt, direction: this.direction });
   }
 
-  resizeBox(box: {
-    clientWidth: number;
-    clientHeight: number;
-    offsetLeft: number;
-    offsetTop: number;
-  }) {
-    if (this.ghost) return;
+  resizeBox(box: { clientWidth: number; clientHeight: number; offsetLeft: number; offsetTop: number }) {
+    if (this.ghost()) return;
     const overMinWidth = !this.minWidth || box.clientWidth >= this.minWidth;
     const underMaxWidth = !this.maxWidth || box.clientWidth <= this.maxWidth;
     const overMinHeight = !this.minHeight || box.clientHeight >= this.minHeight;

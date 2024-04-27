@@ -11,7 +11,7 @@ import {
   effect
 } from '@angular/core';
 import { XAvatarPrefix, XAvatarProperty } from './avatar.property';
-import { XIsEmpty, XIsNumber, XIsString, XIsObject, XComputedStyle, XResize } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsNumber, XIsString, XIsObject, XComputedStyle, XResize, XToCssPx } from '@ng-nest/ui/core';
 import { DOCUMENT, NgClass, NgStyle } from '@angular/common';
 import { debounceTime, map } from 'rxjs';
 import { XIconComponent } from '@ng-nest/ui/icon';
@@ -105,7 +105,7 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
     const labelWidth = this.labelWidth();
     if (!label || !this.elementRef || !labelRef || !labelWidth) return {};
     const eleWidth = this.elementRef.nativeElement.clientWidth;
-    let scale = (eleWidth - this.getGap() * 2) / labelWidth;
+    let scale = (eleWidth - XToCssPx(this.gap(), this.fontSize()) * 2) / labelWidth;
     scale = scale > 1 ? 1 : scale;
     return { transform: `scale(${scale})` };
   });
@@ -125,14 +125,5 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
 
   imgError() {
     this.isImgError.set(true);
-  }
-
-  private getGap() {
-    const gap = this.gap();
-    if (gap === '0') return 0;
-    if (XIsNumber(gap)) return Number(gap);
-    else if (gap.endsWith('rem')) return Number(gap.replace(/rem/g, '')) * this.fontSize();
-    else if (gap.endsWith('px')) return Number(gap.replace(/px/g, ''));
-    return 0;
   }
 }

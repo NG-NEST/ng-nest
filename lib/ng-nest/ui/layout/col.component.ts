@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding, inject, computed } from '@angular/core';
 import { XColPrefix, XColProperty } from './layout.property';
 import { XRowComponent } from './row.component';
-import { XComputedStyle, XIsNumber } from '../core';
+import { XComputedStyle, XToCssPx } from '../core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -42,10 +42,6 @@ export class XColComponent extends XColProperty {
   space = computed(() => {
     if (!this.rowComponent?.space()) return 0;
     const space = this.rowComponent.space();
-    if (space === '0') return 0;
-    if (XIsNumber(space)) return Number(space);
-    else if (space.endsWith('rem')) return Number(space.replace(/rem/g, '')) * this.fontSize();
-    else if (space.endsWith('px')) return Number(space.replace(/px/g, ''));
-    return 0;
+    return XToCssPx(space, this.fontSize());
   });
 }

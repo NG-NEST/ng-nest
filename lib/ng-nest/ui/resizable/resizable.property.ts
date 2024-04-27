@@ -1,13 +1,6 @@
-import { Directive, EventEmitter, Input, Output } from '@angular/core';
-import {
-  XBoolean,
-  XCorner,
-  XInputBoolean,
-  XInputNumber,
-  XNumber,
-  XPosition,
-  XProperty
-} from '@ng-nest/ui/core';
+import { Directive, input, output } from '@angular/core';
+import { XProperty, XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
+import type { XBoolean, XCorner, XNumber, XPosition } from '@ng-nest/ui/core';
 
 /**
  * Resizable 指令名称
@@ -26,42 +19,42 @@ export class XResizableProperty extends XProperty {
    * @zh_CN 启用调整尺寸大小
    * @en_US Enable adjustment size size
    */
-  @Input() @XInputBoolean() xResizable: XBoolean = true;
+  readonly xResizable = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 调整方位
    * @en_US Adjust the orientation
    */
-  @Input() position?: XResizablePosition | XResizablePosition[] = 'all';
+  readonly position = input<XResizablePosition | XResizablePosition[]>('all');
   /**
    * @zh_CN 手动调整，通过回调的数值自行调整
    * @en_US Manual adjustment, adjustment of the number of callbacks
    */
-  @Input() @XInputBoolean() ghost: XBoolean = false;
+  readonly ghost = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 偏移屏幕左边
    * @en_US Distance on the left side
    */
-  @Input() @XInputNumber() offsetLeft: XNumber = 0;
+  readonly offsetLeft = input<string, XNumber>('0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 偏移屏幕顶部
    * @en_US Distance to the top of the screen
    */
-  @Input() @XInputNumber() offsetTop: XNumber = 0;
+  readonly offsetTop = input<string, XNumber>('0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 开始调整
    * @en_US Adjust the orientation
    */
-  @Output() resizeBegin: EventEmitter<any> = new EventEmitter();
+  readonly resizeBegin = output<XResizableEvent>();
   /**
    * @zh_CN 调整中
    * @en_US Adjust the orientation
    */
-  @Output() resizing: EventEmitter<XResizableEvent> = new EventEmitter();
+  readonly resizing = output<XResizableEvent>();
   /**
    * @zh_CN 调整结束
    * @en_US Adjust the orientation
    */
-  @Output() resizeEnd: EventEmitter<XResizableEvent> = new EventEmitter();
+  readonly resizeEnd = output<XResizableEvent>();
 }
 
 /**

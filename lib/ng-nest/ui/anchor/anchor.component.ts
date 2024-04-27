@@ -14,7 +14,7 @@ import {
   signal
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorProperty } from './anchor.property';
-import { XComputedStyle, XIsEmpty, XRequestAnimationFrame, XIsNumber, XIsUndefined } from '@ng-nest/ui/core';
+import { XComputedStyle, XIsEmpty, XRequestAnimationFrame, XIsNumber, XIsUndefined, XToCssPx } from '@ng-nest/ui/core';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { DOCUMENT, NgClass } from '@angular/common';
@@ -57,15 +57,23 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
       let borderTop = parseFloat(XComputedStyle(this.scrollElement(), 'border-top'));
       let bottom = parseFloat(XComputedStyle(this.scrollElement(), 'padding-bottom'));
       let borderBottom = parseFloat(XComputedStyle(this.scrollElement(), 'border-bottom'));
-      return height - top - bottom - borderTop - borderBottom - this.getTop() - this.getBottom();
+      return (
+        height -
+        top -
+        bottom -
+        borderTop -
+        borderBottom -
+        XToCssPx(this.affixTop(), this.fontSize()) -
+        XToCssPx(this.affixBottom(), this.fontSize())
+      );
     }
   });
   classMapSignal = computed(() => ({
     [`${XAnchorPrefix}-${this.layout()}`]: !XIsEmpty(this.layout())
   }));
-  private _scrolling = false;
-  private _fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
-  private _unSubject = new Subject<void>();
+  private scrolling = false;
+  private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
+  private unSubject = new Subject<void>();
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
 
@@ -79,20 +87,20 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
 
   ngAfterViewInit() {
     this.setScroll();
-    this.contentChange.pipe(distinctUntilChanged(), takeUntil(this._unSubject)).subscribe(() => {
+    this.contentChange.pipe(distinctUntilChanged(), takeUntil(this.unSubject)).subscribe(() => {
       this.setSliderData();
     });
   }
 
   ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.complete();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   activatedChange(index: number) {
     if (XIsEmpty(this.hElements) || XIsUndefined(this.scrollElement())) return;
 
-    this._scrolling = true;
+    this.scrolling = true;
     const hElement = this.hElements[index];
     let scrollTop =
       hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(XComputedStyle(hElement, 'margin-top'));
@@ -103,9 +111,9 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
 
   private setScroll() {
     fromEvent(this.scrollElement(), 'scroll')
-      .pipe(throttleTime(10), takeUntil(this._unSubject))
+      .pipe(throttleTime(10), takeUntil(this.unSubject))
       .subscribe(() => {
-        if (this._scrolling) return;
+        if (this.scrolling) return;
         this.setActivatedByScroll();
       });
   }
@@ -154,24 +162,6 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     return index + 1;
   }
 
-  private getTop() {
-    const top = this.affixTop();
-    if (top === '0') return 0;
-    if (XIsNumber(top)) return Number(top);
-    else if (top.endsWith('rem')) return Number(top.replace(/rem/g, '')) * this._fontSize();
-    else if (top.endsWith('px')) return Number(top.replace(/px/g, ''));
-    return 0;
-  }
-
-  private getBottom() {
-    const bottom = this.affixTop();
-    if (bottom === '0') return 0;
-    if (XIsNumber(bottom)) return Number(bottom);
-    else if (bottom.endsWith('rem')) return Number(bottom.replace(/rem/g, '')) * this._fontSize();
-    else if (bottom.endsWith('px')) return Number(bottom.replace(/px/g, ''));
-    return 0;
-  }
-
   private scrollTo(element: HTMLElement, to: number, duration: number) {
     const difference = to - element.scrollTop;
     const perTick = (difference / duration) * 10;
@@ -181,7 +171,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
         element.scrollTop = num;
       }
       if (element.scrollTop === to || duration <= 0) {
-        setTimeout(() => (this._scrolling = false), 20);
+        setTimeout(() => (this.scrolling = false), 20);
         return;
       } else {
         this.scrollTo(element, to, duration - 10);

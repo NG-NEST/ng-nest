@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding, inject, computed } from '@angular/core';
 import { XRowPrefix, XRowProperty } from './layout.property';
 import { DOCUMENT } from '@angular/common';
-import { XComputedStyle, XIsNumber } from '@ng-nest/ui/core';
+import { XComputedStyle, XToCssPx } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XRowPrefix}`,
@@ -34,10 +34,6 @@ export class XRowComponent extends XRowProperty {
   spaceSignal = computed(() => {
     if (!this.space()) return 0;
     const space = this.space();
-    if (space === '0') return 0;
-    if (XIsNumber(space)) return Number(space);
-    else if (space.endsWith('rem')) return Number(space.replace(/rem/g, '')) * this.fontSize();
-    else if (space.endsWith('px')) return Number(space.replace(/px/g, ''));
-    return 0;
+    return XToCssPx(space, this.fontSize());
   });
 }
