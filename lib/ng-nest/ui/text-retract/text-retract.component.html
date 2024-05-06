@@ -1,7 +1,7 @@
 <div class="x-text-retract">
-  {{ displayValue }}
-  @if (retract) {
-    @if (unfold) {
+  {{ displayValue() }}
+  @if (retract()) {
+    @if (unfold()) {
       <x-link type="primary" (click)="toggle()">...{{ 'textRetract.unfold' | xI18n }}</x-link>
     } @else {
       <x-link type="primary" (click)="toggle()">{{ 'textRetract.packUp' | xI18n }}</x-link>

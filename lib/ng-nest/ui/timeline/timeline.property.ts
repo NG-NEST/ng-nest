@@ -1,5 +1,6 @@
-import { XType, XSize, XData, XTemplate, XProperty, XIdentityProperty, XDataConvert, XWithConfig, XDate } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XPropertyFunction, XToDataNew } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import type { XType, XSize, XTemplate, XIdentityProperty, XDate, XDataNew } from '@ng-nest/ui/core';
 
 /**
  * Timeline
@@ -7,38 +8,38 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XTimelinePrefix = 'x-timeline';
-const X_CONFIG_NAME = 'timeline';
+const X_TIMELINE_CONFIG_NAME = 'timeline';
 
 /**
  * Timeline Property
  */
 @Component({ selector: `${XTimelinePrefix}-property`, template: '' })
-export class XTimelineProperty extends XProperty {
+export class XTimelineProperty extends XPropertyFunction(X_TIMELINE_CONFIG_NAME) {
   /**
    * @zh_CN 数据
    * @en_US Date
    */
-  @Input() @XDataConvert() data: XData<XTimelineNode> = [];
+  readonly data = input<XTimelineNode[], XDataNew<XTimelineNode>>([], { transform: XToDataNew });
   /**
    * @zh_CN 类型
    * @en_US Type
    */
-  @Input() type?: XType;
+  readonly type = input<XType>();
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
+  readonly size = input<XSize>(this.config?.size ?? 'medium');
   /**
    * @zh_CN 内容模板
    * @en_US Content template
    */
-  @Input() wrapper?: XTemplate;
+  readonly wrapper = input<XTemplate>();
   /**
    * @zh_CN 时间轴的相对位置
    * @en_US Content and timeline relative position
    */
-  @Input() @XWithConfig<XTimelineMode>(X_CONFIG_NAME, 'left') mode?: XTimelineMode;
+  readonly mode = input<XTimelineMode>(this.config?.mode ?? 'left');
 }
 
 /**

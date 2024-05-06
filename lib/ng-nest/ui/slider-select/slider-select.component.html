@@ -59,7 +59,7 @@
           placement="top"
           [disabled]="!showTooltip && !showStartTooltip"
           [content]="tooltipStartTpl"
-          [visible]="startVisible"
+          [(visible)]="startVisible"
           [manual]="startManual"
         >
           <ng-container *xOutlet="customButton">{{ customButton }}</ng-container>
@@ -92,7 +92,7 @@
           placement="top"
           [disabled]="!showTooltip && !showEndTooltip"
           [content]="tooltipEndTpl"
-          [visible]="endVisible"
+          [(visible)]="endVisible"
           [manual]="endManual"
         >
           <ng-container *xOutlet="customButton">{{ customButton }}</ng-container>

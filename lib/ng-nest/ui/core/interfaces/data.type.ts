@@ -103,7 +103,7 @@ export function XIsString(value: any): value is string {
  * @zh_CN 判断给定的值是否为数组类型
  * @en_US Determine whether the given value is a array type
  */
-export function XIsArray(value: any): value is Array<any> {
+export function XIsArray<T>(value: any): value is Array<T> {
   return IsArray(value);
 }
 

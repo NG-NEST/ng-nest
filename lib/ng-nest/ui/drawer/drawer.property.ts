@@ -28,7 +28,7 @@ export class XDrawerProperty extends XPropertyFunction(X_DRAWER_CONFIG_NAME) {
    * @zh_CN 显示/隐藏
    * @en_US Show/hide
    */
-  readonly visible = model(false);
+  readonly visible = model<boolean>(false);
   /**
    * @zh_CN 展示方向
    * @en_US Display direction

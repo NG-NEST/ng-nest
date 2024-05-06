@@ -52,7 +52,10 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
     let isReadConst = false;
     let isReadEnum = false;
     let isReadFunction = false;
+    let isReadProperty = false;
     let docItem: any = {};
+    let propertyLine = '';
+    let propertyDocItem: any = {};
 
     const addProp = () => {
       props.push(prop);
@@ -116,6 +119,15 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           addProp();
         } else {
           prop['_params'] += line;
+        }
+      }
+      if (isReadProperty) {
+        propertyLine += ` ${line}`;
+        if (line.endsWith(';')) {
+          const property = getProperty(propertyLine.trim(), propertyDocItem, lang);
+          if (property) prop.properties.push(property);
+          isReadProperty = false;
+          propertyLine = '';
         }
       }
       if (line.startsWith('/**')) {
@@ -231,58 +243,74 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
       }
       if (!isReadDoc && isReadClassInterface && line !== '' && !line.startsWith('export')) {
         const docItem = doc.find((x) => x.end === index - 1);
-        let ix = line.indexOf(': ');
-        if (line.startsWith('[')) {
-          ix = line.indexOf(': ', line.indexOf(': ') + ': '.length);
-        }
-        if (line.indexOf('@Output') !== -1) ix = line.indexOf('=');
-        const lf = line.slice(0, ix).trim();
-        const rt = line.slice(ix + 1, line.length).trim();
-
-        let propd: string[] = [];
-        if (lf.startsWith('[')) {
-          propd = [lf];
+        const isInputSignal = line.startsWith('readonly');
+        if (isInputSignal) {
+          if (isReadProperty === false) {
+            isReadProperty = true;
+            if (line.endsWith(';')) {
+              const property = getProperty(line, docItem, lang);
+              if (property) prop.properties.push(property);
+              isReadProperty = false;
+              propertyLine = '';
+            } else {
+              propertyDocItem = docItem;
+              propertyLine = line;
+            }
+          }
         } else {
-          propd = lf.replace(/, /g, ',').split(' ');
-        }
+          let ix = line.indexOf(': ');
+          if (line.startsWith('[')) {
+            ix = line.indexOf(': ', line.indexOf(': ') + ': '.length);
+          }
+          if (line.indexOf('@Output') !== -1) ix = line.indexOf('=');
+          const lf = line.slice(0, ix).trim();
+          const rt = line.slice(ix + 1, line.length).trim();
 
-        const propType = propd.length > 1 ? propd[0].replace(/\@(.*)\((.*)/, '$1') : '';
-        let name = propd[propd.length - 1].replace(/\?|\!/g, '').trim();
-        let type = '',
-          val = '';
-        if (rt.indexOf(' = ') !== -1) {
-          const spt = rt.split('=');
-          type = spt[0].trim();
-          val = spt[1].replace(';', '').trim();
-        } else {
-          type = rt.replace(';', '').trim();
-        }
-        if (propType === 'Output') {
-          type = type.indexOf('<') !== -1 ? type.replace(/(.*)\<(.*)\>(.*)/, '$2') : '';
-        }
-        if (docItem) {
-          let def = getDocs(docItem, '@default') as string;
-          let withConfig = getDocs(docItem, '@withConfig') as string;
-          let example = getDocs(docItem, '@example', true) as string;
-          const { label, description } = getLabelAndDescription(docItem, lang);
-          const attr = (
-            propd.length > 1 && propd[0].indexOf("'") !== -1 ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name
-          ).replace(/@/g, '&#64;');
+          let propd: string[] = [];
+          if (lf.startsWith('[')) {
+            propd = [lf];
+          } else {
+            propd = lf.replace(/, /g, ',').split(' ');
+          }
 
-          const property: NcPrope = {
-            name,
-            type,
-            label: label ? label : docItem[docItem.start + 1],
-            default: def ? def : val,
-            withConfig: Boolean(withConfig),
-            description,
-            decorator: propd.length > 1 ? propd.filter((x) => x.indexOf('@') !== -1) : [],
-            attr,
-            propType,
-            example
-          };
+          const propType = propd.length > 1 ? propd[0].replace(/\@(.*)\((.*)/, '$1') : '';
+          let name = propd[propd.length - 1].replace(/\?|\!/g, '').trim();
+          let type = '',
+            val = '';
+          if (rt.indexOf(' = ') !== -1) {
+            const spt = rt.split('=');
+            type = spt[0].trim();
+            val = spt[1].replace(';', '').trim();
+          } else {
+            type = rt.replace(';', '').trim();
+          }
+          if (propType === 'Output') {
+            type = type.indexOf('<') !== -1 ? type.replace(/(.*)\<(.*)\>(.*)/, '$2') : '';
+          }
+          if (docItem) {
+            let def = getDocs(docItem, '@default') as string;
+            let withConfig = getDocs(docItem, '@withConfig') as string;
+            let example = getDocs(docItem, '@example', true) as string;
+            const { label, description } = getLabelAndDescription(docItem, lang);
+            const attr = (
+              propd.length > 1 && propd[0].indexOf("'") !== -1 ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name
+            ).replace(/@/g, '&#64;');
 
-          prop.properties.push(property);
+            const property: NcPrope = {
+              name,
+              type,
+              label: label ? label : docItem[docItem.start + 1],
+              default: def ? def : val,
+              withConfig: Boolean(withConfig),
+              description,
+              decorator: propd.length > 1 ? propd.filter((x) => x.indexOf('@') !== -1) : [],
+              attr,
+              propType,
+              example
+            };
+
+            prop.properties.push(property);
+          }
         }
       }
       index++;
@@ -291,6 +319,73 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
       res(props);
     });
   });
+}
+
+/**
+ * 获取属性
+ *
+ * @param line
+ * @param docItem
+ */
+export function getProperty(line: string, docItem: any = {}, lang = '') {
+  // if (line.startsWith('readonly virtualScrollHeight')) {
+  const ix = line.indexOf('=');
+  const name = line.slice(0, ix).replace('readonly', '').trim();
+  let right = line.slice(ix + 1, line.length).trim();
+  const withConfig = right.indexOf('this.config') >= 0;
+  let type = '';
+  let toType = '';
+  let inputType = '';
+  let def = '';
+  let transform = '';
+  if (right.startsWith('input')) {
+    right = right.replace('input', '');
+    type = right.slice(0, right.indexOf('('));
+    right = right.replace(type, '');
+    if (type.startsWith('<') && type.endsWith('>')) {
+      inputType = `InputSignalWithTransform${type}`;
+      type = type.slice(1, type.length - 1);
+    }
+    if (type.indexOf(', ')) {
+      toType = type.slice(0, type.indexOf(', '));
+      type = type.replace(toType + ', ', '');
+    } else {
+      type = `InputSignal${type}`;
+    }
+  }
+  const match = right.match(/\(([^)]+)\)/);
+  if (match) {
+    const str = match[1];
+    if (str.indexOf(',') >= 0) {
+      const spt = str.split(',');
+      if (spt[0].indexOf('??') >= 0) {
+        def = spt[0].slice(spt[0].indexOf('??') + 2, spt[0].length).trim();
+      } else {
+        def = spt[0].trim();
+      }
+      transform = spt[1].slice(spt[1].indexOf('transform') + 10, spt[1].indexOf('}')).trim();
+    } else {
+      def = str;
+    }
+  }
+  let docDef = getDocs(docItem, '@default') as string;
+  let example = getDocs(docItem, '@example', true) as string;
+  const { label, description } = getLabelAndDescription(docItem, lang);
+
+  const property: NcPrope = {
+    name,
+    type,
+    toType,
+    inputType,
+    label: label ? label : docItem[docItem.start + 1],
+    default: docDef ? docDef : def,
+    withConfig: withConfig,
+    description,
+    example,
+    transform
+  };
+
+  return property;
 }
 
 /**

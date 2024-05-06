@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { XData } from '@ng-nest/ui/core';
-import { XStepsComponent, XStepsNode } from '@ng-nest/ui/steps';
+import { XStepsComponent } from '@ng-nest/ui/steps';
 
 @Component({
   selector: 'ex-icon',
@@ -9,7 +8,7 @@ import { XStepsComponent, XStepsNode } from '@ng-nest/ui/steps';
   templateUrl: './icon.component.html'
 })
 export class ExIconComponent {
-  data: XData<XStepsNode> = [
+  data = [
     { label: 'log in', icon: 'fto-user' },
     { label: 'verification', icon: 'fto-user-check' },
     { label: 'payment', icon: 'fto-credit-card' },

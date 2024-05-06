@@ -38,9 +38,7 @@ const X_TABLE_CONFIG_NAME = 'table';
 export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
   /**
    * @zh_CN 行数据
-   * 这是一个描述信息
    * @en_US Row data
-   * This is a description information
    */
   @Input() data: XData<XTableRow> = [];
   /**

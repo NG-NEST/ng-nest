@@ -69,7 +69,7 @@ export class XPopoverProperty extends XPropertyFunction(X_POPOVER_CONFIG_NAME) {
    * @zh_CN 显示/隐藏控制
    * @en_US Show/hide control
    */
-  readonly visible = model(false);
+  readonly visible = model<boolean>(false);
   /**
    * @zh_CN 条件触发
    * @en_US condition trigger

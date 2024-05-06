@@ -23,6 +23,16 @@ import { NgClass } from '@angular/common';
   animations: [XFadeAnimation]
 })
 export class XPopoverPortalComponent {
+  title = input<XTemplate>();
+  content = input<XTemplate>();
+  footer = input<XTemplate>();
+  width = input<string>();
+  minWidth = input<string>();
+  maxWidth = input<string>();
+  trigger = input<XPopoverTrigger>();
+  placement = input<XPlacement>();
+  portalHover!: Function;
+
   @HostListener('mouseenter') mouseenter() {
     if (this.trigger() === 'hover') {
       this.portalHover(true);
@@ -36,16 +46,6 @@ export class XPopoverPortalComponent {
   }
 
   @HostBinding('@x-fade-animation') animation = true;
-
-  title = input<XTemplate>();
-  content = input<XTemplate>();
-  footer = input<XTemplate>();
-  width = input<string>();
-  minWidth = input<string>();
-  maxWidth = input<string>();
-  trigger = input<XPopoverTrigger>();
-  placement = input<XPlacement>();
-  portalHover!: Function;
 
   classMap = computed(() => ({
     [`${XPopoverPortalPrefix}-${this.placement()}`]: !XIsEmpty(this.placement())

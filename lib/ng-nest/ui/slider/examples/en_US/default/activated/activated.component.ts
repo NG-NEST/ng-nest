@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { XData } from '@ng-nest/ui/core';
-import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
+import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-activated',
@@ -9,7 +8,7 @@ import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
   templateUrl: './activated.component.html'
 })
 export class ExActivatedComponent {
-  data: XData<XSliderNode> = [
+  data = [
     'User Management',
     'Configuration Management',
     'Role Management',

@@ -371,18 +371,18 @@ export interface XInnerConfig {
 }
 
 export interface XInputConfig {
-  clearable?: XBoolean;
+  clearable?: boolean;
   iconLayout?: XPositionLeftRight;
   size?: XSize;
-  bordered?: XBoolean;
-  inputPadding?: XNumber;
+  bordered?: boolean;
+  inputPadding?: string;
   inputIconPadding?: XNumber;
 }
 
 export interface XInputGroupConfig {
   size?: XSize;
-  bordered?: XBoolean;
-  compact?: XBoolean;
+  bordered?: boolean;
+  compact?: boolean;
 }
 
 export interface XInputNumberConfig {
@@ -532,11 +532,12 @@ export interface XSelectConfig {
 export interface XSkeletonConfig {}
 
 export interface XSliderConfig {
-  animated?: XBoolean;
+  animated?: boolean;
   size?: XSize;
-  showExpand?: XBoolean;
-  autoShowArrow?: XBoolean;
+  showExpand?: boolean;
+  autoShowArrow?: boolean;
   trigger?: XTrigger;
+  expandMaxHeight?: string;
 }
 
 export interface XSliderSelectConfig {}
@@ -595,17 +596,18 @@ export interface XTableConfig {
 export interface XTabsConfig {
   size?: XSize;
   trigger?: XTrigger;
+  expandMaxHeight?: string;
 }
 
 export interface XTagConfig {
   size?: XSize;
-  bordered?: XBoolean;
-  closable?: XBoolean;
-  dark?: XBoolean;
+  bordered?: boolean;
+  closable?: boolean;
+  dark?: boolean;
 }
 
 export interface XTextRetractConfig {
-  max?: XNumber;
+  max?: number;
 }
 
 export interface XThemeConfig {
@@ -627,6 +629,7 @@ export interface XTimeRangeConfig {}
 
 export interface XTimelineConfig {
   size?: XSize;
+  mode?: 'left' | 'right' | 'alternate';
 }
 
 export interface XTooltipConfig {
@@ -640,12 +643,15 @@ export interface XTransferConfig {
 }
 
 export interface XTreeConfig {
-  spacing?: XNumber;
-  nodeHeight?: XNumber;
+  spacing?: string;
+  nodeHeight?: string;
   nodeAlignItems?: XAlign;
   virtualScroll?: boolean;
   onlyLeaf?: boolean;
   showLine?: boolean;
+  virtualScrollHeight?: string;
+  itemSize?: number;
+  caseSensitive?: boolean;
 }
 
 export interface XTextareaConfig {
@@ -654,8 +660,8 @@ export interface XTextareaConfig {
 }
 
 export interface XTreeFileConfig {
-  maxHeight?: XNumber;
-  spacing?: XNumber;
+  maxHeight?: string;
+  spacing?: string;
 }
 
 export interface XTreeSelectConfig {

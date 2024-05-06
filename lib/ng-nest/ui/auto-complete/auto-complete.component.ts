@@ -13,11 +13,7 @@ import {
   ViewChild,
   inject
 } from '@angular/core';
-import {
-  XAutoCompleteNode,
-  XAutoCompleteProperty,
-  XAutoCompletePrefix
-} from './auto-complete.property';
+import { XAutoCompleteNode, XAutoCompleteProperty, XAutoCompletePrefix } from './auto-complete.property';
 import {
   XIsEmpty,
   XIsObservable,
@@ -47,13 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: `${XAutoCompletePrefix}`,
   standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    XInputComponent,
-    XControlValueAccessor,
-    XAutoCompletePortalComponent
-  ],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent, XControlValueAccessor, XAutoCompletePortalComponent],
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -103,13 +93,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   override cdr = inject(ChangeDetectorRef);
 
   ngOnInit() {
-    this.setFlex(
-      this.autoComplete.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.autoComplete.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.setSubject();
     this.setParantScroll();
@@ -249,7 +233,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
       this.setSearchNodes(this.value);
       this.dataChange.next(this.searchNodes);
     }
-    this.box = this.inputCom.inputRef.nativeElement.getBoundingClientRect();
+    this.box = this.inputCom.inputRef().nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
       width: this.box.width,
@@ -273,12 +257,10 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -321,14 +303,8 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputRef,
-      placement: [
-        this.placement as XPositionTopBottom,
-        'bottom-start',
-        'bottom-end',
-        'top-start',
-        'top-end'
-      ],
+      elementRef: this.inputCom.inputRef(),
+      placement: [this.placement as XPositionTopBottom, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-auto-complete-portal'
     });
   }
@@ -358,15 +334,13 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
           this.icon = 'fto-loader';
           this.iconSpin = true;
           this.cdr.detectChanges();
-          XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, value as any).subscribe(
-            (x) => {
-              this.icon = '';
-              this.iconSpin = false;
-              this.nodes = x;
-              this.dataChange.next(this.nodes);
-              this.cdr.detectChanges();
-            }
-          );
+          XSetData<XAutoCompleteNode>(this.data, this._unSubject, true, value as any).subscribe((x) => {
+            this.icon = '';
+            this.iconSpin = false;
+            this.nodes = x;
+            this.dataChange.next(this.nodes);
+            this.cdr.detectChanges();
+          });
         }
       }
       if (!this.onlySelect) {

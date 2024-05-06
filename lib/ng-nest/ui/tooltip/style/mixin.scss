@@ -14,6 +14,9 @@
   position: relative;
   justify-content: center;
   align-items: center;
+  .#{$--x-tooltip-portal-prefix}-arrow-hidden {
+    visibility: hidden;
+  }
   > .#{$--x-tooltip-portal-prefix}-inner {
     font-size: $--x-font-size;
     background-color: $--x-text;

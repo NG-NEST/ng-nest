@@ -22,17 +22,6 @@ export function generateProps(...types: NcProp[]) {
           let inputTable = '';
           let outputTable = '';
           x.properties.forEach((y) => {
-            let withConfig = y.decorator.find((x) => x.startsWith('@XWithConfig'));
-            let isWithConfig = withConfig ? true : false;
-            if (withConfig && !y.default) {
-              const st = withConfig.match(/\((\S*)\)/)[1].split(',');
-              if (st.length >= 2) {
-                y.default = st[st.length - 1];
-              }
-            }
-            if (!isWithConfig && y.withConfig) {
-              isWithConfig = true;
-            }
             const description = y.description ? `<p [innerHTML]="'${replaceEscape(y.description)}'"></p>` : '';
             // let ty = y.type.startsWith('X')
             //   ? `<code class="popover" x-popover [content]="typeTpl"
@@ -49,7 +38,7 @@ export function generateProps(...types: NcProp[]) {
               <td>${y.label}${description}</td>
               <td>${ty}</td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
-              <td>${isWithConfig ? '✔' : ''}</td>
+              <td>${y.withConfig ? '✔' : ''}</td>
             </tr>`;
             switch (y.propType) {
               case 'Input':

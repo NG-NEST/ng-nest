@@ -1,4 +1,4 @@
-<x-tabs activatedIndex="3" showExpand>
+<x-tabs [activatedIndex]="3" showExpand>
   @for (label of labels; track label; let i = $index) {
     <x-tab [label]="label">
       <div [style.padding.rem]="0.625">{{ label }}</div>

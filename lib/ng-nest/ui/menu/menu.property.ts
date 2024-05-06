@@ -64,7 +64,7 @@ export class XMenuProperty extends XPropertyFunction(X_MENU_CONFIG_NAME) {
    * @zh_CN 当前激活的节点 id
    * @en_US Currently active node id
    */
-  readonly activatedId = model();
+  readonly activatedId = model<string | number>();
   /**
    * @zh_CN 滚动容器
    * @en_US Rolling container

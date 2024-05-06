@@ -1,11 +1,11 @@
-import { Component, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, inject, computed, signal } from '@angular/core';
 import { XTreeFilePrefix, XTreeFileProperty, XTreeFileNode, XTreeFileImgs } from './tree-file.property';
 import { HttpClient } from '@angular/common/http';
-import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XComputedStyle, XToCssPx } from '@ng-nest/ui/core';
 import { XCrumbComponent, XCrumbNode } from '@ng-nest/ui/crumb';
 import { delay, finalize } from 'rxjs/operators';
 import { XHighlightComponent, XHighlightLines } from '@ng-nest/ui/highlight';
-import { NgClass } from '@angular/common';
+import { DOCUMENT, NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
@@ -29,30 +29,26 @@ import { XTreeComponent } from '@ng-nest/ui/tree';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeFileComponent extends XTreeFileProperty {
-  activatedNode?: XTreeFileNode;
-  loading: boolean = false;
+  activatedNode = signal<XTreeFileNode | null>(null);
+  loading = signal(false);
   time!: number;
   timeout: number = 200;
+  private document = inject(DOCUMENT);
+  private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
 
-  get catalogHeight() {
-    return Number(this.maxHeight);
-  }
+  codeHeight = computed(() => {
+    return XToCssPx(this.maxHeight(), this.fontSize()) - (this.showCrumb() ? 1.5 : 0) * this.fontSize();
+  });
 
-  get codeHeight() {
-    return Number(this.maxHeight) - (Boolean(this.showCrumb) ? 1.5 : 0);
-  }
+  crumbData = computed(() => {
+    return this.activatedNode()?.crumbData as XCrumbNode[];
+  });
 
-  get getCrumbData() {
-    return this.activatedNode?.crumbData as XCrumbNode[];
-  }
+  highlightLines = computed(() => {
+    return this.activatedNode()?.highlightLines as XHighlightLines;
+  });
 
-  get getHighlightLines() {
-    return this.activatedNode?.highlightLines as XHighlightLines;
-  }
-
-  private cdr = inject(ChangeDetectorRef);
   private http = inject(HttpClient, { optional: true })!;
-  configService = inject(XConfigService);
 
   ngOnInit() {
     if (!this.http) {
@@ -61,19 +57,18 @@ export class XTreeFileComponent extends XTreeFileProperty {
       );
     }
     if (!this.showTree && this.activatedId) {
-      this.catalogChange((this.data as XTreeFileNode[]).find((x) => x.id == this.activatedId) as XTreeFileNode);
+      this.catalogChange((this.data() as XTreeFileNode[]).find((x) => x.id == this.activatedId()) as XTreeFileNode);
     }
   }
 
   catalogChange(node: XTreeFileNode) {
-    if (!node?.leaf && this.showTree) return;
+    if (!node?.leaf && this.showTree()) return;
     if (node.url && !node.contentLoaded) {
       this.time = new Date().getTime();
-      this.loading = true;
-      this.cdr.detectChanges();
-      this.activatedNode = node;
+      this.loading.set(true);
+      this.activatedNode.set(node);
       this.setNode(node);
-      node.url = node.url?.indexOf(this.domain) === 0 ? node.url : `${this.domain}/${node.url}`;
+      node.url = node.url?.indexOf(this.domain()) === 0 ? node.url : `${this.domain()}/${node.url}`;
       switch (node.fileType) {
         case 'code':
           this.http
@@ -83,25 +78,21 @@ export class XTreeFileComponent extends XTreeFileProperty {
                 new Date().getTime() - this.time > this.timeout ? 0 : this.timeout - new Date().getTime() + this.time
               ),
               finalize(() => {
-                this.loading = false;
-                this.cdr.detectChanges();
+                this.loading.set(false);
               })
             )
             .subscribe((x) => {
               node.content = x;
               node.contentLoaded = true;
-              this.loading = false;
-              this.cdr.detectChanges();
+              this.loading.set(false);
             });
           break;
         case 'img':
-          this.cdr.detectChanges();
           break;
       }
     } else {
-      this.activatedNode = node;
-      this.setNode(this.activatedNode);
-      this.cdr.detectChanges();
+      this.activatedNode.set(node);
+      this.setNode(this.activatedNode()!);
     }
   }
 
@@ -118,15 +109,14 @@ export class XTreeFileComponent extends XTreeFileProperty {
   }
 
   imgOnload() {
-    this.loading = false;
-    this.cdr.detectChanges();
+    this.loading.set(false);
   }
 
   setCurmbData(node: XTreeFileNode) {
     let crumbData: XCrumbNode[] = [{ id: node.id, label: node.label }];
     const getParent = (child: XTreeFileNode) => {
       if (XIsEmpty(child.pid)) return;
-      const parent = (this.data as XTreeFileNode[]).find((x) => x.id === child.pid) as XTreeFileNode;
+      const parent = (this.data() as XTreeFileNode[]).find((x) => x.id === child.pid) as XTreeFileNode;
       if (!XIsEmpty(parent)) {
         crumbData = [{ id: parent.id, label: parent.label }, ...crumbData];
         getParent(parent);
@@ -138,7 +128,6 @@ export class XTreeFileComponent extends XTreeFileProperty {
   }
 
   menuToggle() {
-    this.toggle = !this.toggle;
-    this.cdr.detectChanges();
+    this.toggle.update((x) => !x);
   }
 }

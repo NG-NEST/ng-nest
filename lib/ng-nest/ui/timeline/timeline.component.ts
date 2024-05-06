@@ -1,17 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
-  inject,
-  OnDestroy
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed } from '@angular/core';
 import { XTimelinePrefix, XTimelineNode, XTimelineProperty } from './timeline.property';
-import { XIsChange, XSetData, XConfigService, XClearClass } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { DatePipe, NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
@@ -27,44 +16,16 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTimelineComponent extends XTimelineProperty implements OnInit, OnChanges, OnDestroy {
-  nodes: XTimelineNode[] = [];
-  private _unSubject = new Subject<void>();
-  private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
+export class XTimelineComponent extends XTimelineProperty {
+  classMapSignal = computed(() => ({
+    [`${XTimelinePrefix}-${this.mode}`]: !XIsEmpty(this.mode)
+  }));
 
-  ngOnInit() {
-    this.setClassMap();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const { data, mode } = changes;
-    XIsChange(data) && this.setData();
-    XIsChange(mode) && this.setClassMap();
-  }
-
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
-
-  setClassMap() {
-    XClearClass(this.classMap);
-    this.classMap[`${XTimelinePrefix}-${this.mode}`] = this.mode ? true : false;
-    this.cdr.detectChanges();
-  }
-
-  trackByNode(_index: number, item: XTimelineNode) {
-    return item.id;
-  }
-
-  private setData() {
-    XSetData<XTimelineNode>(this.data, this._unSubject).subscribe((x) => {
-      this.setDashed(x);
-      this.nodes = x;
-      this.cdr.detectChanges();
-    });
-  }
+  nodes = computed(() => {
+    const data = this.data();
+    this.setDashed(data);
+    return data;
+  });
 
   private setDashed(nodes: XTimelineNode[]) {
     const len = nodes.length;

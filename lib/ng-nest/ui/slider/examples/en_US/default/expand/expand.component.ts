@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { XData } from '@ng-nest/ui/core';
-import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
+import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-expand',
@@ -9,7 +8,7 @@ import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
   templateUrl: './expand.component.html'
 })
 export class ExExpandComponent {
-  data: XData<XSliderNode> = [
+  data = [
     'User Management',
     'Configuration Management',
     'Role Management',

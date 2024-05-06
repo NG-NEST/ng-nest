@@ -1,5 +1,5 @@
 import { XProperty } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 /**
  * Typography
@@ -17,10 +17,12 @@ export class XTypographyProperty extends XProperty {
    * @zh_CN 字体
    * @en_US Font
    */
-  @Input() font: string = 'Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif';
+  readonly font = input<string>(
+    'Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif'
+  );
   /**
    * @zh_CN 显示文字
    * @en_US Display text
    */
-  @Input() text?: string;
+  readonly text = input<string>();
 }

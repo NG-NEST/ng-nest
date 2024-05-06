@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding, inject, computed } from '@angular/core';
 import { XColPrefix, XColProperty } from './layout.property';
 import { XRowComponent } from './row.component';
-import { XComputedStyle, XToCssPx } from '../core';
+import { XComputedStyle, XToCssPx } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({

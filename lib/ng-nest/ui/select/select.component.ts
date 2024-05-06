@@ -187,8 +187,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   ngAfterViewInit() {
     this.setPortal();
-    if (this.multiple && this.inputCom.inputValueRef) {
-      XResize(this.inputCom.inputValueRef.nativeElement)
+    if (this.multiple && this.inputCom.inputValueRef()) {
+      XResize(this.inputCom.inputValueRef()?.nativeElement)
         .pipe(debounceTime(30), takeUntil(this._unSubject))
         .subscribe((x) => {
           this._resizeObserver = x.resizeObserver;
@@ -249,7 +249,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   setMutipleInputSize() {
-    const ivf = this.inputCom.inputValueRef.nativeElement as HTMLDivElement;
+    const ivf = this.inputCom.inputValueRef()?.nativeElement as HTMLDivElement;
     let { clientWidth, scrollHeight } = ivf;
     const len = ivf.children.length;
     let lastRowTagTop = -1;
@@ -280,7 +280,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       }
     }
     const height = scrollHeight + (lines > 1 ? marginTop : 0);
-    this.renderer.setStyle(this.inputCom.inputRef.nativeElement, 'height', `${height}px`);
+    this.renderer.setStyle(this.inputCom.inputRef().nativeElement, 'height', `${height}px`);
     if (this.multipleInput) {
       this.multipleInputSizeChange.next(clientWidth - lastRowTagsWidth - marginLeft);
     }
@@ -533,7 +533,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   createPortal() {
     this.nodes.filter((x) => x.selected).map((x) => (x.selected = false));
-    this.box = this.inputCom.inputRef.nativeElement.getBoundingClientRect();
+    this.box = this.inputCom.inputRef().nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
       width: this.portalWidth || this.box.width,
@@ -648,7 +648,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputRef,
+      elementRef: this.inputCom.inputRef(),
       placement: this.placements,
       transformOriginOn: 'x-select-portal'
     });

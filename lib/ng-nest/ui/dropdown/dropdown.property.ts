@@ -81,7 +81,7 @@ export class XDropdownProperty extends XPropertyFunction(X_DROPDOWN_CONFIG_NAME)
    * @zh_CN 当前激活的菜单
    * @en_US The currently activated menu
    */
-  activatedId = model();
+  activatedId = model<string | number>();
   /**
    * @zh_CN 尺寸
    * @en_US Size

@@ -2,21 +2,18 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  OnInit,
   ElementRef,
-  OnDestroy,
-  ViewChild,
   Renderer2,
   HostListener,
-  AfterViewInit,
   HostBinding,
-  inject
+  inject,
+  input,
+  computed,
+  viewChild,
+  signal
 } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
 import { XTooltipPortalPrefix } from './tooltip.property';
-import { XPlacement, XClassMap, XFadeAnimation, XTemplate } from '@ng-nest/ui/core';
-import { takeUntil } from 'rxjs/operators';
+import { XPlacement, XFadeAnimation, XTemplate, XIsEmpty } from '@ng-nest/ui/core';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { NgClass } from '@angular/common';
 
@@ -30,7 +27,14 @@ import { NgClass } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XFadeAnimation]
 })
-export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, AfterViewInit {
+export class XTooltipPortalComponent {
+  placement = input<XPlacement>();
+  content = input<XTemplate>();
+  box = input<DOMRect>();
+  color = input<string>();
+  backgroundColor = input<string>();
+  arrowHidden = signal(true);
+
   @HostListener('mouseenter') mouseenter() {
     this.portalHover(true);
   }
@@ -39,86 +43,55 @@ export class XTooltipPortalComponent implements OnInit, OnDestroy, OnDestroy, Af
   }
 
   @HostBinding('@x-fade-animation') animation = true;
+  @HostListener('@x-fade-animation.done', ['$event']) done(event: { toState: any }) {
+    if (event.toState === true) {
+      this.setArrow();
+      this.arrowHidden.set(false);
+    }
+  }
 
-  @ViewChild('tooltipPortal', { static: true }) tooltipPortal!: ElementRef<HTMLElement>;
-  @ViewChild('tooltipArrow') tooltipArrow!: ElementRef<HTMLElement>;
-  @ViewChild('tooltipArrowAfter') tooltipArrowAfter!: ElementRef<HTMLElement>;
+  tooltipPortal = viewChild.required('tooltipPortal', { read: ElementRef<HTMLElement> });
+  tooltipArrow = viewChild.required('tooltipArrow', { read: ElementRef<HTMLElement> });
+  tooltipArrowAfter = viewChild.required('tooltipArrowAfter', { read: ElementRef<HTMLElement> });
 
-  contentChange!: BehaviorSubject<any>;
-  classMap: XClassMap = {};
-  box!: DOMRect;
-  portalBox!: DOMRect;
-  arrowBox!: DOMRect;
+  classMap = computed(() => ({
+    [`${XTooltipPortalPrefix}-${this.placement()}`]: !XIsEmpty(this.placement())
+  }));
+
+  portalBox = computed(() => this.tooltipPortal().nativeElement.getBoundingClientRect());
+  arrowBox = computed(() => this.tooltipArrow().nativeElement.getBoundingClientRect());
   portalHover!: Function;
-  viewInit!: Function;
-  destroy!: Function;
-  placement!: XPlacement;
-  previousPlacement!: XPlacement;
-  content!: XTemplate;
-  color!: string;
-  backgroundColor!: string;
-  positionChange: Subject<any> = new Subject();
-  private _unSubject = new Subject<void>();
   private renderer = inject(Renderer2);
-  private cdr = inject(ChangeDetectorRef);
-
-  ngOnInit(): void {
-    this.contentChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.content = x;
-      this.cdr.detectChanges();
-    });
-    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.placement = x;
-      this.setClassMap();
-      setTimeout(() => this.setArrow());
-      this.cdr.detectChanges();
-    });
-    this.setClassMap();
-  }
-
-  ngAfterViewInit() {
-    this.viewInit();
-    this.portalBox = this.tooltipPortal.nativeElement.getBoundingClientRect();
-    this.arrowBox = this.tooltipArrow.nativeElement.getBoundingClientRect();
-    this.setArrow();
-    this.cdr.detectChanges();
-  }
-
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
-
-  setClassMap() {
-    this.classMap[`${XTooltipPortalPrefix}-${this.previousPlacement}`] = false;
-    this.classMap[`${XTooltipPortalPrefix}-${this.placement}`] = true;
-    this.previousPlacement = `${this.placement}` as XPlacement;
-  }
 
   setArrow() {
-    let offset = this.arrowBox.height / 2;
-    if (this.portalBox.height > this.box.height && (this.includes('right-') || this.includes('left-'))) {
+    const arrowBox = this.arrowBox();
+    const portalBox = this.portalBox();
+    const tooltipArrow = this.tooltipArrow().nativeElement;
+    const tooltipArrowAfter = this.tooltipArrowAfter().nativeElement;
+    const box = this.box()!;
+    let offset = arrowBox.height / 2;
+    if (portalBox.height > box.height && (this.includes('right-') || this.includes('left-'))) {
       if (this.includes('-start')) {
-        this.renderer.setStyle(this.tooltipArrow.nativeElement, 'top', `${this.box.height / 2 - offset}px`);
+        this.renderer.setStyle(tooltipArrow, 'top', `${box.height / 2 - offset}px`);
       } else if (this.includes('-end')) {
-        this.renderer.setStyle(this.tooltipArrow.nativeElement, 'bottom', `${this.box.height / 2 - offset}px`);
+        this.renderer.setStyle(tooltipArrow, 'bottom', `${box.height / 2 - offset}px`);
       }
-    } else if (this.portalBox.width > this.box.width && (this.includes('top-') || this.includes('bottom-'))) {
+    } else if (portalBox.width > box.width && (this.includes('top-') || this.includes('bottom-'))) {
       if (this.includes('-start')) {
-        this.renderer.setStyle(this.tooltipArrow.nativeElement, 'left', `${this.box.width / 2 - offset}px`);
+        this.renderer.setStyle(tooltipArrow, 'left', `${box.width / 2 - offset}px`);
       } else if (this.includes('-end')) {
-        this.renderer.setStyle(this.tooltipArrow.nativeElement, 'right', `${this.box.width / 2 - offset}px`);
+        this.renderer.setStyle(tooltipArrow, 'right', `${box.width / 2 - offset}px`);
       }
     }
-    if (!this.backgroundColor) return;
-    const ptSplit = this.placement.split('-');
-    if (ptSplit.length > 0) {
-      this.renderer.setStyle(this.tooltipArrow.nativeElement, `border-${ptSplit[0]}-color`, this.backgroundColor);
-      this.renderer.setStyle(this.tooltipArrowAfter.nativeElement, `border-${ptSplit[0]}-color`, this.backgroundColor);
+    if (!this.backgroundColor()) return;
+    const ptSplit = this.placement()?.split('-');
+    if (ptSplit && ptSplit.length > 0) {
+      this.renderer.setStyle(tooltipArrow, `border-${ptSplit[0]}-color`, this.backgroundColor());
+      this.renderer.setStyle(tooltipArrowAfter, `border-${ptSplit[0]}-color`, this.backgroundColor());
     }
   }
 
   includes(arrow: string) {
-    return this.placement.indexOf(arrow) >= 0;
+    return this.placement()!.indexOf(arrow) >= 0;
   }
 }

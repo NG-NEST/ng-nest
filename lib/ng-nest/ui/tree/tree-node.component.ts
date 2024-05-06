@@ -6,22 +6,32 @@ import {
   ChangeDetectionStrategy,
   HostBinding,
   HostListener,
-  Input,
   Output,
   EventEmitter,
-  inject
+  inject,
+  computed,
+  signal
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
-import { XIsEmpty, XConfigService, XBoolean } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XConfigService,
+  XBoolean,
+  XComputedStyle,
+  XToCssPx,
+  XIsObjectArray,
+  XIsArray
+} from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XTreeService } from './tree.service';
-import { NgStyle } from '@angular/common';
+import { DOCUMENT, NgStyle } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XKeywordDirective } from '@ng-nest/ui/keyword';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XTreeComponent } from './tree.component';
 
 @Component({
   selector: `${XTreeNodePrefix}, [${XTreeNodePrefix}]`,
@@ -41,43 +51,37 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeNodeComponent extends XTreeNodeProperty {
-  @Input() tree: any;
+  tree = inject(XTreeComponent, { optional: true, host: true })!;
   @Output() nodeMouseenter = new EventEmitter<{ event: MouseEvent; node: XTreeNode; ele: ElementRef }>();
   @HostBinding('class.x-tree-node') rootClass = true;
-
-  private _loading = false;
-  public get loading() {
-    return this._loading;
-  }
-  public set loading(value) {
-    this._loading = value;
-    this.cdr.detectChanges();
-  }
-
+  private document = inject(DOCUMENT);
+  fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
   private _unSubject = new Subject<void>();
-  get showDragIndicator() {
-    return this.tree.dragging && this.tree.hoverTreeNode?.id === this.node.id;
-  }
 
   @HostListener('mouseenter', ['$event']) onMouseenter(event: MouseEvent) {
-    this.nodeMouseenter.emit({ event: event, node: this.node, ele: this.elementRef });
+    this.nodeMouseenter.emit({ event: event, node: this.node(), ele: this.elementRef });
   }
 
   @HostListener('mouseleave') onMouseleave(_event: MouseEvent) {
-    if (!this.tree.dragging) return;
-    this.tree.hoverTreeNode?.change && this.tree.hoverTreeNode?.change();
+    if (!this.tree.dragging()) return;
+    const hoverTreeNode = this.tree.hoverTreeNode();
+    hoverTreeNode && hoverTreeNode.change && hoverTreeNode.change();
     this.cdr.detectChanges();
   }
 
-  get isChildrenLast() {
-    let parent = this.tree.nodes.find((x: XTreeNode) => x.id === this.node.pid);
-    if (!parent) return false;
-    const index = parent.children.indexOf(this.node);
-    return index + 1 === parent.children.length;
-  }
+  showDragIndicator = computed(() => {
+    return this.tree.dragging() && this.tree.hoverTreeNode()?.id === this.id();
+  });
 
-  get isParentLast() {
-    let parents = this.treeService.getParents(this.tree.nodes, this.node);
+  isChildrenLast = computed(() => {
+    let parent = this.tree.nodes.find((x: XTreeNode) => x.id === this.pid());
+    if (!parent || !parent.children) return false;
+    const index = parent.children.indexOf(this.node());
+    return index + 1 === parent.children.length;
+  });
+
+  isParentLast = computed(() => {
+    let parents = this.treeService.getParents(this.tree.nodes, this.node());
     if (parents.length <= 1) return [];
     const res: boolean[] = [];
     parents.reduce((pre: XTreeNode, curr: XTreeNode) => {
@@ -88,52 +92,50 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     });
 
     return res.reverse();
-  }
+  });
 
-  get numLevel() {
-    return Number(this.level);
-  }
-
-  get verticalLevel() {
-    if (this.numLevel > 0) {
-      return Array.from({ length: this.numLevel }).map((_x, index) => index + 1);
+  verticalLevel = computed(() => {
+    if (this.level()! > 0) {
+      return Array.from({ length: this.level()! }).map((_x, index) => index + 1);
     } else {
       return [];
     }
-  }
+  });
 
-  get verticalWidth() {
-    return Number(this.tree.spacing) / 2;
-  }
+  verticalWidth = computed(() => {
+    return XToCssPx(this.tree.spacing(), this.fontSize()) / 2;
+  });
 
-  get paddingLeft() {
-    return Number(this.node?.level ? this.node.level : 0) * Number(this.tree.spacing);
-  }
+  paddingLeft = computed(() => (this.level()! ? this.level()! : 0) * XToCssPx(this.tree.spacing(), this.fontSize()));
 
-  get indicatorWidth() {
-    return `calc(100% - ${this.paddingLeft + (this.node.leaf ? 1.5 : 0)}rem)`;
-  }
+  indicatorWidth = computed(() => {
+    return `calc(100% - ${this.paddingLeft() + (this.leaf() ? this.fontSize() * 1.5 : 0)}px)`;
+  });
 
-  get indicatorStyle() {
-    if (this.tree.dragPosition === 1) {
-      return { bottom: `${-0.0625}rem` };
-    } else if (this.tree.dragPosition === -1) {
-      return { top: `${-0.0625}rem` };
+  indicatorStyle = computed(() => {
+    if (this.tree.dragPosition() === 1) {
+      return { bottom: `-${0.0625 * this.fontSize()}px` };
+    } else if (this.tree.dragPosition() === -1) {
+      return { top: `-${0.0625 * this.fontSize()}px` };
     }
     return {};
-  }
+  });
 
-  get getActivated() {
-    if (this.tree.multiple) {
-      if (this.tree.objectArray) {
-        return this.tree.activatedId?.map((x: XTreeNode) => x.id).includes(this.node.id);
+  changed = signal(false);
+
+  activated = computed(() => {
+    this.changed();
+    const activatedId = this.tree.activatedId();
+    if (this.tree.multiple()) {
+      if (this.tree.objectArray()) {
+        return XIsObjectArray<XTreeNode[]>(activatedId) && activatedId.map((x: XTreeNode) => x.id).includes(this.id());
       } else {
-        return this.tree.activatedId?.includes(this.node.id);
+        return XIsArray<any[]>(activatedId) && activatedId.includes(this.id());
       }
     } else {
-      return this.tree.activatedId === this.node.id;
+      return activatedId === this.id();
     }
-  }
+  });
 
   private cdr = inject(ChangeDetectorRef);
   private treeService = inject(XTreeService);
@@ -141,14 +143,14 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   configService = inject(XConfigService);
 
   ngOnInit() {
-    this.node.change = (check: boolean) => {
+    const node = this.node();
+    node.change = (check: boolean) => {
       if (check) this.setCheckbox();
       this?.cdr.detectChanges();
     };
-    this.level = this.node?.level ? this.node.level : 0;
-    if (!this.tree.levelCheck) return;
-    if (this.node.checked) this.setCheckbox();
-    this.setIndeterminate(this.node);
+    if (!this.tree.levelCheck()) return;
+    if (node.checked) this.setCheckbox();
+    this.setIndeterminate(this.node());
   }
 
   ngOnDestroy() {
@@ -157,42 +159,54 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   }
 
   onActivate(event: Event, node: XTreeNode) {
-    const change: Function = this.tree.activatedNode?.change as Function;
-    this.tree.nodeOpen && !node.leaf && this.tree.onToggle(event, node);
+    const change: Function = this.tree.activatedNode()?.change as Function;
+    this.tree.nodeOpen() && !this.leaf() && this.tree.onToggle(event, node);
     const onChange = () => {
       change && change();
       event.preventDefault();
       event.stopPropagation();
       this.cdr.detectChanges();
     };
-    if (this.tree.onlyLeaf && !node.leaf) {
+    if (this.tree.onlyLeaf() && !this.leaf()) {
       onChange();
       return;
     }
-    if (this.tree.multiple) {
-      if (!this.tree.activatedId) this.tree.activatedId = [];
-      if (this.tree.objectArray) {
-        const ids = this.tree.activatedId.map((x: XTreeNode) => x.id);
+    if (this.tree.multiple()) {
+      if (!this.tree.activatedId()) this.tree.activatedId.set([]);
+      if (this.tree.objectArray()) {
+        const ids = this.tree.activatedId().map((x: XTreeNode) => x.id);
         if (ids.includes(node.id)) {
-          this.tree.activatedId.splice(ids.indexOf(node.id), 1);
+          this.tree.activatedId.update((x) => {
+            x.splice(ids.indexOf(node.id), 1);
+            return x;
+          });
         } else {
-          this.tree.activatedId.push(node);
+          this.tree.activatedId.update((x) => {
+            x.push(node);
+            return x;
+          });
         }
       } else {
-        if (this.tree.activatedId.includes(node.id)) {
-          this.tree.activatedId.splice(this.tree.activatedId.indexOf(node.id), 1);
+        if (this.tree.activatedId().includes(node.id)) {
+          this.tree.activatedId.update((x) => {
+            x.splice(this.tree.activatedId().indexOf(node.id), 1);
+            return x;
+          });
         } else {
-          this.tree.activatedId.push(node.id);
+          this.tree.activatedId.update((x) => {
+            x.push(node.id);
+            return x;
+          });
         }
       }
     } else {
-      this.tree.activatedId = node.id;
+      this.tree.activatedId.set(node.id);
     }
-    if (this.tree.activatedNode) {
-      if (this.tree.activatedNode.id === node.id && !this.tree.allowManyActivated) return;
+    if (this.tree.activatedNode()) {
+      if (this.tree.activatedNode()?.id === node.id && !this.tree.allowManyActivated()) return;
     }
-    this.tree.activatedNode = node;
-    this.tree.activatedIdChange.emit(this.tree.activatedId);
+    this.tree.activatedNode.set(node);
+    this.changed.update((x) => !x);
     this.tree.activatedChange.emit(node);
     this.tree.nodeClick.emit(node);
     onChange();
@@ -200,17 +214,18 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
 
   onCheckboxChange() {
     this.setCheckbox();
-    this.tree.checkboxChange.emit(this.node);
+    this.tree.checkboxChange.emit(this.node());
   }
 
   getVerticalLeft(i: number) {
-    return (i - 1) * Number(this.tree.spacing) + Number(this.tree.spacing) / 2;
+    const spacing = XToCssPx(this.tree.spacing(), this.fontSize());
+    return (i - 1) * spacing + spacing / 2;
   }
 
   setCheckbox() {
-    if (!this.tree.levelCheck) return;
-    this.node.indeterminate = this.node.checked;
-    this.node.children && this.setChildrenCheckbox(this.node.checked as boolean);
+    if (!this.tree.levelCheck()) return;
+    this.node().indeterminate = this.checked();
+    this.node().children && this.setChildrenCheckbox(this.checked()!);
     const setParent = (node: XTreeNode) => {
       let parent = this.tree.nodes.find((x: XTreeNode) => x.id === node.pid);
       if (!parent || XIsEmpty(parent.children)) return;
@@ -221,7 +236,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
       parent.change && parent.change();
       setParent(parent);
     };
-    setParent(this.node);
+    setParent(this.node());
     this.cdr.detectChanges();
   }
 
@@ -236,16 +251,17 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
         setChildren(x.children as XTreeNode[], isChecked);
       }
     };
-    setChildren(this.node.children as XTreeNode[], checked);
+    setChildren(this.node().children as XTreeNode[], checked);
     this.cdr.detectChanges();
   }
 
   setParentCheckbox() {
-    if (XIsEmpty(this.node.children)) return;
-    let checkedList = this.node.children?.filter((x) => x.checked);
-    let indeterminateList = this.node.children?.filter((x) => x.indeterminate);
-    this.node.checked = checkedList?.length === this.node.children?.length;
-    this.node.indeterminate = (checkedList as XTreeNode[]).length > 0 || (indeterminateList as XTreeNode[]).length > 0;
+    if (XIsEmpty(this.node().children)) return;
+    let checkedList = this.node().children?.filter((x) => x.checked);
+    let indeterminateList = this.node().children?.filter((x) => x.indeterminate);
+    this.node().checked = checkedList?.length === this.node().children?.length;
+    this.node().indeterminate =
+      (checkedList as XTreeNode[]).length > 0 || (indeterminateList as XTreeNode[]).length > 0;
     this.cdr.detectChanges();
   }
 

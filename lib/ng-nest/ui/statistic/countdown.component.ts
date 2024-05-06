@@ -2,18 +2,17 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
   NgZone,
   inject,
   PLATFORM_ID,
-  OnDestroy
+  OnDestroy,
+  signal
 } from '@angular/core';
 import { XCountdownPrefix, XCountdownProperty } from './statistic.property';
 import { interval, Subscription } from 'rxjs';
-import { XConfigService } from '@ng-nest/ui/core';
 import { isPlatformBrowser } from '@angular/common';
 import { XTimeRangePipe } from '@ng-nest/ui/time-range';
 import { XStatisticComponent } from './statistic.component';
@@ -28,15 +27,13 @@ import { XStatisticComponent } from './statistic.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCountdownComponent extends XCountdownProperty implements OnInit, OnChanges, OnDestroy {
-  diff!: number;
+  diff = signal<number | string>('');
   period = 1000 / 30;
   private _target!: number;
-  private _updater!: Subscription | null;
+  private updater!: Subscription | null;
   platformId = inject(PLATFORM_ID);
   isBrowser = isPlatformBrowser(this.platformId);
-  private cdr = inject(ChangeDetectorRef);
   private ngZone = inject(NgZone);
-  configService = inject(XConfigService);
 
   ngOnInit(): void {
     this.syncTimer();
@@ -68,23 +65,22 @@ export class XCountdownComponent extends XCountdownProperty implements OnInit, O
     if (!this.isBrowser) return;
     this.ngZone.runOutsideAngular(() => {
       this.stopTimer();
-      this._updater = interval(this.period).subscribe(() => {
+      this.updater = interval(this.period).subscribe(() => {
         this.updateValue();
-        this.cdr.detectChanges();
       });
     });
   }
 
   stopTimer(): void {
-    if (this._updater) {
-      this._updater.unsubscribe();
-      this._updater = null;
+    if (this.updater) {
+      this.updater.unsubscribe();
+      this.updater = null;
     }
   }
 
   updateValue(): void {
-    this.diff = Math.max(this._target - Date.now(), 0);
-    if (this.diff === 0) {
+    this.diff.set(Math.max(this._target - Date.now(), 0));
+    if (this.diff() === 0) {
       this.stopTimer();
       this.finish.emit();
     }

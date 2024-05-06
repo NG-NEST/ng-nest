@@ -1,14 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
   TemplateRef,
-  ViewChild,
   ViewEncapsulation,
-  inject
+  contentChild,
+  viewChild
 } from '@angular/core';
 import { XTabPrefix, XTabProperty } from './tabs.property';
-import { XConfigService } from '@ng-nest/ui/core';
 import { XTabLinkDirective, XTabLinkTemplateDirective } from './tab-link.directive';
 
 @Component({
@@ -19,8 +17,7 @@ import { XTabLinkDirective, XTabLinkTemplateDirective } from './tab-link.directi
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTabComponent extends XTabProperty {
-  @ViewChild('contentTpl', { static: true }) content!: TemplateRef<void>;
-  @ContentChild(XTabLinkTemplateDirective) linkTemplateDirective!: XTabLinkTemplateDirective;
-  @ContentChild(XTabLinkDirective) linkDirective!: XTabLinkDirective;
-  configService = inject(XConfigService);
+  content = viewChild('contentTpl', { read: TemplateRef<any> });
+  linkTemplateDirective = contentChild(XTabLinkTemplateDirective);
+  linkDirective = contentChild(XTabLinkDirective);
 }

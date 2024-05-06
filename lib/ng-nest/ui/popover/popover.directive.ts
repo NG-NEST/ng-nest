@@ -120,7 +120,7 @@ export class XPopoverDirective extends XPopoverProperty implements OnDestroy {
             ? connectTo
             : new ElementRef(connectTo)
           : this.elementRef,
-        placement: [this.placement(), 'bottom', 'top', 'left', 'right']
+        placement: [this.placement(), 'top', 'bottom', 'left', 'right']
       }),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };
@@ -167,9 +167,5 @@ export class XPopoverDirective extends XPopoverProperty implements OnDestroy {
         }
       }
     });
-  }
-
-  update() {
-    this.portal?.overlayRef?.updatePosition();
   }
 }

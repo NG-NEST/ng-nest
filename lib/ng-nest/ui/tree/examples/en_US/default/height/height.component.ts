@@ -52,8 +52,13 @@ export class ExHeightComponent {
     { id: 24, label: '三级 1-1-4', pid: 5 }
   ];
   data2: XTreeNode[] = [
-    { id: 1, label: '一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1', nowrap: false, alignItems: 'start' },
-    { id: 2, label: '一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2', height: 3 },
+    {
+      id: 1,
+      label: '一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1',
+      nowrap: false,
+      alignItems: 'start'
+    },
+    { id: 2, label: '一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2', height: '60px' },
     { id: 3, label: '一级 3一级 3一级 3一级 3一级 3一级 3一级 3一级 3一级 3一级 3' },
     { id: 5, label: '二级 1-1', pid: 1 },
     { id: 6, label: '二级 1-2', pid: 1 },

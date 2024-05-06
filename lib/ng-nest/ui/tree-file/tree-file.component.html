@@ -1,41 +1,41 @@
-<div #treeFile class="x-tree-file" [ngClass]="classMap" [class.x-tree-file-toggle]="toggle">
-  @if (showTree) {
-    <div class="x-tree-file-catalog" [style.max-height.rem]="catalogHeight">
+<div #treeFile class="x-tree-file" [class.x-tree-file-toggle]="toggle()">
+  @if (showTree()) {
+    <div class="x-tree-file-catalog" [style.max-height]="maxHeight()">
       <x-tree
-        [data]="data"
+        [data]="data()"
         (activatedChange)="catalogChange($event)"
         nodeOpen
-        [expandedAll]="expandedAll"
-        [expandedLevel]="expandedLevel"
-        [expanded]="expanded"
-        [spacing]="spacing"
-        [activatedId]="activatedId"
+        [expandedAll]="expandedAll()"
+        [expandedLevel]="expandedLevel()"
+        [expanded]="expanded()"
+        [spacing]="spacing()"
+        [activatedId]="activatedId()"
       ></x-tree>
     </div>
   }
-  <div class="x-tree-file-body" [x-loading]="loading">
-    @if (showCrumb) {
+  <div class="x-tree-file-body" [x-loading]="loading()">
+    @if (showCrumb()) {
       <div class="x-tree-file-crumb">
-        @if (showToggle && showTree) {
+        @if (showToggle() && showTree()) {
           <x-link icon="fto-menu" (click)="menuToggle()"></x-link>
         }
-        <x-crumb [data]="getCrumbData" [separator]="separatorTpl"></x-crumb>
+        <x-crumb [data]="crumbData()" [separator]="separatorTpl"></x-crumb>
         <ng-template #separatorTpl>
           <x-icon type="fto-chevron-right"></x-icon>
         </ng-template>
       </div>
     }
 
-    <div class="x-tree-file-content" [style.max-height.rem]="codeHeight">
-      @switch (activatedNode?.fileType) {
+    <div class="x-tree-file-content" [style.max-height.px]="codeHeight()">
+      @switch (activatedNode()?.fileType) {
         @case ('img') {
-          <div class="x-tree-file-img"><img [src]="activatedNode?.url" (load)="imgOnload()" /></div>
+          <div class="x-tree-file-img"><img [src]="activatedNode()?.url" (load)="imgOnload()" /></div>
         }
         @case ('code') {
           <x-highlight
-            [type]="activatedNode?.type"
-            [data]="activatedNode?.content"
-            [highlightLines]="getHighlightLines"
+            [type]="activatedNode()?.type"
+            [data]="activatedNode()?.content"
+            [highlightLines]="highlightLines()"
           ></x-highlight>
         }
       }

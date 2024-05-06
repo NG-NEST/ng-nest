@@ -1,26 +1,26 @@
 <div #statistic class="x-statistic">
-  @if (label) {
+  @if (label()) {
     <div class="x-statistic-label">
-      <ng-container *xOutlet="label">{{ label }}</ng-container>
+      <ng-container *xOutlet="label()">{{ label() }}</ng-container>
     </div>
   }
-  @if (value) {
-    <div class="x-statistic-value" [ngStyle]="valueStyle">
-      <ng-container *xOutlet="value">
-        @if (prefix) {
+  @if (value()) {
+    <div class="x-statistic-value" [ngStyle]="valueStyle()">
+      <ng-container *xOutlet="value()">
+        @if (prefix()) {
           <span class="x-statistic-value-prefix">
-            <ng-container *xOutlet="prefix">{{ prefix }}</ng-container>
+            <ng-container *xOutlet="prefix">{{ prefix() }}</ng-container>
           </span>
         }
-        @if (displayInt) {
-          <span class="x-statistic-value-int">{{ displayInt }}</span>
+        @if (displayInt()) {
+          <span class="x-statistic-value-int">{{ displayInt() }}</span>
         }
-        @if (displayDecimal) {
-          <span class="x-statistic-value-decimal">{{ displayDecimal }}</span>
+        @if (displayDecimal()) {
+          <span class="x-statistic-value-decimal">{{ displayDecimal() }}</span>
         }
-        @if (suffix) {
+        @if (suffix()) {
           <span class="x-statistic-value-suffix">
-            <ng-container *xOutlet="suffix">{{ suffix }}</ng-container>
+            <ng-container *xOutlet="suffix()">{{ suffix() }}</ng-container>
           </span>
         }
       </ng-container>

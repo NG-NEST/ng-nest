@@ -178,7 +178,7 @@ export class XUploadComponent extends XUploadProperty implements OnInit, OnDestr
               try {
                 body = JSON.parse(reader.result as string);
                 if (XIsArray(body) && body.length > 0) {
-                  file.url = body[0];
+                  file.url = body[0] as string;
                 }
                 file.body = body;
               } catch (e) {

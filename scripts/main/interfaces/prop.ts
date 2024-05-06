@@ -78,6 +78,14 @@ export interface NcPrope {
    */
   type?: string;
   /**
+   * 转化为的类型
+   */
+  toType?: string;
+  /**
+   * 输入的类型
+   */
+  inputType?: string;
+  /**
    * 描述
    */
   description?: string;
@@ -98,6 +106,10 @@ export interface NcPrope {
    * 示例
    */
   example?: string;
+  /**
+   * 转换函数
+   */
+  transform?: string;
 }
 
 /**

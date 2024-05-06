@@ -1,8 +1,8 @@
-<div #steps class="x-steps" [ngClass]="classMap">
-  @for (node of nodes; track node.id; let i = $index) {
+<div #steps class="x-steps" [ngClass]="classMapSignal()">
+  @for (node of nodes(); track node.id; let i = $index) {
     <div class="x-steps-node x-steps-{{ node.status }}">
       <div class="x-steps-header">
-        <ng-container *xOutlet="customTpl; context: { $node: node, $index: i }">
+        <ng-container *xOutlet="customTpl(); context: { $node: node, $index: i }">
           <div class="x-steps-icon" [class.x-steps-only-icon]="node.icon">
             @if (node.icon) {
               <x-icon [type]="node.icon"></x-icon>
@@ -21,14 +21,14 @@
             }
           </div>
         </ng-container>
-        @if (layout === 'column') {
+        @if (layout() === 'column') {
           <span class="x-steps-line"></span>
         }
       </div>
       <div class="x-steps-content">
         <div class="x-steps-title">
           <span class="x-steps-label">{{ node.label }}</span>
-          @if (layout === 'row') {
+          @if (layout() === 'row') {
             <span class="x-steps-line"></span>
           }
         </div>

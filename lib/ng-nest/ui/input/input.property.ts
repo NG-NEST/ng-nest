@@ -1,19 +1,19 @@
 import {
-  XInputBoolean,
-  XInputNumber,
   XSize,
   XNumber,
   XBoolean,
-  XWithConfig,
   XPositionLeftRight,
-  XProperty,
   XTemplate,
   XAlign,
   XJustify,
-  XDirection
+  XDirection,
+  XToBoolean,
+  XToNumber,
+  XToCssPixelValue,
+  XPropertyFunction
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component, TemplateRef } from '@angular/core';
-import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
+import { Component, TemplateRef, input, model, output } from '@angular/core';
+import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Input
@@ -21,235 +21,232 @@ import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XInputPrefix = 'x-input';
-const X_CONFIG_NAME = 'input';
+const X_INPUT_CONFIG_NAME = 'input';
 
 /**
  * Input Property
  */
 @Component({ selector: `${XInputPrefix}-property`, template: '' })
-export class XInputProperty extends XControlValueAccessor<any> implements XInputOption {
+export class XInputProperty extends XFormControlFunction(X_INPUT_CONFIG_NAME) {
   /**
    * @zh_CN 输入类型
    * @en_US Input type
    */
-  @Input() type?: XInputType = 'text';
+  readonly type = input<XInputType>('text');
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() clearable?: XBoolean;
+  readonly clearable = input<boolean, XBoolean>(this.config?.clearable ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 图标
    * @en_US Icon
    */
-  @Input() icon?: string;
+  readonly icon = input<string>();
   /**
    * @zh_CN 图标布局方式
    * @en_US Icon layout
    */
-  @Input()
-  @XWithConfig<XInputIconLayoutType>(X_CONFIG_NAME, 'right')
-  iconLayout: XInputIconLayoutType = 'right';
+  readonly iconLayout = input<XInputIconLayoutType>(this.config?.iconLayout ?? 'right');
   /**
    * @zh_CN 图标动画
    * @en_US Icon animation
    */
-  @Input() @XInputBoolean() iconSpin: XBoolean = false;
+  readonly iconSpin = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 输入最大长度
    * @en_US Enter the maximum length
    */
-  @Input() @XInputNumber() maxlength!: XNumber;
+  readonly maxlength = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 最大值
    * @en_US Enter the max
    */
-  @Input() @XInputNumber() max!: XNumber;
+  readonly max = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 最小值
    * @en_US Enter the min
    */
-  @Input() @XInputNumber() min!: XNumber;
+  readonly min = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 宽度
    * @en_US width
    */
-  @Input() @XInputNumber() width!: XNumber;
-  /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
+  readonly width = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 输入框样式
    * @en_US Input Style
    */
-  @Input() inputStyle!: { [style: string]: any };
+  readonly inputStyle = input<{ [style: string]: any }>();
+  /**
+   * @zh_CN 输入框内边距。主要指输入框中的左右内边距
+   * @en_US Enter the border of the input box.
+   */
+  readonly inputPadding = input<string, XNumber>(this.config?.inputPadding ?? '0.75rem', {
+    transform: XToCssPixelValue
+  });
+  /**
+   * @zh_CN 输入框内边距(包含图标)。主要指输入框中的有图标的时候左右内边距
+   * @en_US Enter the border between the input box (including icon).
+   */
+  readonly inputIconPadding = input<string, XNumber>(this.config?.inputPadding ?? '2.15rem', {
+    transform: XToCssPixelValue
+  });
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  override readonly size = input<XSize>(this.config?.size ?? 'medium');
   /**
    * @zh_CN 输入框点击样式
    * @en_US Input pointer
    */
-  @Input() @XInputBoolean() override pointer!: XBoolean;
+  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 初始启用验证，在输入值都自动开启
    * @en_US Initial enable validation, which is automatically enabled when the input value is
    */
-  @Input() @XInputBoolean() override validator!: XBoolean;
-  /**
-   * @zh_CN 输入框内边距，rem。主要指输入框中的左右内边距
-   * @en_US Enter the border of the input box, rem.
-   */
-  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 0.75) inputPadding!: XNumber;
-  /**
-   * @zh_CN 输入框内边距(包含图标)，rem。主要指输入框中的有图标的时候左右内边距
-   * @en_US Enter the border between the input box (including icon), rem.
-   */
-  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME, 2.15) inputIconPadding!: XNumber;
-  /**
-   * @zh_CN 前置标签
-   * @en_US Before label
-   */
-  @Input() override before!: XTemplate;
-  /**
-   * @zh_CN 后置标签
-   * @en_US After label
-   */
-  @Input() override after!: XTemplate;
+  readonly validator = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 标签
    * @en_US Label
    */
-  @Input() override label?: string = '';
+  override readonly label = input<string>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  @Input() override labelWidth?: string = '';
+  override readonly labelWidth = input<string>('');
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method
    */
-  @Input() override labelAlign?: XAlign = 'start';
+  override readonly labelAlign = input<XAlign>('start');
   /**
    * @zh_CN flex 布局下的子元素水平排列方式
    * @en_US The level of sub-element level arrangement under flex layout
    */
-  @Input() override justify?: XJustify = 'start';
+  override readonly justify = input<XJustify>('start');
   /**
    * @zh_CN flex 布局下的子元素垂直排列方式
    * @en_US sub-element vertical arrangement method under flex layout
    */
-  @Input() override align?: XAlign = 'start';
+  override readonly align = input<XAlign>('start');
   /**
    * @zh_CN flex 布局下的子元素排列方向
    * @en_US The direction of the sub-element arrangement under flex layout
    */
-  @Input() override direction?: XDirection = 'column';
+  override readonly direction = input<XDirection>('column');
   /**
    * @zh_CN 输入提示信息
    * @en_US Enter prompt information
    */
-  @Input() override placeholder?: string | string[] = '';
+  override readonly placeholder = input<string | string[]>('');
   /**
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  @Input() @XInputBoolean() override disabled: XBoolean = false;
+  override readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 必填
    * @en_US Required
    */
-  @Input() @XInputBoolean() override required: XBoolean = false;
+  override readonly required = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 只读
    * @en_US Readonly
    */
-  @Input() @XInputBoolean() override readonly: XBoolean = false;
+  override readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 值模板
    * @en_US Node template
    */
-  @Input() override valueTpl?: TemplateRef<any>;
+  override readonly valueTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 值模板参数
    * @en_US Node template
    */
-  @Input() override valueTplContext: any;
+  override readonly valueTplContext = input();
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  override readonly before = input<XTemplate>();
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  override readonly after = input<XTemplate>();
   /**
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
-  @Input() override pattern?: any;
+  override readonly pattern = input<any>();
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verify not pass the prompt text
    */
-  @Input() override message?: string | string[];
+  override readonly message = input<string | string[]>('');
   /**
    * @zh_CN 激活状态
    * @en_US Activation state
    */
-  @Input() @XInputBoolean() override active: XBoolean = false;
+  override readonly active = model<boolean>(false);
   /**
    * @zh_CN 输入验证函数
    * @en_US Enter the verification function
    */
-  @Input() override inputValidator!: (value: any) => boolean;
-  /**
-   * @zh_CN 激活状态事件
-   * @en_US Activation state event
-   */
-  @Output() override activeChange = new EventEmitter<XBoolean>();
+  override readonly inputValidator = input<(value: any) => boolean>();
   /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
    */
-  @Output() clearEmit = new EventEmitter<any>();
+  readonly clearEmit = output<any>();
   /**
    * @zh_CN 获取焦点的事件
    * @en_US Focus event
    */
-  @Output() xFocus = new EventEmitter<any>();
+  readonly xFocus = output<any>();
   /**
    * @zh_CN 失去焦点的事件
    * @en_US Blur event
    */
-  @Output() xBlur = new EventEmitter<any>();
+  readonly xBlur = output<any>();
   /**
    * @zh_CN Input
    * @en_US Input event
    */
-  @Output() xInput = new EventEmitter<any>();
+  readonly xInput = output<any>();
   /**
    * @zh_CN Keydown
    * @en_US Keydown event
    */
-  @Output() xKeydown = new EventEmitter<any>();
+  readonly xKeydown = output<KeyboardEvent>();
   /**
    * @zh_CN Click
    * @en_US Click event
    */
-  @Output() xClick = new EventEmitter<any>();
+  readonly xClick = output<MouseEvent>();
   /**
    * @zh_CN Mouseenter
    * @en_US Mouseenter event
    */
-  @Output() xMouseenter = new EventEmitter<any>();
+  readonly xMouseenter = output<MouseEvent>();
   /**
    * @zh_CN Mouseleave
    * @en_US Mouseleave event
    */
-  @Output() xMouseleave = new EventEmitter<any>();
+  readonly xMouseleave = output<MouseEvent>();
   /**
    * @zh_CN Composition
    * @en_US Composition event
    */
-  @Output() xComposition = new EventEmitter<any>();
+  readonly xComposition = output<any>();
 }
 
 /**
@@ -352,26 +349,26 @@ export type XInputIconLayoutType = XPositionLeftRight;
  * @decorator component
  */
 export const XInputGroupPrefix = 'x-input-group';
-const X_CONFIG_GROUP_NAME = 'inputGroup';
+const X_INPUT_GROUP_CONFIG_NAME = 'inputGroup';
 
 /**
  * Input Group Property
  */
 @Component({ selector: `${XInputGroupPrefix}-property`, template: '' })
-export class XInputGroupProperty extends XProperty {
+export class XInputGroupProperty extends XPropertyFunction(X_INPUT_GROUP_CONFIG_NAME) {
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_GROUP_NAME) size!: XSize;
+  readonly size = input<XSize | undefined>(this.config?.size);
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_GROUP_NAME) bordered!: XBoolean;
+  readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 是否使用紧凑模式
    * @en_US Whether to use a compact mode
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_GROUP_NAME) compact!: XBoolean;
+  readonly compact = input<boolean, XBoolean>(this.config?.compact ?? false, { transform: XToBoolean });
 }

@@ -1,17 +1,17 @@
-<div #tree class="x-tree" [class.x-tree-only-leaf]="onlyLeaf">
-  @if (virtualScroll) {
+<div #tree class="x-tree" [class.x-tree-only-leaf]="onlyLeaf()">
+  @if (virtualScroll()) {
     <cdk-virtual-scroll-viewport
       #virtualBody
-      [itemSize]="itemSize"
-      [minBufferPx]="minBufferPx"
-      [maxBufferPx]="maxBufferPx"
-      [style.height.px]="virtualScrollHeight"
+      [itemSize]="itemSize()"
+      [minBufferPx]="minBufferPxSignal()"
+      [maxBufferPx]="maxBufferPxSignal()"
+      [style.height]="virtualScrollHeightSignal()"
     >
       <div
         class="x-tree-content"
         #dropList
         cdkDropList
-        [cdkDropListDisabled]="!drag"
+        [cdkDropListDisabled]="!drag()"
         [cdkDropListSortingDisabled]="true"
         [hidden]="isEmpty"
         [cdkDropListData]="nodes"
@@ -27,12 +27,24 @@
           [cdkDragData]="node"
           (nodeMouseenter)="nodeMouseenter($event)"
           [node]="node"
-          [lazy]="lazy"
+          [lazy]="lazy()"
           [lazyData]="data"
-          [nodeHeight]="nodeHeight"
-          [nodeNowrap]="nodeNowrap"
-          [nodeAlignItems]="nodeAlignItems"
-          [tree]="this"
+          [nodeHeight]="nodeHeight()"
+          [nodeNowrap]="nodeNowrap()"
+          [nodeAlignItems]="nodeAlignItems()"
+          [disabled]="node.disabled!"
+          [id]="node.id"
+          [pid]="node.pid"
+          [leaf]="node.leaf!"
+          [height]="node.height!"
+          [alignItems]="node.alignItems!"
+          [loading]="node.loading!"
+          [level]="node.level!"
+          [(open)]="node.open"
+          [(checked)]="node.checked!"
+          [indeterminate]="node.indeterminate!"
+          [label]="node.label!"
+          [nowrap]="node.nowrap!"
         ></x-tree-node>
       </div>
     </cdk-virtual-scroll-viewport>
@@ -41,7 +53,7 @@
       class="x-tree-content"
       #dropList
       cdkDropList
-      [cdkDropListDisabled]="!drag"
+      [cdkDropListDisabled]="!drag()"
       [cdkDropListSortingDisabled]="true"
       [hidden]="isEmpty"
       [cdkDropListData]="nodes"
@@ -57,12 +69,24 @@
           [cdkDragData]="node"
           (nodeMouseenter)="nodeMouseenter($event)"
           [node]="node"
-          [lazy]="lazy"
+          [lazy]="lazy()"
           [lazyData]="data"
-          [nodeHeight]="nodeHeight"
-          [nodeNowrap]="nodeNowrap"
-          [nodeAlignItems]="nodeAlignItems"
-          [tree]="this"
+          [nodeHeight]="nodeHeight()"
+          [nodeNowrap]="nodeNowrap()"
+          [nodeAlignItems]="nodeAlignItems()"
+          [(disabled)]="node.disabled"
+          [(id)]="node.id"
+          [(pid)]="node.pid"
+          [(leaf)]="node.leaf"
+          [height]="node.height!"
+          [alignItems]="node.alignItems"
+          [(loading)]="node.loading"
+          [(level)]="node.level"
+          [(open)]="node.open"
+          [(checked)]="node.checked"
+          [(indeterminate)]="node.indeterminate"
+          [(label)]="node.label"
+          [(nowrap)]="node.nowrap"
         ></x-tree-node>
       }
     </div>
@@ -70,6 +94,6 @@
 </div>
 
 <!-- 提前加载loading的图标-->
-@if (lazy) {
+@if (lazy()) {
   <x-icon [style.display]="'none'" type="fto-loader"></x-icon>
 }

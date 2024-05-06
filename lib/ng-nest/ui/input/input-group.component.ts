@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewEncapsulation, inject } from '@angular/core';
-import { XConfigService } from '@ng-nest/ui/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { XInputGroupPrefix, XInputGroupProperty } from './input.property';
 
 @Component({
@@ -10,7 +9,4 @@ import { XInputGroupPrefix, XInputGroupProperty } from './input.property';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XInputGroupComponent extends XInputGroupProperty {
-  configService = inject(XConfigService);
-  elementRef = inject(ElementRef);
-}
+export class XInputGroupComponent extends XInputGroupProperty {}
