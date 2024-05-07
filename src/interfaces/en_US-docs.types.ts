@@ -2257,427 +2257,342 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "data",
         "type": "XData<XAutoCompleteNode>",
+        "toType": "",
+        "inputType": "InputSignal<XData<XAutoCompleteNode>>",
         "label": "Node data",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "data",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "debounceTime",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Enter a delay execution time, ms",
-        "default": "",
-        "withConfig": false,
+        "default": "200",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_CONFIG_NAME,200)"
-        ],
-        "attr": "debounceTime",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "placement",
         "type": "XPositionTopBottom",
+        "toType": "",
+        "inputType": "InputSignal<XPositionTopBottom>",
         "label": "Display position",
-        "default": "",
-        "withConfig": false,
+        "default": "'bottom'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XPositionTopBottom>(X_CONFIG_NAME,'bottom')"
-        ],
-        "attr": "placement",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeTpl",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "Node template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "nodeTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "bordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Display Border",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "bordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "caseSensitive",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Case-sensitive",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "caseSensitive",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "onlySelect",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Can only be the value of choice",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
-        ],
-        "attr": "onlySelect",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "label",
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "Size",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pointer",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "Input pointer",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  label",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Label",
         "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "labelWidth",
+        "name": "override  labelWidth",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Label width",
         "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "labelAlign",
+        "name": "override  labelAlign",
         "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
         "label": "Label text alignment method",
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "justify",
+        "name": "override  justify",
         "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
         "label": "The level of sub-element level arrangement under flex layout",
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "align",
+        "name": "override  align",
         "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
         "label": "sub-element vertical arrangement method under flex layout",
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "direction",
+        "name": "override  direction",
         "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
         "label": "The direction of the sub-element arrangement under flex layout",
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "placeholder",
+        "name": "override  placeholder",
         "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
         "label": "Enter prompt information",
         "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "disabled",
+        "name": "override  disabled",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Disabled",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "required",
+        "name": "override  required",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Required",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "readonly",
+        "name": "override  readonly",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Readonly",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "valueTpl",
+        "name": "override  valueTpl",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "Node template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "valueTplContext",
-        "type": "any",
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Node template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "before",
+        "name": "override  before",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Before label",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "after",
+        "name": "override  after",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "After label",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "pattern",
+        "name": "override  pattern",
         "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "message",
+        "name": "override  message",
         "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "active",
-        "type": "XBoolean",
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Activation state",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "pointer",
-        "type": "XBoolean",
-        "label": "Enter box click style",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "Enter the verification function",
-        "default": "",
+        "default": "value: any",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeEmit",
-        "type": "XAutoCompleteNode",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Node click event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "nodeEmit",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "activeChange",
-        "type": "XBoolean",
-        "label": "Activation state event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XAutoCompleteProperty",
-    "extends": "XControlValueAccessor<any>"
+    "extends": "XFormControlFunction(X_AUTOCOMPLETE_CONFIG_NAME)"
   },
   "XAutoCompletePortalPrefix": {
     "type": "const",
@@ -3067,7 +2982,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string>",
         "label": "Icon",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -11593,52 +11508,52 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [
       {
-        "name": "input<string>()",
-        "type": "type",
+        "name": "type",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Code type",
-        "default": "input<string>()",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "input<string>()",
-        "propType": "type",
-        "example": ""
-      },
-      {
-        "name": "input<string>()",
-        "type": "data",
-        "label": "Data",
-        "default": "input<string>()",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "input<string>()",
-        "propType": "data",
-        "example": ""
-      },
-      {
-        "name": "input<XHighlightLines>({})",
-        "type": "highlightLines",
-        "label": "Highlight row data",
-        "default": "input<XHighlightLines>({})",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "input<XHighlightLines>({})",
-        "propType": "highlightLines",
-        "example": ""
-      },
-      {
-        "name": "transform",
-        "type": "XToBoolean })",
-        "label": "display copy",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "showCopy",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "data",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "Data",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "highlightLines",
+        "type": "XHighlightLines",
+        "toType": "",
+        "inputType": "InputSignal<XHighlightLines>",
+        "label": "Highlight row data",
+        "default": "{}",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "showCopy",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "display copy",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
       }
     ],
     "name": "XHighlightProperty",
@@ -12186,28 +12101,28 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "'medium')",
-        "type": "override readonly size",
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
         "label": "Size",
-        "default": "input<XSize>(this.config?.size ?? 'medium')",
-        "withConfig": false,
+        "default": "'medium'",
+        "withConfig": true,
         "description": "",
-        "decorator": [],
-        "attr": "'medium')",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "transform",
-        "type": "XToBoolean })",
+        "name": "override  pointer",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Input pointer",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "validator",
@@ -12222,220 +12137,220 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "input<string>('')",
-        "type": "override readonly label",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Label",
-        "default": "input<string>('')",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "input<string>('')",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "input<string>('')",
-        "type": "override readonly labelWidth",
+        "name": "override  labelWidth",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Label width",
-        "default": "input<string>('')",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "input<string>('')",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "input<XAlign>('start')",
-        "type": "override readonly labelAlign",
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
         "label": "Label text alignment method",
-        "default": "input<XAlign>('start')",
+        "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "input<XAlign>('start')",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "input<XJustify>('start')",
-        "type": "override readonly justify",
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
         "label": "The level of sub-element level arrangement under flex layout",
-        "default": "input<XJustify>('start')",
+        "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "input<XJustify>('start')",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "input<XAlign>('start')",
-        "type": "override readonly align",
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
         "label": "sub-element vertical arrangement method under flex layout",
-        "default": "input<XAlign>('start')",
+        "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "input<XAlign>('start')",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "input<XDirection>('column')",
-        "type": "override readonly direction",
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
         "label": "The direction of the sub-element arrangement under flex layout",
-        "default": "input<XDirection>('column')",
+        "default": "'column'",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "input<XDirection>('column')",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "string[]>('')",
-        "type": "override readonly placeholder",
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
         "label": "Enter prompt information",
-        "default": "input<string | string[]>('')",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "string[]>('')",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "transform",
-        "type": "XToBoolean })",
+        "name": "override  disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Disabled",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "transform",
-        "type": "XToBoolean })",
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Required",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "transform",
-        "type": "XToBoolean })",
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Readonly",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "Node template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "input<TemplateRef<any>>()",
-        "type": "override readonly valueTpl",
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Node template",
-        "default": "input<TemplateRef<any>>()",
+        "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "input<TemplateRef<any>>()",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "input()",
-        "type": "override readonly valueTplContext",
-        "label": "Node template",
-        "default": "input()",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "input()",
-        "propType": "override",
-        "example": ""
-      },
-      {
-        "name": "input<XTemplate>()",
-        "type": "override readonly before",
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Before label",
-        "default": "input<XTemplate>()",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "input<XTemplate>()",
-        "propType": "override",
-        "example": ""
-      },
-      {
-        "name": "input<XTemplate>()",
-        "type": "override readonly after",
-        "label": "After label",
-        "default": "input<XTemplate>()",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "input<XTemplate>()",
-        "propType": "override",
-        "example": ""
-      },
-      {
-        "name": "input<any>()",
-        "type": "override readonly pattern",
-        "label": "Regular verification rules",
-        "default": "input<any>()",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "input<any>()",
-        "propType": "override",
-        "example": ""
-      },
-      {
-        "name": "string[]>('')",
-        "type": "override readonly message",
-        "label": "Verify not pass the prompt text",
-        "default": "input<string | string[]>('')",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "string[]>('')",
-        "propType": "override",
-        "example": ""
-      },
-      {
-        "name": "model<boolean>(false)",
-        "type": "override readonly active",
-        "label": "Activation state",
-        "default": "model<boolean>(false)",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "model<boolean>(false)",
-        "propType": "override",
-        "example": ""
-      },
-      {
-        "name": "input<(value",
-        "type": "any) => boolean>()",
-        "label": "Enter the verification function",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "input<(value",
-        "propType": "override",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "After label",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "Regular verification rules",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "Verify not pass the prompt text",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "Activation state",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "Enter the verification function",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       },
       {
         "name": "clearEmit",

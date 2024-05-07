@@ -243,7 +243,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
       }
       if (!isReadDoc && isReadClassInterface && line !== '' && !line.startsWith('export')) {
         const docItem = doc.find((x) => x.end === index - 1);
-        const isInputSignal = line.startsWith('readonly');
+        const isInputSignal = line.startsWith('readonly') || line.startsWith('override readonly');
         if (isInputSignal) {
           if (isReadProperty === false) {
             isReadProperty = true;

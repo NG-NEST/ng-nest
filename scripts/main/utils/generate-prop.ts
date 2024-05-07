@@ -12,7 +12,7 @@ export function generateProps(...types: NcProp[]) {
         case NcPropType.Const:
           if (x.name.endsWith('Prefix')) {
             let selector = `<h3 class="x-api-selector"><span>${x.selector}</span> <span>${x.decorator}</span></h3>
-            <p>${x.description}</p>`;
+            <p>${replaceSpecial(x.description)}</p>`;
             result += selector;
           }
           break;
@@ -34,7 +34,7 @@ export function generateProps(...types: NcProp[]) {
               (click)="types.reference('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
               : `<code [innerText]="'${y.type}'"></code>`;
             let tr = `<tr>
-              <td><span><code>${y.attr}</code></span></td>
+              <td><span><code>${replaceSpecial(y.name)}</code></span></td>
               <td>${y.label}${description}</td>
               <td>${ty}</td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
@@ -56,13 +56,12 @@ export function generateProps(...types: NcProp[]) {
           if (table !== '' || inputTable !== '' || outputTable !== '') {
             let extend = '';
             if (x.extends && x.extends !== 'XProperty') {
-              extend = x.extends.replace('<', '&lt;');
-              extend = extend.replace('>', '&gt;');
+              extend = replaceSpecial(x.extends);
             }
             head = `<h3>${x.name}${
               extend ? ` {{ "api.extends" | xI18n }} ${extend} {{ "api.extendsDescription" | xI18n }}` : ''
             }</h3>
-            <p>${x.description}</p>`;
+            <p>${replaceSpecial(x.description)}</p>`;
           }
           if (inputTable !== '') {
             inputTable = `<table class="x-api-interface">
@@ -142,5 +141,15 @@ export function replaceEscape(str: string) {
     '<': '\\<',
     '>': '\\>'
   };
-  return str.replace(/[&<>"']/g, (m) => map[m]);
+  return str.replace(/[<>"']/g, (m) => map[m]);
+}
+
+export function replaceSpecial(str: string) {
+  let map = {
+    '{': '&#123;',
+    '}': '&#125;',
+    '<': '&lt;',
+    '>': '&gt;'
+  };
+  return str.replace(/[<>{}]/g, (m) => map[m]);
 }

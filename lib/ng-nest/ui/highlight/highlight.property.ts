@@ -18,22 +18,22 @@ export class XHighlightProperty extends XProperty {
    * @zh_CN 代码类型
    * @en_US Code type
    */
-  type = input<string>();
+  readonly type = input<string>();
   /**
    * @zh_CN 数据
    * @en_US Data
    */
-  data = input<string>();
+  readonly data = input<string>();
   /**
    * @zh_CN 高亮行数据
    * @en_US Highlight row data
    */
-  highlightLines = input<XHighlightLines>({});
+  readonly highlightLines = input<XHighlightLines>({});
   /**
    * @zh_CN 显示复制按钮
    * @en_US display copy
    */
-  showCopy = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  readonly showCopy = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }
 
 /**
