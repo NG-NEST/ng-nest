@@ -154,7 +154,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
       value = value.replace(/[^0-9]/g, '');
     }
     this.verify(value);
-    this.inputEleRef.inputRef.nativeElement.value = this.displayValue;
+    this.inputEleRef.inputRef().nativeElement.value = this.displayValue;
     this.cdr.detectChanges();
     this.valueChange.next(this.value);
   }

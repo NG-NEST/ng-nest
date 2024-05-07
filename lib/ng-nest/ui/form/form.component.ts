@@ -17,7 +17,7 @@ import {
   XFormControlComponent,
   XFormControlType
 } from './form.property';
-import { XIsChange, XBoolean, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XConfigService } from '@ng-nest/ui/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
@@ -80,8 +80,8 @@ export class XFormComponent extends XFormProperty implements OnInit, OnChanges, 
     if (this.disabled) {
       for (let key in this.controlComponents) {
         let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
-        control.disabled = true;
-        control.required = false;
+        // control.disabled = true;
+        // control.required = false;
         delete (control as any).pattern;
         type.setValidators && type.setValidators();
         control.formControlChanges();
@@ -89,9 +89,9 @@ export class XFormComponent extends XFormProperty implements OnInit, OnChanges, 
     } else {
       for (let key in this.controlComponents) {
         let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
-        control.disabled = type.disabled as XBoolean;
-        control.required = type.required as XBoolean;
-        control.pattern = type.pattern as RegExp | RegExp[];
+        // control.disabled = type.disabled as XBoolean;
+        // control.required = type.required as XBoolean;
+        // control.pattern = type.pattern as RegExp | RegExp[];
         type.setValidators && type.setValidators();
         control.formControlChanges();
       }
@@ -111,7 +111,7 @@ export class XFormComponent extends XFormProperty implements OnInit, OnChanges, 
   resetValidator() {
     for (let key in this.controlComponents) {
       let [control] = [this.controlComponents[key]];
-      control.validator = false;
+      // control.validator = false;
       control.cdr.detectChanges();
     }
   }

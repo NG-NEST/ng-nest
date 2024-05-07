@@ -2,19 +2,20 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   OnInit,
   OnDestroy,
   HostBinding,
   HostListener,
-  ViewChild,
   TemplateRef,
-  inject
+  input,
+  viewChild,
+  signal,
+  model
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompletePortalPrefix } from './auto-complete.property';
-import { Subject, BehaviorSubject } from 'rxjs';
-import { XBoolean, XConnectBaseAnimation, XNumber, XPositionTopBottom } from '@ng-nest/ui/core';
-import { filter, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
 
@@ -29,7 +30,9 @@ import { XInputComponent } from '@ng-nest/ui/input';
   animations: [XConnectBaseAnimation]
 })
 export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
+  @HostBinding('@x-connect-base-animation') public get getPlacement() {
+    return this.placement();
+  }
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
     this.animating(false);
     event.toState === 'void' && this.destroyPortal();
@@ -37,61 +40,35 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
   @HostListener('@x-connect-base-animation.start', ['$event']) start() {
     this.animating(true);
   }
-  @ViewChild('list') list!: XListComponent;
+  list = viewChild.required('list', { read: XListComponent });
 
-  data!: XAutoCompleteNode[];
-  value: any;
-  valueChange!: Subject<any>;
-  positionChange!: Subject<any>;
-  dataChange!: BehaviorSubject<XAutoCompleteNode[]>;
-  inputChange!: BehaviorSubject<any>;
-  animating!: Function;
-  destroyPortal!: Function;
+  data = input<XAutoCompleteNode[]>();
+  value = input<any>();
+  placement = input<XPositionTopBottom>();
+  nodeTpl = input<TemplateRef<any>>();
+  inputCom = input<XInputComponent>();
+  keywordText = model<string>('');
+  caseSensitive = input<boolean>(false);
+  animating!: (param: boolean) => void;
+  destroyPortal!: () => void;
+  nodeEmit!: (node: XAutoCompleteNode) => void;
   closeSubject!: Subject<void>;
   keydownSubject!: Subject<KeyboardEvent>;
-  nodeEmit!: Function;
-  multiple: XNumber = 1;
-  nodeTpl!: TemplateRef<any>;
-  show: boolean = false;
-  active: number = -1;
-  inputCom!: XInputComponent;
-  keywordText!: string;
-  caseSensitive!: XBoolean;
-  private _unSubject = new Subject<void>();
-  private cdr = inject(ChangeDetectorRef);
+  active = signal(-1);
+  private unSubject = new Subject<void>();
 
   ngOnInit(): void {
-    this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.value = x;
-      this.cdr.detectChanges();
+    this.closeSubject.pipe(takeUntil(this.unSubject)).subscribe(() => {
+      this.list().setUnActive(this.active());
     });
-    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.placement = x;
-      this.cdr.detectChanges();
+    this.keydownSubject.pipe(takeUntil(this.unSubject)).subscribe((x) => {
+      this.list().keydown(x);
     });
-    this.dataChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.data = x;
-      this.cdr.detectChanges();
-    });
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
-      this.list.setUnActive(this.active);
-    });
-    this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.list.keydown(x);
-    });
-    this.inputChange
-      .pipe(
-        filter((x) => x !== null),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.keywordText = x;
-      });
   }
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   stopPropagation(event: Event): void {
@@ -99,12 +76,12 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
   }
 
   nodeClick(node: XAutoCompleteNode) {
-    this.keywordText = node.label;
+    this.keywordText.set(node.label);
     this.nodeEmit(node);
   }
 
   onActive(num: number) {
-    this.active = num;
+    this.active.set(num);
   }
 
   onTabOut() {

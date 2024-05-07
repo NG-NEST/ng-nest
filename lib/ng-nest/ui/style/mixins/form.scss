@@ -13,7 +13,7 @@
 
 @mixin border-error-focus() {
   .x-border-error {
-    border-width: $--x-border-deep-width !important;
+    border-width: $--x-border-width !important;
   }
 }
 
@@ -22,7 +22,7 @@
     border-#{$first}-#{$second}-radius: $--x-border-radius;
     #{$first}: 0;
     #{$second}: 0;
-    border-#{$first}: $--x-border-deep-width solid $--x-danger;
-    border-#{$second}: $--x-border-deep-width solid $--x-danger;
+    border-#{$first}: $--x-border-width solid $--x-danger;
+    border-#{$second}: $--x-border-width solid $--x-danger;
   }
 }

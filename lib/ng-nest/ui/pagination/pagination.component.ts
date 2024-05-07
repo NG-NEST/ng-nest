@@ -15,7 +15,7 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { XToDataNew } from '../core';
+import { XToDataNew } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XPaginationPrefix}`,

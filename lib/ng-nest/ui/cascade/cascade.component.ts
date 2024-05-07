@@ -298,7 +298,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputRef,
+      elementRef: this.inputCom.inputRef(),
       placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-cascade-portal'
     });

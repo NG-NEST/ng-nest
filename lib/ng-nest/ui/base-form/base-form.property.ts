@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, TemplateRef, input, model, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, input, model } from '@angular/core';
 import {
   XAlign,
   XBoolean,

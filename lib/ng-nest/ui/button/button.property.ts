@@ -24,7 +24,7 @@ export class XButtonProperty extends XPropertyFunction(X_BUTTON_CONFIG_NAME) {
    * @zh_CN 图标
    * @en_US Icon
    */
-  readonly icon = input<string>();
+  readonly icon = input<string>('');
   /**
    * @zh_CN 提示
    * @en_US Title

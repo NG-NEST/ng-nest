@@ -37,7 +37,7 @@
         <div
           #inputValueRef
           class="x-input-value-template-value"
-          [style.left.rem]="paddingLeft()"
+          [style.left]="paddingLeft()"
           [style.padding-left]="0"
           [style.padding-right]="0"
           [style.width]="getTemplateWidth()"
@@ -63,8 +63,8 @@
         [min]="max()"
         [ngModel]="value()"
         (ngModelChange)="value.set($event); valueChange.next($event)"
-        [style.padding-left.rem]="paddingLeft()"
-        [style.padding-right.rem]="paddingRight()"
+        [style.padding-left]="paddingLeft()"
+        [style.padding-right]="paddingRight()"
         (focus)="xFocus.emit($event)"
         (blur)="xBlur.emit($event)"
         (keydown)="formControlValidator(); xKeydown.emit($event)"
@@ -79,7 +79,7 @@
         <x-icon [type]="icon()" [spin]="iconSpin()" (click)="xClick.emit($event)"></x-icon>
       }
       @if (maxlength() && lengthTotal()) {
-        <span class="x-input-max-length" [style.width.rem]="getMaxLengthWidth()">{{ lengthTotal() }}</span>
+        <span class="x-input-max-length" [style.width]="getMaxLengthWidth()">{{ lengthTotal() }}</span>
       }
       @if (invalid()) {
         <span class="x-input-error-message">{{ invalidMessage() }}</span>

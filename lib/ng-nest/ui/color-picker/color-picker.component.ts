@@ -39,10 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XColorPickerComponent)]
 })
-export class XColorPickerComponent
-  extends XColorPickerProperty
-  implements OnInit, AfterViewInit, OnDestroy
-{
+export class XColorPickerComponent extends XColorPickerProperty implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('colorPicker', { static: true }) colorPicker!: ElementRef<HTMLElement>;
   @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
 
@@ -86,13 +83,7 @@ export class XColorPickerComponent
   private elementRef = inject(ElementRef);
 
   ngOnInit() {
-    this.setFlex(
-      this.colorPicker.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.colorPicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setClassMap();
     this.setSubject();
     this.setParantScroll();
@@ -115,8 +106,8 @@ export class XColorPickerComponent
 
   setValueStyle() {
     this.valueStyle = {
-      width: `${this.inputCom.inputRef.nativeElement.clientWidth}px`,
-      height: `${this.inputCom.inputRef.nativeElement.clientHeight}px`
+      width: `${this.inputCom.inputRef().nativeElement.clientWidth}px`,
+      height: `${this.inputCom.inputRef().nativeElement.clientHeight}px`
     };
     if (this.direction === 'column') {
       this.valueStyle['bottom'] = 0;
@@ -197,12 +188,10 @@ export class XColorPickerComponent
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setParantScroll() {
@@ -260,7 +249,7 @@ export class XColorPickerComponent
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputRef,
+      elementRef: this.inputCom.inputRef(),
       placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-color-picker-portal'
     });

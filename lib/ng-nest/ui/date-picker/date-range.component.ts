@@ -386,8 +386,8 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
       .subscribe((event: MouseEvent) => {
         const clickTarget = event.target as HTMLElement;
         if (
-          clickTarget !== this.inputStartCom.inputRef.nativeElement &&
-          clickTarget !== this.inputEndCom.inputRef.nativeElement
+          clickTarget !== this.inputStartCom.inputRef().nativeElement &&
+          clickTarget !== this.inputEndCom.inputRef().nativeElement
         ) {
           this.closeSubject.next();
         }

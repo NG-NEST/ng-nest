@@ -15,11 +15,7 @@ import {
   SimpleChanges,
   inject
 } from '@angular/core';
-import {
-  XDatePickerPrefix,
-  XDatePickerProperty,
-  XDatePickerModelType
-} from './date-picker.property';
+import { XDatePickerPrefix, XDatePickerProperty, XDatePickerModelType } from './date-picker.property';
 import {
   XIsEmpty,
   XIsDate,
@@ -129,13 +125,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   private overlay = inject(Overlay);
 
   ngOnInit() {
-    this.setFlex(
-      this.datePicker.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
+    this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
     this.setFormat();
     this.setClassMap();
     this.setSubject();
@@ -260,9 +250,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   getValue() {
     if (this.numberValue === '') return null;
-    return ['date', 'string'].includes(this.modelType)
-      ? new Date(this.numberValue)
-      : this.numberValue;
+    return ['date', 'string'].includes(this.modelType) ? new Date(this.numberValue) : this.numberValue;
   }
 
   portalAttached() {
@@ -309,12 +297,10 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      place !== this.placement && this.positionChange.next(place);
+    });
   }
 
   setInstance() {
@@ -383,7 +369,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputRef,
+      elementRef: this.inputCom.inputRef(),
       placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-date-picker-portal'
     });

@@ -340,17 +340,17 @@ export function getProperty(line: string, docItem: any = {}, lang = '') {
   let transform = '';
   if (right.startsWith('input')) {
     right = right.replace('input', '');
-    type = right.slice(0, right.indexOf('('));
+    type = right.slice(0, right.indexOf('(')).trim();
     right = right.replace(type, '');
     if (type.startsWith('<') && type.endsWith('>')) {
-      inputType = `InputSignalWithTransform${type}`;
       type = type.slice(1, type.length - 1);
-    }
-    if (type.indexOf(', ')) {
-      toType = type.slice(0, type.indexOf(', '));
-      type = type.replace(toType + ', ', '');
-    } else {
-      type = `InputSignal${type}`;
+      if (type.indexOf(', ') >= 0) {
+        inputType = `InputSignalWithTransform<${type}>`;
+        toType = type.slice(0, type.indexOf(', ')).trim();
+        type = type.replace(toType + ', ', '').trim();
+      } else {
+        inputType = `InputSignal<${type}>`;
+      }
     }
   }
   const match = right.match(/\(([^)]+)\)/);
@@ -365,7 +365,11 @@ export function getProperty(line: string, docItem: any = {}, lang = '') {
       }
       transform = spt[1].slice(spt[1].indexOf('transform') + 10, spt[1].indexOf('}')).trim();
     } else {
-      def = str;
+      if (str.indexOf('??') >= 0) {
+        def = str.slice(str.indexOf('??') + 2, str.length).trim();
+      } else {
+        def = str.trim();
+      }
     }
   }
   let docDef = getDocs(docItem, '@default') as string;

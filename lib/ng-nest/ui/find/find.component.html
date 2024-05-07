@@ -76,7 +76,7 @@
         @if (hasSearch) {
           <div class="x-find-search">
             <x-input
-              [label]="search.label"
+              [label]="search.label!"
               direction="row"
               (xKeydown)="searchKeyDown($event)"
               [(ngModel)]="search.value"
