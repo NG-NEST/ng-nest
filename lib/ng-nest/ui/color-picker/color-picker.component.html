@@ -16,7 +16,7 @@
       [readonly]="true"
       [clearable]="clearable()"
       [ngModel]="displayValue()"
-      [valueTpl]="valueTpl()"
+      [valueTpl]="valueTpl"
       [valueTplContext]="valueTplContext()"
       [size]="size()"
       [bordered]="bordered()"
@@ -32,5 +32,9 @@
       (xMouseenter)="menter()"
       (xMouseleave)="mleave()"
     ></x-input>
+
+    <ng-template #valueTpl>
+      <div class="x-color-picker-value"></div>
+    </ng-template>
   </div>
 </div>

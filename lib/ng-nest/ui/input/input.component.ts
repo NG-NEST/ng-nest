@@ -119,7 +119,7 @@ export class XInputComponent extends XInputProperty implements OnInit {
   });
 
   getTemplateWidth = computed(() => {
-    return `calc(100% - ${this.paddingLeft()} + ${this.paddingRight()})`;
+    return `calc(100% - ${this.paddingLeft()} - ${this.paddingRight()})`;
   });
 
   focused = signal(false);
