@@ -5,13 +5,13 @@ import {
   Renderer2,
   ElementRef,
   ChangeDetectionStrategy,
-  ViewChild,
   AfterViewInit,
   OnDestroy,
   AfterContentChecked,
   inject,
   computed,
-  signal
+  signal,
+  viewChild
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorProperty } from './anchor.property';
 import { XComputedStyle, XIsEmpty, XRequestAnimationFrame, XIsNumber, XIsUndefined, XToCssPx } from '@ng-nest/ui/core';
@@ -33,9 +33,9 @@ import type { XAnchorNode } from './anchor.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterViewInit, OnDestroy, AfterContentChecked {
-  @ViewChild('anchor', { static: true }) anchor!: ElementRef<HTMLElement>;
-  @ViewChild('content', { static: true }) content!: ElementRef<HTMLElement>;
-  hElements!: NodeListOf<HTMLElement>;
+  anchor = viewChild.required('anchor', { read: ElementRef<HTMLElement> });
+  content = viewChild.required('content', { read: ElementRef<HTMLElement> });
+  hElements = signal<NodeListOf<HTMLElement> | null>(null);
   sliderData = signal<XSliderNode[]>([]);
   activatedIndex = signal(0);
 
@@ -52,11 +52,11 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     if (XIsEmpty(this.sliderData())) {
       return 0;
     } else {
-      let height = this.scrollElement().offsetHeight;
-      let top = parseFloat(XComputedStyle(this.scrollElement(), 'padding-top'));
-      let borderTop = parseFloat(XComputedStyle(this.scrollElement(), 'border-top'));
-      let bottom = parseFloat(XComputedStyle(this.scrollElement(), 'padding-bottom'));
-      let borderBottom = parseFloat(XComputedStyle(this.scrollElement(), 'border-bottom'));
+      const height = this.scrollElement().offsetHeight;
+      const top = parseFloat(XComputedStyle(this.scrollElement(), 'padding-top'));
+      const borderTop = parseFloat(XComputedStyle(this.scrollElement(), 'border-top'));
+      const bottom = parseFloat(XComputedStyle(this.scrollElement(), 'padding-bottom'));
+      const borderBottom = parseFloat(XComputedStyle(this.scrollElement(), 'border-bottom'));
       return (
         height -
         top -
@@ -71,7 +71,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   classMapSignal = computed(() => ({
     [`${XAnchorPrefix}-${this.layout()}`]: !XIsEmpty(this.layout())
   }));
-  private scrolling = false;
+  private scrolling = signal(false);
   private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
   private unSubject = new Subject<void>();
   private renderer = inject(Renderer2);
@@ -98,12 +98,13 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   }
 
   activatedChange(index: number) {
-    if (XIsEmpty(this.hElements) || XIsUndefined(this.scrollElement())) return;
+    const hElements = this.hElements();
+    if (XIsEmpty(hElements) || XIsUndefined(this.scrollElement())) return;
 
-    this.scrolling = true;
-    const hElement = this.hElements[index];
+    this.scrolling.set(true);
+    const hElement = hElements![index];
     let scrollTop =
-      hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(XComputedStyle(hElement, 'margin-top'));
+      hElement.offsetTop - this.anchor().nativeElement.offsetTop - parseFloat(XComputedStyle(hElement, 'margin-top'));
     let maxScrollTop = this.scrollElement().scrollHeight - this.scrollElement().clientHeight;
     if (scrollTop > maxScrollTop) scrollTop = maxScrollTop;
     this.scrollTo(this.scrollElement(), parseInt(`${scrollTop}`), 150);
@@ -113,15 +114,16 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     fromEvent(this.scrollElement(), 'scroll')
       .pipe(throttleTime(10), takeUntil(this.unSubject))
       .subscribe(() => {
-        if (this.scrolling) return;
+        if (this.scrolling()) return;
         this.setActivatedByScroll();
       });
   }
 
   private setActivatedByScroll() {
     let now = 0;
-    this.hElements.forEach((h, index) => {
-      let distance = this.scrollElement().scrollTop + this.anchor.nativeElement.offsetTop;
+    const hElements = this.hElements();
+    hElements!.forEach((h, index) => {
+      let distance = this.scrollElement().scrollTop + this.anchor().nativeElement.offsetTop;
       if (distance >= h.offsetTop) {
         now = index;
         return;
@@ -131,12 +133,15 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   }
 
   private setSliderData() {
-    this.hElements = this.content.nativeElement.querySelectorAll(
-      ':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5,:scope> x-anchor-inner> h1,:scope> x-anchor-inner>h2,:scope> x-anchor-inner>h3,:scope> x-anchor-inner>h4,:scope> x-anchor-inner>h5'
+    this.hElements.set(
+      this.content().nativeElement.querySelectorAll(
+        ':scope> h1,:scope> h2,:scope> h3,:scope> h4,:scope> h5,:scope> x-anchor-inner> h1,:scope> x-anchor-inner>h2,:scope> x-anchor-inner>h3,:scope> x-anchor-inner>h4,:scope> x-anchor-inner>h5'
+      )
     );
-    if (this.hElements.length > 0) {
+    const hElements = this.hElements();
+    if (hElements!.length > 0) {
       let list: XAnchorNode[] = [];
-      this.hElements.forEach((x: HTMLElement, i: number) => {
+      hElements!.forEach((x: HTMLElement, i: number) => {
         const link = `x-anchor-${i}`;
         const left = this.setLeft(x);
         this.renderer.setAttribute(x, 'id', link);
@@ -171,7 +176,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
         element.scrollTop = num;
       }
       if (element.scrollTop === to || duration <= 0) {
-        setTimeout(() => (this.scrolling = false), 20);
+        setTimeout(() => this.scrolling.set(false), 20);
         return;
       } else {
         this.scrollTo(element, to, duration - 10);

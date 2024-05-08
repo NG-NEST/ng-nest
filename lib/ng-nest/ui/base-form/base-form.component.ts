@@ -140,7 +140,6 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
       }
     });
     invalidIndex = signal(0);
-    labelMap = signal<XClassMap>({});
     value = signal<any | undefined>(undefined);
     validatorSignal = signal(false);
     disabledSignal = signal(false);
@@ -158,9 +157,6 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
     }
     setDisabledState(disabled: boolean) {
       this.disabledSignal.set(disabled);
-    }
-    setFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
-      return XSetFlex(ele, renderer, justify, align, direction);
     }
     formControlValidator() {
       this.validatorSignal.set(true);

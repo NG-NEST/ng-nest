@@ -3,12 +3,12 @@ import {
   ViewEncapsulation,
   ElementRef,
   ChangeDetectionStrategy,
-  ViewChild,
   AfterViewInit,
   OnDestroy,
   inject,
   computed,
-  signal
+  signal,
+  viewChild
 } from '@angular/core';
 import { XSliderPrefix, XSliderNode, XSliderProperty } from './slider.property';
 import { XResize, XPosition, XIsUndefined, XIsEmpty, XResizeObserver } from '@ng-nest/ui/core';
@@ -30,8 +30,8 @@ import { XDropdownComponent } from '@ng-nest/ui/dropdown';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XSliderComponent extends XSliderProperty implements OnDestroy, AfterViewInit {
-  @ViewChild('sliderScroll') sliderScroll!: ElementRef<HTMLElement>;
-  @ViewChild('sliderNodes') sliderNodes!: ElementRef<HTMLElement>;
+  sliderScroll = viewChild.required('sliderScroll', { read: ElementRef<HTMLElement> });
+  sliderNodes = viewChild.required('sliderNodes', { read: ElementRef<HTMLElement> });
   activated = signal<XSliderNode | null>(null);
   showArrow = signal(false);
   activatedId = signal('');
@@ -45,11 +45,18 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
   maxOffset = signal(0);
   dir = computed(() => (this.layout() === 'row' ? 'X' : 'Y'));
   sizeName = computed(() => (this.layout() === 'row' ? 'Width' : 'Height'));
-  highlightBox = signal({
-    width: '',
-    height: '',
-    left: '',
-    top: ''
+  highlightBox = computed(() => {
+    if (!this.activated()) return {};
+    const activeEle: HTMLElement = this.sliderNodes().nativeElement.querySelector(
+      `li:nth-child(${this.activatedIndex() + 1})`
+    )!;
+    if (!activeEle) return {};
+    return {
+      width: `${activeEle.offsetWidth}px`,
+      height: `${activeEle.offsetHeight}px`,
+      left: `${activeEle.offsetLeft}px`,
+      top: `${activeEle.offsetTop}px`
+    };
   });
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
@@ -81,7 +88,7 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
   }
 
   setSubscribe() {
-    XResize(this.sliderScroll.nativeElement, this.sliderNodes.nativeElement)
+    XResize(this.sliderScroll().nativeElement, this.sliderNodes().nativeElement)
       .pipe(debounceTime(30), takeUntil(this.unSubject))
       .subscribe((x) => {
         this.resizeObserver = x.resizeObserver;
@@ -118,7 +125,6 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
     this.activatedIndex.set(index);
     this.activated.set(node);
     this.activatedId.set(node.id);
-    this.setHighlight();
     this.setTranslate();
     this.indexChange.emit(index);
     this.nodeChange.emit(node);
@@ -131,7 +137,7 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
 
   scrollPrev() {
     if (this.offset() === 0) return;
-    const scrollSize = this.sliderScroll.nativeElement[`offset${this.sizeName()}`];
+    const scrollSize = this.sliderScroll().nativeElement[`offset${this.sizeName()}`];
     const currentOffset = this.offset();
     if (!currentOffset) return;
     const offset = currentOffset > scrollSize ? currentOffset - scrollSize : 0;
@@ -140,8 +146,8 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
 
   scrollNext() {
     if (this.offset() === this.maxOffset()) return;
-    const sliderSize = this.sliderNodes.nativeElement[`offset${this.sizeName()}`];
-    const scrollSize = this.sliderScroll.nativeElement[`offset${this.sizeName()}`];
+    const sliderSize = this.sliderNodes().nativeElement[`offset${this.sizeName()}`];
+    const scrollSize = this.sliderScroll().nativeElement[`offset${this.sizeName()}`];
     const currentOffset = this.offset();
     if (sliderSize - currentOffset <= scrollSize) return;
     const offset = sliderSize - currentOffset > scrollSize * 2 ? currentOffset + scrollSize : sliderSize - scrollSize;
@@ -156,17 +162,17 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
 
   setTranslate() {
     if (
-      XIsUndefined(this.sliderScroll) ||
-      XIsUndefined(this.sliderNodes) ||
-      typeof this.sliderScroll.nativeElement.getBoundingClientRect !== 'function'
+      XIsUndefined(this.sliderScroll()) ||
+      XIsUndefined(this.sliderNodes()) ||
+      typeof this.sliderScroll().nativeElement.getBoundingClientRect !== 'function'
     )
       return;
-    const sliderRect = this.sliderScroll.nativeElement?.getBoundingClientRect();
-    const sliderNodesRect = this.sliderNodes.nativeElement?.getBoundingClientRect();
+    const sliderRect = this.sliderScroll().nativeElement?.getBoundingClientRect();
+    const sliderNodesRect = this.sliderNodes().nativeElement?.getBoundingClientRect();
     let moveIndex =
       ['bottom', 'right'].indexOf(this.direction()) !== -1 ? this.activatedIndex() + 2 : this.activatedIndex();
     moveIndex = moveIndex > this.data().length ? this.data().length : moveIndex === 0 ? 1 : moveIndex;
-    let moveEle = this.sliderNodes.nativeElement?.querySelector(`li:nth-child(${moveIndex})`);
+    let moveEle = this.sliderNodes().nativeElement?.querySelector(`li:nth-child(${moveIndex})`);
     let maxOffset = 0;
     if (XIsEmpty(moveEle)) return;
     const moveRect = moveEle!.getBoundingClientRect();
@@ -199,8 +205,8 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
   }
 
   sizeChecked() {
-    const size = this.sliderNodes.nativeElement[`offset${this.sizeName()}`];
-    const scrollSize = this.sliderScroll.nativeElement[`offset${this.sizeName()}`];
+    const size = this.sliderNodes().nativeElement[`offset${this.sizeName()}`];
+    const scrollSize = this.sliderScroll().nativeElement[`offset${this.sizeName()}`];
     const showArrow = this.data().length > 1 && size > scrollSize;
     if (this.showArrow() !== showArrow) {
       this.showArrow.set(showArrow);
@@ -219,22 +225,7 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
     } else {
       this.activated.set(null);
     }
-    this.setHighlight();
     this.setTranslate();
-  }
-
-  setHighlight() {
-    if (XIsUndefined(this.sliderNodes)) return;
-    const activeEle: HTMLElement = this.sliderNodes.nativeElement.querySelector(
-      `li:nth-child(${this.activatedIndex() + 1})`
-    )!;
-    if (!activeEle) return;
-    this.highlightBox.set({
-      width: `${activeEle.offsetWidth}px`,
-      height: `${activeEle.offsetHeight}px`,
-      left: `${activeEle.offsetLeft}px`,
-      top: `${activeEle.offsetTop}px`
-    });
   }
 
   getActivated(index: number) {

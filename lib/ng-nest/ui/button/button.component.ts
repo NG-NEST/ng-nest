@@ -3,14 +3,14 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ElementRef,
-  ViewChild,
   inject,
   AfterViewInit,
   OnDestroy,
   computed,
   HostBinding,
   signal,
-  afterRender
+  afterRender,
+  viewChild
 } from '@angular/core';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XButtonPrefix, XButtonProperty } from './button.property';
@@ -30,7 +30,7 @@ import { FocusMonitor } from '@angular/cdk/a11y';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XButtonComponent extends XButtonProperty implements AfterViewInit, OnDestroy {
-  @ViewChild('buttonRef', { static: true }) buttonRef!: ElementRef;
+  buttonRef = viewChild.required('buttonRef', { read: ElementRef<HTMLElement> });
   private buttons = inject(XButtonsComponent, { optional: true, host: true });
   private focusMontitor = inject(FocusMonitor);
   transition = signal(false);
@@ -70,10 +70,10 @@ export class XButtonComponent extends XButtonProperty implements AfterViewInit, 
   });
 
   ngAfterViewInit() {
-    this.focusMontitor.monitor(this.buttonRef, true);
+    this.focusMontitor.monitor(this.buttonRef(), true);
   }
 
   ngOnDestroy() {
-    this.focusMontitor.stopMonitoring(this.buttonRef);
+    this.focusMontitor.stopMonitoring(this.buttonRef());
   }
 }

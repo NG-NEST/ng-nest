@@ -2,12 +2,12 @@
   #autoCompletePortal
   class="x-auto-complete-portal"
   tabindex="-1"
-  (click)="inputCom()?.inputFocus(); stopPropagation($event)"
+  (click)="inputCom()?.inputFocus('focus'); stopPropagation($event)"
 >
   <x-list
     #list
     [data]="data()!"
-    (nodeClick)="nodeClick($event)"
+    (nodeClick)="onNodeClick($event)"
     (keyManagerChange)="onActive($event)"
     (keyManagerTabOut)="onTabOut()"
     [nodeTpl]="nodeTpl()"

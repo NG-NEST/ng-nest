@@ -1,5 +1,5 @@
 export const environment = {
-  layout: 'index',
-  defaultPage: 'docs',
+  layout: 'test',
+  defaultPage: 'color-picker',
   static: 'https://ngnest.com/static'
 };

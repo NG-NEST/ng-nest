@@ -227,7 +227,7 @@ export interface XCascadeConfig {
   size?: XSize;
   bordered?: boolean;
   nodeTrigger?: XTrigger;
-  nodeHoverDelay?: XNumber;
+  nodeHoverDelay?: number;
 }
 
 export interface XCheckboxConfig {
@@ -248,6 +248,8 @@ export interface XColorConfig {
 
 export interface XColorPickerConfig {
   placement?: XCorner;
+  size?: XSize;
+  bordered?: boolean;
 }
 
 export interface XCommentConfig {

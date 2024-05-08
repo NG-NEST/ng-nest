@@ -10,7 +10,8 @@ import {
   input,
   computed,
   viewChild,
-  signal
+  signal,
+  output
 } from '@angular/core';
 import { XTooltipPortalPrefix } from './tooltip.property';
 import { XPlacement, XFadeAnimation, XTemplate, XIsEmpty } from '@ng-nest/ui/core';
@@ -33,13 +34,14 @@ export class XTooltipPortalComponent {
   box = input<DOMRect>();
   color = input<string>();
   backgroundColor = input<string>();
+  hoverChanged = output<boolean>();
   arrowHidden = signal(true);
 
   @HostListener('mouseenter') mouseenter() {
-    this.portalHover(true);
+    this.hoverChanged.emit(true);
   }
   @HostListener('mouseleave') mouseleave() {
-    this.portalHover(false);
+    this.hoverChanged.emit(false);
   }
 
   @HostBinding('@x-fade-animation') animation = true;
@@ -60,7 +62,6 @@ export class XTooltipPortalComponent {
 
   portalBox = computed(() => this.tooltipPortal().nativeElement.getBoundingClientRect());
   arrowBox = computed(() => this.tooltipArrow().nativeElement.getBoundingClientRect());
-  portalHover!: Function;
   private renderer = inject(Renderer2);
 
   setArrow() {

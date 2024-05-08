@@ -2,23 +2,24 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   OnInit,
   ElementRef,
   Renderer2,
   OnDestroy,
-  ViewChild,
   HostListener,
   HostBinding,
-  inject
+  inject,
+  input,
+  output,
+  model,
+  viewChild
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
-import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom, XComputed } from '@ng-nest/ui/core';
+import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
-import { DOCUMENT, DecimalPipe, PercentPipe } from '@angular/common';
-import { takeUntil } from 'rxjs/operators';
+import { DecimalPipe, PercentPipe } from '@angular/common';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
@@ -36,27 +37,26 @@ import { FormsModule } from '@angular/forms';
   animations: [XConnectBaseAnimation]
 })
 export class XColorPickerPortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    this.animating(false);
-    event.toState === 'void' && this.destroyPortal();
+  @HostBinding('@x-connect-base-animation') public get getPlacement() {
+    return this.placement();
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
-    this.animating(true);
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
+    event.toState !== 'void' && this.animating.emit(false);
+  }
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    event.toState !== 'void' && this.animating.emit(true);
   }
 
-  @ViewChild('panelRef', { static: true }) panelRef!: ElementRef<HTMLElement>;
-  @ViewChild('plateRef', { static: true }) plateRef!: ElementRef<HTMLElement>;
-  @ViewChild('transparentCom', { static: true }) transparentCom!: XSliderSelectComponent;
-  value!: string;
+  panelRef = viewChild.required('panelRef', { read: ElementRef<HTMLElement> });
+  plateRef = viewChild.required('plateRef', { read: ElementRef<HTMLElement> });
+  transparentCom = viewChild.required('transparentCom', { read: XSliderSelectComponent });
+  value = model.required<string>();
+  inputCom = input.required<XInputComponent>();
+  placement = input.required<XPositionTopBottom>();
+
   transparentRail!: HTMLElement;
-  valueChange!: Subject<string>;
-  positionChange!: Subject<any>;
-  closePortal!: Function;
-  destroyPortal!: Function;
-  animating!: Function;
-  nodeEmit!: Function;
-  inputCom!: XInputComponent;
+  animating = output<boolean>();
+  nodeClick = output<string>();
 
   sliderColorNum = 0;
   type!: XColorType;
@@ -74,40 +74,29 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   };
   hex!: string;
 
-  private _unSubject = new Subject<void>();
-  private doc = inject(DOCUMENT);
+  private unSubject = new Subject<void>();
+
   private renderer = inject(Renderer2);
-  private cdr = inject(ChangeDetectorRef);
   private decimal = inject(DecimalPipe);
   private percent = inject(PercentPipe);
 
   ngOnInit(): void {
-    this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x: string) => {
-      this.value = x;
-      this.init();
-      this.cdr.detectChanges();
-    });
-    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.placement = x;
-      this.cdr.detectChanges();
-    });
-    this.init();
+    this.colorConvert();
   }
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   ngAfterViewInit() {
-    this.panel = this.panelRef.nativeElement.getBoundingClientRect();
-    this.plate = this.plateRef.nativeElement.getBoundingClientRect();
+    this.panel = this.panelRef().nativeElement.getBoundingClientRect();
+    this.plate = this.plateRef().nativeElement.getBoundingClientRect();
     this.offset = (this.panel.width - this.plate.width) / 2;
-    this.transparentRail = this.transparentCom.elementRef.nativeElement.querySelector('.x-slider-select-rail div')!;
+    this.transparentRail = this.transparentCom().elementRef.nativeElement.querySelector('.x-slider-select-rail div')!;
     this.setTransform();
     this.setPlateBackground();
     this.setRailBackground();
-    this.cdr.detectChanges();
   }
 
   hexChange() {
@@ -120,38 +109,25 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.setValue();
   }
 
-  rgbaChange() {}
-
-  init() {
-    if (!XIsEmpty(this.value)) {
-      this.value = this.value;
-    } else {
-      this.value = this.getPrimary();
-    }
-    this.colorConvert();
-  }
-
   stopPropagation(event: Event): void {
     event.stopPropagation();
   }
 
-  setDefault() {}
-
   colorConvert() {
-    if (/^#/.test(this.value)) {
-      this.hex = this.value;
+    if (/^#/.test(this.value())) {
+      this.hex = this.value();
       this.rgba = this.hexToRgba(this.hex);
       this.hsla = this.rgbaToHsla(this.rgba);
       this.setHslaPercent();
       this.type = 'hex';
-    } else if (/rgb/.test(this.value)) {
-      this.rgbaConvert(this.value);
+    } else if (/rgb/.test(this.value())) {
+      this.rgbaConvert(this.value());
       this.hex = this.rgbaToHex(this.rgba);
       this.hsla = this.rgbaToHsla(this.rgba);
       this.setHslaPercent();
       this.type = 'rgba';
-    } else if (/hsl/.test(this.value)) {
-      this.hslaConvert(this.value);
+    } else if (/hsl/.test(this.value())) {
+      this.hslaConvert(this.value());
       this.rgba = this.hslaToRgba(this.hsla);
       this.hex = this.rgbaToHex(this.rgba);
       this.type = 'hsla';
@@ -195,7 +171,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
 
   plateClick(event: MouseEvent) {
     if (this.drag) return;
-    const rect = this.plateRef.nativeElement.getBoundingClientRect();
+    const rect = this.plateRef().nativeElement.getBoundingClientRect();
     let left = event.clientX - rect.left;
     let top = event.clientY - rect.top;
     this.transform = { x: left - this.offset, y: top - this.offset };
@@ -261,10 +237,6 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.hsla.lp = this.hsla.l === 0 ? '0%' : (this.percent.transform(this.hsla.l, '1.0-0') as string);
   }
 
-  getPrimary() {
-    return XComputed(this.doc.documentElement).getPropertyValue('--x-primary').trim();
-  }
-
   hueChange() {
     this.setPlateBackground();
     Object.assign(this.rgba, this.hslaToRgba(this.hsla));
@@ -273,7 +245,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setPlateBackground() {
-    this.renderer.setStyle(this.plateRef.nativeElement, 'background-color', `hsl(${this.hsla.h}, 100%, 50%)`);
+    this.renderer.setStyle(this.plateRef().nativeElement, 'background-color', `hsl(${this.hsla.h}, 100%, 50%)`);
   }
 
   setRailBackground() {
@@ -293,17 +265,16 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   setValue() {
     this.setValueByType();
     this.setRailBackground();
-    this.nodeEmit(this.value);
-    this.cdr.detectChanges();
+    this.nodeClick.emit(this.value());
   }
 
   setValueByType() {
     if (this.type === 'hex') {
-      this.value = `${this.hex}`;
+      this.value.set(`${this.hex}`);
     } else if (this.type === 'rgba') {
-      this.value = `rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, ${this.rgba.a})`;
+      this.value.set(`rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, ${this.rgba.a})`);
     } else if (this.type === 'hsla') {
-      this.value = `hsla(${this.hsla.h}, ${this.hsla.sp}, ${this.hsla.lp}, ${this.hsla.a})`;
+      this.value.set(`hsla(${this.hsla.h}, ${this.hsla.sp}, ${this.hsla.lp}, ${this.hsla.a})`);
     }
   }
 

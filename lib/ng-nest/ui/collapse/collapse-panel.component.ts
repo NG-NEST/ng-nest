@@ -17,10 +17,10 @@ import type { AnimationEvent } from '@angular/animations';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCollapsePanelComponent extends XCollapsePanelProperty implements OnInit {
-  index!: number;
+  index = signal<number>(0);
   collapseComponent = inject(XCollapseComponent, { optional: true, host: true });
   show = signal(false);
-  activeSignal = signal(this.active());
+  activeSignal = signal(false);
 
   done(event: AnimationEvent) {
     if (!event.toState) this.show.set(false);
@@ -28,17 +28,18 @@ export class XCollapsePanelComponent extends XCollapsePanelProperty implements O
 
   ngOnInit() {
     if (!this.collapseComponent) return;
-    this.index = this.collapseComponent.start;
-    this.collapseComponent.start++;
-    this.collapseComponent.panelChanges = [
-      ...this.collapseComponent.panelChanges,
-      () => {
+    this.activeSignal.set(this.active());
+    this.index.set(this.collapseComponent.start());
+    this.collapseComponent.start.update((x) => x + 1);
+    this.collapseComponent.panelChanges.update((x) => {
+      x.push(() => {
         this.headerClick();
-      }
-    ];
+      });
+      return x;
+    });
     if (this.activeSignal()) {
       this.show.set(true);
-      this.collapseComponent.change(this.index);
+      this.collapseComponent.change(this.index());
     }
   }
 
@@ -46,7 +47,7 @@ export class XCollapsePanelComponent extends XCollapsePanelProperty implements O
     this.activeSignal.set(!this.activeSignal());
     if (this.activeSignal()) this.show.set(true);
     if (!this.collapseComponent) return;
-    if (this.activeSignal()) this.collapseComponent.change(this.index);
-    else this.collapseComponent.change(this.index, false);
+    if (this.activeSignal()) this.collapseComponent.change(this.index());
+    else this.collapseComponent.change(this.index(), false);
   }
 }

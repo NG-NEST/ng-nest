@@ -136,14 +136,12 @@ export class XTooltipDirective extends XTooltipProperty implements OnDestroy {
     this.portalComponent.set(componentRef);
     this.realPlacement.set(this.placement());
     this.box.set(this.elementRef.nativeElement.getBoundingClientRect());
-
-    Object.assign(componentRef.instance, {
-      portalHover: (hover: boolean) => {
-        if (this.timeoutHide && hover) {
-          clearTimeout(this.timeoutHide);
-        } else {
-          this.hide();
-        }
+    const { hoverChanged } = componentRef.instance;
+    hoverChanged.subscribe((hover: boolean) => {
+      if (this.timeoutHide && hover) {
+        clearTimeout(this.timeoutHide);
+      } else {
+        this.hide();
       }
     });
   }

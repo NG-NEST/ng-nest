@@ -2,29 +2,18 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Renderer2,
   ElementRef,
-  ChangeDetectorRef,
   OnChanges,
   SimpleChanges,
-  ViewChild,
   TemplateRef,
-  inject,
-  OnInit,
-  OnDestroy
+  OnDestroy,
+  computed,
+  viewChild,
+  signal
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import {
-  XIsChange,
-  XSetData,
-  XClearClass,
-  XConfigService,
-  XBoolean,
-  XJustify,
-  XAlign,
-  XDirection
-} from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XBoolean } from '@ng-nest/ui/core';
 import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
 import { XTagComponent } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
@@ -50,44 +39,42 @@ import { NgClass } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XCheckboxComponent)]
 })
-export class XCheckboxComponent extends XCheckboxProperty implements OnInit, OnChanges, OnDestroy {
-  @ViewChild('checkbox', { static: true }) checkbox!: ElementRef<HTMLElement>;
-  checkboxType!: 'initial' | 'button' | 'icon' | 'tag';
+export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, OnDestroy {
+  checkbox = viewChild.required('checkbox', { read: ElementRef<HTMLElement> });
 
   override writeValue(value: boolean | Array<any>) {
-    this.value = value;
-    this.cdr.detectChanges();
+    this.value.set(value);
   }
 
-  get beforeIsTemplate() {
-    return this.before instanceof TemplateRef;
-  }
-
-  get afterIsTemplate() {
-    return this.after instanceof TemplateRef;
-  }
+  beforeIsTemplate = computed(() => this.before instanceof TemplateRef);
+  afterIsTemplate = computed(() => this.after instanceof TemplateRef);
 
   getDisabled(disabled?: boolean) {
-    return (this.disabled || disabled) as XBoolean;
+    return (this.disabled() || disabled) as XBoolean;
   }
 
-  nodes: XCheckboxNode[] = [];
-  private _unSubject = new Subject<void>();
-  private renderer = inject(Renderer2);
-  override cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
+  nodes = signal<XCheckboxNode[]>([]);
+  private unSubject = new Subject<void>();
 
-  ngOnInit() {
-    this.setFlex(
-      this.checkbox.nativeElement,
-      this.renderer,
-      this.justify as XJustify,
-      this.align as XAlign,
-      this.direction as XDirection
-    );
-    this.setClassMap();
-    this.setCheckboxType();
-  }
+  classMapSignal = computed(() => ({
+    [`x-justify-${this.justify()}`]: !!this.justify(),
+    [`x-align-${this.align()}`]: !!this.align(),
+    [`x-direction-${this.direction()}`]: !!this.direction()
+  }));
+  labelMapSignal = computed(() => ({
+    [`x-text-align-${this.labelAlign()}`]: !!this.labelAlign()
+  }));
+  checkboxType = computed(() => {
+    if (this.button()) {
+      return 'button';
+    } else if (this.icon()) {
+      return 'icon';
+    } else if (this.tag()) {
+      return 'tag';
+    } else {
+      return 'initial';
+    }
+  });
 
   ngOnChanges(changes: SimpleChanges): void {
     const { data } = changes;
@@ -95,61 +82,39 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnInit, OnC
   }
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
-
-  setClassMap() {
-    XClearClass(this.labelMap);
-    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
-  }
-
-  setCheckboxType() {
-    if (this.button) {
-      this.checkboxType = 'button';
-    } else if (this.icon) {
-      this.checkboxType = 'icon';
-    } else if (this.tag) {
-      this.checkboxType = 'tag';
-    } else {
-      this.checkboxType = 'initial';
-    }
-    this.cdr.detectChanges();
+    this.unSubject.next();
+    this.unSubject.unsubscribe();
   }
 
   checkboxClick(event: Event, node: XCheckboxNode) {
     event.preventDefault();
-    if (this.disabled || node.disabled) return;
+    if (this.disabled() || node.disabled) return;
     this.formControlValidator();
-    if (this.single) {
-      this.value = !this.value;
+    if (this.single()) {
+      this.value.update((x) => !x);
     } else {
-      this.value = (this.value as Array<any>) || [];
-      let index = this.value.indexOf(node.id);
+      this.value.set((this.value() as Array<any>) || []);
+      let index = this.value().indexOf(node.id);
       if (index >= 0) {
-        this.value.splice(index, 1);
-        this.value = [...this.value];
-      } else this.value = [...this.value, node.id];
+        this.value().splice(index, 1);
+        this.value.set([...this.value()]);
+      } else this.value.set([...this.value(), node.id]);
     }
-    this.cdr.detectChanges();
-    if (this.onChange) this.onChange(this.value);
+    if (this.onChange) this.onChange(this.value());
   }
 
   getChecked(id: any): boolean {
-    if (this.single) return this.value as boolean;
-    else return Array.isArray(this.value) && this.value.includes(id);
+    if (this.single()) return this.value() as boolean;
+    else return Array.isArray(this.value()) && this.value().includes(id);
   }
 
   private setData() {
-    XSetData<XCheckboxNode>(this.data, this._unSubject).subscribe((x) => {
-      this.nodes = x;
-      this.cdr.detectChanges();
+    XSetData<XCheckboxNode>(this.data(), this.unSubject).subscribe((x) => {
+      this.nodes.set(x);
     });
   }
 
   formControlChanges() {
     this.setData();
-    this.ngOnInit();
-    this.cdr.detectChanges();
   }
 }

@@ -35,7 +35,7 @@ export class XBackTopComponent extends XBackTopProperty implements OnDestroy {
   private doc = inject(DOCUMENT);
   private portal = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
-  private _unSubject = new Subject<void>();
+  private unSubject = new Subject<void>();
 
   scroll = computed(() => {
     const tg = this.target();
@@ -48,8 +48,8 @@ export class XBackTopComponent extends XBackTopProperty implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   onBackTop() {
@@ -60,13 +60,13 @@ export class XBackTopComponent extends XBackTopProperty implements OnDestroy {
   }
 
   private addEvent() {
-    this._unSubject.next();
+    this.unSubject.next();
     fromEvent(this.scroll()!, 'scroll')
       .pipe(
         throttleTime(20),
         map(() => this.scrollTop()),
         tap((x) => this.setVisible(x)),
-        takeUntil(this._unSubject)
+        takeUntil(this.unSubject)
       )
       .subscribe();
   }

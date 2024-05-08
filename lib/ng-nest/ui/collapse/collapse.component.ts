@@ -1,6 +1,5 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, signal } from '@angular/core';
 import { XCollapsePrefix, XCollapseProperty } from './collapse.property';
-import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCollapsePrefix}`,
@@ -11,9 +10,8 @@ import { XConfigService } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCollapseComponent extends XCollapseProperty {
-  start: number = 0;
-  panelChanges: Function[] = [];
-  configService = inject(XConfigService);
+  start = signal(0);
+  panelChanges = signal<(() => void)[]>([]);
 
   change(num: number, add = true) {
     const i = this.active().indexOf(num);
@@ -29,7 +27,7 @@ export class XCollapseComponent extends XCollapseProperty {
       }
     }
     if (this.accordion() && this.active().length === 2) {
-      const panel = this.panelChanges[this.active()[0] as number];
+      const panel = this.panelChanges()[this.active()[0] as number];
       panel && panel();
       return;
     }

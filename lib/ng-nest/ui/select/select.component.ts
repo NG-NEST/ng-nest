@@ -527,7 +527,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.search && this.multiple) {
       this.multipleInput.inputFocus();
     } else {
-      this.inputCom.inputFocus();
+      this.inputCom.inputFocus('focus');
     }
   }
 
@@ -635,7 +635,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.search && this.multiple) {
       this.multipleInput.inputFocus();
     } else {
-      this.inputCom.inputFocus();
+      this.inputCom.inputFocus('focus');
     }
     if (this.onChange) this.onChange(this.value);
     this.formControlValidator();
@@ -677,7 +677,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.search && this.multiple) {
       this.multipleInput.inputFocus();
     } else {
-      this.inputCom.inputFocus();
+      this.inputCom.inputFocus('focus');
     }
   }
 

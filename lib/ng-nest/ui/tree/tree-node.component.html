@@ -52,7 +52,7 @@
       [data]="[{ label: '', id: id() }]"
       [(ngModel)]="checked"
       (ngModelChange)="onCheckboxChange()"
-      [indeterminate]="indeterminate()"
+      [indeterminate]="indeterminate()!"
       [disabled]="disabled()!"
       (click)="$event.stopPropagation()"
       single

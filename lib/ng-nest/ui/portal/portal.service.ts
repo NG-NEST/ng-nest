@@ -23,7 +23,7 @@ export class XPortalService {
   private rendererFactory = inject(RendererFactory2);
   renderer = this.rendererFactory.createRenderer(null, null);
 
-  attach<T>(option: XPortalProperty): XPortalOverlayRef<T> {
+  attach<T>(option: XPortalProperty<T>): XPortalOverlayRef<T> {
     let portal: XPortalOverlayRef<T> = {};
     if (typeof option.content === 'undefined') return portal;
     portal.overlayRef = this.createOverlayRef(option);
@@ -32,7 +32,7 @@ export class XPortalService {
       portal.embeddedViewRef = portal.overlayRef.attach(portal.templatePortal);
     } else {
       portal.componentPortal = new ComponentPortal(
-        option.content as ComponentType<any>,
+        option.content as ComponentType<T>,
         option.viewContainerRef,
         option.injector,
         option.componentFactoryResolver
@@ -198,7 +198,7 @@ export class XPortalService {
     return offset;
   }
 
-  createOverlayRef(option: XPortalProperty): OverlayRef {
+  createOverlayRef<T>(option: XPortalProperty<T>): OverlayRef {
     return this.overlay.create(option.overlayConfig);
   }
 

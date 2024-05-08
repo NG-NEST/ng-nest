@@ -74,7 +74,7 @@ export class XAlertComponent extends XAlertProperty implements OnDestroy {
 
   onClose() {
     if (this.manual()) {
-      this.close?.emit();
+      this.close.emit();
     } else {
       this.styleHide.set(true);
     }
@@ -82,7 +82,7 @@ export class XAlertComponent extends XAlertProperty implements OnDestroy {
 
   onCloseAnimationDone() {
     if (this.hide()) {
-      this.close?.emit();
+      this.close.emit();
     }
   }
 }

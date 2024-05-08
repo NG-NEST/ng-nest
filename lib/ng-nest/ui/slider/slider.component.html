@@ -31,7 +31,7 @@
   </div>
   @if (autoShowArrow() && showArrow()) {
     <x-link
-      [disabled]="offset === maxOffset"
+      [disabled]="offset() === maxOffset()"
       class="x-slider-arrow-right"
       icon="fto-chevron-right"
       (click)="scrollNext()"

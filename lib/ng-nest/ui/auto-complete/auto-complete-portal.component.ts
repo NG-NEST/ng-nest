@@ -10,7 +10,8 @@ import {
   input,
   viewChild,
   signal,
-  model
+  model,
+  output
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompletePortalPrefix } from './auto-complete.property';
 import { Subject } from 'rxjs';
@@ -34,11 +35,11 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
     return this.placement();
   }
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    this.animating(false);
-    event.toState === 'void' && this.destroyPortal();
+    this.animating.emit(false);
+    event.toState === 'void' && this.destroyed.emit();
   }
   @HostListener('@x-connect-base-animation.start', ['$event']) start() {
-    this.animating(true);
+    this.animating.emit(true);
   }
   list = viewChild.required('list', { read: XListComponent });
 
@@ -49,9 +50,9 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
   inputCom = input<XInputComponent>();
   keywordText = model<string>('');
   caseSensitive = input<boolean>(false);
-  animating!: (param: boolean) => void;
-  destroyPortal!: () => void;
-  nodeEmit!: (node: XAutoCompleteNode) => void;
+  destroyed = output();
+  animating = output<boolean>();
+  nodeClick = output<XAutoCompleteNode>();
   closeSubject!: Subject<void>;
   keydownSubject!: Subject<KeyboardEvent>;
   active = signal(-1);
@@ -75,9 +76,9 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
     event.stopPropagation();
   }
 
-  nodeClick(node: XAutoCompleteNode) {
+  onNodeClick(node: XAutoCompleteNode) {
     this.keywordText.set(node.label);
-    this.nodeEmit(node);
+    this.nodeClick.emit(node);
   }
 
   onActive(num: number) {

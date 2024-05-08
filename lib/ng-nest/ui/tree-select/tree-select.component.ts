@@ -556,7 +556,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     if (this.search && this.multiple) {
       this.multipleInput.inputFocus();
     } else {
-      this.inputCom.inputFocus();
+      this.inputCom.inputFocus('focus');
     }
   }
 
@@ -655,7 +655,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     if (this.search && this.multiple) {
       this.multipleInput.inputFocus();
     } else {
-      this.inputCom.inputFocus();
+      this.inputCom.inputFocus('focus');
     }
     if (this.onChange) this.onChange(this.value);
     this.formControlValidator();
@@ -697,7 +697,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     if (this.search && this.multiple) {
       this.multipleInput.inputFocus();
     } else {
-      this.inputCom.inputFocus();
+      this.inputCom.inputFocus('focus');
     }
   }
 
