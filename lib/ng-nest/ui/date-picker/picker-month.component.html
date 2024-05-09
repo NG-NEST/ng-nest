@@ -1,16 +1,16 @@
-<div class="x-picker-month" [class.x-date-picker-monthtemp]="monthTemp">
-  @if (showHeader) {
+<div class="x-picker-month" [class.x-date-picker-monthtemp]="monthTemp()">
+  @if (showHeader()) {
     <div class="x-picker-month-header">
       <x-link [class.x-visibility]="!lastYearBtn" icon="fto-chevrons-left" (click)="nextYear(-1)"></x-link>
       <div class="x-picker-month-year-month">
-        <x-link (click)="typeOnChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-link>
+        <x-link (click)="typeOnChange('year')">{{ display() | date: 'yyyy' }}{{ locale().year }}</x-link>
       </div>
-      <x-link [class.x-visibility]="!nextYearBtn" icon="fto-chevrons-right" (click)="nextYear(1)"></x-link>
+      <x-link [class.x-visibility]="!nextYearBtn()" icon="fto-chevrons-right" (click)="nextYear(1)"></x-link>
     </div>
   }
   <div class="x-picker-month-body">
     <table cellspacing="0" cellpadding="0">
-      @for (months of chunkDates; track months) {
+      @for (months of chunkDates(); track months) {
         <tr>
           @for (month of months; track month) {
             <td
@@ -20,29 +20,29 @@
               [class.x-date-now]="month.isNow"
               [class.x-date-first-day]="month.isFirstDay"
               [class.x-date-last-day]="month.isLastDay"
-              [class.x-date-range-start]="rangePicker && isStartMonth(month.date!)"
-              [class.x-date-range-end]="rangePicker && isEndMonth(month.date!)"
-              [class.x-date-range-start-left]="rangePicker && month.isRangeStartLeft"
-              [class.x-date-range-start-right]="rangePicker && month.isRangeStartRight"
-              [class.x-date-range-end-left]="rangePicker && month.isRangeEndLeft"
-              [class.x-date-range-end-right]="rangePicker && month.isRangeEndRight"
-              [class.x-date-range-hover]="rangePicker && month.isRangeHover"
-              [class.x-date-range-hover-start-left]="rangePicker && month.isRangeHoverStartLeft"
-              [class.x-date-range-hover-start-right]="rangePicker && month.isRangeHoverStartRight"
-              [class.x-date-range-hover-end-left]="rangePicker && month.isRangeHoverEndLeft"
-              [class.x-date-range-hover-end-right]="rangePicker && month.isRangeHoverEndRight"
-              [class.x-date-range-hover-start]="rangePicker && month.isRangeHoverStart"
-              [class.x-date-range-hover-end]="rangePicker && month.isRangeHoverEnd"
-              [class.x-date-in-range]="rangePicker && month.isInRange"
-              [class.x-date-in-range-hover]="rangePicker && month.isInRangeHover"
-              [class.x-date-active]="!rangePicker && (month.date | date: 'yyyyMM') === (model | date: 'yyyyMM')"
-              title="{{ month.date | date: 'yyyy-MM' }}"
+              [class.x-date-range-start]="rangePicker() && isStartMonth(month.date!)"
+              [class.x-date-range-end]="rangePicker() && isEndMonth(month.date!)"
+              [class.x-date-range-start-left]="rangePicker() && month.isRangeStartLeft"
+              [class.x-date-range-start-right]="rangePicker() && month.isRangeStartRight"
+              [class.x-date-range-end-left]="rangePicker() && month.isRangeEndLeft"
+              [class.x-date-range-end-right]="rangePicker() && month.isRangeEndRight"
+              [class.x-date-range-hover]="rangePicker() && month.isRangeHover"
+              [class.x-date-range-hover-start-left]="rangePicker() && month.isRangeHoverStartLeft"
+              [class.x-date-range-hover-start-right]="rangePicker() && month.isRangeHoverStartRight"
+              [class.x-date-range-hover-end-left]="rangePicker() && month.isRangeHoverEndLeft"
+              [class.x-date-range-hover-end-right]="rangePicker() && month.isRangeHoverEndRight"
+              [class.x-date-range-hover-start]="rangePicker() && month.isRangeHoverStart"
+              [class.x-date-range-hover-end]="rangePicker() && month.isRangeHoverEnd"
+              [class.x-date-in-range]="rangePicker() && month.isInRange"
+              [class.x-date-in-range-hover]="rangePicker() && month.isInRangeHover"
+              [class.x-date-active]="!rangePicker() && (month.date | date: 'yyyyMM') === (model() | date: 'yyyyMM')"
+              [title]="month.date | date: 'yyyy-MM'"
               (click)="!month.isDisabled && monthClick(month)"
-              (mouseenter)="!month.isDisabled && rangePicker && onTdMouseenter(month)"
-              (mouseleave)="!month.isDisabled && rangePicker && onTdMouseleave(month)"
+              (mouseenter)="!month.isDisabled && rangePicker() && onTdMouseenter(month)"
+              (mouseleave)="!month.isDisabled && rangePicker() && onTdMouseleave(month)"
             >
-              @if (monthTemp) {
-                <ng-container *ngTemplateOutlet="monthTemp; context: { date$: month.date }"></ng-container>
+              @if (monthTemp()) {
+                <ng-container *ngTemplateOutlet="monthTemp()!; context: { date$: month.date }"></ng-container>
               } @else {
                 <div class="x-date-text">
                   {{ getLocaleMonth(month.date!) }}

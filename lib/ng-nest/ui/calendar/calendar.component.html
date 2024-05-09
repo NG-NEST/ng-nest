@@ -33,7 +33,7 @@
     @if (modelSignal() === 'month') {
       <x-picker-date
         [display]="datetime()"
-        (modelChange)="dateOnChange($event)"
+        (modelChange)="dateOnChange($event!)"
         (rangeChange)="rangeOnChange($event)"
         [dateTemp]="dateTemp"
         showHeader="false"
@@ -42,7 +42,7 @@
     @if (modelSignal() === 'year') {
       <x-picker-month
         [display]="datetime()"
-        (modelChange)="dateOnChange($event)"
+        (modelChange)="dateOnChange($event!)"
         (rangeChange)="rangeOnChange($event)"
         [monthTemp]="monthTemp"
         showHeader="false"

@@ -35,11 +35,10 @@ export class XCascadePortalComponent implements OnDestroy {
     return this.placement();
   }
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    this.animating.emit(false);
-    event.toState === 'void' && this.destroyed.emit();
+    event.toState !== 'void' && this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
-    this.animating.emit(true);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    event.toState !== 'void' && this.animating.emit(true);
   }
 
   value = input<any>();
@@ -51,7 +50,6 @@ export class XCascadePortalComponent implements OnDestroy {
   nodes = model<XCascadeNode[][]>([]);
   datas = input<XCascadeNode[]>([]);
 
-  destroyed = output();
   animating = output<boolean>();
   nodeClick = output<{ node: XCascadeNode; nodes: XCascadeNode[]; label: string }>();
   selecteds = signal<XCascadeNode[]>([]);

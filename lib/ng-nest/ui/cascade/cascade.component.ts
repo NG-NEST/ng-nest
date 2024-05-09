@@ -255,13 +255,9 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
     this.portalOverlayRef.set(overlayRef);
     this.realPlacement.set(this.placement());
 
-    const { destroyed, nodeClick, animating } = componentRef.instance;
-    destroyed.subscribe(() => this.destroyPortal());
+    const { nodeClick, animating } = componentRef.instance;
     nodeClick.subscribe((node: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) => this.onNodeClick(node));
-    animating.subscribe((ing: boolean) => {
-      console.log(ing, "123123")
-      this.animating.set(ing);
-    });
+    animating.subscribe((ing: boolean) => this.animating.set(ing));
   }
 
   onNodeClick(selected: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) {

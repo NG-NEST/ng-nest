@@ -279,7 +279,7 @@ export interface XCrumbComfig {
 
 export interface XDatePickerConfig {
   format?: string;
-  clearable?: XBoolean;
+  clearable?: boolean;
   placement?: XCorner;
   size?: XSize;
   bordered?: boolean;
@@ -287,10 +287,10 @@ export interface XDatePickerConfig {
 
 export interface XDateRangeConfig {
   format?: string;
-  clearable?: XBoolean;
+  clearable?: boolean;
   placement?: XCorner;
   size?: XSize;
-  bordered?: XBoolean;
+  bordered?: boolean;
 }
 
 export interface XDialogConfig {

@@ -2,14 +2,16 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  OnInit,
-  OnDestroy,
   AfterViewInit,
   HostBinding,
   HostListener,
-  ViewChild,
-  inject
+  inject,
+  input,
+  output,
+  viewChild,
+  computed,
+  signal,
+  model
 } from '@angular/core';
 import {
   XDatePickerDisabledDate,
@@ -26,10 +28,9 @@ import {
   XTemplate,
   XIsUndefined
 } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
-import { takeUntil, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { XI18nService, XI18nDatePicker } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nDatePicker, zh_CN } from '@ng-nest/ui/i18n';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XTimePickerFrameComponent, XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XPickerDateComponent } from './picker-date.component';
@@ -39,6 +40,7 @@ import { XPickerYearComponent } from './picker-year.component';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XDatePickerPortalPrefix}`,
@@ -62,165 +64,132 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   animations: [XConnectBaseAnimation],
   providers: [DatePipe, LowerCasePipe]
 })
-export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewInit {
-  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    this.animating(false);
-    event.toState === 'void' && this.destroyPortal();
+export class XDatePickerPortalComponent implements AfterViewInit {
+  @HostBinding('@x-connect-base-animation') public get getPlacement() {
+    return this.placement();
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
-    this.animating(true);
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: string }) {
+    event.toState !== 'void' && this.animating.emit(false);
   }
-
-  @ViewChild('timePickerFrame') timePickerFrame?: XTimePickerFrameComponent;
-
-  type: XDatePickerType = 'date';
-  display = new Date();
-  model!: Date;
-  value: any;
-  valueChange!: Subject<any>;
-  positionChange!: Subject<any>;
-  animating!: Function;
-  closePortal!: Function;
-  destroyPortal!: Function;
-  nodeEmit!: (date: Date, sure?: boolean) => void;
-  locale: XI18nDatePicker = {};
-  time!: number | null;
-  preset: XDatePickerPreset[] = [];
-  extraFooter?: XTemplate;
-  inputCom!: XInputComponent;
-  disabledDate!: XDatePickerDisabledDate;
-  disabledTime!: XDatePickerDisabledTime;
-  private _type!: XDatePickerType;
-  private _unSubject = new Subject<void>();
-
-  get isDatePicker() {
-    return ['date', 'month', 'year'].includes(this.type);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: string }) {
+    event.toState !== 'void' && this.animating.emit(true);
   }
 
-  get sureDisabled() {
-    let res = XIsUndefined(this.time);
-    if (this.timePickerFrame && !XIsUndefined(this.time)) {
-      const dt = new Date(this.time!);
+  private i18n = inject(XI18nService);
+  private _type = signal<XDatePickerType>('date');
+
+  timePickerFrame = viewChild('timePickerFrame', { read: XTimePickerFrameComponent });
+  value = input<any>();
+  type = model<XDatePickerType>('date');
+  preset = input<XDatePickerPreset[]>([]);
+  extraFooter = input<XTemplate>();
+  placement = input<XPositionTopBottom>();
+  inputCom = input<XInputComponent>();
+  disabledDate = input<XDatePickerDisabledDate>();
+  disabledTime = input<XDatePickerDisabledTime>();
+
+  animating = output<boolean>();
+  nodeClick = output<{ date: Date; sure?: boolean }>();
+
+  display = signal(new Date());
+  model = signal<Date | null>(null);
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.datePicker as XI18nDatePicker)), {
+    initialValue: zh_CN.datePicker
+  });
+  time = signal<number | null>(null);
+
+  isDatePicker = computed(() => {
+    return ['date', 'month', 'year'].includes(this.type());
+  });
+
+  sureDisabled = computed(() => {
+    let res = XIsUndefined(this.time());
+    let timePickerFrame = this.timePickerFrame();
+    if (timePickerFrame && !XIsUndefined(this.time())) {
+      const dt = new Date(this.time()!);
       const hours = dt.getHours();
       const minutes = dt.getMinutes();
       const seconds = dt.getSeconds();
       return (
-        this.timePickerFrame.setDisabled('hours', hours) ||
-        this.timePickerFrame.setDisabled('minutes', minutes) ||
-        this.timePickerFrame.setDisabled('seconds', seconds)
+        timePickerFrame.setDisabled('hours', hours) ||
+        timePickerFrame.setDisabled('minutes', minutes) ||
+        timePickerFrame.setDisabled('seconds', seconds)
       );
     }
     return res;
-  }
-
-  private cdr = inject(ChangeDetectorRef);
-  private i18n = inject(XI18nService);
-
-  ngOnInit(): void {
-    this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.value = x;
-      this.init();
-    });
-    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.placement = x;
-      this.cdr.detectChanges();
-    });
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.datePicker as XI18nDatePicker),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        this.cdr.markForCheck();
-      });
-  }
+  });
 
   ngAfterViewInit() {
     this.init();
   }
 
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
-
   init() {
-    if (!XIsEmpty(this.value)) {
+    if (!XIsEmpty(this.value())) {
       this.setDefault();
     }
-    this._type = this.type;
-    this.cdr.detectChanges();
-  }
-
-  stopPropagation(event: Event): void {
-    event.stopPropagation();
+    this._type.set(this.type());
   }
 
   setDefault() {
-    const date = new Date(this.value);
-    this.model = date;
-    this.time = this.model.getTime();
-    this.setDisplay(this.model);
+    const date = new Date(this.value());
+    this.model.set(date);
+    this.time.set(this.model()!.getTime());
+    this.setDisplay(this.model()!);
   }
 
   setDisplay(date: Date) {
-    this.display = new Date(date.getFullYear(), date.getMonth(), 1);
+    this.display.set(new Date(date.getFullYear(), date.getMonth(), 1));
   }
 
   dateChange(date: Date) {
     this.setDisplay(date);
-    this.model = date;
-    if (['date-time', 'date-hour', 'date-minute'].includes(this._type)) {
+    this.model.set(date);
+    if (['date-time', 'date-hour', 'date-minute'].includes(this._type())) {
       let time = new Date();
-      if (['date-hour', 'date-minute'].includes(this.type)) {
+      if (['date-hour', 'date-minute'].includes(this.type())) {
         time.setSeconds(0);
       }
-      if (this.type === 'date-hour') {
+      if (this.type() === 'date-hour') {
         time.setMinutes(0);
       }
-      if (!this.time) {
-        this.time = time.getTime();
+      if (!this.time()) {
+        this.time.set(time.getTime());
       }
-      this.setModelTime(this.model, new Date(this.time!));
-      this.nodeEmit(this.model, false);
+      this.setModelTime(this.model()!, new Date(this.time()!));
+      this.nodeClick.emit({ date: this.model()!, sure: false });
     } else {
-      this.nodeEmit(this.model);
+      this.nodeClick.emit({ date: this.model()!, sure: true });
     }
   }
 
   monthChange(date: Date) {
     this.setDisplay(date);
-    if (this._type === 'month') {
-      this.model = date;
-      this.nodeEmit(date);
+    if (this._type() === 'month') {
+      this.model.set(date);
+      this.nodeClick.emit({ date, sure: true });
     } else {
-      this.type = this._type;
+      this.type.set(this._type()!);
     }
-    this.cdr.detectChanges();
   }
 
   quarterChange(date: Date) {
     this.setDisplay(date);
-    if (this._type === 'quarter') {
-      this.model = date;
-      this.nodeEmit(date);
+    if (this._type() === 'quarter') {
+      this.model.set(date);
+      this.nodeClick.emit({ date, sure: true });
     } else {
-      this.type = this._type;
+      this.type.set(this._type());
     }
-    this.cdr.detectChanges();
   }
 
   yearChange(date: Date) {
     this.setDisplay(date);
-    if (this._type === 'year') {
-      this.model = date;
-      this.nodeEmit(date);
+    if (this._type() === 'year') {
+      this.model.set(date);
+      this.nodeClick.emit({ date, sure: true });
     } else {
-      this.type = 'month';
+      this.type.set('month');
     }
-    this.cdr.detectChanges();
   }
 
   onToday() {
@@ -240,23 +209,24 @@ export class XDatePickerPortalComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   selectTime(time: Date) {
-    if (!this.model) {
-      this.model = new Date();
+    if (!this.model()) {
+      this.model.set(new Date());
     }
-    this.time = time.getTime();
-    this.nodeEmit(this.setModelTime(this.model, time), false);
-    this.cdr.detectChanges();
+    this.time.set(time.getTime());
+    this.nodeClick.emit({ date: this.setModelTime(this.model()!, time), sure: false });
   }
 
   setModelTime(date: Date, time: Date) {
-    this.model = new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate(),
-      time.getHours(),
-      time.getMinutes(),
-      time.getSeconds()
+    this.model.set(
+      new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        time.getHours(),
+        time.getMinutes(),
+        time.getSeconds()
+      )
     );
-    return this.model;
+    return this.model()!;
   }
 }

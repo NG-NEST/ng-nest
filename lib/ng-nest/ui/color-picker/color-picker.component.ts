@@ -77,7 +77,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   constructor() {
     super();
-    effect(() => this.portalComponent()?.setInput('value', this.value() ?? this.primaryColor));
+    effect(() => this.portalComponent()?.setInput('value', this.value() || this.primaryColor));
     effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
   }
@@ -123,7 +123,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   clearEmit() {
     this.value.set('');
     this.mleave();
-    if (this.onChange) this.onChange(this.value);
+    if (this.onChange) this.onChange(this.value());
   }
 
   portalAttached() {
@@ -194,7 +194,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
           takeUntil(this.unSubject)
         )
         .subscribe(() => {
-          this.portal?.overlayRef?.updatePosition();
+          this.portalOverlayRef()?.updatePosition();
           const eract = this.elementRef.nativeElement.getBoundingClientRect();
           const frect = firstScroll!.getBoundingClientRect();
           if (eract.top + eract.height - frect.top < 0 || eract.bottom > frect.bottom) {

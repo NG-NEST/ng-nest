@@ -24,7 +24,6 @@
       [after]="after()"
       [pattern]="pattern()"
       [message]="message()"
-      [inputStyle]="inputStyle()!"
       [pointer]="true"
       [(active)]="active"
       (clearEmit)="clearEmit()"
@@ -34,7 +33,9 @@
     ></x-input>
 
     <ng-template #valueTpl>
-      <div class="x-color-picker-value"></div>
+      <div class="x-color-picker-template-value">
+        <div class="x-color-picker-template-color" [style]="inputStyle()"></div>
+      </div>
     </ng-template>
   </div>
 </div>

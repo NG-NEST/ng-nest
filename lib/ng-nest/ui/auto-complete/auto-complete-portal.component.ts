@@ -35,11 +35,10 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
     return this.placement();
   }
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    this.animating.emit(false);
-    event.toState === 'void' && this.destroyed.emit();
+    event.toState !== 'void' && this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
-    this.animating.emit(true);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    event.toState !== 'void' && this.animating.emit(true);
   }
   list = viewChild.required('list', { read: XListComponent });
 
@@ -50,7 +49,6 @@ export class XAutoCompletePortalComponent implements OnInit, OnDestroy {
   inputCom = input<XInputComponent>();
   keywordText = model<string>('');
   caseSensitive = input<boolean>(false);
-  destroyed = output();
   animating = output<boolean>();
   nodeClick = output<XAutoCompleteNode>();
   closeSubject!: Subject<void>;

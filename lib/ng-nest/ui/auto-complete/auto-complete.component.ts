@@ -258,8 +258,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
       .subscribe(() => {
         this.closeSubject.next();
       });
-    const { destroyed, animating, nodeClick } = componentRef.instance;
-    destroyed.subscribe(() => this.destroyPortal());
+    const { animating, nodeClick } = componentRef.instance;
     animating.subscribe((ing: boolean) => this.animating.set(ing));
     nodeClick.subscribe((node: XAutoCompleteNode) => this.onNodeClick(node));
     Object.assign(componentRef.instance, {

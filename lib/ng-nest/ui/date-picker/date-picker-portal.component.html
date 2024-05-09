@@ -1,48 +1,48 @@
-<div class="x-date-picker-portal {{ type }}" (click)="inputCom.inputFocus()">
-  @switch (type) {
+<div class="x-date-picker-portal {{ type() }}" (click)="inputCom()?.inputFocus('focus')">
+  @switch (type()) {
     @case ('date') {
       <x-picker-date
-        [display]="display"
-        [model]="model"
+        [(display)]="display"
+        [(model)]="model"
         [(type)]="type"
-        (modelChange)="dateChange($event)"
-        [disabledDate]="disabledDate"
+        (modelChange)="dateChange($event!)"
+        [disabledDate]="disabledDate()"
       ></x-picker-date>
     }
     @case ('week') {
       <x-picker-date
-        [display]="display"
-        [model]="model"
+        [(display)]="display"
+        [(model)]="model"
         [(type)]="type"
-        (modelChange)="dateChange($event)"
-        [disabledDate]="disabledDate"
+        (modelChange)="dateChange($event!)"
+        [disabledDate]="disabledDate()"
       ></x-picker-date>
     }
     @case ('month') {
       <x-picker-month
-        [display]="display"
-        [model]="model"
+        [(display)]="display"
+        [(model)]="model"
         [(type)]="type"
-        (modelChange)="monthChange($event)"
-        [disabledDate]="disabledDate"
+        (modelChange)="monthChange($event!)"
+        [disabledDate]="disabledDate()"
       ></x-picker-month>
     }
     @case ('quarter') {
       <x-picker-quarter
-        [display]="display"
-        [model]="model"
+        [(display)]="display"
+        [(model)]="model"
         [(type)]="type"
-        (modelChange)="quarterChange($event)"
-        [disabledDate]="disabledDate"
+        (modelChange)="quarterChange($event!)"
+        [disabledDate]="disabledDate()"
       ></x-picker-quarter>
     }
     @case ('year') {
       <x-picker-year
-        [display]="display"
-        [model]="model"
+        [(display)]="display"
+        [(model)]="model"
         [(type)]="type"
-        (modelChange)="yearChange($event)"
-        [disabledDate]="disabledDate"
+        (modelChange)="yearChange($event!)"
+        [disabledDate]="disabledDate()"
       ></x-picker-year>
     }
     @case ('date-time') {
@@ -62,10 +62,10 @@
     }
     @case ('month') {}
   }
-  @if (isDatePicker) {
-    @if (extraFooter) {
+  @if (isDatePicker()) {
+    @if (extraFooter()) {
       <div class="x-date-picker-portal-extra-footer">
-        <ng-container *xOutlet="extraFooter">{{ extraFooter }}</ng-container>
+        <ng-container *xOutlet="extraFooter()">{{ extraFooter() }}</ng-container>
       </div>
     }
     <ng-container *ngTemplateOutlet="presetTpl"></ng-container>
@@ -76,57 +76,62 @@
   <div class="x-date-picker-portal-content">
     <div class="x-date-picker-portal-date">
       <x-picker-date
-        [display]="display"
+        [(display)]="display"
         [(type)]="type"
-        [model]="model"
-        (modelChange)="dateChange($event)"
-        [disabledDate]="disabledDate"
+        [(model)]="model"
+        (modelChange)="dateChange($event!)"
+        [disabledDate]="disabledDate()"
       ></x-picker-date>
     </div>
     <div class="x-date-picker-portal-time">
       <div class="x-date-picker-portal-time-label">
-        {{ time | date: timeFormat }}
+        {{ time() | date: timeFormat }}
       </div>
       <x-time-picker-frame
-        #timePickerFrame
+        #timePickerFrameD
         [type]="timeType"
-        [value]="time"
+        [value]="time()"
         (nodeEmit)="selectTime($event)"
-        [disabledTime]="disabledTime"
+        [disabledTime]="disabledTime()"
         [defaultNow]="false"
       ></x-time-picker-frame>
     </div>
   </div>
-  @if (!isDatePicker && extraFooter) {
+  @if (!isDatePicker() && extraFooter()) {
     <div class="x-date-picker-portal-extra-footer">
-      <ng-container *xOutlet="extraFooter">{{ extraFooter }}</ng-container>
+      <ng-container *xOutlet="extraFooter()">{{ extraFooter() }}</ng-container>
     </div>
   }
   <div class="x-date-picker-portal-footer">
     <div class="x-date-picker-portal-footer-left">
-      @if (!isDatePicker && preset) {
+      @if (!isDatePicker() && preset()) {
         <ng-container *ngTemplateOutlet="presetTpl"></ng-container>
       }
     </div>
-    <x-button type="primary" text (click)="!sureDisabled && nodeEmit(model)" size="small" [disabled]="sureDisabled">{{
-      locale.sure
-    }}</x-button>
+    <x-button
+      type="primary"
+      text
+      (click)="!sureDisabled() && nodeClick.emit({ date: model()!, sure: true })"
+      size="small"
+      [disabled]="sureDisabled()"
+      >{{ locale().sure }}</x-button
+    >
   </div>
 </ng-template>
 
 <ng-template #presetTpl>
-  @if (preset) {
+  @if (preset()) {
     <div class="x-date-picker-portal-preset">
-      @for (item of preset; track item.id) {
+      @for (item of preset(); track item.id) {
         @switch (item.id) {
           @case ('yesterday') {
-            <x-link (click)="onYesterday()">{{ locale.yesterday }}</x-link>
+            <x-link (click)="onYesterday()">{{ locale().yesterday }}</x-link>
           }
           @case ('today') {
-            <x-link (click)="onToday()">{{ locale.today }}</x-link>
+            <x-link (click)="onToday()">{{ locale().today }}</x-link>
           }
           @case ('tomorrow') {
-            <x-link (click)="onTomorrow()">{{ locale.tomorrow }}</x-link>
+            <x-link (click)="onTomorrow()">{{ locale().tomorrow }}</x-link>
           }
         }
         @if (!!item.func) {

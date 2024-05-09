@@ -1,32 +1,32 @@
-<div class="x-picker-date" [class.x-date-picker-datetemp]="dateTemp">
-  @if (showHeader) {
+<div class="x-picker-date" [class.x-date-picker-datetemp]="dateTemp()">
+  @if (showHeader()) {
     <div class="x-picker-date-header">
-      <x-link icon="fto-chevrons-left" (click)="nextYear(-1)" [class.x-visibility]="!lastYearBtn"></x-link>
-      <x-link icon="fto-chevron-left" (click)="nextMonth(-1)" [class.x-visibility]="!lastMonthBtn"></x-link>
+      <x-link icon="fto-chevrons-left" (click)="nextYear(-1)" [class.x-visibility]="!lastYearBtn()"></x-link>
+      <x-link icon="fto-chevron-left" (click)="nextMonth(-1)" [class.x-visibility]="!lastMonthBtn()"></x-link>
       <div class="x-picker-date-year-month">
-        <x-link (click)="typeOnChange('year')">{{ display | date: 'yyyy' }}{{ locale.year }}</x-link>
-        <x-link (click)="typeOnChange('month')">{{ getLocaleMonth(display) }}</x-link>
+        <x-link (click)="typeOnChange('year')">{{ display() | date: 'yyyy' }}{{ locale().year }}</x-link>
+        <x-link (click)="typeOnChange('month')">{{ getLocaleMonth(display()) }}</x-link>
       </div>
-      <x-link icon="fto-chevron-right" (click)="nextMonth(1)" [class.x-visibility]="!nextMonthBtn"></x-link>
-      <x-link icon="fto-chevrons-right" (click)="nextYear(1)" [class.x-visibility]="!nextYearBtn"></x-link>
+      <x-link icon="fto-chevron-right" (click)="nextMonth(1)" [class.x-visibility]="!nextMonthBtn()"></x-link>
+      <x-link icon="fto-chevrons-right" (click)="nextYear(1)" [class.x-visibility]="!nextYearBtn()"></x-link>
     </div>
   }
   <div class="x-picker-date-body">
     <table cellspacing="0" cellpadding="0">
       <thead>
         <tr>
-          @for (title of titles; track title) {
+          @for (title of titles(); track title) {
             <th>{{ title | xI18n }}</th>
           }
         </tr>
       </thead>
       <tbody>
-        @for (weeks of weekDates; track weeks) {
+        @for (weeks of weekDates(); track weeks) {
           <tr
-            [class.x-date-week-active]="!rangePicker && isWeek && isWeekActive(weeks)"
-            [class.x-date-week-start-active]="isWeekRange && isStartWeek(weeks)"
-            [class.x-date-week-end-active]="isWeekRange && isEndWeek(weeks)"
-            [class.x-date-week-in-range]="isWeekRange && isInRangeWeek(weeks)"
+            [class.x-date-week-active]="!rangePicker() && isWeek() && isWeekActive(weeks)"
+            [class.x-date-week-start-active]="isWeekRange() && isStartWeek(weeks)"
+            [class.x-date-week-end-active]="isWeekRange() && isEndWeek(weeks)"
+            [class.x-date-week-in-range]="isWeekRange() && isInRangeWeek(weeks)"
           >
             @for (week of weeks; track week) {
               <td
@@ -37,35 +37,37 @@
                 [class.x-date-now]="week.isNow"
                 [class.x-date-first-day]="week.isFirstDay"
                 [class.x-date-last-day]="week.isLastDay"
-                [class.x-date-range-start]="isNotWeekRange && isStartDate(week.date!)"
-                [class.x-date-range-end]="isNotWeekRange && isEndDate(week.date!)"
-                [class.x-date-range-start-left]="isNotWeekRange && week.isRangeStartLeft"
-                [class.x-date-range-start-right]="isNotWeekRange && week.isRangeStartRight"
-                [class.x-date-range-end-left]="isNotWeekRange && week.isRangeEndLeft"
-                [class.x-date-range-end-right]="isNotWeekRange && week.isRangeEndRight"
-                [class.x-date-range-hover]="isNotWeekRange && week.isRangeHover"
-                [class.x-date-range-hover-start-left]="isNotWeekRange && week.isRangeHoverStartLeft"
-                [class.x-date-range-hover-start-right]="isNotWeekRange && week.isRangeHoverStartRight"
-                [class.x-date-range-hover-end-left]="isNotWeekRange && week.isRangeHoverEndLeft"
-                [class.x-date-range-hover-end-right]="isNotWeekRange && week.isRangeHoverEndRight"
-                [class.x-date-range-hover-start]="isNotWeekRange && week.isRangeHoverStart"
-                [class.x-date-range-hover-end]="isNotWeekRange && week.isRangeHoverEnd"
-                [class.x-date-in-range]="isNotWeekRange && week.isInRange"
-                [class.x-date-in-range-hover]="isNotWeekRange && week.isInRangeHover"
+                [class.x-date-range-start]="isNotWeekRange() && isStartDate(week.date!)"
+                [class.x-date-range-end]="isNotWeekRange() && isEndDate(week.date!)"
+                [class.x-date-range-start-left]="isNotWeekRange() && week.isRangeStartLeft"
+                [class.x-date-range-start-right]="isNotWeekRange() && week.isRangeStartRight"
+                [class.x-date-range-end-left]="isNotWeekRange() && week.isRangeEndLeft"
+                [class.x-date-range-end-right]="isNotWeekRange() && week.isRangeEndRight"
+                [class.x-date-range-hover]="isNotWeekRange() && week.isRangeHover"
+                [class.x-date-range-hover-start-left]="isNotWeekRange() && week.isRangeHoverStartLeft"
+                [class.x-date-range-hover-start-right]="isNotWeekRange() && week.isRangeHoverStartRight"
+                [class.x-date-range-hover-end-left]="isNotWeekRange() && week.isRangeHoverEndLeft"
+                [class.x-date-range-hover-end-right]="isNotWeekRange() && week.isRangeHoverEndRight"
+                [class.x-date-range-hover-start]="isNotWeekRange() && week.isRangeHoverStart"
+                [class.x-date-range-hover-end]="isNotWeekRange() && week.isRangeHoverEnd"
+                [class.x-date-in-range]="isNotWeekRange() && week.isInRange"
+                [class.x-date-in-range-hover]="isNotWeekRange() && week.isInRangeHover"
                 [class.x-date-active]="
-                  !rangePicker && week.type !== 'week' && (week.date | date: 'yyyyMMdd') === (model | date: 'yyyyMMdd')
+                  !rangePicker() &&
+                  week.type !== 'week' &&
+                  (week.date | date: 'yyyyMMdd') === (model() | date: 'yyyyMMdd')
                 "
-                title="{{ week.date | date: 'yyyy-MM-dd' }}"
+                [title]="week.date | date: 'yyyy-MM-dd'"
                 (click)="week.type !== 'week' && !week.isDisabled && dateClick(week)"
                 (mouseenter)="
-                  week.type !== 'week' && !week.isDisabled && rangePicker && rangeHover && onTdMouseenter(week)
+                  week.type !== 'week' && !week.isDisabled && rangePicker() && rangeHover() && onTdMouseenter(week)
                 "
                 (mouseleave)="
-                  week.type !== 'week' && !week.isDisabled && rangePicker && rangeHover && onTdMouseleave(week)
+                  week.type !== 'week' && !week.isDisabled && rangePicker() && rangeHover() && onTdMouseleave(week)
                 "
               >
-                @if (dateTemp) {
-                  <ng-container *ngTemplateOutlet="dateTemp; context: { date$: week.date }"></ng-container>
+                @if (dateTemp()) {
+                  <ng-container *ngTemplateOutlet="dateTemp()!; context: { date$: week.date }"></ng-container>
                 } @else {
                   <div class="x-date-text">
                     @switch (week.type) {

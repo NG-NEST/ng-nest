@@ -10,9 +10,7 @@ import { XContainerPrefix, XContainerProperty } from './container.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XContainerComponent extends XContainerProperty {
-  @HostBinding('class.x-container') has() {
-    return true;
-  }
+  @HostBinding('class.x-container') _has = true;
   @HostBinding('class') get className() {
     return this.directionClass();
   }

@@ -1,39 +1,37 @@
-<div class="x-date-range-portal {{ type }}">
+<div class="x-date-range-portal {{ type() }}">
   <div class="x-date-range-portal-body">
-    @switch (type) {
+    @switch (type()) {
       @case ('date') {
         <x-picker-date
           #startPicker
           class="x-date-range-portal-start"
           [(display)]="startDisplay"
-          [model]="startModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="startModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [nextYearBtn]="false"
           [nextMonthBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'start')"
           (monthChange)="monthChange($event, 'start')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-date>
         <x-picker-date
           #endPicker
           class="x-date-range-portal-end"
           [(display)]="endDisplay"
-          [model]="endModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="endModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [lastYearBtn]="false"
           [lastMonthBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'end')"
           (monthChange)="monthChange($event, 'end')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-date>
       }
@@ -43,17 +41,16 @@
           class="x-date-range-portal-start"
           type="week"
           [(display)]="startDisplay"
-          [model]="startModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="startModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [nextYearBtn]="false"
           [nextMonthBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'start')"
           (monthChange)="monthChange($event, 'start')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-date>
         <x-picker-date
@@ -61,17 +58,16 @@
           class="x-date-range-portal-end"
           type="week"
           [(display)]="endDisplay"
-          [model]="endModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="endModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [lastYearBtn]="false"
           [lastMonthBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'end')"
           (monthChange)="monthChange($event, 'end')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-date>
       }
@@ -80,32 +76,30 @@
           #startPicker
           class="x-date-range-portal-start"
           [(display)]="startDisplay"
-          [model]="startModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="startModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [nextYearBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'start')"
           (monthChange)="monthChange($event, 'start')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-month>
         <x-picker-month
           #endPicker
           class="x-date-range-portal-end"
           [(display)]="endDisplay"
-          [model]="endModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="endModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [lastYearBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'end')"
           (monthChange)="monthChange($event, 'end')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-month>
       }
@@ -114,32 +108,30 @@
           #startPicker
           class="x-date-range-portal-start"
           [(display)]="startDisplay"
-          [model]="startModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="startModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [nextYearBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'start')"
           (monthChange)="monthChange($event, 'start')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-quarter>
         <x-picker-quarter
           #endPicker
           class="x-date-range-portal-end"
           [(display)]="endDisplay"
-          [model]="endModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="endModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [lastYearBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'end')"
           (monthChange)="monthChange($event, 'end')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-quarter>
       }
@@ -148,32 +140,30 @@
           #startPicker
           class="x-date-range-portal-start"
           [(display)]="startDisplay"
-          [model]="startModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="startModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [nextYearBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'start')"
           (monthChange)="monthChange($event, 'start')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-year>
         <x-picker-year
           #endPicker
           class="x-date-range-portal-end"
           [(display)]="endDisplay"
-          [model]="endModel"
-          [rangeValue]="value"
-          [rangeType]="activeType"
+          [(model)]="endModel"
+          [rangeValue]="value()"
+          [rangeType]="activeType()"
           [lastYearBtn]="false"
-          [disabledDate]="disabledDate"
-          (modelChange)="dateChange($event)"
+          [disabledDate]="disabledDate()"
+          (modelChange)="dateChange($event!)"
           (yearChange)="yearChange($event, 'end')"
           (monthChange)="monthChange($event, 'end')"
           (rangeTdMouseenter)="setDatesState($event)"
-          (rangeDateClick)="setDatesState($event)"
           rangePicker
         ></x-picker-year>
       }
@@ -194,10 +184,10 @@
       }
     }
   </div>
-  @if (isDatePicker) {
-    @if (extraFooter) {
+  @if (isDatePicker()) {
+    @if (extraFooter()) {
       <div class="x-date-range-portal-extra-footer">
-        <ng-container *xOutlet="extraFooter">{{ extraFooter }}</ng-container>
+        <ng-container *xOutlet="extraFooter()">{{ extraFooter() }}</ng-container>
       </div>
     }
     <ng-container *ngTemplateOutlet="presetTpl"></ng-container>
@@ -208,79 +198,79 @@
   <div class="x-date-range-portal-content">
     <div class="x-date-range-portal-date">
       <x-picker-date
-        [class.x-date-range-portal-start]="activeType === 'start'"
-        [class.x-date-range-portal-end]="activeType === 'end'"
+        [class.x-date-range-portal-start]="activeType() === 'start'"
+        [class.x-date-range-portal-end]="activeType() === 'end'"
         [(display)]="timeDisplay"
         [(model)]="timeModel"
-        [rangeHover]="timeHover"
-        [rangeValue]="value"
-        [rangeType]="activeType"
-        [disabledDate]="disabledDate"
-        (modelChange)="dateChange($event)"
+        [rangeHover]="timeHover()"
+        [rangeValue]="value()"
+        [rangeType]="activeType()"
+        [disabledDate]="disabledDate()"
+        (modelChange)="dateChange($event!)"
         rangePicker
       ></x-picker-date>
     </div>
     <div class="x-date-range-portal-time">
       <div class="x-date-range-portal-time-label">
-        {{ time | date: timeFormat }}
+        {{ time() | date: timeFormat }}
       </div>
       <x-time-picker-frame
         #timePickerFrame
         [type]="timeType"
-        [value]="time"
+        [value]="time()"
         (nodeEmit)="selectTime($event)"
-        [disabledTimeParam]="activeType"
-        [disabledTime]="disabledTime"
+        [disabledTimeParam]="activeType()"
+        [disabledTime]="disabledTime()"
         [defaultNow]="false"
       ></x-time-picker-frame>
     </div>
   </div>
-  @if (!isDatePicker && extraFooter) {
-    <ng-container *xOutlet="extraFooter">{{ extraFooter }}</ng-container>
+  @if (!isDatePicker() && extraFooter()) {
+    <ng-container *xOutlet="extraFooter()">{{ extraFooter() }}</ng-container>
   }
   <div class="x-date-range-portal-footer">
     <div class="x-date-range-portal-footer-left">
-      @if (!isDatePicker) {
+      @if (!isDatePicker()) {
         <ng-container *ngTemplateOutlet="presetTpl"></ng-container>
       }
     </div>
-    <x-button type="primary" text (click)="!sureDisabled && sureTime()" size="small" [disabled]="sureDisabled">{{
-      locale.sure
+    <x-button type="primary" text (click)="!sureDisabled() && sureTime()" size="small" [disabled]="sureDisabled()!">{{
+      locale().sure
     }}</x-button>
   </div>
 </ng-template>
 
 <ng-template #presetTpl>
-  @if (preset) {
+  @if (preset()) {
     <div class="x-date-range-portal-preset">
-      @for (item of preset; track item.id) {
+      @for (item of preset(); track item.id) {
         @switch (item.id) {
           @case ('thisWeek') {
-            <x-link (click)="onPreset('week', 0)">{{ locale.thisWeek }}</x-link>
+            <x-link (click)="onPreset('week', 0)">{{ locale().thisWeek }}</x-link>
           }
           @case ('lastWeek') {
-            <x-link (click)="onPreset('week', -1)">{{ locale.lastWeek }}</x-link>
+            <x-link (click)="onPreset('week', -1)">{{ locale().lastWeek }}</x-link>
           }
           @case ('nextWeek') {
-            <x-link (click)="onPreset('week', 1)">{{ locale.nextWeek }}</x-link>
+            <x-link (click)="onPreset('week', 1)">{{ locale().nextWeek }}</x-link>
           }
           @case ('thisMonth') {
-            <x-link (click)="onPreset('month', 0)">{{ locale.thisMonth }}</x-link>
+            <x-link (click)="onPreset('month', 0)">{{ locale().thisMonth }}</x-link>
           }
           @case ('lastMonth') {
-            <x-link (click)="onPreset('month', -1)">{{ locale.lastMonth }}</x-link>
+            <x-link (click)="onPreset('month', -1)">{{ locale().lastMonth }}</x-link>
           }
           @case ('nextMonth') {
-            <x-link (click)="onPreset('month', 1)">{{ locale.nextMonth }}</x-link>
+            <x-link (click)="onPreset('month', 1)">{{ locale().nextMonth }}</x-link>
           }
           @case ('thisYear') {
-            <x-link (click)="onPreset('year', 0)">{{ locale.thisYear }}</x-link>
+            <x-link (click)="onPreset('year', 0)">{{ locale().thisYear }}</x-link>
           }
           @case ('lastYear') {
-            <x-link (click)="onPreset('year', -1)">{{ locale.lastYear }}</x-link>
+            <x-link (click)="onPreset('year', -1)">{{ locale().lastYear }}</x-link>
           }
           @case ('nextYear') {
-            <x-link (click)="onPreset('year', 1)">{{ locale.nextYear }}</x-link>
+            <x-link (click)="onPreset('year', 1)">{{ locale().nextYear }}</x-link>
           }
         }
         @if (!!item.func) {
