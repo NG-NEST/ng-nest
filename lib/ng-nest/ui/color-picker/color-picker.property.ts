@@ -1,6 +1,7 @@
-import { XAlign, XBoolean, XCorner, XDirection, XJustify, XSize, XTemplate, XToBoolean } from '@ng-nest/ui/core';
+import { XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, model } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
+import type { XAlign, XBoolean, XCorner, XDirection, XJustify, XNumber, XSize, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * ColorPicker
@@ -44,7 +45,7 @@ export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NA
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  override readonly labelWidth = input<string>('');
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method

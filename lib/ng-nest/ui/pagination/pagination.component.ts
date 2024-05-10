@@ -35,7 +35,7 @@ import { XToDataNew } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPaginationComponent extends XPaginationProperty implements OnInit {
-  @HostBinding('class.x-pagination') _has = true;
+  @HostBinding('class') className = XPaginationPrefix;
 
   indexFirst = signal(1);
   indexLast = signal(1);
@@ -66,10 +66,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
 
   sizeDataSignal = computed(() => XToDataNew(this.sizeData()));
 
-  // private i18n = inject(XI18nService);
-
   ngOnInit() {
-    // this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => this.cdr.markForCheck());
     this.inputSize.set(this.size().toString());
   }
 

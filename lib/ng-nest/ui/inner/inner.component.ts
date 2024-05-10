@@ -10,7 +10,7 @@ import { XInnerPrefix, XInnerProperty } from './inner.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XInnerComponent extends XInnerProperty {
-  @HostBinding('class.x-inner') _has = true;
+  @HostBinding('class') className = XInnerPrefix;
   @HostBinding('style.padding') get getPadding() {
     return this.padding();
   }

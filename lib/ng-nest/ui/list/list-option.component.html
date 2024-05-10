@@ -1,27 +1,27 @@
 <div
   class="x-list-option"
-  [ngClass]="classMap"
-  [class.x-selected]="selected"
-  [class.x-disabled]="disabled"
-  [class.x-open-portal]="node?.openPortal"
-  [class.x-active]="active"
-  [class.x-list-icon]="icon"
-  [class.x-list-divided]="divided"
+  [ngClass]="classMap()"
+  [class.x-selected]="selected()"
+  [class.x-disabled]="forbidden()"
+  [class.x-open-portal]="openPortal()"
+  [class.x-active]="active()"
+  [class.x-list-icon]="icon()"
+  [class.x-list-divided]="divided()"
 >
   <div class="x-list-option-content">
-    @if (nodeTpl) {
-      <ng-template *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-template>
+    @if (nodeTpl()) {
+      <ng-template *ngTemplateOutlet="nodeTpl()!; context: { $node: node() }"></ng-template>
     } @else {
-      @if (icon) {
-        <x-icon [type]="icon"></x-icon>
+      @if (icon()) {
+        <x-icon [type]="icon()"></x-icon>
       }
-      <span x-keyword [text]="keywordText" [caseSensitive]="caseSensitive">{{ label }}</span>
+      <span x-keyword [text]="keywordText()" [caseSensitive]="caseSensitive()">{{ label() }}</span>
     }
   </div>
-  @if (leaf) {
+  @if (leaf()) {
     <x-icon class="x-list-leaf" type="fto-chevron-right"></x-icon>
   }
-  @if (checked && !leaf && selected) {
+  @if (checked() && !leaf() && selected()) {
     <x-icon class="x-list-checked" type="fto-check"></x-icon>
   }
 </div>

@@ -12,11 +12,11 @@ import {
 } from '@angular/core';
 import { XComputed, XComputedStyle, XIsArray, XIsChange, XIsString, XToCssPx } from '@ng-nest/ui/core';
 import { fromEvent, Subscription, takeUntil } from 'rxjs';
-import { XResizablePosition, XResizableProperty } from './resizable.property';
+import { XResizablePosition, XResizablePrefix, XResizableProperty } from './resizable.property';
 
 @Directive({ selector: '[xResizable]', standalone: true })
 export class XResizableDirective extends XResizableProperty implements OnDestroy {
-  @HostBinding('class.x-resizable') _has = true;
+  @HostBinding('class') className = XResizablePrefix;
   @HostBinding('class.x-resizable-disabled') get getDisabled() {
     return !this.xResizable();
   }

@@ -1,4 +1,7 @@
-import {
+import { XToBoolean, XToNumber, XToCssPixelValue } from '@ng-nest/ui/core';
+import { Component, TemplateRef, input, model, output } from '@angular/core';
+import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
+import type {
   XParentIdentityProperty,
   XData,
   XCorner,
@@ -9,12 +12,8 @@ import {
   XAlign,
   XTemplate,
   XDirection,
-  XJustify,
-  XToBoolean,
-  XToNumber
+  XJustify
 } from '@ng-nest/ui/core';
-import { Component, TemplateRef, input, model, output } from '@angular/core';
-import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Cascade
@@ -78,7 +77,7 @@ export class XCascadeProperty extends XFormControlFunction(X_CASCADE_CONFIG_NAME
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  override readonly labelWidth = input<string>('');
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method

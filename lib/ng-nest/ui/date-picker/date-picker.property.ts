@@ -1,5 +1,7 @@
-import {
-  XProperty,
+import { XProperty, XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
+import { TemplateRef, Component, input, model, output } from '@angular/core';
+import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
+import type {
   XBoolean,
   XCorner,
   XSize,
@@ -9,10 +11,8 @@ import {
   XDirection,
   XAlign,
   XJustify,
-  XToBoolean
+  XNumber
 } from '@ng-nest/ui/core';
-import { TemplateRef, Component, input, model, output } from '@angular/core';
-import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * DatePicker
@@ -91,7 +91,7 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  override readonly labelWidth = input<string>('');
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method
@@ -308,7 +308,7 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  override readonly labelWidth = input<string>('');
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method

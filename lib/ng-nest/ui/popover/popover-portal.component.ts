@@ -5,7 +5,8 @@ import {
   HostListener,
   HostBinding,
   input,
-  computed
+  computed,
+  output
 } from '@angular/core';
 import { XPopoverPortalPrefix, XPopoverTrigger } from './popover.property';
 import { XTemplate, XPlacement, XFadeAnimation, XIsEmpty } from '@ng-nest/ui/core';
@@ -31,17 +32,17 @@ export class XPopoverPortalComponent {
   maxWidth = input<string>();
   trigger = input<XPopoverTrigger>();
   placement = input<XPlacement>();
-  portalHover!: Function;
+  portalHover = output<boolean>();
 
   @HostListener('mouseenter') mouseenter() {
     if (this.trigger() === 'hover') {
-      this.portalHover(true);
+      this.portalHover.emit(true);
     }
   }
 
   @HostListener('mouseleave') mouseleave() {
     if (this.trigger() === 'hover') {
-      this.portalHover(false);
+      this.portalHover.emit(false);
     }
   }
 

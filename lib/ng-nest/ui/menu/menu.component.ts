@@ -5,15 +5,13 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  OnDestroy,
   AfterViewInit,
   inject,
   computed,
   signal
 } from '@angular/core';
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
-import { XIsChange, XIsEmpty, XGroupBy, XConfigService } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
+import { XIsChange, XIsEmpty, XGroupBy } from '@ng-nest/ui/core';
 import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XDropdownComponent } from '@ng-nest/ui/dropdown';
@@ -28,7 +26,7 @@ import { XMenuNodeComponent } from './menu-node.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMenuComponent extends XMenuProperty implements OnChanges, OnDestroy, AfterViewInit {
+export class XMenuComponent extends XMenuProperty implements OnChanges, AfterViewInit {
   showCategory = signal(false);
   get scroll(): HTMLElement {
     return this._target;
@@ -40,9 +38,7 @@ export class XMenuComponent extends XMenuProperty implements OnChanges, OnDestro
   activatedElementRef!: ElementRef<HTMLElement>;
   expanded = signal<any[]>([]);
   private doc = inject(DOCUMENT);
-  private _unSubject = new Subject<void>();
   private _target!: HTMLElement;
-  configService = inject(XConfigService);
 
   classMapSignal = computed(() => ({
     [`${XMenuPrefix}-${this.layout()}`]: !XIsEmpty(this.layout()),
@@ -60,11 +56,6 @@ export class XMenuComponent extends XMenuProperty implements OnChanges, OnDestro
       const target = this.target();
       this._target = typeof target === 'string' ? this.doc.querySelector(target)! : target!;
     }
-  }
-
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
   }
 
   ngAfterViewInit() {

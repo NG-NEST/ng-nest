@@ -3,10 +3,11 @@ import {
   ViewEncapsulation,
   ElementRef,
   ChangeDetectionStrategy,
-  ViewChild,
   inject,
   OnInit,
-  signal
+  signal,
+  computed,
+  viewChild
 } from '@angular/core';
 import { XImageNode, XImagePreviewPrefix, XImagePreviewProperty } from './image.property';
 import { XDialogCloseDirective, X_DIALOG_DATA } from '@ng-nest/ui/dialog';
@@ -24,17 +25,17 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XImagePreviewComponent extends XImagePreviewProperty implements OnInit {
-  imgScale3d = {
+  imgScale3d = signal({
     x: 1,
     y: 1,
     z: 1
-  };
-  rotate = 0;
+  });
+  rotate = signal(0);
 
-  position = {
+  position = signal({
     x: 0,
     y: 0
-  };
+  });
 
   activated = signal<XImageNode | undefined>(undefined);
   total = signal(1);
@@ -42,14 +43,14 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
 
   private document = inject(DOCUMENT);
 
-  get getWrapperTransform() {
-    return `translate3d(${this.position.x}px, ${this.position.y}px, 0)`;
-  }
-  get getImgTransform() {
-    return `scale3d(${this.imgScale3d.x}, ${this.imgScale3d.y}, ${this.imgScale3d.z}) rotate(${this.rotate}deg)`;
-  }
+  wrapperTransform = computed(() => {
+    return `translate3d(${this.position().x}px, ${this.position().y}px, 0)`;
+  });
+  imgTransform = computed(() => {
+    return `scale3d(${this.imgScale3d().x}, ${this.imgScale3d().y}, ${this.imgScale3d().z}) rotate(${this.rotate()}deg)`;
+  });
 
-  @ViewChild('imageRef') imageRef!: ElementRef<HTMLImageElement>;
+  imageRef = viewChild.required<ElementRef<HTMLImageElement>>('imageRef');
 
   data = inject<XImageNode[]>(X_DIALOG_DATA);
 
@@ -58,16 +59,16 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
   }
 
   initialization() {
-    this.imgScale3d = {
+    this.imgScale3d.set({
       x: 1,
       y: 1,
       z: 1
-    };
-    this.rotate = 0;
-    this.position = {
+    });
+    this.rotate.set(0);
+    this.position.set({
       x: 0,
       y: 0
-    };
+    });
   }
 
   setActivated() {
@@ -97,21 +98,24 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
   }
 
   onRotate(deg: number) {
-    this.rotate += deg;
+    this.rotate.update((x) => x + deg);
   }
 
   onScale(zoom: number) {
-    this.imgScale3d.x += zoom;
-    this.imgScale3d.y += zoom;
+    this.imgScale3d.update((item) => {
+      item.x += zoom;
+      item.y += zoom;
+      return item;
+    });
   }
 
   onDragReleased() {
-    let width = this.imageRef.nativeElement.offsetWidth * this.imgScale3d.x;
-    let height = this.imageRef.nativeElement.offsetHeight * this.imgScale3d.x;
+    let width = this.imageRef().nativeElement.offsetWidth * this.imgScale3d().x;
+    let height = this.imageRef().nativeElement.offsetHeight * this.imgScale3d().x;
     const clientWidth = this.document.documentElement.clientWidth;
     const clientHeight = this.document.defaultView?.innerHeight || this.document.documentElement.clientHeight;
-    const isRotate = this.rotate % 180 !== 0;
-    const box = this.imageRef.nativeElement.getBoundingClientRect();
+    const isRotate = this.rotate() % 180 !== 0;
+    const box = this.imageRef().nativeElement.getBoundingClientRect();
     const docElem = this.document.documentElement;
     const left =
       box.left +
@@ -132,7 +136,7 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
       position.y = y ? y : 0;
     }
 
-    this.position = { ...this.position, ...position };
+    this.position.update((x) => ({ ...x, ...position }));
   }
 
   fitPoint(start: number, size: number, clientSize: number): number | null {

@@ -128,7 +128,7 @@ export function XSetData<T>(
         result((toConvert ? XToDataConvert(data) : data) as T[]);
       }
     }
-  });
+  }).pipe(takeUntil(unSubject));
 }
 
 /**

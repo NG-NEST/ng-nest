@@ -158,13 +158,12 @@ export class XPopoverDirective extends XPopoverProperty implements OnDestroy {
     this.portalComponent.set(componentRef);
     this.realPlacement.set(this.placement());
 
-    Object.assign(componentRef.instance, {
-      portalHover: (hover: boolean) => {
-        if (this.timeoutHide && hover) {
-          clearTimeout(this.timeoutHide);
-        } else {
-          this.hide();
-        }
+    const { portalHover } = componentRef.instance;
+    portalHover.subscribe((hover: boolean) => {
+      if (this.timeoutHide && hover) {
+        clearTimeout(this.timeoutHide);
+      } else {
+        this.hide();
       }
     });
   }

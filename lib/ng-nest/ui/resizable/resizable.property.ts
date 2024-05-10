@@ -8,7 +8,6 @@ import type { XBoolean, XCorner, XNumber, XPosition } from '@ng-nest/ui/core';
  * @decorator directive
  */
 export const XResizablePrefix = 'x-resizable';
-// const X_CONFIG_NAME = 'resizable';
 
 /**
  * Resizable Property

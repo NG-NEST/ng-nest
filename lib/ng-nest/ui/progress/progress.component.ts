@@ -190,8 +190,6 @@ export class XProgressComponent extends XProgressProperty {
     return arr.sort((a, b) => a.key - b.key);
   }
 
-  setSubLinearGradient() {}
-
   setCircleClipPathValue(start: string, railValue: number) {
     let value = ((400 - railValue * 2) / 100) * this.percent();
     let val = value + railValue;

@@ -10,8 +10,8 @@
       <x-icon type="fto-corner-up-right" (click)="onRotate(90)"></x-icon>
       <x-icon
         type="fto-zoom-out"
-        [class.x-image-preview-disabled]="imgScale3d.x === 1"
-        (click)="imgScale3d.x > 1 && onScale(-1)"
+        [class.x-image-preview-disabled]="imgScale3d().x === 1"
+        (click)="imgScale3d().x > 1 && onScale(-1)"
       ></x-icon>
       <x-icon type="fto-zoom-in" (click)="onScale(1)"></x-icon>
     </div>
@@ -22,8 +22,8 @@
   <div
     class="x-image-preview-wrapper"
     cdkDrag
-    [style.transform]="getWrapperTransform"
-    [cdkDragFreeDragPosition]="position"
+    [style.transform]="wrapperTransform()"
+    [cdkDragFreeDragPosition]="position()"
     (cdkDragReleased)="onDragReleased()"
   >
     <img
@@ -31,7 +31,7 @@
       [src]="activated()?.src!"
       [attr.alt]="activated()?.alt!"
       cdkDragHandle
-      [style.transform]="getImgTransform"
+      [style.transform]="imgTransform()"
     />
   </div>
   @if (data && data.length > 1) {

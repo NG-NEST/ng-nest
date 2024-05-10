@@ -10,7 +10,8 @@ import {
   XTemplate,
   XToNumber,
   XNumber,
-  XToBoolean
+  XToBoolean,
+  XToCssPixelValue
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, model, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
@@ -82,7 +83,7 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  override readonly labelWidth = input<string>('');
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method

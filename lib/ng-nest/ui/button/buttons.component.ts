@@ -10,9 +10,7 @@ import { XButtonsPrefix, XButtonsProperty } from './button.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XButtonsComponent extends XButtonsProperty {
-  @HostBinding('class.x-buttons') get getPrefix() {
-    return true;
-  }
+  @HostBinding('class') className = XButtonsPrefix;
   @HostBinding('class.x-buttons-space') get getSpace() {
     return !!this.space();
   }

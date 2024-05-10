@@ -1,4 +1,8 @@
-import {
+import { XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
+import { Component, TemplateRef, input, model } from '@angular/core';
+import { XButtonType } from '@ng-nest/ui/button';
+import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
+import type {
   XData,
   XTemplate,
   XIdentityProperty,
@@ -7,11 +11,8 @@ import {
   XDirection,
   XAlign,
   XJustify,
-  XToBoolean
+  XNumber
 } from '@ng-nest/ui/core';
-import { Component, TemplateRef, input, model } from '@angular/core';
-import { XButtonType } from '@ng-nest/ui/button';
-import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Checkbox
@@ -95,7 +96,7 @@ export class XCheckboxProperty extends XFormControlFunction(X_CHECKBOX_CONFIG_NA
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  override readonly labelWidth = input<string>('');
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method

@@ -1,11 +1,4 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  ContentChildren,
-  QueryList,
-  computed
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed, contentChildren } from '@angular/core';
 import { XDescriptionPrefix, XDescriptionProperty } from './description.property';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XDescriptionItemComponent } from './description-item.component';
@@ -22,7 +15,7 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDescriptionComponent extends XDescriptionProperty {
-  @ContentChildren(XDescriptionItemComponent) items!: QueryList<XDescriptionItemComponent>;
+  items = contentChildren(XDescriptionItemComponent);
 
   classMapSignal = computed(() => ({
     [`${XDescriptionPrefix}-${this.size()}`]: !XIsEmpty(this.size())
@@ -32,7 +25,7 @@ export class XDescriptionComponent extends XDescriptionProperty {
     let gridTemplateColumns = this.gridTemplateColumns();
     if (gridTemplateColumns) return gridTemplateColumns;
     const columns: string[] = [];
-    this.items.forEach((x) => {
+    this.items().forEach((x) => {
       if (x.width) {
         columns.push(x.width());
       } else if (x.flex) {

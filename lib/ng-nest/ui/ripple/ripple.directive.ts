@@ -5,14 +5,12 @@ import { XComputed } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 
 @Directive({
-  selector: '[x-ripple]',
+  selector: `[${XRipplePrefix}]`,
   standalone: true
 })
 export class XRippleDirective extends XRippleProperty implements OnInit, OnDestroy {
-  @HostBinding('class.x-ripple') _has = true;
-  @HostBinding('class') get cls() {
-    return `${XRipplePrefix}-${this.type()}`;
-  }
+  @HostBinding('class') className = `${XRipplePrefix} ${XRipplePrefix}-${this.type()}`;
+
   private unsub = new Subject<void>();
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);

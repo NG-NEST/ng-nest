@@ -110,13 +110,8 @@ export class XInputComponent extends XInputProperty implements OnInit {
     }
   });
 
-  beforeIsTemplate = computed(() => {
-    return this.before() instanceof TemplateRef;
-  });
-
-  afterIsTemplate = computed(() => {
-    return this.after() instanceof TemplateRef;
-  });
+  beforeIsTemplate = computed(() => this.before() instanceof TemplateRef);
+  afterIsTemplate = computed(() => this.after() instanceof TemplateRef);
 
   getTemplateWidth = computed(() => {
     return `calc(100% - ${this.paddingLeft()} - ${this.paddingRight()})`;

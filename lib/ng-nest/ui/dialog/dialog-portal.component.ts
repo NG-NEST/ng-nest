@@ -3,15 +3,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   ComponentRef,
-  ContentChildren,
   EmbeddedViewRef,
   EventEmitter,
   HostBinding,
   HostListener,
-  QueryList,
   Renderer2,
-  ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  contentChildren,
+  viewChild
 } from '@angular/core';
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
 import { XDialogAnimationEvent, XDialogAnimationState, XDialogRefOption } from './dialog.property';
@@ -47,13 +46,10 @@ export class XDialogPortalComponent extends BasePortalOutlet {
       totalTime
     });
   }
-  @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet!: CdkPortalOutlet;
-  @ViewChild(CdkDrag, { static: true }) dragRef!: CdkDrag;
-
-  @ContentChildren(CdkDragHandle, { descendants: true }) handles!: QueryList<CdkDragHandle>;
-
+  portalOutlet = viewChild.required(CdkPortalOutlet);
+  dragRef = viewChild.required(CdkDrag);
+  handles = contentChildren(CdkDragHandle, { descendants: true });
   animationChanged = new EventEmitter<XDialogAnimationEvent>();
-
   option!: XDialogRefOption;
   dialogRef!: XDialogRef<any>;
 
@@ -87,21 +83,21 @@ export class XDialogPortalComponent extends BasePortalOutlet {
       return;
     }
     for (let item of this.dialogRef.dragHandleRefs) {
-      this.dragRef._addHandle(new CdkDragHandle(item, this.dragRef));
+      this.dragRef()._addHandle(new CdkDragHandle(item, this.dragRef()));
     }
   }
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
-    if (this.portalOutlet.hasAttached()) {
+    if (this.portalOutlet().hasAttached()) {
       throw Error('dialog portal has attached');
     }
-    return this.portalOutlet.attachComponentPortal(portal);
+    return this.portalOutlet().attachComponentPortal(portal);
   }
   attachTemplatePortal<C>(portal: TemplatePortal<C>): EmbeddedViewRef<C> {
-    if (this.portalOutlet.hasAttached()) {
+    if (this.portalOutlet().hasAttached()) {
       throw Error('dialog portal has attached');
     }
-    return this.portalOutlet.attachTemplatePortal(portal);
+    return this.portalOutlet().attachTemplatePortal(portal);
   }
 
   resizing(event: XResizableEvent) {

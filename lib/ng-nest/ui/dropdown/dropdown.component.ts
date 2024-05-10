@@ -4,15 +4,17 @@ import {
   ElementRef,
   ChangeDetectionStrategy,
   ViewContainerRef,
-  ViewChild,
   inject,
   OnDestroy,
   OnInit,
   signal,
-  computed
+  computed,
+  viewChild,
+  ComponentRef,
+  effect
 } from '@angular/core';
 import { XDropdownPrefix, XDropdownNode, XDropdownProperty } from './dropdown.property';
-import { XIsEmpty, XGetChildren, XPositionTopBottom, XNumber } from '@ng-nest/ui/core';
+import { XIsEmpty, XGetChildren, XPositionTopBottom, XPlacement } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XDropdownPortalComponent } from './dropdown-portal.component';
@@ -21,7 +23,8 @@ import {
   ConnectedOverlayPositionChange,
   FlexibleConnectedPositionStrategy,
   Overlay,
-  OverlayConfig
+  OverlayConfig,
+  OverlayRef
 } from '@angular/cdk/overlay';
 import { NgClass } from '@angular/common';
 
@@ -39,7 +42,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   private portalService = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
   private overlay = inject(Overlay);
-  @ViewChild('dropdown', { static: true }) dropdown!: ElementRef<HTMLElement>;
+  dropdown = viewChild.required<ElementRef<HTMLElement>>('dropdown');
   nodes = computed(() => {
     const data = this.data();
     if (!this.children()) {
@@ -50,13 +53,27 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   portal!: XPortalOverlayRef<XDropdownPortalComponent>;
   timeoutHide: any;
   visible = signal(false);
-  animating = false;
-  outsideClick = false;
-  minWidth = signal<XNumber>(0);
+  animating = signal(false);
+  outsideClick = signal(false);
+  minWidth = signal<string>('0px');
   hoverDelayUnsub = new Subject<void>();
-  positionChange: Subject<any> = new Subject();
   closeSubject: Subject<void> = new Subject();
-  activatedIdSub = new Subject<any>();
+
+  private realPlacement = signal<XPlacement | null>(null);
+  portalComponent = signal<ComponentRef<XDropdownPortalComponent> | null>(null);
+  portalOverlayRef = signal<OverlayRef | null>(null);
+
+  constructor() {
+    super();
+    effect(() => this.portalComponent()?.setInput('data', this.nodes()));
+    effect(() => this.portalComponent()?.setInput('trigger', this.trigger()));
+    effect(() => this.portalComponent()?.setInput('minWidth', this.minWidth()));
+    effect(() => this.portalComponent()?.setInput('maxWidth', this.portalMaxWidth()));
+    effect(() => this.portalComponent()?.setInput('minHeight', this.portalMinHeight()));
+    effect(() => this.portalComponent()?.setInput('maxHeight', this.portalMaxHeight()));
+    effect(() => this.portalComponent()?.setInput('activatedId', this.activatedId()));
+    effect(() => this.portalComponent()?.setInput('size', this.size()));
+  }
 
   ngOnInit() {
     this.setSubject();
@@ -73,9 +90,6 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     this.closeSubject.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.closePortal();
     });
-    this.activatedIdSub.pipe(takeUntil(this.unSubject)).subscribe((x) => {
-      this.activatedId.set(x);
-    });
   }
 
   onEnter() {
@@ -87,7 +101,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
           clearTimeout(this.timeoutHide);
           this.timeoutHide = null;
         }
-        if (!this.portal || (this.portal && !this.portal?.overlayRef?.hasAttached())) {
+        if (!this.portal || (this.portal && !this.portalOverlayRef()?.hasAttached())) {
           this.visible.set(true);
           this.createPortal();
         }
@@ -97,16 +111,16 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   onLeave() {
     this.hoverDelayUnsub.next();
     if (this.disabled() || this.trigger() === 'click') return;
-    if (this.portal?.overlayRef?.hasAttached()) {
+    if (this.portalOverlayRef()?.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
-        this.portal?.overlayRef?.dispose();
+        this.portalOverlayRef()?.dispose();
         this.visible.set(false);
       });
     }
   }
 
   showPortal() {
-    if (this.disabled() || this.trigger() === 'hover' || this.animating) return;
+    if (this.disabled() || this.trigger() === 'hover' || this.animating()) return;
     if (this.trigger() === 'click' && this.portalAttached()) {
       this.closeSubject.next();
       return;
@@ -115,12 +129,12 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   }
 
   portalAttached() {
-    return this.portal?.overlayRef?.hasAttached();
+    return this.portalOverlayRef()?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal?.overlayRef?.dispose();
+      this.portalOverlayRef()?.dispose();
       this.visible.set(false);
       return true;
     }
@@ -128,12 +142,12 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   }
 
   destroyPortal() {
-    this.portal?.overlayRef?.dispose();
+    this.portalOverlayRef()?.dispose();
   }
 
   createPortal() {
-    let box = this.dropdown.nativeElement.getBoundingClientRect();
-    this.minWidth.set(this.portalMinWidth() ? this.portalMinWidth() : box.width);
+    let box = this.dropdown().nativeElement.getBoundingClientRect();
+    this.minWidth.set(this.portalMinWidth() ? this.portalMinWidth() : `${box.width}px`);
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -146,6 +160,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
       viewContainerRef: this.viewContainerRef,
       overlayConfig: config
     });
+
     if (this.trigger() === 'click') {
       this.portal.overlayRef
         ?.outsidePointerEvents()
@@ -162,31 +177,24 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
     position.positionChanges.pipe(takeUntil(this.unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
       const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
-      place !== this.placement() && this.positionChange.next(place);
+      if (place !== this.realPlacement()) {
+        this.realPlacement.set(place);
+        this.portalOverlayRef()?.updatePosition();
+      }
     });
   }
 
   setInstance() {
-    let componentRef = this.portal?.componentRef;
-    if (!componentRef) return;
-    Object.assign(componentRef.instance, {
-      data: this.nodes(),
-      trigger: this.trigger(),
-      minWidth: this.minWidth(),
-      maxWidth: this.portalMaxWidth(),
-      minHeight: this.portalMinHeight(),
-      maxHeight: this.portalMaxHeight(),
-      activatedId: this.activatedId(),
-      activatedIdSub: this.activatedIdSub,
-      size: this.size(),
-      close: () => this.closeSubject.next(),
-      positionChange: this.positionChange,
-      destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: XDropdownNode) => this.nodeClick.emit(node),
-      portalHover: (hover: boolean) => this.portalHover(hover),
-      animating: (ing: boolean) => (this.animating = ing)
-    });
-    componentRef.changeDetectorRef.detectChanges();
+    let { componentRef, overlayRef } = this.portal;
+    if (!componentRef || !overlayRef) return;
+    this.portalComponent.set(componentRef);
+    this.portalOverlayRef.set(overlayRef);
+    this.realPlacement.set(this.placement());
+    const { closed, animating, nodeClick, portalHover } = componentRef.instance;
+    closed.subscribe(() => this.closeSubject.next());
+    animating.subscribe((ing) => this.animating.set(ing));
+    nodeClick.subscribe((node) => this.nodeClick.emit(node));
+    portalHover.subscribe((hover) => this.portalHover(hover));
   }
 
   portalHover(hover: boolean) {
@@ -199,7 +207,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.dropdown,
+      elementRef: this.dropdown(),
       placement: [this.placement(), 'bottom-start', 'top-start', 'bottom-end', 'top-end'],
       transformOriginOn: 'x-dropdown-portal'
     });

@@ -3,12 +3,12 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   HostBinding,
-  ViewChild,
   TemplateRef,
   ViewContainerRef,
   inject,
   computed,
-  effect
+  effect,
+  viewChild
 } from '@angular/core';
 import { XLoadingPrefix, XLoadingProperty } from './loading.property';
 import { XIsEmpty, XIsNumber, XCorner, XToNumber } from '@ng-nest/ui/core';
@@ -30,7 +30,7 @@ export class XLoadingComponent extends XLoadingProperty {
   @HostBinding('class.x-loading-parent') get getLoading() {
     return this.loading();
   }
-  @ViewChild('loadingTpl') loadingTpl!: TemplateRef<void>;
+  loadingTpl = viewChild.required<TemplateRef<void>>('loadingTpl');
   portalRef!: XPortalOverlayRef<any>;
 
   isRadius = computed(() => !(this.radius() instanceof Array) && Boolean(this.radius()));
@@ -77,7 +77,7 @@ export class XLoadingComponent extends XLoadingProperty {
 
   createFullScreen() {
     this.portalRef = this.portal.attach({
-      content: this.loadingTpl,
+      content: this.loadingTpl(),
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         width: '100%',

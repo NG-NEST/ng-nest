@@ -1,34 +1,33 @@
-<div #select class="x-select" [class.x-select-multiple]="multiple">
+<div #select class="x-select" [class.x-select-multiple]="multiple()">
   <div class="x-select-row">
     <x-input
       #inputCom
       type="text"
-      [label]="label!"
-      [labelWidth]="labelWidth!"
-      [labelAlign]="labelAlign!"
-      [justify]="justify!"
-      [align]="align!"
-      [direction]="direction!"
-      [required]="required"
-      [disabled]="disabled"
-      [validator]="validator"
-      [icon]="icon"
-      [iconSpin]="iconSpin"
-      [placeholder]="placeholder!"
-      [readonly]="getReadonly"
-      [clearable]="showClearable"
-      [(ngModel)]="displayValue"
-      [valueTpl]="valueTpl ? valueTpl : nodeTpl"
-      [valueTplContext]="valueTplContext"
-      [size]="size"
-      [bordered]="bordered"
-      [before]="before"
-      [after]="after"
-      [pattern]="pattern"
-      [message]="message!"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [required]="required()"
+      [disabled]="disabled()"
+      [icon]="icon()"
+      [iconSpin]="iconSpin()"
+      [placeholder]="placeholder()"
+      [readonly]="getReadonly()"
+      [clearable]="showClearable()"
+      [ngModel]="displayValue()"
+      (ngModelChange)="displayValue.set($event)"
+      [valueTpl]="valueTplSignal() ? valueTplSignal() : nodeTpl()"
+      [valueTplContext]="valueTplContextSignal()"
+      [size]="size()"
+      [bordered]="bordered()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
       [pointer]="true"
-      [active]="!!active"
-      (activeChange)="active = $event"
+      [(active)]="active"
       (clearEmit)="clearEmit()"
       (xKeydown)="onKeydown($event)"
       (xInput)="onInput($event)"
@@ -36,37 +35,38 @@
       (xClick)="showPortal(true)"
       (xMouseenter)="menter()"
       (xMouseleave)="mleave()"
-      (xComposition)="composition = $event"
+      (xComposition)="composition.set($event)"
     ></x-input>
   </div>
 </div>
 
 <ng-template #multipleValueTpl>
-  @for (node of displayNodes; track node.id; let i = $index) {
+  @for (node of displayNodes(); track node.id; let i = $index) {
     <x-tag
       [@.disabled]="true"
       [bordered]="false"
-      [closable]="!disabled"
+      [closable]="!disabled()"
       [type]="'info'"
       (close)="closeNode($event, node, i)"
-      [size]="size"
+      [size]="size()"
       >{{ node.label }}</x-tag
     >
   }
-  @if (showDisplayMore) {
-    <x-tag [@.disabled]="true" [bordered]="false" [type]="'info'" [size]="size">
-      <ng-container *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }">{{
-        displayMore
+  @if (showDisplayMore()) {
+    <x-tag [@.disabled]="true" [bordered]="false" [type]="'info'" [size]="size()">
+      <ng-container *xOutlet="getMaxTagContent(); context: { $surplus: selectedSurplus(), $total: selectedTotal() }">{{
+        displayMore()
       }}</ng-container>
     </x-tag>
   }
 
-  @if (search) {
+  @if (search()) {
     <x-input
       #multipleInput
       [bordered]="false"
-      [size]="size"
-      [(ngModel)]="multipleSearchValue"
+      [size]="size()"
+      [ngModel]="multipleSearchValue()"
+      (ngModelChange)="multipleSearchValue.set($event)"
       (xInput)="onInput($event)"
       (xKeydown)="onKeydown($event)"
     ></x-input>

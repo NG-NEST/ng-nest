@@ -389,7 +389,7 @@ export interface XInputGroupConfig {
 
 export interface XInputNumberConfig {
   size?: XSize;
-  bordered?: XBoolean;
+  bordered?: boolean;
 }
 
 export interface XImageConfig {
@@ -415,6 +415,9 @@ export interface XListConfig {
   loadMoreText?: string;
   loadingMoreText?: string;
   caseSensitive?: boolean;
+  virtualScroll?: boolean;
+  scrollHeight?: number;
+  size?: XSize;
 }
 
 export interface XListOptionConfig {
@@ -519,16 +522,17 @@ export interface XResultConfig {}
 
 export interface XSelectConfig {
   placement?: XPositionTopBottom;
-  clearable?: XBoolean;
+  clearable?: boolean;
   size?: XSize;
-  bordered?: XBoolean;
+  bordered?: boolean;
   portalMaxHeight?: string;
   selectAllText?: string;
-  search?: XBoolean;
-  caseSensitive?: XBoolean;
+  search?: boolean;
+  caseSensitive?: boolean;
   debounceTime?: number;
   maxTagCount?: number;
-  virtualScroll?: XBoolean;
+  maxTagContent?: XTemplate;
+  virtualScroll?: boolean;
 }
 
 export interface XSkeletonConfig {}

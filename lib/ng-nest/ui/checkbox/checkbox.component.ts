@@ -46,8 +46,8 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
     this.value.set(value);
   }
 
-  beforeIsTemplate = computed(() => this.before instanceof TemplateRef);
-  afterIsTemplate = computed(() => this.after instanceof TemplateRef);
+  beforeIsTemplate = computed(() => this.before() instanceof TemplateRef);
+  afterIsTemplate = computed(() => this.after() instanceof TemplateRef);
 
   getDisabled(disabled?: boolean) {
     return (this.disabled() || disabled) as XBoolean;

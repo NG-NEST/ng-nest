@@ -3,12 +3,12 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ElementRef,
-  ViewChild,
   inject,
   PLATFORM_ID,
   signal,
   computed,
-  HostBinding
+  HostBinding,
+  viewChild
 } from '@angular/core';
 import { XHighlightPrefix, XHighlightProperty } from './highlight.property';
 import { XIsEmpty } from '@ng-nest/ui/core';
@@ -28,10 +28,8 @@ import { XHighlightService } from './highlight.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XHighlightComponent extends XHighlightProperty {
-  @ViewChild('code') codeRef!: ElementRef<HTMLElement>;
-  @HostBinding('class.x-highlight') _has = true;
-
-  lines: string[] = [];
+  @HostBinding('class') className = XHighlightPrefix;
+  codeRef = viewChild.required<ElementRef<HTMLElement>>('code');
   lineHeight = 1.375;
   iconCopy = signal('fto-copy');
 

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, TemplateRef, viewChild } from '@angular/core';
 import { XDescriptionItemPrefix, XDescriptionItemProperty } from './description.property';
 
 @Component({
@@ -14,5 +14,5 @@ import { XDescriptionItemPrefix, XDescriptionItemProperty } from './description.
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDescriptionItemComponent extends XDescriptionItemProperty {
-  @ViewChild(TemplateRef, { static: true }) content!: TemplateRef<void>;
+  content = viewChild.required(TemplateRef);
 }

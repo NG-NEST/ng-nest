@@ -1,12 +1,4 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  inject,
-  OnInit
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { XExamplesPrefix } from './examples.property';
 
 @Component({
@@ -17,10 +9,6 @@ import { XExamplesPrefix } from './examples.property';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XExamplesComponent implements OnInit {
-  renderer = inject(Renderer2);
-  elementRef = inject(ElementRef);
-  ngOnInit(): void {
-    this.renderer.addClass(this.elementRef.nativeElement, XExamplesPrefix);
-  }
+export class XExamplesComponent {
+  @HostBinding('class') className = XExamplesPrefix;
 }

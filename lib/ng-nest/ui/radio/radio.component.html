@@ -1,35 +1,38 @@
 <div
   #radio
   class="x-radio"
-  [class.x-flex]="justify || align || direction"
-  [class.x-disabled]="disabled"
-  [class.x-required]="requiredIsEmpty"
-  [class.x-invalid]="invalid"
-  [class.x-radio-button]="button"
-  [class.x-radio-icon]="icon"
-  [class.x-radio-vertical]="vertical"
-  [class.x-radio-after]="after"
-  [class.x-radio-before]="before"
-  [class.x-radio-after-template]="afterIsTemplate"
-  [class.x-radio-before-template]="beforeIsTemplate"
+  [ngClass]="classMapSignal()"
+  [class.x-flex]="justify() || align() || direction()"
+  [class.x-disabled]="disabled()"
+  [class.x-required]="requiredIsEmpty()"
+  [class.x-invalid]="invalid()"
+  [class.x-radio-button]="button()"
+  [class.x-radio-icon]="icon()"
+  [class.x-radio-vertical]="vertical()"
+  [class.x-radio-after]="after()"
+  [class.x-radio-before]="before()"
+  [class.x-radio-after-template]="afterIsTemplate()"
+  [class.x-radio-before-template]="beforeIsTemplate()"
 >
-  @if (label) {
-    <label [class.x-radio-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  @if (label()) {
+    <label [class.x-radio-label-required]="required()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
+      label()
+    }}</label>
   }
   <div class="x-radio-row">
-    @if (before) {
+    @if (before()) {
       <div class="x-radio-row-before">
-        <ng-container *xOutlet="before">{{ before }}</ng-container>
+        <ng-container *xOutlet="before()">{{ before() }}</ng-container>
       </div>
     }
     <div class="x-radio-row-list">
-      @switch (radioType) {
+      @switch (radioType()) {
         @case ('initial') {
-          @for (item of nodes; track item.id) {
+          @for (item of nodes(); track item.id) {
             <div
               class="x-radio-row-item"
-              [class.x-checked]="item.id === value"
-              [class.x-disabled]="disabled || item.disabled"
+              [class.x-checked]="item.id === value()"
+              [class.x-disabled]="disabled() || item.disabled"
               (click)="radioClick($event, item)"
             >
               <span class="x-radio-box"></span>
@@ -39,13 +42,13 @@
         }
         @case ('button') {
           <x-buttons boxShadow="false">
-            @for (item of nodes; track item.id) {
+            @for (item of nodes(); track item.id) {
               <x-button
                 [icon]="item.icon!"
-                [size]="size!"
-                [type]="type"
-                [activated]="item.id === value"
-                [disabled]="disabled! || item.disabled!"
+                [size]="size()"
+                [type]="type()"
+                [activated]="item.id === value()"
+                [disabled]="disabled() || item.disabled!"
                 attrType="button"
                 (click)="radioClick($event, item)"
                 plain
@@ -56,13 +59,13 @@
         }
         @case ('icon') {
           <x-buttons boxShadow="false">
-            @for (item of nodes; track item.id) {
+            @for (item of nodes(); track item.id) {
               <x-button
                 [icon]="item.icon!"
-                [size]="size!"
-                [type]="type"
-                [activated]="item.id === value"
-                [disabled]="disabled! || item.disabled!"
+                [size]="size()"
+                [type]="type()"
+                [activated]="item.id === value()"
+                [disabled]="disabled() || item.disabled!"
                 attrType="button"
                 (click)="radioClick($event, item)"
                 plain
@@ -72,16 +75,16 @@
           </x-buttons>
         }
         @case ('tag') {
-          @for (item of nodes; track item.id) {
+          @for (item of nodes(); track item.id) {
             <x-tag
               checked
               manual
-              [type]="type"
-              [size]="size!"
-              [bordered]="tagBordered"
-              [dark]="tagDark!"
-              [disabled]="disabled! || item.disabled!"
-              [selected]="value === item.id"
+              [type]="type()"
+              [size]="size()"
+              [bordered]="tagBordered()"
+              [dark]="tagDark()"
+              [disabled]="disabled() || item.disabled!"
+              [selected]="value() === item.id"
               (click)="radioClick($event, item)"
               >{{ item.label }}</x-tag
             >
@@ -89,9 +92,9 @@
         }
       }
     </div>
-    @if (after) {
+    @if (after()) {
       <div class="x-radio-row-after">
-        <ng-container *xOutlet="after">{{ after }}</ng-container>
+        <ng-container *xOutlet="after()">{{ after() }}</ng-container>
       </div>
     }
   </div>

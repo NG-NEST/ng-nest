@@ -5,10 +5,12 @@ import {
   XDirection,
   XInputBoolean,
   XJustify,
+  XNumber,
   XProperty,
   XSize,
   XTemplate,
-  XToBoolean
+  XToBoolean,
+  XToCssPixelValue
 } from '@ng-nest/ui/core';
 
 /**
@@ -200,7 +202,7 @@ export class XFormControlProp extends XProperty {
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  readonly labelWidth = input<string>('');
+  readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method

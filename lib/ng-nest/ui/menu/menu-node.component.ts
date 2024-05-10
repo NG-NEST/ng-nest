@@ -28,11 +28,11 @@ export class XMenuNodeComponent extends XMenuNodeProperty implements OnInit {
   label = input<string>();
   open = input<boolean>();
   id = input<any>();
-  
+
   private elementRef = inject(ElementRef);
 
   ngOnInit() {
-    if (this.menu().activatedId() == this.id()) {
+    if (this.menu().activatedId() === this.id()) {
       this.menu().activatedElementRef = this.elementRef;
     }
   }

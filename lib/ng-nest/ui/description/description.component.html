@@ -7,7 +7,7 @@
     </div>
   }
   <div class="x-description-grid" [style.grid-template-columns]="gridTemplateColumnsSignal()">
-    @for (item of items; track item) {
+    @for (item of items(); track item) {
       <div
         class="x-description-item"
         [style.grid-area]="item.gridArea() ? item.gridArea() : '1 / ' + ($index + 1)"
@@ -18,7 +18,7 @@
           <ng-container *xOutlet="item.label()">{{ item.label() }}</ng-container>
         </div>
         <div class="x-description-item-content">
-          <ng-template [ngTemplateOutlet]="item.content"></ng-template>
+          <ng-template [ngTemplateOutlet]="item.content()"></ng-template>
         </div>
       </div>
     }

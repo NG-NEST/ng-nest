@@ -24,7 +24,7 @@ import { NgClass } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XLinkComponent extends XLinkProperty {
-  link = viewChild<ElementRef<HTMLLinkElement>>('link');
+  link = viewChild.required<ElementRef<HTMLLinkElement>>('link');
 
   classMapSignal = computed(() => ({
     [`${XLinkPrefix}-${this.type()}`]: !XIsEmpty(this.type())
@@ -36,7 +36,7 @@ export class XLinkComponent extends XLinkProperty {
     super();
     effect(() => {
       if (XIsEmpty(this.href()) && this.link()) {
-        this.renderer.removeAttribute(this.link()?.nativeElement, 'href');
+        this.renderer.removeAttribute(this.link().nativeElement, 'href');
       }
     });
   }

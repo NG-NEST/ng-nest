@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { XPatternPrefix } from './pattern.property';
 
 @Component({
-  selector: 'x-pattern',
+  selector: XPatternPrefix,
   standalone: true,
   templateUrl: './pattern.component.html',
   styleUrls: ['./style/index.scss'],
@@ -9,5 +10,5 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } fr
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPatternComponent {
-  @HostBinding('class.x-pattern') _has = true;
+  @HostBinding('class') className = XPatternPrefix;
 }
