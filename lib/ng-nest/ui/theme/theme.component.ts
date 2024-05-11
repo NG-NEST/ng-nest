@@ -3,10 +3,11 @@ import {
   OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   OnDestroy,
   inject,
-  AfterViewInit
+  AfterViewInit,
+  signal,
+  effect
 } from '@angular/core';
 import { XThemeProperty } from './theme.property';
 import {
@@ -21,11 +22,12 @@ import { FormsModule, ReactiveFormsModule, UntypedFormGroup } from '@angular/for
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
 import { debounceTime, takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { XI18nDirective, XI18nService, XI18nTheme } from '@ng-nest/ui/i18n';
+import { XI18nDirective, XI18nService, XI18nTheme, zh_CN } from '@ng-nest/ui/i18n';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'x-theme',
@@ -47,16 +49,17 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
   providers: [XValueAccessor(XThemeComponent)]
 })
 export class XThemeComponent extends XThemeProperty implements OnInit, AfterViewInit, OnDestroy {
-  formGroup = new UntypedFormGroup({});
+  public i18n = inject(XI18nService);
+  configService = inject(XConfigService);
+  themeService = this.configService.themeService;
 
-  theme: XTheme = {
-    colors: {}
-  };
-  width = '45rem';
-  beforeColors: XColorsTheme = {};
-  currentColors: XColorsTheme = {};
-  darkBeforeColors: XColorsTheme = {};
-  controls: XControl[] = [
+  formGroup = signal(new UntypedFormGroup({}));
+  theme = signal<XTheme>({ colors: {} });
+  width = signal('45rem');
+  beforeColors = signal<XColorsTheme>({});
+  currentColors = signal<XColorsTheme>({});
+  darkBeforeColors = signal<XColorsTheme>({});
+  controls = signal<XControl[]>([
     { control: 'color-picker', id: 'primary', label: '主色', span: 5 },
     { control: 'color-picker', id: 'success', label: '成功', span: 5 },
     { control: 'color-picker', id: 'warning', label: '警告', span: 5 },
@@ -65,119 +68,115 @@ export class XThemeComponent extends XThemeProperty implements OnInit, AfterView
     { control: 'color-picker', id: 'background', label: '背景', span: 5 },
     { control: 'color-picker', id: 'border', label: '边框', span: 5 },
     { control: 'color-picker', id: 'text', label: '文字', span: 5 }
-  ];
+  ]);
 
-  override value: XColorsTheme = {};
+  override value = signal<XColorsTheme>({});
 
-  locale: XI18nTheme = {};
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.theme as XI18nTheme)), { initialValue: zh_CN.theme });
 
-  private _unSubject = new Subject<void>();
+  private unSubject = new Subject<void>();
 
   override writeValue(value: XColorsTheme) {
-    this.value = value;
-    if (this.value && Object.keys(this.value).length > 0) {
-      this.theme = {
+    this.value.set(value);
+    if (this.value() && Object.keys(this.value()).length > 0) {
+      this.theme.set({
         colors: this.themeService.getDefineColors(
-          Object.assign({}, X_THEME_COLORS, this.value),
+          Object.assign({}, X_THEME_COLORS, this.value()),
           '',
-          this.dark as boolean
+          this.dark() as boolean
         )
-      };
-      this.formGroup.patchValue(this.theme.colors as XColorsTheme);
+      });
+      this.formGroup().patchValue(this.theme().colors as XColorsTheme);
     }
-    this.cdr.detectChanges();
   }
 
-  override cdr = inject(ChangeDetectorRef);
-  public i18n = inject(XI18nService);
-  configService = inject(XConfigService);
-  themeService = this.configService.themeService;
+  constructor() {
+    super();
+    effect(() => this.setControlsLabel());
+  }
 
   ngOnInit() {
-    this.theme = this.configService.getTheme(true);
+    this.theme.set(this.configService.getTheme(true));
     this.setControls();
     this.setDefaultColors();
-    this.controls.map((x: XControl) => {
-      x.value = (this.theme.colors as XColorsTheme)[x.id];
-    });
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.theme as XI18nTheme),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        this.setControlsLabel();
-        this.cdr.detectChanges();
+    this.controls.update((controls) => {
+      controls.map((x: XControl) => {
+        x.value = (this.theme().colors as XColorsTheme)[x.id];
       });
+      return controls;
+    });
   }
 
   ngAfterViewInit() {
-    this.formGroup.valueChanges.pipe(debounceTime(100), takeUntil(this._unSubject)).subscribe((x: XColorsTheme) => {
-      this.beforeColors = this.currentColors;
-      let changes = this.getChanges(x);
-      if (this.isOneAndInColorKeys(changes)) {
-        let [key, value] = Object.entries(changes)[0];
-        let colors = !this.dark
-          ? this.themeService.setRoot(key, value, '')
-          : this.themeService.setDarkRoot(key, value, '');
-        Object.assign(x, colors);
-        this.currentColors = x;
-        this.formGroup.patchValue(x);
-      } else {
-        this.currentColors = x;
-        this.value = x;
-        this.configService.setTheme({ colors: x });
-      }
-    });
+    this.formGroup()
+      .valueChanges.pipe(debounceTime(100), takeUntil(this.unSubject))
+      .subscribe((x: XColorsTheme) => {
+        this.beforeColors.set(this.currentColors());
+        let changes = this.getChanges(x);
+        if (this.isOneAndInColorKeys(changes)) {
+          let [key, value] = Object.entries(changes)[0];
+          let colors = !this.dark()
+            ? this.themeService.setRoot(key, value, '')
+            : this.themeService.setDarkRoot(key, value, '');
+          Object.assign(x, colors);
+          this.currentColors.set(x);
+          this.formGroup().patchValue(x);
+        } else {
+          this.currentColors.set(x);
+          this.value.set(x);
+          this.configService.setTheme({ colors: x });
+        }
+      });
   }
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   setControlsLabel() {
-    Object.keys(this.locale).forEach((x) => {
-      let control = this.controls.find((y) => y.id === x);
+    Object.keys(this.locale()).forEach((x) => {
+      let control = this.controls().find((y) => y.id === x);
       if (control) {
-        control.label = (this.locale as any)[x];
+        control.label = (this.locale() as any)[x];
         control.change && control.change();
       }
     });
   }
 
   setDefaultColors() {
-    this.beforeColors = this.theme.colors as XColorsTheme;
-    this.currentColors = this.beforeColors;
+    this.beforeColors.set(this.theme().colors as XColorsTheme);
+    this.currentColors.set(this.beforeColors());
     this.darkBeforeColors = this.beforeColors;
   }
 
   setControls() {
-    [...this.controls].forEach((control, index) => {
+    [...this.controls()].forEach((control, index) => {
       let addControls: XControl[] = [];
-      control.span = !this.showDetail ? 6 : 5;
-      this.width = !this.showDetail ? '36rem' : '45rem';
-      for (let amount of this.amounts) {
+      control.span = !this.showDetail() ? 6 : 5;
+      this.width.set(!this.showDetail() ? '36rem' : '45rem');
+      for (let amount of this.amounts()) {
         addControls.push({
           control: 'color-picker',
-          id: `${control.id}${this.themeService.getSuffix(amount as number)}`,
+          id: `${control.id}${this.themeService.getSuffix(amount)}`,
           label: '',
           hidden: !this.showDetail
         });
       }
-      this.controls.splice(index * this.amounts.length + index + 1, 0, ...addControls);
+      this.controls.update((x) => {
+        x.splice(index * this.amounts().length + index + 1, 0, ...addControls);
+        return x;
+      });
     });
   }
 
   default() {
-    this.dark = false;
-    let colors = this.themeService.getDefineColors(Object.assign({}, X_THEME_COLORS), '', this.dark);
-    this.beforeColors = colors;
-    this.currentColors = colors;
-    this.formGroup.patchValue(colors);
+    this.dark.set(false);
+    let colors = this.themeService.getDefineColors(Object.assign({}, X_THEME_COLORS), '', this.dark());
+    this.beforeColors.set(colors);
+    this.currentColors.set(colors);
+    this.formGroup().patchValue(colors);
     this.defaultClick.emit(colors);
-    this.cdr.detectChanges();
   }
 
   isOneAndInColorKeys(colors: XColorsTheme) {
@@ -191,7 +190,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit, AfterView
   getChanges(colors: XColorsTheme) {
     let result: XColorsTheme = {};
     for (let color in colors) {
-      if (colors[color] !== this.beforeColors[color]) {
+      if (colors[color] !== this.beforeColors()[color]) {
         result[color] = colors[color];
       }
     }
@@ -199,17 +198,16 @@ export class XThemeComponent extends XThemeProperty implements OnInit, AfterView
   }
 
   darkChanges() {
-    let colors = this.darkBeforeColors as XColorsTheme;
-    if (this.dark) {
-      this.beforeColors = this.formGroup.value;
-      this.darkBeforeColors = this.formGroup.value;
+    let colors = this.darkBeforeColors();
+    if (this.dark()) {
+      this.beforeColors.set(this.formGroup().value);
+      this.darkBeforeColors.set(this.formGroup().value);
       colors = this.themeService.getDefineColors(
         Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), X_THEME_DARK_COLORS),
         '',
-        this.dark as boolean
+        this.dark()
       );
     }
-    this.formGroup.patchValue(colors);
-    this.darkChange.emit(this.dark);
+    this.formGroup().patchValue(colors);
   }
 }

@@ -1,4 +1,4 @@
-import { XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
+import { XToBoolean, XToCssPixelValue, XToDataConvert } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, model } from '@angular/core';
 import { XButtonType } from '@ng-nest/ui/button';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
@@ -31,7 +31,7 @@ export class XCheckboxProperty extends XFormControlFunction(X_CHECKBOX_CONFIG_NA
    * @zh_CN 多选框数据
    * @en_US Checkbox data
    */
-  readonly data = input<XData<XCheckboxNode>>([]);
+  readonly data = input<XData<XCheckboxNode>, XData<XCheckboxNode>>([], { transform: XToDataConvert });
   /**
    * @zh_CN 按钮样式
    * @en_US Button style

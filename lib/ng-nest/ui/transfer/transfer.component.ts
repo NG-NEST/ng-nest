@@ -2,20 +2,20 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
   OnDestroy,
-  ViewChild,
-  inject
+  inject,
+  viewChild,
+  signal,
+  computed
 } from '@angular/core';
 import { XTransferPrefix, XTransferNode, XTransferSource, XTransferProperty, XTransferType } from './transfer.property';
 import {
   XIsChange,
   XIsEmpty,
   XSetData,
-  XConfigService,
   XRemove,
   XIsArray,
   XIsObject,
@@ -29,7 +29,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { transferArrayItem, moveItemInArray, CdkDragDrop, CdkDrag, DragDropModule } from '@angular/cdk/drag-drop';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { XI18nPipe, XI18nService, XI18nTransfer } from '@ng-nest/ui/i18n';
+import { XI18nPipe, XI18nService, XI18nTransfer, zh_CN } from '@ng-nest/ui/i18n';
 import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 import { XTableColumn, XTableComponent, XTableHeadCheckbox } from '@ng-nest/ui/table';
 import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
@@ -40,6 +40,7 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XKeywordDirective } from '@ng-nest/ui/keyword';
 import { XLinkComponent } from '@ng-nest/ui/link';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTransferPrefix}`,
@@ -67,62 +68,62 @@ import { XLinkComponent } from '@ng-nest/ui/link';
   providers: [XValueAccessor(XTransferComponent)]
 })
 export class XTransferComponent extends XTransferProperty implements OnInit, OnChanges, OnDestroy {
-  @ViewChild('leftTableCom') leftTableCom?: XTableComponent;
-  @ViewChild('rightTableCom') rightTableCom?: XTableComponent;
-  nodes: XTransferNode[] = [];
-  left: XTransferSource = {
+  private i18n = inject(XI18nService);
+
+  leftTableCom = viewChild(XTableComponent);
+  rightTableCom = viewChild(XTableComponent);
+  nodes = signal<XTransferNode[]>([]);
+  left = signal<XTransferSource>({
     list: [],
     searchList: [],
     checkedCount: 0,
     direction: 'left',
     disabledButton: true
-  };
-  right: XTransferSource = {
+  });
+  right = signal<XTransferSource>({
     list: [],
     searchList: [],
     checkedCount: 0,
     direction: 'right',
     disabledButton: true
-  };
-  searchInput: string = '';
+  });
+  searchInput = signal('');
   searchInputLeftChange = new Subject<string>();
   searchInputRightChange = new Subject<string>();
-  searchDebounceTime = 200;
-  locale: XI18nTransfer = {};
-  private get localTitle() {
-    if (this.type === 'tree') {
-      return this.locale.treeTitle;
+  searchDebounceTime = signal(200);
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.transfer as XI18nTransfer)), {
+    initialValue: zh_CN.transfer
+  });
+  localTitle = computed(() => {
+    if (this.type() === 'tree') {
+      return this.locale().treeTitle;
     } else {
-      return this.locale.listTitle;
+      return this.locale().listTitle;
     }
-  }
-  private _unSubject = new Subject<void>();
-  treeActivatedId: any[] = [];
-  tableData: XTransferNode[] = [];
-  tableCheckboxColumn?: XTableColumn;
-  isObjectArray = false;
+  });
+  private unSubject = new Subject<void>();
+  treeActivatedId = signal<any[]>([]);
+  tableData = signal<XTransferNode[]>([]);
+  tableCheckboxColumn = signal<XTableColumn | null>(null);
+  isObjectArray = signal(false);
   override writeValue(value: any[]): void {
-    this.value = value;
+    this.value.set(value);
     if (XIsArray(value)) {
-      this.treeActivatedId = [...value];
+      this.treeActivatedId.set([...value]);
       if (XIsObjectArray(value)) {
-        this.isObjectArray = true;
+        this.isObjectArray.set(true);
       }
     }
-    this.setList(this.nodes);
+    this.setList(this.nodes());
   }
 
-  get values() {
-    if (this.isObjectArray) {
-      return this.value.map((x) => x.id);
+  values = computed(() => {
+    if (this.isObjectArray()) {
+      return this.value().map((x: any) => x.id);
     } else {
-      return this.value;
+      return this.value();
     }
-  }
-
-  override cdr = inject(ChangeDetectorRef);
-  private i18n = inject(XI18nService);
-  configService = inject(XConfigService);
+  });
 
   ngOnInit() {
     this.setTitles();
@@ -131,25 +132,16 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.getTableCheckColumn();
     this.setFooterTpl();
     this.setTableHeadSearchTpl();
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.transfer as XI18nTransfer),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        XIsEmpty(this.titles) && this.setTitles();
-        this.cdr.markForCheck();
-      });
+
     this.searchInputLeftChange
-      .pipe(debounceTime(this.searchDebounceTime), distinctUntilChanged(), takeUntil(this._unSubject))
+      .pipe(debounceTime(this.searchDebounceTime()), distinctUntilChanged(), takeUntil(this.unSubject))
       .subscribe(() => {
-        this.setSearchInputChange(this.left);
+        this.setSearchInputChange(this.left());
       });
     this.searchInputRightChange
-      .pipe(debounceTime(this.searchDebounceTime), distinctUntilChanged(), takeUntil(this._unSubject))
+      .pipe(debounceTime(this.searchDebounceTime()), distinctUntilChanged(), takeUntil(this.unSubject))
       .subscribe(() => {
-        this.setSearchInputChange(this.right);
+        this.setSearchInputChange(this.right());
       });
   }
 
@@ -159,8 +151,8 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   onSearchInputChange(source: XTransferSource) {
@@ -176,7 +168,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     if (XIsEmpty(source.searchInput)) {
       source.list = [...source.searchList!];
     } else {
-      switch (this.type) {
+      switch (this.type()) {
         case 'list':
           source.list = source.searchList?.filter((x) => x.label.indexOf(source.searchInput) >= 0);
           break;
@@ -204,8 +196,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
           break;
       }
     }
-    this.setListCount(this.type, source);
-    this.cdr.detectChanges();
+    this.setListCount(this.type(), source);
   }
 
   checkedAllChange($event: boolean, source: XTransferSource) {
@@ -213,15 +204,14 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       x.checked = $event;
       return x;
     });
-    if (this.type === 'tree' && source.direction === 'left') {
-      this.treeActivatedId = $event
-        ? source.list!.map((x) => x.id)!
-        : source.list!.filter((x) => x.disabled).map((x) => x.id);
+    if (this.type() === 'tree' && source.direction === 'left') {
+      this.treeActivatedId.set(
+        $event ? source.list!.map((x) => x.id)! : source.list!.filter((x) => x.disabled).map((x) => x.id)
+      );
     }
     source.checkedCount = $event ? list.length : 0;
     source.indeterminate = $event;
     this.setButtonDisabled(source);
-    this.cdr.detectChanges();
   }
 
   checkedChange($event: boolean, source: XTransferSource) {
@@ -229,12 +219,11 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     else (source.checkedCount as number)++;
     this.setCheckedAll(source);
     this.setButtonDisabled(source);
-    this.cdr.detectChanges();
   }
 
   move(from: XTransferSource, to: XTransferSource) {
     if (from.disabledButton) return;
-    switch (this.type) {
+    switch (this.type()) {
       case 'list':
         this.moveList(from, to);
         break;
@@ -253,7 +242,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       let index = from.list?.indexOf(x) as number;
       x.checked = false;
       transferArrayItem(from.list!, to.list!, index, j);
-      if (this.search) {
+      if (this.search()) {
         index = from.searchList?.indexOf(x) as number;
         transferArrayItem(from.searchList!, to.searchList!, index, j);
       }
@@ -267,14 +256,13 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.setButtonDisabled(from, to);
     this.setSearchList(from, to);
     this.setValue();
-    this.cdr.detectChanges();
   }
 
   private moveTree(from: XTransferSource, to: XTransferSource) {
     let checkedItems: XTransferNode[] = [];
     if (to.direction === 'right') {
       checkedItems = from.list?.filter(
-        (x) => !x.disabled && !XIsEmpty(this.treeActivatedId) && this.treeActivatedId.includes(x.id)
+        (x) => !x.disabled && !XIsEmpty(this.treeActivatedId()) && this.treeActivatedId().includes(x.id)
       )!;
       checkedItems.forEach((x: XTreeNode) => {
         x.disabled = true;
@@ -292,7 +280,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       this.setCheckedCount('list', to);
     } else {
       checkedItems = XRemove(from.list!, (x) => !x.disabled && x.checked!);
-      if (this.search) {
+      if (this.search()) {
         XRemove(from.searchList!, (x) => !x.disabled && x.checked!);
       }
       for (let item of checkedItems) {
@@ -300,9 +288,12 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
         if (node) {
           node.checked = false;
           node.disabled = false;
-          const idx = this.treeActivatedId.findIndex((x) => x === node.id);
+          const idx = this.treeActivatedId().findIndex((x) => x === node.id);
           if (idx >= 0) {
-            this.treeActivatedId.splice(idx, 1);
+            this.treeActivatedId.update((x) => {
+              x.splice(idx, 1);
+              return x;
+            });
           }
           node.change && node.change();
         }
@@ -332,7 +323,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
         }),
         ...to.list!
       ];
-      this.tableData = [...from.list!];
+      this.tableData.set([...from.list!]);
       this.setCheckedCount('table', from);
       this.setCheckedCount('list', to);
     } else {
@@ -345,7 +336,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
         }
       }
       from.list = [...from.list!];
-      this.tableData = [...to.list!];
+      this.tableData.set([...to.list!]);
       this.setCheckedCount('table', to);
       this.setCheckedCount('list', from);
     }
@@ -362,14 +353,13 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       moveItemInArray(ev.container.data, ev.previousIndex, ev.currentIndex);
     } else {
       transferArrayItem(ev.previousContainer.data, ev.container.data, ev.previousIndex, ev.currentIndex);
-      this.setCheckedCount('list', this.left, this.right);
-      this.setCheckedAll(this.left, this.right);
-      this.setListCount('list', this.left, this.right);
-      this.setButtonDisabled(this.left, this.right);
+      this.setCheckedCount('list', this.left(), this.right());
+      this.setCheckedAll(this.left(), this.right());
+      this.setListCount('list', this.left(), this.right());
+      this.setButtonDisabled(this.left(), this.right());
     }
-    this.setSearchList(this.left, this.right);
+    this.setSearchList(this.left(), this.right());
     this.setValue();
-    this.cdr.detectChanges();
   }
 
   predicate(item: CdkDrag<XTransferNode>) {
@@ -388,7 +378,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     } else if (type === 'table') {
       for (let source of sources) {
         if (source.direction === 'left') {
-          source.count = this.tableTotal - this.right.list!.length || 0;
+          source.count = this.tableTotal() - this.right().list!.length || 0;
         } else {
           source.count = source.list?.filter((x) => !x.disabled).length;
         }
@@ -397,14 +387,14 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   onTreeNodeClick(_node: XTreeNode) {
-    this.setCheckedCount('tree', this.left);
-    this.setCheckedAll(this.left);
-    this.setButtonDisabled(this.left);
+    this.setCheckedCount('tree', this.left());
+    this.setCheckedAll(this.left());
+    this.setButtonDisabled(this.left());
   }
 
   onTableCheckedRow(row: XTransferNode, source: XTransferSource) {
-    if (!this.tableCheckboxColumn) return;
-    let checked = row[this.tableCheckboxColumn.id];
+    if (!this.tableCheckboxColumn()) return;
+    let checked = row[this.tableCheckboxColumn()!.id];
     row.checked = checked;
     this.setCheckedCount('table', source);
     this.setCheckedAll(source);
@@ -412,8 +402,8 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   onTableCheckedAll(row: XTableHeadCheckbox, source: XTransferSource) {
-    if (!this.tableCheckboxColumn) return;
-    let checked = row.checkbox[this.tableCheckboxColumn.id];
+    if (!this.tableCheckboxColumn()) return;
+    let checked = row.checkbox[this.tableCheckboxColumn()!.id];
     for (let item of source.list!) {
       if (!item.disabled) {
         item.checked = checked;
@@ -436,12 +426,11 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     this.setCheckedCount(type, source);
     this.setCheckedAll(source);
     this.setButtonDisabled(source);
-    this.cdr.detectChanges();
   }
 
   private getTableCheckColumn() {
-    if (this.type !== 'table' || XIsEmpty(this.tableColumns)) return;
-    this.tableCheckboxColumn = this.tableColumns?.find((x) => x.rowChecked);
+    if (this.type() !== 'table' || XIsEmpty(this.tableColumns())) return;
+    this.tableCheckboxColumn.set(this.tableColumns()!.find((x) => x.rowChecked)!);
   }
 
   private setCheckedAll(...sources: XTransferSource[]) {
@@ -466,7 +455,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
         source.checkedCount = source.list?.filter((x) => !x.disabled && x.checked).length;
       } else if (type === 'tree') {
         source.checkedCount = source.list?.filter(
-          (x) => !x.disabled && !XIsEmpty(this.treeActivatedId) && this.treeActivatedId.includes(x.id)
+          (x) => !x.disabled && !XIsEmpty(this.treeActivatedId()) && this.treeActivatedId().includes(x.id)
         ).length;
       }
     }
@@ -477,16 +466,16 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   private setValue() {
-    if (this.isObjectArray) {
-      this.value = this.right.list!;
+    if (this.isObjectArray()) {
+      this.value.set(this.right().list!);
     } else {
-      this.value = this.right.list?.map((x) => x.id)!;
+      this.value.set(this.right().list?.map((x) => x.id)!);
     }
-    this.onChange(this.value);
+    this.onChange && this.onChange(this.value());
   }
 
   private setSearchList(...sources: XTransferSource[]) {
-    if (this.search) {
+    if (this.search()) {
       for (let source of sources) {
         if (XIsEmpty(source.searchInput)) {
           source.searchList = [...(source.list as XTransferNode[])];
@@ -496,77 +485,100 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   private setData() {
-    if (this.type === 'table') {
+    if (this.type() === 'table') {
       this.getTableData();
       return;
     }
-    XSetData<XTransferNode>(this.data, this._unSubject).subscribe((x) => {
+    XSetData<XTransferNode>(this.data(), this.unSubject).subscribe((x) => {
       this.setList(x);
     });
   }
 
   private setList(data: XTransferNode[]) {
     if (XIsEmpty(data)) return;
-    switch (this.type) {
+    switch (this.type()) {
       case 'list':
-        this.nodes = data;
-        if (!XIsEmpty(this.values)) {
-          this.left.list = this.nodes.filter((x) => this.values.indexOf(x.id) < 0);
-          this.right.list = this.nodes.filter((x) => this.values.indexOf(x.id) >= 0);
+        this.nodes.set(data);
+        if (!XIsEmpty(this.values())) {
+          this.left.update((x) => {
+            x.list = this.nodes().filter((x) => this.values().indexOf(x.id) < 0);
+            return x;
+          });
+          this.right.update((x) => {
+            x.list = this.nodes().filter((x) => this.values().indexOf(x.id) >= 0);
+            return x;
+          });
         } else {
-          this.left.list = [...this.nodes];
+          this.left.update((x) => {
+            x.list = [...this.nodes()];
+            return x;
+          });
         }
-        this.setSearchList(this.left, this.right);
-        this.setListCount(this.type, this.left, this.right);
+        this.setSearchList(this.left(), this.right());
+        this.setListCount(this.type(), this.left(), this.right());
         break;
       case 'tree':
-        this.nodes = data;
+        this.nodes.set(data);
         this.setTreeNodeDisabled();
-        this.left.list = [...this.nodes];
-        if (!XIsEmpty(this.values)) {
-          this.right.list = this.nodes
-            .filter((x) => this.values.indexOf(x.id) >= 0)
-            .map((x) => {
-              let res = { ...x };
-              res.checked = false;
-              res.disabled = false;
-              return res;
-            });
+        this.left.update((x) => {
+          x.list = [...this.nodes()];
+          return x;
+        });
+        if (!XIsEmpty(this.values())) {
+          this.right.update((z) => {
+            z.list = this.nodes()
+              .filter((x) => this.values().indexOf(x.id) >= 0)
+              .map((x) => {
+                let res = { ...x };
+                res.checked = false;
+                res.disabled = false;
+                return res;
+              });
+            return z;
+          });
         }
-        this.setSearchList(this.left, this.right);
-        this.setListCount(this.type, this.left, this.right);
+        this.setSearchList(this.left(), this.right());
+        this.setListCount(this.type(), this.left(), this.right());
         break;
       case 'table':
-        this.nodes = data;
+        this.nodes.set(data);
         this.setTableDataDisabled();
-        this.left.list = [...this.nodes];
-        if (!XIsEmpty(this.values)) {
-          if (this.isObjectArray) {
-            this.right.list = [
-              ...this.value.map((x) => {
-                let res = { ...x };
-                res.disabled = false;
-                res.checked = false;
-                return res;
-              })
-            ];
+        this.left.update((x) => {
+          x.list = [...this.nodes()];
+          return x;
+        });
+        if (!XIsEmpty(this.values())) {
+          if (this.isObjectArray()) {
+            this.right.update((z) => {
+              z.list = [
+                ...this.value().map((x: any) => {
+                  let res = { ...x };
+                  res.disabled = false;
+                  res.checked = false;
+                  return res;
+                })
+              ];
+              return z;
+            });
           } else {
-            this.right.list = [...this.value];
+            this.right.update((x) => {
+              x.list = [...this.value()];
+              return x;
+            });
           }
         }
-        this.setSearchList(this.left, this.right);
-        this.setListCount(this.type, this.left, this.right);
+        this.setSearchList(this.left(), this.right());
+        this.setListCount(this.type(), this.left(), this.right());
         break;
     }
-    this.cdr.detectChanges();
   }
 
   getTableData() {
-    if (XIsFunction(this.data)) {
-      (this.data as Function)(this.tableIndex, this.tableSize, this.tableQuery).subscribe(
+    if (XIsFunction(this.data())) {
+      (this.data() as Function)(this.tableIndex(), this.tableSize(), this.tableQuery()).subscribe(
         (x: XResultList<XTransferNode>) => {
-          this.tableTotal = x.total!;
-          this.tableData = x.list!;
+          this.tableTotal.set(x.total!);
+          this.tableData.set(x.list!);
           this.setList(x.list!);
         }
       );
@@ -575,33 +587,50 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
 
   private setTitles() {
     let titles: string[] = [];
-    if (XIsEmpty(this.titles)) {
-      titles = [this.localTitle!, this.locale.selectedTitle!];
+    if (XIsEmpty(this.titles())) {
+      titles = [this.localTitle()!, this.locale().selectedTitle!];
     } else {
-      titles = this.titles;
+      titles = this.titles()!;
     }
-    if (titles.length > 0) this.left.title = titles[0];
-    if (titles.length > 1) this.right.title = titles[1];
-    this.cdr.detectChanges();
+    if (titles.length > 0) {
+      this.left.update((x) => {
+        x.title = titles[0];
+        return x;
+      });
+    }
+    if (titles.length > 1) {
+      this.right.update((x) => {
+        x.title = titles[1];
+        return x;
+      });
+    }
+    console.log(this.left(), this.right());
   }
 
   private setListStyle() {
-    if (XIsEmpty(this.listStyle)) return;
+    if (XIsEmpty(this.listStyle())) return;
     let styles: object[] = [];
-    if (XIsObject(this.listStyle)) {
-      styles = [this.listStyle, this.listStyle];
-    } else if (XIsObjectArray(this.listStyle)) {
-      styles = this.listStyle as object[];
+    if (XIsObject(this.listStyle())) {
+      styles = [this.listStyle()!, this.listStyle()!];
+    } else if (XIsObjectArray(this.listStyle())) {
+      styles = this.listStyle() as object[];
     }
-    if (styles.length > 0) this.left.listStyle = styles[0];
-    if (styles.length > 1) this.right.listStyle = styles[1];
-    this.cdr.detectChanges();
+    if (styles.length > 0)
+      this.left.update((x) => {
+        x.listStyle = styles[0];
+        return x;
+      });
+    if (styles.length > 1)
+      this.right.update((x) => {
+        x.listStyle = styles[1];
+        return x;
+      });
   }
 
   private setTreeNodeDisabled() {
-    if (!XIsEmpty(this.values) && this.nodes) {
-      for (let item of this.nodes) {
-        let hasIn = this.values.indexOf(item.id) >= 0;
+    if (!XIsEmpty(this.values()) && this.nodes()) {
+      for (let item of this.nodes()) {
+        let hasIn = this.values().indexOf(item.id) >= 0;
         item.disabled = hasIn;
         item.checked = hasIn;
       }
@@ -609,9 +638,9 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   private setTableDataDisabled() {
-    if (!XIsEmpty(this.values) && this.nodes) {
-      for (let item of this.nodes) {
-        let hasIn = this.values.indexOf(item.id) >= 0;
+    if (!XIsEmpty(this.values()) && this.nodes()) {
+      for (let item of this.nodes()) {
+        let hasIn = this.values().indexOf(item.id) >= 0;
         item.disabled = hasIn;
         item.checked = hasIn;
       }
@@ -619,31 +648,50 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   private setHiddenCheckAll() {
-    if (XIsEmpty(this.hiddenCheckAll)) return;
-    if (this.hiddenCheckAll!.length > 0 && XIsBoolean(this.hiddenCheckAll![0]))
-      this.left.hiddenCheckAll = this.hiddenCheckAll![0];
-    if (this.hiddenCheckAll!.length > 1 && XIsBoolean(this.hiddenCheckAll![1]))
-      this.right.hiddenCheckAll = this.hiddenCheckAll![1];
-    this.cdr.detectChanges();
+    if (XIsEmpty(this.hiddenCheckAll())) return;
+    if (this.hiddenCheckAll()!.length > 0 && XIsBoolean(this.hiddenCheckAll()![0])) {
+      this.left.update((x) => {
+        x.hiddenCheckAll = this.hiddenCheckAll()![0];
+        return x;
+      });
+    }
+    if (this.hiddenCheckAll()!.length > 1 && XIsBoolean(this.hiddenCheckAll()![1])) {
+      this.right.update((x) => {
+        x.hiddenCheckAll = this.hiddenCheckAll()![1];
+        return x;
+      });
+    }
   }
 
   private setFooterTpl() {
-    if (XIsUndefined(this.footerTpl)) return;
-    if (this.footerTpl!.length > 0) {
-      this.left.footerTpl = this.footerTpl![0];
+    if (XIsUndefined(this.footerTpl())) return;
+    if (this.footerTpl()!.length > 0) {
+      this.left.update((x) => {
+        x.footerTpl = this.footerTpl()![0];
+        return x;
+      });
     }
-    if (this.footerTpl!.length > 1) {
-      this.right.footerTpl = this.footerTpl![1];
+    if (this.footerTpl()!.length > 1) {
+      this.right.update((x) => {
+        x.footerTpl = this.footerTpl()![1];
+        return x;
+      });
     }
   }
 
   private setTableHeadSearchTpl() {
-    if (XIsUndefined(this.tableHeadSearchTpl)) return;
-    if (this.tableHeadSearchTpl!.length > 0) {
-      this.left.tableHeadSearchTpl = this.tableHeadSearchTpl![0];
+    if (XIsUndefined(this.tableHeadSearchTpl())) return;
+    if (this.tableHeadSearchTpl()!.length > 0) {
+      this.left.update((x) => {
+        x.tableHeadSearchTpl = this.tableHeadSearchTpl()![0];
+        return x;
+      });
     }
-    if (this.tableHeadSearchTpl!.length > 1) {
-      this.right.tableHeadSearchTpl = this.tableHeadSearchTpl![1];
+    if (this.tableHeadSearchTpl()!.length > 1) {
+      this.right.update((x) => {
+        x.tableHeadSearchTpl = this.tableHeadSearchTpl()![1];
+        return x;
+      });
     }
   }
 }

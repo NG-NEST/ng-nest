@@ -35,8 +35,7 @@
         [placeholder]="startPlaceholder()!"
         (xFocus)="onFocus('start')"
         (xClick)="showPortal($event, 'start')"
-        [ngModel]="startDisplay()"
-        (ngModelChange)="startDisplay.set($event)"
+        [(ngModel)]="startDisplay"
         icon="fto-arrow-right"
       ></x-input>
       <x-input
@@ -49,8 +48,7 @@
         [placeholder]="endPlaceholder()!"
         (xFocus)="onFocus('end')"
         (xClick)="showPortal($event, 'end')"
-        [ngModel]="endDisplay()"
-        (ngModelChange)="endDisplay.set($event)"
+        [(ngModel)]="endDisplay"
         [icon]="icon()"
         (clearEmit)="clearEmit()"
         [clearable]="showClearable()"

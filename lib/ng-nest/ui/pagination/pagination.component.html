@@ -5,8 +5,7 @@
       [before]="previousTpl"
       [after]="nextTpl"
       [style.width]="simpleIndexWidth()"
-      [ngModel]="index()"
-      (ngModelChange)="index.set($event)"
+      [(ngModel)]="index"
       (xKeydown)="onSimpleKeydown($event)"
     ></x-input>
     <span>/</span>
@@ -52,8 +51,8 @@
     [disabled]="disabled()"
     [bordered]="showBackground()"
     [nodeTpl]="nodeTpl"
-    [ngModel]="size()"
-    (ngModelChange)="sizeChanged(); size.set($event)"
+    [(ngModel)]="size"
+    (ngModelChange)="sizeChanged()"
   ></x-select>
 }
 @if (showInputSize()) {
@@ -62,8 +61,7 @@
       [style.width]="inputSizeWidth()"
       [disabled]="disabled()"
       [bordered]="showBackground()"
-      [ngModel]="inputSize()"
-      (ngModelChange)="inputSize.set($event)"
+      [(ngModel)]="inputSize"
       (xKeydown)="onInputSizeKeydown($event)"
     ></x-input>
     <span> {{ 'pagination.sizePage' | xI18n }} </span>
@@ -75,8 +73,7 @@
     <x-input
       [bordered]="showBackground()"
       [style.width]="jumpWidth()"
-      [ngModel]="jumpPage()"
-      (ngModelChange)="jumpPage.set($event)"
+      [(ngModel)]="jumpPage"
       (xKeydown)="onJumpKeydown($event)"
     ></x-input>
   </div>

@@ -1,18 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Renderer2,
-  ElementRef,
-  ViewChild,
-  SimpleChanges,
-  inject,
-  OnChanges
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, viewChild, computed } from '@angular/core';
 import { XSwitchProperty, XSwitchPrefix } from './switch.property';
-import { XClearClass, XConfigService, XIsChange } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,42 +16,28 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSwitchComponent)]
 })
-export class XSwitchComponent extends XSwitchProperty implements OnInit, OnChanges {
-  @ViewChild('switch', { static: true }) switch!: ElementRef<HTMLElement>;
+export class XSwitchComponent extends XSwitchProperty {
+  switch = viewChild.required<ElementRef<HTMLElement>>('switch');
+
+  classMapSignal = computed(() => ({
+    [`${XSwitchPrefix}-${this.size()}`]: !!this.size(),
+    [`x-justify-${this.justify()}`]: !!this.justify(),
+    [`x-align-${this.align()}`]: !!this.align(),
+    [`x-direction-${this.direction()}`]: !!this.direction()
+  }));
+  labelMapSignal = computed(() => ({
+    [`x-text-align-${this.labelAlign()}`]: !!this.labelAlign()
+  }));
 
   override writeValue(value: any) {
-    this.value = value;
-    this.cdr.detectChanges();
-  }
-  private renderer = inject(Renderer2);
-  override cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const { size, labelAlign } = changes;
-    XIsChange(size, labelAlign) && this.setClassMap();
-  }
-
-  ngOnInit() {
-    this.setFlex(this.switch.nativeElement, this.renderer, this.justify, this.align, this.direction);
-    this.setClassMap();
-  }
-
-  setClassMap() {
-    XClearClass(this.classMap, this.labelMap);
-    this.classMap[`${XSwitchPrefix}-${this.size}`] = this.size ? true : false;
-    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
+    this.value.set(value);
   }
 
   switchClick() {
-    if (this.disabled || this.loading || this.manual) return;
-    this.value = !this.value;
-    if (this.onChange) this.onChange(this.value);
-    this.cdr.detectChanges();
+    if (this.disabled() || this.loading() || this.manual()) return;
+    this.value.update((x) => !x);
+    if (this.onChange) this.onChange(this.value());
   }
 
-  formControlChanges() {
-    this.ngOnInit();
-    this.cdr.detectChanges();
-  }
+  formControlChanges() {}
 }

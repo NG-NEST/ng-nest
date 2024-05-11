@@ -1,6 +1,7 @@
-import {
+import { InjectionToken } from '@angular/core';
+import type { XTheme } from '../theme';
+import type {
   XSize,
-  XBoolean,
   XType,
   XEffect,
   XNumber,
@@ -19,10 +20,9 @@ import {
   XPositionTopBottom,
   XStatus,
   XAlign,
-  XTemplate
+  XTemplate,
+  XStyleMap
 } from '../interfaces';
-import { InjectionToken } from '@angular/core';
-import { XTheme } from '../theme';
 
 /**
  * @zh_CN 组件和主题全局配置信息
@@ -341,16 +341,16 @@ export interface XEmptyConfig {
 
 export interface XFindConfig {
   size?: XSize;
-  bordered?: XBoolean;
+  bordered?: boolean;
   columnLabel?: string;
   dialogTitle?: string;
   dialogCheckboxLabel?: string;
   dialogCheckboxWidth?: number;
   dialogEmptyContent?: string;
-  dialogButtonsCenter?: XBoolean;
+  dialogButtonsCenter?: boolean;
   tableIndex?: number;
   tableSize?: number;
-  tableLoading?: XBoolean;
+  tableLoading?: boolean;
   tableVirtualScroll?: boolean;
   tableRowHeight?: XNumber;
   treeExpandedLevel?: XNumber;
@@ -563,22 +563,22 @@ export interface XSwitchConfig {
 export interface XTableConfig {
   index?: number;
   size?: number;
-  loading?: XBoolean;
-  showHeader?: XBoolean;
+  loading?: boolean;
+  showHeader?: boolean;
   virtualScroll?: boolean;
   rowHeight?: XNumber;
   itemSize?: XNumber;
   bordered?: XNumber;
-  allowSelectRow?: XBoolean;
-  allowCheckRow?: XBoolean;
+  allowSelectRow?: boolean;
+  allowCheckRow?: boolean;
   rowSize?: XSize;
-  showPagination?: XBoolean;
-  treeTable?: XBoolean;
-  expandedAll?: XBoolean;
+  showPagination?: boolean;
+  treeTable?: boolean;
+  expandedAll?: boolean;
   expandedLevel?: XNumber;
-  hiddenPaginationBorder?: XBoolean;
-  hiddenWrapBorder?: XBoolean;
-  showEmpty?: XBoolean;
+  hiddenPaginationBorder?: boolean;
+  hiddenWrapBorder?: boolean;
+  showEmpty?: boolean;
   emptyImg?: XTemplate;
   emptyContent?: XTemplate;
 
@@ -617,7 +617,7 @@ export interface XTextRetractConfig {
 }
 
 export interface XThemeConfig {
-  amounts?: XNumber[];
+  amounts?: number[];
 }
 
 export interface XTimeAgoConfig {}
@@ -626,9 +626,12 @@ export interface XTimePickerConfig {
   format?: string;
   placement?: XCorner;
   size?: XSize;
-  bordered?: XBoolean;
-  use12Hours?: XBoolean;
-  defaultNow?: XBoolean;
+  bordered?: boolean;
+  use12Hours?: boolean;
+  defaultNow?: boolean;
+  hourStep?: number;
+  minuteStep?: number;
+  secondStep?: number;
 }
 
 export interface XTimeRangeConfig {}
@@ -644,8 +647,10 @@ export interface XTooltipConfig {
 
 export interface XTransferConfig {
   titles?: string[];
-  drag?: XBoolean;
-  virtualScroll?: XBoolean;
+  drag?: boolean;
+  virtualScroll?: boolean;
+  type?: 'list' | 'table' | 'tree';
+  listStyle: XStyleMap | XStyleMap[];
 }
 
 export interface XTreeConfig {
@@ -661,7 +666,7 @@ export interface XTreeConfig {
 }
 
 export interface XTextareaConfig {
-  clearable?: XBoolean;
+  clearable?: boolean;
   iconLayout?: XPositionLeftRight;
 }
 
@@ -672,23 +677,23 @@ export interface XTreeFileConfig {
 
 export interface XTreeSelectConfig {
   placement?: XPositionTopBottom;
-  clearable?: XBoolean;
+  clearable?: boolean;
   size?: XSize;
-  bordered?: XBoolean;
+  bordered?: boolean;
   portalMaxHeight?: string;
   selectAllText?: string;
-  search?: XBoolean;
-  caseSensitive?: XBoolean;
+  search?: boolean;
+  caseSensitive?: boolean;
   debounceTime?: number;
   maxTagCount?: number;
-  virtualScroll?: XBoolean;
-  showPath?: XBoolean;
+  virtualScroll?: boolean;
+  showPath?: boolean;
   separator?: string;
   onlyLeaf?: boolean;
 }
 
 export interface XUploadConfig {
-  download?: XBoolean;
+  download?: boolean;
   multipleModel?: 'cover' | 'add';
 }
 

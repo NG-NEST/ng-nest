@@ -8,6 +8,11 @@ import type { XStyle, XBoolean } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XSkeletonPrefix = 'x-skeleton';
+
+/**
+ * @zh_CN 骨架默认数据
+ * @en_US Skeleton default data
+ */
 export const XSkeletonData: XSkeletonRow[] = [
   { cols: [{ width: '10rem', type: 'title' }] },
   { cols: [{}] },

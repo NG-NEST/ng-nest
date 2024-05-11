@@ -69,7 +69,7 @@ export class ExSearchComponent {
       filter = [...filter, pfilter];
       this.query.filter = filter;
     }
-    this.transferCom.leftTableCom?.change(1);
+    this.transferCom.leftTableCom()?.change(1);
   }
 
   constructor(public service: SearchService) {}

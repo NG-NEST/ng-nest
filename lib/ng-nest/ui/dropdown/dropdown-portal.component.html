@@ -9,8 +9,7 @@
   <x-list
     [data]="data()"
     (nodeClick)="onNodeClick($event)"
-    [ngModel]="activatedId()"
-    (ngModelChange)="activatedId.set($event)"
+    [(ngModel)]="activatedId"
     (nodeMouseenter)="onEnter($event)"
     (nodeMouseleave)="onLeave()"
     [inPortal]="true"

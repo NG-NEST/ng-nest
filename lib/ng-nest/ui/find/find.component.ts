@@ -278,7 +278,7 @@ export class XFindComponent extends XFindProperty implements OnInit, OnChanges, 
         this.tableCom?.bodyChange();
       }
     } else if (this.hasTree) {
-      let it = this.treeCom?.treeData.find((x) => item.id === x.id);
+      let it = this.treeCom?.treeData().find((x) => item.id === x.id);
       if (it) {
         it.checked = false;
         it.change && it.change();

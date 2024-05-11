@@ -1,20 +1,19 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
-  Output,
   SimpleChanges,
-  ViewChild,
   ViewEncapsulation,
-  inject
+  computed,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild
 } from '@angular/core';
 import { XTimePickerDisabledTime, XTimePickerFramePrefix, XTimePickerType } from './time-picker.property';
 import {
   XRequestAnimationFrame,
-  XBoolean,
   XIdentity,
   XIsChange,
   XIsEmpty,
@@ -22,11 +21,11 @@ import {
   XIsNull,
   XIsNumber
 } from '@ng-nest/ui/core';
-import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
-import { takeUntil, map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { XI18nService, XI18nTimePicker, zh_CN } from '@ng-nest/ui/i18n';
+import { map } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { FormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTimePickerFramePrefix}`,
@@ -38,77 +37,102 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTimePickerFrameComponent {
-  @Input() type: XTimePickerType = 'time';
-  @Input() value!: number | null;
-  @Input() use12Hours!: XBoolean;
-  @Input() hourStep = 1;
-  @Input() minuteStep = 1;
-  @Input() secondStep = 1;
-  @Input() defaultNow = true;
-  @Input() disabledTime?: XTimePickerDisabledTime;
-  @Input() disabledTimeParam?: any;
-  @Output() nodeEmit = new EventEmitter<Date>();
-  @ViewChild('hourRef') hourRef?: ElementRef<HTMLElement>;
-  @ViewChild('minuteRef') minuteRef?: ElementRef<HTMLElement>;
-  @ViewChild('secondRef') secondRef?: ElementRef<HTMLElement>;
-  @ViewChild('use12HoursRef') use12HoursRef?: ElementRef<HTMLElement>;
-  model!: Date;
-  hour!: number | null;
-  minute!: number | null;
-  second!: number | null;
-  use12Hour: string = 'am';
-  scrollAnimating: { [key: string]: boolean } = {};
-  hourData: XIdentity[] = [];
-  minuteData: XIdentity[] = [];
-  secondData: XIdentity[] = [];
-  use12HoursData: XIdentity[] = [];
-  locale: XI18nTimePicker = {};
-  isInit = false;
-  private _unSubject = new Subject<void>();
-  private cdr = inject(ChangeDetectorRef);
   private i18n = inject(XI18nService);
+  type = input<XTimePickerType>('time');
+  value = input<number | null>();
+  use12Hours = input<boolean>(false);
+  hourStep = input<number>(1);
+  minuteStep = input<number>(1);
+  secondStep = input<number>(1);
+  defaultNow = input<boolean>(true);
+  disabledTime = input<XTimePickerDisabledTime>();
+  disabledTimeParam = input<any>();
+  nodeEmit = output<Date>();
+  hourRef = viewChild.required<ElementRef<HTMLElement>>('hourRef');
+  minuteRef = viewChild<ElementRef<HTMLElement>>('minuteRef');
+  secondRef = viewChild<ElementRef<HTMLElement>>('secondRef');
+  use12HoursRef = viewChild<ElementRef<HTMLElement>>('use12HoursRef');
+  model = signal<Date | null>(null);
+  hour = signal<number | null>(null);
+  minute = signal<number | null>(null);
+  second = signal<number | null>(null);
+  use12Hour = signal('am');
+  scrollAnimating = signal<{ [key: string]: boolean }>({});
+  hourData = computed(() => {
+    let length = this.use12Hours() ? 12 : 24;
+    return Array.from({ length: Math.ceil(length / this.hourStep()) }).map((_, i) => {
+      if (this.use12Hours() && i === 0) {
+        i = 12;
+        return {
+          disabled: this.setDisabled('hours', i),
+          label: this.prefixZero(i, 2),
+          id: i
+        };
+      } else {
+        const num = i * this.hourStep();
+        return {
+          disabled: this.setDisabled('hours', num),
+          label: this.prefixZero(num, 2),
+          id: num
+        };
+      }
+    });
+  });
+  minuteData = computed(() => {
+    return Array.from({ length: Math.ceil(60 / this.minuteStep()) }).map((_, i) => {
+      const num = i * this.minuteStep();
+      return {
+        disabled: this.setDisabled('minutes', num),
+        label: this.prefixZero(num, 2),
+        id: num
+      };
+    });
+  });
+  secondData = computed(() => {
+    return Array.from({ length: Math.ceil(60 / this.secondStep()) }).map((_, i) => {
+      const num: number = i * this.secondStep();
+      return {
+        disabled: this.setDisabled('seconds', num),
+        label: this.prefixZero(num, 2),
+        id: num
+      };
+    });
+  });
+  use12HoursData = computed(() => {
+    return [
+      {
+        id: 'am',
+        label: this.locale().am
+      },
+      {
+        id: 'pm',
+        label: this.locale().pm
+      }
+    ];
+  });
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.timePicker as XI18nTimePicker)), {
+    initialValue: zh_CN.timePicker
+  });
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { value, disabledTimeParam } = changes;
+    const { value } = changes;
     if (XIsChange(value)) {
-      // this.setDataInit();
       this.init();
       this.setScrollTop(true);
     }
-    XIsChange(disabledTimeParam) && this.setDataInit();
   }
 
   ngOnInit() {
-    this.setDataInit();
     this.init();
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.timePicker as XI18nTimePicker),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        if (this.use12Hours) {
-          this.setUse12HoursData();
-        }
-        this.cdr.markForCheck();
-      });
   }
 
   ngAfterViewInit() {
     this.setScrollTop();
   }
 
-  setDataInit() {
-    this.setHourData();
-    this.setMinuteData();
-    this.setSecondData();
-    this.setUse12HoursData();
-  }
-
   setDisabled(type: 'hours' | 'minutes' | 'seconds', num: number) {
-    if (this.disabledTime && XIsFunction(this.disabledTime)) {
-      const disabledMap = this.disabledTime(this.disabledTimeParam);
+    if (this.disabledTime() && XIsFunction(this.disabledTime())) {
+      const disabledMap = this.disabledTime()!(this.disabledTimeParam()!);
       const { disabledHours, disabledMinutes, disabledSeconds } = disabledMap;
       let disabledNums: number[] = [];
       if (type === 'hours') {
@@ -120,84 +144,22 @@ export class XTimePickerFrameComponent {
       }
       return disabledNums.includes(num);
     }
-
     return false;
   }
 
-  setHourData() {
-    let length = this.use12Hours ? 12 : 24;
-    this.hourData = Array.from({ length: Math.ceil(length / this.hourStep) }).map((_, i) => {
-      if (this.use12Hours && i === 0) {
-        i = 12;
-        return {
-          disabled: this.setDisabled('hours', i),
-          label: this.prefixZero(i, 2),
-          id: i
-        };
-      } else {
-        const num = i * this.hourStep;
-        return {
-          disabled: this.setDisabled('hours', num),
-          label: this.prefixZero(num, 2),
-          id: num
-        };
-      }
-    });
-  }
-
-  setMinuteData() {
-    this.minuteData = Array.from({ length: Math.ceil(60 / this.minuteStep) }).map((_, i) => {
-      const num = i * this.minuteStep;
-      return {
-        disabled: this.setDisabled('minutes', num),
-        label: this.prefixZero(num, 2),
-        id: num
-      };
-    });
-  }
-
-  setSecondData() {
-    this.secondData = Array.from({ length: Math.ceil(60 / this.secondStep) }).map((_, i) => {
-      const num: number = i * this.secondStep;
-      return {
-        disabled: this.setDisabled('seconds', num),
-        label: this.prefixZero(num, 2),
-        id: num
-      };
-    });
-  }
-
-  setUse12HoursData() {
-    this.use12HoursData = [
-      {
-        id: 'am',
-        label: this.locale.am
-      },
-      {
-        id: 'pm',
-        label: this.locale.pm
-      }
-    ];
-  }
-
   init() {
-    if (!XIsEmpty(this.value)) {
-      this.setDefault();
-      this.setTime(this.model);
+    if (!XIsEmpty(this.value())) {
+      this.model.set(new Date(this.value()!));
+      this.setTime(this.model()!);
     } else {
-      if (this.defaultNow) {
-        this.model = this.setNow();
+      if (this.defaultNow()) {
+        this.model.set(this.setNow());
       } else {
-        this.hour = null;
-        this.minute = null;
-        this.second = null;
+        this.hour.set(null);
+        this.minute.set(null);
+        this.second.set(null);
       }
     }
-    this.cdr.detectChanges();
-  }
-
-  setDefault() {
-    this.model = new Date(this.value!);
   }
 
   setNow() {
@@ -219,23 +181,23 @@ export class XTimePickerFrameComponent {
   }
 
   setTime(date: Date) {
-    if (this.use12Hours) {
+    if (this.use12Hours()) {
       let hour = date.getHours();
       if (hour > 12) {
-        this.hour = hour - 12;
-        this.use12Hour = 'pm';
+        this.hour.set(hour - 12);
+        this.use12Hour.set('pm');
       } else if (hour === 12) {
-        this.hour = 12;
-        this.use12Hour = 'pm';
+        this.hour.set(12);
+        this.use12Hour.set('pm');
       } else {
-        this.hour = hour === 0 ? 12 : hour;
-        this.use12Hour = 'am';
+        this.hour.set(hour === 0 ? 12 : hour);
+        this.use12Hour.set('am');
       }
     } else {
-      this.hour = date.getHours();
+      this.hour.set(date.getHours());
     }
-    this.minute = date.getMinutes();
-    this.second = date.getSeconds();
+    this.minute.set(date.getMinutes());
+    this.second.set(date.getSeconds());
   }
 
   prefixZero(num: number, n: number) {
@@ -243,10 +205,10 @@ export class XTimePickerFrameComponent {
   }
 
   setScrollTop(animating = false) {
-    this.selected('hour', this.hourRef?.nativeElement, this.hour!, animating);
-    this.selected('minute', this.minuteRef?.nativeElement, this.minute!, animating);
-    this.selected('second', this.secondRef?.nativeElement, this.second!, animating);
-    this.selected('use12Hour', this.use12HoursRef?.nativeElement, this.use12Hour, animating);
+    this.selected('hour', this.hourRef().nativeElement, this.hour()!, animating);
+    this.selected('minute', this.minuteRef()?.nativeElement, this.minute()!, animating);
+    this.selected('second', this.secondRef()?.nativeElement, this.second()!, animating);
+    this.selected('use12Hour', this.use12HoursRef()?.nativeElement, this.use12Hour(), animating);
   }
 
   selected(
@@ -256,28 +218,28 @@ export class XTimePickerFrameComponent {
     animating = false
   ) {
     if (!ele || XIsNull(num)) return;
-    if (this.scrollAnimating[ele.className]) return;
+    if (this.scrollAnimating()[ele.className]) return;
     let len = Number(num);
     switch (type) {
       case 'hour':
-        len = this.hourData.findIndex((x) => x.id === num);
+        len = this.hourData().findIndex((x) => x.id === num);
         break;
       case 'minute':
-        len = this.minuteData.findIndex((x) => x.id === num);
+        len = this.minuteData().findIndex((x) => x.id === num);
         break;
       case 'second':
-        len = this.secondData.findIndex((x) => x.id === num);
+        len = this.secondData().findIndex((x) => x.id === num);
         break;
       case 'use12Hour':
-        len = this.use12HoursData.findIndex((x) => x.id === num);
+        len = this.use12HoursData().findIndex((x) => x.id === num);
         break;
     }
     const current = ele.querySelector(`.x-list x-list-option:nth-child(${len + 1})`) as HTMLElement;
     if (current) {
       if (animating) {
-        this.scrollTo(ele, current.offsetTop, 120);
+        this.scrollTo(ele, current.offsetTop - 4, 120);
       } else {
-        ele.scrollTop = current.offsetTop;
+        ele.scrollTop = current.offsetTop - 4;
       }
     }
   }
@@ -287,56 +249,88 @@ export class XTimePickerFrameComponent {
   }
 
   itemClick(type: 'hour' | 'minute' | 'second' | 'use12Hours') {
-    if (XIsEmpty(this.model)) {
-      this.model = this.setZero();
+    if (XIsEmpty(this.model())) {
+      this.model.set(this.setZero());
     }
     switch (type) {
       case 'minute':
-        this.model.setMinutes(this.minute!);
+        this.model.update((x) => {
+          x!.setMinutes(this.minute()!);
+          return x;
+        });
         break;
       case 'second':
-        this.model.setSeconds(this.second!);
+        this.model.update((x) => {
+          x!.setSeconds(this.second()!);
+          return x;
+        });
         break;
       case 'hour':
-        if (this.use12Hours) {
-          if (this.use12Hour === 'pm' && this.hour !== 12) {
-            this.model.setHours(this.hour! + 12);
-          } else if (this.use12Hour === 'am' && this.hour === 12) {
-            this.model.setHours(0);
+        if (this.use12Hours()) {
+          if (this.use12Hour() === 'pm' && this.hour() !== 12) {
+            this.model.update((x) => {
+              x!.setHours(this.hour()! + 12);
+              return x;
+            });
+          } else if (this.use12Hour() === 'am' && this.hour() === 12) {
+            this.model.update((x) => {
+              x!.setHours(0);
+              return x;
+            });
           } else {
-            this.model.setHours(this.hour!);
+            this.model.update((x) => {
+              x!.setHours(this.hour()!);
+              return x;
+            });
           }
         } else {
-          this.model.setHours(this.hour!);
+          this.model.update((x) => {
+            x!.setHours(this.hour()!);
+            return x;
+          });
         }
         break;
       case 'use12Hours':
-        if (this.use12Hour === 'pm' && this.hour !== 12) {
-          this.model.setHours(this.hour! + 12);
-        } else if (this.use12Hour === 'am' && this.hour === 12) {
-          this.model.setHours(0);
+        if (this.use12Hour() === 'pm' && this.hour() !== 12) {
+          this.model.update((x) => {
+            x!.setHours(this.hour()! + 12);
+            return x;
+          });
+        } else if (this.use12Hour() === 'am' && this.hour() === 12) {
+          this.model.update((x) => {
+            x!.setHours(0);
+            return x;
+          });
         } else {
-          this.model.setHours(this.hour!);
+          this.model.update((x) => {
+            x!.setHours(this.hour()!);
+            return x;
+          });
         }
         break;
     }
     this.setScrollTop(true);
-    this.nodeEmit.emit(this.model);
-    this.cdr.detectChanges();
+    this.nodeEmit.emit(this.model()!);
   }
 
   private scrollTo(element: HTMLElement, to: number, duration: number): void {
     const clsName = element.className;
     const difference = to - element.scrollTop;
     const perTick = (difference / duration) * 10;
-    this.scrollAnimating[clsName] = true;
+    this.scrollAnimating.update((x) => {
+      x[clsName] = true;
+      return x;
+    });
     XRequestAnimationFrame(() => {
       const num = element.scrollTop + perTick;
       if (XIsNumber(num) && num !== Infinity) {
         element.scrollTop = num;
       }
       if (element.scrollTop === to || duration <= 0) {
-        this.scrollAnimating[clsName] = false;
+        this.scrollAnimating.update((x) => {
+          x[clsName] = false;
+          return x;
+        });
         return;
       } else {
         this.scrollTo(element, to, duration - 10);

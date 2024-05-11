@@ -18,7 +18,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 })
 export class XTimelineComponent extends XTimelineProperty {
   classMapSignal = computed(() => ({
-    [`${XTimelinePrefix}-${this.mode}`]: !XIsEmpty(this.mode)
+    [`${XTimelinePrefix}-${this.mode()}`]: !XIsEmpty(this.mode())
   }));
 
   nodes = computed(() => {

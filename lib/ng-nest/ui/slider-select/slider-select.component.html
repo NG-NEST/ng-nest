@@ -1,17 +1,21 @@
 <div
   #sliderSelect
   class="x-slider-select"
-  [class.x-flex]="justify || align || direction"
-  [class.x-disabled]="disabled"
-  [class.x-required]="requiredIsEmpty"
-  [class.x-invalid]="invalid"
-  [class.x-slider-select-reverse]="reverse"
-  [class.x-slider-select-range]="range"
+  [class.x-flex]="justify() || align() || direction()"
+  [class.x-disabled]="disabled()"
+  [class.x-required]="requiredIsEmpty()"
+  [class.x-invalid]="invalid()"
+  [class.x-slider-select-reverse]="reverse()"
+  [class.x-slider-select-range]="range()"
+  [ngClass]="classMapSignal()"
 >
-  @if (label) {
-    <label [class.x-slider-select-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{
-      label
-    }}</label>
+  @if (label()) {
+    <label
+      [class.x-slider-select-label-required]="required()"
+      [style.width]="labelWidth()"
+      [ngClass]="labelMapSignal()"
+      >{{ label() }}</label
+    >
   }
   <div class="x-slider-select-inner" #innerRef>
     <div class="x-slider-select-rail" #railRef>
@@ -23,8 +27,8 @@
           #processRef
           class="x-slider-select-process"
           cdkDrag
-          [cdkDragLockAxis]="vertical ? 'y' : 'x'"
-          [cdkDragDisabled]="disabled || !range"
+          [cdkDragLockAxis]="vertical() ? 'y' : 'x'"
+          [cdkDragDisabled]="disabled() || !range()"
           [cdkDragBoundary]="trackRef"
           (cdkDragStarted)="started($event, 'both')"
           (cdkDragEnded)="ended($event, 'both')"
@@ -32,7 +36,7 @@
         ></div>
       </div>
       <div class="x-slider-select-marks">
-        @for (mark of markList; track mark.label) {
+        @for (mark of markList(); track mark.label) {
           <div class="x-slider-select-mark" [ngStyle]="mark.style">
             <span class="x-slider-select-mark-label">{{ mark.label }}</span>
           </div>
@@ -42,8 +46,8 @@
         #dragStartRef
         class="x-slider-select-drag"
         cdkDrag
-        [cdkDragLockAxis]="vertical ? 'y' : 'x'"
-        [cdkDragDisabled]="disabled"
+        [cdkDragLockAxis]="vertical() ? 'y' : 'x'"
+        [cdkDragDisabled]="disabled()"
         [cdkDragBoundary]="innerRef"
         (cdkDragStarted)="started($event, 'start')"
         (cdkDragEnded)="ended($event, 'start')"
@@ -54,29 +58,29 @@
           x-tooltip
           tabindex="0"
           class="x-slider-select-button"
-          [class.x-slider-select-button-actived]="startVisible"
-          [class.x-slider-select-custom-button]="customButton"
+          [class.x-slider-select-button-actived]="startVisible()"
+          [class.x-slider-select-custom-button]="customButton()"
           placement="top"
-          [disabled]="!showTooltip && !showStartTooltip"
+          [disabled]="!showTooltip() && !showStartTooltip()"
           [content]="tooltipStartTpl"
           [(visible)]="startVisible"
-          [manual]="startManual"
+          [manual]="startManual()"
         >
-          <ng-container *xOutlet="customButton">{{ customButton }}</ng-container>
+          <ng-container *xOutlet="customButton()">{{ customButton() }}</ng-container>
         </div>
         <ng-template #tooltipStartTpl>
-          <ng-container *xOutlet="tooltipCustom; context: { $value: startDisplayValue }">{{
-            startDisplayValue
+          <ng-container *xOutlet="tooltipCustom(); context: { $value: startDisplayValue() }">{{
+            startDisplayValue()
           }}</ng-container>
         </ng-template>
       </div>
       <div
-        [hidden]="!range"
+        [hidden]="!range()"
         #dragEndRef
         class="x-slider-select-drag"
         cdkDrag
-        [cdkDragLockAxis]="vertical ? 'y' : 'x'"
-        [cdkDragDisabled]="disabled"
+        [cdkDragLockAxis]="vertical() ? 'y' : 'x'"
+        [cdkDragDisabled]="disabled()"
         [cdkDragBoundary]="innerRef"
         (cdkDragStarted)="started($event, 'end')"
         (cdkDragEnded)="ended($event, 'end')"
@@ -87,19 +91,19 @@
           x-tooltip
           tabindex="0"
           class="x-slider-select-button"
-          [class.x-slider-select-button-actived]="endVisible"
-          [class.x-slider-select-custom-button]="customButton"
+          [class.x-slider-select-button-actived]="endVisible()"
+          [class.x-slider-select-custom-button]="customButton()"
           placement="top"
-          [disabled]="!showTooltip && !showEndTooltip"
+          [disabled]="!showTooltip() && !showEndTooltip()"
           [content]="tooltipEndTpl"
           [(visible)]="endVisible"
-          [manual]="endManual"
+          [manual]="endManual()"
         >
-          <ng-container *xOutlet="customButton">{{ customButton }}</ng-container>
+          <ng-container *xOutlet="customButton()">{{ customButton() }}</ng-container>
         </div>
         <ng-template #tooltipEndTpl>
-          <ng-container *xOutlet="tooltipCustom; context: { $value: endDisplayValue }">{{
-            endDisplayValue
+          <ng-container *xOutlet="tooltipCustom(); context: { $value: endDisplayValue() }">{{
+            endDisplayValue()
           }}</ng-container>
         </ng-template>
       </div>

@@ -229,6 +229,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./steps/steps.component').then((x) => x.TeStepsComponent)
       },
       {
+        path: 'switch',
+        loadComponent: () => import('./switch/switch.component').then((x) => x.TeSwitchComponent)
+      },
+      {
         path: 'table',
         loadComponent: () => import('./table/table.component').then((x) => x.TeTableComponent)
       },

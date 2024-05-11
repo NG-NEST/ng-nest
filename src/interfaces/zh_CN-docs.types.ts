@@ -2376,15 +2376,15 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "override  labelWidth",
-        "type": "string",
-        "toType": "",
-        "inputType": "InputSignal<string>",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "标签宽度",
         "default": "''",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": ""
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "override  labelAlign",
@@ -3825,15 +3825,15 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "override  labelWidth",
-        "type": "string",
-        "toType": "",
-        "inputType": "InputSignal<string>",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "标签宽度",
         "default": "''",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": ""
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "override  labelAlign",
@@ -4239,15 +4239,15 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "override  labelWidth",
-        "type": "string",
-        "toType": "",
-        "inputType": "InputSignal<string>",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "标签宽度",
         "default": "''",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": ""
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "override  labelAlign",
@@ -4831,15 +4831,15 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "override  labelWidth",
-        "type": "string",
-        "toType": "",
-        "inputType": "InputSignal<string>",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "标签宽度",
         "default": "''",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": ""
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "override  labelAlign",
@@ -5636,454 +5636,366 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "type",
         "type": "XDatePickerType",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerType>",
         "label": "选择类型",
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "format",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "格式化类型",
-        "default": "",
-        "withConfig": false,
+        "default": "'yyyy-MM-dd'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME,'yyyy-MM-dd')"
-        ],
-        "attr": "format",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "clearable",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "清除按钮",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "clearable",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "placement",
         "type": "XCorner",
+        "toType": "",
+        "inputType": "InputSignal<XCorner>",
         "label": "展示方位",
-        "default": "",
-        "withConfig": false,
+        "default": "'bottom-start'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XCorner>(X_CONFIG_NAME,'bottom-start')"
-        ],
-        "attr": "placement",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "bordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示边框",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "bordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "preset",
         "type": "XData<XDatePickerPreset>",
+        "toType": "",
+        "inputType": "InputSignal<XData<XDatePickerPreset>>",
         "label": "快捷选择按钮，自定义或直接设置今天（today）,昨天（yesterday）,明天（tomorrow）",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "preset",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "extraFooter",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "页脚",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "extraFooter",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "disabledDate",
         "type": "XDatePickerDisabledDate",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerDisabledDate>",
         "label": "禁用的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "disabledDate",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "disabledTime",
         "type": "XDatePickerDisabledTime",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerDisabledTime>",
         "label": "禁用的时间",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "disabledTime",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "禁用",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "required",
-        "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "activeChange",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeEmit",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "节点点击的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "nodeEmit",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XDatePickerProperty",
-    "extends": "XControlValueAccessor<any>",
-    "implements": "XDatePickerOption"
+    "extends": "XFormControlFunction(X_DATA_PICKER_CONFIG_NAME)"
   },
   "XDateRangePrefix": {
     "type": "const",
@@ -6105,454 +6017,366 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "type",
         "type": "XDatePickerType",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerType>",
         "label": "选择类型",
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "format",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "格式化类型",
-        "default": "",
-        "withConfig": false,
+        "default": "'yyyy-MM-dd'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_RANGE_NAME,'yyyy-MM-dd')"
-        ],
-        "attr": "format",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "clearable",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "清除按钮",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_RANGE_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "clearable",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "placement",
         "type": "XCorner",
+        "toType": "",
+        "inputType": "InputSignal<XCorner>",
         "label": "展示方位",
-        "default": "",
-        "withConfig": false,
+        "default": "'bottom-start'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XCorner>(X_CONFIG_RANGE_NAME,'bottom-start')"
-        ],
-        "attr": "placement",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_RANGE_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "bordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示边框",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "bordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "preset",
         "type": "XData<XDateRangePreset>",
+        "toType": "",
+        "inputType": "InputSignal<XData<XDateRangePreset>>",
         "label": "快捷选择按钮，自定义或直接设置本周（thisWeek）、上周（lastWeek）、下周（nextWeek）、本月（thisMonth）、上一月（lastMonth）、下一月（nextMonth）、本年（thisYear）、去年（lastYear）、明年（nextYear）",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "preset",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string[]",
-        "label": "日期提示信息",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "extraFooter",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "页脚",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "extraFooter",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "disabledDate",
         "type": "XDatePickerDisabledDate",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerDisabledDate>",
         "label": "禁用的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "disabledDate",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "disabledTime",
         "type": "XDatePickerDisabledTime",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerDisabledTime>",
         "label": "禁用的时间",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "disabledTime",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "禁用",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "required",
-        "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "activeChange",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeEmit",
-        "type": "number[]",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "节点点击的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "nodeEmit",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XDateRangeProperty",
-    "extends": "XControlValueAccessor<any>",
-    "implements": "XDateRangeOption"
+    "extends": "XFormControlFunction(X_DATA_RANGE_CONFIG_NAME)"
   },
   "XDatePickerDisabledDate": {
     "type": "type",
@@ -6684,332 +6508,231 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "type",
-        "type": "XDatePickerType",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选择类型",
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "Date()",
-        "type": "@Input() display",
+        "name": "display",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "显示的日期",
-        "default": "new Date()",
+        "default": "new Date(",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "Date()",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "model",
-        "type": "Date | null",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选中的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "model",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dateTemp",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "日期显示模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "dateTemp",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "showHeader",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示切换按钮",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "showHeader",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "rangePicker",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "范围选择",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "rangePicker",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "lastYearBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "上一年",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "lastYearBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "lastMonthBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "上月",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "lastMonthBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "nextYearBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "下一年",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "nextYearBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "nextMonthBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "上月",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "nextMonthBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "rangeHover",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "范围 hover 效果",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "rangeHover",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "rangeValue",
-        "type": "(number | null)[]",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "范围日期",
-        "default": "[]",
+        "default": "number | null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rangeValue",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeType",
         "type": "XDatePickerRangType",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerRangType>",
         "label": "当前选择的是开始/结束日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rangeType",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "disabledDate",
         "type": "XDatePickerDisabledDate",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerDisabledDate>",
         "label": "禁用的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "disabledDate",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "typeChange",
-        "type": "XDatePickerType",
-        "label": "选择类型",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "typeChange",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "modelChange",
-        "type": "Date",
-        "label": "选中的事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "modelChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeChange",
-        "type": "Date[]",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围变化的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "yearChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选年的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "yearChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "monthChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选月的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "monthChange",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "displayChange",
-        "type": "Date",
-        "label": "显示日期事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "displayChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeTdMouseenter",
-        "type": "XDateCell",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围日期 mouseenter 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeTdMouseenter",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeTdMouseleave",
-        "type": "XDateCell",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围日期 mouseleave 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeTdMouseleave",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "rangeDateClick",
-        "type": "XDateCell",
-        "label": "范围中的日期点击事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeDateClick",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XPickerDateProperty",
@@ -7340,287 +7063,195 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "type",
-        "type": "XDatePickerType",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选择类型",
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "display",
-        "type": "Date",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "显示的日期",
-        "default": "new Date()",
+        "default": "new Date(",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "display",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "model",
-        "type": "Date | null",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选中的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "model",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "monthTemp",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "月份显示模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "monthTemp",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "showHeader",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示切换按钮",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "showHeader",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "rangePicker",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "范围选择",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "rangePicker",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "lastYearBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "上一年",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "lastYearBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "nextYearBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "下一年",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "nextYearBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "rangeValue",
-        "type": "(number | null)[]",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "范围月份",
-        "default": "[]",
+        "default": "number | null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rangeValue",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeType",
         "type": "XDatePickerRangType",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerRangType>",
         "label": "当前选择的是开始/结束日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rangeType",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "disabledDate",
         "type": "XDatePickerDisabledDate",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerDisabledDate>",
         "label": "禁用的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "disabledDate",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "modelChange",
-        "type": "Date",
-        "label": "选中的事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "modelChange",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "typeChange",
-        "type": "XDatePickerType",
-        "label": "选择类型",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "typeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeChange",
-        "type": "Date[]",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围变化的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "yearChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选年的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "yearChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "monthChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选月的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "monthChange",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "displayChange",
-        "type": "Date",
-        "label": "显示月份事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "displayChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeTdMouseenter",
-        "type": "XDateCell",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围月份 mouseenter 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeTdMouseenter",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeTdMouseleave",
-        "type": "XDateCell",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围月份 mouseleave 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeTdMouseleave",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "rangeDateClick",
-        "type": "XDateCell",
-        "label": "范围中的月份点击事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeDateClick",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XPickerMonthProperty",
@@ -7645,287 +7276,195 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "type",
-        "type": "XDatePickerType",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选择类型",
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "display",
-        "type": "Date",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "显示的日期",
-        "default": "new Date()",
+        "default": "new Date(",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "display",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "model",
-        "type": "Date | null",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选中的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "model",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "quarterTemp",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "季度显示模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "quarterTemp",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "showHeader",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示切换按钮",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "showHeader",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "rangePicker",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "范围选择",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "rangePicker",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "lastYearBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "上一年",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "lastYearBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "nextYearBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "下一年",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "nextYearBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "rangeValue",
-        "type": "(number | null)[]",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "范围月份",
-        "default": "[]",
+        "default": "number | null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rangeValue",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeType",
         "type": "XDatePickerRangType",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerRangType>",
         "label": "当前选择的是开始/结束日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rangeType",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "disabledDate",
         "type": "XDatePickerDisabledDate",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerDisabledDate>",
         "label": "禁用的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "disabledDate",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "modelChange",
-        "type": "Date",
-        "label": "选中的事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "modelChange",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "typeChange",
-        "type": "XDatePickerType",
-        "label": "选择类型",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "typeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeChange",
-        "type": "Date[]",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围变化的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "yearChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选年的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "yearChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "monthChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选月的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "monthChange",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "displayChange",
-        "type": "Date",
-        "label": "显示季度事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "displayChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeTdMouseenter",
-        "type": "XDateCell",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围季度 mouseenter 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeTdMouseenter",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeTdMouseleave",
-        "type": "XDateCell",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围季度 mouseleave 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeTdMouseleave",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "rangeDateClick",
-        "type": "XDateCell",
-        "label": "范围中的季度点击事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeDateClick",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XPickerQuarterProperty",
@@ -7961,301 +7500,207 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "type",
-        "type": "XDatePickerType",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选择类型",
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "display",
-        "type": "Date",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "显示的日期",
-        "default": "new Date()",
+        "default": "new Date(",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "display",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "model",
-        "type": "Date | null",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选中的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "model",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "yearTemp",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "年份显示模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "yearTemp",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "showHeader",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示切换按钮",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "showHeader",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "rangePicker",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "范围选择",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "rangePicker",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "lastYearBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "上一年",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "lastYearBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "nextYearBtn",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "下一年",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "nextYearBtn",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "rangeValue",
-        "type": "(number | null)[]",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "范围年份",
-        "default": "[]",
+        "default": "number | null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rangeValue",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeType",
         "type": "XDatePickerRangType",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerRangType>",
         "label": "当前选择的是开始/结束日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rangeType",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "disabledDate",
         "type": "XDatePickerDisabledDate",
+        "toType": "",
+        "inputType": "InputSignal<XDatePickerDisabledDate>",
         "label": "禁用的日期",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "disabledDate",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "modelChange",
-        "type": "Date",
-        "label": "选中的事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "modelChange",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "typeChange",
-        "type": "XDatePickerType",
-        "label": "选择类型",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "typeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "startChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "开始年份变化的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "startChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeChange",
-        "type": "Date[]",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围变化的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "yearChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选年的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "yearChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "monthChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "选月的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "monthChange",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "displayChange",
-        "type": "Date",
-        "label": "显示月份事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "displayChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeTdMouseenter",
-        "type": "XDateCell",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围月份 mouseenter 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeTdMouseenter",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rangeTdMouseleave",
-        "type": "XDateCell",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "范围月份 mouseleave 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeTdMouseleave",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "rangeDateClick",
-        "type": "XDateCell",
-        "label": "范围中的月份点击事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "rangeDateClick",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XPickerYearProperty",
@@ -9327,160 +8772,160 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [
       {
-        "name": "transform",
-        "type": "XToDataNew })",
+        "name": "data",
+        "type": "XDataNew<XDropdownNode>",
+        "toType": "XDropdownNode[]",
+        "inputType": "InputSignalWithTransform<XDropdownNode[], XDataNew<XDropdownNode>>",
         "label": "节点数据",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "data",
-        "example": ""
+        "example": "",
+        "transform": "XToDataNew"
       },
       {
-        "name": "'hover')",
-        "type": "trigger",
+        "name": "trigger",
+        "type": "XDropdownTrigger",
+        "toType": "",
+        "inputType": "InputSignal<XDropdownTrigger>",
         "label": "触发方式",
-        "default": "input<XDropdownTrigger>(this.config?.trigger ?? 'hover')",
-        "withConfig": false,
+        "default": "'hover'",
+        "withConfig": true,
         "description": "",
-        "decorator": [],
-        "attr": "'hover')",
-        "propType": "trigger",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "'bottom-start')",
-        "type": "placement",
+        "name": "placement",
+        "type": "XPlacement",
+        "toType": "",
+        "inputType": "InputSignal<XPlacement>",
         "label": "展示位置",
-        "default": "input<XPlacement>(this.config?.placement ?? 'bottom-start')",
-        "withConfig": false,
+        "default": "'bottom-start'",
+        "withConfig": true,
         "description": "",
-        "decorator": [],
-        "attr": "'bottom-start')",
-        "propType": "placement",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "transform",
-        "type": "XToBoolean })",
+        "name": "disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "禁用",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "disabled",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "transform",
-        "type": "XToBoolean })",
+        "name": "children",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "节点中已经包含子节点数据",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "children",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "transform",
-        "type": "XToCssPixelValue })",
+        "name": "portalMinWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "弹框的最小宽度",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "portalMinWidth",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
-        "name": "transform",
-        "type": "XToCssPixelValue })",
+        "name": "portalMaxWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "弹框的最大宽度",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "portalMaxWidth",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
-        "name": "transform",
-        "type": "XToCssPixelValue })",
+        "name": "portalMinHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "弹框的最小高度",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "portalMinHeight",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
-        "name": "transform",
-        "type": "XToCssPixelValue })",
+        "name": "portalMaxHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "弹框的最大高度",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "portalMaxHeight",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
-        "name": "transform",
-        "type": "XToNumber })",
+        "name": "hoverDelay",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "hover 延迟触发时间，只有 trigger 为 'hover' 生效",
+        "default": "200",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToNumber"
+      },
+      {
+        "name": "activatedId",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "当前激活的菜单",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "transform",
-        "propType": "hoverDelay",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "number>()",
-        "type": "activatedId",
-        "label": "当前激活的菜单",
-        "default": "model<string | number>()",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "number>()",
-        "propType": "activatedId",
-        "example": ""
-      },
-      {
-        "name": "'medium')",
-        "type": "size",
+        "name": "size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
         "label": "尺寸",
-        "default": "input<XSize>(this.config?.size ?? 'medium')",
-        "withConfig": false,
+        "default": "'medium'",
+        "withConfig": true,
         "description": "",
-        "decorator": [],
-        "attr": "'medium')",
-        "propType": "size",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "output<XDropdownNode>()",
-        "type": "nodeClick",
+        "name": "nodeClick",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "节点点击事件",
-        "default": "output<XDropdownNode>()",
+        "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [],
-        "attr": "output<XDropdownNode>()",
-        "propType": "nodeClick",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XDropdownProperty",
@@ -9525,28 +8970,28 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [
       {
-        "name": "input<XTemplate>(this.config.img)",
-        "type": "img",
+        "name": "img",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "图片地址或自定义模板",
-        "default": "input<XTemplate>(this.config?.img!)",
-        "withConfig": false,
+        "default": "this.config?.img!",
+        "withConfig": true,
         "description": "",
-        "decorator": [],
-        "attr": "input<XTemplate>(this.config.img)",
-        "propType": "img",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "input<XTemplate>(this.config.content)",
-        "type": "content",
+        "name": "content",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "内容或自定义模板",
-        "default": "input<XTemplate>(this.config?.content!)",
-        "withConfig": false,
+        "default": "this.config?.content!",
+        "withConfig": true,
         "description": "",
-        "decorator": [],
-        "attr": "input<XTemplate>(this.config.content)",
-        "propType": "content",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XEmptyProperty",
@@ -11912,15 +11357,15 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "override  labelWidth",
-        "type": "string",
-        "toType": "",
-        "inputType": "InputSignal<string>",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "标签宽度",
         "default": "''",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": ""
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "override  labelAlign",
@@ -12321,412 +11766,330 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "min",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "最小值",
         "default": "Number.MIN_SAFE_INTEGER",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "min",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "max",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "最大值",
         "default": "Number.MAX_SAFE_INTEGER",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "max",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "step",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "步数",
         "default": "1",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "step",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "debounce",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "按住后步进速度",
         "default": "40",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "debounce",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "precision",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "精度",
         "default": "0",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "precision",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "bordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示边框",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "bordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "formatter",
-        "type": "(value: number) => XNumber",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "数字格式化",
-        "default": "",
+        "default": "value: number",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "formatter",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "禁用",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "required",
-        "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "activeChange",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XInputNumberProperty",
-    "extends": "XControlValueAccessor<any>",
-    "implements": "XInputNumberOption"
+    "extends": "XFormControlFunction(X_INPUT_NUMBER_CONFIG_NAME)"
   },
   "XRowPrefix": {
     "type": "const",
@@ -13039,444 +12402,366 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "data",
         "type": "XData<XListNode>",
+        "toType": "",
+        "inputType": "InputSignal<XData<XListNode>>",
         "label": "列表数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "data",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "multiple",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "多选个数，设置为0，不限制选择个数",
         "default": "1",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "multiple",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "selectAll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "多选添加全选功能，适用于 multiple=0",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "selectAll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "selectAllText",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "全选的文字",
         "default": "'全选'",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME)"
-        ],
-        "attr": "selectAllText",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "checked",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "选中",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "checked",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "drag",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "拖动",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "drag",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "objectArray",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "当开启多选的时候，ngModel 的值为对象数组",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "objectArray",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "nodeTpl",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "节点模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "nodeTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "header",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "列表头部",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "header",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "footer",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "列表底部",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "footer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "scrollElement",
         "type": "HTMLElement",
+        "toType": "",
+        "inputType": "InputSignal<HTMLElement>",
         "label": "滚动区域元素",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "scrollElement",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "loadMore",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "加载更多",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "loadMore",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "loadMoreText",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "加载更多的文字",
         "default": "'加载更多'",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME)"
-        ],
-        "attr": "loadMoreText",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "loadingMoreText",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "正在加载中的文字",
         "default": "'正在加载中'",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME)"
-        ],
-        "attr": "loadingMoreText",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "virtualScroll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "开启虚拟滚动，不支持节点拖动功能",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME)",
-          "@XInputBoolean()"
-        ],
-        "attr": "virtualScroll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "scrollHeight",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "虚拟滚动高度, 实际会去掉头尾、全选、更多的高度",
-        "default": "",
-        "withConfig": false,
+        "default": "400",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XNumber>(X_CONFIG_NAME,400)",
-          "@XInputNumber()"
-        ],
-        "attr": "scrollHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "heightAdaption",
         "type": "ElementRef<HTMLElement> | HTMLElement",
+        "toType": "",
+        "inputType": "InputSignal<ElementRef<HTMLElement> | HTMLElement>",
         "label": "虚拟滚动高度自适应指定元素",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "heightAdaption",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "minBufferPx",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数",
         "default": "100",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "minBufferPx",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "maxBufferPx",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "渲染新数据缓冲区的像素，对应 cdk scroll 中的参数",
         "default": "200",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "maxBufferPx",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "keywordText",
         "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
         "label": "关键字高亮",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "keywordText",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "caseSensitive",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "匹配关键字区分大小写",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "caseSensitive",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "inPortal",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "在弹框中选择时的样式，根据尺寸来决定",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "inPortal",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "onSelectAll",
-        "type": "boolean",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Full event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "onSelectAll",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeMouseenter",
-        "type": "XListNode",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "节点 mouseenter 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "nodeMouseenter",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeMouseleave",
-        "type": "XListNode",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "节点 mouseleave 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "nodeMouseleave",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeClick",
-        "type": "XListNode",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "节点点击事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "nodeClick",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dropListDropped",
-        "type": "XListDragDrop",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "拖动结束事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "dropListDropped",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "keyManagerTabOut",
-        "type": "void",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Tab out 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "keyManagerTabOut",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "keyManagerChange",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Tab out 事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "keyManagerChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XListProperty",
-    "extends": "XControlValueAccessor<any>"
+    "extends": "XFormControlFunction(X_LIST_CONFIG_NAME)"
   },
   "XListNode": {
     "type": "interface",
@@ -13592,235 +12877,182 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "node",
         "type": "XListNode",
+        "toType": "",
+        "inputType": "InputSignal<XListNode>",
         "label": "节点参数",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "node",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "checked",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "选中",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "checked",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "nodeTpl",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "节点模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "nodeTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "selected",
-        "type": "boolean",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "选中",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "selected",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "disabled",
-        "type": "boolean",
+        "name": "forbidden",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "禁用",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "active",
-        "type": "boolean",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "激活",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "openPortal",
-        "type": "boolean",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "打开弹框",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "openPortal",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "optionClass",
-        "type": "(node: XListNode) => { [className: string]: boolean }",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "自定义数据对象样式",
-        "default": "",
+        "default": "node: XListNode",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "optionClass",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "icon",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "图标",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "icon",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "divided",
-        "type": "boolean",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "分割线",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "divided",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "label",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "标签",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "leaf",
-        "type": "boolean",
-        "label": "有子节点",
-        "default": "",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "叶子节点",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "leaf",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "size",
         "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
         "label": "尺寸",
-        "default": "",
+        "default": "'medium'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "keywordText",
         "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
         "label": "关键字高亮",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "keywordText",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "caseSensitive",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "匹配关键字区分大小写",
-        "default": "",
+        "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "caseSensitive",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "activeChange",
-        "type": "boolean",
-        "label": "有子节点",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       }
     ],
     "name": "XListOptionProperty"
@@ -16017,441 +15249,354 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "data",
         "type": "XData<XRadioNode>",
+        "toType": "",
+        "inputType": "InputSignal<XData<XRadioNode>>",
         "label": "单选框数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "data",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "button",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "按钮样式",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "button",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "icon",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "图标样式",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "icon",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "tag",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "tag 标签样式",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "tag",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "type",
         "type": "XButtonType",
+        "toType": "",
+        "inputType": "InputSignal<XButtonType>",
         "label": "按钮/图标/ tag 标签样式时生效",
         "default": "'initial'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tagBordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "tag 标签边框",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "tagBordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "tagDark",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "tag 标签深色主题",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "tagDark",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "allowCancel",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "允许取消选中",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "allowCancel",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "vertical",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "垂直布局，不支持 button 和 icon 样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "vertical",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "禁用",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "required",
-        "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "activeChange",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XRadioProperty",
-    "extends": "XControlValueAccessor<any>",
-    "implements": "XRadioOption"
+    "extends": "XFormControlFunction(X_RADIO_CONFIG_NAME)"
   },
   "XRadioNode": {
     "type": "interface",
@@ -16519,351 +15664,282 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "count",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "评分个数",
         "default": "5",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "count",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "half",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "半星模式",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "half",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "color",
         "type": "XRateColor",
+        "toType": "",
+        "inputType": "InputSignal<XRateColor>",
         "label": "颜色",
-        "default": "",
-        "withConfig": false,
+        "default": "''",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XRateColor>(X_CONFIG_NAME)"
-        ],
-        "attr": "color",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "customTemp",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "自定义模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "customTemp",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "禁用",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "required",
-        "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "activeChange",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XRateProperty",
-    "extends": "XControlValueAccessor<any>",
-    "implements": "XRateOption"
+    "extends": "XFormControlFunction(X_RATE_CONFIG_NAME)"
   },
   "XRateColor": {
     "type": "type",
@@ -16963,565 +16039,450 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "data",
         "type": "XData<XSelectNode>",
+        "toType": "XData<XSelectNode>",
+        "inputType": "InputSignalWithTransform<XData<XSelectNode>, XData<XSelectNode>>",
         "label": "节点数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "data",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToDataConvert"
       },
       {
         "name": "clearable",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "清除按钮",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "clearable",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "async",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "异步加载",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "async",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "placement",
         "type": "XPlacement",
+        "toType": "",
+        "inputType": "InputSignal<XPlacement>",
         "label": "展示方位",
-        "default": "",
-        "withConfig": false,
+        "default": "'bottom'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XPlacement>(X_CONFIG_NAME,'bottom')"
-        ],
-        "attr": "placement",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "multiple",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "多选功能",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "multiple",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "selectAll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "多选添加全选功能",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "selectAll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "selectAllText",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "全选的文字",
-        "default": "",
-        "withConfig": false,
+        "default": "''",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME)"
-        ],
-        "attr": "selectAllText",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeTpl",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "节点模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "nodeTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "bordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示边框",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "bordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "portalMaxHeight",
-        "type": "string",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "下拉框的最大高度",
-        "default": "",
-        "withConfig": false,
+        "default": "'12rem'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME,'12rem')"
-        ],
-        "attr": "portalMaxHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "portalWidth",
-        "type": "string",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "下拉框的宽度",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "portalWidth",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "search",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入搜索",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
-        ],
-        "attr": "search",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "caseSensitive",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "匹配区分大小写",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "caseSensitive",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "debounceTime",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "输入延迟执行时间，ms",
-        "default": "",
-        "withConfig": false,
+        "default": "200",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_CONFIG_NAME,200)"
-        ],
-        "attr": "debounceTime",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "maxTagCount",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "多选时显示的选中数据个数，其它的在更多中显示，默认全部显示",
-        "default": "",
-        "withConfig": false,
+        "default": "显示所有",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()",
-          "@XWithConfig<XNumber>(X_CONFIG_NAME)"
-        ],
-        "attr": "maxTagCount",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "maxTagContent",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "多选时显示的个数超过指定个数，显示的文字模版",
         "default": "'更多{{surplus}}个选中'",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XTemplate>(X_CONFIG_NAME)"
-        ],
-        "attr": "maxTagContent",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "virtualScroll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "开启虚拟滚动",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME)",
-          "@XInputBoolean()"
-        ],
-        "attr": "virtualScroll",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
-        "type": "XBoolean",
-        "label": "禁用",
         "default": "false",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "required",
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "activeChange",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XSelectProperty",
-    "extends": "XControlValueAccessor<any>"
+    "extends": "XFormControlFunction(X_SELECT_CONFIG_NAME)"
   },
   "XSelectPortalPrefix": {
     "type": "const",
@@ -17545,6 +16506,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "selector": "x-skeleton",
     "decorator": "component",
     "value": "'x-skeleton'"
+  },
+  "XSkeletonData": {
+    "type": "const",
+    "label": "骨架默认数据",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XSkeletonData",
+    "value": "[{ cols: [{ width: '10rem', type: 'title' }] },{ cols: [{}] },{ cols: [{}] },{ cols: [{ span: 16 }] }]"
   },
   "XSkeletonProperty": {
     "type": "class",
@@ -18018,495 +16988,402 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "min",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "最小值",
         "default": "0",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "min",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "max",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "最大值",
         "default": "100",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "max",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "step",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "步数",
         "default": "1",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "step",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "precision",
         "type": "XNumber",
+        "toType": "number | undefined",
+        "inputType": "InputSignalWithTransform<number | undefined, XNumber>",
         "label": "精度，默认根据步数来计算",
-        "default": "",
+        "default": "undefined",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "precision",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "showTooltip",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示 tooltip 提示",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "showTooltip",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "reverse",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "反向",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "reverse",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "vertical",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "垂直",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "vertical",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "range",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "范围",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "range",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "customButton",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "自定义滑块",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "customButton",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "marks",
         "type": "XSliderSelectMark[]",
+        "toType": "",
+        "inputType": "InputSignal<XSliderSelectMark[]>",
         "label": "刻度标记，key 为实际数字，在 [min,max] 内，可通过 style 设置样式",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "marks",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tooltipCustom",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "自定义 tooltip",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tooltipCustom",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "禁用",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "required",
-        "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "activeChange",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dragStartEmit",
-        "type": "CdkDragStart",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "开始拖动的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "dragStartEmit",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dragMoveEmit",
-        "type": "CdkDragMove",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "按住移动中的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "dragMoveEmit",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dragEndEmit",
-        "type": "CdkDragEnd",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "移动结束的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "dragEndEmit",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XSliderSelectProperty",
-    "extends": "XControlValueAccessor<number"
+    "extends": "XFormControlFunction(X_SLIDER_SELECT_CONFIG_NAME)"
   },
   "XSliderSelectMark": {
     "type": "interface",
@@ -18884,365 +17761,294 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "loading",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示加载中",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "loading",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "manual",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "手动控制",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "manual",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "checkedText",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "显示文字或者自定义模版（开启状态）",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "checkedText",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "unCheckedText",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "显示文字或者自定义模版（关闭状态）",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "unCheckedText",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "禁用",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "required",
-        "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "activeChange",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XSwitchProperty",
-    "extends": "XControlValueAccessor<boolean>",
-    "implements": "XSwitchOption"
+    "extends": "XFormControlFunction(X_SWITCH_CONFIG_NAME)"
   },
   "XTablePrefix": {
     "type": "const",
@@ -21874,367 +20680,318 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "clearable",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "清除按钮",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "clearable",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "icon",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "图标",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "icon",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "iconLayout",
         "type": "XTextareaIconLayoutType",
+        "toType": "",
+        "inputType": "InputSignal<XTextareaIconLayoutType>",
         "label": "图标布局方式",
         "default": "'right'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XTextareaIconLayoutType>(X_CONFIG_NAME,'right')"
-        ],
-        "attr": "iconLayout",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "iconSpin",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "图标动画",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "iconSpin",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "maxlength",
         "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
         "label": "输入最大长度",
-        "default": "",
+        "default": "null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "maxlength",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "height",
-        "type": "string",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "高度",
         "default": "'6rem'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "height",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "禁用",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "required",
-        "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "activeChange",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       },
       {
         "name": "clearEmit",
-        "type": "any",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "清除按钮的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "clearEmit",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XTextareaProperty",
-    "extends": "XControlValueAccessor<any>",
-    "implements": "XTextareaOption"
+    "extends": "XFormControlFunction(X_TEXTAREA_CONFIG_NAME)"
   },
   "XThemePrefix": {
     "type": "const",
@@ -22265,108 +21022,78 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "prefix",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "参数前缀",
         "default": "'--x-'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "prefix",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "amounts",
-        "type": "XNumber[]",
+        "type": "number[]",
+        "toType": "",
+        "inputType": "InputSignal<number[]>",
         "label": "混合的颜色占比",
-        "default": "",
-        "withConfig": false,
+        "default": "XThemeAmounts",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XNumber[]>(X_CONFIG_NAME,XThemeAmounts)"
-        ],
-        "attr": "amounts",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "showDark",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示暗黑模式的设置",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "showDark",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "showDetail",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "详细设置",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "showDetail",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "dark",
-        "type": "XBoolean",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "暗黑模式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "dark",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "defaultClick",
-        "type": "XColorsTheme",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "初始化默认值事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "defaultClick",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "darkChange",
-        "type": "XBoolean",
-        "label": "暗黑模式改变事件",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "darkChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XThemeProperty",
-    "extends": "XControlValueAccessor<XColorsTheme>"
+    "extends": "XFormControlFunction(X_THEME_CONFIG_NAME)"
   },
   "XTimeAgoPrefix": {
     "type": "const",
@@ -22399,473 +21126,390 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "type",
         "type": "XTimePickerType",
+        "toType": "",
+        "inputType": "InputSignal<XTimePickerType>",
         "label": "时间类型",
         "default": "'time'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "format",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "格式化",
-        "default": "",
-        "withConfig": false,
+        "default": "'HH:mm:ss'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME,'HH:mm:ss')"
-        ],
-        "attr": "format",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "placement",
         "type": "XCorner",
+        "toType": "",
+        "inputType": "InputSignal<XCorner>",
         "label": "展示方位",
-        "default": "",
-        "withConfig": false,
+        "default": "'bottom-start'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XCorner>(X_CONFIG_NAME,'bottom-start')"
-        ],
-        "attr": "placement",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "use12Hours",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "使用12小时制",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
-        ],
-        "attr": "use12Hours",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "bordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "显示边框",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "bordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "hourStep",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "小时选项间隔",
-        "default": "",
-        "withConfig": false,
+        "default": "1",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()",
-          "@XWithConfig<XNumber>(X_CONFIG_NAME,1)"
-        ],
-        "attr": "hourStep",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "minuteStep",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "分钟选项间隔",
-        "default": "",
-        "withConfig": false,
+        "default": "1",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()",
-          "@XWithConfig<XNumber>(X_CONFIG_NAME,1)"
-        ],
-        "attr": "minuteStep",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "secondStep",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "秒选项间隔",
-        "default": "",
-        "withConfig": false,
+        "default": "1",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()",
-          "@XWithConfig<XNumber>(X_CONFIG_NAME,1)"
-        ],
-        "attr": "secondStep",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "preset",
         "type": "XData<XTimePickerPreset>",
+        "toType": "",
+        "inputType": "InputSignal<XData<XTimePickerPreset>>",
         "label": "快捷选择按钮，支持此刻以及自定义",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "preset",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "disabledTime",
         "type": "XTimePickerDisabledTime",
+        "toType": "",
+        "inputType": "InputSignal<XTimePickerDisabledTime>",
         "label": "禁用的时间",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "disabledTime",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "label",
-        "type": "string",
-        "label": "标签",
-        "default": "''",
-        "withConfig": false,
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "labelWidth",
-        "type": "string",
-        "label": "标签宽度",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "labelAlign",
-        "type": "XAlign",
-        "label": "标签文字对齐方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "justify",
-        "type": "XJustify",
-        "label": "flex 布局下的子元素水平排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "align",
-        "type": "XAlign",
-        "label": "flex 布局下的子元素垂直排列方式",
-        "default": "'start'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "direction",
-        "type": "XDirection",
-        "label": "flex 布局下的子元素排列方向",
-        "default": "'column'",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "disabled",
+        "name": "override  pointer",
         "type": "XBoolean",
-        "label": "禁用",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "required",
-        "type": "XBoolean",
-        "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pattern",
-        "type": "any",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "active",
-        "type": "XBoolean",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "activeChange",
+        "name": "validator",
         "type": "XBoolean",
-        "label": "激活状态事件",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "初始启用验证，在输入值都自动开启",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  label",
+        "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
+        "label": "标签",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "标签宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "override  labelAlign",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "标签文字对齐方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  justify",
+        "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  align",
+        "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  direction",
+        "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "'column'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  placeholder",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  valueTpl",
+        "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "label": "值模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  before",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  after",
+        "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pattern",
+        "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  message",
+        "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
+        "label": "验证不通过提示文字",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "label": "激活状态",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
+        "label": "输入验证函数",
+        "default": "value: any",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeEmit",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "节点点击的事件",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "nodeEmit",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XTimePickerProperty",
-    "extends": "XControlValueAccessor<any>"
+    "extends": "XFormControlFunction(X_TIME_PICKER_CONFIG_NAME)"
   },
   "XTimePickerType": {
     "type": "type",
@@ -23323,254 +21967,210 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "data",
         "type": "XData<XTransferNode>",
+        "toType": "",
+        "inputType": "InputSignal<XData<XTransferNode>>",
         "label": "数据对象",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "data",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "type",
         "type": "XTransferType",
+        "toType": "",
+        "inputType": "InputSignal<XTransferType>",
         "label": "选择的类型",
-        "default": "",
-        "withConfig": false,
+        "default": "'list'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XTransferType>(X_CONFIG_NAME,'list')"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "titles",
-        "type": "string[]",
+        "type": "string[] | null",
+        "toType": "",
+        "inputType": "InputSignal<string[] | null>",
         "label": "标题",
         "default": "['List', 'Selected']",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string[]>(X_CONFIG_NAME)"
-        ],
-        "attr": "titles",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "listStyle",
-        "type": "XTransferListStyle",
+        "type": "XTransferListStyle | null",
+        "toType": "",
+        "inputType": "InputSignal<XTransferListStyle | null>",
         "label": "穿梭框样式，使用方式与 ngStyle 相同",
-        "default": "",
-        "withConfig": false,
+        "default": "null",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XTransferListStyle>(X_CONFIG_NAME)"
-        ],
-        "attr": "listStyle",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "hiddenCheckAll",
         "type": "boolean[]",
+        "toType": "",
+        "inputType": "InputSignal<boolean[]>",
         "label": "隐藏全选复选框",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "hiddenCheckAll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "drag",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "是否能拖动, type",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "drag",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "search",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "是否显示搜索。type 为 'table'，需要设置 tableHeadSearchTpl 和 tableQuery 来配合使用",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "search",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "tableHeadSearchTpl",
         "type": "XTemplate[]",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate[]>",
         "label": "表格列头搜索自定义模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableHeadSearchTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeTpl",
         "type": "TemplateRef<void>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<void>>",
         "label": "行数据自定义模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "nodeTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "titleTpl",
         "type": "TemplateRef<void>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<void>>",
         "label": "标题自定义模板",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "titleTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "footerTpl",
         "type": "TemplateRef<void>[]",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<void>[]>",
         "label": "底部自定义模版",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "footerTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableColumns",
         "type": "XTableColumn[]",
+        "toType": "",
+        "inputType": "InputSignal<XTableColumn[]>",
         "label": "表格列集合",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableColumns",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableIndex",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "表格页码",
-        "default": "",
+        "default": "1",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_CONFIG_NAME,1)"
-        ],
-        "attr": "tableIndex",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableSize",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "表每页数据条数",
-        "default": "",
+        "default": "10",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_CONFIG_NAME,10)"
-        ],
-        "attr": "tableSize",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableQuery",
         "type": "XQuery",
+        "toType": "",
+        "inputType": "InputSignal<XQuery>",
         "label": "表格查询条件",
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableQuery",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableTotal",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "表格数据总条数",
         "default": "0",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableTotal",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "inverse",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "反选操作",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "inverse",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       }
     ],
     "name": "XTransferProperty",
-    "extends": "XControlValueAccessor<any[]>"
+    "extends": "XFormControlFunction(X_TRANSFER_CONFIG_NAME)"
   },
   "XTransferNode": {
     "type": "interface",

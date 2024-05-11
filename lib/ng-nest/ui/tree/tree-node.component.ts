@@ -56,7 +56,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   @HostBinding('class.x-tree-node') rootClass = true;
   private document = inject(DOCUMENT);
   fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
-  private _unSubject = new Subject<void>();
+  private unSubject = new Subject<void>();
 
   @HostListener('mouseenter', ['$event']) onMouseenter(event: MouseEvent) {
     this.nodeMouseenter.emit({ event: event, node: this.node(), ele: this.elementRef });
@@ -74,14 +74,14 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   });
 
   isChildrenLast = computed(() => {
-    let parent = this.tree.nodes.find((x: XTreeNode) => x.id === this.pid());
+    let parent = this.tree.nodes().find((x: XTreeNode) => x.id === this.pid());
     if (!parent || !parent.children) return false;
     const index = parent.children.indexOf(this.node());
     return index + 1 === parent.children.length;
   });
 
   isParentLast = computed(() => {
-    let parents = this.treeService.getParents(this.tree.nodes, this.node());
+    let parents = this.treeService.getParents(this.tree.nodes(), this.node());
     if (parents.length <= 1) return [];
     const res: boolean[] = [];
     parents.reduce((pre: XTreeNode, curr: XTreeNode) => {
@@ -154,8 +154,8 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   }
 
   ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.complete();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   onActivate(event: Event, node: XTreeNode) {
@@ -227,7 +227,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     this.node().indeterminate = this.checked();
     this.node().children && this.setChildrenCheckbox(this.checked()!);
     const setParent = (node: XTreeNode) => {
-      let parent = this.tree.nodes.find((x: XTreeNode) => x.id === node.pid);
+      let parent = this.tree.nodes().find((x: XTreeNode) => x.id === node.pid);
       if (!parent || XIsEmpty(parent.children)) return;
       let checkedList = parent.children?.filter((y: XTreeNode) => y.checked);
       let indeterminateList = parent.children?.filter((y: XTreeNode) => y.indeterminate);

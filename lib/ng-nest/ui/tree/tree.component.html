@@ -13,12 +13,12 @@
         cdkDropList
         [cdkDropListDisabled]="!drag()"
         [cdkDropListSortingDisabled]="true"
-        [hidden]="isEmpty"
-        [cdkDropListData]="nodes"
+        [hidden]="isEmpty()"
+        [cdkDropListData]="nodes()"
         [cdkDropListEnterPredicate]="predicate"
       >
         <x-tree-node
-          *cdkVirtualFor="let node of nodes; templateCacheSize: 0; trackBy: trackByItem"
+          *cdkVirtualFor="let node of nodes(); templateCacheSize: 0; trackBy: trackByItem"
           cdkDrag
           [cdkDragDisabled]="node.disabled"
           (cdkDragStarted)="cdkDragStarted($event)"
@@ -55,11 +55,11 @@
       cdkDropList
       [cdkDropListDisabled]="!drag()"
       [cdkDropListSortingDisabled]="true"
-      [hidden]="isEmpty"
-      [cdkDropListData]="nodes"
+      [hidden]="isEmpty()"
+      [cdkDropListData]="nodes()"
       [cdkDropListEnterPredicate]="predicate"
     >
-      @for (node of nodes; track node) {
+      @for (node of nodes(); track node) {
         <x-tree-node
           cdkDrag
           [cdkDragDisabled]="node.disabled"
@@ -70,7 +70,7 @@
           (nodeMouseenter)="nodeMouseenter($event)"
           [node]="node"
           [lazy]="lazy()"
-          [lazyData]="data"
+          [lazyData]="data()"
           [nodeHeight]="nodeHeight()"
           [nodeNowrap]="nodeNowrap()"
           [nodeAlignItems]="nodeAlignItems()"

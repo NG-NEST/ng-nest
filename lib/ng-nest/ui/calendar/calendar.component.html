@@ -7,8 +7,7 @@
     </div>
     <div class="x-calendar-header-right">
       <x-date-picker
-        [ngModel]="datetime()"
-        (ngModelChange)="datetime.set($event)"
+        [(ngModel)]="datetime"
         [type]="modelSignal()"
         showHeader="false"
         [clearable]="false"
@@ -21,12 +20,7 @@
           modelSignal() === 'month' ? locale().nextMonth : locale().nextYear
         }}</x-button>
       </x-buttons>
-      <x-radio
-        [data]="radioData()"
-        [ngModel]="modelSignal()"
-        (ngModelChange)="modelSignal.set($event)"
-        button
-      ></x-radio>
+      <x-radio [data]="radioData()" [(ngModel)]="modelSignal" button></x-radio>
     </div>
   </div>
   <div class="x-calendar-body">

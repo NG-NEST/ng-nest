@@ -1,25 +1,25 @@
 <div
   #switch
   class="x-switch"
-  [ngClass]="classMap"
-  [class.x-switch-loading]="loading"
-  [class.x-flex]="justify || align || direction"
-  [class.x-checked]="value"
-  [class.x-disabled]="disabled"
+  [ngClass]="classMapSignal()"
+  [class.x-switch-loading]="loading()"
+  [class.x-flex]="justify() || align() || direction()"
+  [class.x-checked]="value()"
+  [class.x-disabled]="disabled()"
 >
-  @if (label) {
-    <label [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  @if (label()) {
+    <label [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{ label() }}</label>
   }
   <div class="x-switch-row">
     <div class="x-switch-slider" (click)="switchClick()">
       <div class="x-switch-handle">
-        <div class="x-switch-spinner" [x-loading]="loading" [size]="size"></div>
+        <div class="x-switch-spinner" [x-loading]="loading()" [size]="size()"></div>
       </div>
       <div class="x-switch-text">
-        @if (value) {
-          <ng-container *xOutlet="checkedText">{{ checkedText }}</ng-container>
+        @if (value()) {
+          <ng-container *xOutlet="checkedText()">{{ checkedText() }}</ng-container>
         } @else {
-          <ng-container *xOutlet="unCheckedText">{{ unCheckedText }}</ng-container>
+          <ng-container *xOutlet="unCheckedText()">{{ unCheckedText() }}</ng-container>
         }
       </div>
     </div>
