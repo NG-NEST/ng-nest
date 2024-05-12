@@ -686,6 +686,7 @@ export interface XTreeSelectConfig {
   caseSensitive?: boolean;
   debounceTime?: number;
   maxTagCount?: number;
+  maxTagContent?: XTemplate;
   virtualScroll?: boolean;
   showPath?: boolean;
   separator?: string;

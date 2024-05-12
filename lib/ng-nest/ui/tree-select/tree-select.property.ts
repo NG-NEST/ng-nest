@@ -1,21 +1,18 @@
-import {
+import { XToDataConvert, XToBoolean, XToNumber, XToCssPixelValue } from '@ng-nest/ui/core';
+import { Component, TemplateRef, input, model } from '@angular/core';
+import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
+import type {
   XParentIdentityProperty,
-  XDataConvert,
-  XInputBoolean,
   XData,
   XBoolean,
-  XWithConfig,
   XPositionTopBottom,
   XSize,
-  XInputNumber,
   XNumber,
   XTemplate,
   XDirection,
   XAlign,
   XJustify
 } from '@ng-nest/ui/core';
-import { Input, Component, TemplateRef, Output, EventEmitter } from '@angular/core';
-import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Tree Select
@@ -23,220 +20,218 @@ import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XTreeSelectPrefix = 'x-tree-select';
-const X_CONFIG_NAME = 'treeSelect';
+const X_TREE_SELECT_CONFIG_NAME = 'treeSelect';
 
 /**
  * Tree Select Property
  */
 @Component({ selector: `${XTreeSelectPrefix}-property`, template: '' })
-export class XTreeSelectProperty extends XControlValueAccessor<any> {
+export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONFIG_NAME) {
   /**
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  @Input() @XDataConvert() data: XData<XTreeSelectNode> = [];
+  readonly data = input<XData<XTreeSelectNode>, XData<XTreeSelectNode>>([], { transform: XToDataConvert });
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() clearable?: XBoolean;
+  readonly clearable = input<boolean, XBoolean>(this.config?.clearable ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 异步加载
    * @en_US Asynchronous loading
    */
-  @Input() @XInputBoolean() async?: XBoolean;
+  readonly async = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  @Input() @XWithConfig<XPositionTopBottom>(X_CONFIG_NAME, 'bottom') placement?: XPositionTopBottom;
+  readonly placement = input<XPositionTopBottom>(this.config?.placement ?? 'bottom');
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice
    */
-  @Input() @XInputBoolean() multiple?: XBoolean;
+  readonly multiple = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 多选添加全选功能
    * @en_US Multi choice to add full selection function
    */
-  @Input() @XInputBoolean() selectAll?: XBoolean;
+  readonly selectAll = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 全选的文字
    * @en_US Selected all text
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) selectAllText?: string;
+  readonly selectAllText = input<string>(this.config?.selectAllText ?? '');
   /**
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl?: TemplateRef<any>;
-  /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
+  readonly nodeTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 默认展开的层级
    * @en_US Default expanded level
    */
-  @Input() @XInputNumber() expandedLevel: XNumber = -1;
+  readonly expandedLevel = input<number, XNumber>(-1, { transform: XToNumber });
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 下拉框的最大高度
    * @en_US The biggest height of the drop-down box
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') portalMaxHeight!: string;
+  readonly portalMaxHeight = input<string, XNumber>(this.config?.portalMaxHeight ?? '12rem', {
+    transform: XToCssPixelValue
+  });
   /**
    * @zh_CN 输入搜索
    * @en_US Input search
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) search!: XBoolean;
+  readonly search = input<boolean, XBoolean>(this.config?.search ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 匹配区分大小写
    * @en_US Case-sensitive
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
+  readonly caseSensitive = input<boolean, XBoolean>(this.config?.caseSensitive ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 输入延迟执行时间，ms
    * @en_US Enter a delay execution time, ms
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 200) debounceTime?: number;
+  readonly debounceTime = input<number, XNumber>(this.config?.debounceTime ?? 200, { transform: XToNumber });
   /**
    * @zh_CN 多选时显示的选中数据个数，其它的在更多中显示，默认全部显示
    * @en_US Display the number of data in the maximum election, and the others are displayed in more of them
    */
-  @Input() @XInputNumber() @XWithConfig<XNumber>(X_CONFIG_NAME) maxTagCount?: XNumber;
+  readonly maxTagCount = input<number, XNumber>(this.config?.maxTagCount ?? -1, {
+    transform: XToNumber
+  });
   /**
    * @zh_CN 多选时显示的个数超过指定个数，显示的文字模版
    * @en_US The number displayed when multiple choices exceeds the specified number, the displayed text template displayed
    * @default '更多{{surplus}}个选中'
    */
-  @Input() @XWithConfig<XTemplate>(X_CONFIG_NAME) maxTagContent?: XTemplate;
+  readonly maxTagContent = input<XTemplate | undefined>(this.config?.maxTagContent ?? undefined);
   /**
    * @zh_CN 开启虚拟滚动
    * @en_US Turn on virtual scrolling
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
+  readonly virtualScroll = input<boolean, XBoolean>(this.config?.virtualScroll ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 显示的值展示路径 AA > BB > CC
    * @en_US Display value display path. AA > BB > CC
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() showPath!: XBoolean;
+  readonly showPath = input<boolean, XBoolean>(this.config?.showPath ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 路径分隔符
    * @en_US Path separator
-   * @default ' / '
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) separator: string = ' / ';
+  readonly separator = input<string>(this.config?.separator ?? ' / ');
   /**
    * @zh_CN 只能选择叶子节点
    * @en_US Only leaf nodes can be selected
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) onlyLeaf!: XBoolean;
+  readonly onlyLeaf = input<boolean, XBoolean>(this.config?.onlyLeaf ?? false, { transform: XToBoolean });
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  override readonly size = input<XSize>(this.config?.size ?? 'medium');
+  /**
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
+   */
+  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 标签
    * @en_US Label
    */
-  @Input() override label: string = '';
+  override readonly label = input<string>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  @Input() override labelWidth: string = '';
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method
    */
-  @Input() override labelAlign: XAlign = 'start';
+  override readonly labelAlign = input<XAlign>('start');
   /**
    * @zh_CN flex 布局下的子元素水平排列方式
    * @en_US The level of sub-element level arrangement under flex layout
    */
-  @Input() override justify: XJustify = 'start';
+  override readonly justify = input<XJustify>('start');
   /**
    * @zh_CN flex 布局下的子元素垂直排列方式
    * @en_US sub-element vertical arrangement method under flex layout
    */
-  @Input() override align: XAlign = 'start';
+  override readonly align = input<XAlign>('start');
   /**
    * @zh_CN flex 布局下的子元素排列方向
    * @en_US The direction of the sub-element arrangement under flex layout
    */
-  @Input() override direction: XDirection = 'column';
+  override readonly direction = input<XDirection>('column');
   /**
    * @zh_CN 输入提示信息
    * @en_US Enter prompt information
    */
-  @Input() override placeholder: string | string[] = '';
+  override readonly placeholder = input<string | string[]>('');
   /**
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  @Input() @XInputBoolean() override disabled: XBoolean = false;
+  override readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 必填
    * @en_US Required
    */
-  @Input() @XInputBoolean() override required: XBoolean = false;
+  override readonly required = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 只读
    * @en_US Readonly
    */
-  @Input() @XInputBoolean() override readonly: XBoolean = false;
+  override readonly readonly = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 值模板
    * @en_US Node template
    */
-  @Input() override valueTpl?: TemplateRef<any>;
+  override readonly valueTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 值模板参数
    * @en_US Node template
    */
-  @Input() override valueTplContext: any;
+  override readonly valueTplContext = input();
   /**
    * @zh_CN 前置标签
    * @en_US Before label
    */
-  @Input() override before!: XTemplate;
+  override readonly before = input<XTemplate>();
   /**
    * @zh_CN 后置标签
    * @en_US After label
    */
-  @Input() override after!: XTemplate;
+  override readonly after = input<XTemplate>();
   /**
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
-  @Input() override pattern?: any;
+  override readonly pattern = input<any>();
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verify not pass the prompt text
    */
-  @Input() override message?: string | string[];
+  override readonly message = input<string | string[]>('');
   /**
    * @zh_CN 激活状态
    * @en_US Activation state
    */
-  @Input() @XInputBoolean() override active: XBoolean = false;
-  /**
-   * @zh_CN 输入框点击样式
-   * @en_US Enter box click style
-   */
-  @Input() @XInputBoolean() override pointer: XBoolean = false;
+  override readonly active = model<boolean>(false);
   /**
    * @zh_CN 输入验证函数
    * @en_US Enter the verification function
    */
-  @Input() override inputValidator!: (value: any) => boolean;
-  /**
-   * @zh_CN 激活状态事件
-   * @en_US Activation state event
-   */
-  @Output() override activeChange = new EventEmitter<XBoolean>();
+  override readonly inputValidator = input<(value: any) => boolean>();
 }
 
 /**

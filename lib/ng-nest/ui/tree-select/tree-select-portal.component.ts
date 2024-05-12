@@ -2,23 +2,25 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  OnInit,
-  OnDestroy,
   HostBinding,
   HostListener,
   TemplateRef,
-  ViewChild,
-  inject
+  inject,
+  model,
+  input,
+  viewChild,
+  computed,
+  output
 } from '@angular/core';
 import { XTreeSelectNode, XTreeSelectPortalPrefix } from './tree-select.property';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { XBoolean, XConnectBaseAnimation, XIsEmpty, XPositionTopBottom, XSize } from '@ng-nest/ui/core';
-import { map, takeUntil } from 'rxjs/operators';
+
+import { XConnectBaseAnimation, XIsEmpty, XPlacement, XSize } from '@ng-nest/ui/core';
+import { map } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XI18nService, XI18nTreeSelect } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nTreeSelect, zh_CN } from '@ng-nest/ui/i18n';
 import { XTreeComponent } from '@ng-nest/ui/tree';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTreeSelectPortalPrefix}`,
@@ -30,122 +32,58 @@ import { XEmptyComponent } from '@ng-nest/ui/empty';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XConnectBaseAnimation]
 })
-export class XTreeSelectPortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
+export class XTreeSelectPortalComponent {
+  @HostBinding('@x-connect-base-animation') public get getPlacement() {
+    return this.placement();
+  }
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    this.animating(false);
-    event.toState === 'void' && this.destroyPortal();
+    event.toState !== 'void' && this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
-    this.animating(true);
-  }
-
-  @ViewChild('tree') tree!: XTreeComponent;
-  // @ViewChild('list') list!: XListComponent;
-  get isEmpty() {
-    return XIsEmpty(this.data);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
+    event.toState !== 'void' && this.animating.emit(true);
   }
 
-  data!: XTreeSelectNode[];
-  value: any;
-  valueChange!: Subject<any>;
-  positionChange!: Subject<any>;
-  inputChange!: Subject<any>;
-  dataChange!: BehaviorSubject<XTreeSelectNode[]>;
-  animating!: Function;
-  activeChange!: Function;
-  destroyPortal!: Function;
-  closeSubject!: Subject<void>;
-  keydownSubject!: Subject<KeyboardEvent>;
-  searchSubject!: BehaviorSubject<any>;
-  nodeEmit!: Function;
-  selectAllEmit!: Function;
-  multiple!: XBoolean;
-  selectAll: boolean = false;
-  nodeTpl!: TemplateRef<any>;
-  show: boolean = false;
-  objectArray: boolean = false;
-  caseSensitive: boolean = true;
-  active: number = -1;
-  inputCom!: XInputComponent;
-  portalMaxHeight = '';
-  selectAllText!: string;
-  locale: XI18nTreeSelect = {};
-  search: boolean = false;
-  scrollNull = undefined;
-  virtualScroll!: XBoolean;
-  size!: XSize;
-  onlyLeaf!: XBoolean;
-  expandedLevel!: number;
-  keywordText!: string;
-  private _unSubject = new Subject<void>();
-
-  get getSelectAllText() {
-    return this.selectAllText || this.locale.selectAllText;
-  }
-
-  private cdr = inject(ChangeDetectorRef);
+  tree = viewChild.required<XTreeComponent>('tree');
   private i18n = inject(XI18nService);
 
-  ngOnInit(): void {
-    this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.value = x;
-      this.cdr.detectChanges();
-    });
-    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.placement = x;
-      this.cdr.detectChanges();
-    });
-    this.dataChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.data = x;
-      this.cdr.detectChanges();
-    });
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
-      // this.tree.setUnActive(this.active);
-    });
-    this.keydownSubject.pipe(takeUntil(this._unSubject)).subscribe((_x) => {
-      // this.tree.keydown(x);
-    });
-    this.inputChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.keywordText = x;
-    });
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.treeSelect as XI18nTreeSelect),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        this.cdr.markForCheck();
-      });
-  }
+  value = model<any>();
+  data = input<XTreeSelectNode[]>([]);
+  placement = input<XPlacement>('bottom');
+  multiple = input(false);
+  nodeTpl = input<TemplateRef<any>>();
+  inputCom = input<XInputComponent>();
+  portalMaxHeight = input<string>('');
+  objectArray = input<boolean>(false);
+  selectAll = input(false);
+  selectAllText = input<string>('');
+  caseSensitive = input<boolean>(true);
+  search = input<boolean>(false);
+  virtualScroll = input<boolean>(false);
+  keywordText = input<any>('');
+  size = input<XSize>();
+  onlyLeaf = input<boolean>(false);
+  expandedLevel = input<number>();
 
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
+  animating = output<boolean>();
+  nodeClick = output<{ node: XTreeSelectNode; value?: XTreeSelectNode[] | (string | number)[] }>();
+
+  isEmpty = computed(() => XIsEmpty(this.data()));
+
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.treeSelect as XI18nTreeSelect)), {
+    initialValue: zh_CN.treeSelect
+  });
+
+  getSelectAllText = computed(() => this.selectAllText() || this.locale().selectAllText);
 
   stopPropagation(event: Event): void {
     event.stopPropagation();
   }
 
-  nodeClick(node: XTreeSelectNode) {
-    if (this.multiple) {
-      this.nodeEmit(node, this.value);
+  onNodeClick(node: XTreeSelectNode) {
+    if (this.multiple()) {
+      this.nodeClick.emit({ node, value: this.value() });
     } else {
-      this.nodeEmit(node);
+      this.nodeClick.emit({ node });
     }
   }
-
-  onSelectAll(_isSelectAll: boolean) {
-    this.nodeEmit(null, this.value);
-  }
-
-  onActive(num: number) {
-    this.active = num;
-  }
-
-  // onTabOut() {
-  //   this.closeSubject.next();
-  // }
 }
