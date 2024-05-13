@@ -103,7 +103,10 @@ export default {
     confirmText: 'bekräfta'
   },
   upload: {
-    uploadText: 'ladda upp filer'
+    uploadText: 'ladda upp filer',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'lämna tillbaka'

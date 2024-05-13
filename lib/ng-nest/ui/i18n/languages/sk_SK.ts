@@ -103,7 +103,10 @@ export default {
     confirmText: 'confirm'
   },
   upload: {
-    uploadText: 'nahrať súbory'
+    uploadText: 'nahrať súbory',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'spiatočný'

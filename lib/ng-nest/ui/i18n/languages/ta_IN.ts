@@ -103,7 +103,10 @@ export default {
     confirmText: 'உறுதிப்படுத்தவும்'
   },
   upload: {
-    uploadText: 'கோப்புகளை பதிவேற்றவும்'
+    uploadText: 'கோப்புகளை பதிவேற்றவும்',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'திரும்ப'

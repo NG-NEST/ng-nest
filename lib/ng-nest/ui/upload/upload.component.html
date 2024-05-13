@@ -1,21 +1,21 @@
-<div #upload class="x-upload x-upload-{{ type }}" [class.x-disabled]="disabled">
+<div #upload class="x-upload x-upload-{{ type() }}" [class.x-disabled]="disabled()">
   <input
     type="file"
     #file
     (change)="change($event)"
-    [attr.accept]="accept"
-    [multiple]="multiple"
+    [attr.accept]="acceptSignal()"
+    [multiple]="multiple()"
     style="display: none"
   />
 
-  @switch (type) {
+  @switch (type()) {
     @case ('list') {
       <ng-container *ngTemplateOutlet="uploadBtnTpl"></ng-container>
-      <ng-container *xOutlet="filesTpl; context: { $files: files }">
+      <ng-container *xOutlet="filesTpl(); context: { $files: files }">
         <ul class="x-upload-files">
-          @for (file of files; track file; let i = $index) {
+          @for (file of files(); track file; let i = $index) {
             <li [class.x-upload-disabled]="!download">
-              @if (download) {
+              @if (download()) {
                 <a [href]="file.url" target="_blank" [title]="file.name">
                   <x-icon type="fto-file-text"></x-icon>
                   <span class="x-upload-filename">{{ file.name }}</span>
@@ -51,14 +51,14 @@
     }
     @case ('img') {
       <x-image-group>
-        @for (file of files; track file; let i = $index) {
+        @for (file of files(); track file; let i = $index) {
           <x-image
             [src]="file.url"
             (load)="imgLoad(file)"
             (error)="imgError($event, file)"
             class="{{ file.state }}"
             [previewTpl]="previewTpl"
-            [fallback]="imgFallback"
+            [fallback]="imgFallback()"
           >
           </x-image>
           <ng-template #previewTpl let-image="$image">
@@ -76,7 +76,7 @@
                   <x-icon type="fto-eye" (click)="image.onPreview()"></x-icon>
                 }
               }
-              @if (imgCut && file.state === 'success') {
+              @if (imgCut() && file.state === 'success') {
                 <x-icon type="fto-crop" (click)="onImgCut(file, i)"></x-icon>
               }
               @if (file.state !== 'uploading') {
@@ -92,9 +92,9 @@
 </div>
 
 <ng-template #uploadBtnTpl>
-  <div class="x-upload-buttons" [class.x-upload-buttons-template]="isTemplateText" (click)="uploadClick()">
-    <ng-container *xOutlet="getText">
-      <x-button icon="fto-upload" [disabled]="disabled" type="primary">{{ getText }}</x-button>
+  <div class="x-upload-buttons" [class.x-upload-buttons-template]="isTemplateText()" (click)="uploadClick()">
+    <ng-container *xOutlet="getText()">
+      <x-button icon="fto-upload" [disabled]="disabled()" type="primary">{{ getText() }}</x-button>
     </ng-container>
   </div>
 </ng-template>

@@ -103,7 +103,10 @@ export default {
     confirmText: 'tesdîqkirin'
   },
   upload: {
-    uploadText: 'pelan hilînin'
+    uploadText: 'pelan hilînin',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'şûndeşandin'

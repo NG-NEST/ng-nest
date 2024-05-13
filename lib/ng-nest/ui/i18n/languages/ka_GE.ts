@@ -103,7 +103,10 @@ export default {
     confirmText: 'დაადასტუროს'
   },
   upload: {
-    uploadText: 'ატვირთეთ ფაილები'
+    uploadText: 'ატვირთეთ ფაილები',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'დაბრუნების'

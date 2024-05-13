@@ -103,7 +103,10 @@ export default {
     confirmText: 'vahvistaa'
   },
   upload: {
-    uploadText: 'lataa tiedostoja'
+    uploadText: 'lataa tiedostoja',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'palata'

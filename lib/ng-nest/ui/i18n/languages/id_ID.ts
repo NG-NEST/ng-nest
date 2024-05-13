@@ -103,7 +103,10 @@ export default {
     confirmText: 'Konfirmasi'
   },
   upload: {
-    uploadText: 'unggah berkas'
+    uploadText: 'unggah berkas',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'kembali'

@@ -103,7 +103,10 @@ export default {
     confirmText: 'confirmar'
   },
   upload: {
-    uploadText: 'pengeu fitxers'
+    uploadText: 'pengeu fitxers',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'tornar'

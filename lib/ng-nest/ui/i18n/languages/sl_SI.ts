@@ -103,7 +103,10 @@ export default {
     confirmText: 'potrdite'
   },
   upload: {
-    uploadText: 'naložite datoteke'
+    uploadText: 'naložite datoteke',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'vrnitev'

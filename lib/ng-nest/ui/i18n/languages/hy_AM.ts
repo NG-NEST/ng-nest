@@ -103,7 +103,10 @@ export default {
     confirmText: 'հաստատել'
   },
   upload: {
-    uploadText: 'ֆայլեր վերբեռնել'
+    uploadText: 'ֆայլեր վերբեռնել',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'վերադառնալ'

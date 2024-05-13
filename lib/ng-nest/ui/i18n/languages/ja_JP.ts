@@ -103,7 +103,10 @@ export default {
     confirmText: '確認'
   },
   upload: {
-    uploadText: 'ファイルをアップロードする'
+    uploadText: 'ファイルをアップロードする',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: '返す'

@@ -103,7 +103,10 @@ export default {
     confirmText: 'megerősít'
   },
   upload: {
-    uploadText: 'fájlok feltöltése'
+    uploadText: 'fájlok feltöltése',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'Visszatérés'

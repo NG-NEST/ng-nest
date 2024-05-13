@@ -1,117 +1,173 @@
 export default {
   locale: 'vi_VN',
   comment: {
-    comments: 'bình luận',
-    giveALike: 'giống',
-    reply: 'Đáp lại',
-    more: 'xem thêm',
-    sure: 'giải phóng',
-    placeholder: 'Vui lòng nhập một bình luận'
+    comments: 'Bình luận',
+    giveALike: 'Thích',
+    reply: 'Trả lời',
+    more: 'Xem thêm',
+    sure: 'Đăng',
+    placeholder: 'Nhập bình luận'
   },
   theme: {
     darkMode: 'Chế độ tối',
     initDefault: 'Khởi tạo giá trị mặc định',
-    primary: 'Màu chính',
-    success: 'sự thành công',
-    warning: 'báo trước',
+    primary: 'Màu chủ đạo',
+    success: 'Thành công',
+    warning: 'Cảnh báo',
     danger: 'Nguy hiểm',
-    info: 'thông tin',
-    background: 'lý lịch',
-    border: 'khung',
-    text: 'Bản văn'
+    info: 'Thông tin',
+    background: 'Nền',
+    border: 'Biên',
+    text: 'Văn bản'
   },
   calendar: {
-    month: 'tháng',
-    year: 'năm',
-    lastMonth: 'Tháng đầu tiên',
-    lastYear: 'năm ngoái',
-    nextMonth: 'Tháng tiếp theo',
-    nextYear: 'năm sau',
-    january: 'tháng Giêng',
-    february: 'tháng 2',
-    march: 'tháng Ba',
+    month: 'Tháng',
+    year: 'Năm',
+    lastMonth: 'Tháng trước',
+    lastYear: 'Năm trước',
+    nextMonth: 'Tháng sau',
+    nextYear: 'Năm sau',
+    january: 'Tháng 1',
+    february: 'Tháng 2',
+    march: 'Tháng 3',
     april: 'Tháng 4',
-    may: 'có thể',
+    may: 'Tháng 5',
     june: 'Tháng 6',
     july: 'Tháng 7',
-    august: 'tháng Tám',
-    september: 'Tháng Chín',
-    october: 'Tháng Mười',
+    august: 'Tháng 8',
+    september: 'Tháng 9',
+    october: 'Tháng 10',
     november: 'Tháng 11',
     december: 'Tháng 12'
   },
   datePicker: {
-    sure: 'xác nhận',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'hôm qua',
-    today: 'hôm nay',
-    tomorrow: 'Ngày mai'
+    sure: 'Xác nhận',
+    week: 'Tuần',
+    month: 'Tháng',
+    year: 'Năm',
+    january: 'Tháng 1',
+    february: 'Tháng 2',
+    march: 'Tháng 3',
+    april: 'Tháng 4',
+    may: 'Tháng 5',
+    june: 'Tháng 6',
+    july: 'Tháng 7',
+    august: 'Tháng 8',
+    september: 'Tháng 9',
+    october: 'Tháng 10',
+    november: 'Tháng 11',
+    december: 'Tháng 12',
+    monday: 'Thứ Hai',
+    tuesday: 'Thứ Ba',
+    wednesday: 'Thứ Tư',
+    thursday: 'Thứ Năm',
+    friday: 'Thứ Sáu',
+    saturday: 'Thứ Bảy',
+    sunday: 'Chủ Nhật',
+    yesterday: 'Hôm qua',
+    today: 'Hôm nay',
+    tomorrow: 'Ngày mai',
+    thisWeek: 'Tuần này',
+    lastWeek: 'Tuần trước',
+    nextWeek: 'Tuần sau',
+    thisMonth: 'Tháng này',
+    lastMonth: 'Tháng trước',
+    nextMonth: 'Tháng sau',
+    thisYear: 'Năm này',
+    lastYear: 'Năm trước',
+    nextYear: 'Năm sau',
+    selectDate: 'Chọn ngày',
+    selectWeek: 'Chọn tuần',
+    selectMonth: 'Chọn tháng',
+    selectQuarter: 'Chọn quý',
+    selectYear: 'Chọn năm',
+    startDate: 'Ngày bắt đầu',
+    endDate: 'Ngày kết thúc',
+    startMonth: 'Tháng bắt đầu',
+    endMonth: 'Tháng kết thúc',
+    startQuarter: 'Quý bắt đầu',
+    endQuarter: 'Quý kết thúc',
+    startYear: 'Năm bắt đầu',
+    endYear: 'Năm kết thúc',
+    startWeek: 'Tuần bắt đầu',
+    endWeek: 'Tuần kết thúc'
+  },
+  timePicker: {
+    am: 'Sáng',
+    pm: 'Chiều',
+    now: 'Bây giờ',
+    selectTime: 'Chọn thời gian',
+    selectHour: 'Chọn giờ',
+    selectMinute: 'Chọn phút'
   },
   empty: {
-    noData: 'Không dữ liệu'
+    noData: 'Chưa có dữ liệu'
+  },
+  image: {
+    previewText: 'Xem trước'
   },
   pagination: {
-    previous: 'Trang trước',
-    next: 'Trang tiếp theo',
-    total: 'Toàn bộ',
-    item: 'Bài báo',
-    first: 'trang chủ',
-    last: 'Trang cuối',
-    jump: 'Nhảy vào',
-    sizePage: '/ Mục lục'
+    previous: 'Trước',
+    next: 'Sau',
+    total: 'Tổng số',
+    item: 'mục',
+    first: 'Đầu tiên',
+    last: 'Cuối cùng',
+    jump: 'Đến',
+    sizePage: 'số mục/trang'
   },
   textRetract: {
-    unfold: 'Mở ra',
-    packUp: 'Cất đi'
+    unfold: 'Mở rộng',
+    packUp: 'Thu gọn'
   },
   timeAgo: {
-    just: 'chỉ',
-    secondsAgo: 'Cách đây vài giây',
-    minutesAgo: 'một vài phút trước',
-    hoursAgo: 'Một tiếng trước'
+    just: 'Vừa mới',
+    secondsAgo: 'cách đây vài giây',
+    minutesAgo: 'cách đây vài phút',
+    hoursAgo: 'cách đây vài giờ'
+  },
+  transfer: {
+    listTitle: 'Danh sách',
+    treeTitle: 'Cây',
+    tableTitle: 'Bảng',
+    selectedTitle: 'Các mục đã chọn',
+    inverse: 'Chọn ngược lại'
   },
   messageBox: {
-    cancelText: 'hủy bỏ',
-    confirmText: 'xác nhận'
+    cancelText: 'Hủy bỏ',
+    confirmText: 'Xác nhận'
   },
   dialog: {
-    cancelText: 'hủy bỏ',
-    confirmText: 'xác nhận'
+    cancelText: 'Hủy bỏ',
+    confirmText: 'Xác nhận'
   },
   popconfirm: {
-    cancelText: 'hủy bỏ',
-    confirmText: 'xác nhận'
+    cancelText: 'Hủy bỏ',
+    confirmText: 'Xác nhận'
   },
   upload: {
-    uploadText: 'tải lên tập tin'
+    uploadText: 'Tải lên tệp',
+    beginUploadText: 'Bắt đầu tải lên tệp',
+    uploadingText: 'Đang tải lên',
+    uploadCompleted: 'Tải tệp hoàn thành'
   },
   pageHeader: {
-    back: 'trở về'
+    back: 'Quay lại'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Chọn tất cả',
+    loadMoreText: 'Tải thêm',
+    loadingMoreText: 'Đang tải thêm...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Chọn tất cả',
+    maxTagContent: 'Thêm {{surplus}} mục đã chọn'
+  },
+  treeSelect: {
+    selectAllText: 'Chọn tất cả',
+    maxTagContent: 'Thêm {{surplus}} mục đã chọn'
+  },
+  form: {
+    required: 'Bắt buộc'
   }
 };

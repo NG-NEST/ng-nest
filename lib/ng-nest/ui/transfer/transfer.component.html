@@ -42,7 +42,7 @@
             (indexChange)="getTableData()"
             [query]="tableQuery()"
             [total]="tableTotal()"
-            (activatedRowChange)="onTableCheckedRow($event, left())"
+            (activatedRowChange)="onTableCheckedRow($event!, left())"
             (headCheckboxChange)="onTableCheckedAll($event, left())"
             hiddenWrapBorder
             hiddenPaginationBorder
@@ -87,7 +87,7 @@
             #rightTableCom
             [data]="right().list!"
             [columns]="tableColumns()!"
-            (activatedRowChange)="onTableCheckedRow($event, right())"
+            (activatedRowChange)="onTableCheckedRow($event!, right())"
             (headCheckboxChange)="onTableCheckedAll($event, right())"
             hiddenWrapBorder
             hiddenPaginationBorder

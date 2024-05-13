@@ -5,7 +5,9 @@ import {
   OnInit,
   signal,
   computed,
-  HostBinding
+  HostBinding,
+  ElementRef,
+  inject
 } from '@angular/core';
 import { XPaginationPrefix, XPaginationProperty } from './pagination.property';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
@@ -35,6 +37,8 @@ import { XToDataNew } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPaginationComponent extends XPaginationProperty implements OnInit {
+  elementRef = inject(ElementRef);
+
   @HostBinding('class') className = XPaginationPrefix;
 
   indexFirst = signal(1);

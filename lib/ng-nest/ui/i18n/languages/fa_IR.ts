@@ -103,7 +103,10 @@ export default {
     confirmText: 'تایید'
   },
   upload: {
-    uploadText: 'بارگذاری پرونده ها'
+    uploadText: 'بارگذاری پرونده ها',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'برگشت'

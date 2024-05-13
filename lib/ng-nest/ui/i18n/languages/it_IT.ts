@@ -103,7 +103,10 @@ export default {
     confirmText: 'Confermare'
   },
   upload: {
-    uploadText: 'caricare files'
+    uploadText: 'caricare files',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'ritorno'

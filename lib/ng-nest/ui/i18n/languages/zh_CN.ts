@@ -146,7 +146,10 @@ export default {
     confirmText: '确认'
   },
   upload: {
-    uploadText: '上传文件'
+    uploadText: '上传文件',
+    beginUploadText: '开始上传文件',
+    uploadingText: '上传中',
+    uploadCompleted: '文件上传完毕'
   },
   pageHeader: {
     back: '返回'

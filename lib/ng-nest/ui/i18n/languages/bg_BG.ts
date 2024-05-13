@@ -103,7 +103,10 @@ export default {
     confirmText: 'потвърждаване'
   },
   upload: {
-    uploadText: 'качване на файлове'
+    uploadText: 'качване на файлове',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'връщане'

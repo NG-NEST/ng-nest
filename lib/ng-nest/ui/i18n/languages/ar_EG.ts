@@ -103,7 +103,10 @@ export default {
     confirmText: 'تؤكد'
   },
   upload: {
-    uploadText: 'تحميل الملفات'
+    uploadText: 'تحميل الملفات',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'إرجاع'

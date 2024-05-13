@@ -103,7 +103,10 @@ export default {
     confirmText: 'ಖಚಿತಪಡಿಸಿ'
   },
   upload: {
-    uploadText: 'ಫೈಲ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ'
+    uploadText: 'ಫೈಲ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'ಹಿಂತಿರುಗಿ'

@@ -179,6 +179,9 @@ export interface XI18nPopconfirm {
 
 export interface XI18nUpload {
   uploadText?: string;
+  beginUploadText?: string;
+  uploadingText?: string;
+  uploadCompleted?: string;
 }
 
 export interface XI18nPageHeader {

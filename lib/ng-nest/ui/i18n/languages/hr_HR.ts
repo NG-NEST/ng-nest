@@ -103,7 +103,10 @@ export default {
     confirmText: 'potvrđuju'
   },
   upload: {
-    uploadText: 'upload datoteka'
+    uploadText: 'upload datoteka',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'povratak'

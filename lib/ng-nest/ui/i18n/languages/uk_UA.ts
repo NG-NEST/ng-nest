@@ -1,37 +1,37 @@
 export default {
   locale: 'uk_UA',
   comment: {
-    comments: 'коментар',
-    giveALike: 'подібно до',
+    comments: 'Коментарі',
+    giveALike: 'Лайк',
     reply: 'Відповідь',
-    more: 'побачити більше',
-    sure: 'звільнення',
-    placeholder: 'Будь ласка, введіть коментар'
+    more: 'Більше',
+    sure: 'Опублікувати',
+    placeholder: 'Введіть коментар'
   },
   theme: {
     darkMode: 'Темний режим',
-    initDefault: 'Ініціалізуйте значення за замовчуванням',
-    primary: 'Основний колір',
-    success: 'успіх',
-    warning: 'застереження',
+    initDefault: 'Ініціалізувати значення за замовчуванням',
+    primary: 'Основний',
+    success: 'Успіх',
+    warning: 'Попередження',
     danger: 'Небезпека',
-    info: 'інформація',
-    background: 'тло',
-    border: 'каркас',
+    info: 'Інформація',
+    background: 'Фон',
+    border: 'Межа',
     text: 'Текст'
   },
   calendar: {
-    month: 'місяць',
-    year: 'рік',
-    lastMonth: 'Перший місяць',
-    lastYear: 'торік',
-    nextMonth: 'Наступного місяця',
-    nextYear: 'наступного року',
+    month: 'Місяць',
+    year: 'Рік',
+    lastMonth: 'Минулий місяць',
+    lastYear: 'Минулий рік',
+    nextMonth: 'Наступний місяць',
+    nextYear: 'Наступний рік',
     january: 'Січень',
     february: 'Лютий',
     march: 'Березень',
     april: 'Квітень',
-    may: 'Може',
+    may: 'Травень',
     june: 'Червень',
     july: 'Липень',
     august: 'Серпень',
@@ -41,77 +41,133 @@ export default {
     december: 'Грудень'
   },
   datePicker: {
-    sure: 'підтверджувати',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'вчора',
-    today: 'На сьогоднішній день',
-    tomorrow: 'завтра'
+    sure: 'Підтвердити',
+    week: 'Тиждень',
+    month: 'Місяць',
+    year: 'Рік',
+    january: 'Січень',
+    february: 'Лютий',
+    march: 'Березень',
+    april: 'Квітень',
+    may: 'Травень',
+    june: 'Червень',
+    july: 'Липень',
+    august: 'Серпень',
+    september: 'Вересень',
+    october: 'Жовтень',
+    november: 'Листопад',
+    december: 'Грудень',
+    monday: 'Понеділок',
+    tuesday: 'Вівторок',
+    wednesday: 'Середа',
+    thursday: 'Четвер',
+    friday: "П'ятниця",
+    saturday: 'Субота',
+    sunday: 'Неділя',
+    yesterday: 'Вчора',
+    today: 'Сьогодні',
+    tomorrow: 'Завтра',
+    thisWeek: 'Цей тиждень',
+    lastWeek: 'Минулий тиждень',
+    nextWeek: 'Наступний тиждень',
+    thisMonth: 'Цей місяць',
+    lastMonth: 'Минулий місяць',
+    nextMonth: 'Наступний місяць',
+    thisYear: 'Цього року',
+    lastYear: 'Минулого року',
+    nextYear: 'Наступного року',
+    selectDate: 'Виберіть дату',
+    selectWeek: 'Виберіть тиждень',
+    selectMonth: 'Виберіть місяць',
+    selectQuarter: 'Виберіть квартал',
+    selectYear: 'Виберіть рік',
+    startDate: 'Дата початку',
+    endDate: 'Дата завершення',
+    startMonth: 'Початковий місяць',
+    endMonth: 'Кінцевий місяць',
+    startQuarter: 'Початковий квартал',
+    endQuarter: 'Кінцевий квартал',
+    startYear: 'Початковий рік',
+    endYear: 'Кінцевий рік',
+    startWeek: 'Початковий тиждень',
+    endWeek: 'Кінцевий тиждень'
+  },
+  timePicker: {
+    am: 'ДП',
+    pm: 'ПП',
+    now: 'Зараз',
+    selectTime: 'Виберіть час',
+    selectHour: 'Виберіть годину',
+    selectMinute: 'Виберіть хвилину'
   },
   empty: {
-    noData: 'Немає дані'
+    noData: 'Немає даних'
+  },
+  image: {
+    previewText: 'Попередній перегляд'
   },
   pagination: {
-    previous: 'Попередня сторінка',
-    next: 'Наступна сторінка',
+    previous: 'Попередня',
+    next: 'Наступна',
     total: 'Всього',
-    item: 'Стаття',
-    first: 'титульна сторінка',
-    last: 'Хвіст',
-    jump: 'Стрибок',
-    sizePage: '/ Сторінка'
+    item: 'Елемент',
+    first: 'Перша',
+    last: 'Остання',
+    jump: 'Перейти до',
+    sizePage: 'Елементів/сторінку'
   },
   textRetract: {
     unfold: 'Розгорнути',
-    packUp: 'Прибрати'
+    packUp: 'Згорнути'
   },
   timeAgo: {
-    just: 'просто',
-    secondsAgo: 'Секунди тому',
-    minutesAgo: 'хвилин тому',
-    hoursAgo: 'Годину тому'
+    just: 'Тільки що',
+    secondsAgo: 'Секунд тому',
+    minutesAgo: 'Хвилин тому',
+    hoursAgo: 'Годин тому'
+  },
+  transfer: {
+    listTitle: 'Список',
+    treeTitle: 'Дерево',
+    tableTitle: 'Таблиця',
+    selectedTitle: 'Обрані елементи',
+    inverse: 'Вибрати зворотній'
   },
   messageBox: {
-    cancelText: 'скасувати',
-    confirmText: 'підтвердити'
+    cancelText: 'Скасувати',
+    confirmText: 'Підтвердити'
   },
   dialog: {
-    cancelText: 'скасувати',
-    confirmText: 'підтвердити'
+    cancelText: 'Скасувати',
+    confirmText: 'Підтвердити'
   },
   popconfirm: {
-    cancelText: 'скасувати',
-    confirmText: 'підтвердити'
+    cancelText: 'Скасувати',
+    confirmText: 'Підтвердити'
   },
   upload: {
-    uploadText: 'завантажувати файли'
+    uploadText: 'Завантажити файл',
+    beginUploadText: 'Почати завантаження файлу',
+    uploadingText: 'Завантаження',
+    uploadCompleted: 'Файл завантажено'
   },
   pageHeader: {
-    back: 'повернення'
+    back: 'Назад'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Вибрати все',
+    loadMoreText: 'Завантажити більше',
+    loadingMoreText: 'Завантаження...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Вибрати все',
+    maxTagContent: 'Ще {{surplus}} вибрано'
+  },
+  treeSelect: {
+    selectAllText: 'Вибрати все',
+    maxTagContent: 'Ще {{surplus}} вибрано'
+  },
+  form: {
+    required: "Обов'язково"
   }
 };

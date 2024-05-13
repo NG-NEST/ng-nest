@@ -103,7 +103,10 @@ export default {
     confirmText: 'επιβεβαιώνω'
   },
   upload: {
-    uploadText: 'ανεβάστε αρχεία'
+    uploadText: 'ανεβάστε αρχεία',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'ΕΠΙΣΤΡΟΦΗ'

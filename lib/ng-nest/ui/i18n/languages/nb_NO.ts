@@ -103,7 +103,10 @@ export default {
     confirmText: 'bekrefte'
   },
   upload: {
-    uploadText: 'Last opp filer'
+    uploadText: 'Last opp filer',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'komme tilbake'

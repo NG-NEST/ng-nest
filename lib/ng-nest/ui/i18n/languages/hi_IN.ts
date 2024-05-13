@@ -103,7 +103,10 @@ export default {
     confirmText: 'पुष्टि करें'
   },
   upload: {
-    uploadText: 'फाइल अपलोड करो'
+    uploadText: 'फाइल अपलोड करो',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'वापसी'

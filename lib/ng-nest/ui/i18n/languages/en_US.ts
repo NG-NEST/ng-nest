@@ -147,7 +147,10 @@ export default {
     confirmText: 'Confirm'
   },
   upload: {
-    uploadText: 'Upload File'
+    uploadText: 'Upload File',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'Back'

@@ -103,7 +103,10 @@ export default {
     confirmText: 'bestätigen'
   },
   upload: {
-    uploadText: 'Daten hochladen'
+    uploadText: 'Daten hochladen',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'Rückkehr'

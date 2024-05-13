@@ -103,7 +103,10 @@ export default {
     confirmText: 'לְאַשֵׁר'
   },
   upload: {
-    uploadText: 'העלאת קבצים'
+    uploadText: 'העלאת קבצים',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'לַחֲזוֹר'

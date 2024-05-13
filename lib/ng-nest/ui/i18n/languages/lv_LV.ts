@@ -103,7 +103,10 @@ export default {
     confirmText: 'Apstiprināt'
   },
   upload: {
-    uploadText: 'augšupielādēt failus'
+    uploadText: 'augšupielādēt failus',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'atgriezties'

@@ -103,7 +103,10 @@ export default {
     confirmText: 'staðfesta'
   },
   upload: {
-    uploadText: 'hlaðið inn skrám'
+    uploadText: 'hlaðið inn skrám',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'snúa aftur'

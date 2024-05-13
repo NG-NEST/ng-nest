@@ -103,7 +103,10 @@ export default {
     confirmText: 'a confirma'
   },
   upload: {
-    uploadText: 'încărca fișiere'
+    uploadText: 'încărca fișiere',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'întoarcere'

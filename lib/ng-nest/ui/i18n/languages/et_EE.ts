@@ -103,7 +103,10 @@ export default {
     confirmText: 'kinnitage'
   },
   upload: {
-    uploadText: 'faile üles laadima'
+    uploadText: 'faile üles laadima',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'tagasi'

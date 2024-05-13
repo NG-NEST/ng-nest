@@ -232,8 +232,8 @@ export class XFindComponent extends XFindProperty implements OnInit, OnChanges, 
       this.temp = this.multiple ? [] : null;
     }
     if (this.hasTable) {
-      this.tableCom.virtualBody?.scrollToIndex(0);
-      this.tableCom.virtualBody?.checkViewportSize();
+      this.tableCom.virtualBody()!.scrollToIndex(0);
+      this.tableCom.virtualBody()!.checkViewportSize();
     }
     this.cdr.detectChanges();
   }
@@ -272,7 +272,7 @@ export class XFindComponent extends XFindProperty implements OnInit, OnChanges, 
   tempClose(index: number, item: any) {
     this.temp.splice(index, 1);
     if (this.hasTable) {
-      let it = this.tableCom?.tableData.find((x) => item.id === x.id);
+      let it = this.tableCom?.tableData().find((x) => item.id === x.id);
       if (it) {
         it['$checked'] = false;
         this.tableCom?.bodyChange();

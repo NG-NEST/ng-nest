@@ -103,7 +103,10 @@ export default {
     confirmText: 'баталгаажуулах'
   },
   upload: {
-    uploadText: 'файл байршуулах'
+    uploadText: 'файл байршуулах',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: 'буцах'

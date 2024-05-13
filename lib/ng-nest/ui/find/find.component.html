@@ -100,13 +100,13 @@
           (indexChange)="tableIndexChange.emit($event)"
           (sortChange)="tableSortChange.emit($event)"
           [(activatedRow)]="tableActivatedRow"
-          (activatedRowChange)="tableActivatedRowChange($event)"
+          (activatedRowChange)="tableActivatedRowChange($event!)"
           [rowHeight]="tableRowHeight"
-          [bodyHeight]="tableBodyHeight"
+          [bodyHeight]="tableBodyHeight!"
           [virtualScroll]="tableVirtualScroll"
           [minBufferPx]="tableMinBufferPx"
           [maxBufferPx]="tableMaxBufferPx"
-          [adaptionHeight]="tableAdaptionHeight"
+          [adaptionHeight]="tableAdaptionHeight!"
           [docPercent]="tableDocPercent"
         ></x-table>
       </div>

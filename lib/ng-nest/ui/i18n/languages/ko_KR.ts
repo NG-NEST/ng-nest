@@ -103,7 +103,10 @@ export default {
     confirmText: '확인하다'
   },
   upload: {
-    uploadText: '파일 업로드하다'
+    uploadText: '파일 업로드하다',
+    beginUploadText: 'Began to upload files',
+    uploadingText: 'On the cross',
+    uploadCompleted: 'File upload is completed'
   },
   pageHeader: {
     back: '반환'
