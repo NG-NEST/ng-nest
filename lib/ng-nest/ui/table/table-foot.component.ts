@@ -4,13 +4,14 @@ import {
   ViewEncapsulation,
   ElementRef,
   ChangeDetectionStrategy,
-  ViewChild,
-  Input,
-  inject
+  inject,
+  computed,
+  viewChild
 } from '@angular/core';
 import { XTableFootPrefix, XTableFootProperty } from './table.property';
 import { XRemoveNgTag } from '@ng-nest/ui/core';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XTableComponent } from './table.component';
 
 @Component({
   selector: `${XTableFootPrefix}`,
@@ -21,11 +22,9 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTableFootComponent extends XTableFootProperty implements OnInit {
-  @ViewChild('tfoot') tfoot!: ElementRef<HTMLElement>;
-  @Input() table: any;
-  get getRowHeight() {
-    return this.rowHeight == 0 ? '' : this.rowHeight;
-  }
+  tfoot = viewChild.required<ElementRef<HTMLElement>>('tfoot');
+  table = inject(XTableComponent, { optional: true })!;
+  getRowHeight = computed(() => (this.rowHeight() == 0 ? '' : this.rowHeight()));
   private elementRef = inject(ElementRef);
 
   ngOnInit() {
@@ -33,6 +32,6 @@ export class XTableFootComponent extends XTableFootProperty implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.table.tfoot = this.tfoot!;
+    this.table.tfoot.set(this.tfoot());
   }
 }

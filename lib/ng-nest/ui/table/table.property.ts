@@ -1,27 +1,27 @@
 import {
   XProperty,
+  XPropertyFunction,
+  XToCssPixelValue,
+  XToBoolean,
+  XToNumber,
+  XToDataConvert
+} from '@ng-nest/ui/core';
+import { Component, TemplateRef, input, model, output } from '@angular/core';
+import { XPaginationSizeData } from '@ng-nest/ui/pagination';
+import { XSelectNode } from '@ng-nest/ui/select';
+import type {
   XNumber,
-  XInputNumber,
   XSort,
-  XInputBoolean,
   XBoolean,
   XData,
-  XWithConfig,
   XTextAlign,
   XSize,
   XParentIdentityProperty,
   XIdentityProperty,
   XTemplate,
   XQuery,
-  XPropertyFunction,
-  XToCssPixelValue,
-  XToBoolean,
-  XToNumber,
   XDataNew
 } from '@ng-nest/ui/core';
-import { Input, Component, EventEmitter, TemplateRef, Output, input, model } from '@angular/core';
-import { XPaginationSizeData } from '@ng-nest/ui/pagination';
-import { XSelectNode } from '@ng-nest/ui/select';
 
 /**
  * Table
@@ -40,233 +40,236 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    * @zh_CN 行数据
    * @en_US Row data
    */
-  @Input() data: XData<XTableRow> = [];
+  readonly data = input<XData<XTableRow>, XData<XTableRow>>([], { transform: XToDataConvert });
   /**
    * @zh_CN 列集合
    * @en_US Column set
    */
-  @Input() columns: XTableColumn[] = [];
+  readonly columns = input<XTableColumn[]>([]);
   /**
    * @zh_CN 表头和行高，单位 px
    * @en_US Header and row height, unit px
    */
-  @Input() @XWithConfig<number>(X_TABLE_CONFIG_NAME, 42) @XInputNumber() rowHeight!: number;
+  readonly rowHeight = input<number, XNumber>(this.config?.rowHeight ?? 42, { transform: XToNumber });
   /**
    * @zh_CN 是否启用加载 loading
    * @en_US Whether to enable loading
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() loading!: XBoolean;
+  readonly loading = input<boolean, XBoolean>(this.config?.loading ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 是否展示列边框
    * @en_US Whether to show column borders
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() bordered!: XBoolean;
+  readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 是否显示列头
    * @en_US Whether to display the column headers
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() showHeader!: XBoolean;
+  readonly showHeader = input<boolean, XBoolean>(this.config?.showHeader ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 列头显示位置
    * @en_US Whether to display the column headers
    */
-  @Input() @XWithConfig<XTableHeaderPosition>(X_TABLE_CONFIG_NAME, 'top') headerPosition!: XTableHeaderPosition;
+  readonly headerPosition = input<XTableHeaderPosition>(this.config?.headerPosition ?? 'top');
   /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */
-  @Input() activatedRow?: XTableRow;
-  /**
-   * @zh_CN 当前选中行改变
-   * @en_US The currently selected row changes
-   */
-  @Output() activatedRowChange = new EventEmitter<XTableRow>();
+  readonly activatedRow = model<XTableRow>();
   /**
    * @zh_CN 列头自定义模板，通过 key-value 的方式指定每列的模版
    * @en_US Column header custom template
    */
-  @Input() headColumnTpl: XTableTemplate = {};
+  readonly headColumnTpl = input<XTableTemplate>({});
   /**
    * @zh_CN 列内容自定义模板，通过 key-value 的方式指定每列的模版
    * @en_US Column content custom template
    */
-  @Input() bodyColumnTpl: XTableTemplate = {};
+  readonly bodyColumnTpl = input<XTableTemplate>({});
   /**
    * @zh_CN 单元格的自定义模板，优先级低于列内容自定义模板
    * @en_US Custom template of cells
    */
-  @Input() bodyTdTpl?: XTemplate;
+  readonly bodyTdTpl = input<XTemplate>();
   /**
    * @zh_CN 行条件样式
    * @en_US Row condition class
    */
-  @Input() rowClass?: (row: XTableRow, index: number) => { [className: string]: boolean };
+  readonly rowClass = input<(row: XTableRow, index: number) => { [className: string]: boolean }>();
   /**
    * @zh_CN 列头搜索自定义模板
    * @en_US Line head search custom template
    */
-  @Input() headSearchTpl?: XTemplate;
+  readonly headSearchTpl = input<XTemplate>();
   /**
    * @zh_CN 排序点击的事件
    * @en_US Sort click events
    */
-  @Output() sortChange = new EventEmitter<XSort[]>();
+  readonly sortChange = output<XSort[]>();
   /**
    * @zh_CN 列头 checkbox 事件
    * @en_US head checkbox event
    */
-  @Output() headCheckboxChange = new EventEmitter<XTableHeadCheckbox>();
+  readonly headCheckboxChange = output<XTableHeadCheckbox>();
   /**
    * @zh_CN body checkbox 事件
    * @en_US head checkbox event
    */
-  @Output() bodyCheckboxChange = new EventEmitter<XTableRow>();
+  readonly bodyCheckboxChange = output<XTableRow>();
   /**
    * @zh_CN 允许行点击选中当前行
    * @en_US Allow row click to select
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() allowSelectRow!: XBoolean;
+  readonly allowSelectRow = input<boolean, XBoolean>(this.config?.allowSelectRow ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 允许行点击选中 checkbox
    * @en_US Allow lines to click checkbox
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() allowCheckRow!: XBoolean;
+  readonly allowCheckRow = input<boolean, XBoolean>(this.config?.allowCheckRow ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 开启虚拟滚动
    * @en_US Turn on virtual scrolling
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
+  readonly virtualScroll = input<boolean, XBoolean>(this.config?.virtualScroll ?? false, { transform: XToBoolean });
   /**
    * @zh_CN body 数据高度
    * @en_US body data height
    */
-  @Input() @XInputNumber() bodyHeight?: number;
+  readonly bodyHeight = input<number | undefined, XNumber>(undefined, { transform: XToNumber });
   /**
    * @zh_CN itemSize，对应 cdk scroll 中的参数
    * @en_US itemSize，corresponding to the parameters in cdk scroll
    */
-  @Input() @XWithConfig<number>(X_TABLE_CONFIG_NAME, 42) @XInputNumber() itemSize!: number;
+  readonly itemSize = input<number, XNumber>(this.config?.itemSize ?? 42, { transform: XToNumber });
   /**
    * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
-  @Input() minBufferPx: number = 100;
+  readonly minBufferPx = input<number, XNumber>(100, { transform: XToNumber });
   /**
    * @zh_CN 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
    * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
    */
-  @Input() maxBufferPx: number = 200;
+  readonly maxBufferPx = input<number, XNumber>(200, { transform: XToNumber });
   /**
    * @zh_CN 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
    * @en_US Adaptive height, table height is equal to the screen height minus the value set here
    */
-  @Input() @XInputNumber() adaptionHeight?: XNumber;
+  readonly adaptionHeight = input<number | undefined, XNumber>(undefined, { transform: XToNumber });
   /**
    * @zh_CN 文档高度百分比，弹窗百分比高度用到
    * @en_US Document height percentage, used by pop-up window percentage height
    */
-  @Input() @XInputNumber() docPercent: XNumber = 1;
+  readonly docPercent = input<number, XNumber>(1, { transform: XToNumber });
   /**
    * @zh_CN checkbox 列初始选中的数据，列中激活 checkbox
    * @en_US Checkbox column initially selected data, checkbox is activated in column
    */
-  @Input() checkedRow: { [property: string]: any[] } = {};
+  readonly checkedRow = input<{ [property: string]: any[] }>({});
   /**
    * @zh_CN 如果 data 是函数类型，可以通过此参数控制请求，常用于弹框中的表格，弹出后再请求
    * @en_US If data is a function type, you can use this parameter to control the request, which is often used in the form in the pop-up box, and then request it after it pops up
    */
-  @Input() @XInputBoolean() manual: XBoolean = true;
+  readonly manual = model<boolean>(true);
   /**
    * @zh_CN 滚动区域高宽
    * @en_US Height and width of rolling area
    */
-  @Input() scroll?: { x: number; y: number };
+  readonly scroll = input<{ x: number; y: number }>();
   /**
    * @zh_CN 表格页头
    * @en_US Table header
    */
-  @Input() header?: XTemplate;
+  readonly header = input<XTemplate>();
   /**
    * @zh_CN 表格页尾
    * @en_US Table footer
    */
-  @Input() footer?: XTemplate;
-  /**
-   * @zh_CN 参数控制请求改变事件
-   * @en_US Parameter control request change event
-   */
-  @Output() manualChange = new EventEmitter<boolean>();
+  readonly footer = input<XTemplate>();
   /**
    * @zh_CN 单元格配置
    * @en_US Cell config
    */
-  @Input() cellConfig?: XTableCellConfig;
+  readonly cellConfig = input<XTableCellConfig>();
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_TABLE_CONFIG_NAME, 'medium') rowSize?: XSize;
+  readonly rowSize = input<XSize>(this.config?.rowSize ?? 'medium');
   /**
    * @zh_CN 分页器位置
    * @en_US Pagination position
    */
-  @Input() paginationPosition: XPaginationPosition = 'bottom-left';
+  readonly paginationPosition = input<XPaginationPosition>('bottom-left');
   /**
    * @zh_CN 隐藏表格外边框
    * @en_US Hidden table wrap border
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() hiddenWrapBorder?: XBoolean;
+  readonly hiddenWrapBorder = input<boolean, XBoolean>(this.config?.hiddenWrapBorder ?? false, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 隐藏分页器按钮边框
    * @en_US Hidden pagination button border
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() hiddenPaginationBorder?: XBoolean;
+  readonly hiddenPaginationBorder = input<boolean, XBoolean>(this.config?.hiddenPaginationBorder ?? false, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 显示分页器
    * @en_US Pagination position
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() showPagination?: XBoolean;
+  readonly showPagination = input<boolean, XBoolean>(this.config?.showPagination ?? true, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 树形表格
    * @en_US Tree table
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() treeTable?: XBoolean;
+  readonly treeTable = input<boolean, XBoolean>(this.config?.treeTable ?? true, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 树形表格展开所有节点
    * @en_US Tree table
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, false) @XInputBoolean() expandedAll?: XBoolean;
+  readonly expandedAll = input<boolean, XBoolean>(this.config?.expandedAll ?? false, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 默认展开的层级，-1 不展开
    * @en_US Default expanded level
    */
-  @Input() @XWithConfig<XNumber>(X_TABLE_CONFIG_NAME, -1) @XInputNumber() expandedLevel!: XNumber;
+  readonly expandedLevel = input<number, XNumber>(this.config?.expandedLevel ?? -1, {
+    transform: XToNumber
+  });
   /**
    * @zh_CN 展开的节点
    * @en_US Expanded node
    */
-  @Input() expanded: any[] = [];
+  readonly expanded = input<any[]>([]);
   /**
    * @zh_CN 自定义展开内容
    * @en_US Customized expansion content
    */
-  @Input() expandTpl?: XTemplate;
+  readonly expandTpl = input<XTemplate>();
   /**
    * @zh_CN 显示数据为空的提示
    * @en_US Display a prompt with empty data
    */
-  @Input() @XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME, true) @XInputBoolean() showEmpty?: XBoolean;
-
+  readonly showEmpty = input<boolean, XBoolean>(this.config?.showEmpty ?? true, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 数据为空的提示图片地址或自定义模板
    * @en_US Picture address or custom template
    */
-  @Input() @XWithConfig<XTemplate>(X_TABLE_CONFIG_NAME) emptyImg?: XTemplate;
+  readonly emptyImg = input<XTemplate | undefined>(this.config?.emptyImg ?? undefined);
   /**
    * @zh_CN 数据为空的提示内容或自定义模板
    * @en_US Content or custom template
    */
-  @Input() @XWithConfig<XTemplate>(X_TABLE_CONFIG_NAME) emptyContent?: XTemplate;
+  readonly emptyContent = input<XTemplate | undefined>(this.config?.emptyContent ?? undefined);
   /**
    * @zh_CN 当前页码
    * @en_US Current page number
@@ -375,32 +378,32 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    * @zh_CN 列头拖动开始事件，返回拖动的列
    * @en_US Column Header Drag End Event
    */
-  @Output() columnDragStarted = new EventEmitter<XTableColumn>();
+  readonly columnDragStarted = output<XTableColumn>();
   /**
    * @zh_CN 列头拖动结束事件，返回拖动的列
    * @en_US The column header is dragging, and the event is triggered when the order is changed
    */
-  @Output() columnDragEnded = new EventEmitter<XTableColumn>();
+  readonly columnDragEnded = output<XTableColumn>();
   /**
    * @zh_CN 当用户把一个条目投放进该容器时就会触发，拖动放开的事件，返回拖动排序后的列数据
    * @en_US The column header is dragging, and the event is triggered when the order is changed
    */
-  @Output() columnDropListDropped = new EventEmitter<XTableColumn[]>();
+  readonly columnDropListDropped = output<XTableColumn[]>();
   /**
    * @zh_CN 开始拖动列宽的事件
    * @en_US Event to started drag column width
    */
-  @Output() columnDragWidthStarted = new EventEmitter<XTableDragWidthEvent>();
+  readonly columnDragWidthStarted = output<XTableDragWidthEvent>();
   /**
    * @zh_CN 正在拖动列宽时的事件
    * @en_US Event to moved drag column width
    */
-  @Output() columnDragWidthMoved = new EventEmitter<XTableDragWidthEvent>();
+  readonly columnDragWidthMoved = output<XTableDragWidthEvent>();
   /**
    * @zh_CN 结束拖动列宽的事件
    * @en_US Event to ended drag column width
    */
-  @Output() columnDragWidthEnded = new EventEmitter<XTableDragWidthEvent>();
+  readonly columnDragWidthEnded = output<XTableDragWidthEvent>();
 }
 
 /**
@@ -693,37 +696,37 @@ export class XTableHeadProperty extends XProperty {
    * @zh_CN 列集合
    * @en_US Column set
    */
-  @Input() columns: XTableColumn[] = [];
+  readonly columns = input<XTableColumn[]>([]);
   /**
    * @zh_CN 高度，单位 px
    * @en_US Height in px
    */
-  @Input() @XInputNumber() rowHeight: XNumber = 42;
+  readonly rowHeight = input<number, XNumber>(42, { transform: XToNumber });
   /**
    * @zh_CN 自定义模板
    * @en_US Custom template
    */
-  @Input() columnTpl: XTableTemplate = {};
+  readonly columnTpl = input<XTableTemplate>({});
   /**
    * @zh_CN 竖向滚动条宽度
    * @en_US Vertical scroll bar width
    */
-  @Input() scrollYWidth?: number;
+  readonly scrollYWidth = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 横向滚动条宽度
    * @en_US Horizontal scroll bar width
    */
-  @Input() scrollXWidth?: number | null;
+  readonly scrollXWidth = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 单元格配置
    * @en_US Cell merge rules
    */
-  @Input() cellConfig?: XTableCellConfigRule;
+  readonly cellConfig = input<XTableCellConfigRule>();
   /**
    * @zh_CN 显示的位置
    * @en_US Display position
    */
-  @Input() position?: string;
+  readonly position = input<string>();
 }
 
 /**
@@ -742,102 +745,97 @@ export class XTableBodyProperty extends XProperty {
    * @zh_CN 行数据
    * @en_US Row data
    */
-  @Input() data: XTableRow[] = [];
+  readonly data = input<XTableRow[]>([]);
   /**
    * @zh_CN 列集合
    * @en_US Column set
    */
-  @Input() columns: XTableColumn[] = [];
+  readonly columns = input<XTableColumn[]>([]);
   /**
    * @zh_CN 自定义模板
    * @en_US Custom template
    */
-  @Input() columnTpl: XTableTemplate = {};
+  readonly columnTpl = input<XTableTemplate>({});
   /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */
-  @Input() activatedRow?: XTableRow;
-  /**
-   * @zh_CN 当前选中行改变
-   * @en_US The currently selected row changes
-   */
-  @Output() activatedRowChange = new EventEmitter<XTableRow>();
+  readonly activatedRow = model<XTableRow>();
   /**
    * @zh_CN 高度，单位 px。设置为 0 表示行高自适应内容高度。
    * @en_US Height in px. set to 0 means that the row height is adaptive to the content height
    */
-  @Input() @XInputNumber() rowHeight: XNumber = 42;
+  readonly rowHeight = input<number, XNumber>(42, { transform: XToNumber });
   /**
    * @zh_CN body 数据高度
    * @en_US body data height
    */
-  @Input() @XInputNumber() bodyHeight?: number;
+  readonly bodyHeight = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 允许行点击选中
    * @en_US Allow row click to select
    */
-  @Input() @XInputBoolean() allowSelectRow: XBoolean = true;
+  readonly allowSelectRow = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 开启虚拟滚动
    * @en_US Turn on virtual scrolling
    */
-  @Input() @XInputBoolean() virtualScroll: XBoolean = false;
+  readonly virtualScroll = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN itemSize，对应 cdk scroll 中的参数
    * @en_US itemSize，corresponding to the parameters in cdk scroll
    */
-  @Input() @XInputNumber() itemSize: number = 42;
+  readonly itemSize = input<number, XNumber>(42, { transform: XToNumber });
   /**
    * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
-  @Input() minBufferPx: number = 100;
+  readonly minBufferPx = input<number, XNumber>(100, { transform: XToNumber });
   /**
    * @zh_CN 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
    * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
    */
-  @Input() maxBufferPx: number = 200;
+  readonly maxBufferPx = input<number, XNumber>(200, { transform: XToNumber });
   /**
    * @zh_CN 自适应高度，table 高度等于屏幕高度减掉此处设置的数值
    * @en_US Adaptive height, table height is equal to the screen height minus the value set here
    */
-  @Input() @XInputNumber() adaptionHeight?: XNumber;
+  readonly adaptionHeight = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 文档高度百分比，弹窗百分比高度用到
    * @en_US Document height percentage, used by pop-up window percentage height
    */
-  @Input() @XInputNumber() docPercent: XNumber = 1;
+  readonly docPercent = input<number, XNumber>(1, { transform: XToNumber });
   /**
    * @zh_CN 滚动区域高宽
    * @en_US Height and width of rolling area
    */
-  @Input() scroll?: { x: number; y: number };
+  readonly scroll = input<{ x: number; y: number }>();
   /**
    * @zh_CN 单元格配置规则
    * @en_US Cell config rules
    */
-  @Input() cellConfig?: XTableCellConfigRule;
+  readonly cellConfig = input<XTableCellConfigRule>();
   /**
    * @zh_CN 行条件样式
    * @en_US Row condition class
    */
-  @Input() rowClass?: (row: XTableRow, index: number) => { [className: string]: boolean };
+  readonly rowClass = input<(row: XTableRow, index: number) => { [className: string]: boolean }>();
   /**
    * @zh_CN 树形表格下的层级
    * @en_US The level under the tree table
    */
-  @Input() level: number = 0;
+  readonly level = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 树形表格展开所有节点
    * @en_US Tree table
    */
-  @Input() @XInputBoolean() expandedAll?: XBoolean;
+  readonly expandedAll = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 自定义展开内容
    * @en_US Customized expansion content
    */
-  @Input() expandTpl?: XTemplate;
+  readonly expandTpl = input<XTemplate>();
 }
 
 /**
@@ -856,10 +854,10 @@ export class XTableFootProperty extends XProperty {
    * @zh_CN 表格页尾
    * @en_US Table footer
    */
-  @Input() footer?: XTemplate;
+  readonly footer = input<XTemplate>();
   /**
    * @zh_CN 表头和行高，单位 px
    * @en_US Header and row height, unit px
    */
-  @Input() rowHeight!: number;
+  readonly rowHeight = input<number | null, XNumber>(null, { transform: XToNumber });
 }

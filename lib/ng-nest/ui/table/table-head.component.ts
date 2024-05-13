@@ -1,25 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ElementRef,
-  ChangeDetectorRef,
-  SimpleChanges,
-  ViewChild,
-  Input,
-  inject
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, inject, computed, viewChild, signal } from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell, XTablePrefix } from './table.property';
-import {
-  XRemoveNgTag,
-  XIsEmpty,
-  XSort,
-  XIsChange,
-  XConfigService,
-  XNumber,
-  XClassMap,
-  XIsFunction
-} from '@ng-nest/ui/core';
+import { XRemoveNgTag, XIsEmpty, XSort, XNumber, XIsFunction } from '@ng-nest/ui/core';
 import { CdkDragDrop, CdkDragSortEvent, CdkDragStart, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { XDragDirective } from '@ng-nest/ui/drag';
@@ -27,6 +8,7 @@ import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { FormsModule } from '@angular/forms';
+import { XTableComponent } from './table.component';
 
 @Component({
   selector: `${XTableHeadPrefix}`,
@@ -46,43 +28,42 @@ import { FormsModule } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
-  sort: XSort[] = [];
-  sortStr = '';
-  theadStyle: { [property: string]: any } = {};
-  thClassMap: XClassMap = {};
-  @ViewChild('thead') thead!: ElementRef<HTMLElement>;
-  @Input() table: any;
-  initColumns: XTableColumn[] = [];
-  get getRowHeight() {
-    return this.rowHeight == 0 ? '' : this.rowHeight;
-  }
-  private elementRef = inject(ElementRef);
-  private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
+  table = inject(XTableComponent, { optional: true })!;
 
-  ngOnChanges(simples: SimpleChanges) {
-    const { columns, scrollYWidth, scrollXWidth, cellConfig } = simples;
-    if (XIsChange(columns)) {
-      this.initColumns = [...this.columns];
+  thead = viewChild.required<ElementRef<HTMLElement>>('thead');
+  sort = signal<XSort[]>([]);
+  sortStr = signal('');
+  theadStyle = computed(() => {
+    let height = this.rowHeight() === 0 ? '' : this.rowHeight();
+    if (this.cellConfig() && this.cellConfig()!.cells) {
+      const spt = this.cellConfig()!.cells?.map((x) => {
+        const gridAreaSpt = x.gridArea?.split('/');
+        return gridAreaSpt && gridAreaSpt.length > 3 ? Number(gridAreaSpt[2]) : 2;
+      });
+      height = ((Math.max(...spt!) - 1) * (height as number)) as XNumber;
     }
-    XIsChange(columns, scrollYWidth, scrollXWidth, cellConfig) && this.cdr.detectChanges();
-  }
+    return {
+      ['min-height']: `${this.getRowHeight()}px`
+    };
+  });
+  thClassMap = computed(() => ({
+    [`${XTablePrefix}-th-${this.table.rowSize()}`]: !XIsEmpty(this.table.rowSize())
+  }));
+
+  initColumns = computed(() => [...this.columns()]);
+  getRowHeight = computed(() => (this.rowHeight() == 0 ? '' : this.rowHeight()));
+
+  private elementRef = inject(ElementRef);
 
   ngOnInit() {
     XRemoveNgTag(this.elementRef.nativeElement);
-    this.setStyle();
   }
 
   ngAfterViewInit() {
-    this.table.theads.push(this.thead);
-    this.table.theadsChange.push(() => this.cdr.detectChanges());
-    this.setThClassMap();
-  }
-
-  setThClassMap() {
-    this.thClassMap = {
-      [`${XTablePrefix}-th-${this.table.rowSize}`]: !XIsEmpty(this.table.rowSize)
-    };
+    this.table.theads.update((x) => {
+      x.push(this.thead());
+      return x;
+    });
   }
 
   getFlex(column: XTableColumn) {
@@ -93,60 +74,37 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
 
   getColumnRight(right?: number) {
     if (Number(right) >= 0) {
-      if (Number(this.scrollYWidth) >= 0) {
-        return Number(right) + Number(this.scrollYWidth);
+      if (Number(this.scrollYWidth()) >= 0) {
+        return Number(right) + Number(this.scrollYWidth());
       }
       return Number(right);
     }
-    // return right;
     return '';
   }
 
   getColumnWidth(column: XTableColumn) {
-    // if (Number(column.right) === 0) {
-    //   if (Number(this.scrollYWidth) >= 0) {
-    //     return Number(column.width) + Number(this.scrollYWidth);
-    //   }
-    //   return column.width;
-    // }
     return column.width;
-  }
-
-  setStyle() {
-    let height = this.rowHeight == 0 ? '' : this.rowHeight;
-    if (this.cellConfig && this.cellConfig.cells) {
-      const spt = this.cellConfig.cells.map((x) => {
-        const gridAreaSpt = x.gridArea?.split('/');
-        return gridAreaSpt && gridAreaSpt.length > 3 ? Number(gridAreaSpt[2]) : 2;
-      });
-      height = ((Math.max(...spt) - 1) * (height as number)) as XNumber;
-    }
-    this.theadStyle = {
-      // height: `${height}px`,
-      ['min-height']: `${this.getRowHeight}px`
-    };
   }
 
   onSort(column: XTableColumn) {
     if (!column.sort) return;
-    if (XIsEmpty(this.sort)) this.sort = [];
-    let sort = this.sort?.find((y) => y.field === column.id);
+    if (XIsEmpty(this.sort())) this.sort.set([]);
+    let sort = this.sort()!.find((y) => y.field === column.id);
     if (sort) {
       if (sort.value === 'asc') {
-        this.sort = [];
-        this.sortStr = '';
+        this.sort.set([]);
+        this.sortStr.set('');
       } else {
         sort.value = 'asc';
       }
     } else {
       sort = { field: column.id, value: 'desc' };
-      this.sort = [sort];
+      this.sort.set([sort]);
     }
-    if (!XIsEmpty(this.sort)) this.sortStr = `${sort.field} ${sort.value}`;
-    this.table.checkSort(this.sort);
-    this.table.sortChange.emit(this.sort);
+    if (!XIsEmpty(this.sort())) this.sortStr.set(`${sort.field} ${sort.value}`);
+    this.table.checkSort(this.sort());
+    this.table.sortChange.emit(this.sort());
     this.table.resetScroll(false, true);
-    this.cdr.detectChanges();
   }
 
   dragWidthMoved(
@@ -158,8 +116,8 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
       if (column.width < 60) column.width = 60;
       XIsFunction(column.dragWidthMoved) && column.dragWidthMoved({ position, column });
       this.table.columnDragWidthMoved.emit({ position, column });
-      this.cdr.detectChanges();
-      this.table.bodyChange();
+      // this.cdr.detectChanges();
+      // this.table.bodyChange();
     }
   }
 
@@ -180,26 +138,26 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   }
 
   dropListDropped(event: CdkDragDrop<XTableColumn[]>) {
-    const previous = this.initColumns[event.previousIndex];
-    const current = this.initColumns[event.currentIndex];
+    const previous = this.initColumns()[event.previousIndex];
+    const current = this.initColumns()[event.currentIndex];
     const middle = { left: previous.left, right: previous.right };
     previous.left = current.left;
     previous.right = current.right;
     current.left = middle.left;
     current.right = middle.right;
-    moveItemInArray(this.initColumns, event.previousIndex, event.currentIndex);
-    this.table.columnDropListDropped.emit(this.initColumns);
+    moveItemInArray(this.initColumns(), event.previousIndex, event.currentIndex);
+    this.table.columnDropListDropped.emit(this.initColumns());
   }
 
   dropListSorted(event: CdkDragSortEvent<XTableColumn[]>) {
-    const previous = this.columns[event.previousIndex];
-    const current = this.columns[event.currentIndex];
+    const previous = this.columns()[event.previousIndex];
+    const current = this.columns()[event.currentIndex];
     const middle = { left: previous.left, right: previous.right };
     previous.left = current.left;
     previous.right = current.right;
     current.left = middle.left;
     current.right = middle.right;
-    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.columns(), event.previousIndex, event.currentIndex);
     this.dragChange();
   }
 

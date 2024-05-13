@@ -7,8 +7,11 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  ViewChild,
-  OnDestroy
+  OnDestroy,
+  computed,
+  signal,
+  viewChild,
+  inject
 } from '@angular/core';
 import {
   XTablePrefix,
@@ -18,7 +21,7 @@ import {
   XTableCell,
   XTableCellConfigRule
 } from './table.property';
-import { XIsChange, XIsEmpty, XResultList, XSort, XConfigService, XIsUndefined } from '@ng-nest/ui/core';
+import { XIsChange, XIsEmpty, XResultList, XSort, XIsUndefined, XIsArray } from '@ng-nest/ui/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { XPaginationComponent } from '@ng-nest/ui/pagination';
 import { takeUntil } from 'rxjs/operators';
@@ -48,88 +51,120 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTableComponent extends XTableProperty implements OnInit, OnDestroy {
-  get getScrollLeft() {
-    return this.scrollLeft > 0;
-  }
-  get getScrollTop() {
-    return this.scrollTop > 0;
-  }
-  get getRowHeight() {
-    return this.rowHeight == 0 ? '' : this.rowHeight;
-  }
-  get getStickyTopScrollTop() {
-    return this.tcaption ? this.tcaption.nativeElement.offsetHeight : 0;
-  }
-  get getStickyBottomScrollTop() {
-    let top = 0;
-    if (this.footer && this.tfoot) {
-      top += this.tfoot?.nativeElement.clientHeight + 1;
-    }
-    return top;
-  }
-  get getStickyTopRightEleHeight() {
-    if (this.stickyTopRightEle) {
-      return this.stickyTopRightEle.nativeElement.offsetHeight;
-    } else {
-      return 0;
-    }
-  }
-  get getStickyBottomRightEleHeight() {
-    if (this.stickyBottomRightEle) {
-      return this.stickyBottomRightEle.nativeElement.offsetHeight;
-    } else {
-      return 0;
-    }
-  }
-  tcaption!: ElementRef<HTMLElement>;
-  theads: ElementRef<HTMLElement>[] = [];
-  tfoot!: ElementRef<HTMLElement>;
-  virtualBody!: CdkVirtualScrollViewport;
+  renderer = inject(Renderer2);
+  elementRef = inject(ElementRef<HTMLElement>);
+  cdr = inject(ChangeDetectorRef);
+  unSubject = new Subject<void>();
+
+  classMapSignal = computed(() => ({ [`${XTablePrefix}-row-size-${this.rowSize()}`]: !XIsEmpty(this.rowSize()) }));
+  theads = signal<ElementRef<HTMLElement>[]>([]);
+  tfoot = signal<ElementRef<HTMLElement> | null>(null);
+  virtualBody = signal<CdkVirtualScrollViewport | null>(null);
   theadsChange: (() => void)[] = [];
   bodyChange!: () => void;
-  scrollContentEle!: HTMLElement;
-  hasScrollY = false;
-  scrollYWidth = 0;
-  hasScrollX = false;
-  scrollXHeight = 0;
-  scrollXWidth!: number | null;
-  scrollLeft = 0;
-  scrollLeftMax = false;
-  scrollTop = 0;
-  rowChecked!: XTableColumn;
-  headCheckboxList!: XTableColumn[];
-  rowExpand!: XTableColumn;
-  headExpandList!: XTableColumn[];
-  dataIsFunc = false;
-  getting = false;
-  tableData: XTableRow[] = [];
-  treeTableData: XTableRow[] = [];
-  checkedValues: { [prop: string]: boolean } = {};
-  indeterminate = '$$indeterminate';
-  @ViewChild('table') table!: ElementRef<HTMLElement>;
-  @ViewChild('caption') caption!: ElementRef<HTMLElement>;
-  @ViewChild('pagination') pagination!: XPaginationComponent;
-  @ViewChild('stickyTopRightEle') stickyTopRightEle!: ElementRef<HTMLElement>;
-  @ViewChild('stickyBottomRightEle') stickyBottomRightEle!: ElementRef<HTMLElement>;
-  private _unSubject = new Subject<void>();
-  constructor(
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
-    super();
-  }
+  scrollContentEle = signal<HTMLElement | null>(null);
+  hasScrollY = signal(false);
+  scrollYWidth = signal(0);
+  hasScrollX = signal(false);
+  scrollXHeight = signal(0);
+  scrollXWidth = signal<number | null>(null);
+  scrollLeft = signal(0);
+  scrollLeftMax = signal(false);
+  scrollTop = signal(0);
+  rowChecked = signal<XTableColumn | null>(null);
+  headCheckboxList = signal<XTableColumn[]>([]);
+  rowExpand = signal<XTableColumn | null>(null);
+  headExpandList = signal<XTableColumn[]>([]);
+  dataIsFunc = signal(false);
+  getting = signal(false);
+  tableData = signal<XTableRow[]>([]);
+  treeTableData = signal<XTableRow[]>([]);
+  checkedValues = signal<{ [prop: string]: boolean }>({});
+  indeterminate = signal('$$indeterminate');
+  table = viewChild.required<ElementRef<HTMLElement>>('table');
+  caption = viewChild<ElementRef<HTMLElement>>('caption');
+  pagination = viewChild<XPaginationComponent>('pagination');
+  stickyTopRightEle = viewChild<ElementRef<HTMLElement>>('stickyTopRightEle');
+  stickyBottomRightEle = viewChild<ElementRef<HTMLElement>>('stickyBottomRightEle');
+
+  getScrollLeft = computed(() => this.scrollLeft() > 0);
+  getScrollTop = computed(() => this.scrollTop() > 0);
+  getRowHeight = computed(() => (this.rowHeight() === 0 ? '' : this.rowHeight()));
+  getStickyTopScrollTop = computed(() => (this.caption() ? this.caption()!.nativeElement.offsetHeight : 0));
+  getStickyBottomScrollTop = computed(() => {
+    let top = 0;
+    if (this.footer() && this.tfoot()) {
+      top += this.tfoot()!.nativeElement.clientHeight + 1;
+    }
+    return top;
+  });
+  getStickyTopRightEleHeight = computed(() => {
+    if (this.stickyTopRightEle()) {
+      return this.stickyTopRightEle()!.nativeElement.offsetHeight;
+    } else {
+      return 0;
+    }
+  });
+  getStickyBottomRightEleHeight = computed(() => {
+    if (this.stickyBottomRightEle()) {
+      return this.stickyBottomRightEle()!.nativeElement.offsetHeight;
+    } else {
+      return 0;
+    }
+  });
+  hasStickyTopRight = computed(
+    () =>
+      this.showHeader() &&
+      (this.headerPosition() === 'top' || this.headerPosition() === 'top-bottom') &&
+      this.columns().some((x) => Number(x.right) >= 0)
+  );
+  hasStickyTopRightSearch = computed(() => !!this.headSearchTpl());
+
+  hasStickyBottomRight = computed(
+    () =>
+      this.showHeader() &&
+      (this.headerPosition() === 'bottom' || this.headerPosition() === 'top-bottom') &&
+      this.columns().some((x) => Number(x.right) >= 0)
+  );
+
+  cellConfigSignal = computed(() => {
+    const cellConfig = this.cellConfig();
+    if (!cellConfig) return;
+    const setRule = (rule?: XTableCellConfigRule) => {
+      if (!rule) return;
+      let gridTemplateColumns = '',
+        cells = [];
+      if (!rule.gridTemplateColumns) {
+        gridTemplateColumns = `${this.columns()
+          .map((x) => {
+            if (x.width) return x.width;
+            if (x.flex) return `${x.flex}fr`;
+            return '1fr';
+          })
+          .join(' ')}`;
+      }
+      if (!rule.cells) return;
+      cells = rule.cells.map((y) => {
+        const col = this.columns().find((z) => z.id === y.id);
+        if (col) {
+          return { ...col, ...y } as XTableCell;
+        }
+        return y;
+      });
+      return { gridTemplateColumns, cells };
+    };
+
+    return { thead: setRule(cellConfig.thead), tbody: setRule(cellConfig.tbody) };
+  });
 
   ngOnInit() {
-    this.setClassMap();
     this.setRowChecked();
     this.setRowExpand();
     this.setPaginationPosition();
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    const { data, checkedRow, columns, activatedRow, manual, showPagination, expandedAll, cellConfig } = simples;
+    const { data, checkedRow, columns, activatedRow, manual, showPagination, expandedAll } = simples;
     XIsChange(expandedAll) && this.setExpandedAll();
     XIsChange(data, checkedRow) && this.setData();
     if (XIsChange(columns)) {
@@ -138,27 +173,15 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     }
     XIsChange(columns, activatedRow, showPagination) && this.cdr.detectChanges();
     XIsChange(manual) && this.setManual();
-    XIsChange(cellConfig) && this.setMerge();
   }
 
   ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.complete();
-  }
-
-  ngAfterViewInit() {
-    this.tcaption = this.caption;
-  }
-
-  setClassMap() {
-    this.classMap = {
-      [`${XTablePrefix}-row-size-${this.rowSize}`]: !XIsEmpty(this.rowSize)
-    };
-    this.cdr.detectChanges();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   setPaginationPosition() {
-    this.renderer.addClass(this.elementRef.nativeElement, `x-table-${this.paginationPosition}`);
+    this.renderer.addClass(this.elementRef.nativeElement, `x-table-${this.paginationPosition()}`);
   }
 
   getSticky(column: XTableColumn | XTableCell) {
@@ -170,7 +193,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   getStickyLeftLast(column: XTableColumn | XTableCell) {
-    let lefts = this.columns.filter((x) => Number(x.left) >= 0);
+    let lefts = this.columns().filter((x) => Number(x.left) >= 0);
     if (lefts.length === 0) return false;
     return lefts[lefts.length - 1].id === column.id;
   }
@@ -180,143 +203,94 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   getStickyRightFirst(column: XTableColumn | XTableCell) {
-    let rights = this.columns.filter((x) => Number(x.right) >= 0);
+    let rights = this.columns().filter((x) => Number(x.right) >= 0);
     if (rights.length === 0) return false;
     return rights[0].id === column.id;
   }
 
-  hasStickyTopRight() {
-    return (
-      this.showHeader &&
-      (this.headerPosition === 'top' || this.headerPosition === 'top-bottom') &&
-      this.columns.some((x) => Number(x.right) >= 0)
-    );
-  }
-
-  hasStickyTopRightSearch() {
-    return this.headSearchTpl ? true : false;
-  }
-
-  hasStickyBottomRight() {
-    return (
-      this.showHeader &&
-      (this.headerPosition === 'bottom' || this.headerPosition === 'top-bottom') &&
-      this.columns.some((x) => Number(x.right) >= 0)
-    );
-  }
-
   getIndex(index: number) {
-    return (Number(this.index) - 1) * Number(this.size) + index + 1;
+    return (this.index() - 1) * this.size() + index + 1;
   }
 
   setData() {
-    if (Array.isArray(this.data)) {
-      this.dataIsFunc = false;
-      this.tableData = this.data;
-      this.setChecked(this.data);
-      this.setHeadCheckboxList(this.data);
-      this.setExpand(this.data);
+    const data = this.data();
+    if (XIsArray<XTableRow>(data)) {
+      this.dataIsFunc.set(false);
+      this.tableData.set(data);
+      this.setChecked(data);
+      this.setHeadCheckboxList(data);
+      this.setExpand(data);
       this.detectChanges();
-    } else if (this.data instanceof Function) {
-      this.dataIsFunc = true;
+    } else if (data instanceof Function) {
+      this.dataIsFunc.set(true);
       this.getDataByFunc();
     }
   }
 
   getDataByFunc() {
-    if (!this.manual) return;
-    this.getting = true;
-    this.cdr.detectChanges();
-    this._unSubject.next();
-    (this.data as Function)(this.index, this.size, this.query)
-      .pipe(takeUntil(this._unSubject))
+    if (!this.manual()) return;
+    this.getting.set(true);
+    this.unSubject.next();
+    (this.data() as Function)(this.index(), this.size(), this.query())
+      .pipe(takeUntil(this.unSubject))
       .subscribe((x: XResultList<XTableRow>) => {
         let [data, total] = [x.list as XTableRow[], x.total!];
-        if (this.virtualBody) {
-          this.virtualBody.scrollToIndex(0);
-          this.virtualBody.checkViewportSize();
+        if (this.virtualBody()) {
+          this.virtualBody()!.scrollToIndex(0);
+          this.virtualBody()!.checkViewportSize();
         }
-        this.getting = false;
-        this.tableData = data;
+        this.getting.set(false);
+        this.tableData.set(data);
         this.setChecked(data);
         this.setHeadCheckboxList(data);
         this.setExpand(data);
         this.total.set(total);
-        this.detectChanges();
+        // this.detectChanges();
       });
   }
 
   setManual() {
-    if (this.dataIsFunc) this.getDataByFunc();
+    if (this.dataIsFunc()) this.getDataByFunc();
   }
 
   setRowChecked() {
-    this.rowChecked = this.columns.find((x) => x.rowChecked) as XTableColumn;
-    this.headCheckboxList = this.columns.filter((x) => x.type === 'checkbox' && x.headChecked);
+    this.rowChecked.set(this.columns().find((x) => x.rowChecked) as XTableColumn);
+    this.headCheckboxList.set(this.columns().filter((x) => x.type === 'checkbox' && x.headChecked));
   }
 
   setRowExpand() {
-    this.rowExpand = this.columns.find((x) => x.rowExpand) as XTableColumn;
+    this.rowExpand.set(this.columns().find((x) => x.rowExpand) as XTableColumn);
   }
 
   isExpandColumn(column: XTableColumn) {
-    let expandColumn = this.columns.find((x) => x.id === column.id && x.type === 'expand');
+    let expandColumn = this.columns().find((x) => x.id === column.id && x.type === 'expand');
     if (expandColumn) {
       return true;
     }
     return false;
   }
 
-  setMerge() {
-    if (!this.cellConfig) return;
-    const setRule = (rule?: XTableCellConfigRule) => {
-      if (!rule) return;
-      let gridTemplateColumns = '',
-        cells = [];
-      if (!rule.gridTemplateColumns) {
-        gridTemplateColumns = `${this.columns
-          .map((x) => {
-            if (x.width) return x.width;
-            if (x.flex) return `${x.flex}fr`;
-            return '1fr';
-          })
-          .join(' ')}`;
-      }
-      if (!rule.cells) return;
-      cells = rule.cells.map((y) => {
-        const col = this.columns.find((z) => z.id === y.id);
-        if (col) {
-          return { ...col, ...y } as XTableCell;
-        }
-        return y;
-      });
-      return { gridTemplateColumns, cells };
-    };
-    this.cellConfig.thead = setRule(this.cellConfig.thead);
-    this.cellConfig.tbody = setRule(this.cellConfig.tbody);
-  }
-
   pageChange(_type: 'index' | 'size') {
-    this.dataIsFunc && this.getDataByFunc();
+    this.dataIsFunc() && this.getDataByFunc();
     this.resetScroll();
   }
 
   change(index: number) {
     this.index.set(index);
-    this.dataIsFunc && this.getDataByFunc();
+    this.dataIsFunc() && this.getDataByFunc();
     this.resetScroll();
   }
 
   resetScroll(x = true, y = true) {
-    if (this.hasScrollX && x) this.virtualBody?.scrollTo({ left: 0 });
-    if (this.hasScrollY && y) this.virtualBody?.scrollTo({ top: 0 });
+    if (this.hasScrollX() && x) this.virtualBody()?.scrollTo({ left: 0 });
+    if (this.hasScrollY() && y) this.virtualBody()?.scrollTo({ top: 0 });
   }
 
   setChecked(data: XTableRow[]) {
     let result: XTableRow[] = [];
-    if (XIsEmpty(data) || !this.checkedRow) return;
-    for (let key in this.checkedRow) {
-      const arr = this.checkedRow[key];
+    if (XIsEmpty(data) || !this.checkedRow()) return;
+    for (let key in this.checkedRow()) {
+      const arr = this.checkedRow()[key];
       for (let item of data as any[]) {
         item[key] = arr.includes(item.id);
         result = [...result, item];
@@ -326,8 +300,8 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   setHeadCheckboxList(data: XTableRow[]) {
-    if (XIsEmpty(data) || !this.headCheckboxList) return;
-    for (let column of this.headCheckboxList) {
+    if (XIsEmpty(data) || !this.headCheckboxList()) return;
+    for (let column of this.headCheckboxList()) {
       this.setCheckedValues(column);
     }
   }
@@ -335,23 +309,24 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   setExpand(data: XTableRow[]) {
     const getChildren = (node: XTableRow, level: number) => {
       node.level = level;
-      node.expanded =
-        Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.includes(node.id);
+      node.expanded = this.expandedAll() || level <= this.expandedLevel() || this.expanded().includes(node.id);
       if (XIsUndefined(node.children)) node.children = data.filter((y) => y.pid === node.id);
       if (XIsUndefined(node.leaf)) node.leaf = (node.children?.length as number) > 0;
       if (node.leaf) node.children?.map((y) => getChildren(y, level + 1));
       return node;
     };
-    this.treeTableData = data
-      .filter((x) => XIsEmpty(x.pid))
-      .map((x, index) => {
-        if (XIsUndefined(x.id)) x.id = index + 1;
-        return getChildren(x, 0);
-      });
+    this.treeTableData.set(
+      data
+        .filter((x) => XIsEmpty(x.pid))
+        .map((x, index) => {
+          if (XIsUndefined(x.id)) x.id = index + 1;
+          return getChildren(x, 0);
+        })
+    );
   }
 
   setExpandedAll() {
-    if (!this.treeTable || this.treeTableData?.length === 0) return;
+    if (!this.treeTable() || this.treeTableData()?.length === 0) return;
     const setChildren = (nodes: XTableRow[]) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
@@ -359,8 +334,11 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
         setChildren(x.children as XTableRow[]);
       });
     };
-    setChildren(this.treeTableData);
-    this.detectChanges();
+    this.treeTableData.update((x) => {
+      setChildren(x);
+      return x;
+    });
+    // this.detectChanges();
   }
 
   checkSort(sort: XSort[]) {
@@ -373,34 +351,40 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   headChecked(checked: boolean, column: XTableColumn) {
-    this.tableData.forEach((x) => {
-      if (!x.disabled) {
-        x[column.id] = checked;
-      }
+    this.tableData.update((z) => {
+      z.forEach((x) => {
+        if (!x.disabled) {
+          x[column.id] = checked;
+        }
+      });
+      return z;
     });
     this.setCheckedValues(column);
-    this.headCheckboxChange.emit({ rows: this.tableData, checkbox: this.checkedValues });
-    this.detectChanges();
+    this.headCheckboxChange.emit({ rows: this.tableData(), checkbox: this.checkedValues() });
+    // this.detectChanges();
   }
 
   bodyChecked(_checked: boolean, column: XTableColumn, row: XTableRow) {
     this.setCheckedValues(column);
     this.bodyCheckboxChange.emit(row);
-    this.detectChanges();
+    // this.detectChanges();
   }
 
   setCheckedValues(column: XTableColumn) {
-    const notDisabled = this.tableData.filter((x) => !x.disabled);
+    const notDisabled = this.tableData().filter((x) => !x.disabled);
     const count = notDisabled.length;
     const checkedLen = notDisabled.filter((x) => x[column.id]).length;
-    this.checkedValues[column.id] = count === checkedLen && count !== 0;
-    this.checkedValues[column.id + this.indeterminate] = checkedLen > 0 && checkedLen < count;
+    this.checkedValues.update((x) => {
+      x[column.id] = count === checkedLen && count !== 0;
+      x[column.id + this.indeterminate()] = checkedLen > 0 && checkedLen < count;
+      return x;
+    });
   }
 
   detectChanges() {
-    this.bodyChange && this.bodyChange();
-    this.theadsChanges();
-    this.cdr.detectChanges();
+    // this.bodyChange && this.bodyChange();
+    // this.theadsChanges();
+    // this.cdr.detectChanges();
   }
 
   theadsChanges() {

@@ -6,32 +6,25 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
-  ViewChild,
-  Input,
-  inject
+  inject,
+  computed,
+  viewChild,
+  signal,
+  effect
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
-import {
-  XRemoveNgTag,
-  XIsChange,
-  XResize,
-  XConfigService,
-  XNumber,
-  XStripTags,
-  XParentPath,
-  XResizeObserver
-} from '@ng-nest/ui/core';
+import { XRemoveNgTag, XResize, XNumber, XStripTags, XParentPath, XResizeObserver } from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
+import { XTableComponent } from './table.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTableBodyPrefix}`,
@@ -50,149 +43,183 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTableBodyComponent extends XTableBodyProperty implements OnInit, OnChanges {
-  tbodyStyle: { [property: string]: any } = {};
-  get isEmpty() {
-    return this.data?.length === 0;
-  }
-  get getRowHeight() {
-    return this.rowHeight == 0 ? '' : this.rowHeight;
-  }
-  get getItemSize() {
-    return this.rowHeight !== 0 && this.itemSize > Number(this.rowHeight) ? this.rowHeight : this.itemSize;
-  }
-
-  @ViewChild('tbody') tbody!: ElementRef<HTMLElement>;
-  @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
-  @Input() table: any;
-
+export class XTableBodyComponent extends XTableBodyProperty implements OnInit {
+  renderer = inject(Renderer2);
+  elementRef = inject(ElementRef<HTMLElement>);
+  cdr = inject(ChangeDetectorRef);
+  tbody = viewChild.required<ElementRef<HTMLElement>>('tbody');
+  virtualBody = viewChild(CdkVirtualScrollViewport);
+  table = inject(XTableComponent, { optional: true })!;
   private doc = inject(DOCUMENT);
-  private _unSubject = new Subject<void>();
-  private _resizeObserver!: XResizeObserver;
+  private unSubject = new Subject<void>();
+  private resizeObserver!: XResizeObserver;
+  tbodyStyle = signal<{ [property: string]: any }>({});
 
-  constructor(
-    // @Optional() @Host() public table: XTableComponent,
-    public renderer: Renderer2,
-    public elementRef: ElementRef<HTMLElement>,
-    public cdr: ChangeDetectorRef,
-    public configService: XConfigService
-  ) {
+  isEmpty = computed(() => this.data().length === 0);
+  getRowHeight = computed(() => (this.rowHeight() == 0 ? '' : this.rowHeight()));
+  getItemSize = computed(() =>
+    this.rowHeight() !== 0 && this.itemSize() > this.rowHeight() ? this.rowHeight() : this.itemSize()
+  );
+  docChanged = toSignal(
+    fromEvent(this.doc.defaultView!, 'resize').pipe(map(() => this.doc.documentElement.clientWidth))
+  );
+
+  bodyHeightSignal = computed(() => {
+    const adaptionHeight = this.adaptionHeight();
+    if (adaptionHeight && adaptionHeight > 0) {
+      this.docChanged();
+      const captionHeight = this.table.caption()?.nativeElement.clientHeight || 0;
+      let headHeight = 0;
+      for (let thead of this.table.theads()) {
+        headHeight += thead.nativeElement.clientHeight;
+      }
+      const footHeight = this.table.tfoot()?.nativeElement.clientHeight || 0;
+      const paginationHeight = this.table.pagination()?.elementRef.nativeElement.clientHeight || 0;
+      let bodyHeight =
+        this.docPercent() * this.doc.documentElement.clientHeight -
+        captionHeight -
+        headHeight -
+        footHeight -
+        paginationHeight -
+        adaptionHeight;
+      if (bodyHeight < 0) bodyHeight = 0;
+      return bodyHeight;
+    }
+    if (this.scroll()?.y && !this.bodyHeight()) {
+      return this.scroll()!.y;
+    }
+    return this.bodyHeight();
+  });
+
+  minBufferPxSignal = computed(() => {
+    const adaptionHeight = this.adaptionHeight();
+    if (adaptionHeight && adaptionHeight > 0) {
+      return this.bodyHeight();
+    }
+    return this.minBufferPx();
+  });
+
+  maxBufferPxSignal = computed(() => {
+    const adaptionHeight = this.adaptionHeight();
+    if (adaptionHeight && adaptionHeight > 0) {
+      return this.bodyHeight()! * 1.2;
+    }
+    return this.maxBufferPx();
+  });
+
+  constructor() {
     super();
-  }
-  ngOnChanges(simples: SimpleChanges) {
-    const { data, columns, activatedRow, mergeRule, expandedAll, adaptionHeight } = simples;
-    XIsChange(data, columns, activatedRow, mergeRule, expandedAll) && this.cdr.detectChanges();
-    XIsChange(adaptionHeight) && this.setAdaptionHeight();
+    effect(() => {
+      if (this.virtualBody()) {
+        this.virtualBody()!['_scrollStrategy']['_minBufferPx'] = this.minBufferPxSignal();
+      }
+    });
+    effect(() => {
+      if (this.virtualBody()) {
+        this.virtualBody()!['_scrollStrategy']['_maxBufferPx'] = this.maxBufferPxSignal();
+      }
+    });
   }
 
   ngOnInit() {
     XRemoveNgTag(this.elementRef.nativeElement);
-    if (this.level > 0) XRemoveNgTag(this.tbody.nativeElement);
-    if (this.scroll?.y && !this.bodyHeight) {
-      this.bodyHeight = this.scroll.y;
-    }
+    if (this.level() > 0) XRemoveNgTag(this.tbody().nativeElement);
   }
 
   ngAfterViewInit() {
-    this.table.virtualBody = this.virtualBody;
-    this.table.bodyChange = () => this.cdr.detectChanges();
+    this.table.virtualBody.set(this.virtualBody()!);
+    // this.table.bodyChange = () => this.cdr.detectChanges();
     this.setSubject();
     this.setScroll();
   }
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-    this._resizeObserver?.disconnect();
+    this.unSubject.next();
+    this.unSubject.complete();
+    this.resizeObserver?.disconnect();
   }
 
   setSubject() {
-    if (this.virtualBody) {
-      this.table.scrollContentEle = this.virtualBody?.elementRef?.nativeElement.querySelector(
-        '.cdk-virtual-scroll-content-wrapper'
-      ) as HTMLElement;
-      if (this.scroll?.x) {
-        this.renderer.setStyle(this.table.scrollContentEle, 'width', `${this.scroll.x}px`);
+    if (this.virtualBody()) {
+      this.table.scrollContentEle.set(
+        this.virtualBody()!.elementRef.nativeElement.querySelector('.cdk-virtual-scroll-content-wrapper') as HTMLElement
+      );
+      if (this.scroll()?.x) {
+        this.renderer.setStyle(this.table.scrollContentEle()!, 'width', `${this.scroll()?.x}px`);
       }
-      XResize(this.table.table.nativeElement, this.table.scrollContentEle)
-        .pipe(takeUntil(this._unSubject))
+      XResize(this.table.table().nativeElement, this.table.scrollContentEle()!)
+        .pipe(takeUntil(this.unSubject))
         .subscribe((x) => {
-          this._resizeObserver = x.resizeObserver;
-          this.setAdaptionHeight();
+          this.resizeObserver = x.resizeObserver;
           this.setScroll();
         });
-      fromEvent(this.doc.defaultView!, 'resize')
-        .pipe(takeUntil(this._unSubject))
-        .subscribe(() => {
-          this.setAdaptionHeight();
-        });
     }
-    if (this.table.scrollContentEle) {
-      fromEvent(this.virtualBody.elementRef.nativeElement, 'scroll')
-        .pipe(takeUntil(this._unSubject))
+    if (this.table.scrollContentEle()) {
+      fromEvent(this.virtualBody()!.elementRef.nativeElement, 'scroll')
+        .pipe(takeUntil(this.unSubject))
         .subscribe((x) => {
           const ele = x.srcElement as HTMLElement;
-          this.table.scrollTop = ele.scrollTop;
-          this.table.scrollLeft = ele.scrollLeft;
-          if (ele.scrollLeft >= 0 && this.table.theads.length > 0) {
-            for (let thead of this.table.theads) {
-              thead.nativeElement.scrollLeft = this.table.scrollLeft;
+          this.table.scrollTop.set(ele.scrollTop);
+          this.table.scrollLeft.set(ele.scrollLeft);
+          if (ele.scrollLeft >= 0 && this.table.theads().length > 0) {
+            for (let thead of this.table.theads()) {
+              thead.nativeElement.scrollLeft = this.table.scrollLeft();
             }
           }
-          this.table.scrollLeftMax = ele.scrollLeft + ele.clientWidth === ele.scrollWidth;
-          this.table.cdr.detectChanges();
+          this.table.scrollLeftMax.set(ele.scrollLeft + ele.clientWidth === ele.scrollWidth);
         });
     }
   }
 
   setScroll() {
-    if (!this.virtualBody) return;
-    const ele = this.virtualBody.elementRef.nativeElement;
-    const hasY = ele.scrollHeight > (this.bodyHeight as number);
-    const hasX = this.table.scrollContentEle.clientWidth > ele.clientWidth;
+    if (!this.virtualBody()) return;
+    const ele = this.virtualBody()!.elementRef.nativeElement;
+    const hasY = ele.scrollHeight > this.bodyHeightSignal()!;
+    const hasX = this.table.scrollContentEle()!.clientWidth > ele.clientWidth;
 
-    if (!this.table.hasScrollY && hasY) {
-      this.table.hasScrollY = true;
-      this.table.scrollYWidth = ele.offsetWidth - ele.clientWidth;
-    } else if (this.table.hasScrollY && !hasY) {
-      this.table.hasScrollY = false;
-      this.table.scrollYWidth = 0;
+    if (!this.table.hasScrollY() && hasY) {
+      this.table.hasScrollY.set(true);
+      this.table.scrollYWidth.set(ele.offsetWidth - ele.clientWidth);
+    } else if (this.table.hasScrollY() && !hasY) {
+      this.table.hasScrollY.set(false);
+      this.table.scrollYWidth.set(0);
     }
 
-    if (!this.table.hasScrollX && hasX) {
-      this.table.hasScrollX = true;
-      this.table.scrollXHeight = ele.offsetHeight - ele.clientHeight;
-    } else if (this.table.hasScrollX && !hasX) {
-      this.table.hasScrollX = false;
-      this.table.scrollXHeight = 0;
-      this.table.scrollXWidth = null;
+    if (!this.table.hasScrollX() && hasX) {
+      this.table.hasScrollX.set(true);
+      this.table.scrollXHeight.set(ele.offsetHeight - ele.clientHeight);
+    } else if (this.table.hasScrollX() && !hasX) {
+      this.table.hasScrollX.set(false);
+      this.table.scrollXHeight.set(0);
+      this.table.scrollXWidth.set(null);
     }
     if (hasX) {
-      this.table.scrollXWidth = ele.offsetWidth + ele.scrollWidth - ele.clientWidth;
+      this.table.scrollXWidth.set(ele.offsetWidth + ele.scrollWidth - ele.clientWidth);
     }
 
-    this.virtualBody.checkViewportSize();
+    this.virtualBody()!.checkViewportSize();
 
-    this.table.cdr.detectChanges();
+    // this.table.cdr.detectChanges();
   }
 
   setStyle() {
-    let height = this.rowHeight == 0 ? '' : this.rowHeight;
-    if (this.cellConfig && this.cellConfig.cells) {
-      const spt = this.cellConfig.cells.map((x) => {
+    let height = this.rowHeight() === 0 ? '' : this.rowHeight();
+    if (this.cellConfig() && this.cellConfig()!.cells) {
+      const spt = this.cellConfig()!.cells?.map((x) => {
         const gridAreaSpt = x.gridArea?.split('/');
         return gridAreaSpt && gridAreaSpt.length > 3 ? Number(gridAreaSpt[2]) : 2;
       });
-      height = ((Math.max(...spt) - 1) * (height as number)) as XNumber;
+      height = ((Math.max(...spt!) - 1) * (height as number)) as XNumber;
     }
-    this.tbodyStyle = {
+    this.tbodyStyle.set({
       height: `${height}px`
-    };
+    });
   }
 
   getIndex(index: number, item: XTableRow) {
     if (!isNaN(index)) return index;
-    return this.data.indexOf(item);
+    console.log(this.data(), item);
+    return this.data().indexOf(item);
   }
 
   getFlex(column: XTableColumn) {
@@ -206,49 +233,21 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, O
     return it ? XStripTags(it) : '';
   }
 
-  setAdaptionHeight() {
-    if ((this.adaptionHeight as number) > 0) {
-      const captionHeight = this.table.tcaption?.nativeElement.clientHeight || 0;
-      let headHeight = 0;
-      for (let thead of this.table.theads) {
-        headHeight += thead.nativeElement.clientHeight;
-      }
-      const footHeight = this.table.tfoot?.nativeElement.clientHeight || 0;
-      const paginationHeight = this.table.pagination?.elementRef.nativeElement.clientHeight || 0;
-      this.bodyHeight =
-        Number(this.docPercent) * this.doc.documentElement.clientHeight -
-        captionHeight -
-        headHeight -
-        footHeight -
-        paginationHeight -
-        Number(this.adaptionHeight);
-      if (this.bodyHeight < 0) this.bodyHeight = 0;
-      this.minBufferPx = this.bodyHeight;
-      this.maxBufferPx = this.bodyHeight * 1.2;
-      if (this.virtualBody) {
-        this.virtualBody['_scrollStrategy']['_minBufferPx'] = this.minBufferPx;
-        this.virtualBody['_scrollStrategy']['_maxBufferPx'] = this.maxBufferPx;
-      }
-      this.cdr.detectChanges();
-    }
-  }
-
   rowClick(event: Event, row: XTableRow) {
     if (row.disabled) return;
-    this.activatedRow = row;
-    if (this.table.allowCheckRow && this.table.rowChecked) {
+    this.activatedRow.set(row);
+    if (this.table.allowCheckRow() && this.table.rowChecked()) {
       if (!XParentPath(event.target as HTMLElement).includes('x-checkbox')) {
-        row[this.table.rowChecked.id] = !row[this.table.rowChecked.id];
-        this.table.bodyChecked(row[this.table.rowChecked.id], this.table.rowChecked, row);
+        row[this.table.rowChecked()!.id] = !row[this.table.rowChecked()!.id];
+        this.table.bodyChecked(row[this.table.rowChecked()!.id], this.table.rowChecked()!, row);
       }
     }
-    this.activatedRowChange.emit(row);
-    this.cdr.detectChanges();
+    // this.cdr.detectChanges();
   }
 
   onExpanded(_event: Event, node: XTableRow) {
     node.expanded = !node.expanded;
-    this.cdr.detectChanges();
+    // this.cdr.detectChanges();
   }
 
   trackByItem(_index: number, item: XTableRow | XTableColumn) {
