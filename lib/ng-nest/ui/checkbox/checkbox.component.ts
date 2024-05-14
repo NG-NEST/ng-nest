@@ -14,7 +14,7 @@ import {
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
 import { XIsChange, XSetData, XBoolean } from '@ng-nest/ui/core';
-import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XTagComponent } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
@@ -24,15 +24,7 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: `${XCheckboxPrefix}`,
   standalone: true,
-  imports: [
-    NgClass,
-    FormsModule,
-    XButtonComponent,
-    XButtonsComponent,
-    XTagComponent,
-    XOutletDirective,
-    XControlValueAccessor
-  ],
+  imports: [NgClass, FormsModule, XButtonComponent, XButtonsComponent, XTagComponent, XOutletDirective],
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -50,7 +42,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
   afterIsTemplate = computed(() => this.after() instanceof TemplateRef);
 
   getDisabled(disabled?: boolean) {
-    return (this.disabled() || disabled) as XBoolean;
+    return (this.disabledComputed() || disabled) as XBoolean;
   }
 
   nodes = signal<XCheckboxNode[]>([]);
@@ -88,7 +80,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
 
   checkboxClick(event: Event, node: XCheckboxNode) {
     event.preventDefault();
-    if (this.disabled() || node.disabled) return;
+    if (this.disabledComputed() || node.disabled) return;
     this.formControlValidator();
     if (this.single()) {
       this.value.update((x) => !x);

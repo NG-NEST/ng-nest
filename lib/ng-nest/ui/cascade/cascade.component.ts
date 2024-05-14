@@ -30,14 +30,14 @@ import {
   OverlayRef
 } from '@angular/cdk/overlay';
 import { filter, takeUntil } from 'rxjs/operators';
-import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-cascade',
   standalone: true,
-  imports: [NgClass, FormsModule, ReactiveFormsModule, XInputComponent, XControlValueAccessor],
+  imports: [NgClass, FormsModule, ReactiveFormsModule, XInputComponent],
   templateUrl: './cascade.component.html',
   styleUrls: ['./cascade.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -174,7 +174,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
   }
 
   menter() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.enter.set(true);
     if (!XIsEmpty(this.value())) {
       this.icon.set('');
@@ -183,7 +183,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
   }
 
   mleave() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.enter.set(false);
     if (this.clearable()) {
       this.icon.set('fto-chevron-down');
@@ -215,7 +215,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
   }
 
   showPortal() {
-    if (this.disabled() || this.animating()) return;
+    if (this.disabledComputed() || this.animating()) return;
     this.active.set(true);
     const config: OverlayConfig = {
       backdropClass: '',

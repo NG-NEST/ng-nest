@@ -10,5 +10,5 @@ import { XApiPrefix } from './api.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XApiComponent {
-  @HostBinding(`class.${XApiPrefix}`) _has = true;
+  @HostBinding(`class`) className = XApiPrefix;
 }

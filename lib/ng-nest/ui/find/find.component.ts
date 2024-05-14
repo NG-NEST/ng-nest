@@ -1,41 +1,31 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Renderer2,
   ElementRef,
-  ViewChild,
   SimpleChanges,
-  inject,
   OnChanges,
-  AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  computed,
+  viewChild,
+  signal
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import {
-  XClearClass,
-  XResize,
-  XIsUndefined,
-  XIsChange,
-  XConfigService,
-  XIsEmpty,
-  XResizeObserver
-} from '@ng-nest/ui/core';
-import { XTableComponent, XTableRow } from '@ng-nest/ui/table';
+import { XResize, XIsUndefined, XIsChange, XResizeObserver } from '@ng-nest/ui/core';
+import { XTableColumn, XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil, tap } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
-import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XTagComponent } from '@ng-nest/ui/tag';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XFindPrefix}`,
@@ -51,8 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     XTreeComponent,
     XIconComponent,
     XEmptyComponent,
-    XInputComponent,
-    XControlValueAccessor
+    XInputComponent
   ],
   templateUrl: './find.component.html',
   styleUrls: ['./find.component.scss'],
@@ -60,313 +49,265 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XFindComponent)]
 })
-export class XFindComponent extends XFindProperty implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-  @ViewChild('find', { static: true }) find!: ElementRef<HTMLElement>;
-  @ViewChild('dialogCom') dialogCom!: XDialogComponent;
-  @ViewChild('tableCom') tableCom!: XTableComponent;
-  @ViewChild('treeCom') treeCom!: XTreeComponent;
-  @ViewChild('buttonCom') buttonCom!: XButtonComponent;
+export class XFindComponent extends XFindProperty implements OnChanges, OnDestroy {
+  find = viewChild.required<ElementRef<HTMLElement>>('find');
+  dialogCom = viewChild.required<XDialogComponent>('dialogCom');
+  tableCom = viewChild<XTableComponent>('tableCom');
+  treeCom = viewChild<XTreeComponent>('treeCom');
+  buttonCom = viewChild.required<XButtonComponent>('buttonCom');
+  tableRef = viewChild<ElementRef<HTMLElement>>('tableRef');
+  treeRef = viewChild<ElementRef<HTMLElement>>('treeRef');
+  tableRefChanged = toObservable(this.tableRef)
+    .pipe(tap((x) => x && this.multiple() && this.setSubscribe()))
+    .subscribe();
+  treeRefChanged = toObservable(this.treeRef)
+    .pipe(tap((x) => x && this.multiple() && this.setSubscribe()))
+    .subscribe();
 
-  private _tableRef!: ElementRef<HTMLElement>;
-  public get tableRef(): ElementRef {
-    return this._tableRef;
-  }
-  @ViewChild('tableRef')
-  public set tableRef(value: ElementRef) {
-    this._tableRef = value;
-    if (value && this.multiple) {
-      this.setSubscribe();
+  tableColumnsSignal = computed(() => {
+    if (!this.multiple()) return this.tableColumns();
+    if (this.hasTable()) {
+      if (!this.tableColumns().find((x) => x.rowChecked)) {
+        return [
+          {
+            id: '$checked',
+            label: this.dialogCheckboxLabel(),
+            rowChecked: true,
+            type: 'checkbox',
+            width: this.dialogCheckboxWidth()
+          },
+          ...this.tableColumns()
+        ] as XTableColumn[];
+      }
     }
-  }
+    return this.tableColumns();
+  });
 
-  private _treeRef!: ElementRef<HTMLElement>;
-  public get treeRef(): ElementRef {
-    return this._treeRef;
-  }
-  @ViewChild('treeRef')
-  public set treeRef(value: ElementRef) {
-    this._treeRef = value;
-    if (value && this.multiple) {
-      this.setSubscribe();
+  getEmpty = computed(() => !this.temp() || this.temp().length === 0);
+  hasTable = computed(() => this.tableColumns().length > 0);
+  hasTree = computed(
+    () =>
+      (Array.isArray(this.treeData()) && (this.treeData() as Array<XTreeNode>).length > 0) ||
+      this.treeData() instanceof Function ||
+      this.treeData() instanceof Observable
+  );
+  hasTreeTable = computed(() => this.hasTable() && this.hasTree());
+  hasTreeMultiple = computed(() => this.hasTree() && !this.hasTreeTable() && this.multiple());
+  hasSearch = computed(() => this.search() && this.hasTable());
+  dialogWidthSignal = computed(() => {
+    if (XIsUndefined(this.dialogWidth())) {
+      if ((this.hasTable() && this.hasTree()) || this.hasTable()) {
+        return '50rem';
+      } else if (this.hasTree() && this.multiple()) {
+        return '30rem';
+      } else if (this.hasTree()) {
+        return '20rem';
+      }
     }
-  }
+    return this.dialogWidth();
+  });
 
-  get getEmpty() {
-    return !this.temp || this.temp.length === 0;
-  }
+  temp = signal<any>(undefined);
+  height = signal(100);
 
-  get hasTable() {
-    return this.tableColumns?.length > 0;
-  }
-
-  get hasTree() {
-    return (
-      (Array.isArray(this.treeData) && this.treeData.length > 0) ||
-      this.treeData instanceof Function ||
-      this.treeData instanceof Observable
-    );
-  }
-
-  get hasTreeTable() {
-    return this.hasTable && this.hasTree;
-  }
-
-  get hasTreeMultiple() {
-    return this.hasTree && !this.hasTreeTable && this.multiple;
-  }
-
-  get hasSearch() {
-    return this.search && this.hasTable;
-  }
-
-  temp: any;
-  height = 100;
-
-  private _unSubject = new Subject<void>();
-  private _resizeObserver!: XResizeObserver;
+  private unSubject = new Subject<void>();
+  private resizeObserver!: XResizeObserver;
 
   override writeValue(value: any) {
-    this.value = value;
-    this.cdr.detectChanges();
+    this.value.set(value);
   }
 
-  private renderer = inject(Renderer2);
-  override cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
+  classMapSignal = computed(() => ({
+    [`${XFindPrefix}-${this.size()}`]: !!this.size(),
+    [`x-justify-${this.justify()}`]: !!this.justify(),
+    [`x-align-${this.align()}`]: !!this.align(),
+    [`x-direction-${this.direction()}`]: !!this.direction()
+  }));
+  labelMapSignal = computed(() => ({
+    [`x-text-align-${this.labelAlign()}`]: !!this.labelAlign()
+  }));
 
   ngOnChanges(simples: SimpleChanges) {
-    const { tableData, labelAlign, size } = simples;
+    const { tableData } = simples;
     XIsChange(tableData) && this.setTableCheckedRow();
-    XIsChange(labelAlign, size) && this.setClassMap();
-  }
-
-  ngOnInit() {
-    this.setFlex(this.find.nativeElement, this.renderer, this.justify, this.align, this.direction);
-    this.setClassMap();
-    this.setMultiple();
-    this.setWidth();
-  }
-
-  ngAfterViewInit() {
-    if (this.value) this.cdr.detectChanges();
   }
 
   ngOnDestroy(): void {
-    this._resizeObserver?.disconnect();
-  }
-
-  setClassMap() {
-    XClearClass(this.labelMap, this.classMap);
-    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
-    this.classMap[`x-find-${this.size}`] = !XIsEmpty(this.size);
+    this.unSubject.next();
+    this.unSubject.complete();
+    this.resizeObserver?.disconnect();
   }
 
   setSubscribe() {
     let resizeRef: Element[] = [];
-    if (this.hasTable) {
-      resizeRef = [this.tableRef?.nativeElement];
+    if (this.hasTable()) {
+      resizeRef = [this.tableRef()!.nativeElement];
     }
-    if (this.hasTree && !this.hasTreeTable) {
-      resizeRef.push(this.treeRef?.nativeElement);
+    if (this.hasTree() && !this.hasTreeTable()) {
+      resizeRef.push(this.treeRef()!.nativeElement);
     }
-    this._unSubject.next();
+    this.unSubject.next();
+    if (resizeRef.length === 0) return;
     XResize(...resizeRef)
-      .pipe(debounceTime(30), takeUntil(this._unSubject))
+      .pipe(debounceTime(30), takeUntil(this.unSubject))
       .subscribe((x) => {
-        this._resizeObserver = x.resizeObserver;
-        if (this.tableRef) {
-          this.height = this.tableRef.nativeElement.clientHeight;
-        } else if (this.hasTree) {
-          this.height = this.treeRef?.nativeElement.clientHeight;
+        this.resizeObserver = x.resizeObserver;
+        if (this.tableRef()) {
+          this.height.set(this.tableRef()!.nativeElement.clientHeight);
+        } else if (this.hasTree()) {
+          this.height.set(this.treeRef()!.nativeElement.clientHeight);
         }
-        this.cdr.detectChanges();
       });
   }
 
-  setMultiple() {
-    if (!this.multiple) return;
-    if (this.hasTable) {
-      if (!this.tableColumns.find((x) => x.rowChecked)) {
-        this.tableColumns = [
-          {
-            id: '$checked',
-            label: this.dialogCheckboxLabel,
-            rowChecked: true,
-            type: 'checkbox',
-            width: this.dialogCheckboxWidth
-          },
-          ...this.tableColumns
-        ];
-      }
-    }
-  }
-
-  setWidth() {
-    if (XIsUndefined(this.dialogWidth)) {
-      if ((this.hasTable && this.hasTree) || this.hasTable) {
-        this.dialogWidth = '50rem';
-      } else if (this.hasTree && this.multiple) {
-        this.dialogWidth = '30rem';
-      } else if (this.hasTree) {
-        this.dialogWidth = '20rem';
-      }
-    }
-  }
-
   showModal() {
-    if (this.disabled) return;
-    this.dialogVisible = true;
-    this.dialogVisibleChange.emit(this.dialogVisible);
-    if (this.value) {
-      if (this.multiple) {
-        this.temp = (this.value as Array<any>).map((x) => Object.assign({}, x));
+    if (this.disabledComputed()) return;
+    this.dialogVisible.set(true);
+    if (this.value()) {
+      if (this.multiple()) {
+        this.temp.set((this.value() as Array<any>).map((x) => Object.assign({}, x)));
         this.setTableCheckedRow();
         this.setTreeChecked();
       } else {
-        this.tableActivatedRow = this.value;
-        if (!this.hasTreeTable && this.hasTree) {
-          this.treeActivatedId = this.value.id;
+        this.tableActivatedRow.set(this.value());
+        if (!this.hasTreeTable() && this.hasTree()) {
+          this.treeActivatedId.set(this.value().id);
         }
       }
     } else {
-      this.temp = this.multiple ? [] : null;
+      this.temp.set(this.multiple() ? [] : undefined);
     }
-    if (this.hasTable) {
-      this.tableCom.virtualBody()!.scrollToIndex(0);
-      this.tableCom.virtualBody()!.checkViewportSize();
+    if (this.hasTable()) {
+      this.tableCom()?.virtualBody()!.scrollToIndex(0);
+      this.tableCom()?.virtualBody()!.checkViewportSize();
     }
-    this.cdr.detectChanges();
   }
 
   setTableCheckedRow() {
-    if (!this.multiple || XIsUndefined(this.temp)) return;
-    const ids = (this.temp as Array<any>).map((x) => x.id);
-    this.tableCheckedRow = {
-      ...this.tableCheckedRow,
+    if (!this.multiple() || XIsUndefined(this.temp())) return;
+    const ids = (this.temp() as Array<any>).map((x) => x.id);
+    this.tableCheckedRow.update((x) => ({
+      ...x,
       $checked: ids
-    };
+    }));
   }
 
   setTreeChecked() {
-    if (this.hasTreeMultiple) this.treeChecked = this.temp.map((x: any) => x.id);
+    if (this.hasTreeMultiple()) this.treeChecked.set(this.temp().map((x: any) => x.id));
   }
 
   sure() {
-    this.value = this.temp;
-    this.onChange(this.value);
+    this.value.set(this.temp);
+    this.onChange && this.onChange(this.value());
     this.formControlValidator();
-    this.cdr.detectChanges();
-  }
-
-  closeModal() {
-    this.cdr.detectChanges();
   }
 
   dialogCloseDone() {
-    if (this.hasTree) {
-      this.treeActivatedId = null;
-      this.temp = null;
+    if (this.hasTree()) {
+      this.treeActivatedId.set(null);
+      this.temp.set(null);
     }
   }
 
   tempClose(index: number, item: any) {
-    this.temp.splice(index, 1);
-    if (this.hasTable) {
-      let it = this.tableCom?.tableData().find((x) => item.id === x.id);
+    this.temp.update((x) => {
+      x.splice(index, 1);
+      return x;
+    });
+    if (this.hasTable()) {
+      let it = this.tableCom()!
+        .tableData()
+        .find((x) => item.id === x.id);
       if (it) {
         it['$checked'] = false;
-        this.tableCom?.bodyChange();
       }
-    } else if (this.hasTree) {
-      let it = this.treeCom?.treeData().find((x) => item.id === x.id);
+    } else if (this.hasTree()) {
+      let it = this.treeCom()!
+        .treeData()
+        .find((x) => item.id === x.id);
       if (it) {
         it.checked = false;
         it.change && it.change();
-        this.treeCom?.cdr.detectChanges();
       }
     }
-
-    this.cdr.detectChanges();
   }
 
   tagClose(index: number = -1) {
     if (index >= 0) {
-      this.value.splice(index, 1);
+      this.value.update((x) => {
+        x.splice(index, 1);
+        return x;
+      });
     } else {
-      this.value = null;
-      this.tableActivatedRow = null;
-      if (!this.hasTreeTable && this.hasTree) {
-        this.treeActivatedId = null;
+      this.value.set(null);
+      this.tableActivatedRow.set(null);
+      if (!this.hasTreeTable() && this.hasTree()) {
+        this.treeActivatedId.set(null);
       }
     }
-    this.onChange(this.value);
+    this.onChange && this.onChange(this.value());
     this.formControlValidator();
-    this.cdr.detectChanges();
   }
 
   tableActivatedRowChange(data: XTableRow) {
-    if (this.multiple) {
+    if (this.multiple()) {
       this.rowMultiple(data);
     } else {
-      this.temp = data;
-      this.dialogVisible = false;
+      this.temp.set(data);
+      this.dialogVisible.set(false);
       this.sure();
     }
   }
 
   rowMultiple(data: XTableRow) {
-    if (typeof this.temp === 'undefined') this.temp = [];
-    // data['$checked'] = !data['$checked'];
+    if (typeof this.temp() === 'undefined') this.temp.set([]);
     if (data['$checked']) {
-      this.temp = [...this.temp, data];
+      this.temp.set([...this.temp(), data]);
     } else {
-      this.temp.splice(
-        (this.temp as Array<any>).findIndex((x) => x.id === data.id),
-        1
-      );
+      this.temp.update((x) => {
+        x.splice(
+          x.findIndex((x: any) => x.id === data.id),
+          1
+        );
+        return x;
+      });
     }
-    this.cdr.detectChanges();
   }
 
   treeMultiple(node: XTreeNode) {
-    if (typeof this.temp === 'undefined') this.temp = [];
-    // node.$checked = !node.$checked;
+    if (typeof this.temp() === 'undefined') this.temp.set([]);
     if (node.checked) {
-      this.temp = [...this.temp, node];
+      this.temp.update((x) => [...x, node]);
     } else {
-      this.temp.splice(
-        (this.temp as Array<any>).findIndex((x) => x.id === node.id),
-        1
-      );
+      this.temp.update((x) => {
+        x.splice(
+          x.findIndex((x: any) => x.id === node.id),
+          1
+        );
+        return x;
+      });
     }
-    this.cdr.detectChanges();
   }
 
   treeActivatedClick(node: XTreeNode) {
-    if (!this.hasTreeTable && this.hasTree) {
-      if (this.multiple) {
-        // this.treeMultiple(node);
-      } else {
-        this.temp = node;
+    if (!this.hasTreeTable() && this.hasTree()) {
+      if (!this.multiple()) {
+        this.temp.set(node);
       }
-    } else if (this.hasTreeTable && this.treeTableConnect) {
-      if (!this.tableQuery) this.tableQuery = {};
-      if (!this.tableQuery.filter) this.tableQuery.filter = [];
-      let field = this.tableQuery.filter.find((x) => x.field === this.treeTableConnect);
+    } else if (this.hasTreeTable() && this.treeTableConnect()) {
+      const tableQuery = this.tableQuery();
+      if (!tableQuery.filter) tableQuery.filter = [];
+      let field = tableQuery.filter.find((x) => x.field === this.treeTableConnect());
       if (field) {
         field.value = node.id;
         field.operation = '=';
       } else {
-        this.tableQuery.filter = [
-          ...this.tableQuery.filter,
-          { field: this.treeTableConnect, value: node.id, operation: '=' }
-        ];
+        tableQuery.filter = [...tableQuery.filter, { field: this.treeTableConnect(), value: node.id, operation: '=' }];
       }
-      this.tableCom.change(1);
-      this.treeActivatedId = node.id;
+      this.tableQuery.set(tableQuery);
+      this.tableCom()!.change(1);
+      this.treeActivatedId.set(node.id);
     }
-    this.treeActivatedChange.emit(node);
-    this.cdr.detectChanges();
   }
 
   treeCheckboxChange(node: XTreeNode) {
@@ -374,36 +315,34 @@ export class XFindComponent extends XFindProperty implements OnInit, OnChanges, 
   }
 
   formControlChanges() {
-    this.ngOnInit();
-    this.ngAfterViewInit();
-    this.treeCom?.setData();
-    this.cdr.detectChanges();
+    this.treeCom()?.setData();
   }
 
   searchKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       this.searchClick();
     } else if (event.key === 'Delete') {
-      this.search.value = '';
+      this.search.update((x) => {
+        x.value = '';
+        return x;
+      });
     }
   }
 
   searchClick(): void {
-    if (!this.hasSearch) {
+    if (!this.hasSearch()) {
       return;
     }
-
-    this.tableQuery = this.tableQuery || [];
-    this.tableQuery.filter = this.tableQuery.filter || [];
-    const field = this.tableQuery.filter.find((x) => x.field === this.search.field);
+    const tableQuery = this.tableQuery() || {};
+    tableQuery.filter = tableQuery.filter || [];
+    const field = tableQuery.filter.find((x) => x.field === this.search().field);
 
     if (field) {
-      field.value = this.search.value || '';
+      field.value = this.search().value || '';
     } else {
-      this.tableQuery.filter = [...this.tableQuery?.filter, this.search];
+      tableQuery.filter = [...tableQuery.filter, this.search()];
     }
-
-    this.tableCom.change(1);
-    this.cdr.detectChanges();
+    this.tableQuery.set(tableQuery);
+    this.tableCom()!.change(1);
   }
 }

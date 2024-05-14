@@ -4,7 +4,7 @@
   <x-alert title="Close the event" type="warning" (close)="close()"> </x-alert>
 
   <x-alert [title]="titleTpl" type="success" showIcon [duration]="20000" content="seconds after closing"></x-alert>
-  <ng-template #titleTpl> <x-countdown [value]="deadline" format="ss:SSS"></x-countdown></ng-template>
+  <ng-template #titleTpl> <x-countdown [value]="deadline()" format="ss:SSS"></x-countdown></ng-template>
 
   <x-alert [title]="title1Tpl" [content]="content1Tpl"> </x-alert>
   <ng-template #title1Tpl>📣📣📣</ng-template>

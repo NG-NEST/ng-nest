@@ -2,7 +2,7 @@
   #inputElement
   class="x-input"
   [class.x-flex]="justify() || align() || direction()"
-  [class.x-disabled]="disabled()"
+  [class.x-disabled]="disabledComputed()"
   [class.x-required]="requiredIsEmpty()"
   [class.x-invalid]="invalid()"
   [class.x-clearable]="clearable()"
@@ -22,9 +22,12 @@
   [ngClass]="classMapSignal()"
 >
   @if (label()) {
-    <label [class.x-input-label-required]="required()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
-      label()
-    }}</label>
+    <label
+      [class.x-input-label-required]="requiredComputed()"
+      [style.width]="labelWidth()"
+      [ngClass]="labelMapSignal()"
+      >{{ label() }}</label
+    >
   }
   <div class="x-input-row">
     @if (before()) {
@@ -55,8 +58,8 @@
         [ngStyle]="inputStyle()"
         [type]="type()"
         [placeholder]="placeholder()"
-        [required]="required()"
-        [disabled]="disabled()"
+        [required]="requiredComputed()"
+        [disabled]="disabledComputed()"
         [readonly]="readonly()"
         [maxlength]="maxlength()"
         [min]="min()"

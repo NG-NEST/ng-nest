@@ -298,7 +298,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
 
   menter() {
     this.enter.set(true);
-    if (this.disabled() || !this.clearable() || this.iconSpin()) return;
+    if (this.disabledComputed() || !this.clearable() || this.iconSpin()) return;
     if (!XIsEmpty(this.displayValue())) {
       this.icon.set('');
       this.showClearable.set(true);
@@ -307,7 +307,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
 
   mleave() {
     this.enter.set(false);
-    if (this.disabled() || !this.clearable() || this.iconSpin()) return;
+    if (this.disabledComputed() || !this.clearable() || this.iconSpin()) return;
     if (this.clearable()) {
       this.icon.set('fto-chevron-down');
       this.showClearable.set(false);
@@ -559,7 +559,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   }
 
   showPortal(click = false) {
-    if (this.disabled() || this.iconSpin() || this.animating()) return;
+    if (this.disabledComputed() || this.iconSpin() || this.animating()) return;
     this.active.set(true);
     if ((this.async() && XIsObservable(this.data()) && this.nodes().length === 0) || XIsFunction(this.data())) {
       this.icon.set('fto-loader');

@@ -328,7 +328,6 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
  * @param docItem
  */
 export function getProperty(line: string, docItem: any = {}, lang = '') {
-  // if (line.startsWith('readonly virtualScrollHeight')) {
   const ix = line.indexOf('=');
   const name = line.slice(0, ix).replace('readonly', '').trim();
   let right = line.slice(ix + 1, line.length).trim();

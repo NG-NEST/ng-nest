@@ -1,5 +1,16 @@
 import { Injectable } from '@angular/core';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XGroupBy, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
+import {
+  XRepositoryAbstract,
+  XQuery,
+  XResultList,
+  XGroupItem,
+  XFilter,
+  XChunk,
+  XGroupBy,
+  XSort,
+  XId,
+  XOrderBy
+} from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -54,7 +65,7 @@ export class BorderedService extends XRepositoryAbstract {
     let result = data;
     if (filters && filters.length > 0) {
       filters.forEach((x) => {
-        result = result.filter((y) => y[x.field].indexOf(x.value) >= 0);
+        result = result.filter((y) => y[x.field!].indexOf(x.value) >= 0);
       });
     }
     return result;
@@ -71,8 +82,8 @@ export class BorderedService extends XRepositoryAbstract {
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return XOrderBy(
       data,
-      sort.map(x=> x.field),
-      sort.map(x=> x.value) as ('desc' | 'asc')[]
+      sort.map((x) => x.field!),
+      sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }

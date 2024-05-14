@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, TemplateRef, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewContainerRef, ViewChild, viewChild } from '@angular/core';
 import { PortalPrefix } from './portal.property';
 import { XPortalService } from './portal.service';
 import { Overlay } from '@angular/cdk/overlay';
@@ -33,11 +33,15 @@ describe(PortalPrefix, () => {
   `
 })
 class TestXPortalComponent {
-  @ViewChild('temp') temp!: TemplateRef<any>;
-  constructor(private portal: XPortalService, private viewContainerRef: ViewContainerRef, private overlay: Overlay) {}
+  temp = viewChild.required<TemplateRef<any>>('temp');
+  constructor(
+    private portal: XPortalService,
+    private viewContainerRef: ViewContainerRef,
+    private overlay: Overlay
+  ) {}
   showPortal() {
     this.portal.attach({
-      content: this.temp,
+      content: this.temp(),
       viewContainerRef: this.viewContainerRef,
       context: { text: '名字' },
       overlayConfig: {

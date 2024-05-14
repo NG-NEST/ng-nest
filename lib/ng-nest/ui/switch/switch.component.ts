@@ -34,7 +34,7 @@ export class XSwitchComponent extends XSwitchProperty {
   }
 
   switchClick() {
-    if (this.disabled() || this.loading() || this.manual()) return;
+    if (this.disabledComputed() || this.loading() || this.manual()) return;
     this.value.update((x) => !x);
     if (this.onChange) this.onChange(this.value());
   }

@@ -79,7 +79,7 @@ export class XInputComponent extends XInputProperty implements OnInit {
           : this.inputPadding();
   });
   clearShow = computed(() => {
-    if (this.clearable() && !this.disabled()) {
+    if (this.clearable() && !this.disabledComputed()) {
       return !XIsEmpty(this.value());
     } else {
       return false;

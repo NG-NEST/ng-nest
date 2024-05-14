@@ -2,7 +2,7 @@
   #sliderSelect
   class="x-slider-select"
   [class.x-flex]="justify() || align() || direction()"
-  [class.x-disabled]="disabled()"
+  [class.x-disabled]="disabledComputed()"
   [class.x-required]="requiredIsEmpty()"
   [class.x-invalid]="invalid()"
   [class.x-slider-select-reverse]="reverse()"
@@ -11,7 +11,7 @@
 >
   @if (label()) {
     <label
-      [class.x-slider-select-label-required]="required()"
+      [class.x-slider-select-label-required]="requiredComputed()"
       [style.width]="labelWidth()"
       [ngClass]="labelMapSignal()"
       >{{ label() }}</label
@@ -28,7 +28,7 @@
           class="x-slider-select-process"
           cdkDrag
           [cdkDragLockAxis]="vertical() ? 'y' : 'x'"
-          [cdkDragDisabled]="disabled() || !range()"
+          [cdkDragDisabled]="disabledComputed() || !range()"
           [cdkDragBoundary]="trackRef"
           (cdkDragStarted)="started($event, 'both')"
           (cdkDragEnded)="ended($event, 'both')"
@@ -47,7 +47,7 @@
         class="x-slider-select-drag"
         cdkDrag
         [cdkDragLockAxis]="vertical() ? 'y' : 'x'"
-        [cdkDragDisabled]="disabled()"
+        [cdkDragDisabled]="disabledComputed()"
         [cdkDragBoundary]="innerRef"
         (cdkDragStarted)="started($event, 'start')"
         (cdkDragEnded)="ended($event, 'start')"
@@ -80,7 +80,7 @@
         class="x-slider-select-drag"
         cdkDrag
         [cdkDragLockAxis]="vertical() ? 'y' : 'x'"
-        [cdkDragDisabled]="disabled()"
+        [cdkDragDisabled]="disabledComputed()"
         [cdkDragBoundary]="innerRef"
         (cdkDragStarted)="started($event, 'end')"
         (cdkDragEnded)="ended($event, 'end')"

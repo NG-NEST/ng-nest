@@ -6,11 +6,10 @@ import {
   ChangeDetectionStrategy,
   HostBinding,
   HostListener,
-  Output,
-  EventEmitter,
   inject,
   computed,
-  signal
+  signal,
+  output
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
 import {
@@ -52,7 +51,7 @@ import { XTreeComponent } from './tree.component';
 })
 export class XTreeNodeComponent extends XTreeNodeProperty {
   tree = inject(XTreeComponent, { optional: true, host: true })!;
-  @Output() nodeMouseenter = new EventEmitter<{ event: MouseEvent; node: XTreeNode; ele: ElementRef }>();
+  nodeMouseenter = output<{ event: MouseEvent; node: XTreeNode; ele: ElementRef }>();
   @HostBinding('class.x-tree-node') rootClass = true;
   private document = inject(DOCUMENT);
   fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));

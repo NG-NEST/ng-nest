@@ -65,7 +65,7 @@ export class XButtonComponent extends XButtonProperty implements AfterViewInit, 
     return this.buttons?.round() || this.round();
   });
 
-  disabledSignal = computed(() => {
+  disabledComputed = computed(() => {
     return this.loading() || this.disabled() ? 'none' : '';
   });
 

@@ -17,7 +17,7 @@
   [type]="type()"
   [disabled]="disabled()"
   [attr.type]="attrType()"
-  [style.disabled]="disabledSignal()"
+  [style.disabled]="disabledComputed()"
 >
   @if (direction() === 'row' && icon() && !loading()) {
     <x-icon [type]="icon()"></x-icon>

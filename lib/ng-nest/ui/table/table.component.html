@@ -15,7 +15,7 @@
 >
   @if (header()) {
     <caption #caption class="x-table-header" [style.height.px]="getRowHeight()" [style.min-height.px]="getRowHeight()">
-      <ng-container *xOutlet="header">{{ header() }}</ng-container>
+      <ng-container *xOutlet="header()">{{ header() }}</ng-container>
     </caption>
   }
   @if (showHeader() && (headerPosition() === 'top' || headerPosition() === 'top-bottom')) {

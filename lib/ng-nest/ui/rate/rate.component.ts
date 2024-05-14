@@ -64,7 +64,7 @@ export class XRateComponent extends XRateProperty {
   }));
 
   override requiredIsEmpty = computed(() => {
-    return this.validatorSignal() && this.required() && (XIsEmpty(this.value()) || this.value() === 0);
+    return this.validatorSignal() && this.requiredComputed() && (XIsEmpty(this.value()) || this.value() === 0);
   });
 
   override writeValue(value: any) {
@@ -75,33 +75,33 @@ export class XRateComponent extends XRateProperty {
   }
 
   rateHover(rate: number, _event: MouseEvent) {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.hoverActivated.set(rate);
   }
 
   leaveRates() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     const activited = this.value();
     this.hoverActivated.set(activited);
     this.hoverHalfActivated.set(Math.ceil(activited));
   }
 
   rateClick(rate: number, _event: MouseEvent) {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.formControlValidator();
     this.value.update((x) => (x === rate ? 0 : rate));
     if (this.onChange) this.onChange(this.value());
   }
 
   rateHalfHover(rate: number, _event: MouseEvent) {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.formControlValidator();
     this.hoverActivated.set(rate - 1);
     this.hoverHalfActivated.set(rate);
   }
 
   rateHalfClick(rate: number, _event: MouseEvent) {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.value.set(rate - 0.5);
     if (this.onChange) this.onChange(this.value());
   }

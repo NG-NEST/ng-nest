@@ -294,7 +294,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   menter() {
-    if (this.disabled() || !this.clearable() || this.iconSpin()) return;
+    if (this.disabledComputed() || !this.clearable() || this.iconSpin()) return;
     this.enter.set(true);
     if ((!this.multiple() && !XIsEmpty(this.displayValue())) || (this.multiple() && !XIsEmpty(this.displayNodes()))) {
       this.icon.set('');
@@ -303,7 +303,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   mleave() {
-    if (this.disabled() || !this.clearable() || this.iconSpin()) return;
+    if (this.disabledComputed() || !this.clearable() || this.iconSpin()) return;
     this.enter.set(false);
     if (this.clearable()) {
       this.icon.set('fto-chevron-down');
@@ -528,7 +528,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   showPortal(click = false) {
-    if (this.disabled() || this.iconSpin() || this.animating()) return;
+    if (this.disabledComputed() || this.iconSpin() || this.animating()) return;
     this.active.set(true);
     if ((this.async() && XIsObservable(this.data()) && this.nodes().length === 0) || XIsFunction(this.data())) {
       this.icon.set('fto-loader');

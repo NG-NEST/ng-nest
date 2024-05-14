@@ -1,4 +1,4 @@
-<div #upload class="x-upload x-upload-{{ type() }}" [class.x-disabled]="disabled()">
+<div #upload class="x-upload x-upload-{{ type() }}" [class.x-disabled]="disabledComputed()">
   <input
     type="file"
     #file
@@ -94,7 +94,7 @@
 <ng-template #uploadBtnTpl>
   <div class="x-upload-buttons" [class.x-upload-buttons-template]="isTemplateText()" (click)="uploadClick()">
     <ng-container *xOutlet="getText()">
-      <x-button icon="fto-upload" [disabled]="disabled()" type="primary">{{ getText() }}</x-button>
+      <x-button icon="fto-upload" [disabled]="disabledComputed()" type="primary">{{ getText() }}</x-button>
     </ng-container>
   </div>
 </ng-template>

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn } from '@ng-nest/ui/table';
 import { XTransferComponent } from '@ng-nest/ui/transfer';
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   providers: [TableService]
 })
 export class ExTableComponent {
-  @ViewChild('transferCom') transferCom!: XTransferComponent;
+  transferCom = viewChild.required<XTransferComponent>('transferCom');
   value = this.service.users.filter((x) => [2, 6, 13, 24].includes(Number(x.id)));
   data = (index: number, size: number, query: XQuery) => this.service.getList(index, size, query);
   columns: XTableColumn[] = [

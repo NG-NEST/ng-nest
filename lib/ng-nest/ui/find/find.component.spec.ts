@@ -195,23 +195,23 @@ class UsersServiceTest extends XRepositoryAbstract {
       filters.forEach((x) => {
         switch (x.operation) {
           case '=':
-            result = result.filter((y) => y[x.field] === x.value);
+            result = result.filter((y) => y[x.field!] === x.value);
             break;
           case '>':
-            result = result.filter((y) => y[x.field] > x.value);
+            result = result.filter((y) => y[x.field!] > x.value!);
             break;
           case '>=':
-            result = result.filter((y) => y[x.field] >= x.value);
+            result = result.filter((y) => y[x.field!] >= x.value!);
             break;
           case '<':
-            result = result.filter((y) => y[x.field] < x.value);
+            result = result.filter((y) => y[x.field!] < x.value!);
             break;
           case '<=':
-            result = result.filter((y) => y[x.field] <= x.value);
+            result = result.filter((y) => y[x.field!] <= x.value!);
             break;
           default:
             // '%'
-            result = result.filter((y) => y[x.field].indexOf(x.value) >= 0);
+            result = result.filter((y) => y[x.field!].indexOf(x.value) >= 0);
             break;
         }
       });
@@ -222,7 +222,7 @@ class UsersServiceTest extends XRepositoryAbstract {
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return XOrderBy(
       data,
-      sort.map((x) => x.field),
+      sort.map((x) => x.field!),
       sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
@@ -392,12 +392,10 @@ class TestXFindComponent {
     },
     getData: (visible: boolean = true) => {
       if (visible) console.log(this.table.query);
-      this.tableService
-        .getList(this.table.index, this.table.size, this.table.query)
-        .subscribe((x) => {
-          [this.table.data, this.table.total] = [x.list as [], Number(x.total)];
-          this.cdr.detectChanges();
-        });
+      this.tableService.getList(this.table.index, this.table.size, this.table.query).subscribe((x) => {
+        [this.table.data, this.table.total] = [x.list as [], Number(x.total)];
+        this.cdr.detectChanges();
+      });
     }
   };
 
@@ -495,8 +493,7 @@ class TestXFindFunctionComponent {
       { id: 'position', label: '职位', flex: 1, sort: true },
       { id: 'organization', label: '组织机构', flex: 1, sort: true }
     ],
-    data: (index: number, size: number, query: XQuery) =>
-      this.tableService.getList(index, size, query)
+    data: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query)
   };
 
   model1 = { id: 1, label: '姓名1' };

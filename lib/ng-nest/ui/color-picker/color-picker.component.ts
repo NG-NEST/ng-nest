@@ -28,14 +28,14 @@ import {
   OverlayRef
 } from '@angular/cdk/overlay';
 import { filter, takeUntil } from 'rxjs/operators';
-import { XControlValueAccessor, XValueAccessor } from '@ng-nest/ui/base-form';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-color-picker',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, XInputComponent, XControlValueAccessor],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent],
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -103,7 +103,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   }
 
   menter() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.enter.set(true);
     if (!XIsEmpty(this.value())) {
       this.icon.set('');
@@ -112,7 +112,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   }
 
   mleave() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.enter.set(false);
     if (this.clearable()) {
       this.icon.set('fto-chevron-down');
@@ -144,7 +144,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   }
 
   showPortal() {
-    if (this.disabled() || this.animating()) return;
+    if (this.disabledComputed() || this.animating()) return;
     this.active.set(true);
     const config: OverlayConfig = {
       backdropClass: '',

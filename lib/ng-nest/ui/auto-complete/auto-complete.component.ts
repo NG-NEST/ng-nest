@@ -37,7 +37,7 @@ import {
 } from '@angular/cdk/overlay';
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE } from '@angular/cdk/keycodes';
-import { XValueAccessor, XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -45,14 +45,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: `${XAutoCompletePrefix}`,
   standalone: true,
-  imports: [
-    NgClass,
-    FormsModule,
-    ReactiveFormsModule,
-    XInputComponent,
-    XControlValueAccessor,
-    XAutoCompletePortalComponent
-  ],
+  imports: [NgClass, FormsModule, ReactiveFormsModule, XInputComponent, XAutoCompletePortalComponent],
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -209,7 +202,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   showPortal() {
-    if (XIsEmpty(this.value()) || this.disabled() || this.iconSpin() || this.animating()) return;
+    if (XIsEmpty(this.value()) || this.disabledComputed() || this.iconSpin() || this.animating()) return;
     this.active.set(true);
     if ((XIsObservable(this.data()) && this.nodes.length === 0) || XIsFunction(this.data())) {
       this.icon.set('fto-loader');

@@ -143,7 +143,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   });
 
   override requiredIsEmpty = computed(
-    () => this.validatorSignal() && this.required() && (XIsEmpty(this.value()) || this.value() === 0)
+    () => this.validatorSignal() && this.requiredComputed() && (XIsEmpty(this.value()) || this.value() === 0)
   );
 
   override writeValue(value: number | number[]) {

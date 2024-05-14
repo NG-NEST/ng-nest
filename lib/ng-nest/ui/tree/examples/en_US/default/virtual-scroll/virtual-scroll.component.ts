@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
@@ -40,8 +40,8 @@ export class ExVirtualScrollComponent {
 
   scrollHeight = 400;
 
-  @ViewChild('treeCom') treeCom!: XTreeComponent;
-  @ViewChild('treeComLazy') treeComLazy!: XTreeComponent;
+  treeCom = viewChild.required<XTreeComponent>('treeCom');
+  treeComLazy = viewChild.required<XTreeComponent>('treeComLazy');
   getData1 = (pid?: any): Observable<XTreeNode[]> => {
     return new Observable((x) => {
       let result = this.dataLazy1
@@ -81,24 +81,24 @@ export class ExVirtualScrollComponent {
   }
 
   add() {
-    this.treeCom.addNode({ id: new Date().getTime(), label: 'new root node' });
+    this.treeCom().addNode({ id: new Date().getTime(), label: 'new root node' });
   }
 
   addChild() {
     if (this.selected) {
-      this.treeCom.addNode({ id: new Date().getTime(), label: 'new node', pid: this.selected.id });
+      this.treeCom().addNode({ id: new Date().getTime(), label: 'new node', pid: this.selected.id });
     }
   }
 
   update() {
     if (this.selected) {
-      this.treeCom.updateNode(this.selected!, { id: this.selected.id, label: 'update node' });
+      this.treeCom().updateNode(this.selected!, { id: this.selected.id, label: 'update node' });
     }
   }
 
   remove() {
     if (this.selected) {
-      this.treeCom.removeNode(this.selected);
+      this.treeCom().removeNode(this.selected);
     }
   }
 
@@ -108,24 +108,24 @@ export class ExVirtualScrollComponent {
   }
 
   addLazy() {
-    this.treeComLazy.addNode({ id: new Date().getTime(), label: 'new root node' });
+    this.treeComLazy().addNode({ id: new Date().getTime(), label: 'new root node' });
   }
 
   addChildLazy() {
     if (this.selectedLazy) {
-      this.treeComLazy.addNode({ id: new Date().getTime(), label: 'new node', pid: this.selectedLazy.id });
+      this.treeComLazy().addNode({ id: new Date().getTime(), label: 'new node', pid: this.selectedLazy.id });
     }
   }
 
   updateLazy() {
     if (this.selectedLazy) {
-      this.treeComLazy.updateNode(this.selectedLazy!, { id: this.selectedLazy.id, label: 'update node' });
+      this.treeComLazy().updateNode(this.selectedLazy!, { id: this.selectedLazy.id, label: 'update node' });
     }
   }
 
   removeLazy() {
     if (this.selectedLazy) {
-      this.treeComLazy.removeNode(this.selectedLazy);
+      this.treeComLazy().removeNode(this.selectedLazy);
     }
   }
 }

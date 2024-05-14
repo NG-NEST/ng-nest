@@ -3,12 +3,12 @@
   class="x-rate"
   [ngClass]="classMapSignal()"
   [class.x-flex]="justify() || align() || direction()"
-  [class.x-disabled]="disabled()"
+  [class.x-disabled]="disabledComputed()"
   [class.x-required]="requiredIsEmpty()"
   [class.x-invalid]="invalid()"
 >
   @if (label()) {
-    <label [class.x-rate-label-required]="required()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
+    <label [class.x-rate-label-required]="requiredComputed()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
       label()
     }}</label>
   }

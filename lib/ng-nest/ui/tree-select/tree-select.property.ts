@@ -216,12 +216,12 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
-  override readonly pattern = input<any>();
+  override readonly pattern = input<RegExp | RegExp[] | any>([]);
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verify not pass the prompt text
    */
-  override readonly message = input<string | string[]>('');
+  override readonly message = input<string | string[]>([]);
   /**
    * @zh_CN 激活状态
    * @en_US Activation state

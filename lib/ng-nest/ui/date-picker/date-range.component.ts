@@ -262,7 +262,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   menter() {
-    if (this.disabled() || !this.clearable()) return;
+    if (this.disabledComputed() || !this.clearable()) return;
     this.enter.set(true);
     if (!XIsEmpty(this.numberValue())) {
       this.icon.set('');
@@ -271,7 +271,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   }
 
   mleave() {
-    if (this.disabled() || !this.clearable()) return;
+    if (this.disabledComputed() || !this.clearable()) return;
     this.enter.set(false);
     if (this.clearable()) {
       this.icon.set('fto-calendar');

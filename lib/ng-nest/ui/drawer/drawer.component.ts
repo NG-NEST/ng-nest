@@ -2,7 +2,6 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ViewChild,
   TemplateRef,
   ViewContainerRef,
   HostBinding,
@@ -10,7 +9,8 @@ import {
   OnDestroy,
   computed,
   signal,
-  AfterViewInit
+  AfterViewInit,
+  viewChild
 } from '@angular/core';
 import { XDrawerPrefix, XDrawerProperty, X_DRAWER_CONTAINER } from './drawer.property';
 import { XIsEmpty, XOpacityAnimation, XSlideAnimation } from '@ng-nest/ui/core';
@@ -37,7 +37,7 @@ export class XDrawerComponent extends XDrawerProperty implements AfterViewInit, 
   @HostBinding('class.x-drawer-visible') get getVisible() {
     return this.visible();
   }
-  @ViewChild('drawerTpl', { static: true }) drawerTpl!: TemplateRef<void>;
+  drawerTpl = viewChild.required<TemplateRef<void>>('drawerTpl');
   portal!: XPortalOverlayRef<any>;
   back$: Subscription | null = null;
   width = computed(() => {
@@ -83,7 +83,7 @@ export class XDrawerComponent extends XDrawerProperty implements AfterViewInit, 
   createPortal() {
     if (this.hasContainer()) return;
     this.portal = this.portalService.attach({
-      content: this.drawerTpl,
+      content: this.drawerTpl(),
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         hasBackdrop: this.hasBackdrop(),

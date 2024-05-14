@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn } from '@ng-nest/ui/table';
 import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
@@ -42,7 +42,7 @@ export class ExSearchComponent {
   ];
 
   // table
-  @ViewChild('transferCom') transferCom!: XTransferComponent;
+  transferCom = viewChild.required<XTransferComponent>('transferCom');
   query: XQuery = { filter: [] };
   name = null;
   position = null;
@@ -69,7 +69,7 @@ export class ExSearchComponent {
       filter = [...filter, pfilter];
       this.query.filter = filter;
     }
-    this.transferCom.leftTableCom()?.change(1);
+    this.transferCom().leftTableCom()?.change(1);
   }
 
   constructor(public service: SearchService) {}

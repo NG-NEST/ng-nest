@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
+import {
+  XRepositoryAbstract,
+  XQuery,
+  XResultList,
+  XGroupItem,
+  XFilter,
+  XChunk,
+  XSort,
+  XId,
+  XOrderBy
+} from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -67,23 +77,23 @@ export class TreeTableService extends XRepositoryAbstract {
       filters.forEach((x) => {
         switch (x.operation) {
           case '=':
-            result = result.filter((y) => y[x.field] === x.value);
+            result = result.filter((y) => y[x.field!] === x.value);
             break;
           case '>':
-            result = result.filter((y) => y[x.field] > x.value);
+            result = result.filter((y) => y[x.field!] > x.value!);
             break;
           case '>=':
-            result = result.filter((y) => y[x.field] >= x.value);
+            result = result.filter((y) => y[x.field!] >= x.value!);
             break;
           case '<':
-            result = result.filter((y) => y[x.field] < x.value);
+            result = result.filter((y) => y[x.field!] < x.value!);
             break;
           case '<=':
-            result = result.filter((y) => y[x.field] <= x.value);
+            result = result.filter((y) => y[x.field!] <= x.value!);
             break;
           default:
             // '%'
-            result = result.filter((y) => y[x.field].indexOf(x.value) >= 0);
+            result = result.filter((y) => y[x.field!].indexOf(x.value) >= 0);
             break;
         }
       });
@@ -94,8 +104,8 @@ export class TreeTableService extends XRepositoryAbstract {
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return XOrderBy(
       data,
-      sort.map(x=> x.field),
-      sort.map(x=> x.value) as ('desc' | 'asc')[]
+      sort.map((x) => x.field!),
+      sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }

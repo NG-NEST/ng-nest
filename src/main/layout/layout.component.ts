@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, HostBinding, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostBinding, viewChild } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { LayoutService } from './layout.service';
 import { ContentComponent } from './content/content.component';
@@ -22,9 +22,12 @@ export class LayoutComponent implements OnInit {
   @HostBinding('class.xsmall') get xsmall() {
     return this.layoutService.xsmall;
   }
-  @ViewChild('content', { static: true }) content!: ContentComponent;
+  content = viewChild.required<ContentComponent>('content');
 
-  constructor(private breakpointObserver: BreakpointObserver, private layoutService: LayoutService) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private layoutService: LayoutService
+  ) {}
 
   ngOnInit() {
     // // 手持设备

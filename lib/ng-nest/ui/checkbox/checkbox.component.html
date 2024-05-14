@@ -2,7 +2,7 @@
   #checkbox
   class="x-checkbox"
   [class.x-flex]="justify() || align() || direction()"
-  [class.x-disabled]="disabled()"
+  [class.x-disabled]="disabledComputed()"
   [class.x-required]="requiredIsEmpty()"
   [class.x-invalid]="invalid()"
   [class.x-checkbox-button]="button()"
@@ -15,9 +15,12 @@
   [ngClass]="classMapSignal()"
 >
   @if (label()) {
-    <label [class.x-checkbox-label-required]="required()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
-      label()
-    }}</label>
+    <label
+      [class.x-checkbox-label-required]="requiredComputed()"
+      [style.width]="labelWidth()"
+      [ngClass]="labelMapSignal()"
+      >{{ label() }}</label
+    >
   }
   <div class="x-checkbox-row">
     @if (before()) {
@@ -32,7 +35,7 @@
             <div
               class="x-checkbox-row-item"
               [class.x-checked]="getChecked(item.id)"
-              [class.x-disabled]="disabled() || item.disabled"
+              [class.x-disabled]="disabledComputed() || item.disabled"
               [class.x-indeterminate]="indeterminate()"
               (click)="checkboxClick($event, item)"
             >

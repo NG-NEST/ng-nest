@@ -2,18 +2,18 @@
   #form
   class="x-form"
   [class.x-form-has-content]="content.innerHTML.trim()"
-  [formGroup]="formGroup"
-  [style.width]="width"
-  [style.padding-bottom.rem]="controlsType === 'controls' ? this.space : 0"
-  [ngClass]="classMap"
+  [formGroup]="formGroup()"
+  [style.width]="width()"
+  [style.padding-bottom]="controlsType() === 'controls' ? this.space() : '0px'"
+  [ngClass]="classMapSignal()"
   (ngSubmit)="onSubmit($event)"
 >
-  @switch (controlsType) {
+  @switch (controlsType()) {
     @case ('controls') {
-      <ng-container *ngTemplateOutlet="controlsTemp; context: { controls: controls }"> </ng-container>
+      <ng-container *ngTemplateOutlet="controlsTemp; context: { controls: controls() }"> </ng-container>
     }
     @case ('rows') {
-      <ng-container *ngTemplateOutlet="rowsTemp; context: { rows: controls }"></ng-container>
+      <ng-container *ngTemplateOutlet="rowsTemp; context: { rows: controls() }"></ng-container>
     }
   }
   <div class="x-form-content" #content><ng-content></ng-content></div>
@@ -29,11 +29,11 @@
 </ng-template>
 
 <ng-template #controlsTemp let-controls="controls">
-  <x-row [space]="space!">
+  <x-row [space]="space()">
     @for (control of controls; track control.id) {
-      <x-col [style.padding-top.rem]="space" [span]="!control.span ? span : control.span" [hidden]="control.hidden">
-        <ng-container *xOutlet="controlTpl[control.id]; context: { $option: control }">
-          <x-control [option]="control" [form]="this"></x-control>
+      <x-col [style.padding-top]="space()" [span]="!control.span ? span : control.span" [hidden]="control.hidden">
+        <ng-container *xOutlet="controlTpl()[control.id]; context: { $option: control }">
+          <x-control [option]="control"></x-control>
         </ng-container>
       </x-col>
     }

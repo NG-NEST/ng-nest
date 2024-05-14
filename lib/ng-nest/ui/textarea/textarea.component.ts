@@ -45,7 +45,7 @@ export class XTextareaComponent extends XTextareaProperty {
   });
 
   clearShow = computed(() => {
-    if (this.clearable() && !this.disabled()) {
+    if (this.clearable() && !this.disabledComputed()) {
       return !XIsEmpty(this.value());
     } else {
       return false;

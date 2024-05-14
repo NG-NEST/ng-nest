@@ -573,27 +573,6 @@ export const en_US: {[key: string]: AppProp} = {
     },
     "returnType": "HTMLElement[]"
   },
-  "XProperty": {
-    "type": "class",
-    "label": "Component of public properties",
-    "description": "",
-    "example": "",
-    "properties": [
-      {
-        "name": "classMap",
-        "type": "XClassMap",
-        "label": "Style mapping",
-        "default": "{}",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "classMap",
-        "propType": "",
-        "example": ""
-      }
-    ],
-    "name": "XProperty"
-  },
   "XPropertyFunction<T extends XComponentConfigKey>": {
     "type": "function",
     "label": "Component of public properties, through the function returns, into the global configuration",
@@ -2532,11 +2511,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -2548,7 +2527,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -3981,11 +3960,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -3997,7 +3976,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -4084,14 +4063,14 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "data",
         "type": "XData<XCheckboxNode>",
-        "toType": "",
-        "inputType": "InputSignal<XData<XCheckboxNode>>",
+        "toType": "XData<XCheckboxNode>",
+        "inputType": "InputSignalWithTransform<XData<XCheckboxNode>, XData<XCheckboxNode>>",
         "label": "Checkbox data",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": ""
+        "transform": "XToDataConvert"
       },
       {
         "name": "button",
@@ -4395,11 +4374,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -4411,7 +4390,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -4987,11 +4966,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -5003,7 +4982,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -5935,11 +5914,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -5951,7 +5930,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -6316,11 +6295,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -6332,7 +6311,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -9024,895 +9003,680 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [
       {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
-      },
-      {
         "name": "bordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Display Border",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "bordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "multiple",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Multiple choice",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "multiple",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "columnLabel",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Check the label name field",
-        "default": "",
-        "withConfig": false,
+        "default": "'label'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME,'label')"
-        ],
-        "attr": "columnLabel",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dialogTitle",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Bullet title",
-        "default": "",
-        "withConfig": false,
+        "default": "'查找选择'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME,'查找选择')"
-        ],
-        "attr": "dialogTitle",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dialogCheckboxLabel",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Ball Form Select List Name",
-        "default": "",
-        "withConfig": false,
+        "default": "'选择'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME,'选择')"
-        ],
-        "attr": "dialogCheckboxLabel",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dialogCheckboxWidth",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "Ball Form Select List width",
-        "default": "",
-        "withConfig": false,
+        "default": "'60px'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_CONFIG_NAME,60)",
-          "@XInputNumber()"
-        ],
-        "attr": "dialogCheckboxWidth",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "dialogEmptyContent",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Ball box selection data empty prompt information",
-        "default": "",
-        "withConfig": false,
+        "default": "'请选择数据'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME,'请选择数据')"
-        ],
-        "attr": "dialogEmptyContent",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dialogWidth",
-        "type": "string",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "Bullet frame width",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "dialogWidth",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "dialogHeight",
-        "type": "string",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "Height of bullet frame",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "dialogHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "dialogVisible",
-        "type": "boolean",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Bullet box display, hide",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "dialogVisible",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "dialogVisibleChange",
-        "type": "boolean",
-        "label": "Bullet box display, hide",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "dialogVisibleChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "dialogButtonsCenter",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Button centered",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME)",
-          "@XInputBoolean()"
-        ],
-        "attr": "dialogButtonsCenter",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "tableData",
         "type": "XData<XTableRow>",
+        "toType": "XData<XTableRow>",
+        "inputType": "InputSignalWithTransform<XData<XTableRow>, XData<XTableRow>>",
         "label": "Table row data",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableData",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToDataConvert"
       },
       {
         "name": "tableIndex",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Table page number",
-        "default": "",
-        "withConfig": false,
+        "default": "1",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_CONFIG_NAME,1)"
-        ],
-        "attr": "tableIndex",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableSize",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Number of data items per page",
-        "default": "",
-        "withConfig": false,
+        "default": "10",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_CONFIG_NAME,10)"
-        ],
-        "attr": "tableSize",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableQuery",
-        "type": "XQuery",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Number of data items per page",
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableQuery",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableTotal",
-        "type": "number",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Total number of table data",
         "default": "0",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableTotal",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "tableIndexChange",
-        "type": "number",
-        "label": "Page number change event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "tableIndexChange",
-        "propType": "Output",
-        "example": ""
-      },
-      {
-        "name": "tableSizeChange",
-        "type": "number",
-        "label": "Show the number of events on each page",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "tableSizeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableSortChange",
-        "type": "XSort[]",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Sort click events",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "tableSortChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableColumns",
         "type": "XTableColumn[]",
+        "toType": "",
+        "inputType": "InputSignal<XTableColumn[]>",
         "label": "Table column parameters",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableColumns",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableActivatedRow",
-        "type": "any",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Currently selected row data",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableActivatedRow",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableRowEmit",
-        "type": "any",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Table row click event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "tableRowEmit",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableCheckedRow",
-        "type": "{ [property: string]: any[] }",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Table row click event",
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableCheckedRow",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "tableLoading",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Whether to enable loading loading",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "tableLoading",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "tableVirtualScroll",
-        "type": "boolean",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Table opens virtual scrolling",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<boolean>(X_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "tableVirtualScroll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "tableBodyHeight",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
         "label": "Table body data height",
-        "default": "",
+        "default": "null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "tableBodyHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "tableMinBufferPx",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "The table exceeds the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll",
         "default": "100",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableMinBufferPx",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "tableMaxBufferPx",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "The pixels of the new data buffer for the table rendering, corresponding to the parameters in cdk scroll",
         "default": "200",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "tableMaxBufferPx",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "tableAdaptionHeight",
         "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
         "label": "Table adaptive height, table height is equal to the screen height minus the value set here",
-        "default": "",
+        "default": "null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "tableAdaptionHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "tableDocPercent",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Table document height percentage, used for pop-up window percentage height",
         "default": "1",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "tableDocPercent",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "tableRowHeight",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Table row height, unit px",
-        "default": "",
-        "withConfig": false,
+        "default": "42",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_CONFIG_NAME,42)",
-          "@XInputNumber()"
-        ],
-        "attr": "tableRowHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "treeData",
         "type": "XData<XTreeNode>",
+        "toType": "XData<XTreeNode>",
+        "inputType": "InputSignalWithTransform<XData<XTreeNode>, XData<XTreeNode>>",
         "label": "Tree node data",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "treeData",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "treeActivatedChange",
-        "type": "XTreeNode",
-        "label": "The event of the tree currently clicked on the selected node change",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "treeActivatedChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": "XToDataConvert"
       },
       {
         "name": "treeActivatedId",
-        "type": "any",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Id of the currently active node of the tree",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "treeActivatedId",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "treeExpandedLevel",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "The level of the tree expanded by default",
-        "default": "",
-        "withConfig": false,
+        "default": "0",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XNumber>(X_CONFIG_NAME,0)",
-          "@XInputNumber()"
-        ],
-        "attr": "treeExpandedLevel",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "treeChecked",
-        "type": "any[]",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Tree checkbox selected node",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "treeChecked",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "treeCheckbox",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Tree display checkbox",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "treeCheckbox",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "treeTableConnect",
         "type": "any",
+        "toType": "",
+        "inputType": "InputSignal<any>",
         "label": "When the tree and the table exist at the same time, the tree node id corresponds to the attribute of the table, which is used to filter the table data",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "treeTableConnect",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "search",
-        "type": "XFindSearchOption",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "form for data filter",
-        "default": "",
+        "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "search",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "label",
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "Size",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pointer",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "Input pointer",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  label",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Label",
         "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "labelWidth",
-        "type": "string",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "Label width",
         "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
-        "name": "labelAlign",
+        "name": "override  labelAlign",
         "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
         "label": "Label text alignment method",
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "justify",
+        "name": "override  justify",
         "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
         "label": "The level of sub-element level arrangement under flex layout",
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "align",
+        "name": "override  align",
         "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
         "label": "sub-element vertical arrangement method under flex layout",
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "direction",
+        "name": "override  direction",
         "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
         "label": "The direction of the sub-element arrangement under flex layout",
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "placeholder",
+        "name": "override  placeholder",
         "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
         "label": "Enter prompt information",
         "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "disabled",
+        "name": "override  disabled",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Disabled",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "required",
+        "name": "override  required",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Required",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "readonly",
+        "name": "override  readonly",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Readonly",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "valueTpl",
+        "name": "override  valueTpl",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "Node template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "valueTplContext",
-        "type": "any",
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Node template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "before",
+        "name": "override  before",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Before label",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "after",
+        "name": "override  after",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "After label",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "pattern",
-        "type": "any",
+        "name": "override  pattern",
+        "type": "RegExp | RegExp[] | any",
+        "toType": "",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "message",
+        "name": "override  message",
         "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "active",
-        "type": "XBoolean",
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Activation state",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "pointer",
-        "type": "XBoolean",
-        "label": "Enter box click style",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "Enter the verification function",
-        "default": "",
+        "default": "value: any",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "activeChange",
-        "type": "XBoolean",
-        "label": "Activation state event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XFindProperty",
-    "extends": "XControlValueAccessor<any"
+    "extends": "XFormControlFunction(X_FIND_CONFIG_NAME)"
   },
   "XFormPrefix": {
     "type": "const",
@@ -9934,138 +9698,115 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "formGroup",
         "type": "UntypedFormGroup",
+        "toType": "",
+        "inputType": "InputSignal<UntypedFormGroup>",
         "label": "Form FormGroup",
-        "default": "new UntypedFormGroup({})",
+        "default": "new UntypedFormGroup({}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "formGroup",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "title",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Form name",
-        "default": "",
+        "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "title",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "space",
         "type": "XNumber",
-        "label": "Control spacing, unit rem",
-        "default": "",
-        "withConfig": false,
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "label": "Control spacing",
+        "default": "'1.75rem'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XNumber>(X_CONFIG_NAME,1.75)",
-          "@XInputNumber()"
-        ],
-        "attr": "space",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "span",
         "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
         "label": "Control width, 24 grid",
-        "default": "",
+        "default": "null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "span",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "labelSuffix",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Label suffix",
-        "default": "",
-        "withConfig": false,
+        "default": "''",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XNumber>(X_CONFIG_NAME,'')"
-        ],
-        "attr": "labelSuffix",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "controls",
         "type": "XFormControlOption[] | XFormRow[]",
+        "toType": "",
+        "inputType": "InputSignal<XFormControlOption[] | XFormRow[]>",
         "label": "Form control",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "controls",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "width",
-        "type": "string",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "Form width",
         "default": "'100%'",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME,'100%')"
-        ],
-        "attr": "width",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "controlTpl",
         "type": "XFormTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XFormTemplate>",
         "label": "Custom template",
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "controlTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "xSubmit",
-        "type": "SubmitEvent",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Submit",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "xSubmit",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XFormProperty",
-    "value": "{ [property: string]: TemplateRef<any> }/*** Form Property*/@Component({ selector: `${XFormPrefix}-property`, template: '' })export class XFormProperty extends XFormProp {/*** @zh_CN 表单 FormGroup* @en_US Form FormGroup*/@Input() formGroup: UntypedFormGroup = new UntypedFormGroup({});/*** @zh_CN 表单名称* @en_US Form name*/@Input() title?: string;/*** @zh_CN 控件间距，单位rem* @en_US Control spacing, unit rem*/@Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1.75) @XInputNumber() space?: XNumber;/*** @zh_CN 控件宽度，24栅格* @en_US Control width, 24 grid*/@Input() @XInputNumber() span?: XNumber;/*** @zh_CN 标签后缀* @en_US Label suffix*/@Input() @XWithConfig<XNumber>(X_CONFIG_NAME, '') labelSuffix?: string;/*** @zh_CN 表单控件* @en_US Form control*/@Input() controls: XFormControlOption[] | XFormRow[] = [];/*** @zh_CN 表单宽度* @en_US Form width*/@Input() @XWithConfig<string>(X_CONFIG_NAME, '100%') width: string = '100%';/*** @zh_CN 自定义模板* @en_US Custom template*/@Input() controlTpl: XFormTemplate = {};/*** @zh_CN Submit* @en_US Submit*/@Output() xSubmit = new EventEmitter<SubmitEvent>();}",
-    "extends": "XFormProp"
+    "value": "{ [property: string]: TemplateRef<any> }/*** Form Property*/@Component({ selector: `${XFormPrefix}-property`, template: '' })export class XFormProperty extends XFormControlFunction(X_FORM_CONFIG_NAME) {/*** @zh_CN 表单 FormGroup* @en_US Form FormGroup*/readonly formGroup = input<UntypedFormGroup>(new UntypedFormGroup({}));/*** @zh_CN 表单名称* @en_US Form name*/readonly title = input<string>('');/*** @zh_CN 控件间距* @en_US Control spacing*/readonly space = input<string, XNumber>(this.config?.space ?? '1.75rem', { transform: XToCssPixelValue });/*** @zh_CN 控件宽度，24栅格* @en_US Control width, 24 grid*/readonly span = input<number | null, XNumber>(null, { transform: XToNumber });/*** @zh_CN 标签后缀* @en_US Label suffix*/readonly labelSuffix = input<string>(this.config?.labelSuffix ?? '');/*** @zh_CN 表单控件* @en_US Form control*/readonly controls = input<XFormControlOption[] | XFormRow[]>([]);/*** @zh_CN 表单宽度* @en_US Form width*/readonly width = input<string, XNumber>(this.config?.width ?? '100%', { transform: XToCssPixelValue });/*** @zh_CN 自定义模板* @en_US Custom template*/readonly controlTpl = input<XFormTemplate>({});/*** @zh_CN Submit* @en_US Submit*/readonly xSubmit = output<SubmitEvent>();}",
+    "extends": "XFormControlFunction(X_FORM_CONFIG_NAME)"
   },
   "undefined": {},
   "XControlOption": {
@@ -10278,7 +10019,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "disabled",
-        "type": "XBoolean",
+        "type": "boolean",
         "label": "Disabled",
         "default": "",
         "withConfig": false,
@@ -10289,7 +10030,7 @@ export const en_US: {[key: string]: AppProp} = {
         "example": ""
       },
       {
-        "name": "?: XBoolean",
+        "name": "?: boolean",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -10302,7 +10043,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "required",
-        "type": "XBoolean",
+        "type": "boolean",
         "label": "Required",
         "default": "",
         "withConfig": false,
@@ -10314,7 +10055,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "hidden",
-        "type": "XBoolean",
+        "type": "boolean",
         "label": "Hide",
         "default": "",
         "withConfig": false,
@@ -10489,17 +10230,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "option",
-        "type": "XControlOption",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Control object",
-        "default": "",
+        "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "option",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XControlProperty"
@@ -11513,11 +11252,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -11529,7 +11268,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -12041,11 +11780,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -12057,7 +11796,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -15548,11 +15287,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -15564,7 +15303,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -15891,11 +15630,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -15907,7 +15646,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -16434,11 +16173,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -16450,7 +16189,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -17299,11 +17038,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -17315,7 +17054,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -18000,11 +17739,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -18016,7 +17755,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -18070,684 +17809,530 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "data",
         "type": "XData<XTableRow>",
+        "toType": "XData<XTableRow>",
+        "inputType": "InputSignalWithTransform<XData<XTableRow>, XData<XTableRow>>",
         "label": "Row data",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "data",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToDataConvert"
       },
       {
         "name": "columns",
         "type": "XTableColumn[]",
+        "toType": "",
+        "inputType": "InputSignal<XTableColumn[]>",
         "label": "Column set",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "columns",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rowHeight",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Header and row height, unit px",
-        "default": "",
-        "withConfig": false,
+        "default": "42",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_TABLE_CONFIG_NAME,42)",
-          "@XInputNumber()"
-        ],
-        "attr": "rowHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "loading",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Whether to enable loading",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "loading",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "bordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Whether to show column borders",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "bordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "showHeader",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Whether to display the column headers",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "showHeader",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "headerPosition",
         "type": "XTableHeaderPosition",
+        "toType": "",
+        "inputType": "InputSignal<XTableHeaderPosition>",
         "label": "Whether to display the column headers",
-        "default": "",
-        "withConfig": false,
+        "default": "'top'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XTableHeaderPosition>(X_TABLE_CONFIG_NAME,'top')"
-        ],
-        "attr": "headerPosition",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "activatedRow",
-        "type": "XTableRow",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Currently selected row data",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "activatedRow",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "activatedRowChange",
-        "type": "XTableRow",
-        "label": "The currently selected row changes",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activatedRowChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "headColumnTpl",
         "type": "XTableTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTableTemplate>",
         "label": "Column header custom template",
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "headColumnTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "bodyColumnTpl",
         "type": "XTableTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTableTemplate>",
         "label": "Column content custom template",
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "bodyColumnTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "bodyTdTpl",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Custom template of cells",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "bodyTdTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rowClass",
-        "type": "(row: XTableRow, index: number) => { [className: string]: boolean }",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "Row condition class",
-        "default": "",
+        "default": "row: XTableRow",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rowClass",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "umbe"
       },
       {
         "name": "headSearchTpl",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Line head search custom template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "headSearchTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "sortChange",
-        "type": "XSort[]",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Sort click events",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "sortChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "headCheckboxChange",
-        "type": "XTableHeadCheckbox",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "head checkbox event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "headCheckboxChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "bodyCheckboxChange",
-        "type": "XTableRow",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "head checkbox event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "bodyCheckboxChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "allowSelectRow",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Allow row click to select",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "allowSelectRow",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "allowCheckRow",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Allow lines to click checkbox",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "allowCheckRow",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "virtualScroll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Turn on virtual scrolling",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME)",
-          "@XInputBoolean()"
-        ],
-        "attr": "virtualScroll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "bodyHeight",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number | undefined",
+        "inputType": "InputSignalWithTransform<number | undefined, XNumber>",
         "label": "body data height",
-        "default": "",
+        "default": "undefined",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "bodyHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "itemSize",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "itemSize，corresponding to the parameters in cdk scroll",
-        "default": "",
-        "withConfig": false,
+        "default": "42",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_TABLE_CONFIG_NAME,42)",
-          "@XInputNumber()"
-        ],
-        "attr": "itemSize",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "minBufferPx",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll",
         "default": "100",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "minBufferPx",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "maxBufferPx",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll",
         "default": "200",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "maxBufferPx",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "adaptionHeight",
         "type": "XNumber",
+        "toType": "number | undefined",
+        "inputType": "InputSignalWithTransform<number | undefined, XNumber>",
         "label": "Adaptive height, table height is equal to the screen height minus the value set here",
-        "default": "",
+        "default": "undefined",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "adaptionHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "docPercent",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Document height percentage, used by pop-up window percentage height",
         "default": "1",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "docPercent",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "checkedRow",
         "type": "{ [property: string]: any[] }",
+        "toType": "",
+        "inputType": "InputSignal<{ [property: string]: any[] }>",
         "label": "Checkbox column initially selected data, checkbox is activated in column",
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "checkedRow",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "manual",
-        "type": "XBoolean",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "If data is a function type, you can use this parameter to control the request, which is often used in the form in the pop-up box, and then request it after it pops up",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "manual",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "scroll",
-        "type": "{ x: number y: number };",
+        "type": "{ x: number; y: number }",
+        "toType": "",
+        "inputType": "InputSignal<{ x: number; y: number }>",
         "label": "Height and width of rolling area",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "scroll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "header",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Table header",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "header",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "footer",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Table footer",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "footer",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "manualChange",
-        "type": "boolean",
-        "label": "Parameter control request change event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "manualChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "cellConfig",
         "type": "XTableCellConfig",
+        "toType": "",
+        "inputType": "InputSignal<XTableCellConfig>",
         "label": "Cell config",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "cellConfig",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rowSize",
         "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
         "label": "Size",
-        "default": "",
-        "withConfig": false,
+        "default": "'medium'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_TABLE_CONFIG_NAME,'medium')"
-        ],
-        "attr": "rowSize",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "paginationPosition",
         "type": "XPaginationPosition",
+        "toType": "",
+        "inputType": "InputSignal<XPaginationPosition>",
         "label": "Pagination position",
         "default": "'bottom-left'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "paginationPosition",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "hiddenWrapBorder",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Hidden table wrap border",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "hiddenWrapBorder",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "hiddenPaginationBorder",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Hidden pagination button border",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "hiddenPaginationBorder",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "showPagination",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Pagination position",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "showPagination",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "treeTable",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Tree table",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "treeTable",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "expandedAll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Tree table",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "expandedAll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "expandedLevel",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Default expanded level",
-        "default": "",
-        "withConfig": false,
+        "default": "-1",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XNumber>(X_TABLE_CONFIG_NAME,-1)",
-          "@XInputNumber()"
-        ],
-        "attr": "expandedLevel",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "expanded",
         "type": "any[]",
+        "toType": "",
+        "inputType": "InputSignal<any[]>",
         "label": "Expanded node",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "expanded",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "expandTpl",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Customized expansion content",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "expandTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "showEmpty",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Display a prompt with empty data",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_TABLE_CONFIG_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "showEmpty",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "emptyImg",
-        "type": "XTemplate",
+        "type": "XTemplate | undefined",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate | undefined>",
         "label": "Picture address or custom template",
-        "default": "",
-        "withConfig": false,
+        "default": "undefined",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XTemplate>(X_TABLE_CONFIG_NAME)"
-        ],
-        "attr": "emptyImg",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "emptyContent",
-        "type": "XTemplate",
+        "type": "XTemplate | undefined",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate | undefined>",
         "label": "Content or custom template",
-        "default": "",
-        "withConfig": false,
+        "default": "undefined",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XTemplate>(X_TABLE_CONFIG_NAME)"
-        ],
-        "attr": "emptyContent",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "index",
@@ -18991,87 +18576,75 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "columnDragStarted",
-        "type": "XTableColumn",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Column Header Drag End Event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "columnDragStarted",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "columnDragEnded",
-        "type": "XTableColumn",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "The column header is dragging, and the event is triggered when the order is changed",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "columnDragEnded",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "columnDropListDropped",
-        "type": "XTableColumn[]",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "The column header is dragging, and the event is triggered when the order is changed",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "columnDropListDropped",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "columnDragWidthStarted",
-        "type": "XTableDragWidthEvent",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Event to started drag column width",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "columnDragWidthStarted",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "columnDragWidthMoved",
-        "type": "XTableDragWidthEvent",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Event to moved drag column width",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "columnDragWidthMoved",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "columnDragWidthEnded",
-        "type": "XTableDragWidthEvent",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Event to ended drag column width",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "columnDragWidthEnded",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XTableProperty",
@@ -19666,101 +19239,86 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "columns",
         "type": "XTableColumn[]",
+        "toType": "",
+        "inputType": "InputSignal<XTableColumn[]>",
         "label": "Column set",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "columns",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rowHeight",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Height in px",
         "default": "42",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "rowHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "columnTpl",
         "type": "XTableTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTableTemplate>",
         "label": "Custom template",
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "columnTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "scrollYWidth",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
         "label": "Vertical scroll bar width",
-        "default": "",
+        "default": "null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "scrollYWidth",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "scrollXWidth",
-        "type": "number | null",
+        "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
         "label": "Horizontal scroll bar width",
-        "default": "",
+        "default": "null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "scrollXWidth",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "cellConfig",
         "type": "XTableCellConfigRule",
+        "toType": "",
+        "inputType": "InputSignal<XTableCellConfigRule>",
         "label": "Cell merge rules",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "cellConfig",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "position",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Display position",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "position",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XTableHeadProperty",
@@ -19786,290 +19344,230 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "data",
         "type": "XTableRow[]",
+        "toType": "",
+        "inputType": "InputSignal<XTableRow[]>",
         "label": "Row data",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "data",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "columns",
         "type": "XTableColumn[]",
+        "toType": "",
+        "inputType": "InputSignal<XTableColumn[]>",
         "label": "Column set",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "columns",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "columnTpl",
         "type": "XTableTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTableTemplate>",
         "label": "Custom template",
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "columnTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "activatedRow",
-        "type": "XTableRow",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Currently selected row data",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "activatedRow",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "activatedRowChange",
-        "type": "XTableRow",
-        "label": "The currently selected row changes",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activatedRowChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rowHeight",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Height in px. set to 0 means that the row height is adaptive to the content height",
         "default": "42",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "rowHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "bodyHeight",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
         "label": "body data height",
-        "default": "",
+        "default": "null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "bodyHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "allowSelectRow",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Allow row click to select",
         "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "allowSelectRow",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "virtualScroll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Turn on virtual scrolling",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "virtualScroll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "itemSize",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "itemSize，corresponding to the parameters in cdk scroll",
         "default": "42",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "itemSize",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "minBufferPx",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll",
         "default": "100",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "minBufferPx",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "maxBufferPx",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll",
         "default": "200",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "maxBufferPx",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "adaptionHeight",
         "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
         "label": "Adaptive height, table height is equal to the screen height minus the value set here",
-        "default": "",
+        "default": "null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "adaptionHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "docPercent",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Document height percentage, used by pop-up window percentage height",
         "default": "1",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "docPercent",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "scroll",
-        "type": "{ x: number y: number };",
+        "type": "{ x: number; y: number }",
+        "toType": "",
+        "inputType": "InputSignal<{ x: number; y: number }>",
         "label": "Height and width of rolling area",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "scroll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "cellConfig",
         "type": "XTableCellConfigRule",
+        "toType": "",
+        "inputType": "InputSignal<XTableCellConfigRule>",
         "label": "Cell config rules",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "cellConfig",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rowClass",
-        "type": "(row: XTableRow, index: number) => { [className: string]: boolean }",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "Row condition class",
-        "default": "",
+        "default": "row: XTableRow",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rowClass",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "umbe"
       },
       {
         "name": "level",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "The level under the tree table",
         "default": "0",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "level",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "expandedAll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Tree table",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "expandedAll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "expandTpl",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Customized expansion content",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "expandTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XTableBodyProperty",
@@ -20095,30 +19593,26 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "footer",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Table footer",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "footer",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "rowHeight",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
         "label": "Header and row height, unit px",
-        "default": "",
+        "default": "null",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "rowHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       }
     ],
     "name": "XTableFootProperty",
@@ -20931,11 +20425,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -20947,7 +20441,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -21449,11 +20943,11 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "override  pattern",
-        "type": "any",
+        "type": "RegExp | RegExp[] | any",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -21465,7 +20959,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "''",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -23705,613 +23199,486 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "data",
         "type": "XData<XTreeSelectNode>",
+        "toType": "XData<XTreeSelectNode>",
+        "inputType": "InputSignalWithTransform<XData<XTreeSelectNode>, XData<XTreeSelectNode>>",
         "label": "Node data",
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XDataConvert()"
-        ],
-        "attr": "data",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToDataConvert"
       },
       {
         "name": "clearable",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Clear button",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "clearable",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "async",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Asynchronous loading",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "async",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "placement",
         "type": "XPositionTopBottom",
+        "toType": "",
+        "inputType": "InputSignal<XPositionTopBottom>",
         "label": "Display position",
-        "default": "",
-        "withConfig": false,
+        "default": "'bottom'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XPositionTopBottom>(X_CONFIG_NAME,'bottom')"
-        ],
-        "attr": "placement",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "multiple",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Multiple choice",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "multiple",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "selectAll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Multi choice to add full selection function",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "selectAll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "selectAllText",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Selected all text",
-        "default": "",
-        "withConfig": false,
+        "default": "''",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME)"
-        ],
-        "attr": "selectAllText",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "nodeTpl",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "Node template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "nodeTpl",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XSize>(X_CONFIG_NAME,'medium')"
-        ],
-        "attr": "size",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "expandedLevel",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Default expanded level",
         "default": "-1",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "expandedLevel",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "bordered",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Display Border",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "bordered",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "portalMaxHeight",
-        "type": "string",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "The biggest height of the drop-down box",
-        "default": "",
-        "withConfig": false,
+        "default": "'12rem'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME,'12rem')"
-        ],
-        "attr": "portalMaxHeight",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
         "name": "search",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Input search",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
-        ],
-        "attr": "search",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "caseSensitive",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Case-sensitive",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)"
-        ],
-        "attr": "caseSensitive",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "debounceTime",
-        "type": "number",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Enter a delay execution time, ms",
-        "default": "",
-        "withConfig": false,
+        "default": "200",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<number>(X_CONFIG_NAME,200)"
-        ],
-        "attr": "debounceTime",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "maxTagCount",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Display the number of data in the maximum election, and the others are displayed in more of them",
-        "default": "",
-        "withConfig": false,
+        "default": "-1",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()",
-          "@XWithConfig<XNumber>(X_CONFIG_NAME)"
-        ],
-        "attr": "maxTagCount",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "maxTagContent",
-        "type": "XTemplate",
+        "type": "XTemplate | undefined",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate | undefined>",
         "label": "The number displayed when multiple choices exceeds the specified number, the displayed text template displayed",
         "default": "'更多{{surplus}}个选中'",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XTemplate>(X_CONFIG_NAME)"
-        ],
-        "attr": "maxTagContent",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "virtualScroll",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Turn on virtual scrolling",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME)",
-          "@XInputBoolean()"
-        ],
-        "attr": "virtualScroll",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "showPath",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Display value display path. AA > BB > CC",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)",
-          "@XInputBoolean()"
-        ],
-        "attr": "showPath",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "separator",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Path separator",
         "default": "' / '",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<string>(X_CONFIG_NAME)"
-        ],
-        "attr": "separator",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "onlyLeaf",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Only leaf nodes can be selected",
-        "default": "",
-        "withConfig": false,
+        "default": "false",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,false)"
-        ],
-        "attr": "onlyLeaf",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "label",
+        "name": "override  size",
+        "type": "XSize",
+        "toType": "",
+        "inputType": "InputSignal<XSize>",
+        "label": "Size",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "override  pointer",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "Input pointer",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "override  label",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Label",
         "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "label",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "labelWidth",
-        "type": "string",
+        "name": "override  labelWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
         "label": "Label width",
         "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelWidth",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToCssPixelValue"
       },
       {
-        "name": "labelAlign",
+        "name": "override  labelAlign",
         "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
         "label": "Label text alignment method",
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "labelAlign",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "justify",
+        "name": "override  justify",
         "type": "XJustify",
+        "toType": "",
+        "inputType": "InputSignal<XJustify>",
         "label": "The level of sub-element level arrangement under flex layout",
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "justify",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "align",
+        "name": "override  align",
         "type": "XAlign",
+        "toType": "",
+        "inputType": "InputSignal<XAlign>",
         "label": "sub-element vertical arrangement method under flex layout",
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "align",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "direction",
+        "name": "override  direction",
         "type": "XDirection",
+        "toType": "",
+        "inputType": "InputSignal<XDirection>",
         "label": "The direction of the sub-element arrangement under flex layout",
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "direction",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "placeholder",
+        "name": "override  placeholder",
         "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
         "label": "Enter prompt information",
         "default": "''",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "placeholder",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "disabled",
+        "name": "override  disabled",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Disabled",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "disabled",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "required",
+        "name": "override  required",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Required",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "required",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "readonly",
+        "name": "override  readonly",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Readonly",
-        "default": "false",
+        "default": "true",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "readonly",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
-        "name": "valueTpl",
+        "name": "override  valueTpl",
         "type": "TemplateRef<any>",
+        "toType": "",
+        "inputType": "InputSignal<TemplateRef<any>>",
         "label": "Node template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "valueTplContext",
-        "type": "any",
+        "name": "override  valueTplContext",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Node template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "valueTplContext",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "before",
+        "name": "override  before",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Before label",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "before",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "after",
+        "name": "override  after",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "After label",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "after",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "pattern",
-        "type": "any",
+        "name": "override  pattern",
+        "type": "RegExp | RegExp[] | any",
+        "toType": "",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "pattern",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "message",
+        "name": "override  message",
         "type": "string | string[]",
+        "toType": "",
+        "inputType": "InputSignal<string | string[]>",
         "label": "Verify not pass the prompt text",
-        "default": "",
+        "default": "[]",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "message",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "active",
-        "type": "XBoolean",
+        "name": "override  active",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Activation state",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "active",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
-        "name": "pointer",
-        "type": "XBoolean",
-        "label": "Enter box click style",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "pointer",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
+        "name": "override  inputValidator",
+        "type": "<",
+        "toType": "",
+        "inputType": "",
         "label": "Enter the verification function",
-        "default": "",
+        "default": "value: any",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "inputValidator",
-        "propType": "Input",
-        "example": ""
-      },
-      {
-        "name": "activeChange",
-        "type": "XBoolean",
-        "label": "Activation state event",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "activeChange",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XTreeSelectProperty",
-    "extends": "XControlValueAccessor<any>"
+    "extends": "XFormControlFunction(X_TREE_SELECT_CONFIG_NAME)"
   },
   "XTreeSelectNode": {
     "type": "interface",
@@ -24378,250 +23745,210 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "text",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "Display text",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "text",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "action",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Request address",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "action",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "accept",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Upload file type, consistent with native input file component",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "accept",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "type",
         "type": "XUploadType",
+        "toType": "",
+        "inputType": "InputSignal<XUploadType>",
         "label": "File display type",
         "default": "'list'",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "type",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "imgFallback",
         "type": "string",
+        "toType": "",
+        "inputType": "InputSignal<string>",
         "label": "Photo type below loading failed display",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "imgFallback",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "imgCut",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Picture cropping",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "imgCut",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "multiple",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Multiple file upload",
-        "default": "",
+        "default": "false",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputBoolean()"
-        ],
-        "attr": "multiple",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "download",
         "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "click download",
-        "default": "",
-        "withConfig": false,
+        "default": "true",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XBoolean>(X_CONFIG_NAME,true)",
-          "@XInputBoolean()"
-        ],
-        "attr": "download",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToBoolean"
       },
       {
         "name": "multipleModel",
         "type": "XUploadMultipleModel",
+        "toType": "",
+        "inputType": "InputSignal<XUploadMultipleModel>",
         "label": "For many upload mode, 'cover' covers the existing, 'add' continue to add",
-        "default": "",
-        "withConfig": false,
+        "default": "'cover'",
+        "withConfig": true,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XWithConfig<XUploadMultipleModel>(X_CONFIG_NAME,'cover')"
-        ],
-        "attr": "multipleModel",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "filesTpl",
         "type": "XTemplate",
+        "toType": "",
+        "inputType": "InputSignal<XTemplate>",
         "label": "File list custom display template",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "filesTpl",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "maxLimit",
         "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
         "label": "Limit the number of files uploaded files. Do not restrict the default",
-        "default": "",
+        "default": "-1",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()",
-          "@XInputNumber()"
-        ],
-        "attr": "maxLimit",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": "XToNumber"
       },
       {
         "name": "headers",
         "type": "{ [key: string]: any }",
+        "toType": "",
+        "inputType": "InputSignal<{ [key: string]: any }>",
         "label": "Set the upload request header",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Input()"
-        ],
-        "attr": "headers",
-        "propType": "Input",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "removeClick",
-        "type": "{ file: XUploadNode index: number }",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Delete button event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "removeClick",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "uploadReady",
-        "type": "XUploadNode",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Start upload event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "uploadReady",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "uploading",
-        "type": "XUploadNode",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Start upload event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "uploading",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "uploadSuccess",
-        "type": "XUploadNode",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Start upload event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "uploadSuccess",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       },
       {
         "name": "uploadError",
-        "type": "XUploadNode",
+        "type": "",
+        "toType": "",
+        "inputType": "",
         "label": "Start upload event",
         "default": "",
         "withConfig": false,
         "description": "",
-        "decorator": [
-          "@Output()"
-        ],
-        "attr": "uploadError",
-        "propType": "Output",
-        "example": ""
+        "example": "",
+        "transform": ""
       }
     ],
     "name": "XUploadProperty",
-    "extends": "XControlValueAccessor<XUploadNode[]>"
+    "extends": "XFormControlFunction(X_UPLOAD_CONFIG_NAME)"
   },
   "XUploadNode": {
     "type": "interface",

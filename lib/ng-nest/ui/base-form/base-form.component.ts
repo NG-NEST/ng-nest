@@ -5,88 +5,9 @@ import {
   ValidationErrors,
   ValidatorFn
 } from '@angular/forms';
-import { ChangeDetectorRef, Component, computed, forwardRef, inject, Renderer2, signal, Type } from '@angular/core';
-import {
-  XJustify,
-  XAlign,
-  XDirection,
-  XIsEmpty,
-  XClassMap,
-  XSetFlex,
-  XBoolean,
-  XIsUndefined,
-  XIsFunction,
-  XComponentConfigKey,
-  XConfigService
-} from '@ng-nest/ui/core';
-import { XFormControlProp, XFormProp } from './base-form.property';
-
-@Component({
-  selector: 'x-control-value-accessor',
-  standalone: true,
-  template: ''
-})
-export class XControlValueAccessor<T> extends XFormProp implements ControlValueAccessor {
-  cdr = inject(ChangeDetectorRef);
-  get invalid() {
-    return this.validator && ((!XIsEmpty(this.value) && this.invalidPattern) || this.invalidInputValidator);
-  }
-  get invalidPattern(): boolean {
-    if (!this.validator || XIsUndefined(this.pattern)) return false;
-    let result = false;
-    let index = 0;
-    if (Array.isArray(this.pattern)) {
-      for (const pt of this.pattern) {
-        result = !new RegExp(pt).test(this.value as any);
-        if (result) {
-          this.invalidIndex = index;
-          break;
-        }
-        index++;
-      }
-    } else {
-      result = !new RegExp(this.pattern as RegExp).test(this.value as any);
-    }
-    return result;
-  }
-  get requiredIsEmpty() {
-    return this.validator && this.required && XIsEmpty(this.value);
-  }
-  get invalidMessage(): string {
-    if (!this.validator) return '';
-    if (Array.isArray(this.message)) {
-      return this.message.length > this.invalidIndex ? this.message[this.invalidIndex] : '';
-    } else {
-      return this.message as string;
-    }
-  }
-  invalidIndex: number = 0;
-  labelMap: XClassMap = {};
-  value!: T;
-  validator: XBoolean = false;
-  invalidInputValidator = false;
-  onChange!: (value: T) => void;
-  onTouched!: () => void;
-  writeValue(value: T): void {
-    this.value = value;
-  }
-  registerOnChange(fn: (value: T) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(disabled: boolean) {
-    this.disabled = disabled;
-    this.cdr.markForCheck();
-  }
-  setFlex(ele: Element, renderer: Renderer2, justify?: XJustify, align?: XAlign, direction?: XDirection) {
-    return XSetFlex(ele, renderer, justify, align, direction);
-  }
-  formControlValidator() {
-    this.validator = true;
-  }
-}
+import { ChangeDetectorRef, computed, forwardRef, inject, signal, Type } from '@angular/core';
+import { XIsEmpty, XIsUndefined, XIsFunction, XComponentConfigKey, XConfigService } from '@ng-nest/ui/core';
+import { XFormControlProp } from './base-form.property';
 
 export function XValueAccessor<T>(component: Type<T>) {
   return { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => component), multi: true };
@@ -110,11 +31,12 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
       );
     });
     invalidPattern = computed(() => {
-      if (!this.validatorSignal() || XIsUndefined(this.pattern())) return false;
+      const pattern = this.patternSignal();
+      if (!this.validatorSignal() || XIsUndefined(pattern)) return false;
       let result = false;
       let index = 0;
-      if (Array.isArray(this.pattern())) {
-        for (const pt of this.pattern()) {
+      if (Array.isArray(pattern)) {
+        for (const pt of pattern) {
           result = !new RegExp(pt).test(this.value() as any);
           if (result) {
             this.invalidIndex.set(index);
@@ -123,16 +45,16 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
           index++;
         }
       } else {
-        result = !new RegExp(this.pattern() as RegExp).test(this.value() as any);
+        result = !new RegExp(pattern as RegExp).test(this.value() as any);
       }
       return result;
     });
     requiredIsEmpty = computed(() => {
-      return this.validatorSignal() && this.required() && XIsEmpty(this.value());
+      return this.validatorSignal() && this.requiredComputed() && XIsEmpty(this.value());
     });
     invalidMessage = computed(() => {
       if (!this.validatorSignal()) return '';
-      const message = this.message();
+      const message = this.messageSignal();
       if (Array.isArray(message)) {
         return message.length > this.invalidIndex() ? message[this.invalidIndex()] : '';
       } else {
@@ -143,6 +65,14 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
     value = signal<any | undefined>(undefined);
     validatorSignal = signal(false);
     disabledSignal = signal(false);
+    requiredSignal = signal(false);
+    patternSignal = signal<any>([]);
+    messageSignal = signal<string | string[]>([]);
+
+    requiredComputed = computed(() => this.requiredSignal() || this.required());
+    disabledComputed = computed(() => this.disabledSignal() || this.disabled());
+    patternComputed = computed(() => this.patternSignal() || this.pattern());
+
     invalidInputValidator = signal(false);
     onChange!: (value: any) => void;
     onTouched!: () => void;

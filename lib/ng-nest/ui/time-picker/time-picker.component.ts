@@ -191,7 +191,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
   }
 
   menter() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.enter.set(true);
     if (!XIsEmpty(this.value())) {
       this.icon.set('');
@@ -200,7 +200,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
   }
 
   mleave() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.enter.set(false);
     if (this.clearable()) {
       this.icon.set('fto-clock');
@@ -232,7 +232,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
   }
 
   showPortal() {
-    if (this.disabled() || this.animating()) return;
+    if (this.disabledComputed() || this.animating()) return;
     this.active.set(true);
     const config: OverlayConfig = {
       backdropClass: '',

@@ -236,7 +236,7 @@ class UsersServiceTest extends XRepositoryAbstract {
     let result = data;
     if (filters && filters.length > 0) {
       filters.forEach((x) => {
-        result = result.filter((y) => y[x.field].indexOf(x.value) >= 0);
+        result = result.filter((y) => y[x.field!].indexOf(x.value) >= 0);
       });
     }
     return result;
@@ -253,7 +253,7 @@ class UsersServiceTest extends XRepositoryAbstract {
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return XOrderBy(
       data,
-      sort.map((x) => x.field),
+      sort.map((x) => x.field!),
       sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }

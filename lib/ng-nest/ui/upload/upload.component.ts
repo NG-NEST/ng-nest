@@ -130,7 +130,7 @@ export class XUploadComponent extends XUploadProperty {
   }
 
   uploadClick() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.file().nativeElement.click();
   }
 

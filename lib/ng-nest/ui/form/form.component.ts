@@ -1,12 +1,12 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   SimpleChanges,
-  inject,
   OnChanges,
-  AfterViewInit
+  AfterViewInit,
+  signal,
+  computed
 } from '@angular/core';
 import {
   XFormProperty,
@@ -17,7 +17,7 @@ import {
   XFormControlComponent,
   XFormControlType
 } from './form.property';
-import { XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange } from '@ng-nest/ui/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
@@ -44,64 +44,54 @@ import { XIconComponent } from '@ng-nest/ui/icon';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XFormComponent extends XFormProperty implements OnInit, OnChanges, AfterViewInit {
-  controlsType!: 'controls' | 'rows';
-  controlComponents: { [property: string]: XFormControlComponent } = {};
-  controlTypes: { [property: string]: XFormControlType } = {};
+export class XFormComponent extends XFormProperty implements OnChanges, AfterViewInit {
+  controlsType = computed(() => {
+    const controls = this.controls();
+    return controls && controls.length > 0 && (controls[0] as XFormRow).controls ? 'rows' : 'controls';
+  });
+  controlComponents = signal<{ [property: string]: XFormControlComponent }>({});
+  controlTypes = signal<{ [property: string]: XFormControlType }>({});
   formId = Number(Math.random().toString().substring(2, 6) + Date.now()).toString(36);
-  configService = inject(XConfigService);
+  classMapSignal = computed(() => ({
+    [`${XFormPrefix}-${this.controlsType()}`]: true
+  }));
 
   ngOnChanges(changes: SimpleChanges) {
     const { disabled } = changes;
     XIsChange(disabled) && this.setDisabled();
   }
 
-  ngOnInit() {
-    this.setControls();
-    this.setClassMap();
-  }
-
   ngAfterViewInit() {
     this.setDisabled();
   }
 
-  setControls() {
-    if (this.controls && this.controls.length > 0) {
-      this.controlsType = this.controls[0].controls ? 'rows' : 'controls';
-    }
-  }
-
-  setClassMap() {
-    this.classMap[`${XFormPrefix}-${this.controlsType}`] = true;
-  }
-
   setDisabled() {
-    if (Object.keys(this.controlComponents).length === 0) return;
-    if (this.disabled) {
-      for (let key in this.controlComponents) {
-        let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
-        // control.disabled = true;
-        // control.required = false;
-        delete (control as any).pattern;
+    if (Object.keys(this.controlComponents()).length === 0) return;
+    if (this.disabled()) {
+      for (let key in this.controlComponents()) {
+        let [control, type] = [this.controlComponents()[key], this.controlTypes()[key]];
+        control.disabledComputed.set(true);
+        control.requiredComputed.set(false);
+        control.patternSignal.set([]);
         type.setValidators && type.setValidators();
         control.formControlChanges();
       }
     } else {
-      for (let key in this.controlComponents) {
-        let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
-        // control.disabled = type.disabled as XBoolean;
-        // control.required = type.required as XBoolean;
-        // control.pattern = type.pattern as RegExp | RegExp[];
+      for (let key in this.controlComponents()) {
+        let [control, type] = [this.controlComponents()[key], this.controlTypes()[key]];
+        control.disabledComputed.set(type.disabled!);
+        control.requiredComputed.set(type.required!);
+        control.patternSignal.set(type.pattern as RegExp | RegExp[]);
         type.setValidators && type.setValidators();
         control.formControlChanges();
       }
     }
-    this.formGroup.updateValueAndValidity();
+    this.formGroup().updateValueAndValidity();
   }
 
   setValidator() {
-    for (let key in this.controlComponents) {
-      let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
+    for (let key in this.controlComponents()) {
+      let [control, type] = [this.controlComponents()[key], this.controlTypes()[key]];
       control.formControlValidator();
       type.setValidators && type.setValidators();
       control.cdr.detectChanges();
@@ -109,31 +99,31 @@ export class XFormComponent extends XFormProperty implements OnInit, OnChanges, 
   }
 
   resetValidator() {
-    for (let key in this.controlComponents) {
-      let [control] = [this.controlComponents[key]];
-      // control.validator = false;
+    for (let key in this.controlComponents()) {
+      let [control] = [this.controlComponents()[key]];
+      control.validatorSignal.set(false);
       control.cdr.detectChanges();
     }
   }
 
   getValidatorMessages(): string[] {
     let result: string[] = [];
-    if (this.formGroup.valid) return result;
+    if (this.formGroup().valid) return result;
     else {
       const eachControls = (array: XFormControlOption[]) => {
         for (const ctr of array) {
-          const formCtr = this.formGroup.controls[ctr.id] as XFormControl;
+          const formCtr = this.formGroup().controls[ctr.id] as XFormControl;
           if (formCtr && formCtr.invalid) {
             result = [...result, ...(formCtr.messages as string[])];
           }
         }
       };
-      if (this.controlsType === 'rows') {
-        for (const row of this.controls as XFormRow[]) {
+      if (this.controlsType() === 'rows') {
+        for (const row of this.controls() as XFormRow[]) {
           eachControls(row.controls);
         }
       } else {
-        eachControls(this.controls as XFormControlOption[]);
+        eachControls(this.controls() as XFormControlOption[]);
       }
     }
     return result;

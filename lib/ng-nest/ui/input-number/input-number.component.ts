@@ -78,7 +78,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   }
 
   down(event: Event, limit: XNumber, increase: boolean = true): void {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     event.preventDefault();
     event.stopPropagation();
     this.isDown.set(true);
@@ -97,7 +97,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   }
 
   up(event: Event) {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     event.preventDefault();
     event.stopPropagation();
     this.isDown.set(false);
@@ -106,7 +106,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   }
 
   plus(event: Event, limit: XNumber, increase: boolean = true) {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     limit = Number(limit);
     if (!increase) limit = -limit;
     event.preventDefault();

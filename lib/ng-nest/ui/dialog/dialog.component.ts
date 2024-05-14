@@ -2,9 +2,7 @@ import {
   Component,
   ViewEncapsulation,
   Renderer2,
-  ElementRef,
   ChangeDetectionStrategy,
-  ViewChild,
   TemplateRef,
   ViewContainerRef,
   OnDestroy,
@@ -13,16 +11,10 @@ import {
   OnInit,
   signal,
   computed,
-  AfterViewInit
+  AfterViewInit,
+  viewChild
 } from '@angular/core';
-import {
-  XMoveBoxAnimation,
-  XIsFunction,
-  XConfigService,
-  XIsEmpty,
-  XClearClass,
-  XOpacityAnimation
-} from '@ng-nest/ui/core';
+import { XMoveBoxAnimation, XIsFunction, XConfigService, XOpacityAnimation } from '@ng-nest/ui/core';
 import {
   XDialogPrefix,
   XDialogOverlayRef,
@@ -57,7 +49,6 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 })
 export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit, OnDestroy {
   private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
   private viewContainerRef = inject(ViewContainerRef);
   private protalService = inject(XPortalService);
   private overlay = inject(Overlay);
@@ -68,7 +59,9 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     return this.visible();
   }
 
-  @ViewChild('dialogTpl') dialogTpl!: TemplateRef<void>;
+  @HostBinding('class') clsName = `${XDialogPrefix}-${this.placement()}`;
+
+  dialogTpl = viewChild.required<TemplateRef<void>>('dialogTpl');
   dialogRef!: XDialogOverlayRef;
   backdropClick$!: Subscription;
   scrollStrategy!: BlockScrollStrategy;
@@ -120,7 +113,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   constructor() {
     super();
     this.visibleChanged.pipe(takeUntil(this.unSubject)).subscribe(() => {
-      this.setClassMap();
       this.setVisible();
     });
   }
@@ -132,7 +124,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     this.maximizeSignal.set(this.maximize());
     this.dialogBox['draggable'] = this.draggableSignal();
     this.dialogBox['resizable'] = this.resizableSignal();
-    this.setClassMap();
   }
 
   ngAfterViewInit(): void {
@@ -143,19 +134,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     this.backdropClick$?.unsubscribe();
     this.unSubject.next();
     this.unSubject.complete();
-  }
-
-  setClassMap() {
-    for (let key in this.classMap) {
-      this.renderer.removeClass(this.elementRef.nativeElement, key);
-    }
-    XClearClass(this.classMap);
-    this.classMap = {
-      [`${XDialogPrefix}-${this.placement()}`]: !XIsEmpty(this.placement())
-    };
-    for (let key in this.classMap) {
-      this.renderer.addClass(this.elementRef.nativeElement, key);
-    }
   }
 
   setVisible() {
@@ -173,7 +151,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
       return;
     }
     this.dialogRef = this.protalService.attach({
-      content: this.dialogTpl,
+      content: this.dialogTpl(),
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
         panelClass: [XDialogContainer, this.className()],

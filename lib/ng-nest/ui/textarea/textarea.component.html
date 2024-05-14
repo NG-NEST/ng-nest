@@ -2,7 +2,7 @@
   #textarea
   class="x-textarea"
   [class.x-flex]="justify() || align() || direction()"
-  [class.x-disabled]="disabled()"
+  [class.x-disabled]="disabledComputed()"
   [class.x-required]="requiredIsEmpty()"
   [class.x-invalid]="invalid()"
   [class.x-clearable]="clearable()"
@@ -13,7 +13,7 @@
   [ngClass]="classMapSignal()"
 >
   @if (label()) {
-    <label [class.x-textarea-label-required]="required()" [style.width]="labelWidth" [ngClass]="labelMapSignal()">{{
+    <label [class.x-textarea-label-required]="requiredComputed()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
       label()
     }}</label>
   }
@@ -21,8 +21,8 @@
     <textarea
       #textareaRef
       [placeholder]="placeholder()"
-      [required]="required()"
-      [disabled]="disabled()"
+      [required]="requiredComputed()"
+      [disabled]="disabledComputed()"
       [readonly]="readonly()"
       [maxlength]="maxlength()"
       [(ngModel)]="value"

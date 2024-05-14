@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XAlertComponent } from '@ng-nest/ui/alert';
 
 @Component({
@@ -9,5 +9,5 @@ import { XAlertComponent } from '@ng-nest/ui/alert';
   styleUrls: ['./description.component.scss']
 })
 export class ExDescriptionComponent {
-  content = `The more you learn, the more you don't know.`;
+  content = signal(`The more you learn, the more you don't know.`);
 }

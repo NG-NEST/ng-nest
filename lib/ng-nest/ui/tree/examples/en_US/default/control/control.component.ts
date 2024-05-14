@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
 
@@ -32,7 +32,7 @@ export class ExControlComponent {
     { id: 23, label: 'Level 3 1-1-3', pid: 5 },
     { id: 24, label: 'Level 3 1-1-4', pid: 5 }
   ];
-  @ViewChild('treeCom', { static: true }) treeCom!: XTreeComponent;
+  treeCom = viewChild.required<XTreeComponent>('treeCom');
   activatedNode?: XTreeNode;
   selectedNodes: XTreeNode[] = [];
   expandedAll: boolean = true;
@@ -44,11 +44,11 @@ export class ExControlComponent {
   }
 
   getCheckedKeys() {
-    this.content = this.treeCom.getCheckedKeys();
+    this.content = this.treeCom().getCheckedKeys();
   }
 
   setCheckedKeys(keys: number[] = []) {
-    this.treeCom.setCheckedKeys(keys);
+    this.treeCom().setCheckedKeys(keys);
   }
 
   setExpandedAll() {

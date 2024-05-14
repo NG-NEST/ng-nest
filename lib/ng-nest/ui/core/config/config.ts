@@ -345,19 +345,19 @@ export interface XFindConfig {
   columnLabel?: string;
   dialogTitle?: string;
   dialogCheckboxLabel?: string;
-  dialogCheckboxWidth?: number;
+  dialogCheckboxWidth?: string;
   dialogEmptyContent?: string;
   dialogButtonsCenter?: boolean;
   tableIndex?: number;
   tableSize?: number;
   tableLoading?: boolean;
   tableVirtualScroll?: boolean;
-  tableRowHeight?: XNumber;
-  treeExpandedLevel?: XNumber;
+  tableRowHeight?: number;
+  treeExpandedLevel?: number;
 }
 
 export interface XFormConfig {
-  space?: XNumber;
+  space?: string;
   labelSuffix?: string;
   width?: string;
 }

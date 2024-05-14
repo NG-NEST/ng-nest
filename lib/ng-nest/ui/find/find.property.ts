@@ -1,13 +1,14 @@
-import {
-  XInputBoolean,
+import { XToBoolean, XToNumber, XToCssPixelValue, XToDataConvert } from '@ng-nest/ui/core';
+import { Component, TemplateRef, input, model, output } from '@angular/core';
+import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
+import { XTreeNode } from '@ng-nest/ui/tree';
+import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
+import type {
   XBoolean,
-  XDataConvert,
   XData,
-  XInputNumber,
   XNumber,
   XSort,
   XQuery,
-  XWithConfig,
   XFilter,
   XSize,
   XAlign,
@@ -15,10 +16,6 @@ import {
   XDirection,
   XTemplate
 } from '@ng-nest/ui/core';
-import { Component, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
-import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
-import { XTreeNode } from '@ng-nest/ui/tree';
-import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
  * Find
@@ -26,7 +23,7 @@ import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XFindPrefix = 'x-find';
-const X_CONFIG_NAME = 'find';
+const X_FIND_CONFIG_NAME = 'find';
 
 /**
  * Find search option
@@ -40,312 +37,291 @@ export interface XFindSearchOption extends XFilter {
  * Find Property
  */
 @Component({ selector: `${XFindPrefix}-property`, template: '' })
-export class XFindProperty extends XControlValueAccessor<any | any[]> implements XFindOption {
-  /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
+export class XFindProperty extends XFormControlFunction(X_FIND_CONFIG_NAME) {
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 多选
    * @en_US Multiple choice
    */
-  @Input() @XInputBoolean() multiple: XBoolean = false;
+  readonly multiple = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 选中 label 名称字段
    * @en_US Check the label name field
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'label') columnLabel!: string;
+  readonly columnLabel = input<string>(this.config?.columnLabel ?? 'label');
   /**
    * @zh_CN 弹框标题
    * @en_US Bullet title
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '查找选择') dialogTitle!: string;
+  readonly dialogTitle = input<string>(this.config?.dialogTitle ?? '查找选择');
   /**
    * @zh_CN 弹框表格选择列头名称
    * @en_US Ball Form Select List Name
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '选择') dialogCheckboxLabel!: string;
+  readonly dialogCheckboxLabel = input<string>(this.config?.dialogCheckboxLabel ?? '选择');
   /**
    * @zh_CN 弹框表格选择列宽
    * @en_US Ball Form Select List width
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 60) @XInputNumber() dialogCheckboxWidth!: number;
+  readonly dialogCheckboxWidth = input<string, XNumber>(this.config?.dialogCheckboxWidth ?? '60px', {
+    transform: XToCssPixelValue
+  });
   /**
    * @zh_CN 弹框选择数据为空的提示信息
    * @en_US Ball box selection data empty prompt information
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '请选择数据') dialogEmptyContent!: string;
+  readonly dialogEmptyContent = input<string>(this.config?.dialogEmptyContent ?? '请选择数据');
   /**
    * @zh_CN 弹框宽度
    * @en_US Bullet frame width
    */
-  @Input() dialogWidth?: string;
+  readonly dialogWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 弹框高度
    * @en_US Height of bullet frame
    */
-  @Input() dialogHeight?: string;
+  readonly dialogHeight = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 弹框显示，隐藏
    * @en_US Bullet box display, hide
    */
-  @Input() @XInputBoolean() dialogVisible: boolean = false;
-  /**
-   * @zh_CN 弹框显示，隐藏
-   * @en_US Bullet box display, hide
-   */
-  @Output() dialogVisibleChange = new EventEmitter<boolean>();
+  readonly dialogVisible = model<boolean>(false);
   /**
    * @zh_CN 按钮居中
    * @en_US Button centered
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() dialogButtonsCenter?: XBoolean;
+  readonly dialogButtonsCenter = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 表格行数据
    * @en_US Table row data
    */
-  @Input() tableData: XData<XTableRow> = [];
+  readonly tableData = input<XData<XTableRow>, XData<XTableRow>>([], { transform: XToDataConvert });
   /**
    * @zh_CN 表格页码
    * @en_US Table page number
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 1) tableIndex!: number;
+  readonly tableIndex = model<number>(this.config?.tableIndex ?? 1);
   /**
    * @zh_CN 表每页数据条数
    * @en_US Number of data items per page
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 10) tableSize!: number;
+  readonly tableSize = model<number>(this.config?.tableSize ?? 10);
   /**
    * @zh_CN 表格查询条件
    * @en_US Number of data items per page
    */
-  @Input() tableQuery: XQuery = {};
+  readonly tableQuery = model<XQuery>({});
   /**
    * @zh_CN 表格数据总条数
    * @en_US Total number of table data
    */
-  @Input() tableTotal: number = 0;
-  /**
-   * @zh_CN 页码变化的事件
-   * @en_US Page number change event
-   */
-  @Output() tableIndexChange = new EventEmitter<number>();
-  /**
-   * @zh_CN 每页显示条数变化的事件
-   * @en_US Show the number of events on each page
-   */
-  @Output() tableSizeChange = new EventEmitter<number>();
+  readonly tableTotal = model<number>(0);
   /**
    * @zh_CN 排序点击的事件
    * @en_US Sort click events
    */
-  @Output() tableSortChange = new EventEmitter<XSort[]>();
+  readonly tableSortChange = output<XSort[]>();
   /**
    * @zh_CN 表格列参数
    * @en_US Table column parameters
    */
-  @Input() tableColumns: XTableColumn[] = [];
+  readonly tableColumns = input<XTableColumn[]>([]);
   /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */
-  @Input() tableActivatedRow?: any;
+  readonly tableActivatedRow = model<any>();
   /**
    * @zh_CN 表格行点击事件
    * @en_US Table row click event
    */
-  @Output() tableRowEmit = new EventEmitter<any>();
+  readonly tableRowEmit = output<any>();
   /**
    * @zh_CN 表格行点击事件
    * @en_US Table row click event
    */
-  @Input() tableCheckedRow: { [property: string]: any[] } = {};
+  readonly tableCheckedRow = model<{ [property: string]: any[] }>({});
   /**
    * @zh_CN 是否启用加载 loading
    * @en_US Whether to enable loading loading
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) @XInputBoolean() tableLoading!: XBoolean;
+  readonly tableLoading = input<boolean, XBoolean>(this.config?.tableLoading ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 表格开启虚拟滚动
    * @en_US Table opens virtual scrolling
    */
-  @Input() @XWithConfig<boolean>(X_CONFIG_NAME, false) @XInputBoolean() tableVirtualScroll!: boolean;
+  readonly tableVirtualScroll = input<boolean, XBoolean>(this.config?.tableVirtualScroll ?? false, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 表格 body 数据高度
    * @en_US Table body data height
    */
-  @Input() @XInputNumber() tableBodyHeight?: number;
+  readonly tableBodyHeight = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 表格超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    * @en_US The table exceeds the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
-  @Input() tableMinBufferPx: number = 100;
+  readonly tableMinBufferPx = input<number, XNumber>(100, { transform: XToNumber });
   /**
    * @zh_CN 表格渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
    * @en_US The pixels of the new data buffer for the table rendering, corresponding to the parameters in cdk scroll
    */
-  @Input() tableMaxBufferPx: number = 200;
+  readonly tableMaxBufferPx = input<number, XNumber>(200, { transform: XToNumber });
   /**
    * @zh_CN 表格自适应高度，table 高度等于屏幕高度减掉此处设置的数值
    * @en_US Table adaptive height, table height is equal to the screen height minus the value set here
    */
-  @Input() @XInputNumber() tableAdaptionHeight?: XNumber;
+  readonly tableAdaptionHeight = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 表格文档高度百分比，弹窗百分比高度用到
    * @en_US Table document height percentage, used for pop-up window percentage height
    */
-  @Input() @XInputNumber() tableDocPercent: XNumber = 1;
+  readonly tableDocPercent = input<number, XNumber>(1, { transform: XToNumber });
   /**
    * @zh_CN 表格行高度，单位 px
    * @en_US Table row height, unit px
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME, 42) @XInputNumber() tableRowHeight!: number;
+  readonly tableRowHeight = input<number, XNumber>(this.config?.tableRowHeight ?? 42, { transform: XToNumber });
   /**
    * @zh_CN 树节点数据
    * @en_US Tree node data
    */
-  @Input() @XDataConvert() treeData: XData<XTreeNode> = [];
-  /**
-   * @zh_CN 树当前点击选中的节点变化的事件
-   * @en_US The event of the tree currently clicked on the selected node change
-   */
-  @Output() treeActivatedChange = new EventEmitter<XTreeNode>();
+  readonly treeData = input<XData<XTreeNode>, XData<XTreeNode>>([], { transform: XToDataConvert });
   /**
    * @zh_CN 树当前激活的节点 Id
    * @en_US Id of the currently active node of the tree
    */
-  @Input() treeActivatedId: any;
+  readonly treeActivatedId = model<any>();
   /**
    * @zh_CN 树默认展开的层级
    * @en_US The level of the tree expanded by default
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 0) @XInputNumber() treeExpandedLevel!: XNumber;
+  readonly treeExpandedLevel = input<number, XNumber>(this.config?.treeExpandedLevel ?? 0, { transform: XToNumber });
   /**
    * @zh_CN 树 checkbox 选中的节点
    * @en_US Tree checkbox selected node
    */
-  @Input() treeChecked: any[] = [];
+  readonly treeChecked = model<any[]>([]);
   /**
    * @zh_CN 树显示多选框
    * @en_US Tree display checkbox
    */
-  @Input() @XInputBoolean() treeCheckbox?: XBoolean;
+  readonly treeCheckbox = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 树和表格同时存在的时候，树节点 id 对应表格的属性，用来做表格数据过滤
    * @en_US When the tree and the table exist at the same time, the tree node id corresponds to the attribute of the table, which is used to filter the table data
    */
-  @Input() treeTableConnect: any;
+  readonly treeTableConnect = input<any>();
   /**
    * @zh_CN 数据查询过滤表单
    * @en_US form for data filter
    */
-  @Input() search!: XFindSearchOption;
+  readonly search = model<XFindSearchOption>({});
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  override readonly size = input<XSize>(this.config?.size ?? 'medium');
+  /**
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
+   */
+  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 标签
    * @en_US Label
    */
-  @Input() override label?: string = '';
+  override readonly label = input<string>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width
    */
-  @Input() override labelWidth?: string = '';
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 标签文字对齐方式
    * @en_US Label text alignment method
    */
-  @Input() override labelAlign?: XAlign = 'start';
+  override readonly labelAlign = input<XAlign>('start');
   /**
    * @zh_CN flex 布局下的子元素水平排列方式
    * @en_US The level of sub-element level arrangement under flex layout
    */
-  @Input() override justify?: XJustify = 'start';
+  override readonly justify = input<XJustify>('start');
   /**
    * @zh_CN flex 布局下的子元素垂直排列方式
    * @en_US sub-element vertical arrangement method under flex layout
    */
-  @Input() override align?: XAlign = 'start';
+  override readonly align = input<XAlign>('start');
   /**
    * @zh_CN flex 布局下的子元素排列方向
    * @en_US The direction of the sub-element arrangement under flex layout
    */
-  @Input() override direction?: XDirection = 'column';
+  override readonly direction = input<XDirection>('column');
   /**
    * @zh_CN 输入提示信息
    * @en_US Enter prompt information
    */
-  @Input() override placeholder?: string | string[] = '';
+  override readonly placeholder = input<string | string[]>('');
   /**
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  @Input() @XInputBoolean() override disabled: XBoolean = false;
+  override readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 必填
    * @en_US Required
    */
-  @Input() @XInputBoolean() override required: XBoolean = false;
+  override readonly required = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 只读
    * @en_US Readonly
    */
-  @Input() @XInputBoolean() override readonly: XBoolean = false;
+  override readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 值模板
    * @en_US Node template
    */
-  @Input() override valueTpl?: TemplateRef<any>;
+  override readonly valueTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 值模板参数
    * @en_US Node template
    */
-  @Input() override valueTplContext: any;
+  override readonly valueTplContext = input();
   /**
    * @zh_CN 前置标签
    * @en_US Before label
    */
-  @Input() override before!: XTemplate;
+  override readonly before = input<XTemplate>();
   /**
    * @zh_CN 后置标签
    * @en_US After label
    */
-  @Input() override after!: XTemplate;
+  override readonly after = input<XTemplate>();
   /**
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
-  @Input() override pattern?: any;
+  override readonly pattern = input<RegExp | RegExp[] | any>([]);
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verify not pass the prompt text
    */
-  @Input() override message?: string | string[];
+  override readonly message = input<string | string[]>([]);
   /**
    * @zh_CN 激活状态
    * @en_US Activation state
    */
-  @Input() @XInputBoolean() override active: XBoolean = false;
-  /**
-   * @zh_CN 输入框点击样式
-   * @en_US Enter box click style
-   */
-  @Input() @XInputBoolean() override pointer: XBoolean = false;
+  override readonly active = model<boolean>(false);
   /**
    * @zh_CN 输入验证函数
    * @en_US Enter the verification function
    */
-  @Input() override inputValidator!: (value: any) => boolean;
-  /**
-   * @zh_CN 激活状态事件
-   * @en_US Activation state event
-   */
-  @Output() override activeChange = new EventEmitter<XBoolean>();
+  override readonly inputValidator = input<(value: any) => boolean>();
 }
 
 /**

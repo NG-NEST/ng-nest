@@ -180,7 +180,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   menter() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.enter.set(true);
     if (!this.clearable()) return;
     if (!XIsEmpty(this.numberValue())) {
@@ -190,7 +190,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   mleave() {
-    if (this.disabled()) return;
+    if (this.disabledComputed()) return;
     this.enter.set(false);
     if (!this.clearable()) return;
     if (this.inputClearable()) {
@@ -264,7 +264,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   }
 
   showPortal() {
-    if (this.disabled() || this.animating()) return;
+    if (this.disabledComputed() || this.animating()) return;
     this.active.set(true);
     const config: OverlayConfig = {
       backdropClass: '',

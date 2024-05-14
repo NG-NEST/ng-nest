@@ -1,30 +1,22 @@
 <x-row>
   <x-col>
-    <x-auto-complete [data]="data" [(ngModel)]="model" placeholder="手动匹配"></x-auto-complete>
+    <x-auto-complete [data]="data()" [(ngModel)]="model" placeholder="手动匹配"></x-auto-complete>
+  </x-col>
+</x-row>
+<x-row>
+  <x-col>
+    <x-auto-complete [data]="dataAsync()" [(ngModel)]="modelAsync" placeholder="手动匹配，加载中"></x-auto-complete>
+  </x-col>
+</x-row>
+<x-row>
+  <x-col>
+    <x-auto-complete [data]="dataArray()" [(ngModel)]="modelArray" placeholder="固定选项匹配"></x-auto-complete>
   </x-col>
 </x-row>
 <x-row>
   <x-col>
     <x-auto-complete
-      [data]="dataAsync"
-      [(ngModel)]="modelAsync"
-      placeholder="手动匹配，加载中"
-    ></x-auto-complete>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col>
-    <x-auto-complete
-      [data]="dataArray"
-      [(ngModel)]="modelArray"
-      placeholder="固定选项匹配"
-    ></x-auto-complete>
-  </x-col>
-</x-row>
-<x-row>
-  <x-col>
-    <x-auto-complete
-      [data]="dataObservable"
+      [data]="dataObservable()"
       [(ngModel)]="modelObservable"
       placeholder="固定选项匹配，只请求一次"
     ></x-auto-complete>

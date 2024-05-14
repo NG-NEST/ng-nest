@@ -73,12 +73,12 @@ export interface XFilter {
    * @zh_CN 过滤属性
    * @en_US Filtering property
    */
-  field: string;
+  field?: string;
   /**
    * @zh_CN 属性值
    * @en_US Filtering value
    */
-  value: string;
+  value?: string;
   /**
    * @zh_CN 比较符号
    * @en_US Comparative symbol
