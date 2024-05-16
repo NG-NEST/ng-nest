@@ -2,7 +2,7 @@
   <div class="col">
     <div>默认 Hover 指示器触发</div>
     <x-carousel height="12rem">
-      @for (item of list; track item) {
+      @for (item of list(); track item) {
         <x-carousel-panel>
           <h3>{{ item }}</h3>
         </x-carousel-panel>
@@ -12,7 +12,7 @@
   <div class="col">
     <div>Click 指示器触发</div>
     <x-carousel height="12rem" trigger="click">
-      @for (item of list; track item) {
+      @for (item of list(); track item) {
         <x-carousel-panel>
           <h3>{{ item }}</h3>
         </x-carousel-panel>

@@ -1,16 +1,16 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
 <div class="row">
-  <x-input [size]="size"></x-input>
+  <x-input [size]="size()"></x-input>
 </div>
 <div class="row">
-  <x-input [size]="size" label="Username" direction="row" maxlength="50"></x-input>
+  <x-input [size]="size()" label="Username" direction="row" maxlength="50"></x-input>
 </div>
 <div class="row">
-  <x-input [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-input>
+  <x-input [size]="size()" icon="ado-user" iconLayout="left" maxlength="50"></x-input>
 </div>
 <div class="row">
-  <x-input required clearable [size]="size"></x-input>
+  <x-input required clearable [size]="size()"></x-input>
 </div>
 <div class="row">
-  <x-input disabled [size]="size"></x-input>
+  <x-input disabled [size]="size()"></x-input>
 </div>

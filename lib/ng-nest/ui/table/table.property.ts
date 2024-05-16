@@ -20,7 +20,7 @@ import type {
   XIdentityProperty,
   XTemplate,
   XQuery,
-  XDataNew
+  XDataArray
 } from '@ng-nest/ui/core';
 
 /**
@@ -341,7 +341,7 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    * @zh_CN 分页选择的数据项
    * @en_US Paging choose items of data
    */
-  readonly sizeData = input<XDataNew<XSelectNode>>(this.config?.sizeData ?? XPaginationSizeData);
+  readonly sizeData = input<XDataArray<XSelectNode>>(this.config?.sizeData ?? XPaginationSizeData);
   /**
    * @zh_CN 禁用整个分页
    * @en_US disabled

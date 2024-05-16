@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, signal } from '@angular/core';
 import { XCommentReplyPrefix, XCommentReplyProperty } from './comment.property';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -15,9 +15,9 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCommentReplyComponent extends XCommentReplyProperty {
-  inputValue!: string;
+  inputValue = signal<string>('');
 
   sureOnClick() {
-    this.sureClick.emit(this.inputValue);
+    this.sureClick.emit(this.inputValue());
   }
 }

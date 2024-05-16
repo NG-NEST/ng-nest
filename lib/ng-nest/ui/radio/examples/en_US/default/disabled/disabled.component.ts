@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { XRadioComponent, XRadioNode } from '@ng-nest/ui/radio';
-import { XData } from '@ng-nest/ui/core';
+import { Component, signal } from '@angular/core';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./disabled.component.scss']
 })
 export class ExDisabledComponent {
-  data: XData<XRadioNode> = ['QQ', 'WeChat', 'DingTalk', 'Weibo'];
-  dataDisabled: XData<XRadioNode> = ['QQ', 'WeChat', { label: 'DingTalk', disabled: true }, 'Weibo'];
-  model = 'DingTalk';
+  data = signal(['QQ', 'WeChat', 'DingTalk', 'Weibo']);
+  dataDisabled = signal(['QQ', 'WeChat', { label: 'DingTalk', disabled: true }, 'Weibo']);
+  model = signal('DingTalk');
 }

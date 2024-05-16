@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
 import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 
@@ -11,12 +11,12 @@ import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  format = 'yyyy-MM-dd HH:mm:ss';
-  date = new Date();
-  dateSeconds = XAddSeconds(this.date, -5);
-  dateMinutes = XAddMinutes(this.date, -5);
-  dateHours = XAddHours(this.date, -5);
-  dateDays = XAddDays(this.date, -5);
-  dateMonths = XAddMonths(this.date, -5);
-  dateYears = XAddYears(this.date, -5);
+  format = signal('yyyy-MM-dd HH:mm:ss');
+  date = signal(new Date());
+  dateSeconds = signal(XAddSeconds(this.date(), -5));
+  dateMinutes = signal(XAddMinutes(this.date(), -5));
+  dateHours = signal(XAddHours(this.date(), -5));
+  dateDays = signal(XAddDays(this.date(), -5));
+  dateMonths = signal(XAddMonths(this.date(), -5));
+  dateYears = signal(XAddYears(this.date(), -5));
 }

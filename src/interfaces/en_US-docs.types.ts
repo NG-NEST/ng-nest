@@ -152,15 +152,15 @@ export const en_US: {[key: string]: AppProp} = {
     },
     "returnType": "XData<T>"
   },
-  "XToDataNew<T>": {
+  "XToDataArray<T>": {
     "type": "function",
     "label": "Convert value as the specified list data [{ label: any; id: any }, ....]",
     "description": "",
     "example": "",
     "properties": [],
-    "name": "XToDataNew<T>",
+    "name": "XToDataArray<T>",
     "params": {
-      "value": "XDataNew<T>"
+      "value": "XDataArray<T>"
     },
     "returnType": "T[]"
   },
@@ -636,20 +636,20 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XData<T>",
     "value": "T[] | Observable<T[] | any[]> | any[] | Function"
   },
-  "XDataNew<T>": {
+  "XDataArray<T>": {
     "type": "type",
     "label": "Data data type",
-    "description": "General generic data types, generally is index set,\ncan subscribe to the object and flow data for the array, function, etc",
+    "description": "General generic data types, generally is index set",
     "example": "",
     "properties": [],
-    "name": "XDataNew<T>",
+    "name": "XDataArray<T>",
     "value": "string | number | (T | string | number)[]"
   },
   "XBoolean": {
     "type": "type",
     "label": "Boolean data type",
-    "description": "This type as a component of the input parameters,\nusually with `@XInputBoolean()` decorator to process parameters,\ndirectly into true or false",
-    "example": "```html\n// true\n<my-com disabled></my-com>\n<my-com disabled=\"true\"></my-com>\n<my-com [disabled]=\"true\"></my-com>\n\n// false\n<my-com disabled=\"false\"></my-com>\n<my-com [disabled]=\"false\"></my-com>\n```\n",
+    "description": "This type as a component of the input parameters,\nusually with `XToBoolean` decorator to process parameters,\ndirectly into true or false",
+    "example": "```html\n// true\n<my-component disabled></my-component>\n<my-component disabled=\"true\"></my-component>\n<my-component [disabled]=\"true\"></my-component>\n\n// false\n<my-component disabled=\"false\"></my-component>\n<my-component [disabled]=\"false\"></my-component>\n```\n",
     "properties": [],
     "name": "XBoolean",
     "value": "boolean | string"
@@ -657,8 +657,8 @@ export const en_US: {[key: string]: AppProp} = {
   "XNumber": {
     "type": "type",
     "label": "Number data type",
-    "description": "",
-    "example": "",
+    "description": "This type as the input parameters of the component, generally use `XToNumber` conversion function, converted to digital type\nIf the width of the high is through `XToCssPixelValue` conversion function, convert the string size",
+    "example": "```html\n// XToNumber => num = 10\n<my-component max=\"10\"></my-component>\n<my-component [max]=\"10\"></my-component>\n<my-component [max]=\"'10'\"></my-component>\n\n// XToCssPixelValue\n// width = '200px'\n<my-component width=\"200\"></my-component>\n<my-component width=\"200px\"></my-component>\n<my-component [width]=\"200\"></my-component>\n<my-component [width]=\"'200'\"></my-component>\n<my-component [width]=\"'200px'\"></my-component>\n// width = '20rem'\n<my-component width=\"20rem\"></my-component>\n<my-component [width]=\"'20rem'\"></my-component>\n// width = '50%'\n<my-component width=\"50%\"></my-component>\n<my-component [width]=\"'50%'\"></my-component>\n```\n",
     "properties": [],
     "name": "XNumber",
     "value": "number | string"
@@ -666,8 +666,8 @@ export const en_US: {[key: string]: AppProp} = {
   "XTemplate": {
     "type": "type",
     "label": "Template type",
-    "description": "",
-    "example": "",
+    "description": "Usually cooperate `outlet` instructions to specify a parameter can be as the basic data types, can also be used as a template",
+    "example": "```html\n// label = \"string\"\n<ng-container *xOutlet=\"label\">{{ label }}</ng-container>\n\n<ng-container *xOutlet=\"labelTpl\">{{ labelTpl }}</ng-container>\n<ng-template #labelTpl>this is a label template</ng-template>\n```",
     "properties": [],
     "name": "XTemplate",
     "value": "string | number | Date | TemplateRef<any>"
@@ -5055,15 +5055,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XCommentNode>",
+        "type": "XDataArray<XCommentNode>",
         "toType": "XCommentNode[]",
-        "inputType": "InputSignalWithTransform<XCommentNode[], XDataNew<XCommentNode>>",
+        "inputType": "InputSignalWithTransform<XCommentNode[], XDataArray<XCommentNode>>",
         "label": "Comment data",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "contentMax",
@@ -5466,15 +5466,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XCrumbNode>",
+        "type": "XDataArray<XCrumbNode>",
         "toType": "XCrumbNode[]",
-        "inputType": "InputSignalWithTransform<XCrumbNode[], XDataNew<XCrumbNode>>",
+        "inputType": "InputSignalWithTransform<XCrumbNode[], XDataArray<XCrumbNode>>",
         "label": "Node data",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "nodeTpl",
@@ -8752,15 +8752,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XDropdownNode>",
+        "type": "XDataArray<XDropdownNode>",
         "toType": "XDropdownNode[]",
-        "inputType": "InputSignalWithTransform<XDropdownNode[], XDataNew<XDropdownNode>>",
+        "inputType": "InputSignalWithTransform<XDropdownNode[], XDataArray<XDropdownNode>>",
         "label": "Node data",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "trigger",
@@ -11047,6 +11047,18 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
         "name": "override  size",
         "type": "XSize",
         "toType": "",
@@ -11064,18 +11076,6 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "Input pointer",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": "",
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "validator",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "label": "Initial enable validation, which is automatically enabled when the input value is",
         "default": "false",
         "withConfig": false,
         "description": "",
@@ -12944,15 +12944,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XMenuNode>",
+        "type": "XDataArray<XMenuNode>",
         "toType": "XMenuNode[]",
-        "inputType": "InputSignalWithTransform<XMenuNode[], XDataNew<XMenuNode>>",
+        "inputType": "InputSignalWithTransform<XMenuNode[], XDataArray<XMenuNode>>",
         "label": "Node data",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "layout",
@@ -14187,9 +14187,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "sizeData",
-        "type": "XDataNew<XSelectNode>",
+        "type": "XDataArray<XSelectNode>",
         "toType": "",
-        "inputType": "InputSignal<XDataNew<XSelectNode>>",
+        "inputType": "InputSignal<XDataArray<XSelectNode>>",
         "label": "Paging choose items of data",
         "default": "XPaginationSizeData",
         "withConfig": true,
@@ -16482,15 +16482,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XSliderNode>",
+        "type": "XDataArray<XSliderNode>",
         "toType": "XSliderNode[]",
-        "inputType": "InputSignalWithTransform<XSliderNode[], XDataNew<XSliderNode>>",
+        "inputType": "InputSignalWithTransform<XSliderNode[], XDataArray<XSliderNode>>",
         "label": "Node data",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "animated",
@@ -17385,15 +17385,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XStepsNode>",
+        "type": "XDataArray<XStepsNode>",
         "toType": "XStepsNode[]",
-        "inputType": "InputSignalWithTransform<XStepsNode[], XDataNew<XStepsNode>>",
+        "inputType": "InputSignalWithTransform<XStepsNode[], XDataArray<XStepsNode>>",
         "label": "Node data",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "layout",
@@ -18492,9 +18492,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "sizeData",
-        "type": "XDataNew<XSelectNode>",
+        "type": "XDataArray<XSelectNode>",
         "toType": "",
-        "inputType": "InputSignal<XDataNew<XSelectNode>>",
+        "inputType": "InputSignal<XDataArray<XSelectNode>>",
         "label": "Paging choose items of data",
         "default": "XPaginationSizeData",
         "withConfig": true,
@@ -19637,15 +19637,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XTabsNode>",
+        "type": "XDataArray<XTabsNode>",
         "toType": "XTabsNode[]",
-        "inputType": "InputSignalWithTransform<XTabsNode[], XDataNew<XTabsNode>>",
+        "inputType": "InputSignalWithTransform<XTabsNode[], XDataArray<XTabsNode>>",
         "label": "Data",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "justify",
@@ -21097,15 +21097,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XTimelineNode>",
+        "type": "XDataArray<XTimelineNode>",
         "toType": "XTimelineNode[]",
-        "inputType": "InputSignalWithTransform<XTimelineNode[], XDataNew<XTimelineNode>>",
+        "inputType": "InputSignalWithTransform<XTimelineNode[], XDataArray<XTimelineNode>>",
         "label": "Date",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "type",

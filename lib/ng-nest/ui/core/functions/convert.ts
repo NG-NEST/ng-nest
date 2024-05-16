@@ -12,7 +12,7 @@ import {
 import { Observable, Subject, Observer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { WritableSignal, booleanAttribute, numberAttribute } from '@angular/core';
-import type { XData, XParentIdentityProperty, XBoolean, XClassMap, XNumber, XDataNew } from '../interfaces';
+import type { XData, XParentIdentityProperty, XBoolean, XClassMap, XNumber, XDataArray } from '../interfaces';
 
 /**
  * @zh_CN 转换 value 为 boolean 值
@@ -72,7 +72,7 @@ export function XToDataConvert<T>(value: XData<T>): XData<T> {
  * @zh_CN 转换 value 为指定的 list 数据 [{ label: any; id: any }, ....]
  * @en_US Convert value as the specified list data [{ label: any; id: any }, ....]
  */
-export function XToDataNew<T>(value: XDataNew<T>): T[] {
+export function XToDataArray<T>(value: XDataArray<T>): T[] {
   if (XIsArray(value)) {
     return value.map((x: any) => {
       if (XIsValue(x)) {

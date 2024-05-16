@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XProgressComponent } from '@ng-nest/ui/progress';
 
@@ -9,21 +9,18 @@ import { XProgressComponent } from '@ng-nest/ui/progress';
   templateUrl: './color.component.html',
   styleUrls: ['./color.component.scss']
 })
-export class ExColorComponent implements OnInit {
-  percent = 10;
-  color!: '#3f51b5';
-  colors = [
+export class ExColorComponent {
+  percent = signal(10);
+  color = signal('#3f51b5');
+  colors = signal([
     { color: '#f56c6c', percent: 20 },
     { color: '#e6a23c', percent: 40 },
     { color: '#5cb87a', percent: 60 },
     { color: '#1989fa', percent: 80 },
     { color: '#6f7ad3', percent: 100 }
-  ];
-  constructor() {}
+  ]);
 
-  ngOnInit() {}
-
-  colorFunc(percent: number) {
+  colorFunc = signal((percent: number) => {
     if (percent < 30) {
       return '#909399';
     } else if (percent < 70) {
@@ -31,9 +28,9 @@ export class ExColorComponent implements OnInit {
     } else {
       return '#67c23a';
     }
-  }
+  });
   plus(num: number) {
-    if ((this.percent === 0 && num === -10) || (this.percent === 100 && num === 10)) return;
-    this.percent = this.percent + num;
+    if ((this.percent() === 0 && num === -10) || (this.percent() === 100 && num === 10)) return;
+    this.percent.update((x) => x + num);
   }
 }

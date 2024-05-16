@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
@@ -8,5 +8,5 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
-  data = ['Latest Events', 'Products', 'Solutions', 'Help and Support'];
+  data = signal(['Latest Events', 'Products', 'Solutions', 'Help and Support']);
 }

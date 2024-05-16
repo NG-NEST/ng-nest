@@ -1,8 +1,8 @@
 <div class="row">
-  <x-radio label="时间轴" direction="row" [data]="modeData" [(ngModel)]="mode"></x-radio>
+  <x-radio label="时间轴" direction="row" [data]="modeData()" [(ngModel)]="mode"></x-radio>
 </div>
 <div class="row" [style.margin-top.rem]="1">
-  <x-timeline [data]="data" [mode]="mode" [wrapper]="wrapperTpl"></x-timeline>
+  <x-timeline [data]="data()" [mode]="mode()" [wrapper]="wrapperTpl"></x-timeline>
   <ng-template #wrapperTpl let-node="$node">
     <div>
       <span>{{ node.time | xTimeAgo }}</span>

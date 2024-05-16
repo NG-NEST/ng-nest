@@ -1,4 +1,4 @@
-import { Component, viewChild } from '@angular/core';
+import { Component, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   templateUrl: './virtual-scroll.component.html'
 })
 export class ExVirtualScrollComponent {
-  data: XTreeNode[] = [
+  data = signal<XTreeNode[]>([
     { id: 1, label: '一级 1' },
     { id: 2, label: '一级 2' },
     { id: 3, label: '一级 3' },
@@ -33,22 +33,21 @@ export class ExVirtualScrollComponent {
     { id: 22, label: '三级 1-1-2', pid: 5 },
     { id: 23, label: '三级 1-1-3', pid: 5 },
     ...Array.from({ length: 3000 }).map((_, index) => ({ id: 20000 + index, label: `三级 1-1-${index + 4}`, pid: 5 }))
-  ];
+  ]);
 
-  dataLazy1: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
-  dataLazy2: XTreeNode[] = JSON.parse(JSON.stringify(this.data));
+  dataLazy1 = signal<XTreeNode[]>(JSON.parse(JSON.stringify(this.data())));
+  dataLazy2 = signal<XTreeNode[]>(JSON.parse(JSON.stringify(this.data())));
 
-  scrollHeight = 400;
+  scrollHeight = signal(400);
 
   treeCom = viewChild.required<XTreeComponent>('treeCom');
   treeComLazy = viewChild.required<XTreeComponent>('treeComLazy');
-
-  getData1 = (pid?: any): Observable<XTreeNode[]> => {
+  getData1 = signal((pid?: any): Observable<XTreeNode[]> => {
     return new Observable((x) => {
-      let result = this.dataLazy1
+      let result = this.dataLazy1()
         .filter((y) => y.pid === pid)
         .map((x) => {
-          x.leaf = this.dataLazy1.find((y) => y.pid === x.id) ? false : true;
+          x.leaf = this.dataLazy1().find((y) => y.pid === x.id) ? false : true;
           return x;
         });
       setTimeout(() => {
@@ -56,14 +55,14 @@ export class ExVirtualScrollComponent {
         x.complete();
       }, 500);
     });
-  };
+  });
 
-  getData2 = (pid?: any): Observable<XTreeNode[]> => {
+  getData2 = signal((pid?: any): Observable<XTreeNode[]> => {
     return new Observable((x) => {
-      let result = this.dataLazy2
+      let result = this.dataLazy2()
         .filter((y) => y.pid === pid)
         .map((x) => {
-          x.leaf = this.dataLazy2.find((y) => y.pid === x.id) ? false : true;
+          x.leaf = this.dataLazy2().find((y) => y.pid === x.id) ? false : true;
           return x;
         });
       setTimeout(() => {
@@ -71,14 +70,14 @@ export class ExVirtualScrollComponent {
         x.complete();
       }, 500);
     });
-  };
+  });
 
-  selected?: XTreeNode;
-  selectedLazy?: XTreeNode;
+  selected = signal<XTreeNode | null>(null);
+  selectedLazy = signal<XTreeNode | null>(null);
 
   info(node: XTreeNode) {
-    this.selected = node;
-    console.log(this.selected);
+    this.selected.set(node);
+    console.log(this.selected());
   }
 
   add() {
@@ -86,26 +85,26 @@ export class ExVirtualScrollComponent {
   }
 
   addChild() {
-    if (this.selected) {
-      this.treeCom().addNode({ id: new Date().getTime(), label: '新增子节点', pid: this.selected.id });
+    if (this.selected()) {
+      this.treeCom().addNode({ id: new Date().getTime(), label: '新增子节点', pid: this.selected()!.id });
     }
   }
 
   update() {
-    if (this.selected) {
-      this.treeCom().updateNode(this.selected!, { id: this.selected.id, label: '更新节点' });
+    if (this.selected()) {
+      this.treeCom().updateNode(this.selected()!, { id: this.selected()!.id, label: '更新节点' });
     }
   }
 
   remove() {
-    if (this.selected) {
-      this.treeCom().removeNode(this.selected);
+    if (this.selected()) {
+      this.treeCom().removeNode(this.selected()!);
     }
   }
 
   infoLazy(node: XTreeNode) {
-    this.selectedLazy = node;
-    console.log(this.selectedLazy);
+    this.selectedLazy.set(node);
+    console.log(this.selectedLazy());
   }
 
   addLazy() {
@@ -113,20 +112,20 @@ export class ExVirtualScrollComponent {
   }
 
   addChildLazy() {
-    if (this.selectedLazy) {
-      this.treeComLazy().addNode({ id: new Date().getTime(), label: '新增子节点', pid: this.selectedLazy.id });
+    if (this.selectedLazy()) {
+      this.treeComLazy().addNode({ id: new Date().getTime(), label: '新增子节点', pid: this.selectedLazy()!.id });
     }
   }
 
   updateLazy() {
-    if (this.selectedLazy) {
-      this.treeComLazy().updateNode(this.selectedLazy!, { id: this.selectedLazy.id, label: '更新节点' });
+    if (this.selectedLazy()) {
+      this.treeComLazy().updateNode(this.selectedLazy()!, { id: this.selectedLazy()!.id, label: '更新节点' });
     }
   }
 
   removeLazy() {
-    if (this.selectedLazy) {
-      this.treeComLazy().removeNode(this.selectedLazy);
+    if (this.selectedLazy()) {
+      this.treeComLazy().removeNode(this.selectedLazy()!);
     }
   }
 }

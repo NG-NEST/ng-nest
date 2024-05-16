@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XRadioComponent, XRadioNode } from '@ng-nest/ui/radio';
-import { XData } from '@ng-nest/ui/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,21 +9,18 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']
 })
-export class ExIconComponent implements OnInit {
-  data: XData<XRadioNode> = [
+export class ExIconComponent {
+  data = signal<XRadioNode[]>([
     { label: 'QQ', icon: 'ado-qq' },
     { label: 'WeChat', icon: 'ado-wechat' },
     { label: 'DingTalk', icon: 'ado-dingding' },
     { label: 'Weibo', icon: 'ado-weibo' }
-  ];
-  dataDisabled: XData<XRadioNode> = [
+  ]);
+  dataDisabled = signal<XRadioNode[]>([
     { label: 'QQ', icon: 'ado-qq' },
     { label: 'WeChat', icon: 'ado-wechat' },
     { label: 'DingTalk', disabled: true, icon: 'ado-dingding' },
     { label: 'Weibo', icon: 'ado-weibo' }
-  ];
-  model = 'DingTalk';
-  constructor() {}
-
-  ngOnInit() {}
+  ]);
+  model = signal('DingTalk');
 }

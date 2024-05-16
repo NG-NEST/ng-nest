@@ -4,13 +4,14 @@ import {
   ChangeDetectionStrategy,
   ElementRef,
   inject,
-  OnInit,
-  input
+  input,
+  effect
 } from '@angular/core';
 import { XMenuNodeProperty, XMenuNodePrefix } from './menu.property';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { RouterModule } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
+import { XMenuComponent } from './menu.component';
 
 @Component({
   selector: `${XMenuNodePrefix}`,
@@ -20,8 +21,8 @@ import { NgTemplateOutlet } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMenuNodeComponent extends XMenuNodeProperty implements OnInit {
-  menu = input.required<any>();
+export class XMenuNodeComponent extends XMenuNodeProperty {
+  menu = inject(XMenuComponent, { optional: true })!;
   routerLink = input<string>();
   leaf = input<boolean>();
   icon = input<string>();
@@ -31,9 +32,15 @@ export class XMenuNodeComponent extends XMenuNodeProperty implements OnInit {
 
   private elementRef = inject(ElementRef);
 
-  ngOnInit() {
-    if (this.menu().activatedId() === this.id()) {
-      this.menu().activatedElementRef = this.elementRef;
-    }
+  constructor() {
+    super();
+    effect(
+      () => {
+        if (this.menu.activatedId() === this.id()) {
+          this.menu.activatedElementRef.set(this.elementRef);
+        }
+      },
+      { allowSignalWrites: true }
+    );
   }
 }

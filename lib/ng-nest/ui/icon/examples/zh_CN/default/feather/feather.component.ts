@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
@@ -11,7 +11,7 @@ import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
   styleUrls: ['./feather.component.scss']
 })
 export class ExFeatherComponent {
-  tabs = [
+  tabs = signal([
     {
       type: 'fto',
       name: 'Default',
@@ -297,5 +297,5 @@ export class ExFeatherComponent {
         'zoom-out'
       ]
     }
-  ];
+  ])
 }

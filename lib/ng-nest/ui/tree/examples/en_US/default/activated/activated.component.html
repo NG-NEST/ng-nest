@@ -1,8 +1,8 @@
 <div class="row">
-  Selected：{{ activatedId1 | json }}
-  <x-tree [data]="data1" multiple allowManyActivated [(activatedId)]="activatedId1"> </x-tree>
+  Selected：{{ activatedId1() | json }}
+  <x-tree [data]="data1()" multiple allowManyActivated [(activatedId)]="activatedId1"> </x-tree>
 </div>
 <div class="row">
-  Selected：{{ activatedId2 | json }}
-  <x-tree [data]="data2" onlyLeaf nodeOpen multiple allowManyActivated [(activatedId)]="activatedId2"> </x-tree>
+  Selected：{{ activatedId2() | json }}
+  <x-tree [data]="data2()" onlyLeaf nodeOpen multiple allowManyActivated [(activatedId)]="activatedId2"> </x-tree>
 </div>

@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { XData } from '@ng-nest/ui/core';
-import { XRadioComponent, XRadioNode } from '@ng-nest/ui/radio';
+import { Component, signal } from '@angular/core';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-vertical',
@@ -10,5 +9,5 @@ import { XRadioComponent, XRadioNode } from '@ng-nest/ui/radio';
   styleUrls: ['./vertical.component.scss']
 })
 export class ExVerticalComponent {
-  data: XData<XRadioNode> = ['QQ', '微信', '钉钉', '微博'];
+  data = signal(['QQ', '微信', '钉钉', '微博']);
 }

@@ -1,19 +1,19 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
 <div class="row">
-  <x-tree-select [size]="size" [data]="data"></x-tree-select>
+  <x-tree-select [size]="size()" [data]="data()"></x-tree-select>
 </div>
 <div class="row">
-  <x-tree-select [size]="size" [data]="data" label="Size" direction="row" maxlength="50"></x-tree-select>
+  <x-tree-select [size]="size()" [data]="data()" label="Size" direction="row" maxlength="50"></x-tree-select>
 </div>
 <div class="row">
-  <x-tree-select [size]="size" [data]="data" label="Size" direction="column" maxlength="50"></x-tree-select>
+  <x-tree-select [size]="size()" [data]="data()" label="Size" direction="column" maxlength="50"></x-tree-select>
 </div>
 <div class="row">
-  <x-tree-select [size]="size" [data]="data" icon="ado-user" iconLayout="left" maxlength="50"></x-tree-select>
+  <x-tree-select [size]="size()" [data]="data()" icon="ado-user" iconLayout="left" maxlength="50"></x-tree-select>
 </div>
 <div class="row">
-  <x-tree-select required clearable [size]="size" [data]="data"></x-tree-select>
+  <x-tree-select required clearable [size]="size()" [data]="data()"></x-tree-select>
 </div>
 <div class="row">
-  <x-tree-select disabled [size]="size" [data]="data"></x-tree-select>
+  <x-tree-select disabled [size]="size()" [data]="data()"></x-tree-select>
 </div>

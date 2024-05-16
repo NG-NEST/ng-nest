@@ -30,7 +30,7 @@ import { XHighlightService } from './highlight.service';
 export class XHighlightComponent extends XHighlightProperty {
   @HostBinding('class') className = XHighlightPrefix;
   codeRef = viewChild.required<ElementRef<HTMLElement>>('code');
-  lineHeight = 1.375;
+  lineHeight = signal(1.375);
   iconCopy = signal('fto-copy');
 
   platformId = inject(PLATFORM_ID);
@@ -74,8 +74,8 @@ export class XHighlightComponent extends XHighlightProperty {
       const spt = (lines as any)[key].split(',');
       for (const st of spt) {
         const sp = st.split('-');
-        const top = this.lineHeight * (Number(sp[0]) - 1);
-        let height = this.lineHeight * (sp.length === 2 ? Number(sp[1]) - Number(sp[0]) + 1 : 1);
+        const top = this.lineHeight() * (Number(sp[0]) - 1);
+        const height = this.lineHeight() * (sp.length === 2 ? Number(sp[1]) - Number(sp[0]) + 1 : 1);
         result += `<div class="line-highlight ${key}" style="top: ${top}rem; height: ${height}rem"></div>`;
       }
     }

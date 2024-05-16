@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 
@@ -10,7 +10,7 @@ import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
   styleUrls: ['./time.component.scss']
 })
 export class ExTimeComponent {
-  model1 = new Date();
-  model2 = new Date();
-  model3 = new Date();
+  model1 = signal(new Date());
+  model2 = signal(new Date());
+  model3 = signal(new Date());
 }

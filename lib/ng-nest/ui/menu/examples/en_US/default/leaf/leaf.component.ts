@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
@@ -8,7 +8,7 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
   templateUrl: './leaf.component.html'
 })
 export class ExLeafComponent {
-  data = [
+  data = signal([
     { id: 1, label: 'latest events', icon: 'fto-gift' },
     { id: 2, label: 'product', icon: 'fto-package' },
     { id: 3, label: 'solution', icon: 'fto-layers' },
@@ -22,5 +22,5 @@ export class ExLeafComponent {
     { id: 11, pid: 5, label: 'internet' },
     { id: 12, pid: 5, label: 'storage' },
     { id: 13, pid: 5, label: 'database' }
-  ];
+  ]);
 }

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   XDatePickerComponent,
@@ -20,22 +20,22 @@ import {
 export class ExDisabledDateComponent {
   constructor(private datePipe: DatePipe) {}
 
-  today = new Date();
-  model = new Date();
+  today = signal(new Date());
+  model = signal(new Date());
 
-  disabledDate: XDatePickerDisabledDate = (current: Date): boolean => {
+  disabledDate = signal<XDatePickerDisabledDate>((current: Date): boolean => {
     const currentDate = new Date(this.datePipe.transform(current, 'yyyy-MM-dd')!).getTime();
-    const today = new Date(this.datePipe.transform(this.today, 'yyyy-MM-dd')!).getTime();
+    const today = new Date(this.datePipe.transform(this.today(), 'yyyy-MM-dd')!).getTime();
     return currentDate > today;
-  };
+  });
 
-  disabledTime: XDatePickerDisabledTime = () => ({
+  disabledTime = signal<XDatePickerDisabledTime>(() => ({
     disabledHours: () => Array.from({ length: 12 }).map((_, i) => i),
     disabledMinutes: () => Array.from({ length: 30 }).map((_, i) => i),
     disabledSeconds: () => Array.from({ length: 40 }).map((_, i) => i)
-  });
+  }));
 
-  disabledRangeTime: XDatePickerDisabledTime = (type?: XDatePickerRangType) => {
+  disabledRangeTime = signal<XDatePickerDisabledTime>((type?: XDatePickerRangType) => {
     if (type === 'start') {
       return {
         disabledHours: () => Array.from({ length: 12 }).map((_, i) => i + 12),
@@ -49,5 +49,5 @@ export class ExDisabledDateComponent {
         disabledSeconds: () => Array.from({ length: 40 }).map((_, i) => i)
       };
     }
-  };
+  });
 }

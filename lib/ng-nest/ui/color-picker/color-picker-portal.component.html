@@ -6,8 +6,8 @@
       <div
         #dragCom
         class="x-color-picker-portal-cursor"
-        [style.left.px]="transform.x"
-        [style.top.px]="transform.y"
+        [style.left.px]="transformX()"
+        [style.top.px]="transformY()"
         cdkDrag
         [cdkDragBoundary]="panelRef"
         (cdkDragStarted)="started()"
@@ -26,7 +26,7 @@
         <div class="x-color-picker-portal-slider">
           <x-slider-select
             [style.width.%]="100"
-            [(ngModel)]="hsla.h"
+            [(ngModel)]="hsla().h"
             min="0"
             max="360"
             step="1"
@@ -39,7 +39,7 @@
           <x-slider-select
             [style.width.%]="100"
             #transparentCom
-            [(ngModel)]="hsla.a"
+            [(ngModel)]="hsla().a"
             min="0"
             max="1"
             step="0.01"
@@ -60,18 +60,18 @@
         </x-tab>
         <x-tab label="RGBA">
           <div class="x-color-picker-portal-type-content">
-            <x-input [(ngModel)]="rgba.r" [disabled]="true"></x-input>
-            <x-input [(ngModel)]="rgba.g" [disabled]="true"></x-input>
-            <x-input [(ngModel)]="rgba.b" [disabled]="true"></x-input>
-            <x-input [(ngModel)]="rgba.a" [disabled]="true"></x-input>
+            <x-input [(ngModel)]="rgba().r" disabled></x-input>
+            <x-input [(ngModel)]="rgba().g" disabled></x-input>
+            <x-input [(ngModel)]="rgba().b" disabled></x-input>
+            <x-input [(ngModel)]="rgba().a" disabled></x-input>
           </div>
         </x-tab>
         <x-tab label="HSLA">
           <div class="x-color-picker-portal-type-content">
-            <x-input [(ngModel)]="hsla.h" [disabled]="true"></x-input>
-            <x-input [(ngModel)]="hsla.sp" [disabled]="true"></x-input>
-            <x-input [(ngModel)]="hsla.lp" [disabled]="true"></x-input>
-            <x-input [(ngModel)]="hsla.a" [disabled]="true"></x-input>
+            <x-input [(ngModel)]="hsla().h" disabled></x-input>
+            <x-input [(ngModel)]="hsla().sp" disabled></x-input>
+            <x-input [(ngModel)]="hsla().lp" disabled></x-input>
+            <x-input [(ngModel)]="hsla().a" disabled></x-input>
           </div>
         </x-tab>
       </x-tabs>

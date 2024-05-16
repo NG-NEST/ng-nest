@@ -1,12 +1,12 @@
 <div class="row">
-  <x-slider-select [style.width.rem]="20" [(ngModel)]="model1" [marks]="marks"></x-slider-select>
+  <x-slider-select [style.width.rem]="20" [(ngModel)]="model1" [marks]="marks()"></x-slider-select>
 </div>
 <div class="row">
-  <x-slider-select [style.width.rem]="20" [(ngModel)]="model2" [marks]="marks" reverse></x-slider-select>
+  <x-slider-select [style.width.rem]="20" [(ngModel)]="model2" [marks]="marks()" reverse></x-slider-select>
 </div>
 <div class="row">
-  <x-slider-select [style.height.rem]="20" [(ngModel)]="model3" [marks]="marks" vertical></x-slider-select>
+  <x-slider-select [style.height.rem]="20" [(ngModel)]="model3" [marks]="marks()" vertical></x-slider-select>
 </div>
 <div class="row">
-  <x-slider-select [style.height.rem]="20" [(ngModel)]="model4" [marks]="marks" reverse vertical></x-slider-select>
+  <x-slider-select [style.height.rem]="20" [(ngModel)]="model4" [marks]="marks()" reverse vertical></x-slider-select>
 </div>

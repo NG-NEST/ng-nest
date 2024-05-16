@@ -1,16 +1,16 @@
 <div class="row">
-  <x-select [data]="data1" [(ngModel)]="model1" (ngModelChange)="change(model1)" multiple></x-select>
+  <x-select [data]="data1()" [(ngModel)]="model1" (ngModelChange)="change(model1)" multiple></x-select>
 </div>
 <div class="row">
-  <x-select [data]="data2" [(ngModel)]="model2" (ngModelChange)="change(model2)" multiple></x-select>
+  <x-select [data]="data2()" [(ngModel)]="model2" (ngModelChange)="change(model2)" multiple></x-select>
 </div>
 <div class="row">Select all</div>
 <div class="row">
-  <x-select [data]="data3" [(ngModel)]="model3" (ngModelChange)="change(model3)" multiple selectAll></x-select>
+  <x-select [data]="data3()" [(ngModel)]="model3" (ngModelChange)="change(model3)" multiple selectAll></x-select>
 </div>
 <div class="row">
   <x-select
-    [data]="data4"
+    [data]="data4()"
     [(ngModel)]="model4"
     (ngModelChange)="change(model4)"
     multiple

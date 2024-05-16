@@ -71,8 +71,8 @@ export class XImageComponent extends XImageProperty implements OnInit, OnDestroy
   onPreview() {
     let data: XImageNode[] = [];
     if (this.group) {
-      const activatedIndex = this.group.images.indexOf(this);
-      data = this.group.images.map((x, index) => ({
+      const activatedIndex = this.group.images().indexOf(this);
+      data = this.group.images().map((x, index) => ({
         src: x.src(),
         alt: x.alt(),
         fallback: x.fallback(),

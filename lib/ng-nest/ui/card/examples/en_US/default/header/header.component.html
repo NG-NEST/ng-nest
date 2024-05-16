@@ -5,7 +5,7 @@
       <x-button type="text">Action buttons</x-button>
     </ng-template>
     <ul>
-      @for (item of list; track item) {
+      @for (item of list(); track item) {
         <li>{{ 'list content ' + item }}</li>
       }
     </ul>

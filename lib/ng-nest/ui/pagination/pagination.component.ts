@@ -17,7 +17,7 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { XToDataNew } from '@ng-nest/ui/core';
+import { XToDataArray } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XPaginationPrefix}`,
@@ -68,7 +68,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
     return indexes;
   });
 
-  sizeDataSignal = computed(() => XToDataNew(this.sizeData()));
+  sizeDataSignal = computed(() => XToDataArray(this.sizeData()));
 
   ngOnInit() {
     this.inputSize.set(this.size().toString());

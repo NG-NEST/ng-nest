@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
@@ -8,7 +8,7 @@ import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
   templateUrl: './checkbox.component.html'
 })
 export class ExCheckboxComponent {
-  data: XTreeNode[] = [
+  data = signal<XTreeNode[]>([
     { id: 1, label: 'First level 1' },
     { id: 2, label: 'First level 2' },
     { id: 3, label: 'First level 3' },
@@ -28,5 +28,5 @@ export class ExCheckboxComponent {
     { id: 22, label: 'Level 3 1-1-2', pid: 5 },
     { id: 23, label: 'Level 3 1-1-3', pid: 5 },
     { id: 24, label: 'Level 3 1-1-4', pid: 5 }
-  ];
+  ]);
 }

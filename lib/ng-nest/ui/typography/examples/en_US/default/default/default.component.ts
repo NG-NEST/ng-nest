@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTypographyComponent } from '@ng-nest/ui/typography';
 
 @Component({
@@ -8,5 +8,5 @@ import { XTypographyComponent } from '@ng-nest/ui/typography';
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
-  text = `The more you learn, the more you don't know.`;
+  text = signal(`The more you learn, the more you don't know.`);
 }

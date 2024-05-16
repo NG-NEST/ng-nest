@@ -9,6 +9,10 @@ import { XPopconfirmComponent } from '@ng-nest/ui/popconfirm';
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
-  confirm() {}
-  cancel() {}
+  confirm() {
+    console.log('confirm');
+  }
+  cancel() {
+    console.log('cancel');
+  }
 }

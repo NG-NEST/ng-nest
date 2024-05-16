@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XHighlightComponent } from '@ng-nest/ui/highlight';
 
 @Component({
@@ -8,7 +8,7 @@ import { XHighlightComponent } from '@ng-nest/ui/highlight';
   templateUrl: './copy.component.html'
 })
 export class ExCopyComponent {
-  html = `<!DOCTYPE html>
+  html = signal(`<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -21,5 +21,5 @@ export class ExCopyComponent {
   <body>
     NG-NEST
   </body>
-</html>`;
+</html>`);
 }

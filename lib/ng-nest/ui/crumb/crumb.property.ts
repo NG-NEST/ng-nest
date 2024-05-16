@@ -1,4 +1,4 @@
-import { XIdentityProperty, XTemplate, XPropertyFunction, XDataNew, XToDataNew } from '@ng-nest/ui/core';
+import { XIdentityProperty, XTemplate, XPropertyFunction, XDataArray, XToDataArray } from '@ng-nest/ui/core';
 import { TemplateRef, Component, input, output } from '@angular/core';
 
 /**
@@ -18,7 +18,7 @@ export class XCrumbProperty extends XPropertyFunction(X_CRUMB_CONFIG_NAME) {
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  readonly data = input<XCrumbNode[], XDataNew<XCrumbNode>>([], { transform: XToDataNew });
+  readonly data = input<XCrumbNode[], XDataArray<XCrumbNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 节点自定义模板
    * @en_US Node custom template

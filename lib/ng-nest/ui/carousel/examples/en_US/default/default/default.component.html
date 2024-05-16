@@ -2,7 +2,7 @@
   <x-col span="12">
     <div>Default hover trigger</div>
     <x-carousel height="12rem">
-      @for (item of list; track item) {
+      @for (item of list(); track item) {
         <x-carousel-panel>
           <h3>{{ item }}</h3>
         </x-carousel-panel>
@@ -12,7 +12,7 @@
   <x-col span="12">
     <div>click trigger</div>
     <x-carousel height="12rem" trigger="click">
-      @for (item of list; track item) {
+      @for (item of list(); track item) {
         <x-carousel-panel>
           <h3>{{ item }}</h3>
         </x-carousel-panel>

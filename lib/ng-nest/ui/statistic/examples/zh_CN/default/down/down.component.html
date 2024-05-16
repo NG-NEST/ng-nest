@@ -1,15 +1,15 @@
 <div class="row">
   <x-card>
-    <x-countdown [value]="deadline" label="倒计时"></x-countdown>
+    <x-countdown [value]="deadline()" label="倒计时"></x-countdown>
   </x-card>
 </div>
 <div class="row">
   <x-card>
-    <x-countdown [value]="deadline" label="倒计时（毫秒）" format="HH:mm:ss:SSS"></x-countdown>
+    <x-countdown [value]="deadline()" label="倒计时（毫秒）" format="HH:mm:ss:SSS"></x-countdown>
   </x-card>
 </div>
 <div class="row">
   <x-card>
-    <x-countdown [value]="deadline" label="倒计时（天）" format="D 天 H 时 m 分 s 秒"></x-countdown>
+    <x-countdown [value]="deadline()" label="倒计时（天）" format="D 天 H 时 m 分 s 秒"></x-countdown>
   </x-card>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XCrumbComponent } from '@ng-nest/ui/crumb';
 
 @Component({
@@ -8,5 +8,5 @@ import { XCrumbComponent } from '@ng-nest/ui/crumb';
   templateUrl: './icon.component.html'
 })
 export class ExIconComponent {
-  data = [{ icon: 'fto-home' }, { label: 'User Manager', icon: 'fto-user' }, 'User List', 'User Detail'];
+  data = signal([{ icon: 'fto-home' }, { label: 'User Manager', icon: 'fto-user' }, 'User List', 'User Detail']);
 }

@@ -1,4 +1,4 @@
-import { XToDataNew, XPropertyFunction, XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
+import { XToDataArray, XPropertyFunction, XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
 import { TemplateRef, Component, input, model, output } from '@angular/core';
 import type {
   XJustify,
@@ -7,7 +7,7 @@ import type {
   XTemplate,
   XBoolean,
   XTrigger,
-  XDataNew,
+  XDataArray,
   XNumber
 } from '@ng-nest/ui/core';
 
@@ -28,7 +28,7 @@ export class XTabsProperty extends XPropertyFunction(X_TABS_CONFIG_NAME) {
    * @zh_CN Data 数据
    * @en_US Data
    */
-  readonly data = input<XTabsNode[], XDataNew<XTabsNode>>([], { transform: XToDataNew });
+  readonly data = input<XTabsNode[], XDataArray<XTabsNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 对齐方式
    * @en_US Alignment

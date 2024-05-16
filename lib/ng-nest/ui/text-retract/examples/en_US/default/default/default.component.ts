@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTextRetractComponent } from '@ng-nest/ui/text-retract';
 
 @Component({
@@ -9,10 +9,10 @@ import { XTextRetractComponent } from '@ng-nest/ui/text-retract';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  content = `The more you learn, the more you don't know. The more you learn, the more you don't know. 
+  content = signal(`The more you learn, the more you don't know. The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
-  The more you learn, the more you don't know. The more you learn, the more you don't know. `;
+  The more you learn, the more you don't know. The more you learn, the more you don't know. `);
 }

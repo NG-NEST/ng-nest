@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'ex-async',
@@ -12,19 +12,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./async.component.scss']
 })
 export class ExAsyncComponent {
-  data!: Observable<string[]>;
-  model = ['DingTalk'];
-  loading = false;
+  data = signal<Observable<string[]>>(of([]));
+  model = signal(['DingTalk']);
+  loading = signal(false);
+
   getData() {
-    this.loading = true;
-    this.data = new Observable((x) => {
-      // Instead of an HTTP request, or data is directly defined as an Observable object
-      setTimeout(() => {
-        this.model = ['Weibo'];
-        this.loading = false;
-        x.next(['QQ', 'WeChat', 'DingTalk', 'Weibo']);
-        x.complete();
-      }, 2000);
-    });
+    this.loading.set(true);
+    this.data.set(
+      new Observable((x) => {
+        // Instead of an HTTP request, or data is directly defined as an Observable object
+        setTimeout(() => {
+          this.model.set(['Weibo']);
+          this.loading.set(false);
+          x.next(['QQ', 'WeChat', 'DingTalk', 'Weibo']);
+          x.complete();
+        }, 2000);
+      })
+    );
   }
 }

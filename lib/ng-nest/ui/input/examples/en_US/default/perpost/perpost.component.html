@@ -119,10 +119,10 @@
   ></x-auto-complete>
 </ng-template>
 <ng-template #beforeCascadeTpl>
-  <x-cascade [style.width.rem]="12" [data]="cascadeData"></x-cascade>
+  <x-cascade [style.width.rem]="12" [data]="cascadeData()"></x-cascade>
 </ng-template>
 <ng-template #afterCascadeTpl>
-  <x-cascade [style.width.rem]="12" [data]="cascadeData"></x-cascade>
+  <x-cascade [style.width.rem]="12" [data]="cascadeData()"></x-cascade>
 </ng-template>
 <ng-template #beforeColorPickerTpl>
   <x-color-picker [style.width.rem]="12"></x-color-picker>

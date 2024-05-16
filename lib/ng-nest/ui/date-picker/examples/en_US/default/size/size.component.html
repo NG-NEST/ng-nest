@@ -1,19 +1,19 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
 <div class="row">
-  <x-date-picker [size]="size"></x-date-picker>
+  <x-date-picker [size]="size()"></x-date-picker>
 </div>
 <div class="row">
-  <x-date-picker [size]="size" label="Date" direction="row" maxlength="50"></x-date-picker>
+  <x-date-picker [size]="size()" label="Date" direction="row" maxlength="50"></x-date-picker>
 </div>
 <div class="row">
-  <x-date-picker [size]="size" label="Date" direction="column" maxlength="50"></x-date-picker>
+  <x-date-picker [size]="size()" label="Date" direction="column" maxlength="50"></x-date-picker>
 </div>
 <div class="row">
-  <x-date-picker [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-date-picker>
+  <x-date-picker [size]="size()" icon="ado-user" iconLayout="left" maxlength="50"></x-date-picker>
 </div>
 <div class="row">
-  <x-date-picker required clearable [size]="size"></x-date-picker>
+  <x-date-picker required clearable [size]="size()"></x-date-picker>
 </div>
 <div class="row">
-  <x-date-picker disabled [size]="size"></x-date-picker>
+  <x-date-picker disabled [size]="size()"></x-date-picker>
 </div>

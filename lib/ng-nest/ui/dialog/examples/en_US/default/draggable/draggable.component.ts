@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 
@@ -10,10 +10,9 @@ import { XDialogComponent } from '@ng-nest/ui/dialog';
   styleUrls: ['./draggable.component.scss']
 })
 export class ExDraggableComponent {
-  visible!: boolean;
-  constructor() {}
+  visible = signal(false);
 
   dialog() {
-    this.visible = true;
+    this.visible.set(true);
   }
 }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { XStepsComponent } from '@ng-nest/ui/steps';
+import { Component, signal } from '@angular/core';
+import { XStepsComponent, XStepsNode } from '@ng-nest/ui/steps';
 
 @Component({
   selector: 'ex-description',
@@ -8,9 +8,9 @@ import { XStepsComponent } from '@ng-nest/ui/steps';
   templateUrl: './description.component.html'
 })
 export class ExDescriptionComponent {
-  data = [
+  data = signal<XStepsNode[]>([
     { label: 'carry out', description: 'This is the description.' },
     { label: 'processing', description: 'This is the description.' },
     { label: 'wait', description: 'This is the description.' }
-  ];
+  ]);
 }

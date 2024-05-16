@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XSize } from '@ng-nest/ui/core';
 import { XRadioComponent } from '@ng-nest/ui/radio';
@@ -12,9 +12,9 @@ import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
   styleUrls: ['./size.component.scss']
 })
 export class ExSizeComponent {
-  radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size: XSize = 'medium';
-  data: XTreeSelectNode[] = [
+  radioData = signal(['big', 'large', 'medium', 'small', 'mini']);
+  size = signal<XSize>('medium');
+  data = signal<XTreeSelectNode[]>([
     { id: 1, label: 'Fruit' },
     { id: 2, label: 'Vegetable' },
     { id: 3, label: 'Drink' },
@@ -30,5 +30,5 @@ export class ExSizeComponent {
     { id: 13, label: 'Millet banana', pid: 5 },
     { id: 14, label: 'Canna edulis', pid: 5 },
     { id: 15, label: 'Emperor banana', pid: 5 }
-  ];
+  ]);
 }

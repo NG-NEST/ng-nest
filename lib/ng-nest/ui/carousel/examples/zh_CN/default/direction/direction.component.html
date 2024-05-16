@@ -1,6 +1,6 @@
 <div class="row">
   <x-carousel height="15rem" direction="vertical">
-    @for (item of list; track item) {
+    @for (item of list(); track item) {
       <x-carousel-panel>
         <h3>{{ item }}</h3>
       </x-carousel-panel>

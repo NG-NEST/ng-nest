@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XSliderSelectComponent, XSliderSelectMark } from '@ng-nest/ui/slider-select';
 
@@ -10,15 +10,12 @@ import { XSliderSelectComponent, XSliderSelectMark } from '@ng-nest/ui/slider-se
   styleUrls: ['./marks.component.scss']
 })
 export class ExMarksComponent {
-  model1 = 60;
+  model1 = signal(60);
+  model2 = signal(70);
+  model3 = signal(10);
+  model4 = signal(20);
 
-  model2 = 70;
-
-  model3 = 10;
-
-  model4 = 20;
-
-  marks: XSliderSelectMark[] = [
+  marks = signal<XSliderSelectMark[]>([
     {
       value: 0,
       label: '0°C'
@@ -38,5 +35,5 @@ export class ExMarksComponent {
         color: '#f56c6c'
       }
     }
-  ];
+  ]);
 }

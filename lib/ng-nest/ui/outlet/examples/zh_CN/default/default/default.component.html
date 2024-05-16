@@ -7,7 +7,7 @@
   <ng-template #temp2 let-text="text">{{ text }}</ng-template>
 </div>
 <div class="row">
-  <ng-container *xOutlet="label">{{ label }}</ng-container>
+  <ng-container *xOutlet="label()">{{ label() }}</ng-container>
 </div>
 <!-- label 为 string 类型报错
   <ng-container *ngTemplateOutlet="label">{{ label }}</ng-container> 

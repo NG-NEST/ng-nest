@@ -152,15 +152,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     },
     "returnType": "XData<T>"
   },
-  "XToDataNew<T>": {
+  "XToDataArray<T>": {
     "type": "function",
     "label": "转换 value 为指定的 list 数据 [{ label: any; id: any }, ....]",
     "description": "",
     "example": "",
     "properties": [],
-    "name": "XToDataNew<T>",
+    "name": "XToDataArray<T>",
     "params": {
-      "value": "XDataNew<T>"
+      "value": "XDataArray<T>"
     },
     "returnType": "T[]"
   },
@@ -636,20 +636,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XData<T>",
     "value": "T[] | Observable<T[] | any[]> | any[] | Function"
   },
-  "XDataNew<T>": {
+  "XDataArray<T>": {
     "type": "type",
     "label": "data 数据类型",
-    "description": "通用的泛型数据类型，一般是指数组、可订阅对象并且流数据为数组类型、函数等",
+    "description": "通用的泛型数据类型，一般是指数组",
     "example": "",
     "properties": [],
-    "name": "XDataNew<T>",
+    "name": "XDataArray<T>",
     "value": "string | number | (T | string | number)[]"
   },
   "XBoolean": {
     "type": "type",
     "label": "boolean 数据类型",
-    "description": "此类型作为组件的输入参数，一般会配合 `@XInputBoolean()` 装饰器来使用，转换成 true 或 false",
-    "example": "```html\n// true\n<my-com disabled></my-com>\n<my-com disabled=\"true\"></my-com>\n<my-com [disabled]=\"true\"></my-com>\n\n// false\n<my-com disabled=\"false\"></my-com>\n<my-com [disabled]=\"false\"></my-com>\n```\n",
+    "description": "此类型作为组件的输入参数，一般会使用 `XToBoolean` 转换函数，转换成 true 或 false",
+    "example": "```html\n// true\n<my-component disabled></my-component>\n<my-component disabled=\"true\"></my-component>\n<my-component [disabled]=\"true\"></my-component>\n\n// false\n<my-component disabled=\"false\"></my-component>\n<my-component [disabled]=\"false\"></my-component>\n```\n",
     "properties": [],
     "name": "XBoolean",
     "value": "boolean | string"
@@ -657,8 +657,8 @@ export const zh_CN: {[key: string]: AppProp} = {
   "XNumber": {
     "type": "type",
     "label": "number 数据类型",
-    "description": "此类型作为组件的输入参数，一般会配合 `@XInputNumber()` 装饰器来使用，转换成数字类型",
-    "example": "",
+    "description": "此类型作为组件的输入参数，一般会使用 `XToNumber` 转换函数，转换成数字类型\n如果是高宽尺寸，会通过 `XToCssPixelValue` 转换函数，转换成字符串尺寸",
+    "example": "```html\n// XToNumber => num = 10\n<my-component max=\"10\"></my-component>\n<my-component [max]=\"10\"></my-component>\n<my-component [max]=\"'10'\"></my-component>\n\n// XToCssPixelValue\n// width = '200px'\n<my-component width=\"200\"></my-component>\n<my-component width=\"200px\"></my-component>\n<my-component [width]=\"200\"></my-component>\n<my-component [width]=\"'200'\"></my-component>\n<my-component [width]=\"'200px'\"></my-component>\n// width = '20rem'\n<my-component width=\"20rem\"></my-component>\n<my-component [width]=\"'20rem'\"></my-component>\n// width = '50%'\n<my-component width=\"50%\"></my-component>\n<my-component [width]=\"'50%'\"></my-component>\n```\n",
     "properties": [],
     "name": "XNumber",
     "value": "number | string"
@@ -666,8 +666,8 @@ export const zh_CN: {[key: string]: AppProp} = {
   "XTemplate": {
     "type": "type",
     "label": "模板类型",
-    "description": "",
-    "example": "",
+    "description": "一般会配合 `outlet` 指令来指定一个参数即可为基本数据类型，也可为模板",
+    "example": "```html\n// label = \"string\"\n<ng-container *xOutlet=\"label\">{{ label }}</ng-container>\n\n<ng-container *xOutlet=\"labelTpl\">{{ labelTpl }}</ng-container>\n<ng-template #labelTpl>this is a label template</ng-template>\n```",
     "properties": [],
     "name": "XTemplate",
     "value": "string | number | Date | TemplateRef<any>"
@@ -5055,15 +5055,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XCommentNode>",
+        "type": "XDataArray<XCommentNode>",
         "toType": "XCommentNode[]",
-        "inputType": "InputSignalWithTransform<XCommentNode[], XDataNew<XCommentNode>>",
+        "inputType": "InputSignalWithTransform<XCommentNode[], XDataArray<XCommentNode>>",
         "label": "评论数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "contentMax",
@@ -5466,15 +5466,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XCrumbNode>",
+        "type": "XDataArray<XCrumbNode>",
         "toType": "XCrumbNode[]",
-        "inputType": "InputSignalWithTransform<XCrumbNode[], XDataNew<XCrumbNode>>",
+        "inputType": "InputSignalWithTransform<XCrumbNode[], XDataArray<XCrumbNode>>",
         "label": "节点数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "nodeTpl",
@@ -8752,15 +8752,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XDropdownNode>",
+        "type": "XDataArray<XDropdownNode>",
         "toType": "XDropdownNode[]",
-        "inputType": "InputSignalWithTransform<XDropdownNode[], XDataNew<XDropdownNode>>",
+        "inputType": "InputSignalWithTransform<XDropdownNode[], XDataArray<XDropdownNode>>",
         "label": "节点数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "trigger",
@@ -11047,6 +11047,18 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "label": "初始启用验证，在输入值都自动开启",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
         "name": "override  size",
         "type": "XSize",
         "toType": "",
@@ -11064,18 +11076,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "label": "输入框点击样式",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": "",
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "validator",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "label": "初始启用验证，在输入值都自动开启",
         "default": "false",
         "withConfig": false,
         "description": "",
@@ -12944,15 +12944,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XMenuNode>",
+        "type": "XDataArray<XMenuNode>",
         "toType": "XMenuNode[]",
-        "inputType": "InputSignalWithTransform<XMenuNode[], XDataNew<XMenuNode>>",
+        "inputType": "InputSignalWithTransform<XMenuNode[], XDataArray<XMenuNode>>",
         "label": "节点数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "layout",
@@ -14187,9 +14187,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "sizeData",
-        "type": "XDataNew<XSelectNode>",
+        "type": "XDataArray<XSelectNode>",
         "toType": "",
-        "inputType": "InputSignal<XDataNew<XSelectNode>>",
+        "inputType": "InputSignal<XDataArray<XSelectNode>>",
         "label": "分页选择的数据项",
         "default": "XPaginationSizeData",
         "withConfig": true,
@@ -16482,15 +16482,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XSliderNode>",
+        "type": "XDataArray<XSliderNode>",
         "toType": "XSliderNode[]",
-        "inputType": "InputSignalWithTransform<XSliderNode[], XDataNew<XSliderNode>>",
+        "inputType": "InputSignalWithTransform<XSliderNode[], XDataArray<XSliderNode>>",
         "label": "节点数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "animated",
@@ -17385,15 +17385,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XStepsNode>",
+        "type": "XDataArray<XStepsNode>",
         "toType": "XStepsNode[]",
-        "inputType": "InputSignalWithTransform<XStepsNode[], XDataNew<XStepsNode>>",
+        "inputType": "InputSignalWithTransform<XStepsNode[], XDataArray<XStepsNode>>",
         "label": "节点数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "layout",
@@ -18492,9 +18492,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "sizeData",
-        "type": "XDataNew<XSelectNode>",
+        "type": "XDataArray<XSelectNode>",
         "toType": "",
-        "inputType": "InputSignal<XDataNew<XSelectNode>>",
+        "inputType": "InputSignal<XDataArray<XSelectNode>>",
         "label": "分页选择的数据项",
         "default": "XPaginationSizeData",
         "withConfig": true,
@@ -19637,15 +19637,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XTabsNode>",
+        "type": "XDataArray<XTabsNode>",
         "toType": "XTabsNode[]",
-        "inputType": "InputSignalWithTransform<XTabsNode[], XDataNew<XTabsNode>>",
+        "inputType": "InputSignalWithTransform<XTabsNode[], XDataArray<XTabsNode>>",
         "label": "Data 数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "justify",
@@ -21097,15 +21097,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "data",
-        "type": "XDataNew<XTimelineNode>",
+        "type": "XDataArray<XTimelineNode>",
         "toType": "XTimelineNode[]",
-        "inputType": "InputSignalWithTransform<XTimelineNode[], XDataNew<XTimelineNode>>",
+        "inputType": "InputSignalWithTransform<XTimelineNode[], XDataArray<XTimelineNode>>",
         "label": "数据",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "XToDataNew"
+        "transform": "XToDataArray"
       },
       {
         "name": "type",

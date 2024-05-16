@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonModule } from '@ng-nest/ui/button';
 import { XPlace } from '@ng-nest/ui/core';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
@@ -12,17 +12,17 @@ import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  visible!: boolean;
-  placement!: XPlace;
+  visible = signal(false);
+  placement = signal<XPlace>('center');
   constructor(private msgBox: XMessageBoxService) {}
 
   dialog(place: XPlace) {
-    this.placement = place;
-    this.visible = true;
+    this.placement.set(place);
+    this.visible.set(true);
   }
 
   close() {
-    this.visible = false;
+    this.visible.set(false);
   }
 
   beforeClose = () => {

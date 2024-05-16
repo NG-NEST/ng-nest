@@ -2,7 +2,7 @@
   <x-tree-select
     [style.width.rem]="18"
     label="Input search"
-    [data]="data1"
+    [data]="data1()"
     [(ngModel)]="model1"
     (ngModelChange)="change($event)"
     search
@@ -12,7 +12,7 @@
   <x-tree-select
     [style.width.rem]="18"
     label="Input search(async)"
-    [data]="data2"
+    [data]="data2()"
     [(ngModel)]="model2"
     (ngModelChange)="change($event)"
     search
@@ -23,7 +23,7 @@
   <x-tree-select
     [style.width.rem]="18"
     label="Search multiple"
-    [data]="data3"
+    [data]="data3()"
     [(ngModel)]="model3"
     (ngModelChange)="change($event)"
     search
@@ -34,7 +34,7 @@
   <x-tree-select
     [style.width.rem]="18"
     label="Search multiple(async)"
-    [data]="data4"
+    [data]="data4()"
     [(ngModel)]="model4"
     (ngModelChange)="change($event)"
     search

@@ -31,8 +31,6 @@ export class ExAdaptionComponent {
 
   constructor(private service: AdaptionService) {}
 
-  ngOnInit() {}
-
   getData() {
     this.service.getList(this.index, this.size, this.query).subscribe((x) => {
       [this.data, this.total] = [x.list as User[], Number(x.total)];

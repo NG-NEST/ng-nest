@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XNotificationService } from '@ng-nest/ui/notification';
 
@@ -10,6 +10,6 @@ import { XNotificationService } from '@ng-nest/ui/notification';
   styleUrls: ['./type.component.scss']
 })
 export class ExTypeComponent {
-  content = `The more you learn, the more you don't know.`;
+  content = signal(`The more you learn, the more you don't know.`);
   constructor(public notification: XNotificationService) {}
 }

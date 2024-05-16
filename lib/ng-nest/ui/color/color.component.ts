@@ -1,10 +1,10 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, inject, computed, HostBinding } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { XColorProperty } from './color.property';
+import { XColorPrefix, XColorProperty } from './color.property';
 import { XToHex, XMixColors, XComputed } from '@ng-nest/ui/core';
 
 @Component({
-  selector: 'x-color',
+  selector: XColorPrefix,
   standalone: true,
   templateUrl: './color.component.html',
   styleUrls: ['./style/index.scss'],
@@ -12,7 +12,7 @@ import { XToHex, XMixColors, XComputed } from '@ng-nest/ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XColorComponent extends XColorProperty {
-  @HostBinding('class.x-color') _has = true;
+  @HostBinding('class') className = XColorPrefix;
   private doc = inject(DOCUMENT);
 
   hexSignal = computed(() => {

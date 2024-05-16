@@ -1,6 +1,6 @@
-import { XPropertyFunction, XToDataNew } from '@ng-nest/ui/core';
+import { XPropertyFunction, XToDataArray } from '@ng-nest/ui/core';
 import { Component, input } from '@angular/core';
-import type { XType, XSize, XTemplate, XIdentityProperty, XDate, XDataNew } from '@ng-nest/ui/core';
+import type { XType, XSize, XTemplate, XIdentityProperty, XDate, XDataArray } from '@ng-nest/ui/core';
 
 /**
  * Timeline
@@ -19,7 +19,7 @@ export class XTimelineProperty extends XPropertyFunction(X_TIMELINE_CONFIG_NAME)
    * @zh_CN 数据
    * @en_US Date
    */
-  readonly data = input<XTimelineNode[], XDataNew<XTimelineNode>>([], { transform: XToDataNew });
+  readonly data = input<XTimelineNode[], XDataArray<XTimelineNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 类型
    * @en_US Type

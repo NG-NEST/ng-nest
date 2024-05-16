@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTimelineComponent, XTimelineNode } from '@ng-nest/ui/timeline';
 import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 
@@ -9,15 +9,15 @@ import { XAddDays, XAddHours } from '@ng-nest/ui/core';
   templateUrl: './size.component.html'
 })
 export class ExSizeComponent {
-  now = new Date();
-  data: XTimelineNode[] = [
+  now = signal(new Date());
+  data = signal<XTimelineNode[]>([
     {
       label: '新增请假',
       content: '李三 请假时间 2020-2-23 至 2020-3-1',
       type: 'primary',
       icon: 'fto-user',
       size: 'large',
-      time: XAddDays(this.now, -3)
+      time: XAddDays(this.now(), -3)
     },
     {
       label: '主管审批',
@@ -25,7 +25,7 @@ export class ExSizeComponent {
       type: 'success',
       icon: 'fto-user',
       size: 'medium',
-      time: XAddDays(this.now, -2)
+      time: XAddDays(this.now(), -2)
     },
     {
       label: '申请人销假',
@@ -33,7 +33,7 @@ export class ExSizeComponent {
       type: 'warning',
       icon: 'fto-user',
       size: 'small',
-      time: XAddDays(this.now, -1)
+      time: XAddDays(this.now(), -1)
     },
     {
       label: '人事复核',
@@ -41,14 +41,14 @@ export class ExSizeComponent {
       type: 'danger',
       icon: 'fto-user',
       size: 'mini',
-      time: XAddHours(this.now, -12)
+      time: XAddHours(this.now(), -12)
     },
     {
       label: '结束',
       content: '',
       type: 'info',
       icon: 'fto-user',
-      time: XAddHours(this.now, -6)
+      time: XAddHours(this.now(), -6)
     }
-  ];
+  ]);
 }

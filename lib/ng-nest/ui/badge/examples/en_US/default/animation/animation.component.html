@@ -1,7 +1,7 @@
 <div class="row">
-  <x-badge standalone [value]="value"></x-badge>
+  <x-badge standalone [value]="value()"></x-badge>
 
-  <x-badge [value]="valueMax" [max]="99">
+  <x-badge [value]="valueMax()" [max]="99">
     <x-button>Message</x-button>
   </x-badge>
 

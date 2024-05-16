@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 
@@ -9,8 +9,8 @@ import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
   templateUrl: './tree.component.html'
 })
 export class ExTreeComponent {
-  model1 = [1, 5, 7, 10];
-  data1: XTransferNode[] = [
+  model1 = signal([1, 5, 7, 10]);
+  data1 = signal<XTransferNode[]>([
     { id: 1, label: '水果' },
     { id: 2, label: '蔬菜' },
     { id: 3, label: '饮料' },
@@ -26,5 +26,5 @@ export class ExTreeComponent {
     { id: 13, label: '小米蕉', pid: 5 },
     { id: 14, label: '仙人蕉', pid: 5 },
     { id: 15, label: '皇帝蕉', pid: 5 }
-  ];
+  ]);
 }

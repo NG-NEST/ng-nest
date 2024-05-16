@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { XRadioComponent, XRadioNode } from '@ng-nest/ui/radio';
-import { XData } from '@ng-nest/ui/core';
+import { Component, signal } from '@angular/core';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,6 +10,6 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  data: XData<XRadioNode> = ['QQ', '微信', '钉钉', '微博'];
-  model = '微信';
+  data = signal(['QQ', '微信', '钉钉', '微博']);
+  model = signal('微信');
 }

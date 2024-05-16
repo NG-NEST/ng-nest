@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding, computed, signal } from '@angular/core';
 import { XContainerPrefix, XContainerProperty } from './container.property';
+import type { XDirection } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XContainerPrefix}`,
@@ -10,15 +11,14 @@ import { XContainerPrefix, XContainerProperty } from './container.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XContainerComponent extends XContainerProperty {
-  @HostBinding('class.x-container') _has = true;
   @HostBinding('class') get className() {
-    return this.directionClass();
+    return `${XContainerPrefix} ${this.directionClass()}`;
   }
 
-  directionSignal = signal(this.direction());
+  directionSignal = signal<XDirection | null>(null);
 
   directionClass = computed(() => {
-    const direction = this.directionSignal();
+    const direction = this.directionSignal() || this.direction();
     if (direction) {
       return `x-direction-${direction}`;
     } else {

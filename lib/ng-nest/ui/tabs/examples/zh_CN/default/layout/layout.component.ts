@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTabComponent, XTabsComponent, XTabsLayout } from '@ng-nest/ui/tabs';
 import { XJustify } from '@ng-nest/ui/core';
 import { XRadioComponent } from '@ng-nest/ui/radio';
@@ -12,9 +12,9 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./layout.component.scss']
 })
 export class ExLayoutComponent {
-  labels = ['用户管理', '配置管理', '角色管理', '任务'];
-  layoutRadios = ['top', 'right', 'bottom', 'left'];
-  layout: XTabsLayout = 'top';
-  justifyRadios = ['start', 'center', 'end'];
-  justify: XJustify = 'start';
+  labels = signal(['用户管理', '配置管理', '角色管理', '任务']);
+  layoutRadios = signal(['top', 'right', 'bottom', 'left']);
+  layout = signal<XTabsLayout>('top');
+  justifyRadios = signal(['start', 'center', 'end']);
+  justify = signal<XJustify>('start');
 }

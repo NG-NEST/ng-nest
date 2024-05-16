@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
@@ -11,7 +11,7 @@ import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
   styleUrls: ['./eva.component.scss']
 })
 export class ExEvaComponent {
-  tabs = [
+  tabs = signal([
     {
       type: 'eao',
       name: 'Outlined',
@@ -508,5 +508,5 @@ export class ExEvaComponent {
         'wifi'
       ]
     }
-  ];
+  ]);
 }

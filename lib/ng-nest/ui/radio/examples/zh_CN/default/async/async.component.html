@@ -1,9 +1,9 @@
 <div class="row">
-  <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>
+  <x-button type="primary" [loading]="loading()" (click)="getData()">请求</x-button>
 </div>
 <div class="row">
-  <x-radio [data]="data"></x-radio>
+  <x-radio [data]="data()"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [(ngModel)]="model"></x-radio>
+  <x-radio [data]="data()" [(ngModel)]="model"></x-radio>
 </div>

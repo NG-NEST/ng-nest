@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XAddMonths } from '@ng-nest/ui/core';
 import { XDateRangeComponent } from '@ng-nest/ui/date-picker';
@@ -11,23 +11,15 @@ import { XDateRangeComponent } from '@ng-nest/ui/date-picker';
   styleUrls: ['./range.component.scss']
 })
 export class ExRangeComponent {
-  model: any;
-
-  modelString = ['2023-02-07', '2023-02-10'];
-
-  modelDate = [new Date(), XAddMonths(new Date(), 1)];
-
-  modelNumber = [new Date().getTime(), XAddMonths(new Date(), 1).getTime()];
-
-  modelDateTime: any;
-
-  modelDateHour: any;
-
-  modelDateMinute: any;
-
-  modelWeek: any;
-
-  modelQuarter: any;
+  model = signal<Date | null>(null);
+  modelString = signal(['2023-02-07', '2023-02-10']);
+  modelDate = signal([new Date(), XAddMonths(new Date(), 1)]);
+  modelNumber = signal([new Date().getTime(), XAddMonths(new Date(), 1).getTime()]);
+  modelDateTime = signal<Date | null>(null);
+  modelDateHour = signal<Date | null>(null);
+  modelDateMinute = signal<Date | null>(null);
+  modelWeek = signal<Date | null>(null);
+  modelQuarter = signal<Date | null>(null);
 
   change(event: any) {
     console.log(event);

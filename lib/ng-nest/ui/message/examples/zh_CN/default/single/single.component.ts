@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XMessageService } from '@ng-nest/ui/message';
 import { XPlace } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -11,10 +11,10 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   styleUrls: ['./single.component.scss']
 })
 export class ExSingleComponent {
-  i = 1;
+  i = signal(1);
   constructor(private message: XMessageService) {}
   open(place: XPlace, title: string) {
-    this.i++;
+    this.i.update((x) => ++x);
     this.message.info({ title: this.i + title + '消息', placement: place, displayType: 'single' });
   }
 }

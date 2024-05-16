@@ -1,19 +1,19 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
 <div class="row">
-  <x-color-picker [size]="size"></x-color-picker>
+  <x-color-picker [size]="size()"></x-color-picker>
 </div>
 <div class="row">
-  <x-color-picker [size]="size" label="颜色" direction="row" maxlength="50"></x-color-picker>
+  <x-color-picker [size]="size()" label="颜色" direction="row" maxlength="50"></x-color-picker>
 </div>
 <div class="row">
-  <x-color-picker [size]="size" label="颜色" direction="column" maxlength="50"></x-color-picker>
+  <x-color-picker [size]="size()" label="颜色" direction="column" maxlength="50"></x-color-picker>
 </div>
 <div class="row">
-  <x-color-picker [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-color-picker>
+  <x-color-picker [size]="size()" icon="ado-user" iconLayout="left" maxlength="50"></x-color-picker>
 </div>
 <div class="row">
-  <x-color-picker required clearable [size]="size"></x-color-picker>
+  <x-color-picker required clearable [size]="size()"></x-color-picker>
 </div>
 <div class="row">
-  <x-color-picker disabled [size]="size"></x-color-picker>
+  <x-color-picker disabled [size]="size()"></x-color-picker>
 </div>

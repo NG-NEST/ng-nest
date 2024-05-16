@@ -7,7 +7,6 @@ import { Component, input } from '@angular/core';
  * @decorator component
  */
 export const XColorPrefix = 'x-color';
-
 const X_COLOR_CONFIG_NAME = 'color';
 
 /**

@@ -8,7 +8,8 @@ import {
   inject,
   viewChild,
   computed,
-  effect
+  effect,
+  signal
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
 import { XRequestAnimationFrame, XIsNumber, XIsString } from '@ng-nest/ui/core';
@@ -29,8 +30,8 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 })
 export class XBackTopComponent extends XBackTopProperty implements OnDestroy {
   backTopTpl = viewChild.required<TemplateRef<void>>('backTopTpl');
-  visiable = false;
-  scrolling = false;
+  visiable = signal(false);
+  scrolling = signal(false);
   portalRef!: XPortalOverlayRef<any>;
   private doc = inject(DOCUMENT);
   private portal = inject(XPortalService);
@@ -53,8 +54,8 @@ export class XBackTopComponent extends XBackTopProperty implements OnDestroy {
   }
 
   onBackTop() {
-    if (!this.scrolling) {
-      this.scrolling = true;
+    if (!this.scrolling()) {
+      this.scrolling.set(true);
       this.scrollTo(0, 200);
     }
   }
@@ -81,9 +82,9 @@ export class XBackTopComponent extends XBackTopProperty implements OnDestroy {
 
   private setVisible(scrollTop: number) {
     const visible = scrollTop >= (this.visibilityHeight() as number);
-    if (this.visiable !== visible) {
-      this.visiable = visible;
-      if (this.visiable) {
+    if (this.visiable() !== visible) {
+      this.visiable.set(visible);
+      if (this.visiable()) {
         this.portalRef = this.portal.attach({
           content: this.backTopTpl(),
           viewContainerRef: this.viewContainerRef,
@@ -108,7 +109,7 @@ export class XBackTopComponent extends XBackTopProperty implements OnDestroy {
         this.setScrollTop(num);
       }
       if (this.scrollTop() === to || duration <= 0) {
-        this.scrolling = false;
+        this.scrolling.set(false);
         return;
       } else {
         this.scrollTo(to, duration - 10);

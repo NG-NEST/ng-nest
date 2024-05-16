@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { XDocPrefix } from './doc.property';
 
 @Component({
-  selector: 'x-doc',
+  selector: XDocPrefix,
   standalone: true,
   templateUrl: './doc.component.html',
   styleUrls: ['./style/index.scss'],
@@ -9,5 +10,5 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } fr
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDocComponent {
-  @HostBinding('class.x-doc') _has = true;
+  @HostBinding('class') className = XDocPrefix;
 }

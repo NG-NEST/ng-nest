@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XCascadeComponent, XCascadeNode } from '@ng-nest/ui/cascade';
-import { XData } from '@ng-nest/ui/core';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
@@ -12,8 +11,8 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
   styleUrls: ['./required.component.scss']
 })
 export class ExRequiredComponent {
-  model!: number;
-  data: XData<XCascadeNode> = [
+  model = signal<number | null>(null);
+  data = signal<XCascadeNode[]>([
     { id: 1, label: 'AAAA' },
     { id: 2, label: 'BBBB' },
     { id: 3, label: 'CCCC' },
@@ -50,5 +49,5 @@ export class ExRequiredComponent {
     { id: 34, label: 'AAAA-4-2', pid: 8 },
     { id: 35, label: 'AAAA-4-3', pid: 8 },
     { id: 36, label: 'AAAA-4-4', pid: 8 }
-  ];
+  ]);
 }

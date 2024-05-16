@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 
@@ -10,7 +10,7 @@ import { XSliderComponent } from '@ng-nest/ui/slider';
   styleUrls: ['./custom.component.scss']
 })
 export class ExCustomComponent {
-  data = [
+  data = signal([
     { label: 'User Management', icon: 'fto-box' },
     { label: 'Configuration management', icon: 'fto-settings' },
     'Role management',
@@ -19,5 +19,5 @@ export class ExCustomComponent {
     'News',
     'Process',
     'News'
-  ];
+  ]);
 }

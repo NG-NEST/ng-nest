@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XListComponent } from '@ng-nest/ui/list';
 import { Observable } from 'rxjs';
 
@@ -10,12 +10,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./load-more.component.scss']
 })
 export class ExLoadMoreComponent {
-  list = ['AA', 'BB', 'CC', 'DD', 'EE', 'FF', 'GG', 'HH'];
-  data = (index: number) =>
-    new Observable<string[]>((x) => {
-      setTimeout(() => {
-        x.next(this.list.map((x) => `${x}-${index}`));
-        x.complete();
-      }, 500);
-    });
+  list = signal(['AA', 'BB', 'CC', 'DD', 'EE', 'FF', 'GG', 'HH']);
+  data = signal(
+    (index: number) =>
+      new Observable<string[]>((x) => {
+        setTimeout(() => {
+          x.next(this.list().map((x) => `${x}-${index}`));
+          x.complete();
+        }, 500);
+      })
+  );
 }

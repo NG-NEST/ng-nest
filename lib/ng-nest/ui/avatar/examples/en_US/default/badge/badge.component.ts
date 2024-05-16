@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
 
@@ -10,5 +10,5 @@ import { XBadgeComponent } from '@ng-nest/ui/badge';
   styleUrls: ['./badge.component.scss']
 })
 export class ExBadgeComponent {
-  src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
+  src = signal('https://ngnest.com/assets/img/logo/logo-144x144.png');
 }

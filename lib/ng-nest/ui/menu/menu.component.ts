@@ -35,7 +35,7 @@ export class XMenuComponent extends XMenuProperty implements OnChanges, AfterVie
   nodes = signal<XMenuNode[]>([]);
   rootIndex = signal(0);
   activated = signal<XMenuNode | null>(null);
-  activatedElementRef!: ElementRef<HTMLElement>;
+  activatedElementRef = signal<ElementRef<HTMLElement> | null>(null);
   expanded = signal<any[]>([]);
   private doc = inject(DOCUMENT);
   private _target!: HTMLElement;
@@ -59,11 +59,11 @@ export class XMenuComponent extends XMenuProperty implements OnChanges, AfterVie
   }
 
   ngAfterViewInit() {
-    if (this.activatedElementRef && this.scroll) {
-      if (typeof this.activatedElementRef.nativeElement.getBoundingClientRect !== 'function') {
+    if (this.activatedElementRef() && this.scroll) {
+      if (typeof this.activatedElementRef()!.nativeElement.getBoundingClientRect !== 'function') {
         return;
       }
-      const nodeRect: DOMRect = this.activatedElementRef.nativeElement.getBoundingClientRect();
+      const nodeRect: DOMRect = this.activatedElementRef()!.nativeElement.getBoundingClientRect();
       const scrollRect: DOMRect = this.scroll.getBoundingClientRect();
       let scrollTop = nodeRect.top - scrollRect.top - scrollRect.height;
       if (scrollTop > 0) {

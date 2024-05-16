@@ -1,7 +1,7 @@
 <div #scroll class="scroll">
   <div class="box">
     <x-back-top right="6rem" [target]="scroll"> </x-back-top>
-    @for (button of buttons; track button) {
+    @for (button of buttons(); track button) {
       <x-button>{{ button }}</x-button>
     }
   </div>

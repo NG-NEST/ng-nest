@@ -4,8 +4,8 @@ import {
   XTrigger,
   XSize,
   XPropertyFunction,
-  XToDataNew,
-  XDataNew,
+  XToDataArray,
+  XDataArray,
   XToBoolean,
   XToCssPixelValue,
   XNumber,
@@ -31,7 +31,7 @@ export class XDropdownProperty extends XPropertyFunction(X_DROPDOWN_CONFIG_NAME)
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  readonly data = input<XDropdownNode[], XDataNew<XDropdownNode>>([], { transform: XToDataNew });
+  readonly data = input<XDropdownNode[], XDataArray<XDropdownNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 触发方式
    * @en_US Trigger method

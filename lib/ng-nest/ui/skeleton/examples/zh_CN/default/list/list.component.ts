@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
@@ -24,9 +24,9 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
   styleUrls: ['./list.component.scss']
 })
 export class ExListComponent {
-  loading = true;
-  list = new Array(3).fill({});
-  data: XSkeletonRow[] = [
+  loading = signal(true);
+  list = signal(new Array(3).fill({}));
+  data = signal<XSkeletonRow[]>([
     {
       flex: true,
       space: '1rem',
@@ -54,5 +54,5 @@ export class ExListComponent {
         { type: 'img', width: '10rem', height: '9rem' }
       ]
     }
-  ];
+  ]);
 }

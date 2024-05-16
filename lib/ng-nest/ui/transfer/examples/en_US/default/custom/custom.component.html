@@ -1,5 +1,5 @@
 <x-transfer
-  [data]="data"
+  [data]="data()"
   [(ngModel)]="value"
   (ngModelChange)="change($event)"
   [nodeTpl]="nodeTpl"
@@ -8,7 +8,9 @@
   drag
 >
 </x-transfer>
-<ng-template #nodeTpl let-item="$node"> <x-icon [type]="item.node.icon" class="custom-icon"></x-icon>{{ item.node?.label }} </ng-template>
+<ng-template #nodeTpl let-item="$node">
+  <x-icon [type]="item.node.icon" class="custom-icon"></x-icon>{{ item.node?.label }}
+</ng-template>
 <ng-template #titleTpl let-title="$title" let-count="$count" let-checkedCount="$checkedCount">
   <div class="custom-title">
     <span>{{ checkedCount <= 0 ? '' : checkedCount + ' /' }} {{ count }} item</span>

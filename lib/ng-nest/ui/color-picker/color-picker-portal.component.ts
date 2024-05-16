@@ -12,7 +12,8 @@ import {
   input,
   output,
   model,
-  viewChild
+  viewChild,
+  signal
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
 import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
@@ -50,29 +51,31 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   panelRef = viewChild.required('panelRef', { read: ElementRef<HTMLElement> });
   plateRef = viewChild.required('plateRef', { read: ElementRef<HTMLElement> });
   transparentCom = viewChild.required('transparentCom', { read: XSliderSelectComponent });
-  value = model.required<string>();
-  inputCom = input.required<XInputComponent>();
-  placement = input.required<XPositionTopBottom>();
+  value = model<string>('');
+  inputCom = input<XInputComponent>();
+  placement = input<XPositionTopBottom>();
 
-  transparentRail!: HTMLElement;
   animating = output<boolean>();
   nodeClick = output<string>();
 
-  sliderColorNum = 0;
-  type!: XColorType;
-  offset = 0;
-  panel!: DOMRect;
-  plate!: DOMRect;
-  transform = { x: 0, y: 0 };
-  initTransform = { x: 0, y: 0 };
-  drag = false;
+  transparentRail = signal<HTMLElement | null>(null);
+  sliderColorNum = signal(0);
+  type = signal<XColorType | null>(null);
+  offset = signal(0);
+  panel = signal<DOMRect | null>(null);
+  plate = signal<DOMRect | null>(null);
+  transformX = signal(0);
+  transformY = signal(0);
+  initTransformX = signal(0);
+  initTransformY = signal(0);
+  drag = signal(false);
 
-  rgba: { r?: number; g?: number; b?: number; a?: number } = { a: 1 };
-  hsla: { h?: number; s?: number; l?: number; a?: number; sp?: string; lp?: string } = {
+  rgba = signal<{ r?: number; g?: number; b?: number; a?: number }>({ a: 1 });
+  hsla = signal<{ h?: number; s?: number; l?: number; a?: number; sp?: string; lp?: string }>({
     h: 0,
     a: 1
-  };
-  hex!: string;
+  });
+  hex = signal<string>('');
 
   private unSubject = new Subject<void>();
 
@@ -90,19 +93,21 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.panel = this.panelRef().nativeElement.getBoundingClientRect();
-    this.plate = this.plateRef().nativeElement.getBoundingClientRect();
-    this.offset = (this.panel.width - this.plate.width) / 2;
-    this.transparentRail = this.transparentCom().elementRef.nativeElement.querySelector('.x-slider-select-rail div')!;
+    this.panel.set(this.panelRef().nativeElement.getBoundingClientRect());
+    this.plate.set(this.plateRef().nativeElement.getBoundingClientRect());
+    this.offset.set((this.panel()!.width - this.plate()!.width) / 2);
+    this.transparentRail.set(
+      this.transparentCom().elementRef.nativeElement.querySelector('.x-slider-select-rail div')!
+    );
     this.setTransform();
     this.setPlateBackground();
     this.setRailBackground();
   }
 
   hexChange() {
-    if (this.drag || !/(^#[0-9A-F]{6}$)/i.test(this.hex)) return;
-    this.rgba = this.hexToRgba(this.hex);
-    this.hsla = this.rgbaToHsla(this.rgba);
+    if (this.drag() || !/(^#[0-9A-F]{6}$)/i.test(this.hex())) return;
+    this.rgba.set(this.hexToRgba(this.hex()));
+    this.hsla.set(this.rgbaToHsla(this.rgba()));
     this.setHslaPercent();
     this.setTransform();
     this.setPlateBackground();
@@ -114,23 +119,24 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   colorConvert() {
-    if (/^#/.test(this.value())) {
-      this.hex = this.value();
-      this.rgba = this.hexToRgba(this.hex);
-      this.hsla = this.rgbaToHsla(this.rgba);
+    const value = this.value()!;
+    if (/^#/.test(value)) {
+      this.hex.set(value);
+      this.rgba.set(this.hexToRgba(this.hex()));
+      this.hsla.set(this.rgbaToHsla(this.rgba()));
       this.setHslaPercent();
-      this.type = 'hex';
-    } else if (/rgb/.test(this.value())) {
-      this.rgbaConvert(this.value());
-      this.hex = this.rgbaToHex(this.rgba);
-      this.hsla = this.rgbaToHsla(this.rgba);
+      this.type.set('hex');
+    } else if (/rgb/.test(value)) {
+      this.rgbaConvert(value);
+      this.hex.set(this.rgbaToHex(this.rgba()));
+      this.hsla.set(this.rgbaToHsla(this.rgba()));
       this.setHslaPercent();
-      this.type = 'rgba';
-    } else if (/hsl/.test(this.value())) {
-      this.hslaConvert(this.value());
-      this.rgba = this.hslaToRgba(this.hsla);
-      this.hex = this.rgbaToHex(this.rgba);
-      this.type = 'hsla';
+      this.type.set('rgba');
+    } else if (/hsl/.test(value)) {
+      this.hslaConvert(value);
+      this.rgba.set(this.hslaToRgba(this.hsla()));
+      this.hex.set(this.rgbaToHex(this.rgba()));
+      this.type.set('hsla');
     }
   }
 
@@ -142,12 +148,12 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       .replace(/[\s+]/g, '')
       .split(',');
     if (rgba.length > 2) {
-      this.rgba = {
+      this.rgba.set({
         r: Number(rgba[0]),
         g: Number(rgba[1]),
         b: Number(rgba[2]),
         a: Number(rgba.length > 3 ? rgba[3] : 1)
-      };
+      });
     }
   }
 
@@ -159,59 +165,62 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
       .replace(/[\s+]/g, '')
       .split(',');
     if (hsla.length > 2) {
-      this.hsla = {
+      this.hsla.set({
         h: Number(hsla[0]),
         s: Number(hsla[1].replace('%', '')) / 100,
         l: Number(hsla[2].replace('%', '')) / 100,
         a: Number(hsla.length > 3 ? hsla[3] : 1)
-      };
+      });
       this.setHslaPercent();
     }
   }
 
   plateClick(event: MouseEvent) {
-    if (this.drag) return;
+    if (this.drag()) return;
     const rect = this.plateRef().nativeElement.getBoundingClientRect();
-    let left = event.clientX - rect.left;
-    let top = event.clientY - rect.top;
-    this.transform = { x: left - this.offset, y: top - this.offset };
-    this.initTransform = { x: this.transform.x, y: this.transform.y };
+    const left = event.clientX - rect.left;
+    const top = event.clientY - rect.top;
+    this.transformX.set(left - this.offset());
+    this.transformY.set(top - this.offset());
+    this.initTransformX.set(this.transformX());
+    this.initTransformY.set(this.transformY());
     this.setLetfTop(left, top);
   }
 
   setTransform() {
-    let hsv = this.hslToHsv(this.hsla.h as number, this.hsla.s as number, this.hsla.l as number);
-    this.transform.x = hsv.s * this.plate.width - this.offset;
-    this.transform.y = (1 - hsv.v) * this.plate.height - this.offset;
-    this.initTransform = { x: this.transform.x, y: this.transform.y };
+    let hsv = this.hslToHsv(this.hsla().h!, this.hsla().s!, this.hsla().l!);
+    this.transformX.set(hsv.s * this.plate()!.width - this.offset());
+    this.transformY.set((1 - hsv.v) * this.plate()!.height - this.offset());
+    this.initTransformX.set(this.transformX());
+    this.initTransformY.set(this.transformY());
   }
 
   started() {
-    this.drag = true;
+    this.drag.set(true);
   }
 
   ended() {
-    this.initTransform = { x: this.transform.x, y: this.transform.y };
+    this.initTransformX.set(this.transformX());
+    this.initTransformY.set(this.transformY());
     setTimeout(() => {
-      this.drag = false;
+      this.drag.set(false);
     });
   }
 
   moved(drag: CdkDragMove) {
     const transform = drag.source.getFreeDragPosition();
     drag.source.reset();
-    this.transform = {
-      x: transform.x + this.initTransform.x,
-      y: transform.y + this.initTransform.y
-    };
-    let left = this.transform.x + this.offset;
-    let top = this.transform.y + this.offset;
+    this.transformX.set(transform.x + this.initTransformX());
+    this.transformY.set(transform.y + this.initTransformY());
+
+    const left = this.transformX() + this.offset();
+    const top = this.transformY() + this.offset();
     this.setLetfTop(left, top);
   }
 
   setLetfTop(left: number, top: number) {
-    let s = left / this.plate.width;
-    let v = 1 - top / this.plate.height;
+    let s = left / this.plate()!.width;
+    let v = 1 - top / this.plate()!.height;
     let l = ((2 - s) * v) / 2;
     if (l !== 0) {
       if (l === 1) {
@@ -222,43 +231,50 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
         s = (s * v) / (2 - l * 2);
       }
     }
-    [this.hsla.s, this.hsla.l] = [
-      Number(this.decimal.transform(s, '1.2-2')),
-      Number(this.decimal.transform(l, '1.2-2'))
-    ];
+    this.hsla.update((x) => {
+      x.s = Number(this.decimal.transform(s, '1.2-2'));
+      x.l = Number(this.decimal.transform(l, '1.2-2'));
+      return x;
+    });
     this.setHslaPercent();
-    Object.assign(this.rgba, this.hslaToRgba(this.hsla));
-    this.hex = this.rgbaToHex(this.rgba);
+    this.rgba.set(this.hslaToRgba(this.hsla()));
+    this.hex.set(this.rgbaToHex(this.rgba()));
     this.setValue();
   }
 
   setHslaPercent() {
-    this.hsla.sp = this.hsla.s === 0 ? '0%' : (this.percent.transform(this.hsla.s, '1.0-0') as string);
-    this.hsla.lp = this.hsla.l === 0 ? '0%' : (this.percent.transform(this.hsla.l, '1.0-0') as string);
+    this.hsla.update((x) => {
+      x.sp = this.hsla().s === 0 ? '0%' : (this.percent.transform(this.hsla().s, '1.0-0') as string);
+      return x;
+    });
+    this.hsla.update((x) => {
+      x.lp = this.hsla().l === 0 ? '0%' : (this.percent.transform(this.hsla().l, '1.0-0') as string);
+      return x;
+    });
   }
 
   hueChange() {
     this.setPlateBackground();
-    Object.assign(this.rgba, this.hslaToRgba(this.hsla));
-    this.hex = this.rgbaToHex(this.rgba);
+    this.rgba.set(this.hslaToRgba(this.hsla()));
+    this.hex.set(this.rgbaToHex(this.rgba()));
     this.setValue();
   }
 
   setPlateBackground() {
-    this.renderer.setStyle(this.plateRef().nativeElement, 'background-color', `hsl(${this.hsla.h}, 100%, 50%)`);
+    this.renderer.setStyle(this.plateRef().nativeElement, 'background-color', `hsl(${this.hsla().h}, 100%, 50%)`);
   }
 
   setRailBackground() {
     this.renderer.setStyle(
       this.transparentRail,
       'background',
-      `linear-gradient(to right, rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, 0) 0%, rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, 1) 100%)`
+      `linear-gradient(to right, rgba(${this.rgba().r}, ${this.rgba().g}, ${this.rgba().b}, 0) 0%, rgba(${this.rgba().r}, ${this.rgba().g}, ${this.rgba().b}, 1) 100%)`
     );
   }
 
   transparentChange() {
-    Object.assign(this.rgba, this.hslaToRgba(this.hsla));
-    this.hex = this.rgbaToHex(this.rgba);
+    this.rgba.set(this.hslaToRgba(this.hsla()));
+    this.hex.set(this.rgbaToHex(this.rgba()));
     this.setValue();
   }
 
@@ -269,12 +285,12 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   }
 
   setValueByType() {
-    if (this.type === 'hex') {
-      this.value.set(`${this.hex}`);
-    } else if (this.type === 'rgba') {
-      this.value.set(`rgba(${this.rgba.r}, ${this.rgba.g}, ${this.rgba.b}, ${this.rgba.a})`);
-    } else if (this.type === 'hsla') {
-      this.value.set(`hsla(${this.hsla.h}, ${this.hsla.sp}, ${this.hsla.lp}, ${this.hsla.a})`);
+    if (this.type() === 'hex') {
+      this.value.set(`${this.hex()}`);
+    } else if (this.type() === 'rgba') {
+      this.value.set(`rgba(${this.rgba().r}, ${this.rgba().g}, ${this.rgba().b}, ${this.rgba().a})`);
+    } else if (this.type() === 'hsla') {
+      this.value.set(`hsla(${this.hsla().h}, ${this.hsla().sp}, ${this.hsla().lp}, ${this.hsla().a})`);
     }
   }
 

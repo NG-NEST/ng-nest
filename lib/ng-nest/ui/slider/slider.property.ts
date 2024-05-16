@@ -1,4 +1,4 @@
-import { XPropertyFunction, XToDataNew, XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
+import { XPropertyFunction, XToDataArray, XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
 import { TemplateRef, Component, input, model, output } from '@angular/core';
 import type {
   XTemplate,
@@ -8,7 +8,7 @@ import type {
   XNumber,
   XBoolean,
   XTrigger,
-  XDataNew
+  XDataArray
 } from '@ng-nest/ui/core';
 
 /**
@@ -28,7 +28,7 @@ export class XSliderProperty extends XPropertyFunction(X_SLIDER_CONFIG_NAME) {
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  readonly data = input<XSliderNode[], XDataNew<XSliderNode>>([], { transform: XToDataNew });
+  readonly data = input<XSliderNode[], XDataArray<XSliderNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 滑动动画
    * @en_US Sliding animation

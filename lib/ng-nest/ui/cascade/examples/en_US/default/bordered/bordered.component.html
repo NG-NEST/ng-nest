@@ -1,17 +1,23 @@
 <x-row>
   <x-col span="24">
-    <x-cascade [data]="data" placeholder="Please select" bordered="false"></x-cascade>
+    <x-cascade [data]="data()" placeholder="Please select" bordered="false"></x-cascade>
   </x-col>
   <x-col span="24">
-    <x-cascade [data]="data" placeholder="Please select" bordered="false" label="Province:" direction="row"></x-cascade>
+    <x-cascade
+      [data]="data()"
+      placeholder="Please select"
+      bordered="false"
+      label="Province:"
+      direction="row"
+    ></x-cascade>
   </x-col>
   <x-col span="24">
-    <x-cascade [data]="data" placeholder="Please select" bordered="false"></x-cascade>
+    <x-cascade [data]="data()" placeholder="Please select" bordered="false"></x-cascade>
   </x-col>
   <x-col span="24">
-    <x-cascade [data]="data" placeholder="Please select" bordered="false" required></x-cascade>
+    <x-cascade [data]="data()" placeholder="Please select" bordered="false" required></x-cascade>
   </x-col>
   <x-col span="24">
-    <x-cascade [data]="data" placeholder="No border" bordered="false" disabled></x-cascade>
+    <x-cascade [data]="data()" placeholder="No border" bordered="false" disabled></x-cascade>
   </x-col>
 </x-row>

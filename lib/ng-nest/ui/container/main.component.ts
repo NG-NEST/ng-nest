@@ -10,5 +10,5 @@ import { XMainPrefix } from './container.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XMainComponent {
-  @HostBinding('class.x-main') _has = true;
+  @HostBinding('class') className = XMainPrefix;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 
@@ -10,5 +10,5 @@ import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
   styleUrls: ['./disabled.component.scss']
 })
 export class ExDisabledComponent {
-  model = new Date();
+  model = signal(new Date());
 }

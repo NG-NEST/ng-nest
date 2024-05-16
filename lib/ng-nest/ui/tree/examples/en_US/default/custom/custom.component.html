@@ -1,4 +1,4 @@
-<x-tree [data]="data" checkbox [labelTpl]="labelTpl"> </x-tree>
+<x-tree [data]="data()" checkbox [labelTpl]="labelTpl"> </x-tree>
 <ng-template #labelTpl let-node="$node">
   <div class="custom-label">
     <span>{{ node.label }}</span>

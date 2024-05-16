@@ -1,4 +1,4 @@
-import { Component, viewChild } from '@angular/core';
+import { Component, signal, viewChild } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
@@ -14,7 +14,7 @@ export class ExFormVaildComponent {
   form = viewChild.required<XFormComponent>('form');
   manualForm = viewChild.required<XFormComponent>('manualForm');
 
-  controls: XControl[] = [
+  controls = signal<XControl[]>([
     {
       control: 'input',
       id: 'user',
@@ -35,9 +35,7 @@ export class ExFormVaildComponent {
       width: 300,
       required: true
     }
-  ];
-
-  ngOnInit() {}
+  ]);
 
   validForm(form: XFormComponent) {
     if (form.formGroup().valid) {

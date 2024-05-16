@@ -1,7 +1,7 @@
 <div class="row">
   <x-select
     label="search"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     search
@@ -11,7 +11,7 @@
 <div class="row">
   <x-select
     label="Asynchronous search"
-    [data]="dataAsync"
+    [data]="dataAsync()"
     [(ngModel)]="modelAsync"
     (ngModelChange)="change($event)"
     search
@@ -21,7 +21,7 @@
 <div class="row">
   <x-select
     label="Search for multiple choices"
-    [data]="dataMultiple"
+    [data]="dataMultiple()"
     [(ngModel)]="modelMultiple"
     (ngModelChange)="change($event)"
     search
@@ -31,7 +31,7 @@
 <div class="row">
   <x-select
     label="Search for multiple choices(Async)"
-    [data]="dataAsync"
+    [data]="dataAsync()"
     [(ngModel)]="modelMultipleAsync"
     (ngModelChange)="change($event)"
     search
@@ -43,7 +43,7 @@
   <x-select
     label="Search for multiple choices(More)"
     [maxTagCount]="3"
-    [data]="dataMultipleMore"
+    [data]="dataMultipleMore()"
     [(ngModel)]="modelMultipleMore"
     (ngModelChange)="change($event)"
     multiple
@@ -54,7 +54,7 @@
     label="Search for multiple choices(Template)"
     [maxTagCount]="3"
     [maxTagContent]="maxTagContentTpl"
-    [data]="dataMultipleMoreTpl"
+    [data]="dataMultipleMoreTpl()"
     [(ngModel)]="modelMultipleMoreTpl"
     (ngModelChange)="change($event)"
     search

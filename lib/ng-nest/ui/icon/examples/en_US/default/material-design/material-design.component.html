@@ -1,5 +1,5 @@
 <x-tabs [layout]="'top'">
-  @for (tab of tabs; track tab.name) {
+  @for (tab of tabs(); track tab.name) {
     <x-tab [label]="tab.name">
       <x-row>
         @for (icon of tab.icons; track icon) {

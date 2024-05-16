@@ -1,5 +1,5 @@
 <div class="row">
-  @for (tag of tags; track tag) {
+  @for (tag of tags(); track tag) {
     <x-tag type="primary" closable (close)="close(tag)">{{ tag }}</x-tag>
   }
 </div>

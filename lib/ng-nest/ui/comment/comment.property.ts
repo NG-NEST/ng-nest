@@ -1,6 +1,6 @@
-import { XPropertyFunction, XToDataNew, XToNumber } from '@ng-nest/ui/core';
+import { XPropertyFunction, XToDataArray, XToNumber } from '@ng-nest/ui/core';
 import { Component, input, output } from '@angular/core';
-import type { XDate, XParentIdentityProperty, XNumber, XDataNew } from '@ng-nest/ui/core';
+import type { XDate, XParentIdentityProperty, XNumber, XDataArray } from '@ng-nest/ui/core';
 
 /**
  * Comment
@@ -19,7 +19,7 @@ export class XCommentProperty extends XPropertyFunction(X_COMMENT_CONFIG_NAME) {
    * @zh_CN 评论数据
    * @en_US Comment data
    */
-  readonly data = input<XCommentNode[], XDataNew<XCommentNode>>([], { transform: XToDataNew });
+  readonly data = input<XCommentNode[], XDataArray<XCommentNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 评论最大字数
    * @en_US Maximum number of comments

@@ -21,7 +21,7 @@
   <x-dialog
     title="Title"
     [(visible)]="visible"
-    [placement]="placement"
+    [placement]="placement()"
     (close)="evt('close')"
     (cancel)="evt('cancel')"
     (confirm)="evt('confirm')"

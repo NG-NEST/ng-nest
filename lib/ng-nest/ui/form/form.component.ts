@@ -70,8 +70,8 @@ export class XFormComponent extends XFormProperty implements OnChanges, AfterVie
     if (this.disabled()) {
       for (let key in this.controlComponents()) {
         let [control, type] = [this.controlComponents()[key], this.controlTypes()[key]];
-        control.disabledComputed.set(true);
-        control.requiredComputed.set(false);
+        control.disabledSignal.set(true);
+        control.requiredSignal.set(false);
         control.patternSignal.set([]);
         type.setValidators && type.setValidators();
         control.formControlChanges();
@@ -79,8 +79,8 @@ export class XFormComponent extends XFormProperty implements OnChanges, AfterVie
     } else {
       for (let key in this.controlComponents()) {
         let [control, type] = [this.controlComponents()[key], this.controlTypes()[key]];
-        control.disabledComputed.set(type.disabled!);
-        control.requiredComputed.set(type.required!);
+        control.disabledSignal.set(type.disabled!);
+        control.requiredSignal.set(type.required!);
         control.patternSignal.set(type.pattern as RegExp | RegExp[]);
         type.setValidators && type.setValidators();
         control.formControlChanges();

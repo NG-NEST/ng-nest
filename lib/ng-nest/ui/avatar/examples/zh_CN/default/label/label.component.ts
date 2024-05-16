@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
@@ -10,14 +10,15 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   styleUrls: ['./label.component.scss']
 })
 export class ExLabelComponent {
-  label = 'U';
-  index = 0;
-
-  labels = ['U', 'Lee', 'Admin', 'NG-NEST'];
+  label = signal('U');
+  index = signal(0);
+  labels = signal(['U', 'Lee', 'Admin', 'NG-NEST']);
 
   changeLabel() {
-    this.index++;
-    this.index = this.index == this.labels.length ? 0 : this.index;
-    this.label = this.labels[this.index];
+    this.index.update((x) => {
+      ++x;
+      return x === this.labels().length ? 0 : x;
+    });
+    this.label.set(this.labels()[this.index()]);
   }
 }

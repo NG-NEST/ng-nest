@@ -1,21 +1,21 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
 <x-row>
   <x-col span="24">
-    <x-cascade [data]="data" [size]="size"></x-cascade>
+    <x-cascade [data]="data()" [size]="size()"></x-cascade>
   </x-col>
   <x-col span="24">
-    <x-cascade [data]="data" [size]="size" label="用户名" direction="row" maxlength="50"></x-cascade>
+    <x-cascade [data]="data()" [size]="size()" label="用户名" direction="row" maxlength="50"></x-cascade>
   </x-col>
   <x-col span="24">
-    <x-cascade [data]="data" [size]="size" label="用户名" direction="column" maxlength="50"></x-cascade>
+    <x-cascade [data]="data()" [size]="size()" label="用户名" direction="column" maxlength="50"></x-cascade>
   </x-col>
   <x-col span="24">
-    <x-cascade [data]="data" [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-cascade>
+    <x-cascade [data]="data()" [size]="size()" icon="ado-user" iconLayout="left" maxlength="50"></x-cascade>
   </x-col>
   <x-col span="24">
-    <x-cascade [data]="data" required clearable [size]="size"></x-cascade>
+    <x-cascade [data]="data()" required clearable [size]="size()"></x-cascade>
   </x-col>
   <x-col span="24">
-    <x-cascade [data]="data" disabled [size]="size"></x-cascade>
+    <x-cascade [data]="data()" disabled [size]="size()"></x-cascade>
   </x-col>
 </x-row>

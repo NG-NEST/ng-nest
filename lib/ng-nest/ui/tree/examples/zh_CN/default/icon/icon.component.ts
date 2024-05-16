@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
@@ -9,7 +9,7 @@ import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
   templateUrl: './icon.component.html'
 })
 export class ExIconComponent {
-  data: XTreeNode[] = [
+  data = signal<XTreeNode[]>([
     { id: 1, label: '一级 1' },
     { id: 2, label: '一级 2' },
     { id: 3, label: '一级 3' },
@@ -29,5 +29,5 @@ export class ExIconComponent {
     { id: 22, label: '三级 1-1-2', pid: 5 },
     { id: 23, label: '三级 1-1-3', pid: 5 },
     { id: 24, label: '三级 1-1-4', pid: 5 }
-  ];
+  ]);
 }

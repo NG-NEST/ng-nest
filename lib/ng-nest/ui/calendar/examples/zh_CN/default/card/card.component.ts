@@ -11,8 +11,6 @@ import { XCalendarComponent } from '@ng-nest/ui/calendar';
   providers: [DatePipe]
 })
 export class ExCardComponent {
-  constructor() {}
-
   rangeChange(event: any) {
     console.log(event);
   }

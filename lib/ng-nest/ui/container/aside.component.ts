@@ -10,9 +10,7 @@ import { XAsidePrefix, XAsideProperty } from './container.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAsideComponent extends XAsideProperty {
-  @HostBinding('class.x-aside') has() {
-    return true;
-  }
+  @HostBinding('class') className = XAsidePrefix;
   @HostBinding(`style.width`) get getWidth() {
     return this.width();
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XCardComponent } from '@ng-nest/ui/card';
 
@@ -9,5 +9,5 @@ import { XCardComponent } from '@ng-nest/ui/card';
   templateUrl: './header.component.html'
 })
 export class ExHeaderComponent {
-  list = [1, 2, 3, 4, 5, 6];
+  list = signal([1, 2, 3, 4, 5, 6]);
 }

@@ -40,8 +40,8 @@
       [bordered]="bordered()"
       [before]="beforeButtonTpl"
       [after]="afterButtonTpl"
-      [pattern]="patternSignal()"
-      [message]="messageSignal()"
+      [pattern]="patternComputed()"
+      [message]="messageComputed()"
       (xInput)="onInput($event); formControlValidator()"
     ></x-input>
     <ng-template #afterButtonTpl>

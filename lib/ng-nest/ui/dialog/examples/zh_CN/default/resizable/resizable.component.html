@@ -1,7 +1,7 @@
-<x-button (click)="visible1 = true">改变弹窗位置和尺寸</x-button>
+<x-button (click)="visible1.set(true)">改变弹窗位置和尺寸</x-button>
 <br />
 <br />
-<x-button (click)="visible2 = true">全屏显示</x-button>
+<x-button (click)="visible2.set(true)">全屏显示</x-button>
 
 <x-dialog title="标题" [(visible)]="visible1" [beforeClose]="beforeClose1" draggable resizable>
   <span>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span>

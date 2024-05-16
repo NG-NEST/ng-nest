@@ -1,6 +1,6 @@
 <div class="row">
   <x-button (click)="open()">no title included</x-button>
-  <x-drawer [visible]="visible" (close)="close()">
+  <x-drawer [(visible)]="visible" (close)="close()">
     <span>content</span>
   </x-drawer>
 </div>

@@ -11,7 +11,7 @@ import { XContainerComponent } from './container.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XHeaderComponent extends XHeaderProperty implements OnInit {
-  @HostBinding('class.x-header') _has = true;
+  @HostBinding('class') className = XHeaderPrefix;
   @HostBinding(`style.height`) get getHeight() {
     return this.height();
   }
@@ -22,7 +22,7 @@ export class XHeaderComponent extends XHeaderProperty implements OnInit {
   }
 
   setDirection() {
-    if (!this.container || this.container.directionSignal()) return;
+    if (!this.container || this.container.direction()) return;
     this.container.directionSignal.set('column');
   }
 }

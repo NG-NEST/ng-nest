@@ -1,5 +1,5 @@
 <x-tabs linkRouter size="large">
-  @for (label of labels; track label; let i = $index) {
+  @for (label of labels(); track label; let i = $index) {
     <x-tab>
       <a *xTabLink x-tab-link [routerLink]="['.']" [queryParams]="{ tab: i }">{{ label }} </a>
       <div [style.padding.rem]="0.625">内容：{{ label }}</div>

@@ -1,8 +1,8 @@
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     showBackground
     space="0"
@@ -10,28 +10,28 @@
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     showBackground
   ></x-pagination>
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     showBackground
-    [space]="0.25"
+    [space]="8"
   ></x-pagination>
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     showBackground
     showEllipsis="false"
@@ -40,9 +40,9 @@
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     showBackground
     showEllipsis="false"
@@ -52,9 +52,9 @@
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     showBackground
     showEllipsis="false"
@@ -64,9 +64,9 @@
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     showBackground
     showEllipsis="false"
@@ -77,9 +77,9 @@
 <div class="row">
   <x-pagination
     showBackground
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     [sizeData]="[5, 10, 20, 100]"
     showSize
@@ -89,9 +89,9 @@
 <div class="row">
   <x-pagination
     showBackground
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     (sizeChange)="change($event)"
     simple
@@ -101,9 +101,9 @@
 <div class="row">
   <x-pagination
     showBackground
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     (sizeChange)="change($event)"
     showInputSize

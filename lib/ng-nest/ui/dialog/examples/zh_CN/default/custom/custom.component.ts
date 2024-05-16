@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XFormControlOption, XFormComponent } from '@ng-nest/ui/form';
@@ -13,26 +13,24 @@ import { XLinkComponent } from '@ng-nest/ui/link';
   styleUrls: ['./custom.component.scss']
 })
 export class ExCustomComponent {
-  visibleTable!: boolean;
-  visibleForm!: boolean;
-  visibleCustom!: boolean;
-
-  constructor() {}
+  visibleTable = signal(false);
+  visibleForm = signal(false);
+  visibleCustom = signal(false);
 
   customTable() {
-    this.visibleTable = true;
+    this.visibleTable.set(true);
   }
 
   customForm() {
-    this.visibleForm = true;
+    this.visibleForm.set(true);
   }
 
   custom() {
-    this.visibleCustom = true;
+    this.visibleCustom.set(true);
   }
 
   customClose() {
-    this.visibleCustom = false;
+    this.visibleCustom.set(true);
   }
 
   controls: XFormControlOption[] = [

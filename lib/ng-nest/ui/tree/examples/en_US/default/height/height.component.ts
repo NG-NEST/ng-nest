@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
@@ -9,7 +9,7 @@ import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
   styleUrls: ['./height.component.scss']
 })
 export class ExHeightComponent {
-  data: XTreeNode[] = [
+  data = signal<XTreeNode[]>([
     { id: 1, label: '一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1' },
     { id: 2, label: '一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2' },
     { id: 3, label: '一级 3一级 3一级 3一级 3一级 3一级 3一级 3一级 3一级 3一级 3' },
@@ -29,8 +29,8 @@ export class ExHeightComponent {
     { id: 22, label: '三级 1-1-2', pid: 5 },
     { id: 23, label: '三级 1-1-3', pid: 5 },
     { id: 24, label: '三级 1-1-4', pid: 5 }
-  ];
-  data1: XTreeNode[] = [
+  ]);
+  data1 = signal<XTreeNode[]>([
     { id: 1, label: '一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1' },
     { id: 2, label: '一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2一级 2' },
     { id: 3, label: '一级 3一级 3一级 3一级 3一级 3一级 3一级 3一级 3一级 3一级 3' },
@@ -50,8 +50,8 @@ export class ExHeightComponent {
     { id: 22, label: '三级 1-1-2', pid: 5 },
     { id: 23, label: '三级 1-1-3', pid: 5 },
     { id: 24, label: '三级 1-1-4', pid: 5 }
-  ];
-  data2: XTreeNode[] = [
+  ]);
+  data2 = signal<XTreeNode[]>([
     {
       id: 1,
       label: '一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1一级 1',
@@ -76,5 +76,5 @@ export class ExHeightComponent {
     { id: 22, label: '三级 1-1-2', pid: 5 },
     { id: 23, label: '三级 1-1-3', pid: 5 },
     { id: 24, label: '三级 1-1-4', pid: 5 }
-  ];
+  ]);
 }

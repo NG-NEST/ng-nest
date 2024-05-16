@@ -1,6 +1,6 @@
-import { XProperty, XToDataNew, XToNumber, XToBoolean } from '@ng-nest/ui/core';
+import { XProperty, XToDataArray, XToNumber, XToBoolean } from '@ng-nest/ui/core';
 import { Component, input, TemplateRef } from '@angular/core';
-import type { XParentIdentityProperty, XNumber, XBoolean, XDataNew } from '@ng-nest/ui/core';
+import type { XParentIdentityProperty, XNumber, XBoolean, XDataArray } from '@ng-nest/ui/core';
 
 /**
  * Steps
@@ -18,7 +18,7 @@ export class XStepsProperty extends XProperty {
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  readonly data = input<XStepsNode[], XDataNew<XStepsNode>>([], { transform: XToDataNew });
+  readonly data = input<XStepsNode[], XDataArray<XStepsNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 布局方式
    * @en_US Layout

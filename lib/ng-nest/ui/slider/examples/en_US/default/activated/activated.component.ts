@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
@@ -8,7 +8,7 @@ import { XSliderComponent } from '@ng-nest/ui/slider';
   templateUrl: './activated.component.html'
 })
 export class ExActivatedComponent {
-  data = [
+  data = signal([
     'User Management',
     'Configuration Management',
     'Role Management',
@@ -17,5 +17,5 @@ export class ExActivatedComponent {
     'Messages',
     'Processes',
     'News'
-  ];
+  ]);
 }

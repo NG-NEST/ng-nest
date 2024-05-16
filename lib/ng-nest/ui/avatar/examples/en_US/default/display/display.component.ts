@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 
 @Component({
@@ -9,7 +9,7 @@ import { XAvatarComponent } from '@ng-nest/ui/avatar';
   styleUrls: ['./display.component.scss']
 })
 export class ExDisplayComponent {
-  src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
-  icon = 'fto-user';
-  label = 'Lee';
+  src = signal('https://ngnest.com/assets/img/logo/logo-144x144.png');
+  icon = signal('fto-user');
+  label = signal('Lee');
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XPosition } from '@ng-nest/ui/core';
@@ -13,20 +13,20 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
   styleUrls: ['./container.component.scss']
 })
 export class ExContainerComponent {
-  value: XPosition = 'right';
-  data: { id: XPosition; label: string }[] = [
+  value = signal<XPosition>('right');
+  data = signal<{ id: XPosition; label: string }[]>([
     { id: 'left', label: 'Left' },
     { id: 'right', label: 'Right' },
     { id: 'top', label: 'Top' },
     { id: 'bottom', label: 'Bottom' }
-  ];
-  visible!: boolean;
+  ]);
+  visible = signal(false);
 
   open() {
-    this.visible = true;
+    this.visible.set(true);
   }
 
   close() {
-    this.visible = false;
+    this.visible.set(false);
   }
 }

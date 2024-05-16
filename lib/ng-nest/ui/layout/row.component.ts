@@ -14,12 +14,11 @@ import { XComputedStyle, XToCssPx } from '@ng-nest/ui/core';
 export class XRowComponent extends XRowProperty {
   private document: Document = inject(DOCUMENT);
   private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
-  @HostBinding(`class.x-row`) _has = true;
   @HostBinding(`class.x-flex`) get getFlex() {
     return this.justify() || this.align() ? true : false;
   }
   @HostBinding('class') get cls() {
-    let cls: string[] = [];
+    let cls: string[] = [XRowPrefix];
     if (this.justify()) cls.push(`x-justify-${this.justify()}`);
     if (this.align()) cls.push(`x-align-${this.align()}`);
     return cls.join(' ');

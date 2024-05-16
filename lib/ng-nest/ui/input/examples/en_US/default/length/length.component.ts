@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XInputComponent } from '@ng-nest/ui/input';
 
@@ -10,5 +10,5 @@ import { XInputComponent } from '@ng-nest/ui/input';
   styleUrls: ['./length.component.scss']
 })
 export class ExLengthComponent {
-  value: any;
+  value = signal('');
 }

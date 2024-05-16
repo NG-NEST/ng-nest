@@ -1,6 +1,6 @@
-import { XProperty, XPropertyFunction, XToDataNew, XToCssPixelValue, XToBoolean, XToNumber } from '@ng-nest/ui/core';
+import { XProperty, XPropertyFunction, XToDataArray, XToCssPixelValue, XToBoolean, XToNumber } from '@ng-nest/ui/core';
 import { TemplateRef, Component, input, model, output } from '@angular/core';
-import type { XParentIdentityProperty, XSize, XNumber, XBoolean, XTrigger, XDataNew } from '@ng-nest/ui/core';
+import type { XParentIdentityProperty, XSize, XNumber, XBoolean, XTrigger, XDataArray } from '@ng-nest/ui/core';
 
 /**
  * Menu
@@ -19,7 +19,7 @@ export class XMenuProperty extends XPropertyFunction(X_MENU_CONFIG_NAME) {
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  readonly data = input<XMenuNode[], XDataNew<XMenuNode>>([], { transform: XToDataNew });
+  readonly data = input<XMenuNode[], XDataArray<XMenuNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 布局方向
    * @en_US Layout direction

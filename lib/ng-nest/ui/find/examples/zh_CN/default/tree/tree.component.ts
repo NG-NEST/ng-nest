@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { TreeService } from './tree.service';
 import { XFindComponent } from '@ng-nest/ui/find';
 import { FormsModule } from '@angular/forms';
+import type { XTableRow } from '@ng-nest/ui/table';
 
 @Component({
   selector: 'ex-tree',
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   providers: [TreeService]
 })
 export class ExTreeComponent {
-  model: any;
-  modelMultiple: any = [];
+  model = signal<XTableRow | null>(null);
+  modelMultiple = signal<XTableRow[]>([]);
   constructor(public treeService: TreeService) {}
 }

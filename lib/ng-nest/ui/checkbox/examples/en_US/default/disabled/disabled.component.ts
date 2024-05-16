@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { XCheckboxComponent, XCheckboxNode } from '@ng-nest/ui/checkbox';
-import { XData } from '@ng-nest/ui/core';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 
 @Component({
   selector: 'ex-disabled',
@@ -11,7 +10,7 @@ import { XData } from '@ng-nest/ui/core';
   styleUrls: ['./disabled.component.scss']
 })
 export class ExDisabledComponent {
-  data: XData<XCheckboxNode> = ['QQ', 'WeChat', 'DingTalk', 'Weibo'];
-  dataDisabled: XData<XCheckboxNode> = ['QQ', 'WeChat', { label: 'DingTalk', disabled: true }, 'Weibo'];
-  model = ['DingTalk'];
+  data = signal(['QQ', 'WeChat', 'DingTalk', 'Weibo']);
+  dataDisabled = signal(['QQ', 'WeChat', { label: 'DingTalk', disabled: true }, 'Weibo']);
+  model = signal(['DingTalk']);
 }

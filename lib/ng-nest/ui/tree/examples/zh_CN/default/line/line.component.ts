@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
@@ -8,7 +8,7 @@ import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
   templateUrl: './line.component.html'
 })
 export class ExLineComponent {
-  data: XTreeNode[] = [
+  data = signal<XTreeNode[]>([
     { id: 1, label: '一级 1' },
     { id: 2, label: '一级 2' },
     { id: 3, label: '一级 3' },
@@ -44,5 +44,5 @@ export class ExLineComponent {
     { id: 38, label: '三级 1-1-4-2', pid: 36 },
     { id: 39, label: '三级 1-1-4-3', pid: 36 },
     { id: 40, label: '三级 1-1-4-4', pid: 36 }
-  ];
+  ]);
 }

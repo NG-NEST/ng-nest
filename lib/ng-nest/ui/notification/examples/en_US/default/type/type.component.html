@@ -1,28 +1,46 @@
 <div class="row">
-  <x-button (click)="notification.success({ title: 'Success tips', content: content })">Success tips</x-button>
-  <x-button (click)="notification.info({ title: 'Notification', content: content })">Notification</x-button>
-  <x-button (click)="notification.warning({ title: 'Warning', content: content })">Warning</x-button>
-  <x-button (click)="notification.error({ title: 'Error message', content: content })">Error message</x-button>
+  <x-button (click)="notification.success({ title: 'Success tips', content: content() })">Success tips</x-button>
+  <x-button (click)="notification.info({ title: 'Notification', content: content() })">Notification</x-button>
+  <x-button (click)="notification.warning({ title: 'Warning', content: content() })">Warning</x-button>
+  <x-button (click)="notification.error({ title: 'Error message', content: content() })">Error message</x-button>
 </div>
 <div class="row">
-  <x-button type="success" plain (click)="notification.success({ title: 'Success tips', content: content, effect: 'light' })"
+  <x-button
+    type="success"
+    plain
+    (click)="notification.success({ title: 'Success tips', content: content(), effect: 'light' })"
     >Success tips</x-button
   >
-  <x-button type="info" plain (click)="notification.info({ title: 'Notification', content: content, effect: 'light' })"
+  <x-button
+    type="info"
+    plain
+    (click)="notification.info({ title: 'Notification', content: content(), effect: 'light' })"
     >Notification</x-button
   >
-  <x-button type="warning" plain (click)="notification.warning({ title: 'Warning', content: content, effect: 'light' })">Warning</x-button>
-  <x-button type="danger" plain (click)="notification.error({ title: 'Error message', content: content, effect: 'light' })"
+  <x-button
+    type="warning"
+    plain
+    (click)="notification.warning({ title: 'Warning', content: content(), effect: 'light' })"
+    >Warning</x-button
+  >
+  <x-button
+    type="danger"
+    plain
+    (click)="notification.error({ title: 'Error message', content: content(), effect: 'light' })"
     >Error message</x-button
   >
 </div>
 <div class="row">
-  <x-button type="success" (click)="notification.success({ title: 'Success tips', content: content, effect: 'dark' })"
+  <x-button type="success" (click)="notification.success({ title: 'Success tips', content: content(), effect: 'dark' })"
     >Success tips</x-button
   >
-  <x-button type="info" (click)="notification.info({ title: 'Notification', content: content, effect: 'dark' })">Notification</x-button>
-  <x-button type="warning" (click)="notification.warning({ title: 'Warning', content: content, effect: 'dark' })">Warning</x-button>
-  <x-button type="danger" (click)="notification.error({ title: 'Error message', content: content, effect: 'dark' })"
+  <x-button type="info" (click)="notification.info({ title: 'Notification', content: content(), effect: 'dark' })"
+    >Notification</x-button
+  >
+  <x-button type="warning" (click)="notification.warning({ title: 'Warning', content: content(), effect: 'dark' })"
+    >Warning</x-button
+  >
+  <x-button type="danger" (click)="notification.error({ title: 'Error message', content: content(), effect: 'dark' })"
     >Error message</x-button
   >
 </div>

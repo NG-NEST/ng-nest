@@ -16,6 +16,6 @@ import { NgClass, NgStyle } from '@angular/common';
 })
 export class XCardComponent extends XCardProperty {
   classMapSignal = computed(() => ({
-    [`${XCardPrefix}-${this.shadow}`]: !XIsEmpty(this.shadow)
+    [`${XCardPrefix}-${this.shadow()}`]: !XIsEmpty(this.shadow())
   }));
 }

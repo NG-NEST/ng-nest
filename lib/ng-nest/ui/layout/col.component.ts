@@ -16,12 +16,11 @@ export class XColComponent extends XColProperty {
   private rowComponent = inject(XRowComponent, { optional: true, host: true });
   private document: Document = inject(DOCUMENT);
   private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
-  @HostBinding('class.x-col') _has = true;
   @HostBinding(`class.x-col-24`) get getFlex() {
     return this.xs() || this.sm() || this.md() || this.lg() || this.xl() || this.span() == 24 ? true : false;
   }
   @HostBinding('class') get cls() {
-    let cls: string[] = [];
+    let cls: string[] = [XColPrefix];
     if (this.span()) cls.push(`${XColPrefix}-${this.span()}`);
     if (this.offset()) cls.push(`${XColPrefix}-offset-${this.offset()}`);
     if (this.xs()) cls.push(`${XColPrefix}-xs-${this.xs()}`);

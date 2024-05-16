@@ -1,7 +1,7 @@
 <div class="row">
   <x-tree-select
     [style.width.rem]="24"
-    [data]="data1"
+    [data]="data1()"
     [(ngModel)]="model1"
     (ngModelChange)="change($event)"
     showPath
@@ -10,7 +10,7 @@
 <div class="row">
   <x-tree-select
     [style.width.rem]="24"
-    [data]="data2"
+    [data]="data2()"
     [(ngModel)]="model2"
     (ngModelChange)="change($event)"
     showPath
@@ -19,7 +19,7 @@
 <div class="row">
   <x-tree-select
     [style.width.rem]="24"
-    [data]="data3"
+    [data]="data3()"
     [(ngModel)]="model3"
     (ngModelChange)="change($event)"
     showPath

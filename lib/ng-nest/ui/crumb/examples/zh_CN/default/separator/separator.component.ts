@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XCrumbComponent } from '@ng-nest/ui/crumb';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
@@ -9,5 +9,5 @@ import { XIconComponent } from '@ng-nest/ui/icon';
   templateUrl: './separator.component.html'
 })
 export class ExSeparatorComponent {
-  data = ['首页', '用户管理', '用户列表', '用户详情'];
+  data = signal(['首页', '用户管理', '用户列表', '用户详情']);
 }

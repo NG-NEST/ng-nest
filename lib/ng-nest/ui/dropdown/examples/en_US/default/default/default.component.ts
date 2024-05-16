@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 import { XLinkComponent } from '@ng-nest/ui/link';
 
@@ -9,5 +9,5 @@ import { XLinkComponent } from '@ng-nest/ui/link';
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
-  data = ['User manage', 'Role manage', 'Organization manage', 'Module manage', 'Log manage'];
+  data = signal(['User manage', 'Role manage', 'Organization manage', 'Module manage', 'Log manage']);
 }

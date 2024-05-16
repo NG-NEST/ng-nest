@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessageService } from '@ng-nest/ui/message';
@@ -13,9 +13,11 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 })
 export class ExConditionComponent {
   constructor(private message: XMessageService) {}
-  condition = true;
+  condition = signal(true);
   confirm() {
     this.message.info('Condition!');
   }
-  cancel() {}
+  cancel() {
+    console.log('cancel');
+  }
 }

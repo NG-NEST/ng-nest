@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XTimePickerComponent } from '@ng-nest/ui/time-picker';
 
@@ -10,6 +10,6 @@ import { XTimePickerComponent } from '@ng-nest/ui/time-picker';
   styleUrls: ['./hour-minute.component.scss']
 })
 export class ExHourMinuteComponent {
-  model1: any;
-  model2: any;
+  model1 = signal('');
+  model2 = signal('');
 }

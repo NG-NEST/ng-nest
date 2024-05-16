@@ -1,8 +1,8 @@
 <x-switch [(ngModel)]="loading"></x-switch>
 <ul class="news">
-  @for (item of list; track item; let i = $index) {
+  @for (item of list(); track item; let i = $index) {
     <li>
-      <x-skeleton [loading]="loading" [data]="data" active>
+      <x-skeleton [loading]="loading()" [data]="data()" active>
         <x-row justify="start" space="1">
           <x-col inherit class="content">
             <x-avatar src="https://ngnest.com/assets/img/logo/logo-144x144.png" size="medium"></x-avatar>

@@ -1,7 +1,7 @@
 import { XPropertyFunction, XToNumber, XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
 import { Component, model, input } from '@angular/core';
 import type { XSelectNode } from '@ng-nest/ui/select';
-import type { XNumber, XQuery, XBoolean, XTemplate, XDataNew } from '@ng-nest/ui/core';
+import type { XNumber, XQuery, XBoolean, XTemplate, XDataArray } from '@ng-nest/ui/core';
 
 /**
  * Pagination
@@ -93,7 +93,7 @@ export class XPaginationProperty extends XPropertyFunction(X_PAGINATION_CONFIG_N
    * @zh_CN 分页选择的数据项
    * @en_US Paging choose items of data
    */
-  readonly sizeData = input<XDataNew<XSelectNode>>(this.config?.sizeData ?? XPaginationSizeData);
+  readonly sizeData = input<XDataArray<XSelectNode>>(this.config?.sizeData ?? XPaginationSizeData);
   /**
    * @zh_CN 禁用整个分页
    * @en_US disabled

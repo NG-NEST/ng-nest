@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTreeComponent, XTreeNode, XTreeNodeDragEvent } from '@ng-nest/ui/tree';
 
 @Component({
@@ -8,7 +8,7 @@ import { XTreeComponent, XTreeNode, XTreeNodeDragEvent } from '@ng-nest/ui/tree'
   templateUrl: './drag.component.html'
 })
 export class ExDragComponent {
-  data: XTreeNode[] = [
+  data = signal<XTreeNode[]>([
     { id: 1, label: 'First level 1' },
     { id: 2, label: 'First level 2' },
     { id: 3, label: 'First level 3' },
@@ -28,13 +28,15 @@ export class ExDragComponent {
     { id: 22, label: 'Level 3 1-1-2', pid: 5 },
     { id: 23, label: 'Level 3 1-1-3', pid: 5 },
     { id: 24, label: 'Level 3 1-1-4', pid: 5 }
-  ];
+  ]);
 
   dragEvent(type: string, event: XTreeNodeDragEvent) {
     if (type === 'started') {
       console.log('Started drag node:', event.from?.label);
     } else {
-      console.log(`DragDrop node [${event.from?.label}] to [${event.to?.label}] node ${event.position === -1 ? 'Front' : 'Back'}`);
+      console.log(
+        `DragDrop node [${event.from?.label}] to [${event.to?.label}] node ${event.position === -1 ? 'Front' : 'Back'}`
+      );
     }
   }
 }

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XDropdownComponent } from '@ng-nest/ui/dropdown';
+import { XDropdownComponent, XDropdownNode } from '@ng-nest/ui/dropdown';
 
 @Component({
   selector: 'ex-multistage',
@@ -9,7 +9,7 @@ import { XDropdownComponent } from '@ng-nest/ui/dropdown';
   templateUrl: './multistage.component.html'
 })
 export class ExMultistageComponent {
-  data = [
+  data = signal<XDropdownNode[]>([
     { id: 1, label: 'AAAAA' },
     { id: 2, label: 'BBBBB' },
     { id: 3, label: 'CCCCC' },
@@ -31,5 +31,5 @@ export class ExMultistageComponent {
     { id: 20, pid: 16, label: 'CCCCC-2-2' },
     { id: 21, pid: 17, label: 'CCCCC-3-1' },
     { id: 22, pid: 17, label: 'CCCCC-3-2' }
-  ];
+  ]);
 }

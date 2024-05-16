@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XCommentComponent, XCommentNode } from '@ng-nest/ui/comment';
 import { XAddHours, XAddMinutes } from '@ng-nest/ui/core';
 
@@ -9,96 +9,94 @@ import { XAddHours, XAddMinutes } from '@ng-nest/ui/core';
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
-  now = new Date();
-  src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
-  content = `The more you learn, the more you don't know. 
+  now = signal(new Date());
+  src = signal('https://ngnest.com/assets/img/logo/logo-144x144.png');
+  content = signal(`The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
-  The more you learn, the more you don't know. The more you learn, the more you don't know.`;
-  data: XCommentNode[] = [
+  The more you learn, the more you don't know. The more you learn, the more you don't know.`);
+  data = signal<XCommentNode[]>([
     {
       id: '1',
-      src: this.src,
+      src: this.src(),
       author: 'Qifeng Zhang',
-      datetime: XAddMinutes(this.now, -40),
-      content: this.content,
+      datetime: XAddMinutes(this.now(), -40),
+      content: this.content(),
       count: 23,
       likes: 88,
       children: [
         {
           id: '1-1',
           pid: '1',
-          src: this.src,
+          src: this.src(),
           author: 'San Liu',
-          datetime: XAddMinutes(this.now, -30),
-          content: this.content,
+          datetime: XAddMinutes(this.now(), -30),
+          content: this.content(),
           likes: 2
         },
         {
           id: '1-2',
           pid: '1',
-          src: this.src,
+          src: this.src(),
           author: 'Si Liu',
-          datetime: XAddMinutes(this.now, -35),
-          content: this.content,
+          datetime: XAddMinutes(this.now(), -35),
+          content: this.content(),
           likes: 0
         },
         {
           id: '1-2',
           pid: '1',
-          src: this.src,
+          src: this.src(),
           author: 'Wu Liu',
-          datetime: XAddMinutes(this.now, -38),
-          content: this.content,
+          datetime: XAddMinutes(this.now(), -38),
+          content: this.content(),
           likes: 0
         }
       ]
     },
     {
       id: '2',
-      src: this.src,
+      src: this.src(),
       author: 'Muyun Li',
-      datetime: XAddMinutes(this.now, -50),
-      content: this.content,
+      datetime: XAddMinutes(this.now(), -50),
+      content: this.content(),
       count: 2,
       likes: 88,
       children: [
         {
           id: '1-1',
           pid: '1',
-          src: this.src,
+          src: this.src(),
           author: 'San Liu',
-          datetime: XAddMinutes(this.now, -30),
-          content: this.content,
+          datetime: XAddMinutes(this.now(), -30),
+          content: this.content(),
           likes: 2
         },
         {
           id: '1-2',
           pid: '1',
-          src: this.src,
+          src: this.src(),
           author: 'Si Liu',
-          datetime: XAddMinutes(this.now, -35),
-          content: this.content,
+          datetime: XAddMinutes(this.now(), -35),
+          content: this.content(),
           likes: 0
         }
       ]
     },
     {
       id: '3',
-      src: this.src,
+      src: this.src(),
       author: 'Yun Liu',
-      datetime: XAddHours(this.now, -5),
-      content: this.content,
+      datetime: XAddHours(this.now(), -5),
+      content: this.content(),
       count: 0,
       likes: 10,
       children: []
     }
-  ];
-
-  constructor(private cdr: ChangeDetectorRef) {}
+  ]);
 
   createNode(pid: string, content: string | undefined, index = 0) {
     return {
@@ -114,14 +112,12 @@ export class ExDefaultComponent {
   likeClick(node: XCommentNode) {
     if (!node.likes) node.likes = 0;
     node.likes++;
-    this.cdr.detectChanges();
   }
 
   sureClick(node: XCommentNode) {
     if (!node.children) node.children = [];
     let children: XCommentNode[] = [this.createNode(node.pid, node.replyContent), ...node.children];
     node.children = children;
-    this.cdr.detectChanges();
   }
 
   moreClick(node: XCommentNode) {
@@ -131,6 +127,5 @@ export class ExDefaultComponent {
       nodes = [...nodes, this.createNode(node.id, node.content, -i)];
     }
     node.children = [...node.children, ...nodes];
-    this.cdr.detectChanges();
   }
 }

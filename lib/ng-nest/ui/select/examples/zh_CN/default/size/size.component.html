@@ -1,19 +1,19 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
 <div class="row">
-  <x-select [size]="size" [data]="data"></x-select>
+  <x-select [size]="size()" [data]="data()"></x-select>
 </div>
 <div class="row">
-  <x-select [size]="size" [data]="data" label="用户名" direction="row" maxlength="50"></x-select>
+  <x-select [size]="size()" [data]="data()" label="用户名" direction="row" maxlength="50"></x-select>
 </div>
 <div class="row">
-  <x-select [size]="size" [data]="data" label="用户名" direction="column" maxlength="50"></x-select>
+  <x-select [size]="size()" [data]="data()" label="用户名" direction="column" maxlength="50"></x-select>
 </div>
 <div class="row">
-  <x-select [size]="size" [data]="data" icon="ado-user" iconLayout="left" maxlength="50"></x-select>
+  <x-select [size]="size()" [data]="data()" icon="ado-user" iconLayout="left" maxlength="50"></x-select>
 </div>
 <div class="row">
-  <x-select required clearable [size]="size" [data]="data"></x-select>
+  <x-select required clearable [size]="size()" [data]="data()"></x-select>
 </div>
 <div class="row">
-  <x-select disabled [size]="size" [data]="data"></x-select>
+  <x-select disabled [size]="size()" [data]="data()"></x-select>
 </div>

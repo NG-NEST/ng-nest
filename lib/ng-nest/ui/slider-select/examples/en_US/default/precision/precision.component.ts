@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 
@@ -10,6 +10,6 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
   styleUrls: ['./precision.component.scss']
 })
 export class ExPrecisionComponent {
-  model1 = 0;
-  model2 = 0;
+  model1 = signal(0);
+  model2 = signal(0);
 }

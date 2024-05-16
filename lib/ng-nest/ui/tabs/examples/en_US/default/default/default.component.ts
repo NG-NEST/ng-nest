@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTabComponent, XTabsComponent } from '@ng-nest/ui/tabs';
 
 @Component({
@@ -8,5 +8,5 @@ import { XTabComponent, XTabsComponent } from '@ng-nest/ui/tabs';
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
-  labels = ['User Management', 'Configuration Management', 'Role Management', 'Tasks'];
+  labels = signal(['User Management', 'Configuration Management', 'Role Management', 'Tasks']);
 }

@@ -43,7 +43,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   index = signal(0);
   animating = signal(false);
   preTranslate!: number;
-  cardScale = 0.83;
+  cardScale = signal(0.83);
   scale = signal(1);
   translate = signal(0);
   translateType = signal('translateX');
@@ -99,7 +99,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
       }
       this.inStage.set(Math.round(Math.abs(offset)) <= 1);
       this.translate.set(this.calcCardTranslate(this.index(), this.carousel.active())!);
-      this.scale.set(offset === 0 ? 1 : this.cardScale);
+      this.scale.set(offset === 0 ? 1 : this.cardScale());
     } else {
       if (this.carousel?.direction() === 'vertical') {
         distance = height;
@@ -130,11 +130,11 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
     let activeFirstOrLast = this.carousel.start() > 1 && this.carousel.start() === Math.abs(offset);
     if (this.inStage() || activeFirstOrLast) {
       if (activeFirstOrLast) offset = offset < 0 ? 1 : -1;
-      return (parentWidth * ((2 - this.cardScale) * offset + 1)) / 4;
+      return (parentWidth * ((2 - this.cardScale()) * offset + 1)) / 4;
     } else if (index < activeIndex) {
-      return (-(1 + this.cardScale) * parentWidth) / 4;
+      return (-(1 + this.cardScale()) * parentWidth) / 4;
     } else {
-      return ((3 + this.cardScale) * parentWidth) / 4;
+      return ((3 + this.cardScale()) * parentWidth) / 4;
     }
   }
 

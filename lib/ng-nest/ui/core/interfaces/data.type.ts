@@ -13,31 +13,30 @@ export type XData<T> = T[] | Observable<T[] | any[]> | any[] | Function;
 
 /**
  * @zh_CN data 数据类型
- * 通用的泛型数据类型，一般是指数组、可订阅对象并且流数据为数组类型、函数等
+ * 通用的泛型数据类型，一般是指数组
  * @en_US Data data type
- * General generic data types, generally is index set,
- * can subscribe to the object and flow data for the array, function, etc
+ * General generic data types, generally is index set
  */
-export type XDataNew<T> = string | number | (T | string | number)[];
+export type XDataArray<T> = string | number | (T | string | number)[];
 
 /**
  * @zh_CN boolean 数据类型
- * 此类型作为组件的输入参数，一般会配合 `@XInputBoolean()` 装饰器来使用，转换成 true 或 false
+ * 此类型作为组件的输入参数，一般会使用 `XToBoolean` 转换函数，转换成 true 或 false
  * @en_US Boolean data type
  * This type as a component of the input parameters,
- * usually with `@XInputBoolean()` decorator to process parameters,
+ * usually with `XToBoolean` decorator to process parameters,
  * directly into true or false
  * @example
  *
  * ```html
  * // true
- * <my-com disabled></my-com>
- * <my-com disabled="true"></my-com>
- * <my-com [disabled]="true"></my-com>
+ * <my-component disabled></my-component>
+ * <my-component disabled="true"></my-component>
+ * <my-component [disabled]="true"></my-component>
  *
  * // false
- * <my-com disabled="false"></my-com>
- * <my-com [disabled]="false"></my-com>
+ * <my-component disabled="false"></my-component>
+ * <my-component [disabled]="false"></my-component>
  * ```
  *
  */
@@ -45,14 +44,51 @@ export type XBoolean = boolean | string;
 
 /**
  * @zh_CN number 数据类型
- * 此类型作为组件的输入参数，一般会配合 `@XInputNumber()` 装饰器来使用，转换成数字类型
+ * 此类型作为组件的输入参数，一般会使用 `XToNumber` 转换函数，转换成数字类型
+ * 如果是高宽尺寸，会通过 `XToCssPixelValue` 转换函数，转换成字符串尺寸
  * @en_US Number data type
+ * This type as the input parameters of the component, generally use `XToNumber` conversion function, converted to digital type
+ * If the width of the high is through `XToCssPixelValue` conversion function, convert the string size
+ * @example
+ *
+ * ```html
+ * // XToNumber => num = 10
+ * <my-component max="10"></my-component>
+ * <my-component [max]="10"></my-component>
+ * <my-component [max]="'10'"></my-component>
+ *
+ * // XToCssPixelValue
+ * // width = '200px'
+ * <my-component width="200"></my-component>
+ * <my-component width="200px"></my-component>
+ * <my-component [width]="200"></my-component>
+ * <my-component [width]="'200'"></my-component>
+ * <my-component [width]="'200px'"></my-component>
+ * // width = '20rem'
+ * <my-component width="20rem"></my-component>
+ * <my-component [width]="'20rem'"></my-component>
+ * // width = '50%'
+ * <my-component width="50%"></my-component>
+ * <my-component [width]="'50%'"></my-component>
+ * ```
+ *
  */
 export type XNumber = number | string;
 
 /**
  * @zh_CN 模板类型
+ * 一般会配合 `outlet` 指令来指定一个参数即可为基本数据类型，也可为模板
  * @en_US Template type
+ * Usually cooperate `outlet` instructions to specify a parameter can be as the basic data types, can also be used as a template
+ * @example
+ *
+ * ```html
+ * // label = "string"
+ * <ng-container *xOutlet="label">{{ label }}</ng-container>
+ *
+ * <ng-container *xOutlet="labelTpl">{{ labelTpl }}</ng-container>
+ * <ng-template #labelTpl>this is a label template</ng-template>
+ * ```
  */
 export type XTemplate = string | number | Date | TemplateRef<any>;
 

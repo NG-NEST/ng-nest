@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 import { XLinkComponent } from '@ng-nest/ui/link';
@@ -11,5 +11,5 @@ import { XLinkComponent } from '@ng-nest/ui/link';
   styleUrls: ['./trigger.component.scss']
 })
 export class ExTriggerComponent {
-  data = ['User manage', 'Role manage', 'Organization manage', 'Module manage', 'Log manage'];
+  data = signal(['User manage', 'Role manage', 'Organization manage', 'Module manage', 'Log manage']);
 }

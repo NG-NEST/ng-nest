@@ -1,5 +1,5 @@
 <div class="row">
-  <x-popconfirm title="confirm to delete?" [confirmAsync]="confirmAsync" (cancel)="cancel()">
+  <x-popconfirm title="confirm to delete?" [confirmAsync]="confirmAsync()" (cancel)="cancel()">
     <x-button icon="fto-trash-2">Delete</x-button>
   </x-popconfirm>
 </div>

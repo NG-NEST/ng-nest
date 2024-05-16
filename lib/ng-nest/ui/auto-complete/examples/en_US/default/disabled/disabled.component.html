@@ -1,10 +1,10 @@
 <x-row>
   <x-col>
-    <x-auto-complete  [data]="data" disabled></x-auto-complete >
+    <x-auto-complete [data]="data()" disabled></x-auto-complete>
   </x-col>
 </x-row>
 <x-row>
   <x-col>
-    <x-auto-complete  [data]="data" [(ngModel)]="model" disabled></x-auto-complete >
+    <x-auto-complete [data]="data()" [(ngModel)]="model" disabled></x-auto-complete>
   </x-col>
 </x-row>

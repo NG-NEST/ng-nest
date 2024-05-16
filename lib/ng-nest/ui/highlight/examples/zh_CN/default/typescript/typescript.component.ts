@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XHighlightComponent } from '@ng-nest/ui/highlight';
 
 @Component({
@@ -8,7 +8,7 @@ import { XHighlightComponent } from '@ng-nest/ui/highlight';
   templateUrl: './typescript.component.html'
 })
 export class ExTypescriptComponent {
-  typescript = `import { Component } from "@angular/core";
+  typescript = signal(`import { Component } from "@angular/core";
 
 @Component({
   selector: "app-root",
@@ -17,5 +17,5 @@ export class ExTypescriptComponent {
 })
 export class AppComponent {
   constructor() {}
-}`;
+}`);
 }

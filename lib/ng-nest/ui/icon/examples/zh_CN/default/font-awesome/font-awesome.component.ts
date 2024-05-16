@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
@@ -11,7 +11,7 @@ import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
   styleUrls: ['./font-awesome.component.scss']
 })
 export class ExFontAwesomeComponent {
-  tabs = [
+  tabs = signal([
     {
       type: 'fab',
       name: 'Brands',
@@ -1546,5 +1546,5 @@ export class ExFontAwesomeComponent {
         'yin-yang'
       ]
     }
-  ];
+  ])
 }

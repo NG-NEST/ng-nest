@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XAvatarComponent, XAvatarGroupComponent } from '@ng-nest/ui/avatar';
 
 @Component({
@@ -9,5 +9,5 @@ import { XAvatarComponent, XAvatarGroupComponent } from '@ng-nest/ui/avatar';
   styleUrls: ['./group.component.scss']
 })
 export class ExGroupComponent {
-  src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
+  src = signal('https://ngnest.com/assets/img/logo/logo-144x144.png');
 }

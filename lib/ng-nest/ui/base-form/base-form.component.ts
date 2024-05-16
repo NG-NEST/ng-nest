@@ -31,7 +31,7 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
       );
     });
     invalidPattern = computed(() => {
-      const pattern = this.patternSignal();
+      const pattern = this.patternComputed();
       if (!this.validatorSignal() || XIsUndefined(pattern)) return false;
       let result = false;
       let index = 0;
@@ -54,7 +54,7 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
     });
     invalidMessage = computed(() => {
       if (!this.validatorSignal()) return '';
-      const message = this.messageSignal();
+      const message = this.messageComputed();
       if (Array.isArray(message)) {
         return message.length > this.invalidIndex() ? message[this.invalidIndex()] : '';
       } else {
@@ -71,7 +71,14 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
 
     requiredComputed = computed(() => this.requiredSignal() || this.required());
     disabledComputed = computed(() => this.disabledSignal() || this.disabled());
-    patternComputed = computed(() => this.patternSignal() || this.pattern());
+    patternComputed = computed(() => {
+      if (XIsEmpty(this.patternSignal())) return this.pattern();
+      else return this.patternSignal();
+    });
+    messageComputed = computed(() => {
+      if (XIsEmpty(this.messageSignal())) return this.message();
+      else return this.messageSignal();
+    });
 
     invalidInputValidator = signal(false);
     onChange!: (value: any) => void;

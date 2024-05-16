@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XSkeletonComponent } from '@ng-nest/ui/skeleton';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
@@ -11,5 +11,5 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
   styleUrls: ['./loading.component.scss']
 })
 export class ExLoadingComponent {
-  loading = false;
+  loading = signal(false);
 }
