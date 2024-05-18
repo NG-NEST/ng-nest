@@ -62,7 +62,7 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
   private resizeObserver!: XResizeObserver;
   elementRef = inject(ElementRef);
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XSliderPrefix}-${this.layout()}`]: !XIsEmpty(this.layout()),
     [`${XSliderPrefix}-show-arrow`]: this.showArrow()
   }));

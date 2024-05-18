@@ -39,7 +39,7 @@ export class XRadioComponent extends XRadioProperty implements OnChanges, OnDest
   beforeIsTemplate = computed(() => this.before() instanceof TemplateRef);
   afterIsTemplate = computed(() => this.after() instanceof TemplateRef);
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`x-justify-${this.justify()}`]: !!this.justify(),
     [`x-align-${this.align()}`]: !!this.align(),
     [`x-direction-${this.direction()}`]: !!this.direction()

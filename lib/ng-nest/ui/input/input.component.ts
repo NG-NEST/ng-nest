@@ -49,7 +49,7 @@ export class XInputComponent extends XInputProperty implements OnInit {
     this.isWriteValue.set(false);
   }
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XInputPrefix}-${this.size()}`]: !!this.size(),
     [`x-justify-${this.justify()}`]: !!this.justify(),
     [`x-align-${this.align()}`]: !!this.align(),
@@ -203,7 +203,7 @@ export class XInputComponent extends XInputProperty implements OnInit {
       }
       this.onChange(value);
     }
-    if (this.validator() && XIsFunction(this.inputValidator())) {
+    if (this.validatorComputed() && XIsFunction(this.inputValidator())) {
       this.invalidInputValidator.set(!this.inputValidator()!(value));
     }
   }

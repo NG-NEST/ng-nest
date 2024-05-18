@@ -20,8 +20,8 @@ export class TypesService {
   prop?: AppProp;
 
   get lang(): 'zh_CN' | 'en_US' {
-    // return this.config.lang as 'zh_CN' | 'en_US';
-    return this.config.lang ? 'en_US' : 'en_US';
+    return this.config.lang as 'zh_CN' | 'en_US';
+    // return this.config.lang ? 'en_US' : 'en_US';
   }
 
   typeMap = new Map<string, AppProp>();
@@ -47,6 +47,7 @@ export class TypesService {
       this.typeMap.set(key, this.prop);
     }
     this.dialog.create(NsReferenceComponent, {
+      className: 'ns-reference',
       width: '45rem',
       data: {
         property: this.prop
@@ -61,14 +62,12 @@ export class TypesService {
         values.push(pType);
         return null;
       }
-
       let ty = data[pType];
       if (!ty) {
         ty = data[pName!];
         if (ty && ty.properties) {
           const property = ty.properties.find((x) => x.type === pType);
           ty = this.setGroup(property)!;
-
           return ty;
         }
       } else {
@@ -85,6 +84,7 @@ export class TypesService {
             }
           }
         } else if (type === 'interface') {
+          this.setProperties(lang, ty);
         }
 
         return ty;
@@ -159,5 +159,32 @@ export class TypesService {
       ty.children.push({ name: type, label, description });
     }
     return ty;
+  }
+
+  private setProperties(lang: 'zh_CN' | 'en_US', type: AppProp) {
+    const getProperties = (ext?: string) => {
+      if (ext) {
+        let regex1 = /^\w+<[\w\[\]]+>$/; // ex: propType = "xxx<yyyy>"
+        if (regex1.test(ext)) {
+          regex1 = /^(\w+)<(\w+)>$/;
+          let match = ext.match(regex1);
+          if (match) {
+            let item = this.data[lang][`${match[1]}<T>`];
+            if (item) {
+              type.properties!.unshift(...item.properties!);
+              getProperties(item.extends);
+            }
+          }
+        } else {
+          let item = this.data[lang][`${ext}`];
+          if (item) {
+            type.properties!.unshift(...item.properties!);
+            getProperties(item.extends);
+          }
+        }
+      }
+    };
+
+    getProperties(type.extends);
   }
 }

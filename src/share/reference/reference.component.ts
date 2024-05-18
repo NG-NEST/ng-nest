@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { XDialogModule, XDialogRef, X_DIALOG_DATA } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { AppProp } from '@interfaces';
@@ -20,11 +20,10 @@ export class NsReferenceComponent {
   dialogRef = inject(XDialogRef<NsReferenceComponent>);
   ps = inject(PrismService);
   domSanitizer = inject(DomSanitizer);
-  property = signal<AppProp>({});
+  property = computed(() => this.data.property);
 
-  ngOnInit() {
-    console.log(this.data.property);
-    this.property.set(this.data.property);
+  constructor() {
+    console.log(this.property());
   }
 
   close() {

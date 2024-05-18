@@ -1,4 +1,4 @@
-<div #timeline class="x-timeline" [ngClass]="classMapSignal()">
+<div #timeline class="x-timeline" [ngClass]="classMap()">
   <ul>
     @for (node of nodes(); track node.id) {
       <li [class.x-timeline-loading]="node.loading">

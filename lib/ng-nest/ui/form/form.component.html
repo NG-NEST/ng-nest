@@ -5,7 +5,7 @@
   [formGroup]="formGroup()"
   [style.width]="width()"
   [style.padding-bottom]="controlsType() === 'controls' ? this.space() : '0px'"
-  [ngClass]="classMapSignal()"
+  [ngClass]="classMap()"
   (ngSubmit)="onSubmit($event)"
 >
   @switch (controlsType()) {

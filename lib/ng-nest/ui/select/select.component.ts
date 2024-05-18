@@ -447,7 +447,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           });
         }
       } else {
-        let node = this.nodes().find((x) => x.id === this.value);
+        let node = this.nodes().find((x) => x.id === this.value());
         if (node) {
           this.displayValue.set(node.label);
           this.valueTplContextSignal.update((x) => {
@@ -467,7 +467,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   closeNode(event: Event, node: XSelectNode, index: number) {
     let inx = -1;
-    if (XIsObjectArray<XSelectNode[]>(this.value)) {
+    if (XIsObjectArray<XSelectNode[]>(this.value())) {
       inx = this.value().findIndex((y: XSelectNode) => y.id === node.id);
     } else {
       inx = this.value().findIndex((y: number | string) => y === node.id);

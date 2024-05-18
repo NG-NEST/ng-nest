@@ -52,7 +52,7 @@ export class XButtonComponent extends XButtonProperty implements AfterViewInit, 
     });
   }
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XButtonPrefix}-${this.type()}`]: !XIsEmpty(this.type()) && !this.plain(),
     [`${XButtonPrefix}-${this.type()}-plain`]: !XIsEmpty(this.type()) && this.plain(),
     [`${XButtonPrefix}-${this.type()}-text`]: !XIsEmpty(this.type()) && this.text(),

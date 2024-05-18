@@ -40,7 +40,7 @@ export class XMenuComponent extends XMenuProperty implements OnChanges, AfterVie
   private doc = inject(DOCUMENT);
   private _target!: HTMLElement;
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XMenuPrefix}-${this.layout()}`]: !XIsEmpty(this.layout()),
     [`${XMenuPrefix}-collapsed`]: this.collapsed()
   }));

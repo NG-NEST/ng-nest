@@ -111,7 +111,6 @@
     max-height: 70vh;
     overflow: auto;
     color: $--x-text-300;
-    font-size: calc(#{$--x-font-size} - 0.0625rem);
     line-height: 1.325rem;
   }
   &-actions {

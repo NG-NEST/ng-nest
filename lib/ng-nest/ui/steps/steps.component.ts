@@ -38,7 +38,7 @@ export class XStepsComponent extends XStepsProperty {
     });
   });
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XStepsPrefix}-${this.layout()}`]: !XIsEmpty(this.layout())
   }));
 

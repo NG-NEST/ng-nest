@@ -43,7 +43,7 @@ export class XLoadingComponent extends XLoadingProperty {
     return;
   });
 
-  classMapSignal = computed(() => {
+  classMap = computed(() => {
     const size = this.size();
     if (isNaN(XToNumber(size))) {
       return { [`${XLoadingPrefix}-${size}`]: !XIsEmpty(size) };

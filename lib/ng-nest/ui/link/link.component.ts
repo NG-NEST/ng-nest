@@ -26,7 +26,7 @@ import { NgClass } from '@angular/common';
 export class XLinkComponent extends XLinkProperty {
   link = viewChild.required<ElementRef<HTMLLinkElement>>('link');
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XLinkPrefix}-${this.type()}`]: !XIsEmpty(this.type())
   }));
 

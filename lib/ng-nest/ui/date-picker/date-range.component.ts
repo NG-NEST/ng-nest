@@ -148,7 +148,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
     initialValue: zh_CN.datePicker
   });
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XDateRangePrefix}-${this.size()}`]: !!this.size(),
     [`x-justify-${this.justify()}`]: !!this.justify(),
     [`x-align-${this.align()}`]: !!this.align(),

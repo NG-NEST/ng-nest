@@ -1,4 +1,4 @@
-<div #card class="x-card" [ngClass]="classMapSignal()" [style.width]="width()">
+<div #card class="x-card" [ngClass]="classMap()" [style.width]="width()">
   @if (header()) {
     <div class="x-card-header">
       <ng-container *xOutlet="header()">{{ header() }}</ng-container>

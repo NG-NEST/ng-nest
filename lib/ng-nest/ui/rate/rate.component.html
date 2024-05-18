@@ -1,7 +1,7 @@
 <div
   #rate
   class="x-rate"
-  [ngClass]="classMapSignal()"
+  [ngClass]="classMap()"
   [class.x-flex]="justify() || align() || direction()"
   [class.x-disabled]="disabledComputed()"
   [class.x-required]="requiredIsEmpty()"

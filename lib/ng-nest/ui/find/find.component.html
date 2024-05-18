@@ -6,7 +6,7 @@
   [class.x-disabled]="disabledComputed()"
   [class.x-required]="requiredIsEmpty()"
   [class.x-invalid]="invalid()"
-  [ngClass]="classMapSignal()"
+  [ngClass]="classMap()"
 >
   @if (label()) {
     <label [class.x-find-label-required]="requiredComputed()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{

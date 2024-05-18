@@ -103,3 +103,14 @@
     top: 1rem;
   }
 }
+
+::ng-deep .ns-reference {
+  .x-dialog-portal {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .x-dialog-portal-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}

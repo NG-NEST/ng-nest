@@ -32,7 +32,7 @@ export class XTagComponent extends XTagProperty {
     this.animating.set(true);
   }
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XTagPrefix}-${this.type()}`]: !XIsEmpty(this.type()),
     [`${XTagPrefix}-${this.size()}`]: !XIsEmpty(this.size()),
     [`${XTagPrefix}-dark`]: this.dark(),

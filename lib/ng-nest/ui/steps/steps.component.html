@@ -1,4 +1,4 @@
-<div #steps class="x-steps" [ngClass]="classMapSignal()">
+<div #steps class="x-steps" [ngClass]="classMap()">
   @for (node of nodes(); track node.id; let i = $index) {
     <div class="x-steps-node x-steps-{{ node.status }}">
       <div class="x-steps-header">

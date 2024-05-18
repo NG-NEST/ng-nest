@@ -48,7 +48,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
   nodes = signal<XCheckboxNode[]>([]);
   private unSubject = new Subject<void>();
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`x-justify-${this.justify()}`]: !!this.justify(),
     [`x-align-${this.align()}`]: !!this.align(),
     [`x-direction-${this.direction()}`]: !!this.direction()

@@ -86,7 +86,7 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
       return {};
     }
   });
-  classMapSignal = computed(() => {
+  classMap = computed(() => {
     const classMap: XClassMap = {
       [`${XAvatarPrefix}-${this.shape()}`]: !XIsEmpty(this.shape())
     };

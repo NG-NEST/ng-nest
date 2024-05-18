@@ -8,7 +8,7 @@
     [cdkDragFreeDragPosition]="dragFreeDragPosition()!"
     [cdkDragDisabled]="!draggable()"
     [cdkDragBoundary]="dragBoundary()!"
-    [ngClass]="classMapSignal()"
+    [ngClass]="classMap()"
     @x-fade-animation
     [@.disabled]="disabledAnimation()"
     (@x-fade-animation.done)="onCloseAnimationDone()"

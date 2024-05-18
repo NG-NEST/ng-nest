@@ -59,7 +59,7 @@ export class XTabsComponent extends XTabsProperty implements OnDestroy, AfterVie
   private router = inject(Router, { optional: true });
   configService = inject(XConfigService);
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XTabsPrefix}-${this.layout()}`]: !XIsEmpty(this.layout()),
     [`${XTabsPrefix}-${this.type()}`]: !XIsEmpty(this.type()),
     [`${XTabsPrefix}-is-first`]: this.activatedIndex() === 0,

@@ -40,7 +40,7 @@ import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
 })
 export class XAlertComponent extends XAlertProperty implements OnDestroy {
   styleHide = signal(false);
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XAlertPrefix}-${this.type()}`]: !XIsEmpty(this.type()),
     [`x-${this.effect()}`]: !XIsEmpty(this.effect()),
     [`${XAlertPrefix}-icon-medium`]: !XIsEmpty(this.title()) && !XIsEmpty(this.content()) && !XIsEmpty(this.showIcon()),

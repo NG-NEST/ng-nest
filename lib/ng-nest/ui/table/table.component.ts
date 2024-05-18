@@ -56,7 +56,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   cdr = inject(ChangeDetectorRef);
   unSubject = new Subject<void>();
 
-  classMapSignal = computed(() => ({ [`${XTablePrefix}-row-size-${this.rowSize()}`]: !XIsEmpty(this.rowSize()) }));
+  classMap = computed(() => ({ [`${XTablePrefix}-row-size-${this.rowSize()}`]: !XIsEmpty(this.rowSize()) }));
   theads = signal<ElementRef<HTMLElement>[]>([]);
   tfoot = signal<ElementRef<HTMLElement> | null>(null);
   virtualBody = signal<CdkVirtualScrollViewport | null>(null);

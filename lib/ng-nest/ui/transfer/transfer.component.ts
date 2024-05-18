@@ -73,6 +73,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   leftTableCom = viewChild(XTableComponent);
   rightTableCom = viewChild(XTableComponent);
   nodes = signal<XTransferNode[]>([]);
+
   left = signal<XTransferSource>({
     list: [],
     searchList: [],
@@ -80,6 +81,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     direction: 'left',
     disabledButton: true
   });
+
   right = signal<XTransferSource>({
     list: [],
     searchList: [],
@@ -87,6 +89,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     direction: 'right',
     disabledButton: true
   });
+
   searchInput = signal('');
   searchInputLeftChange = new Subject<string>();
   searchInputRightChange = new Subject<string>();

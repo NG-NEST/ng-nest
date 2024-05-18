@@ -52,7 +52,7 @@ export class XFormComponent extends XFormProperty implements OnChanges, AfterVie
   controlComponents = signal<{ [property: string]: XFormControlComponent }>({});
   controlTypes = signal<{ [property: string]: XFormControlType }>({});
   formId = Number(Math.random().toString().substring(2, 6) + Date.now()).toString(36);
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XFormPrefix}-${this.controlsType()}`]: true
   }));
 

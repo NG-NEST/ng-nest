@@ -19,7 +19,7 @@ import type { XNumber } from '@ng-nest/ui/core';
 export class XProgressComponent extends XProgressProperty {
   maskWidth = computed(() => (XIsNumber(this.percent()) ? 100 - this.percent() : 100));
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XProgressPrefix}-${this.status()}`]: true,
     [`${XProgressPrefix}-${this.type()}`]: true,
     [`${XProgressPrefix}-inside`]: this.inside()

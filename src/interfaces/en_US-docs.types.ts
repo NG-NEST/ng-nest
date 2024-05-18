@@ -573,6 +573,14 @@ export const en_US: {[key: string]: AppProp} = {
     },
     "returnType": "HTMLElement[]"
   },
+  "XProperty": {
+    "type": "class",
+    "label": "Component of public properties",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XProperty"
+  },
   "XPropertyFunction<T extends XComponentConfigKey>": {
     "type": "function",
     "label": "Component of public properties, through the function returns, into the global configuration",
@@ -1493,6 +1501,15 @@ export const en_US: {[key: string]: AppProp} = {
   },
   "XSort": {
     "type": "interface",
+    "label": "Sorting rules",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XSort",
+    "extends": "XFilter"
+  },
+  "XGroupItem": {
+    "type": "interface",
     "label": "Group data",
     "description": "",
     "example": "",
@@ -1522,8 +1539,8 @@ export const en_US: {[key: string]: AppProp} = {
         "example": ""
       }
     ],
-    "name": "XSort",
-    "extends": "XFilter"
+    "name": "XGroupItem",
+    "extends": "XId"
   },
   "XRGBColor": {
     "type": "interface",
@@ -2176,44 +2193,7 @@ export const en_US: {[key: string]: AppProp} = {
     "label": "Anchor inner Property",
     "description": "",
     "example": "",
-    "properties": [
-      {
-        "name": "left",
-        "type": "number",
-        "label": "Left inner margin, used to display hierarchy",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "left",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "icon",
-        "type": "string",
-        "label": "Icon",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "icon",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "link",
-        "type": "string",
-        "label": "Anchor link",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "link",
-        "propType": "",
-        "example": ""
-      }
-    ],
+    "properties": [],
     "name": "XAnchorInnerProperty"
   },
   "XAutoCompletePrefix": {
@@ -2515,7 +2495,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -2573,6 +2553,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XAutoCompleteProperty",
     "extends": "XFormControlFunction(X_AUTOCOMPLETE_CONFIG_NAME)"
   },
+  "XAutoCompleteNode": {
+    "type": "interface",
+    "label": "AutoComplete data object",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XAutoCompleteNode",
+    "extends": "XParentIdentityProperty<XAutoCompleteNode>"
+  },
   "XAutoCompletePortalPrefix": {
     "type": "const",
     "label": "AutoComplete Portal",
@@ -2580,7 +2569,6 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XAutoCompletePortalPrefix",
-    "extends": "XParentIdentityProperty<XAutoCompleteNode>",
     "selector": "x-auto-complete-portal",
     "decorator": "component",
     "value": "'x-auto-complete-portal'"
@@ -2739,6 +2727,15 @@ export const en_US: {[key: string]: AppProp} = {
     "selector": "x-avatar-group",
     "decorator": "component",
     "value": "'x-avatar-group'"
+  },
+  "XAvatarGroupProperty": {
+    "type": "class",
+    "label": "Avatar Group Property",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XAvatarGroupProperty",
+    "extends": "XProperty"
   },
   "XBackTopPrefix": {
     "type": "const",
@@ -3352,6 +3349,15 @@ export const en_US: {[key: string]: AppProp} = {
     ],
     "name": "XCalendarData"
   },
+  "XCalendarNode": {
+    "type": "interface",
+    "label": "Calendar data object",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XCalendarNode",
+    "extends": "XIdentityProperty"
+  },
   "XCalendarModel": {
     "type": "type",
     "label": "Display mode",
@@ -3359,7 +3365,6 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XCalendarModel",
-    "extends": "XIdentityProperty",
     "value": "'month' | 'year'"
   },
   "XCardPrefix": {
@@ -3964,7 +3969,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -4022,6 +4027,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XCascadeProperty",
     "extends": "XFormControlFunction(X_CASCADE_CONFIG_NAME)"
   },
+  "XCascadeNode": {
+    "type": "interface",
+    "label": "Cascade data object",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XCascadeNode",
+    "extends": "XParentIdentityProperty<XCascadeNode>"
+  },
   "XCascadeNodeTrigger": {
     "type": "type",
     "label": "Sub node triggering method",
@@ -4029,7 +4043,6 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XCascadeNodeTrigger",
-    "extends": "XParentIdentityProperty<XCascadeNode>",
     "value": "XTrigger"
   },
   "XCascadePortalPrefix": {
@@ -4378,7 +4391,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -4970,7 +4983,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -5918,7 +5931,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -6299,7 +6312,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -8291,164 +8304,7 @@ export const en_US: {[key: string]: AppProp} = {
     "label": "Dialog Container Property",
     "description": "",
     "example": "",
-    "properties": [
-      {
-        "name": "placement",
-        "type": "XPlace",
-        "label": "Display direction",
-        "default": "'center'",
-        "withConfig": true,
-        "description": "",
-        "decorator": [],
-        "attr": "placement",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "offset",
-        "type": "string",
-        "label": "Offset distance",
-        "default": "'1rem'",
-        "withConfig": true,
-        "description": "",
-        "decorator": [],
-        "attr": "offset",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "width",
-        "type": "string",
-        "label": "Width",
-        "default": "'32rem'",
-        "withConfig": true,
-        "description": "",
-        "decorator": [],
-        "attr": "width",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "height",
-        "type": "string",
-        "label": "Height",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "height",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "label": "Custom style name",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "className",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "backdropClose",
-        "type": "boolean",
-        "label": "Click the mask to close",
-        "default": "true",
-        "withConfig": true,
-        "description": "",
-        "decorator": [],
-        "attr": "backdropClose",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "hasBackdrop",
-        "type": "boolean",
-        "label": "Whether to display the background mask",
-        "default": "true",
-        "withConfig": true,
-        "description": "",
-        "decorator": [],
-        "attr": "hasBackdrop",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "draggable",
-        "type": "boolean",
-        "label": "Drag dialog",
-        "default": "false",
-        "withConfig": true,
-        "description": "",
-        "decorator": [],
-        "attr": "draggable",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "resizable",
-        "type": "boolean",
-        "label": "Adjust the size of the box",
-        "default": "false",
-        "withConfig": true,
-        "description": "",
-        "decorator": [],
-        "attr": "resizable",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "minWidth",
-        "type": "string",
-        "label": "Min width",
-        "default": "'18rem'",
-        "withConfig": true,
-        "description": "",
-        "decorator": [],
-        "attr": "minWidth",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "minHeight",
-        "type": "string",
-        "label": "Min height",
-        "default": "'8rem'",
-        "withConfig": true,
-        "description": "",
-        "decorator": [],
-        "attr": "minHeight",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "data",
-        "type": "any",
-        "label": "Data. Receive data by \"&#64;Inject(X_DIALOG_DATA)\"",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "data",
-        "propType": "",
-        "example": ""
-      },
-      {
-        "name": "viewContainerRef",
-        "type": "ViewContainerRef",
-        "label": "A view container instance can contain other view containers.",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "viewContainerRef",
-        "propType": "",
-        "example": ""
-      }
-    ],
+    "properties": [],
     "name": "XDialogContainerProperty",
     "extends": "XProperty"
   },
@@ -8485,6 +8341,24 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDialogAction",
     "value": "'confirm' | 'cancel' | 'close'"
+  },
+  "XDialogOverlayRef": {
+    "type": "interface",
+    "label": "Dialog object created",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XDialogOverlayRef",
+    "extends": "XPortalOverlayRef<XDialogComponent>"
+  },
+  "XDialogPortalOverlayRef": {
+    "type": "interface",
+    "label": "Dialog object created by service",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XDialogPortalOverlayRef",
+    "extends": "XPortalOverlayRef<XDialogPortalComponent>"
   },
   "XDrawerPrefix": {
     "type": "const",
@@ -8910,6 +8784,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XDropdownProperty",
     "extends": "XPropertyFunction(X_DROPDOWN_CONFIG_NAME)"
   },
+  "XDropdownNode": {
+    "type": "interface",
+    "label": "Dropdown data object",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XDropdownNode",
+    "extends": "XListNode"
+  },
   "XDropdownTrigger": {
     "type": "type",
     "label": "Display method",
@@ -8917,7 +8800,6 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XDropdownTrigger",
-    "extends": "XListNode",
     "value": "XTrigger"
   },
   "XDropdownPortalPrefix": {
@@ -9632,7 +9514,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -10436,6 +10318,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XAutoCompleteControlOption",
     "extends": "XControlOption,"
   },
+  "XTemplateControlOption": {
+    "type": "interface",
+    "label": "Template Control",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTemplateControlOption",
+    "extends": "XControlOption,"
+  },
   "XHighlightPrefix": {
     "type": "const",
     "label": "Highlight",
@@ -10873,6 +10764,15 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-image-preview'"
   },
+  "XImagePreviewProperty": {
+    "type": "class",
+    "label": "Image Preview Property",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XImagePreviewProperty",
+    "extends": "XProperty"
+  },
   "XInputPrefix": {
     "type": "const",
     "label": "Input",
@@ -11047,7 +10947,7 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "validator",
+        "name": "override  validator",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -11256,7 +11156,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -11784,7 +11684,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -13225,6 +13125,15 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-menu-node'"
   },
+  "XMenuNodeProperty": {
+    "type": "class",
+    "label": "Menu Node Property",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XMenuNodeProperty",
+    "extends": "XProperty"
+  },
   "XMessagePrefix": {
     "type": "const",
     "label": "Message",
@@ -13392,12 +13301,20 @@ export const en_US: {[key: string]: AppProp} = {
   },
   "XMessageOverlayRef": {
     "type": "interface",
-    "label": "Message object in Jiugongge",
+    "label": "Message object created",
     "description": "",
     "example": "",
     "properties": [],
     "name": "XMessageOverlayRef",
     "extends": "XPortalOverlayRef<XMessageComponent>"
+  },
+  "XMessagePlacement": {
+    "type": "interface",
+    "label": "Message object in Jiugongge",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XMessagePlacement"
   },
   "XMessagePlacementRef": {
     "type": "interface",
@@ -13904,12 +13821,20 @@ export const en_US: {[key: string]: AppProp} = {
   },
   "XNotificationOverlayRef": {
     "type": "interface",
-    "label": "Message object in nine grid",
+    "label": "Message object created",
     "description": "",
     "example": "",
     "properties": [],
     "name": "XNotificationOverlayRef",
     "extends": "XPortalOverlayRef<XNotificationComponent>"
+  },
+  "XNotificationPlacement": {
+    "type": "interface",
+    "label": "Message object in nine grid",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XNotificationPlacement"
   },
   "XOutletPrefix": {
     "type": "const",
@@ -15291,7 +15216,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -15634,7 +15559,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -16177,7 +16102,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -16223,6 +16148,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XSelectProperty",
     "extends": "XFormControlFunction(X_SELECT_CONFIG_NAME)"
   },
+  "XSelectNode": {
+    "type": "interface",
+    "label": "Select data object",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XSelectNode",
+    "extends": "XParentIdentityProperty<XSelectNode>"
+  },
   "XSelectPortalPrefix": {
     "type": "const",
     "label": "Select Portal",
@@ -16230,7 +16164,6 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XSelectPortalPrefix",
-    "extends": "XParentIdentityProperty<XSelectNode>",
     "selector": "x-select-portal",
     "decorator": "component",
     "value": "'x-select-portal'"
@@ -17042,7 +16975,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -17743,7 +17676,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -20429,7 +20362,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -20762,7 +20695,7 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "validator",
+        "name": "override  validator",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -20947,7 +20880,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -23634,7 +23567,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
         "label": "Regular verification rules",
-        "default": "[]",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",

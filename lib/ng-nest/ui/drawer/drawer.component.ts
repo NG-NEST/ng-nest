@@ -53,7 +53,7 @@ export class XDrawerComponent extends XDrawerProperty implements AfterViewInit, 
   private unSubject = new Subject<void>();
   container = inject<XDrawerContainerComponent>(X_DRAWER_CONTAINER, { optional: true });
   hasContainer = signal(false);
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XDrawerPrefix}-${this.placement()}`]: !XIsEmpty(this.placement()),
     [`${XDrawerPrefix}-no-title`]: XIsEmpty(this.title())
   }));

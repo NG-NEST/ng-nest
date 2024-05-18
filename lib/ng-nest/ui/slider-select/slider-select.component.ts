@@ -119,7 +119,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   isNumber = computed(() => XIsNumber(this.value()) && !XIsArray(this.value()));
   isArray = computed(() => XIsArray(this.value()));
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`x-justify-${this.justify()}`]: !!this.justify(),
     [`x-align-${this.align()}`]: !!this.align(),
     [`x-direction-${this.direction()}`]: !!this.direction()
@@ -143,7 +143,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   });
 
   override requiredIsEmpty = computed(
-    () => this.validatorSignal() && this.requiredComputed() && (XIsEmpty(this.value()) || this.value() === 0)
+    () => this.validatorComputed() && this.requiredComputed() && (XIsEmpty(this.value()) || this.value() === 0)
   );
 
   override writeValue(value: number | number[]) {

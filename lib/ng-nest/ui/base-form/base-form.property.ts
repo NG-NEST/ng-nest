@@ -188,6 +188,11 @@ export interface XFormOption {
 @Component({ selector: 'x-formcontrol-prop', template: '' })
 export class XFormControlProp extends XProperty {
   /**
+   * @zh_CN 初始启用验证，在输入值都自动开启
+   * @en_US Initial enable validation, which is automatically enabled when the input value is
+   */
+  readonly validator = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
    * @zh_CN 标签
    * @en_US Label
    */

@@ -60,7 +60,7 @@ export class XTextareaComponent extends XTextareaProperty {
 
   configService = inject(XConfigService);
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XTextareaPrefix}-${this.size()}`]: !!this.size(),
     [`x-justify-${this.justify()}`]: !!this.justify(),
     [`x-align-${this.align()}`]: !!this.align(),

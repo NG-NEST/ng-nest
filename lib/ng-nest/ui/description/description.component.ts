@@ -17,7 +17,7 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 export class XDescriptionComponent extends XDescriptionProperty {
   items = contentChildren(XDescriptionItemComponent);
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XDescriptionPrefix}-${this.size()}`]: !XIsEmpty(this.size())
   }));
 

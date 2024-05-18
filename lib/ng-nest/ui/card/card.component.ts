@@ -15,7 +15,7 @@ import { NgClass, NgStyle } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCardComponent extends XCardProperty {
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XCardPrefix}-${this.shadow()}`]: !XIsEmpty(this.shadow())
   }));
 }

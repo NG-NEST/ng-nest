@@ -19,7 +19,7 @@ export class XResultComponent extends XResultProperty {
     return this.icon() as string;
   });
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XResultPrefix}-${this.status()}`]: !XIsEmpty(this.status())
   }));
 }

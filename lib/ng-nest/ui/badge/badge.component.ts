@@ -20,7 +20,7 @@ export class XBadgeComponent extends XBadgeProperty {
     return Number(this.value());
   });
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XBadgePrefix}-${this.type()}`]: !XIsEmpty(this.type())
   }));
 

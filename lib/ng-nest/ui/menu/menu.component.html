@@ -1,4 +1,4 @@
-<div #menu class="x-menu" [ngClass]="classMapSignal()" [style.width]="layout() === 'column' ? width() : ''">
+<div #menu class="x-menu" [ngClass]="classMap()" [style.width]="layout() === 'column' ? width() : ''">
   @if (layout() === 'column') {
     <div class="x-menu-nodes">
       @for (node of nodes(); track node.id) {

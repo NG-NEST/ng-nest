@@ -59,7 +59,7 @@ export class XCalendarComponent extends XCalendarProperty {
       return x;
     });
   });
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XCalendarPrefix}-${this.displayType()}`]: !XIsEmpty(this.displayType())
   }));
   monthData = computed(() => {

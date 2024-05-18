@@ -91,7 +91,7 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    * @zh_CN 初始启用验证，在输入值都自动开启
    * @en_US Initial enable validation, which is automatically enabled when the input value is
    */
-  readonly validator = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  override readonly validator = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 标签
    * @en_US Label
@@ -166,7 +166,7 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
-  override readonly pattern = input<RegExp | RegExp[] | any>([]);
+  override readonly pattern = input<RegExp | RegExp[] | any>(null);
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verify not pass the prompt text

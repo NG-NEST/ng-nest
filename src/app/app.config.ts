@@ -5,7 +5,7 @@ import {
   withInMemoryScrolling,
   withPreloading
 } from '@angular/router';
-import { MainRoutes, TestRoutes } from './app.routes';
+import { MainRoutes } from './app.routes';
 // import { provideClientHydration } from '@angular/platform-browser';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -20,8 +20,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(withFetch()),
     provideRouter(
-      !isDevMode() ? MainRoutes : TestRoutes,
-      // MainRoutes,
+      // !isDevMode() ? MainRoutes : TestRoutes,
+      MainRoutes,
       withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'top' }),
       withEnabledBlockingInitialNavigation(),
       withPreloading(XPreloadingStrategyService)

@@ -6,7 +6,7 @@ import {
   ValidatorFn
 } from '@angular/forms';
 import { ChangeDetectorRef, computed, forwardRef, inject, signal, Type } from '@angular/core';
-import { XIsEmpty, XIsUndefined, XIsFunction, XComponentConfigKey, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsUndefined, XIsFunction, XComponentConfigKey, XConfigService, XIsNull } from '@ng-nest/ui/core';
 import { XFormControlProp } from './base-form.property';
 
 export function XValueAccessor<T>(component: Type<T>) {
@@ -27,14 +27,15 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
     cdr = inject(ChangeDetectorRef);
     invalid = computed(() => {
       return (
-        this.validatorSignal() && ((!XIsEmpty(this.value()) && this.invalidPattern()) || this.invalidInputValidator())
+        this.validatorComputed() && ((!XIsEmpty(this.value()) && this.invalidPattern()) || this.invalidInputValidator())
       );
     });
     invalidPattern = computed(() => {
       const pattern = this.patternComputed();
-      if (!this.validatorSignal() || XIsUndefined(pattern)) return false;
+      if (!this.validatorComputed() || XIsUndefined(pattern) || XIsNull(pattern)) return false;
       let result = false;
       let index = 0;
+
       if (Array.isArray(pattern)) {
         for (const pt of pattern) {
           result = !new RegExp(pt).test(this.value() as any);
@@ -50,10 +51,10 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
       return result;
     });
     requiredIsEmpty = computed(() => {
-      return this.validatorSignal() && this.requiredComputed() && XIsEmpty(this.value());
+      return this.validatorComputed() && this.requiredComputed() && XIsEmpty(this.value());
     });
     invalidMessage = computed(() => {
-      if (!this.validatorSignal()) return '';
+      if (!this.validatorComputed()) return '';
       const message = this.messageComputed();
       if (Array.isArray(message)) {
         return message.length > this.invalidIndex() ? message[this.invalidIndex()] : '';
@@ -71,6 +72,7 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
 
     requiredComputed = computed(() => this.requiredSignal() || this.required());
     disabledComputed = computed(() => this.disabledSignal() || this.disabled());
+    validatorComputed = computed(() => this.validatorSignal() || this.validator());
     patternComputed = computed(() => {
       if (XIsEmpty(this.patternSignal())) return this.pattern();
       else return this.patternSignal();

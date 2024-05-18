@@ -43,7 +43,7 @@ export class XCarouselComponent extends XCarouselProperty {
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XCarouselPrefix}-${this.direction}`]: !XIsEmpty(this.direction)
   }));
 

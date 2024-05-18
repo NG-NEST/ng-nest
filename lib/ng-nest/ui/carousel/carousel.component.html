@@ -1,7 +1,7 @@
 <div
   #carousel
   class="x-carousel"
-  [ngClass]="classMapSignal()"
+  [ngClass]="classMap()"
   [class.x-carousel-arrow-always]="arrow() === 'always'"
   [class.x-carousel-has-current]="current()"
   [class.x-carousel-indicator-outside]="outside() || card()"

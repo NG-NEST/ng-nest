@@ -19,7 +19,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 export class XSwitchComponent extends XSwitchProperty {
   switch = viewChild.required<ElementRef<HTMLElement>>('switch');
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XSwitchPrefix}-${this.size()}`]: !!this.size(),
     [`x-justify-${this.justify()}`]: !!this.justify(),
     [`x-align-${this.align()}`]: !!this.align(),

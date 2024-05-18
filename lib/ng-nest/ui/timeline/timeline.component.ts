@@ -17,7 +17,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTimelineComponent extends XTimelineProperty {
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XTimelinePrefix}-${this.mode()}`]: !XIsEmpty(this.mode())
   }));
 

@@ -68,7 +68,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
       );
     }
   });
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XAnchorPrefix}-${this.layout()}`]: !XIsEmpty(this.layout())
   }));
   private scrolling = signal(false);

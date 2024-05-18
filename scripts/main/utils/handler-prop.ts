@@ -194,6 +194,10 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
                   prop.implements = eline.slice(0, eline.indexOf(' '));
                   eline = eline.replace(`${prop.implements}`, '').trim();
                 }
+                if (eline.endsWith('{}')) {
+                  isReadClassInterface = false;
+                  addProp();
+                }
               }
               break;
             case NcPropType.Type:

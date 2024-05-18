@@ -117,7 +117,7 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
     this.value.set(value);
   }
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`${XFindPrefix}-${this.size()}`]: !!this.size(),
     [`x-justify-${this.justify()}`]: !!this.justify(),
     [`x-align-${this.align()}`]: !!this.align(),

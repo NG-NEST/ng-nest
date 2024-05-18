@@ -10,7 +10,7 @@
   [class.x-textarea-icon]="getIcon()"
   [class.x-textarea-icon-left]="getIconLayoutLeft()"
   [class.x-textarea-icon-right]="getIconLayoutRight()"
-  [ngClass]="classMapSignal()"
+  [ngClass]="classMap()"
 >
   @if (label()) {
     <label [class.x-textarea-label-required]="requiredComputed()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{

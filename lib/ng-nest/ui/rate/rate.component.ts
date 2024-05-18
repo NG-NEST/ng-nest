@@ -54,7 +54,7 @@ export class XRateComponent extends XRateProperty {
     return result;
   });
 
-  classMapSignal = computed(() => ({
+  classMap = computed(() => ({
     [`x-justify-${this.justify()}`]: !!this.justify(),
     [`x-align-${this.align()}`]: !!this.align(),
     [`x-direction-${this.direction()}`]: !!this.direction()
@@ -64,7 +64,7 @@ export class XRateComponent extends XRateProperty {
   }));
 
   override requiredIsEmpty = computed(() => {
-    return this.validatorSignal() && this.requiredComputed() && (XIsEmpty(this.value()) || this.value() === 0);
+    return this.validatorComputed() && this.requiredComputed() && (XIsEmpty(this.value()) || this.value() === 0);
   });
 
   override writeValue(value: any) {
