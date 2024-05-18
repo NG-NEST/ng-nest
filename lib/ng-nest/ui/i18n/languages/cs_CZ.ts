@@ -1,120 +1,165 @@
 export default {
   locale: 'cs_CZ',
   comment: {
-    comments: 'komentář',
-    giveALike: 'jako',
-    reply: 'Odpověď',
-    more: 'vidět víc',
-    sure: 'uvolnění',
+    comments: 'Komentáře',
+    giveALike: 'Líbí se mi',
+    reply: 'Odpovědět',
+    more: 'Více',
+    sure: 'Jistý',
     placeholder: 'Zadejte prosím komentář'
   },
   theme: {
     darkMode: 'Temný režim',
-    initDefault: 'Inicializujte výchozí hodnotu',
-    primary: 'Hlavní barva',
-    success: 'úspěch',
-    warning: 'upozornění',
+    initDefault: 'Inicializovat výchozí hodnotu',
+    primary: 'Primární',
+    success: 'Úspěch',
+    warning: 'Varování',
     danger: 'Nebezpečí',
-    info: 'informace',
+    info: 'Informace',
     background: 'Pozadí',
-    border: 'rám',
+    border: 'Ohraničení',
     text: 'Text'
   },
   calendar: {
     month: 'Měsíc',
-    year: 'rok',
-    lastMonth: 'První měsíc',
-    lastYear: 'minulý rok',
+    year: 'Rok',
+    lastMonth: 'Minulý měsíc',
+    lastYear: 'Minulý rok',
     nextMonth: 'Příští měsíc',
-    nextYear: 'příští rok',
-    january: '1Měsíc',
-    february: '2Měsíc',
-    march: '3Měsíc',
-    april: '4Měsíc',
-    may: '5Měsíc',
-    june: '6Měsíc',
-    july: '7Měsíc',
-    august: '8Měsíc',
-    september: '9Měsíc',
-    october: '10Měsíc',
-    november: '11Měsíc',
-    december: '12Měsíc'
+    nextYear: 'Příští rok',
+    january: 'Leden',
+    february: 'Únor',
+    march: 'Březen',
+    april: 'Duben',
+    may: 'Květen',
+    june: 'Červen',
+    july: 'Červenec',
+    august: 'Srpen',
+    september: 'Září',
+    october: 'Říjen',
+    november: 'Listopad',
+    december: 'Prosinec'
   },
   datePicker: {
-    sure: 'potvrdit',
+    sure: 'Potvrdit',
+    week: 'Týden',
     month: 'Měsíc',
-    year: 'rok',
-    january: '1Měsíc',
-    february: '2Měsíc',
-    march: '3Měsíc',
-    april: '4Měsíc',
-    may: '5Měsíc',
-    june: '6Měsíc',
-    july: '7Měsíc',
-    august: '8Měsíc',
-    september: '9Měsíc',
-    october: '10Měsíc',
-    november: '11Měsíc',
-    december: '12Měsíc',
-    monday: 'Jeden',
-    tuesday: 'dva',
-    wednesday: 'tři',
-    thursday: 'čtyři',
-    friday: 'Pětky',
-    saturday: 'šest',
-    sunday: 'den',
-    yesterday: 'včera',
+    year: 'Rok',
+    january: 'Leden',
+    february: 'Únor',
+    march: 'Březen',
+    april: 'Duben',
+    may: 'Květen',
+    june: 'Červen',
+    july: 'Červenec',
+    august: 'Srpen',
+    september: 'Září',
+    october: 'Říjen',
+    november: 'Listopad',
+    december: 'Prosinec',
+    monday: 'Pondělí',
+    tuesday: 'Úterý',
+    wednesday: 'Středa',
+    thursday: 'Čtvrtek',
+    friday: 'Pátek',
+    saturday: 'Sobota',
+    sunday: 'Neděle',
+    yesterday: 'Včera',
     today: 'Dnes',
-    tomorrow: 'zítra'
+    tomorrow: 'Zítra',
+    thisWeek: 'Tento týden',
+    lastWeek: 'Minulý týden',
+    nextWeek: 'Příští týden',
+    thisMonth: 'Tento měsíc',
+    lastMonth: 'Minulý měsíc',
+    nextMonth: 'Příští měsíc',
+    thisYear: 'Tento rok',
+    lastYear: 'Minulý rok',
+    nextYear: 'Příští rok',
+    selectDate: 'Vyberte datum',
+    selectWeek: 'Vyberte týden',
+    selectMonth: 'Vyberte měsíc',
+    selectQuarter: 'Vyberte čtvrtletí',
+    selectYear: 'Vyberte rok',
+    startDate: 'Počáteční datum',
+    endDate: 'Konečné datum',
+    startMonth: 'Počáteční měsíc',
+    endMonth: 'Konečný měsíc',
+    startQuarter: 'Počáteční čtvrtletí',
+    endQuarter: 'Konečné čtvrtletí',
+    startYear: 'Počáteční rok',
+    endYear: 'Konečný rok',
+    startWeek: 'Počáteční týden',
+    endWeek: 'Konečný týden'
   },
-  empty: {
-    noData: 'Žádná data'
+  timePicker: {
+    am: 'DOP.',
+    pm: 'ODP.',
+    now: 'Nyní',
+    selectTime: 'Vyberte čas',
+    selectHour: 'Vyberte hodinu',
+    selectMinute: 'Vyberte minutu'
   },
+  empty: { noData: 'Žádná data' },
+  image: { previewText: 'Náhled' },
   pagination: {
-    previous: 'Předchozí stránka',
-    next: 'Další strana',
-    total: 'Celkový',
-    item: 'Článek',
-    first: 'přední strana',
-    last: 'Ocas',
-    jump: 'Skok',
-    sizePage: '/ strana'
+    previous: 'Předchozí',
+    next: 'Další',
+    total: 'Celkem',
+    item: 'Položka',
+    first: 'První',
+    last: 'Poslední',
+    jump: 'Přejít na',
+    sizePage: 'Položky na stránku'
   },
   textRetract: {
-    unfold: 'Rozvinout',
-    packUp: 'Dát pryč'
+    unfold: 'Rozbalit',
+    packUp: 'Zabalit'
   },
   timeAgo: {
-    just: 'prostě',
+    just: 'Právě teď',
     secondsAgo: 'Před sekundami',
-    minutesAgo: 'minutu před',
-    hoursAgo: 'Před hodinou'
+    minutesAgo: 'Před minutami',
+    hoursAgo: 'Před hodinami'
+  },
+  transfer: {
+    listTitle: 'Seznam',
+    treeTitle: 'Strom',
+    tableTitle: 'Tabulka',
+    selectedTitle: 'Vybrané položky',
+    inverse: 'Invertovat'
   },
   messageBox: {
-    cancelText: 'zrušení',
-    confirmText: 'potvrdit'
+    cancelText: 'Storno',
+    confirmText: 'Potvrdit'
   },
   dialog: {
-    cancelText: 'zrušení',
-    confirmText: 'potvrdit'
+    cancelText: 'Storno',
+    confirmText: 'Potvrdit'
   },
   popconfirm: {
-    cancelText: 'zrušení',
-    confirmText: 'potvrdit'
+    cancelText: 'Storno',
+    confirmText: 'Potvrdit'
   },
   upload: {
-    uploadText: 'nahrát soubory',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Nahrát soubor',
+    beginUploadText: 'Začít nahrávat soubor',
+    uploadingText: 'Nahrávání',
+    uploadCompleted: 'Nahrání souboru dokončeno'
   },
-  pageHeader: {
-    back: 'vrátit se'
-  },
+  pageHeader: { back: 'Zpět' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Vybrat vše',
+    loadMoreText: 'Načíst další',
+    loadingMoreText: 'Načítání dalších'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Vybrat vše',
+    maxTagContent: 'Další {{surplus}} vybraných'
+  },
+  treeSelect: {
+    selectAllText: 'Vybrat vše',
+    maxTagContent: 'Další {{surplus}} vybraných'
+  },
+  form: { required: 'Povinné' }
 };

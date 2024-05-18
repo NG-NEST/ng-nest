@@ -1,120 +1,165 @@
 export default {
   locale: 'hu_HU',
   comment: {
-    comments: 'megjegyzés',
-    giveALike: 'mint',
+    comments: 'Megjegyzések',
+    giveALike: 'Tetszik',
     reply: 'Válasz',
-    more: 'többet látni',
-    sure: 'kiadás',
-    placeholder: 'Kérjük, írjon megjegyzést'
+    more: 'Több',
+    sure: 'Biztos',
+    placeholder: 'Írja be a megjegyzést'
   },
   theme: {
     darkMode: 'Sötét mód',
-    initDefault: 'Inicializálja az alapértelmezett értéket',
-    primary: 'Fő szín',
-    success: 'siker',
-    warning: 'ellentmondás',
+    initDefault: 'Alapértelmezett inicializálása',
+    primary: 'Elsődleges',
+    success: 'Siker',
+    warning: 'Figyelmeztetés',
     danger: 'Veszély',
-    info: 'információ',
-    background: 'háttér',
-    border: 'keret',
+    info: 'Információ',
+    background: 'Háttér',
+    border: 'Keret',
     text: 'Szöveg'
   },
   calendar: {
-    month: 'hónap',
-    year: 'év',
-    lastMonth: 'Első hónap',
-    lastYear: 'tavaly',
+    month: 'Hónap',
+    year: 'Év',
+    lastMonth: 'Előző hónap',
+    lastYear: 'Előző év',
     nextMonth: 'Következő hónap',
-    nextYear: 'következő év',
-    january: 'január',
-    february: 'február',
-    march: 'március',
-    april: 'április',
-    may: 'Lehet',
-    june: 'június',
-    july: 'július',
-    august: 'augusztus',
-    september: 'szeptember',
-    october: 'október',
-    november: 'november',
-    december: 'december'
+    nextYear: 'Következő év',
+    january: 'Január',
+    february: 'Február',
+    march: 'Március',
+    april: 'Április',
+    may: 'Május',
+    june: 'Június',
+    july: 'Július',
+    august: 'Augusztus',
+    september: 'Szeptember',
+    october: 'Október',
+    november: 'November',
+    december: 'December'
   },
   datePicker: {
-    sure: 'megerősít',
-    month: '',
-    year: '',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'tegnap',
-    today: 'Manapság',
-    tomorrow: 'holnap'
+    sure: 'Biztos',
+    week: 'Hét',
+    month: 'Hónap',
+    year: 'Év',
+    january: 'Január',
+    february: 'Február',
+    march: 'Március',
+    april: 'Április',
+    may: 'Május',
+    june: 'Június',
+    july: 'Július',
+    august: 'Augusztus',
+    september: 'Szeptember',
+    october: 'Október',
+    november: 'November',
+    december: 'December',
+    monday: 'Hétfő',
+    tuesday: 'Kedd',
+    wednesday: 'Szerda',
+    thursday: 'Csütörtök',
+    friday: 'Péntek',
+    saturday: 'Szombat',
+    sunday: 'Vasárnap',
+    yesterday: 'Tegnap',
+    today: 'Ma',
+    tomorrow: 'Holnap',
+    thisWeek: 'Ezen a héten',
+    lastWeek: 'Múlt héten',
+    nextWeek: 'Következő héten',
+    thisMonth: 'Ebben a hónapban',
+    lastMonth: 'Múlt hónapban',
+    nextMonth: 'Következő hónapban',
+    thisYear: 'Ebben az évben',
+    lastYear: 'Múlt évben',
+    nextYear: 'Következő évben',
+    selectDate: 'Válasszon dátumot',
+    selectWeek: 'Válasszon hetet',
+    selectMonth: 'Válasszon hónapot',
+    selectQuarter: 'Válasszon negyedévet',
+    selectYear: 'Válasszon évet',
+    startDate: 'Kezdés dátuma',
+    endDate: 'Vége dátuma',
+    startMonth: 'Kezdés hónapja',
+    endMonth: 'Vége hónapja',
+    startQuarter: 'Kezdés negyedéve',
+    endQuarter: 'Vége negyedéve',
+    startYear: 'Kezdés éve',
+    endYear: 'Vége éve',
+    startWeek: 'Kezdés hete',
+    endWeek: 'Vége hete'
   },
-  empty: {
-    noData: 'אין מידע'
+  timePicker: {
+    am: 'DE',
+    pm: 'DU',
+    now: 'Most',
+    selectTime: 'Válasszon időt',
+    selectHour: 'Válasszon órát',
+    selectMinute: 'Válasszon percet'
   },
+  empty: { noData: 'Nincs adat' },
+  image: { previewText: 'Előnézet' },
   pagination: {
-    previous: 'Előző oldal',
-    next: 'Következő oldal',
-    total: 'Teljes',
-    item: 'Cikk',
-    first: 'Címlap',
-    last: 'Farok',
+    previous: 'Előző',
+    next: 'Következő',
+    total: 'Összesen',
+    item: 'Elem',
+    first: 'Első',
+    last: 'Utolsó',
     jump: 'Ugrás',
-    sizePage: '/ oldal'
+    sizePage: 'Elem/oldal'
   },
   textRetract: {
-    unfold: 'Unfold',
-    packUp: 'ELRAK'
+    unfold: 'Kinyit',
+    packUp: 'Összecsuk'
   },
   timeAgo: {
-    just: 'éppen',
-    secondsAgo: 'Másodperccel ezelőtt',
-    minutesAgo: 'perccel ezelőtt',
-    hoursAgo: 'Egy órája'
+    just: 'Éppen',
+    secondsAgo: 'Másodperce',
+    minutesAgo: 'Percel ezelőtt',
+    hoursAgo: 'Órával ezelőtt'
+  },
+  transfer: {
+    listTitle: 'Lista',
+    treeTitle: 'Fa',
+    tableTitle: 'Táblázat',
+    selectedTitle: 'Kiválasztott elemek',
+    inverse: 'Inverz'
   },
   messageBox: {
-    cancelText: 'megszünteti',
-    confirmText: 'megerősít'
+    cancelText: 'Mégse',
+    confirmText: 'Megerősít'
   },
   dialog: {
-    cancelText: 'megszünteti',
-    confirmText: 'megerősít'
+    cancelText: 'Mégse',
+    confirmText: 'Megerősít'
   },
   popconfirm: {
-    cancelText: 'megszünteti',
-    confirmText: 'megerősít'
+    cancelText: 'Mégse',
+    confirmText: 'Megerősít'
   },
   upload: {
-    uploadText: 'fájlok feltöltése',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Fájlok feltöltése',
+    beginUploadText: 'Feltöltés megkezdése',
+    uploadingText: 'Feltöltés',
+    uploadCompleted: 'Feltöltés befejezve'
   },
-  pageHeader: {
-    back: 'Visszatérés'
-  },
+  pageHeader: { back: 'Vissza' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Mindet kiválaszt',
+    loadMoreText: 'Továbbiak betöltése',
+    loadingMoreText: 'Betöltés'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Mindet kiválaszt',
+    maxTagContent: 'Még {{surplus}} kiválasztva'
+  },
+  treeSelect: {
+    selectAllText: 'Mindet kiválaszt',
+    maxTagContent: 'Még {{surplus}} kiválasztva'
+  },
+  form: { required: 'Kötelező' }
 };

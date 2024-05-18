@@ -1,120 +1,162 @@
 export default {
   locale: 'ar_EG',
   comment: {
-    comments: 'تعليق',
-    giveALike: 'مثل',
+    comments: 'تعليقات',
+    giveALike: 'إعجاب',
     reply: 'الرد',
-    more: 'شاهد المزيد',
-    sure: 'إطلاق سراح',
-    placeholder: 'يرجى إدخال تعليق'
+    more: 'المزيد',
+    sure: 'متأكد',
+    placeholder: 'الرجاء إدخال تعليق'
   },
   theme: {
-    darkMode: 'الوضع المظلم',
+    darkMode: 'الوضع الداكن',
     initDefault: 'تهيئة القيمة الافتراضية',
-    primary: 'اللون الأساسي',
+    primary: 'أساسي',
     success: 'نجاح',
-    warning: 'مذكرة قانونية',
+    warning: 'تحذير',
     danger: 'خطر',
     info: 'معلومات',
     background: 'خلفية',
-    border: 'الإطار',
+    border: 'حدود',
     text: 'نص'
   },
   calendar: {
-    month: 'شهر',
-    year: 'عام',
-    lastMonth: 'الشهر الأول',
+    month: 'الشهر',
+    year: 'السنة',
+    lastMonth: 'الشهر الماضي',
     lastYear: 'العام الماضي',
     nextMonth: 'الشهر القادم',
     nextYear: 'العام القادم',
-    january: '1شهر',
-    february: '2شهر',
-    march: '3شهر',
-    april: '4شهر',
-    may: '5شهر',
-    june: '6شهر',
-    july: '7شهر',
-    august: '8شهر',
-    september: '9شهر',
-    october: '10شهر',
-    november: '11شهر',
-    december: '12شهر'
+    january: 'يناير',
+    february: 'فبراير',
+    march: 'مارس',
+    april: 'أبريل',
+    may: 'مايو',
+    june: 'يونيو',
+    july: 'يوليو',
+    august: 'أغسطس',
+    september: 'سبتمبر',
+    october: 'أكتوبر',
+    november: 'نوفمبر',
+    december: 'ديسمبر'
   },
   datePicker: {
-    sure: 'تؤكد',
+    sure: 'تأكيد',
+    week: 'أسبوع',
     month: 'شهر',
-    year: 'عام',
-    january: '1شهر',
-    february: '2شهر',
-    march: '3شهر',
-    april: '4شهر',
-    may: '5شهر',
-    june: '6شهر',
-    july: '7شهر',
-    august: '8شهر',
-    september: '9شهر',
-    october: '10شهر',
-    november: '11شهر',
-    december: '12شهر',
-    monday: 'واحد',
-    tuesday: 'اثنان',
-    wednesday: 'ثلاثة',
-    thursday: 'أربعة',
-    friday: 'خمسة',
-    saturday: 'ستة',
-    sunday: 'يوم',
-    yesterday: 'في الامس',
-    today: 'الوقت الحاضر',
-    tomorrow: 'غدا'
+    year: 'سنة',
+    january: 'يناير',
+    february: 'فبراير',
+    march: 'مارس',
+    april: 'أبريل',
+    may: 'مايو',
+    june: 'يونيو',
+    july: 'يوليو',
+    august: 'أغسطس',
+    september: 'سبتمبر',
+    october: 'أكتوبر',
+    november: 'نوفمبر',
+    december: 'ديسمبر',
+    monday: 'الاثنين',
+    tuesday: 'الثلاثاء',
+    wednesday: 'الأربعاء',
+    thursday: 'الخميس',
+    friday: 'الجمعة',
+    saturday: 'السبت',
+    sunday: 'الأحد',
+    yesterday: 'أمس',
+    today: 'اليوم',
+    tomorrow: 'غدًا',
+    thisWeek: 'هذا الأسبوع',
+    lastWeek: 'الأسبوع الماضي',
+    nextWeek: 'الأسبوع القادم',
+    thisMonth: 'هذا الشهر',
+    lastMonth: 'الشهر الماضي',
+    nextMonth: 'الشهر القادم',
+    thisYear: 'هذه السنة',
+    lastYear: 'العام الماضي',
+    nextYear: 'العام القادم',
+    selectDate: 'اختر تاريخًا',
+    selectWeek: 'اختر أسبوعًا',
+    selectMonth: 'اختر شهرًا',
+    selectQuarter: 'اختر ربع سنوي',
+    selectYear: 'اختر سنة',
+    startDate: 'تاريخ البداية',
+    endDate: 'تاريخ الانتهاء',
+    startMonth: 'بداية الشهر',
+    endMonth: 'نهاية الشهر',
+    startQuarter: 'بداية الربع',
+    endQuarter: 'نهاية الربع',
+    startYear: 'بداية السنة',
+    endYear: 'نهاية السنة',
+    startWeek: 'بداية الأسبوع',
+    endWeek: 'نهاية الأسبوع'
   },
-  empty: {
-    noData: 'لايوجد بيانات'
+  timePicker: {
+    am: 'صباحًا',
+    pm: 'مساءً',
+    now: 'الآن',
+    selectTime: 'اختر الوقت',
+    selectHour: 'اختر الساعة',
+    selectMinute: 'اختر الدقيقة'
   },
+  empty: { noData: 'لا توجد بيانات' },
+  image: { previewText: 'معاينة' },
   pagination: {
-    previous: 'الصفحة السابقة',
-    next: 'الصفحة التالية',
-    total: 'مجموع',
-    item: 'مقالة - سلعة',
-    first: 'الصفحة الأمامية',
-    last: 'ذيل',
-    jump: 'القفز',
-    sizePage: '/صفحة'
+    previous: 'السابق',
+    next: 'التالي',
+    total: 'المجموع',
+    item: 'عنصر',
+    first: 'الأول',
+    last: 'الأخير',
+    jump: 'الانتقال إلى',
+    sizePage: 'عناصر في الصفحة'
   },
-  textRetract: {
-    unfold: 'تكشف',
-    packUp: 'ضعه بعيدا'
-  },
+  textRetract: { unfold: 'فتح', packUp: 'طي' },
   timeAgo: {
-    just: 'مجرد',
-    secondsAgo: 'منذ ثوانى',
-    minutesAgo: 'دقائق مضت',
-    hoursAgo: 'قبل ساعة'
+    just: 'الآن',
+    secondsAgo: 'منذ ثوانٍ',
+    minutesAgo: 'منذ دقائق',
+    hoursAgo: 'منذ ساعات'
+  },
+  transfer: {
+    listTitle: 'قائمة',
+    treeTitle: 'شجرة',
+    tableTitle: 'جدول',
+    selectedTitle: 'العناصر المحددة',
+    inverse: 'عكس'
   },
   messageBox: {
     cancelText: 'إلغاء',
-    confirmText: 'تؤكد'
+    confirmText: 'تأكيد'
   },
   dialog: {
     cancelText: 'إلغاء',
-    confirmText: 'تؤكد'
+    confirmText: 'تأكيد'
   },
   popconfirm: {
     cancelText: 'إلغاء',
-    confirmText: 'تؤكد'
+    confirmText: 'تأكيد'
   },
   upload: {
-    uploadText: 'تحميل الملفات',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'تحميل الملف',
+    beginUploadText: 'بدء تحميل الملف',
+    uploadingText: 'جارٍ التحميل',
+    uploadCompleted: 'اكتمل التحميل'
   },
-  pageHeader: {
-    back: 'إرجاع'
-  },
+  pageHeader: { back: 'رجوع' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'تحديد الكل',
+    loadMoreText: 'تحميل المزيد',
+    loadingMoreText: 'جارٍ التحميل'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'تحديد الكل',
+    maxTagContent: 'المزيد من {{surplus}} المحددة'
+  },
+  treeSelect: {
+    selectAllText: 'تحديد الكل',
+    maxTagContent: 'المزيد من {{surplus}} المحددة'
+  },
+  form: { required: 'مطلوب' }
 };

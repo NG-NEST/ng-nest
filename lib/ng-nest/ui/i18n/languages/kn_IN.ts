@@ -1,29 +1,29 @@
 export default {
   locale: 'kn_IN',
   comment: {
-    comments: 'ಕಾಮೆಂಟ್ ಮಾಡಿ',
-    giveALike: 'ಹಾಗೆ',
-    reply: 'ಪ್ರತ್ಯುತ್ತರ',
-    more: 'ಇನ್ನೂ ಹೆಚ್ಚು ನೋಡು',
-    sure: 'ಬಿಡುಗಡೆ',
-    placeholder: 'ದಯವಿಟ್ಟು ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ನಮೂದಿಸಿ'
+    comments: 'ಟಿಪ್ಪಣಿಗಳು',
+    giveALike: 'ಲೈಕ್ ಮಾಡಿ',
+    reply: 'ಉತ್ತರಿಸು',
+    more: 'ಹೆಚ್ಚು ವೀಕ್ಷಿಸಿ',
+    sure: 'ಖರೀ ಮಾಡಿ',
+    placeholder: 'ಟಿಪ್ಪಣಿ ನಮೂನೆ'
   },
   theme: {
     darkMode: 'ಡಾರ್ಕ್ ಮೋಡ್',
-    initDefault: 'ಡೀಫಾಲ್ಟ್ ಮೌಲ್ಯವನ್ನು ಪ್ರಾರಂಭಿಸಿ',
-    primary: 'ಮುಖ್ಯ ಬಣ್ಣ',
+    initDefault: 'ಡಿಫಾಲ್ಟ್ ಪ್ರಾರಂಭಿಸಿ',
+    primary: 'ಪ್ರಾಥಮಿಕ',
     success: 'ಯಶಸ್ಸು',
     warning: 'ಎಚ್ಚರಿಕೆ',
-    danger: 'ಅಪಾಯ',
+    danger: 'ಹಾನಿ',
     info: 'ಮಾಹಿತಿ',
     background: 'ಹಿನ್ನೆಲೆ',
-    border: 'ಫ್ರೇಮ್',
+    border: 'ಅಗ್ರಗಣ್ಯ',
     text: 'ಪಠ್ಯ'
   },
   calendar: {
     month: 'ತಿಂಗಳು',
     year: 'ವರ್ಷ',
-    lastMonth: 'ಮೊದಲ ತಿಂಗಳು',
+    lastMonth: 'ಕೊನೆಯ ತಿಂಗಳು',
     lastYear: 'ಹಿಂದಿನ ವರ್ಷ',
     nextMonth: 'ಮುಂದಿನ ತಿಂಗಳು',
     nextYear: 'ಮುಂದಿನ ವರ್ಷ',
@@ -41,80 +41,127 @@ export default {
     december: 'ಡಿಸೆಂಬರ್'
   },
   datePicker: {
-    sure: 'ದೃಢೀಕರಿಸಿ',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
+    sure: 'ಖರೀ ಮಾಡಿ',
+    week: 'ವಾರ',
+    month: 'ತಿಂಗಳು',
+    year: 'ವರ್ಷ',
+    january: 'ಜನವರಿ',
+    february: 'ಫೆಬ್ರವರಿ',
+    march: 'ಮಾರ್ಚ್',
+    april: 'ಏಪ್ರಿಲ್',
+    may: 'ಮೇ',
+    june: 'ಜೂನ್',
+    july: 'ಜುಲೈ',
+    august: 'ಆಗಸ್ಟ್',
+    september: 'ಸೆಪ್ಟೆಂಬರ್',
+    october: 'ಅಕ್ಟೋಬರ್',
+    november: 'ನವೆಂಬರ್',
+    december: 'ಡಿಸೆಂಬರ್',
+    monday: 'ಸೋಮವಾರ',
+    tuesday: 'ಮಂಗಳವಾರ',
+    wednesday: 'ಬುಧವಾರ',
+    thursday: 'ಗುರುವಾರ',
+    friday: 'ಶುಕ್ರವಾರ',
+    saturday: 'ಶನಿವಾರ',
+    sunday: 'ಭಾನುವಾರ',
     yesterday: 'ನಿನ್ನೆ',
-    today: 'ಈ ದಿನಗಳಲ್ಲಿ',
-    tomorrow: 'ನಾಳೆ'
+    today: 'ಇಂದು',
+    tomorrow: 'ನಾಳೆ',
+    thisWeek: 'ಈ ವಾರ',
+    lastWeek: 'ಕಳೆದ ವಾರ',
+    nextWeek: 'ಮುಂದಿನ ವಾರ',
+    thisMonth: 'ಈ ತಿಂಗಳು',
+    lastMonth: 'ಕಳೆದ ತಿಂಗಳು',
+    nextMonth: 'ಮುಂದಿನ ತಿಂಗಳು',
+    thisYear: 'ಈ ವರ್ಷ',
+    lastYear: 'ಹಿಂದಿನ ವರ್ಷ',
+    nextYear: 'ಮುಂದಿನ ವರ್ಷ',
+    selectDate: 'ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    selectWeek: 'ವಾರವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    selectMonth: 'ತಿಂಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    selectQuarter: 'ತ್ರೈಮಾಸಿಕವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    selectYear: 'ವರ್ಷವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    startDate: 'ಪ್ರಾರಂಭದ ದಿನಾಂಕ',
+    endDate: 'ಅಂತಿಮ ದಿನಾಂಕ',
+    startMonth: 'ಪ್ರಾರಂಭದ ತಿಂಗಳು',
+    endMonth: 'ಅಂತಿಮ ತಿಂಗಳು',
+    startQuarter: 'ಪ್ರಾರಂಭದ ತ್ರೈಮಾಸಿಕ',
+    endQuarter: 'ಅಂತಿಮ ತ್ರೈಮಾಸಿಕ',
+    startYear: 'ಪ್ರಾರಂಭದ ವರ್ಷ',
+    endYear: 'ಅಂತಿಮ ವರ್ಷ',
+    startWeek: 'ಪ್ರಾರಂಭದ ವಾರ',
+    endWeek: 'ಅಂತಿಮ ವಾರ'
   },
-  empty: {
-    noData: 'ಇಲ್ಲ ಡೇಟಾ'
+  timePicker: {
+    am: 'ಪೂರ್ವಾಹ್ನ',
+    pm: 'ಅಪರಾಹ್ನ',
+    now: 'ಈ ಸಮಯ',
+    selectTime: 'ಸಮಯವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    selectHour: 'ಗಂಟೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    selectMinute: 'ನಿಮಿಷಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ'
   },
+  empty: { noData: 'ಮಾಹಿತಿ ಇಲ್ಲ' },
+  image: { previewText: 'ಮುನ್ನೋಟ' },
   pagination: {
-    previous: 'ಹಿಂದಿನ ಪುಟ',
-    next: 'ಮುಂದಿನ ಪುಟ',
+    previous: 'ಹಿಂದಿನ',
+    next: 'ಮುಂದಿನ',
     total: 'ಒಟ್ಟು',
-    item: 'ಲೇಖನ',
-    first: 'ಮುಖಪುಟ',
-    last: 'ಬಾಲ',
-    jump: 'ನೆಗೆಯುವುದನ್ನು',
-    sizePage: '/ ಪುಟ'
+    item: 'ಐಟಂ',
+    first: 'ಮೊದಲನೆ',
+    last: 'ಕೊನೆಯ',
+    jump: 'ಜಿಂಕು',
+    sizePage: 'ಐಟಂ/ಪುಟ'
   },
   textRetract: {
-    unfold: 'ಬಿಚ್ಚಿಡಲಾಗಿದೆ',
-    packUp: 'ದೂರವಿಡಿ'
+    unfold: 'ಹರಿದು ಹಾಕಿ',
+    packUp: 'ಸಂಗ್ರಹಿಸಿ'
   },
   timeAgo: {
-    just: 'ಕೇವಲ',
+    just: 'ಸರಿಯಾಗಿ',
     secondsAgo: 'ಸೆಕೆಂಡುಗಳ ಹಿಂದೆ',
     minutesAgo: 'ನಿಮಿಷಗಳ ಹಿಂದೆ',
-    hoursAgo: 'ಒಂದು ಗಂಟೆಯ ಹಿಂದೆ'
+    hoursAgo: 'ಗಂಟೆಗಳ ಹಿಂದೆ'
+  },
+  transfer: {
+    listTitle: 'ಪಟ್ಟಿ',
+    treeTitle: 'ಮರ',
+    tableTitle: 'ಟೇಬಲ್',
+    selectedTitle: 'ಆಯ್ಕೆಗಳು',
+    inverse: 'ಉಲ್ಟ್ಟು'
   },
   messageBox: {
-    cancelText: 'ರದ್ದುಮಾಡಿ',
-    confirmText: 'ಖಚಿತಪಡಿಸಿ'
+    cancelText: 'ರದ್ದು ಮಾಡು',
+    confirmText: 'ದೃಢೀಕರಿಸಿ'
   },
   dialog: {
-    cancelText: 'ರದ್ದುಮಾಡಿ',
-    confirmText: 'ಖಚಿತಪಡಿಸಿ'
+    cancelText: 'ರದ್ದು ಮಾಡು',
+    confirmText: 'ದೃಢೀಕರಿಸಿ'
   },
   popconfirm: {
-    cancelText: 'ರದ್ದುಮಾಡಿ',
-    confirmText: 'ಖಚಿತಪಡಿಸಿ'
+    cancelText: 'ರದ್ದು ಮಾಡು',
+    confirmText: 'ದೃಢೀಕರಿಸಿ'
   },
   upload: {
-    uploadText: 'ಫೈಲ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'ಫೈಲು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
+    beginUploadText: 'ಫೈಲು ಅಪ್ಲೋಡ್ ಪ್ರಾರಂಭಿಸಿ',
+    uploadingText: 'ಅಪ್ಲೋಡ್ ಆಗುತ್ತಿದೆ',
+    uploadCompleted: 'ಫೈಲು ಅಪ್ಲೋಡ್ ಮುಗಿಸಿ'
   },
-  pageHeader: {
-    back: 'ಹಿಂತಿರುಗಿ'
-  },
+  pageHeader: { back: 'ಹಿಂತಿರುಗಿ' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'ಎಲ್ಲಾವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    loadMoreText: 'ಹೆಚ್ಚು ಲೋಡ್ ಮಾಡಿ',
+    loadingMoreText: 'ಹೆಚ್ಚು ಲೋಡ್ ಆಗುತ್ತಿದೆ'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'ಎಲ್ಲಾವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    maxTagContent:
+      'ಹೆಚ್ಚು {{surplus}} ಆಯ್ಕೆಯಾಗಿದೆ'
+  },
+  treeSelect: {
+    selectAllText: 'ಎಲ್ಲಾವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
+    maxTagContent:
+      'ಹೆಚ್ಚು {{surplus}} ಆಯ್ಕೆಯಾಗಿದೆ'
+  },
+  form: { required: 'ಅಗತ್ಯ' }
 };

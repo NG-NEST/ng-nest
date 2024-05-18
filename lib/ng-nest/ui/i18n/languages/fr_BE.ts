@@ -1,120 +1,167 @@
 export default {
   locale: 'fr_BE',
   comment: {
-    comments: 'commentaire',
-    giveALike: 'comme',
+    comments: 'Commentaires',
+    giveALike: "J'aime",
     reply: 'Répondre',
-    more: 'voir plus',
-    sure: 'Libération',
-    placeholder: 'Merci de saisir un commentaire'
+    more: 'Plus',
+    sure: 'Sûr',
+    placeholder: 'Veuillez entrer un commentaire'
   },
   theme: {
     darkMode: 'Mode sombre',
-    initDefault: 'Initialiser la valeur par défaut',
-    primary: 'Couleur principale',
+    initDefault:
+      'Initialiser la valeur par défaut',
+    primary: 'Principal',
     success: 'Succès',
-    warning: 'caveat',
+    warning: 'Avertissement',
     danger: 'Danger',
-    info: 'information',
-    background: 'Contexte',
-    border: 'Cadre',
+    info: 'Info',
+    background: 'Arrière-plan',
+    border: 'Bordure',
     text: 'Texte'
   },
   calendar: {
-    month: 'mois',
-    year: 'an',
-    lastMonth: 'Premier mois',
-    lastYear: `l'année dernière`,
-    nextMonth: 'Le mois prochain',
-    nextYear: `l'année prochaine`,
-    january: '1mois',
-    february: '2mois',
-    march: '3mois',
-    april: '4mois',
-    may: '5mois',
-    june: '6mois',
-    july: '7mois',
-    august: '8mois',
-    september: '9mois',
-    october: '10mois',
-    november: '11mois',
-    december: '12mois'
+    month: 'Mois',
+    year: 'Année',
+    lastMonth: 'Mois dernier',
+    lastYear: 'Année dernière',
+    nextMonth: 'Mois prochain',
+    nextYear: 'Année prochaine',
+    january: 'Janvier',
+    february: 'Février',
+    march: 'Mars',
+    april: 'Avril',
+    may: 'Mai',
+    june: 'Juin',
+    july: 'Juillet',
+    august: 'Août',
+    september: 'Septembre',
+    october: 'Octobre',
+    november: 'Novembre',
+    december: 'Décembre'
   },
   datePicker: {
-    sure: 'confirmer',
-    month: '',
-    year: '',
-    january: '1mois',
-    february: '2mois',
-    march: '3mois',
-    april: '4mois',
-    may: '5mois',
-    june: '6mois',
-    july: '7mois',
-    august: '8mois',
-    september: '9mois',
-    october: '10mois',
-    november: '11mois',
-    december: '12mois',
-    monday: 'Une',
-    tuesday: 'deux',
-    wednesday: 'Trois',
-    thursday: 'quatre',
-    friday: 'Cinq',
-    saturday: 'six',
-    sunday: 'journée',
-    yesterday: 'hier',
-    today: 'De nos jours',
-    tomorrow: 'demain',
-    first: 'page de garde',
-    last: 'Queue',
-    jump: 'Saut',
-    sizePage: '/ page'
+    sure: 'Sûr',
+    week: 'Semaine',
+    month: 'Mois',
+    year: 'Année',
+    january: 'Janvier',
+    february: 'Février',
+    march: 'Mars',
+    april: 'Avril',
+    may: 'Mai',
+    june: 'Juin',
+    july: 'Juillet',
+    august: 'Août',
+    september: 'Septembre',
+    october: 'Octobre',
+    november: 'Novembre',
+    december: 'Décembre',
+    monday: 'Lundi',
+    tuesday: 'Mardi',
+    wednesday: 'Mercredi',
+    thursday: 'Jeudi',
+    friday: 'Vendredi',
+    saturday: 'Samedi',
+    sunday: 'Dimanche',
+    yesterday: 'Hier',
+    today: "Aujourd'hui",
+    tomorrow: 'Demain',
+    thisWeek: 'Cette semaine',
+    lastWeek: 'Semaine dernière',
+    nextWeek: 'Semaine prochaine',
+    thisMonth: 'Ce mois-ci',
+    lastMonth: 'Mois dernier',
+    nextMonth: 'Mois prochain',
+    thisYear: 'Cette année',
+    lastYear: 'Année dernière',
+    nextYear: 'Année prochaine',
+    selectDate: 'Sélectionnez une date',
+    selectWeek: 'Sélectionnez une semaine',
+    selectMonth: 'Sélectionnez un mois',
+    selectQuarter: 'Sélectionnez un trimestre',
+    selectYear: 'Sélectionnez une année',
+    startDate: 'Date de début',
+    endDate: 'Date de fin',
+    startMonth: 'Mois de début',
+    endMonth: 'Mois de fin',
+    startQuarter: 'Trimestre de début',
+    endQuarter: 'Trimestre de fin',
+    startYear: 'Année de début',
+    endYear: 'Année de fin',
+    startWeek: 'Semaine de début',
+    endWeek: 'Semaine de fin'
   },
-  empty: {
-    noData: 'Pas de données'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Maintenant',
+    selectTime: "Sélectionnez l'heure",
+    selectHour: "Sélectionnez l'heure",
+    selectMinute: 'Sélectionnez la minute'
   },
+  empty: { noData: 'Pas de données' },
+  image: { previewText: 'Aperçu' },
   pagination: {
-    previous: 'Page précédente',
-    next: 'Page suivante',
+    previous: 'Précédent',
+    next: 'Suivant',
     total: 'Total',
-    item: 'Article'
+    item: 'Article',
+    first: 'Premier',
+    last: 'Dernier',
+    jump: 'Sauter à',
+    sizePage: 'Articles/page'
   },
   textRetract: {
-    unfold: 'Se dérouler',
-    packUp: 'Ranger'
+    unfold: 'Déplier',
+    packUp: 'Replier'
   },
   timeAgo: {
-    just: 'juste',
-    secondsAgo: 'Il y a quelques instants',
-    minutesAgo: 'il y a quelques minutes',
-    hoursAgo: 'Il y a une heure'
+    just: 'Maintenant',
+    secondsAgo: 'Il y a quelques secondes',
+    minutesAgo: 'Il y a quelques minutes',
+    hoursAgo: 'Il y a quelques heures'
+  },
+  transfer: {
+    listTitle: 'Liste',
+    treeTitle: 'Arbre',
+    tableTitle: 'Tableau',
+    selectedTitle: 'Éléments sélectionnés',
+    inverse: 'Inverser'
   },
   messageBox: {
     cancelText: 'Annuler',
-    confirmText: 'confirmer'
+    confirmText: 'Confirmer'
   },
   dialog: {
     cancelText: 'Annuler',
-    confirmText: 'confirmer'
+    confirmText: 'Confirmer'
   },
   popconfirm: {
     cancelText: 'Annuler',
-    confirmText: 'confirmer'
+    confirmText: 'Confirmer'
   },
   upload: {
-    uploadText: 'télécharger des fichiers',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Télécharger le fichier',
+    beginUploadText:
+      'Commencer le téléchargement',
+    uploadingText: 'Téléchargement en cours',
+    uploadCompleted: 'Téléchargement terminé'
   },
-  pageHeader: {
-    back: 'revenir'
-  },
+  pageHeader: { back: 'Retour' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Sélectionner tout',
+    loadMoreText: 'Charger plus',
+    loadingMoreText: 'Chargement en cours'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Tout sélectionner',
+    maxTagContent: 'Plus {{surplus}} sélectionnés'
+  },
+  treeSelect: {
+    selectAllText: 'Tout sélectionner',
+    maxTagContent: 'Plus {{surplus}} sélectionnés'
+  },
+  form: { required: 'Requis' }
 };

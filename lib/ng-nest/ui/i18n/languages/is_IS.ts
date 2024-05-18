@@ -1,32 +1,32 @@
 export default {
   locale: 'is_IS',
   comment: {
-    comments: 'athugasemd',
-    giveALike: 'eins og',
-    reply: 'Svaraðu',
-    more: 'sjá meira',
-    sure: 'slepptu',
-    placeholder: 'Vinsamlegast sláðu inn athugasemd'
+    comments: 'Athugasemdir',
+    giveALike: 'Þú munt líka',
+    reply: 'Svara',
+    more: 'Meira',
+    sure: 'Víst',
+    placeholder: 'Sláðu inn athugasemdina þína'
   },
   theme: {
-    darkMode: 'Myrkur háttur',
-    initDefault: 'Frumstilla sjálfgefið gildi',
-    primary: 'Aðallitur',
-    success: 'árangur',
-    warning: 'hellir',
+    darkMode: 'Dökkur háttur',
+    initDefault: 'Byrja upphafsstillingu',
+    primary: 'Fyrstur',
+    success: 'Velgengni',
+    warning: 'Viðvörun',
     danger: 'Hætta',
-    info: 'upplýsingar',
-    background: 'bakgrunnur',
-    border: 'grind',
+    info: 'Upplýsingar',
+    background: 'Bakgrunnur',
+    border: 'Landamæri',
     text: 'Texti'
   },
   calendar: {
-    month: 'mánuði',
-    year: 'ári',
-    lastMonth: 'Fyrsta mánuðinn',
-    lastYear: 'síðasta ár',
-    nextMonth: 'Næsta mánuði',
-    nextYear: 'á næsta ári',
+    month: 'Mánuður',
+    year: 'Ár',
+    lastMonth: 'Síðasti mánuður',
+    lastYear: 'Síðasta ár',
+    nextMonth: 'Næsti mánuður',
+    nextYear: 'Næsta ár',
     january: 'Janúar',
     february: 'Febrúar',
     march: 'Mars',
@@ -36,85 +36,130 @@ export default {
     july: 'Júlí',
     august: 'Ágúst',
     september: 'September',
-    october: 'október',
+    october: 'Október',
     november: 'Nóvember',
     december: 'Desember'
   },
   datePicker: {
-    sure: 'staðfesta',
-    month: '',
-    year: '',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'í gær',
-    today: 'Nú á dögum',
-    tomorrow: 'á morgun'
+    sure: 'Víst',
+    week: 'Vika',
+    month: 'Mánuður',
+    year: 'Ár',
+    january: 'Janúar',
+    february: 'Febrúar',
+    march: 'Mars',
+    april: 'Apríl',
+    may: 'Maí',
+    june: 'Júní',
+    july: 'Júlí',
+    august: 'Ágúst',
+    september: 'September',
+    october: 'Október',
+    november: 'Nóvember',
+    december: 'Desember',
+    monday: 'Mánudagur',
+    tuesday: 'Þriðjudagur',
+    wednesday: 'Miðvikudagur',
+    thursday: 'Fimmtudagur',
+    friday: 'Föstudagur',
+    saturday: 'Laugardagur',
+    sunday: 'Sunnudagur',
+    yesterday: 'Í gær',
+    today: 'Í dag',
+    tomorrow: 'Á morgun',
+    thisWeek: 'Þessi vika',
+    lastWeek: 'Síðasta vika',
+    nextWeek: 'Næsta vika',
+    thisMonth: 'Þessi mánuður',
+    lastMonth: 'Síðasti mánuður',
+    nextMonth: 'Næsti mánuður',
+    thisYear: 'Þetta ár',
+    lastYear: 'Síðasta ár',
+    nextYear: 'Næsta ár',
+    selectDate: 'Veldu dagsetningu',
+    selectWeek: 'Veldu viku',
+    selectMonth: 'Veldu mánuð',
+    selectQuarter: 'Veldu ársfjórðung',
+    selectYear: 'Veldu ár',
+    startDate: 'Byrjunardagur',
+    endDate: 'Lokadagur',
+    startMonth: 'Upphaf mánaðar',
+    endMonth: 'Loka mánaðar',
+    startQuarter: 'Upphaf ársfjórðungs',
+    endQuarter: 'Loka ársfjórðungs',
+    startYear: 'Upphafsár',
+    endYear: 'Lokaár',
+    startWeek: 'Upphaf viku',
+    endWeek: 'Loka viku'
   },
-  empty: {
-    noData: 'אין מידע'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Núna',
+    selectTime: 'Veldu tíma',
+    selectHour: 'Veldu klukkutíma',
+    selectMinute: 'Veldu mínútu'
   },
+  empty: { noData: 'Engin gögn' },
+  image: { previewText: 'Forsýning' },
   pagination: {
-    previous: 'Fyrri síða',
-    next: 'Næsta síða',
-    total: 'Samtals',
-    item: 'Grein',
-    first: 'Forsíða',
-    last: 'Hala',
-    jump: 'Hoppa',
-    sizePage: '/ settur'
+    previous: 'Fyrri',
+    next: 'Næsta',
+    total: 'Alls',
+    item: 'Liður',
+    first: 'Fyrst',
+    last: 'Síðast',
+    jump: 'Sjálfgefinn',
+    sizePage: 'Stærð/Blad'
   },
   textRetract: {
-    unfold: 'Brettu út',
-    packUp: 'Settu í burtu'
+    unfold: 'Opna',
+    packUp: 'Pakka saman'
   },
   timeAgo: {
-    just: 'bara',
-    secondsAgo: 'Sekúndur síðan',
-    minutesAgo: 'mínútum síðan',
-    hoursAgo: 'Fyrir klukkutíma síðan'
+    just: 'Í bili',
+    secondsAgo: 'Sekúndum síðan',
+    minutesAgo: 'Mínutum síðan',
+    hoursAgo: 'Tímum síðan'
+  },
+  transfer: {
+    listTitle: 'Listi',
+    treeTitle: 'Tré',
+    tableTitle: 'Töflunni',
+    selectedTitle: 'Valdir liðir',
+    inverse: 'Framlengja'
   },
   messageBox: {
-    cancelText: 'hætta við',
-    confirmText: 'staðfesta'
+    cancelText: 'Hætta við',
+    confirmText: 'Staðfesta'
   },
   dialog: {
-    cancelText: 'hætta við',
-    confirmText: 'staðfesta'
+    cancelText: 'Hætta við',
+    confirmText: 'Staðfesta'
   },
   popconfirm: {
-    cancelText: 'hætta við',
-    confirmText: 'staðfesta'
+    cancelText: 'Hætta við',
+    confirmText: 'Staðfesta'
   },
   upload: {
-    uploadText: 'hlaðið inn skrám',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Senda skrá',
+    beginUploadText: 'Byrjaðu að hlaða upp',
+    uploadingText: 'Hlaðið upp',
+    uploadCompleted: 'Skrá hlaðið upp'
   },
-  pageHeader: {
-    back: 'snúa aftur'
-  },
+  pageHeader: { back: 'Bakka' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Veldu allt',
+    loadMoreText: 'Hlaða meira',
+    loadingMoreText: 'Sæki meira'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Veldu allt',
+    maxTagContent: 'Fleiri {{surplus}} valin'
+  },
+  treeSelect: {
+    selectAllText: 'Veldu allt',
+    maxTagContent: 'Fleiri {{surplus}} valin'
+  },
+  form: { required: 'Krafist' }
 };

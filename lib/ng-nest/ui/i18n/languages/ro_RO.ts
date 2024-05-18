@@ -1,120 +1,176 @@
 export default {
   locale: 'ro_RO',
   comment: {
-    comments: 'cometariu',
-    giveALike: 'ca',
-    reply: 'Răspuns',
+    comments: 'Comentarii',
+    giveALike: 'Dă un Like',
+    reply: 'Răspunde',
     more: 'Vezi mai mult',
-    sure: 'eliberare',
-    placeholder: 'Vă rugăm să introduceți un comentariu'
+    sure: 'Publică',
+    placeholder:
+      'Te rog să introduci un comentariu'
   },
   theme: {
     darkMode: 'Mod întunecat',
-    initDefault: 'Inițializează valoarea implicită',
-    primary: 'Culoarea principală',
-    success: 'succes',
-    warning: 'avertisment',
+    initDefault: 'Inițializează implicit',
+    primary: 'Primar',
+    success: 'Succes',
+    warning: 'Avertisment',
     danger: 'Pericol',
-    info: 'informație',
-    background: 'fundal',
-    border: 'cadru',
+    info: 'Informație',
+    background: 'Fundal',
+    border: 'Margine',
     text: 'Text'
   },
   calendar: {
-    month: 'lună',
-    year: 'an',
-    lastMonth: 'Prima luna',
-    lastYear: 'anul trecut',
-    nextMonth: 'Luna viitoare',
-    nextYear: 'anul urmator',
-    january: 'ianuarie',
-    february: 'februarie',
+    month: 'Lună',
+    year: 'An',
+    lastMonth: 'Luna trecută',
+    lastYear: 'Anul trecut',
+    nextMonth: 'Luna următoare',
+    nextYear: 'Anul următor',
+    january: 'Ianuarie',
+    february: 'Februarie',
     march: 'Martie',
     april: 'Aprilie',
     may: 'Mai',
-    june: 'iunie',
-    july: 'iulie',
+    june: 'Iunie',
+    july: 'Iulie',
     august: 'August',
     september: 'Septembrie',
-    october: 'octombrie',
-    november: 'noiembrie',
-    december: 'decembrie'
+    october: 'Octombrie',
+    november: 'Noiembrie',
+    december: 'Decembrie'
   },
   datePicker: {
-    sure: 'a confirma',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'ieri',
-    today: 'In zilele de azi',
-    tomorrow: 'Mâine'
+    sure: 'Confirmă',
+    week: 'Săptămână',
+    month: 'Lună',
+    year: 'An',
+    january: 'Ianuarie',
+    february: 'Februarie',
+    march: 'Martie',
+    april: 'Aprilie',
+    may: 'Mai',
+    june: 'Iunie',
+    july: 'Iulie',
+    august: 'August',
+    september: 'Septembrie',
+    october: 'Octombrie',
+    november: 'Noiembrie',
+    december: 'Decembrie',
+    monday: 'Luni',
+    tuesday: 'Marți',
+    wednesday: 'Miercuri',
+    thursday: 'Joi',
+    friday: 'Vineri',
+    saturday: 'Sâmbătă',
+    sunday: 'Duminică',
+    yesterday: 'Ieri',
+    today: 'Astăzi',
+    tomorrow: 'Mâine',
+    thisWeek: 'Săptămâna aceasta',
+    lastWeek: 'Săptămâna trecută',
+    nextWeek: 'Săptămâna viitoare',
+    thisMonth: 'Luna aceasta',
+    lastMonth: 'Luna trecută',
+    nextMonth: 'Luna viitoare',
+    thisYear: 'Anul acesta',
+    lastYear: 'Anul trecut',
+    nextYear: 'Anul viitor',
+    selectDate: 'Selectează data',
+    selectWeek: 'Selectează săptămâna',
+    selectMonth: 'Selectează luna',
+    selectQuarter: 'Selectează trimestrul',
+    selectYear: 'Selectează anul',
+    startDate: 'Data de început',
+    endDate: 'Data de sfârșit',
+    startMonth: 'Luna de început',
+    endMonth: 'Luna de sfârșit',
+    startQuarter: 'Trimestrul de început',
+    endQuarter: 'Trimestrul de sfârșit',
+    startYear: 'Anul de început',
+    endYear: 'Anul de sfârșit',
+    startWeek: 'Săptămâna de început',
+    endWeek: 'Săptămâna de sfârșit'
+  },
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Acum',
+    selectTime: 'Selectează ora',
+    selectHour: 'Selectează ora',
+    selectMinute: 'Selectează minutul'
   },
   empty: {
-    noData: 'Nu date'
+    noData: 'Fără date'
+  },
+  image: {
+    previewText: 'Previzualizare'
   },
   pagination: {
-    previous: 'Pagina anterioară',
-    next: 'Pagina următoare',
+    previous: 'Anterior',
+    next: 'Următor',
     total: 'Total',
-    item: 'Articol',
-    first: 'prima pagina',
-    last: 'Coadă',
-    jump: 'A sari',
-    sizePage: '/ pagină'
+    item: 'Element',
+    first: 'Prima',
+    last: 'Ultima',
+    jump: 'Sari la',
+    sizePage: 'Elemente pe pagină'
   },
   textRetract: {
-    unfold: 'Unfold',
-    packUp: 'Pune deoparte'
+    unfold: 'Deschide',
+    packUp: 'Închide'
   },
   timeAgo: {
-    just: 'doar',
+    just: 'Chiar acum',
     secondsAgo: 'Acum câteva secunde',
-    minutesAgo: 'acum câteva minute',
-    hoursAgo: 'Acum o oră'
+    minutesAgo: 'Acum câteva minute',
+    hoursAgo: 'Acum câteva ore'
+  },
+  transfer: {
+    listTitle: 'Listă',
+    treeTitle: 'Arbore',
+    tableTitle: 'Tabel',
+    selectedTitle: 'Elemente selectate',
+    inverse: 'Inversare'
   },
   messageBox: {
-    cancelText: 'Anulare',
-    confirmText: 'a confirma'
+    cancelText: 'Anulează',
+    confirmText: 'Confirmă'
   },
   dialog: {
-    cancelText: 'Anulare',
-    confirmText: 'a confirma'
+    cancelText: 'Anulează',
+    confirmText: 'Confirmă'
   },
   popconfirm: {
-    cancelText: 'Anulare',
-    confirmText: 'a confirma'
+    cancelText: 'Anulează',
+    confirmText: 'Confirmă'
   },
   upload: {
-    uploadText: 'încărca fișiere',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Încarcă fișier',
+    beginUploadText:
+      'Începe încărcarea fișierului',
+    uploadingText: 'Se încarcă',
+    uploadCompleted:
+      'Încărcarea fișierului finalizată'
   },
   pageHeader: {
-    back: 'întoarcere'
+    back: 'Înapoi'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Selectează tot',
+    loadMoreText: 'Încarcă mai mult',
+    loadingMoreText: 'Se încarcă...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Selectează tot',
+    maxTagContent: 'Încă {{surplus}} selectate'
+  },
+  treeSelect: {
+    selectAllText: 'Selectează tot',
+    maxTagContent: 'Încă {{surplus}} selectate'
+  },
+  form: {
+    required: 'Câmp obligatoriu'
   }
 };

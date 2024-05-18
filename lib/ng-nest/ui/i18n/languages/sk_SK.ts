@@ -1,120 +1,164 @@
 export default {
   locale: 'sk_SK',
   comment: {
-    comments: 'komentár',
+    comments: 'Komentáre',
     giveALike: 'Páči sa mi to',
-    reply: 'odpoveď',
-    more: 'pozrieť viac',
-    sure: 'uvoľnenie',
-    placeholder: 'Zadajte komentár'
+    reply: 'Odpoveď',
+    more: 'Zobraziť viac',
+    sure: 'Publikovať',
+    placeholder: 'Prosím, zadajte komentár'
   },
   theme: {
     darkMode: 'Tmavý režim',
-    initDefault: 'Inicializujte predvolenú hodnotu',
-    primary: 'Hlavná farba',
-    success: 'úspech',
-    warning: 'varovanie',
-    danger: 'nebezpečenstvo',
-    info: 'informácie',
-    background: 'pozadie',
-    border: 'rám',
-    text: 'text'
+    initDefault: 'Inicializovať predvolené',
+    primary: 'Primárny',
+    success: 'Úspech',
+    warning: 'Varovanie',
+    danger: 'Nebezpečenstvo',
+    info: 'Informácie',
+    background: 'Pozadie',
+    border: 'Okraj'
   },
   calendar: {
-    month: 'mesiac',
-    year: 'rok',
-    lastMonth: 'Prvý mesiac',
-    lastYear: 'minulý rok',
-    nextMonth: 'Ďalší mesiac',
-    nextYear: 'ďalší rok',
-    january: 'január',
-    february: 'február',
-    march: 'marec',
-    april: 'apríl',
-    may: 'Smieť',
-    june: 'jún',
-    july: 'júl',
-    august: 'august',
-    september: 'septembra',
-    october: 'október',
-    november: 'november',
+    month: 'Mesiac',
+    year: 'Rok',
+    lastMonth: 'Minulý mesiac',
+    lastYear: 'Minulý rok',
+    nextMonth: 'Budúci mesiac',
+    nextYear: 'Budúci rok',
+    january: 'Január',
+    february: 'Február',
+    march: 'Marec',
+    april: 'Apríl',
+    may: 'Máj',
+    june: 'Jún',
+    july: 'Júl',
+    august: 'August',
+    september: 'September',
+    october: 'Október',
+    november: 'November',
     december: 'December'
   },
   datePicker: {
-    sure: 'potvrdiť',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'včera',
-    today: 'V súčasnosti',
-    tomorrow: 'zajtra'
+    sure: 'Potvrdiť',
+    week: 'Týždeň',
+    month: 'Mesiac',
+    year: 'Rok',
+    january: 'Január',
+    february: 'Február',
+    march: 'Marec',
+    april: 'Apríl',
+    may: 'Máj',
+    june: 'Jún',
+    july: 'Júl',
+    august: 'August',
+    september: 'September',
+    october: 'Október',
+    november: 'November',
+    december: 'December',
+    monday: 'Pondelok',
+    tuesday: 'Utorok',
+    wednesday: 'Streda',
+    thursday: 'Štvrtok',
+    friday: 'Piatok',
+    saturday: 'Sobota',
+    sunday: 'Nedeľa',
+    yesterday: 'Včera',
+    today: 'Dnes',
+    tomorrow: 'Zajtra',
+    thisWeek: 'Tento týždeň',
+    lastWeek: 'Minulý týždeň',
+    nextWeek: 'Budúci týždeň',
+    thisMonth: 'Tento mesiac',
+    lastMonth: 'Minulý mesiac',
+    nextMonth: 'Budúci mesiac',
+    thisYear: 'Tento rok',
+    lastYear: 'Minulý rok',
+    nextYear: 'Budúci rok',
+    selectDate: 'Vyberte dátum',
+    selectWeek: 'Vyberte týždeň',
+    selectMonth: 'Vyberte mesiac',
+    selectQuarter: 'Vyberte štvrťrok',
+    selectYear: 'Vyberte rok',
+    startDate: 'Počiatočný dátum',
+    endDate: 'Konečný dátum',
+    startMonth: 'Počiatočný mesiac',
+    endMonth: 'Konečný mesiac',
+    startQuarter: 'Počiatočný štvrťrok',
+    endQuarter: 'Konečný štvrťrok',
+    startYear: 'Počiatočný rok',
+    endYear: 'Konečný rok',
+    startWeek: 'Počiatočný týždeň',
+    endWeek: 'Konečný týždeň'
   },
-  empty: {
-    noData: 'žiadny dáta'
+  timePicker: {
+    am: 'Dopoludnia',
+    pm: 'Popoludní',
+    now: 'Teraz',
+    selectTime: 'Vyberte čas',
+    selectHour: 'Vyberte hodinu',
+    selectMinute: 'Vyberte minútu'
   },
+  empty: { noData: 'Žiadne dáta' },
+  image: { previewText: 'Náhľad' },
   pagination: {
-    previous: 'Predchádzajúca strana',
-    next: 'Ďalšia strana',
+    previous: 'Predchádzajúci',
+    next: 'Ďalší',
     total: 'Celkom',
-    item: 'článok',
-    first: 'predná strana',
-    last: 'Chvost',
-    jump: 'Skočiť',
-    sizePage: 'pruh/strana'
+    item: 'Položka',
+    first: 'Prvý',
+    last: 'Posledný',
+    jump: 'Skok na',
+    sizePage: 'Položky/stránka'
   },
   textRetract: {
-    unfold: 'rozvinúť',
-    packUp: 'Odložiť'
+    unfold: 'Rozložiť',
+    packUp: 'Zložiť'
   },
   timeAgo: {
-    just: 'proste',
-    secondsAgo: ' pred sekundami',
-    minutesAgo: 'pred pár minútami',
-    hoursAgo: ' pred hodinou'
+    just: 'Práve',
+    secondsAgo: 'pred sekundami',
+    minutesAgo: 'pred minútami',
+    hoursAgo: 'pred hodinami'
+  },
+  transfer: {
+    listTitle: 'Zoznam',
+    treeTitle: 'Strom',
+    tableTitle: 'Tabuľka',
+    selectedTitle: 'Vybrané položky',
+    inverse: 'Inverzia'
   },
   messageBox: {
     cancelText: 'Zrušiť',
-    confirmText: 'confirm'
+    confirmText: 'Potvrdiť'
   },
   dialog: {
     cancelText: 'Zrušiť',
-    confirmText: 'confirm'
+    confirmText: 'Potvrdiť'
   },
   popconfirm: {
     cancelText: 'Zrušiť',
-    confirmText: 'confirm'
+    confirmText: 'Potvrdiť'
   },
   upload: {
-    uploadText: 'nahrať súbory',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Nahrať súbor',
+    beginUploadText: 'Začnite nahrávať súbor',
+    uploadingText: 'Nahrávam',
+    uploadCompleted: 'Nahrávanie súboru ukončené'
   },
-  pageHeader: {
-    back: 'spiatočný'
-  },
+  pageHeader: { back: 'Späť' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Vybrať všetko',
+    loadMoreText: 'Načítať viac',
+    loadingMoreText: 'Načítavanie ...'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Vybrať všetko',
+    maxTagContent: 'Ďalších {{surplus}} vybraných'
+  },
+  treeSelect: {
+    selectAllText: 'Vybrať všetko',
+    maxTagContent: 'Ďalších {{surplus}} vybraných'
+  },
+  form: { required: 'Povinné' }
 };

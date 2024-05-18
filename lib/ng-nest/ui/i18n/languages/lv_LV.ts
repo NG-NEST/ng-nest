@@ -1,120 +1,173 @@
 export default {
   locale: 'lv_LV',
   comment: {
-    comments: 'komentēt',
-    giveALike: 'piemēram',
-    reply: 'Atbildi',
-    more: 'redzēt vairāk',
-    sure: 'atbrīvot',
+    comments: 'Komentāri',
+    giveALike: 'Patīk',
+    reply: 'Atbildēt',
+    more: 'Skatīt vairāk',
+    sure: 'Publicēt',
     placeholder: 'Lūdzu, ievadiet komentāru'
   },
   theme: {
     darkMode: 'Tumšais režīms',
-    initDefault: 'Inicializējiet noklusējuma vērtību',
-    primary: 'Galvenā krāsa',
-    success: 'veiksme',
-    warning: 'brīdinājums',
-    danger: 'Bīstami',
-    info: 'informācija',
-    background: 'fons',
-    border: 'rāmis',
+    initDefault: 'Inicializēt noklusējumu',
+    primary: 'Primārais',
+    success: 'Veiksmīgi',
+    warning: 'Brīdinājums',
+    danger: 'Bīstamība',
+    info: 'Informācija',
+    background: 'Fons',
+    border: 'Robeža',
     text: 'Teksts'
   },
   calendar: {
-    month: 'mēnesī',
-    year: 'gadā',
-    lastMonth: 'Pirmais mēnesis',
-    lastYear: 'pagājušais gads',
-    nextMonth: 'Nākammēnes',
-    nextYear: 'nākamgad',
-    january: 'Janvārī',
+    month: 'Mēnesis',
+    year: 'Gads',
+    lastMonth: 'Iepriekšējais mēnesis',
+    lastYear: 'Iepriekšējais gads',
+    nextMonth: 'Nākamais mēnesis',
+    nextYear: 'Nākamais gads',
+    january: 'Janvāris',
     february: 'Februāris',
-    march: 'Martā',
-    april: 'Aprīlī',
-    may: 'Maijā',
-    june: 'jūnijs',
+    march: 'Marts',
+    april: 'Aprīlis',
+    may: 'Maijs',
+    june: 'Jūnijs',
     july: 'Jūlijs',
-    august: 'augusts',
-    september: 'Septembrī',
+    august: 'Augusts',
+    september: 'Septembris',
     october: 'Oktobris',
-    november: 'Novembrī',
+    november: 'Novembris',
     december: 'Decembris'
   },
   datePicker: {
     sure: 'Apstiprināt',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'vakar',
-    today: 'Mūsdienās',
-    tomorrow: 'rīt'
+    week: 'Nedēļa',
+    month: 'Mēnesis',
+    year: 'Gads',
+    january: 'Janvāris',
+    february: 'Februāris',
+    march: 'Marts',
+    april: 'Aprīlis',
+    may: 'Maijs',
+    june: 'Jūnijs',
+    july: 'Jūlijs',
+    august: 'Augusts',
+    september: 'Septembris',
+    october: 'Oktobris',
+    november: 'Novembris',
+    december: 'Decembris',
+    monday: 'Pirmdiena',
+    tuesday: 'Otrdiena',
+    wednesday: 'Trešdiena',
+    thursday: 'Ceturtdiena',
+    friday: 'Piektdiena',
+    saturday: 'Sestdiena',
+    sunday: 'Svētdiena',
+    yesterday: 'Vakar',
+    today: 'Šodien',
+    tomorrow: 'Rīt',
+    thisWeek: 'Šonedēļ',
+    lastWeek: 'Pagājušajā nedēļā',
+    nextWeek: 'Nākamajā nedēļā',
+    thisMonth: 'Šajā mēnesī',
+    lastMonth: 'Pagājušajā mēnesī',
+    nextMonth: 'Nākamajā mēnesī',
+    thisYear: 'Šogad',
+    lastYear: 'Pagājušajā gadā',
+    nextYear: 'Nākamgad',
+    selectDate: 'Izvēlieties datumu',
+    selectWeek: 'Izvēlieties nedēļu',
+    selectMonth: 'Izvēlieties mēnesi',
+    selectQuarter: 'Izvēlieties ceturksni',
+    selectYear: 'Izvēlieties gadu',
+    startDate: 'Sākuma datums',
+    endDate: 'Beigu datums',
+    startMonth: 'Sākuma mēnesis',
+    endMonth: 'Beigu mēnesis',
+    startQuarter: 'Sākuma ceturksnis',
+    endQuarter: 'Beigu ceturksnis',
+    startYear: 'Sākuma gads',
+    endYear: 'Beigu gads',
+    startWeek: 'Sākuma nedēļa',
+    endWeek: 'Beigu nedēļa'
+  },
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Tagad',
+    selectTime: 'Izvēlieties laiku',
+    selectHour: 'Izvēlieties stundu',
+    selectMinute: 'Izvēlieties minūti'
   },
   empty: {
-    noData: 'Nē dati'
+    noData: 'Nav datu'
+  },
+  image: {
+    previewText: 'Priekšskatījums'
   },
   pagination: {
-    previous: 'Iepriekšējā lapa',
-    next: 'Nākamā lapaspuse',
+    previous: 'Iepriekšējais',
+    next: 'Nākamais',
     total: 'Kopā',
-    item: 'Raksts',
-    first: 'priekšējā lapa',
-    last: 'Asti',
-    jump: 'Lēkt',
-    sizePage: '/ lappuse'
+    item: 'Vienums',
+    first: 'Pirmie',
+    last: 'Pēdējie',
+    jump: 'Pāriet uz',
+    sizePage: 'Vienumi uz lapu'
   },
   textRetract: {
-    unfold: 'Atlocīt',
-    packUp: 'Nolikt malā'
+    unfold: 'Izvērst',
+    packUp: 'Sakļaut'
   },
   timeAgo: {
-    just: 'vienkārši',
+    just: 'Tikko',
     secondsAgo: 'Pirms dažām sekundēm',
-    minutesAgo: 'pirms minūtēm',
-    hoursAgo: 'Pirms stundas'
+    minutesAgo: 'Pirms dažām minūtēm',
+    hoursAgo: 'Pirms dažām stundām'
+  },
+  transfer: {
+    listTitle: 'Saraksts',
+    treeTitle: 'Koks',
+    tableTitle: 'Tabula',
+    selectedTitle: 'Izvēlētie vienumi',
+    inverse: 'Pretējs'
   },
   messageBox: {
-    cancelText: 'atcelt',
+    cancelText: 'Atcelt',
     confirmText: 'Apstiprināt'
   },
   dialog: {
-    cancelText: 'atcelt',
+    cancelText: 'Atcelt',
     confirmText: 'Apstiprināt'
   },
   popconfirm: {
-    cancelText: 'atcelt',
+    cancelText: 'Atcelt',
     confirmText: 'Apstiprināt'
   },
   upload: {
-    uploadText: 'augšupielādēt failus',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Augšupielādēt failu',
+    beginUploadText: 'Sākt augšupielādi',
+    uploadingText: 'Notiek augšupielāde',
+    uploadCompleted: 'Augšupielāde pabeigta'
   },
   pageHeader: {
-    back: 'atgriezties'
+    back: 'Atpakaļ'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Izvēlēties visu',
+    loadMoreText: 'Ielādēt vairāk',
+    loadingMoreText: 'Ielādē...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Izvēlēties visu',
+    maxTagContent: 'Vēl {{surplus}} atlases'
+  },
+  treeSelect: {
+    selectAllText: 'Izvēlēties visu',
+    maxTagContent: 'Vēl {{surplus}} atlases'
+  },
+  form: {
+    required: 'Obligāts'
   }
 };

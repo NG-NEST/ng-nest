@@ -1,37 +1,38 @@
 export default {
   locale: 'fa_IR',
   comment: {
-    comments: 'اظهار نظر',
+    comments: 'نظرات',
     giveALike: 'پسندیدن',
     reply: 'پاسخ',
-    more: 'بیشتر ببین',
-    sure: 'رهایی',
-    placeholder: 'لطفاً نظر خود را وارد کنید'
+    more: 'بیشتر',
+    sure: 'مطمئن',
+    placeholder: 'لطفاً یک نظر وارد کنید'
   },
   theme: {
     darkMode: 'حالت تاریک',
-    initDefault: 'مقدار اولیه را پیش فرض کنید',
-    primary: 'رنگ اصلی',
+    initDefault:
+      'مقدار پیش‌فرض را مقداردهی اولیه کنید',
+    primary: 'اصلی',
     success: 'موفقیت',
     warning: 'هشدار',
     danger: 'خطر',
     info: 'اطلاعات',
-    background: 'زمینه',
-    border: 'قاب',
+    background: 'پس‌زمینه',
+    border: 'حاشیه',
     text: 'متن'
   },
   calendar: {
     month: 'ماه',
     year: 'سال',
-    lastMonth: 'ماه اول',
+    lastMonth: 'ماه گذشته',
     lastYear: 'سال گذشته',
     nextMonth: 'ماه بعد',
-    nextYear: 'سال آینده',
+    nextYear: 'سال بعد',
     january: 'ژانویه',
     february: 'فوریه',
     march: 'مارس',
     april: 'آوریل',
-    may: 'ممکن است',
+    may: 'مه',
     june: 'ژوئن',
     july: 'جولای',
     august: 'اوت',
@@ -41,80 +42,125 @@ export default {
     december: 'دسامبر'
   },
   datePicker: {
-    sure: 'تایید',
-    month: '',
-    year: '',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12',
-    monday: 'یکی',
-    tuesday: 'دو',
-    wednesday: 'سه',
-    thursday: 'چهار',
-    friday: 'پنج',
-    saturday: 'شش',
-    sunday: 'روز',
+    sure: 'مطمئن',
+    week: 'هفته',
+    month: 'ماه',
+    year: 'سال',
+    january: 'ژانویه',
+    february: 'فوریه',
+    march: 'مارس',
+    april: 'آوریل',
+    may: 'مه',
+    june: 'ژوئن',
+    july: 'جولای',
+    august: 'اوت',
+    september: 'سپتامبر',
+    october: 'اکتبر',
+    november: 'نوامبر',
+    december: 'دسامبر',
+    monday: 'دوشنبه',
+    tuesday: 'سه‌شنبه',
+    wednesday: 'چهارشنبه',
+    thursday: 'پنج‌شنبه',
+    friday: 'جمعه',
+    saturday: 'شنبه',
+    sunday: 'یک‌شنبه',
     yesterday: 'دیروز',
-    today: 'این روزها',
-    tomorrow: 'فردا'
+    today: 'امروز',
+    tomorrow: 'فردا',
+    thisWeek: 'این هفته',
+    lastWeek: 'هفته گذشته',
+    nextWeek: 'هفته بعد',
+    thisMonth: 'این ماه',
+    lastMonth: 'ماه گذشته',
+    nextMonth: 'ماه بعد',
+    thisYear: 'امسال',
+    lastYear: 'سال گذشته',
+    nextYear: 'سال بعد',
+    selectDate: 'تاریخ را انتخاب کنید',
+    selectWeek: 'هفته را انتخاب کنید',
+    selectMonth: 'ماه را انتخاب کنید',
+    selectQuarter: 'سه‌ماهه را انتخاب کنید',
+    selectYear: 'سال را انتخاب کنید',
+    startDate: 'تاریخ شروع',
+    endDate: 'تاریخ پایان',
+    startMonth: 'ماه شروع',
+    endMonth: 'ماه پایان',
+    startQuarter: 'سه‌ماهه شروع',
+    endQuarter: 'سه‌ماهه پایان',
+    startYear: 'سال شروع',
+    endYear: 'سال پایان',
+    startWeek: 'هفته شروع',
+    endWeek: 'هفته پایان'
   },
-  empty: {
-    noData: 'اطلاعاتی وجود ندارد'
+  timePicker: {
+    am: 'قبل از ظهر',
+    pm: 'بعد از ظهر',
+    now: 'اکنون',
+    selectTime: 'زمان را انتخاب کنید',
+    selectHour: 'ساعت را انتخاب کنید',
+    selectMinute: 'دقیقه را انتخاب کنید'
   },
+  empty: { noData: 'داده‌ای وجود ندارد' },
+  image: { previewText: 'پیش‌نمایش' },
   pagination: {
-    previous: 'صفحه قبلی',
-    next: 'صفحه بعد',
-    total: 'جمع',
-    item: 'مقاله',
-    first: 'صفحه اول',
-    last: 'دم',
-    jump: 'پرش',
-    sizePage: '/صفحه'
+    previous: 'قبلی',
+    next: 'بعدی',
+    total: 'مجموع',
+    item: 'مورد',
+    first: 'اولی',
+    last: 'آخری',
+    jump: 'پرش به',
+    sizePage: 'آیتم/صفحه'
   },
   textRetract: {
-    unfold: 'آشکار شد',
-    packUp: 'کنار بگذار'
+    unfold: 'باز کردن',
+    packUp: 'بستن'
   },
   timeAgo: {
-    just: 'فقط',
-    secondsAgo: 'چند ثانیه پیش',
+    just: 'همین الآن',
+    secondsAgo: 'ثانیه پیش',
     minutesAgo: 'دقیقه پیش',
-    hoursAgo: 'یک ساعت پیش'
+    hoursAgo: 'ساعت پیش'
+  },
+  transfer: {
+    listTitle: 'لیست',
+    treeTitle: 'درخت',
+    tableTitle: 'جدول',
+    selectedTitle: 'موارد انتخاب شده',
+    inverse: 'معکوس'
   },
   messageBox: {
     cancelText: 'لغو',
-    confirmText: 'تایید'
+    confirmText: 'تأیید'
   },
   dialog: {
     cancelText: 'لغو',
-    confirmText: 'تایید'
+    confirmText: 'تأیید'
   },
   popconfirm: {
     cancelText: 'لغو',
-    confirmText: 'تایید'
+    confirmText: 'تأیید'
   },
   upload: {
-    uploadText: 'بارگذاری پرونده ها',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'بارگذاری فایل',
+    beginUploadText: 'شروع بارگذاری فایل',
+    uploadingText: 'در حال بارگذاری',
+    uploadCompleted: 'بارگذاری فایل تکمیل شد'
   },
-  pageHeader: {
-    back: 'برگشت'
-  },
+  pageHeader: { back: 'بازگشت' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'انتخاب همه',
+    loadMoreText: 'بارگذاری بیشتر',
+    loadingMoreText: 'در حال بارگذاری'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'انتخاب همه',
+    maxTagContent: 'بیشتر {{surplus}} انتخاب شده'
+  },
+  treeSelect: {
+    selectAllText: 'انتخاب همه',
+    maxTagContent: 'بیشتر {{surplus}} انتخاب شده'
+  },
+  form: { required: 'الزامی' }
 };

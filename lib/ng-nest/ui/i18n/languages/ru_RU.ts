@@ -1,120 +1,173 @@
 export default {
   locale: 'ru_RU',
   comment: {
-    comments: 'комментарий',
-    giveALike: 'лайк',
+    comments: 'Комментарии',
+    giveALike: 'Поставить лайк',
     reply: 'Ответить',
-    more: 'узнать больше',
-    sure: 'релиз',
+    more: 'Показать ещё',
+    sure: 'Опубликовать',
     placeholder: 'Пожалуйста, введите комментарий'
   },
   theme: {
-    darkMode: 'Темный режим',
-    initDefault: 'Инициализировать значение по умолчанию',
-    primary: 'Основной цвет',
-    success: 'успех',
-    warning: 'предостережение',
+    darkMode: 'Тёмный режим',
+    initDefault: 'Инициализация по умолчанию',
+    primary: 'Основной',
+    success: 'Успешно',
+    warning: 'Предупреждение',
     danger: 'Опасность',
     info: 'Информация',
-    background: 'задний план',
-    border: 'Рамка',
+    background: 'Фон',
+    border: 'Граница',
     text: 'Текст'
   },
   calendar: {
-    month: 'месяц',
-    year: 'год',
-    lastMonth: 'Первый месяц',
-    lastYear: 'в прошлом году',
-    nextMonth: 'В следующем месяце',
-    nextYear: 'в следующем году',
-    january: 'январь',
-    february: 'февраль',
-    march: 'марш',
-    april: 'апрель',
-    may: 'май',
-    june: 'июнь',
-    july: 'июль',
-    august: 'августейший',
-    september: 'сентябрь',
-    october: 'октября',
-    november: 'ноябрь',
+    month: 'Месяц',
+    year: 'Год',
+    lastMonth: 'Прошлый месяц',
+    lastYear: 'Прошлый год',
+    nextMonth: 'Следующий месяц',
+    nextYear: 'Следующий год',
+    january: 'Январь',
+    february: 'Февраль',
+    march: 'Март',
+    april: 'Апрель',
+    may: 'Май',
+    june: 'Июнь',
+    july: 'Июль',
+    august: 'Август',
+    september: 'Сентябрь',
+    october: 'Октябрь',
+    november: 'Ноябрь',
     december: 'Декабрь'
   },
   datePicker: {
-    sure: 'подтверждать',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'вчера',
-    today: 'Настоящее время',
-    tomorrow: 'завтра'
+    sure: 'Подтвердить',
+    week: 'Неделя',
+    month: 'Месяц',
+    year: 'Год',
+    january: 'Январь',
+    february: 'Февраль',
+    march: 'Март',
+    april: 'Апрель',
+    may: 'Май',
+    june: 'Июнь',
+    july: 'Июль',
+    august: 'Август',
+    september: 'Сентябрь',
+    october: 'Октябрь',
+    november: 'Ноябрь',
+    december: 'Декабрь',
+    monday: 'Понедельник',
+    tuesday: 'Вторник',
+    wednesday: 'Среда',
+    thursday: 'Четверг',
+    friday: 'Пятница',
+    saturday: 'Суббота',
+    sunday: 'Воскресенье',
+    yesterday: 'Вчера',
+    today: 'Сегодня',
+    tomorrow: 'Завтра',
+    thisWeek: 'На этой неделе',
+    lastWeek: 'На прошлой неделе',
+    nextWeek: 'На следующей неделе',
+    thisMonth: 'В этом месяце',
+    lastMonth: 'В прошлом месяце',
+    nextMonth: 'В следующем месяце',
+    thisYear: 'В этом году',
+    lastYear: 'В прошлом году',
+    nextYear: 'В следующем году',
+    selectDate: 'Выберите дату',
+    selectWeek: 'Выберите неделю',
+    selectMonth: 'Выберите месяц',
+    selectQuarter: 'Выберите квартал',
+    selectYear: 'Выберите год',
+    startDate: 'Начальная дата',
+    endDate: 'Конечная дата',
+    startMonth: 'Начальный месяц',
+    endMonth: 'Конечный месяц',
+    startQuarter: 'Начальный квартал',
+    endQuarter: 'Конечный квартал',
+    startYear: 'Начальный год',
+    endYear: 'Конечный год',
+    startWeek: 'Начальная неделя',
+    endWeek: 'Конечная неделя'
+  },
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Сейчас',
+    selectTime: 'Выберите время',
+    selectHour: 'Выберите час',
+    selectMinute: 'Выберите минуту'
   },
   empty: {
-    noData: 'нет данные'
+    noData: 'Нет данных'
+  },
+  image: {
+    previewText: 'Предпросмотр'
   },
   pagination: {
-    previous: 'Предыдущая страница',
-    next: 'Следующая страница',
-    total: 'Общее количество',
-    item: 'Статья',
-    first: 'титульная страница',
-    last: 'Хвост',
-    jump: 'Прыжок',
-    sizePage: '/ cтраница'
+    previous: 'Назад',
+    next: 'Далее',
+    total: 'Всего',
+    item: 'Элемент',
+    first: 'Первая',
+    last: 'Последняя',
+    jump: 'Перейти на',
+    sizePage: 'Элементов на странице'
   },
   textRetract: {
-    unfold: 'Открываются',
-    packUp: 'Убрать'
+    unfold: 'Развернуть',
+    packUp: 'Свернуть'
   },
   timeAgo: {
-    just: 'просто',
+    just: 'Прямо сейчас',
     secondsAgo: 'Секунды назад',
-    minutesAgo: 'минуту назад',
-    hoursAgo: 'Час назад'
+    minutesAgo: 'Минуты назад',
+    hoursAgo: 'Часы назад'
+  },
+  transfer: {
+    listTitle: 'Список',
+    treeTitle: 'Дерево',
+    tableTitle: 'Таблица',
+    selectedTitle: 'Выбранные элементы',
+    inverse: 'Инвертировать'
   },
   messageBox: {
     cancelText: 'Отмена',
-    confirmText: 'подтверждения'
+    confirmText: 'Подтвердить'
   },
   dialog: {
     cancelText: 'Отмена',
-    confirmText: 'подтверждения'
+    confirmText: 'Подтвердить'
   },
   popconfirm: {
     cancelText: 'Отмена',
-    confirmText: 'подтверждения'
+    confirmText: 'Подтвердить'
   },
   upload: {
-    uploadText: 'загрузить файлы',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Загрузить файл',
+    beginUploadText: 'Начать загрузку файла',
+    uploadingText: 'Загрузка',
+    uploadCompleted: 'Загрузка файла завершена'
   },
   pageHeader: {
-    back: 'возвращение'
+    back: 'Назад'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Выбрать все',
+    loadMoreText: 'Загрузить больше',
+    loadingMoreText: 'Загрузка...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Выбрать все',
+    maxTagContent: 'Еще {{surplus}} выбрано'
+  },
+  treeSelect: {
+    selectAllText: 'Выбрать все',
+    maxTagContent: 'Еще {{surplus}} выбрано'
+  },
+  form: {
+    required: 'Обязательное поле'
   }
 };

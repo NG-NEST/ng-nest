@@ -1,120 +1,173 @@
 export default {
   locale: 'mn_MN',
   comment: {
-    comments: 'сэтгэгдэл',
-    giveALike: 'шиг',
-    reply: 'Хариу өгөх',
-    more: 'Дэлгэрэнгүйг үзэх',
-    sure: 'суллах',
-    placeholder: 'Тайлбар оруулна уу'
+    comments: 'Сэтгэгдэл',
+    giveALike: 'Таалагдана',
+    reply: 'Хариулт',
+    more: 'Илүү их харах',
+    sure: 'Хэвлэх',
+    placeholder: 'Сэтгэгдэл оруулах уу'
   },
   theme: {
     darkMode: 'Харанхуй горим',
-    initDefault: 'Анхдагч утгыг эхлүүлэх',
-    primary: 'Үндсэн өнгө',
-    success: 'амжилт',
-    warning: 'сэрэмжлүүлэг',
-    danger: 'аюул',
-    info: 'мэдээлэл',
-    background: 'дэвсгэр',
-    border: 'хүрээ',
-    text: 'Текстээр бичнэ үү'
+    initDefault: 'Эх хэвлэлт',
+    primary: 'Ерөнхий',
+    success: 'Амжилт',
+    warning: 'Сэрэмжлүүлэг',
+    danger: 'Эрсдэлийн',
+    info: 'Мэдээлэл',
+    background: 'Дэвсгэр',
+    border: 'Хүрээ',
+    text: 'Текст'
   },
   calendar: {
-    month: 'сар',
-    year: 'жил',
-    lastMonth: 'Эхний сар',
-    lastYear: 'өнгөрсөн жил',
-    nextMonth: 'Дараа сар',
-    nextYear: 'ирэх жил',
-    january: '1-р сар',
-    february: '2-р сар',
-    march: '3-р сар',
-    april: '4-р сар',
-    may: '5-р сар',
-    june: '6-p сар',
-    july: '7-р сар',
-    august: '8-р сар',
-    september: '9-р сар',
-    october: '10-р сар',
-    november: '11-р сар',
-    december: '12-р сар'
+    month: 'Сар',
+    year: 'Жил',
+    lastMonth: 'Өнгөрсөн сар',
+    lastYear: 'Өнгөрсөн жил',
+    nextMonth: 'Дараагийн сар',
+    nextYear: 'Дараагийн жил',
+    january: '1 сар',
+    february: '2 сар',
+    march: '3 сар',
+    april: '4 сар',
+    may: '5 сар',
+    june: '6 сар',
+    july: '7 сар',
+    august: '8 сар',
+    september: '9 сар',
+    october: '10 сар',
+    november: '11 сар',
+    december: '12 сар'
   },
   datePicker: {
-    sure: 'батлах',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'өчигдөр',
-    today: 'Одооadays',
-    tomorrow: 'маргааш'
+    sure: 'Баталгаажуулах',
+    week: 'Долоо хоног',
+    month: 'Сар',
+    year: 'Жил',
+    january: '1 сар',
+    february: '2 сар',
+    march: '3 сар',
+    april: '4 сар',
+    may: '5 сар',
+    june: '6 сар',
+    july: '7 сар',
+    august: '8 сар',
+    september: '9 сар',
+    october: '10 сар',
+    november: '11 сар',
+    december: '12 сар',
+    monday: 'Даваа',
+    tuesday: 'Мягмар',
+    wednesday: 'Лхагва',
+    thursday: 'Пүрэв',
+    friday: 'Баасан',
+    saturday: 'Бямба',
+    sunday: 'Ням',
+    yesterday: 'Өчигдөр',
+    today: 'Өнөөдөр',
+    tomorrow: 'Маргааш',
+    thisWeek: 'Энэ долоо хоногт',
+    lastWeek: 'Өнгөрсөн долоо хоногт',
+    nextWeek: 'Дараагийн долоо хоногт',
+    thisMonth: 'Энэ сард',
+    lastMonth: 'Өнгөрсөн сард',
+    nextMonth: 'Дараагийн сард',
+    thisYear: 'Энэ жилд',
+    lastYear: 'Өнгөрсөн жилд',
+    nextYear: 'Дараагийн жилд',
+    selectDate: 'Огноо сонгох',
+    selectWeek: 'Долоо хоног сонгох',
+    selectMonth: 'Сар сонгох',
+    selectQuarter: 'Улирлын тоо сонгох',
+    selectYear: 'Жил сонгох',
+    startDate: 'Эхлэх огноо',
+    endDate: 'Дуусах огноо',
+    startMonth: 'Эхлэх сар',
+    endMonth: 'Дуусах сар',
+    startQuarter: 'Эхлэх улирал',
+    endQuarter: 'Дуусах улирал',
+    startYear: 'Эхлэх жил',
+    endYear: 'Дуусах жил',
+    startWeek: 'Эхлэх долоо хоног',
+    endWeek: 'Дуусах долоо хоног'
+  },
+  timePicker: {
+    am: 'ҮӨ',
+    pm: 'ҮХ',
+    now: 'Одоо',
+    selectTime: 'Цаг сонгох',
+    selectHour: 'Цаг сонгох',
+    selectMinute: 'Минут сонгох'
   },
   empty: {
-    noData: 'Үгүй шүү өгөгдөл'
+    noData: 'Өгөгдөл алга'
+  },
+  image: {
+    previewText: 'Урьдчилан харах'
   },
   pagination: {
-    previous: 'Өмнөх хуудас',
-    next: 'Дараагийн хуудас',
+    previous: 'Өмнөх',
+    next: 'Дараагийн',
     total: 'Нийт',
-    item: 'Нийтлэл',
-    first: 'өмнөх хуудас',
-    last: 'Сүүл ээлж',
-    jump: 'Үсрэх',
-    sizePage: '/ xуудас'
+    item: 'Зүйл',
+    first: 'Эхнийх',
+    last: 'Сүүлийх',
+    jump: 'Шилжих',
+    sizePage: 'Хуудас дээрх зүйлс'
   },
   textRetract: {
-    unfold: 'Уншаагүй байна',
-    packUp: 'Хойш нь тавих'
+    unfold: 'Хаах',
+    packUp: 'Хөөрхөн'
   },
   timeAgo: {
-    just: 'ердөө л',
+    just: 'Яг одоо',
     secondsAgo: 'Секундын өмнө',
-    minutesAgo: 'минутын өмнө',
-    hoursAgo: 'Нэг цагийн өмнө'
+    minutesAgo: 'Минутын өмнө',
+    hoursAgo: 'Цагийн өмнө'
+  },
+  transfer: {
+    listTitle: 'Жагсаалт',
+    treeTitle: 'Мод',
+    tableTitle: 'Хүснэгт',
+    selectedTitle: 'Сонгосон зүйлс',
+    inverse: 'Урьдчилан'
   },
   messageBox: {
-    cancelText: 'цуцлах',
-    confirmText: 'баталгаажуулах'
+    cancelText: 'Цуцлах',
+    confirmText: 'Батлах'
   },
   dialog: {
-    cancelText: 'цуцлах',
-    confirmText: 'баталгаажуулах'
+    cancelText: 'Цуцлах',
+    confirmText: 'Батлах'
   },
   popconfirm: {
-    cancelText: 'цуцлах',
-    confirmText: 'баталгаажуулах'
+    cancelText: 'Цуцлах',
+    confirmText: 'Батлах'
   },
   upload: {
-    uploadText: 'файл байршуулах',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Файл илгээх',
+    beginUploadText: 'Илгээх эхлүүлэх',
+    uploadingText: 'Илгээж байна',
+    uploadCompleted: 'Файл илгээсэн'
   },
   pageHeader: {
-    back: 'буцах'
+    back: 'Буцах'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Бүгдийг сонгох',
+    loadMoreText: 'Цааш унших',
+    loadingMoreText: 'Цааш уншиж байна...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Бүгдийг сонгох',
+    maxTagContent: '{{surplus}} шалгагдсан нэмэлт'
+  },
+  treeSelect: {
+    selectAllText: 'Бүгдийг сонгох',
+    maxTagContent: '{{surplus}} шалгагдсан нэмэлт'
+  },
+  form: {
+    required: 'Заавал бөглөнө'
   }
 };

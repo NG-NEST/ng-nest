@@ -1,37 +1,37 @@
 export default {
   locale: 'ms_MY',
   comment: {
-    comments: 'komen',
-    giveALike: 'suka',
+    comments: 'Komen',
+    giveALike: 'Suka',
     reply: 'Balas',
-    more: 'lihat lagi',
-    sure: 'melepaskan',
+    more: 'Lihat lebih banyak',
+    sure: 'Terbitkan',
     placeholder: 'Sila masukkan komen'
   },
   theme: {
-    darkMode: 'Mod gelap',
-    initDefault: 'Memulakan nilai lalai',
-    primary: 'Warna utama',
-    success: 'kejayaan',
-    warning: 'kaveat',
+    darkMode: 'Mod Gelap',
+    initDefault: 'Mulakan Lalai',
+    primary: 'Utama',
+    success: 'Berjaya',
+    warning: 'Amaran',
     danger: 'Bahaya',
-    info: 'maklumat',
-    background: 'latar belakang',
-    border: 'kerangka',
+    info: 'Maklumat',
+    background: 'Latar belakang',
+    border: 'Sempadan',
     text: 'Teks'
   },
   calendar: {
-    month: 'bulan',
-    year: 'tahun',
-    lastMonth: 'Bulan pertama',
-    lastYear: 'tahun lepas',
-    nextMonth: 'Bulan depan',
-    nextYear: 'tahun hadapan',
+    month: 'Bulan',
+    year: 'Tahun',
+    lastMonth: 'Bulan Lepas',
+    lastYear: 'Tahun Lepas',
+    nextMonth: 'Bulan Seterusnya',
+    nextYear: 'Tahun Seterusnya',
     january: 'Januari',
     february: 'Februari',
     march: 'Mac',
     april: 'April',
-    may: 'Mungkin',
+    may: 'Mei',
     june: 'Jun',
     july: 'Julai',
     august: 'Ogos',
@@ -41,80 +41,133 @@ export default {
     december: 'Disember'
   },
   datePicker: {
-    sure: 'Sahkan',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'semalam',
-    today: 'Kini',
-    tomorrow: 'esok'
+    sure: 'Pasti',
+    week: 'Minggu',
+    month: 'Bulan',
+    year: 'Tahun',
+    january: 'Januari',
+    february: 'Februari',
+    march: 'Mac',
+    april: 'April',
+    may: 'Mei',
+    june: 'Jun',
+    july: 'Julai',
+    august: 'Ogos',
+    september: 'September',
+    october: 'Oktober',
+    november: 'November',
+    december: 'Disember',
+    monday: 'Isnin',
+    tuesday: 'Selasa',
+    wednesday: 'Rabu',
+    thursday: 'Khamis',
+    friday: 'Jumaat',
+    saturday: 'Sabtu',
+    sunday: 'Ahad',
+    yesterday: 'Semalam',
+    today: 'Hari ini',
+    tomorrow: 'Esok',
+    thisWeek: 'Minggu Ini',
+    lastWeek: 'Minggu Lepas',
+    nextWeek: 'Minggu Depan',
+    thisMonth: 'Bulan Ini',
+    lastMonth: 'Bulan Lepas',
+    nextMonth: 'Bulan Depan',
+    thisYear: 'Tahun Ini',
+    lastYear: 'Tahun Lepas',
+    nextYear: 'Tahun Depan',
+    selectDate: 'Pilih Tarikh',
+    selectWeek: 'Pilih Minggu',
+    selectMonth: 'Pilih Bulan',
+    selectQuarter: 'Pilih Suku Tahun',
+    selectYear: 'Pilih Tahun',
+    startDate: 'Tarikh Mula',
+    endDate: 'Tarikh Akhir',
+    startMonth: 'Bulan Mula',
+    endMonth: 'Bulan Akhir',
+    startQuarter: 'Suku Tahun Mula',
+    endQuarter: 'Suku Tahun Akhir',
+    startYear: 'Tahun Mula',
+    endYear: 'Tahun Akhir',
+    startWeek: 'Minggu Mula',
+    endWeek: 'Minggu Akhir'
+  },
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Sekarang',
+    selectTime: 'Pilih Masa',
+    selectHour: 'Pilih Jam',
+    selectMinute: 'Pilih Minit'
   },
   empty: {
-    noData: 'Tidak data'
+    noData: 'Tiada data'
+  },
+  image: {
+    previewText: 'Pratonton'
   },
   pagination: {
-    previous: 'Halaman sebelumnya',
-    next: 'Muka surat seterusnya',
+    previous: 'Sebelumnya',
+    next: 'Seterusnya',
     total: 'Jumlah',
-    item: 'Artikel',
-    first: 'muka depan',
-    last: 'Ekor',
-    jump: 'Melompat',
-    sizePage: '/ page.'
+    item: 'Item',
+    first: 'Pertama',
+    last: 'Terakhir',
+    jump: 'Pergi ke',
+    sizePage: 'Item setiap halaman'
   },
   textRetract: {
     unfold: 'Buka',
-    packUp: 'Ketepikan'
+    packUp: 'Lipat'
   },
   timeAgo: {
-    just: 'hanya',
-    secondsAgo: 'Detik lalu',
-    minutesAgo: 'beberapa minit yang lalu',
-    hoursAgo: 'Satu jam yang lalu'
+    just: 'Baru sahaja',
+    secondsAgo: 'Beberapa saat yang lalu',
+    minutesAgo: 'Beberapa minit yang lalu',
+    hoursAgo: 'Beberapa jam yang lalu'
+  },
+  transfer: {
+    listTitle: 'Senarai',
+    treeTitle: 'Pokok',
+    tableTitle: 'Jadual',
+    selectedTitle: 'Item Dipilih',
+    inverse: 'Terbalik'
   },
   messageBox: {
-    cancelText: 'membatalkan',
-    confirmText: 'mengesahkan'
+    cancelText: 'Batal',
+    confirmText: 'Sahkan'
   },
   dialog: {
-    cancelText: 'membatalkan',
-    confirmText: 'mengesahkan'
+    cancelText: 'Batal',
+    confirmText: 'Sahkan'
   },
   popconfirm: {
-    cancelText: 'membatalkan',
-    confirmText: 'mengesahkan'
+    cancelText: 'Batal',
+    confirmText: 'Sahkan'
   },
   upload: {
-    uploadText: 'memuat naik fail',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Muat naik fail',
+    beginUploadText: 'Mulakan muat naik',
+    uploadingText: 'Sedang dimuat naik',
+    uploadCompleted: 'Muat naik selesai'
   },
   pageHeader: {
-    back: 'kembali'
+    back: 'Kembali'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Pilih Semua',
+    loadMoreText: 'Muat Lebih',
+    loadingMoreText: 'Memuat...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Pilih Semua',
+    maxTagContent: 'Lebih {{surplus}} dipilih'
+  },
+  treeSelect: {
+    selectAllText: 'Pilih Semua',
+    maxTagContent: 'Lebih {{surplus}} dipilih'
+  },
+  form: {
+    required: 'Wajib diisi'
   }
 };

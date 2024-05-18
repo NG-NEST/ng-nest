@@ -1,120 +1,165 @@
 export default {
   locale: 'da_DK',
   comment: {
-    comments: 'kommentar',
-    giveALike: 'synes godt om',
+    comments: 'Kommentarer',
+    giveALike: 'Synes godt om',
     reply: 'Svar',
-    more: 'se mere',
-    sure: 'frigøre',
-    placeholder: 'Angiv en kommentar'
+    more: 'Mere',
+    sure: 'Sikker',
+    placeholder: 'Indtast venligst en kommentar'
   },
   theme: {
     darkMode: 'Mørk tilstand',
-    initDefault: 'Initialiser standardværdien',
-    primary: 'Hovedfarve',
-    success: 'succes',
-    warning: 'advarsel',
+    initDefault: 'Initialiser standardværdi',
+    primary: 'Primær',
+    success: 'Succes',
+    warning: 'Advarsel',
     danger: 'Fare',
-    info: 'Information',
-    background: 'baggrund',
-    border: 'ramme',
+    info: 'Info',
+    background: 'Baggrund',
+    border: 'Grænse',
     text: 'Tekst'
   },
   calendar: {
-    month: 'måned',
-    year: 'år',
-    lastMonth: 'Første måned',
-    lastYear: 'sidste år',
+    month: 'Måned',
+    year: 'År',
+    lastMonth: 'Sidste måned',
+    lastYear: 'Sidste år',
     nextMonth: 'Næste måned',
-    nextYear: 'næste år',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12'
+    nextYear: 'Næste år',
+    january: 'Januar',
+    february: 'Februar',
+    march: 'Marts',
+    april: 'April',
+    may: 'Maj',
+    june: 'Juni',
+    july: 'Juli',
+    august: 'August',
+    september: 'September',
+    october: 'Oktober',
+    november: 'November',
+    december: 'December'
   },
   datePicker: {
-    sure: 'bekræfte',
-    month: '',
-    year: '',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12',
-    monday: 'En',
-    tuesday: 'to',
-    wednesday: 'tre',
-    thursday: 'fire',
-    friday: 'Fives',
-    saturday: 'seks',
-    sunday: 'dag',
-    yesterday: 'i går',
+    sure: 'Bekræft',
+    week: 'Uge',
+    month: 'Måned',
+    year: 'År',
+    january: 'Januar',
+    february: 'Februar',
+    march: 'Marts',
+    april: 'April',
+    may: 'Maj',
+    june: 'Juni',
+    july: 'Juli',
+    august: 'August',
+    september: 'September',
+    october: 'Oktober',
+    november: 'November',
+    december: 'December',
+    monday: 'Mandag',
+    tuesday: 'Tirsdag',
+    wednesday: 'Onsdag',
+    thursday: 'Torsdag',
+    friday: 'Fredag',
+    saturday: 'Lørdag',
+    sunday: 'Søndag',
+    yesterday: 'I går',
     today: 'I dag',
-    tomorrow: 'i morgen'
+    tomorrow: 'I morgen',
+    thisWeek: 'Denne uge',
+    lastWeek: 'Sidste uge',
+    nextWeek: 'Næste uge',
+    thisMonth: 'Denne måned',
+    lastMonth: 'Sidste måned',
+    nextMonth: 'Næste måned',
+    thisYear: 'Dette år',
+    lastYear: 'Sidste år',
+    nextYear: 'Næste år',
+    selectDate: 'Vælg dato',
+    selectWeek: 'Vælg uge',
+    selectMonth: 'Vælg måned',
+    selectQuarter: 'Vælg kvartal',
+    selectYear: 'Vælg år',
+    startDate: 'Startdato',
+    endDate: 'Slutdato',
+    startMonth: 'Startmåned',
+    endMonth: 'Slutmåned',
+    startQuarter: 'Startkvartal',
+    endQuarter: 'Slutkvartal',
+    startYear: 'Startår',
+    endYear: 'Slutår',
+    startWeek: 'Startuge',
+    endWeek: 'Slutuge'
   },
-  empty: {
-    noData: 'Ingen data'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Nu',
+    selectTime: 'Vælg tidspunkt',
+    selectHour: 'Vælg time',
+    selectMinute: 'Vælg minut'
   },
+  empty: { noData: 'Ingen data' },
+  image: { previewText: 'Forhåndsvisning' },
   pagination: {
-    previous: 'Forrige side',
-    next: 'Næste side',
+    previous: 'Forrige',
+    next: 'Næste',
     total: 'Total',
-    item: 'artikel',
-    first: 'Forside',
-    last: 'Hale',
-    jump: 'Hoppe',
-    sizePage: '/ side'
+    item: 'Element',
+    first: 'Første',
+    last: 'Sidste',
+    jump: 'Spring til',
+    sizePage: 'Elementer pr. side'
   },
   textRetract: {
-    unfold: 'Unfold',
-    packUp: 'Lægge væk'
+    unfold: 'Udfold',
+    packUp: 'Pak sammen'
   },
   timeAgo: {
-    just: 'lige',
+    just: 'Lige nu',
     secondsAgo: 'Sekunder siden',
-    minutesAgo: 'minutter siden',
-    hoursAgo: 'En time siden'
+    minutesAgo: 'Minutter siden',
+    hoursAgo: 'Timer siden'
+  },
+  transfer: {
+    listTitle: 'Liste',
+    treeTitle: 'Træ',
+    tableTitle: 'Tabel',
+    selectedTitle: 'Valgte elementer',
+    inverse: 'Inverter'
   },
   messageBox: {
-    cancelText: 'afbestille',
-    confirmText: 'bekræfte'
+    cancelText: 'Annuller',
+    confirmText: 'Bekræft'
   },
   dialog: {
-    cancelText: 'afbestille',
-    confirmText: 'bekræfte'
+    cancelText: 'Annuller',
+    confirmText: 'Bekræft'
   },
   popconfirm: {
-    cancelText: 'afbestille',
-    confirmText: 'bekræfte'
+    cancelText: 'Annuller',
+    confirmText: 'Bekræft'
   },
   upload: {
-    uploadText: 'uploade filer',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Upload fil',
+    beginUploadText: 'Begynd upload af fil',
+    uploadingText: 'Uploader',
+    uploadCompleted: 'Upload af fil fuldført'
   },
-  pageHeader: {
-    back: 'Vend tilbage'
-  },
+  pageHeader: { back: 'Tilbage' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Vælg alle',
+    loadMoreText: 'Indlæs mere',
+    loadingMoreText: 'Indlæser mere'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Vælg alle',
+    maxTagContent: 'Mere {{surplus}} valgt'
+  },
+  treeSelect: {
+    selectAllText: 'Vælg alle',
+    maxTagContent: 'Mere {{surplus}} valgt'
+  },
+  form: { required: 'Påkrævet' }
 };

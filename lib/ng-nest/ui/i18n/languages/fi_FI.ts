@@ -1,120 +1,165 @@
 export default {
   locale: 'fi_FI',
   comment: {
-    comments: 'kommentti',
-    giveALike: 'Kuten',
+    comments: 'Kommentit',
+    giveALike: 'Tykkää',
     reply: 'Vastaa',
-    more: 'Katso lisää',
-    sure: 'julkaisu',
-    placeholder: 'Anna kommentti'
+    more: 'Lisää',
+    sure: 'Varmista',
+    placeholder: 'Kirjoita kommentti'
   },
   theme: {
-    darkMode: 'Pimeä tila',
+    darkMode: 'Tumma tila',
     initDefault: 'Alusta oletusarvo',
-    primary: 'Pääväri',
-    success: 'menestys',
-    warning: 'varoitus',
+    primary: 'Pää',
+    success: 'Onnistui',
+    warning: 'Varoitus',
     danger: 'Vaara',
-    info: 'tiedot',
-    background: 'tausta',
-    border: 'kehys',
+    info: 'Tieto',
+    background: 'Tausta',
+    border: 'Reuna',
     text: 'Teksti'
   },
   calendar: {
-    month: 'kuukausi',
-    year: 'vuosi',
-    lastMonth: 'Ensimmäinen kuukausi',
-    lastYear: 'viime vuonna',
-    nextMonth: 'Ensikuussa',
-    nextYear: 'ensi vuonna',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12'
+    month: 'Kuukausi',
+    year: 'Vuosi',
+    lastMonth: 'Viime kuussa',
+    lastYear: 'Viime vuonna',
+    nextMonth: 'Ensi kuussa',
+    nextYear: 'Ensi vuonna',
+    january: 'Tammikuu',
+    february: 'Helmikuu',
+    march: 'Maaliskuu',
+    april: 'Huhtikuu',
+    may: 'Toukokuu',
+    june: 'Kesäkuu',
+    july: 'Heinäkuu',
+    august: 'Elokuu',
+    september: 'Syyskuu',
+    october: 'Lokakuu',
+    november: 'Marraskuu',
+    december: 'Joulukuu'
   },
   datePicker: {
-    sure: 'vahvistaa',
-    month: '',
-    year: '',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12',
-    monday: 'Yksi',
-    tuesday: 'kaksi',
-    wednesday: 'kolme',
-    thursday: 'neljä',
-    friday: 'Kehut',
-    saturday: 'kuusi',
-    sunday: 'päivä',
-    yesterday: 'eilen',
-    today: 'Nykyään',
-    tomorrow: 'huomenna'
+    sure: 'Varmista',
+    week: 'Viikko',
+    month: 'Kuukausi',
+    year: 'Vuosi',
+    january: 'Tammikuu',
+    february: 'Helmikuu',
+    march: 'Maaliskuu',
+    april: 'Huhtikuu',
+    may: 'Toukokuu',
+    june: 'Kesäkuu',
+    july: 'Heinäkuu',
+    august: 'Elokuu',
+    september: 'Syyskuu',
+    october: 'Lokakuu',
+    november: 'Marraskuu',
+    december: 'Joulukuu',
+    monday: 'Maanantai',
+    tuesday: 'Tiistai',
+    wednesday: 'Keskiviikko',
+    thursday: 'Torstai',
+    friday: 'Perjantai',
+    saturday: 'Lauantai',
+    sunday: 'Sunnuntai',
+    yesterday: 'Eilen',
+    today: 'Tänään',
+    tomorrow: 'Huomenna',
+    thisWeek: 'Tällä viikolla',
+    lastWeek: 'Viime viikolla',
+    nextWeek: 'Ensi viikolla',
+    thisMonth: 'Tässä kuussa',
+    lastMonth: 'Viime kuussa',
+    nextMonth: 'Ensi kuussa',
+    thisYear: 'Tänä vuonna',
+    lastYear: 'Viime vuonna',
+    nextYear: 'Ensi vuonna',
+    selectDate: 'Valitse päivämäärä',
+    selectWeek: 'Valitse viikko',
+    selectMonth: 'Valitse kuukausi',
+    selectQuarter: 'Valitse neljännes',
+    selectYear: 'Valitse vuosi',
+    startDate: 'Aloitus päivämäärä',
+    endDate: 'Päättymispäivämäärä',
+    startMonth: 'Aloituskkuukausi',
+    endMonth: 'Lopetuskkuukausi',
+    startQuarter: 'Aloitustäysi',
+    endQuarter: 'Lopetustäysi',
+    startYear: 'Aloitusvuosi',
+    endYear: 'Lopetusvuosi',
+    startWeek: 'Aloitusta viikko',
+    endWeek: 'Lopetusviikko'
   },
-  empty: {
-    noData: 'Ei dataa'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Nyt',
+    selectTime: 'Valitse aika',
+    selectHour: 'Valitse tunti',
+    selectMinute: 'Valitse minuutti'
   },
+  empty: { noData: 'Ei tietoja' },
+  image: { previewText: 'Esikatselu' },
   pagination: {
-    previous: 'Edellinen sivu',
-    next: 'Seuraava sivu',
-    total: 'Kaikki yhteensä',
-    item: 'Artikla',
-    first: 'Etusivu',
-    last: 'Häntä',
-    jump: 'Hypätä',
-    sizePage: '/ sivu'
+    previous: 'Edellinen',
+    next: 'Seuraava',
+    total: 'Yhteensä',
+    item: 'Kohde',
+    first: 'Ensimmäinen',
+    last: 'Viimeinen',
+    jump: 'Hyppää',
+    sizePage: 'Kohdetta/sivu'
   },
   textRetract: {
-    unfold: 'Unfold',
-    packUp: 'Laittaa pois'
+    unfold: 'Avaa',
+    packUp: 'Pakkaa'
   },
   timeAgo: {
-    just: 'vain',
-    secondsAgo: ' Sekuntia sitten',
-    minutesAgo: ' minuuttia sitten',
-    hoursAgo: ' Tunti sitten'
+    just: 'Juuri nyt',
+    secondsAgo: 'Sekuntia sitten',
+    minutesAgo: 'Minuuttia sitten',
+    hoursAgo: 'Tuntia sitten'
+  },
+  transfer: {
+    listTitle: 'Luettelo',
+    treeTitle: 'Puuhun',
+    tableTitle: 'Taulukkoon',
+    selectedTitle: 'Valitut kohteet',
+    inverse: 'Käänteinen'
   },
   messageBox: {
-    cancelText: 'peruuttaa',
-    confirmText: 'vahvistaa'
+    cancelText: 'Peruuta',
+    confirmText: 'Vahvista'
   },
   dialog: {
-    cancelText: 'peruuttaa',
-    confirmText: 'vahvistaa'
+    cancelText: 'Peruuta',
+    confirmText: 'Vahvista'
   },
   popconfirm: {
-    cancelText: 'peruuttaa',
-    confirmText: 'vahvistaa'
+    cancelText: 'Peruuta',
+    confirmText: 'Vahvista'
   },
   upload: {
-    uploadText: 'lataa tiedostoja',
-    beginUploadText: 'Began to upload files',
-    uploadingText: 'On the cross',
-    uploadCompleted: 'File upload is completed'
+    uploadText: 'Lataa tiedosto',
+    beginUploadText: 'Aloita tiedoston lataus',
+    uploadingText: 'Lataaminen',
+    uploadCompleted: 'Tiedoston lataus valmis'
   },
-  pageHeader: {
-    back: 'palata'
-  },
+  pageHeader: { back: 'Takaisin' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Valitse kaikki',
+    loadMoreText: 'Lataa lisää',
+    loadingMoreText: 'Ladataan'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Valitse kaikki',
+    maxTagContent: 'Lisää {{surplus}} valittu'
+  },
+  treeSelect: {
+    selectAllText: 'Valitse kaikki',
+    maxTagContent: 'Lisää {{surplus}} valittu'
+  },
+  form: { required: 'Pakollinen' }
 };
