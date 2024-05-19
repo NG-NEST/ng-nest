@@ -1,20 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, inject } from '@angular/core';
 import { XI18nService, XI18nProperty, zh_CN, en_US, XI18nLanguage } from '@ng-nest/ui/i18n';
 import { HttpClient } from '@angular/common/http';
-import { Location } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
-import { XStorageService } from '@ng-nest/ui/core';
+import { XStorageService, XThemeService } from '@ng-nest/ui/core';
 import { Platform } from '@angular/cdk/platform';
 import { PrismService } from './prism.service';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
+  doc: Document = inject(DOCUMENT);
+  colorsStyleEle!: HTMLStyleElement;
   defaultLang: XI18nLanguage;
   langs = ['zh_CN', 'en_US'];
   cacheLangs: { [lang: string]: XI18nProperty } = {};
   versions: string[] = [];
   version = '17.0.5';
   navName = 'NG-NEST';
+  renderer2: Renderer2;
+  light = {
+    '--layout-border-color': 'rgb(246, 245, 246)'
+  };
+  dark = {
+    '--layout-border-color': 'rgb(37, 32, 34)'
+  };
 
   get lang(): XI18nLanguage {
     let lg = this.storage.getLocal('Lang');
@@ -34,12 +43,18 @@ export class ConfigService {
     private location: Location,
     private meta: Meta,
     private storage: XStorageService,
+    private theme: XThemeService,
     private platform: Platform,
-    private prism: PrismService
+    private prism: PrismService,
+    private factory: RendererFactory2
   ) {
+    this.renderer2 = this.factory.createRenderer(null, null);
     this.defaultLang = this.i18n.getLocaleId();
     this.handleLang();
     this.prism.init();
+    this.theme.changed.subscribe((x) => {
+      this.setTheme(x);
+    });
   }
 
   init() {
@@ -100,6 +115,25 @@ export class ConfigService {
     const description = this.meta.getTag("name='description'");
     const { meta } = locale;
     description?.setAttribute('content', meta.description);
+  }
+
+  setTheme(theme: 'light' | 'dark') {
+    let colors = this.light;
+    if (theme === 'light') {
+      colors = this.light;
+    } else if (theme === 'dark') {
+      colors = this.dark;
+    }
+    if (this.colorsStyleEle) {
+      this.renderer2.removeChild(this.colorsStyleEle.parentNode, this.colorsStyleEle);
+    }
+    const styles = Object.entries(colors)
+      .map((x) => `${x[0]}: ${x[1]};`)
+      .join('');
+    this.colorsStyleEle = this.renderer2.createElement('style');
+    this.colorsStyleEle.innerHTML = `.ns-colors{${styles}}`;
+    this.renderer2.addClass(this.doc.documentElement, 'ns-colors');
+    this.doc.documentElement.getElementsByTagName('head')[0].appendChild(this.colorsStyleEle);
   }
 
   getVersions() {

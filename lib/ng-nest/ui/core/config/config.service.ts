@@ -57,6 +57,7 @@ export class XConfigService {
         true
       )
     });
+    this.themeService.changed.next('dark');
   }
 
   setLightTheme(theme?: XTheme) {
@@ -69,6 +70,7 @@ export class XConfigService {
         false
       )
     });
+    this.themeService.changed.next('light');
   }
 
   setTheme(theme?: XTheme) {

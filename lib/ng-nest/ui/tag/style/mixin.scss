@@ -180,7 +180,7 @@
 @mixin type(
   $type,
   $color,
-  $border-color,
+  $--border-color,
   $background-color,
   $disabled-color,
   $disabled-background,
@@ -196,7 +196,7 @@
   $checked-selected-background
 ) {
   &-#{$type} {
-    border-color: $border-color;
+    border-color: $--border-color;
     color: $color;
     background-color: $background-color;
     > .x-icon:hover {
@@ -248,18 +248,18 @@
   }
 }
 
-@mixin disabled($color, $bg-color, $border-color) {
+@mixin disabled($color, $bg-color, $--border-color) {
   color: $color;
   cursor: not-allowed;
   background-image: none;
   background-color: $bg-color;
-  border-color: $border-color;
+  border-color: $--border-color;
   &:hover,
   &:active,
   &:focus {
     color: $color;
     background-color: $bg-color;
-    border-color: $border-color;
+    border-color: $--border-color;
   }
   > .x-icon:hover {
     cursor: inherit;

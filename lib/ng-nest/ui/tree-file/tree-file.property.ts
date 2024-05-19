@@ -62,7 +62,7 @@ export class XTreeFileProperty extends XPropertyFunction(X_TREE_FILE_CONFIG_NAME
    * @zh_CN 当前激活的节点 Id, 当 multiple 为 true 时，值为数组（默认是 Id 数组，objectArray 为 true，对象数组）
    * @en_US Currently active node Id. When Multiple is true, the value is the Id array
    */
-  readonly activatedId = input<any>();
+  readonly activatedId = model<any>();
   /**
    * @zh_CN 展开的节点
    * @en_US Expanded node

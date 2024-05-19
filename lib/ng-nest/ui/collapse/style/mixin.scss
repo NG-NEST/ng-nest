@@ -7,8 +7,8 @@
 @mixin collapse {
   font-size: $--x-font-size;
   box-sizing: border-box;
-  border-top: $--x-border-deep-base;
-  border-bottom: $--x-border-deep-base;
+  border-top: $--x-border-base;
+  border-bottom: $--x-border-base;
   x-collapse-panel:last-child {
     .x-collapse-panel {
       &-header {
@@ -20,8 +20,8 @@
     }
   }
   &-bordered {
-    border-left: $--x-border-deep-base;
-    border-right: $--x-border-deep-base;
+    border-left: $--x-border-base;
+    border-right: $--x-border-base;
     border-radius: $--x-border-radius;
     x-collapse-panel {
       .x-collapse-panel {
@@ -59,7 +59,7 @@
     align-items: center;
     justify-content: space-between;
     padding: $--x-padding-small 0;
-    border-bottom: $--x-border-deep-base;
+    border-bottom: $--x-border-base;
     transition: border-color 0.3s;
     cursor: pointer;
     &-title {
@@ -82,7 +82,7 @@
   }
   &-body {
     overflow: hidden;
-    border-bottom: $--x-border-deep-width $--x-border-style transparent;
+    border-bottom: $--x-border-width $--x-border-style transparent;
     transition: border-color 0.3s;
   }
   &-content {

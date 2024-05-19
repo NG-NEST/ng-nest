@@ -229,7 +229,7 @@ input {
     margin-top: 0.875rem;
     background-color: $--x-background-a100;
     border-radius: $--x-border-radius;
-    border: $--x-border-deep-base;
+    border: $--x-border-base;
     color: $--x-text-400;
   }
 
@@ -247,10 +247,10 @@ input {
     width: 100%;
     background: $--x-background;
     border-collapse: collapse;
-    border-bottom: $--x-border-deep-base;
+    border-bottom: $--x-border-base;
     tr > th,
     tr > td {
-      border-bottom: $--x-border-deep-base;
+      border-bottom: $--x-border-base;
       text-align: left;
       padding: 0.5rem 0;
     }

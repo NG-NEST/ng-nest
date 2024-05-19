@@ -43,7 +43,7 @@
           }
         }
         &:not(:last-child) > div {
-          border-bottom: $--x-border-deep-base;
+          border-bottom: $--x-border-base;
         }
         &.x-comment-more {
           padding: 0.875rem;
@@ -88,7 +88,7 @@
   &-item {
     display: flex;
     padding: 1rem 0;
-    border-bottom: $--x-border-deep-base;
+    border-bottom: $--x-border-base;
     &:first-child {
       padding-top: 0;
     }

@@ -46,6 +46,7 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
   dir = computed(() => (this.layout() === 'row' ? 'X' : 'Y'));
   sizeName = computed(() => (this.layout() === 'row' ? 'Width' : 'Height'));
   highlightBox = computed(() => {
+    this.resizeChanged();
     if (!this.activated()) return {};
     const activeEle: HTMLElement = this.sliderNodes().nativeElement.querySelector(
       `li:nth-child(${this.activatedIndex() + 1})`
@@ -58,6 +59,7 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
       top: `${activeEle.offsetTop}px`
     };
   });
+  resizeChanged = signal<DOMRectReadOnly | null>(null);
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
   elementRef = inject(ElementRef);
@@ -94,6 +96,7 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
         this.resizeObserver = x.resizeObserver;
         this.sizeChecked();
         this.setActivated();
+        this.resizeChanged.set(x.entry?.contentRect || null);
       });
   }
 

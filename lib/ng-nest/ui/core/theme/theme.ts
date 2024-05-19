@@ -72,7 +72,7 @@ export const X_THEME_COLORS: XColorsTheme = {
 export const X_THEME_DARK_COLORS: XColorsTheme = {
   text: '#dddddd',
   border: '#424242',
-  background: '#1e1e1e'
+  background: '#0f0f11'
 };
 
 export const X_THEME_COLOR_KEYS = Object.keys(X_THEME_COLORS);

@@ -29,7 +29,7 @@
   &-bordered {
     .#{$--x-description-prefix} {
       &-item {
-        border: $--x-border-deep-base;
+        border: $--x-border-base;
         margin-left: -0.125rem;
         margin-top: -0.125rem;
       }

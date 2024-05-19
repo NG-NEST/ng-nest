@@ -8,7 +8,7 @@
   display: block;
   .#{$prefix}-html {
     padding: 1.5rem 1.5rem 3.75rem;
-    border: $--x-border-deep-base;
+    border: $--x-border-base;
     border-bottom-left-radius: $--x-border-radius;
     border-bottom-right-radius: $--x-border-radius;
     position: relative;
@@ -41,9 +41,9 @@
     padding: 1rem 1.5rem;
     border-top-left-radius: $--x-border-radius;
     border-top-right-radius: $--x-border-radius;
-    border-top: $--x-border-deep-base;
-    border-left: $--x-border-deep-base;
-    border-right: $--x-border-deep-base;
+    border-top: $--x-border-base;
+    border-left: $--x-border-base;
+    border-right: $--x-border-base;
     background-color: $--x-background-a100;
     > p {
       margin: 0.25rem 0 0;

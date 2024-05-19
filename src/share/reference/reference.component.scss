@@ -46,7 +46,7 @@
       .example {
         padding: $--x-padding-mini $--x-padding-medium;
         border-radius: $--x-border-small-radius;
-        border: $--x-border-deep-base;
+        border: $--x-border-base;
       }
       .extends {
         color: $--x-text;
@@ -65,6 +65,9 @@
       }
       .children {
         padding-left: $--x-padding-large;
+        .property {
+          padding: 0 1.5rem;
+        }
       }
       .properties {
         padding: $--x-padding-mini $--x-padding-medium;

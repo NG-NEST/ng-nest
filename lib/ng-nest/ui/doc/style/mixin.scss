@@ -74,7 +74,7 @@
         margin-top: 0.875rem;
         background-color: $--x-background-a100;
         border-radius: $--x-border-radius;
-        border: $--x-border-deep-base;
+        border: $--x-border-base;
         color: $--x-text-400;
       }
 
@@ -120,10 +120,10 @@
         width: 100%;
         background: $--x-background;
         border-collapse: collapse;
-        border-bottom: $--x-border-deep-base;
+        border-bottom: $--x-border-base;
         tr > th,
         tr > td {
-          border-bottom: $--x-border-deep-base;
+          border-bottom: $--x-border-base;
           text-align: left;
           padding: 0.5rem 0;
         }
@@ -147,7 +147,7 @@
   }
 }
 
-@mixin code($type, $color, $backgroundColor, $border-color, $border-left-color) {
+@mixin code($type, $color, $backgroundColor, $--border-color, $border-left-color) {
   &#{$type} {
     flex: 1;
     position: relative;
@@ -156,7 +156,7 @@
     background-color: $backgroundColor;
     color: $color;
     border: $--x-border-base;
-    border-color: $border-color;
+    border-color: $--border-color;
     text-shadow: none;
     @if map-has-key($--x-doc-states, $type) {
       padding: 0.5rem 0.5rem 0.5rem 0.875rem;

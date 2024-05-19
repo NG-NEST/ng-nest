@@ -15,6 +15,7 @@ import {
 } from './theme';
 import { DOCUMENT } from '@angular/common';
 import { XComputed } from '../util';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class XThemeService {
   private renderer2: Renderer2;
   private declaration: CSSStyleDeclaration;
   private doc: Document = inject(DOCUMENT);
+  changed = new BehaviorSubject<'light' | 'dark'>('light');
 
   constructor(private factory: RendererFactory2) {
     this.renderer2 = this.factory.createRenderer(null, null);

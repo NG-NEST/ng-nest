@@ -11,7 +11,7 @@
   width: 100%;
   position: relative;
   &:not(.x-table-wrap-border-hidden) {
-    border: $--x-border-deep-base;
+    border: $--x-border-base;
   }
   > thead {
     position: relative;
@@ -29,7 +29,7 @@
         position: relative;
         font-weight: 600;
         background-color: $--x-background;
-        border-bottom: $--x-border-deep-base;
+        border-bottom: $--x-border-base;
         > a {
           display: inline-flex;
           align-items: center;
@@ -70,7 +70,7 @@
       }
       > tr.x-table-search {
         > th {
-          border-top: $--x-border-deep-base;
+          border-top: $--x-border-base;
         }
       }
     }
@@ -89,7 +89,7 @@
         justify-content: space-between;
         overflow: hidden;
         background-color: $--x-background;
-        border-bottom: $--x-border-deep-base;
+        border-bottom: $--x-border-base;
         > div {
           flex: 1;
           white-space: nowrap;
@@ -174,7 +174,7 @@
   &-scroll-left {
     .#{$--x-table}-sticky-left-last {
       box-shadow: $--x-box-shadow-right;
-      border-right: $--x-border-deep-base;
+      border-right: $--x-border-base;
     }
   }
   &-td-adaption-height {
@@ -194,7 +194,7 @@
   &-bordered {
     > thead > tr > th,
     > tbody tr > td {
-      border-right: $--x-border-deep-base;
+      border-right: $--x-border-base;
       padding-left: calc(#{$--x-font-size} / 2);
       &:last-child {
         border-right: none;
@@ -210,7 +210,7 @@
     }
     > thead > tr > th,
     > tbody tr > td {
-      border-right: $--x-border-deep-base;
+      border-right: $--x-border-base;
       &:last-child {
         border-right: none;
       }
@@ -226,7 +226,7 @@
     }
   }
   &-header {
-    border-bottom: $--x-border-deep-base;
+    border-bottom: $--x-border-base;
     text-align: left;
     display: flex;
     align-items: center;
@@ -234,7 +234,7 @@
   &-footer {
     display: flex;
     align-items: center;
-    border-top: $--x-border-deep-base;
+    border-top: $--x-border-base;
   }
   &-sticky-right-scroll {
     position: absolute;
@@ -245,22 +245,22 @@
   }
   &-has-scroll-right {
     .x-table-footer {
-      border-top: $--x-border-deep-base;
+      border-top: $--x-border-base;
     }
   }
   &-has-scroll-bottom {
     &:not(.x-table-scroll-left-max) {
       .#{$--x-table}-sticky-right-first {
         box-shadow: $--x-box-shadow-left;
-        border-left: $--x-border-deep-base;
+        border-left: $--x-border-base;
       }
     }
   }
   &-border-bottom {
-    border-bottom: $--x-border-deep-base;
+    border-bottom: $--x-border-base;
   }
   &-border-top {
-    border-top: $--x-border-deep-base;
+    border-top: $--x-border-base;
   }
   &-row-size {
     @include rowSize(
@@ -360,7 +360,7 @@
   &.cdk-drag-preview {
     display: flex;
     align-items: center;
-    border: $--x-border-deep-base;
+    border: $--x-border-base;
     border-style: dashed;
     border-radius: $--x-border-radius;
     background-color: $--x-background;

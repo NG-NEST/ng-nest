@@ -65,10 +65,10 @@
     width: 100%;
     background: $--x-background;
     border-collapse: collapse;
-    border-bottom: $--x-border-deep-base;
+    border-bottom: $--x-border-base;
     tr > th,
     tr > td {
-      border-bottom: $--x-border-deep-base;
+      border-bottom: $--x-border-base;
       text-align: left;
       padding: 0.5rem 0;
     }

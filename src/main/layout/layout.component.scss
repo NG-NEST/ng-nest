@@ -1,8 +1,8 @@
 @import '../../styles/index.scss';
 
 ns-header {
-  height: $header-height;
-  background-color: $--x-background-100;
+  height: $--header-width;
+  background-color: $--x-background;
   width: 100%;
   z-index: 10;
   display: flex;
@@ -12,9 +12,9 @@ ns-header {
   box-sizing: border-box;
   opacity: 1;
   transition:
-    margin $transition-duration-slow,
-    opacity $transition-duration-slow;
-  box-shadow: $--x-box-shadow;
+    margin $--transition-duration-slow,
+    opacity $--transition-duration-slow;
+  border-block-end: $--layout-border;
   > x-button.menu {
     margin: 0 0.875rem;
     .x-button .x-icon {
@@ -28,7 +28,7 @@ ns-header {
 }
 
 ns-logo {
-  width: $sider-width;
+  width: $--sider-width;
   > section {
     position: relative;
     padding: 0 1rem;
@@ -103,7 +103,7 @@ ns-nav {
 
 ns-search {
   > section {
-    width: $sider-width;
+    width: $--sider-width;
     x-auto-complete {
       width: 100%;
       x-input {
@@ -115,23 +115,22 @@ ns-search {
 
 ns-sider {
   height: 100%;
-  width: $sider-width + 0.0625rem;
+  width: $--sider-width + 0.0625rem;
   background-color: $--x-background;
-  margin-left: -#{$sider-width};
+  margin-left: -#{$--sider-width};
   opacity: 0;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 9;
-  border-right: 0.0625rem solid $--x-border;
-  // box-shadow: $box-shadow;
+  border-inline-end: $--layout-border;
   transition:
-    margin $transition-duration-slow,
-    opacity $transition-duration-slow;
+    margin $--transition-duration-slow,
+    opacity $--transition-duration-slow;
   > section {
     position: relative;
     height: 100%;
-    width: $sider-width;
+    width: $--sider-width;
     padding: 2rem 0;
     float: left;
     overflow: hidden;
@@ -141,7 +140,7 @@ ns-sider {
   }
   x-menu {
     .x-menu.x-menu-column {
-      width: $sider-width;
+      width: $--sider-width;
     }
     .x-menu-nodes > .x-menu-node {
       border-right: none;
@@ -164,9 +163,9 @@ ns-content {
   width: 100%;
   display: block;
   transition:
-    padding-left $transition-duration-slow,
-    padding-top $transition-duration-slow;
-  padding-bottom: $header-height;
+    padding-left $--transition-duration-slow,
+    padding-top $--transition-duration-slow;
+  padding-bottom: $--header-width;
   > ns-footer {
     width: 100%;
     display: block;

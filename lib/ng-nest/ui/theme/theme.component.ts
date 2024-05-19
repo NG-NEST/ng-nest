@@ -93,6 +93,13 @@ export class XThemeComponent extends XThemeProperty implements OnInit, AfterView
   constructor() {
     super();
     effect(() => this.setControlsLabel());
+    effect(() => {
+      if (this.dark()) {
+        this.themeService.changed.next('dark');
+      } else {
+        this.themeService.changed.next('light');
+      }
+    });
   }
 
   ngOnInit() {

@@ -56,7 +56,7 @@ export class XTreeFileComponent extends XTreeFileProperty {
         `${XTreeFilePrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`
       );
     }
-    if (!this.showTree && this.activatedId) {
+    if (!this.showTree() && this.activatedId()) {
       this.catalogChange((this.data() as XTreeFileNode[]).find((x) => x.id == this.activatedId()) as XTreeFileNode);
     }
   }

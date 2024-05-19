@@ -1,8 +1,8 @@
-$sider-width: 15rem;
+$--sider-width: 15rem;
 $sider-background-color: #f5f5f5;
-$header-height: 3.25rem;
+$--header-width: 3.25rem;
 $tabs-height: 2.25rem;
-$tabs-width: calc(100% - #{$sider-width});
+$tabs-width: calc(100% - #{$--sider-width});
 $tabs-background-color: #f5f5f5;
 $border: 1px solid #dddddd;
 
@@ -12,18 +12,18 @@ app-index {
     top: 0;
     z-index: 11;
     height: 100%;
-    width: $sider-width;
+    width: $--sider-width;
     background-color: $sider-background-color;
     border-right: $border;
     > app-header {
-      height: $header-height;
+      height: $--header-width;
       display: block;
     }
   }
   > app-tabs {
     position: fixed;
     top: 0;
-    left: $sider-width;
+    left: $--sider-width;
     z-index: 11;
     height: $tabs-height;
     width: $tabs-width;
@@ -32,14 +32,14 @@ app-index {
   > app-crumb {
     position: fixed;
     top: $tabs-height;
-    left: $sider-width;
+    left: $--sider-width;
     z-index: 11;
     height: $tabs-height;
     width: $tabs-width;
   }
   > app-content {
     padding-top: $tabs-height * 2;
-    padding-left: $sider-width;
+    padding-left: $--sider-width;
     display: block;
     height: 100%;
   }

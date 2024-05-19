@@ -186,7 +186,7 @@
   $plain-disabled,
   $plain-disabled-background,
   $plain-disabled-border,
-  $box-shadow-color,
+  $--box-shadow-color,
   $plain-box-shadow-color,
   $ripple-background
 ) {
@@ -253,12 +253,12 @@
   }
 }
 
-@mixin disabled($color, $bg-color, $border-color) {
+@mixin disabled($color, $bg-color, $--border-color) {
   color: $color;
   cursor: not-allowed;
   background-image: none;
   background-color: $bg-color;
-  border-color: $border-color;
+  border-color: $--border-color;
   box-shadow: none;
 }
 

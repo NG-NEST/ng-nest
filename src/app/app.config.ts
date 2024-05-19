@@ -1,4 +1,4 @@
-import { isDevMode } from '@angular/core';
+import { APP_INITIALIZER, isDevMode } from '@angular/core';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
@@ -13,6 +13,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { XPreloadingStrategyService } from '@ng-nest/ui/core';
 import type { ApplicationConfig } from '@angular/core';
+import { AppInitializer } from './app.initializer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -30,6 +31,11 @@ export const appConfig: ApplicationConfig = {
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: AppInitializer,
+      multi: true
+    }
   ]
 };
