@@ -266,7 +266,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
 
   setRailBackground() {
     this.renderer.setStyle(
-      this.transparentRail,
+      this.transparentRail(),
       'background',
       `linear-gradient(to right, rgba(${this.rgba().r}, ${this.rgba().g}, ${this.rgba().b}, 0) 0%, rgba(${this.rgba().r}, ${this.rgba().g}, ${this.rgba().b}, 1) 100%)`
     );

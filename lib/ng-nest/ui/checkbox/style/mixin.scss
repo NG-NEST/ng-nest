@@ -83,7 +83,7 @@
           border-color: $--x-primary;
           background-color: $--x-primary;
           &::after {
-            border: $--x-border-base;
+            border: 0.125rem solid white;
             border-top: 0;
             border-left: 0;
             top: 0.575rem;

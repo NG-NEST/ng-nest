@@ -4456,6 +4456,18 @@ export const zh_CN: {[key: string]: AppProp} = {
         "example": ""
       },
       {
+        "name": "checked",
+        "type": "boolean",
+        "label": "选中",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "checked",
+        "propType": "",
+        "example": ""
+      },
+      {
         "name": "icon",
         "type": "string",
         "label": "图标",
@@ -22938,9 +22950,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "activatedId",
-        "type": "any",
+        "type": "",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "",
         "label": "当前激活的节点 Id, 当 multiple 为 true 时，值为数组（默认是 Id 数组，objectArray 为 true，对象数组）",
         "default": "",
         "withConfig": false,

@@ -252,6 +252,11 @@ export interface XCheckboxNode extends XIdentityProperty {
    */
   disabled?: boolean;
   /**
+   * @zh_CN 选中
+   * @en_US Disable
+   */
+  checked?: boolean;
+  /**
    * @zh_CN 图标
    * @en_US Icon
    */

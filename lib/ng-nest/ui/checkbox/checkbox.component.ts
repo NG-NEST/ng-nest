@@ -9,11 +9,12 @@ import {
   OnDestroy,
   computed,
   viewChild,
-  signal
+  signal,
+  effect
 } from '@angular/core';
 import { XCheckboxPrefix, XCheckboxNode, XCheckboxProperty } from './checkbox.property';
 import { Subject } from 'rxjs';
-import { XIsChange, XSetData, XBoolean } from '@ng-nest/ui/core';
+import { XIsChange, XSetData } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XTagComponent } from '@ng-nest/ui/tag';
 import { FormsModule } from '@angular/forms';
@@ -35,15 +36,12 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
   checkbox = viewChild.required('checkbox', { read: ElementRef<HTMLElement> });
 
   override writeValue(value: boolean | Array<any>) {
+    console.log('writeValue', value);
     this.value.set(value);
   }
 
   beforeIsTemplate = computed(() => this.before() instanceof TemplateRef);
   afterIsTemplate = computed(() => this.after() instanceof TemplateRef);
-
-  getDisabled(disabled?: boolean) {
-    return (this.disabledComputed() || disabled) as XBoolean;
-  }
 
   nodes = signal<XCheckboxNode[]>([]);
   private unSubject = new Subject<void>();
@@ -67,6 +65,18 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
       return 'initial';
     }
   });
+
+  constructor() {
+    super();
+    effect(
+      () => {
+        this.value();
+        this.setChecked();
+        console.log(this.value());
+      },
+      { allowSignalWrites: true }
+    );
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const { data } = changes;
@@ -95,9 +105,19 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
     if (this.onChange) this.onChange(this.value());
   }
 
-  getChecked(id: any): boolean {
+  isChecked(id: any): boolean {
     if (this.single()) return this.value() as boolean;
     else return Array.isArray(this.value()) && this.value().includes(id);
+  }
+
+  setChecked() {
+    this.nodes.update((x) => {
+      x.forEach((y) => {
+        y.checked = this.isChecked(y.id);
+      });
+      return x;
+    });
+    console.log(this.nodes());
   }
 
   private setData() {

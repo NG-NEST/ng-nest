@@ -4456,6 +4456,18 @@ export const en_US: {[key: string]: AppProp} = {
         "example": ""
       },
       {
+        "name": "checked",
+        "type": "boolean",
+        "label": "Disable",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "checked",
+        "propType": "",
+        "example": ""
+      },
+      {
         "name": "icon",
         "type": "string",
         "label": "Icon",
@@ -22938,9 +22950,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "activatedId",
-        "type": "any",
+        "type": "",
         "toType": "",
-        "inputType": "InputSignal<any>",
+        "inputType": "",
         "label": "Currently active node Id. When Multiple is true, the value is the Id array",
         "default": "",
         "withConfig": false,

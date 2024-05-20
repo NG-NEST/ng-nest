@@ -120,7 +120,7 @@
       }
       &.#{$--x-table}-activated {
         > td {
-          background-color: $--x-background-a300;
+          background-color: $--x-primary-900;
         }
       }
       &:hover:not(.x-table-activated) {

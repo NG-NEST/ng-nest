@@ -34,7 +34,7 @@
           @for (item of nodes(); track item.id) {
             <div
               class="x-checkbox-row-item"
-              [class.x-checked]="getChecked(item.id)"
+              [class.x-checked]="item.checked!"
               [class.x-disabled]="disabledComputed() || item.disabled"
               [class.x-indeterminate]="indeterminate()"
               (click)="checkboxClick($event, item)"
@@ -54,8 +54,8 @@
                 [title]="item.title!"
                 [size]="size()"
                 [type]="type()"
-                [activated]="getChecked(item.id)"
-                [disabled]="getDisabled(item.disabled)"
+                [activated]="item.checked!"
+                [disabled]="disabledComputed() || item.disabled!"
                 attrType="button"
                 (click)="checkboxClick($event, item)"
                 plain
@@ -72,8 +72,8 @@
                 [title]="item.title!"
                 [size]="size()"
                 [type]="type()"
-                [activated]="getChecked(item.id)"
-                [disabled]="getDisabled(item.disabled)"
+                [activated]="item.checked!"
+                [disabled]="disabledComputed() || item.disabled!"
                 attrType="button"
                 (click)="checkboxClick($event, item)"
                 plain
@@ -83,7 +83,7 @@
           </x-buttons>
         }
         @case ('tag') {
-          @for (item of nodes(); track item.id) {
+          @for (item of nodes(); track item) {
             <x-tag
               checked
               manual
@@ -91,8 +91,8 @@
               [size]="size()"
               [bordered]="tagBordered()"
               [dark]="tagDark()"
-              [disabled]="getDisabled(item.disabled)"
-              [selected]="getChecked(item.id)"
+              [disabled]="disabledComputed() || item.disabled!"
+              [selected]="item.checked!"
               (click)="checkboxClick($event, item)"
               >{{ item.label }}</x-tag
             >
