@@ -98,11 +98,11 @@ export class XNotificationService {
 
   private setDuration(option: XNotificationOption) {
     if (option.duration) {
-      option.duration$ = of(true)
+      option.durationSubscription = of(true)
         .pipe(delay(option.duration))
         .subscribe(() => {
           this.removeNotification(option);
-          option.duration$ && option.duration$.unsubscribe();
+          option.durationSubscription && option.durationSubscription.unsubscribe();
         });
     }
   }

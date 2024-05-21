@@ -110,6 +110,10 @@ export interface NcPrope {
    * 转换函数
    */
   transform?: string;
+  /**
+   * signal 类型
+   */
+  signal?: 'input' | 'output' | 'model';
 }
 
 /**

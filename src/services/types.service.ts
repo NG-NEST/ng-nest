@@ -3,7 +3,8 @@ import { XIsString } from '@ng-nest/ui/core';
 import { zh_CN, en_US, AppProp, AppPrope } from '@interfaces';
 import { ConfigService } from './config.service';
 import { XDialogService } from '@ng-nest/ui/dialog';
-import { NsReferenceComponent } from '@share';
+import { NsApiReferenceComponent } from '@share';
+import { NsApiNameComponent } from '@share';
 
 @Injectable({ providedIn: 'root' })
 export class TypesService {
@@ -25,32 +26,47 @@ export class TypesService {
   }
 
   typeMap = new Map<string, AppProp>();
+  nameMap = new Map<string, AppPrope>();
 
-  getTypes(propType: string, propName: string) {
-    let key = `${this.lang}-${propType}-${propName}`;
-    const isExist = this.typeMap.has(key);
+  name(propName: string, className: string) {
+    let key = `${this.lang}-${className}-${propName}`;
+    const isExist = this.nameMap.has(key);
+    let prop!: AppPrope;
     if (isExist) {
-      this.prop = this.typeMap.get(key);
+      prop = this.nameMap.get(key)!;
     } else {
-      this.prop = this.setTypes(this.lang, propType, propName)!;
-      this.typeMap.set(key, this.prop);
+      const data = this.data[this.lang];
+      const cls = data[className];
+      if (!cls) return;
+      prop = cls.properties!.find((x) => x.name === propName)!;
+      this.nameMap.set(key, prop);
     }
+
+    this.dialog.create(NsApiNameComponent, {
+      className: 'ns-reference',
+      width: '45rem',
+      data: {
+        property: prop,
+        className
+      }
+    });
   }
 
   reference(propType: string, propName: string) {
     let key = `${this.lang}-${propType}-${propName}`;
     const isExist = this.typeMap.has(key);
+    let prop!: AppProp;
     if (isExist) {
-      this.prop = this.typeMap.get(key);
+      prop = this.typeMap.get(key)!;
     } else {
-      this.prop = this.setTypes(this.lang, propType, propName)!;
-      this.typeMap.set(key, this.prop);
+      prop = this.setTypes(this.lang, propType, propName)!;
+      this.typeMap.set(key, prop);
     }
-    this.dialog.create(NsReferenceComponent, {
+    this.dialog.create(NsApiReferenceComponent, {
       className: 'ns-reference',
       width: '45rem',
       data: {
-        property: this.prop
+        property: prop
       }
     });
   }

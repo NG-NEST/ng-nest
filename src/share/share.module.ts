@@ -15,8 +15,9 @@ import { XTooltipDirective } from '@ng-nest/ui/tooltip';
 import { XAnchorComponent } from '@ng-nest/ui/anchor';
 import { XTreeFileComponent } from '@ng-nest/ui/tree-file';
 import { XPopoverDirective } from '@ng-nest/ui/popover';
-import { NsReferenceComponent } from './reference/reference.component';
+import { NsApiReferenceComponent } from './api-reference/api-reference.component';
 import { MdToHtmlPipe } from './md-to-html.pipe';
+import { NsApiNameComponent } from './api-name/api-name.component';
 
 const modules = [
   CommonModule,
@@ -25,7 +26,6 @@ const modules = [
   HttpClientModule,
   ReactiveFormsModule,
   RouterOutlet,
-  NsReferenceComponent,
   XDocComponent,
   XExamplesComponent,
   XAnchorComponent,
@@ -40,7 +40,10 @@ const modules = [
   XTooltipDirective,
   XTreeFileComponent,
   XPopoverDirective,
-  MdToHtmlPipe
+  MdToHtmlPipe,
+
+  NsApiReferenceComponent,
+  NsApiNameComponent
 ];
 
 @NgModule({

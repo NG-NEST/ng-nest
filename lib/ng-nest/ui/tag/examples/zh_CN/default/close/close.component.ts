@@ -13,7 +13,7 @@ export class ExCloseComponent {
   close(tag: string) {
     this.tags.update((x) => {
       x.splice(x.indexOf(tag), 1);
-      return x;
+      return [...x];
     });
   }
 }

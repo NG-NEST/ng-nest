@@ -152,7 +152,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
         this.setDayState(y);
         return y;
       });
-      return x;
+      return [...x];
     });
     this.onTdMouseenter(cell, false);
   }
@@ -202,7 +202,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
             }
           }
         }
-        return x;
+        return [...x];
       });
       if (isEmit) {
         this.rangeTdMouseenter.emit(cell);
@@ -215,12 +215,13 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
   onTdMouseleave(cell: XDateCell, isEmit = true) {
     const [start, end] = this.rangeValue();
     if (!XIsNull(start) || !XIsNull(end)) {
-      this.dates.update((x) =>
+      this.dates.update((x) => {
         x.map((y) => {
           this.clearState(y);
           return y;
-        })
-      );
+        });
+        return [...x];
+      });
       if (isEmit) this.rangeTdMouseleave.emit(cell);
     }
   }
@@ -321,7 +322,7 @@ export class XPickerDateComponent extends XPickerDateProperty implements OnChang
           this.clearState(y);
           this.setDayState(y);
         });
-        return x;
+        return [...x];
       });
     }
   }

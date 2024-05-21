@@ -11,7 +11,9 @@ import {
   X_THEME_EXCHANGES,
   X_THEME_BACKGROUNDS,
   X_THEME_TEXTS,
-  X_THEME_BORDERS
+  X_THEME_BORDERS,
+  X_THEME_VARS,
+  XVarsTheme
 } from './theme';
 import { DOCUMENT } from '@angular/common';
 import { XComputed } from '../util';
@@ -22,7 +24,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class XThemeService {
   private colorsProp: XColorsTheme = {};
+  private varsProp: XVarsTheme = {};
   private colorsStyleEle!: HTMLStyleElement;
+  private varsStyleEle!: HTMLStyleElement;
   private renderer2: Renderer2;
   private declaration: CSSStyleDeclaration;
   private doc: Document = inject(DOCUMENT);
@@ -34,6 +38,8 @@ export class XThemeService {
   }
 
   setInitialTheme(theme?: XTheme) {
+    this.setVars(theme?.vars);
+    if (theme?.vars) Object.assign(X_THEME_VARS, theme.vars);
     this.setColors(theme?.colors);
     if (theme?.colors) Object.assign(X_THEME_COLORS, theme.colors);
   }
@@ -44,14 +50,15 @@ export class XThemeService {
 
   getTheme(includesAll = false): XTheme {
     return {
-      colors: this.getColors(includesAll)
+      colors: this.getColors(includesAll),
+      vars: X_THEME_VARS
     };
   }
 
   setColors(colors?: XColorsTheme) {
     colors = this.getColorsTheme(colors);
     for (let key in colors) {
-      Object.assign(this.colorsProp, this.setRoot(key, colors[key]));
+      Object.assign(this.colorsProp, this.setColorRoot(key, colors[key]));
     }
     this.createColorsStyle();
   }
@@ -81,7 +88,7 @@ export class XThemeService {
     return colors;
   }
 
-  setRoot(color: string, value: string, prefix = X_THEME_PREFIX) {
+  setColorRoot(color: string, value: string, prefix = X_THEME_PREFIX) {
     let result: XColorsTheme = {};
     if (X_THEME_COLOR_KEYS.includes(color)) {
       for (let amount of X_THEME_AMOUNTS) {
@@ -99,11 +106,11 @@ export class XThemeService {
     return result;
   }
 
-  setDarkRoot(color: string, value: string, prefix = X_THEME_PREFIX) {
+  setDarkColorRoot(color: string, value: string, prefix = X_THEME_PREFIX) {
     let result: XColorsTheme = {};
-    const allColors = this.setRoot(color, value, '');
+    const allColors = this.setColorRoot(color, value, '');
     if (X_THEME_COLOR_KEYS.includes(color) && !['background'].includes(color)) {
-      const allColors = this.setRoot(color, value, prefix);
+      const allColors = this.setColorRoot(color, value, prefix);
       X_THEME_EXCHANGES.forEach((x) => {
         if (x[1] >= -0.1) {
           const curr = this.getSuffix(x[0]);
@@ -121,7 +128,7 @@ export class XThemeService {
     let result: XColorsTheme = {};
     colors = this.getColorsTheme(colors);
     for (let key in colors) {
-      Object.assign(result, this.setRoot(key, colors[key], prefix));
+      Object.assign(result, this.setColorRoot(key, colors[key], prefix));
     }
     if (darken) {
       const colorsFunc = (nums: number[] | number[][], callback: Function) => {
@@ -165,6 +172,21 @@ export class XThemeService {
     return '';
   }
 
+  setVarRoot(va: string, value: string, prefix = X_THEME_PREFIX) {
+    let result: XVarsTheme = {};
+    result[`${prefix}${va}`] = value;
+    return result;
+  }
+
+  setVars(vars?: XVarsTheme) {
+    if (typeof vars === 'undefined') vars = X_THEME_VARS;
+    else vars = Object.assign({}, X_THEME_VARS, vars);
+    for (let key in vars) {
+      Object.assign(this.varsProp, this.setVarRoot(key, vars[key]));
+    }
+    this.createVarsStyle();
+  }
+
   createColorsStyle() {
     if (this.colorsStyleEle) this.renderer2.removeChild(this.colorsStyleEle.parentNode, this.colorsStyleEle);
     const styles = Object.entries(this.colorsProp)
@@ -174,6 +196,16 @@ export class XThemeService {
     this.colorsStyleEle.innerHTML = `.x-theme-colors{${styles}}`;
     this.renderer2.addClass(this.doc.documentElement, 'x-theme-colors');
     this.doc.documentElement.getElementsByTagName('head')[0].appendChild(this.colorsStyleEle);
+  }
+
+  createVarsStyle() {
+    if (this.varsStyleEle) this.renderer2.removeChild(this.varsStyleEle.parentNode, this.varsStyleEle);
+    const styles = Object.entries(this.varsProp)
+      .map((x) => `${x[0]}: ${x[1]};`)
+      .join('');
+    this.varsStyleEle = this.renderer2.createElement('style');
+    this.varsStyleEle.innerHTML = `:root{${styles}}`;
+    this.doc.documentElement.getElementsByTagName('head')[0].appendChild(this.varsStyleEle);
   }
 }
 

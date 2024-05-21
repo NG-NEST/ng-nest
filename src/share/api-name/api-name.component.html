@@ -1,0 +1,29 @@
+<div x-dialog-title>属性</div>
+<div x-dialog-content class="ns-name-content">
+  <ng-container *ngTemplateOutlet="typeChild; context: { property: property() }"></ng-container>
+
+  <ng-template #typeChild let-property="property">
+    @if (property) {
+      <div class="property">
+        <ng-container *ngTemplateOutlet="titleTpl; context: { property }"></ng-container>
+        @if (property.description) {
+          <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
+        }
+        @if (property.example) {
+          <div class="example app-markdown" [innerHTML]="property.example | mdToHtml"></div>
+        }
+      </div>
+    }
+  </ng-template>
+
+  <ng-template #titleTpl let-property="property">
+    <div class="label">
+      <code [innerText]="property.name"></code>
+      <span class="type" (click)="types.reference(property.type, this.className())">{{ property.type }}</span>
+      <span>{{ property.label }}</span>
+    </div>
+  </ng-template>
+</div>
+<div class="ns-name-close">
+  <x-button x-dialog-close plain circle icon="fto-x"></x-button>
+</div>

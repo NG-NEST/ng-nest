@@ -114,7 +114,7 @@ export class XUploadComponent extends XUploadProperty {
   remove(file: XUploadNode, index: number) {
     this.files.update((x) => {
       x.splice(index, 1);
-      return x;
+      return [...x];
     });
     if (this.files().length === 0) this.file().nativeElement.value = '';
     this.showUpload.set(this.files().find((x) => x.state === 'ready') != null);
@@ -122,7 +122,7 @@ export class XUploadComponent extends XUploadProperty {
     if (vindex > -1) {
       this.value.update((x) => {
         x.splice(vindex, 1);
-        return x;
+        return [...x];
       });
       this.onChange && this.onChange(this.value());
     }
@@ -173,7 +173,7 @@ export class XUploadComponent extends XUploadProperty {
               if (index !== -1) {
                 this.files.update((x) => {
                   x[index] = file;
-                  return x;
+                  return [...x];
                 });
               }
               this.uploadSuccess.emit(file);

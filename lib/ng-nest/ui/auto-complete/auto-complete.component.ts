@@ -280,7 +280,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.value.set(node.label);
     this.valueTplContextSignal.update((x) => {
       x.$node = node;
-      return x;
+      return { ...x };
     });
     this.inputCom().inputFocus();
     if (this.onChange) this.onChange(this.value());

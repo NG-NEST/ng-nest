@@ -125,12 +125,12 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     if (XIsEmpty(this.option().label)) {
       this.option.update((x) => {
         x.label = '';
-        return x;
+        return { ...x };
       });
     }
     this.option.update((x) => {
       x.label = `${this.option().label}${this.form.labelSuffix}`;
-      return x;
+      return { ...x };
     });
     this._control.set(this.createControl(this.option()));
     this._formControl.set(

@@ -22,23 +22,17 @@ export function generateProps(...types: NcProp[]) {
           let inputTable = '';
           let outputTable = '';
           x.properties.forEach((y) => {
-            const description = y.description ? `<p [innerHTML]="'${replaceEscape(y.description)}'"></p>` : '';
-            // let ty = y.type.startsWith('X')
-            //   ? `<code class="popover" x-popover [content]="typeTpl"
-            //   [minWidth]="'10rem'"
-            //   [maxWidth]="'30rem'"
-            //   (mouseenter)="types.getTypes('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
-            //   : `<code [innerText]="'${y.type}'"></code>`;
+            const description = y.description ? `<br/><p [innerHTML]="'${replaceEscape(y.description)}'"></p>` : '';
             let ty = y.type.startsWith('X')
               ? `<code class="popover"
               (click)="types.reference('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
               : `<code [innerText]="'${y.type}'"></code>`;
             let tr = `<tr>
-              <td><span><code>${replaceSpecial(y.name)}</code></span></td>
+              <td><code class="name" (click)="types.name('${y.name}', '${x.name}')">${replaceSpecial(y.name)}</code></td>
               <td>${y.label}${description}</td>
               <td>${ty}</td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
-              <td>${y.withConfig ? '✔' : ''}</td>
+              <td>${y.withConfig ? '✔️' : ''}</td>
             </tr>`;
             switch (y.propType) {
               case 'Input':
@@ -54,13 +48,7 @@ export function generateProps(...types: NcProp[]) {
           });
           let head = '';
           if (table !== '' || inputTable !== '' || outputTable !== '') {
-            let extend = '';
-            if (x.extends && x.extends !== 'XProperty') {
-              extend = replaceSpecial(x.extends);
-            }
-            head = `<h3>${x.name}${
-              extend ? ` {{ "api.extends" | xI18n }} ${extend} {{ "api.extendsDescription" | xI18n }}` : ''
-            }</h3>
+            head = `<h3>${x.name}</h3>
             <p>${replaceSpecial(x.description)}</p>`;
           }
           if (inputTable !== '') {

@@ -147,7 +147,7 @@ export class XMessageService {
 
   private setDuration(option: XMessageOption) {
     if (option.duration && option.type !== 'loading') {
-      option.duration$ = of(true)
+      option.durationSubscription = of(true)
         .pipe(delay(option.duration))
         .subscribe(() => {
           this.removeMessage(option);

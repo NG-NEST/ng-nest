@@ -62,7 +62,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   ngAfterViewInit() {
     this.table.theads.update((x) => {
       x.push(this.thead());
-      return x;
+      return [...x];
     });
   }
 

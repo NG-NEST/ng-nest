@@ -66,9 +66,10 @@ export class XTreeFileComponent extends XTreeFileProperty {
     if (node.url && !node.contentLoaded) {
       this.time = new Date().getTime();
       this.loading.set(true);
-      this.activatedNode.set(node);
       this.setNode(node);
+      this.activatedNode.set(node);
       node.url = node.url?.indexOf(this.domain()) === 0 ? node.url : `${this.domain()}/${node.url}`;
+      
       switch (node.fileType) {
         case 'code':
           this.http
@@ -84,6 +85,7 @@ export class XTreeFileComponent extends XTreeFileProperty {
             .subscribe((x) => {
               node.content = x;
               node.contentLoaded = true;
+              console.log(node)
               this.loading.set(false);
             });
           break;

@@ -28,8 +28,17 @@
       > td {
         &:nth-child(1) {
           width: 20%;
-          > span {
-            color: #3b82f6;
+          color: #3b82f6;
+          .name {
+            cursor: pointer;
+            background-color: rgba(59, 130, 246, 0.1);
+            border-radius: $--x-border-small-radius;
+            padding: 0.25rem 0.325rem;
+            transition: $--x-animation-duration-base background-color;
+            will-change: background-color;
+            &:hover {
+              background-color: rgba(59, 130, 246, 0.2);
+            }
           }
         }
         &:nth-child(3) {
@@ -37,7 +46,14 @@
           width: 22%;
           .popover {
             cursor: pointer;
-            border-bottom: $--x-border-width solid;
+            background-color: rgba(246, 55, 227, 0.1);
+            border-radius: $--x-border-small-radius;
+            padding: 0.25rem 0.325rem;
+            transition: $--x-animation-duration-base background-color;
+            will-change: background-color;
+            &:hover {
+              background-color: rgba(246, 55, 227, 0.2);
+            }
           }
         }
         &:nth-child(4) {

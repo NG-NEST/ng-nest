@@ -89,7 +89,7 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
         this.setDayState(y);
         return y;
       });
-      return x;
+      return [...x];
     });
     this.onTdMouseenter(cell, false);
   }
@@ -133,7 +133,7 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
             }
           }
         }
-        return x;
+        return [...x];
       });
       if (isEmit) {
         this.rangeTdMouseenter.emit(cell);
@@ -151,7 +151,7 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
           this.clearState(y);
           return y;
         });
-        return x;
+        return [...x];
       });
       if (isEmit) this.rangeTdMouseleave.emit(cell);
     }
@@ -216,7 +216,7 @@ export class XPickerYearComponent extends XPickerYearProperty implements OnChang
           this.setDayState(y);
           return y;
         });
-        return x;
+        return [...x];
       });
     }
   }

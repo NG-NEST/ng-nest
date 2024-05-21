@@ -336,7 +336,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     };
     this.treeTableData.update((x) => {
       setChildren(x);
-      return x;
+      return [...x];
     });
     // this.detectChanges();
   }
@@ -357,7 +357,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
           x[column.id] = checked;
         }
       });
-      return z;
+      return [...z];
     });
     this.setCheckedValues(column);
     this.headCheckboxChange.emit({ rows: this.tableData(), checkbox: this.checkedValues() });
@@ -377,7 +377,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.checkedValues.update((x) => {
       x[column.id] = count === checkedLen && count !== 0;
       x[column.id + this.indeterminate()] = checkedLen > 0 && checkedLen < count;
-      return x;
+      return { ...x };
     });
   }
 

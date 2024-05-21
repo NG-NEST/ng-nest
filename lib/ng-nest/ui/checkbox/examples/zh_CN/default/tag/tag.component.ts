@@ -35,24 +35,24 @@ export class ExTagComponent {
   close($event: string | number) {
     this.selected.update((x) => {
       x.splice(x.indexOf($event), 1);
-      return x;
+      return [...x];
     });
     if (this.model1().includes($event as string)) {
       this.model1.update((x) => {
         x.splice(x.indexOf($event as string), 1);
-        return x;
+        return [...x];
       });
     }
     if (this.model2().includes($event as string)) {
       this.model2.update((x) => {
         x.splice(x.indexOf($event as string), 1);
-        return x;
+        return [...x];
       });
     }
     if (this.model3().includes($event as number)) {
       this.model3.update((x) => {
         x.splice(x.indexOf($event as number), 1);
-        return x;
+        return [...x];
       });
     }
   }

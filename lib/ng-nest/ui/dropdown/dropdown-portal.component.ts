@@ -97,11 +97,11 @@ export class XDropdownPortalComponent {
   }
 
   onNodeClick(node: XDropdownNode) {
+    this.nodeClick.emit(node);
     if (!node.leaf) {
       this.closed.emit();
       this.activatedId.set(node.id);
     }
-    this.nodeClick.emit(node);
   }
 
   portalAttached() {
@@ -204,7 +204,7 @@ export class XDropdownPortalComponent {
       this.openNode.update((x) => {
         x!.openPortal = open;
         x!.change && x!.change();
-        return x;
+        return { ...x };
       });
     }
   }

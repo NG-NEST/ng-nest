@@ -95,7 +95,7 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
         this.setDayState(y);
         return y;
       });
-      return x;
+      return [...x];
     });
     this.onTdMouseenter(cell, false);
   }
@@ -139,7 +139,7 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
             }
           }
         }
-        return x;
+        return [...x];
       });
       if (isEmit) {
         this.rangeTdMouseenter.emit(cell);
@@ -157,7 +157,7 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
           this.clearState(y);
           return y;
         });
-        return x;
+        return [...x];
       });
       if (isEmit) this.rangeTdMouseleave.emit(cell);
     }

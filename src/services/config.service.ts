@@ -19,10 +19,10 @@ export class ConfigService {
   navName = 'NG-NEST';
   renderer2: Renderer2;
   light = {
-    '--layout-border-color': 'rgb(246, 245, 246)'
+    '--layout-border-color': '#f6f6f6;'
   };
   dark = {
-    '--layout-border-color': 'rgb(37, 32, 34)'
+    '--layout-border-color': '#252525;'
   };
 
   get lang(): XI18nLanguage {

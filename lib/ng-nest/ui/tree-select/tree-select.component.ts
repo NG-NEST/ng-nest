@@ -392,7 +392,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     this.setDisplayNodes();
     this.valueTplContextSignal.update((x) => {
       x.$node = null;
-      return x;
+      return { ...x };
     });
     this.mleave();
     this.inputChange.next('');
@@ -410,7 +410,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
           this.displayMore.set('');
           this.valueTplContextSignal.update((x) => {
             x.$node = null;
-            return x;
+            return { ...x };
           });
           this.setDisplayNodes();
         } else {
@@ -426,12 +426,12 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
             if (inx >= 0) {
               this.selectedNodes.update((x) => {
                 XRemove(x, (y) => y.id === clickNode.id);
-                return x;
+                return [...x];
               });
             } else {
               this.selectedNodes.update((x) => {
                 x.push(clickNode);
-                return x;
+                return [...x];
               });
             }
           } else {
@@ -455,7 +455,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
           );
           this.valueTplContextSignal.update((x) => {
             x.$node = [...this.selectedNodes()];
-            return x;
+            return { ...x };
           });
         }
       } else {
@@ -469,13 +469,13 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
           }
           this.valueTplContextSignal.update((x) => {
             x.$node = node;
-            return x;
+            return { ...x };
           });
         } else {
           this.displayValue.set('');
           this.valueTplContextSignal.update((x) => {
             x.$node = null;
-            return x;
+            return { ...x };
           });
         }
       }
@@ -506,12 +506,12 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     if (inx >= 0) {
       this.value.update((x) => {
         x.splice(inx, 1);
-        return x;
+        return [...x];
       });
       if (this.onChange) this.onChange(this.value());
       this.selectedNodes.update((x) => {
         x.splice(index, 1);
-        return x;
+        return [...x];
       });
       this.setDisplayNodes();
     }
@@ -654,7 +654,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       }
       this.valueTplContextSignal.update((x) => {
         x.$node = node;
-        return x;
+        return { ...x };
       });
       this.value.set(node.id);
       this.closeSubject.next();

@@ -82,7 +82,7 @@
     > .#{$--x-tree-file}-catalog {
       width: 16rem;
       opacity: 1;
-      border-right: 0.125 solid $--x-background-a200;
+      border-right: $--x-border-base;
     }
   }
 }

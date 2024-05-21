@@ -16,8 +16,17 @@ const X_BUTTON_CONFIG_NAME = 'button';
 @Component({ selector: `${XButtonPrefix}-property`, template: '' })
 export class XButtonProperty extends XPropertyFunction(X_BUTTON_CONFIG_NAME) {
   /**
-   * @zh_CN 类型
-   * @en_US Types of
+   * @zh_CN 按钮类型
+   * @en_US Button type
+   * @example
+   * ```html
+   * <x-button>initial</x-button>
+   * <x-button type="primary">primary</x-button>
+   * <x-button type="success">success</x-button>
+   * <x-button type="warning">warning</x-button>
+   * <x-button type="danger">danger</x-button>
+   * <x-button type="info">info</x-button>
+   * ```
    */
   readonly type = input<XButtonType>(this.config?.type ?? 'initial');
   /**

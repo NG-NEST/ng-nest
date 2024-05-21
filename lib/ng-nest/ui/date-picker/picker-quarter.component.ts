@@ -96,7 +96,7 @@ export class XPickerQuarterComponent extends XPickerQuarterProperty implements O
         this.setDayState(y);
         return y;
       });
-      return x;
+      return [...x];
     });
     this.onTdMouseenter(cell, false);
   }
@@ -140,7 +140,7 @@ export class XPickerQuarterComponent extends XPickerQuarterProperty implements O
             }
           }
         }
-        return x;
+        return [...x];
       });
       if (isEmit) {
         this.rangeTdMouseenter.emit(cell);
@@ -158,7 +158,7 @@ export class XPickerQuarterComponent extends XPickerQuarterProperty implements O
           this.clearState(y);
           return y;
         });
-        return x;
+        return [...x];
       });
       if (isEmit) this.rangeTdMouseleave.emit(cell);
     }
@@ -220,7 +220,7 @@ export class XPickerQuarterComponent extends XPickerQuarterProperty implements O
           this.setDayState(y);
           return y;
         });
-        return x;
+        return [...x];
       });
     }
   }

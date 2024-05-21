@@ -341,6 +341,7 @@ export function getProperty(line: string, docItem: any = {}, lang = '') {
   let inputType = '';
   let def = '';
   let transform = '';
+  let signal: 'input' | 'output' | 'model' = 'input';
   if (right.startsWith('input')) {
     right = right.replace('input', '');
     type = right.slice(0, right.indexOf('(')).trim();
@@ -353,7 +354,27 @@ export function getProperty(line: string, docItem: any = {}, lang = '') {
         type = type.replace(toType + ', ', '').trim();
       } else {
         inputType = `InputSignal<${type}>`;
+        toType = type;
       }
+    }
+  } else if (right.startsWith('model')) {
+    right = right.replace('model', '');
+    type = right.slice(0, right.indexOf('(')).trim();
+    right = right.replace(type, '');
+    signal = 'model';
+    if (type.startsWith('<') && type.endsWith('>')) {
+      type = type.slice(1, type.length - 1);
+      inputType = `ModelSignal<${type}>`;
+      toType = type;
+    }
+  } else if (right.startsWith('output')) {
+    right = right.replace('output', '');
+    type = right.slice(0, right.indexOf('(')).trim();
+    right = right.replace(type, '');
+    signal = 'output';
+    if (type.startsWith('<') && type.endsWith('>')) {
+      type = type.slice(1, type.length - 1);
+      inputType = `OutputEmitterRef<${type}>`;
     }
   }
   const match = right.match(/\(([^)]+)\)/);
@@ -384,6 +405,7 @@ export function getProperty(line: string, docItem: any = {}, lang = '') {
     type,
     toType,
     inputType,
+    signal,
     label: label ? label : docItem[docItem.start + 1],
     default: docDef ? docDef : def,
     withConfig: withConfig,

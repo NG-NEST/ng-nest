@@ -212,7 +212,7 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
   tempClose(index: number, item: any) {
     this.temp.update((x) => {
       x.splice(index, 1);
-      return x;
+      return [...x];
     });
     if (this.hasTable()) {
       let it = this.tableCom()!
@@ -236,7 +236,7 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
     if (index >= 0) {
       this.value.update((x) => {
         x.splice(index, 1);
-        return x;
+        return [...x];
       });
     } else {
       this.value.set(null);
@@ -269,7 +269,7 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
           x.findIndex((x: any) => x.id === data.id),
           1
         );
-        return x;
+        return [...x];
       });
     }
   }
@@ -284,7 +284,7 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
           x.findIndex((x: any) => x.id === node.id),
           1
         );
-        return x;
+        return [...x];
       });
     }
   }
@@ -324,7 +324,7 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
     } else if (event.key === 'Delete') {
       this.search.update((x) => {
         x.value = '';
-        return x;
+        return { ...x };
       });
     }
   }

@@ -105,7 +105,7 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
     this.imgScale3d.update((item) => {
       item.x += zoom;
       item.y += zoom;
-      return item;
+      return { ...item };
     });
   }
 

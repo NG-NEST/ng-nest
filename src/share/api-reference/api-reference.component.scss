@@ -3,8 +3,6 @@
 :host {
   .ns-reference-content {
     .property {
-      &.interface {
-      }
       &:not(:first-child) {
         margin-top: $--x-padding-large;
       }

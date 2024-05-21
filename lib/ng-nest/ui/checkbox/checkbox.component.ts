@@ -115,9 +115,8 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
       x.forEach((y) => {
         y.checked = this.isChecked(y.id);
       });
-      return x;
+      return [...x];
     });
-    console.log(this.nodes());
   }
 
   private setData() {

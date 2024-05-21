@@ -35,7 +35,7 @@ export class XCollapsePanelComponent extends XCollapsePanelProperty implements O
       x.push(() => {
         this.headerClick();
       });
-      return x;
+      return [...x];
     });
     if (this.activeSignal()) {
       this.show.set(true);
@@ -44,7 +44,7 @@ export class XCollapsePanelComponent extends XCollapsePanelProperty implements O
   }
 
   headerClick() {
-    this.activeSignal.set(!this.activeSignal());
+    this.activeSignal.update((x) => !x);
     if (this.activeSignal()) this.show.set(true);
     if (!this.collapseComponent) return;
     if (this.activeSignal()) this.collapseComponent.change(this.index());

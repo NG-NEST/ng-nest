@@ -16,14 +16,14 @@ export class XImageGroupComponent {
   addImage(image: XImageComponent): void {
     this.images.update((x) => {
       x.push(image);
-      return x;
+      return [...x];
     });
   }
 
   removeImage(image: XImageComponent): void {
     this.images.update((x) => {
       x.splice(x.indexOf(image), 1);
-      return x;
+      return [...x];
     });
   }
 }

@@ -46,7 +46,7 @@ export class ExActionComponent {
     }
     this.labels.update((x) => {
       x.splice(closeIndex, 1);
-      return x;
+      return [...x];
     });
     this.activatedIndex.set(activatedIndex);
   }

@@ -385,7 +385,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.setDisplayNodes();
     this.valueTplContextSignal.update((x) => {
       x.$node = null;
-      return x;
+      return { ...x };
     });
     this.mleave();
     this.inputChange.next('');
@@ -403,7 +403,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           this.displayMore.set('');
           this.valueTplContextSignal.update((x) => {
             x.$node = null;
-            return x;
+            return { ...x };
           });
           this.setDisplayNodes();
         } else {
@@ -420,12 +420,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
             if (clickNode.selected) {
               this.selectedNodes.update((x) => {
                 x.push(clickNode);
-                return x;
+                return [...x];
               });
             } else {
               this.selectedNodes.update((x) => {
                 XRemove(x, (y) => y.id === clickNode.id);
-                return x;
+                return [...x];
               });
             }
           } else {
@@ -443,7 +443,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           );
           this.valueTplContextSignal.update((x) => {
             x.$node = [...this.selectedNodes()];
-            return x;
+            return { ...x };
           });
         }
       } else {
@@ -452,13 +452,13 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           this.displayValue.set(node.label);
           this.valueTplContextSignal.update((x) => {
             x.$node = node;
-            return x;
+            return { ...x };
           });
         } else {
           this.displayValue.set('');
           this.valueTplContextSignal.update((x) => {
             x.$node = null;
-            return x;
+            return { ...x };
           });
         }
       }
@@ -475,12 +475,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (inx >= 0) {
       this.value.update((x) => {
         x.splice(inx, 1);
-        return x;
+        return [...x];
       });
       if (this.onChange) this.onChange(this.value());
       this.selectedNodes.update((x) => {
         x.splice(index, 1);
-        return x;
+        return [...x];
       });
       this.setDisplayNodes();
     }
@@ -556,7 +556,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   createPortal() {
     this.nodes.update((nodes) => {
       nodes.filter((x) => x.selected).map((x) => (x.selected = false));
-      return nodes;
+      return [...nodes];
     });
     const box = this.inputCom().inputRef().nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
@@ -614,25 +614,25 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           if (node.selected) {
             this.value.update((x) => {
               x.push(node);
-              return x;
+              return [...x];
             });
           } else {
             let inx = this.value().findIndex((x: XSelectNode) => x.id === node.id);
             this.value.update((x) => {
               x.splice(inx, 1);
-              return x;
+              return [...x];
             });
           }
         } else if (XIsArray(value)) {
           if (node.selected) {
             this.value.update((x) => {
               x.push(node.id);
-              return x;
+              return [...x];
             });
           } else {
             this.value.update((x) => {
               x.splice(x.indexOf(node.id), 1);
-              return x;
+              return [...x];
             });
           }
         }
@@ -653,7 +653,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       this.displayValue.set(node.label);
       this.valueTplContextSignal.update((x) => {
         x.$node = node;
-        return x;
+        return { ...x };
       });
       this.value.set(node.id);
       this.closeSubject.next();

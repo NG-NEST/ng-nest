@@ -6,7 +6,7 @@
     <li>
       <x-button (click)="setExpandedAll()">{{ expandedAll() ? 'Collapse all' : 'Expand all' }}</x-button>
     </li>
-    <li>{{ content | json }}</li>
+    <li>{{ content() | json }}</li>
   </ul>
 </div>
 <div class="row">

@@ -1,8 +1,4 @@
 @import '../mixins/index';
 @import '../params/index';
 
-:root {
-  @include var-colors($--x-colors);
-}
-
 @include var-size-hidden($--x-size-range-only);

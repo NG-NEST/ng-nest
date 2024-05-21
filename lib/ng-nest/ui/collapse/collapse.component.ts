@@ -17,13 +17,14 @@ export class XCollapseComponent extends XCollapseProperty {
     const i = this.active().indexOf(num);
     if (i === -1) {
       if (add) {
-        this.active.set([...this.active(), num]);
+        this.active.update((x) => [...x, num]);
       }
     } else {
       if (!add) {
-        const active = this.active();
-        active.slice(i, 1);
-        this.active.set(active);
+        this.active.update((x) => {
+          x.splice(i, 1);
+          return [...x];
+        });
       }
     }
     if (this.accordion() && this.active().length === 2) {

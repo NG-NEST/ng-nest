@@ -7,7 +7,6 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  NgZone,
   viewChild,
   viewChildren,
   signal,
@@ -22,7 +21,6 @@ import {
   XIsUndefined,
   XIsChange,
   XSetData,
-  XConfigService,
   XResize,
   XRemove,
   XResizeObserver,
@@ -36,7 +34,6 @@ import { CdkDrag, CdkDragEnd, CdkDragMove, CdkDragStart, CdkDropList, DragDropMo
 import { XTreeService } from './tree.service';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { DOCUMENT } from '@angular/common';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTreePrefix}`,
@@ -78,8 +75,6 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     public renderer: Renderer2,
     public elementRef: ElementRef<HTMLElement>,
     public cdr: ChangeDetectorRef,
-    public configService: XConfigService,
-    public ngZone: NgZone,
     public treeService: XTreeService
   ) {
     super();
@@ -93,23 +88,14 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     });
   }
 
-  heightAdaptionSignal = toSignal(
-    XResize(this.heightAdaption()!).pipe(
-      debounceTime(30),
-      map(({ resizeObserver }) => {
-        this.resizeObserver = resizeObserver;
-        return this.document.documentElement.clientWidth;
-      })
-    ),
-    {
-      initialValue: this.heightAdaption()?.clientHeight!
-    }
-  );
+  heightAdaptionSignal = signal<number>(0);
+
+  isVirtualScrollAdaption = computed(() => {
+    return !!(this.virtualScroll() && this.heightAdaption());
+  });
 
   virtualScrollHeightSignal = computed(() => {
-    const virtualScroll = this.virtualScroll();
-    const heightAdaption = this.heightAdaption();
-    if (virtualScroll && heightAdaption) {
+    if (this.isVirtualScrollAdaption()) {
       return this.heightAdaptionSignal();
     } else {
       return XToCssPx(this.virtualScrollHeight(), this.fontSize());
@@ -117,9 +103,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   });
 
   minBufferPxSignal = computed(() => {
-    const virtualScroll = this.virtualScroll();
-    const heightAdaption = this.heightAdaption();
-    if (virtualScroll && heightAdaption) {
+    if (this.isVirtualScrollAdaption()) {
       return this.virtualScrollHeightSignal();
     } else {
       return this.minBufferPx();
@@ -127,9 +111,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   });
 
   maxBufferPxSignal = computed(() => {
-    const virtualScroll = this.virtualScroll();
-    const heightAdaption = this.heightAdaption();
-    if (virtualScroll && heightAdaption) {
+    if (this.isVirtualScrollAdaption()) {
       return this.virtualScrollHeightSignal() * 1.2;
     } else {
       return this.maxBufferPx();
@@ -137,16 +119,29 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   });
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { expandedAll, data, activatedId, checked, manual } = changes;
+    const { expandedAll, data, checked, manual } = changes;
     XIsChange(data) && this.setData();
-    XIsChange(activatedId) && this.setActivatedNode(this.treeData());
+    // XIsChange(activatedId) && this.setActivatedNode(this.treeData());
     XIsChange(expandedAll) && this.setExpandedAll();
     XIsChange(checked) && this.setCheckedKeys(this.checked());
     XIsChange(manual) && this.setManual();
   }
 
   ngAfterViewInit() {
-    this.setScorllTop();
+    if (this.isVirtualScrollAdaption()) {
+      this.heightAdaptionSignal.set(this.heightAdaption()!.clientHeight!);
+      XResize(this.heightAdaption()!)
+        .pipe(
+          debounceTime(30),
+          map(({ resizeObserver }) => {
+            this.resizeObserver = resizeObserver;
+            this.heightAdaptionSignal.set(this.heightAdaption()!.clientHeight!);
+          })
+        )
+        .subscribe();
+    }
+    this.setActivatedNode(this.treeData());
+    this.setScrollTop();
   }
 
   ngOnDestroy(): void {
@@ -170,11 +165,11 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
 
   cdkDragStarted(event: CdkDragStart) {
     this.dragging.set(true);
-    this.draggingTreeNode = event.source.data;
+    this.draggingTreeNode.set(event.source.data);
     if (event.source.data.open) {
       this.onToggle(event.event, event.source.data);
     }
-    this.nodeDragStarted.emit({ event, from: this.draggingTreeNode! });
+    this.nodeDragStarted.emit({ event, from: this.draggingTreeNode()! });
   }
 
   cdkDragEnded(event: CdkDragEnd) {
@@ -216,7 +211,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     hoverTreeNode.change && hoverTreeNode.change();
     this.nodeDragMoved.emit({
       event,
-      from: this.draggingTreeNode!,
+      from: this.draggingTreeNode()!,
       to: hoverTreeNode,
       position: this.dragPosition()
     });
@@ -231,7 +226,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   private getDataByFunc() {
-    if (!this.manual) return;
+    if (!this.manual()) return;
     XSetData<XTreeNode>((this.data() as Function)(), this.unSubject).subscribe((x) => {
       this.setDataChange(x);
     });
@@ -244,7 +239,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     parentOpen = true,
     lazyParant?: XTreeNode
   ) {
-    if (XIsEmpty(this.checked()) || !this.hasChecked) this.checked.set([]);
+    if (XIsEmpty(this.checked()) || !this.hasChecked()) this.checked.set([]);
     const getChildren = (node: XTreeNode, level: number) => {
       if (init) {
         node.level = level;
@@ -260,7 +255,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
             nd.checked = true;
             this.checked.update((x) => {
               x.push(nd.id);
-              return x;
+              return [...x];
             });
           }
         }
@@ -281,6 +276,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       }
     }
     this.setExpanded();
+    this.cdr.markForCheck();
   }
 
   nodeMouseenter($event: { event: MouseEvent; node: XTreeNode; ele: ElementRef }) {
@@ -306,7 +302,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     }
   }
 
-  setScorllTop() {
+  setScrollTop() {
     const scrollElement = this.scrollElement();
     if (!scrollElement || !this.activatedNode()) return;
     const inx = this.nodes().indexOf(this.activatedNode()!);
@@ -355,10 +351,11 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       });
     };
     setChildren(this.nodes(), XIsEmpty(keys));
+    this.cdr.markForCheck();
   }
 
   setExpandedAll() {
-    if (this.expandedAll() && this.treeData.length === this.nodes.length) return;
+    if (this.expandedAll() && this.treeData().length === this.nodes().length) return;
     const setChildren = (nodes: XTreeNode[]) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
@@ -375,11 +372,12 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       if (this.virtualNodes().length === 0) {
         this.virtualNodes.set([...this.nodes()]);
       }
-      this.nodes.set([...this.virtualNodes()]);
+      this.nodes.set(this.virtualNodes());
       for (let item of this.virtualNodes()) {
         this.setVirtualExpandedAll(item, this.expandedAll());
       }
     }
+    this.virtualBody()?.checkViewportSize();
   }
 
   setExpanded() {
@@ -388,7 +386,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         let index = this.nodes().indexOf(item);
         this.nodes.update((x) => {
           x.splice(index + 1, 0, ...(item.children as XTreeNode[]));
-          return x;
+          return [...x];
         });
       }
       item.change && item.change();
@@ -408,7 +406,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       getNodes(item);
       this.nodes.update((x) => {
         x.splice(index + 1, 0, ...addNodes);
-        return x;
+        return [...x];
       });
     }
   }
@@ -427,7 +425,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       getNodes(node);
       this.nodes.update((x) => {
         x.splice(index + 1, 0, ...addNodes);
-        return x;
+        return [...x];
       });
     } else {
       let delCount = 0;
@@ -441,12 +439,13 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       getCount(node);
       this.nodes.update((x) => {
         x.splice(index + 1, delCount);
-        return x;
+        return [...x];
       });
     }
 
     this.addOrRemoveExpanded(node);
     this.virtualBody()?.checkViewportSize();
+    this.cdr.detectChanges();
   }
 
   addOrRemoveExpanded(node: XTreeNode) {
@@ -454,14 +453,14 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       if (!this.expanded().includes(node.id)) {
         this.expanded.update((x) => {
           x.push(node.id);
-          return x;
+          return [...x];
         });
       }
     } else {
       if (this.expanded().includes(node.id)) {
         this.expanded.update((x) => {
-          x.splice(this.expanded().indexOf(node.id), 1);
-          return x;
+          x.splice(x.indexOf(node.id), 1);
+          return [...x];
         });
       }
     }
@@ -488,7 +487,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       }
     } else {
       let activatedId = this.activatedId();
-      this.activatedNode.set(nodes.find((x) => x.id == activatedId) as XTreeNode);
+      this.activatedNode.set(nodes.find((x) => x.id === activatedId) as XTreeNode);
       if (this.activatedNode()) {
         parentOpen && this.setParentOpen(nodes, this.activatedNode()!);
         this.activatedChange.emit(this.activatedNode()!);
@@ -518,23 +517,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     getParent(node);
   }
 
-  setParentCheck(nodes: XTreeNode[], node: XTreeNode) {
-    const getParent = (child: XTreeNode) => {
-      if (XIsEmpty(child.pid)) return;
-      const parent = nodes.find((x) => x.id === child.pid) as XTreeNode;
-      if (!XIsEmpty(parent)) {
-        if (!this.expanded().includes(parent.id)) {
-          this.expanded.update((x) => [...x, parent.id]);
-        }
-        parent.open = true;
-        parent.change && parent.change();
-        getParent(parent);
-      }
-    };
-    getParent(node);
-  }
-
-  onToggle(event: Event, node: XTreeNode) {
+  onToggle(event: Event | null, node: XTreeNode) {
     node.open = !node.open;
     if (this.lazy() && !node.childrenLoaded) {
       this.getLazyData(node, () => this.virtualToggle(node));
@@ -565,6 +548,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         this.treeData.set([...this.treeData(), ...x]);
         if (callBack) callBack();
         node.change && node.change();
+        this.cdr.markForCheck();
       });
   }
 

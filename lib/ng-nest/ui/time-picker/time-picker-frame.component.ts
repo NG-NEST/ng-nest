@@ -319,7 +319,7 @@ export class XTimePickerFrameComponent {
     const perTick = (difference / duration) * 10;
     this.scrollAnimating.update((x) => {
       x[clsName] = true;
-      return x;
+      return { ...x };
     });
     XRequestAnimationFrame(() => {
       const num = element.scrollTop + perTick;
@@ -329,7 +329,7 @@ export class XTimePickerFrameComponent {
       if (element.scrollTop === to || duration <= 0) {
         this.scrollAnimating.update((x) => {
           x[clsName] = false;
-          return x;
+          return { ...x };
         });
         return;
       } else {

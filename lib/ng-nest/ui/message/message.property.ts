@@ -86,7 +86,7 @@ export interface XMessageOption extends XAlertOption {
    * @zh_CN 延迟关闭订阅后的对象，用来释放或取消
    * @en_US Delayed closing the subscribed object, used to release or cancel
    */
-  duration$?: Subscription | null;
+  durationSubscription?: Subscription | null;
   /**
    * @zh_CN 延迟关闭订阅对象
    * @en_US Delay in closing the subscription object

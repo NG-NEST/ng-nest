@@ -234,7 +234,7 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
     this.hsla.update((x) => {
       x.s = Number(this.decimal.transform(s, '1.2-2'));
       x.l = Number(this.decimal.transform(l, '1.2-2'));
-      return x;
+      return { ...x };
     });
     this.setHslaPercent();
     this.rgba.set(this.hslaToRgba(this.hsla()));
@@ -245,11 +245,11 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   setHslaPercent() {
     this.hsla.update((x) => {
       x.sp = this.hsla().s === 0 ? '0%' : (this.percent.transform(this.hsla().s, '1.0-0') as string);
-      return x;
+      return { ...x };
     });
     this.hsla.update((x) => {
       x.lp = this.hsla().l === 0 ? '0%' : (this.percent.transform(this.hsla().l, '1.0-0') as string);
-      return x;
+      return { ...x };
     });
   }
 

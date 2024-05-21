@@ -215,7 +215,7 @@ export class XDateRangePortalComponent implements AfterViewInit {
         this.endModel.set(null);
         this.value.update((x) => {
           x[1] = null;
-          return x;
+          return [...x];
         });
         if (!isDatePicker) {
           this.timeHover.set(false);
@@ -233,7 +233,7 @@ export class XDateRangePortalComponent implements AfterViewInit {
         this.startModel.set(null);
         this.value.update((x) => {
           x[0] = null;
-          return x;
+          return [...x];
         });
         if (!isDatePicker) {
           this.timeHover.set(false);

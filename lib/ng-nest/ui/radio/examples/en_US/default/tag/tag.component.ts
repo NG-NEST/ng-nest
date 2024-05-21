@@ -31,7 +31,7 @@ export class ExTagComponent {
   close($event: string | number | null) {
     this.selected.update((x) => {
       x.splice(x.indexOf($event as string), 1);
-      return x;
+      return [...x];
     });
     if (this.model1() === $event) {
       this.model1.set(null);

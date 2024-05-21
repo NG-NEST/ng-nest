@@ -1,0 +1,66 @@
+@import '../../styles/index.scss';
+
+:host {
+  .ns-name-content {
+    .property {
+      &:not(:first-child) {
+        margin-top: $--x-padding-large;
+      }
+      > div:not(:first-child) {
+        margin-top: $--x-padding-mini;
+      }
+      .label {
+        color: $--x-text;
+        display: flex;
+        align-items: center;
+        padding: 0 $--x-padding-mini;
+        > code {
+          color: #3b82f6;
+        }
+        > span {
+          margin-left: 1rem;
+        }
+        .type {
+          cursor: pointer;
+          margin-left: 1rem;
+          padding: 0.25rem 0.325rem;
+          color: #f637e3;
+          background: rgba(246, 55, 227, 0.1);
+          border-radius: $--x-border-small-radius;
+          transition: $--x-animation-duration-base background-color;
+          will-change: background-color;
+          &:hover {
+            background-color: rgba(246, 55, 227, 0.2);
+          }
+        }
+      }
+      .description {
+        color: $--x-text-200;
+        padding: $--x-padding-mini $--x-padding-medium;
+        border-radius: $--x-border-small-radius;
+        background-color: $--x-background-a100;
+      }
+      .example {
+        padding: $--x-padding-mini $--x-padding-medium;
+        border-radius: $--x-border-small-radius;
+        border: $--x-border-base;
+      }
+    }
+  }
+  .ns-name-close {
+    position: absolute;
+    right: -3rem;
+    top: 1rem;
+  }
+}
+
+::ng-deep .ns-name {
+  .x-dialog-portal {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .x-dialog-portal-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}

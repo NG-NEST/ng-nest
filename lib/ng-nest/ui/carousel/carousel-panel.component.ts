@@ -62,7 +62,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
 
     this.carousel.panels.update((x) => {
       x.push(this.elementRef);
-      return x;
+      return [...x];
     });
     this.carousel.updatePanel.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.update();
@@ -75,7 +75,7 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
     const idx = this.carousel.panels().indexOf(this.elementRef);
     this.carousel.panels.update((x) => {
       x.splice(idx, 1);
-      return x;
+      return [...x];
     });
   }
 

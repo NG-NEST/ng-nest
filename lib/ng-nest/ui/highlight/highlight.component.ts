@@ -48,15 +48,20 @@ export class XHighlightComponent extends XHighlightProperty {
       );
       return this.sanitizer.bypassSecurityTrustHtml(data!);
     }
+    const lines = data!.split(/\n(?!$)/g);
     if (this.highlight.prism?.languages?.[type!]) {
-      const lines = data!.split(/\n(?!$)/g);
       return this.sanitizer.bypassSecurityTrustHtml(
         this.highlight.prism?.highlight(data, this.highlight.prism.languages[type!], type) +
           this.createLineNumbers(lines) +
           this.createHighlightLines()
       );
+    } else {
+      return this.sanitizer.bypassSecurityTrustHtml(
+        this.highlight.prism?.highlight(data, this.highlight.prism.languages['bash'], 'bash') +
+          this.createLineNumbers(lines) +
+          this.createHighlightLines()
+      );
     }
-    return '';
   });
 
   createLineNumbers(lines: string[]) {

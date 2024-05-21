@@ -9,22 +9,18 @@ import { XCollapseModule } from '@ng-nest/ui/collapse';
 import { MdToHtmlPipe } from '../md-to-html.pipe';
 
 @Component({
-  selector: 'ns-reference',
+  selector: 'ns-api-reference',
   standalone: true,
   imports: [NgTemplateOutlet, XButtonComponent, XCollapseModule, XDialogModule, MdToHtmlPipe],
-  templateUrl: './reference.component.html',
-  styleUrl: './reference.component.scss'
+  templateUrl: './api-reference.component.html',
+  styleUrl: './api-reference.component.scss'
 })
-export class NsReferenceComponent {
+export class NsApiReferenceComponent {
   data = inject<{ property: AppProp }>(X_DIALOG_DATA);
-  dialogRef = inject(XDialogRef<NsReferenceComponent>);
+  dialogRef = inject(XDialogRef<NsApiReferenceComponent>);
   ps = inject(PrismService);
   domSanitizer = inject(DomSanitizer);
   property = computed(() => this.data.property);
-
-  constructor() {
-    console.log(this.property());
-  }
 
   close() {
     this.dialogRef.close();

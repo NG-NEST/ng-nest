@@ -318,7 +318,7 @@ export class XListComponent extends XListProperty implements OnChanges {
         this.selectedNodes.update((x) => {
           x[0].selected = false;
           x[0] = node;
-          return x;
+          return [...x];
         });
       } else {
         return;
@@ -330,7 +330,7 @@ export class XListComponent extends XListProperty implements OnChanges {
           x.findIndex((x) => x.id == node.id),
           1
         );
-        return x;
+        return [...x];
       });
       this.isSelectAll.set(false);
     }
@@ -365,7 +365,7 @@ export class XListComponent extends XListProperty implements OnChanges {
   dropCdk(event: CdkDragDrop<XListNode[]>) {
     this.nodes.update((x) => {
       moveItemInArray(x, event.previousIndex, event.currentIndex);
-      return x;
+      return [...x];
     });
     this.dropListDropped.emit({
       data: this.nodes(),
@@ -384,13 +384,13 @@ export class XListComponent extends XListProperty implements OnChanges {
     if (this.isSelectAll()) {
       this.nodes.update((x) => {
         x.forEach((y) => (y.selected = true));
-        return x;
+        return [...x];
       });
       this.selectedNodes.set(this.nodes());
     } else {
       this.nodes.update((x) => {
         x.forEach((y) => (y.selected = false));
-        return x;
+        return [...x];
       });
       this.selectedNodes.set([]);
     }

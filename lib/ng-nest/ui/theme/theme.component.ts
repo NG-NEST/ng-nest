@@ -110,7 +110,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit, AfterView
       controls.map((x: XControl) => {
         x.value = (this.theme().colors as XColorsTheme)[x.id];
       });
-      return controls;
+      return [...controls];
     });
   }
 
@@ -123,8 +123,8 @@ export class XThemeComponent extends XThemeProperty implements OnInit, AfterView
         if (this.isOneAndInColorKeys(changes)) {
           let [key, value] = Object.entries(changes)[0];
           let colors = !this.dark()
-            ? this.themeService.setRoot(key, value, '')
-            : this.themeService.setDarkRoot(key, value, '');
+            ? this.themeService.setColorRoot(key, value, '')
+            : this.themeService.setDarkColorRoot(key, value, '');
           Object.assign(x, colors);
           this.currentColors.set(x);
           this.formGroup().patchValue(x);
@@ -172,7 +172,7 @@ export class XThemeComponent extends XThemeProperty implements OnInit, AfterView
       }
       this.controls.update((x) => {
         x.splice(index * this.amounts().length + index + 1, 0, ...addControls);
-        return x;
+        return [...x];
       });
     });
   }

@@ -1,7 +1,6 @@
 import { Subject, Subscription, distinctUntilChanged, fromEvent, interval, takeUntil } from 'rxjs';
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ElementRef,
@@ -28,7 +27,7 @@ import { DOCUMENT } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XInputNumberComponent)]
 })
-export class XInputNumberComponent extends XInputNumberProperty implements OnInit {
+export class XInputNumberComponent extends XInputNumberProperty {
   inputNumber = viewChild.required<ElementRef<HTMLElement>>('inputNumber');
   inputEleRef = viewChild.required<XInputComponent>('inputEleRef');
 
@@ -66,7 +65,8 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
   document = inject(DOCUMENT);
   private unSubject = new Subject<void>();
 
-  ngOnInit() {
+  constructor() {
+    super();
     this.valueChange.pipe(distinctUntilChanged(), takeUntil(this.unSubject)).subscribe((x) => {
       this.onChange && this.onChange(x);
     });
@@ -115,7 +115,7 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
     if (Number.isNaN(+this.value())) this.value.set(0);
     let value = Number(this.value()) + limit;
     this.verify(value);
-    this.valueChange.next(this.value);
+    this.valueChange.next(this.value());
   }
 
   verify(value: string | number) {
@@ -141,11 +141,9 @@ export class XInputNumberComponent extends XInputNumberProperty implements OnIni
       value = value.replace(/[^0-9]/g, '');
     }
     this.verify(value);
-    this.inputEleRef().inputRef().nativeElement.value = this.displayValue;
-    this.valueChange.next(this.value);
+    this.inputEleRef().inputRef().nativeElement.value = this.displayValue();
+    this.valueChange.next(this.value());
   }
 
-  formControlChanges() {
-    this.ngOnInit();
-  }
+  formControlChanges() {}
 }

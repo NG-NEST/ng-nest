@@ -295,7 +295,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
           if (idx >= 0) {
             this.treeActivatedId.update((x) => {
               x.splice(idx, 1);
-              return x;
+              return [...x];
             });
           }
           node.change && node.change();
@@ -505,16 +505,16 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
         if (!XIsEmpty(this.values())) {
           this.left.update((x) => {
             x.list = this.nodes().filter((x) => this.values().indexOf(x.id) < 0);
-            return x;
+            return { ...x };
           });
           this.right.update((x) => {
             x.list = this.nodes().filter((x) => this.values().indexOf(x.id) >= 0);
-            return x;
+            return { ...x };
           });
         } else {
           this.left.update((x) => {
             x.list = [...this.nodes()];
-            return x;
+            return { ...x };
           });
         }
         this.setSearchList(this.left(), this.right());
@@ -525,7 +525,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
         this.setTreeNodeDisabled();
         this.left.update((x) => {
           x.list = [...this.nodes()];
-          return x;
+          return { ...x };
         });
         if (!XIsEmpty(this.values())) {
           this.right.update((z) => {
@@ -537,7 +537,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
                 res.disabled = false;
                 return res;
               });
-            return z;
+            return { ...z };
           });
         }
         this.setSearchList(this.left(), this.right());
@@ -548,7 +548,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
         this.setTableDataDisabled();
         this.left.update((x) => {
           x.list = [...this.nodes()];
-          return x;
+          return { ...x };
         });
         if (!XIsEmpty(this.values())) {
           if (this.isObjectArray()) {
@@ -561,12 +561,12 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
                   return res;
                 })
               ];
-              return z;
+              return { ...z };
             });
           } else {
             this.right.update((x) => {
               x.list = [...this.value()];
-              return x;
+              return { ...x };
             });
           }
         }
@@ -598,16 +598,15 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     if (titles.length > 0) {
       this.left.update((x) => {
         x.title = titles[0];
-        return x;
+        return { ...x };
       });
     }
     if (titles.length > 1) {
       this.right.update((x) => {
         x.title = titles[1];
-        return x;
+        return { ...x };
       });
     }
-    console.log(this.left(), this.right());
   }
 
   private setListStyle() {
@@ -621,12 +620,12 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     if (styles.length > 0)
       this.left.update((x) => {
         x.listStyle = styles[0];
-        return x;
+        return { ...x };
       });
     if (styles.length > 1)
       this.right.update((x) => {
         x.listStyle = styles[1];
-        return x;
+        return { ...x };
       });
   }
 
@@ -655,13 +654,13 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     if (this.hiddenCheckAll()!.length > 0 && XIsBoolean(this.hiddenCheckAll()![0])) {
       this.left.update((x) => {
         x.hiddenCheckAll = this.hiddenCheckAll()![0];
-        return x;
+        return { ...x };
       });
     }
     if (this.hiddenCheckAll()!.length > 1 && XIsBoolean(this.hiddenCheckAll()![1])) {
       this.right.update((x) => {
         x.hiddenCheckAll = this.hiddenCheckAll()![1];
-        return x;
+        return { ...x };
       });
     }
   }
@@ -671,13 +670,13 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     if (this.footerTpl()!.length > 0) {
       this.left.update((x) => {
         x.footerTpl = this.footerTpl()![0];
-        return x;
+        return { ...x };
       });
     }
     if (this.footerTpl()!.length > 1) {
       this.right.update((x) => {
         x.footerTpl = this.footerTpl()![1];
-        return x;
+        return { ...x };
       });
     }
   }
@@ -687,13 +686,13 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
     if (this.tableHeadSearchTpl()!.length > 0) {
       this.left.update((x) => {
         x.tableHeadSearchTpl = this.tableHeadSearchTpl()![0];
-        return x;
+        return { ...x };
       });
     }
     if (this.tableHeadSearchTpl()!.length > 1) {
       this.right.update((x) => {
         x.tableHeadSearchTpl = this.tableHeadSearchTpl()![1];
-        return x;
+        return { ...x };
       });
     }
   }

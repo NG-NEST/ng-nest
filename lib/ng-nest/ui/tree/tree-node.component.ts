@@ -12,15 +12,7 @@ import {
   output
 } from '@angular/core';
 import { XTreeNodePrefix, XTreeNode, XTreeNodeProperty, XTreeAction } from './tree.property';
-import {
-  XIsEmpty,
-  XConfigService,
-  XBoolean,
-  XComputedStyle,
-  XToCssPx,
-  XIsObjectArray,
-  XIsArray
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XBoolean, XComputedStyle, XToCssPx, XIsObjectArray, XIsArray } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { XTreeService } from './tree.service';
 import { DOCUMENT, NgStyle } from '@angular/common';
@@ -139,16 +131,15 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   private cdr = inject(ChangeDetectorRef);
   private treeService = inject(XTreeService);
   elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
 
   ngOnInit() {
     const node = this.node();
     node.change = (check: boolean) => {
       if (check) this.setCheckbox();
-      this?.cdr.detectChanges();
+      this.cdr.detectChanges();
     };
     if (!this.tree.levelCheck()) return;
-    if (node.checked) this.setCheckbox();
+    if (this.checked()) this.setCheckbox();
     this.setIndeterminate(this.node());
   }
 
@@ -159,7 +150,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
 
   onActivate(event: Event, node: XTreeNode) {
     const change: Function = this.tree.activatedNode()?.change as Function;
-    this.tree.nodeOpen() && !this.leaf() && this.tree.onToggle(event, node);
+    this.tree.nodeOpen() && !this.leaf() && this.onToggle(event, node);
     const onChange = () => {
       change && change();
       event.preventDefault();
@@ -177,24 +168,24 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
         if (ids.includes(node.id)) {
           this.tree.activatedId.update((x) => {
             x.splice(ids.indexOf(node.id), 1);
-            return x;
+            return [...x];
           });
         } else {
           this.tree.activatedId.update((x) => {
             x.push(node);
-            return x;
+            return [...x];
           });
         }
       } else {
         if (this.tree.activatedId().includes(node.id)) {
           this.tree.activatedId.update((x) => {
             x.splice(this.tree.activatedId().indexOf(node.id), 1);
-            return x;
+            return [...x];
           });
         } else {
           this.tree.activatedId.update((x) => {
             x.push(node.id);
-            return x;
+            return [...x];
           });
         }
       }
@@ -286,6 +277,12 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   onAction(event: Event, action: XTreeAction, node: XTreeNode) {
     action.handler && action.handler(node);
     event.stopPropagation();
+  }
+
+  onToggle(event: Event, node: XTreeNode) {
+    this.toggle.emit(node);
+    event?.preventDefault();
+    event?.stopPropagation();
   }
 
   trackByItem(_index: number, item: XTreeNode) {

@@ -92,7 +92,7 @@
   &-line {
     position: absolute;
     left: 0.5rem;
-    height: 100%;
+    height: calc(100% + 0.25rem);
     display: flex;
     align-items: center;
     justify-content: space-between;

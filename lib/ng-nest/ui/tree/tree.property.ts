@@ -344,30 +344,20 @@ export class XTreeNodeProperty extends XProperty {
    */
   readonly level = model<number | undefined>(0);
   /**
-   * @zh_CN 懒加载子节点
-   * @en_US Lazy loading of child nodes
-   */
-  readonly lazy = input<boolean, XBoolean>(false, { transform: XToBoolean });
-  /**
    * @zh_CN 节点的高度
    * @en_US The height of the node
    */
-  readonly nodeHeight = input<string, XNumber>('', { transform: XToCssPixelValue });
+  readonly nodeHeight = model<string>('');
   /**
    * @zh_CN 节点内容不换行显示省略号
    * @en_US Show ellipsis without wrapping
    */
-  readonly nodeNowrap = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  readonly nodeNowrap = model<boolean>(false);
   /**
    * @zh_CN 节点垂直对齐方式
    * @en_US Show ellipsis without wrapping
    */
-  readonly nodeAlignItems = input<XAlign>('center');
-  /**
-   * @zh_CN 懒加载函数
-   * @en_US Lazy loading function
-   */
-  readonly lazyData = input<XData<XTreeNode[]>>();
+  readonly nodeAlignItems = model<XAlign>('center');
   /**
    * @zh_CN 标记为虚拟滚动的节点
    * @en_US Mark as a node of virtual rolling
@@ -397,12 +387,12 @@ export class XTreeNodeProperty extends XProperty {
    * @zh_CN 节点的高度
    * @en_US The height of the node
    */
-  readonly height = input<string, XNumber>('', { transform: XToCssPixelValue });
+  readonly height = model<string>('');
   /**
    * @zh_CN 节点垂直对齐方式
    * @en_US Show ellipsis without wrapping
    */
-  readonly alignItems = input<XAlign>();
+  readonly alignItems = model<XAlign>();
   /**
    * @zh_CN 节点垂直对齐方式
    * @en_US Show ellipsis without wrapping
@@ -433,4 +423,9 @@ export class XTreeNodeProperty extends XProperty {
    * @en_US Show ellipsis without wrapping, highest priority
    */
   readonly nowrap = model<boolean | undefined>(false);
+  /**
+   * @zh_CN 节点展开收起事件
+   * @en_US Node expansion pack up
+   */
+  readonly toggle = output<XTreeNode>();
 }

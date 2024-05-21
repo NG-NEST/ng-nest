@@ -22,7 +22,7 @@ export class XNotificationComponent {
 
   onClose(item: XNotificationOption) {
     this.notification.list?.splice(this.notification.list.indexOf(item), 1);
-    item.duration$ && item.duration$.unsubscribe();
+    item.durationSubscription && item.durationSubscription.unsubscribe();
     this.cdr.detectChanges();
   }
 
@@ -33,12 +33,12 @@ export class XNotificationComponent {
   }
 
   onEnter(item: XNotificationOption) {
-    item.duration$ && item.duration$.unsubscribe();
+    item.durationSubscription && item.durationSubscription.unsubscribe();
   }
 
   onLeave(item: XNotificationOption) {
     if (item.duration) {
-      item.duration$ = of(true)
+      item.durationSubscription = of(true)
         .pipe(delay(item.duration))
         .subscribe(() => {
           this.onClose(item);
