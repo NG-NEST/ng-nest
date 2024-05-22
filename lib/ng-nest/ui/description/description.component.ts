@@ -26,9 +26,9 @@ export class XDescriptionComponent extends XDescriptionProperty {
     if (gridTemplateColumns) return gridTemplateColumns;
     const columns: string[] = [];
     this.items().forEach((x) => {
-      if (x.width) {
+      if (x.width()) {
         columns.push(x.width());
-      } else if (x.flex) {
+      } else if (x.flex()) {
         columns.push(`${x.flex()}fr`);
       }
     });

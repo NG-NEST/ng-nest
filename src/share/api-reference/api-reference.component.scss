@@ -9,16 +9,23 @@
       > div:not(:first-child) {
         margin-top: $--x-padding-mini;
       }
-      .label {
+      .base {
         color: $--x-text;
         display: flex;
         align-items: center;
-        padding: 0 $--x-padding-mini;
-        > code {
-          color: #f637e3;
-        }
         > span {
           margin-left: 1rem;
+        }
+        .name {
+          padding: 0.25rem 0.325rem;
+          color: #f637e3;
+          background: rgba(246, 55, 227, 0.1);
+          border-radius: $--x-border-small-radius;
+          transition: $--x-animation-duration-base background-color;
+          will-change: background-color;
+          &:hover {
+            background-color: rgba(246, 55, 227, 0.2);
+          }
         }
         .type {
           margin-left: 1rem;
@@ -31,18 +38,18 @@
       }
       .value {
         color: #fa2c05;
-        padding: $--x-padding-mini $--x-padding-medium;
+        padding: $--x-padding-small $--x-padding-medium;
         border-radius: $--x-border-small-radius;
         background-color: $--x-danger-900;
       }
       .description {
         color: $--x-text-200;
-        padding: $--x-padding-mini $--x-padding-medium;
+        padding: $--x-padding-small $--x-padding-medium;
         border-radius: $--x-border-small-radius;
         background-color: $--x-background-a100;
       }
       .example {
-        padding: $--x-padding-mini $--x-padding-medium;
+        padding: $--x-padding-small $--x-padding-medium;
         border-radius: $--x-border-small-radius;
         border: $--x-border-base;
       }
@@ -50,7 +57,7 @@
         color: $--x-text;
         display: flex;
         align-items: center;
-        padding: $--x-padding-mini $--x-padding-medium;
+        padding: $--x-padding-small $--x-padding-medium;
         border-radius: $--x-border-small-radius;
         background-color: $--x-primary-900;
         > span {
@@ -62,9 +69,30 @@
         }
       }
       .children {
-        padding-left: $--x-padding-large;
+        padding-left: calc(#{$--x-padding-large} * 2);
+        position: relative;
+        &::before {
+          content: ' ';
+          position: absolute;
+          left: $--x-padding-medium;
+          height: 100%;
+          width: 0.0625rem;
+          background-color: $--x-border;
+        }
         .property {
-          padding: 0 1.5rem;
+          padding-left: calc(#{$--x-padding-large} * 2);
+          position: relative;
+          &::before {
+            content: ' ';
+            position: absolute;
+            left: $--x-padding-mini;
+            height: 100%;
+            width: 0.0625rem;
+            background-color: $--x-border;
+          }
+        }
+        .base {
+          padding-left: $--x-padding-small;
         }
       }
       .properties {
@@ -102,6 +130,12 @@
     position: absolute;
     right: -3rem;
     top: 1rem;
+  }
+
+  ::ng-deep {
+    .x-collapse-panel-header > .x-icon {
+      font-size: 1rem;
+    }
   }
 }
 

@@ -117,7 +117,7 @@ export const en_US: {[key: string]: AppProp} = {
   },
   "XToCssPixelValue": {
     "type": "function",
-    "label": "Convert the value to boolean value",
+    "label": "Convert the value to pixels",
     "description": "",
     "example": "",
     "properties": [],
@@ -675,7 +675,7 @@ export const en_US: {[key: string]: AppProp} = {
     "type": "type",
     "label": "Template type",
     "description": "Usually cooperate `outlet` instructions to specify a parameter can be as the basic data types, can also be used as a template",
-    "example": "```html\n// label = \"string\"\n<ng-container *xOutlet=\"label\">{{ label }}</ng-container>\n\n<ng-container *xOutlet=\"labelTpl\">{{ labelTpl }}</ng-container>\n<ng-template #labelTpl>this is a label template</ng-template>\n```",
+    "example": "```html\n// label = \"string\"\n<ng-container *xOutlet=\"label\">{{ label }}</ng-container>\n\n<ng-container *xOutlet=\"labelTpl\">{{ labelTpl }}</ng-container>\n<ng-template #labelTpl>this is a label template</ng-template>\n```\n",
     "properties": [],
     "name": "XTemplate",
     "value": "string | number | Date | TemplateRef<any>"
@@ -3029,7 +3029,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "'initial'",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-button>initial</x-button>\n<x-button type=\"primary\">primary</x-button>\n<x-button type=\"success\">success</x-button>\n<x-button type=\"warning\">warning</x-button>\n<x-button type=\"danger\">danger</x-button>\n<x-button type=\"info\">info</x-button>\n```\n",
+        "example": "```html\n<x-button>Initial</x-button>\n<x-button type=\"primary\">Primary</x-button>\n<x-button type=\"success\">Success</x-button>\n<x-button type=\"warning\">Warning</x-button>\n<x-button type=\"danger\">Danger</x-button>\n<x-button type=\"info\">Info</x-button>\n<x-button [type]=\"'primary'\">Primary</x-button>\n```\n",
         "transform": ""
       },
       {
@@ -3042,7 +3042,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button icon=\"fto-edit\"></x-button>\n<x-button icon=\"fto-edit\">Edit</x-button>\n<x-button [icon]=\"'fto-edit'\">Edit</x-button>\n```\n",
         "transform": ""
       },
       {
@@ -3055,7 +3055,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button title=\"information\"></x-button>\n<x-button [title]=\"'information'\"></x-button>\n```\n",
         "transform": ""
       },
       {
@@ -3064,11 +3064,11 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
         "signal": "input",
-        "label": "Layout",
+        "label": "Button elements in the layout",
         "default": "'row'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button direction=\"column\" icon=\"edit\">Button</x-button>\n<x-button direction=\"column-reverse\" icon=\"edit\">Button</x-button>\n<x-button direction=\"row\" icon=\"edit\">Button</x-button>\n<x-button direction=\"row-reverse\" icon=\"edit\">Button</x-button>\n<x-button [direction]=\"row\" icon=\"edit\">Button</x-button>\n```\n",
         "transform": ""
       },
       {
@@ -3081,7 +3081,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button tabindex=\"0\"></x-button>\n<x-button [tabindex]=\"0\"></x-button>\n```\n",
         "transform": "XToNumber"
       },
       {
@@ -3094,7 +3094,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button size=\"big\">Big</x-button>\n<x-button size=\"large\">Large</x-button>\n<x-button size=\"medium\">Medium</x-button>\n<x-button size=\"small\">Small</x-button>\n<x-button size=\"mini\">Mini</x-button>\n<x-button [size]=\"'medium'\">Medium</x-button>\n```\n",
         "transform": ""
       },
       {
@@ -3107,7 +3107,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button icon=\"fto-edit\" onlyIcon></x-button>\n<x-button icon=\"fto-edit\" onlyIcon=\"true\"></x-button>\n<x-button icon=\"fto-edit\" [onlyIcon]=\"true\"></x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3120,7 +3120,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button activated>Button</x-button>\n<x-button activated=\"true\">Button</x-button>\n<x-button [activated]=\"true\">Button</x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3133,7 +3133,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button disabled>Button</x-button>\n<x-button disabled=\"true\">Button</x-button>\n<x-button [disabled]=\"true\">Button</x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3146,7 +3146,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button plain>Button</x-button>\n<x-button plain=\"true\">Button</x-button>\n<x-button [plain]=\"true\">Button</x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3159,7 +3159,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button flat>Button</x-button>\n<x-button flat=\"true\">Button</x-button>\n<x-button [flat]=\"true\">Button</x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3172,7 +3172,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button text>Button</x-button>\n<x-button text=\"true\">Button</x-button>\n<x-button [text]=\"true\">Button</x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3185,7 +3185,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button round>Button</x-button>\n<x-button round=\"true\">Button</x-button>\n<x-button [round]=\"true\">Button</x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3198,7 +3198,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button circle>Button</x-button>\n<x-button circle=\"true\">Button</x-button>\n<x-button [circle]=\"true\">Button</x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3211,7 +3211,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button loading>Button</x-button>\n<x-button loading=\"true\">Button</x-button>\n<x-button [loading]=\"true\">Button</x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3224,7 +3224,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button closable>Button</x-button>\n<x-button closable=\"true\">Button</x-button>\n<x-button [closable]=\"true\">Button</x-button>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3237,7 +3237,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "'button'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-button attrType=\"button\">Button</x-button>\n<x-button attrType=\"submit\">Button</x-button>\n<x-button attrType=\"reset\">Button</x-button>\n```\n",
         "transform": ""
       }
     ],
@@ -3289,7 +3289,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "ex: 10,'10px','1rem'",
+        "example": "```html\n// ex: 10,'10px','1rem'\n<x-buttons space=\"1rem\">\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>\n```\n",
         "transform": "XToCssPixelValue"
       },
       {
@@ -3302,7 +3302,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-buttons hiddenBorder>\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3315,7 +3315,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-buttons boxShadow>\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -3328,7 +3328,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-buttons round>\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>\n```\n",
         "transform": "XToBoolean"
       }
     ],

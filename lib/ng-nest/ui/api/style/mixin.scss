@@ -28,22 +28,35 @@
       > td {
         &:nth-child(1) {
           width: 20%;
-          color: #3b82f6;
+          position: relative;
+          white-space: nowrap;
           .name {
+            color: #3b82f6;
             cursor: pointer;
             background-color: rgba(59, 130, 246, 0.1);
             border-radius: $--x-border-small-radius;
-            padding: 0.25rem 0.325rem;
+            padding: 0.25rem 0.325rem 0.25rem 1.5rem;
             transition: $--x-animation-duration-base background-color;
             will-change: background-color;
             &:hover {
               background-color: rgba(59, 130, 246, 0.2);
             }
           }
+          .signal {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: $--x-border-small-radius;
+            color: $--x-success;
+            margin-right: -1.325rem;
+            height: 1.625rem;
+            width: 1.375rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+          }
         }
         &:nth-child(3) {
-          color: #f637e3;
           width: 22%;
+          color: #f637e3;
           .popover {
             cursor: pointer;
             background-color: rgba(246, 55, 227, 0.1);

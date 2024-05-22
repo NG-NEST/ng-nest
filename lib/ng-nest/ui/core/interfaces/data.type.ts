@@ -27,6 +27,7 @@ export type XDataArray<T> = string | number | (T | string | number)[];
  * usually with `XToBoolean` decorator to process parameters,
  * directly into true or false
  * @example
+ * 
  * ```html
  * // true
  * <my-component disabled></my-component>
@@ -37,6 +38,7 @@ export type XDataArray<T> = string | number | (T | string | number)[];
  * <my-component disabled="false"></my-component>
  * <my-component [disabled]="false"></my-component>
  * ```
+ * 
  */
 export type XBoolean = boolean | string;
 
@@ -48,6 +50,7 @@ export type XBoolean = boolean | string;
  * This type as the input parameters of the component, generally use `XToNumber` conversion function, converted to digital type
  * If the width of the high is through `XToCssPixelValue` conversion function, convert the string size
  * @example
+ * 
  * ```html
  * // XToNumber => num = 10
  * <my-component max="10"></my-component>
@@ -68,6 +71,7 @@ export type XBoolean = boolean | string;
  * <my-component width="50%"></my-component>
  * <my-component [width]="'50%'"></my-component>
  * ```
+ * 
  */
 export type XNumber = number | string;
 
@@ -77,6 +81,7 @@ export type XNumber = number | string;
  * @en_US Template type
  * Usually cooperate `outlet` instructions to specify a parameter can be as the basic data types, can also be used as a template
  * @example
+ * 
  * ```html
  * // label = "string"
  * <ng-container *xOutlet="label">{{ label }}</ng-container>
@@ -84,6 +89,7 @@ export type XNumber = number | string;
  * <ng-container *xOutlet="labelTpl">{{ labelTpl }}</ng-container>
  * <ng-template #labelTpl>this is a label template</ng-template>
  * ```
+ * 
  */
 export type XTemplate = string | number | Date | TemplateRef<any>;
 

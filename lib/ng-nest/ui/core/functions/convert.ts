@@ -23,8 +23,8 @@ export function XToBoolean(value: XBoolean): boolean {
 }
 
 /**
- * @zh_CN 转换 value 为 boolean 值
- * @en_US Convert the value to boolean value
+ * @zh_CN 转换 value 为像素值
+ * @en_US Convert the value to pixels
  */
 export function XToCssPixelValue(value: XNumber): string {
   if (!XIsNumber(value) && /^\d+(\.\d+)?$/.test(value)) {

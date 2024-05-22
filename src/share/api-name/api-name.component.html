@@ -1,4 +1,4 @@
-<div x-dialog-title>属性</div>
+<div x-dialog-title>{{ 'api.property' | xI18n }}</div>
 <div x-dialog-content class="ns-name-content">
   <ng-container *ngTemplateOutlet="typeChild; context: { property: property() }"></ng-container>
 
@@ -6,6 +6,28 @@
     @if (property) {
       <div class="property">
         <ng-container *ngTemplateOutlet="titleTpl; context: { property }"></ng-container>
+        @if (property.default || property.withConfig) {
+          <div class="value">
+            @if (property.default) {
+              <span class="default">
+                <span> {{ 'api.default' | xI18n }}</span>
+                <code>{{ property.default }}</code>
+              </span>
+            }
+            @if (property.withConfig) {
+              <span class="global-config">{{ 'api.globalConfig' | xI18n }} ✔️</span>
+            }
+          </div>
+        }
+        @if (property.signal) {
+          <div class="signal">
+            <span>{{ signalFirstUpper() }}</span>
+            <span>{{ property.inputType }}</span>
+            @if (property.transform) {
+              <span x-popover [content]="transformProperty()?.label!" maxWidth="20rem">{{ property.transform }}</span>
+            }
+          </div>
+        }
         @if (property.description) {
           <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
         }
@@ -17,10 +39,13 @@
   </ng-template>
 
   <ng-template #titleTpl let-property="property">
-    <div class="label">
-      <code [innerText]="property.name"></code>
-      <span class="type" (click)="types.reference(property.type, this.className())">{{ property.type }}</span>
-      <span>{{ property.label }}</span>
+    <div class="base">
+      @if (property.signal) {
+        <span class="signal-short">{{ signalShort() }}</span>
+      }
+      <code class="name" [innerText]="property.name"></code>
+      <span class="type" (click)="showTypeInfo()">{{ property.type }}</span>
+      <span class="label">{{ property.label }}</span>
     </div>
   </ng-template>
 </div>

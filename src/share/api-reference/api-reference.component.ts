@@ -7,11 +7,12 @@ import { PrismService } from '@services';
 import { DomSanitizer } from '@angular/platform-browser';
 import { XCollapseModule } from '@ng-nest/ui/collapse';
 import { MdToHtmlPipe } from '../md-to-html.pipe';
+import { XI18nPipe } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: 'ns-api-reference',
   standalone: true,
-  imports: [NgTemplateOutlet, XButtonComponent, XCollapseModule, XDialogModule, MdToHtmlPipe],
+  imports: [NgTemplateOutlet, XButtonComponent, XCollapseModule, XDialogModule, XI18nPipe, MdToHtmlPipe],
   templateUrl: './api-reference.component.html',
   styleUrl: './api-reference.component.scss'
 })

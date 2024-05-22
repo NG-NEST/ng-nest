@@ -1,4 +1,4 @@
-<div x-dialog-title>类型</div>
+<div x-dialog-title>{{ 'api.type' | xI18n }}</div>
 <div x-dialog-content class="ns-reference-content">
   <ng-container *ngTemplateOutlet="typeChild; context: { property: property() }"></ng-container>
 
@@ -109,8 +109,8 @@
   </ng-template>
 
   <ng-template #typeTitle let-property="property" let-isChildren="isChildren">
-    <div class="label">
-      <code [innerText]="property.name"></code>
+    <div class="base">
+      <code class="name" [innerText]="property.name"></code>
       <span class="type">{{ property.type }}</span>
       <span>{{ property.label }}</span>
     </div>

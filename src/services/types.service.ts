@@ -22,7 +22,6 @@ export class TypesService {
 
   get lang(): 'zh_CN' | 'en_US' {
     return this.config.lang as 'zh_CN' | 'en_US';
-    // return this.config.lang ? 'en_US' : 'en_US';
   }
 
   typeMap = new Map<string, AppProp>();
@@ -44,7 +43,7 @@ export class TypesService {
 
     this.dialog.create(NsApiNameComponent, {
       className: 'ns-reference',
-      width: '45rem',
+      width: '48rem',
       data: {
         property: prop,
         className
@@ -64,7 +63,7 @@ export class TypesService {
     }
     this.dialog.create(NsApiReferenceComponent, {
       className: 'ns-reference',
-      width: '45rem',
+      width: '48rem',
       data: {
         property: prop
       }
@@ -187,7 +186,19 @@ export class TypesService {
           if (match) {
             let item = this.data[lang][`${match[1]}<T>`];
             if (item) {
-              type.properties!.unshift(...item.properties!);
+              const properties = item.properties?.map((x) => {
+                let type = x.type;
+                if (type === 'T') {
+                  type = match![2];
+                } else if (type === 'T[]') {
+                  type = `${match![2]}[]`;
+                }
+                return {
+                  ...x,
+                  type
+                };
+              });
+              type.properties!.unshift(...properties!);
               getProperties(item.extends);
             }
           }

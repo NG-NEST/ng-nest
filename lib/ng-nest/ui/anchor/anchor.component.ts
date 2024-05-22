@@ -111,7 +111,9 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   }
 
   private setScroll() {
-    fromEvent(this.scrollElement(), 'scroll')
+    const elementScroll = this.scrollElement();
+    const listenScroll = elementScroll.tagName === 'HTML' ? this.document.defaultView : elementScroll;
+    fromEvent(listenScroll!, 'scroll')
       .pipe(throttleTime(10), takeUntil(this.unSubject))
       .subscribe(() => {
         if (this.scrolling()) return;
@@ -129,6 +131,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
         return;
       }
     });
+    console.log(now);
     this.activatedIndex.set(now);
   }
 

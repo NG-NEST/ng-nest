@@ -27,8 +27,11 @@ export function generateProps(...types: NcProp[]) {
               ? `<code class="popover"
               (click)="types.reference('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
               : `<code [innerText]="'${y.type}'"></code>`;
+            let signal = y.signal
+              ? `<span class="signal">${(y.signal as string).slice(0, 1).toUpperCase()}</span>`
+              : '';
             let tr = `<tr>
-              <td><code class="name" (click)="types.name('${y.name}', '${x.name}')">${replaceSpecial(y.name)}</code></td>
+              <td>${signal}<code class="name" (click)="types.name('${y.name}', '${x.name}')">${replaceSpecial(y.name)}</code></td>
               <td>${y.label}${description}</td>
               <td>${ty}</td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>

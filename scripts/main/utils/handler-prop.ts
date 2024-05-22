@@ -75,7 +75,13 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
     lines.on('line', (line: string) => {
       line = line.trim();
       if (isReadDoc) {
-        docItem[index] = line.startsWith('*') ? line.replace('*', '').trim() : line;
+        if (line.startsWith('* ')) {
+          docItem[index] = line.slice(2, line.length);
+        } else if (line.startsWith('*') && line.trim() === '*') {
+          docItem[index] = '';
+        } else {
+          docItem[index] = line;
+        }
       }
       if (isReadConst) {
         if (line === '') {
