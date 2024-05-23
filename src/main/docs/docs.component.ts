@@ -41,6 +41,6 @@ export class NsDocsComponent {
       router = router.replace('docs/', '');
     }
     this.router.navigate([router], { relativeTo: this.activatedRoute });
-    this.layout.defaultActivatedId = menu.id;
+    this.layout.defaultActivatedId.set(menu.id);
   }
 }

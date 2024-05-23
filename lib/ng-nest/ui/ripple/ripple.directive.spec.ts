@@ -5,14 +5,16 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRipplePrefix } from './ripple.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XRipplePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XRippleDirective, XButtonComponent],
-      declarations: [TestXRippleDirective]
-    }).compileComponents();
+    declarations: [TestXRippleDirective],
+    imports: [XRippleDirective, XButtonComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRippleDirective>;

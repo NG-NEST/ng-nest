@@ -12,23 +12,22 @@ import {
 import { XContainerPrefix } from './container.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XContainerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXContainerComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XContainerComponent,
         XAsideComponent,
         XHeaderComponent,
         XFooterComponent,
-        XMainComponent
-      ],
-      declarations: [TestXContainerComponent]
-    }).compileComponents();
+        XMainComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXContainerComponent>;

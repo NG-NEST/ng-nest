@@ -6,19 +6,13 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XRowPrefix } from './layout.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(`${XRowPrefix}`, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
-        XThemeComponent,
-        XRowComponent,
-        XColComponent
-      ],
-      declarations: [
+    declarations: [
         TestLayoutComponent,
         TestSpaceLayoutComponent,
         TestBlendLayoutComponent,
@@ -26,8 +20,13 @@ describe(`${XRowPrefix}`, () => {
         TestFlexLayoutComponent,
         TestLayoutLayoutComponent,
         TestHiddenLayoutComponent
-      ]
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        XThemeComponent,
+        XRowComponent,
+        XColComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestLayoutComponent>;

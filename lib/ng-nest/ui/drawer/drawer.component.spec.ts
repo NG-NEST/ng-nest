@@ -12,14 +12,19 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XPosition } from '@ng-nest/ui/core';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XDrawerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXDrawerComponent,
+        TestXDrawerTitleComponent,
+        TestXDrawerCustomComponent,
+        TestXDrawerMultipleComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XDrawerComponent,
         FormsModule,
@@ -27,15 +32,9 @@ describe(XDrawerPrefix, () => {
         XIconComponent,
         XRadioComponent,
         XButtonComponent,
-        XButtonsComponent
-      ],
-      declarations: [
-        TestXDrawerComponent,
-        TestXDrawerTitleComponent,
-        TestXDrawerCustomComponent,
-        TestXDrawerMultipleComponent
-      ]
-    }).compileComponents();
+        XButtonsComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDrawerComponent>;

@@ -14,12 +14,10 @@ export class NsAdaptionDirective implements AfterViewInit, OnDestroy {
   container = input<HTMLElement>();
 
   private doc = inject(DOCUMENT);
+  private elementRef = inject(ElementRef);
+  private renderer = inject(Renderer2);
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2
-  ) {}
 
   ngAfterViewInit() {
     this.setSubject();

@@ -9,20 +9,13 @@ import { XThemeComponent } from '@ng-nest/ui/theme';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { interval } from 'rxjs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XMenuPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
-        XThemeComponent,
-        XMenuComponent,
-        XButtonComponent,
-        TestMenuRoutesModule
-      ],
-      declarations: [
+    declarations: [
         TestXMenuComponent,
         TestXMenuExpandedComponent,
         TestXMenuCollapsedComponent,
@@ -30,9 +23,14 @@ describe(XMenuPrefix, () => {
         TestXMenuTestTwoCollapsedComponent,
         TestXMenuTestThreeCollapsedComponent,
         TestXMenuWindowsComponent
-      ],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        XThemeComponent,
+        XMenuComponent,
+        XButtonComponent,
+        TestMenuRoutesModule],
+    providers: [{ provide: APP_BASE_HREF, useValue: '/' }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMenuComponent>;

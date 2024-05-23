@@ -4,14 +4,16 @@ import { By } from '@angular/platform-browser';
 import { XKeywordPrefix } from './keyword.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XKeywordDirective } from '@ng-nest/ui/keyword';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XKeywordPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XKeywordDirective, XButtonComponent],
-      declarations: [TestXKeywordComponent]
-    }).compileComponents();
+    declarations: [TestXKeywordComponent],
+    imports: [XKeywordDirective, XButtonComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXKeywordComponent>;

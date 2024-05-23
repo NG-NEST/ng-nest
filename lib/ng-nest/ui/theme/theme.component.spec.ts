@@ -9,24 +9,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XThemePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
+    declarations: [TestXThemeComponent],
+    imports: [BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         XButtonComponent,
         XButtonsComponent,
         XThemeComponent,
         XSwitchComponent,
-        XFormComponent
-      ],
-      declarations: [TestXThemeComponent]
-    }).compileComponents();
+        XFormComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXThemeComponent>;

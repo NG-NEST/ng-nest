@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { LayoutService } from '../layout.service';
 import { XStorageService } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -16,19 +16,12 @@ import { SiderComponent } from '../sider/sider.component';
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
-  list = [
-    { name: 'Home', page: './home' },
-    { name: 'Demo', page: './demo' },
-    { name: 'Docs', page: './docs' },
-    { name: 'News', page: './news' }
-  ];
-
-  lang = this.storage.getLocal('Lang');
-
-  constructor(public ele: ElementRef<HTMLElement>, public layout: LayoutService, private storage: XStorageService) {}
+  elementRef = inject(ElementRef);
+  layout = inject(LayoutService);
+  storage = inject(XStorageService);
 
   ngOnInit() {
-    this.layout.headerRef = this.ele;
+    this.layout.headerRef.set(this.elementRef);
   }
 
   push(page: string) {
@@ -37,10 +30,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onLeftDrawer(visible: boolean) {
-    this.layout.leftDrawerVisible = visible;
+    this.layout.leftDrawerVisible.set(visible);
   }
 
   onRightDrawer(visible: boolean) {
-    this.layout.rightDrawerVisible = visible;
+    this.layout.rightDrawerVisible.set(visible);
   }
 }

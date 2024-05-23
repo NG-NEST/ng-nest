@@ -11,23 +11,13 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XRadioComponent } from '@ng-nest/ui/radio';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTimePickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
-        XThemeComponent,
-        XTimePickerModule,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XRadioComponent
-      ],
-      declarations: [
+    declarations: [
         TestXTimePickerComponent,
         TestXTimePickerLabelComponent,
         TestXTimePickerDisabledComponent,
@@ -35,8 +25,17 @@ describe(XTimePickerPrefix, () => {
         TestXTimePickerHourOrMinuteComponent,
         TestXTimePickerSizeComponent,
         TestXTimePickerBorderedComponent
-      ]
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        XThemeComponent,
+        XTimePickerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        XRowComponent,
+        XColComponent,
+        XRadioComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimePickerComponent>;

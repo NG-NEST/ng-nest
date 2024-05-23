@@ -1,6 +1,6 @@
 <section>
   <x-auto-complete
-    [data]="getSearchData"
+    [data]="getSearchData()"
     [debounceTime]="0"
     (nodeEmit)="pagaTo($event)"
     [bordered]="false"

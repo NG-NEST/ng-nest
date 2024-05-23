@@ -11,16 +11,16 @@ import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XTreeComponent } from '@ng-nest/ui/tree';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTransferPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXTransferComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         ReactiveFormsModule,
@@ -32,10 +32,9 @@ describe(XTransferPrefix, () => {
         XIconComponent,
         XTreeComponent,
         XSelectComponent,
-        XInputComponent
-      ],
-      declarations: [TestXTransferComponent]
-    }).compileComponents();
+        XInputComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTransferComponent>;

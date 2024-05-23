@@ -7,21 +7,20 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTagComponent } from '@ng-nest/ui/tag';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XCrumbPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXCrumbComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XCrumbComponent,
         XIconComponent,
-        XTagComponent
-      ],
-      declarations: [TestXCrumbComponent]
-    }).compileComponents();
+        XTagComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCrumbComponent>;

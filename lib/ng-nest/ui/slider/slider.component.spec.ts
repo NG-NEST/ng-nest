@@ -8,22 +8,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XSliderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        XSliderComponent,
+    declarations: [TestXSliderComponent],
+    imports: [XSliderComponent,
         XThemeComponent,
         BrowserAnimationsModule,
         XIconComponent,
         XTabsComponent,
-        XTabComponent
-      ],
-      declarations: [TestXSliderComponent]
-    }).compileComponents();
+        XTabComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSliderComponent>;

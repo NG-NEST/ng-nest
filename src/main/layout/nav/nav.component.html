@@ -1,20 +1,20 @@
 <section>
   <div class="item slider">
     <x-slider
-      [data]="layout.navs"
+      [data]="layout.navs()"
       (nodeChange)="action('page', $event)"
-      [activatedIndex]="getActivatedIndex"
-      [layout]="layout.xsmall ? 'column' : 'row'"
+      [activatedIndex]="activatedIndex()"
+      [layout]="layout.xsmall() ? 'column' : 'row'"
     >
     </x-slider>
   </div>
   <div class="item version">
     <x-select
-      [data]="config.versions"
+      [data]="config.versions()"
       [(ngModel)]="config.version"
       (ngModelChange)="action('version', $event)"
       clearable="false"
-      title="{{ 'header.version' | xI18n }}"
+      [title]="'header.version' | xI18n"
       [style.width.rem]="7"
     ></x-select>
   </div>
@@ -29,10 +29,10 @@
     }
   </div>
   <div class="item theme no-margin">
-    @if (theme === 'light') {
-      <x-button (click)="action('dark')" title="{{ 'header.dark' | xI18n }}" icon="fto-moon" text></x-button>
-    } @else if (theme === 'dark') {
-      <x-button (click)="action('light')" title="{{ 'header.light' | xI18n }}" icon="fto-sun" text></x-button>
+    @if (theme() === 'light') {
+      <x-button (click)="action('dark')" [title]="'header.dark' | xI18n" icon="fto-moon" text></x-button>
+    } @else if (theme() === 'dark') {
+      <x-button (click)="action('light')" [title]="'header.light' | xI18n" icon="fto-sun" text></x-button>
     }
   </div>
   <div class="item github no-margin">

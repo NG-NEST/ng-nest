@@ -5,14 +5,16 @@ import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTypographyComponent } from '@ng-nest/ui/typography';
 import { XTypographyPrefix } from './typography.property';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTypographyPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XTypographyComponent, XRowComponent, XColComponent, XDocComponent],
-      declarations: [TestXTypographyComponent]
-    }).compileComponents();
+    declarations: [TestXTypographyComponent],
+    imports: [XTypographyComponent, XRowComponent, XColComponent, XDocComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTypographyComponent>;

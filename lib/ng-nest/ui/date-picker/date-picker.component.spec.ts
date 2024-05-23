@@ -20,14 +20,26 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XAddDays } from '@ng-nest/ui/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XDatePickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXDatePickerComponent,
+        TestXDatePickerLabelComponent,
+        TestXDatePickerDisabledComponent,
+        TestXDatePickerRequiredComponent,
+        TestXDatePickerYearOrMonthComponent,
+        TestXDatePickerHourMinuteSecondComponent,
+        TestXDatePickerSizeComponent,
+        TestXDatePickerBorderedComponent,
+        TestXDatePickerBeforeAfterComponent,
+        TestXDatePickerTodayComponent,
+        TestXDateRangeComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XDatePickerComponent,
         XDateRangeComponent,
         FormsModule,
@@ -43,22 +55,9 @@ describe(XDatePickerPrefix, () => {
         XColorPickerComponent,
         XFindComponent,
         XTextareaComponent,
-        XTimePickerModule
-      ],
-      declarations: [
-        TestXDatePickerComponent,
-        TestXDatePickerLabelComponent,
-        TestXDatePickerDisabledComponent,
-        TestXDatePickerRequiredComponent,
-        TestXDatePickerYearOrMonthComponent,
-        TestXDatePickerHourMinuteSecondComponent,
-        TestXDatePickerSizeComponent,
-        TestXDatePickerBorderedComponent,
-        TestXDatePickerBeforeAfterComponent,
-        TestXDatePickerTodayComponent,
-        TestXDateRangeComponent
-      ]
-    }).compileComponents();
+        XTimePickerModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDatePickerComponent>;

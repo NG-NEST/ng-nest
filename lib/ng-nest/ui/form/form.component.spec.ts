@@ -22,14 +22,16 @@ import { XSelectNode } from '@ng-nest/ui/select';
 import { Observable } from 'rxjs';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTreeNode } from '@ng-nest/ui/tree';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XFormPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XButtonComponent, XFormComponent],
-      declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent]
-    }).compileComponents();
+    declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent],
+    imports: [BrowserAnimationsModule, XButtonComponent, XFormComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXFormComponent>;

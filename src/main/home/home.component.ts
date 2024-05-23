@@ -12,10 +12,10 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 })
 export class HomeComponent {
   @HostBinding('class.small') get small() {
-    return this.layout.small;
+    return this.layout.small();
   }
   @HostBinding('class.xsmall') get xsmall() {
-    return this.layout.xsmall;
+    return this.layout.xsmall();
   }
   constructor(public layout: LayoutService) {}
 }

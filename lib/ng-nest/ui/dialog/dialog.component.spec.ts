@@ -15,15 +15,15 @@ import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { interval } from 'rxjs';
 import { XFormComponent } from '@ng-nest/ui/form';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XDialogComponent } from './dialog.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XDialogPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXDialogComponent, TestXDialogDraggableComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XInputComponent,
@@ -32,10 +32,9 @@ describe(XDialogPrefix, () => {
         XButtonComponent,
         XIconComponent,
         XLinkComponent,
-        XFormComponent
-      ],
-      declarations: [TestXDialogComponent, TestXDialogDraggableComponent]
-    }).compileComponents();
+        XFormComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDialogComponent>;

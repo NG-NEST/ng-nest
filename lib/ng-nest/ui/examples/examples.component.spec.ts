@@ -4,14 +4,16 @@ import { By } from '@angular/platform-browser';
 import { XExamplesComponent } from '@ng-nest/ui/examples';
 import { XExamplesPrefix } from './examples.property';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XExamplesPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XExamplesComponent, HttpClientTestingModule, XTabsComponent, XTabComponent],
-      declarations: [TestXExamplesComponent]
-    }).compileComponents();
+    declarations: [TestXExamplesComponent],
+    imports: [XExamplesComponent, XTabsComponent, XTabComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXExamplesComponent>;

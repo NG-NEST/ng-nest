@@ -8,16 +8,23 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XButtonComponent } from '@ng-nest/ui/button';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXSliderSelectComponent,
+        TestXSliderSelectLabelComponent,
+        TestXSliderSelectLimitComponent,
+        TestXSliderSelectPrecisionComponent,
+        TestXSliderSelectDisabledComponent,
+        TestXSliderSelectTabsComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XSliderSelectComponent,
         FormsModule,
@@ -27,17 +34,9 @@ describe(XSliderSelectPrefix, () => {
         XTabsComponent,
         XTabComponent,
         XIconComponent,
-        XButtonComponent
-      ],
-      declarations: [
-        TestXSliderSelectComponent,
-        TestXSliderSelectLabelComponent,
-        TestXSliderSelectLimitComponent,
-        TestXSliderSelectPrecisionComponent,
-        TestXSliderSelectDisabledComponent,
-        TestXSliderSelectTabsComponent
-      ]
-    }).compileComponents();
+        XButtonComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSliderSelectComponent>;

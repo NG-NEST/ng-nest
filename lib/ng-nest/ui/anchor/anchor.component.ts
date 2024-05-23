@@ -131,7 +131,6 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
         return;
       }
     });
-    console.log(now);
     this.activatedIndex.set(now);
   }
 

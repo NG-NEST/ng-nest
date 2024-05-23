@@ -12,14 +12,14 @@ import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XPopconfirmPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXPopconfirmComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XPopconfirmComponent,
@@ -28,10 +28,9 @@ describe(XPopconfirmPrefix, () => {
         XRowComponent,
         XColComponent,
         XIconComponent,
-        XSwitchComponent
-      ],
-      declarations: [TestXPopconfirmComponent]
-    }).compileComponents();
+        XSwitchComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPopconfirmComponent>;

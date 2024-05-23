@@ -4,14 +4,16 @@ import { XInnerComponent } from '@ng-nest/ui/inner';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInnerPrefix } from './inner.property';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XInnerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XInnerComponent],
-      declarations: [TestXInnerComponent]
-    }).compileComponents();
+    declarations: [TestXInnerComponent],
+    imports: [XInnerComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXInnerComponent>;

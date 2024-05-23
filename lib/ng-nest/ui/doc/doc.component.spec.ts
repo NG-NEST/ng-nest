@@ -14,14 +14,21 @@ import { XApiComponent } from '@ng-nest/ui/api';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { XHighlightComponent } from '@ng-nest/ui/highlight';
 import { XPatternComponent } from '@ng-nest/ui/pattern';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XDocPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXDocComponent,
+        ExColorComponent,
+        ExCustomComponent,
+        ExDefaultComponent,
+        ExDotComponent,
+        ExMaxComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XDocComponent,
         XIconComponent,
@@ -34,17 +41,9 @@ describe(XDocPrefix, () => {
         XTabsComponent,
         XTabComponent,
         XHighlightComponent,
-        XPatternComponent
-      ],
-      declarations: [
-        TestXDocComponent,
-        ExColorComponent,
-        ExCustomComponent,
-        ExDefaultComponent,
-        ExDotComponent,
-        ExMaxComponent
-      ]
-    }).compileComponents();
+        XPatternComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDocComponent>;

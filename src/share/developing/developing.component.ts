@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class DevelopingComponent {
   private wd = inject(DOCUMENT).defaultView!;
-  constructor(public router: Router) {}
+  private router = inject(Router);
 
   push() {
     this.router.navigateByUrl(`/index/home`);

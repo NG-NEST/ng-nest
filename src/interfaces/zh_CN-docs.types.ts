@@ -4880,15 +4880,6 @@ export const zh_CN: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-color'"
   },
-  "XAmounts": {
-    "type": "const",
-    "label": "颜色权重比例",
-    "description": "",
-    "example": "",
-    "properties": [],
-    "name": "XAmounts",
-    "value": "[-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]"
-  },
   "XColorProperty": {
     "type": "class",
     "label": "Color Property",
@@ -4915,7 +4906,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "十六进制颜色码，此处默认读取 css 变量中的主色",
-        "default": "'var(--x-primary",
+        "default": "'var(--x-primary)'",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -4941,7 +4932,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<number[]>",
         "signal": "input",
         "label": "混合的颜色占比",
-        "default": "XAmounts",
+        "default": "[-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]",
         "withConfig": true,
         "description": "",
         "example": "",

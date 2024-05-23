@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, HostBinding, viewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostBinding, viewChild, inject } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { LayoutService } from './layout.service';
 import { ContentComponent } from './content/content.component';
@@ -13,21 +13,19 @@ import { HeaderComponent } from './header/header.component';
   encapsulation: ViewEncapsulation.None
 })
 export class LayoutComponent implements OnInit {
+  breakpointObserver = inject(BreakpointObserver);
+  layout = inject(LayoutService);
+
   @HostBinding('class.shrink') get shrink() {
-    return this.layoutService.shrink;
+    return this.layout.shrink();
   }
   @HostBinding('class.small') get small() {
-    return this.layoutService.small;
+    return this.layout.small();
   }
   @HostBinding('class.xsmall') get xsmall() {
-    return this.layoutService.xsmall;
+    return this.layout.xsmall();
   }
   content = viewChild.required<ContentComponent>('content');
-
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private layoutService: LayoutService
-  ) {}
 
   ngOnInit() {
     // // 手持设备
@@ -60,11 +58,10 @@ export class LayoutComponent implements OnInit {
     // let Small = Breakpoints.Small;
 
     this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]).subscribe((res) => {
-      this.layoutService.small = res.breakpoints[Breakpoints.Small];
-      this.layoutService.xsmall = res.breakpoints[Breakpoints.XSmall];
-      if (!res.matches && this.layoutService.leftDrawerVisible) this.layoutService.leftDrawerVisible = false;
-      if (!res.matches && this.layoutService.rightDrawerVisible) this.layoutService.rightDrawerVisible = false;
+      this.layout.small.set(res.breakpoints[Breakpoints.Small]);
+      this.layout.xsmall.set(res.breakpoints[Breakpoints.XSmall]);
+      if (!res.matches && this.layout.leftDrawerVisible()) this.layout.leftDrawerVisible.set(false);
+      if (!res.matches && this.layout.rightDrawerVisible()) this.layout.rightDrawerVisible.set(false);
     });
-    this.breakpointObserver;
   }
 }

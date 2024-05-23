@@ -4880,15 +4880,6 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-color'"
   },
-  "XAmounts": {
-    "type": "const",
-    "label": "Color weightings",
-    "description": "",
-    "example": "",
-    "properties": [],
-    "name": "XAmounts",
-    "value": "[-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]"
-  },
   "XColorProperty": {
     "type": "class",
     "label": "Color Property",
@@ -4915,7 +4906,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Hexadecimal color code, here the main color in the css variable is read by default",
-        "default": "'var(--x-primary",
+        "default": "'var(--x-primary)'",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -4941,7 +4932,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<number[]>",
         "signal": "input",
         "label": "Proportion of mixed colors",
-        "default": "XAmounts",
+        "default": "[-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]",
         "withConfig": true,
         "description": "",
         "example": "",

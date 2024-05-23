@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 import { XDocComponent } from '@ng-nest/ui/doc';
 import { XExamplesComponent } from '@ng-nest/ui/examples';
 import { XApiComponent } from '@ng-nest/ui/api';
@@ -23,7 +22,6 @@ const modules = [
   CommonModule,
   FormsModule,
   RouterModule,
-  HttpClientModule,
   ReactiveFormsModule,
   RouterOutlet,
   XDocComponent,

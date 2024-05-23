@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, isDevMode } from '@angular/core';
+import { APP_INITIALIZER, provideExperimentalZonelessChangeDetection, isDevMode } from '@angular/core';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
@@ -6,7 +6,6 @@ import {
   withPreloading
 } from '@angular/router';
 import { MainRoutes } from './app.routes';
-// import { provideClientHydration } from '@angular/platform-browser';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 // import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -17,6 +16,7 @@ import { AppInitializer } from './app.initializer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideExperimentalZonelessChangeDetection(),
     // provideAnimationsAsync(),
     provideAnimations(),
     provideHttpClient(withFetch()),
@@ -27,7 +27,6 @@ export const appConfig: ApplicationConfig = {
       withEnabledBlockingInitialNavigation(),
       withPreloading(XPreloadingStrategyService)
     ),
-    // provideClientHydration(),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'

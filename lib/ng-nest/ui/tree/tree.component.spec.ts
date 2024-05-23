@@ -16,14 +16,22 @@ import { XMessageService } from '@ng-nest/ui/message';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTreePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXTreeComponent,
+        TestXTreeLazyComponent,
+        TestXTreeCheckedComponent,
+        TestXTreeDiabledComponent,
+        TestXTreeCustomComponent,
+        TestXTreeEventComponent,
+        TestXTreeOperationComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XTreeComponent,
         XRowComponent,
@@ -33,18 +41,9 @@ describe(XTreePrefix, () => {
         XFormComponent,
         XLinkComponent,
         XInputNumberComponent,
-        XIconComponent
-      ],
-      declarations: [
-        TestXTreeComponent,
-        TestXTreeLazyComponent,
-        TestXTreeCheckedComponent,
-        TestXTreeDiabledComponent,
-        TestXTreeCustomComponent,
-        TestXTreeEventComponent,
-        TestXTreeOperationComponent
-      ]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTreeComponent>;

@@ -10,24 +10,23 @@ import { XJustify } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTabsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
+    declarations: [TestXTabsComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XTabsComponent,
         XTabComponent,
         XRadioComponent,
         XIconComponent,
-        XButtonComponent
-      ],
-      declarations: [TestXTabsComponent]
-    }).compileComponents();
+        XButtonComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTabsComponent>;

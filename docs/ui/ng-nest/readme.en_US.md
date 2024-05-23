@@ -21,11 +21,11 @@ NG-NEST is an open source Web application framework based on Angular and NEST, m
 
 ## Current version
 
-npm 17.0.5
+npm 18.0.0
 
 ## Support Angular version
 
-Angular ^17.0.0 is currently supported by `@ng-nest/ui`.
+Angular ^18.0.0 is currently supported by `@ng-nest/ui`.
 
 ## Supporting environment
 
@@ -46,8 +46,8 @@ This document assumes that you are already familiar with the basics of [Angular]
 
 - QQ: 689736453
 
-<img src="assets/img/tim.jpg" width="250" height="320" />
+<img src="/img/tim.jpg" width="250" height="320" />
 
 - WeChat
 
-<img src="assets/img/weixin.jpg" width="250" height="320" />
+<img src="/img/weixin.jpg" width="250" height="320" />

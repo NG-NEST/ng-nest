@@ -27,28 +27,14 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDescriptionModule } from '@ng-nest/ui/description';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        FormsModule,
-        XDescriptionModule,
-        XTableComponent,
-        XIconComponent,
-        XAvatarComponent,
-        XButtonComponent,
-        XLinkComponent,
-        XInputComponent,
-        XSelectComponent,
-        XSwitchComponent,
-        XDialogComponent
-      ],
-      declarations: [
+    declarations: [
         TestXTableComponent,
         TestXTableScrollComponent,
         TestXTableAdaptionComponent,
@@ -59,8 +45,21 @@ describe(XTablePrefix, () => {
         TestXTableCheckboxComponent,
         TestXTableRowSizeComponent,
         TestXTablePaginationComponent
-      ]
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        FormsModule,
+        XDescriptionModule,
+        XTableComponent,
+        XIconComponent,
+        XAvatarComponent,
+        XButtonComponent,
+        XLinkComponent,
+        XInputComponent,
+        XSelectComponent,
+        XSwitchComponent,
+        XDialogComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTableComponent>;

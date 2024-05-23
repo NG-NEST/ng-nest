@@ -10,20 +10,19 @@ import { XPlace } from '@ng-nest/ui/core';
 import { XMessageService } from '@ng-nest/ui/message';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XMessageBoxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
+    declarations: [TestXMessageBoxComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XMessageBoxComponent,
-        XButtonComponent
-      ],
-      declarations: [TestXMessageBoxComponent]
-    }).compileComponents();
+        XButtonComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMessageBoxComponent>;

@@ -5,14 +5,16 @@ import { XPageHeaderComponent } from '@ng-nest/ui/page-header';
 import { XPageHeaderPrefix } from './page-header.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XPageHeaderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeComponent, XPageHeaderComponent],
-      declarations: [TestXPageHeaderComponent]
-    }).compileComponents();
+    declarations: [TestXPageHeaderComponent],
+    imports: [BrowserAnimationsModule, XThemeComponent, XPageHeaderComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPageHeaderComponent>;

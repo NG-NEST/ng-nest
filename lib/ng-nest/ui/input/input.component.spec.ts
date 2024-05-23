@@ -18,14 +18,27 @@ import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XFindComponent } from '@ng-nest/ui/find';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XInputPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXInputComponent,
+        TestXInputLabelComponent,
+        TestXInputIconComponent,
+        TestXInputClearableComponent,
+        TestXInputDisabledComponent,
+        TestXInputRequiredComponent,
+        TestXInputLengthComponent,
+        TestXInputSizeComponent,
+        TestXInputBorderedComponent,
+        TestXInputGroupComponent,
+        TestXInputBeforeAfterComponent,
+        TestXInputFocusComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XInputComponent,
         XInputGroupComponent,
@@ -43,23 +56,9 @@ describe(XInputPrefix, () => {
         XColorPickerComponent,
         XFindComponent,
         XTextareaComponent,
-        XTimePickerModule
-      ],
-      declarations: [
-        TestXInputComponent,
-        TestXInputLabelComponent,
-        TestXInputIconComponent,
-        TestXInputClearableComponent,
-        TestXInputDisabledComponent,
-        TestXInputRequiredComponent,
-        TestXInputLengthComponent,
-        TestXInputSizeComponent,
-        TestXInputBorderedComponent,
-        TestXInputGroupComponent,
-        TestXInputBeforeAfterComponent,
-        TestXInputFocusComponent
-      ]
-    }).compileComponents();
+        XTimePickerModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXInputComponent>;

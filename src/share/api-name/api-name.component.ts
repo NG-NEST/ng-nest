@@ -30,6 +30,8 @@ export class NsApiNameComponent {
   dialogRef = inject(XDialogRef<NsApiNameComponent>);
   ps = inject(PrismService);
   domSanitizer = inject(DomSanitizer);
+  types = inject(TypesService);
+  config = inject(ConfigService);
   property = computed(() => this.data.property);
   className = computed(() => this.data.className);
 
@@ -59,13 +61,6 @@ export class NsApiNameComponent {
     if (!prop) return;
     return prop;
   });
-
-  constructor(
-    public types: TypesService,
-    public config: ConfigService
-  ) {
-    console.log(this.property(), this.className());
-  }
 
   showTypeInfo() {
     const { type } = this.property();

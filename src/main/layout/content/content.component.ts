@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, inject } from '@angular/core';
 import { LayoutService } from '../layout.service';
 import { RouterOutlet } from '@angular/router';
 
@@ -10,9 +10,10 @@ import { RouterOutlet } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class ContentComponent implements OnInit {
-  constructor(public ele: ElementRef<HTMLElement>, public layout: LayoutService) {}
+  elementRef = inject(ElementRef);
+  layout = inject(LayoutService);
 
   ngOnInit() {
-    this.layout.contentRef = this.ele;
+    this.layout.contentRef.set(this.elementRef);
   }
 }

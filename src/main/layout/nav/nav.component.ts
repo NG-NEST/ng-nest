@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, ViewEncapsulation, inject } from '@angular/core';
-import { CommonModule, DOCUMENT, Location, PlatformLocation } from '@angular/common';
+import { Component, ViewEncapsulation, computed, inject, signal } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { X_THEME_DARK_COLORS, X_THEME_COLORS, XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services';
@@ -19,34 +19,30 @@ import { FormsModule } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class NavComponent {
-  theme: 'dark' | 'light' = 'light';
   document = inject(DOCUMENT);
-  get getActivatedIndex() {
-    return this.layout.navs.map((x) => x.id).indexOf(this.layout.navActive?.id);
-  }
-  constructor(
-    public layout: LayoutService,
-    public xconfig: XConfigService,
-    public config: ConfigService,
-    public router: Router,
-    public activatedRoute: ActivatedRoute,
-    public cdr: ChangeDetectorRef,
-    public location: Location,
-    public locationPl: PlatformLocation
-  ) {}
+  layout = inject(LayoutService);
+  xconfig = inject(XConfigService);
+  config = inject(ConfigService);
+  router = inject(Router);
+  activatedRoute = inject(ActivatedRoute);
+  theme = signal<'dark' | 'light'>('light');
+  activatedIndex = computed(() => {
+    return this.layout
+      .navs()
+      .map((x) => x.id)
+      .indexOf(this.layout.navActive()?.id);
+  });
 
   action(type: string, param?: AppMenu | XSliderNode | string) {
     const wd = this.document.defaultView!;
     switch (type) {
       case 'dark':
-        this.theme = type;
+        this.theme.set(type);
         this.xconfig.setDarkTheme({ colors: X_THEME_DARK_COLORS });
-        this.cdr.detectChanges();
         break;
       case 'light':
-        this.theme = type;
+        this.theme.set(type);
         this.xconfig.setLightTheme({ colors: X_THEME_COLORS });
-        this.cdr.detectChanges();
         break;
       case 'zh_CN':
         this.layout.setLocale(type);
@@ -61,10 +57,9 @@ export class NavComponent {
         const menu = param as AppMenu;
         this.layout.setNavActive(menu);
         this.router.navigate([menu.routerLink], { relativeTo: this.activatedRoute });
-        this.cdr.detectChanges();
         break;
       case 'version':
-        let index = this.config.versions.findIndex((x) => x === param);
+        let index = this.config.versions().findIndex((x) => x === param);
 
         if (index <= 0) {
           wd.location.href = wd.location.origin;

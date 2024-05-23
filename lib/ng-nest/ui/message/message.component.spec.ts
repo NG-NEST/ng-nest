@@ -9,7 +9,8 @@ import { XMessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XConfig, XPlace, X_CONFIG } from '@ng-nest/ui/core';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XMessagePrefix, () => {
   let config: XConfig = {
@@ -21,15 +22,17 @@ describe(XMessagePrefix, () => {
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeComponent, XButtonComponent],
-      declarations: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
-      providers: [
+    declarations: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
+    imports: [BrowserAnimationsModule, XThemeComponent, XButtonComponent],
+    providers: [
         {
-          provide: X_CONFIG,
-          useValue: config
-        }
-      ]
-    }).compileComponents();
+            provide: X_CONFIG,
+            useValue: config
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMessageComponent>;

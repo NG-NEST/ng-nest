@@ -12,14 +12,14 @@ import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XListPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXListComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XRadioComponent,
         XListComponent,
@@ -27,10 +27,9 @@ describe(XListPrefix, () => {
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XInputNumberComponent
-      ],
-      declarations: [TestXListComponent]
-    }).compileComponents();
+        XInputNumberComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXListComponent>;

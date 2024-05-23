@@ -1,7 +1,6 @@
-import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { XMenuNode } from '@ng-nest/ui/menu';
-import { XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services';
 import { Observable } from 'rxjs';
 import { LayoutService } from '../layout.service';
@@ -18,22 +17,20 @@ import { XI18nPipe } from '@ng-nest/ui/i18n';
   encapsulation: ViewEncapsulation.None
 })
 export class SearchComponent {
-  getSearchData = (str: string) =>
+  layout = inject(LayoutService);
+  config = inject(ConfigService);
+  router = inject(Router);
+  activatedRoute = inject(ActivatedRoute);
+  getSearchData = signal((str: string) =>
     new Observable<XMenuNode[]>((x) => {
-      let result = this.layout.menusLang[this.config.lang]
-        .filter((y) => y.label && y.label.toLocaleUpperCase().indexOf(str.toLocaleUpperCase()) > -1)
+      let result = this.layout
+        .menusLang()
+        [this.config.lang].filter((y) => y.label && y.label.toLocaleUpperCase().indexOf(str.toLocaleUpperCase()) > -1)
         .map((y) => ({ ...y, label: y.label, id: y.label }));
       x.next(result);
       x.complete();
-    }).pipe(debounceTime(200));
-  constructor(
-    public layout: LayoutService,
-    public xconfig: XConfigService,
-    public config: ConfigService,
-    public router: Router,
-    public activatedRoute: ActivatedRoute,
-    public cdr: ChangeDetectorRef
-  ) {}
+    }).pipe(debounceTime(200))
+  );
 
   pagaTo(menu: AppMenu) {
     this.router.navigate([menu.routerLink], { relativeTo: this.activatedRoute });

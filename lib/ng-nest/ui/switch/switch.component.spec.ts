@@ -7,17 +7,17 @@ import { XSwitchPrefix } from './switch.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XIconComponent } from '@ng-nest/ui/icon';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XSwitchPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
+    declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XSwitchComponent,
         FormsModule,
@@ -26,10 +26,9 @@ describe(XSwitchPrefix, () => {
         XColComponent,
         XRadioComponent,
         XInputComponent,
-        XIconComponent
-      ],
-      declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSwitchComponent>;

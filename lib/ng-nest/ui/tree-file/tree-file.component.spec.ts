@@ -10,25 +10,24 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTreeFilePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
+    declarations: [TestXTreeFileComponent],
+    imports: [FormsModule,
         XThemeComponent,
         BrowserAnimationsModule,
-        HttpClientTestingModule,
         XTreeFileComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent
-      ],
-      declarations: [TestXTreeFileComponent]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTreeFileComponent>;
