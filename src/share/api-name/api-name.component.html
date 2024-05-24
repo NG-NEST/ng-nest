@@ -42,6 +42,8 @@
     <div class="base">
       @if (property.signal) {
         <span class="signal-short">{{ signalShort() }}</span>
+      } @else {
+        <span class="signal-short">P</span>
       }
       <code class="name" [innerText]="property.name"></code>
       <span class="type" (click)="showTypeInfo()">{{ property.type }}</span>

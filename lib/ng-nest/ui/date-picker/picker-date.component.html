@@ -21,14 +21,14 @@
         </tr>
       </thead>
       <tbody>
-        @for (weeks of weekDates(); track weeks) {
+        @for (weeks of weekDates(); track $index) {
           <tr
             [class.x-date-week-active]="!rangePicker() && isWeek() && isWeekActive(weeks)"
             [class.x-date-week-start-active]="isWeekRange() && isStartWeek(weeks)"
             [class.x-date-week-end-active]="isWeekRange() && isEndWeek(weeks)"
             [class.x-date-week-in-range]="isWeekRange() && isInRangeWeek(weeks)"
           >
-            @for (week of weeks; track week) {
+            @for (week of weeks; track week.date) {
               <td
                 class="x-picker-date-item"
                 [class.x-date-week]="week.type === 'week'"

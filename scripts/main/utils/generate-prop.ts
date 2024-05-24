@@ -19,70 +19,29 @@ export function generateProps(...types: NcProp[]) {
         case NcPropType.Interface:
         case NcPropType.Class:
           let table = '';
-          let inputTable = '';
-          let outputTable = '';
           x.properties.forEach((y) => {
             const description = y.description ? `<br/><p [innerHTML]="'${replaceEscape(y.description)}'"></p>` : '';
             let ty = y.type.startsWith('X')
-              ? `<code class="popover"
+              ? `<code class="x-api-popover"
               (click)="types.reference('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
               : `<code [innerText]="'${y.type}'"></code>`;
             let signal = y.signal
-              ? `<span class="signal">${(y.signal as string).slice(0, 1).toUpperCase()}</span>`
-              : '';
+              ? `<span class="x-api-signal">${(y.signal as string).slice(0, 1).toUpperCase()}</span>`
+              : '<span class="x-api-signal">P</span>';
             let tr = `<tr>
-              <td>${signal}<code class="name" (click)="types.name('${y.name}', '${x.name}')">${replaceSpecial(y.name)}</code></td>
+              <td>${signal}<code class="x-api-name" (click)="types.name('${y.name}', '${x.name}')">${replaceSpecial(y.name)}</code></td>
               <td>${y.label}${description}</td>
               <td>${ty}</td>
               <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
               <td>${y.withConfig ? '✔️' : ''}</td>
             </tr>`;
-            switch (y.propType) {
-              case 'Input':
-                inputTable += tr;
-                break;
-              case 'Output':
-                outputTable += tr;
-                break;
-              default:
-                table += tr;
-                break;
-            }
+
+            table += tr;
           });
           let head = '';
-          if (table !== '' || inputTable !== '' || outputTable !== '') {
+          if (table !== '') {
             head = `<h3>${x.name}</h3>
             <p>${replaceSpecial(x.description)}</p>`;
-          }
-          if (inputTable !== '') {
-            inputTable = `<table class="x-api-interface">
-              <tr>
-                <th colspan="5">Input</th>
-              </tr>
-              <tr>
-                <th>{{ "api.property" | xI18n }}</th>
-                <th>{{ "api.description" | xI18n }}</th>
-                <th>{{ "api.inputType" | xI18n }}</th>
-                <th>{{ "api.default" | xI18n }}</th>
-                <th>{{ "api.globalConfig" | xI18n }}</th>
-              </tr>
-              ${inputTable}
-            </table>`;
-          }
-          if (outputTable !== '') {
-            outputTable = `<table class="x-api-interface">
-              <tr>
-                <th colspan="5">Output</th>
-              </tr>
-              <tr>
-                <th>{{ "api.property" | xI18n }}</th>
-                <th>{{ "api.description" | xI18n }}</th>
-                <th>{{ "api.outputType" | xI18n }}</th>
-                <th>{{ "api.default" | xI18n }}</th>
-                <th>{{ "api.globalConfig" | xI18n }}</th>
-              </tr>
-              ${outputTable}
-            </table>`;
           }
           if (table !== '') {
             table = `<table class="x-api-interface">
@@ -96,14 +55,29 @@ export function generateProps(...types: NcProp[]) {
               ${table}
             </table>`;
           }
-          table = `${head}${inputTable}${outputTable}${table}`;
+          table = `${head}${table}`;
           result += table;
           break;
         case NcPropType.Type:
+          const tvalue = (value: string) => {
+            if (value.startsWith('X')) {
+              return `<code class="x-api-popover"
+              (click)="types.reference('${value}', '')" [innerText]="'${replaceEscape(value)}'"></code>`;
+            } else {
+              return `<code [innerText]="'${replaceEscape(value)}'"></code>`;
+            }
+          };
+
+          const svalue = (x.value as string).split(' | ');
+          const sarray: string[] = [];
+          for (let sv of svalue) {
+            sarray.push(tvalue(sv));
+          }
+
           typeTable += `<tr>
             <td><code [innerText]="'${x.name}'"></code></td>
             <td>${x.label}</td>
-            <td><code [innerText]="'${replaceEscape(x.value as string)}'"></code></td>
+            <td>${sarray.join(' | ')}</td>
           </tr>`;
           break;
       }
@@ -130,9 +104,12 @@ export function replaceEscape(str: string) {
     "'": "\\'",
     '"': '\\"',
     '<': '\\<',
-    '>': '\\>'
+    '>': '\\>',
+    '/': '\\/',
+    '{': '\\{',
+    '}': '\\}'
   };
-  return str.replace(/[<>"']/g, (m) => map[m]);
+  return str.replace(/['"<>/{}]/g, (m) => map[m]);
 }
 
 export function replaceSpecial(str: string) {

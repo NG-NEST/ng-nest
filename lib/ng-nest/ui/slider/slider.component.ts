@@ -200,10 +200,14 @@ export class XSliderComponent extends XSliderProperty implements OnDestroy, Afte
     }
     this.maxOffset.set(Math.ceil(maxOffset));
     offset = Math.max(Math.ceil(offset), 0);
-    if ([this.maxOffset() + 1, this.maxOffset() - 1].includes(offset)) {
-      this.offset.set(this.maxOffset());
+    if (!this.showArrow()) {
+      this.offset.set(0);
     } else {
-      this.offset.set(Math.min(offset, this.maxOffset()));
+      if ([this.maxOffset() + 1, this.maxOffset() - 1].includes(offset)) {
+        this.offset.set(this.maxOffset());
+      } else {
+        this.offset.set(Math.min(offset, this.maxOffset()));
+      }
     }
   }
 

@@ -49,7 +49,7 @@ export class XLinkProperty extends XPropertyFunction(X_LINK_CONFIG_NAME) {
    * @zh_CN 链接类型
    * @en_US Link type
    */
-  readonly type = input<XLinkType>();
+  readonly type = input<XLinkType>('initial');
   /**
    * @zh_CN 打开方式
    * @en_US Open method

@@ -56,7 +56,6 @@ export class XResizableDirective extends XResizableProperty implements OnDestroy
   }
 
   @HostListener('mousedown', ['$event'])
-  @HostListener('touchstart', ['$event'])
   mousedown(event: MouseEvent | TouchEvent) {
     if (!this.xResizable()) return;
     const classList = (event.target as HTMLElement).classList;

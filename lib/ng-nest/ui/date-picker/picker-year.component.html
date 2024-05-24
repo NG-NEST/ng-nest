@@ -11,9 +11,9 @@
   }
   <div class="x-picker-year-body">
     <table cellspacing="0" cellpadding="0">
-      @for (years of chunkDates(); track years) {
+      @for (years of chunkDates(); track $index) {
         <tr>
-          @for (year of years; track year) {
+          @for (year of years; track year.date) {
             <td
               class="x-picker-date-item"
               [class.x-date-disabled]="year.isDisabled"

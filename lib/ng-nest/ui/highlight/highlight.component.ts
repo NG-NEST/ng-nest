@@ -88,14 +88,13 @@ export class XHighlightComponent extends XHighlightProperty {
     return result;
   }
 
-  onCopy() {
-    navigator.clipboard.writeText(this.data() as string).then(() => {
-      this.iconCopy.set('fto-check');
-      of(true)
-        .pipe(delay(2000))
-        .subscribe(() => {
-          this.iconCopy.set('fto-copy');
-        });
-    });
+  async onCopy() {
+    this.iconCopy.set('fto-check');
+    await navigator.clipboard.writeText(this.data() as string);
+    of(true)
+      .pipe(delay(2000))
+      .subscribe(() => {
+        this.iconCopy.set('fto-copy');
+      });
   }
 }

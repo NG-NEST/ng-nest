@@ -62,6 +62,24 @@
         }
       }
     }
+    > table {
+      width: 100%;
+      border-collapse: collapse;
+      border: $--x-border-base;
+      tr > th,
+      tr > td {
+        border-bottom: $--x-border-base;
+        border-right: $--x-border-base;
+        text-align: left;
+        padding: $--x-padding-mini $--x-padding-small;
+      }
+      tr {
+        th {
+          white-space: nowrap;
+          color: $--x-text;
+        }
+      }
+    }
   }
   > x-tabs > .x-tabs {
     width: 100%;

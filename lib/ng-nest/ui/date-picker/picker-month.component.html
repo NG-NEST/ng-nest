@@ -10,9 +10,9 @@
   }
   <div class="x-picker-month-body">
     <table cellspacing="0" cellpadding="0">
-      @for (months of chunkDates(); track months) {
+      @for (months of chunkDates(); track $index) {
         <tr>
-          @for (month of months; track month) {
+          @for (month of months; track month.date) {
             <td
               class="x-picker-date-item"
               [class.x-date-disabled]="month.isDisabled"

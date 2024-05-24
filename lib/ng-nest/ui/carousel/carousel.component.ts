@@ -44,7 +44,7 @@ export class XCarouselComponent extends XCarouselProperty {
   private resizeObserver!: XResizeObserver;
 
   classMap = computed(() => ({
-    [`${XCarouselPrefix}-${this.direction}`]: !XIsEmpty(this.direction)
+    [`${XCarouselPrefix}-${this.direction()}`]: !XIsEmpty(this.direction())
   }));
 
   updatePanel = new Subject<void>();

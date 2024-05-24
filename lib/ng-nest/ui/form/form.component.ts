@@ -74,7 +74,7 @@ export class XFormComponent extends XFormProperty implements OnChanges, AfterVie
         control.requiredSignal.set(false);
         control.patternSignal.set([]);
         type.setValidators && type.setValidators();
-        control.formControlChanges();
+        // control.formControlChanges();
       }
     } else {
       for (let key in this.controlComponents()) {
@@ -83,7 +83,7 @@ export class XFormComponent extends XFormProperty implements OnChanges, AfterVie
         control.requiredSignal.set(type.required!);
         control.patternSignal.set(type.pattern as RegExp | RegExp[]);
         type.setValidators && type.setValidators();
-        control.formControlChanges();
+        // control.formControlChanges();
       }
     }
     this.formGroup().updateValueAndValidity();

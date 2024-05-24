@@ -7,7 +7,8 @@ import {
   HostBinding,
   inject,
   effect,
-  computed
+  computed,
+  ChangeDetectorRef
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { XIconPrefix, XIconProperty } from './icon.property';
@@ -49,6 +50,7 @@ export class XIconComponent extends XIconProperty {
   private document = inject(DOCUMENT);
   private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
+  private cdr = inject(ChangeDetectorRef);
   private iconService = inject(XIconService);
 
   @HostBinding('class.x-icon-spin') get getSpin() {
@@ -83,6 +85,8 @@ export class XIconComponent extends XIconProperty {
     this.svgElement = this.buildSvg(svg)!;
     this.setAttributes(this.svgElement);
     this.renderer.appendChild(this.elementRef.nativeElement, this.svgElement);
+    // TODO: use zoneless, renderer removeChild will not take effect immediately
+    this.cdr.markForCheck();
   }
 
   setAttributes(svgEle: SVGElement) {

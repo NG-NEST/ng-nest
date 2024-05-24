@@ -10,9 +10,9 @@
   }
   <div class="x-picker-quarter-body">
     <table cellspacing="0" cellpadding="0">
-      @for (quarters of chunkDates(); track quarters) {
+      @for (quarters of chunkDates(); track $index) {
         <tr>
-          @for (quarter of quarters; track quarter) {
+          @for (quarter of quarters; track quarter.date) {
             <td
               class="x-picker-date-item"
               [class.x-date-disabled]="quarter.isDisabled"

@@ -2,7 +2,7 @@
 <div x-dialog-content class="ns-reference-content">
   <ng-container *ngTemplateOutlet="typeChild; context: { property: property() }"></ng-container>
 
-  <ng-template #typeChild let-property="property" let-excludeTitle="excludeTitle">
+  <ng-template #typeChild let-property="property" let-excludeTitle="excludeTitle" let-isChildren="isChildren">
     @if (property) {
       @if (property.type === 'type') {
         <div class="property">
@@ -15,7 +15,7 @@
                 @for (child of property.children; track child) {
                   <x-collapse-panel [label]="labelTpl" active>
                     <ng-container
-                      *ngTemplateOutlet="typeChild; context: { property: child, excludeTitle: true }"
+                      *ngTemplateOutlet="typeChild; context: { property: child, excludeTitle: true, isChildren: true }"
                     ></ng-container>
                     <ng-template #labelTpl>
                       <ng-container
@@ -27,12 +27,20 @@
               </x-collapse>
             </div>
           }
-          @if (property.actualValue) {
-            <div class="value">
-              @for (val of property.actualValue; track val) {
-                <code>{{ val }}{{ $last ? '' : ' | ' }}</code>
-              }
-            </div>
+          @if (isChildren) {
+            @if (property.value) {
+              <div class="value">
+                <code>{{ property.value }}</code>
+              </div>
+            }
+          } @else {
+            @if (property.actualValue) {
+              <div class="value">
+                @for (val of property.actualValue; track $index) {
+                  <code>{{ val }}{{ $last ? '' : ' | ' }}</code>
+                }
+              </div>
+            }
           }
           @if (property.extends) {
             <div class="extends"><span>extends</span><code [innerText]="property.extends"></code></div>
@@ -91,7 +99,7 @@
                 @for (child of property.children; track child) {
                   <x-collapse-panel [label]="labelTpl" active>
                     <ng-container
-                      *ngTemplateOutlet="typeChild; context: { property: child, excludeTitle: true }"
+                      *ngTemplateOutlet="typeChild; context: { property: child, excludeTitle: true, isChildren: true }"
                     ></ng-container>
                     <ng-template #labelTpl>
                       <ng-container

@@ -69,8 +69,8 @@ export class ExDefaultComponent {
       likes: 88,
       children: [
         {
-          id: '1-1',
-          pid: '1',
+          id: '2-1',
+          pid: '2',
           src: this.src(),
           author: '刘三',
           datetime: XAddMinutes(this.now(), -30),
@@ -78,8 +78,8 @@ export class ExDefaultComponent {
           likes: 2
         },
         {
-          id: '1-2',
-          pid: '1',
+          id: '2-2',
+          pid: '2',
           src: this.src(),
           author: '刘四',
           datetime: XAddMinutes(this.now(), -35),

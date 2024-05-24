@@ -152,7 +152,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
           (this.formControl()!.valueAccessor as any)[x] = this.option()[x];
         }
       });
-      this.form.controlComponents()[this._control()!.id].formControlChanges();
+      // this.form.controlComponents()[this._control()!.id].formControlChanges();
     };
   }
 
@@ -160,7 +160,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     Object.assign(this.formControl()!.valueAccessor!, this._control() as ControlValueAccessor);
     this.form.controlTypes()[this._control()!.id] = this._control;
     this.form.controlComponents()[this._control()!.id] = this.formControl()!.valueAccessor as XFormControlComponent;
-    this.form.controlComponents()[this._control()!.id].formControlChanges();
+    // this.form.controlComponents()[this._control()!.id].formControlChanges();
   }
 
   ngOnDestroy() {

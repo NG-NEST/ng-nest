@@ -66,6 +66,9 @@
     .x-tabs-actions {
       border-bottom: $--x-border-base;
     }
+    .x-slider-show-arrow > .x-slider-scroll {
+      padding: 0;
+    }
   }
   a[x-tab-link]:before {
     position: absolute;

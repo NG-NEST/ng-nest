@@ -1,4 +1,13 @@
-import { OnInit, Renderer2, ElementRef, Directive, OnDestroy, inject, HostBinding } from '@angular/core';
+import {
+  OnInit,
+  Renderer2,
+  ElementRef,
+  Directive,
+  OnDestroy,
+  inject,
+  HostBinding,
+  ChangeDetectorRef
+} from '@angular/core';
 import { delay, fromEvent, of, Subject, takeUntil, tap } from 'rxjs';
 import { XRipplePrefix, XRippleProperty } from './ripple.property';
 import { XComputed } from '@ng-nest/ui/core';
@@ -14,6 +23,7 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
   private unsub = new Subject<void>();
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
+  private cdr = inject(ChangeDetectorRef);
   private document = inject(DOCUMENT);
 
   ngOnInit() {
@@ -50,6 +60,8 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
                   if (this.renderer.parentNode(ripple)) {
                     this.renderer.removeChild(this.elementRef.nativeElement, ripple);
                   }
+                  // TODO: use zoneless, renderer removeChild will not take effect immediately
+                  this.cdr.markForCheck();
                   upEvent.unsubscribe();
                 }),
                 takeUntil(this.unsub)

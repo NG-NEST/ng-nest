@@ -18,6 +18,7 @@ export class XContainerProperty extends XPropertyFunction(X_CONTAINER_CONFIG_NAM
   /**
    * @zh_CN flex 布局下的子元素排列方向，子元素中有 x-header 或 x-footer 时为 column
    * @en_US The arrangement direction of the sub-elements under the flex layout. When the sub-elements have x-header or x-footer, it is column
+   * @default ''
    */
   readonly direction = input<XDirection>(this.config?.direction!);
 }

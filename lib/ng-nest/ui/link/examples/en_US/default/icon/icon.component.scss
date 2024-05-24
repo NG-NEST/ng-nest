@@ -1,4 +1,6 @@
 :host {
+  display: inline-flex;
+  align-items: center;
   x-link:not(:first-child) {
     margin-left: 1rem;
   }

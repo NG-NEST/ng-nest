@@ -199,6 +199,9 @@ export class TypesService {
                 };
               });
               type.properties!.unshift(...properties!);
+              if (ext === 'XParentIdentityProperty<XCommentNode>') {
+                console.log(item.extends);
+              }
               getProperties(item.extends);
             }
           }

@@ -100,7 +100,15 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           isReadType = false;
           addProp();
         } else {
-          prop.value += line;
+          if (line.startsWith('|')) {
+            if (!prop.value) {
+              prop.value = line.slice(2, line.length);
+            } else {
+              prop.value += ` ${line}`;
+            }
+          } else {
+            prop.value += line;
+          }
         }
       }
       if (isReadEnum) {
@@ -210,9 +218,15 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
               if (!isReadType) {
                 isReadType = true;
                 prop.name = eline.match(/^\S+/)[0];
-                prop.value = eline.replace(/(.*) \= (.*);/, '$2');
+                if (eline.endsWith('=')) {
+                  prop.value = '';
+                } else {
+                  prop.value = eline.replace(/(.*) \= (.*);/, '$2');
+                }
                 if (prop.value.endsWith(';')) {
                   prop.value = prop.name.slice(0, prop.name.indexOf(';'));
+                }
+                if (eline.endsWith(';')) {
                   isReadType = false;
                   addProp();
                 }
