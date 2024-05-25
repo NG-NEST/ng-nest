@@ -363,6 +363,7 @@ export interface XInputGroupConfig {
 export interface XInputNumberConfig {
   size?: XSize;
   bordered?: XBoolean;
+  hiddenButton?: XBoolean;
 }
 
 export interface XImageConfig {

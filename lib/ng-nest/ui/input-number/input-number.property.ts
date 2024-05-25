@@ -51,12 +51,16 @@ export class XInputNumberProperty extends XControlValueAccessor<any> implements 
    * @en_US Display Border
    */
   @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
-
   /**
    * @zh_CN 数字格式化
    * @en_US Display Formatter
    */
   @Input() formatter!: (value: number) => XNumber;
+  /**
+   * @zh_CN 隐藏步进按钮
+   * @en_US Hide step button
+   */
+  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, false) hiddenButton!: XBoolean;
 }
 
 /**

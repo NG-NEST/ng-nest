@@ -1,4 +1,4 @@
-<div #inputNumber class="x-input-number">
+<div #inputNumber class="x-input-number" [class.x-input-number-hidden-button]="hiddenButton">
   <div class="x-input-number-row">
     <ng-template #beforeButtonTpl>
       <x-button
@@ -36,8 +36,8 @@
       [valueTplContext]="valueTplContext"
       [size]="size"
       [bordered]="bordered"
-      [before]="beforeButtonTpl"
-      [after]="afterButtonTpl"
+      [before]="hiddenButton ? '' : beforeButtonTpl"
+      [after]="hiddenButton ? '' : afterButtonTpl"
       [pattern]="pattern"
       [message]="message"
       (xInput)="onInput($event); formControlValidator()"

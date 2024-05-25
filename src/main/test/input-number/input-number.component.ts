@@ -4,6 +4,7 @@ import {
   ExDefaultComponent,
   ExDisabledComponent,
   ExFormatComponent,
+  ExHiddenButtonComponent,
   ExLabelComponent,
   ExLimitComponent,
   ExPrecisionComponent,
@@ -23,7 +24,8 @@ import {
     ExLimitComponent,
     ExPrecisionComponent,
     ExRequiredComponent,
-    ExSizeComponent
+    ExSizeComponent,
+    ExHiddenButtonComponent
   ],
   templateUrl: './input-number.component.html'
 })
