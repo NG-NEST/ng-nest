@@ -15,3 +15,4 @@ export * from './zh_CN/default/row-size/row-size.component';
 export * from './zh_CN/default/rowclass/rowclass.component';
 export * from './zh_CN/default/scroll/scroll.component';
 export * from './zh_CN/default/search/search.component';
+export * from './zh_CN/default/head-template/head-template.component';

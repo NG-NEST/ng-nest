@@ -82,6 +82,11 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    */
   readonly headColumnTpl = input<XTableTemplate>({});
   /**
+   * @zh_CN 列头单元格自定义模板，优先级低于列头自定义模板
+   * @en_US Column header custom template
+   */
+  readonly headThTpl = input<XTemplate>();
+  /**
    * @zh_CN 列内容自定义模板，通过 key-value 的方式指定每列的模版
    * @en_US Column content custom template
    */
