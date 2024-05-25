@@ -1,11 +1,4 @@
-import {
-  XProperty,
-  XInputNumber,
-  XInputBoolean,
-  XNumber,
-  XBoolean,
-  XWithConfig
-} from '@ng-nest/ui/core';
+import { XProperty, XInputNumber, XInputBoolean, XNumber, XBoolean, XWithConfig } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -38,7 +31,7 @@ export class XIconProperty extends XProperty {
    * @zh_CN 图标颜色
    * @en_US Icon color
    */
-  @Input() color?: string | string[];
+  @Input() color?: string;
   /**
    * @zh_CN 图标旋转角度
    * @en_US Icon rotation angle
@@ -49,11 +42,6 @@ export class XIconProperty extends XProperty {
    * @en_US Loading effect (icon keeps rotating)
    */
   @Input() @XInputBoolean() spin?: XBoolean;
-  /**
-   * @zh_CN 变化为的图标（未实现）
-   * @en_US Icon to change to (not implemented)
-   */
-  @Input() to?: string;
 }
 
 /**

@@ -64,7 +64,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { type, spin } = changes;
+    const { type, spin, color } = changes;
     if (XIsChange(type)) {
       this.setSvgElement();
       this.renderer.removeClass(this.elementRef.nativeElement, type.previousValue);
@@ -73,6 +73,9 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     }
     if (XIsChange(spin)) {
       this.cdr.detectChanges();
+    }
+    if (XIsChange(color)) {
+      this.renderer.setStyle(this.elementRef.nativeElement, 'color', this.color);
     }
   }
 
@@ -90,12 +93,8 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
 
   setSvgElement() {
     const typeIcon = this.setSourceUrl(this.type);
-    const toIcon = this.setSourceUrl(this.to);
     let icons = [typeIcon];
     if (XIsEmpty(typeIcon)) return;
-    if (!XIsEmpty(toIcon)) {
-      icons = [...icons, toIcon];
-    }
     this.iconService.getSvgs(this.href!, ...icons).subscribe((x) => this.setSvgs(x));
   }
 
@@ -106,7 +105,6 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
         this.renderer.removeChild(this.elementRef.nativeElement, firstChild);
       }
       this._svgElement = this.buildSvg(svgs.shift() as string) as SVGSVGElement;
-      // this.setAnimates(svgs);
       this.setAttributes(this._svgElement);
       this.renderer.appendChild(this.elementRef.nativeElement, this._svgElement);
       this.cdr.markForCheck();
