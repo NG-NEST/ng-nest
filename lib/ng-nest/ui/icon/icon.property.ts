@@ -31,7 +31,7 @@ export class XIconProperty extends XProperty {
    * @zh_CN 图标颜色
    * @en_US Icon color
    */
-  @Input() color?: string | string[];
+  @Input() color?: string;
   /**
    * @zh_CN 图标旋转角度
    * @en_US Icon rotation angle

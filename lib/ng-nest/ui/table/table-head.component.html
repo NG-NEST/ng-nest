@@ -113,7 +113,13 @@
       </ng-container>
     </ng-container>
     <ng-container *ngSwitchCase="'index'">
-      <a>{{ column.label }}</a>
+      <a>
+        <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
+          <ng-container *xOutlet="table.headThTpl; context: { $column: column }">
+            {{ column.label }}
+          </ng-container>
+        </ng-container>
+      </a>
     </ng-container>
     <ng-container *ngSwitchDefault>
       <ng-container
@@ -130,7 +136,9 @@
     [style.text-align]="column.textAlign"
   >
     <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
-      {{ column.label }}
+      <ng-container *xOutlet="table.headThTpl; context: { $column: column }">
+        {{ column.label }}
+      </ng-container>
     </ng-container>
     <x-icon
       *ngIf="column.sort"

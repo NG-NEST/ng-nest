@@ -80,6 +80,11 @@ export class XTableProperty extends XPaginationProperty implements XTableOption 
    */
   @Input() headColumnTpl: XTableTemplate = {};
   /**
+   * @zh_CN 列头单元格自定义模板，优先级低于列头自定义模板
+   * @en_US Column header custom template
+   */
+  @Input() headThTpl?: XTemplate;
+  /**
    * @zh_CN 列内容自定义模板，通过 key-value 的方式指定每列的模版
    * @en_US Column content custom template
    */

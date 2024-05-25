@@ -68,7 +68,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { type, spin } = changes;
+    const { type, spin, color } = changes;
     if (XIsChange(type)) {
       this.setSvgElement();
       this.renderer.removeClass(this.elementRef.nativeElement, type.previousValue);
@@ -77,6 +77,9 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     }
     if (XIsChange(spin)) {
       this.cdr.detectChanges();
+    }
+    if (XIsChange(color)) {
+      this.renderer.setStyle(this.elementRef.nativeElement, 'color', this.color);
     }
   }
 
