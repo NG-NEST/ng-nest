@@ -74,6 +74,7 @@ export class XIconComponent extends XIconProperty {
   constructor() {
     super();
     effect(() => this.iconService.getSvg(this.href(), this.sourceUrl()).subscribe((x) => this.setSvgs(x)));
+    effect(() => this.renderer.setStyle(this.elementRef.nativeElement, 'color', this.color()));
   }
 
   setSvgs(svg: string) {
