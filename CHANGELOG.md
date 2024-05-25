@@ -1,3 +1,18 @@
+## [17.0.10](https://github.com/NG-NEST/ng-nest/compare/17.0.9...17.0.10) (2024-05-25)
+
+
+### Bug Fixes
+
+* **module:icon:** fix color param ([9bbc73f](https://github.com/NG-NEST/ng-nest/commit/9bbc73f632a863c3a48774675940df2bfd1479ce))
+
+
+### Features
+
+* **module:input-number:** add hidden button ([f579f7f](https://github.com/NG-NEST/ng-nest/commit/f579f7f8d50624c1bf6f62c54efb9af51036fca5))
+* **module:table:** add headThTpl param ([f0a6955](https://github.com/NG-NEST/ng-nest/commit/f0a6955fd615c72043c44f13e98a061a2feefa01))
+
+
+
 ## [17.0.9](https://github.com/NG-NEST/ng-nest/compare/17.0.8...17.0.9) (2024-04-23)
 
 
