@@ -62,6 +62,11 @@ export class XInputNumberProperty extends XFormControlFunction(X_INPUT_NUMBER_CO
    */
   readonly formatter = input<(value: number) => XNumber>();
   /**
+   * @zh_CN 隐藏步进按钮
+   * @en_US Hide step button
+   */
+  readonly hiddenButton = input<boolean, XBoolean>(this.config?.hiddenButton ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */

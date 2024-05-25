@@ -390,6 +390,7 @@ export interface XInputGroupConfig {
 export interface XInputNumberConfig {
   size?: XSize;
   bordered?: boolean;
+  hiddenButton?: boolean;
 }
 
 export interface XImageConfig {
