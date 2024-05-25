@@ -16,7 +16,8 @@ import {
   ExRowSizeComponent,
   ExRowclassComponent,
   ExScrollComponent,
-  ExSearchComponent
+  ExSearchComponent,
+  ExHeadTemplateComponent
 } from '@ng-nest/ui/table/examples';
 
 @Component({
@@ -39,7 +40,8 @@ import {
     ExRowSizeComponent,
     ExRowclassComponent,
     ExScrollComponent,
-    ExSearchComponent
+    ExSearchComponent,
+    ExHeadTemplateComponent
   ],
   templateUrl: './table.component.html'
 })

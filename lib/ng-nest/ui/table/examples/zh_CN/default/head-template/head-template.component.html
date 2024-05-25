@@ -1,0 +1,3 @@
+<x-table [columns]="columns" [data]="data" loading [headThTpl]="headThTpl"> </x-table>
+
+<ng-template #headThTpl let-column="$column"> [{{ column.label }}] </ng-template>

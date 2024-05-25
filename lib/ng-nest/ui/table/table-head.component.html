@@ -111,7 +111,13 @@
       }
     }
     @case ('index') {
-      <a>{{ column.label }}</a>
+      <a>
+        <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
+          <ng-container *xOutlet="table.headThTpl; context: { $column: column }">
+            {{ column.label }}
+          </ng-container>
+        </ng-container>
+      </a>
     }
     @default {
       <ng-container *ngTemplateOutlet="cloumnDefaultTpl; context: { column: column }"></ng-container>
@@ -122,7 +128,9 @@
 <ng-template #cloumnDefaultTpl let-column="column">
   <a [class.x-table-sort]="column.sort" (click)="onSort(column)" [style.text-align]="column.textAlign">
     <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column }">
-      {{ column.label }}
+      <ng-container *xOutlet="table.headThTpl; context: { $column: column }">
+        {{ column.label }}
+      </ng-container>
     </ng-container>
     @if (column.sort) {
       <x-icon

@@ -5,7 +5,7 @@
     [data]="data"
     [rowHeight]="0"
     [scroll]="{ x: 180, y: 400 }"
-    [bodyColumnTpl]="{ name: nameTpl }"
+    [bodyColumnTpl]="{ name: nameBodyTpl }"
     virtualScroll
     loading
     hiddenPaginationBorder
@@ -15,7 +15,7 @@
   >
   </x-table>
 </div>
-<ng-template #nameTpl let-column="$column" let-row="$row" let-index="$index">
+<ng-template #nameBodyTpl let-column="$column" let-row="$row" let-index="$index">
   <div class="custom-td">
     <x-avatar icon="fto-user"></x-avatar>
     <div class="custom-td-inner">
