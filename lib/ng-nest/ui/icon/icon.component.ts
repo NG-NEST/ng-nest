@@ -97,12 +97,8 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
 
   setSvgElement() {
     const typeIcon = this.setSourceUrl(this.type);
-    const toIcon = this.setSourceUrl(this.to);
     let icons = [typeIcon];
     if (XIsEmpty(typeIcon)) return;
-    if (!XIsEmpty(toIcon)) {
-      icons = [...icons, toIcon];
-    }
     this.iconService.getSvgs(...icons).subscribe((x) => this.setSvgs(x));
   }
 

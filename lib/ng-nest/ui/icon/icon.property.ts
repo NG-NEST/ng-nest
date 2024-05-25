@@ -42,11 +42,6 @@ export class XIconProperty extends XProperty {
    * @en_US Loading effect (icon keeps rotating)
    */
   @Input() @XInputBoolean() spin?: XBoolean;
-  /**
-   * @zh_CN 变化为的图标（未实现）
-   * @en_US Icon to change to (not implemented)
-   */
-  @Input() to?: string;
 }
 
 /**

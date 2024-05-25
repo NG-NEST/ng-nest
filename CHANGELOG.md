@@ -1,3 +1,12 @@
+## [16.0.16](https://github.com/NG-NEST/ng-nest/compare/16.0.15...16.0.16) (2024-05-25)
+
+
+### Features
+
+* **sync:** sync input-number, table, icon component ([da3788f](https://github.com/NG-NEST/ng-nest/commit/da3788fc6cd90d854a2b0835590cfe08945f81c7))
+
+
+
 ## [16.0.15](https://github.com/NG-NEST/ng-nest/compare/16.0.14...16.0.15) (2024-04-23)
 
 

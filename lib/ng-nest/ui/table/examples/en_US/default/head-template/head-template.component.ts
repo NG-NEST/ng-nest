@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-head-tempalte',
-  standalone: true,
   templateUrl: './head-template.component.html',
   providers: [HeadTemplateService]
 })
