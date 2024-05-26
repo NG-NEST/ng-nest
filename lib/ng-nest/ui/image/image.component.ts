@@ -6,8 +6,8 @@ import {
   inject,
   computed,
   signal,
-  effect,
-  OnDestroy
+  OnDestroy,
+  effect
 } from '@angular/core';
 import { XImageNode, XImagePrefix, XImageProperty } from './image.property';
 import { XConfigService } from '@ng-nest/ui/core';
@@ -44,17 +44,12 @@ export class XImageComponent extends XImageProperty implements OnInit, OnDestroy
     return this.previewText() || this.locale().previewText;
   });
 
-  srcSignal = computed(() => {
-    return this.isError() ? this.fallback() : this.src();
-  });
-
   constructor() {
     super();
     effect(
       () => {
         this.src();
         this.isLoaded.set(false);
-        this.isError.set(false);
       },
       { allowSignalWrites: true }
     );
@@ -90,7 +85,7 @@ export class XImageComponent extends XImageProperty implements OnInit, OnDestroy
   }
 
   onError(event: ErrorEvent) {
-    this.isError.set(false);
+    this.isError.set(true);
     this.error.emit(event);
   }
 

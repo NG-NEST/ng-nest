@@ -1297,6 +1297,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XDisplayDirection",
     "value": "'horizontal' | 'vertical'"
   },
+  "XTextAlign": {
+    "type": "type",
+    "label": "Text alignment direction",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTextAlign",
+    "value": "'left' | 'center' | 'right'"
+  },
   "XId": {
     "type": "interface",
     "label": "Identify",
@@ -2109,6 +2118,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XAlertType",
     "value": "XStatus"
   },
+  "XAlertDragFreeDragPosition": {
+    "type": "type",
+    "label": "Set the location of the CDKDRAG outside the container. Can be used to recover elements for returned users",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XAlertDragFreeDragPosition",
+    "value": "{ x: number; y: number }"
+  },
   "XAnchorPrefix": {
     "type": "const",
     "label": "Anchor",
@@ -2226,6 +2244,15 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XAnchorInnerProperty"
+  },
+  "XAnchorLayout": {
+    "type": "type",
+    "label": "Layout method, relative content position",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XAnchorLayout",
+    "value": "XPositionLeftRight"
   },
   "XAutoCompletePrefix": {
     "type": "const",
@@ -3002,6 +3029,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XBadgeProperty",
     "extends": "XPropertyFunction(X_BADGE_CONFIG_NAME)"
   },
+  "XBadgeType": {
+    "type": "type",
+    "label": "Mark type",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XBadgeType",
+    "value": "XType"
+  },
   "XButtonPrefix": {
     "type": "const",
     "label": "Button",
@@ -3473,6 +3509,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XCalendarModel",
     "value": "'month' | 'year'"
   },
+  "XCalendarType": {
+    "type": "type",
+    "label": "Display type",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XCalendarType",
+    "value": "'calendar' | 'card'"
+  },
   "XCardPrefix": {
     "type": "const",
     "label": "Card",
@@ -3554,6 +3599,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCardShadow",
     "value": "XShadow"
+  },
+  "XCardBodyStyle": {
+    "type": "type",
+    "label": "Card content style type",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XCardBodyStyle",
+    "value": "{ [property: string]: XNumber }"
   },
   "XCarouselPrefix": {
     "type": "const",
@@ -5570,7 +5624,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XDirection>",
         "signal": "input",
         "label": "The arrangement direction of the sub-elements under the flex layout. When the sub-elements have x-header or x-footer, it is column",
-        "default": "this.config?.direction!",
+        "default": "''",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -6745,7 +6799,7 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XDatePickerType",
-    "value": "XDatePickerType =| 'date'| 'week'| 'month'| 'quarter'| 'year'| 'date-time'| 'date-hour'| 'date-minute';"
+    "value": "'date' | 'week' | 'month' | 'quarter' | 'year' | 'date-time' | 'date-hour' | 'date-minute';"
   },
   "XDatePickerModelType": {
     "type": "type",
@@ -8769,6 +8823,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XDialogPortalOverlayRef",
     "extends": "XPortalOverlayRef<XDialogPortalComponent>"
   },
+  "XDialogType": {
+    "type": "type",
+    "label": "Types of",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XDialogType",
+    "value": "XStatus"
+  },
   "XDrawerPrefix": {
     "type": "const",
     "label": "Drawer",
@@ -9267,7 +9330,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "Picture address or custom template",
-        "default": "this.config?.img!",
+        "default": "''",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -9280,7 +9343,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "Content or custom template",
-        "default": "this.config?.content!",
+        "default": "''",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -10059,6 +10122,15 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-form'"
   },
+  "XFormTemplate": {
+    "type": "type",
+    "label": "Template",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XFormTemplate",
+    "value": "{ [property: string]: TemplateRef<any> }"
+  },
   "XFormProperty": {
     "type": "class",
     "label": "Form Property",
@@ -10184,10 +10256,8 @@ export const en_US: {[key: string]: AppProp} = {
       }
     ],
     "name": "XFormProperty",
-    "value": "{ [property: string]: TemplateRef<any> }/*** Form Property*/@Component({ selector: `${XFormPrefix}-property`, template: '' })export class XFormProperty extends XFormControlFunction(X_FORM_CONFIG_NAME) {/*** @zh_CN 表单 FormGroup* @en_US Form FormGroup*/readonly formGroup = input<UntypedFormGroup>(new UntypedFormGroup({}));/*** @zh_CN 表单名称* @en_US Form name*/readonly title = input<string>('');/*** @zh_CN 控件间距* @en_US Control spacing*/readonly space = input<string, XNumber>(this.config?.space ?? '1.75rem', { transform: XToCssPixelValue });/*** @zh_CN 控件宽度，24栅格* @en_US Control width, 24 grid*/readonly span = input<number | null, XNumber>(null, { transform: XToNumber });/*** @zh_CN 标签后缀* @en_US Label suffix*/readonly labelSuffix = input<string>(this.config?.labelSuffix ?? '');/*** @zh_CN 表单控件* @en_US Form control*/readonly controls = input<XFormControlOption[] | XFormRow[]>([]);/*** @zh_CN 表单宽度* @en_US Form width*/readonly width = input<string, XNumber>(this.config?.width ?? '100%', { transform: XToCssPixelValue });/*** @zh_CN 自定义模板* @en_US Custom template*/readonly controlTpl = input<XFormTemplate>({});/*** @zh_CN Submit* @en_US Submit*/readonly xSubmit = output<SubmitEvent>();}",
     "extends": "XFormControlFunction(X_FORM_CONFIG_NAME)"
   },
-  "undefined": {},
   "XControlOption": {
     "type": "interface",
     "label": "Control object",
@@ -10654,7 +10724,7 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XFormControlOption",
-    "value": "XFormControlOption =| XInputControlOption| XSelectControlOption| XCascadeControlOption| XCheckboxControlOption| XColorPickerControlOption| XDatePickerControlOption| XInputNumberControlOption| XRadioControlOption| XRateControlOption| XSliderSelectControlOption| XSwitchControlOption| XTimePickerControlOption| XFindControlOption| XTemplateControlOption;"
+    "value": "XInputControlOption | XSelectControlOption | XCascadeControlOption | XCheckboxControlOption | XColorPickerControlOption | XDatePickerControlOption | XInputNumberControlOption | XRadioControlOption | XRateControlOption | XSliderSelectControlOption | XSwitchControlOption | XTimePickerControlOption | XFindControlOption | XTemplateControlOption;"
   },
   "XFormControlComponent": {
     "type": "type",
@@ -10663,7 +10733,7 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XFormControlComponent",
-    "value": "XFormControlComponent =| XInputComponent| XSelectComponent| XCascadeComponent| XCheckboxComponent| XColorPickerComponent| XDatePickerComponent| XInputNumberComponent| XRadioComponent| XRateComponent| XSliderSelectComponent| XSwitchComponent| XTimePickerComponent| XTextareaComponent| XFindComponent| XAutoCompleteComponent;"
+    "value": "XInputComponent | XSelectComponent | XCascadeComponent | XCheckboxComponent | XColorPickerComponent | XDatePickerComponent | XInputNumberComponent | XRadioComponent | XRateComponent | XSliderSelectComponent | XSwitchComponent | XTimePickerComponent | XTextareaComponent | XFindComponent | XAutoCompleteComponent;"
   },
   "XFormControlType": {
     "type": "type",
@@ -10672,7 +10742,7 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XFormControlType",
-    "value": "XFormControlType =| XInputControl| XSelectControl| XCascadeControl| XCheckboxControl| XColorPickerControl| XDatePickerControl| XInputNumberControl| XRadioControl| XRateControl| XSliderSelectControl| XSwitchControl| XTimePickerControl| XTextareaControl| XFindControl| XAutoCompleteControl;"
+    "value": "XInputControl | XSelectControl | XCascadeControl | XCheckboxControl | XColorPickerControl | XDatePickerControl | XInputNumberControl | XRadioControl | XRateControl | XSliderSelectControl | XSwitchControl | XTimePickerControl | XTextareaControl | XFindControl | XAutoCompleteControl;"
   },
   "XControlType": {
     "type": "type",
@@ -10681,7 +10751,7 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XControlType",
-    "value": "XControlType =| 'input'| 'select'| 'cascade'| 'checkbox'| 'color-picker'| 'date-picker'| 'input-number'| 'radio'| 'rate'| 'slider-select'| 'switch'| 'time-picker'| 'textarea'| 'find'| 'auto-complete'| 'template';"
+    "value": "'input' | 'select' | 'cascade' | 'checkbox' | 'color-picker' | 'date-picker' | 'input-number' | 'radio' | 'rate' | 'slider-select' | 'switch' | 'time-picker' | 'textarea' | 'find' | 'auto-complete' | 'template';"
   },
   "XInputControlOption": {
     "type": "interface",
@@ -10980,15 +11050,6 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-icon'"
   },
-  "XIconHref": {
-    "type": "const",
-    "label": "The root address of the SVG icon",
-    "description": "",
-    "example": "",
-    "properties": [],
-    "name": "XIconHref",
-    "value": "'https://ngnest.com/static/icons/'"
-  },
   "XIconProperty": {
     "type": "class",
     "label": "Icon Property",
@@ -11002,7 +11063,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "The root address of the SVG icon can be configured only once globally. All icon resources are in ng-nest-icon on github",
-        "default": "XIconHref",
+        "default": "'https://ngnest.com/static/icons/'",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -11063,6 +11124,15 @@ export const en_US: {[key: string]: AppProp} = {
     ],
     "name": "XIconProperty",
     "extends": "XPropertyFunction(X_ICON_CONFIG_NAME)"
+  },
+  "XIconSource": {
+    "type": "type",
+    "label": "Icon source",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XIconSource",
+    "value": "'ant-design' | 'eva' | 'feather' | 'font-awesome' | 'material-design'"
   },
   "XImagePrefix": {
     "type": "const",
@@ -12059,6 +12129,19 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "hiddenButton",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Hide step button",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
         "name": "override  size",
         "type": "XSize",
         "toType": "XSize",
@@ -12609,7 +12692,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XLinkType>",
         "signal": "input",
         "label": "Link type",
-        "default": "",
+        "default": "'initial'",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -12631,6 +12714,15 @@ export const en_US: {[key: string]: AppProp} = {
     ],
     "name": "XLinkProperty",
     "extends": "XPropertyFunction(X_LINK_CONFIG_NAME)"
+  },
+  "XLinkType": {
+    "type": "type",
+    "label": "Link type",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XLinkType",
+    "value": "XType"
   },
   "XListPrefix": {
     "type": "const",
@@ -14048,6 +14140,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XMessageType",
     "value": "XStatus"
   },
+  "XMessageDisplayType": {
+    "type": "type",
+    "label": "When multiple messages, the display type",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XMessageDisplayType",
+    "value": "'list' | 'single'"
+  },
   "XMessageBoxPrefix": {
     "type": "const",
     "label": "MessageBox",
@@ -14356,6 +14457,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XMessageBoxOverlayRef",
     "extends": "XPortalOverlayRef<XMessageBoxComponent>"
   },
+  "XMessageBoxType": {
+    "type": "type",
+    "label": "Types of",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XMessageBoxType",
+    "value": "XStatus"
+  },
   "XNotificationPrefix": {
     "type": "const",
     "label": "Notification",
@@ -14513,6 +14623,15 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XNotificationPlacement"
+  },
+  "XNotificationType": {
+    "type": "type",
+    "label": "Types of",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XNotificationType",
+    "value": "XStatus"
   },
   "XOutletPrefix": {
     "type": "const",
@@ -15642,6 +15761,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XProgressStatus",
     "value": "'normal' | 'active' | 'success' | 'exception' | 'warning'"
   },
+  "XProgressGradient": {
+    "type": "type",
+    "label": "Gradient color",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XProgressGradient",
+    "value": "{ direction?: string } & ({ from: string; to: string } | { [percent: string]: string })"
+  },
   "XRadioPrefix": {
     "type": "const",
     "label": "Radio",
@@ -16488,6 +16616,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XResultProperty",
     "extends": "XProperty"
   },
+  "XResultStatus": {
+    "type": "type",
+    "label": "Result status",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XResultStatus",
+    "value": "XStatus | '403' | '404' | '500' | 'custom'"
+  },
   "XSelectPrefix": {
     "type": "const",
     "label": "Select",
@@ -17242,6 +17379,15 @@ export const en_US: {[key: string]: AppProp} = {
     ],
     "name": "XSkeletonCol"
   },
+  "XSkeletonType": {
+    "type": "type",
+    "label": "Column type",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XSkeletonType",
+    "value": "'title' | 'img' | 'avatar' | 'transparent'"
+  },
   "XSliderPrefix": {
     "type": "const",
     "label": "Slider",
@@ -17500,6 +17646,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XSliderTrigger",
     "value": "XTrigger"
+  },
+  "XSliderLayout": {
+    "type": "type",
+    "label": "Layout",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XSliderLayout",
+    "value": "'row' | 'column'"
   },
   "XSliderSelectPrefix": {
     "type": "const",
@@ -18326,6 +18481,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XStepsLayout",
     "value": "'row' | 'column'"
   },
+  "XStepsStatus": {
+    "type": "type",
+    "label": "Node status",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XStepsStatus",
+    "value": "'wait' | 'process' | 'finish' | 'error'"
+  },
   "XSwitchPrefix": {
     "type": "const",
     "label": "Switch",
@@ -18788,6 +18952,19 @@ export const en_US: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "Column header custom template",
         "default": "{}",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "headThTpl",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Column header custom template",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -20148,7 +20325,7 @@ export const en_US: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XPaginationPosition",
-    "value": "XPaginationPosition =| 'top-left'| 'top-center'| 'top-right'| 'bottom-left'| 'bottom-center'| 'bottom-right';"
+    "value": "'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';"
   },
   "XTableTemplate": {
     "type": "type",
@@ -21513,6 +21690,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XTextareaProperty",
     "extends": "XFormControlFunction(X_TEXTAREA_CONFIG_NAME)"
   },
+  "XTextareaIconLayoutType": {
+    "type": "type",
+    "label": "Icon layout, refers to the position in the input box",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTextareaIconLayoutType",
+    "value": "XPositionLeftRight"
+  },
   "XThemePrefix": {
     "type": "const",
     "label": "Theme",
@@ -22346,6 +22532,15 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XTimelineNode",
     "extends": "XIdentityProperty"
   },
+  "XTimelineMode": {
+    "type": "type",
+    "label": "Content and timeline relative position",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTimelineMode",
+    "value": "'left' | 'right' | 'alternate'"
+  },
   "XTooltipPrefix": {
     "type": "const",
     "label": "Tooltip",
@@ -23003,6 +23198,15 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTransferType",
     "value": "'list' | 'tree' | 'table'"
+  },
+  "XTransferListStyle": {
+    "type": "type",
+    "label": "shuttle box style, same as ngStyle",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTransferListStyle",
+    "value": "XStyleMap | XStyleMap[]"
   },
   "XTreePrefix": {
     "type": "const",

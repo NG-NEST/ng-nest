@@ -9,7 +9,7 @@
       <ng-container *xOutlet="value()">
         @if (prefix()) {
           <span class="x-statistic-value-prefix">
-            <ng-container *xOutlet="prefix">{{ prefix() }}</ng-container>
+            <ng-container *xOutlet="prefix()">{{ prefix() }}</ng-container>
           </span>
         }
         @if (displayInt()) {

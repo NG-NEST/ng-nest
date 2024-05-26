@@ -1297,6 +1297,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XDisplayDirection",
     "value": "'horizontal' | 'vertical'"
   },
+  "XTextAlign": {
+    "type": "type",
+    "label": "文字对齐方向",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTextAlign",
+    "value": "'left' | 'center' | 'right'"
+  },
   "XId": {
     "type": "interface",
     "label": "标识",
@@ -2109,6 +2118,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XAlertType",
     "value": "XStatus"
   },
+  "XAlertDragFreeDragPosition": {
+    "type": "type",
+    "label": "设置投放容器外部的 CdkDrag 的位置。可用于为返回的用户恢复元素的位置",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XAlertDragFreeDragPosition",
+    "value": "{ x: number; y: number }"
+  },
   "XAnchorPrefix": {
     "type": "const",
     "label": "Anchor",
@@ -2226,6 +2244,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XAnchorInnerProperty"
+  },
+  "XAnchorLayout": {
+    "type": "type",
+    "label": "布局方式，相对内容的位置",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XAnchorLayout",
+    "value": "XPositionLeftRight"
   },
   "XAutoCompletePrefix": {
     "type": "const",
@@ -3002,6 +3029,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XBadgeProperty",
     "extends": "XPropertyFunction(X_BADGE_CONFIG_NAME)"
   },
+  "XBadgeType": {
+    "type": "type",
+    "label": "标记类型",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XBadgeType",
+    "value": "XType"
+  },
   "XButtonPrefix": {
     "type": "const",
     "label": "Button",
@@ -3473,6 +3509,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XCalendarModel",
     "value": "'month' | 'year'"
   },
+  "XCalendarType": {
+    "type": "type",
+    "label": "显示类型",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XCalendarType",
+    "value": "'calendar' | 'card'"
+  },
   "XCardPrefix": {
     "type": "const",
     "label": "Card",
@@ -3554,6 +3599,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCardShadow",
     "value": "XShadow"
+  },
+  "XCardBodyStyle": {
+    "type": "type",
+    "label": "卡片内容样式类型",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XCardBodyStyle",
+    "value": "{ [property: string]: XNumber }"
   },
   "XCarouselPrefix": {
     "type": "const",
@@ -5570,7 +5624,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XDirection>",
         "signal": "input",
         "label": "flex 布局下的子元素排列方向，子元素中有 x-header 或 x-footer 时为 column",
-        "default": "this.config?.direction!",
+        "default": "''",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -6745,7 +6799,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XDatePickerType",
-    "value": "XDatePickerType =| 'date'| 'week'| 'month'| 'quarter'| 'year'| 'date-time'| 'date-hour'| 'date-minute';"
+    "value": "'date' | 'week' | 'month' | 'quarter' | 'year' | 'date-time' | 'date-hour' | 'date-minute';"
   },
   "XDatePickerModelType": {
     "type": "type",
@@ -8769,6 +8823,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XDialogPortalOverlayRef",
     "extends": "XPortalOverlayRef<XDialogPortalComponent>"
   },
+  "XDialogType": {
+    "type": "type",
+    "label": "类型",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XDialogType",
+    "value": "XStatus"
+  },
   "XDrawerPrefix": {
     "type": "const",
     "label": "Drawer",
@@ -9267,7 +9330,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "图片地址或自定义模板",
-        "default": "this.config?.img!",
+        "default": "''",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -9280,7 +9343,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "内容或自定义模板",
-        "default": "this.config?.content!",
+        "default": "''",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -10059,6 +10122,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-form'"
   },
+  "XFormTemplate": {
+    "type": "type",
+    "label": "模板",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XFormTemplate",
+    "value": "{ [property: string]: TemplateRef<any> }"
+  },
   "XFormProperty": {
     "type": "class",
     "label": "Form Property",
@@ -10184,10 +10256,8 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XFormProperty",
-    "value": "{ [property: string]: TemplateRef<any> }/*** Form Property*/@Component({ selector: `${XFormPrefix}-property`, template: '' })export class XFormProperty extends XFormControlFunction(X_FORM_CONFIG_NAME) {/*** @zh_CN 表单 FormGroup* @en_US Form FormGroup*/readonly formGroup = input<UntypedFormGroup>(new UntypedFormGroup({}));/*** @zh_CN 表单名称* @en_US Form name*/readonly title = input<string>('');/*** @zh_CN 控件间距* @en_US Control spacing*/readonly space = input<string, XNumber>(this.config?.space ?? '1.75rem', { transform: XToCssPixelValue });/*** @zh_CN 控件宽度，24栅格* @en_US Control width, 24 grid*/readonly span = input<number | null, XNumber>(null, { transform: XToNumber });/*** @zh_CN 标签后缀* @en_US Label suffix*/readonly labelSuffix = input<string>(this.config?.labelSuffix ?? '');/*** @zh_CN 表单控件* @en_US Form control*/readonly controls = input<XFormControlOption[] | XFormRow[]>([]);/*** @zh_CN 表单宽度* @en_US Form width*/readonly width = input<string, XNumber>(this.config?.width ?? '100%', { transform: XToCssPixelValue });/*** @zh_CN 自定义模板* @en_US Custom template*/readonly controlTpl = input<XFormTemplate>({});/*** @zh_CN Submit* @en_US Submit*/readonly xSubmit = output<SubmitEvent>();}",
     "extends": "XFormControlFunction(X_FORM_CONFIG_NAME)"
   },
-  "undefined": {},
   "XControlOption": {
     "type": "interface",
     "label": "控件对象",
@@ -10654,7 +10724,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XFormControlOption",
-    "value": "XFormControlOption =| XInputControlOption| XSelectControlOption| XCascadeControlOption| XCheckboxControlOption| XColorPickerControlOption| XDatePickerControlOption| XInputNumberControlOption| XRadioControlOption| XRateControlOption| XSliderSelectControlOption| XSwitchControlOption| XTimePickerControlOption| XFindControlOption| XTemplateControlOption;"
+    "value": "XInputControlOption | XSelectControlOption | XCascadeControlOption | XCheckboxControlOption | XColorPickerControlOption | XDatePickerControlOption | XInputNumberControlOption | XRadioControlOption | XRateControlOption | XSliderSelectControlOption | XSwitchControlOption | XTimePickerControlOption | XFindControlOption | XTemplateControlOption;"
   },
   "XFormControlComponent": {
     "type": "type",
@@ -10663,7 +10733,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XFormControlComponent",
-    "value": "XFormControlComponent =| XInputComponent| XSelectComponent| XCascadeComponent| XCheckboxComponent| XColorPickerComponent| XDatePickerComponent| XInputNumberComponent| XRadioComponent| XRateComponent| XSliderSelectComponent| XSwitchComponent| XTimePickerComponent| XTextareaComponent| XFindComponent| XAutoCompleteComponent;"
+    "value": "XInputComponent | XSelectComponent | XCascadeComponent | XCheckboxComponent | XColorPickerComponent | XDatePickerComponent | XInputNumberComponent | XRadioComponent | XRateComponent | XSliderSelectComponent | XSwitchComponent | XTimePickerComponent | XTextareaComponent | XFindComponent | XAutoCompleteComponent;"
   },
   "XFormControlType": {
     "type": "type",
@@ -10672,7 +10742,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XFormControlType",
-    "value": "XFormControlType =| XInputControl| XSelectControl| XCascadeControl| XCheckboxControl| XColorPickerControl| XDatePickerControl| XInputNumberControl| XRadioControl| XRateControl| XSliderSelectControl| XSwitchControl| XTimePickerControl| XTextareaControl| XFindControl| XAutoCompleteControl;"
+    "value": "XInputControl | XSelectControl | XCascadeControl | XCheckboxControl | XColorPickerControl | XDatePickerControl | XInputNumberControl | XRadioControl | XRateControl | XSliderSelectControl | XSwitchControl | XTimePickerControl | XTextareaControl | XFindControl | XAutoCompleteControl;"
   },
   "XControlType": {
     "type": "type",
@@ -10681,7 +10751,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XControlType",
-    "value": "XControlType =| 'input'| 'select'| 'cascade'| 'checkbox'| 'color-picker'| 'date-picker'| 'input-number'| 'radio'| 'rate'| 'slider-select'| 'switch'| 'time-picker'| 'textarea'| 'find'| 'auto-complete'| 'template';"
+    "value": "'input' | 'select' | 'cascade' | 'checkbox' | 'color-picker' | 'date-picker' | 'input-number' | 'radio' | 'rate' | 'slider-select' | 'switch' | 'time-picker' | 'textarea' | 'find' | 'auto-complete' | 'template';"
   },
   "XInputControlOption": {
     "type": "interface",
@@ -10980,15 +11050,6 @@ export const zh_CN: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-icon'"
   },
-  "XIconHref": {
-    "type": "const",
-    "label": "SVG 图标根路径地址",
-    "description": "",
-    "example": "",
-    "properties": [],
-    "name": "XIconHref",
-    "value": "'https://ngnest.com/static/icons/'"
-  },
   "XIconProperty": {
     "type": "class",
     "label": "Icon Property",
@@ -11002,7 +11063,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "SVG 图标根路径地址，可以通过全局只配置一次，所有图标资源在 github 上的 ng-nest-icon 中",
-        "default": "XIconHref",
+        "default": "'https://ngnest.com/static/icons/'",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -11063,6 +11124,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     ],
     "name": "XIconProperty",
     "extends": "XPropertyFunction(X_ICON_CONFIG_NAME)"
+  },
+  "XIconSource": {
+    "type": "type",
+    "label": "图标来源",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XIconSource",
+    "value": "'ant-design' | 'eva' | 'feather' | 'font-awesome' | 'material-design'"
   },
   "XImagePrefix": {
     "type": "const",
@@ -12059,6 +12129,19 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "hiddenButton",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "隐藏步进按钮",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
         "name": "override  size",
         "type": "XSize",
         "toType": "XSize",
@@ -12609,7 +12692,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XLinkType>",
         "signal": "input",
         "label": "链接类型",
-        "default": "",
+        "default": "'initial'",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -12631,6 +12714,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     ],
     "name": "XLinkProperty",
     "extends": "XPropertyFunction(X_LINK_CONFIG_NAME)"
+  },
+  "XLinkType": {
+    "type": "type",
+    "label": "链接类型",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XLinkType",
+    "value": "XType"
   },
   "XListPrefix": {
     "type": "const",
@@ -14048,6 +14140,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XMessageType",
     "value": "XStatus"
   },
+  "XMessageDisplayType": {
+    "type": "type",
+    "label": "多个消息的时候，显示类型",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XMessageDisplayType",
+    "value": "'list' | 'single'"
+  },
   "XMessageBoxPrefix": {
     "type": "const",
     "label": "MessageBox",
@@ -14356,6 +14457,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XMessageBoxOverlayRef",
     "extends": "XPortalOverlayRef<XMessageBoxComponent>"
   },
+  "XMessageBoxType": {
+    "type": "type",
+    "label": "类型",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XMessageBoxType",
+    "value": "XStatus"
+  },
   "XNotificationPrefix": {
     "type": "const",
     "label": "Notification",
@@ -14513,6 +14623,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XNotificationPlacement"
+  },
+  "XNotificationType": {
+    "type": "type",
+    "label": "类型",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XNotificationType",
+    "value": "XStatus"
   },
   "XOutletPrefix": {
     "type": "const",
@@ -15642,6 +15761,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XProgressStatus",
     "value": "'normal' | 'active' | 'success' | 'exception' | 'warning'"
   },
+  "XProgressGradient": {
+    "type": "type",
+    "label": "渐变颜色",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XProgressGradient",
+    "value": "{ direction?: string } & ({ from: string; to: string } | { [percent: string]: string })"
+  },
   "XRadioPrefix": {
     "type": "const",
     "label": "Radio",
@@ -16488,6 +16616,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XResultProperty",
     "extends": "XProperty"
   },
+  "XResultStatus": {
+    "type": "type",
+    "label": "结果状态",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XResultStatus",
+    "value": "XStatus | '403' | '404' | '500' | 'custom'"
+  },
   "XSelectPrefix": {
     "type": "const",
     "label": "Select",
@@ -17242,6 +17379,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     ],
     "name": "XSkeletonCol"
   },
+  "XSkeletonType": {
+    "type": "type",
+    "label": "列类型",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XSkeletonType",
+    "value": "'title' | 'img' | 'avatar' | 'transparent'"
+  },
   "XSliderPrefix": {
     "type": "const",
     "label": "Slider",
@@ -17500,6 +17646,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XSliderTrigger",
     "value": "XTrigger"
+  },
+  "XSliderLayout": {
+    "type": "type",
+    "label": "布局方式",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XSliderLayout",
+    "value": "'row' | 'column'"
   },
   "XSliderSelectPrefix": {
     "type": "const",
@@ -18326,6 +18481,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XStepsLayout",
     "value": "'row' | 'column'"
   },
+  "XStepsStatus": {
+    "type": "type",
+    "label": "节点状态",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XStepsStatus",
+    "value": "'wait' | 'process' | 'finish' | 'error'"
+  },
   "XSwitchPrefix": {
     "type": "const",
     "label": "Switch",
@@ -18788,6 +18952,19 @@ export const zh_CN: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "列头自定义模板，通过 key-value 的方式指定每列的模版",
         "default": "{}",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "headThTpl",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "列头单元格自定义模板，优先级低于列头自定义模板",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -20148,7 +20325,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XPaginationPosition",
-    "value": "XPaginationPosition =| 'top-left'| 'top-center'| 'top-right'| 'bottom-left'| 'bottom-center'| 'bottom-right';"
+    "value": "'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';"
   },
   "XTableTemplate": {
     "type": "type",
@@ -21513,6 +21690,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XTextareaProperty",
     "extends": "XFormControlFunction(X_TEXTAREA_CONFIG_NAME)"
   },
+  "XTextareaIconLayoutType": {
+    "type": "type",
+    "label": "图标布局方式，指在输入框中的位置",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTextareaIconLayoutType",
+    "value": "XPositionLeftRight"
+  },
   "XThemePrefix": {
     "type": "const",
     "label": "Theme",
@@ -22346,6 +22532,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XTimelineNode",
     "extends": "XIdentityProperty"
   },
+  "XTimelineMode": {
+    "type": "type",
+    "label": "时间轴的相对位置",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTimelineMode",
+    "value": "'left' | 'right' | 'alternate'"
+  },
   "XTooltipPrefix": {
     "type": "const",
     "label": "Tooltip",
@@ -23003,6 +23198,15 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTransferType",
     "value": "'list' | 'tree' | 'table'"
+  },
+  "XTransferListStyle": {
+    "type": "type",
+    "label": "穿梭框样式，使用方式与 ngStyle 相同",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTransferListStyle",
+    "value": "XStyleMap | XStyleMap[]"
   },
   "XTreePrefix": {
     "type": "const",
