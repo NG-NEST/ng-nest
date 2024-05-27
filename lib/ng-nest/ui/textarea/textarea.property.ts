@@ -41,6 +41,11 @@ export class XTextareaProperty extends XControlValueAccessor<any> implements XTe
    */
   @Input() @XInputNumber() maxlength!: XNumber;
   /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  /**
    * @zh_CN 高度
    * @en_US height
    */

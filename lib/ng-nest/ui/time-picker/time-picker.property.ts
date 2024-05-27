@@ -45,7 +45,7 @@ export class XTimePickerProperty extends XControlValueAccessor<any> {
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 使用12小时制
    * @en_US Use 12 hour clock

@@ -31,10 +31,6 @@ export class XFormProp extends XProperty {
    */
   @Input() direction?: XDirection = 'column';
   /**
-   * 尺寸
-   */
-  @Input() size?: XSize = 'medium';
-  /**
    * 输入提示信息
    */
   @Input() placeholder?: string | string[] = '';

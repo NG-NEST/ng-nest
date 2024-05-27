@@ -12,6 +12,7 @@ import { XInputModule } from '@ng-nest/ui/input';
 import { ExSizeComponent } from './size/size.component';
 import { XRadioModule } from '@ng-nest/ui/radio';
 import { ExScrollComponent } from './scroll/scroll.component';
+import { ExCustomComponent } from './custom/custom.component';
 
 const routers = [{ path: '', component: TeSelectComponent }];
 
@@ -26,6 +27,14 @@ const routers = [{ path: '', component: TeSelectComponent }];
     XLayoutModule,
     XInputModule
   ],
-  declarations: [TeSelectComponent, ExDefaultComponent, ExMultipleComponent, ExSearchComponent, ExSizeComponent, ExScrollComponent]
+  declarations: [
+    TeSelectComponent,
+    ExCustomComponent,
+    ExDefaultComponent,
+    ExMultipleComponent,
+    ExSearchComponent,
+    ExSizeComponent,
+    ExScrollComponent
+  ]
 })
 export class TeSelectModule {}

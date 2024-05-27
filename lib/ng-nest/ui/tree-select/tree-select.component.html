@@ -18,7 +18,7 @@
       [readonly]="getReadonly"
       [clearable]="showClearable"
       [(ngModel)]="displayValue"
-      [valueTpl]="valueTpl ? valueTpl : nodeTpl"
+      [valueTpl]="valueTpl"
       [valueTplContext]="valueTplContext"
       [size]="size"
       [bordered]="bordered"
@@ -51,9 +51,10 @@
     >{{ showPath ? node.path : node.label }}</x-tag
   >
   <x-tag [@.disabled]="true" *ngIf="showDisplayMore" [size]="size">
-    <ng-container *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }">{{
-      displayMore
-    }}</ng-container>
+    <ng-container
+      *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }"
+      >{{ displayMore }}</ng-container
+    >
   </x-tag>
   <x-input
     #multipleInput

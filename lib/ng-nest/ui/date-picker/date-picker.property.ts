@@ -50,7 +50,7 @@ export class XDatePickerProperty extends XControlValueAccessor<any> implements X
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
@@ -172,7 +172,7 @@ export class XDateRangeProperty extends XControlValueAccessor<any> implements XD
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_RANGE_NAME, 'medium') override size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_RANGE_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
@@ -289,7 +289,15 @@ export interface XDateRangePreset extends XIdentityProperty {
  * @zh_CN 日期选择类型
  * @en_US Date selection type
  */
-export type XDatePickerType = 'date' | 'week' | 'month' | 'quarter' | 'year' | 'date-time' | 'date-hour' | 'date-minute';
+export type XDatePickerType =
+  | 'date'
+  | 'week'
+  | 'month'
+  | 'quarter'
+  | 'year'
+  | 'date-time'
+  | 'date-hour'
+  | 'date-minute';
 
 /**
  * @zh_CN 日期数据类型

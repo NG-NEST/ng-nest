@@ -1,0 +1,15 @@
+:host {
+  x-row > x-col {
+    width: 15rem;
+  }
+  x-row:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.select-item {
+  line-height: 1.25rem;
+}
+.select-item:not(:first-child):before {
+  content: ',';
+}
