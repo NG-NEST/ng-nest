@@ -29,7 +29,7 @@ export class XSwitchProperty extends XControlValueAccessor<boolean> implements X
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') override size!: XSize;
+  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
   /**
    * @zh_CN 显示文字或者自定义模版（开启状态）
    * @en_US Display text or custom template (open state)
