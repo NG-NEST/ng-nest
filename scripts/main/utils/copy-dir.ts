@@ -3,6 +3,7 @@ import * as path from 'path';
 import { checkMkdir } from './check-mkdir';
 
 export function copyDir(from: string, to: string, exclude = []) {
+  if (!fs.existsSync(from)) return;
   let dir = fs.readdirSync(from, 'utf8');
   checkMkdir(to);
   for (let x of dir) {

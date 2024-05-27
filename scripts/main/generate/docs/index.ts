@@ -1,6 +1,6 @@
 import { NcPage } from '../../interfaces/page';
 import { NcMenu } from '../../interfaces/menu';
-import { NcProp, NcPropType } from '../../interfaces/prop';
+import { NcProp } from '../../interfaces/prop';
 import {
   handlerPage,
   createRouterOutlet,
@@ -71,12 +71,13 @@ export class NcDocs {
         const stat = statSync(dir);
         if (stat.isDirectory()) {
           const read = parseMdDoc(join(dir, `${isComponent ? 'docs/' : ''}readme.${lang}.md`));
-          if (read && !read.meta.hidden) {
+          if (read && read.meta) {
             const folder = join(page.genDir, x);
             const child = this.createChild(read, x, folder, lang);
             child.genDir = folder;
             child.path = dir;
             child.lang = lang;
+            child.hidden = !!read.meta.hidden;
             page.children = [...page.children, child];
             const thisRouter = `${router}/${x}`;
             const menu = this.createMenu(read, x, index, i, thisRouter, lang);
@@ -130,7 +131,9 @@ export class NcDocs {
     const id = index == null ? `${i}` : `${index}-${i}`;
     const pid = index == null || languages.includes(index) ? null : `${index}`;
     const menu: NcMenu = Object.assign({ id, pid, name: dirName, routerLink, lang }, read.meta);
-    this.menus = [...this.menus, menu];
+    if (!read.meta.hidden) {
+      this.menus = [...this.menus, menu];
+    }
     return menu;
   }
 

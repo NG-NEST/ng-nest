@@ -6,7 +6,8 @@ import {
   ChangeDetectionStrategy,
   inject,
   computed,
-  viewChild
+  viewChild,
+  ChangeDetectorRef
 } from '@angular/core';
 import { XTableFootPrefix, XTableFootProperty } from './table.property';
 import { XRemoveNgTag } from '@ng-nest/ui/core';
@@ -24,6 +25,7 @@ import { XTableComponent } from './table.component';
 export class XTableFootComponent extends XTableFootProperty implements OnInit {
   tfoot = viewChild.required<ElementRef<HTMLElement>>('tfoot');
   table = inject(XTableComponent, { optional: true })!;
+  cdr = inject(ChangeDetectorRef);
   getRowHeight = computed(() => (this.rowHeight() == 0 ? '' : this.rowHeight()));
   private elementRef = inject(ElementRef);
 

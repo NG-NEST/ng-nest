@@ -11362,6 +11362,40 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XImagePreviewProperty",
     "extends": "XProperty"
   },
+  "XInnerPrefix": {
+    "type": "const",
+    "label": "Inner",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XInnerPrefix",
+    "selector": "x-inner",
+    "decorator": "component",
+    "value": "'x-inner'"
+  },
+  "XInnerProperty": {
+    "type": "class",
+    "label": "Inner Property",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "padding",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "内边距",
+        "default": "'1rem'",
+        "withConfig": true,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      }
+    ],
+    "name": "XInnerProperty",
+    "extends": "XPropertyFunction(X_INNER_CONFIG_NAME)"
+  },
   "XInputPrefix": {
     "type": "const",
     "label": "Input",
@@ -15020,6 +15054,17 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XPaginationProperty",
     "extends": "XPropertyFunction(X_PAGINATION_CONFIG_NAME)"
   },
+  "XPatternPrefix": {
+    "type": "const",
+    "label": "Pattern",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XPatternPrefix",
+    "selector": "x-pattern",
+    "decorator": "component",
+    "value": "'x-pattern'"
+  },
   "XPopconfirmPrefix": {
     "type": "const",
     "label": "Popconfirm",
@@ -16542,6 +16587,221 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XRateColor",
     "value": "string | { [color: string]: (rate: number) => boolean }"
+  },
+  "XResizablePrefix": {
+    "type": "const",
+    "label": "Resizable 指令名称",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XResizablePrefix",
+    "selector": "x-resizable",
+    "decorator": "directive",
+    "value": "'x-resizable'"
+  },
+  "XResizableProperty": {
+    "type": "class",
+    "label": "Resizable Property",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "xResizable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "启用调整尺寸大小",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "position",
+        "type": "XResizablePosition | XResizablePosition[]",
+        "toType": "XResizablePosition | XResizablePosition[]",
+        "inputType": "InputSignal<XResizablePosition | XResizablePosition[]>",
+        "signal": "input",
+        "label": "调整方位",
+        "default": "'all'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "ghost",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "手动调整，通过回调的数值自行调整",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "offsetLeft",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "偏移屏幕左边",
+        "default": "'0'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "offsetTop",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "偏移屏幕顶部",
+        "default": "'0'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "resizeBegin",
+        "type": "XResizableEvent",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XResizableEvent>",
+        "signal": "output",
+        "label": "开始调整",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "resizing",
+        "type": "XResizableEvent",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XResizableEvent>",
+        "signal": "output",
+        "label": "调整中",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "resizeEnd",
+        "type": "XResizableEvent",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XResizableEvent>",
+        "signal": "output",
+        "label": "调整结束",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      }
+    ],
+    "name": "XResizableProperty",
+    "extends": "XProperty"
+  },
+  "XResizablePosition": {
+    "type": "type",
+    "label": "调整方位",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XResizablePosition",
+    "value": "XPosition | XCorner | 'all'"
+  },
+  "XResizableEvent": {
+    "type": "interface",
+    "label": "调整尺寸的事件对象",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "event",
+        "type": "MouseEvent",
+        "label": "事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "event",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clientWidth",
+        "type": "number",
+        "label": "宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clientWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clientHeight",
+        "type": "number",
+        "label": "高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clientHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "offsetLeft",
+        "type": "number",
+        "label": "距离屏幕左边",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "offsetLeft",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "offsetTop",
+        "type": "number",
+        "label": "距离屏幕顶部",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "offsetTop",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XResizablePosition",
+        "label": "改变方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XResizableEvent"
   },
   "XResultPrefix": {
     "type": "const",
@@ -25123,6 +25383,53 @@ export const zh_CN: {[key: string]: AppProp} = {
     "selector": "x-tree-select-portal",
     "decorator": "component",
     "value": "'x-tree-select-portal'"
+  },
+  "XTypographyPrefix": {
+    "type": "const",
+    "label": "Typography",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTypographyPrefix",
+    "selector": "x-typography",
+    "decorator": "component",
+    "value": "'x-typography'"
+  },
+  "XTypographyProperty": {
+    "type": "class",
+    "label": "Typography Property",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "font",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "字体",
+        "default": "'Helvetica Neue",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "显示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      }
+    ],
+    "name": "XTypographyProperty",
+    "extends": "XProperty"
   },
   "XUploadPrefix": {
     "type": "const",

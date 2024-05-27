@@ -6,7 +6,7 @@ import { XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 
-@Pipe({ name: `${XTimeAgoPrefix}`, pure: false, standalone: true })
+@Pipe({ name: `${XTimeAgoPrefix}`, standalone: true })
 export class XTimeAgoPipe extends DatePipe implements PipeTransform {
   private i18n = inject(XI18nService);
   private catchContent: any;

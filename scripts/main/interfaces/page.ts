@@ -22,6 +22,7 @@ export class NcPage {
   default?: boolean;
   lang?: string;
   props?: NcProp[] = [];
+  hidden?: boolean = false;
   constructor(param: NcPage) {
     Object.assign(this, param);
     if (!this.fileName) {

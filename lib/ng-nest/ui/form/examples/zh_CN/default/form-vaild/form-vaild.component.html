@@ -1,6 +1,6 @@
 <x-form #form direction="row" labelWidth="5rem" labelAlign="end" [controls]="controls()" (xSubmit)="submit($event)">
   <x-button [style.margin-left.rem]="5" type="primary">submit 验证 </x-button>
-  <p [style.margin-left.rem]="5" [style.color]="'gray'">表单验证 {{ form.formGroup().valid ? '通过' : '失败' }}</p>
+  <p [style.margin-left.rem]="5" [style.color]="'gray'">表单验证 {{ validText() }}</p>
 </x-form>
 <x-button [style.margin-left.rem]="5" type="primary" (click)="resetValidator()">初始验证效果</x-button>
 <p [style.margin-left.rem]="5" [style.color]="'gray'">不影响实际的验证结果，只是清除界面上的验证显示效果</p>
@@ -9,5 +9,5 @@
 <br />
 <br />
 
-<x-form #manualForm direction="row" labelWidth="5rem" labelAlign="end" [controls]="controls()"> </x-form>
-<x-button [style.margin-left.rem]="5" type="primary" (click)="manual($event)">手动验证</x-button>
+<!-- <x-form #manualForm direction="row" labelWidth="5rem" labelAlign="end" [controls]="controls()"> </x-form>
+<x-button [style.margin-left.rem]="5" type="primary" (click)="manual($event)">手动验证</x-button> -->

@@ -11362,6 +11362,40 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XImagePreviewProperty",
     "extends": "XProperty"
   },
+  "XInnerPrefix": {
+    "type": "const",
+    "label": "Inner",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XInnerPrefix",
+    "selector": "x-inner",
+    "decorator": "component",
+    "value": "'x-inner'"
+  },
+  "XInnerProperty": {
+    "type": "class",
+    "label": "Inner Property",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "padding",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Inner padding",
+        "default": "'1rem'",
+        "withConfig": true,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      }
+    ],
+    "name": "XInnerProperty",
+    "extends": "XPropertyFunction(X_INNER_CONFIG_NAME)"
+  },
   "XInputPrefix": {
     "type": "const",
     "label": "Input",
@@ -15020,6 +15054,17 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XPaginationProperty",
     "extends": "XPropertyFunction(X_PAGINATION_CONFIG_NAME)"
   },
+  "XPatternPrefix": {
+    "type": "const",
+    "label": "Pattern",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XPatternPrefix",
+    "selector": "x-pattern",
+    "decorator": "component",
+    "value": "'x-pattern'"
+  },
   "XPopconfirmPrefix": {
     "type": "const",
     "label": "Popconfirm",
@@ -16542,6 +16587,221 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XRateColor",
     "value": "string | { [color: string]: (rate: number) => boolean }"
+  },
+  "XResizablePrefix": {
+    "type": "const",
+    "label": "Resizable 指令名称",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XResizablePrefix",
+    "selector": "x-resizable",
+    "decorator": "directive",
+    "value": "'x-resizable'"
+  },
+  "XResizableProperty": {
+    "type": "class",
+    "label": "Resizable Property",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "xResizable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Enable adjustment size size",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "position",
+        "type": "XResizablePosition | XResizablePosition[]",
+        "toType": "XResizablePosition | XResizablePosition[]",
+        "inputType": "InputSignal<XResizablePosition | XResizablePosition[]>",
+        "signal": "input",
+        "label": "Adjust the orientation",
+        "default": "'all'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "ghost",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Manual adjustment, adjustment of the number of callbacks",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "offsetLeft",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Distance on the left side",
+        "default": "'0'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "offsetTop",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Distance to the top of the screen",
+        "default": "'0'",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "resizeBegin",
+        "type": "XResizableEvent",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XResizableEvent>",
+        "signal": "output",
+        "label": "Adjust the orientation",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "resizing",
+        "type": "XResizableEvent",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XResizableEvent>",
+        "signal": "output",
+        "label": "Adjust the orientation",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "resizeEnd",
+        "type": "XResizableEvent",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XResizableEvent>",
+        "signal": "output",
+        "label": "Adjust the orientation",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      }
+    ],
+    "name": "XResizableProperty",
+    "extends": "XProperty"
+  },
+  "XResizablePosition": {
+    "type": "type",
+    "label": "Adjust the orientation",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XResizablePosition",
+    "value": "XPosition | XCorner | 'all'"
+  },
+  "XResizableEvent": {
+    "type": "interface",
+    "label": "Adjust the size of event objects",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "event",
+        "type": "MouseEvent",
+        "label": "Event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "event",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clientWidth",
+        "type": "number",
+        "label": "Width",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clientWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clientHeight",
+        "type": "number",
+        "label": "height",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clientHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "offsetLeft",
+        "type": "number",
+        "label": "Distance on the left side",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "offsetLeft",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "offsetTop",
+        "type": "number",
+        "label": "Distance to the top of the screen",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "offsetTop",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XResizablePosition",
+        "label": "Change position",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XResizableEvent"
   },
   "XResultPrefix": {
     "type": "const",
@@ -25123,6 +25383,53 @@ export const en_US: {[key: string]: AppProp} = {
     "selector": "x-tree-select-portal",
     "decorator": "component",
     "value": "'x-tree-select-portal'"
+  },
+  "XTypographyPrefix": {
+    "type": "const",
+    "label": "Typography",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XTypographyPrefix",
+    "selector": "x-typography",
+    "decorator": "component",
+    "value": "'x-typography'"
+  },
+  "XTypographyProperty": {
+    "type": "class",
+    "label": "Typography Property",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "font",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Font",
+        "default": "'Helvetica Neue",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Display text",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": ""
+      }
+    ],
+    "name": "XTypographyProperty",
+    "extends": "XProperty"
   },
   "XUploadPrefix": {
     "type": "const",

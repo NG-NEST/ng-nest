@@ -1,4 +1,14 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef, inject, computed, viewChild, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ElementRef,
+  inject,
+  computed,
+  viewChild,
+  signal,
+  ChangeDetectorRef
+} from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell, XTablePrefix } from './table.property';
 import { XRemoveNgTag, XIsEmpty, XSort, XNumber, XIsFunction } from '@ng-nest/ui/core';
 import { CdkDragDrop, CdkDragSortEvent, CdkDragStart, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -29,6 +39,7 @@ import { XTableComponent } from './table.component';
 })
 export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   table = inject(XTableComponent, { optional: true })!;
+  cdr = inject(ChangeDetectorRef);
 
   thead = viewChild.required<ElementRef<HTMLElement>>('thead');
   sort = signal<XSort[]>([]);
@@ -116,8 +127,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
       if (column.width < 60) column.width = 60;
       XIsFunction(column.dragWidthMoved) && column.dragWidthMoved({ position, column });
       this.table.columnDragWidthMoved.emit({ position, column });
-      // this.cdr.detectChanges();
-      // this.table.bodyChange();
+      this.table.detectChanges();
     }
   }
 
@@ -158,24 +168,18 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     current.left = middle.left;
     current.right = middle.right;
     moveItemInArray(this.columns(), event.previousIndex, event.currentIndex);
-    this.dragChange();
+    this.table.detectChanges();
   }
 
   dragStarted(_event: CdkDragStart, column: XTableColumn) {
     column.dragging = true;
-    this.dragChange();
-    this.table.theadsChanges();
+    this.table.detectChanges();
     this.table.columnDragStarted.emit(column);
   }
 
   dragEnded(column: XTableColumn) {
     column.dragging = false;
-    this.dragChange();
-    this.table.theadsChanges();
+    this.table.detectChanges();
     this.table.columnDragEnded.emit(column);
-  }
-
-  dragChange() {
-    this.table.bodyChange();
   }
 }

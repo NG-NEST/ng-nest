@@ -1,5 +1,6 @@
 <div class="x-control" [formGroup]="form.formGroup()">
-  @switch (option().control) {
+  <ng-template cdkPortalOutlet></ng-template>
+  <!-- @switch (option().control) {
     @case ('input') {
       <x-input
         [formControlName]="option().id"
@@ -60,5 +61,5 @@
     @case ('find') {
       <x-find [formControlName]="option().id"></x-find>
     }
-  }
+  } -->
 </div>

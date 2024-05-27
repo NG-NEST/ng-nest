@@ -58,7 +58,7 @@
       [cdkDropListData]="nodes()"
       [cdkDropListEnterPredicate]="predicate"
     >
-      @for (node of nodes(); track node) {
+      @for (node of nodes(); track node.id + '' + $index) {
         <x-tree-node
           cdkDrag
           [cdkDragDisabled]="node.disabled"

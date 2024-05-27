@@ -7,7 +7,10 @@ import {
   OnDestroy,
   inject,
   viewChild,
-  signal
+  signal,
+  ViewContainerRef,
+  ComponentRef,
+  OutputEmitterRef
 } from '@angular/core';
 import {
   XControlProperty,
@@ -51,7 +54,6 @@ import {
   Validators,
   UntypedFormControl,
   ValidatorFn,
-  ControlValueAccessor,
   FormControlStatus,
   FormsModule,
   ReactiveFormsModule
@@ -61,23 +63,11 @@ import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { XI18nForm, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
-import { XInputComponent } from '@ng-nest/ui/input';
-import { XSelectComponent } from '@ng-nest/ui/select';
-import { XCascadeComponent } from '@ng-nest/ui/cascade';
-import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
-import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
-import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
-import { XInputNumberComponent } from '@ng-nest/ui/input-number';
-import { XRadioComponent } from '@ng-nest/ui/radio';
-import { XRateComponent } from '@ng-nest/ui/rate';
-import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
-import { XSwitchComponent } from '@ng-nest/ui/switch';
-import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XTextareaComponent } from '@ng-nest/ui/textarea';
-import { XFindComponent } from '@ng-nest/ui/find';
-import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XFormComponent } from './form.component';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { CdkPortalOutlet, ComponentPortal, PortalModule } from '@angular/cdk/portal';
+import { XInputComponent } from '@ng-nest/ui/input';
+// import { XSelectComponent } from '@ng-nest/ui/select';
 
 @Component({
   selector: 'x-control',
@@ -85,21 +75,23 @@ import { toSignal } from '@angular/core/rxjs-interop';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    XInputComponent,
-    XSelectComponent,
-    XCascadeComponent,
-    XCheckboxComponent,
-    XColorPickerComponent,
-    XDatePickerComponent,
-    XInputNumberComponent,
-    XRadioComponent,
-    XRateComponent,
-    XSliderSelectComponent,
-    XSwitchComponent,
-    XTimePickerModule,
-    XTextareaComponent,
-    XFindComponent,
-    XAutoCompleteComponent
+    PortalModule
+
+    // XInputComponent,
+    // XSelectComponent,
+    // XCascadeComponent,
+    // XCheckboxComponent,
+    // XColorPickerComponent,
+    // XDatePickerComponent,
+    // XInputNumberComponent,
+    // XRadioComponent,
+    // XRateComponent,
+    // XSliderSelectComponent,
+    // XSwitchComponent,
+    // XTimePickerModule,
+    // XTextareaComponent,
+    // XFindComponent,
+    // XAutoCompleteComponent,
   ],
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.scss'],
@@ -108,8 +100,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
   private i18n = inject(XI18nService);
+  private viewContainerRef = inject(ViewContainerRef);
   private _sharedProps = signal(['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign']);
-  private _changeProps = signal(['label', ...this._sharedProps()]);
+  // private _changeProps = signal(['label', ...this._sharedProps()]);
   private _control = signal<XFormControlType | null>(null);
   private _validatorFns = signal<ValidatorFn[]>([]);
   private _formControl = signal<UntypedFormControl | null>(null);
@@ -119,19 +112,13 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   formControl = viewChild(FormControlName);
   locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.form as XI18nForm)), { initialValue: zh_CN.form });
 
+  portalOutlet = viewChild.required(CdkPortalOutlet);
+  componentPortal!: ComponentPortal<XFormControlComponent>;
+  componentRef!: ComponentRef<XFormControlComponent>;
+
   ngOnInit() {
-    this.option.update((x) => ({ ...x }));
-    this.setProps();
-    if (XIsEmpty(this.option().label)) {
-      this.option.update((x) => {
-        x.label = '';
-        return { ...x };
-      });
-    }
-    this.option.update((x) => {
-      x.label = `${this.option().label}${this.form.labelSuffix}`;
-      return { ...x };
-    });
+    this.setOption();
+
     this._control.set(this.createControl(this.option()));
     this._formControl.set(
       new UntypedFormControl(this._control()!.value, {
@@ -146,20 +133,44 @@ export class XControlComponent extends XControlProperty implements OnInit, After
       });
     this._control()!.setValidators = () => this.setValidators();
     this.form.formGroup().addControl(this._control()!.id, this._formControl());
-    this.option().change = () => {
-      this._changeProps().forEach((x: string) => {
-        if (this.formControl()?.valueAccessor && this.option()[x]) {
-          (this.formControl()!.valueAccessor as any)[x] = this.option()[x];
+
+    // this.option().change = () => {
+    //   this._changeProps().forEach((x: string) => {
+    //     if (this.formControl()?.valueAccessor && this.option()[x]) {
+    //       (this.formControl()!.valueAccessor as any)[x] = this.option()[x];
+    //     }
+    //   });
+    // };
+
+    this.componentPortal = this.createComponentPortal(this.option());
+    this.componentRef = this.portalOutlet().attachComponentPortal(this.componentPortal);
+    for (let key in this.option()) {
+      if (key in this.componentRef.instance) {
+        const val = (this.componentRef.instance as any)[key];
+        if (XIsFunction(val)) {
+          const valStr = val.toString();
+          if (valStr.startsWith('[Input Signal:')) {
+            // input
+            this.componentRef.setInput(key, this.option()[key]);
+          } else if (valStr.startsWith('[Model Signal:')) {
+            // model
+            this.componentRef.setInput(key, this.option()[key]);
+            val.subscribe((x: any) => {
+              this.option()[key] = x;
+            });
+          }
+        } else if (val instanceof OutputEmitterRef) {
+          // output
+          val.subscribe((x) => this.option()[key](x));
         }
-      });
-      // this.form.controlComponents()[this._control()!.id].formControlChanges();
-    };
+      }
+    }
   }
 
   ngAfterViewInit() {
-    Object.assign(this.formControl()!.valueAccessor!, this._control() as ControlValueAccessor);
-    this.form.controlTypes()[this._control()!.id] = this._control;
-    this.form.controlComponents()[this._control()!.id] = this.formControl()!.valueAccessor as XFormControlComponent;
+    // Object.assign(this.formControl()!.valueAccessor!, this._control() as ControlValueAccessor);
+    // this.form.controlTypes()[this._control()!.id] = this._control()!;
+    // this.form.controlComponents()[this._control()!.id] = this.formControl()!.valueAccessor as XFormControlComponent;
     // this.form.controlComponents()[this._control()!.id].formControlChanges();
   }
 
@@ -188,12 +199,25 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     this._formControl()!.updateValueAndValidity();
   }
 
-  setProps() {
+  setOption() {
     for (let prop of this._sharedProps()) {
       if (XIsEmpty(this.option()[prop])) {
-        this.option()[prop] = (this.form as any)[prop];
+        this.option.update((x) => {
+          x[prop] = (this.form as any)[prop]();
+          return x;
+        });
       }
     }
+    if (XIsEmpty(this.option().label)) {
+      this.option.update((x) => {
+        x.label = '';
+        return x;
+      });
+    }
+    this.option.update((x) => {
+      x.label = `${this.option().label}${this.form.labelSuffix()}`;
+      return x;
+    });
   }
 
   setPattern() {
@@ -270,6 +294,44 @@ export class XControlComponent extends XControlProperty implements OnInit, After
         return new XAutoCompleteControl(option as XAutoCompleteControlOption);
       default:
         return new XInputControl(option as XInputControlOption);
+    }
+  }
+
+  createComponentPortal(option: XFormControlOption) {
+    switch (option.control) {
+      case 'input':
+      default:
+        return new ComponentPortal(XInputComponent, this.viewContainerRef);
+      // case 'select':
+      //   return new ComponentPortal(XSelectComponent, this.viewContainerRef);
+      // case 'checkbox':
+      //   return new XCheckboxControl(option as XCheckboxControlOption);
+      // case 'radio':
+      //   return new XRadioControl(option as XRadioControlOption);
+      // case 'switch':
+      //   return new XSwitchControl(option as XSwitchControlOption);
+      // case 'rate':
+      //   return new XRateControl(option as XRateControlOption);
+      // case 'date-picker':
+      //   return new XDatePickerControl(option as XDatePickerControlOption);
+      // case 'time-picker':
+      //   return new XTimePickerControl(option as XTimePickerControlOption);
+      // case 'input-number':
+      //   return new XInputNumberControl(option as XInputNumberControlOption);
+      // case 'slider-select':
+      //   return new XSliderSelectControl(option as XSliderSelectControlOption);
+      // case 'cascade':
+      //   return new XCascadeControl(option as XCascadeControlOption);
+      // case 'color-picker':
+      //   return new XColorPickerControl(option as XColorPickerControlOption);
+      // case 'textarea':
+      //   return new XTextareaControl(option as XTextareaControlOption);
+      // case 'find':
+      //   return new XFindControl(option as XFindControlOption);
+      // case 'auto-complete':
+      //   return new XAutoCompleteControl(option as XAutoCompleteControlOption);
+      // default:
+      //   return new XInputControl(option as XInputControlOption);
     }
   }
 }

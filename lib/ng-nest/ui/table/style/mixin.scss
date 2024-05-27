@@ -66,6 +66,7 @@
     }
     &.x-table-head-bottom {
       > tr > th {
+        border-top: $--x-border-base;
         border-bottom: none;
       }
       > tr.x-table-search {
@@ -362,7 +363,6 @@
     align-items: center;
     border: $--x-border-base;
     border-style: dashed;
-    border-radius: $--x-border-radius;
     background-color: $--x-background;
     opacity: 0.8;
     box-shadow: $--x-box-shadow;

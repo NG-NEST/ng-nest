@@ -24,7 +24,7 @@ export class XResizableDirective extends XResizableProperty implements OnDestroy
   cornerPositions: XResizablePosition[] = ['top-start', 'top-end', 'bottom-start', 'bottom-end'];
   allPositions: XResizablePosition[] = ['left', 'right', 'top', 'bottom', ...this.cornerPositions];
   positions: XResizablePosition[] = [];
-  direction?: XResizablePosition | null;
+  direction?: XResizablePosition;
   newBox = { clientWidth: 0, clientHeight: 0, offsetLeft: 0, offsetTop: 0 };
   mouseUpSub?: Subscription;
 
@@ -163,7 +163,7 @@ export class XResizableDirective extends XResizableProperty implements OnDestroy
     let { clientWidth, clientHeight, offsetLeft, offsetTop } = this.elementRef.nativeElement;
     this.newBox = { clientWidth, clientHeight, offsetLeft, offsetTop };
     event.stopPropagation();
-    this.resizeBegin.emit({ event: evt, ...this.newBox });
+    this.resizeBegin.emit({ event: evt as MouseEvent, ...this.newBox });
   }
 
   mouseup(event: MouseEvent | TouchEvent) {
@@ -173,13 +173,13 @@ export class XResizableDirective extends XResizableProperty implements OnDestroy
 
   endResize(event: MouseEvent | TouchEvent) {
     const evt = event.type.startsWith('touch') ? (event as TouchEvent).targetTouches[0] : (event as MouseEvent);
-    this.direction = null;
+    this.direction = undefined;
     this.renderer.removeClass(this.elementRef.nativeElement, `x-resizable-resizing`);
     for (const node of this.activatingNodes) {
       this.renderer.removeClass(node, 'x-resizable-activating');
     }
     this.activatingNodes = [];
-    this.resizeEnd.emit({ event: evt, ...this.newBox });
+    this.resizeEnd.emit({ event: evt as MouseEvent, ...this.newBox });
   }
 
   move(
@@ -212,7 +212,7 @@ export class XResizableDirective extends XResizableProperty implements OnDestroy
 
     this.resizeBox(box);
 
-    this.resizing.emit({ ...this.newBox, event: evt, direction: this.direction });
+    this.resizing.emit({ ...this.newBox, event: evt as MouseEvent, direction: this.direction });
   }
 
   resizeBox(box: { clientWidth: number; clientHeight: number; offsetLeft: number; offsetTop: number }) {

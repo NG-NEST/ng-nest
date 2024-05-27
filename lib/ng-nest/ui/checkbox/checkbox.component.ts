@@ -36,7 +36,6 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
   checkbox = viewChild.required('checkbox', { read: ElementRef<HTMLElement> });
 
   override writeValue(value: boolean | Array<any>) {
-    console.log('writeValue', value);
     this.value.set(value);
   }
 
@@ -72,7 +71,6 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
       () => {
         this.value();
         this.setChecked();
-        console.log(this.value());
       },
       { allowSignalWrites: true }
     );

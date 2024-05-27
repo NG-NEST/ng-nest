@@ -71,7 +71,7 @@ export interface XResizableEvent {
    * @zh_CN 事件
    * @en_US Event
    */
-  event?: MouseEvent | Touch;
+  event?: MouseEvent;
   /**
    * @zh_CN 宽度
    * @en_US Width
@@ -96,5 +96,5 @@ export interface XResizableEvent {
    * @zh_CN 改变方位
    * @en_US Change position
    */
-  direction?: XResizablePosition | null;
+  direction?: XResizablePosition;
 }

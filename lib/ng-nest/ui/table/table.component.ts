@@ -11,7 +11,8 @@ import {
   computed,
   signal,
   viewChild,
-  inject
+  inject,
+  viewChildren
 } from '@angular/core';
 import {
   XTablePrefix,
@@ -86,6 +87,9 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   pagination = viewChild<XPaginationComponent>('pagination');
   stickyTopRightEle = viewChild<ElementRef<HTMLElement>>('stickyTopRightEle');
   stickyBottomRightEle = viewChild<ElementRef<HTMLElement>>('stickyBottomRightEle');
+  headCom = viewChildren<XTableHeadComponent>(XTableHeadComponent);
+  bodyCom = viewChildren<XTableBodyComponent>(XTableBodyComponent);
+  footCom = viewChild<XTableFootComponent>(XTableFootComponent);
 
   getScrollLeft = computed(() => this.scrollLeft() > 0);
   getScrollTop = computed(() => this.scrollTop() > 0);
@@ -361,7 +365,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     });
     this.setCheckedValues(column);
     this.headCheckboxChange.emit({ rows: this.tableData(), checkbox: this.checkedValues() });
-    // this.detectChanges();
+    this.detectChanges();
   }
 
   bodyChecked(_checked: boolean, column: XTableColumn, row: XTableRow) {
@@ -382,16 +386,13 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   detectChanges() {
-    // this.bodyChange && this.bodyChange();
-    // this.theadsChanges();
-    // this.cdr.detectChanges();
-  }
-
-  theadsChanges() {
-    if (this.theadsChange && this.theadsChange.length > 0) {
-      for (let item of this.theadsChange) {
-        item();
-      }
-    }
+    this.headCom()?.forEach((x) => {
+      x.cdr.markForCheck();
+    });
+    this.bodyCom()?.forEach((x) => {
+      x.cdr.markForCheck();
+    });
+    this.footCom()?.cdr.markForCheck();
+    this.cdr.markForCheck();
   }
 }
