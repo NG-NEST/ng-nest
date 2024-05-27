@@ -1,3 +1,12 @@
+## [17.0.11](https://github.com/NG-NEST/ng-nest/compare/17.0.10...17.0.11) (2024-05-27)
+
+
+### Bug Fixes
+
+* **config:** fix global size config ([daa1bea](https://github.com/NG-NEST/ng-nest/commit/daa1beafc2498453b67c9bb628b288c8586b3e3f))
+
+
+
 ## [17.0.10](https://github.com/NG-NEST/ng-nest/compare/17.0.9...17.0.10) (2024-05-25)
 
 

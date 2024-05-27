@@ -12,7 +12,7 @@ export class ConfigService {
   langs = ['zh_CN', 'en_US'];
   cacheLangs: { [lang: string]: XI18nProperty } = {};
   versions: string[] = [];
-  version = '17.0.10';
+  version = '17.0.11';
   navName = 'NG-NEST';
 
   get lang() {
