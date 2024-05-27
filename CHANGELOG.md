@@ -1,3 +1,12 @@
+## [16.0.17](https://github.com/NG-NEST/ng-nest/compare/16.0.16...16.0.17) (2024-05-27)
+
+
+### Bug Fixes
+
+* **config:** fix global size config ([1b80c01](https://github.com/NG-NEST/ng-nest/commit/1b80c018ec998fc68dc4cf9cb1860fa9e10ced92))
+
+
+
 ## [16.0.16](https://github.com/NG-NEST/ng-nest/compare/16.0.15...16.0.16) (2024-05-25)
 
 
