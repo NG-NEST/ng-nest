@@ -1,4 +1,4 @@
-<div class="x-list" [class.x-list-portal]="inPortal()">
+<div class="x-list" [class.x-list-portal]="inPortal()" [ngClass]="classMap()">
   @if (header()) {
     <div #headerRef class="x-list-header" *xOutlet="header()">{{ header() }}</div>
   }

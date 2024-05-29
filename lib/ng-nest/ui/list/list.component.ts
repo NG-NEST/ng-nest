@@ -33,11 +33,13 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XListPrefix}`,
   standalone: true,
   imports: [
+    NgClass,
     FormsModule,
     ReactiveFormsModule,
     CdkDropList,
@@ -75,6 +77,9 @@ export class XListComponent extends XListProperty implements OnChanges {
   icon = signal('');
   iconSpin = signal(false);
   scrollHeightSignal = signal(0);
+  classMap = computed(() => ({
+    [`${XListPrefix}-${this.size()}`]: this.size() ? true : false
+  }));
   private resizeObserver!: XResizeObserver;
 
   @HostBinding('attr.role') role = 'listbox';
@@ -140,6 +145,7 @@ export class XListComponent extends XListProperty implements OnChanges {
   }
 
   ngAfterViewInit() {
+    console.log(this.multiple());
     this.initKeyManager();
     if (this.virtualScroll() && this.heightAdaption()) {
       this.setVirtualScrollHeight();
@@ -307,7 +313,7 @@ export class XListComponent extends XListProperty implements OnChanges {
     }
     const selected = !node.selected;
     if (selected) {
-      if (this.selectedNodes().length < this.multiple() || this.multiple() === 0) {
+      if (this.selectedNodes().length < this.multiple() || this.multiple() === 0 || isNaN(this.multiple())) {
         node.selected = selected;
         this.selectedNodes.update((x) => [...x, node]);
         if (this.selectedNodes().length === this.nodes().length) {
@@ -334,6 +340,7 @@ export class XListComponent extends XListProperty implements OnChanges {
       });
       this.isSelectAll.set(false);
     }
+
     if (this.multiple() === 1 && this.selectedNodes().length === 1) {
       this.value.set(this.objectArray() ? this.selectedNodes()[0] : this.selectedNodes()[0].id);
     } else {

@@ -15,6 +15,6 @@ export class ExSingleComponent {
   constructor(private message: XMessageService) {}
   open(place: XPlace, title: string) {
     this.i.update((x) => ++x);
-    this.message.info({ title: this.i + title + '消息', placement: place, displayType: 'single' });
+    this.message.info({ title: this.i() + title + '消息', placement: place, displayType: 'single' });
   }
 }
