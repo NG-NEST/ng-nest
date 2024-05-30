@@ -8,7 +8,9 @@ import {
   OnDestroy,
   effect,
   ComponentRef,
-  signal
+  signal,
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XPopoverPortalComponent } from './popover-portal.component';
@@ -21,10 +23,10 @@ import {
   Overlay
 } from '@angular/cdk/overlay';
 import { takeUntil } from 'rxjs/operators';
-import type { XPlacement } from '@ng-nest/ui/core';
+import { XIsChange, type XPlacement } from '@ng-nest/ui/core';
 
 @Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}`, standalone: true })
-export class XPopoverDirective extends XPopoverProperty implements OnDestroy {
+export class XPopoverDirective extends XPopoverProperty implements OnDestroy, OnChanges {
   portal!: XPortalOverlayRef<XPopoverPortalComponent>;
   timeoutHide: any;
   timeoutShow: any;
@@ -80,6 +82,14 @@ export class XPopoverDirective extends XPopoverProperty implements OnDestroy {
     effect(() => this.portalComponent()?.setInput('maxWidth', this.maxWidth()));
     effect(() => this.portalComponent()?.setInput('trigger', this.trigger()));
     effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { visible } = changes;
+    if (XIsChange(visible) && !this.condition()) {
+      if (this.visible()) this.show();
+      else this.hide();
+    }
   }
 
   ngOnDestroy(): void {

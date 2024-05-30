@@ -20,40 +20,40 @@ export interface XColorsTheme {
 export interface XVarsTheme {
   black?: string;
   white?: string;
-  'font-size'?: string;
-  'font-size-mini'?: string;
-  'font-size-small'?: string;
-  'font-size-medium'?: string;
-  'font-size-large'?: string;
-  'font-size-big'?: string;
-  'font-variant'?: string;
-  'font-family'?: string;
-  'font-code-family'?: string;
-  'line-height'?: string;
-  'height-big'?: string;
-  'height-large'?: string;
-  'height-medium'?: string;
-  'height-small'?: string;
-  'height-mini'?: string;
-  'padding-big'?: string;
-  'padding-large'?: string;
-  'padding-medium'?: string;
-  'padding-small'?: string;
-  'padding-mini'?: string;
-  'border-style'?: string;
-  'border-radius'?: string;
-  'border-small-radius'?: string;
-  'border-width'?: string;
-  'border-deep-width'?: string;
-  'box-shadow'?: string;
-  'box-shadow-hover'?: string;
-  'box-shadow-top'?: string;
-  'box-shadow-right'?: string;
-  'box-shadow-bottom'?: string;
-  'box-shadow-left'?: string;
-  'animation-duration-slow'?: string;
-  'animation-duration-base'?: string;
-  'animation-duration-fast'?: string;
+  fontSize?: string;
+  fontSizeMini?: string;
+  fontSizeSmall?: string;
+  fontSizeMedium?: string;
+  fontSizeLarge?: string;
+  fontSizeBig?: string;
+  fontVariant?: string;
+  fontFamily?: string;
+  fontCodeFamily?: string;
+  lineHeight?: string;
+  heightBig?: string;
+  heightLarge?: string;
+  heightMedium?: string;
+  heightSmall?: string;
+  heightMini?: string;
+  paddingBig?: string;
+  paddingLarge?: string;
+  paddingMedium?: string;
+  paddingSmall?: string;
+  paddingMini?: string;
+  borderStyle?: string;
+  borderRadius?: string;
+  borderSmallRadius?: string;
+  borderWidth?: string;
+  borderDeepWidth?: string;
+  boxShadow?: string;
+  boxShadowHover?: string;
+  boxShadowTop?: string;
+  boxShadowRight?: string;
+  boxShadowBottom?: string;
+  boxShadowLeft?: string;
+  animationDurationSlow?: string;
+  animationDurationBase?: string;
+  animationDurationFast?: string;
   [property: string]: any;
 }
 
@@ -61,7 +61,7 @@ export type XThemeKey = keyof XTheme;
 
 export type XColors = 'primary' | 'success' | 'warning' | 'danger' | 'info';
 
-export const X_THEME = new InjectionToken<XTheme>('x-theme');
+export const X_THEME = new InjectionToken<XTheme>('xTheme');
 
 export const X_THEME_PREFIX = '--x-';
 
@@ -119,41 +119,41 @@ export const X_THEME_DARK_COLORS: XColorsTheme = {
 export const X_THEME_VARS: XVarsTheme = {
   black: '#000000',
   white: '#ffffff',
-  'font-size': '0.875rem',
-  'font-size-mini': '0.75rem',
-  'font-size-small': '0.875rem',
-  'font-size-medium': '1rem',
-  'font-size-large': '1.25rem',
-  'font-size-big': '1.5rem',
-  'font-variant': 'tabular-nums',
-  'font-family':
-    '-apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif',
-  'font-code-family': 'SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace',
-  'line-height': '1.75rem',
-  'height-big': '2.75rem',
-  'height-large': '2.5rem',
-  'height-medium': '2.25rem',
-  'height-small': '2rem',
-  'height-mini': '1.75rem',
-  'padding-big': '1.5rem',
-  'padding-large': '1.25rem',
-  'padding-medium': '1rem',
-  'padding-small': '0.75rem',
-  'padding-mini': '0.5rem',
-  'border-style': 'solid',
-  'border-radius': '0.75rem',
-  'border-small-radius': '0.5rem',
-  'border-width': '0.0625rem',
-  'border-deep-width': '0.125rem',
-  'box-shadow': '0 0.0625rem 0.25rem 0.0625rem rgba(0, 0, 0, 0.15)',
-  'box-shadow-hover': '0 0.0625rem 0.25rem 0.0625rem rgba(0, 0, 0, 0.3)',
-  'box-shadow-top': '0 -0.0625rem 0.25rem rgba(0, 0, 0, 0.15)',
-  'box-shadow-right': '0.0625rem 0 0.25rem rgba(0, 0, 0, 0.15)',
-  'box-shadow-bottom': '0 0.0625rem 0.25rem rgba(0, 0, 0, 0.15)',
-  'box-shadow-left': '-0.0625rem 0 0.25rem rgba(0, 0, 0, 0.15)',
-  'animation-duration-slow': '0.3s',
-  'animation-duration-base': '0.2s',
-  'animation-duration-fast': '0.1s'
+  fontSize: '0.875rem',
+  fontSizeMini: '0.75rem',
+  fontSizeSmall: '0.875rem',
+  fontSizeMedium: '1rem',
+  fontSizeLarge: '1.25rem',
+  fontSizeBig: '1.5rem',
+  fontVariant: 'tabular-nums',
+  fontFamily:
+    '-appleSystem, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sansSerif',
+  fontCodeFamily: 'SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace',
+  lineHeight: '1.75rem',
+  heightBig: '2.75rem',
+  heightLarge: '2.5rem',
+  heightMedium: '2.25rem',
+  heightSmall: '2rem',
+  heightMini: '1.75rem',
+  paddingBig: '1.5rem',
+  paddingLarge: '1.25rem',
+  paddingMedium: '1rem',
+  paddingSmall: '0.75rem',
+  paddingMini: '0.5rem',
+  borderStyle: 'solid',
+  borderRadius: '0.75rem',
+  borderSmallRadius: '0.5rem',
+  borderWidth: '0.0625rem',
+  borderDeepWidth: '0.125rem',
+  boxShadow: '0 0.0625rem 0.25rem 0.0625rem rgba(0, 0, 0, 0.15)',
+  boxShadowHover: '0 0.0625rem 0.25rem 0.0625rem rgba(0, 0, 0, 0.3)',
+  boxShadowTop: '0 -0.0625rem 0.25rem rgba(0, 0, 0, 0.15)',
+  boxShadowRight: '0.0625rem 0 0.25rem rgba(0, 0, 0, 0.15)',
+  boxShadowBottom: '0 0.0625rem 0.25rem rgba(0, 0, 0, 0.15)',
+  boxShadowLeft: '-0.0625rem 0 0.25rem rgba(0, 0, 0, 0.15)',
+  animationDurationSlow: '0.3s',
+  animationDurationBase: '0.2s',
+  animationDurationFast: '0.1s'
 };
 
 export const X_THEME_COLOR_KEYS = Object.keys(X_THEME_COLORS);

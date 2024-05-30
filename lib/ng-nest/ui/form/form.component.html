@@ -20,7 +20,7 @@
 </form>
 
 <ng-template #rowsTemp let-rows="rows">
-  @for (row of rows; track row.id) {
+  @for (row of rows; track row) {
     <div class="x-form-category" [hidden]="row.hidden">
       <ng-container *ngTemplateOutlet="titleTemp; context: { row: row }"></ng-container>
       <ng-container *ngTemplateOutlet="controlsTemp; context: { controls: row.controls }"></ng-container>

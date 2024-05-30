@@ -10,11 +10,13 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { FormsModule } from '@angular/forms';
+import { ThemeComponent } from '../theme/theme.component';
+import { XDialogService } from '@ng-nest/ui/dialog';
 
 @Component({
   selector: 'ns-nav',
   standalone: true,
-  imports: [CommonModule, FormsModule, XSliderComponent, XButtonComponent, XSelectComponent, XI18nPipe],
+  imports: [CommonModule, FormsModule, XSliderComponent, XButtonComponent, XSelectComponent, XI18nPipe, ThemeComponent],
   templateUrl: './nav.component.html',
   encapsulation: ViewEncapsulation.None
 })
@@ -22,6 +24,7 @@ export class NavComponent {
   document = inject(DOCUMENT);
   layout = inject(LayoutService);
   xconfig = inject(XConfigService);
+  dialogService = inject(XDialogService);
   config = inject(ConfigService);
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
@@ -59,8 +62,7 @@ export class NavComponent {
         this.router.navigate([menu.routerLink], { relativeTo: this.activatedRoute });
         break;
       case 'version':
-        let index = this.config.versions().findIndex((x) => x === param);
-
+        const index = this.config.versions().findIndex((x) => x === param);
         if (index <= 0) {
           wd.location.href = wd.location.origin;
         } else {
@@ -69,6 +71,12 @@ export class NavComponent {
         break;
       case 'admin':
         wd.open('http://adminui.ngnest.com/', '_blank');
+        break;
+      case 'theme':
+        this.dialogService.create(ThemeComponent, {
+          className: 'ns-theme',
+          width: '48rem'
+        });
         break;
     }
   }

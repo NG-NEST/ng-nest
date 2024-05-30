@@ -21,31 +21,25 @@ export class ExFormVaildComponent {
   });
 
   controls = signal<XControl[]>([
-    // {
-    //   control: 'input',
-    //   id: 'user',
-    //   icon: 'fto-user',
-    //   label: '用户',
-    //   width: 300,
-    //   inputValidator: (value: string) => {
-    //     return String(value).length > 5;
-    //   },
-    //   message: '长度大于 5 个字符',
-    //   required: true
-    // },
+    {
+      control: 'input',
+      id: 'user',
+      icon: 'fto-user',
+      label: '用户',
+      width: 300,
+      inputValidator: (value: string) => {
+        return String(value).length > 5;
+      },
+      message: '长度大于 5 个字符',
+      required: true
+    },
     {
       control: 'input',
       id: 'email',
       icon: 'fto-mail',
-      active: false,
       label: '邮箱',
-      value: '123@123.com',
       width: 300,
-      required: true,
-      clearable: true,
-      clearEmit: (x: any) => {
-        console.log(x);
-      }
+      required: true
     }
   ]);
 
@@ -55,15 +49,6 @@ export class ExFormVaildComponent {
       .events.subscribe((x) => {
         this.formChanged.set(x);
       });
-
-    setTimeout(() => {
-      this.controls.update((x: XControl[]) => {
-        x[0]['active'] = false;
-
-        return [...x];
-      });
-      console.log(this.controls());
-    }, 5000);
   }
 
   validForm(form: XFormComponent) {

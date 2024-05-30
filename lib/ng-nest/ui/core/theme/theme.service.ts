@@ -16,7 +16,7 @@ import {
   XVarsTheme
 } from './theme';
 import { DOCUMENT } from '@angular/common';
-import { XComputed } from '../util';
+import { XCamelToKebab, XComputed, XKebabToCamel } from '../util';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -51,7 +51,7 @@ export class XThemeService {
   getTheme(includesAll = false): XTheme {
     return {
       colors: this.getColors(includesAll),
-      vars: X_THEME_VARS
+      vars: this.getVars()
     };
   }
 
@@ -70,6 +70,15 @@ export class XThemeService {
       result[x.replace(prefix, '')] = this.declaration.getPropertyValue(`${x}`).trim();
     });
 
+    return result;
+  }
+
+  getVars(prefix = X_THEME_PREFIX): XVarsTheme {
+    let result: XVarsTheme = {};
+    const keys = Object.keys(this.varsProp);
+    keys.forEach((x) => {
+      result[XKebabToCamel(x.replace(prefix, ''))] = this.declaration.getPropertyValue(`${x}`).trim();
+    });
     return result;
   }
 
@@ -174,7 +183,7 @@ export class XThemeService {
 
   setVarRoot(va: string, value: string, prefix = X_THEME_PREFIX) {
     let result: XVarsTheme = {};
-    result[`${prefix}${va}`] = value;
+    result[`${prefix}${XCamelToKebab(va)}`] = value;
     return result;
   }
 

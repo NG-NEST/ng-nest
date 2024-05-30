@@ -1,6 +1,7 @@
 ---
 label: 'Theme'
 category: 'Basic'
+hidden: true
 ---
 
 # Theme

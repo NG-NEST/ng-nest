@@ -25,7 +25,7 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 })
 export class ExListComponent {
   loading = signal(true);
-  list = signal(new Array(3).fill({}));
+  list = signal([1, 2, 3]);
   data = signal<XSkeletonRow[]>([
     {
       flex: true,

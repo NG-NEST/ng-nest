@@ -10242,6 +10242,19 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "override  disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
         "name": "xSubmit",
         "type": "SubmitEvent",
         "toType": "",
@@ -10681,9 +10694,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "option",
-        "type": "XFormControlOption",
-        "toType": "XFormControlOption",
-        "inputType": "ModelSignal<XFormControlOption>",
+        "type": ".required<XControl>",
+        "toType": "",
+        "inputType": "",
         "signal": "model",
         "label": "控件对象",
         "default": "{}",
@@ -15154,7 +15167,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<string, XNumber>",
         "signal": "input",
         "label": "最大宽度",
-        "default": "'12rem'",
+        "default": "'15rem'",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -15167,7 +15180,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<string, XNumber>",
         "signal": "input",
         "label": "最小宽度",
-        "default": "'12rem'",
+        "default": "'15rem'",
         "withConfig": true,
         "description": "",
         "example": "",

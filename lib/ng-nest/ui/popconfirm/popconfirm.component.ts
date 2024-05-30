@@ -37,8 +37,8 @@ export class XPopconfirmComponent extends XPopconfirmProperty implements OnDestr
     initialValue: zh_CN.popconfirm
   });
 
-  cancelTextSignal = computed(() => this.cancelText || this.locale().cancelText);
-  confirmTextSignal = computed(() => this.confirmText || this.locale().confirmText);
+  cancelTextSignal = computed(() => this.cancelText() || this.locale().cancelText);
+  confirmTextSignal = computed(() => this.confirmText() || this.locale().confirmText);
 
   ngOnDestroy(): void {
     this.asyncUnSub.next();

@@ -46,12 +46,12 @@ export class XPopconfirmProperty extends XPropertyFunction(X_POPCONFIRM_CONFIG_N
    * @zh_CN 最大宽度
    * @en_US Max width
    */
-  readonly maxWidth = input<string, XNumber>(this.config?.maxWidth ?? '12rem', { transform: XToCssPixelValue });
+  readonly maxWidth = input<string, XNumber>(this.config?.maxWidth ?? '15rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 最小宽度
    * @en_US Min width
    */
-  readonly minWidth = input<string, XNumber>(this.config?.minWidth ?? '12rem', { transform: XToCssPixelValue });
+  readonly minWidth = input<string, XNumber>(this.config?.minWidth ?? '15rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 图标
    * @en_US Icon

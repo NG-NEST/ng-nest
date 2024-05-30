@@ -10242,6 +10242,19 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "override  disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Disabled",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": "",
+        "transform": "XToBoolean"
+      },
+      {
         "name": "xSubmit",
         "type": "SubmitEvent",
         "toType": "",
@@ -10681,9 +10694,9 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "option",
-        "type": "XFormControlOption",
-        "toType": "XFormControlOption",
-        "inputType": "ModelSignal<XFormControlOption>",
+        "type": ".required<XControl>",
+        "toType": "",
+        "inputType": "",
         "signal": "model",
         "label": "Control object",
         "default": "{}",
@@ -15154,7 +15167,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<string, XNumber>",
         "signal": "input",
         "label": "Max width",
-        "default": "'12rem'",
+        "default": "'15rem'",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -15167,7 +15180,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<string, XNumber>",
         "signal": "input",
         "label": "Min width",
-        "default": "'12rem'",
+        "default": "'15rem'",
         "withConfig": true,
         "description": "",
         "example": "",

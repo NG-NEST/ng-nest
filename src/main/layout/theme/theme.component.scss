@@ -1,0 +1,24 @@
+@import '../../../styles/index.scss';
+
+:host {
+  .ns-theme-title {
+    background-color: $--x-background-a200;
+    border-top-left-radius: $--x-border-radius;
+    border-top-right-radius: $--x-border-radius;
+  }
+  .ns-theme-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+::ng-deep .ns-theme {
+  .x-dialog-portal {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .x-dialog-portal-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}

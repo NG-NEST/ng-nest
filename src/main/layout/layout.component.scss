@@ -70,7 +70,8 @@ ns-nav {
       &:not(:first-child) {
         margin-left: 1rem;
       }
-      &.github {
+      &.github,
+      &.theme {
         .x-button > .x-icon {
           font-size: 1.25rem;
         }

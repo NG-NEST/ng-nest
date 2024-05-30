@@ -5,7 +5,8 @@ import {
   XIsEmpty,
   XNumber,
   XToCssPixelValue,
-  XToNumber
+  XToNumber,
+  XToBoolean
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, model, input, output } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
@@ -84,6 +85,11 @@ export class XFormProperty extends XFormControlFunction(X_FORM_CONFIG_NAME) {
    * @en_US Custom template
    */
   readonly controlTpl = input<XFormTemplate>({});
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  override readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN Submit
    * @en_US Submit
@@ -289,7 +295,7 @@ export class XControlProperty {
    * @zh_CN 控件对象
    * @en_US Control object
    */
-  readonly option = model<XFormControlOption>({});
+  readonly option = model.required<XControl>({});
 }
 
 /**

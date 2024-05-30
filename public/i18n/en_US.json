@@ -19,7 +19,19 @@
     "english": "EN",
     "dark": "Dark",
     "light": "Light",
-    "search": "Search components"
+    "search": "Search components",
+    "theme": "Theme",
+    "primary": "Primary",
+    "text": "Text",
+    "success": "Success",
+    "warning": "Warning",
+    "danger": "Danger",
+    "info": "Info",
+    "background": "Background",
+    "border": "Border",
+    "fontSize": "FontSize",
+    "borderWidth": "Border width",
+    "borderRadius": "Border radius"
   },
   "footer": {
     "allRightsReserved": "All rights reserved"

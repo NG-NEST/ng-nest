@@ -88,15 +88,6 @@ export const menus: AppMenu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-81",
-    "pid": "1",
-    "name": "theme",
-    "routerLink": "docs/en_US/components/theme",
-    "lang": "en_US",
-    "label": "Theme",
-    "category": "Basic"
-  },
-  {
     "id": "1-5",
     "pid": "1",
     "name": "avatar",
@@ -877,15 +868,6 @@ export const menus: AppMenu[] = [
     "routerLink": "docs/zh_CN/components/link",
     "lang": "zh_CN",
     "label": "Link 文字链接",
-    "category": "Basic"
-  },
-  {
-    "id": "1-81",
-    "pid": "1",
-    "name": "theme",
-    "routerLink": "docs/zh_CN/components/theme",
-    "lang": "zh_CN",
-    "label": "Theme 主题",
     "category": "Basic"
   },
   {

@@ -238,9 +238,5 @@ export class XInputComponent extends XInputProperty implements OnInit {
     }
   }
 
-  formControlChanges() {
-    this.valueChange.next(this.value());
-    this.ngOnInit();
-    this.cdr.detectChanges();
-  }
+  formControlChanges() {}
 }

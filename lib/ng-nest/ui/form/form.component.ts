@@ -5,7 +5,6 @@ import {
   SimpleChanges,
   OnChanges,
   AfterViewInit,
-  signal,
   computed
 } from '@angular/core';
 import {
@@ -15,7 +14,7 @@ import {
   XFormControlOption,
   XFormControl,
   XFormControlComponent,
-  XFormControlType
+  XControl
 } from './form.property';
 import { XIsChange } from '@ng-nest/ui/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -49,8 +48,8 @@ export class XFormComponent extends XFormProperty implements OnChanges, AfterVie
     const controls = this.controls();
     return controls && controls.length > 0 && (controls[0] as XFormRow).controls ? 'rows' : 'controls';
   });
-  controlComponents = signal<{ [property: string]: XFormControlComponent }>({});
-  controlTypes = signal<{ [property: string]: XFormControlType }>({});
+  controlComponents: { [property: string]: XFormControlComponent } = {};
+  controlTypes: { [property: string]: XControl } = {};
   formId = Number(Math.random().toString().substring(2, 6) + Date.now()).toString(36);
   classMap = computed(() => ({
     [`${XFormPrefix}-${this.controlsType()}`]: true
@@ -66,32 +65,30 @@ export class XFormComponent extends XFormProperty implements OnChanges, AfterVie
   }
 
   setDisabled() {
-    if (Object.keys(this.controlComponents()).length === 0) return;
+    if (Object.keys(this.controlComponents).length === 0) return;
     if (this.disabled()) {
-      for (let key in this.controlComponents()) {
-        let [control, type] = [this.controlComponents()[key], this.controlTypes()[key]];
+      for (let key in this.controlComponents) {
+        let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
         control.disabledSignal.set(true);
         control.requiredSignal.set(false);
         control.patternSignal.set([]);
         type.setValidators && type.setValidators();
-        // control.formControlChanges();
       }
     } else {
-      for (let key in this.controlComponents()) {
-        let [control, type] = [this.controlComponents()[key], this.controlTypes()[key]];
+      for (let key in this.controlComponents) {
+        let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
         control.disabledSignal.set(type.disabled!);
         control.requiredSignal.set(type.required!);
         control.patternSignal.set(type.pattern as RegExp | RegExp[]);
         type.setValidators && type.setValidators();
-        // control.formControlChanges();
       }
     }
     this.formGroup().updateValueAndValidity();
   }
 
   setValidator() {
-    for (let key in this.controlComponents()) {
-      let [control, type] = [this.controlComponents()[key], this.controlTypes()[key]];
+    for (let key in this.controlComponents) {
+      let [control, type] = [this.controlComponents[key], this.controlTypes[key]];
       control.formControlValidator();
       type.setValidators && type.setValidators();
       control.cdr.detectChanges();
@@ -99,8 +96,8 @@ export class XFormComponent extends XFormProperty implements OnChanges, AfterVie
   }
 
   resetValidator() {
-    for (let key in this.controlComponents()) {
-      let [control] = [this.controlComponents()[key]];
+    for (let key in this.controlComponents) {
+      let [control] = [this.controlComponents[key]];
       control.validatorSignal.set(false);
       control.cdr.detectChanges();
     }
