@@ -1,5 +1,5 @@
 <div class="x-cascade-portal" tabindex="-1" (click)="inputCom()?.inputFocus('focus'); stopPropagation($event)">
-  @for (list of nodes(); track $index) {
+  @for (list of nodes(); track list) {
     <x-list
       [data]="list"
       [nodeTpl]="nodeTpl()"

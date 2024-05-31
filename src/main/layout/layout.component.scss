@@ -88,18 +88,6 @@ ns-nav {
       }
     }
   }
-  &.drawer {
-    padding: 0;
-    > section {
-      flex-direction: column;
-      > .item {
-        &:not(:first-child) {
-          margin-left: 0;
-          margin-top: 1rem;
-        }
-      }
-    }
-  }
 }
 
 ns-search {
@@ -151,13 +139,6 @@ ns-sider {
       }
     }
   }
-  &.drawer {
-    margin-left: 0;
-    opacity: 1;
-    > section {
-      overflow-y: auto;
-    }
-  }
 }
 
 ns-content {
@@ -204,6 +185,36 @@ ns-affix {
     }
     .x-button.x-size-big {
       width: 2.25rem;
+    }
+  }
+}
+
+.drawer {
+  ns-nav {
+    padding: 0;
+    > section {
+      flex-direction: column;
+      > .item {
+        &:not(:first-child) {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+
+  .x-drawer-no-title .x-drawer-content {
+    padding: 0;
+  }
+
+  ns-sider {
+    margin-left: 0;
+    opacity: 1;
+    position: absolute;
+    transition: none;
+    > section {
+      height: 100%;
+      overflow-y: auto;
     }
   }
 }

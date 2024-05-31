@@ -243,7 +243,7 @@
 <ng-template #presetTpl>
   @if (preset()) {
     <div class="x-date-range-portal-preset">
-      @for (item of preset(); track item.id) {
+      @for (item of preset(); track item) {
         @switch (item.id) {
           @case ('thisWeek') {
             <x-link (click)="onPreset('week', 0)">{{ locale().thisWeek }}</x-link>

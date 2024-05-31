@@ -86,6 +86,7 @@ export class XDrawerComponent extends XDrawerProperty implements AfterViewInit, 
       content: this.drawerTpl(),
       viewContainerRef: this.viewContainerRef,
       overlayConfig: {
+        panelClass: this.className(),
         hasBackdrop: this.hasBackdrop(),
         scrollStrategy: this.overlay.scrollStrategies.block(),
         positionStrategy: this.portalService.setPosition(this.placement(), this.width(), this.height())

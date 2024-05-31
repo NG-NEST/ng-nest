@@ -132,7 +132,6 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
     const precision = this.precision();
     if (XIsUndefined(precision) || !XIsEmpty(this.step())) {
       let stepStr = String(this.step());
-      console.log(stepStr);
       let indexpoint = stepStr.indexOf('.');
       if (indexpoint === -1) {
         return 0;
@@ -182,7 +181,6 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
 
   change() {
     const getVal = (offset: number) => {
-      console.log(((this.max() - this.min()) * offset) / 100 + this.min(), this.precisionSignal());
       return parseFloat(
         Number(((this.max() - this.min()) * offset) / 100 + this.min()).toFixed(this.precisionSignal())
       );
@@ -204,13 +202,13 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   }
 
   getOffset(val: number) {
-    console.log(val, ((val + (this.reverse() ? -this.min() : this.min())) * 100) / (this.max() - this.min()));
     return Math.abs(
       Math.round(((val + (this.reverse() ? -this.min() : this.min())) * 100) / (this.max() - this.min()))
     );
   }
 
   setLeft() {
+    debugger;
     let startVal = 0,
       endVal = 0;
     const value = this.value();

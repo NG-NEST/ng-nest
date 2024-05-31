@@ -34,7 +34,7 @@ export class XMenuProperty extends XPropertyFunction(X_MENU_CONFIG_NAME) {
    * @zh_CN 宽度，只有布局 layout 为 'column' 生效
    * @en_US Width, only layout layout is the 'column'
    */
-  readonly width = input<string, XNumber>(this.config?.width ?? '12rem', { transform: XToCssPixelValue });
+  readonly width = input<string, XNumber>(this.config?.width ?? '16rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 缩起菜单
    * @en_US Shrink menu

@@ -16,7 +16,6 @@
   user-select: none;
   white-space: nowrap;
   touch-action: manipulation;
-  will-change: color, background-color, border, box-shadow;
   box-shadow: $--x-box-shadow;
   width: 100%;
   &:focus {
@@ -65,6 +64,7 @@
     stroke-linecap: round;
   }
   &-transition {
+    will-change: color, background-color, border, box-shadow;
     transition:
       color $--x-animation-duration-base ease-in-out,
       background-color $--x-animation-duration-base ease-in-out,

@@ -221,7 +221,7 @@ export class XFindProperty extends XFormControlFunction(X_FIND_CONFIG_NAME) {
    * @zh_CN 数据查询过滤表单
    * @en_US form for data filter
    */
-  readonly search = model<XFindSearchOption>({});
+  readonly search = model<XFindSearchOption | null>(null);
   /**
    * @zh_CN 尺寸
    * @en_US Size

@@ -145,7 +145,6 @@ export class XListComponent extends XListProperty implements OnChanges {
   }
 
   ngAfterViewInit() {
-    console.log(this.multiple());
     this.initKeyManager();
     if (this.virtualScroll() && this.heightAdaption()) {
       this.setVirtualScrollHeight();

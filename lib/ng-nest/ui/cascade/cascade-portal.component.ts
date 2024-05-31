@@ -122,6 +122,13 @@ export class XCascadePortalComponent implements OnDestroy {
           this.selecteds.set(this.selecteds().splice(0, level + 1));
         }
         this.nodes()[level + 1] = node.children as XCascadeNode[];
+        this.nodes.update((x) => {
+          x[level + 1] = node.children as XCascadeNode[];
+          if (x.length > level + 1) {
+            x.splice(level + 2, x.length);
+          }
+          return x;
+        });
         this.selecteds()[level] = node;
       }
       this.values.set(this.selecteds().map((x) => x.id));

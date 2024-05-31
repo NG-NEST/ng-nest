@@ -1,4 +1,4 @@
-import { XProperty, XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
+import { XProperty, XToBoolean, XToCssPixelValue, XToDataConvert } from '@ng-nest/ui/core';
 import { TemplateRef, Component, input, model, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 import type {
@@ -56,7 +56,7 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
    * @zh_CN 快捷选择按钮，自定义或直接设置今天（today）,昨天（yesterday）,明天（tomorrow）
    * @en_US Quick selection button, support today, yesterday, tomorrow
    */
-  readonly preset = input<XData<XDatePickerPreset>>([]);
+  readonly preset = input<XData<XDatePickerPreset>, XData<XDatePickerPreset>>([], { transform: XToDataConvert });
   /**
    * @zh_CN 页脚
    * @en_US Footer
@@ -273,7 +273,7 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    * @zh_CN 快捷选择按钮，自定义或直接设置本周（thisWeek）、上周（lastWeek）、下周（nextWeek）、本月（thisMonth）、上一月（lastMonth）、下一月（nextMonth）、本年（thisYear）、去年（lastYear）、明年（nextYear）
    * @en_US Quick selection button, support thisWeek, lastWeek, nextWeek, thisMonth, lastMonth, nextMonth, thisYear, lastYear, nextYear
    */
-  readonly preset = input<XData<XDateRangePreset>>([]);
+  readonly preset = input<XData<XDateRangePreset>, XData<XDateRangePreset>>([], { transform: XToDataConvert });
   /**
    * @zh_CN 页脚
    * @en_US Footer

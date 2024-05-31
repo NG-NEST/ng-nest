@@ -28,7 +28,7 @@ export class XColComponent extends XColProperty {
     if (this.md()) cls.push(`${XColPrefix}-md-${this.md()}`);
     if (this.lg()) cls.push(`${XColPrefix}-lg-${this.lg()}`);
     if (this.xl()) cls.push(`${XColPrefix}-xl-${this.xl()}`);
-    if (this.inherit()) cls.push(`${XColPrefix}-inherit}`);
+    if (this.inherit()) cls.push(`${XColPrefix}-inherit`);
     return cls.join(' ');
   }
   @HostBinding('style.paddingLeft') get paddingLeft() {

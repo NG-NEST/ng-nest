@@ -9,9 +9,12 @@
   [ngClass]="classMap()"
 >
   @if (label()) {
-    <label [class.x-find-label-required]="requiredComputed()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
-      label()
-    }}</label>
+    <label
+      [class.x-find-label-required]="requiredComputed()"
+      [style.width]="labelWidth()"
+      [ngClass]="labelMapSignal()"
+      >{{ label() }}</label
+    >
   }
   <div class="x-find-row">
     <x-button
@@ -28,9 +31,14 @@
     <div class="x-find-tags">
       @if (multiple()) {
         @for (item of value(); track item.id; let i = $index) {
-          <x-tag closable [size]="size()" [bordered]="bordered()" [disabled]="disabledComputed()" (close)="tagClose(i)">{{
-            item[columnLabel()]
-          }}</x-tag>
+          <x-tag
+            closable
+            [size]="size()"
+            [bordered]="bordered()"
+            [disabled]="disabledComputed()"
+            (close)="tagClose(i)"
+            >{{ item[columnLabel()] }}</x-tag
+          >
         }
       } @else if (value()) {
         <x-tag closable [disabled]="disabledComputed()" [bordered]="bordered()" [size]="size()" (close)="tagClose()">{{
@@ -75,12 +83,12 @@
         @if (hasSearch()) {
           <div class="x-find-search">
             <x-input
-              [label]="search().label!"
+              [label]="search()!.label!"
               direction="row"
               (xKeydown)="searchKeyDown($event)"
-              [(ngModel)]="search().value"
+              [(ngModel)]="search()!.value"
             ></x-input>
-            <x-button type="primary" plain (click)="searchClick()">{{ search().button || '查询' }}</x-button>
+            <x-button plain text (click)="searchClick()">{{ search()!.button || '查询' }}</x-button>
           </div>
         }
         <x-table

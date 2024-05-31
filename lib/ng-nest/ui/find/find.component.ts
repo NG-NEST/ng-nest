@@ -11,7 +11,7 @@ import {
   signal
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XResize, XIsUndefined, XIsChange, XResizeObserver } from '@ng-nest/ui/core';
+import { XResize, XIsUndefined, XIsChange, XResizeObserver, XIsEmpty } from '@ng-nest/ui/core';
 import { XTableColumn, XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -178,8 +178,8 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
       this.temp.set(this.multiple() ? [] : undefined);
     }
     if (this.hasTable()) {
-      this.tableCom()?.virtualBody()!.scrollToIndex(0);
-      this.tableCom()?.virtualBody()!.checkViewportSize();
+      this.tableCom()?.virtualBody()?.scrollToIndex(0);
+      this.tableCom()?.virtualBody()?.checkViewportSize();
     }
   }
 
@@ -197,7 +197,7 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
   }
 
   sure() {
-    this.value.set(this.temp);
+    this.value.set(this.temp());
     this.onChange && this.onChange(this.value());
     this.formControlValidator();
   }
@@ -262,7 +262,11 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
   rowMultiple(data: XTableRow) {
     if (typeof this.temp() === 'undefined') this.temp.set([]);
     if (data['$checked']) {
-      this.temp.set([...this.temp(), data]);
+      this.temp.update((x) => {
+        if (XIsEmpty(x)) x = [];
+        x.push(data);
+        return x;
+      });
     } else {
       this.temp.update((x) => {
         x.splice(
@@ -323,7 +327,7 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
       this.searchClick();
     } else if (event.key === 'Delete') {
       this.search.update((x) => {
-        x.value = '';
+        x!.value = '';
         return { ...x };
       });
     }
@@ -335,12 +339,12 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
     }
     const tableQuery = this.tableQuery() || {};
     tableQuery.filter = tableQuery.filter || [];
-    const field = tableQuery.filter.find((x) => x.field === this.search().field);
+    const field = tableQuery.filter.find((x) => x.field === this.search()!.field);
 
     if (field) {
-      field.value = this.search().value || '';
+      field.value = this.search()!.value || '';
     } else {
-      tableQuery.filter = [...tableQuery.filter, this.search()];
+      tableQuery.filter = [...tableQuery.filter, this.search()!];
     }
     this.tableQuery.set(tableQuery);
     this.tableCom()!.change(1);
