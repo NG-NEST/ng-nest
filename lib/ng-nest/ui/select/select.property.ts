@@ -220,7 +220,6 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
 
 /**
  * Select Option
- * @undocument true
  */
 export interface XSelectOption extends XFormOption {
   /**

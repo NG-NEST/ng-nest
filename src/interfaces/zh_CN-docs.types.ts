@@ -1076,7 +1076,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XParentIdentityProperty<T>",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XIdentity": {
     "type": "class",
@@ -1383,7 +1385,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XResultList<Entity",
-    "extends": "XId>"
+    "extends": [
+      "XId>"
+    ]
   },
   "XQuery": {
     "type": "interface",
@@ -1527,7 +1531,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XSort",
-    "extends": "XFilter"
+    "extends": [
+      "XFilter"
+    ]
   },
   "XGroupItem": {
     "type": "interface",
@@ -1561,7 +1567,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XGroupItem",
-    "extends": "XId"
+    "extends": [
+      "XId"
+    ]
   },
   "XRGBColor": {
     "type": "interface",
@@ -1819,7 +1827,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XAffixProperty",
-    "extends": "XPropertyFunction(X_AFFIX_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_AFFIX_CONFIG_NAME)"
+    ]
   },
   "XAlertPrefix": {
     "type": "const",
@@ -2139,7 +2149,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XAlertProperty",
-    "extends": "XPropertyFunction(X_ALERT_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_ALERT_CONFIG_NAME)"
+    ]
   },
   "XAlertType": {
     "type": "type",
@@ -2256,7 +2268,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XAnchorProperty",
-    "extends": "XPropertyFunction(X_ANCHOR_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_ANCHOR_CONFIG_NAME)"
+    ]
   },
   "XAnchorInnerPrefix": {
     "type": "const",
@@ -2669,7 +2683,357 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XAutoCompleteProperty",
-    "extends": "XFormControlFunction(X_AUTOCOMPLETE_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_AUTOCOMPLETE_CONFIG_NAME)"
+    ]
+  },
+  "XAutoCompleteOption": {
+    "type": "interface",
+    "label": "AutoComplete Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XAutoCompleteNode>",
+        "label": "节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "debounceTime",
+        "type": "number",
+        "label": "输入延迟执行时间，ms",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "debounceTime",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XPositionTopBottom",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeTpl",
+        "type": "TemplateRef<any>",
+        "label": "节点模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "caseSensitive",
+        "type": "boolean",
+        "label": "匹配区分大小写",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "caseSensitive",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "onlySelect",
+        "type": "boolean",
+        "label": "只能是选择的值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "onlySelect",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeEmit",
+        "type": "(node: XAutoCompleteNode) => void",
+        "label": "选择节点事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeEmit",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XAutoCompleteOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XAutoCompleteNode": {
     "type": "interface",
@@ -2678,7 +3042,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XAutoCompleteNode",
-    "extends": "XParentIdentityProperty<XAutoCompleteNode>"
+    "extends": [
+      "XParentIdentityProperty<XAutoCompleteNode>"
+    ]
   },
   "XAutoCompletePortalPrefix": {
     "type": "const",
@@ -2814,7 +3180,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XAvatarProperty",
-    "extends": "XPropertyFunction(X_AVATAR_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_AVATAR_CONFIG_NAME)"
+    ]
   },
   "XAvatarShape": {
     "type": "type",
@@ -2861,7 +3229,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XAvatarGroupProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XBackTopPrefix": {
     "type": "const",
@@ -2947,7 +3317,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XBackTopProperty",
-    "extends": "XPropertyFunction(X_BACK_TOP_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_BACK_TOP_CONFIG_NAME)"
+    ]
   },
   "XBadgePrefix": {
     "type": "const",
@@ -3059,7 +3431,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XBadgeProperty",
-    "extends": "XPropertyFunction(X_BADGE_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_BADGE_CONFIG_NAME)"
+    ]
   },
   "XBadgeType": {
     "type": "type",
@@ -3310,7 +3684,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XButtonProperty",
-    "extends": "XPropertyFunction(X_BUTTON_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_BUTTON_CONFIG_NAME)"
+    ]
   },
   "XButtonType": {
     "type": "type",
@@ -3401,7 +3777,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XButtonsProperty",
-    "extends": "XPropertyFunction(X_BUTTONS_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_BUTTONS_CONFIG_NAME)"
+    ]
   },
   "XCalendarPrefix": {
     "type": "const",
@@ -3500,7 +3878,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCalendarProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XPropertyFunction(X_CALENDAR_CONFIG_NAME)"
+    ]
   },
   "XCalendarData": {
     "type": "interface",
@@ -3530,7 +3910,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XCalendarNode",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XCalendarModel": {
     "type": "type",
@@ -3621,7 +4003,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCardProperty",
-    "extends": "XPropertyFunction(X_CARD_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_CARD_CONFIG_NAME)"
+    ]
   },
   "XCardShadow": {
     "type": "type",
@@ -3829,7 +4213,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCarouselProperty",
-    "extends": "XPropertyFunction(X_CAROUSEL_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_CAROUSEL_CONFIG_NAME)"
+    ]
   },
   "XCarouselTrigger": {
     "type": "type",
@@ -3890,7 +4276,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCarouselPanelProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XCascadePrefix": {
     "type": "const",
@@ -4262,7 +4650,345 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCascadeProperty",
-    "extends": "XFormControlFunction(X_CASCADE_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_CASCADE_CONFIG_NAME)"
+    ]
+  },
+  "XCascadeOption": {
+    "type": "interface",
+    "label": "Cascade Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XCascadeNode>",
+        "label": "节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XCorner",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeTrigger",
+        "type": "XCascadeNodeTrigger",
+        "label": "子节点触发方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeTrigger",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeHoverDelay",
+        "type": "number",
+        "label": "子节点触发方式为 hover 时的延迟时间",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeHoverDelay",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeTpl",
+        "type": "TemplateRef<any>",
+        "label": "节点模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeEmit",
+        "type": "(node: XCascadeNode) => void",
+        "label": "节点点击事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeEmit",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XCascadeOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XCascadeNode": {
     "type": "interface",
@@ -4271,7 +4997,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XCascadeNode",
-    "extends": "XParentIdentityProperty<XCascadeNode>"
+    "extends": [
+      "XParentIdentityProperty<XCascadeNode>"
+    ]
   },
   "XCascadeNodeTrigger": {
     "type": "type",
@@ -4702,7 +5430,381 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCheckboxProperty",
-    "extends": "XFormControlFunction(X_CHECKBOX_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_CHECKBOX_CONFIG_NAME)"
+    ]
+  },
+  "XCheckboxOption": {
+    "type": "interface",
+    "label": "Checkbox Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XCheckboxNode>",
+        "label": "多选框数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "button",
+        "type": "boolean",
+        "label": "按钮样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "button",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "icon",
+        "type": "boolean",
+        "label": "图标样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tag",
+        "type": "boolean",
+        "label": "tag 标签样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tag",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "indeterminate",
+        "type": "boolean",
+        "label": "不确定状态的样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "indeterminate",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "type",
+        "type": "XButtonType",
+        "label": "按钮/图标/ tag 标签样式时生效",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tagBordered",
+        "type": "boolean",
+        "label": "tag 标签边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tagBordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tagDark",
+        "type": "boolean",
+        "label": "tag 标签深色主题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tagDark",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "single",
+        "type": "boolean",
+        "label": "只有一个选项，启动此参数时，value 的值为 true / false",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "single",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "vertical",
+        "type": "boolean",
+        "label": "垂直布局，不支持 button 和 icon 样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "vertical",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XCheckboxOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XCheckboxNode": {
     "type": "interface",
@@ -4772,7 +5874,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCheckboxNode",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XCollapsePrefix": {
     "type": "const",
@@ -4884,7 +5988,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCollapseProperty",
-    "extends": "XPropertyFunction(X_COLLAPSE_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_COLLAPSE_CONFIG_NAME)"
+    ]
   },
   "XCollapseIconPosition": {
     "type": "type",
@@ -4953,7 +6059,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCollapsePanelProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XColorPrefix": {
     "type": "const",
@@ -5026,7 +6134,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XColorProperty",
-    "extends": "XPropertyFunction(X_COLOR_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_COLOR_CONFIG_NAME)"
+    ]
   },
   "XColorPickerPrefix": {
     "type": "const",
@@ -5333,7 +6443,285 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XColorPickerProperty",
-    "extends": "XFormControlFunction(X_COLOR_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_COLOR_CONFIG_NAME)"
+    ]
+  },
+  "XColorPickerOption": {
+    "type": "interface",
+    "label": "ColorPicker Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "placement",
+        "type": "XCorner",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XColorPickerOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XColorType": {
     "type": "type",
@@ -5465,7 +6853,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCommentProperty",
-    "extends": "XPropertyFunction(X_COMMENT_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_COMMENT_CONFIG_NAME)"
+    ]
   },
   "XCommentNode": {
     "type": "interface",
@@ -5583,7 +6973,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCommentNode",
-    "extends": "XParentIdentityProperty<XCommentNode>"
+    "extends": [
+      "XParentIdentityProperty<XCommentNode>"
+    ]
   },
   "XCommentReplyPrefix": {
     "type": "const",
@@ -5630,7 +7022,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCommentReplyProperty",
-    "extends": "XPropertyFunction(X_COMMENT_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_COMMENT_CONFIG_NAME)"
+    ]
   },
   "XContainerPrefix": {
     "type": "const",
@@ -5664,7 +7058,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XContainerProperty",
-    "extends": "XPropertyFunction(X_CONTAINER_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_CONTAINER_CONFIG_NAME)"
+    ]
   },
   "XHeaderPrefix": {
     "type": "const",
@@ -5698,7 +7094,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XHeaderProperty",
-    "extends": "XPropertyFunction(X_HEADER_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_HEADER_CONFIG_NAME)"
+    ]
   },
   "XAsidePrefix": {
     "type": "const",
@@ -5732,7 +7130,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XAsideProperty",
-    "extends": "XPropertyFunction(X_ASIDE_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_ASIDE_CONFIG_NAME)"
+    ]
   },
   "XMainPrefix": {
     "type": "const",
@@ -5777,7 +7177,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XFooterProperty",
-    "extends": "XPropertyFunction(X_FOOTER_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_FOOTER_CONFIG_NAME)"
+    ]
   },
   "XCrumbPrefix": {
     "type": "const",
@@ -5850,7 +7252,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCrumbProperty",
-    "extends": "XPropertyFunction(X_CRUMB_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_CRUMB_CONFIG_NAME)"
+    ]
   },
   "XCrumbNode": {
     "type": "interface",
@@ -5896,7 +7300,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCrumbNode",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XCrumbNodeClick": {
     "type": "interface",
@@ -6340,7 +7746,381 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XDatePickerProperty",
-    "extends": "XFormControlFunction(X_DATA_PICKER_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_DATA_PICKER_CONFIG_NAME)"
+    ]
+  },
+  "XDatePickerOption": {
+    "type": "interface",
+    "label": "DatePicker Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "type",
+        "type": "XDatePickerType",
+        "label": "选择类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "label": "格式化类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "format",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "label": "清除按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XCorner",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "preset",
+        "type": "XData<XDatePickerPreset>",
+        "label": "快捷选择按钮，自定义或直接设置今天（today）,昨天（yesterday）,明天（tomorrow）",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "preset",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "extraFooter",
+        "type": "XTemplate",
+        "label": "页脚",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "extraFooter",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabledDate",
+        "type": "XDatePickerDisabledDate",
+        "label": "禁用的日期",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabledDate",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabledTime",
+        "type": "XDatePickerDisabledTime",
+        "label": "禁用的时间",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabledTime",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeEmit",
+        "type": "(value: number) => void",
+        "label": "节点点击的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeEmit",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XDatePickerOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XDateRangePrefix": {
     "type": "const",
@@ -6751,7 +8531,381 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XDateRangeProperty",
-    "extends": "XFormControlFunction(X_DATA_RANGE_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_DATA_RANGE_CONFIG_NAME)"
+    ]
+  },
+  "XDateRangeOption": {
+    "type": "interface",
+    "label": "DateRange Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "type",
+        "type": "XDatePickerType",
+        "label": "选择类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "label": "格式化类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "format",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "label": "清除按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XCorner",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "preset",
+        "type": "XData<XDateRangePreset>",
+        "label": "快捷选择按钮，自定义或直接设置本周（thisWeek）、上周（lastWeek）、下周（nextWeek）、本月（thisMonth）、上一月（lastMonth）、下一月（nextMonth）、本年（thisYear）、去年（lastYear）、明年（nextYear）",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "preset",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "extraFooter",
+        "type": "XTemplate",
+        "label": "页脚",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "extraFooter",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabledDate",
+        "type": "XDatePickerDisabledDate",
+        "label": "禁用的日期",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabledDate",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabledTime",
+        "type": "XDatePickerDisabledTime",
+        "label": "禁用的时间",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabledTime",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string | string[]",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeEmit",
+        "type": "(value: number[]) => void",
+        "label": "节点点击的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeEmit",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XDateRangeOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XDatePickerDisabledDate": {
     "type": "type",
@@ -6800,7 +8954,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XDatePickerPreset",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XDateRangePreset": {
     "type": "interface",
@@ -6822,7 +8978,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XDateRangePreset",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XDatePickerType": {
     "type": "type",
@@ -7130,7 +9288,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XPickerDateProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XDateCell": {
     "type": "interface",
@@ -7665,7 +9825,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XPickerMonthProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XPickerQuarterPrefix": {
     "type": "const",
@@ -7894,7 +10056,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XPickerQuarterProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XDateQuarterPrefix": {
     "type": "const",
@@ -8147,7 +10311,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XPickerYearProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XDescriptionPrefix": {
     "type": "const",
@@ -8220,7 +10386,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XDescriptionProperty",
-    "extends": "XPropertyFunction(X_DESCRIPTION_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_DESCRIPTION_CONFIG_NAME)"
+    ]
   },
   "XDescriptionItemPrefix": {
     "type": "const",
@@ -8781,7 +10949,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XDialogProperty",
-    "extends": "XPropertyFunction(X_DIALOG_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_DIALOG_CONFIG_NAME)"
+    ]
   },
   "XDialogContainerPrefix": {
     "type": "const",
@@ -8801,7 +10971,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XDialogContainerProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XDialogAnimationState": {
     "type": "type",
@@ -8844,7 +11016,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XDialogOverlayRef",
-    "extends": "XPortalOverlayRef<XDialogComponent>"
+    "extends": [
+      "XPortalOverlayRef<XDialogComponent>"
+    ]
   },
   "XDialogPortalOverlayRef": {
     "type": "interface",
@@ -8853,7 +11027,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XDialogPortalOverlayRef",
-    "extends": "XPortalOverlayRef<XDialogPortalComponent>"
+    "extends": [
+      "XPortalOverlayRef<XDialogPortalComponent>"
+    ]
   },
   "XDialogType": {
     "type": "type",
@@ -8987,7 +11163,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XDrawerProperty",
-    "extends": "XPropertyFunction(X_DRAWER_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_DRAWER_CONFIG_NAME)"
+    ]
   },
   "XDrawerOption": {
     "type": "interface",
@@ -9100,7 +11278,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XDrawerContainerProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XDrawerAnimationState": {
     "type": "type",
@@ -9307,7 +11487,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XDropdownProperty",
-    "extends": "XPropertyFunction(X_DROPDOWN_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_DROPDOWN_CONFIG_NAME)"
+    ]
   },
   "XDropdownNode": {
     "type": "interface",
@@ -9316,7 +11498,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XDropdownNode",
-    "extends": "XListNode"
+    "extends": [
+      "XListNode"
+    ]
   },
   "XDropdownTrigger": {
     "type": "type",
@@ -9383,7 +11567,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XEmptyProperty",
-    "extends": "XPropertyFunction(X_EMPTY_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_EMPTY_CONFIG_NAME)"
+    ]
   },
   "XFindPrefix": {
     "type": "const",
@@ -9403,7 +11589,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XFindSearchOption",
-    "extends": "XFilter"
+    "extends": [
+      "XFilter"
+    ]
   },
   "XFindProperty": {
     "type": "class",
@@ -10141,7 +12329,693 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XFindProperty",
-    "extends": "XFormControlFunction(X_FIND_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_FIND_CONFIG_NAME)"
+    ]
+  },
+  "XFindOption": {
+    "type": "interface",
+    "label": "Find Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "label": "多选",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "multiple",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "columnLabel",
+        "type": "string",
+        "label": "选中 label 名称字段",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "columnLabel",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogTitle",
+        "type": "string",
+        "label": "弹框标题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogTitle",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogCheckboxLabel",
+        "type": "string",
+        "label": "弹框表格选择列头名称",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogCheckboxLabel",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogCheckboxWidth",
+        "type": "string",
+        "label": "弹框表格选择列宽",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogCheckboxWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogEmptyContent",
+        "type": "string",
+        "label": "弹框选择数据为空的提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogEmptyContent",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogWidth",
+        "type": "string",
+        "label": "弹框宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogHeight",
+        "type": "string",
+        "label": "弹框高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogVisible",
+        "type": "boolean",
+        "label": "弹框显示，隐藏",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogVisible",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dialogButtonsCenter",
+        "type": "boolean",
+        "label": "按钮居中",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dialogButtonsCenter",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableData",
+        "type": "XData<XTableRow>",
+        "label": "表格行数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableData",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableIndex",
+        "type": "number",
+        "label": "表格页码",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableIndex",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableSize",
+        "type": "number",
+        "label": "表每页数据条数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableSize",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableQuery",
+        "type": "XQuery",
+        "label": "表格查询条件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableQuery",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableTotal",
+        "type": "number",
+        "label": "表格数据总条数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableTotal",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableSortChange",
+        "type": "XSort[]",
+        "label": "排序点击的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableSortChange",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableColumns",
+        "type": "XTableColumn[]",
+        "label": "表格列参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableColumns",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableActivatedRow",
+        "type": "any",
+        "label": "当前选中行数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableActivatedRow",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableRowEmit",
+        "type": "any",
+        "label": "表格行点击事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableRowEmit",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableCheckedRow",
+        "type": "{ [property: string]: any[] }",
+        "label": "表格行点击事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableCheckedRow",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableLoading",
+        "type": "boolean",
+        "label": "是否启用加载 loading",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableLoading",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableVirtualScroll",
+        "type": "boolean",
+        "label": "表格开启虚拟滚动",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableVirtualScroll",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableBodyHeight",
+        "type": "number",
+        "label": "表格 body 数据高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableBodyHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableMinBufferPx",
+        "type": "number",
+        "label": "表格超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableMinBufferPx",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableMaxBufferPx",
+        "type": "number",
+        "label": "表格渲染新数据缓冲区的像素，对应 cdk scroll 中的参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableMaxBufferPx",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableAdaptionHeight",
+        "type": "number",
+        "label": "表格自适应高度，table 高度等于屏幕高度减掉此处设置的数值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableAdaptionHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableDocPercent",
+        "type": "number",
+        "label": "表格文档高度百分比，弹窗百分比高度用到",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableDocPercent",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tableRowHeight",
+        "type": "number",
+        "label": "表格行高度，单位 px",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tableRowHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeData",
+        "type": "XData<XTreeNode>",
+        "label": "树节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeData",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeActivatedId",
+        "type": "any",
+        "label": "树当前激活的节点 Id",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeActivatedId",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeExpandedLevel",
+        "type": "number",
+        "label": "树默认展开的层级",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeExpandedLevel",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeChecked",
+        "type": "any[]",
+        "label": "树 checkbox 选中的节点",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeChecked",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeCheckbox",
+        "type": "boolean",
+        "label": "树显示多选框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeCheckbox",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "treeTableConnect",
+        "type": "any",
+        "label": "树和表格同时存在的时候，树节点 id 对应表格的属性，用来做表格数据过滤",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "treeTableConnect",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "search",
+        "type": "XFindSearchOption",
+        "label": "数据查询过滤表单",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "search",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XFindOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XFormPrefix": {
     "type": "const",
@@ -10176,7 +13050,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<UntypedFormGroup>",
         "signal": "input",
         "label": "表单 FormGroup",
-        "default": "new UntypedFormGroup({}",
+        "default": "new UntypedFormGroup({})",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -10301,7 +13175,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XFormProperty",
-    "extends": "XFormControlFunction(X_FORM_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_FORM_CONFIG_NAME)"
+    ]
   },
   "XControlOption": {
     "type": "interface",
@@ -10309,6 +13185,18 @@ export const zh_CN: {[key: string]: AppProp} = {
     "description": "",
     "example": "",
     "properties": [
+      {
+        "name": "id",
+        "type": "any",
+        "label": "列 Id",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "id",
+        "propType": "",
+        "example": ""
+      },
       {
         "name": "value",
         "type": "any",
@@ -10347,7 +13235,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "disabled",
-        "type": "XBoolean",
+        "type": "boolean",
         "label": "禁用",
         "default": "",
         "withConfig": false,
@@ -10358,21 +13246,20 @@ export const zh_CN: {[key: string]: AppProp} = {
         "example": ""
       },
       {
-        "name": "?: XBoolean",
-        "type": "",
-        "toType": "",
-        "inputType": "",
-        "signal": "input",
+        "name": "readonly",
+        "type": "boolean",
         "label": "只读",
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
-        "transform": ""
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
       },
       {
         "name": "required",
-        "type": "XBoolean",
+        "type": "boolean",
         "label": "必填",
         "default": "",
         "withConfig": false,
@@ -10384,7 +13271,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "hidden",
-        "type": "XBoolean",
+        "type": "boolean",
         "label": "隐藏",
         "default": "",
         "withConfig": false,
@@ -10467,8 +13354,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "example": ""
       }
     ],
-    "name": "XControlOption",
-    "extends": "XIdentityProperty"
+    "name": "XControlOption"
   },
   "XControl": {
     "type": "class",
@@ -10525,17 +13411,16 @@ export const zh_CN: {[key: string]: AppProp} = {
         "example": ""
       },
       {
-        "name": "?: boolean",
-        "type": "",
-        "toType": "",
-        "inputType": "",
-        "signal": "input",
+        "name": "readonly",
+        "type": "boolean",
         "label": "只读",
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
-        "transform": ""
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
       },
       {
         "name": "required",
@@ -10647,8 +13532,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XControl",
-    "extends": "XIdentity",
-    "implements": "XControlOption"
+    "extends": [
+      "XIdentity implements XControlOption"
+    ]
   },
   "XFormRow": {
     "type": "interface",
@@ -10760,7 +13646,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XFormControl",
-    "extends": "UntypedFormControl"
+    "extends": [
+      "UntypedFormControl"
+    ]
   },
   "XFormControlOption": {
     "type": "type",
@@ -10805,7 +13693,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XInputControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XInputOption"
+    ]
   },
   "XSelectControlOption": {
     "type": "interface",
@@ -10814,7 +13705,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XSelectControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XSelectOption"
+    ]
   },
   "XCascadeControlOption": {
     "type": "interface",
@@ -10823,7 +13717,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XCascadeControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XCascadeOption"
+    ]
   },
   "XCheckboxControlOption": {
     "type": "interface",
@@ -10832,7 +13729,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XCheckboxControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XCheckboxOption"
+    ]
   },
   "XColorPickerControlOption": {
     "type": "interface",
@@ -10841,7 +13741,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XColorPickerControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XColorPickerOption"
+    ]
   },
   "XDatePickerControlOption": {
     "type": "interface",
@@ -10850,7 +13753,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XDatePickerControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XDatePickerOption"
+    ]
   },
   "XInputNumberControlOption": {
     "type": "interface",
@@ -10859,7 +13765,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XInputNumberControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XInputNumberOption"
+    ]
   },
   "XRadioControlOption": {
     "type": "interface",
@@ -10868,7 +13777,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XRadioControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XRadioOption"
+    ]
   },
   "XRateControlOption": {
     "type": "interface",
@@ -10877,7 +13789,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XRateControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XRateOption"
+    ]
   },
   "XSliderSelectControlOption": {
     "type": "interface",
@@ -10886,7 +13801,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XSliderSelectControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XSliderSelectOption"
+    ]
   },
   "XSwitchControlOption": {
     "type": "interface",
@@ -10895,7 +13813,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XSwitchControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XSwitchOption"
+    ]
   },
   "XTimePickerControlOption": {
     "type": "interface",
@@ -10904,7 +13825,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XTimePickerControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XTimePickerOption"
+    ]
   },
   "XTextareaControlOption": {
     "type": "interface",
@@ -10913,7 +13837,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XTextareaControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XTextareaOption"
+    ]
   },
   "XFindControlOption": {
     "type": "interface",
@@ -10922,7 +13849,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XFindControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XFindOption"
+    ]
   },
   "XAutoCompleteControlOption": {
     "type": "interface",
@@ -10931,7 +13861,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XAutoCompleteControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XAutoCompleteOption"
+    ]
   },
   "XTemplateControlOption": {
     "type": "interface",
@@ -10940,7 +13873,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XTemplateControlOption",
-    "extends": "XControlOption,"
+    "extends": [
+      "XControlOption",
+      "XFormOption"
+    ]
   },
   "XHighlightPrefix": {
     "type": "const",
@@ -11013,7 +13949,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XHighlightProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XPropertyFunction(X_HIGHLIGHT_CONFIG_NAME)"
+    ]
   },
   "XHighlightLines": {
     "type": "interface",
@@ -11168,7 +14106,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XIconProperty",
-    "extends": "XPropertyFunction(X_ICON_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_ICON_CONFIG_NAME)"
+    ]
   },
   "XIconSource": {
     "type": "type",
@@ -11328,7 +14268,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XImageProperty",
-    "extends": "XPropertyFunction(X_IMAGE_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_IMAGE_CONFIG_NAME)"
+    ]
   },
   "XImageNode": {
     "type": "interface",
@@ -11405,7 +14347,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XImagePreviewProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XInnerPrefix": {
     "type": "const",
@@ -11439,7 +14383,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XInnerProperty",
-    "extends": "XPropertyFunction(X_INNER_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_INNER_CONFIG_NAME)"
+    ]
   },
   "XInputPrefix": {
     "type": "const",
@@ -12019,7 +14965,537 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XInputProperty",
-    "extends": "XFormControlFunction(X_INPUT_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_INPUT_CONFIG_NAME)"
+    ]
+  },
+  "XInputOption": {
+    "type": "interface",
+    "label": "Input Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "type",
+        "type": "XInputType",
+        "label": "输入类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "label": "清除按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "label": "图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "iconLayout",
+        "type": "XInputIconLayoutType",
+        "label": "图标布局方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconLayout",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "iconSpin",
+        "type": "boolean",
+        "label": "图标动画",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconSpin",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxlength",
+        "type": "number",
+        "label": "输入最大长度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxlength",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "label": "最大值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "max",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "label": "最小值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "min",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "width",
+        "type": "string",
+        "label": "宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "width",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputStyle",
+        "type": "{ [style: string]: any }",
+        "label": "输入框样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputStyle",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputPadding",
+        "type": "string",
+        "label": "输入框内边距。主要指输入框中的左右内边距",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputPadding",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputIconPadding",
+        "type": "string",
+        "label": "输入框内边距(包含图标)。主要指输入框中的有图标的时候左右内边距",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputIconPadding",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "validator",
+        "type": "boolean",
+        "label": "初始启用验证，在输入值都自动开启",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "validator",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearEmit",
+        "type": "(value: any) => void",
+        "label": "清除按钮的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearEmit",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "xFocus",
+        "type": "(event: FocusEvent) => void",
+        "label": "获取焦点的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "xFocus",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "xBlur",
+        "type": "(event: FocusEvent) => void",
+        "label": "失去焦点的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "xBlur",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "xInput",
+        "type": "(event: Event) => void",
+        "label": "Input",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "xInput",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "xKeydown",
+        "type": "(event: KeyboardEvent) => void",
+        "label": "Keydown",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "xKeydown",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "xClick",
+        "type": "(event: MouseEvent) => void",
+        "label": "Click",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "xClick",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "xMouseenter",
+        "type": "(event: MouseEvent) => void",
+        "label": "Mouseenter",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "xMouseenter",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "xMouseleave",
+        "type": "(event: MouseEvent) => void",
+        "label": "Mouseleave",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "xMouseleave",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "xComposition",
+        "type": "(event: CompositionEvent) => void",
+        "label": "Composition",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "xComposition",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XInputOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XInputType": {
     "type": "type",
@@ -12097,7 +15573,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XInputGroupProperty",
-    "extends": "XPropertyFunction(X_INPUT_GROUP_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_INPUT_GROUP_CONFIG_NAME)"
+    ]
   },
   "XInputNumberPrefix": {
     "type": "const",
@@ -12482,7 +15960,357 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XInputNumberProperty",
-    "extends": "XFormControlFunction(X_INPUT_NUMBER_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_INPUT_NUMBER_CONFIG_NAME)"
+    ]
+  },
+  "XInputNumberOption": {
+    "type": "interface",
+    "label": "InputNumber Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "min",
+        "type": "number",
+        "label": "最小值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "min",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "label": "最大值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "max",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "step",
+        "type": "number",
+        "label": "步数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "step",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "debounce",
+        "type": "number",
+        "label": "按住后步进速度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "debounce",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "precision",
+        "type": "number",
+        "label": "精度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "precision",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "formatter",
+        "type": "(value: number) => XNumber",
+        "label": "数字格式化",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "formatter",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "hiddenButton",
+        "type": "boolean",
+        "label": "隐藏步进按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "hiddenButton",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XInputNumberOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XRowPrefix": {
     "type": "const",
@@ -12542,7 +16370,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XRowProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XPropertyFunction(X_ROW_CONFIG_NAME)"
+    ]
   },
   "XColPrefix": {
     "type": "const",
@@ -12667,7 +16497,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XColProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XPropertyFunction(X_COL_CONFIG_NAME)"
+    ]
   },
   "XLinkPrefix": {
     "type": "const",
@@ -12792,7 +16624,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XLinkProperty",
-    "extends": "XPropertyFunction(X_LINK_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_LINK_CONFIG_NAME)"
+    ]
   },
   "XLinkType": {
     "type": "type",
@@ -13212,7 +17046,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XListProperty",
-    "extends": "XFormControlFunction(X_LIST_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_LIST_CONFIG_NAME)"
+    ]
   },
   "XListNode": {
     "type": "interface",
@@ -13306,7 +17142,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XListNode",
-    "extends": "XParentIdentityProperty<XListNode>"
+    "extends": [
+      "XParentIdentityProperty<XListNode>"
+    ]
   },
   "XListOptionPrefix": {
     "type": "const",
@@ -13659,7 +17497,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XLoadingProperty",
-    "extends": "XPropertyFunction(X_LOADING_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_LOADING_CONFIG_NAME)"
+    ]
   },
   "XMenuPrefix": {
     "type": "const",
@@ -13849,7 +17689,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XMenuProperty",
-    "extends": "XPropertyFunction(X_MENU_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_MENU_CONFIG_NAME)"
+    ]
   },
   "XMenuNode": {
     "type": "interface",
@@ -13943,7 +17785,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XMenuNode",
-    "extends": "XParentIdentityProperty<XMenuNode>"
+    "extends": [
+      "XParentIdentityProperty<XMenuNode>"
+    ]
   },
   "XMenuLayout": {
     "type": "type",
@@ -13981,7 +17825,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XMenuNodeProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XMessagePrefix": {
     "type": "const",
@@ -14146,7 +17992,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XMessageOption",
-    "extends": "XAlertOption"
+    "extends": [
+      "XAlertOption"
+    ]
   },
   "XMessageOverlayRef": {
     "type": "interface",
@@ -14155,7 +18003,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XMessageOverlayRef",
-    "extends": "XPortalOverlayRef<XMessageComponent>"
+    "extends": [
+      "XPortalOverlayRef<XMessageComponent>"
+    ]
   },
   "XMessagePlacement": {
     "type": "interface",
@@ -14499,7 +18349,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XMessageBoxOption",
-    "extends": "XAlertOption"
+    "extends": [
+      "XAlertOption"
+    ]
   },
   "XMessageBoxCallback": {
     "type": "interface",
@@ -14534,7 +18386,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XMessageBoxOverlayRef",
-    "extends": "XPortalOverlayRef<XMessageBoxComponent>"
+    "extends": [
+      "XPortalOverlayRef<XMessageBoxComponent>"
+    ]
   },
   "XMessageBoxType": {
     "type": "type",
@@ -14684,7 +18538,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XNotificationOption",
-    "extends": "XAlertOption"
+    "extends": [
+      "XAlertOption"
+    ]
   },
   "XNotificationOverlayRef": {
     "type": "interface",
@@ -14693,7 +18549,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XNotificationOverlayRef",
-    "extends": "XPortalOverlayRef<XNotificationComponent>"
+    "extends": [
+      "XPortalOverlayRef<XNotificationComponent>"
+    ]
   },
   "XNotificationPlacement": {
     "type": "interface",
@@ -14807,7 +18665,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XPageHeaderProperty",
-    "extends": "XPropertyFunction(X_PAGE_HEADER_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_PAGE_HEADER_CONFIG_NAME)"
+    ]
   },
   "XPaginationPrefix": {
     "type": "const",
@@ -15097,7 +18957,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XPaginationProperty",
-    "extends": "XPropertyFunction(X_PAGINATION_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_PAGINATION_CONFIG_NAME)"
+    ]
   },
   "XPatternPrefix": {
     "type": "const",
@@ -15324,7 +19186,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XPopconfirmProperty",
-    "extends": "XPropertyFunction(X_POPCONFIRM_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_POPCONFIRM_CONFIG_NAME)"
+    ]
   },
   "XPopoverPrefix": {
     "type": "const",
@@ -15527,7 +19391,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XPopoverProperty",
-    "extends": "XPropertyFunction(X_POPOVER_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_POPOVER_CONFIG_NAME)"
+    ]
   },
   "XPopoverTrigger": {
     "type": "type",
@@ -15789,7 +19655,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XProgressProperty",
-    "extends": "XPropertyFunction(X_PROGRESS_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_PROGRESS_CONFIG_NAME)"
+    ]
   },
   "XProgressType": {
     "type": "type",
@@ -16256,7 +20124,369 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XRadioProperty",
-    "extends": "XFormControlFunction(X_RADIO_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_RADIO_CONFIG_NAME)"
+    ]
+  },
+  "XRadioOption": {
+    "type": "interface",
+    "label": "Radio Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XRadioNode>",
+        "label": "单选框数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "button",
+        "type": "boolean",
+        "label": "按钮样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "button",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "icon",
+        "type": "boolean",
+        "label": "图标样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tag",
+        "type": "boolean",
+        "label": "tag 标签样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tag",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "type",
+        "type": "XButtonType",
+        "label": "按钮/图标/ tag 标签样式时生效",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tagBordered",
+        "type": "boolean",
+        "label": "tag 标签边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tagBordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tagDark",
+        "type": "boolean",
+        "label": "tag 标签深色主题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tagDark",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "allowCancel",
+        "type": "boolean",
+        "label": "允许取消选中",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "allowCancel",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "vertical",
+        "type": "boolean",
+        "label": "垂直布局，不支持 button 和 icon 样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "vertical",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XRadioOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XRadioNode": {
     "type": "interface",
@@ -16302,7 +20532,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XRadioNode",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XRatePrefix": {
     "type": "const",
@@ -16622,7 +20854,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XRateProperty",
-    "extends": "XFormControlFunction(X_RATE_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_RATE_CONFIG_NAME)"
+    ]
   },
   "XRateColor": {
     "type": "type",
@@ -16632,6 +20866,294 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XRateColor",
     "value": "string | { [color: string]: (rate: number) => boolean }"
+  },
+  "XRateOption": {
+    "type": "interface",
+    "label": "Rate Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "count",
+        "type": "number",
+        "label": "评分个数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "count",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "half",
+        "type": "boolean",
+        "label": "半星模式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "half",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "color",
+        "type": "XRateColor",
+        "label": "颜色",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "color",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "customTemp",
+        "type": "TemplateRef<any>",
+        "label": "自定义模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "customTemp",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XRateOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XResizablePrefix": {
     "type": "const",
@@ -16756,7 +21278,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XResizableProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XResizablePosition": {
     "type": "type",
@@ -16919,7 +21443,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XResultProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XPropertyFunction(X_RESULT_CONFIG_NAME)"
+    ]
   },
   "XResultStatus": {
     "type": "type",
@@ -17430,7 +21956,465 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XSelectProperty",
-    "extends": "XFormControlFunction(X_SELECT_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_SELECT_CONFIG_NAME)"
+    ]
+  },
+  "XSelectOption": {
+    "type": "interface",
+    "label": "Select Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XSelectNode>",
+        "label": "节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "label": "清除按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "async",
+        "type": "boolean",
+        "label": "异步加载",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "async",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XPlacement",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "label": "多选功能",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "multiple",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "selectAll",
+        "type": "boolean",
+        "label": "多选添加全选功能",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "selectAll",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "selectAllText",
+        "type": "string",
+        "label": "全选的文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "selectAllText",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeTpl",
+        "type": "TemplateRef<any>",
+        "label": "节点模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "portalMaxHeight",
+        "type": "string",
+        "label": "下拉框的最大高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "portalMaxHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "portalWidth",
+        "type": "string",
+        "label": "下拉框的宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "portalWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "search",
+        "type": "boolean",
+        "label": "输入搜索",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "search",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "caseSensitive",
+        "type": "boolean",
+        "label": "匹配区分大小写",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "caseSensitive",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "debounceTime",
+        "type": "number",
+        "label": "输入延迟执行时间，ms",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "debounceTime",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxTagCount",
+        "type": "number",
+        "label": "多选时显示的选中数据个数，其它的在更多中显示，默认全部显示",
+        "default": "显示所有",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxTagCount",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxTagContent",
+        "type": "XTemplate",
+        "label": "多选时显示的个数超过指定个数，显示的文字模版",
+        "default": "'更多{{surplus}}个选中'",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxTagContent",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "virtualScroll",
+        "type": "boolean",
+        "label": "开启虚拟滚动",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "virtualScroll",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XSelectOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XSelectNode": {
     "type": "interface",
@@ -17439,7 +22423,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "example": "",
     "properties": [],
     "name": "XSelectNode",
-    "extends": "XParentIdentityProperty<XSelectNode>"
+    "extends": [
+      "XParentIdentityProperty<XSelectNode>"
+    ]
   },
   "XSelectPortalPrefix": {
     "type": "const",
@@ -17532,7 +22518,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XSkeletonProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XPropertyFunction(X_SKELETON_CONFIG_NAME)"
+    ]
   },
   "XSkeletonRow": {
     "type": "interface",
@@ -17907,7 +22895,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XSliderProperty",
-    "extends": "XPropertyFunction(X_SLIDER_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_SLIDER_CONFIG_NAME)"
+    ]
   },
   "XSliderNode": {
     "type": "interface",
@@ -17941,7 +22931,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XSliderNode",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XSliderTrigger": {
     "type": "type",
@@ -18409,7 +23401,417 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XSliderSelectProperty",
-    "extends": "XFormControlFunction(X_SLIDER_SELECT_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_SLIDER_SELECT_CONFIG_NAME)"
+    ]
+  },
+  "XSliderSelectOption": {
+    "type": "interface",
+    "label": "SliderSelect Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "min",
+        "type": "number",
+        "label": "最小值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "min",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "label": "最大值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "max",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "step",
+        "type": "number",
+        "label": "步数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "step",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "precision",
+        "type": "number",
+        "label": "精度，默认根据步数来计算",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "precision",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "showTooltip",
+        "type": "boolean",
+        "label": "显示 tooltip 提示",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "showTooltip",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "reverse",
+        "type": "boolean",
+        "label": "反向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "reverse",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "vertical",
+        "type": "boolean",
+        "label": "垂直",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "vertical",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "range",
+        "type": "boolean",
+        "label": "范围",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "range",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "customButton",
+        "type": "XTemplate",
+        "label": "自定义滑块",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "customButton",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "marks",
+        "type": "XSliderSelectMark[]",
+        "label": "刻度标记，key 为实际数字，在 [min,max] 内，可通过 style 设置样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "marks",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "tooltipCustom",
+        "type": "XTemplate",
+        "label": "自定义 tooltip",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "tooltipCustom",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dragStartEmit",
+        "type": "(start: CdkDragStart) => void",
+        "label": "开始拖动的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragStartEmit",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dragMoveEmit",
+        "type": "(move: CdkDragMove) => void",
+        "label": "按住移动中的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragMoveEmit",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "dragEndEmit",
+        "type": "(end: CdkDragEnd) => void",
+        "label": "移动结束的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragEndEmit",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XSliderSelectOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XSliderSelectMark": {
     "type": "interface",
@@ -18551,7 +23953,10 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       }
     ],
-    "name": "XStatisticProperty"
+    "name": "XStatisticProperty",
+    "extends": [
+      "XPropertyFunction(X_STATISTIC_CONFIG_NAME)"
+    ]
   },
   "XCountdownPrefix": {
     "type": "const",
@@ -18663,7 +24068,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XCountdownProperty",
-    "extends": "XPropertyFunction(X_COUNTDOWN_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_COUNTDOWN_CONFIG_NAME)"
+    ]
   },
   "XStepsPrefix": {
     "type": "const",
@@ -18775,7 +24182,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XStepsProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XPropertyFunction(X_STEPS_CONFIG_NAME)"
+    ]
   },
   "XStepsLayout": {
     "type": "type",
@@ -19126,7 +24535,309 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XSwitchProperty",
-    "extends": "XFormControlFunction(X_SWITCH_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_SWITCH_CONFIG_NAME)"
+    ]
+  },
+  "XSwitchOption": {
+    "type": "interface",
+    "label": "Switch Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "loading",
+        "type": "boolean",
+        "label": "显示加载中",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "loading",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "manual",
+        "type": "boolean",
+        "label": "手动控制",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "manual",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "checkedText",
+        "type": "XTemplate",
+        "label": "显示文字或者自定义模版（开启状态）",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "checkedText",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "unCheckedText",
+        "type": "XTemplate",
+        "label": "显示文字或者自定义模版（关闭状态）",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "unCheckedText",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XSwitchOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XTablePrefix": {
     "type": "const",
@@ -20070,7 +25781,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTableProperty",
-    "extends": "XPropertyFunction(X_TABLE_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_TABLE_CONFIG_NAME)"
+    ]
   },
   "XTableRow": {
     "type": "interface",
@@ -20104,7 +25817,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTableRow",
-    "extends": "XParentIdentityProperty<XTableRow>"
+    "extends": [
+      "XParentIdentityProperty<XTableRow>"
+    ]
   },
   "XTableColumn": {
     "type": "interface",
@@ -20366,7 +26081,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTableColumn",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XTableDragWidthEvent": {
     "type": "interface",
@@ -20751,7 +26468,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTableHeadProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XTableBodyPrefix": {
     "type": "const",
@@ -21019,7 +26738,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTableBodyProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XTableFootPrefix": {
     "type": "const",
@@ -21066,7 +26787,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTableFootProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XTabsPrefix": {
     "type": "const",
@@ -21308,7 +27031,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTabsProperty",
-    "extends": "XPropertyFunction(X_TABS_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_TABS_CONFIG_NAME)"
+    ]
   },
   "XTabsNode": {
     "type": "interface",
@@ -21342,7 +27067,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTabsNode",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XTabsTrigger": {
     "type": "type",
@@ -21587,7 +27314,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTagProperty",
-    "extends": "XPropertyFunction(X_TAG_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_TAG_CONFIG_NAME)"
+    ]
   },
   "XTextRetractPrefix": {
     "type": "const",
@@ -21634,7 +27363,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTextRetractProperty",
-    "extends": "XPropertyFunction(X_TEXT_RETRACT_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_TEXT_RETRACT_CONFIG_NAME)"
+    ]
   },
   "XTextareaPrefix": {
     "type": "const",
@@ -21993,7 +27724,333 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTextareaProperty",
-    "extends": "XFormControlFunction(X_TEXTAREA_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_TEXTAREA_CONFIG_NAME)"
+    ]
+  },
+  "XTextareaOption": {
+    "type": "interface",
+    "label": "Textarea Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "label": "清除按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "label": "图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "iconLayout",
+        "type": "XTextareaIconLayoutType",
+        "label": "图标布局方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconLayout",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "iconSpin",
+        "type": "boolean",
+        "label": "图标动画",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconSpin",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxlength",
+        "type": "number",
+        "label": "输入最大长度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxlength",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "height",
+        "type": "string",
+        "label": "高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "height",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearEmit",
+        "type": "(value: any) => void",
+        "label": "清除按钮的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearEmit",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XTextareaOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XTextareaIconLayoutType": {
     "type": "type",
@@ -22110,7 +28167,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XThemeProperty",
-    "extends": "XFormControlFunction(X_THEME_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_THEME_CONFIG_NAME)"
+    ]
   },
   "XTimeAgoPrefix": {
     "type": "const",
@@ -22558,7 +28617,393 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTimePickerProperty",
-    "extends": "XFormControlFunction(X_TIME_PICKER_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_TIME_PICKER_CONFIG_NAME)"
+    ]
+  },
+  "XTimePickerOption": {
+    "type": "interface",
+    "label": "TimePicker Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "type",
+        "type": "XTimePickerType",
+        "label": "时间类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "type",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "label": "格式化",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "format",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XCorner",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "use12Hours",
+        "type": "boolean",
+        "label": "使用12小时制",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "use12Hours",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "hourStep",
+        "type": "number",
+        "label": "小时选项间隔",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "hourStep",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "minuteStep",
+        "type": "number",
+        "label": "分钟选项间隔",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "minuteStep",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "secondStep",
+        "type": "number",
+        "label": "秒选项间隔",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "secondStep",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "preset",
+        "type": "XData<XTimePickerPreset>",
+        "label": "快捷选择按钮，支持此刻以及自定义",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "preset",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabledTime",
+        "type": "XTimePickerDisabledTime",
+        "label": "禁用的时间",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabledTime",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeEmit",
+        "type": "(node: number) => void",
+        "label": "节点点击的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeEmit",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XTimePickerOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XTimePickerType": {
     "type": "type",
@@ -22589,7 +29034,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTimePickerPreset",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XTimePickerPortalPrefix": {
     "type": "const",
@@ -22717,7 +29164,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTimelineProperty",
-    "extends": "XPropertyFunction(X_TIMELINE_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_TIMELINE_CONFIG_NAME)"
+    ]
   },
   "XTimelineNode": {
     "type": "interface",
@@ -22835,7 +29284,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTimelineNode",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XTimelineMode": {
     "type": "type",
@@ -23008,7 +29459,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTooltipProperty",
-    "extends": "XPropertyFunction(X_TOOLTIP_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_TOOLTIP_CONFIG_NAME)"
+    ]
   },
   "XTooltipPortalPrefix": {
     "type": "const",
@@ -23261,7 +29714,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTransferProperty",
-    "extends": "XFormControlFunction(X_TRANSFER_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_TRANSFER_CONFIG_NAME)"
+    ]
   },
   "XTransferNode": {
     "type": "interface",
@@ -23307,7 +29762,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTransferNode",
-    "extends": "XParentIdentityProperty<XTransferNode>"
+    "extends": [
+      "XParentIdentityProperty<XTransferNode>"
+    ]
   },
   "XTransferSource": {
     "type": "interface",
@@ -24039,7 +30496,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTreeProperty",
-    "extends": "XPropertyFunction(X_TREE_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_TREE_CONFIG_NAME)"
+    ]
   },
   "XTreeNode": {
     "type": "interface",
@@ -24181,7 +30640,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTreeNode",
-    "extends": "XParentIdentityProperty<XTreeNode>"
+    "extends": [
+      "XParentIdentityProperty<XTreeNode>"
+    ]
   },
   "XTreeAction": {
     "type": "interface",
@@ -24215,7 +30676,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTreeAction",
-    "extends": "XIdentityProperty"
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XTreeNodeDragEvent": {
     "type": "interface",
@@ -24540,7 +31003,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTreeNodeProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XTreeFilePrefix": {
     "type": "const",
@@ -24717,7 +31182,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTreeFileProperty",
-    "extends": "XPropertyFunction(X_TREE_FILE_CONFIG_NAME)"
+    "extends": [
+      "XPropertyFunction(X_TREE_FILE_CONFIG_NAME)"
+    ]
   },
   "XTreeFileNode": {
     "type": "interface",
@@ -24823,7 +31290,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTreeFileNode",
-    "extends": "XTreeNode"
+    "extends": [
+      "XTreeNode"
+    ]
   },
   "XTreeFileType": {
     "type": "type",
@@ -25382,7 +31851,501 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTreeSelectProperty",
-    "extends": "XFormControlFunction(X_TREE_SELECT_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_TREE_SELECT_CONFIG_NAME)"
+    ]
+  },
+  "XTreeSelectOption": {
+    "type": "interface",
+    "label": "Tree Select Option",
+    "description": "",
+    "example": "",
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XTreeSelectNode>",
+        "label": "节点数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "data",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "label": "清除按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "clearable",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "async",
+        "type": "boolean",
+        "label": "异步加载",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "async",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placement",
+        "type": "XPositionTopBottom",
+        "label": "展示方位",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placement",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "label": "多选功能",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "multiple",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "selectAll",
+        "type": "boolean",
+        "label": "多选添加全选功能",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "selectAll",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "selectAllText",
+        "type": "string",
+        "label": "全选的文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "selectAllText",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "nodeTpl",
+        "type": "TemplateRef<any>",
+        "label": "节点模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "nodeTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "expandedLevel",
+        "type": "number",
+        "label": "默认展开的层级",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "expandedLevel",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "label": "显示边框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "bordered",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "portalMaxHeight",
+        "type": "string",
+        "label": "下拉框的最大高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "portalMaxHeight",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "search",
+        "type": "boolean",
+        "label": "输入搜索",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "search",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "caseSensitive",
+        "type": "boolean",
+        "label": "匹配区分大小写",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "caseSensitive",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "debounceTime",
+        "type": "number",
+        "label": "输入延迟执行时间，ms",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "debounceTime",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxTagCount",
+        "type": "number",
+        "label": "多选时显示的选中数据个数，其它的在更多中显示，默认全部显示",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxTagCount",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "maxTagContent",
+        "type": "XTemplate",
+        "label": "多选时显示的个数超过指定个数，显示的文字模版",
+        "default": "'更多{{surplus}}个选中'",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxTagContent",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "virtualScroll",
+        "type": "boolean",
+        "label": "开启虚拟滚动",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "virtualScroll",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "showPath",
+        "type": "boolean",
+        "label": "显示的值展示路径 AA > BB > CC",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "showPath",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "separator",
+        "type": "string",
+        "label": "路径分隔符",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "separator",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "onlyLeaf",
+        "type": "boolean",
+        "label": "只能选择叶子节点",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "onlyLeaf",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pointer",
+        "type": "boolean",
+        "label": "输入框点击样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pointer",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "label": "标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelWidth",
+        "type": "string",
+        "label": "标签宽度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelWidth",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "labelAlign",
+        "type": "XAlign",
+        "label": "标签文字对齐方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "labelAlign",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "label": "flex 布局下的子元素水平排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "justify",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "align",
+        "type": "XAlign",
+        "label": "flex 布局下的子元素垂直排列方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "align",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "direction",
+        "type": "XDirection",
+        "label": "flex 布局下的子元素排列方向",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "direction",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTpl",
+        "type": "TemplateRef<any>",
+        "label": "值模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTpl",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "valueTplContext",
+        "type": "any",
+        "label": "值模板参数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "valueTplContext",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "before",
+        "type": "XTemplate",
+        "label": "前置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "before",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "after",
+        "type": "XTemplate",
+        "label": "后置标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "after",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[]",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "激活状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "active",
+        "propType": "",
+        "example": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": ""
+      }
+    ],
+    "name": "XTreeSelectOption",
+    "extends": [
+      "XFormOption"
+    ]
   },
   "XTreeSelectNode": {
     "type": "interface",
@@ -25416,7 +32379,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTreeSelectNode",
-    "extends": "XParentIdentityProperty<XTreeSelectNode>"
+    "extends": [
+      "XParentIdentityProperty<XTreeSelectNode>"
+    ]
   },
   "XTreeSelectPortalPrefix": {
     "type": "const",
@@ -25474,7 +32439,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTypographyProperty",
-    "extends": "XProperty"
+    "extends": [
+      "XProperty"
+    ]
   },
   "XUploadPrefix": {
     "type": "const",
@@ -25716,7 +32683,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XUploadProperty",
-    "extends": "XFormControlFunction(X_UPLOAD_CONFIG_NAME)"
+    "extends": [
+      "XFormControlFunction(X_UPLOAD_CONFIG_NAME)"
+    ]
   },
   "XUploadNode": {
     "type": "interface",
@@ -25774,7 +32743,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XUploadNode",
-    "extends": "File"
+    "extends": [
+      "File"
+    ]
   },
   "XStateType": {
     "type": "type",

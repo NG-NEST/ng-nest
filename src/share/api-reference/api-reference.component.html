@@ -43,7 +43,12 @@
             }
           }
           @if (property.extends) {
-            <div class="extends"><span>extends</span><code [innerText]="property.extends"></code></div>
+            <div class="extends">
+              <span>extends</span>
+              @for (eds of property.extends; track eds) {
+                <code [innerText]="eds"></code>
+              }
+            </div>
           }
           @if (property.description) {
             <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
@@ -58,7 +63,12 @@
             <ng-container *ngTemplateOutlet="typeTitle; context: { property }"></ng-container>
           }
           @if (property.extends) {
-            <div class="extends"><span>extends</span><code [innerText]="property.extends"></code></div>
+            <div class="extends">
+              <span>extends</span>
+              @for (eds of property.extends; track eds) {
+                <code [innerText]="eds"></code>
+              }
+            </div>
           }
           @if (property.description) {
             <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
@@ -85,7 +95,12 @@
             <ng-container *ngTemplateOutlet="typeTitle; context: { property }"></ng-container>
           }
           @if (property.extends) {
-            <div class="extends"><span>extends</span><code [innerText]="property.extends"></code></div>
+            <div class="extends">
+              <span>extends</span>
+              @for (eds of property.extends; track eds) {
+                <code [innerText]="eds"></code>
+              }
+            </div>
           }
           @if (property.description) {
             <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>

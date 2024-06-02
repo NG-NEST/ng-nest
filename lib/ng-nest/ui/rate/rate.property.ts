@@ -141,7 +141,6 @@ export type XRateColor = string | { [color: string]: (rate: number) => boolean }
 
 /**
  * Rate Option
- * @undocument true
  */
 export interface XRateOption extends XFormOption {
   /**

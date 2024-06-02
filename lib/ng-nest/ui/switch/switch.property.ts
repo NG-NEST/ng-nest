@@ -140,7 +140,6 @@ export class XSwitchProperty extends XFormControlFunction(X_SWITCH_CONFIG_NAME) 
 
 /**
  * Switch Option
- * @undocument true
  */
 export interface XSwitchOption extends XFormOption {
   /**

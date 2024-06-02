@@ -181,7 +181,6 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
 
 /**
  * DatePicker Option
- * @undocument true
  */
 export interface XDatePickerOption extends XFormOption {
   /**
@@ -503,19 +502,158 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
 
 /**
  * DateRange Option
- * @undocument true
  */
 export interface XDateRangeOption extends XFormOption {
   /**
-   * @zh_CN tab 键控制次序
-   * @en_US Tab key control order
+   * @zh_CN 选择类型
+   * @en_US Select type
    */
-  tabindex?: number;
+  type?: XDatePickerType;
   /**
-   * @zh_CN 日期提示信息
-   * @en_US Placeholder of date input
+   * @zh_CN 格式化类型
+   * @en_US Format type
    */
-  placeholder?: string[];
+  format?: string;
+  /**
+   * @zh_CN 清除按钮
+   * @en_US Clear button
+   */
+  clearable?: boolean;
+  /**
+   * @zh_CN 展示方位
+   * @en_US Display position
+   */
+  placement?: XCorner;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  bordered?: boolean;
+  /**
+   * @zh_CN 快捷选择按钮，自定义或直接设置本周（thisWeek）、上周（lastWeek）、下周（nextWeek）、本月（thisMonth）、上一月（lastMonth）、下一月（nextMonth）、本年（thisYear）、去年（lastYear）、明年（nextYear）
+   * @en_US Quick selection button, support thisWeek, lastWeek, nextWeek, thisMonth, lastMonth, nextMonth, thisYear, lastYear, nextYear
+   */
+  preset?: XData<XDateRangePreset>;
+  /**
+   * @zh_CN 页脚
+   * @en_US Footer
+   */
+  extraFooter?: XTemplate;
+  /**
+   * @zh_CN 禁用的日期
+   * @en_US Disabled date
+   */
+  disabledDate?: XDatePickerDisabledDate;
+  /**
+   * @zh_CN 禁用的时间
+   * @en_US Disabled time
+   */
+  disabledTime?: XDatePickerDisabledTime;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  size?: XSize;
+  /**
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
+   */
+  pointer?: boolean;
+  /**
+   * @zh_CN 标签
+   * @en_US Label
+   */
+  label?: string;
+  /**
+   * @zh_CN 标签宽度
+   * @en_US Label width
+   */
+  labelWidth?: string;
+  /**
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
+   */
+  labelAlign?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
+   */
+  justify?: XJustify;
+  /**
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
+   */
+  align?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
+   */
+  direction?: XDirection;
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  placeholder?: string | string[];
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  disabled?: boolean;
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  required?: boolean;
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  readonly?: boolean;
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  valueTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  valueTplContext?: any;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  before?: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  after?: XTemplate;
+  /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  pattern?: RegExp | RegExp[];
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  message?: string | string[];
+  /**
+   * @zh_CN 激活状态
+   * @en_US Activation state
+   */
+  active?: boolean;
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  inputValidator?: (value: any) => boolean;
+  /**
+   * @zh_CN 节点点击的事件
+   * @en_US Node click event
+   */
+  nodeEmit: (value: number[]) => void;
 }
 
 /**

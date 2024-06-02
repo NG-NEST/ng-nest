@@ -130,7 +130,6 @@ export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NA
 
 /**
  * ColorPicker Option
- * @undocument true
  */
 export interface XColorPickerOption extends XFormOption {
   /**

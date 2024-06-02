@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { XDialogModule, XDialogRef, X_DIALOG_DATA } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { AppProp } from '@interfaces';
@@ -22,6 +22,10 @@ export class NsApiReferenceComponent {
   ps = inject(PrismService);
   domSanitizer = inject(DomSanitizer);
   property = computed(() => this.data.property);
+
+  constructor() {
+    effect(() => console.log(this.property()));
+  }
 
   close() {
     this.dialogRef.close();

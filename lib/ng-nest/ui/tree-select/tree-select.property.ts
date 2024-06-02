@@ -236,7 +236,6 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
 
 /**
  * Tree Select Option
- * @undocument true
  */
 export interface XTreeSelectOption extends XFormOption {
   /**

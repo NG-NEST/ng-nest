@@ -181,7 +181,6 @@ export class XCheckboxProperty extends XFormControlFunction(X_CHECKBOX_CONFIG_NA
 
 /**
  * Checkbox Option
- * @undocument true
  */
 export interface XCheckboxOption extends XFormOption {
   /**

@@ -191,7 +191,6 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
 
 /**
  * TimePicker Option
- * @undocument true
  */
 export interface XTimePickerOption extends XFormOption {
   /**

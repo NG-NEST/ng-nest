@@ -200,7 +200,12 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
                 eline = eline.replace(prop.name, '').trim();
                 if (eline.startsWith('extends ')) {
                   eline = eline.replace('extends', '').trim();
-                  prop.extends = eline.slice(0, eline.indexOf(' '));
+                  let eds = eline.slice(0, eline.indexOf('{'));
+                  if (eds.indexOf(',')) {
+                    prop.extends = eds.split(',').map((x) => x.trim());
+                  } else {
+                    prop.extends = [eds];
+                  }
                   eline = eline.replace(`${prop.extends}`, '').trim();
                 }
                 if (eline.startsWith('implements ')) {
@@ -267,7 +272,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
       }
       if (!isReadDoc && isReadClassInterface && line !== '' && !line.startsWith('export')) {
         const docItem = doc.find((x) => x.end === index - 1);
-        const isInputSignal = line.startsWith('readonly') || line.startsWith('override readonly');
+        const isInputSignal = line.startsWith('readonly ') || line.startsWith('override readonly ');
         if (isInputSignal) {
           if (isReadProperty === false) {
             isReadProperty = true;

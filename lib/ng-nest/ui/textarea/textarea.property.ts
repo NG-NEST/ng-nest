@@ -150,7 +150,6 @@ export class XTextareaProperty extends XFormControlFunction(X_TEXTAREA_CONFIG_NA
 
 /**
  * Textarea Option
- * @undocument true
  */
 export interface XTextareaOption extends XFormOption {
   /**

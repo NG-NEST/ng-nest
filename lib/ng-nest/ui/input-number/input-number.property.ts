@@ -170,7 +170,6 @@ export class XInputNumberProperty extends XFormControlFunction(X_INPUT_NUMBER_CO
 
 /**
  * InputNumber Option
- * @undocument true
  */
 export interface XInputNumberOption extends XFormOption {
   /**

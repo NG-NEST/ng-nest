@@ -248,7 +248,6 @@ export class XInputProperty extends XFormControlFunction(X_INPUT_CONFIG_NAME) {
 
 /**
  * Input Option
- * @undocument true
  */
 export interface XInputOption extends XFormOption {
   /**

@@ -37,7 +37,7 @@ export interface NcProp {
   /**
    * 继承对象 class
    */
-  extends?: string;
+  extends?: string[];
   /**
    * 实现的接口 interface
    */

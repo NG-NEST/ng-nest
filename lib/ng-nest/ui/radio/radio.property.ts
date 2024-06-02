@@ -176,7 +176,6 @@ export class XRadioProperty extends XFormControlFunction(X_RADIO_CONFIG_NAME) {
 
 /**
  * Radio Option
- * @undocument true
  */
 export interface XRadioOption extends XFormOption {
   /**

@@ -167,7 +167,6 @@ export class XCascadeProperty extends XFormControlFunction(X_CASCADE_CONFIG_NAME
 
 /**
  * Cascade Option
- * @undocument true
  */
 export interface XCascadeOption extends XFormOption {
   /**

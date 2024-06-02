@@ -173,7 +173,6 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
 
 /**
  * AutoComplete Option
- * @undocument true
  */
 export interface XAutoCompleteOption extends XFormOption {
   /**

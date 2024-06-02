@@ -198,23 +198,38 @@ export class TypesService {
                   type
                 };
               });
-              type.properties!.unshift(...properties!);
-              if (ext === 'XParentIdentityProperty<XCommentNode>') {
-                console.log(item.extends);
+              for (let prop of properties!) {
+                const fd = type.properties?.find((z) => z.name === prop.name);
+                if (!fd) type.properties!.unshift(prop);
               }
-              getProperties(item.extends);
+              if (item.extends) {
+                for (let ext of item.extends!) {
+                  getProperties(ext);
+                }
+              }
             }
           }
         } else {
           let item = this.data[lang][`${ext}`];
           if (item) {
-            type.properties!.unshift(...item.properties!);
-            getProperties(item.extends);
+            for (let prop of item.properties!) {
+              const fd = type.properties?.find((z) => z.name === prop.name);
+              if (!fd) type.properties!.unshift(prop);
+            }
+            if (item.extends) {
+              for (let ext of item.extends!) {
+                getProperties(ext);
+              }
+            }
           }
         }
       }
     };
 
-    getProperties(type.extends);
+    if (type.extends) {
+      for (let ext of type.extends!) {
+        getProperties(ext);
+      }
+    }
   }
 }

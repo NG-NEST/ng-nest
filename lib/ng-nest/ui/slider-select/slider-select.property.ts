@@ -186,7 +186,6 @@ export class XSliderSelectProperty extends XFormControlFunction(X_SLIDER_SELECT_
 
 /**
  * SliderSelect Option
- * @undocument true
  */
 export interface XSliderSelectOption extends XFormOption {
   /**

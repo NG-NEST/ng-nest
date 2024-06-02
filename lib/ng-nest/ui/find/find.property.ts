@@ -326,7 +326,6 @@ export class XFindProperty extends XFormControlFunction(X_FIND_CONFIG_NAME) {
 
 /**
  * Find Option
- * @undocument true
  */
 export interface XFindOption extends XFormOption {
   /**
