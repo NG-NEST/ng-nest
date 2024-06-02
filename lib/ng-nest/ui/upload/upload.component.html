@@ -11,10 +11,10 @@
   @switch (type()) {
     @case ('list') {
       <ng-container *ngTemplateOutlet="uploadBtnTpl"></ng-container>
-      <ng-container *xOutlet="filesTpl(); context: { $files: files }">
+      <ng-container *xOutlet="filesTpl(); context: { $files: files() }">
         <ul class="x-upload-files">
           @for (file of files(); track file; let i = $index) {
-            <li [class.x-upload-disabled]="!download">
+            <li [class.x-upload-disabled]="!download()">
               @if (download()) {
                 <a [href]="file.url" target="_blank" [title]="file.name">
                   <x-icon type="fto-file-text"></x-icon>

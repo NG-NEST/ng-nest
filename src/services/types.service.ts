@@ -42,7 +42,7 @@ export class TypesService {
     }
 
     this.dialog.create(NsApiNameComponent, {
-      className: 'ns-reference',
+      className: 'ns-name',
       width: '48rem',
       data: {
         property: prop,

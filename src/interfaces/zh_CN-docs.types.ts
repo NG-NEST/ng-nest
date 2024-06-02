@@ -303,6 +303,18 @@ export const zh_CN: {[key: string]: AppProp} = {
     },
     "returnType": "number)"
   },
+  "XToCssRem": {
+    "type": "function",
+    "label": "转换 css 为 rem 宽度",
+    "description": "",
+    "example": "",
+    "properties": [],
+    "name": "XToCssRem",
+    "params": {
+      "css": "string"
+    },
+    "returnType": "number)"
+  },
   "XDate": {
     "type": "type",
     "label": "日期类型",
@@ -1636,6 +1648,16 @@ export const zh_CN: {[key: string]: AppProp} = {
     },
     "returnType": "XRGBColor"
   },
+  "XCamelToKebab": {
+    "type": "function",
+    "label": "该函数将字符串中的驼峰命名法转换为减号命名法",
+    "description": "- 采用正则表达式匹配字符串中每个连续的大小写字母边界\n- 将其替换为小写字母和连字符的组合\n- 最后将整个字符串转换为小写\n- 例如，`XCamelToKebab('helloWorld')` 将返回 `hello-world`",
+    "example": "",
+    "properties": [],
+    "name": "XCamelToKebab",
+    "params": {},
+    "returnType": "string)"
+  },
   "XIsNotNil<T>": {
     "type": "function",
     "label": "判断值不为 null 或 undefined",
@@ -1709,6 +1731,16 @@ export const zh_CN: {[key: string]: AppProp} = {
       "usefulTags": "any[]"
     },
     "returnType": "string"
+  },
+  "XKebabToCamel": {
+    "type": "function",
+    "label": "该函数将字符串中的减号命名法转换为驼峰命名法",
+    "description": "- 使用正则表达式匹配所有连字符后的字母 ( `(\\w)` )\n- 用 `toUpperCase()` 将这些字母转换为大写\n- 替换原字符串中的连字符和小写字母为大写字母\n- 例如，`XKebabToCamel('hello-world')` 将返回 `helloWorld`",
+    "example": "",
+    "properties": [],
+    "name": "XKebabToCamel",
+    "params": {},
+    "returnType": "string)"
   },
   "XWarnSVGTagNotFound": {
     "type": "function",
@@ -2363,7 +2395,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -2376,7 +2408,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -2389,7 +2421,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -2402,7 +2434,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -2415,7 +2447,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -2428,7 +2460,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -2441,7 +2473,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -2454,7 +2486,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -2467,7 +2499,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -2480,7 +2512,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -2493,7 +2525,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -2506,7 +2538,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -2519,7 +2551,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -2532,7 +2564,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -2545,7 +2577,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -2558,7 +2590,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -2571,7 +2603,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -2584,7 +2616,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -2597,7 +2629,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -2610,13 +2642,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -3956,7 +3988,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -3969,7 +4001,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -3982,7 +4014,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -3995,7 +4027,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -4008,7 +4040,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -4021,7 +4053,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -4034,7 +4066,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -4047,7 +4079,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -4060,7 +4092,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -4073,7 +4105,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -4086,7 +4118,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -4099,7 +4131,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -4112,7 +4144,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -4125,7 +4157,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -4138,7 +4170,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -4151,7 +4183,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -4164,7 +4196,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -4177,7 +4209,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -4190,7 +4222,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -4203,13 +4235,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -4409,7 +4441,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -4422,7 +4454,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -4435,7 +4467,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -4448,7 +4480,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -4461,7 +4493,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -4474,7 +4506,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -4487,7 +4519,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -4500,7 +4532,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -4513,7 +4545,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -4526,7 +4558,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -4539,7 +4571,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -4552,7 +4584,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -4565,7 +4597,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -4578,7 +4610,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -4591,7 +4623,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -4604,7 +4636,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -4617,7 +4649,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -4630,7 +4662,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -4643,7 +4675,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -4656,13 +4688,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -5040,7 +5072,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -5053,7 +5085,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -5066,7 +5098,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -5079,7 +5111,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -5092,7 +5124,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -5105,7 +5137,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -5118,7 +5150,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -5131,7 +5163,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -5144,7 +5176,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -5157,7 +5189,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -5170,7 +5202,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -5183,7 +5215,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -5196,7 +5228,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -5209,7 +5241,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -5222,7 +5254,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -5235,7 +5267,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -5248,7 +5280,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -5261,7 +5293,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -5274,7 +5306,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -5287,13 +5319,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -5985,14 +6017,14 @@ export const zh_CN: {[key: string]: AppProp} = {
         "name": "preset",
         "type": "XData<XDatePickerPreset>",
         "toType": "XData<XDatePickerPreset>",
-        "inputType": "InputSignal<XData<XDatePickerPreset>>",
+        "inputType": "InputSignalWithTransform<XData<XDatePickerPreset>, XData<XDatePickerPreset>>",
         "signal": "input",
         "label": "快捷选择按钮，自定义或直接设置今天（today）,昨天（yesterday）,明天（tomorrow）",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": ""
+        "transform": "XToDataConvert"
       },
       {
         "name": "extraFooter",
@@ -6034,7 +6066,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -6047,7 +6079,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -6060,7 +6092,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -6073,7 +6105,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -6086,7 +6118,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -6099,7 +6131,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -6112,7 +6144,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -6125,7 +6157,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -6138,7 +6170,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -6151,7 +6183,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -6164,7 +6196,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -6177,7 +6209,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -6190,7 +6222,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -6203,7 +6235,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -6216,7 +6248,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -6229,7 +6261,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -6242,7 +6274,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -6255,7 +6287,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -6268,7 +6300,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -6281,13 +6313,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -6396,14 +6428,14 @@ export const zh_CN: {[key: string]: AppProp} = {
         "name": "preset",
         "type": "XData<XDateRangePreset>",
         "toType": "XData<XDateRangePreset>",
-        "inputType": "InputSignal<XData<XDateRangePreset>>",
+        "inputType": "InputSignalWithTransform<XData<XDateRangePreset>, XData<XDateRangePreset>>",
         "signal": "input",
         "label": "快捷选择按钮，自定义或直接设置本周（thisWeek）、上周（lastWeek）、下周（nextWeek）、本月（thisMonth）、上一月（lastMonth）、下一月（nextMonth）、本年（thisYear）、去年（lastYear）、明年（nextYear）",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": ""
+        "transform": "XToDataConvert"
       },
       {
         "name": "extraFooter",
@@ -6445,7 +6477,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -6458,7 +6490,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -6471,7 +6503,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -6484,7 +6516,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -6497,7 +6529,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -6510,7 +6542,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -6523,7 +6555,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -6536,7 +6568,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -6549,7 +6581,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -6562,7 +6594,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -6575,7 +6607,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -6588,7 +6620,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -6601,7 +6633,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -6614,7 +6646,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -6627,7 +6659,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -6640,7 +6672,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -6653,7 +6685,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -6666,7 +6698,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -6679,7 +6711,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -6692,13 +6724,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -6994,12 +7026,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "rangeValue",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "(number | null)[]",
+        "toType": "(number | null)[]",
+        "inputType": "InputSignal<(number | null)[]>",
         "signal": "input",
         "label": "范围日期",
-        "default": "number | null",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -7529,12 +7561,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "rangeValue",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "(number | null)[]",
+        "toType": "(number | null)[]",
+        "inputType": "InputSignal<(number | null)[]>",
         "signal": "input",
         "label": "范围月份",
-        "default": "number | null",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -7758,12 +7790,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "rangeValue",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "(number | null)[]",
+        "toType": "(number | null)[]",
+        "inputType": "InputSignal<(number | null)[]>",
         "signal": "input",
         "label": "范围月份",
-        "default": "number | null",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -7998,12 +8030,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "rangeValue",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "(number | null)[]",
+        "toType": "(number | null)[]",
+        "inputType": "InputSignal<(number | null)[]>",
         "signal": "input",
         "label": "范围年份",
-        "default": "number | null",
+        "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -8671,12 +8703,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "beforeClose",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "(action: XDialogAction) => void",
+        "toType": "(action: XDialogAction) => void",
+        "inputType": "InputSignal<(action: XDialogAction) => void>",
         "signal": "input",
         "label": "关闭前处理函数",
-        "default": "action: XDialogAction",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -9836,19 +9868,19 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "search",
-        "type": "XFindSearchOption",
-        "toType": "XFindSearchOption",
-        "inputType": "ModelSignal<XFindSearchOption>",
+        "type": "XFindSearchOption | null",
+        "toType": "XFindSearchOption | null",
+        "inputType": "ModelSignal<XFindSearchOption | null>",
         "signal": "model",
         "label": "数据查询过滤表单",
-        "default": "{}",
+        "default": "null",
         "withConfig": false,
         "description": "",
         "example": "",
         "transform": ""
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -9861,7 +9893,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -9874,7 +9906,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -9887,7 +9919,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -9900,7 +9932,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -9913,7 +9945,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -9926,7 +9958,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -9939,7 +9971,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -9952,7 +9984,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -9965,7 +9997,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -9978,7 +10010,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -9991,7 +10023,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -10004,7 +10036,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -10017,7 +10049,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -10030,7 +10062,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -10043,7 +10075,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -10056,7 +10088,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -10069,7 +10101,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -10082,7 +10114,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -10095,13 +10127,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -10242,7 +10274,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -11596,7 +11628,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  validator",
+        "name": "validator",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -11609,7 +11641,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -11622,7 +11654,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -11635,7 +11667,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -11648,7 +11680,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -11661,7 +11693,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -11674,7 +11706,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -11687,7 +11719,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -11700,7 +11732,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -11713,7 +11745,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -11726,7 +11758,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -11739,7 +11771,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -11752,7 +11784,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -11765,7 +11797,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -11778,7 +11810,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -11791,7 +11823,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -11804,7 +11836,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -11817,7 +11849,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -11830,7 +11862,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -11843,7 +11875,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -11856,13 +11888,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -12164,12 +12196,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "formatter",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "(value: number) => XNumber",
+        "toType": "(value: number) => XNumber",
+        "inputType": "InputSignal<(value: number) => XNumber>",
         "signal": "input",
         "label": "数字格式化",
-        "default": "value: number",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -12189,7 +12221,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -12202,7 +12234,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -12215,7 +12247,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -12228,7 +12260,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -12241,7 +12273,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -12254,7 +12286,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -12267,7 +12299,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -12280,7 +12312,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -12293,7 +12325,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -12306,7 +12338,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -12319,7 +12351,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -12332,7 +12364,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -12345,7 +12377,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -12358,7 +12390,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -12371,7 +12403,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -12384,7 +12416,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -12397,7 +12429,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -12410,7 +12442,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -12423,7 +12455,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -12436,13 +12468,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -13166,7 +13198,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -13386,12 +13418,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "optionClass",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "(node: XListNode) => { [className: string]: boolean }",
+        "toType": "(node: XListNode) => { [className: string]: boolean }",
+        "inputType": "InputSignal<(node: XListNode) => { [className: string]: boolean }>",
         "signal": "input",
         "label": "自定义数据对象样式",
-        "default": "node: XListNode",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -13692,7 +13724,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<string, XNumber>",
         "signal": "input",
         "label": "宽度，只有布局 layout 为 'column' 生效",
-        "default": "'12rem'",
+        "default": "'16rem'",
         "withConfig": true,
         "description": "",
         "example": "",
@@ -15627,12 +15659,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "format",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "(percent: number) => string",
+        "toType": "(percent: number) => string",
+        "inputType": "InputSignal<(percent: number) => string>",
         "signal": "input",
         "label": "自定义百分比文本内容",
-        "default": "percent: number",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -15963,7 +15995,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -15976,7 +16008,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -15989,7 +16021,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -16002,7 +16034,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -16015,7 +16047,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -16028,7 +16060,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -16041,7 +16073,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -16054,7 +16086,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -16067,7 +16099,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -16080,7 +16112,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -16093,7 +16125,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -16106,7 +16138,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -16119,7 +16151,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -16132,7 +16164,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -16145,7 +16177,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -16158,7 +16190,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -16171,7 +16203,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -16184,7 +16216,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -16197,7 +16229,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -16210,13 +16242,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -16342,7 +16374,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -16355,7 +16387,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -16368,7 +16400,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -16381,7 +16413,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -16394,7 +16426,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -16407,7 +16439,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -16420,7 +16452,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -16433,7 +16465,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -16446,7 +16478,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -16459,7 +16491,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -16472,7 +16504,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -16485,7 +16517,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -16498,7 +16530,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -16511,7 +16543,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -16524,7 +16556,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -16537,7 +16569,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -16550,7 +16582,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -16563,7 +16595,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -16576,13 +16608,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -17137,7 +17169,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -17150,7 +17182,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -17163,7 +17195,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -17176,7 +17208,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -17189,7 +17221,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -17202,7 +17234,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -17215,7 +17247,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -17228,7 +17260,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -17241,7 +17273,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -17254,7 +17286,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -17267,7 +17299,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -17280,7 +17312,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -17293,7 +17325,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -17306,7 +17338,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -17319,7 +17351,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -17332,7 +17364,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -17345,7 +17377,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -17358,7 +17390,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -17371,7 +17403,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -17384,13 +17416,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -18090,7 +18122,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -18103,7 +18135,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -18116,7 +18148,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -18129,7 +18161,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -18142,7 +18174,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -18155,7 +18187,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -18168,7 +18200,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -18181,7 +18213,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -18194,7 +18226,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -18207,7 +18239,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -18220,7 +18252,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -18233,7 +18265,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -18246,7 +18278,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -18259,7 +18291,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -18272,7 +18304,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -18285,7 +18317,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -18298,7 +18330,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -18311,7 +18343,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -18324,13 +18356,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -18833,7 +18865,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -18846,7 +18878,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -18859,7 +18891,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -18872,7 +18904,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -18885,7 +18917,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -18898,7 +18930,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -18911,7 +18943,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -18924,7 +18956,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -18937,7 +18969,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -18950,7 +18982,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -18963,7 +18995,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -18976,7 +19008,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -18989,7 +19021,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -19002,7 +19034,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -19015,7 +19047,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -19028,7 +19060,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -19041,7 +19073,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -19054,7 +19086,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -19067,7 +19099,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -19080,13 +19112,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -19271,16 +19303,16 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "rowClass",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "index: number) => { [className: string]: boolean }",
+        "toType": "(row: XTableRow",
+        "inputType": "InputSignalWithTransform<(row: XTableRow, index: number) => { [className: string]: boolean }>",
         "signal": "input",
         "label": "行条件样式",
-        "default": "row: XTableRow",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "umbe"
+        "transform": ""
       },
       {
         "name": "headSearchTpl",
@@ -20935,16 +20967,16 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "rowClass",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "type": "index: number) => { [className: string]: boolean }",
+        "toType": "(row: XTableRow",
+        "inputType": "InputSignalWithTransform<(row: XTableRow, index: number) => { [className: string]: boolean }>",
         "signal": "input",
         "label": "行条件样式",
-        "default": "row: XTableRow",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": "umbe"
+        "transform": ""
       },
       {
         "name": "level",
@@ -21700,7 +21732,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -21713,7 +21745,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -21726,7 +21758,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -21739,7 +21771,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -21752,7 +21784,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -21765,7 +21797,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -21778,7 +21810,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -21791,7 +21823,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -21804,7 +21836,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -21817,7 +21849,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -21830,7 +21862,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -21843,7 +21875,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -21856,7 +21888,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -21869,7 +21901,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -21882,7 +21914,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -21895,7 +21927,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -21908,7 +21940,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -21921,7 +21953,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -21934,13 +21966,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -22239,7 +22271,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -22252,7 +22284,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -22265,7 +22297,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  validator",
+        "name": "validator",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -22278,7 +22310,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -22291,7 +22323,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -22304,7 +22336,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -22317,7 +22349,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -22330,7 +22362,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -22343,7 +22375,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -22356,7 +22388,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -22369,7 +22401,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -22382,7 +22414,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -22395,7 +22427,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -22408,7 +22440,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -22421,7 +22453,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -22434,7 +22466,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -22447,7 +22479,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -22460,7 +22492,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -22473,7 +22505,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -22486,7 +22518,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -22499,13 +22531,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",
@@ -23010,14 +23042,14 @@ export const zh_CN: {[key: string]: AppProp} = {
         "name": "data",
         "type": "XData<XTransferNode>",
         "toType": "XData<XTransferNode>",
-        "inputType": "InputSignal<XData<XTransferNode>>",
+        "inputType": "InputSignalWithTransform<XData<XTransferNode>, XData<XTransferNode>>",
         "signal": "input",
         "label": "数据对象",
         "default": "[]",
         "withConfig": false,
         "description": "",
         "example": "",
-        "transform": ""
+        "transform": "XToDataConvert"
       },
       {
         "name": "type",
@@ -25089,7 +25121,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  size",
+        "name": "size",
         "type": "XSize",
         "toType": "XSize",
         "inputType": "InputSignal<XSize>",
@@ -25102,7 +25134,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pointer",
+        "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -25115,7 +25147,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  label",
+        "name": "label",
         "type": "string",
         "toType": "string",
         "inputType": "InputSignal<string>",
@@ -25128,7 +25160,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  labelWidth",
+        "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
@@ -25141,7 +25173,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "override  labelAlign",
+        "name": "labelAlign",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -25154,7 +25186,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  justify",
+        "name": "justify",
         "type": "XJustify",
         "toType": "XJustify",
         "inputType": "InputSignal<XJustify>",
@@ -25167,7 +25199,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  align",
+        "name": "align",
         "type": "XAlign",
         "toType": "XAlign",
         "inputType": "InputSignal<XAlign>",
@@ -25180,7 +25212,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  direction",
+        "name": "direction",
         "type": "XDirection",
         "toType": "XDirection",
         "inputType": "InputSignal<XDirection>",
@@ -25193,7 +25225,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  placeholder",
+        "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -25206,7 +25238,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  disabled",
+        "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -25219,7 +25251,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  required",
+        "name": "required",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -25232,7 +25264,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  readonly",
+        "name": "readonly",
         "type": "XBoolean",
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
@@ -25245,7 +25277,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "override  valueTpl",
+        "name": "valueTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
         "inputType": "InputSignal<TemplateRef<any>>",
@@ -25258,7 +25290,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  valueTplContext",
+        "name": "valueTplContext",
         "type": "",
         "toType": "",
         "inputType": "",
@@ -25271,7 +25303,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  before",
+        "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -25284,7 +25316,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  after",
+        "name": "after",
         "type": "XTemplate",
         "toType": "XTemplate",
         "inputType": "InputSignal<XTemplate>",
@@ -25297,7 +25329,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  pattern",
+        "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
         "inputType": "InputSignal<RegExp | RegExp[] | any>",
@@ -25310,7 +25342,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  message",
+        "name": "message",
         "type": "string | string[]",
         "toType": "string | string[]",
         "inputType": "InputSignal<string | string[]>",
@@ -25323,7 +25355,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  active",
+        "name": "active",
         "type": "boolean",
         "toType": "boolean",
         "inputType": "ModelSignal<boolean>",
@@ -25336,13 +25368,13 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "override  inputValidator",
-        "type": "<",
-        "toType": "",
-        "inputType": "",
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
         "signal": "input",
         "label": "输入验证函数",
-        "default": "value: any",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": "",

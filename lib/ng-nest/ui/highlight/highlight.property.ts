@@ -1,4 +1,4 @@
-import { XProperty, XToBoolean } from '@ng-nest/ui/core';
+import { XPropertyFunction, XToBoolean } from '@ng-nest/ui/core';
 import { Component, input } from '@angular/core';
 import type { XBoolean } from '@ng-nest/ui/core';
 
@@ -8,12 +8,13 @@ import type { XBoolean } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XHighlightPrefix = 'x-highlight';
+const X_HIGHLIGHT_CONFIG_NAME = 'highlight';
 
 /**
  * Highlight Property
  */
 @Component({ selector: `${XHighlightPrefix}-property`, template: '' })
-export class XHighlightProperty extends XProperty {
+export class XHighlightProperty extends XPropertyFunction(X_HIGHLIGHT_CONFIG_NAME) {
   /**
    * @zh_CN 代码类型
    * @en_US Code type

@@ -1,6 +1,5 @@
 import {
   XIdentity,
-  XIdentityProperty,
   XBoolean,
   XIsEmpty,
   XNumber,
@@ -101,7 +100,12 @@ export class XFormProperty extends XFormControlFunction(X_FORM_CONFIG_NAME) {
  * @zh_CN 控件对象
  * @en_US Control object
  */
-export interface XControlOption extends XIdentityProperty {
+export interface XControlOption  {
+  /**
+   * @zh_CN 列 Id
+   * @en_US The column Id
+   */
+  id?: any;
   /**
    * @zh_CN 值
    * @en_US Value
@@ -121,22 +125,22 @@ export interface XControlOption extends XIdentityProperty {
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  disabled?: XBoolean;
+  disabled?: boolean;
   /**
    * @zh_CN 只读
    * @en_US Read only
    */
-  readonly?: XBoolean;
+  readonly?: boolean;
   /**
    * @zh_CN 必填
    * @en_US Required
    */
-  required?: XBoolean;
+  required?: boolean;
   /**
    * @zh_CN 隐藏
    * @en_US Hide
    */
-  hidden?: XBoolean;
+  hidden?: boolean;
   /**
    * @zh_CN 列宽
    * @en_US Column width

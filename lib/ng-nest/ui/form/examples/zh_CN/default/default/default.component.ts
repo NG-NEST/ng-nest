@@ -7,6 +7,7 @@ import { XSelectNode } from '@ng-nest/ui/select';
 import { Observable } from 'rxjs';
 import { DefaultService } from './default.service';
 import { TreeService } from './tree.service';
+import { XAutoCompleteNode } from '@ng-nest/ui/auto-complete';
 
 const DATA_CASCADE: XData<XCalendarNode> = [
   { id: 1, label: 'AAAA' },
@@ -741,7 +742,10 @@ export class ExDefaultComponent {
               x.next([`${str}`, `${str}${str}`, `${str}${str}${str}`]);
               x.complete();
             }),
-          span: 8
+          span: 8,
+          nodeEmit: (node: XAutoCompleteNode) => {
+            console.log(node);
+          }
         },
         {
           control: 'auto-complete',

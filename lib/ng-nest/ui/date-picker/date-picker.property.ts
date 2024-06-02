@@ -186,7 +186,7 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
 export interface XDatePickerOption extends XFormOption {
   /**
    * @zh_CN 选择类型
-   * @en_US Choose a type
+   * @en_US Select type
    */
   type?: XDatePickerType;
   /**
@@ -198,22 +198,107 @@ export interface XDatePickerOption extends XFormOption {
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  clearable?: XBoolean;
+  clearable?: boolean;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
   placement?: XCorner;
   /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  bordered?: boolean;
+  /**
+   * @zh_CN 快捷选择按钮，自定义或直接设置今天（today）,昨天（yesterday）,明天（tomorrow）
+   * @en_US Quick selection button, support today, yesterday, tomorrow
+   */
+  preset?: XData<XDatePickerPreset>;
+  /**
+   * @zh_CN 页脚
+   * @en_US Footer
+   */
+  extraFooter?: XTemplate;
+  /**
+   * @zh_CN 禁用的日期
+   * @en_US Disabled date
+   */
+  disabledDate?: XDatePickerDisabledDate;
+  /**
+   * @zh_CN 禁用的时间
+   * @en_US Disabled time
+   */
+  disabledTime?: XDatePickerDisabledTime;
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
   size?: XSize;
   /**
-   * @zh_CN 显示边框
-   * @en_US Display Border
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
    */
-  bordered?: XBoolean;
+  pointer?: boolean;
+  /**
+   * @zh_CN 标签
+   * @en_US Label
+   */
+  label?: string;
+  /**
+   * @zh_CN 标签宽度
+   * @en_US Label width
+   */
+  labelWidth?: string;
+  /**
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
+   */
+  labelAlign?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
+   */
+  justify?: XJustify;
+  /**
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
+   */
+  align?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
+   */
+  direction?: XDirection;
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  placeholder?: string;
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  disabled?: boolean;
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  required?: boolean;
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  readonly?: boolean;
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  valueTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  valueTplContext?: any;
   /**
    * @zh_CN 前置标签
    * @en_US Before label
@@ -225,10 +310,30 @@ export interface XDatePickerOption extends XFormOption {
    */
   after?: XTemplate;
   /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  pattern?: RegExp | RegExp[];
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  message?: string | string[];
+  /**
+   * @zh_CN 激活状态
+   * @en_US Activation state
+   */
+  active?: boolean;
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  inputValidator?: (value: any) => boolean;
+  /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
-  nodeClick?: (value: number) => void;
+  nodeEmit?: (value: number) => void;
 }
 
 /**

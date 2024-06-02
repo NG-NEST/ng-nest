@@ -23,10 +23,6 @@ export class NsApiReferenceComponent {
   domSanitizer = inject(DomSanitizer);
   property = computed(() => this.data.property);
 
-  constructor() {
-    console.log(this.property());
-  }
-
   close() {
     this.dialogRef.close();
   }

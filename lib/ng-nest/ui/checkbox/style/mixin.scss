@@ -37,7 +37,7 @@
       align-items: center;
       x-tag {
         &:not(:first-child) {
-          margin-left: 0.875rem;
+          margin-left: $--x-font-size;
         }
       }
     }
@@ -47,8 +47,8 @@
       align-items: center;
       white-space: nowrap;
       outline: none;
-      margin-right: 0.875rem;
-      font-size: 0.875rem;
+      margin-right: $--x-font-size;
+      font-size: $--x-font-size;
       cursor: pointer;
       transition: all 0.3s;
       &:hover {

@@ -16,7 +16,7 @@ ns-header {
     opacity $--transition-duration-slow;
   border-block-end: $--layout-border;
   > x-button.menu {
-    margin: 0 0.875rem;
+    margin: 0 $--x-font-size;
     .x-button .x-icon {
       font-size: 1.25rem;
     }
@@ -44,7 +44,7 @@ ns-logo {
       align-items: center;
     }
     h1 {
-      margin: 0.875rem;
+      margin: $--x-font-size;
       white-space: nowrap;
       span {
         font-size: 0.75rem;
@@ -65,7 +65,7 @@ ns-nav {
     justify-content: flex-end;
     > .item {
       .x-button {
-        font-size: 0.925rem;
+        font-size: $--x-font-size;
       }
       &:not(:first-child) {
         margin-left: 1rem;
@@ -80,7 +80,7 @@ ns-nav {
         margin-left: 0;
       }
       &.slider {
-        font-size: 0.925rem;
+        font-size: $--x-font-size;
 
         .x-slider-scroll > ul > li {
           min-width: 5rem;

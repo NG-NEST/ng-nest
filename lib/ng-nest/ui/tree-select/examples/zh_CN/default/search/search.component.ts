@@ -33,7 +33,7 @@ export class ExSearchComponent {
 
   data2 = signal((val: any): Observable<XTreeSelectNode[]> => {
     return new Observable((x) => {
-      let data = JSON.parse(JSON.stringify(this.data1));
+      let data = JSON.parse(JSON.stringify(this.data1()));
       setTimeout(() => {
         let nodes: XTreeSelectNode[] = data.filter((x: XTreeSelectNode) => x.label.indexOf(val) >= 0);
         const getParent = (node: XTreeSelectNode) => {
@@ -55,7 +55,7 @@ export class ExSearchComponent {
   });
   model2 = signal<number | null>(null);
 
-  data3 = signal([...this.data1()]);
+  data3 = signal(JSON.parse(JSON.stringify(this.data1())));
   model3 = signal<number[]>([]);
 
   data4 = signal((val: any): Observable<XTreeSelectNode[]> => {

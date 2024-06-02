@@ -12,7 +12,8 @@ import {
   signal,
   inject,
   ComponentRef,
-  effect
+  effect,
+  DestroyRef
 } from '@angular/core';
 import { XDropdownPortalPrefix, XDropdownNode, XDropdownTrigger } from './dropdown.property';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
@@ -44,10 +45,10 @@ export class XDropdownPortalComponent {
     return this.placement();
   }
   @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(false);
+    event.toState !== 'void' && !this.isDestroy() && this.animating.emit(false);
   }
   @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(true);
+    event.toState !== 'void' && !this.isDestroy() && this.animating.emit(true);
   }
   data = input<XDropdownNode[]>([]);
   trigger = input<XDropdownTrigger>('hover');
@@ -69,6 +70,7 @@ export class XDropdownPortalComponent {
   portalPlacement = signal<XPositionTopBottom | null>(null);
   childAnimating = signal(false);
   activatedId = model<any>();
+  isDestroy = signal(false);
   private unSubject = new Subject<void>();
 
   @HostListener('mouseenter') mouseenter() {
@@ -94,13 +96,17 @@ export class XDropdownPortalComponent {
     effect(() => this.portalComponent()?.setInput('size', this.size()));
     effect(() => this.portalComponent()?.setInput('placement', this.portalPlacement()));
     effect(() => this.portalComponent()?.setInput('activatedId', this.activatedId()));
+
+    inject(DestroyRef).onDestroy(() => {
+      this.isDestroy.set(true);
+    });
   }
 
   onNodeClick(node: XDropdownNode) {
     this.nodeClick.emit(node);
     if (!node.leaf) {
-      this.closed.emit();
       this.activatedId.set(node.id);
+      this.closed.emit();
     }
   }
 
@@ -149,10 +155,11 @@ export class XDropdownPortalComponent {
     if (!componentRef || !overlayRef) return;
     this.portalComponent.set(componentRef);
     this.portalOverlayRef.set(overlayRef);
-    const { closed, animating, nodeClick, portalHover } = componentRef.instance;
+    const { closed, animating, nodeClick, portalHover, activatedId } = componentRef.instance;
     closed.subscribe(() => this.closePortal());
     animating.subscribe((ing) => this.childAnimating.set(ing));
     nodeClick.subscribe((node) => this.nodeClick.emit(node));
+    activatedId.subscribe((id) => this.activatedId.set(id));
     portalHover.subscribe((hover) => this.hover(hover));
   }
 
@@ -204,7 +211,7 @@ export class XDropdownPortalComponent {
       this.openNode.update((x) => {
         x!.openPortal = open;
         x!.change && x!.change();
-        return { ...x };
+        return x;
       });
     }
   }

@@ -353,7 +353,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
  */
 export function getProperty(line: string, docItem: any = {}, lang = '') {
   const ix = line.indexOf('=');
-  const name = line.slice(0, ix).replace('readonly', '').trim();
+  const name = line.slice(0, ix).replace('readonly', '').replace('override', '').trim();
   let right = line.slice(ix + 1, line.length).trim();
   const withConfig = right.indexOf('this.config') >= 0;
   let type = '';
@@ -364,7 +364,9 @@ export function getProperty(line: string, docItem: any = {}, lang = '') {
   let signal: 'input' | 'output' | 'model' = 'input';
   if (right.startsWith('input')) {
     right = right.replace('input', '');
-    type = right.slice(0, right.indexOf('(')).trim();
+    const match1 = right.match(/<\(.*?\) => .*>\(/);
+    const match2 = right.match(/<.*?>\(/);
+    type = match1 ? match1[0].slice(0, match1[0].length - 1) : match2 ? match2[0].slice(0, match2[0].length - 1) : '';
     right = right.replace(type, '');
     if (type.startsWith('<') && type.endsWith('>')) {
       type = type.slice(1, type.length - 1);

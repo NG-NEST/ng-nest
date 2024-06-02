@@ -30,7 +30,7 @@ export class ExLeafComponent {
 
   model1 = signal<number | null>(null);
 
-  data2 = signal<XTreeSelectNode[]>([...this.data1()]);
+  data2 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
   model2 = signal<number[]>([]);
 
   change(value: number | number[]) {

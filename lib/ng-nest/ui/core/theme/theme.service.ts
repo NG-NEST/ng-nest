@@ -13,7 +13,9 @@ import {
   X_THEME_TEXTS,
   X_THEME_BORDERS,
   X_THEME_VARS,
-  XVarsTheme
+  XVarsTheme,
+  X_THEME_DARK_COLORS,
+  X_THEME_LIGHT_COLORS
 } from './theme';
 import { DOCUMENT } from '@angular/common';
 import { XCamelToKebab, XComputed, XKebabToCamel } from '../util';
@@ -46,6 +48,8 @@ export class XThemeService {
 
   setTheme(theme?: XTheme) {
     this.setColors(theme?.colors);
+    this.setVars(theme?.vars);
+    this.setDark(theme?.dark);
   }
 
   getTheme(includesAll = false): XTheme {
@@ -61,6 +65,18 @@ export class XThemeService {
       Object.assign(this.colorsProp, this.setColorRoot(key, colors[key]));
     }
     this.createColorsStyle();
+  }
+
+  setDark(dark?: boolean) {
+    const colors = this.getColors();
+    if (dark === true) {
+      Object.assign(colors, X_THEME_DARK_COLORS);
+    } else if (dark === false) {
+      Object.assign(colors, X_THEME_LIGHT_COLORS);
+    }
+    this.setColors(colors);
+    this.changed.next(dark === true ? 'dark' : 'light');
+    return colors;
   }
 
   getColors(includes = false, prefix = X_THEME_PREFIX): XColorsTheme {

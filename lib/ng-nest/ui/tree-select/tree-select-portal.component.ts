@@ -2,18 +2,17 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding,
-  HostListener,
   TemplateRef,
   inject,
   model,
   input,
   viewChild,
   computed,
-  output
+  output,
+  HostBinding,
+  HostListener
 } from '@angular/core';
 import { XTreeSelectNode, XTreeSelectPortalPrefix } from './tree-select.property';
-
 import { XConnectBaseAnimation, XIsEmpty, XPlacement, XSize } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';

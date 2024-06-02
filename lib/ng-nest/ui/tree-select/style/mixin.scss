@@ -68,6 +68,14 @@
     margin: 1rem;
     display: block;
   }
+  &-virtual-scroll {
+    padding: 0;
+    overflow: hidden;
+
+    .x-tree-content {
+      padding: 0.25rem;
+    }
+  }
 }
 
 @mixin tag-size($size, $height, $padding) {

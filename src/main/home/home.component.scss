@@ -180,7 +180,7 @@ ns-home {
     width: 80%;
     top: 38.5rem;
     font-weight: 600;
-    z-index: 132123123;
+    z-index: 1;
     box-shadow: $--x-box-shadow;
     > ul {
       display: flex;
@@ -191,7 +191,7 @@ ns-home {
           flex: 1;
           .x-button {
             width: 100%;
-            font-size: 0.875rem;
+            font-size: $--x-font-size;
           }
         }
       }

@@ -1,4 +1,4 @@
-import { XProperty } from '@ng-nest/ui/core';
+import { XPropertyFunction } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, output } from '@angular/core';
 import type { XIdentityProperty } from '@ng-nest/ui/core';
 
@@ -8,12 +8,13 @@ import type { XIdentityProperty } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XCalendarPrefix = 'x-calendar';
+const X_CALENDAR_CONFIG_NAME = 'calendar';
 
 /**
  * Calendar Property
  */
 @Component({ selector: `${XCalendarPrefix}-property`, template: '' })
-export class XCalendarProperty extends XProperty {
+export class XCalendarProperty extends XPropertyFunction(X_CALENDAR_CONFIG_NAME) {
   /**
    * @zh_CN 事务数据对象
    * @en_US Transaction data object

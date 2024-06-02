@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XUploadComponent } from '@ng-nest/ui/upload';
@@ -5,7 +6,7 @@ import { XUploadComponent } from '@ng-nest/ui/upload';
 @Component({
   selector: 'ex-custom',
   standalone: true,
-  imports: [FormsModule, XUploadComponent],
+  imports: [FormsModule, XUploadComponent, JsonPipe],
   templateUrl: './custom.component.html'
 })
 export class ExCustomComponent {

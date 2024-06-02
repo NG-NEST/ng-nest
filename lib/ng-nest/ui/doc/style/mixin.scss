@@ -7,7 +7,7 @@
 @mixin doc {
   padding: 0 3rem;
   display: block;
-  font-size: 0.875rem;
+  font-size: $--x-font-size;
   > x-anchor > .x-anchor {
     justify-content: center;
     > .x-anchor-content {
@@ -36,12 +36,12 @@
       h4 {
         font-size: 1rem;
         font-weight: 500;
-        margin: 1.125rem 0 0.875rem;
+        margin: 1.125rem 0 $--x-font-size;
         clear: both;
       }
 
       h5 {
-        font-size: 0.875rem;
+        font-size: $--x-font-size;
         font-weight: 500;
         margin: 1rem 0 0.625rem;
         clear: both;
@@ -49,11 +49,11 @@
 
       > p {
         font-weight: 400;
-        margin: 0.875rem 0 0;
+        margin: $--x-font-size 0 0;
       }
 
       > ul {
-        margin: 0.875rem 0;
+        margin: $--x-font-size 0;
         > li {
           list-style-type: circle;
           margin-left: 1.25rem;
@@ -71,7 +71,7 @@
       }
 
       > blockquote {
-        margin-top: 0.875rem;
+        margin-top: $--x-font-size;
         background-color: $--x-background-a100;
         border-radius: $--x-border-radius;
         border: $--x-border-base;
@@ -152,14 +152,14 @@
     flex: 1;
     position: relative;
     border-radius: $--x-border-radius;
-    padding: 0.875rem 1rem;
+    padding: $--x-font-size 1rem;
     background-color: $backgroundColor;
     color: $color;
     border: $--x-border-base;
     border-color: $--border-color;
     text-shadow: none;
     @if map-has-key($--x-doc-states, $type) {
-      padding: 0.5rem 0.5rem 0.5rem 0.875rem;
+      padding: 0.5rem 0.5rem 0.5rem $--x-font-size;
       white-space: normal;
       font-family: $--x-font-family;
     }

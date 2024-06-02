@@ -1,4 +1,4 @@
-import { XToBoolean } from '@ng-nest/ui/core';
+import { XToBoolean, XToDataConvert } from '@ng-nest/ui/core';
 import { TemplateRef, Component, input, model } from '@angular/core';
 import { XFormControlFunction } from '@ng-nest/ui/base-form';
 import { XTableColumn } from '@ng-nest/ui/table';
@@ -21,7 +21,7 @@ export class XTransferProperty extends XFormControlFunction(X_TRANSFER_CONFIG_NA
    * @zh_CN 数据对象
    * @en_US Data object
    */
-  readonly data = input<XData<XTransferNode>>([]);
+  readonly data = input<XData<XTransferNode>, XData<XTransferNode>>([], { transform: XToDataConvert });
   /**
    * @zh_CN 选择的类型
    * @en_US Type

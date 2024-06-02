@@ -1,4 +1,4 @@
-import { XProperty, XToBoolean, XToCssPixelValue, XToNumber } from '@ng-nest/ui/core';
+import { XPropertyFunction, XToBoolean, XToCssPixelValue, XToNumber } from '@ng-nest/ui/core';
 import { Component, input } from '@angular/core';
 import type { XJustify, XAlign, XNumber, XBoolean } from '@ng-nest/ui/core';
 
@@ -8,12 +8,13 @@ import type { XJustify, XAlign, XNumber, XBoolean } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XRowPrefix = 'x-row';
+const X_ROW_CONFIG_NAME = 'row';
 
 /**
  * Row Property
  */
 @Component({ selector: `${XRowPrefix}-property`, template: '' })
-export class XRowProperty extends XProperty {
+export class XRowProperty extends XPropertyFunction(X_ROW_CONFIG_NAME) {
   /**
    * @zh_CN 列间隔
    * @en_US Column interval
@@ -37,12 +38,13 @@ export class XRowProperty extends XProperty {
  * @decorator component
  */
 export const XColPrefix = 'x-col';
+const X_COL_CONFIG_NAME = 'col';
 
 /**
  * Col Property
  */
 @Component({ selector: `${XColPrefix}-property`, template: '' })
-export class XColProperty extends XProperty {
+export class XColProperty extends XPropertyFunction(X_COL_CONFIG_NAME) {
   /**
    * @zh_CN 24栅格布局，列占的宽度
    * @en_US 24 grid layout, column width

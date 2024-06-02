@@ -26,10 +26,10 @@
     border-bottom: $--x-border-base;
   }
   &-body {
-    padding: 0.875rem;
+    padding: $--x-font-size;
     width: 100%;
     > ul li:not(:last-child) {
-      margin-bottom: 0.875rem;
+      margin-bottom: $--x-font-size;
     }
   }
 }

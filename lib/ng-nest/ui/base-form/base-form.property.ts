@@ -155,11 +155,11 @@ export interface XFormOption {
   /**
    * 禁用
    */
-  disabled?: XBoolean;
+  disabled?: boolean;
   /**
    * 必填
    */
-  required?: XBoolean;
+  required?: boolean;
   /**
    * 正则验证规则
    */
@@ -171,11 +171,11 @@ export interface XFormOption {
   /**
    * 激活状态
    */
-  active?: XBoolean;
+  active?: boolean;
   /**
    * 输入框点击样式
    */
-  pointer?: XBoolean;
+  pointer?: boolean;
   /**
    * 输入验证函数
    */

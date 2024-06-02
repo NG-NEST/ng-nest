@@ -3,6 +3,7 @@ import { InjectionToken } from '@angular/core';
 export interface XTheme {
   colors?: XColorsTheme;
   vars?: XVarsTheme;
+  dark?: boolean;
 }
 
 export interface XColorsTheme {
@@ -99,12 +100,7 @@ export const X_THEME_EXCHANGES = [
   [0.9, -0.2]
 ];
 
-export const X_THEME_COLORS: XColorsTheme = {
-  primary: '#3B82F6',
-  success: '#67c23a',
-  warning: '#e6a23c',
-  danger: '#f56c6c',
-  info: '#909399',
+export const X_THEME_LIGHT_COLORS: XColorsTheme = {
   text: '#333333',
   border: '#efefef',
   background: '#ffffff'
@@ -114,6 +110,15 @@ export const X_THEME_DARK_COLORS: XColorsTheme = {
   text: '#dddddd',
   border: '#252022',
   background: '#0f0f11'
+};
+
+export const X_THEME_COLORS: XColorsTheme = {
+  primary: '#3B82F6',
+  success: '#67c23a',
+  warning: '#e6a23c',
+  danger: '#f56c6c',
+  info: '#909399',
+  ...X_THEME_LIGHT_COLORS
 };
 
 export const X_THEME_VARS: XVarsTheme = {

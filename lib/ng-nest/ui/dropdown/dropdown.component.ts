@@ -190,10 +190,11 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     this.portalComponent.set(componentRef);
     this.portalOverlayRef.set(overlayRef);
     this.realPlacement.set(this.placement());
-    const { closed, animating, nodeClick, portalHover } = componentRef.instance;
+    const { closed, animating, nodeClick, portalHover, activatedId } = componentRef.instance;
     closed.subscribe(() => this.closeSubject.next());
     animating.subscribe((ing) => this.animating.set(ing));
     nodeClick.subscribe((node) => this.nodeClick.emit(node));
+    activatedId.subscribe((id) => this.activatedId.set(id));
     portalHover.subscribe((hover) => this.portalHover(hover));
   }
 

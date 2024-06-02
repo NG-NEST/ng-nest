@@ -26,7 +26,7 @@ export class ExLabelComponent {
     { id: 14, label: '仙人蕉', pid: 5 },
     { id: 15, label: '皇帝蕉', pid: 5 }
   ]);
-  data2 = signal<XTreeSelectNode[]>([...this.data1()]);
-  data3 = signal<XTreeSelectNode[]>([...this.data1()]);
-  data4 = signal<XTreeSelectNode[]>([...this.data1()]);
+  data2 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data3 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data4 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
 }

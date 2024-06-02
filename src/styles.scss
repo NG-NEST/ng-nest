@@ -191,12 +191,12 @@ input {
   h4 {
     font-size: 1rem;
     font-weight: 500;
-    margin: 1.125rem 0 0.875rem;
+    margin: 1.125rem 0 $--x-font-size;
     clear: both;
   }
 
   h5 {
-    font-size: 0.875rem;
+    font-size: $--x-font-size;
     font-weight: 500;
     margin: 1rem 0 0.625rem;
     clear: both;
@@ -204,11 +204,11 @@ input {
 
   > p {
     font-weight: 400;
-    margin: 0.875rem 0 0;
+    margin: $--x-font-size 0 0;
   }
 
   > ul {
-    margin: 0.875rem 0;
+    margin: $--x-font-size 0;
     > li {
       list-style-type: circle;
       margin: 0.125rem 0.125rem 0.125rem 1.25rem;
@@ -219,14 +219,14 @@ input {
   blockquote {
     margin: 0;
     position: relative;
-    padding: 0.5rem 0.5rem 0.5rem 0.875rem;
+    padding: 0.5rem 0.5rem 0.5rem $--x-font-size;
     > p {
       margin: 0;
     }
   }
 
   > blockquote {
-    margin-top: 0.875rem;
+    margin-top: $--x-font-size;
     background-color: $--x-background-a100;
     border-radius: $--x-border-radius;
     border: $--x-border-base;

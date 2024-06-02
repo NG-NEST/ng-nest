@@ -31,7 +31,8 @@
     "border": "边框",
     "fontSize": "文字大小",
     "borderWidth": "边框宽度",
-    "borderRadius": "边框圆角"
+    "borderRadius": "边框圆角",
+    "borderSmallRadius": "边框圆角-小"
   },
   "footer": {
     "allRightsReserved": "版权所有"

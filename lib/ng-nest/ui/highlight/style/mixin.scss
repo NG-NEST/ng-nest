@@ -39,7 +39,7 @@
         > span::before {
           border-right: $--x-border-base;
           padding-right: 0.5rem;
-          margin-right: 0.875rem;
+          margin-right: $--x-font-size;
           text-align: right;
           pointer-events: none;
           display: block;

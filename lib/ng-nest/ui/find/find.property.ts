@@ -330,20 +330,15 @@ export class XFindProperty extends XFormControlFunction(X_FIND_CONFIG_NAME) {
  */
 export interface XFindOption extends XFormOption {
   /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  size?: XSize;
-  /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  bordered?: XBoolean;
+  bordered?: boolean;
   /**
    * @zh_CN 多选
-   * @en_US Multiple select
+   * @en_US Multiple choice
    */
-  multiple?: XBoolean;
+  multiple?: boolean;
   /**
    * @zh_CN 选中 label 名称字段
    * @en_US Check the label name field
@@ -355,17 +350,17 @@ export interface XFindOption extends XFormOption {
    */
   dialogTitle?: string;
   /**
-   * @zh_CN 弹框表格选择框列头名称
-   * @en_US Ball Form Select Box List Name
+   * @zh_CN 弹框表格选择列头名称
+   * @en_US Ball Form Select List Name
    */
   dialogCheckboxLabel?: string;
   /**
-   * @zh_CN 弹框表格选择框列头宽度
-   * @en_US Ball Form Select Box List width
+   * @zh_CN 弹框表格选择列宽
+   * @en_US Ball Form Select List width
    */
-  dialogCheckboxWidth?: number;
+  dialogCheckboxWidth?: string;
   /**
-   * @zh_CN 弹框选择数据为空的提示内容
+   * @zh_CN 弹框选择数据为空的提示信息
    * @en_US Ball box selection data empty prompt information
    */
   dialogEmptyContent?: string;
@@ -381,15 +376,14 @@ export interface XFindOption extends XFormOption {
   dialogHeight?: string;
   /**
    * @zh_CN 弹框显示，隐藏
-   * @en_US Bullet box show, hide
+   * @en_US Bullet box display, hide
    */
   dialogVisible?: boolean;
   /**
    * @zh_CN 按钮居中
-   * @en_US Button center
+   * @en_US Button centered
    */
-  dialogButtonsCenter?: XBoolean;
-
+  dialogButtonsCenter?: boolean;
   /**
    * @zh_CN 表格行数据
    * @en_US Table row data
@@ -406,10 +400,20 @@ export interface XFindOption extends XFormOption {
    */
   tableSize?: number;
   /**
+   * @zh_CN 表格查询条件
+   * @en_US Number of data items per page
+   */
+  tableQuery?: XQuery;
+  /**
    * @zh_CN 表格数据总条数
    * @en_US Total number of table data
    */
   tableTotal?: number;
+  /**
+   * @zh_CN 排序点击的事件
+   * @en_US Sort click events
+   */
+  tableSortChange?: XSort[];
   /**
    * @zh_CN 表格列参数
    * @en_US Table column parameters
@@ -424,12 +428,17 @@ export interface XFindOption extends XFormOption {
    * @zh_CN 表格行点击事件
    * @en_US Table row click event
    */
+  tableRowEmit?: any;
+  /**
+   * @zh_CN 表格行点击事件
+   * @en_US Table row click event
+   */
   tableCheckedRow?: { [property: string]: any[] };
   /**
    * @zh_CN 是否启用加载 loading
-   * @en_US Whether to enable loading
+   * @en_US Whether to enable loading loading
    */
-  tableLoading?: XBoolean;
+  tableLoading?: boolean;
   /**
    * @zh_CN 表格开启虚拟滚动
    * @en_US Table opens virtual scrolling
@@ -454,18 +463,17 @@ export interface XFindOption extends XFormOption {
    * @zh_CN 表格自适应高度，table 高度等于屏幕高度减掉此处设置的数值
    * @en_US Table adaptive height, table height is equal to the screen height minus the value set here
    */
-  tableAdaptionHeight?: XNumber;
+  tableAdaptionHeight?: number;
   /**
    * @zh_CN 表格文档高度百分比，弹窗百分比高度用到
    * @en_US Table document height percentage, used for pop-up window percentage height
    */
-  tableDocPercent?: XNumber;
+  tableDocPercent?: number;
   /**
    * @zh_CN 表格行高度，单位 px
    * @en_US Table row height, unit px
    */
-  tableRowHeight?: XNumber;
-
+  tableRowHeight?: number;
   /**
    * @zh_CN 树节点数据
    * @en_US Tree node data
@@ -480,7 +488,7 @@ export interface XFindOption extends XFormOption {
    * @zh_CN 树默认展开的层级
    * @en_US The level of the tree expanded by default
    */
-  treeExpandedLevel?: XNumber;
+  treeExpandedLevel?: number;
   /**
    * @zh_CN 树 checkbox 选中的节点
    * @en_US Tree checkbox selected node
@@ -490,16 +498,115 @@ export interface XFindOption extends XFormOption {
    * @zh_CN 树显示多选框
    * @en_US Tree display checkbox
    */
-  treeCheckbox?: XBoolean;
+  treeCheckbox?: boolean;
   /**
    * @zh_CN 树和表格同时存在的时候，树节点 id 对应表格的属性，用来做表格数据过滤
    * @en_US When the tree and the table exist at the same time, the tree node id corresponds to the attribute of the table, which is used to filter the table data
    */
   treeTableConnect?: any;
-
   /**
    * @zh_CN 数据查询过滤表单
    * @en_US form for data filter
    */
   search?: XFindSearchOption;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  size?: XSize;
+  /**
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
+   */
+  pointer?: boolean;
+  /**
+   * @zh_CN 标签
+   * @en_US Label
+   */
+  label?: string;
+  /**
+   * @zh_CN 标签宽度
+   * @en_US Label width
+   */
+  labelWidth?: string;
+  /**
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
+   */
+  labelAlign?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
+   */
+  justify?: XJustify;
+  /**
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
+   */
+  align?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
+   */
+  direction?: XDirection;
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  placeholder?: string;
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  disabled?: boolean;
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  required?: boolean;
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  readonly?: boolean;
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  valueTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  valueTplContext?: any;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  before?: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  after?: XTemplate;
+  /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  pattern?: RegExp | RegExp[];
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  message?: string | string[];
+  /**
+   * @zh_CN 激活状态
+   * @en_US Activation state
+   */
+  active?: boolean;
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  inputValidator?: (value: any) => boolean;
 }

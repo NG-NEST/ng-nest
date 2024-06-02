@@ -31,7 +31,8 @@
     "border": "Border",
     "fontSize": "FontSize",
     "borderWidth": "Border width",
-    "borderRadius": "Border radius"
+    "borderRadius": "Border radius",
+    "borderSmallRadius": "Border small radius"
   },
   "footer": {
     "allRightsReserved": "All rights reserved"

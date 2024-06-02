@@ -1,4 +1,4 @@
-import { XProperty, XToBoolean } from '@ng-nest/ui/core';
+import { XPropertyFunction, XToBoolean } from '@ng-nest/ui/core';
 import { Component, input } from '@angular/core';
 import type { XStyle, XBoolean } from '@ng-nest/ui/core';
 
@@ -8,6 +8,7 @@ import type { XStyle, XBoolean } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XSkeletonPrefix = 'x-skeleton';
+const X_SKELETON_CONFIG_NAME = 'skeleton';
 
 /**
  * @zh_CN 骨架默认数据
@@ -24,7 +25,7 @@ export const XSkeletonData: XSkeletonRow[] = [
  * Skeleton Property
  */
 @Component({ selector: `${XSkeletonPrefix}-property`, template: '' })
-export class XSkeletonProperty extends XProperty {
+export class XSkeletonProperty extends XPropertyFunction(X_SKELETON_CONFIG_NAME) {
   /**
    * @zh_CN 骨架数据
    * @en_US Skeleton data

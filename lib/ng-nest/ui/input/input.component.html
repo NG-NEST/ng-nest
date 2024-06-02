@@ -72,8 +72,8 @@
         (blur)="xBlur.emit($event)"
         (keydown)="formControlValidator(); xKeydown.emit($event)"
         (click)="xClick.emit($event)"
-        (compositionstart)="xComposition.emit(true)"
-        (compositionend)="xComposition.emit(false)"
+        (compositionstart)="xComposition.emit($event)"
+        (compositionend)="xComposition.emit($event)"
       />
       @if (clearShow() && !iconSpin()) {
         <x-icon class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>

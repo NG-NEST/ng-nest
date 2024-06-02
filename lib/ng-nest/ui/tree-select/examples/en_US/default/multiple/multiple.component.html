@@ -4,7 +4,7 @@
     [style.width.rem]="24"
     [data]="data1()"
     [(ngModel)]="model1"
-    (ngModelChange)="change(model1)"
+    (ngModelChange)="change($event)"
     multiple
   ></x-tree-select>
 </div>
@@ -14,7 +14,7 @@
     [style.width.rem]="24"
     [data]="data2()"
     [(ngModel)]="model2"
-    (ngModelChange)="change(model2)"
+    (ngModelChange)="change($event)"
     multiple
   ></x-tree-select>
 </div>
@@ -24,7 +24,7 @@
     [style.width.rem]="24"
     [data]="data3()"
     [(ngModel)]="model3"
-    (ngModelChange)="change(model3)"
+    (ngModelChange)="change($event)"
     multiple
   ></x-tree-select>
 </div>
@@ -34,7 +34,7 @@
     [style.width.rem]="24"
     [data]="data4()"
     [(ngModel)]="model4"
-    (ngModelChange)="change(model4)"
+    (ngModelChange)="change($event)"
     multiple
     showPath
   ></x-tree-select>

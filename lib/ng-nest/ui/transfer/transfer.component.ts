@@ -200,6 +200,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
       }
     }
     this.setListCount(this.type(), source);
+    this.cdr.markForCheck();
   }
 
   checkedAllChange($event: boolean, source: XTransferSource) {

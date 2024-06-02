@@ -1,4 +1,4 @@
-import { XProperty } from '@ng-nest/ui/core';
+import { XPropertyFunction } from '@ng-nest/ui/core';
 import { Component, input } from '@angular/core';
 import type { XStatus, XTemplate } from '@ng-nest/ui/core';
 
@@ -8,12 +8,13 @@ import type { XStatus, XTemplate } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XResultPrefix = 'x-result';
+const X_RESULT_CONFIG_NAME = 'result';
 
 /**
  * Result Property
  */
 @Component({ selector: `${XResultPrefix}-property`, template: '' })
-export class XResultProperty extends XProperty {
+export class XResultProperty extends XPropertyFunction(X_RESULT_CONFIG_NAME) {
   /**
    * @zh_CN 状态
    * @en_US Status

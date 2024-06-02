@@ -821,7 +821,7 @@ class TestXTableRowSizeComponent {
         padding: 1rem;
       }
       .custom-td-inner {
-        margin-left: 0.875rem;
+        margin-left: $--x-font-size;
         display: flex;
         flex-direction: column;
       }

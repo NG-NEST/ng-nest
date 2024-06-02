@@ -5,10 +5,49 @@
     background-color: $--x-background-a200;
     border-top-left-radius: $--x-border-radius;
     border-top-right-radius: $--x-border-radius;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .ns-theme-form {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .ns-theme-category {
+    border: $--x-border-base;
+    .category,
+    .item {
+      padding: 0 1rem 0.5rem 1rem;
+      &:not(:first-child) {
+        border-top: $--x-border-base;
+      }
+    }
+
+    .item {
+      display: flex;
+      > * {
+        flex: 1;
+        &:not(:first-child) {
+          border-left: $--x-border-base;
+          padding-left: 1rem;
+        }
+      }
+    }
+
+    .category {
+      padding: 0.5rem 1rem;
+      background-color: $--x-background-a100;
+    }
+  }
+  .ns-theme-close {
+    position: absolute;
+    right: -3rem;
+    top: 1rem;
+  }
+
+  .ns-theme-style-icon {
+    font-size: calc(#{$--x-font-size} + 0.25rem);
   }
 }
 

@@ -1,4 +1,4 @@
-import { XProperty, XToDataArray, XToNumber, XToBoolean } from '@ng-nest/ui/core';
+import { XToDataArray, XToNumber, XToBoolean, XPropertyFunction } from '@ng-nest/ui/core';
 import { Component, input, TemplateRef } from '@angular/core';
 import type { XParentIdentityProperty, XNumber, XBoolean, XDataArray } from '@ng-nest/ui/core';
 
@@ -8,12 +8,13 @@ import type { XParentIdentityProperty, XNumber, XBoolean, XDataArray } from '@ng
  * @decorator component
  */
 export const XStepsPrefix = 'x-steps';
+const X_STEPS_CONFIG_NAME = 'steps';
 
 /**
  * Steps Property
  */
 @Component({ selector: `${XStepsPrefix}-property`, template: '' })
-export class XStepsProperty extends XProperty {
+export class XStepsProperty extends XPropertyFunction(X_STEPS_CONFIG_NAME) {
   /**
    * @zh_CN 节点数据
    * @en_US Node data

@@ -4,7 +4,7 @@
   }
   .row > x-tag {
     &:not(:first-child) {
-      margin-left: 0.875rem;
+      margin-left: $--x-font-size;
     }
   }
 }

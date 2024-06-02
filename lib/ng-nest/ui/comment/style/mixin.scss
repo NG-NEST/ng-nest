@@ -23,7 +23,7 @@
     > ul {
       margin-top: 0.375rem;
       > li {
-        padding: 0 0.875rem;
+        padding: 0 $--x-font-size;
         background-color: $--x-background;
         transition: 0.3s;
         > div {
@@ -46,7 +46,7 @@
           border-bottom: $--x-border-base;
         }
         &.x-comment-more {
-          padding: 0.875rem;
+          padding: $--x-font-size;
         }
         &:hover {
           background-color: $--x-background-a100;
@@ -55,7 +55,7 @@
       }
     }
     .x-comment-reply {
-      margin: 0.875rem 0 1rem;
+      margin: $--x-font-size 0 1rem;
     }
   }
   &-author {

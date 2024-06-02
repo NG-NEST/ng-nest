@@ -28,7 +28,7 @@ export class ExDisabledComponent {
     { id: 15, label: '皇帝蕉', pid: 5 }
   ]);
 
-  data2 = signal<XTreeSelectNode[]>([...this.data1()]);
+  data2 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
 
   model = signal(10);
 }

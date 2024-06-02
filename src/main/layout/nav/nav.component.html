@@ -31,11 +31,6 @@
 
   <div class="item theme no-margin">
     <x-button (click)="action('theme')" [title]="'header.theme' | xI18n" icon="eao-color-palette" text></x-button>
-    <!-- @if (theme() === 'light') {
-      <x-button (click)="action('dark')" [title]="'header.dark' | xI18n" icon="fto-moon" text></x-button>
-    } @else if (theme() === 'dark') {
-      <x-button (click)="action('light')" [title]="'header.light' | xI18n" icon="fto-sun" text></x-button>
-    } -->
   </div>
   <div class="item github no-margin">
     <x-button (click)="action('github')" icon="ado-github" text></x-button>

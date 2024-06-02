@@ -260,12 +260,7 @@ export interface XInputOption extends XFormOption {
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
-  clearable?: XBoolean;
-  /**
-   * @zh_CN 只读
-   * @en_US Read only
-   */
-  readonly?: XBoolean;
+  clearable?: boolean;
   /**
    * @zh_CN 图标
    * @en_US Icon
@@ -280,27 +275,122 @@ export interface XInputOption extends XFormOption {
    * @zh_CN 图标动画
    * @en_US Icon animation
    */
-  iconSpin?: XBoolean;
+  iconSpin?: boolean;
   /**
    * @zh_CN 输入最大长度
    * @en_US Enter the maximum length
    */
-  maxlength?: XNumber;
+  maxlength?: number;
+  /**
+   * @zh_CN 最大值
+   * @en_US Enter the max
+   */
+  max?: number;
+  /**
+   * @zh_CN 最小值
+   * @en_US Enter the min
+   */
+  min?: number;
   /**
    * @zh_CN 宽度
    * @en_US width
    */
-  width?: XNumber;
+  width?: string;
+  /**
+   * @zh_CN 显示边框
+   * @en_US Display Border
+   */
+  bordered?: boolean;
+  /**
+   * @zh_CN 输入框样式
+   * @en_US Input Style
+   */
+  inputStyle?: { [style: string]: any };
+  /**
+   * @zh_CN 输入框内边距。主要指输入框中的左右内边距
+   * @en_US Enter the border of the input box.
+   */
+  inputPadding?: string;
+  /**
+   * @zh_CN 输入框内边距(包含图标)。主要指输入框中的有图标的时候左右内边距
+   * @en_US Enter the border between the input box (including icon).
+   */
+  inputIconPadding?: string;
+  /**
+   * @zh_CN 初始启用验证，在输入值都自动开启
+   * @en_US Initial enable validation, which is automatically enabled when the input value is
+   */
+  validator?: boolean;
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
   size?: XSize;
   /**
-   * @zh_CN 显示边框
-   * @en_US Display Border
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
    */
-  bordered?: XBoolean;
+  pointer?: boolean;
+  /**
+   * @zh_CN 标签
+   * @en_US Label
+   */
+  label?: string;
+  /**
+   * @zh_CN 标签宽度
+   * @en_US Label width
+   */
+  labelWidth?: string;
+  /**
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
+   */
+  labelAlign?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
+   */
+  justify?: XJustify;
+  /**
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
+   */
+  align?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
+   */
+  direction?: XDirection;
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  placeholder?: string;
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  disabled?: boolean;
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  required?: boolean;
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  readonly?: boolean;
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  valueTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  valueTplContext?: any;
   /**
    * @zh_CN 前置标签
    * @en_US Before label
@@ -312,15 +402,70 @@ export interface XInputOption extends XFormOption {
    */
   after?: XTemplate;
   /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  pattern?: RegExp | RegExp[];
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  message?: string | string[];
+  /**
+   * @zh_CN 激活状态
+   * @en_US Activation state
+   */
+  active?: boolean;
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  inputValidator?: (value: any) => boolean;
+  /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event
    */
-  clearClick?: (value: any) => void;
+  clearEmit?: (value: any) => void;
   /**
-   * @zh_CN 输入验证函数
-   * @en_US Input validation function
+   * @zh_CN 获取焦点的事件
+   * @en_US Focus event
    */
-  inputValidator?: (value: any) => boolean;
+  xFocus?: (event: FocusEvent) => void;
+  /**
+   * @zh_CN 失去焦点的事件
+   * @en_US Blur event
+   */
+  xBlur?: (event: FocusEvent) => void;
+  /**
+   * @zh_CN Input
+   * @en_US Input event
+   */
+  xInput?: (event: Event) => void;
+  /**
+   * @zh_CN Keydown
+   * @en_US Keydown event
+   */
+  xKeydown?: (event: KeyboardEvent) => void;
+  /**
+   * @zh_CN Click
+   * @en_US Click event
+   */
+  xClick?: (event: MouseEvent) => void;
+  /**
+   * @zh_CN Mouseenter
+   * @en_US Mouseenter event
+   */
+  xMouseenter?: (event: MouseEvent) => void;
+  /**
+   * @zh_CN Mouseleave
+   * @en_US Mouseleave event
+   */
+  xMouseleave?: (event: MouseEvent) => void;
+  /**
+   * @zh_CN Composition
+   * @en_US Composition event
+   */
+  xComposition?: (event: CompositionEvent) => void;
 }
 
 /**

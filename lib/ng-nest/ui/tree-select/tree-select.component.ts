@@ -89,7 +89,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   multipleValueTpl = viewChild.required<TemplateRef<void>>('multipleValueTpl');
   multipleInput = viewChild<XInputComponent>('multipleInput');
 
-  getReadonly = computed(() => (this.readonly() && !this.search()) || (this.search() && Boolean(this.multiple)));
+  getReadonly = computed(() => (this.readonly() && !this.search()) || (this.search() && Boolean(this.multiple())));
   getMaxTagContent = computed(() => this.maxTagContent() || this.locale().maxTagContent);
   objectArray = computed(() => XIsObjectArray(this.value()));
 
@@ -151,7 +151,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     effect(() => this.portalComponent()?.setInput('data', this.portalData()));
     effect(() => this.portalComponent()?.setInput('value', this.value()));
     effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
-    effect(() => this.portalComponent()?.setInput('multiple', this.multiple() === true ? 0 : 1));
+    effect(() => this.portalComponent()?.setInput('multiple', this.multiple()));
     effect(() => this.portalComponent()?.setInput('nodeTpl', this.nodeTpl()));
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
     effect(() => this.portalComponent()?.setInput('portalMaxHeight', this.portalMaxHeight()));
@@ -459,7 +459,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
           });
         }
       } else {
-        let node = this.nodes().find((x) => x.id === this.value);
+        let node = this.nodes().find((x) => x.id === this.value());
         if (node) {
           if (this.showPath()) {
             const parents = this.getParentPath(node);
@@ -632,9 +632,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
 
   nodeClick(node: XTreeSelectNode, value?: XTreeSelectNode[] | (string | number)[]) {
     if (this.multiple()) {
-      if (this.value().length === 0) {
-        this.value.set(value);
-      }
+      this.value.set(value);
       if (this.multipleInput()) {
         const input = this.multipleInput()!.elementRef.nativeElement;
         this.renderer.setStyle(input, 'width', '2rem');
@@ -693,7 +691,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
 
   onKeydown($event: KeyboardEvent) {
     this.keydownSubject.next($event);
-    if ($event.keyCode !== TAB && !this.search) {
+    if ($event.keyCode !== TAB && !this.search()) {
       $event.preventDefault();
     }
   }

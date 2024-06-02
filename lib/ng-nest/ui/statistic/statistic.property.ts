@@ -8,12 +8,13 @@ import type { XTemplate, XStyle } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XStatisticPrefix = 'x-statistic';
+const X_STATISTIC_CONFIG_NAME = 'statistic';
 
 /**
  * Statistic Property
  */
 @Component({ selector: `${XStatisticPrefix}-property`, template: '' })
-export class XStatisticProperty {
+export class XStatisticProperty extends XPropertyFunction(X_STATISTIC_CONFIG_NAME) {
   /**
    * @zh_CN 显示值
    * @en_US Display value

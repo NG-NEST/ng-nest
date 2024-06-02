@@ -1,64 +1,99 @@
-<div x-dialog-title class="ns-theme-title">{{ 'header.theme' | xI18n }}</div>
+<div x-dialog-title class="ns-theme-title">
+  <span>{{ 'header.theme' | xI18n }}</span>
+  <x-switch
+    [checkedText]="moonTpl"
+    [unCheckedText]="sunTpl"
+    [(ngModel)]="dark"
+    (ngModelChange)="darkChanged($event)"
+  ></x-switch>
+  <ng-template #moonTpl>
+    <x-icon type="fto-moon" class="ns-theme-style-icon"></x-icon>
+  </ng-template>
+  <ng-template #sunTpl>
+    <x-icon type="fto-sun" class="ns-theme-style-icon"></x-icon>
+  </ng-template>
+</div>
 <form x-dialog-content [formGroup]="formGroup" class="ns-theme-form">
   <div formGroupName="colors" class="ns-theme-category">
     <div class="item category">颜色</div>
     <div class="item">
-      <x-color-picker direction="row" [label]="'header.primary' | xI18n" formControlName="primary"></x-color-picker>
+      <x-color-picker [label]="'header.primary' | xI18n" formControlName="primary"></x-color-picker>
     </div>
     <div class="item">
-      <x-color-picker direction="row" [label]="'header.text' | xI18n" formControlName="text"></x-color-picker>
+      <x-color-picker [label]="'header.text' | xI18n" formControlName="text"></x-color-picker>
     </div>
     <div class="item">
-      <x-color-picker direction="row" [label]="'header.success' | xI18n" formControlName="success"></x-color-picker>
+      <x-color-picker [label]="'header.success' | xI18n" formControlName="success"></x-color-picker>
     </div>
     <div class="item">
-      <x-color-picker direction="row" [label]="'header.warning' | xI18n" formControlName="warning"></x-color-picker>
+      <x-color-picker [label]="'header.warning' | xI18n" formControlName="warning"></x-color-picker>
     </div>
     <div class="item">
-      <x-color-picker direction="row" [label]="'header.danger' | xI18n" formControlName="danger"></x-color-picker>
+      <x-color-picker [label]="'header.danger' | xI18n" formControlName="danger"></x-color-picker>
     </div>
     <div class="item">
-      <x-color-picker direction="row" [label]="'header.info' | xI18n" formControlName="info"></x-color-picker>
+      <x-color-picker [label]="'header.info' | xI18n" formControlName="info"></x-color-picker>
     </div>
     <div class="item">
-      <x-color-picker
-        direction="row"
-        [label]="'header.background' | xI18n"
-        formControlName="background"
-      ></x-color-picker>
+      <x-color-picker [label]="'header.background' | xI18n" formControlName="background"></x-color-picker>
     </div>
     <div class="item">
-      <x-color-picker direction="row" [label]="'header.border' | xI18n" formControlName="border"></x-color-picker>
+      <x-color-picker [label]="'header.border' | xI18n" formControlName="border"></x-color-picker>
     </div>
   </div>
   <div formGroupName="vars" class="ns-theme-category">
     <div class="item category">其它参数</div>
     <div class="item">
-      <x-slider-select
-        direction="row"
+      <x-radio
         [label]="'header.fontSize' | xI18n"
         formControlName="fontSize"
-        [min]="0.875"
-        [step]="0.0625"
-        [max]="2"
-        [tooltipCustom]="pxTpl"
-      ></x-slider-select>
-    </div>
-    <!-- <div class="item">
-      <x-slider-select
-        direction="row"
-        [label]="'header.borderWidth' | xI18n"
-        formControlName="borderWidth"
-      ></x-slider-select>
+        [data]="[
+          { id: 0.875, label: '14px' },
+          { id: 1, label: '16px' }
+        ]"
+      ></x-radio>
     </div>
     <div class="item">
-      <x-slider-select
-        direction="row"
+      <x-radio
+        [label]="'header.borderWidth' | xI18n"
+        [data]="[
+          { id: 0.0625, label: '1px' },
+          { id: 0.125, label: '2px' }
+        ]"
+        formControlName="borderWidth"
+      ></x-radio>
+    </div>
+    <div class="item">
+      <x-radio
+        vertical
         [label]="'header.borderRadius' | xI18n"
+        [data]="[
+          { id: 0, label: '0px' },
+          { id: 0.125, label: '2px' },
+          { id: 0.25, label: '4px' },
+          { id: 0.5, label: '6px' },
+          { id: 0.75, label: '12px' },
+          { id: 1, label: '16px' }
+        ]"
         formControlName="borderRadius"
-      ></x-slider-select>
-    </div> -->
+      ></x-radio>
+      <x-radio
+        vertical
+        [label]="'header.borderSmallRadius' | xI18n"
+        [data]="[
+          { id: 0, label: '0px' },
+          { id: 0.125, label: '2px' },
+          { id: 0.25, label: '4px' },
+          { id: 0.5, label: '6px' },
+          { id: 0.75, label: '12px' },
+          { id: 1, label: '16px' }
+        ]"
+        formControlName="borderSmallRadius"
+      ></x-radio>
+    </div>
   </div>
 </form>
 
-<ng-template #pxTpl let-value="$value">{{ value * fontSize() }}px ({{ value }}rem)</ng-template>
+<div class="ns-theme-close">
+  <x-button x-dialog-close plain circle icon="fto-x"></x-button>
+</div>

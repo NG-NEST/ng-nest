@@ -249,7 +249,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
         this.setHeadCheckboxList(data);
         this.setExpand(data);
         this.total.set(total);
-        // this.detectChanges();
       });
   }
 
@@ -342,7 +341,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
       setChildren(x);
       return [...x];
     });
-    // this.detectChanges();
   }
 
   checkSort(sort: XSort[]) {

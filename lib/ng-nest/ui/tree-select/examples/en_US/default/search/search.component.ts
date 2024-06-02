@@ -55,7 +55,7 @@ export class ExSearchComponent {
   });
   model2 = signal<number | null>(null);
 
-  data3 = signal([...this.data1()]);
+  data3 = signal(JSON.parse(JSON.stringify(this.data1())));
   model3 = signal<number[]>([]);
 
   data4 = signal((val: any): Observable<XTreeSelectNode[]> => {

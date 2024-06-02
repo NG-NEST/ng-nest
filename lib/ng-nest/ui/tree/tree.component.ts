@@ -121,7 +121,6 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const { expandedAll, data, checked, manual } = changes;
     XIsChange(data) && this.setData();
-    // XIsChange(activatedId) && this.setActivatedNode(this.treeData());
     XIsChange(expandedAll) && this.setExpandedAll();
     XIsChange(checked) && this.setCheckedKeys(this.checked());
     XIsChange(manual) && this.setManual();

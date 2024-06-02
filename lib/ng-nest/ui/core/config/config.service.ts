@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { X_CONFIG } from './config';
-import { XThemeService, X_THEME_COLORS, X_THEME_DARK_COLORS } from '../theme';
+import { XThemeService } from '../theme';
 import type { XTheme } from '../theme';
 import type { XConfig, XComponentConfigKey, XComponentConfig } from './config';
 
@@ -41,30 +41,12 @@ export class XConfigService {
     }
   }
 
-  setDarkTheme(theme?: XTheme) {
-    let colors = theme?.colors;
-    if (!colors) colors = X_THEME_DARK_COLORS;
-    this.setTheme({
-      colors: this.themeService.getDefineColors(
-        Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors),
-        '',
-        true
-      )
-    });
-    this.themeService.changed.next('dark');
+  setDarkTheme() {
+    return this.themeService.setDark(true);
   }
 
-  setLightTheme(theme?: XTheme) {
-    let colors = theme?.colors;
-    if (!colors) colors = X_THEME_COLORS;
-    this.setTheme({
-      colors: this.themeService.getDefineColors(
-        Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors),
-        '',
-        false
-      )
-    });
-    this.themeService.changed.next('light');
+  setLightTheme() {
+    return this.themeService.setDark(false);
   }
 
   setTheme(theme?: XTheme) {

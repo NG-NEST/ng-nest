@@ -208,7 +208,6 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   }
 
   setLeft() {
-    debugger;
     let startVal = 0,
       endVal = 0;
     const value = this.value();
