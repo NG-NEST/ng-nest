@@ -3084,7 +3084,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-avatar label=\"ng-nest\"></x-avatar>\n```\n",
         "transform": ""
       },
       {
@@ -3097,7 +3097,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-avatar size=\"big\" icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"large\" icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"medium\"  icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"small\" icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"mini\" icon=\"fto-user\"></x-avatar>\n<x-avatar [size]=\"100\" icon=\"fto-user\"></x-avatar>\n<x-avatar [size]=\"{ xs: 20, sm: 60, md: 90, lg: 120, xl: 160 }\" icon=\"fto-user\"></x-avatar>\n```\n",
         "transform": ""
       },
       {
@@ -3110,7 +3110,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-avatar icon=\"fto-user\"></x-avatar>\n```\n",
         "transform": ""
       },
       {
@@ -3123,7 +3123,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "'circle'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-avatar icon=\"fto-user\" shape=\"circle\"></x-avatar>\n<x-avatar icon=\"fto-user\" shape=\"square\"></x-avatar>\n```\n",
         "transform": ""
       },
       {
@@ -3136,7 +3136,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-avatar src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n```\n",
         "transform": ""
       },
       {
@@ -6090,7 +6090,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "'color'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-color label=\"primary\"></x-color>\n```\n",
         "transform": ""
       },
       {
@@ -6103,7 +6103,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "'var(--x-primary)'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-color hex=\"#67c23a\"></x-color>\n```\n",
         "transform": ""
       },
       {
@@ -6116,7 +6116,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "'#ffffff'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-color merge=\"#ffffff\"></x-color>\n```\n",
         "transform": ""
       },
       {
@@ -6129,7 +6129,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "[-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-color [amounts]=\"[0.8, 0.9]\"></x-color>\n```\n",
         "transform": ""
       }
     ],
@@ -14062,7 +14062,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-icon type=\"fto-activity\"></x-icon>\n<x-icon type=\"fto-airplay\"></x-icon>\n<x-icon type=\"fto-anchor\"></x-icon>\n```\n",
         "transform": ""
       },
       {
@@ -14075,21 +14075,8 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-icon color=\"red\" type=\"fto-activity\"></x-icon>\n```\n",
         "transform": ""
-      },
-      {
-        "name": "rotate",
-        "type": "XNumber",
-        "toType": "number",
-        "inputType": "InputSignalWithTransform<number, XNumber>",
-        "signal": "input",
-        "label": "Icon rotation angle",
-        "default": "0",
-        "withConfig": false,
-        "description": "",
-        "example": "",
-        "transform": "XToNumber"
       },
       {
         "name": "spin",
@@ -14101,7 +14088,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-icon spin=\"true\" type=\"fto-loader\"></x-icon>\n```\n",
         "transform": "XToBoolean"
       }
     ],
@@ -16528,7 +16515,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-link href=\"https://www.ngnest.com\" target=\"_blank\">ng-nest</x-link>\n```\n",
         "transform": ""
       },
       {
@@ -16541,7 +16528,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-link icon=\"fto-chevron-left\">left</x-link>\n<x-link icon=\"fto-chevron-right\">right</x-link>\n```\n",
         "transform": ""
       },
       {
@@ -16554,7 +16541,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-link underline>underline</x-link>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -16567,7 +16554,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-link disabled>disabled</x-link>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -16580,7 +16567,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-link icon=\"fto-chevron-left\">left</x-link>\n<x-link icon=\"fto-chevron-right\" iconRight>right</x-link>\n```\n",
         "transform": "XToBoolean"
       },
       {
@@ -16606,7 +16593,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "'initial'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-link type=\"primary\">primary</x-link>\n<x-link type=\"success\">success</x-link>\n<x-link type=\"warning\">warning</x-link>\n<x-link type=\"danger\">danger</x-link>\n<x-link type=\"info\">info</x-link>\n```\n",
         "transform": ""
       },
       {
@@ -16619,7 +16606,7 @@ export const en_US: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": "```html\n<x-link href=\"https://www.ngnest.com\" target=\"_self\">ng-nest</x-link>\n<x-link href=\"https://www.ngnest.com\" target=\"_blank\">ng-nest</x-link>\n```\n",
         "transform": ""
       }
     ],

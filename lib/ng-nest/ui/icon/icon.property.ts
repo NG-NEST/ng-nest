@@ -1,6 +1,6 @@
-import { XPropertyFunction, XToNumber, XToBoolean } from '@ng-nest/ui/core';
+import { XPropertyFunction, XToBoolean } from '@ng-nest/ui/core';
 import { Component, input } from '@angular/core';
-import type { XNumber, XBoolean } from '@ng-nest/ui/core';
+import type { XBoolean } from '@ng-nest/ui/core';
 
 /**
  * Icon
@@ -23,21 +23,36 @@ export class XIconProperty extends XPropertyFunction(X_ICON_CONFIG_NAME) {
   /**
    * @zh_CN 图标类型
    * @en_US Icon type
+   * @example
+   *
+   * ```html
+   * <x-icon type="fto-activity"></x-icon>
+   * <x-icon type="fto-airplay"></x-icon>
+   * <x-icon type="fto-anchor"></x-icon>
+   * ```
+   *
    */
   readonly type = input<string>();
   /**
    * @zh_CN 图标颜色
    * @en_US Icon color
+   * @example
+   *
+   * ```html
+   * <x-icon color="red" type="fto-activity"></x-icon>
+   * ```
+   *
    */
   readonly color = input<string>();
   /**
-   * @zh_CN 图标旋转角度
-   * @en_US Icon rotation angle
-   */
-  readonly rotate = input<number, XNumber>(0, { transform: XToNumber });
-  /**
    * @zh_CN loading效果（图标一直旋转）
    * @en_US Loading effect (icon keeps rotating)
+   * @example
+   *
+   * ```html
+   * <x-icon spin="true" type="fto-loader"></x-icon>
+   * ```
+   *
    */
   readonly spin = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }

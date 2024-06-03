@@ -27,26 +27,63 @@ export class XAvatarProperty extends XPropertyFunction(X_AVATAR_CONFIG_NAME) {
   /**
    * @zh_CN 显示字符
    * @en_US Display characters
+   * @example
+   *
+   * ```html
+   * <x-avatar label="ng-nest"></x-avatar>
+   * ```
+   *
    */
   readonly label = input<XTemplate>();
   /**
    * @zh_CN 尺寸
    * @en_US Size
+   * @example
+   *
+   * ```html
+   * <x-avatar size="big" icon="fto-user"></x-avatar>
+   * <x-avatar size="large" icon="fto-user"></x-avatar>
+   * <x-avatar size="medium"  icon="fto-user"></x-avatar>
+   * <x-avatar size="small" icon="fto-user"></x-avatar>
+   * <x-avatar size="mini" icon="fto-user"></x-avatar>
+   * <x-avatar [size]="100" icon="fto-user"></x-avatar>
+   * <x-avatar [size]="{ xs: 20, sm: 60, md: 90, lg: 120, xl: 160 }" icon="fto-user"></x-avatar>
+   * ```
+   *
    */
   readonly size = input<XAvatarSize>(this.config?.size ?? 'medium');
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
+   * @example
+   *
+   * ```html
+   * <x-avatar icon="fto-user"></x-avatar>
+   * ```
+   *
    */
   readonly icon = input<string>();
   /**
    * @zh_CN 形状
    * @en_US Shape
+   * @example
+   *
+   * ```html
+   * <x-avatar icon="fto-user" shape="circle"></x-avatar>
+   * <x-avatar icon="fto-user" shape="square"></x-avatar>
+   * ```
+   *
    */
   readonly shape = input<XAvatarShape>(this.config?.shape ?? 'circle');
   /**
    * @zh_CN 图片地址
    * @en_US The map's address
+   * @example
+   *
+   * ```html
+   * <x-avatar src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * ```
+   *
    */
   readonly src = input<string>();
   /**

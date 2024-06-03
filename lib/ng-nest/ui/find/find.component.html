@@ -125,7 +125,7 @@
         <div class="x-find-dialog-tags">
           @for (item of temp(); track item.id; let i = $index) {
             <x-tag closable (close)="tempClose(i, item)">
-              <span>{{ item()[columnLabel()] }}</span>
+              <span>{{ item[columnLabel()] }}</span>
             </x-tag>
           }
         </div>

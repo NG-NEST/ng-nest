@@ -47,7 +47,7 @@ ns-logo {
       margin: $--x-font-size;
       white-space: nowrap;
       span {
-        font-size: 0.75rem;
+        font-size: var(--x-font-size);
         margin-left: 0.5rem;
         color: var(--x-text-400);
         font-weight: 500;

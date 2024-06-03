@@ -18,7 +18,7 @@
     border: $--x-border-base;
     .category,
     .item {
-      padding: 0 1rem 0.5rem 1rem;
+      padding: 0 1rem;
       &:not(:first-child) {
         border-top: $--x-border-base;
       }
@@ -28,11 +28,19 @@
       display: flex;
       > * {
         flex: 1;
+        padding-bottom: 0.5rem;
         &:not(:first-child) {
           border-left: $--x-border-base;
           padding-left: 1rem;
         }
+        &:not(:last-child) {
+          padding-right: 1rem;
+        }
       }
+    }
+
+    .border-bottom {
+      border-bottom: $--x-border-base;
     }
 
     .category {

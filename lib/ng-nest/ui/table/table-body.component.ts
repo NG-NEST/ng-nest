@@ -235,14 +235,13 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit {
 
   rowClick(event: Event, row: XTableRow) {
     if (row.disabled) return;
-    this.activatedRow.set(row);
     if (this.table.allowCheckRow() && this.table.rowChecked()) {
       if (!XParentPath(event.target as HTMLElement).includes('x-checkbox')) {
         row[this.table.rowChecked()!.id] = !row[this.table.rowChecked()!.id];
         this.table.bodyChecked(row[this.table.rowChecked()!.id], this.table.rowChecked()!, row);
       }
     }
-    // this.cdr.detectChanges();
+    this.activatedRow.set(row);
   }
 
   onExpanded(_event: Event, node: XTableRow) {

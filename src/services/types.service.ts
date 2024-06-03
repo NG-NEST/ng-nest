@@ -41,6 +41,7 @@ export class TypesService {
       this.nameMap.set(key, prop);
     }
 
+    if (!prop) return;
     this.dialog.create(NsApiNameComponent, {
       className: 'ns-name',
       width: '48rem',
@@ -61,6 +62,8 @@ export class TypesService {
       prop = this.setTypes(this.lang, propType, propName)!;
       this.typeMap.set(key, prop);
     }
+
+    if (!prop) return;
     this.dialog.create(NsApiReferenceComponent, {
       className: 'ns-reference',
       width: '48rem',

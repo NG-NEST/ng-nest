@@ -71,12 +71,20 @@ export class XThemeService {
     const colors = this.getColors();
     if (dark === true) {
       Object.assign(colors, X_THEME_DARK_COLORS);
+      this.setDarkColors(colors);
+      this.changed.next('dark');
     } else if (dark === false) {
       Object.assign(colors, X_THEME_LIGHT_COLORS);
+      this.setColors(colors);
+      this.changed.next('light');
     }
-    this.setColors(colors);
-    this.changed.next(dark === true ? 'dark' : 'light');
+
     return colors;
+  }
+
+  setDarkColors(colors?: XColorsTheme) {
+    this.colorsProp = this.getDefineColors(colors, X_THEME_PREFIX, true);
+    this.createColorsStyle();
   }
 
   getColors(includes = false, prefix = X_THEME_PREFIX): XColorsTheme {
@@ -103,7 +111,6 @@ export class XThemeService {
     Object.keys(colors as XColorsTheme).forEach((x) => {
       result[x] = this.declaration.getPropertyValue(`${prefix}${x}`).trim();
     });
-
     return result;
   }
 
@@ -133,9 +140,9 @@ export class XThemeService {
 
   setDarkColorRoot(color: string, value: string, prefix = X_THEME_PREFIX) {
     let result: XColorsTheme = {};
-    const allColors = this.setColorRoot(color, value, '');
-    if (X_THEME_COLOR_KEYS.includes(color) && !['background'].includes(color)) {
-      const allColors = this.setColorRoot(color, value, prefix);
+    let allColors = this.setColorRoot(color, value, '');
+    if (X_THEME_COLOR_KEYS.includes(color)) {
+      allColors = this.setColorRoot(color, value, prefix);
       X_THEME_EXCHANGES.forEach((x) => {
         if (x[1] >= -0.1) {
           const curr = this.getSuffix(x[0]);

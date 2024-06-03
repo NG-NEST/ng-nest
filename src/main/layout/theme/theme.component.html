@@ -18,26 +18,18 @@
     <div class="item category">颜色</div>
     <div class="item">
       <x-color-picker [label]="'header.primary' | xI18n" formControlName="primary"></x-color-picker>
-    </div>
-    <div class="item">
       <x-color-picker [label]="'header.text' | xI18n" formControlName="text"></x-color-picker>
     </div>
     <div class="item">
       <x-color-picker [label]="'header.success' | xI18n" formControlName="success"></x-color-picker>
-    </div>
-    <div class="item">
       <x-color-picker [label]="'header.warning' | xI18n" formControlName="warning"></x-color-picker>
     </div>
     <div class="item">
       <x-color-picker [label]="'header.danger' | xI18n" formControlName="danger"></x-color-picker>
-    </div>
-    <div class="item">
       <x-color-picker [label]="'header.info' | xI18n" formControlName="info"></x-color-picker>
     </div>
-    <div class="item">
+    <div class="item border-bottom">
       <x-color-picker [label]="'header.background' | xI18n" formControlName="background"></x-color-picker>
-    </div>
-    <div class="item">
       <x-color-picker [label]="'header.border' | xI18n" formControlName="border"></x-color-picker>
     </div>
   </div>
@@ -48,6 +40,7 @@
         [label]="'header.fontSize' | xI18n"
         formControlName="fontSize"
         [data]="[
+          { id: 0.75, label: '12px' },
           { id: 0.875, label: '14px' },
           { id: 1, label: '16px' }
         ]"
@@ -58,7 +51,8 @@
         [label]="'header.borderWidth' | xI18n"
         [data]="[
           { id: 0.0625, label: '1px' },
-          { id: 0.125, label: '2px' }
+          { id: 0.125, label: '2px' },
+          { id: 0.25, label: '4px' }
         ]"
         formControlName="borderWidth"
       ></x-radio>

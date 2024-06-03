@@ -5,10 +5,10 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  AfterViewInit,
   inject,
   computed,
-  signal
+  signal,
+  effect
 } from '@angular/core';
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
 import { XIsChange, XIsEmpty, XGroupBy } from '@ng-nest/ui/core';
@@ -26,7 +26,7 @@ import { XMenuNodeComponent } from './menu-node.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMenuComponent extends XMenuProperty implements OnChanges, AfterViewInit {
+export class XMenuComponent extends XMenuProperty implements OnChanges {
   showCategory = signal(false);
   get scroll(): HTMLElement {
     return this._target;
@@ -48,6 +48,13 @@ export class XMenuComponent extends XMenuProperty implements OnChanges, AfterVie
     [`x-size-${this.size()}`]: !XIsEmpty(this.size())
   }));
 
+  constructor() {
+    super();
+    effect(() => {
+      this.setScrollTop();
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     const { data, activatedId, target } = changes;
     XIsChange(data) && this.setDataChange(this.data());
@@ -58,7 +65,7 @@ export class XMenuComponent extends XMenuProperty implements OnChanges, AfterVie
     }
   }
 
-  ngAfterViewInit() {
+  setScrollTop() {
     if (this.activatedElementRef() && this.scroll) {
       if (typeof this.activatedElementRef()!.nativeElement.getBoundingClientRect !== 'function') {
         return;
