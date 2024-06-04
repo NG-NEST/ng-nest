@@ -1,9 +1,8 @@
 /**
- * Fill default values
- * @param option option
- * @param def default
+ * @zh_CN 填充默认值
+ * @en_US Fill default values
  */
-export function fillDefault(option: { [property: string]: any }, def: { [property: string]: any }) {
+export function XFillDefault(option: { [property: string]: any }, def: { [property: string]: any }) {
   if (option && def) {
     for (const key in def) {
       if (typeof option[key] === 'undefined') {

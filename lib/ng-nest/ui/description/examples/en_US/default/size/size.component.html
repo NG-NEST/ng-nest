@@ -1,5 +1,5 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
-<x-description title="UserInfo" bordered [size]="size">
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
+<x-description title="UserInfo" bordered [size]="size()">
   <x-description-item label="Num: " gridArea="1/1/1/5">909090</x-description-item>
   <x-description-item label="Base" gridArea="2/1/5/2" justify="center" align="center"></x-description-item>
   <x-description-item label="Name: " gridArea="2/2">Zhang san</x-description-item>
@@ -12,7 +12,7 @@
   <x-description-item label="Age: " gridArea="4/3">37</x-description-item>
   <x-description-item label="Hobby: " gridArea="4/4">ping-pong</x-description-item>
 </x-description>
-<x-description title="UserInfo" [size]="size">
+<x-description title="UserInfo" [size]="size()">
   <x-description-item label="No: " gridArea="1/1/1/5">909090</x-description-item>
   <x-description-item label="Base" gridArea="2/1/5/2" justify="center" align="center"></x-description-item>
   <x-description-item label="Name: " gridArea="2/2">Zhang san</x-description-item>

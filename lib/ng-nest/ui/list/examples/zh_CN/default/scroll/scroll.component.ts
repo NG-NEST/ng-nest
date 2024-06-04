@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XSize } from '@ng-nest/ui/core';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
@@ -13,11 +13,9 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
   styleUrls: ['./scroll.component.scss']
 })
 export class ExScrollComponent {
-  radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size: XSize = 'medium';
-
-  visible = false;
-
-  scrollHeight = 250;
-  data = Array.from({ length: 1000 }).map((_, index) => `选项${index + 1}`);
+  radioData = signal(['big', 'large', 'medium', 'small', 'mini']);
+  size = signal<XSize>('medium');
+  visible = signal(false);
+  scrollHeight = signal(250);
+  data = signal(Array.from({ length: 1000 }).map((_, index) => `item ${index + 1}`));
 }

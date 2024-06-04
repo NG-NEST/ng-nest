@@ -1,10 +1,10 @@
-<div #card class="x-card" [ngClass]="classMap" [style.width]="width">
-  @if (header) {
+<div #card class="x-card" [ngClass]="classMap()" [style.width]="width()">
+  @if (header()) {
     <div class="x-card-header">
-      <ng-container *xOutlet="header">{{ header }}</ng-container>
+      <ng-container *xOutlet="header()">{{ header() }}</ng-container>
     </div>
   }
-  <div class="x-card-body" [ngStyle]="bodyStyle">
+  <div class="x-card-body" [ngStyle]="bodyStyle()">
     <ng-content></ng-content>
   </div>
 </div>

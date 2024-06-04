@@ -1,7 +1,7 @@
 <div class="row">
   <x-card width="20rem">
     <ul>
-      @for (item of list; track item) {
+      @for (item of list(); track item) {
         <li>{{ '列表内容 ' + item }}</li>
       }
     </ul>

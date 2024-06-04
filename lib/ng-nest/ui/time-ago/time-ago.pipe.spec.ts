@@ -5,14 +5,16 @@ import { XTimeAgoPrefix } from './time-ago.property';
 import { XAddSeconds, XAddMinutes, XAddHours, XAddDays, XAddMonths, XAddYears } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTimeAgoPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XTimeAgoPipe, XButtonComponent],
-      declarations: [TestXTimeAgoComponent]
-    }).compileComponents();
+    declarations: [TestXTimeAgoComponent],
+    imports: [XTimeAgoPipe, XButtonComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimeAgoComponent>;

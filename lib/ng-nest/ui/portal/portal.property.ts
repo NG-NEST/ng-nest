@@ -31,12 +31,12 @@ export const XPortalConnectedPosition: Map<ConnectedPosition, string> = XInvertK
 /**
  * Portal Property
  */
-export interface XPortalProperty {
+export interface XPortalProperty<T> {
   /**
    * @zh_CN 内容，模板/组件
    * @en_US Content, template/component
    */
-  content?: TemplateRef<any> | ComponentType<any>;
+  content?: TemplateRef<any> | ComponentType<T>;
   /**
    * @zh_CN 视图容器
    * @en_US View container

@@ -1,5 +1,13 @@
-import { XIdentity, XIdentityProperty, XBoolean, XIsEmpty, XNumber, XInputNumber, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Component, TemplateRef, Output, EventEmitter } from '@angular/core';
+import {
+  XIdentity,
+  XBoolean,
+  XIsEmpty,
+  XNumber,
+  XToCssPixelValue,
+  XToNumber,
+  XToBoolean
+} from '@ng-nest/ui/core';
+import { Component, TemplateRef, model, input, output } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
 import { XSelectOption, XSelectComponent } from '@ng-nest/ui/select';
@@ -15,7 +23,7 @@ import { XSwitchOption, XSwitchComponent } from '@ng-nest/ui/switch';
 import { XTimePickerOption, XTimePickerComponent } from '@ng-nest/ui/time-picker';
 import { XTextareaOption, XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XFindOption, XFindComponent } from '@ng-nest/ui/find';
-import { XFormOption, XFormProp } from '@ng-nest/ui/base-form';
+import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 import { XAutoCompleteOption, XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 
 /**
@@ -24,7 +32,7 @@ import { XAutoCompleteOption, XAutoCompleteComponent } from '@ng-nest/ui/auto-co
  * @decorator component
  */
 export const XFormPrefix = 'x-form';
-const X_CONFIG_NAME = 'form';
+const X_FORM_CONFIG_NAME = 'form';
 
 /**
  * @zh_CN 模板
@@ -35,59 +43,70 @@ export type XFormTemplate = { [property: string]: TemplateRef<any> };
  * Form Property
  */
 @Component({ selector: `${XFormPrefix}-property`, template: '' })
-export class XFormProperty extends XFormProp {
+export class XFormProperty extends XFormControlFunction(X_FORM_CONFIG_NAME) {
   /**
    * @zh_CN 表单 FormGroup
    * @en_US Form FormGroup
+   * @default new UntypedFormGroup({})
    */
-  @Input() formGroup: UntypedFormGroup = new UntypedFormGroup({});
+  readonly formGroup = input<UntypedFormGroup>(new UntypedFormGroup({}));
   /**
    * @zh_CN 表单名称
    * @en_US Form name
    */
-  @Input() title?: string;
+  readonly title = input<string>('');
   /**
-   * @zh_CN 控件间距，单位rem
-   * @en_US Control spacing, unit rem
+   * @zh_CN 控件间距
+   * @en_US Control spacing
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 1.75) @XInputNumber() space?: XNumber;
+  readonly space = input<string, XNumber>(this.config?.space ?? '1.75rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 控件宽度，24栅格
    * @en_US Control width, 24 grid
    */
-  @Input() @XInputNumber() span?: XNumber;
+  readonly span = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 标签后缀
    * @en_US Label suffix
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, '') labelSuffix?: string;
+  readonly labelSuffix = input<string>(this.config?.labelSuffix ?? '');
   /**
    * @zh_CN 表单控件
    * @en_US Form control
    */
-  @Input() controls: XFormControlOption[] | XFormRow[] = [];
+  readonly controls = input<XFormControlOption[] | XFormRow[]>([]);
   /**
    * @zh_CN 表单宽度
    * @en_US Form width
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '100%') width: string = '100%';
+  readonly width = input<string, XNumber>(this.config?.width ?? '100%', { transform: XToCssPixelValue });
   /**
    * @zh_CN 自定义模板
    * @en_US Custom template
    */
-  @Input() controlTpl: XFormTemplate = {};
+  readonly controlTpl = input<XFormTemplate>({});
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  override readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN Submit
    * @en_US Submit
    */
-  @Output() xSubmit = new EventEmitter<SubmitEvent>();
+  readonly xSubmit = output<SubmitEvent>();
 }
 
 /**
  * @zh_CN 控件对象
  * @en_US Control object
  */
-export interface XControlOption extends XIdentityProperty {
+export interface XControlOption  {
+  /**
+   * @zh_CN 列 Id
+   * @en_US The column Id
+   */
+  id?: any;
   /**
    * @zh_CN 值
    * @en_US Value
@@ -107,22 +126,22 @@ export interface XControlOption extends XIdentityProperty {
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  disabled?: XBoolean;
+  disabled?: boolean;
   /**
    * @zh_CN 只读
    * @en_US Read only
    */
-  readonly?: XBoolean;
+  readonly?: boolean;
   /**
    * @zh_CN 必填
    * @en_US Required
    */
-  required?: XBoolean;
+  required?: boolean;
   /**
    * @zh_CN 隐藏
    * @en_US Hide
    */
-  hidden?: XBoolean;
+  hidden?: boolean;
   /**
    * @zh_CN 列宽
    * @en_US Column width
@@ -179,22 +198,22 @@ export class XControl extends XIdentity implements XControlOption {
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  disabled?: XBoolean;
+  disabled?: boolean;
   /**
    * @zh_CN 只读
    * @en_US Read only
    */
-  readonly?: XBoolean;
+  readonly?: boolean;
   /**
    * @zh_CN 必填
    * @en_US Required
    */
-  required?: XBoolean;
+  required?: boolean;
   /**
    * @zh_CN 隐藏
    * @en_US Hide
    */
-  hidden?: XBoolean;
+  hidden?: boolean;
   /**
    * @zh_CN 列宽
    * @en_US Column width
@@ -281,9 +300,12 @@ export class XControlProperty {
    * @zh_CN 控件对象
    * @en_US Control object
    */
-  @Input() option?: XControlOption;
+  readonly option = model.required<XControl>({});
 }
 
+/**
+ * Form control
+ */
 export class XFormControl extends UntypedFormControl {
   /**
    * @zh_CN 提示信息
@@ -292,6 +314,10 @@ export class XFormControl extends UntypedFormControl {
   messages?: string[] = [];
 }
 
+/**
+ * @zh_CN 表单控件参数
+ * @en_US Form control option
+ */
 export type XFormControlOption =
   | XInputControlOption
   | XSelectControlOption
@@ -308,6 +334,10 @@ export type XFormControlOption =
   | XFindControlOption
   | XTemplateControlOption;
 
+/**
+ * @zh_CN 表单控件组件
+ * @en_US Form control component
+ */
 export type XFormControlComponent =
   | XInputComponent
   | XSelectComponent
@@ -325,6 +355,10 @@ export type XFormControlComponent =
   | XFindComponent
   | XAutoCompleteComponent;
 
+/**
+ * @zh_CN 表单控件类型
+ * @en_US Form control type
+ */
 export type XFormControlType =
   | XInputControl
   | XSelectControl
@@ -342,6 +376,10 @@ export type XFormControlType =
   | XFindControl
   | XAutoCompleteControl;
 
+/**
+ * @zh_CN 表单控件类型
+ * @en_US Form control type
+ */
 export type XControlType =
   | 'input'
   | 'select'

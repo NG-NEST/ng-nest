@@ -8,22 +8,13 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTextareaPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
-        XThemeComponent,
-        XTextareaComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent
-      ],
-      declarations: [
+    declarations: [
         TestXTextareaComponent,
         TestXTextareaLabelComponent,
         TestXTextareaIconComponent,
@@ -31,8 +22,16 @@ describe(XTextareaPrefix, () => {
         TestXTextareaDisabledComponent,
         TestXTextareaRequiredComponent,
         TestXTextareaLengthComponent
-      ]
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        XThemeComponent,
+        XTextareaComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        XRowComponent,
+        XColComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTextareaComponent>;

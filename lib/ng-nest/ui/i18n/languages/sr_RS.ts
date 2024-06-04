@@ -1,117 +1,165 @@
 export default {
   locale: 'sr_RS',
   comment: {
-    comments: 'коментар',
-    giveALike: 'као',
-    reply: 'Одговорити',
-    more: 'види више',
-    sure: 'издање',
-    placeholder: 'Молимо унесите коментар'
+    comments: 'Komentari',
+    giveALike: 'Sviđa mi se',
+    reply: 'Odgovori',
+    more: 'Prikaži više',
+    sure: 'Objavi',
+    placeholder: 'Unesite komentar'
   },
   theme: {
-    darkMode: 'Тамни режим',
-    initDefault: 'Иницијализирајте задану вредност',
-    primary: 'Главна боја',
-    success: 'успех',
-    warning: 'наредба за суспендовање',
-    danger: 'Опасност',
-    info: 'информације',
-    background: 'позадина',
-    border: 'Рам',
-    text: 'Текст'
+    darkMode: 'Tamni režim',
+    initDefault: 'Inicijalizuj podrazumevano',
+    primary: 'Primarno',
+    success: 'Uspeh',
+    warning: 'Upozorenje',
+    danger: 'Opasnost',
+    info: 'Informacije',
+    background: 'Pozadina',
+    border: 'Granica',
+    text: 'Tekst'
   },
   calendar: {
-    month: 'месец дана',
-    year: 'године',
-    lastMonth: 'Први месец',
-    lastYear: 'прошле године',
-    nextMonth: 'Следећег месеца',
-    nextYear: 'следеће године',
-    january: 'Јануара',
-    february: 'Фебруара',
-    march: 'Март',
-    april: 'Април',
-    may: 'Може',
-    june: 'Јуна',
-    july: 'Јул',
-    august: 'Август',
-    september: 'септембар',
-    october: 'Октобар',
-    november: 'Новембар',
-    december: 'Децембар'
+    month: 'Mesec',
+    year: 'Godina',
+    lastMonth: 'Prošli mesec',
+    lastYear: 'Prošle godine',
+    nextMonth: 'Sledeći mesec',
+    nextYear: 'Sledeće godine',
+    january: 'Januar',
+    february: 'Februar',
+    march: 'Mart',
+    april: 'April',
+    may: 'Maj',
+    june: 'Jun',
+    july: 'Jul',
+    august: 'Avgust',
+    september: 'Septembar',
+    october: 'Oktobar',
+    november: 'Novembar',
+    december: 'Decembar'
   },
   datePicker: {
-    sure: 'Потврди',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'јучер',
-    today: 'Данас',
-    tomorrow: 'сутра'
+    sure: 'Potvrdi',
+    week: 'Nedelja',
+    month: 'Mesec',
+    year: 'Godina',
+    january: 'Januar',
+    february: 'Februar',
+    march: 'Mart',
+    april: 'April',
+    may: 'Maj',
+    june: 'Jun',
+    july: 'Jul',
+    august: 'Avgust',
+    september: 'Septembar',
+    october: 'Oktobar',
+    november: 'Novembar',
+    december: 'Decembar',
+    monday: 'Ponedeljak',
+    tuesday: 'Utorak',
+    wednesday: 'Sreda',
+    thursday: 'Četvrtak',
+    friday: 'Petak',
+    saturday: 'Subota',
+    sunday: 'Nedelja',
+    yesterday: 'Juče',
+    today: 'Danas',
+    tomorrow: 'Sutra',
+    thisWeek: 'Ova nedelja',
+    lastWeek: 'Prošla nedelja',
+    nextWeek: 'Sledeća nedelja',
+    thisMonth: 'Ovaj mesec',
+    lastMonth: 'Prošli mesec',
+    nextMonth: 'Sledeći mesec',
+    thisYear: 'Ova godina',
+    lastYear: 'Prošla godina',
+    nextYear: 'Sledeća godina',
+    selectDate: 'Izaberite datum',
+    selectWeek: 'Izaberite nedelju',
+    selectMonth: 'Izaberite mesec',
+    selectQuarter: 'Izaberite kvartal',
+    selectYear: 'Izaberite godinu',
+    startDate: 'Početni datum',
+    endDate: 'Završni datum',
+    startMonth: 'Početni mesec',
+    endMonth: 'Završni mesec',
+    startQuarter: 'Početni kvartal',
+    endQuarter: 'Završni kvartal',
+    startYear: 'Početna godina',
+    endYear: 'Završna godina',
+    startWeek: 'Početna nedelja',
+    endWeek: 'Završna nedelja'
   },
-  empty: {
-    noData: 'Не података'
+  timePicker: {
+    am: 'Prepodne',
+    pm: 'Popodne',
+    now: 'Sada',
+    selectTime: 'Izaberite vreme',
+    selectHour: 'Izaberite sat',
+    selectMinute: 'Izaberite minut'
   },
+  empty: { noData: 'Nema podataka' },
+  image: { previewText: 'Pregled' },
   pagination: {
-    previous: 'Претходна страница',
-    next: 'Следећа страна',
-    total: 'Укупно',
-    item: 'Члан',
-    first: 'Насловна страна',
-    last: 'Реп',
-    jump: 'Скочити',
-    sizePage: '/ страна'
+    previous: 'Prethodno',
+    next: 'Sledeće',
+    total: 'Ukupno',
+    item: 'Stavka',
+    first: 'Prvo',
+    last: 'Poslednje',
+    jump: 'Skoči na',
+    sizePage: 'Stavki po stranici'
   },
   textRetract: {
-    unfold: 'Рашири',
-    packUp: 'Одложити'
+    unfold: 'Proširi',
+    packUp: 'Skupi'
   },
   timeAgo: {
-    just: 'само',
-    secondsAgo: 'Пре неколико секунди',
-    minutesAgo: 'пре неколико минута',
-    hoursAgo: 'Пре сат времена'
+    just: 'Sada',
+    secondsAgo: 'sekundi ranije',
+    minutesAgo: 'minuta ranije',
+    hoursAgo: 'sati ranije'
+  },
+  transfer: {
+    listTitle: 'Lista',
+    treeTitle: 'Stablo',
+    tableTitle: 'Tabela',
+    selectedTitle: 'Izabrane stavke',
+    inverse: 'Obrnuto'
   },
   messageBox: {
-    cancelText: 'поништити, отказати',
-    confirmText: 'Потврди'
+    cancelText: 'Otkaži',
+    confirmText: 'Potvrdi'
   },
   dialog: {
-    cancelText: 'поништити, отказати',
-    confirmText: 'Потврди'
+    cancelText: 'Otkaži',
+    confirmText: 'Potvrdi'
   },
   popconfirm: {
-    cancelText: 'поништити, отказати',
-    confirmText: 'Потврди'
+    cancelText: 'Otkaži',
+    confirmText: 'Potvrdi'
   },
   upload: {
-    uploadText: 'Додај фајлове'
+    uploadText: 'Dodaj fajl',
+    beginUploadText: 'Započni dodavanje fajla',
+    uploadingText: 'Dodavanje u toku',
+    uploadCompleted: 'Dodavanje fajla završeno'
   },
-  pageHeader: {
-    back: 'повратак'
-  },
+  pageHeader: { back: 'Nazad' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Izaberi sve',
+    loadMoreText: 'Učitaj još',
+    loadingMoreText: 'Učitavanje...'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Izaberi sve',
+    maxTagContent: 'Još {{surplus}} izabrano'
+  },
+  treeSelect: {
+    selectAllText: 'Izaberi sve',
+    maxTagContent: 'Još {{surplus}} izabrano'
+  },
+  form: { required: 'Obavezno' }
 };

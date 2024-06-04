@@ -1,14 +1,14 @@
-<div #anchor class="x-anchor" [ngClass]="classMap">
+<div #anchor class="x-anchor" [ngClass]="classMap()">
   <div #content class="x-anchor-content">
     <ng-content></ng-content>
   </div>
-  <x-affix class="x-anchor-affix" [top]="affixTop">
-    <div class="x-anchor-slider" [style.height.px]="sliderHeight" [style.width.px]="getWidth()">
+  <x-affix class="x-anchor-affix" [top]="affixTop()">
+    <div class="x-anchor-slider" [style.height.px]="sliderHeight()" [style.width]="affixWidth()">
       <x-slider
-        [data]="sliderData"
+        [data]="sliderData()"
         layout="column"
-        [activatedIndex]="activatedIndex"
-        [nodeJustify]="justify"
+        [(activatedIndex)]="activatedIndex"
+        [nodeJustify]="justify()"
         [nodeTpl]="sliderNodeTpl"
         [showAnchor]="true"
         (indexChange)="activatedChange($event)"

@@ -2,20 +2,18 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Renderer2,
   ElementRef,
-  ChangeDetectorRef,
   OnChanges,
   SimpleChanges,
-  ViewChild,
   TemplateRef,
-  inject,
   OnDestroy,
-  OnInit
+  viewChild,
+  signal,
+  computed
 } from '@angular/core';
 import { XRadioPrefix, XRadioNode, XRadioProperty } from './radio.property';
 import { Subject } from 'rxjs';
-import { XIsChange, XSetData, XClearClass, XConfigService } from '@ng-nest/ui/core';
+import { XIsChange, XSetData } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -33,29 +31,33 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XRadioComponent)]
 })
-export class XRadioComponent extends XRadioProperty implements OnInit, OnChanges, OnDestroy {
-  @ViewChild('radio', { static: true }) radio!: ElementRef<HTMLElement>;
-  nodes: XRadioNode[] = [];
-  radioType!: 'initial' | 'button' | 'icon' | 'tag';
-  private _unSubject = new Subject<void>();
+export class XRadioComponent extends XRadioProperty implements OnChanges, OnDestroy {
+  radio = viewChild.required('radio', { read: ElementRef<HTMLElement> });
+  nodes = signal<XRadioNode[]>([]);
+  private unSubject = new Subject<void>();
 
-  get beforeIsTemplate() {
-    return this.before instanceof TemplateRef;
-  }
+  beforeIsTemplate = computed(() => this.before() instanceof TemplateRef);
+  afterIsTemplate = computed(() => this.after() instanceof TemplateRef);
 
-  get afterIsTemplate() {
-    return this.after instanceof TemplateRef;
-  }
-
-  private renderer = inject(Renderer2);
-  override cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
-
-  ngOnInit() {
-    this.setFlex(this.radio.nativeElement, this.renderer, this.justify, this.align, this.direction);
-    this.setClassMap();
-    this.setRadioType();
-  }
+  classMap = computed(() => ({
+    [`x-justify-${this.justify()}`]: !!this.justify(),
+    [`x-align-${this.align()}`]: !!this.align(),
+    [`x-direction-${this.direction()}`]: !!this.direction()
+  }));
+  labelMapSignal = computed(() => ({
+    [`x-text-align-${this.labelAlign()}`]: !!this.labelAlign()
+  }));
+  radioType = computed(() => {
+    if (this.button()) {
+      return 'button';
+    } else if (this.icon()) {
+      return 'icon';
+    } else if (this.tag()) {
+      return 'tag';
+    } else {
+      return 'initial';
+    }
+  });
 
   ngOnChanges(changes: SimpleChanges): void {
     const { data } = changes;
@@ -63,56 +65,33 @@ export class XRadioComponent extends XRadioProperty implements OnInit, OnChanges
   }
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   override writeValue(value: any) {
-    this.value = value;
-    this.cdr.detectChanges();
-  }
-
-  setClassMap() {
-    XClearClass(this.labelMap);
-    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
-  }
-
-  setRadioType() {
-    if (this.button) {
-      this.radioType = 'button';
-    } else if (this.icon) {
-      this.radioType = 'icon';
-    } else if (this.tag) {
-      this.radioType = 'tag';
-    } else {
-      this.radioType = 'initial';
-    }
-    this.cdr.detectChanges();
+    this.value.set(value);
   }
 
   radioClick(event: Event, node: XRadioNode) {
     event.preventDefault();
-    if (this.disabled || node.disabled || (!this.allowCancel && node.id === this.value)) return;
+    if (this.disabledComputed() || node.disabled || (!this.allowCancel() && node.id === this.value())) return;
     this.formControlValidator();
-    if (this.allowCancel && node.id === this.value) {
-      this.value = null;
+    if (this.allowCancel() && node.id === this.value()) {
+      this.value.set(null);
     } else {
-      this.value = node.id;
+      this.value.set(node.id);
     }
-    this.cdr.detectChanges();
-    if (this.onChange) this.onChange(this.value);
+    if (this.onChange) this.onChange(this.value());
   }
 
   private setData() {
-    XSetData<XRadioNode>(this.data, this._unSubject).subscribe((x) => {
-      this.nodes = x;
-      this.cdr.detectChanges();
+    XSetData<XRadioNode>(this.data(), this.unSubject).subscribe((x) => {
+      this.nodes.set(x);
     });
   }
 
   formControlChanges() {
     this.setData();
-    this.ngOnInit();
-    this.cdr.detectChanges();
   }
 }

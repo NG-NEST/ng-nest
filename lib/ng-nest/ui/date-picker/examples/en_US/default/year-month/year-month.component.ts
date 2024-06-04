@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 
@@ -10,10 +10,10 @@ import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
   styleUrls: ['./year-month.component.scss']
 })
 export class ExYearMonthComponent {
-  model1: any;
-  model2: any;
-  model3: any;
-  model4: any;
+  model1 = signal<Date | null>(null);
+  model2 = signal<Date | null>(null);
+  model3 = signal<Date | null>(null);
+  model4 = signal<Date | null>(null);
 
   change(event: any) {
     console.log(event);

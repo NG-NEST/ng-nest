@@ -1,5 +1,5 @@
 <div class="row">
-  <x-timeline [data]="data" [wrapper]="wrapperTpl"></x-timeline>
+  <x-timeline [data]="data()" [wrapper]="wrapperTpl"></x-timeline>
   <ng-template #wrapperTpl let-node="$node">
     <div class="custom-wrapper">
       <span>{{ node.time | xTimeAgo }}</span>

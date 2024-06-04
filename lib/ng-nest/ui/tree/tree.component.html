@@ -1,24 +1,24 @@
-<div #tree class="x-tree" [class.x-tree-only-leaf]="onlyLeaf">
-  @if (virtualScroll) {
+<div #tree class="x-tree" [class.x-tree-only-leaf]="onlyLeaf()">
+  @if (virtualScroll()) {
     <cdk-virtual-scroll-viewport
       #virtualBody
-      [itemSize]="itemSize"
-      [minBufferPx]="minBufferPx"
-      [maxBufferPx]="maxBufferPx"
-      [style.height.px]="virtualScrollHeight"
+      [itemSize]="itemSize()"
+      [minBufferPx]="minBufferPxSignal()"
+      [maxBufferPx]="maxBufferPxSignal()"
+      [style.height.px]="virtualScrollHeightSignal()"
     >
       <div
         class="x-tree-content"
         #dropList
         cdkDropList
-        [cdkDropListDisabled]="!drag"
+        [cdkDropListDisabled]="!drag()"
         [cdkDropListSortingDisabled]="true"
-        [hidden]="isEmpty"
-        [cdkDropListData]="nodes"
+        [hidden]="isEmpty()"
+        [cdkDropListData]="nodes()"
         [cdkDropListEnterPredicate]="predicate"
       >
         <x-tree-node
-          *cdkVirtualFor="let node of nodes; templateCacheSize: 0; trackBy: trackByItem"
+          *cdkVirtualFor="let node of nodes(); templateCacheSize: 0; trackBy: trackByItem"
           cdkDrag
           [cdkDragDisabled]="node.disabled"
           (cdkDragStarted)="cdkDragStarted($event)"
@@ -27,12 +27,23 @@
           [cdkDragData]="node"
           (nodeMouseenter)="nodeMouseenter($event)"
           [node]="node"
-          [lazy]="lazy"
-          [lazyData]="data"
-          [nodeHeight]="nodeHeight"
-          [nodeNowrap]="nodeNowrap"
-          [nodeAlignItems]="nodeAlignItems"
-          [tree]="this"
+          [nodeHeight]="nodeHeight()"
+          [nodeNowrap]="nodeNowrap()"
+          [nodeAlignItems]="nodeAlignItems()"
+          [(disabled)]="node.disabled!"
+          [(id)]="node.id"
+          [(pid)]="node.pid"
+          [(leaf)]="node.leaf!"
+          [(height)]="node.height!"
+          [(alignItems)]="node.alignItems!"
+          [(loading)]="node.loading!"
+          [(level)]="node.level!"
+          [(open)]="node.open"
+          [(checked)]="node.checked!"
+          [(indeterminate)]="node.indeterminate!"
+          [(label)]="node.label!"
+          [(nowrap)]="node.nowrap!"
+          (toggle)="onToggle(null, $event)"
         ></x-tree-node>
       </div>
     </cdk-virtual-scroll-viewport>
@@ -41,13 +52,13 @@
       class="x-tree-content"
       #dropList
       cdkDropList
-      [cdkDropListDisabled]="!drag"
+      [cdkDropListDisabled]="!drag()"
       [cdkDropListSortingDisabled]="true"
-      [hidden]="isEmpty"
-      [cdkDropListData]="nodes"
+      [hidden]="isEmpty()"
+      [cdkDropListData]="nodes()"
       [cdkDropListEnterPredicate]="predicate"
     >
-      @for (node of nodes; track node) {
+      @for (node of nodes(); track node.id + '' + $index) {
         <x-tree-node
           cdkDrag
           [cdkDragDisabled]="node.disabled"
@@ -57,12 +68,23 @@
           [cdkDragData]="node"
           (nodeMouseenter)="nodeMouseenter($event)"
           [node]="node"
-          [lazy]="lazy"
-          [lazyData]="data"
-          [nodeHeight]="nodeHeight"
-          [nodeNowrap]="nodeNowrap"
-          [nodeAlignItems]="nodeAlignItems"
-          [tree]="this"
+          [nodeHeight]="nodeHeight()"
+          [nodeNowrap]="nodeNowrap()"
+          [nodeAlignItems]="nodeAlignItems()"
+          [(disabled)]="node.disabled"
+          [(id)]="node.id"
+          [(pid)]="node.pid"
+          [(leaf)]="node.leaf"
+          [(height)]="node.height!"
+          [(alignItems)]="node.alignItems"
+          [(loading)]="node.loading"
+          [(level)]="node.level"
+          [(open)]="node.open"
+          [(checked)]="node.checked"
+          [(indeterminate)]="node.indeterminate"
+          [(label)]="node.label"
+          [(nowrap)]="node.nowrap"
+          (toggle)="onToggle(null, $event)"
         ></x-tree-node>
       }
     </div>
@@ -70,6 +92,6 @@
 </div>
 
 <!-- 提前加载loading的图标-->
-@if (lazy) {
+@if (lazy()) {
   <x-icon [style.display]="'none'" type="fto-loader"></x-icon>
 }

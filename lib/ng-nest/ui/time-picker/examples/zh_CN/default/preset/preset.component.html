@@ -1,1 +1,6 @@
-<x-time-picker label="显示按钮" [preset]="preset" [(ngModel)]="model" (ngModelChange)="change($event)"></x-time-picker>
+<x-time-picker
+  label="显示按钮"
+  [preset]="preset()"
+  [(ngModel)]="model"
+  (ngModelChange)="change($event)"
+></x-time-picker>

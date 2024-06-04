@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed } from '@angular/core';
 import { XResultPrefix, XResultProperty } from './result.property';
-import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -14,17 +14,12 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XResultComponent extends XResultProperty implements OnInit {
-  get strIcon() {
-    return this.icon as string;
-  }
-  configService = inject(XConfigService);
+export class XResultComponent extends XResultProperty {
+  strIcon = computed(() => {
+    return this.icon() as string;
+  });
 
-  ngOnInit() {
-    this.setClassMap();
-  }
-
-  setClassMap() {
-    this.classMap[`${XResultPrefix}-${this.status}`] = !XIsEmpty(this.status);
-  }
+  classMap = computed(() => ({
+    [`${XResultPrefix}-${this.status()}`]: !XIsEmpty(this.status())
+  }));
 }

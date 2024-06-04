@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XSelectComponent } from '@ng-nest/ui/select';
 
@@ -10,8 +10,8 @@ import { XSelectComponent } from '@ng-nest/ui/select';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  data1 = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
-  data2 = JSON.parse(JSON.stringify(this.data1));
-  model1: any;
-  model2: any = 'CCCC';
+  data1 = signal(['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ']);
+  data2 = signal([...this.data1()]);
+  model1 = signal('');
+  model2 = signal('CCCC');
 }

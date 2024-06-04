@@ -1,37 +1,37 @@
 export default {
   locale: 'id_ID',
   comment: {
-    comments: 'komentar',
+    comments: 'Komentar',
     giveALike: 'Suka',
-    reply: 'Balasan',
-    more: 'lihat lebih lanjut',
-    sure: 'melepaskan',
-    placeholder: 'Silakan masukkan komentar'
+    reply: 'Balas',
+    more: 'Lebih banyak',
+    sure: 'Pastikan',
+    placeholder: 'Masukkan komentar'
   },
   theme: {
-    darkMode: 'Mode gelap',
-    initDefault: 'Inisialisasi nilai default',
-    primary: 'Warna utama',
-    success: 'keberhasilan',
-    warning: 'peringatan',
+    darkMode: 'Mode Gelap',
+    initDefault: 'Inisialisasi Default',
+    primary: 'Utama',
+    success: 'Berhasil',
+    warning: 'Peringatan',
     danger: 'Bahaya',
-    info: 'informasi',
+    info: 'Info',
     background: 'Latar Belakang',
-    border: 'bingkai',
+    border: 'Batas',
     text: 'Teks'
   },
   calendar: {
-    month: 'bulan',
-    year: 'tahun',
-    lastMonth: 'Bulan pertama',
-    lastYear: 'tahun lalu',
-    nextMonth: 'Bulan depan',
-    nextYear: 'tahun depan',
+    month: 'Bulan',
+    year: 'Tahun',
+    lastMonth: 'Bulan Lalu',
+    lastYear: 'Tahun Lalu',
+    nextMonth: 'Bulan Depan',
+    nextYear: 'Tahun Depan',
     january: 'Januari',
     february: 'Februari',
     march: 'Maret',
     april: 'April',
-    may: 'Mungkin',
+    may: 'Mei',
     june: 'Juni',
     july: 'Juli',
     august: 'Agustus',
@@ -41,77 +41,125 @@ export default {
     december: 'Desember'
   },
   datePicker: {
-    sure: 'Konfirmasi',
-    month: '',
-    year: '',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'kemarin',
-    today: 'Dewasa ini',
-    tomorrow: 'besok'
+    sure: 'Pastikan',
+    week: 'Minggu',
+    month: 'Bulan',
+    year: 'Tahun',
+    january: 'Januari',
+    february: 'Februari',
+    march: 'Maret',
+    april: 'April',
+    may: 'Mei',
+    june: 'Juni',
+    july: 'Juli',
+    august: 'Agustus',
+    september: 'September',
+    october: 'Oktober',
+    november: 'November',
+    december: 'Desember',
+    monday: 'Senin',
+    tuesday: 'Selasa',
+    wednesday: 'Rabu',
+    thursday: 'Kamis',
+    friday: 'Jumat',
+    saturday: 'Sabtu',
+    sunday: 'Minggu',
+    yesterday: 'Kemarin',
+    today: 'Hari Ini',
+    tomorrow: 'Besok',
+    thisWeek: 'Minggu Ini',
+    lastWeek: 'Minggu Lalu',
+    nextWeek: 'Minggu Depan',
+    thisMonth: 'Bulan Ini',
+    lastMonth: 'Bulan Lalu',
+    nextMonth: 'Bulan Depan',
+    thisYear: 'Tahun Ini',
+    lastYear: 'Tahun Lalu',
+    nextYear: 'Tahun Depan',
+    selectDate: 'Pilih Tanggal',
+    selectWeek: 'Pilih Minggu',
+    selectMonth: 'Pilih Bulan',
+    selectQuarter: 'Pilih Kuartal',
+    selectYear: 'Pilih Tahun',
+    startDate: 'Tanggal Mulai',
+    endDate: 'Tanggal Berakhir',
+    startMonth: 'Bulan Mulai',
+    endMonth: 'Bulan Berakhir',
+    startQuarter: 'Kuartal Mulai',
+    endQuarter: 'Kuartal Berakhir',
+    startYear: 'Tahun Mulai',
+    endYear: 'Tahun Berakhir',
+    startWeek: 'Minggu Mulai',
+    endWeek: 'Minggu Berakhir'
   },
-  empty: {
-    noData: 'אין מידע'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Sekarang',
+    selectTime: 'Pilih Waktu',
+    selectHour: 'Pilih Jam',
+    selectMinute: 'Pilih Menit'
   },
+  empty: { noData: 'Tidak Ada Data' },
+  image: { previewText: 'Pratinjau' },
   pagination: {
-    previous: 'Halaman sebelumnya',
-    next: 'Halaman selanjutnya',
+    previous: 'Sebelumnya',
+    next: 'Berikutnya',
     total: 'Total',
-    item: 'Artikel',
-    first: 'halaman Depan',
-    last: 'Ekor',
-    jump: 'Melompat',
-    sizePage: '/ Halaman'
+    item: 'Item',
+    first: 'Pertama',
+    last: 'Terakhir',
+    jump: 'Lompat',
+    sizePage: 'Item/Halaman'
   },
   textRetract: {
-    unfold: 'Membuka',
-    packUp: 'Menyimpan'
+    unfold: 'Buka',
+    packUp: 'Lipat'
   },
   timeAgo: {
-    just: 'hanya',
-    secondsAgo: 'Beberapa detik lalu',
-    minutesAgo: 'beberapa menit yang lalu',
-    hoursAgo: 'Satu jam yang lalu'
+    just: 'Baru saja',
+    secondsAgo: 'Detik yang lalu',
+    minutesAgo: 'Menit yang lalu',
+    hoursAgo: 'Jam yang lalu'
+  },
+  transfer: {
+    listTitle: 'Daftar',
+    treeTitle: 'Pohon',
+    tableTitle: 'Tabel',
+    selectedTitle: 'Item yang Dipilih',
+    inverse: 'Balikkan'
   },
   messageBox: {
-    cancelText: 'membatalkan',
+    cancelText: 'Batal',
     confirmText: 'Konfirmasi'
   },
   dialog: {
-    cancelText: 'membatalkan',
+    cancelText: 'Batal',
     confirmText: 'Konfirmasi'
   },
   popconfirm: {
-    cancelText: 'membatalkan',
+    cancelText: 'Batal',
     confirmText: 'Konfirmasi'
   },
   upload: {
-    uploadText: 'unggah berkas'
+    uploadText: 'Unggah Berkas',
+    beginUploadText: 'Mulai Unggah Berkas',
+    uploadingText: 'Sedang Mengunggah',
+    uploadCompleted: 'Unggahan Berkas Selesai'
   },
-  pageHeader: {
-    back: 'kembali'
-  },
+  pageHeader: { back: 'Kembali' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Pilih Semua',
+    loadMoreText: 'Muat Lebih Banyak',
+    loadingMoreText: 'Memuat Lebih Banyak'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Pilih Semua',
+    maxTagContent: 'Lebih {{surplus}} Dipilih'
+  },
+  treeSelect: {
+    selectAllText: 'Pilih Semua',
+    maxTagContent: 'Lebih {{surplus}} Dipilih'
+  },
+  form: { required: 'Wajib Diisi' }
 };

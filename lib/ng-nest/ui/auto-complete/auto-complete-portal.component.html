@@ -1,14 +1,19 @@
-<div #autoCompletePortal class="x-auto-complete-portal" tabindex="-1" (click)="inputCom.inputFocus(); stopPropagation($event)">
+<div
+  #autoCompletePortal
+  class="x-auto-complete-portal"
+  tabindex="-1"
+  (click)="inputCom()?.inputFocus('focus'); stopPropagation($event)"
+>
   <x-list
     #list
-    [data]="data"
-    (nodeClick)="nodeClick($event)"
+    [data]="data()!"
+    (nodeClick)="onNodeClick($event)"
     (keyManagerChange)="onActive($event)"
     (keyManagerTabOut)="onTabOut()"
-    [nodeTpl]="nodeTpl"
+    [nodeTpl]="nodeTpl()"
     [scrollElement]="autoCompletePortal"
-    [keywordText]="keywordText"
-    [caseSensitive]="caseSensitive"
+    [keywordText]="keywordText()"
+    [caseSensitive]="caseSensitive()"
     [inPortal]="true"
   ></x-list>
 </div>

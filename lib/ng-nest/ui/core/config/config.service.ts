@@ -1,14 +1,10 @@
-// tslint:disable no-any
-
 import { Injectable, inject } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { XConfig, X_CONFIG, XComponentConfigKey, XComponentConfig } from './config';
-import { XThemeService, XTheme, X_THEME_COLORS, X_THEME_DARK_COLORS } from '../theme';
-import { filter, mapTo } from 'rxjs/operators';
-
-const isDefined = function (value?: any): boolean {
-  return value !== undefined;
-};
+import { filter, map } from 'rxjs/operators';
+import { X_CONFIG } from './config';
+import { XThemeService } from '../theme';
+import type { XTheme } from '../theme';
+import type { XConfig, XComponentConfigKey, XComponentConfig } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +27,7 @@ export class XConfigService {
   getConfigChangeEventForComponent(componentName: XComponentConfigKey): Observable<void> {
     return this.componentConfigUpdated$.pipe(
       filter((n) => n === componentName),
-      mapTo(undefined)
+      map(() => undefined)
     );
   }
 
@@ -45,28 +41,12 @@ export class XConfigService {
     }
   }
 
-  setDarkTheme(theme?: XTheme) {
-    let colors = theme?.colors;
-    if (!colors) colors = X_THEME_DARK_COLORS;
-    this.setTheme({
-      colors: this.themeService.getDefineColors(
-        Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors),
-        '',
-        true
-      )
-    });
+  setDarkTheme() {
+    return this.themeService.setDark(true);
   }
 
-  setLightTheme(theme?: XTheme) {
-    let colors = theme?.colors;
-    if (!colors) colors = X_THEME_COLORS;
-    this.setTheme({
-      colors: this.themeService.getDefineColors(
-        Object.assign({}, this.themeService.getColorsInProperty(X_THEME_COLORS), colors),
-        '',
-        false
-      )
-    });
+  setLightTheme() {
+    return this.themeService.setDark(false);
   }
 
   setTheme(theme?: XTheme) {
@@ -80,48 +60,4 @@ export class XConfigService {
   getTheme(includesAll = false): XTheme {
     return this.themeService.getTheme(includesAll);
   }
-}
-
-// tslint:disable-next-line:typedef
-export function XWithConfig<T>(componentName: XComponentConfigKey, innerDefaultValue?: T) {
-  return function ConfigDecorator(
-    target: any,
-    propName: any,
-    originalDescriptor?: TypedPropertyDescriptor<T>
-  ): any {
-    const privatePropName = `$$__assignedValue__${propName}`;
-
-    Object.defineProperty(target, privatePropName, {
-      configurable: true,
-      writable: true,
-      enumerable: false
-    });
-
-    return {
-      get(): T | undefined {
-        const originalValue =
-          originalDescriptor && originalDescriptor.get
-            ? originalDescriptor.get.bind(this)()
-            : this[privatePropName];
-
-        if (isDefined(originalValue)) {
-          return originalValue;
-        }
-
-        const componentConfig = this.configService?.getConfigForComponent(componentName) || {};
-        const configValue = componentConfig[propName];
-
-        return isDefined(configValue) ? configValue : innerDefaultValue;
-      },
-      set(value: T): void {
-        if (originalDescriptor && originalDescriptor.set) {
-          originalDescriptor.set.bind(this)(value);
-        } else {
-          this[privatePropName] = value;
-        }
-      },
-      configurable: true,
-      enumerable: true
-    };
-  };
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XProgressComponent } from '@ng-nest/ui/progress';
 
 @Component({
@@ -9,7 +9,7 @@ import { XProgressComponent } from '@ng-nest/ui/progress';
   styleUrls: ['./format.component.scss']
 })
 export class ExFormatComponent {
-  format(percent: number) {
+  format = signal((percent: number) => {
     return percent === 100 ? 'completed' : 'loading' + percent + '%';
-  }
+  });
 }

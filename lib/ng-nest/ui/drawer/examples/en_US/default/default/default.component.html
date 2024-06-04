@@ -1,7 +1,7 @@
 <div class="row">
-  <x-radio [data]="data" [(ngModel)]="value"></x-radio>
+  <x-radio [data]="data()" [(ngModel)]="value"></x-radio>
   <x-button (click)="open()">open</x-button>
-  <x-drawer title="title" [visible]="visible" [placement]="value" (close)="close()">
+  <x-drawer title="title" [(visible)]="visible" [placement]="value()" (close)="close()">
     <span>content</span>
   </x-drawer>
 </div>

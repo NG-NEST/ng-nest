@@ -2,17 +2,16 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   ElementRef,
-  Input,
   inject,
-  OnInit
+  input,
+  effect
 } from '@angular/core';
 import { XMenuNodeProperty, XMenuNodePrefix } from './menu.property';
-import { XConfigService } from '@ng-nest/ui/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { RouterModule } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
+import { XMenuComponent } from './menu.component';
 
 @Component({
   selector: `${XMenuNodePrefix}`,
@@ -22,18 +21,26 @@ import { NgTemplateOutlet } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMenuNodeComponent extends XMenuNodeProperty implements OnInit {
-  @Input() menu: any;
-  private cdr = inject(ChangeDetectorRef);
-  private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
+export class XMenuNodeComponent extends XMenuNodeProperty {
+  menu = inject(XMenuComponent, { optional: true })!;
+  routerLink = input<string>();
+  leaf = input<boolean>();
+  icon = input<string>();
+  label = input<string>();
+  open = input<boolean>();
+  id = input<any>();
 
-  ngOnInit() {
-    if (this.menu?.activatedId == this.node.id) {
-      this.menu.activatedElementRef = this.elementRef;
-    }
-    this.node.change = () => {
-      this.cdr.detectChanges();
-    };
+  private elementRef = inject(ElementRef);
+
+  constructor() {
+    super();
+    effect(
+      () => {
+        if (this.menu.activatedId() === this.id()) {
+          this.menu.activatedElementRef.set(this.elementRef);
+        }
+      },
+      { allowSignalWrites: true }
+    );
   }
 }

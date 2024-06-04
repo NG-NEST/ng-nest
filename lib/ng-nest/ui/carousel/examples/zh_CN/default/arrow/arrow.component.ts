@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XCarouselComponent, XCarouselPanelComponent } from '@ng-nest/ui/carousel';
 
 @Component({
@@ -8,9 +8,6 @@ import { XCarouselComponent, XCarouselPanelComponent } from '@ng-nest/ui/carouse
   templateUrl: './arrow.component.html',
   styleUrls: ['./arrow.component.scss']
 })
-export class ExArrowComponent implements OnInit {
-  list = [1, 2, 3, 4, 5];
-  constructor() {}
-
-  ngOnInit() {}
+export class ExArrowComponent {
+  list = signal([1, 2, 3, 4, 5]);
 }

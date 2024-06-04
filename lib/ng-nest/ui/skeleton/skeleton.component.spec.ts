@@ -13,14 +13,14 @@ import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XSkeletonPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXSkeletonComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XSkeletonComponent,
@@ -31,10 +31,9 @@ describe(XSkeletonPrefix, () => {
         XColComponent,
         XAvatarComponent,
         XIconComponent,
-        XLinkComponent
-      ],
-      declarations: [TestXSkeletonComponent]
-    }).compileComponents();
+        XLinkComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSkeletonComponent>;
@@ -163,7 +162,7 @@ class TestXSkeletonComponent {
   dataCustom: XSkeletonRow[] = [
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [
         { type: 'avatar', width: '3rem', height: '3rem' },
         {
@@ -173,7 +172,7 @@ class TestXSkeletonComponent {
             { cols: [{}] },
             { cols: [{ span: 16 }] },
             {
-              space: 1,
+              space: "1rem",
               flex: true,
               cols: [
                 { width: '3rem' },
@@ -192,7 +191,7 @@ class TestXSkeletonComponent {
   dataTable: XSkeletonRow[] = [
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [
         { type: 'title', width: '3rem' },
         { type: 'title', span: 4 },
@@ -203,22 +202,22 @@ class TestXSkeletonComponent {
     },
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: 1,
+      space: "1rem",
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     }
   ];

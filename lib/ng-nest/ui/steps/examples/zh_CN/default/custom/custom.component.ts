@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XStepsComponent } from '@ng-nest/ui/steps';
 
 @Component({
@@ -9,6 +9,6 @@ import { XStepsComponent } from '@ng-nest/ui/steps';
   styleUrls: ['./custom.component.html']
 })
 export class ExCustomComponent {
-  activatedIndex = 1;
-  data: string[] = ['步骤 1', '步骤 2', '步骤 3'];
+  activatedIndex = signal(1);
+  data = signal(['步骤 1', '步骤 2', '步骤 3']);
 }

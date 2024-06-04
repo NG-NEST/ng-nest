@@ -1,52 +1,52 @@
-<div #slider class="x-slider" [ngClass]="classMap">
-  @if (autoShowArrow && showArrow) {
+<div #slider class="x-slider" [ngClass]="classMap()">
+  @if (autoShowArrow() && showArrow()) {
     <x-link
-      [disabled]="offset === 0"
+      [disabled]="offset() === 0"
       class="x-slider-arrow-left"
       icon="fto-chevron-left"
       (click)="scrollPrev()"
     ></x-link>
   }
-  <div class="x-slider-scroll" #sliderScroll [ngClass]="scrollClassMap">
-    <ul #sliderNodes [style.transform]="transform">
-      @for (node of nodes; track node.id; let i = $index) {
+  <div class="x-slider-scroll" #sliderScroll [ngClass]="scrollClassMap()">
+    <ul #sliderNodes [style.transform]="transform()">
+      @for (node of data(); track node.id; let i = $index) {
         <li [class.x-slider-activated]="getActivated(i)" [class.x-slider-disabled]="node.disabled" [title]="node.label">
           <x-link
             (click)="nodeClick($event, node, i)"
             (mouseenter)="onEnter($event, node, i)"
             (mouseleave)="onLeave(node)"
-            [ngClass]="nodeClassMap"
-            [href]="showAnchor ? '#' + node.id : ''"
-            [preventDefault]="showAnchor"
+            [ngClass]="nodeClassMap()"
+            [href]="showAnchor() ? '#' + node.id : ''"
+            [preventDefault]="showAnchor()"
           >
-            <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
-            @if (!nodeTpl) {
+            <ng-container *ngTemplateOutlet="nodeTpl()!; context: { $node: node }"></ng-container>
+            @if (!nodeTpl()) {
               <ng-container *xOutlet="node.label">{{ node.label }}</ng-container>
             }
           </x-link>
         </li>
       }
-      <li class="x-slider-highlight" [class.x-slider-highlight-animated]="animated" [ngStyle]="highlightBox"></li>
+      <li class="x-slider-highlight" [class.x-slider-highlight-animated]="animated()" [ngStyle]="highlightBox()"></li>
     </ul>
   </div>
-  @if (autoShowArrow && showArrow) {
+  @if (autoShowArrow() && showArrow()) {
     <x-link
-      [disabled]="offset === maxOffset"
+      [disabled]="offset() === maxOffset()"
       class="x-slider-arrow-right"
       icon="fto-chevron-right"
       (click)="scrollNext()"
     ></x-link>
   }
-  @if (showExpand && showArrow && layout === 'row') {
+  @if (showExpand() && showArrow() && layout() === 'row') {
     <x-dropdown
       class="x-slider-all"
-      [data]="nodes"
+      [data]="data()"
       trigger="click"
       [(activatedId)]="activatedId"
       (nodeClick)="dropdownClick($event)"
-      [portalMaxHeight]="expandMaxHeight"
+      [portalMaxHeight]="expandMaxHeight()"
     >
-      <x-button icon="fto-list" onlyIcon flat plain [size]="size"> </x-button>
+      <x-button icon="fto-list" onlyIcon flat plain [size]="size()"> </x-button>
     </x-dropdown>
   }
 </div>

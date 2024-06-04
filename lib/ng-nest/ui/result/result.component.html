@@ -1,11 +1,11 @@
-<div #result class="x-result" [ngClass]="classMap">
+<div #result class="x-result" [ngClass]="classMap()">
   <div class="x-result-icon">
-    @if (icon) {
-      <ng-container *xOutlet="icon">
-        <x-icon [type]="strIcon"></x-icon>
+    @if (icon()) {
+      <ng-container *xOutlet="icon()">
+        <x-icon [type]="strIcon()"></x-icon>
       </ng-container>
     } @else {
-      @switch (status) {
+      @switch (status()) {
         @case ('success') {
           <x-icon type="adf-check-circle"></x-icon>
         }
@@ -32,10 +32,10 @@
   </div>
 
   <div class="x-result-title">
-    <ng-container *xOutlet="title">{{ title }}</ng-container>
+    <ng-container *xOutlet="title()">{{ title() }}</ng-container>
   </div>
   <div class="x-result-subTitle">
-    <ng-container *xOutlet="subTitle">{{ subTitle }}</ng-container>
+    <ng-container *xOutlet="subTitle()">{{ subTitle() }}</ng-container>
   </div>
   <div class="x-result-content">
     <ng-content></ng-content>

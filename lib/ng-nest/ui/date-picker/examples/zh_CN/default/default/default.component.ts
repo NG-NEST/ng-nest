@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 
@@ -10,6 +10,6 @@ import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  model1: any;
-  model2 = new Date();
+  model1 = signal<Date | null>(null);
+  model2 = signal(new Date());
 }

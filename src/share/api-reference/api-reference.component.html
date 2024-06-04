@@ -1,0 +1,156 @@
+<div x-dialog-title class="ns-reference-title">{{ 'api.type' | xI18n }}</div>
+<div x-dialog-content class="ns-reference-content">
+  <ng-container *ngTemplateOutlet="typeChild; context: { property: property() }"></ng-container>
+
+  <ng-template #typeChild let-property="property" let-excludeTitle="excludeTitle" let-isChildren="isChildren">
+    @if (property) {
+      @if (property.type === 'type') {
+        <div class="property">
+          @if (!excludeTitle) {
+            <ng-container *ngTemplateOutlet="typeTitle; context: { property }"></ng-container>
+          }
+          @if (property.children && property.children.length > 0) {
+            <div class="children">
+              <x-collapse ghost iconPosition="left">
+                @for (child of property.children; track child) {
+                  <x-collapse-panel [label]="labelTpl" active>
+                    <ng-container
+                      *ngTemplateOutlet="typeChild; context: { property: child, excludeTitle: true, isChildren: true }"
+                    ></ng-container>
+                    <ng-template #labelTpl>
+                      <ng-container
+                        *ngTemplateOutlet="typeTitle; context: { property: child, isChildren: true }"
+                      ></ng-container>
+                    </ng-template>
+                  </x-collapse-panel>
+                }
+              </x-collapse>
+            </div>
+          }
+          @if (isChildren) {
+            @if (property.value) {
+              <div class="value">
+                <code>{{ property.value }}</code>
+              </div>
+            }
+          } @else {
+            @if (property.actualValue) {
+              <div class="value">
+                @for (val of property.actualValue; track $index) {
+                  <code>{{ val }}{{ $last ? '' : ' | ' }}</code>
+                }
+              </div>
+            }
+          }
+          @if (property.extends) {
+            <div class="extends">
+              <span>extends</span>
+              @for (eds of property.extends; track eds) {
+                <code [innerText]="eds"></code>
+              }
+            </div>
+          }
+          @if (property.description) {
+            <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
+          }
+          @if (property.example) {
+            <ng-container *ngTemplateOutlet="exampleTpl; context: { example: property.example }"></ng-container>
+          }
+        </div>
+      } @else if (property.type === 'interface') {
+        <div class="property">
+          @if (!excludeTitle) {
+            <ng-container *ngTemplateOutlet="typeTitle; context: { property }"></ng-container>
+          }
+          @if (property.extends) {
+            <div class="extends">
+              <span>extends</span>
+              @for (eds of property.extends; track eds) {
+                <code [innerText]="eds"></code>
+              }
+            </div>
+          }
+          @if (property.description) {
+            <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
+          }
+          @if (property.example) {
+            <ng-container *ngTemplateOutlet="exampleTpl; context: { example: property.example }"></ng-container>
+          }
+          @if (property.properties && property.properties.length > 0) {
+            <div class="properties">
+              @for (item of property.properties; track item.name) {
+                <div class="row">
+                  <code>{{ item.name }}</code>
+                  <code>{{ item.type }}</code>
+                  <span>{{ item.label }}</span>
+                  <code>{{ item.defaut }}</code>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      } @else if (property.type === 'group') {
+        <div class="property">
+          @if (!excludeTitle) {
+            <ng-container *ngTemplateOutlet="typeTitle; context: { property }"></ng-container>
+          }
+          @if (property.extends) {
+            <div class="extends">
+              <span>extends</span>
+              @for (eds of property.extends; track eds) {
+                <code [innerText]="eds"></code>
+              }
+            </div>
+          }
+          @if (property.description) {
+            <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
+          }
+          @if (property.example) {
+            <ng-container *ngTemplateOutlet="exampleTpl; context: { example: property.example }"></ng-container>
+          }
+          @if (property.children && property.children.length > 0) {
+            <div class="children">
+              <x-collapse ghost iconPosition="left">
+                @for (child of property.children; track child) {
+                  <x-collapse-panel [label]="labelTpl" active>
+                    <ng-container
+                      *ngTemplateOutlet="typeChild; context: { property: child, excludeTitle: true, isChildren: true }"
+                    ></ng-container>
+                    <ng-template #labelTpl>
+                      <ng-container
+                        *ngTemplateOutlet="typeTitle; context: { property: child, isChildren: true }"
+                      ></ng-container>
+                    </ng-template>
+                  </x-collapse-panel>
+                }
+              </x-collapse>
+            </div>
+          }
+        </div>
+      }
+    }
+  </ng-template>
+
+  <ng-template #typeTitle let-property="property" let-isChildren="isChildren">
+    <div class="base">
+      <code class="name" [innerText]="property.name"></code>
+      <span class="type">{{ property.type }}</span>
+      <span>{{ property.label }}</span>
+    </div>
+  </ng-template>
+</div>
+<div class="ns-reference-close">
+  <x-button x-dialog-close plain circle icon="fto-x"></x-button>
+</div>
+
+<ng-template #exampleTpl let-example="example">
+  @for (ex of example; track $index) {
+    @if (ex.content) {
+      @if (ex.type === 'text') {
+        <div class="example app-markdown" [innerHTML]="ex.content | mdToHtml"></div>
+      } @else if (ex.type === 'code') {
+        <x-highlight [type]="ex.language" [data]="ex.content" showCopy></x-highlight>
+      }
+    }
+  }
+</ng-template>

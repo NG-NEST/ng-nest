@@ -7,36 +7,36 @@
 @mixin api {
   display: block;
   > .#{$prefix}-selector {
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
     > span {
       &:first-child {
         font-size: 1.25rem;
       }
       &:last-child {
-        padding: 0.125rem;
-        margin-left: 0.5rem;
-        border: 0.0625rem solid $--x-primary;
-        color: $--x-primary;
-        font-size: 0.825rem;
-        border-radius: $--x-border-radius;
+        margin-left: 1rem;
+        padding: 0.25rem 0.5rem;
+        color: $--x-danger;
+        background: $--x-danger-900;
+        border-radius: $--x-border-small-radius;
       }
     }
   }
   > .#{$prefix}-interface {
-    margin-top: 1rem;
     > tr {
       > td {
         &:nth-child(1) {
           width: 20%;
-          > span {
-            color: #690;
-          }
+          position: relative;
+          white-space: nowrap;
         }
         &:nth-child(3) {
-          color: #07a;
           width: 22%;
+          color: #f637e3;
         }
         &:nth-child(4) {
-          color: #dd4a68;
+          color: #fa2c05;
           width: 16%;
         }
       }
@@ -46,7 +46,7 @@
     > tr {
       > td {
         &:nth-child(1) {
-          color: #07a;
+          color: #3b82f6;
           width: 20%;
         }
         &:nth-child(3) {
@@ -56,16 +56,51 @@
       }
     }
   }
+  .x-api-name {
+    color: #3b82f6;
+    cursor: pointer;
+    background-color: rgba(59, 130, 246, 0.1);
+    border-radius: $--x-border-small-radius;
+    padding: 0.25rem 0.325rem 0.25rem 1.5rem;
+    transition: $--x-animation-duration-base background-color;
+    will-change: background-color;
+    &:hover {
+      background-color: rgba(59, 130, 246, 0.2);
+    }
+  }
+  .x-api-signal {
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: $--x-border-small-radius;
+    color: $--x-success;
+    margin-right: -1.325rem;
+    height: 1.625rem;
+    width: 1.375rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .x-api-popover {
+    color: #f637e3;
+    cursor: pointer;
+    background-color: rgba(246, 55, 227, 0.1);
+    border-radius: $--x-border-small-radius;
+    padding: 0.25rem 0.325rem;
+    transition: $--x-animation-duration-base background-color;
+    will-change: background-color;
+    &:hover {
+      background-color: rgba(246, 55, 227, 0.2);
+    }
+  }
   table {
     width: 100%;
     background: $--x-background;
     border-collapse: collapse;
-    border: $--x-border-base;
+    border-bottom: $--x-border-base;
     tr > th,
     tr > td {
       border-bottom: $--x-border-base;
       text-align: left;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0;
     }
     tr {
       &:last-child {

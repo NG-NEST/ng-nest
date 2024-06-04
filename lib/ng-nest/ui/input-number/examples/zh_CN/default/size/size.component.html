@@ -1,19 +1,19 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
 <div class="row">
-  <x-input-number [size]="size"></x-input-number>
+  <x-input-number [size]="size()"></x-input-number>
 </div>
 <div class="row">
-  <x-input-number [size]="size" label="数量" direction="row"></x-input-number>
+  <x-input-number [size]="size()" label="数量" direction="row"></x-input-number>
 </div>
 <div class="row">
-  <x-input-number [size]="size" label="数量" direction="column"></x-input-number>
+  <x-input-number [size]="size()" label="数量" direction="column"></x-input-number>
 </div>
 <div class="row">
-  <x-input-number [size]="size" precision="2" step="0.1"></x-input-number>
+  <x-input-number [size]="size()" precision="2" step="0.1"></x-input-number>
 </div>
 <div class="row">
-  <x-input-number required [size]="size"></x-input-number>
+  <x-input-number required [size]="size()"></x-input-number>
 </div>
 <div class="row">
-  <x-input-number disabled [size]="size"></x-input-number>
+  <x-input-number disabled [size]="size()"></x-input-number>
 </div>

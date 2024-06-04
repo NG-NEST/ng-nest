@@ -27,28 +27,14 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XDescriptionModule } from '@ng-nest/ui/description';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        FormsModule,
-        XDescriptionModule,
-        XTableComponent,
-        XIconComponent,
-        XAvatarComponent,
-        XButtonComponent,
-        XLinkComponent,
-        XInputComponent,
-        XSelectComponent,
-        XSwitchComponent,
-        XDialogComponent
-      ],
-      declarations: [
+    declarations: [
         TestXTableComponent,
         TestXTableScrollComponent,
         TestXTableAdaptionComponent,
@@ -59,8 +45,21 @@ describe(XTablePrefix, () => {
         TestXTableCheckboxComponent,
         TestXTableRowSizeComponent,
         TestXTablePaginationComponent
-      ]
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        FormsModule,
+        XDescriptionModule,
+        XTableComponent,
+        XIconComponent,
+        XAvatarComponent,
+        XButtonComponent,
+        XLinkComponent,
+        XInputComponent,
+        XSelectComponent,
+        XSwitchComponent,
+        XDialogComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTableComponent>;
@@ -236,7 +235,7 @@ class UsersServiceTest extends XRepositoryAbstract {
     let result = data;
     if (filters && filters.length > 0) {
       filters.forEach((x) => {
-        result = result.filter((y) => y[x.field].indexOf(x.value) >= 0);
+        result = result.filter((y) => y[x.field!].indexOf(x.value) >= 0);
       });
     }
     return result;
@@ -253,7 +252,7 @@ class UsersServiceTest extends XRepositoryAbstract {
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return XOrderBy(
       data,
-      sort.map((x) => x.field),
+      sort.map((x) => x.field!),
       sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
@@ -822,7 +821,7 @@ class TestXTableRowSizeComponent {
         padding: 1rem;
       }
       .custom-td-inner {
-        margin-left: 0.875rem;
+        margin-left: $--x-font-size;
         display: flex;
         flex-direction: column;
       }

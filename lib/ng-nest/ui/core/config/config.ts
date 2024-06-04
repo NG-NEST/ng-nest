@@ -1,6 +1,7 @@
-import {
+import { InjectionToken } from '@angular/core';
+import type { XTheme } from '../theme';
+import type {
   XSize,
-  XBoolean,
   XType,
   XEffect,
   XNumber,
@@ -19,22 +20,35 @@ import {
   XPositionTopBottom,
   XStatus,
   XAlign,
-  XTemplate
+  XTemplate,
+  XStyleMap
 } from '../interfaces';
-import { InjectionToken } from '@angular/core';
-import { XTheme } from '../theme';
 
+/**
+ * @zh_CN 组件和主题全局配置信息
+ * @en_US Component and theme global configuration information
+ */
 export interface XConfig {
+  /**
+   * @zh_CN 组件配置信息
+   * @en_US Component configuration information
+   */
   components?: XComponentConfig;
+  /**
+   * @zh_CN 主题全配置信息
+   * @en_US theme configuration information
+   */
   theme?: XTheme;
 }
 
 export type XConfigKey = keyof XConfig;
-
 export type XComponentConfigKey = keyof XComponentConfig;
-
 export const X_CONFIG = new InjectionToken<XConfig>('x-config');
 
+/**
+ * @zh_CN 组件全局配置
+ * @en_US Global configuration of the component
+ */
 export interface XComponentConfig {
   affix?: XAffixConfig;
   alert?: XAlertConfig;
@@ -131,13 +145,15 @@ export interface XAffixConfig {
 
 export interface XAlertConfig {
   effect?: XEffect;
-  hideClose?: XBoolean;
-  showIcon?: XBoolean;
-  disabledAnimation?: XBoolean;
-  draggable?: XBoolean;
-  resizable?: XBoolean;
-  dragHandleTitle?: XBoolean;
-  duration?: XNumber;
+  hideClose?: boolean;
+  showIcon?: boolean;
+  disabledAnimation?: boolean;
+  draggable?: boolean;
+  resizable?: boolean;
+  dragHandleTitle?: boolean;
+  duration?: number;
+  minWidth?: string;
+  minHeight?: string;
 }
 
 export interface XAnchorConfig {
@@ -152,7 +168,7 @@ export interface XAvatarConfig {
   size?: XSize;
   shape?: XShape;
   fit?: XFit;
-  gap?: number;
+  gap?: string;
   backgroundColor?: string;
 }
 
@@ -168,7 +184,7 @@ export interface XAutoCompleteConfig {
 export interface XBackTopConfig {
   right?: string;
   bottom?: string;
-  visibilityHeight?: XNumber;
+  visibilityHeight?: number;
 }
 
 export interface XBadgeConfgig {
@@ -178,18 +194,19 @@ export interface XBadgeConfgig {
 export interface XButtonConfig {
   size?: XSize;
   type?: XType;
-  plain?: XBoolean;
-  round?: XBoolean;
-  circle?: XBoolean;
-  flat?: XBoolean;
-  text?: XBoolean;
+  plain?: boolean;
+  round?: boolean;
+  circle?: boolean;
+  flat?: boolean;
+  text?: boolean;
   attrType?: 'submit' | 'button' | 'reset';
 }
 
 export interface XButtonsConfig {
-  space?: XNumber;
-  hiddenBorder?: XBoolean;
-  showBoxShadow?: XBoolean;
+  space?: string;
+  hiddenBorder?: boolean;
+  boxShadow?: boolean;
+  round?: boolean;
 }
 
 export interface XCalendarConfig {}
@@ -210,7 +227,7 @@ export interface XCascadeConfig {
   size?: XSize;
   bordered?: boolean;
   nodeTrigger?: XTrigger;
-  nodeHoverDelay?: XNumber;
+  nodeHoverDelay?: number;
 }
 
 export interface XCheckboxConfig {
@@ -218,23 +235,26 @@ export interface XCheckboxConfig {
 }
 
 export interface XCollapseConfig {
-  showIcon?: Boolean;
-  ghost?: Boolean;
+  showIcon?: boolean;
+  ghost?: boolean;
   iconPosition?: 'left' | 'right';
-  bordered?: Boolean;
+  bordered?: boolean;
 }
 
 export interface XColorConfig {
   merge?: string;
-  amounts?: string;
+  amounts?: number[];
 }
 
 export interface XColorPickerConfig {
   placement?: XCorner;
+  size?: XSize;
+  bordered?: boolean;
 }
 
 export interface XCommentConfig {
   contentMax?: number;
+  maxlength?: number;
 }
 
 export interface XContainerConfig {
@@ -242,15 +262,15 @@ export interface XContainerConfig {
 }
 
 export interface XHeaderConfig {
-  height?: number;
+  height?: string;
 }
 
 export interface XAsideConfig {
-  width?: number;
+  width?: string;
 }
 
 export interface XFooterConfig {
-  height?: number;
+  height?: string;
 }
 
 export interface XCrumbComfig {
@@ -259,7 +279,7 @@ export interface XCrumbComfig {
 
 export interface XDatePickerConfig {
   format?: string;
-  clearable?: XBoolean;
+  clearable?: boolean;
   placement?: XCorner;
   size?: XSize;
   bordered?: boolean;
@@ -267,10 +287,10 @@ export interface XDatePickerConfig {
 
 export interface XDateRangeConfig {
   format?: string;
-  clearable?: XBoolean;
+  clearable?: boolean;
   placement?: XCorner;
   size?: XSize;
-  bordered?: XBoolean;
+  bordered?: boolean;
 }
 
 export interface XDialogConfig {
@@ -279,25 +299,27 @@ export interface XDialogConfig {
   width?: string;
   minWidth?: string;
   minHeight?: string;
+  maxWidth?: string;
+  maxHeight?: string;
   effect?: XEffect;
-  showCancel?: XBoolean;
+  showCancel?: boolean;
   cancelText?: string;
-  showConfirm?: XBoolean;
+  showConfirm?: boolean;
   confirmText?: string;
-  backdropClose?: XBoolean;
-  draggable?: XBoolean;
-  resizable?: XBoolean;
-  maximize?: XBoolean;
-  hasBackdrop?: XBoolean;
+  backdropClose?: boolean;
+  draggable?: boolean;
+  resizable?: boolean;
+  maximize?: boolean;
+  hasBackdrop?: boolean;
   className?: string;
-  buttonsCenter?: XBoolean;
+  buttonsCenter?: boolean;
 }
 
 export interface XDrawerConfig {
   placement?: XPosition;
   size?: string;
-  backdropClose?: XBoolean;
-  hasBackdrop?: XBoolean;
+  backdropClose?: boolean;
+  hasBackdrop?: boolean;
   className?: string;
 }
 
@@ -308,7 +330,7 @@ export interface XDropdownConfig {
 }
 
 export interface XDescriptionConfig {
-  bordered?: XBoolean;
+  bordered?: boolean;
   size?: XSize;
 }
 
@@ -319,23 +341,23 @@ export interface XEmptyConfig {
 
 export interface XFindConfig {
   size?: XSize;
-  bordered?: XBoolean;
+  bordered?: boolean;
   columnLabel?: string;
   dialogTitle?: string;
   dialogCheckboxLabel?: string;
-  dialogCheckboxWidth?: number;
+  dialogCheckboxWidth?: string;
   dialogEmptyContent?: string;
-  dialogButtonsCenter?: XBoolean;
+  dialogButtonsCenter?: boolean;
   tableIndex?: number;
   tableSize?: number;
-  tableLoading?: XBoolean;
+  tableLoading?: boolean;
   tableVirtualScroll?: boolean;
-  tableRowHeight?: XNumber;
-  treeExpandedLevel?: XNumber;
+  tableRowHeight?: number;
+  treeExpandedLevel?: number;
 }
 
 export interface XFormConfig {
-  space?: XNumber;
+  space?: string;
   labelSuffix?: string;
   width?: string;
 }
@@ -351,24 +373,24 @@ export interface XInnerConfig {
 }
 
 export interface XInputConfig {
-  clearable?: XBoolean;
+  clearable?: boolean;
   iconLayout?: XPositionLeftRight;
   size?: XSize;
-  bordered?: XBoolean;
-  inputPadding?: XNumber;
+  bordered?: boolean;
+  inputPadding?: string;
   inputIconPadding?: XNumber;
 }
 
 export interface XInputGroupConfig {
   size?: XSize;
-  bordered?: XBoolean;
-  compact?: XBoolean;
+  bordered?: boolean;
+  compact?: boolean;
 }
 
 export interface XInputNumberConfig {
   size?: XSize;
-  bordered?: XBoolean;
-  hiddenButton?: XBoolean;
+  bordered?: boolean;
+  hiddenButton?: boolean;
 }
 
 export interface XImageConfig {
@@ -384,9 +406,9 @@ export interface XRippleConfig {
 }
 
 export interface XLinkConfig {
-  underline?: XBoolean;
-  iconRight?: XBoolean;
-  preventDefault?: XBoolean;
+  underline?: boolean;
+  iconRight?: boolean;
+  preventDefault?: boolean;
 }
 
 export interface XListConfig {
@@ -394,6 +416,9 @@ export interface XListConfig {
   loadMoreText?: string;
   loadingMoreText?: string;
   caseSensitive?: boolean;
+  virtualScroll?: boolean;
+  scrollHeight?: number;
+  size?: XSize;
 }
 
 export interface XListOptionConfig {
@@ -401,7 +426,7 @@ export interface XListOptionConfig {
 }
 
 export interface XLoadingConfig {
-  size?: XSize;
+  size?: XSize | number;
   text?: string;
   icon?: string;
   color?: string;
@@ -438,22 +463,23 @@ export interface XPageHeaderConfig {
 }
 
 export interface XPaginationConfig {
-  index?: XNumber;
-  size?: XNumber;
-  space?: XNumber;
-  pageLinkSize?: XNumber;
+  index?: number;
+  size?: number;
+  space?: string;
+  pageLinkSize?: number;
   hiddenBorder?: boolean;
   showEllipsis?: boolean;
   showTotal?: boolean;
   showSize?: boolean;
-  sizeWidth?: number;
+  showBackground?: boolean;
+  sizeWidth?: string;
   sizeData?: number[];
   showInputSize?: boolean;
   inputSizeWidth?: number;
   showJump?: boolean;
-  jumpWidth?: number;
+  jumpWidth?: string;
   simple?: boolean;
-  simpleIndexWidth?: number;
+  simpleIndexWidth?: string;
 }
 
 export interface XPatternConfig {}
@@ -461,17 +487,21 @@ export interface XPatternConfig {}
 export interface XPopconfirmConfig {
   placement?: XPlacement;
   trigger?: XTrigger;
-  width?: string;
   icon?: string;
   iconColor?: string;
   cancelText?: string;
   confirmText?: string;
+  width?: string;
+  maxWidth?: string;
+  minWidth?: string;
 }
 
 export interface XPopoverConfig {
   placement?: XPlacement;
   trigger?: XTrigger;
   width?: string;
+  minWidth?: string;
+  maxWidth?: string;
 }
 
 export interface XPortalConfig {}
@@ -493,26 +523,28 @@ export interface XResultConfig {}
 
 export interface XSelectConfig {
   placement?: XPositionTopBottom;
-  clearable?: XBoolean;
+  clearable?: boolean;
   size?: XSize;
-  bordered?: XBoolean;
+  bordered?: boolean;
   portalMaxHeight?: string;
   selectAllText?: string;
-  search?: XBoolean;
-  caseSensitive?: XBoolean;
+  search?: boolean;
+  caseSensitive?: boolean;
   debounceTime?: number;
   maxTagCount?: number;
-  virtualScroll?: XBoolean;
+  maxTagContent?: XTemplate;
+  virtualScroll?: boolean;
 }
 
 export interface XSkeletonConfig {}
 
 export interface XSliderConfig {
-  animated?: XBoolean;
+  animated?: boolean;
   size?: XSize;
-  showExpand?: XBoolean;
-  autoShowArrow?: XBoolean;
+  showExpand?: boolean;
+  autoShowArrow?: boolean;
   trigger?: XTrigger;
+  expandMaxHeight?: string;
 }
 
 export interface XSliderSelectConfig {}
@@ -532,44 +564,62 @@ export interface XSwitchConfig {
 export interface XTableConfig {
   index?: number;
   size?: number;
-  loading?: XBoolean;
-  showHeader?: XBoolean;
+  loading?: boolean;
+  showHeader?: boolean;
+  headerPosition?: 'top' | 'bottom' | 'top-bottom';
   virtualScroll?: boolean;
-  rowHeight?: XNumber;
-  itemSize?: XNumber;
-  bordered?: XNumber;
-  allowSelectRow?: XBoolean;
-  allowCheckRow?: XBoolean;
+  rowHeight?: number;
+  itemSize?: number;
+  bordered?: boolean;
+  allowSelectRow?: boolean;
+  allowCheckRow?: boolean;
   rowSize?: XSize;
-  showPagination?: XBoolean;
-  treeTable?: XBoolean;
-  expandedAll?: XBoolean;
-  expandedLevel?: XNumber;
-  hiddenPaginationBorder?: XBoolean;
-  hiddenWrapBorder?: XBoolean;
-  showEmpty?: XBoolean;
+  showPagination?: boolean;
+  treeTable?: boolean;
+  expandedAll?: boolean;
+  expandedLevel?: number;
+  hiddenPaginationBorder?: boolean;
+  hiddenWrapBorder?: boolean;
+  showEmpty?: boolean;
   emptyImg?: XTemplate;
   emptyContent?: XTemplate;
+
+  space?: string;
+  pageLinkSize?: number;
+  hiddenBorder?: boolean;
+  showEllipsis?: boolean;
+  showTotal?: boolean;
+  showSize?: boolean;
+  showBackground?: boolean;
+  sizeWidth?: string;
+  sizeData?: number[];
+  showInputSize?: boolean;
+  inputSizeWidth?: number;
+  showJump?: boolean;
+  jumpWidth?: string;
+  simple?: boolean;
+  simpleIndexWidth?: string;
 }
 
 export interface XTabsConfig {
   size?: XSize;
   trigger?: XTrigger;
+  expandMaxHeight?: string;
 }
 
 export interface XTagConfig {
   size?: XSize;
-  bordered?: XBoolean;
-  closable?: XBoolean;
-  dark?: XBoolean;
+  bordered?: boolean;
+  closable?: boolean;
+  dark?: boolean;
 }
 
 export interface XTextRetractConfig {
-  max?: XNumber;
+  max?: number;
 }
 
 export interface XThemeConfig {
-  amounts?: XNumber[];
+  amounts?: number[];
 }
 
 export interface XTimeAgoConfig {}
@@ -578,15 +628,19 @@ export interface XTimePickerConfig {
   format?: string;
   placement?: XCorner;
   size?: XSize;
-  bordered?: XBoolean;
-  use12Hours?: XBoolean;
-  defaultNow?: XBoolean;
+  bordered?: boolean;
+  use12Hours?: boolean;
+  defaultNow?: boolean;
+  hourStep?: number;
+  minuteStep?: number;
+  secondStep?: number;
 }
 
 export interface XTimeRangeConfig {}
 
 export interface XTimelineConfig {
   size?: XSize;
+  mode?: 'left' | 'right' | 'alternate';
 }
 
 export interface XTooltipConfig {
@@ -595,48 +649,54 @@ export interface XTooltipConfig {
 
 export interface XTransferConfig {
   titles?: string[];
-  drag?: XBoolean;
-  virtualScroll?: XBoolean;
+  drag?: boolean;
+  virtualScroll?: boolean;
+  type?: 'list' | 'table' | 'tree';
+  listStyle: XStyleMap | XStyleMap[];
 }
 
 export interface XTreeConfig {
-  spacing?: XNumber;
-  nodeHeight?: XNumber;
+  spacing?: string;
+  nodeHeight?: string;
   nodeAlignItems?: XAlign;
   virtualScroll?: boolean;
   onlyLeaf?: boolean;
   showLine?: boolean;
+  virtualScrollHeight?: string;
+  itemSize?: number;
+  caseSensitive?: boolean;
 }
 
 export interface XTextareaConfig {
-  clearable?: XBoolean;
+  clearable?: boolean;
   iconLayout?: XPositionLeftRight;
 }
 
 export interface XTreeFileConfig {
-  maxHeight?: XNumber;
-  spacing?: XNumber;
+  maxHeight?: string;
+  spacing?: string;
 }
 
 export interface XTreeSelectConfig {
   placement?: XPositionTopBottom;
-  clearable?: XBoolean;
+  clearable?: boolean;
   size?: XSize;
-  bordered?: XBoolean;
+  bordered?: boolean;
   portalMaxHeight?: string;
   selectAllText?: string;
-  search?: XBoolean;
-  caseSensitive?: XBoolean;
+  search?: boolean;
+  caseSensitive?: boolean;
   debounceTime?: number;
   maxTagCount?: number;
-  virtualScroll?: XBoolean;
-  showPath?: XBoolean;
+  maxTagContent?: XTemplate;
+  virtualScroll?: boolean;
+  showPath?: boolean;
   separator?: string;
   onlyLeaf?: boolean;
 }
 
 export interface XUploadConfig {
-  download?: XBoolean;
+  download?: boolean;
   multipleModel?: 'cover' | 'add';
 }
 

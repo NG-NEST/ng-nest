@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
@@ -8,7 +8,7 @@ import { XControl, XFormComponent } from '@ng-nest/ui/form';
   templateUrl: './title.component.html'
 })
 export class ExTitleComponent {
-  controls: XControl[] = [
+  controls = signal<XControl[]>([
     { control: 'input', id: 'name', label: '姓名', required: true, maxlength: 10 },
     {
       control: 'input',
@@ -66,5 +66,5 @@ export class ExTitleComponent {
       data: ['乒乓球', '篮球', '足球'],
       required: true
     }
-  ];
+  ]);
 }

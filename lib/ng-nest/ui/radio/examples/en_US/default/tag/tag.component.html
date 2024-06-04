@@ -5,7 +5,7 @@
   <x-radio
     label="Category"
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     tag
@@ -15,7 +15,7 @@
   <x-radio
     label="Category"
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     tagBordered="false"
@@ -26,7 +26,7 @@
   <x-radio
     label="Category"
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="primary"
@@ -37,7 +37,7 @@
   <x-radio
     label="Category"
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="success"
@@ -48,7 +48,7 @@
   <x-radio
     label="Category"
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="info"
@@ -59,7 +59,7 @@
   <x-radio
     label="Category"
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="warning"
@@ -70,7 +70,7 @@
   <x-radio
     label="Category"
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="danger"
@@ -84,7 +84,7 @@
   <x-radio
     label="Synthesize:"
     direction="row"
-    [data]="data1"
+    [data]="data1()"
     [(ngModel)]="model1"
     (ngModelChange)="change($event)"
     tagBordered="false"
@@ -96,7 +96,7 @@
   <x-radio
     label="Type:"
     direction="row"
-    [data]="data2"
+    [data]="data2()"
     [(ngModel)]="model2"
     (ngModelChange)="change($event)"
     tagBordered="false"
@@ -108,7 +108,7 @@
   <x-radio
     label="Year:"
     direction="row"
-    [data]="data3"
+    [data]="data3()"
     [(ngModel)]="model3"
     (ngModelChange)="change($event)"
     tagBordered="false"
@@ -118,7 +118,7 @@
 </div>
 <div class="row">
   Selected Data:
-  @for (item of selected; track item) {
+  @for (item of selected(); track item) {
     <x-tag [@.disabled]="true" type="primary" closable (close)="close(item)">{{ item }}</x-tag>
   }
 </div>

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 import { XDocComponent } from '@ng-nest/ui/doc';
 import { XExamplesComponent } from '@ng-nest/ui/examples';
 import { XApiComponent } from '@ng-nest/ui/api';
@@ -14,12 +13,15 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XTooltipDirective } from '@ng-nest/ui/tooltip';
 import { XAnchorComponent } from '@ng-nest/ui/anchor';
 import { XTreeFileComponent } from '@ng-nest/ui/tree-file';
+import { XPopoverDirective } from '@ng-nest/ui/popover';
+import { NsApiReferenceComponent } from './api-reference/api-reference.component';
+import { MdToHtmlPipe } from './md-to-html.pipe';
+import { NsApiNameComponent } from './api-name/api-name.component';
 
 const modules = [
   CommonModule,
   FormsModule,
   RouterModule,
-  HttpClientModule,
   ReactiveFormsModule,
   RouterOutlet,
   XDocComponent,
@@ -34,7 +36,12 @@ const modules = [
   XButtonsComponent,
   XButtonComponent,
   XTooltipDirective,
-  XTreeFileComponent
+  XTreeFileComponent,
+  XPopoverDirective,
+  MdToHtmlPipe,
+
+  NsApiReferenceComponent,
+  NsApiNameComponent
 ];
 
 @NgModule({

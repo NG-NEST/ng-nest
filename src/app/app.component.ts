@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ConfigService } from '@services';
 
 @Component({
   selector: 'ns-root',
@@ -10,11 +9,4 @@ import { ConfigService } from '@services';
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements AfterViewInit {
-  title = 'ng-nest';
-  constructor(private config: ConfigService) {}
-
-  ngAfterViewInit(): void {
-    this.config.init();
-  }
-}
+export class AppComponent {}

@@ -11,29 +11,28 @@ import { XThemeComponent } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XDescriptionPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXDescriptionComponent,
+        TestXDescriptionBorderedComponent,
+        TestXDescriptionGridComponent,
+        TestXDescriptionSizeComponent
+    ],
+    imports: [BrowserAnimationsModule,
         FormsModule,
         XThemeComponent,
         XDescriptionModule,
         XRadioComponent,
         XRowComponent,
         XColComponent,
-        XDocComponent
-      ],
-      declarations: [
-        TestXDescriptionComponent,
-        TestXDescriptionBorderedComponent,
-        TestXDescriptionGridComponent,
-        TestXDescriptionSizeComponent
-      ]
-    }).compileComponents();
+        XDocComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDescriptionComponent>;

@@ -10,14 +10,14 @@ import { replaceKeyByPage, replaceKeyByObject, copyDir } from '.';
  * @param {NcPage} page
  */
 export function generatePage(page: NcPage) {
-  page.templates.forEach(x => {
+  page.templates.forEach((x) => {
     x.content = replaceKeyByPage(page, '__', fs.readFileSync(x.tplPath, 'utf8'));
     x.content = replaceKeyByObject(x.content, x.syswords, '__');
     x.content = replaceKeyByObject(x.content, x.keywords);
     checkMkdir(x.genPath.replace(x.genName, ''));
     fs.writeFileSync(x.genPath, x.content, 'utf8');
   });
-  page.copyDir.forEach(x => {
+  page.copyDir.forEach((x) => {
     copyDir(x.from, x.to, x.exclude);
   });
 }

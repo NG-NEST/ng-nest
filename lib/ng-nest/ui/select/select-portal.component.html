@@ -1,29 +1,30 @@
 <div
   #selectPortal
   class="x-select-portal"
-  (click)="inputCom.inputFocus(); stopPropagation($event)"
-  [style.maxHeight]="portalMaxHeight"
+  (click)="inputCom()?.inputFocus(); stopPropagation($event)"
+  [style.maxHeight]="portalMaxHeight()"
 >
   <x-list
     #list
-    [data]="data"
-    [(ngModel)]="value"
-    (nodeClick)="nodeClick($event)"
+    [data]="data()!"
+    [ngModel]="value()"
+    (ngModelChange)="value.set($event)"
+    (nodeClick)="onNodeClick($event)"
     (keyManagerChange)="onActive($event)"
     (keyManagerTabOut)="onTabOut()"
     (onSelectAll)="onSelectAll($event)"
     checked
-    [objectArray]="objectArray"
-    [multiple]="multiple"
-    [selectAll]="selectAll"
-    [selectAllText]="getSelectAllText"
-    [nodeTpl]="nodeTpl"
-    [scrollElement]="search ? scrollNull : selectPortal"
-    [virtualScroll]="virtualScroll"
-    [size]="size"
+    [objectArray]="objectArray()"
+    [multiple]="multiple()"
+    [selectAll]="selectAll()"
+    [selectAllText]="getSelectAllText()!"
+    [nodeTpl]="nodeTpl()"
+    [scrollElement]="search() ? undefined : selectPortal"
+    [virtualScroll]="virtualScroll()"
+    [size]="size()!"
     [heightAdaption]="selectPortal"
-    [keywordText]="keywordText"
-    [caseSensitive]="caseSensitive"
+    [keywordText]="keywordText()"
+    [caseSensitive]="caseSensitive()"
     [inPortal]="true"
   ></x-list>
 </div>

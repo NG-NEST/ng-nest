@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { XCheckboxComponent, XCheckboxNode } from '@ng-nest/ui/checkbox';
-import { XData } from '@ng-nest/ui/core';
+import { Component, signal } from '@angular/core';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 
 @Component({
   selector: 'ex-vertical',
@@ -10,6 +9,6 @@ import { XData } from '@ng-nest/ui/core';
   styleUrls: ['./vertical.component.scss']
 })
 export class ExVerticalComponent {
-  data: XData<XCheckboxNode> = ['QQ', '微信', '钉钉', '微博'];
-  model = ['微信'];
+  data = signal(['QQ', '微信', '钉钉', '微博']);
+  model = signal(['微信']);
 }

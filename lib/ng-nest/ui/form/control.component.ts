@@ -2,81 +2,50 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
-  ViewChild,
-  ChangeDetectorRef,
   OnInit,
   AfterViewInit,
   OnDestroy,
-  inject
+  inject,
+  viewChild,
+  signal,
+  ViewContainerRef,
+  ComponentRef,
+  OutputEmitterRef,
+  effect
 } from '@angular/core';
+import { XControlProperty, XFormControlOption, XFormControlComponent, XFormControl } from './form.property';
 import {
-  XControlProperty,
-  XFormControlOption,
-  XFormControlComponent,
-  XFormControlType,
-  XCascadeControl,
-  XCascadeControlOption,
-  XInputControl,
-  XInputControlOption,
-  XSelectControl,
-  XSelectControlOption,
-  XCheckboxControl,
-  XCheckboxControlOption,
-  XRadioControl,
-  XRadioControlOption,
-  XDatePickerControlOption,
-  XDatePickerControl,
-  XInputNumberControl,
-  XInputNumberControlOption,
-  XSwitchControl,
-  XSwitchControlOption,
-  XRateControl,
-  XRateControlOption,
-  XSliderSelectControl,
-  XSliderSelectControlOption,
-  XTimePickerControl,
-  XTimePickerControlOption,
-  XColorPickerControl,
-  XColorPickerControlOption,
-  XFormControl,
-  XFindControl,
-  XFindControlOption,
-  XTextareaControlOption,
-  XTextareaControl,
-  XAutoCompleteControl,
-  XAutoCompleteControlOption
-} from './form.property';
-import {
-  FormControlName,
   Validators,
   UntypedFormControl,
   ValidatorFn,
-  ControlValueAccessor,
   FormControlStatus,
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms';
-import { XIsEmpty, XConfigService, XIsFunction } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsFunction } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import { XI18nForm, XI18nService } from '@ng-nest/ui/i18n';
+import { XI18nForm, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
+import { XFormComponent } from './form.component';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { CdkPortalOutlet, ComponentPortal, Portal, PortalModule } from '@angular/cdk/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XSelectComponent } from '@ng-nest/ui/select';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
+import { XFindComponent } from '@ng-nest/ui/find';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XRateComponent } from '@ng-nest/ui/rate';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
-import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
-import { XFindComponent } from '@ng-nest/ui/find';
-import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
+import { XTimePickerComponent, XTimePickerModule } from '@ng-nest/ui/time-picker';
+// import { XSelectComponent } from '@ng-nest/ui/select';
 
 @Component({
   selector: 'x-control',
@@ -84,6 +53,8 @@ import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    PortalModule,
+
     XInputComponent,
     XSelectComponent,
     XCascadeComponent,
@@ -105,64 +76,84 @@ import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XControlComponent
-  extends XControlProperty
-  implements OnInit, AfterViewInit, OnDestroy
-{
-  @Input() override option!: XFormControlOption;
-  @Input() form: any;
-  @ViewChild(FormControlName) control!: FormControlName;
-  locale: XI18nForm = {};
-  private _sharedProps = ['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign'];
-  private _changeProps = ['label', ...this._sharedProps];
-  private _control!: XFormControlType;
-  private _validatorFns: ValidatorFn[] = [];
-  private _unSubject = new Subject<void>();
-  private _formControl!: UntypedFormControl;
-  private cdr = inject(ChangeDetectorRef);
+export class XControlComponent extends XControlProperty implements OnInit, AfterViewInit, OnDestroy {
   private i18n = inject(XI18nService);
-  configService = inject(XConfigService);
+  private viewContainerRef = inject(ViewContainerRef);
+  private _sharedProps = signal(['span', 'direction', 'justify', 'align', 'labelWidth', 'labelAlign']);
+  private validatorFns = signal<ValidatorFn[]>([]);
+  private formControl = signal<UntypedFormControl | null>(null);
+  private _unSubject = new Subject<void>();
+  value = signal<any>(null);
+
+  form = inject(XFormComponent, { optional: true })!;
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.form as XI18nForm)), { initialValue: zh_CN.form });
+  portal = signal<Portal<any> | null>(null);
+  componentPortal!: ComponentPortal<XFormControlComponent>;
+  componentRef!: ComponentRef<XFormControlComponent>;
+  portalOutlet = viewChild.required(CdkPortalOutlet);
+
+  constructor() {
+    super();
+    effect(
+      () => {
+        this.formControl()?.setValue(this.value());
+      },
+      { allowSignalWrites: true }
+    );
+  }
 
   ngOnInit() {
-    this.option = { ...this.option };
-    this.setProps();
-    if (XIsEmpty(this.option.label)) this.option.label = '';
-    this.option.label = `${this.option.label}${this.form.labelSuffix}`;
-    this._control = this.createControl(this.option);
-    this._formControl = new UntypedFormControl(this._control.value, {
-      nonNullable: this._control.nonNullable
-    });
+    this.setOption();
+
+    this.formControl.set(
+      new UntypedFormControl(this.option().value, {
+        nonNullable: this.option().nonNullable
+      })
+    );
     this.setValidators();
-    this._formControl.statusChanges.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.setMessages(x);
-    });
-    this._control.setValidators = () => this.setValidators();
-    this.form.formGroup.addControl(this._control.id, this._formControl);
-    this.option.change = () => {
-      this._changeProps.forEach((x: string) => {
-        if (this.control.valueAccessor && this.option[x]) {
-          (this.control.valueAccessor as any)[x] = this.option[x];
-        }
-      });
-      this.form.controlComponents[this._control.id].formControlChanges();
-    };
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.form as XI18nForm),
-        takeUntil(this._unSubject)
-      )
+    this.formControl()!
+      .statusChanges.pipe(takeUntil(this._unSubject))
       .subscribe((x) => {
-        this.locale = x;
-        this.cdr.markForCheck();
+        this.setMessages(x);
       });
+    this.option().setValidators = () => this.setValidators();
+    this.form.formGroup().addControl(this.option().id, this.formControl());
   }
 
   ngAfterViewInit() {
-    Object.assign(this.control.valueAccessor!, this._control as ControlValueAccessor);
-    this.form.controlTypes[this._control.id] = this._control;
-    this.form.controlComponents[this._control.id] = this.control
-      .valueAccessor as XFormControlComponent;
-    this.form.controlComponents[this._control.id].formControlChanges();
+    this.componentPortal = this.createComponentPortal(this.option());
+    this.componentRef = this.portalOutlet().attachComponentPortal(this.componentPortal);
+
+    for (let key in this.option()) {
+      if (key in this.componentRef.instance) {
+        const val = (this.componentRef.instance as any)[key];
+        if (XIsFunction(val)) {
+          const valStr = val.toString();
+          if (valStr.startsWith('[Input Signal:')) {
+            // input
+            this.componentRef.setInput(key, this.option()[key]);
+          } else if (valStr.startsWith('[Model Signal:')) {
+            // model
+            this.componentRef.setInput(key, this.option()[key]);
+            val.subscribe((x: any) => {
+              this.option()[key] = x;
+            });
+          } else if (valStr.startsWith('[Signal:')) {
+            // signal
+            val.set(this.option()[key]);
+          }
+        } else if (val instanceof OutputEmitterRef) {
+          // output
+          val.subscribe((x) => this.option()[key](x));
+        }
+      }
+    }
+
+    // value
+    this.value = this.componentRef.instance['value'];
+
+    this.form.controlTypes[this.option().id] = this.option();
+    this.form.controlComponents[this.option().id] = this.componentRef.instance;
   }
 
   ngOnDestroy() {
@@ -171,72 +162,78 @@ export class XControlComponent
   }
 
   setValidators() {
-    this._validatorFns = [];
-    if (this._control.disabled || this.form.disabled) {
-      this._formControl.disable();
+    this.validatorFns.set([]);
+    if (this.option().disabled || this.form.disabled()) {
+      this.formControl()!.disable();
     } else {
-      this._formControl.enable();
+      this.formControl()!.enable();
     }
-    if (this._control.required && !this.form.disabled) {
-      this._validatorFns = [...this._validatorFns, Validators.required];
+    if (this.option().required && !this.form.disabled()) {
+      this.validatorFns.update((x) => [...x, Validators.required]);
     }
-    if (this._control.pattern) {
+    if (this.option().pattern) {
       this.setPattern();
     }
-    if (XIsFunction(this._control.inputValidator)) {
-      this._validatorFns = [
-        ...this._validatorFns,
-        XFormInputValidator(this._control.inputValidator!)
-      ];
+    if (XIsFunction(this.option().inputValidator)) {
+      this.validatorFns.update((x) => [...x, XFormInputValidator(this.option().inputValidator!)]);
     }
-    this._formControl.setValidators(this._validatorFns);
-    this._formControl.updateValueAndValidity();
+    this.formControl()!.setValidators(this.validatorFns());
+    this.formControl()!.updateValueAndValidity();
   }
 
-  setProps() {
-    for (let prop of this._sharedProps) {
-      if (XIsEmpty(this.option[prop])) this.option[prop] = (this.form as any)[prop];
+  setOption() {
+    for (let prop of this._sharedProps()) {
+      if (XIsEmpty(this.option()[prop])) {
+        this.option.update((x) => {
+          x[prop] = (this.form as any)[prop]();
+          return x;
+        });
+      }
     }
+    if (XIsEmpty(this.option().label)) {
+      this.option.update((x) => {
+        x.label = '';
+        return x;
+      });
+    }
+    this.option.update((x) => {
+      x.label = `${this.option().label}${this.form.labelSuffix()}`;
+      return x;
+    });
   }
 
   setPattern() {
-    if (Array.isArray(this._control.pattern)) {
-      for (const pt of this._control.pattern) {
-        this._validatorFns = [...this._validatorFns, Validators.pattern(pt)];
+    const pattern = this.option().pattern;
+    if (Array.isArray(pattern)) {
+      for (const pt of pattern) {
+        this.validatorFns.update((x) => [...x, Validators.pattern(pt)]);
       }
     } else {
-      this._validatorFns = [
-        ...this._validatorFns,
-        Validators.pattern(this._control.pattern as RegExp)
-      ];
+      this.validatorFns.update((x) => [...x, Validators.pattern(pattern as RegExp)]);
     }
   }
 
   getPatternMsg(pattern: string) {
-    if (Array.isArray(this._control.pattern)) {
-      return (this._control.message as Array<any>)[
-        this._control.pattern.findIndex((x) => String(x) === pattern)
-      ];
+    const controlPattern = this.option().pattern;
+    if (Array.isArray(controlPattern)) {
+      return (this.option().message as Array<any>)[controlPattern.findIndex((x) => String(x) === pattern)];
     } else {
-      return this._control.message;
+      return this.option().message;
     }
   }
 
   setMessages(state: FormControlStatus) {
-    let control: XFormControl = this._formControl;
-    if (state === 'INVALID' && this._formControl.errors !== null) {
+    let control = this.formControl()! as XFormControl;
+    if (state === 'INVALID' && this.formControl()!.errors !== null) {
       let messages: string[] = [];
       for (const key in control.errors) {
-        const label = this._control.label || this._control.id;
+        const label = this.option().label || this.option().id;
         if (key === 'required') {
-          messages = [...messages, `${label} ${this.locale?.required || 'required'}`];
+          messages = [...messages, `${label} ${this.locale().required || 'required'}`];
         } else if (key === 'pattern') {
-          messages = [
-            ...messages,
-            `${label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`
-          ];
+          messages = [...messages, `${label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`];
         } else if (key === 'inputValidator') {
-          messages = [...messages, `${label} ${this._control.message}`];
+          messages = [...messages, `${label} ${this.option().message}`];
         }
       }
       control.messages = messages;
@@ -245,40 +242,40 @@ export class XControlComponent
     }
   }
 
-  createControl(option: XFormControlOption) {
+  createComponentPortal(option: XFormControlOption) {
     switch (option.control) {
       case 'input':
-        return new XInputControl(option as XInputControlOption);
+        return new ComponentPortal(XInputComponent, this.viewContainerRef);
       case 'select':
-        return new XSelectControl(option as XSelectControlOption);
+        return new ComponentPortal(XSelectComponent, this.viewContainerRef);
       case 'checkbox':
-        return new XCheckboxControl(option as XCheckboxControlOption);
+        return new ComponentPortal(XCheckboxComponent, this.viewContainerRef);
       case 'radio':
-        return new XRadioControl(option as XRadioControlOption);
+        return new ComponentPortal(XRadioComponent, this.viewContainerRef);
       case 'switch':
-        return new XSwitchControl(option as XSwitchControlOption);
+        return new ComponentPortal(XSwitchComponent, this.viewContainerRef);
       case 'rate':
-        return new XRateControl(option as XRateControlOption);
+        return new ComponentPortal(XRateComponent, this.viewContainerRef);
       case 'date-picker':
-        return new XDatePickerControl(option as XDatePickerControlOption);
+        return new ComponentPortal(XDatePickerComponent, this.viewContainerRef);
       case 'time-picker':
-        return new XTimePickerControl(option as XTimePickerControlOption);
+        return new ComponentPortal(XTimePickerComponent, this.viewContainerRef);
       case 'input-number':
-        return new XInputNumberControl(option as XInputNumberControlOption);
+        return new ComponentPortal(XInputNumberComponent, this.viewContainerRef);
       case 'slider-select':
-        return new XSliderSelectControl(option as XSliderSelectControlOption);
+        return new ComponentPortal(XSliderSelectComponent, this.viewContainerRef);
       case 'cascade':
-        return new XCascadeControl(option as XCascadeControlOption);
+        return new ComponentPortal(XCascadeComponent, this.viewContainerRef);
       case 'color-picker':
-        return new XColorPickerControl(option as XColorPickerControlOption);
+        return new ComponentPortal(XColorPickerComponent, this.viewContainerRef);
       case 'textarea':
-        return new XTextareaControl(option as XTextareaControlOption);
+        return new ComponentPortal(XTextareaComponent, this.viewContainerRef);
       case 'find':
-        return new XFindControl(option as XFindControlOption);
+        return new ComponentPortal(XFindComponent, this.viewContainerRef);
       case 'auto-complete':
-        return new XAutoCompleteControl(option as XAutoCompleteControlOption);
+        return new ComponentPortal(XAutoCompleteComponent, this.viewContainerRef);
       default:
-        return new XInputControl(option as XInputControlOption);
+        return new ComponentPortal(XInputComponent, this.viewContainerRef);
     }
   }
 }

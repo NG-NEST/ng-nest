@@ -2,14 +2,14 @@ import {
   XSize,
   XTemplate,
   XProperty,
-  XWithConfig,
   XShape,
   XFit,
   XResponseSize,
   XNumber,
-  XInputNumber
+  XPropertyFunction,
+  XToCssPixelValue
 } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 /**
  * Avatar
@@ -17,53 +17,114 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XAvatarPrefix = 'x-avatar';
-const X_CONFIG_NAME = 'avatar';
+export const X_AVATAR_CONFIG_NAME = 'avatar';
 
 /**
  * Avatar Property
  */
 @Component({ selector: `${XAvatarPrefix}-property`, template: '' })
-export class XAvatarProperty extends XProperty {
+export class XAvatarProperty extends XPropertyFunction(X_AVATAR_CONFIG_NAME) {
   /**
    * @zh_CN 显示字符
    * @en_US Display characters
+   * @example
+   *
+   * ```html
+   * <x-avatar label="ng-nest"></x-avatar>
+   * ```
+   *
    */
-  @Input() label?: XTemplate;
+  readonly label = input<XTemplate>();
   /**
    * @zh_CN 尺寸
    * @en_US Size
+   * @example
+   *
+   * ```html
+   * <x-avatar size="big" icon="fto-user"></x-avatar>
+   * <x-avatar size="large" icon="fto-user"></x-avatar>
+   * <x-avatar size="medium"  icon="fto-user"></x-avatar>
+   * <x-avatar size="small" icon="fto-user"></x-avatar>
+   * <x-avatar size="mini" icon="fto-user"></x-avatar>
+   * <x-avatar [size]="100" icon="fto-user"></x-avatar>
+   * <x-avatar [size]="{ xs: 20, sm: 60, md: 90, lg: 120, xl: 160 }" icon="fto-user"></x-avatar>
+   * ```
+   *
    */
-  @Input() @XWithConfig<XAvatarSize>(X_CONFIG_NAME, 'medium') size?: XAvatarSize;
+  readonly size = input<XAvatarSize>(this.config?.size ?? 'medium');
   /**
    * @zh_CN 显示图标
    * @en_US Show icon
+   * @example
+   *
+   * ```html
+   * <x-avatar icon="fto-user"></x-avatar>
+   * ```
+   *
    */
-  @Input() icon?: string;
+  readonly icon = input<string>();
   /**
    * @zh_CN 形状
    * @en_US Shape
+   * @example
+   *
+   * ```html
+   * <x-avatar icon="fto-user" shape="circle"></x-avatar>
+   * <x-avatar icon="fto-user" shape="square"></x-avatar>
+   * ```
+   *
    */
-  @Input() @XWithConfig<XAvatarShape>(X_CONFIG_NAME, 'circle') shape?: XAvatarShape;
+  readonly shape = input<XAvatarShape>(this.config?.shape ?? 'circle');
   /**
    * @zh_CN 图片地址
    * @en_US The map's address
+   * @example
+   *
+   * ```html
+   * <x-avatar src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * ```
+   *
    */
-  @Input() src?: string;
+  readonly src = input<string>();
   /**
    * @zh_CN 图片适应方式
    * @en_US Image adaptation method
+   * @example
+   *
+   * ```html
+   * <x-avatar fit="fill" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="contain" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="cover" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="none" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="scale-down" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * ```
+   *
    */
-  @Input() @XWithConfig<XAvatarFit>(X_CONFIG_NAME, 'cover') fit?: XAvatarFit;
+  readonly fit = input<XAvatarFit>(this.config?.fit ?? 'cover');
   /**
-   * @zh_CN 字符类型的时候左右边距，px
-   * @en_US When the character type is the left and right distance, PX
+   * @zh_CN 字符类型的时候左右边距
+   * @en_US When the character type is the left and right distance
+   * @example
+   *
+   * ```html
+   * <x-avatar label="ng-nest" gap="5"></x-avatar>
+   * <x-avatar label="ng-nest" gap="5px"></x-avatar>
+   * ```
+   *
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 4) @XInputNumber() gap?: XNumber;
+  readonly gap = input<string, XNumber>(this.config?.gap ?? '4px', { transform: XToCssPixelValue });
   /**
    * @zh_CN 背景颜色
    * @en_US Background color
+   * @example
+   *
+   * ```html
+   * <x-avatar label="ng-nest" backgroundColor="#999999"></x-avatar>
+   * <x-avatar label="ng-nest" backgroundColor="#888888"></x-avatar>
+   * ```
+   *
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '#999999') backgroundColor?: string;
+  readonly backgroundColor = input<string>(this.config?.backgroundColor ?? '#999999');
 }
 
 /**

@@ -8,29 +8,28 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XUploadPrefix } from './upload.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XUploadPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
+    declarations: [
+        TestXUploadComponent,
+        TestXUploadDisabledComponent,
+        TestXUploadImgComponent,
+        TestXUploadImgCutComponent
+    ],
+    imports: [BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         XIconComponent,
         XUploadComponent,
         XButtonComponent,
         XRowComponent,
-        XColComponent
-      ],
-      declarations: [
-        TestXUploadComponent,
-        TestXUploadDisabledComponent,
-        TestXUploadImgComponent,
-        TestXUploadImgCutComponent
-      ]
-    }).compileComponents();
+        XColComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXUploadComponent>;

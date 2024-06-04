@@ -1,41 +1,55 @@
-<div #menu class="x-menu" [ngClass]="classMap" [style.width]="layout === 'column' ? width : ''">
-  @if (layout === 'column') {
+<div #menu class="x-menu" [ngClass]="classMap()" [style.width]="layout() === 'column' ? width() : ''">
+  @if (layout() === 'column') {
     <div class="x-menu-nodes">
-      @for (node of nodes; track node.id) {
+      @for (node of nodes(); track node.id) {
         <ng-container *ngTemplateOutlet="nodeColumnTpl; context: { $node: node, $children: true }"></ng-container>
       }
     </div>
   }
-  @if (layout === 'row') {
+  @if (layout() === 'row') {
     <x-slider
-      [data]="nodes"
-      [size]="size"
+      [data]="nodes()"
+      [size]="size()"
       [nodeTpl]="nodeRowTpl"
       [nodeJustify]="'center'"
-      [activatedIndex]="rootIndex"
+      [activatedIndex]="rootIndex()"
       (indexChange)="rootIndexChange($event)"
     ></x-slider>
   }
 </div>
 
 <ng-template #nodeTpl let-node="$node">
-  @if (node.level === 0 && collapsed) {
+  @if (node.level === 0 && collapsed()) {
     <x-dropdown
       [disabled]="!node.leaf"
       [data]="node.children"
-      [trigger]="trigger"
+      [trigger]="trigger()"
       placement="right-start"
       [(activatedId)]="activatedId"
       (nodeClick)="onNodeClick($event)"
-      [portalMinWidth]="portalMinWidth"
-      [size]="size"
+      [portalMinWidth]="portalMinWidth()"
+      [size]="size()"
       children
     >
-      <x-menu-node [node]="node" [menu]="this"></x-menu-node>
+      <x-menu-node
+        [routerLink]="node.routerLink"
+        [leaf]="node.leaf"
+        [icon]="node.icon"
+        [label]="node.label"
+        [open]="node.open"
+        [id]="node.id"
+      ></x-menu-node>
     </x-dropdown>
   }
-  @if (!collapsed) {
-    <x-menu-node [node]="node" [menu]="this"></x-menu-node>
+  @if (!collapsed()) {
+    <x-menu-node
+      [routerLink]="node.routerLink"
+      [leaf]="node.leaf"
+      [icon]="node.icon"
+      [label]="node.label"
+      [open]="node.open"
+      [id]="node.id"
+    ></x-menu-node>
   }
 </ng-template>
 
@@ -43,14 +57,14 @@
   <x-dropdown
     [disabled]="!node.leaf"
     [data]="node.children"
-    [trigger]="trigger"
+    [trigger]="trigger()"
     [(activatedId)]="activatedId"
     (nodeClick)="onNodeClick($event)"
-    [portalMinWidth]="portalMinWidth"
-    [size]="size"
+    [portalMinWidth]="portalMinWidth()"
+    [size]="size()"
     children
   >
-    <div class="x-menu-node" [ngClass]="nodeClassMap">
+    <div class="x-menu-node" [ngClass]="nodeClassMap()">
       <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
     </div>
   </x-dropdown>
@@ -59,9 +73,9 @@
 <ng-template #nodeColumnTpl let-node="$node">
   <div
     class="x-menu-node"
-    [class.x-activated]="activated?.id === node.id"
+    [class.x-activated]="activated()?.id === node.id"
     [class.x-menu-category]="node.categoryNode"
-    [ngClass]="nodeClassMap"
+    [ngClass]="nodeClassMap()"
     (click)="onToggle($event, node)"
     [style.padding-left.rem]="(node.level + 1) * 0.875"
   >

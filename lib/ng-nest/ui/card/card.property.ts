@@ -1,5 +1,6 @@
-import { XTemplate, XProperty, XNumber, XShadow, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XPropertyFunction, XToCssPixelValue } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import type { XTemplate, XNumber, XShadow } from '@ng-nest/ui/core';
 
 /**
  * Card
@@ -7,33 +8,65 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XCardPrefix = 'x-card';
-const X_CONFIG_NAME = 'card';
+const X_CARD_CONFIG_NAME = 'card';
 
 /**
  * Card Property
  */
 @Component({ selector: `${XCardPrefix}-property`, template: '' })
-export class XCardProperty extends XProperty {
+export class XCardProperty extends XPropertyFunction(X_CARD_CONFIG_NAME) {
   /**
    * @zh_CN 卡片宽度
    * @en_US Card width
+   * @example
+   *
+   * ```html
+   * <x-card width="20rem">Card</div>
+   * ```
+   *
    */
-  @Input() width?: string;
+  readonly width = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 内容样式
    * @en_US Content style
+   * @example
+   *
+   * ```html
+   * <x-card [bodyStyle]="{ padding: 0 }">Card</div>
+   * ```
+   *
    */
-  @Input() bodyStyle: { [property: string]: XNumber } = {};
+  readonly bodyStyle = input<XCardBodyStyle>({});
   /**
    * @zh_CN 头部模板
    * @en_US Head template
+   * @example
+   *
+   * ```html
+   * <x-card width="20rem" [header]="header">
+   *   <ng-template #header>
+   *     <span>Title</span>
+   *     <x-button type="text">action</x-button>
+   *   </ng-template>
+   *   Card
+   * </x-card>
+   * ```
+   *
    */
-  @Input() header?: XTemplate;
+  readonly header = input<XTemplate>();
   /**
    * @zh_CN 阴影显示方式
    * @en_US Shadow display method
+   * @example
+   *
+   * ```html
+   * <x-card shadow="always">Always</x-card>
+   * <x-card shadow="hover">Hover</x-card>
+   * <x-card shadow="never">Never</x-card>
+   * ```
+   *
    */
-  @Input() @XWithConfig<XCardShadow>(X_CONFIG_NAME, 'always') shadow?: XCardShadow;
+  readonly shadow = input<XCardShadow>(this.config?.shadow ?? 'always');
 }
 
 /**
@@ -41,3 +74,9 @@ export class XCardProperty extends XProperty {
  * @en_US Shadow display configuration
  */
 export type XCardShadow = XShadow;
+
+/**
+ * @zh_CN 卡片内容样式类型
+ * @en_US Card content style type
+ */
+export type XCardBodyStyle = { [property: string]: XNumber };

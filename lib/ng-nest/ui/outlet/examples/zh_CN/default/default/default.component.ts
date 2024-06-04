@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
@@ -9,5 +9,5 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  label = '字符串';
+  label = signal('字符串');
 }

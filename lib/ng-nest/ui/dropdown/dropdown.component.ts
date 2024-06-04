@@ -2,26 +2,19 @@ import {
   Component,
   ViewEncapsulation,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
   ViewContainerRef,
-  ViewChild,
   inject,
   OnDestroy,
-  OnInit
+  OnInit,
+  signal,
+  computed,
+  viewChild,
+  ComponentRef,
+  effect
 } from '@angular/core';
 import { XDropdownPrefix, XDropdownNode, XDropdownProperty } from './dropdown.property';
-import {
-  XIsChange,
-  XIsEmpty,
-  XSetData,
-  XGetChildren,
-  XConfigService,
-  XPositionTopBottom,
-  XPlacement
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XGetChildren, XPositionTopBottom, XPlacement } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XDropdownPortalComponent } from './dropdown-portal.component';
@@ -30,7 +23,8 @@ import {
   ConnectedOverlayPositionChange,
   FlexibleConnectedPositionStrategy,
   Overlay,
-  OverlayConfig
+  OverlayConfig,
+  OverlayRef
 } from '@angular/cdk/overlay';
 import { NgClass } from '@angular/common';
 
@@ -43,85 +37,91 @@ import { NgClass } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDropdownComponent extends XDropdownProperty implements OnInit, OnChanges, OnDestroy {
-  @ViewChild('dropdown', { static: true }) dropdown!: ElementRef<HTMLElement>;
-  datas: XDropdownNode[] = [];
-  nodes: XDropdownNode[] = [];
-  portal!: XPortalOverlayRef<XDropdownPortalComponent>;
-  timeoutHide: any;
-  visible: boolean = false;
-  animating = false;
-  outsideClick = false;
-  minWidth!: string | number;
-  hoverDelayUnsub = new Subject<void>();
-  positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<void> = new Subject();
-  activatedIdSub = new Subject<any>();
-  private _unSubject = new Subject<void>();
-  private cdr = inject(ChangeDetectorRef);
+export class XDropdownComponent extends XDropdownProperty implements OnInit, OnDestroy {
+  private unSubject = new Subject<void>();
   private portalService = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
   private overlay = inject(Overlay);
-  configService = inject(XConfigService);
+  dropdown = viewChild.required<ElementRef<HTMLElement>>('dropdown');
+  nodes = computed(() => {
+    const data = this.data();
+    if (!this.children()) {
+      return data.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XDropdownNode>(data, y, 0));
+    }
+    return data;
+  });
+  portal!: XPortalOverlayRef<XDropdownPortalComponent>;
+  timeoutHide: any;
+  visible = signal(false);
+  animating = signal(false);
+  outsideClick = signal(false);
+  minWidth = signal<string>('0px');
+  hoverDelayUnsub = new Subject<void>();
+  closeSubject: Subject<void> = new Subject();
+
+  private realPlacement = signal<XPlacement | null>(null);
+  portalComponent = signal<ComponentRef<XDropdownPortalComponent> | null>(null);
+  portalOverlayRef = signal<OverlayRef | null>(null);
+
+  constructor() {
+    super();
+    effect(() => this.portalComponent()?.setInput('data', this.nodes()));
+    effect(() => this.portalComponent()?.setInput('trigger', this.trigger()));
+    effect(() => this.portalComponent()?.setInput('minWidth', this.minWidth()));
+    effect(() => this.portalComponent()?.setInput('maxWidth', this.portalMaxWidth()));
+    effect(() => this.portalComponent()?.setInput('minHeight', this.portalMinHeight()));
+    effect(() => this.portalComponent()?.setInput('maxHeight', this.portalMaxHeight()));
+    effect(() => this.portalComponent()?.setInput('activatedId', this.activatedId()));
+    effect(() => this.portalComponent()?.setInput('size', this.size()));
+  }
 
   ngOnInit() {
     this.setSubject();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    const { data } = changes;
-    XIsChange(data) && this.setData();
-  }
-
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.complete();
+    this.unSubject.next();
+    this.unSubject.complete();
     this.hoverDelayUnsub.next();
     this.hoverDelayUnsub.complete();
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
+    this.closeSubject.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.closePortal();
-    });
-    this.activatedIdSub.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.activatedId = x;
-      this.activatedIdChange.emit(x);
     });
   }
 
   onEnter() {
     of(true)
-      .pipe(delay(this.hoverDelay), takeUntil(this.hoverDelayUnsub))
+      .pipe(delay(this.hoverDelay()), takeUntil(this.hoverDelayUnsub))
       .subscribe(() => {
-        if (this.disabled || this.trigger === 'click') return;
+        if (this.disabled() || this.trigger() === 'click') return;
         if (this.timeoutHide) {
           clearTimeout(this.timeoutHide);
           this.timeoutHide = null;
         }
-        if (!this.portal || (this.portal && !this.portal?.overlayRef?.hasAttached())) {
-          this.visible = true;
+        if (!this.portal || (this.portal && !this.portalOverlayRef()?.hasAttached())) {
+          this.visible.set(true);
           this.createPortal();
-          this.cdr.detectChanges();
         }
       });
   }
 
   onLeave() {
     this.hoverDelayUnsub.next();
-    if (this.disabled || this.trigger === 'click') return;
-    if (this.portal?.overlayRef?.hasAttached()) {
+    if (this.disabled() || this.trigger() === 'click') return;
+    if (this.portalOverlayRef()?.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
-        this.visible = false;
-        this.portal?.overlayRef?.dispose();
-        this.cdr.detectChanges();
+        this.portalOverlayRef()?.dispose();
+        this.visible.set(false);
       });
     }
   }
 
   showPortal() {
-    if (this.disabled || this.trigger === 'hover' || this.animating) return;
-    if (this.trigger === 'click' && this.portalAttached()) {
+    if (this.disabled() || this.trigger() === 'hover' || this.animating()) return;
+    if (this.trigger() === 'click' && this.portalAttached()) {
       this.closeSubject.next();
       return;
     }
@@ -129,30 +129,30 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnC
   }
 
   portalAttached() {
-    return this.portal?.overlayRef?.hasAttached();
+    return this.portalOverlayRef()?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal?.overlayRef?.dispose();
-      this.visible = false;
+      this.portalOverlayRef()?.dispose();
+      this.visible.set(false);
       return true;
     }
     return false;
   }
 
   destroyPortal() {
-    this.portal?.overlayRef?.dispose();
+    this.portalOverlayRef()?.dispose();
   }
 
   createPortal() {
-    let box = this.dropdown.nativeElement.getBoundingClientRect();
-    this.minWidth = this.portalMinWidth ? this.portalMinWidth : box.width;
+    let box = this.dropdown().nativeElement.getBoundingClientRect();
+    this.minWidth.set(this.portalMinWidth() ? this.portalMinWidth() : `${box.width}px`);
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
-      minWidth: this.minWidth
+      minWidth: this.minWidth()
     };
     this.setPosition(config);
     this.portal = this.portalService.attach({
@@ -160,46 +160,42 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnC
       viewContainerRef: this.viewContainerRef,
       overlayConfig: config
     });
-    if (this.trigger === 'click') {
+
+    if (this.trigger() === 'click') {
       this.portal.overlayRef
         ?.outsidePointerEvents()
-        .pipe(debounceTime(30), takeUntil(this._unSubject))
+        .pipe(debounceTime(30), takeUntil(this.unSubject))
         .subscribe(() => {
           this.closeSubject.next();
         });
     }
+
     this.setInstance();
   }
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+    position.positionChanges.pipe(takeUntil(this.unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
       const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
-      place !== this.placement && this.positionChange.next(place);
+      if (place !== this.realPlacement()) {
+        this.realPlacement.set(place);
+        this.portalOverlayRef()?.updatePosition();
+      }
     });
   }
 
   setInstance() {
-    let componentRef = this.portal?.componentRef;
-    if (!componentRef) return;
-    Object.assign(componentRef.instance, {
-      data: this.nodes,
-      trigger: this.trigger,
-      minWidth: this.minWidth,
-      maxWidth: this.portalMaxWidth,
-      minHeight: this.portalMinHeight,
-      maxHeight: this.portalMaxHeight,
-      activatedId: this.activatedId,
-      activatedIdSub: this.activatedIdSub,
-      size: this.size,
-      close: () => this.closeSubject.next(),
-      positionChange: this.positionChange,
-      destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: XDropdownNode) => this.nodeClick.emit(node),
-      portalHover: (hover: boolean) => this.portalHover(hover),
-      animating: (ing: boolean) => (this.animating = ing)
-    });
-    componentRef.changeDetectorRef.detectChanges();
+    let { componentRef, overlayRef } = this.portal;
+    if (!componentRef || !overlayRef) return;
+    this.portalComponent.set(componentRef);
+    this.portalOverlayRef.set(overlayRef);
+    this.realPlacement.set(this.placement());
+    const { closed, animating, nodeClick, portalHover, activatedId } = componentRef.instance;
+    closed.subscribe(() => this.closeSubject.next());
+    animating.subscribe((ing) => this.animating.set(ing));
+    nodeClick.subscribe((node) => this.nodeClick.emit(node));
+    activatedId.subscribe((id) => this.activatedId.set(id));
+    portalHover.subscribe((hover) => this.portalHover(hover));
   }
 
   portalHover(hover: boolean) {
@@ -212,21 +208,9 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnC
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.dropdown,
-      placement: [this.placement as XPlacement, 'bottom-start', 'top-start', 'bottom-end', 'top-end'],
+      elementRef: this.dropdown(),
+      placement: [this.placement(), 'bottom-start', 'top-start', 'bottom-end', 'top-end'],
       transformOriginOn: 'x-dropdown-portal'
-    });
-  }
-
-  private setData() {
-    XSetData<XDropdownNode>(this.data, this._unSubject).subscribe((x) => {
-      this.datas = x;
-      if (!this.children) {
-        this.nodes = x.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XDropdownNode>(x, y, 0));
-      } else {
-        this.nodes = x;
-      }
-      this.cdr.detectChanges();
     });
   }
 }

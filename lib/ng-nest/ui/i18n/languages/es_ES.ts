@@ -1,117 +1,168 @@
 export default {
   locale: 'es_ES',
   comment: {
-    comments: 'comentario',
-    giveALike: 'me gusta',
-    reply: 'Respuesta',
-    more: 'ver más',
-    sure: 'lanzamiento',
-    placeholder: 'Por favor ingrese un comentario'
+    comments: 'Comentarios',
+    giveALike: 'Me gusta',
+    reply: 'Responder',
+    more: 'Más',
+    sure: 'Seguro',
+    placeholder:
+      'Por favor, introduce un comentario'
   },
   theme: {
     darkMode: 'Modo oscuro',
-    initDefault: 'Inicializar el valor predeterminado',
-    primary: 'Color principal',
-    success: 'éxito',
-    warning: 'consideración',
+    initDefault:
+      'Inicializar valor predeterminado',
+    primary: 'Primario',
+    success: 'Éxito',
+    warning: 'Advertencia',
     danger: 'Peligro',
-    info: 'información',
-    background: 'antecedentes',
-    border: 'cuadro',
+    info: 'Información',
+    background: 'Fondo',
+    border: 'Borde',
     text: 'Texto'
   },
   calendar: {
-    month: 'mes',
-    year: 'año',
-    lastMonth: 'Primer mes',
-    lastYear: 'el año pasado',
+    month: 'Mes',
+    year: 'Año',
+    lastMonth: 'Mes pasado',
+    lastYear: 'Año pasado',
     nextMonth: 'Próximo mes',
-    nextYear: 'el próximo año',
-    january: '1mes',
-    february: '2mes',
-    march: '3mes',
-    april: '4mes',
-    may: '5mes',
-    june: '6mes',
-    july: '7mes',
-    august: '8mes',
-    september: '9mes',
-    october: '10mes',
-    november: '11mes',
-    december: '12mes'
+    nextYear: 'Próximo año',
+    january: 'Enero',
+    february: 'Febrero',
+    march: 'Marzo',
+    april: 'Abril',
+    may: 'Mayo',
+    june: 'Junio',
+    july: 'Julio',
+    august: 'Agosto',
+    september: 'Septiembre',
+    october: 'Octubre',
+    november: 'Noviembre',
+    december: 'Diciembre'
   },
   datePicker: {
-    sure: 'confirmar',
-    month: '',
-    year: '',
-    january: '1mes',
-    february: '2mes',
-    march: '3mes',
-    april: '4mes',
-    may: '5mes',
-    june: '6mes',
-    july: '7mes',
-    august: '8mes',
-    september: '9mes',
-    october: '10mes',
-    november: '11mes',
-    december: '12mes',
-    monday: 'Uno',
-    tuesday: 'dos',
-    wednesday: 'Tres',
-    thursday: 'cuatro',
-    friday: 'Fives',
-    saturday: 'seis',
-    sunday: 'día',
-    yesterday: 'el dia de ayer',
-    today: 'Hoy en día',
-    tomorrow: 'mañana'
+    sure: 'Seguro',
+    week: 'Semana',
+    month: 'Mes',
+    year: 'Año',
+    january: 'Enero',
+    february: 'Febrero',
+    march: 'Marzo',
+    april: 'Abril',
+    may: 'Mayo',
+    june: 'Junio',
+    july: 'Julio',
+    august: 'Agosto',
+    september: 'Septiembre',
+    october: 'Octubre',
+    november: 'Noviembre',
+    december: 'Diciembre',
+    monday: 'Lunes',
+    tuesday: 'Martes',
+    wednesday: 'Miércoles',
+    thursday: 'Jueves',
+    friday: 'Viernes',
+    saturday: 'Sábado',
+    sunday: 'Domingo',
+    yesterday: 'Ayer',
+    today: 'Hoy',
+    tomorrow: 'Mañana',
+    thisWeek: 'Esta semana',
+    lastWeek: 'Semana pasada',
+    nextWeek: 'Próxima semana',
+    thisMonth: 'Este mes',
+    lastMonth: 'Mes pasado',
+    nextMonth: 'Próximo mes',
+    thisYear: 'Este año',
+    lastYear: 'Año pasado',
+    nextYear: 'Próximo año',
+    selectDate: 'Seleccionar fecha',
+    selectWeek: 'Seleccionar semana',
+    selectMonth: 'Seleccionar mes',
+    selectQuarter: 'Seleccionar trimestre',
+    selectYear: 'Seleccionar año',
+    startDate: 'Fecha de inicio',
+    endDate: 'Fecha de fin',
+    startMonth: 'Mes de inicio',
+    endMonth: 'Mes de fin',
+    startQuarter: 'Trimestre de inicio',
+    endQuarter: 'Trimestre de fin',
+    startYear: 'Año de inicio',
+    endYear: 'Año de fin',
+    startWeek: 'Semana de inicio',
+    endWeek: 'Semana de fin'
   },
-  empty: {
-    noData: 'Sin datos'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Ahora',
+    selectTime: 'Seleccionar hora',
+    selectHour: 'Seleccionar hora',
+    selectMinute: 'Seleccionar minuto'
   },
+  empty: { noData: 'No hay datos' },
+  image: { previewText: 'Vista previa' },
   pagination: {
-    previous: 'Pagina anterior',
-    next: 'Siguiente página',
+    previous: 'Anterior',
+    next: 'Siguiente',
     total: 'Total',
     item: 'Artículo',
-    first: 'página delantera',
-    last: 'Cola',
-    jump: 'Salto',
-    sizePage: '/página'
+    first: 'Primero',
+    last: 'Último',
+    jump: 'Saltar a',
+    sizePage: 'Artículos/página'
   },
   textRetract: {
     unfold: 'Desplegar',
-    packUp: 'Guardar'
+    packUp: 'Replegar'
   },
   timeAgo: {
-    just: 'sólo',
-    secondsAgo: 'Hace segundos',
-    minutesAgo: 'hace minutos',
-    hoursAgo: 'Hace una hora'
+    just: 'Justo ahora',
+    secondsAgo: 'Hace unos segundos',
+    minutesAgo: 'Hace unos minutos',
+    hoursAgo: 'Hace unas horas'
+  },
+  transfer: {
+    listTitle: 'Lista',
+    treeTitle: 'Árbol',
+    tableTitle: 'Tabla',
+    selectedTitle: 'Elementos seleccionados',
+    inverse: 'Invertir'
   },
   messageBox: {
-    cancelText: 'cancelar',
-    confirmText: 'confirmar'
+    cancelText: 'Cancelar',
+    confirmText: 'Confirmar'
   },
   dialog: {
-    cancelText: 'cancelar',
-    confirmText: 'confirmar'
+    cancelText: 'Cancelar',
+    confirmText: 'Confirmar'
   },
   popconfirm: {
-    cancelText: 'cancelar',
-    confirmText: 'confirmar'
+    cancelText: 'Cancelar',
+    confirmText: 'Confirmar'
   },
   upload: {
-    uploadText: 'subir archivos'
+    uploadText: 'Subir archivo',
+    beginUploadText: 'Comenzar a subir archivo',
+    uploadingText: 'Subiendo',
+    uploadCompleted:
+      'Subida de archivo completada'
   },
-  pageHeader: {
-    back: 'regreso'
-  },
+  pageHeader: { back: 'Atrás' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Seleccionar todo',
+    loadMoreText: 'Cargar más',
+    loadingMoreText: 'Cargando más'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Seleccionar todo',
+    maxTagContent: 'Más {{surplus}} seleccionados'
+  },
+  treeSelect: {
+    selectAllText: 'Seleccionar todo',
+    maxTagContent: 'Más {{surplus}} seleccionados'
+  },
+  form: { required: 'Requerido' }
 };

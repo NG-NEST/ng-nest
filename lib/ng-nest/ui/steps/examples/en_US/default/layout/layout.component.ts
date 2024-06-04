@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { XData } from '@ng-nest/ui/core';
+import { Component, signal } from '@angular/core';
 import { XStepsComponent, XStepsNode } from '@ng-nest/ui/steps';
 
 @Component({
@@ -9,9 +8,9 @@ import { XStepsComponent, XStepsNode } from '@ng-nest/ui/steps';
   templateUrl: './layout.component.html'
 })
 export class ExLayoutComponent {
-  data: XData<XStepsNode> = [
+  data = signal<XStepsNode[]>([
     { label: 'carry out', description: 'This is the description.' },
     { label: 'processing', description: 'This is the description.' },
     { label: 'wait', description: 'This is the description.' }
-  ];
+  ]);
 }

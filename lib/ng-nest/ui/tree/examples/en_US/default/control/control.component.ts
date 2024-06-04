@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, signal, viewChild } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
 
@@ -11,7 +11,7 @@ import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
   styleUrls: ['./control.component.scss']
 })
 export class ExControlComponent {
-  data: XTreeNode[] = [
+  data = signal<XTreeNode[]>([
     { id: 1, label: 'First level 1' },
     { id: 2, label: 'First level 2' },
     { id: 3, label: 'First level 3' },
@@ -31,27 +31,26 @@ export class ExControlComponent {
     { id: 22, label: 'Level 3 1-1-2', pid: 5 },
     { id: 23, label: 'Level 3 1-1-3', pid: 5 },
     { id: 24, label: 'Level 3 1-1-4', pid: 5 }
-  ];
-  @ViewChild('treeCom', { static: true }) treeCom!: XTreeComponent;
-  activatedNode?: XTreeNode;
-  selectedNodes: XTreeNode[] = [];
-  expandedAll: boolean = true;
-  content: any;
-  constructor() {}
+  ]);
+  treeCom = viewChild.required<XTreeComponent>('treeCom');
+  activatedNode = signal<XTreeNode | null>(null);
+  selectedNodes = signal<XTreeNode[]>([]);
+  expandedAll = signal(true);
+  content = signal<any[]>([]);
 
   activatedChange(node: XTreeNode) {
-    this.activatedNode = node;
+    this.activatedNode.set(node);
   }
 
   getCheckedKeys() {
-    this.content = this.treeCom.getCheckedKeys();
+    this.content.set(this.treeCom().getCheckedKeys());
   }
 
   setCheckedKeys(keys: number[] = []) {
-    this.treeCom.setCheckedKeys(keys);
+    this.treeCom().setCheckedKeys(keys);
   }
 
   setExpandedAll() {
-    this.expandedAll = !this.expandedAll;
+    this.expandedAll.update((x) => !x);
   }
 }

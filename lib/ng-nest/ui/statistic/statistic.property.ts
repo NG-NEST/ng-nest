@@ -1,5 +1,6 @@
-import { XTemplate, XStyle, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { XPropertyFunction } from '@ng-nest/ui/core';
+import { Component, input, output } from '@angular/core';
+import type { XTemplate, XStyle } from '@ng-nest/ui/core';
 
 /**
  * Statistic
@@ -7,37 +8,38 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XStatisticPrefix = 'x-statistic';
+const X_STATISTIC_CONFIG_NAME = 'statistic';
 
 /**
  * Statistic Property
  */
 @Component({ selector: `${XStatisticPrefix}-property`, template: '' })
-export class XStatisticProperty {
+export class XStatisticProperty extends XPropertyFunction(X_STATISTIC_CONFIG_NAME) {
   /**
    * @zh_CN 显示值
    * @en_US Display value
    */
-  @Input() value?: XTemplate;
+  readonly value = input<XTemplate>();
   /**
    * @zh_CN 标题
    * @en_US Title
    */
-  @Input() label?: XTemplate;
+  readonly label = input<XTemplate>();
   /**
    * @zh_CN 前缀
    * @en_US Prefix
    */
-  @Input() prefix?: XTemplate;
+  readonly prefix = input<XTemplate>();
   /**
    * @zh_CN 后缀
    * @en_US Suffix
    */
-  @Input() suffix?: XTemplate;
+  readonly suffix = input<XTemplate>();
   /**
    * @zh_CN 显示值样式
    * @en_US Display value style
    */
-  @Input() valueStyle: XStyle = {};
+  readonly valueStyle = input<XStyle>({});
 }
 
 /**
@@ -46,21 +48,46 @@ export class XStatisticProperty {
  * @decorator component
  */
 export const XCountdownPrefix = 'x-countdown';
-const X_CONFIG_NAME = 'countdown';
+const X_COUNTDOWN_CONFIG_NAME = 'countdown';
 
 /**
  * Countdown Property
  */
 @Component({ selector: `${XCountdownPrefix}-property`, template: '' })
-export class XCountdownProperty extends XStatisticProperty {
+export class XCountdownProperty extends XPropertyFunction(X_COUNTDOWN_CONFIG_NAME) {
+  /**
+   * @zh_CN 显示值
+   * @en_US Display value
+   */
+  readonly value = input<XTemplate>();
+  /**
+   * @zh_CN 标题
+   * @en_US Title
+   */
+  readonly label = input<XTemplate>();
+  /**
+   * @zh_CN 前缀
+   * @en_US Prefix
+   */
+  readonly prefix = input<XTemplate>();
+  /**
+   * @zh_CN 后缀
+   * @en_US Suffix
+   */
+  readonly suffix = input<XTemplate>();
+  /**
+   * @zh_CN 显示值样式
+   * @en_US Display value style
+   */
+  readonly valueStyle = input<XStyle>({});
   /**
    * @zh_CN 格式化
    * @en_US Format
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, 'HH:mm:ss') format?: string;
+  readonly format = input<string>(this.config?.format ?? 'HH:mm:ss');
   /**
    * @zh_CN 倒计时结束的事件
    * @en_US Event at the end of the countdown
    */
-  @Output() finish = new EventEmitter<void>();
+  readonly finish = output<void>();
 }

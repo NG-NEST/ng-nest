@@ -1,14 +1,20 @@
 <div class="row">
-  <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
-</div>
-<div class="row">
-  <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)" [space]="0.25"></x-pagination>
+  <x-pagination [(index)]="index" [(size)]="size" [total]="total()" (indexChange)="change($event)"></x-pagination>
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
+    (indexChange)="change($event)"
+    [space]="8"
+  ></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     [sizeData]="[5, 10, 20, 100]"
     showSize
@@ -17,9 +23,9 @@
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     (sizeChange)="change($event)"
     simple
@@ -28,9 +34,9 @@
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     (sizeChange)="change($event)"
     showInputSize

@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import { XData } from '@ng-nest/ui/core';
-import { XCheckboxComponent, XCheckboxNode } from '@ng-nest/ui/checkbox';
+import { Component, signal } from '@angular/core';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
-import { XCascadeComponent } from '@ng-nest/ui/cascade';
+import { XCascadeComponent, XCascadeNode } from '@ng-nest/ui/cascade';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
@@ -30,8 +29,8 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
   styleUrls: ['./perpost.component.scss']
 })
 export class ExPerpostComponent {
-  data: XData<XCheckboxNode> = ['ngnest', 'github'];
-  cascadeData = [
+  data = signal(['ngnest', 'github']);
+  cascadeData = signal<XCascadeNode[]>([
     { id: 1, label: 'AAAA' },
     { id: 2, label: 'BBBB' },
     { id: 3, label: 'CCCC' },
@@ -68,5 +67,5 @@ export class ExPerpostComponent {
     { id: 34, label: 'AAAA-4-2', pid: 8 },
     { id: 35, label: 'AAAA-4-3', pid: 8 },
     { id: 36, label: 'AAAA-4-4', pid: 8 }
-  ];
+  ]);
 }

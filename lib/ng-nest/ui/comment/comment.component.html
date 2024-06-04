@@ -1,6 +1,6 @@
 <div #comment class="x-comment">
   <div class="x-comment-list">
-    @for (node of nodes; track node.id) {
+    @for (node of nodes(); track node.id) {
       <div class="x-comment-item">
         <div class="x-comment-avatar">
           <x-avatar [src]="node.src"></x-avatar>
@@ -14,22 +14,17 @@
             <x-text-retract [content]="node.content"></x-text-retract>
           </div>
           <div class="x-comment-action">
-            <x-buttons>
-              <x-button
-                icon="fto-message-square"
-                [activated]="node.commentShow"
-                (click)="commentOnClick(node)"
-                onlyIcon
-              >
+            <x-buttons boxShadow="false">
+              <x-button icon="fto-message-square" [activated]="node.commentShow!" (click)="commentOnClick(node)" text>
                 {{ 'comment.comments' | xI18n }} {{ node.count ? node.count : '' }}
               </x-button>
-              <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" onlyIcon>
+              <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" text>
                 {{ 'comment.giveALike' | xI18n }} {{ node.likes ? node.likes : '' }}
               </x-button>
             </x-buttons>
           </div>
           @if (node.commentShow) {
-            <x-comment-reply [maxlength]="contentMax" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
+            <x-comment-reply [maxlength]="contentMax()" (sureClick)="sureOnClick($event, node)"></x-comment-reply>
           }
           <ul>
             @for (child of node.children; track child.id) {
@@ -48,22 +43,22 @@
                   </div>
                   <div class="x-comment-action">
                     <span class="x-comment-time">{{ child.datetime | xTimeAgo }}</span>
-                    <x-buttons>
+                    <x-buttons boxShadow="false">
                       <x-button
                         icon="fto-message-square"
-                        [activated]="child.commentShow"
+                        [activated]="child.commentShow!"
                         (click)="replyOnClick(child)"
-                        onlyIcon
+                        text
                         >{{ 'comment.reply' | xI18n }}</x-button
                       >
-                      <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" onlyIcon>
+                      <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" text>
                         {{ 'comment.giveALike' | xI18n }} {{ child.likes ? child.likes : '' }}</x-button
                       >
                     </x-buttons>
                   </div>
                   @if (child.commentShow) {
                     <x-comment-reply
-                      [maxlength]="contentMax"
+                      [maxlength]="contentMax()"
                       (sureClick)="sureOnClick($event, child)"
                     ></x-comment-reply>
                   }

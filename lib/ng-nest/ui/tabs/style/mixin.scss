@@ -66,6 +66,9 @@
     .x-tabs-actions {
       border-bottom: $--x-border-base;
     }
+    .x-slider-show-arrow > .x-slider-scroll {
+      padding: 0;
+    }
   }
   a[x-tab-link]:before {
     position: absolute;
@@ -212,7 +215,9 @@
                   z-index: 1;
 
                   > li {
-                    border: $--x-tabs-border-base;
+                    // border: $--x-tabs-border-base;
+                    border: $--x-border-width $--x-border-style transparent;
+                    border-#{$border}-color: $--x-border;
                     &:first-child {
                       border-#{$border-radius-first}: $--x-border-radius;
                     }
@@ -226,6 +231,7 @@
                       display: none;
                     }
                     &.x-slider-activated {
+                      border: $--x-tabs-border-base;
                       border-#{$border-activated}-color: $--x-background;
                       background-color: $--x-background;
                       border-#{$border-radius-first}: $--x-border-radius;

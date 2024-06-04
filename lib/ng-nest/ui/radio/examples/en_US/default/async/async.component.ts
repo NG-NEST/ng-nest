@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { XRadioComponent, XRadioNode } from '@ng-nest/ui/radio';
-import { XData } from '@ng-nest/ui/core';
-import { Observable } from 'rxjs';
+import { Component, signal } from '@angular/core';
+import { XRadioComponent } from '@ng-nest/ui/radio';
+import { Observable, of } from 'rxjs';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { FormsModule } from '@angular/forms';
 
@@ -12,23 +11,22 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.scss']
 })
-export class ExAsyncComponent implements OnInit {
-  data!: XData<XRadioNode>;
-  model = 'QQ';
-  loading = false;
+export class ExAsyncComponent {
+  data = signal<Observable<string[]>>(of([]));
+  model = signal('QQ');
+  loading = signal(false);
   getData() {
-    this.loading = true;
-    this.data = new Observable((x) => {
-      // Replace with http request, or directly define data as Observable object
-      setTimeout(() => {
-        this.model = 'WeChat';
-        this.loading = false;
-        x.next(['QQ', 'WeChat', 'DingTalk', 'Weibo']);
-        x.complete();
-      }, 2000);
-    });
+    this.loading.set(true);
+    this.data.set(
+      new Observable((x) => {
+        // Replace with http request, or directly define data as Observable object
+        setTimeout(() => {
+          this.model.set('WeChat');
+          this.loading.set(false);
+          x.next(['QQ', 'WeChat', 'DingTalk', 'Weibo']);
+          x.complete();
+        }, 2000);
+      })
+    );
   }
-  constructor() {}
-
-  ngOnInit() {}
 }

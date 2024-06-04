@@ -1,5 +1,5 @@
-<x-tabs type="card" [activatedIndex]="activatedIndex" [actionTpl]="actionTpl" [nodeTpl]="nodeTpl">
-  @for (label of labels; track label; let i = $index) {
+<x-tabs type="card" [(activatedIndex)]="activatedIndex" [actionTpl]="actionTpl" [nodeTpl]="nodeTpl">
+  @for (label of labels(); track label; let i = $index) {
     <x-tab [label]="label">
       <div [style.padding.rem]="0.625">{{ label }}</div>
     </x-tab>

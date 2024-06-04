@@ -1,10 +1,10 @@
 <div class="row">
   <x-card>
-    <x-statistic label="Online Users" value="{{ 2981231 | number }}"> </x-statistic>
+    <x-statistic label="Online Users" [value]="(2981231 | number)!"> </x-statistic>
   </x-card>
 </div>
 <div class="row">
   <x-card>
-    <x-statistic label="Total Sales (CNY)" value="{{ 1023123.122 | number : '1.0-2' }}"> </x-statistic>
+    <x-statistic label="Total Sales (CNY)" [value]="(1023123.122 | number: '1.0-2')!"> </x-statistic>
   </x-card>
 </div>

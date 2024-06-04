@@ -3,7 +3,7 @@
   <x-button (click)="openTable()">表格内容</x-button>
   <x-button (click)="openForm()">表单内容</x-button>
 
-  <x-drawer [title]="titleTpl" [visible]="visible" (close)="close()">
+  <x-drawer [title]="titleTpl" [(visible)]="visible" (close)="close()">
     <span>内容区域</span>
   </x-drawer>
 
@@ -12,7 +12,7 @@
     <span>用户信息</span>
   </ng-template>
 
-  <x-drawer title="表格" size="50%" [visible]="visibleTable" (close)="closeTable()">
+  <x-drawer title="表格" size="50%" [(visible)]="visibleTable" (close)="closeTable()">
     <table class="custom-table">
       <tr>
         <th>用户</th>
@@ -37,7 +37,7 @@
     </table>
   </x-drawer>
 
-  <x-drawer title="表单" [visible]="visibleForm" placement="left" (close)="closeForm()">
+  <x-drawer title="表单" [(visible)]="visibleForm" placement="left" (close)="closeForm()">
     <ul class="custom-form">
       <li><x-input label="账号" direction="row"></x-input></li>
       <li><x-input label="邮箱" direction="row"></x-input></li>

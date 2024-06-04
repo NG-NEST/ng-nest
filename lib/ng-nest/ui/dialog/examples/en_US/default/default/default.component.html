@@ -16,11 +16,6 @@
   </div>
 </div>
 
-<x-dialog
-  title="title"
-  [(visible)]="visible"
-  [placement]="placement"
-  [beforeClose]="beforeClose"
->
+<x-dialog title="title" [(visible)]="visible" [placement]="placement()" [beforeClose]="beforeClose">
   <span>The more you learn, the more you don't know.</span>
 </x-dialog>

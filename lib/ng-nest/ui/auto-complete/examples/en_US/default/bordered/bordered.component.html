@@ -1,17 +1,23 @@
 <x-row>
   <x-col span="24">
-    <x-auto-complete [data]="data" placeholder="Input match" bordered="false"></x-auto-complete>
+    <x-auto-complete [data]="data()" placeholder="Input match" bordered="false"></x-auto-complete>
   </x-col>
   <x-col span="24">
-    <x-auto-complete [data]="data" placeholder="Input match" bordered="false" label="Name:" direction="row"></x-auto-complete>
+    <x-auto-complete
+      [data]="data()"
+      placeholder="Input match"
+      bordered="false"
+      label="Name:"
+      direction="row"
+    ></x-auto-complete>
   </x-col>
   <x-col span="24">
-    <x-auto-complete [data]="data" placeholder="Input match" bordered="false"></x-auto-complete>
+    <x-auto-complete [data]="data()" placeholder="Input match" bordered="false"></x-auto-complete>
   </x-col>
   <x-col span="24">
-    <x-auto-complete [data]="data" placeholder="Input match" bordered="false" required></x-auto-complete>
+    <x-auto-complete [data]="data()" placeholder="Input match" bordered="false" required></x-auto-complete>
   </x-col>
   <x-col span="24">
-    <x-auto-complete [data]="data" placeholder="No border" bordered="false" disabled></x-auto-complete>
+    <x-auto-complete [data]="data()" placeholder="No border" bordered="false" disabled></x-auto-complete>
   </x-col>
 </x-row>

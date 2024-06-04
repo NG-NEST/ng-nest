@@ -1,10 +1,9 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, inject } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, inject, computed } from '@angular/core';
 import { XPageHeaderPrefix, XPageHeaderProperty } from './page-header.property';
-import { XConfigService } from '@ng-nest/ui/core';
-import { XI18nService, XI18nPageHeader } from '@ng-nest/ui/i18n';
-import { Subject } from 'rxjs';
-import { takeUntil, map } from 'rxjs/operators';
+import { XI18nService, XI18nPageHeader, zh_CN } from '@ng-nest/ui/i18n';
+import { map } from 'rxjs/operators';
 import { XButtonComponent } from '@ng-nest/ui/button';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XPageHeaderPrefix}`,
@@ -16,31 +15,10 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPageHeaderComponent extends XPageHeaderProperty {
-  locale: XI18nPageHeader = {};
-  private _unSubject = new Subject<void>();
-
-  get getBackText() {
-    return this.backText || this.locale.back;
-  }
-
-  private cdr = inject(ChangeDetectorRef);
   private i18n = inject(XI18nService);
-  configService = inject(XConfigService);
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.pageHeader as XI18nPageHeader)), {
+    initialValue: zh_CN.pageHeader
+  });
 
-  ngOnInit() {
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.pageHeader as XI18nPageHeader),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        this.cdr.markForCheck();
-      });
-  }
-
-  ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
+  backTextSignal = computed(() => this.backText() || this.locale().back);
 }

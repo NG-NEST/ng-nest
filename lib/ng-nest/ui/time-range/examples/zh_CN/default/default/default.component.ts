@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTimeRangePipe } from '@ng-nest/ui/time-range';
 
 @Component({
@@ -9,5 +9,5 @@ import { XTimeRangePipe } from '@ng-nest/ui/time-range';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  diff = 1000 * 60 * 60 * 24 * 2 - 1000 * 30;
+  diff = signal(1000 * 60 * 60 * 24 * 2 - 1000 * 30);
 }

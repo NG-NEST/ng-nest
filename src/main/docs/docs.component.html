@@ -1,10 +1,10 @@
 <section class="docs-right">
   <router-outlet></router-outlet>
 </section>
-<div class="docs-left" ns-adaption [outerElement]="layout.headerRef.nativeElement">
+<div class="docs-left" ns-adaption [outerElement]="layout.headerRef()?.nativeElement">
   <section #scroll>
     <x-menu
-      [data]="layout.menus"
+      [data]="layout.menus()"
       layout="column"
       [expandedLevel]="0"
       [target]="scroll"

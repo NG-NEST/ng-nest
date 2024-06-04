@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XCardComponent } from '@ng-nest/ui/card';
 
 @Component({
@@ -8,5 +8,5 @@ import { XCardComponent } from '@ng-nest/ui/card';
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
-  list = [1, 2, 3, 4, 5, 6];
+  list = signal([1, 2, 3, 4, 5, 6]);
 }

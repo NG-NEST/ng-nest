@@ -21,14 +21,24 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XAutoCompletePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXAutoCompleteComponent,
+        TestXAutoCompleteAsyncComponent,
+        TestXAutoCompleteLabelComponent,
+        TestXAutoCompleteDisabledComponent,
+        TestXAutoCompleteRequiredComponent,
+        TestXAutoCompleteSizeComponent,
+        TestXAutoCompleteBorderedComponent,
+        TestXAutoCompleteBeforeAfterComponent,
+        TestXAutoCompleteCustomComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XAutoCompleteComponent,
         FormsModule,
@@ -45,20 +55,9 @@ describe(XAutoCompletePrefix, () => {
         XTextareaComponent,
         XTimePickerModule,
         XDatePickerComponent,
-        XIconComponent
-      ],
-      declarations: [
-        TestXAutoCompleteComponent,
-        TestXAutoCompleteAsyncComponent,
-        TestXAutoCompleteLabelComponent,
-        TestXAutoCompleteDisabledComponent,
-        TestXAutoCompleteRequiredComponent,
-        TestXAutoCompleteSizeComponent,
-        TestXAutoCompleteBorderedComponent,
-        TestXAutoCompleteBeforeAfterComponent,
-        TestXAutoCompleteCustomComponent
-      ]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAutoCompleteComponent>;

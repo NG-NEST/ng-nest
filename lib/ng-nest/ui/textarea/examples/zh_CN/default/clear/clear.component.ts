@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
 
@@ -10,6 +10,5 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
   styleUrls: ['./clear.component.scss']
 })
 export class ExClearComponent {
-  model = '清除数据';
-  constructor() {}
+  model = signal('清除数据');
 }

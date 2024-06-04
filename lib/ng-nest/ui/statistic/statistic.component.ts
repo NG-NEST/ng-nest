@@ -1,6 +1,6 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges, OnChanges, inject } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed } from '@angular/core';
 import { XStatisticPrefix, XStatisticProperty } from './statistic.property';
-import { XIsChange, XConfigService } from '@ng-nest/ui/core';
+import { XIsString } from '@ng-nest/ui/core';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { NgStyle } from '@angular/common';
 
@@ -13,21 +13,19 @@ import { NgStyle } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XStatisticComponent extends XStatisticProperty implements OnChanges {
-  displayInt = '';
-  displayDecimal = '';
-  configService = inject(XConfigService);
-
-  ngOnChanges(simples: SimpleChanges) {
-    const { value } = simples;
-    XIsChange(value) && this.setDisplay();
-  }
-
-  setDisplay() {
+export class XStatisticComponent extends XStatisticProperty {
+  displayInt = computed(() => {
+    const value = this.value();
+    if (!XIsString(value)) return '';
     const decimalSeparator: string = '.';
-    const val = String(this.value);
-    const [int, decimal] = val.split(decimalSeparator);
-    this.displayInt = decimal ? `${int}${decimalSeparator}` : int;
-    this.displayDecimal = decimal;
-  }
+    const [int, decimal] = value.split(decimalSeparator);
+    return decimal ? `${int}${decimalSeparator}` : int;
+  });
+  displayDecimal = computed(() => {
+    const value = this.value();
+    if (!XIsString(value)) return '';
+    const decimalSeparator: string = '.';
+    const [_int, decimal] = value.split(decimalSeparator);
+    return decimal;
+  });
 }

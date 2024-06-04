@@ -1,21 +1,22 @@
 @import '../../styles/index.scss';
 
 ns-header {
-  height: $header-height;
-  background-color: $--x-background-100;
+  height: $--header-width;
+  background-color: $--x-background;
   width: 100%;
   z-index: 10;
   display: flex;
-  position: fixed;
+  position: sticky;
+  top: 0;
   align-items: center;
   box-sizing: border-box;
   opacity: 1;
   transition:
-    margin $transition-duration-slow,
-    opacity $transition-duration-slow;
-  box-shadow: $--x-box-shadow;
+    margin $--transition-duration-slow,
+    opacity $--transition-duration-slow;
+  border-block-end: $--layout-border;
   > x-button.menu {
-    margin: 0 0.875rem;
+    margin: 0 $--x-font-size;
     .x-button .x-icon {
       font-size: 1.25rem;
     }
@@ -27,7 +28,7 @@ ns-header {
 }
 
 ns-logo {
-  width: $sider-width;
+  width: $--sider-width;
   > section {
     position: relative;
     padding: 0 1rem;
@@ -43,10 +44,10 @@ ns-logo {
       align-items: center;
     }
     h1 {
-      margin: 0.875rem;
+      margin: $--x-font-size;
       white-space: nowrap;
       span {
-        font-size: 0.75rem;
+        font-size: var(--x-font-size);
         margin-left: 0.5rem;
         color: var(--x-text-400);
         font-weight: 500;
@@ -64,12 +65,13 @@ ns-nav {
     justify-content: flex-end;
     > .item {
       .x-button {
-        font-size: 0.925rem;
+        font-size: $--x-font-size;
       }
       &:not(:first-child) {
         margin-left: 1rem;
       }
-      &.github {
+      &.github,
+      &.theme {
         .x-button > .x-icon {
           font-size: 1.25rem;
         }
@@ -78,18 +80,10 @@ ns-nav {
         margin-left: 0;
       }
       &.slider {
-        font-size: 0.925rem;
-      }
-    }
-  }
-  &.drawer {
-    padding: 0;
-    > section {
-      flex-direction: column;
-      > .item {
-        &:not(:first-child) {
-          margin-left: 0;
-          margin-top: 1rem;
+        font-size: $--x-font-size;
+
+        .x-slider-scroll > ul > li {
+          min-width: 5rem;
         }
       }
     }
@@ -98,7 +92,7 @@ ns-nav {
 
 ns-search {
   > section {
-    width: $sider-width;
+    width: $--sider-width;
     x-auto-complete {
       width: 100%;
       x-input {
@@ -110,24 +104,23 @@ ns-search {
 
 ns-sider {
   height: 100%;
-  width: $sider-width + 0.0625rem;
+  width: $--sider-width + 0.0625rem;
   background-color: $--x-background;
-  margin-left: -#{$sider-width};
+  margin-left: -#{$--sider-width};
   opacity: 0;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 9;
-  border-right: 0.0625rem solid $--x-border;
-  // box-shadow: $box-shadow;
+  border-inline-end: $--layout-border;
   transition:
-    margin $transition-duration-slow,
-    opacity $transition-duration-slow;
+    margin $--transition-duration-slow,
+    opacity $--transition-duration-slow;
   > section {
     position: relative;
     height: 100%;
-    width: $sider-width;
-    padding: 2rem 0;
+    width: $--sider-width;
+    padding: 2rem 0 4rem 0;
     float: left;
     overflow: hidden;
     &:hover {
@@ -136,7 +129,7 @@ ns-sider {
   }
   x-menu {
     .x-menu.x-menu-column {
-      width: $sider-width;
+      width: $--sider-width;
     }
     .x-menu-nodes > .x-menu-node {
       border-right: none;
@@ -144,16 +137,6 @@ ns-sider {
       &.x-activated::after {
         border-right: none;
       }
-      &.x-menu-category > x-menu-node {
-        // border-color: rgba(0, 0, 0, 0.1);
-      }
-    }
-  }
-  &.drawer {
-    margin-left: 0;
-    opacity: 1;
-    > section {
-      overflow-y: auto;
     }
   }
 }
@@ -162,9 +145,9 @@ ns-content {
   width: 100%;
   display: block;
   transition:
-    padding-left $transition-duration-slow,
-    padding-top $transition-duration-slow;
-  padding-bottom: $header-height;
+    padding-left $--transition-duration-slow,
+    padding-top $--transition-duration-slow;
+  padding-bottom: $--header-width;
   > ns-footer {
     width: 100%;
     display: block;
@@ -202,6 +185,36 @@ ns-affix {
     }
     .x-button.x-size-big {
       width: 2.25rem;
+    }
+  }
+}
+
+.drawer {
+  ns-nav {
+    padding: 0;
+    > section {
+      flex-direction: column;
+      > .item {
+        &:not(:first-child) {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+
+  .x-drawer-no-title .x-drawer-content {
+    padding: 0;
+  }
+
+  ns-sider {
+    margin-left: 0;
+    opacity: 1;
+    position: absolute;
+    transition: none;
+    > section {
+      height: 100%;
+      overflow-y: auto;
     }
   }
 }

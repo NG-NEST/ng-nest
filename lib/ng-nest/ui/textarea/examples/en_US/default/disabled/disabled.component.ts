@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
 
@@ -10,6 +10,6 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
   styleUrls: ['./disabled.component.scss']
 })
 export class ExDisabledComponent {
-  model = 'input disabled';
-  modelClearable = 'the clear button is not display in the disabled state';
+  model = signal('input disabled');
+  modelClearable = signal('the clear button is not display in the disabled state');
 }

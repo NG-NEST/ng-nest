@@ -1,10 +1,9 @@
 <section #scroll>
   <x-menu
-    [data]="layout.menus"
+    [data]="layout.menus()"
     layout="column"
     [expandedLevel]="0"
     [target]="scroll"
-    [activatedId]="layout.defaultActivatedId"
-    (nodeClick)="nodeClick($event)"
+    [activatedId]="layout.defaultActivatedId()"
   ></x-menu>
 </section>

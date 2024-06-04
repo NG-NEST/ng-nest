@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
 @Component({
@@ -9,7 +9,7 @@ import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
   styleUrls: ['./bordered.component.scss']
 })
 export class ExBorderedComponent {
-  data1 = [
+  data1 = signal<XTreeSelectNode[]>([
     { id: 1, label: '水果' },
     { id: 2, label: '蔬菜' },
     { id: 3, label: '饮料' },
@@ -25,9 +25,9 @@ export class ExBorderedComponent {
     { id: 13, label: '小米蕉', pid: 5 },
     { id: 14, label: '仙人蕉', pid: 5 },
     { id: 15, label: '皇帝蕉', pid: 5 }
-  ];
-  data2: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
-  data3: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
-  data4: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
-  data5: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
+  ]);
+  data2 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data3 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data4 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data5 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
 }

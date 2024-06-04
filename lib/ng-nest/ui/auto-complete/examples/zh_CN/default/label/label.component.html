@@ -1,35 +1,20 @@
 <x-row>
   <x-col>
-    <x-auto-complete label="方式" [(ngModel)]="model" [data]="data"></x-auto-complete>
+    <x-auto-complete label="方式" [(ngModel)]="model" [data]="data()"></x-auto-complete>
   </x-col>
 </x-row>
 <x-row>
   <x-col>
-    <x-auto-complete
-      label="方式"
-      [(ngModel)]="model"
-      [data]="data"
-      direction="column-reverse"
-    ></x-auto-complete>
+    <x-auto-complete label="方式" [(ngModel)]="model" [data]="data()" direction="column-reverse"></x-auto-complete>
   </x-col>
 </x-row>
 <x-row>
   <x-col>
-    <x-auto-complete
-      label="方式"
-      [(ngModel)]="model"
-      [data]="data"
-      direction="row"
-    ></x-auto-complete>
+    <x-auto-complete label="方式" [(ngModel)]="model" [data]="data()" direction="row"></x-auto-complete>
   </x-col>
 </x-row>
 <x-row>
   <x-col>
-    <x-auto-complete
-      label="方式"
-      [(ngModel)]="model"
-      [data]="data"
-      direction="row-reverse"
-    ></x-auto-complete>
+    <x-auto-complete label="方式" [(ngModel)]="model" [data]="data()" direction="row-reverse"></x-auto-complete>
   </x-col>
 </x-row>

@@ -1,117 +1,173 @@
 export default {
   locale: 'ne_NP',
   comment: {
-    comments: 'टिप्पणी',
-    giveALike: 'जस्तै',
+    comments: 'टिप्पणीहरू',
+    giveALike: 'पसंद',
     reply: 'जवाफ दिनुहोस्',
     more: 'थप हेर्नुहोस्',
-    sure: 'रिलीज',
-    placeholder: 'कृपया एक टिप्पणी प्रविष्ट गर्नुहोस्'
+    sure: 'प्रकाशित गर्नुहोस्',
+    placeholder: 'कृपया टिप्पणी लेख्नुहोस्'
   },
   theme: {
-    darkMode: 'गाढा मोड',
-    initDefault: 'पूर्वनिर्धारित मान सुरू गर्नुहोस्',
-    primary: 'मुख्य रंग',
+    darkMode: 'अँध्यारो मोड',
+    initDefault: 'मूल्यांकन सुरु गर्नुहोस्',
+    primary: 'प्रमुख',
     success: 'सफलता',
-    warning: 'सावधान',
+    warning: 'चेतावनी',
     danger: 'खतरा',
     info: 'जानकारी',
     background: 'पृष्ठभूमि',
-    border: 'फ्रेम',
+    border: 'सीमा',
     text: 'पाठ'
   },
   calendar: {
     month: 'महिना',
-    year: 'बर्ष',
-    lastMonth: 'पहिलो महिना',
-    lastYear: 'पछिल्लो वर्ष',
+    year: 'वर्ष',
+    lastMonth: 'अघिल्लो महिना',
+    lastYear: 'अघिल्लो वर्ष',
     nextMonth: 'अर्को महिना',
-    nextYear: 'आउने साल',
+    nextYear: 'अर्को वर्ष',
     january: 'जनवरी',
     february: 'फेब्रुअरी',
     march: 'मार्च',
     april: 'अप्रिल',
-    may: 'सक्छ',
+    may: 'मे',
     june: 'जुन',
     july: 'जुलाई',
-    august: 'अगस्त',
+    august: 'अगस्ट',
     september: 'सेप्टेम्बर',
-    october: 'अक्टुबर',
+    october: 'अक्टोबर',
     november: 'नोभेम्बर',
     december: 'डिसेम्बर'
   },
   datePicker: {
-    sure: 'पक्का गर्नु',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
+    sure: 'निश्चित',
+    week: 'हप्ता',
+    month: 'महिना',
+    year: 'वर्ष',
+    january: 'जनवरी',
+    february: 'फेब्रुअरी',
+    march: 'मार्च',
+    april: 'अप्रिल',
+    may: 'मे',
+    june: 'जुन',
+    july: 'जुलाई',
+    august: 'अगस्ट',
+    september: 'सेप्टेम्बर',
+    october: 'अक्टोबर',
+    november: 'नोभेम्बर',
+    december: 'डिसेम्बर',
+    monday: 'सोमबार',
+    tuesday: 'मंगलबार',
+    wednesday: 'बुधबार',
+    thursday: 'बिहिबार',
+    friday: 'शुक्रबार',
+    saturday: 'शनिबार',
+    sunday: 'आइतबार',
     yesterday: 'हिजो',
-    today: 'आजकल',
-    tomorrow: 'भोली'
+    today: 'आज',
+    tomorrow: 'भोलि',
+    thisWeek: 'यस हप्ता',
+    lastWeek: 'गएको हप्ता',
+    nextWeek: 'आउने हप्ता',
+    thisMonth: 'यो महिना',
+    lastMonth: 'गएको महिना',
+    nextMonth: 'आउने महिना',
+    thisYear: 'यो वर्ष',
+    lastYear: 'गएको वर्ष',
+    nextYear: 'आउने वर्ष',
+    selectDate: 'मिति चयन गर्नुहोस्',
+    selectWeek: 'सप्ताह चयन गर्नुहोस्',
+    selectMonth: 'महिना चयन गर्नुहोस्',
+    selectQuarter: 'तिमाही चयन गर्नुहोस्',
+    selectYear: 'वर्ष चयन गर्नुहोस्',
+    startDate: 'सुरु मिति',
+    endDate: 'समाप्ति मिति',
+    startMonth: 'सुरु महिना',
+    endMonth: 'समाप्ति महिना',
+    startQuarter: 'सुरु तिमाही',
+    endQuarter: 'समाप्ति तिमाही',
+    startYear: 'सुरु वर्ष',
+    endYear: 'समाप्ति वर्ष',
+    startWeek: 'सुरु सप्ताह',
+    endWeek: 'समाप्ति सप्ताह'
+  },
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'अब',
+    selectTime: 'समय चयन गर्नुहोस्',
+    selectHour: 'घण्टा चयन गर्नुहोस्',
+    selectMinute: 'मिनेट चयन गर्नुहोस्'
   },
   empty: {
-    noData: 'होइन डाटा'
+    noData: 'कुनै डेटा छैन'
+  },
+  image: {
+    previewText: 'पूर्वावलोकन'
   },
   pagination: {
-    previous: 'अघिल्लो पृष्ठ',
-    next: 'अर्को पाना',
+    previous: 'अघिल्लो',
+    next: 'अर्को',
     total: 'कुल',
-    item: 'लेख',
-    first: 'अग्रगामी पृष्ठ',
-    last: 'पुच्छर',
-    jump: 'उफ्रनु',
-    sizePage: '/ पृष्ठ'
+    item: 'वस्तु',
+    first: 'पहिलो',
+    last: 'अन्तिम',
+    jump: 'सम्म पुग्नुहोस्',
+    sizePage: 'प्रति पृष्ठ वस्तुहरू'
   },
   textRetract: {
-    unfold: 'खोलियो',
-    packUp: 'टाढा राख्नुहोस्'
+    unfold: 'फैलाउनुहोस्',
+    packUp: 'बाँध्नुहोस्'
   },
   timeAgo: {
-    just: 'मात्र',
+    just: 'अहिले',
     secondsAgo: 'सेकेन्ड पहिले',
-    minutesAgo: 'मिनेट अघि',
-    hoursAgo: 'एक घण्टा अगाडी'
+    minutesAgo: 'मिनेट पहिले',
+    hoursAgo: 'घण्टा पहिले'
+  },
+  transfer: {
+    listTitle: 'सूची',
+    treeTitle: 'रूख',
+    tableTitle: 'तालिका',
+    selectedTitle: 'चयनित वस्तुहरू',
+    inverse: 'उल्टाउनुहोस्'
   },
   messageBox: {
     cancelText: 'रद्द गर्नुहोस्',
-    confirmText: 'निश्चित गर्नुहोस्'
+    confirmText: 'पुष्टि गर्नुहोस्'
   },
   dialog: {
     cancelText: 'रद्द गर्नुहोस्',
-    confirmText: 'निश्चित गर्नुहोस्'
+    confirmText: 'पुष्टि गर्नुहोस्'
   },
   popconfirm: {
     cancelText: 'रद्द गर्नुहोस्',
-    confirmText: 'निश्चित गर्नुहोस्'
+    confirmText: 'पुष्टि गर्नुहोस्'
   },
   upload: {
-    uploadText: 'फाईलहरू अपलोड गर्नुहोस्'
+    uploadText: 'फाइल अपलोड गर्नुहोस्',
+    beginUploadText: 'अपलोड गर्न सुरु गर्नुहोस्',
+    uploadingText: 'अपलोड भइरहेको छ',
+    uploadCompleted: 'फाइल अपलोड सम्पन्न भयो'
   },
   pageHeader: {
-    back: 'फर्किनु'
+    back: 'पछाडि'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'सबै चयन गर्नुहोस्',
+    loadMoreText: 'थप लोड गर्नुहोस्',
+    loadingMoreText: 'लोड हुँदैछ...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'सबै चयन गर्नुहोस्',
+    maxTagContent: 'थप {{surplus}} चयन गरिएको'
+  },
+  treeSelect: {
+    selectAllText: 'सबै चयन गर्नुहोस्',
+    maxTagContent: 'थप {{surplus}} चयन गरिएको'
+  },
+  form: {
+    required: 'आवश्यक फिल्ड'
   }
 };

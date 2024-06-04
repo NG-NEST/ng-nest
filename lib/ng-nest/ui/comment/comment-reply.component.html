@@ -1,6 +1,11 @@
 <div #commentReply class="x-comment-reply">
-  <x-input [placeholder]="'comment.placeholder' | xI18n" [maxlength]="maxlength" [(ngModel)]="inputValue"></x-input>
+  <x-input
+    class="x-comment-reply-input"
+    [placeholder]="'comment.placeholder' | xI18n"
+    [maxlength]="maxlength()"
+    [(ngModel)]="inputValue"
+  ></x-input>
   <div class="x-comment-reply-buttons">
-    <x-button type="primary" (click)="sureOnClick()">{{ 'comment.sure' | xI18n }}</x-button>
+    <x-button type="primary" flat (click)="sureOnClick()">{{ 'comment.sure' | xI18n }}</x-button>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./async.component.scss']
 })
 export class ExAsyncComponent {
-  data: XTreeSelectNode[] = [
+  data = signal<XTreeSelectNode[]>([
     { id: 1, label: 'Fruit' },
     { id: 2, label: 'Vegetable' },
     { id: 3, label: 'Drink' },
@@ -27,25 +27,27 @@ export class ExAsyncComponent {
     { id: 13, label: 'Millet banana', pid: 5 },
     { id: 14, label: 'Canna edulis', pid: 5 },
     { id: 15, label: 'Emperor banana', pid: 5 }
-  ];
-  model1: any;
-  model2: any;
+  ]);
+  model1 = signal<number | null>(null);
+  model2 = signal<number | null>(null);
 
-  getData1 = new Observable<XTreeSelectNode[]>((x) => {
-    setTimeout(() => {
-      x.next(JSON.parse(JSON.stringify(this.data)));
-      x.complete();
-    }, 300);
-  });
+  getData1 = signal(
+    new Observable<XTreeSelectNode[]>((x) => {
+      setTimeout(() => {
+        x.next(JSON.parse(JSON.stringify(this.data())));
+        x.complete();
+      }, 300);
+    })
+  );
 
-  getData2 = (): Observable<XTreeSelectNode[]> => {
+  getData2 = signal((): Observable<XTreeSelectNode[]> => {
     return new Observable((x) => {
       setTimeout(() => {
-        x.next(JSON.parse(JSON.stringify(this.data)));
+        x.next(JSON.parse(JSON.stringify(this.data())));
         x.complete();
       }, 300);
     });
-  };
+  });
 
   change(event: any) {
     console.log(event);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 
@@ -9,12 +9,9 @@ import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })
-export class ExDefaultComponent implements OnInit {
-  model1: any;
-  model2 = '#409eff';
-  model3 = 'rgb(64, 158, 255)';
-  model4 = 'hsl(210, 100%, 63%)';
-  constructor() {}
-
-  ngOnInit() {}
+export class ExDefaultComponent {
+  model1 = signal<string | null>(null);
+  model2 = signal('#409eff');
+  model3 = signal('rgb(64, 158, 255)');
+  model4 = signal('hsl(210, 100%, 63%)');
 }

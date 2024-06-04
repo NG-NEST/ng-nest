@@ -2,17 +2,18 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   inject,
-  OnDestroy
+  OnDestroy,
+  signal,
+  HostBinding,
+  computed
 } from '@angular/core';
 import { XCarouselPanelPrefix, XCarouselPanelProperty } from './carousel.property';
-import { XDropAnimation, XConfigService } from '@ng-nest/ui/core';
+import { XDropAnimation } from '@ng-nest/ui/core';
 import { XCarouselComponent } from './carousel.component';
-import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: `${XCarouselPanelPrefix}`,
@@ -24,73 +25,85 @@ import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCarouselPanelComponent extends XCarouselPanelProperty implements OnInit, OnDestroy {
-  index!: number;
-  width!: number;
-  height!: number;
-  animating!: boolean;
+  @HostBinding('class.x-carousel-card') get getCard() {
+    return !!this.carousel?.card();
+  }
+  @HostBinding('class.x-activated') get getActivated() {
+    return this.activeSignal();
+  }
+  @HostBinding('class.x-carousel-in-stage') get getInStage() {
+    return this.inStage();
+  }
+  @HostBinding('class.x-carousel-animating') get getAnimating() {
+    return this.animating();
+  }
+  @HostBinding('style.transform') get getTransform() {
+    return `${this.translateType()}(${this.translate()}px) scale(${this.scale()})`;
+  }
+  index = signal(0);
+  animating = signal(false);
   preTranslate!: number;
-  cardScale = 0.83;
-  scale = 1;
-  inStage = false;
-  updateSub = new BehaviorSubject(false);
+  cardScale = signal(0.83);
+  scale = signal(1);
+  translate = signal(0);
+  translateType = signal('translateX');
+  inStage = signal(false);
   unSubject = new Subject<void>();
   carousel = inject(XCarouselComponent, { optional: true, host: true });
-  private renderer = inject(Renderer2);
+  activeSignal = signal(this.active());
+  card = computed(() => this.carousel?.card() ?? false);
   private elementRef = inject(ElementRef);
-  private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
 
   ngOnInit() {
-    if (this.carousel) {
-      this.carousel.count++;
-      this.carousel.start++;
-      this.index = this.carousel.start;
-      this.setClass('x-carousel-card', Boolean(this.carousel.card));
-      this.carousel.panelChanges.push(this.updateSub);
-    }
-    this.updateSub.pipe(takeUntil(this.unSubject)).subscribe((x) => {
-      if (x) this.update();
+    if (!this.carousel) return;
+    this.carousel.count.update((x) => x + 1);
+    this.carousel.start.update((x) => x + 1);
+    this.index.set(this.carousel.start());
+
+    this.carousel.panels.update((x) => {
+      x.push(this.elementRef);
+      return [...x];
+    });
+    this.carousel.updatePanel.pipe(takeUntil(this.unSubject)).subscribe(() => {
+      this.update();
     });
   }
 
   ngOnDestroy(): void {
-    if (this.carousel) {
-      this.carousel.start--;
-      const idx = this.carousel.panelChanges.indexOf(this.updateSub);
-      this.carousel.panelChanges.splice(idx, 1);
-    }
-    this.unSubject.next();
-    this.unSubject.complete();
+    if (!this.carousel) return;
+    this.carousel.start.update((x) => x - 1);
+    const idx = this.carousel.panels().indexOf(this.elementRef);
+    this.carousel.panels.update((x) => {
+      x.splice(idx, 1);
+      return [...x];
+    });
   }
 
   setActive() {
-    const isActive: boolean = this.carousel?.active === this.index;
-    if (this.active !== isActive) {
-      this.active = isActive;
-      this.setClass('x-activated', this.active);
+    if (!this.carousel) return;
+    const isActive: boolean = this.carousel.active() === this.index();
+    if (this.activeSignal() !== isActive) {
+      this.activeSignal.set(isActive);
     }
   }
 
   setStyles() {
     if (!this.carousel) return;
-    this.width = this.elementRef.nativeElement.offsetWidth;
-    this.height = this.elementRef.nativeElement.offsetHeight;
-    let translate: number;
-    let offset: number = Number(this.carousel.active) - this.index;
-    let distance = this.width;
-    let translateType = 'translateX';
-    if (this.carousel.card) {
-      if (this.carousel.direction === 'vertical') {
+    const width = this.elementRef.nativeElement.offsetWidth;
+    const height = this.elementRef.nativeElement.offsetHeight;
+    let offset = this.carousel.active() - this.index();
+    let distance = width;
+    if (this.carousel.card()) {
+      if (this.carousel.direction() === 'vertical') {
         console.warn('[x-carousel] vertical direction is not supported in card mode');
       }
-      this.inStage = Math.round(Math.abs(offset)) <= 1;
-      this.setClass('x-carousel-in-stage', this.inStage);
-      translate = this.calcCardTranslate(this.index, Number(this.carousel.active))!;
-      this.scale = offset === 0 ? 1 : this.cardScale;
+      this.inStage.set(Math.round(Math.abs(offset)) <= 1);
+      this.translate.set(this.calcCardTranslate(this.index(), this.carousel.active())!);
+      this.scale.set(offset === 0 ? 1 : this.cardScale());
     } else {
-      if (this.carousel?.direction === 'vertical') {
-        distance = this.height;
-        translateType = 'translateY';
+      if (this.carousel?.direction() === 'vertical') {
+        distance = height;
+        this.translateType.set('translateY');
       }
       const map: any = {
         '-2': -distance,
@@ -100,52 +113,41 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
         '2': distance
       };
       offset = offset < -2 ? -2 : offset > 2 ? 2 : offset;
-      translate = map[offset];
+      this.translate.set(map[offset]);
     }
-    this.animating =
-      this.carousel.active === this.index ||
-      this.carousel.before === this.index ||
-      this.carousel.start === Math.abs(offset) ||
-      Boolean(this.carousel.card);
-    this.setClass('x-carousel-animating', this.animating);
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'transform',
-      `${translateType}(${translate}px) scale(${this.scale})`
+    this.animating.set(
+      this.carousel.active() === this.index() ||
+        this.carousel.before() === this.index() ||
+        this.carousel.start() === Math.abs(offset) ||
+        this.carousel.card()
     );
   }
 
   calcCardTranslate(index: number, activeIndex: number) {
     if (!this.carousel) return;
-    const parentWidth = this.carousel.carousel.nativeElement.offsetWidth;
+    const parentWidth = this.carousel.carousel().nativeElement.offsetWidth;
     let offset: number = index - activeIndex;
-    let activeFirstOrLast = this.carousel.start > 1 && this.carousel.start === Math.abs(offset);
-    if (this.inStage || activeFirstOrLast) {
+    let activeFirstOrLast = this.carousel.start() > 1 && this.carousel.start() === Math.abs(offset);
+    if (this.inStage() || activeFirstOrLast) {
       if (activeFirstOrLast) offset = offset < 0 ? 1 : -1;
-      return (parentWidth * ((2 - this.cardScale) * offset + 1)) / 4;
+      return (parentWidth * ((2 - this.cardScale()) * offset + 1)) / 4;
     } else if (index < activeIndex) {
-      return (-(1 + this.cardScale) * parentWidth) / 4;
+      return (-(1 + this.cardScale()) * parentWidth) / 4;
     } else {
-      return ((3 + this.cardScale) * parentWidth) / 4;
+      return ((3 + this.cardScale()) * parentWidth) / 4;
     }
   }
 
   update() {
     this.setActive();
     this.setStyles();
-    this.cdr.detectChanges();
   }
 
   panelClick() {
     if (!this.carousel) return;
-    if (this.carousel.card && this.carousel.active !== this.index) {
-      this.carousel.autoplay && this.carousel.resetInterval();
-      this.carousel.setActiveItem(this.index);
+    if (this.carousel.card() && this.carousel.active() !== this.index()) {
+      this.carousel.autoplay() && this.carousel.resetInterval();
+      this.carousel.setActiveItem(this.index());
     }
-  }
-
-  setClass(cls: string, value: boolean) {
-    if (value) this.renderer.addClass(this.elementRef.nativeElement, cls);
-    else this.renderer.removeClass(this.elementRef.nativeElement, cls);
   }
 }

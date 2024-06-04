@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, signal } from '@angular/core';
 import { XImageComponent } from './image.component';
 import { XImageGroupPrefix } from './image.property';
 
@@ -11,23 +11,19 @@ import { XImageGroupPrefix } from './image.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XImageGroupComponent {
-  images: XImageComponent[] = [];
-
-  constructor() {
-    console.log('group cons');
-  }
-
-  ngOnInit() {
-    console.log('group');
-  }
+  images = signal<XImageComponent[]>([]);
 
   addImage(image: XImageComponent): void {
-    console.log('add');
-    this.images.push(image);
+    this.images.update((x) => {
+      x.push(image);
+      return [...x];
+    });
   }
 
   removeImage(image: XImageComponent): void {
-    console.log('remove');
-    this.images.splice(this.images.indexOf(image), 1);
+    this.images.update((x) => {
+      x.splice(x.indexOf(image), 1);
+      return [...x];
+    });
   }
 }

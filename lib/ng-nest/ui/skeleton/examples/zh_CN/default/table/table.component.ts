@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XSkeletonComponent, XSkeletonRow } from '@ng-nest/ui/skeleton';
 
 @Component({
@@ -8,10 +8,10 @@ import { XSkeletonComponent, XSkeletonRow } from '@ng-nest/ui/skeleton';
   templateUrl: './table.component.html'
 })
 export class ExTableComponent {
-  data: XSkeletonRow[] = [
+  data = signal<XSkeletonRow[]>([
     {
       flex: true,
-      space: 1,
+      space: '1rem',
       cols: [
         { type: 'title', width: '3rem' },
         { type: 'title', span: 4 },
@@ -22,23 +22,23 @@ export class ExTableComponent {
     },
     {
       flex: true,
-      space: 1,
+      space: '1rem',
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: 1,
+      space: '1rem',
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: 1,
+      space: '1rem',
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: 1,
+      space: '1rem',
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     }
-  ];
+  ]);
 }

@@ -1,15 +1,15 @@
 <div
   #tag
   class="x-tag"
-  [ngClass]="classMap"
-  [style]="style"
-  [class.x-disabled]="disabled"
-  [class.x-tag-bordered]="bordered"
-  [class.x-tag-selected]="selected"
+  [ngClass]="classMap()"
+  [style]="style()"
+  [class.x-disabled]="disabled()"
+  [class.x-tag-bordered]="bordered()"
+  [class.x-tag-selected]="selected()"
   (click)="onClick()"
 >
   <ng-content></ng-content>
-  @if (closable) {
+  @if (closable()) {
     <x-icon type="fto-x" (click)="onClose($event)"></x-icon>
   }
 </div>

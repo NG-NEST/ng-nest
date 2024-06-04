@@ -1,19 +1,17 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
   OnChanges,
-  OnDestroy,
-  AfterViewInit,
-  inject
+  inject,
+  computed,
+  signal,
+  effect
 } from '@angular/core';
 import { XMenuPrefix, XMenuNode, XMenuProperty } from './menu.property';
-import { XClassMap, XIsChange, XIsEmpty, XSetData, XGroupBy, XConfigService } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
+import { XIsChange, XIsEmpty, XGroupBy } from '@ng-nest/ui/core';
 import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XDropdownComponent } from '@ng-nest/ui/dropdown';
@@ -28,49 +26,51 @@ import { XMenuNodeComponent } from './menu-node.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
-  showCategory = false;
+export class XMenuComponent extends XMenuProperty implements OnChanges {
+  showCategory = signal(false);
   get scroll(): HTMLElement {
     return this._target;
   }
-  nodeClassMap: XClassMap = {};
-  datas: XMenuNode[] = [];
-  nodes: XMenuNode[] = [];
-  rootIndex: number = 0;
-  activated?: XMenuNode;
-  activatedElementRef!: ElementRef<HTMLElement>;
-  expanded: any[] = [];
+  datas = signal<XMenuNode[]>([]);
+  nodes = signal<XMenuNode[]>([]);
+  rootIndex = signal(0);
+  activated = signal<XMenuNode | null>(null);
+  activatedElementRef = signal<ElementRef<HTMLElement> | null>(null);
+  expanded = signal<any[]>([]);
   private doc = inject(DOCUMENT);
-  private _unSubject = new Subject<void>();
   private _target!: HTMLElement;
-  private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
 
-  ngOnInit() {
-    this.setClassMap();
+  classMap = computed(() => ({
+    [`${XMenuPrefix}-${this.layout()}`]: !XIsEmpty(this.layout()),
+    [`${XMenuPrefix}-collapsed`]: this.collapsed()
+  }));
+  nodeClassMap = computed(() => ({
+    [`x-size-${this.size()}`]: !XIsEmpty(this.size())
+  }));
+
+  constructor() {
+    super();
+    effect(() => {
+      this.setScrollTop();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const { data, activatedId, collapsed, target } = changes;
-    XIsChange(data) && this.setData();
-    XIsChange(activatedId) && this.setActivatedNode(this.datas);
-    XIsChange(collapsed) && this.setClassMap();
+    const { data, activatedId, target } = changes;
+    XIsChange(data) && this.setDataChange(this.data());
+    XIsChange(activatedId) && this.setActivatedNode(this.datas());
     if (XIsChange(target)) {
-      this._target = typeof this.target === 'string' ? this.doc.querySelector(this.target)! : this.target!;
+      const target = this.target();
+      this._target = typeof target === 'string' ? this.doc.querySelector(target)! : target!;
     }
   }
 
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
-
-  ngAfterViewInit() {
-    if (this.activatedElementRef && this.scroll) {
-      if (typeof this.activatedElementRef.nativeElement.getBoundingClientRect !== 'function') {
+  setScrollTop() {
+    if (this.activatedElementRef() && this.scroll) {
+      if (typeof this.activatedElementRef()!.nativeElement.getBoundingClientRect !== 'function') {
         return;
       }
-      const nodeRect: DOMRect = this.activatedElementRef.nativeElement.getBoundingClientRect();
+      const nodeRect: DOMRect = this.activatedElementRef()!.nativeElement.getBoundingClientRect();
       const scrollRect: DOMRect = this.scroll.getBoundingClientRect();
       let scrollTop = nodeRect.top - scrollRect.top - scrollRect.height;
       if (scrollTop > 0) {
@@ -84,32 +84,28 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   }
 
   onNodeClick(node: XMenuNode) {
-    if (!this.collapsed) {
-      this.rootIndex = this.nodes.indexOf(this.getRoot(node));
-      this.activatedId = node.id;
-      this.activated = node;
+    if (!this.collapsed()) {
+      this.rootIndex.set(this.nodes().indexOf(this.getRoot(node)));
+      this.activatedId.set(node.id);
+      this.activated.set(node);
       this.nodeClick.emit(node);
-      this.activatedIdChange.emit(node.id);
-      this.cdr.detectChanges();
     } else {
       this.onToggle(null, node, true);
     }
   }
 
   rootIndexChange(index: number) {
-    this.rootIndex = index;
-    let node = this.nodes[index];
-    this.activatedId = node.id;
-    this.activated = node;
+    this.rootIndex.set(index);
+    let node = this.nodes()[index];
+    this.activatedId.set(node.id);
+    this.activated.set(node);
     this.nodeClick.emit(node);
-    this.activatedIdChange.emit(node.id);
-    this.cdr.detectChanges();
   }
 
   onToggle(event: Event | null, node: XMenuNode, isDropdown = false) {
-    if ((this.collapsed && !isDropdown) || node.categoryNode) return;
+    if ((this.collapsed() && !isDropdown) || node.categoryNode) return;
     if (!node.leaf) {
-      this.activated = node;
+      this.activated.set(node);
     } else {
       event?.stopPropagation();
       node.open = !node.open;
@@ -118,33 +114,17 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
       }
     }
     this.nodeClick.emit(node);
-    node.change && node.change();
-    this.cdr.detectChanges();
-  }
-
-  setClassMap() {
-    this.classMap[`${XMenuPrefix}-${this.layout}`] = this.layout ? true : false;
-    this.classMap[`${XMenuPrefix}-collapsed`] = Boolean(this.collapsed);
-    this.nodeClassMap[`x-size-${this.size}`] = this.size ? true : false;
-    this.cdr.detectChanges();
-  }
-
-  private setData() {
-    XSetData<XMenuNode>(this.data, this._unSubject).subscribe((x) => {
-      this.setDataChange(x);
-    });
   }
 
   private setDataChange(value: XMenuNode[]) {
-    !XIsEmpty(this.activatedId) && this.setActivatedNode(value);
+    !XIsEmpty(this.activatedId()) && this.setActivatedNode(value);
     let handlerDatas: XMenuNode[] = [];
     const getChildren = (node: XMenuNode, level: number) => {
       node.level = level;
       node.children = value.filter((y) => y.pid === node.id);
       node.leaf = node.children?.length > 0;
       if (node.leaf) {
-        node.open =
-          Boolean(this.expandedAll) || level <= Number(this.expandedLevel) || this.expanded.indexOf(node.id) >= 0;
+        node.open = this.expandedAll() || level <= this.expandedLevel() || this.expanded().indexOf(node.id) >= 0;
         node.childrenLoaded = node.open;
         node.children.map((y) => getChildren(y, level + 1));
         node.children = this.setCategory(node.children);
@@ -153,15 +133,14 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
       return node;
     };
 
-    this.nodes = this.setCategory(value.filter((x) => XIsEmpty(x.pid))).map((x) => getChildren(x, 0));
-    this.datas = handlerDatas;
-    this.cdr.detectChanges();
+    this.nodes.set(this.setCategory(value.filter((x) => XIsEmpty(x.pid))).map((x) => getChildren(x, 0)));
+    this.datas.set(handlerDatas);
   }
 
   private getRoot(value: XMenuNode) {
     let root = value;
     const getParent = (node: XMenuNode) => {
-      const parent = this.datas.find((x) => node.pid === x.id) as XMenuNode;
+      const parent = this.datas().find((x) => node.pid === x.id) as XMenuNode;
       if (XIsEmpty(parent?.pid)) root = parent;
       else getParent(parent);
     };
@@ -191,10 +170,10 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
   }
 
   setActivatedNode(nodes: XMenuNode[]) {
-    this.activated = nodes.find((x) => x.id == this.activatedId) as XMenuNode;
-    this.rootIndex = nodes.findIndex((x) => x.id == this.activatedId && !x.pid);
-    if (this.activated) {
-      this.setParentOpen(nodes, this.activated);
+    this.activated.set(nodes.find((x) => x.id == this.activatedId()) as XMenuNode);
+    this.rootIndex.set(nodes.findIndex((x) => x.id == this.activatedId() && !x.pid));
+    if (this.activated()) {
+      this.setParentOpen(nodes, this.activated()!);
     }
   }
 
@@ -203,7 +182,7 @@ export class XMenuComponent extends XMenuProperty implements OnInit, OnChanges, 
       if (XIsEmpty(child.pid)) return;
       const parent = nodes.find((x) => x.id === child.pid) as XMenuNode;
       if (!XIsEmpty(parent)) {
-        this.expanded = [...this.expanded, parent.id];
+        this.expanded.set([...this.expanded(), parent.id]);
         getParent(parent);
       }
     };

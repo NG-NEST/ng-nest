@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
@@ -8,7 +8,7 @@ import { XControl, XFormComponent } from '@ng-nest/ui/form';
   templateUrl: './label-row.component.html'
 })
 export class ExLabelRowComponent {
-  controls: XControl[] = [
+  controls = signal<XControl[]>([
     {
       control: 'input',
       id: 'id',
@@ -99,5 +99,5 @@ export class ExLabelRowComponent {
       label: '爱好',
       data: ['乒乓球', '篮球', '足球']
     }
-  ];
+  ]);
 }

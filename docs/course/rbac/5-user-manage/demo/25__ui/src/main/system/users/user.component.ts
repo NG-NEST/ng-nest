@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { XQuery } from '@ng-nest/ui/core';
 import { XMessageService } from '@ng-nest/ui/message';
@@ -26,7 +26,7 @@ export class UserComponent implements OnInit {
 
   index = 1;
 
-  @ViewChild('table') table!: XTableComponent;
+  table = viewChild.required<XTableComponent>('table');
 
   constructor(
     private userService: UserService,
@@ -57,8 +57,8 @@ export class UserComponent implements OnInit {
           type: 'warning',
           callback: (action: XMessageBoxAction) => {
             action === 'confirm' &&
-              this.userService.delete(item.id).subscribe((x) => {
-                this.table.change(this.index);
+              this.userService.delete(item.id).subscribe(() => {
+                this.table().change(this.index);
                 this.message.success('删除成功！');
               });
           }

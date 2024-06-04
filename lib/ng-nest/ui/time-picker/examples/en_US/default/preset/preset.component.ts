@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XAddHours } from '@ng-nest/ui/core';
 import { XTimePickerComponent } from '@ng-nest/ui/time-picker';
@@ -10,9 +10,9 @@ import { XTimePickerComponent } from '@ng-nest/ui/time-picker';
   templateUrl: './preset.component.html'
 })
 export class ExPresetComponent {
-  model: any;
+  model = signal('');
 
-  preset = [
+  preset = signal([
     'now',
     {
       label: '1 hour ago',
@@ -26,7 +26,7 @@ export class ExPresetComponent {
         return XAddHours(new Date(), 2);
       }
     }
-  ];
+  ]);
 
   change(date: any) {
     console.log(date);

@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { XAutoCompleteComponent, XAutoCompleteNode } from '@ng-nest/ui/auto-complete';
-import { XData } from '@ng-nest/ui/core';
+import { Component, signal } from '@angular/core';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
@@ -11,17 +10,5 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
   styleUrls: ['./bordered.component.scss']
 })
 export class ExBorderedComponent {
-  data: XData<XAutoCompleteNode> = [
-    'AAAA',
-    'AAA',
-    'BBBB',
-    'CCCC',
-    'DDDD',
-    'EEEE',
-    'FFFF',
-    'GGGG',
-    'HHHH',
-    'IIII',
-    'JJJJ'
-  ];
+  data = signal(['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ']);
 }

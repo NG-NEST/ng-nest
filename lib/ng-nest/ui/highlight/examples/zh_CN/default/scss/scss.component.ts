@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XHighlightComponent } from '@ng-nest/ui/highlight';
 
 @Component({
@@ -8,7 +8,7 @@ import { XHighlightComponent } from '@ng-nest/ui/highlight';
   templateUrl: './scss.component.html'
 })
 export class ExScssComponent {
-  scss = `@mixin highlight {
+  scss = signal(`@mixin highlight {
   display: block;
   width: 100%;
   background-color: #eff0f1;
@@ -26,5 +26,5 @@ export class ExScssComponent {
 body {
   @include highlight();
 }
-`;
+`);
 }

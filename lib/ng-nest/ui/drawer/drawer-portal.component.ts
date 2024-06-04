@@ -7,8 +7,8 @@ import {
   EventEmitter,
   HostBinding,
   HostListener,
-  ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  viewChild
 } from '@angular/core';
 import { XSlideAnimation } from '@ng-nest/ui/core';
 import { XDrawerAnimationEvent, XDrawerAnimationState } from './drawer.property';
@@ -33,20 +33,20 @@ export class XDrawerPortalComponent extends BasePortalOutlet {
   @HostListener('@x-slide-animation.start', ['$event']) start({ toState, totalTime }: AnimationEvent) {
     this.animationChanged.next({ action: 'start', state: toState as XDrawerAnimationState, totalTime });
   }
-  @ViewChild(CdkPortalOutlet, { static: true }) portalOutlet!: CdkPortalOutlet;
+  portalOutlet = viewChild.required(CdkPortalOutlet);
 
   animationChanged = new EventEmitter<XDrawerAnimationEvent>();
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
-    if (this.portalOutlet.hasAttached()) {
+    if (this.portalOutlet().hasAttached()) {
       throw Error('drawer portal has attached');
     }
-    return this.portalOutlet.attachComponentPortal(portal);
+    return this.portalOutlet().attachComponentPortal(portal);
   }
   attachTemplatePortal<C>(portal: TemplatePortal<C>): EmbeddedViewRef<C> {
-    if (this.portalOutlet.hasAttached()) {
+    if (this.portalOutlet().hasAttached()) {
       throw Error('drawer portal has attached');
     }
-    return this.portalOutlet.attachTemplatePortal(portal);
+    return this.portalOutlet().attachTemplatePortal(portal);
   }
 }

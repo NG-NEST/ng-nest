@@ -1,12 +1,8 @@
-<div #tooltipPortal class="x-tooltip-portal" [ngClass]="classMap">
-  <div
-    class="x-tooltip-portal-inner"
-    [style.backgroundColor]="backgroundColor"
-    [style.color]="color"
-  >
-    <ng-container *xOutlet="content"><div [innerHTML]="content"></div></ng-container>
+<div #tooltipPortal class="x-tooltip-portal" [ngClass]="classMap()">
+  <div class="x-tooltip-portal-inner" [style.backgroundColor]="backgroundColor()" [style.color]="color()">
+    <ng-container *xOutlet="content()"><div [innerHTML]="content()"></div></ng-container>
   </div>
-  <div #tooltipArrow class="x-tooltip-portal-arrow">
+  <div #tooltipArrow class="x-tooltip-portal-arrow" [class.x-tooltip-portal-arrow-hidden]="arrowHidden()">
     <div #tooltipArrowAfter class="x-tooltip-portal-arrow-after"></div>
   </div>
 </div>

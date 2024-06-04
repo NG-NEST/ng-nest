@@ -3,29 +3,28 @@
     <x-input
       #inputCom
       type="text"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [labelAlign]="labelAlign"
-      [justify]="justify"
-      [align]="align"
-      [direction]="direction"
-      [disabled]="disabled"
-      [required]="required"
-      [validator]="validator"
-      [icon]="icon"
-      [placeholder]="placeholder"
-      [readonly]="readonly"
-      [clearable]="clearable"
-      [(ngModel)]="displayValue"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [disabled]="disabledComputed()"
+      [required]="requiredComputed()"
+      [validator]="validatorComputed()"
+      [icon]="icon()"
+      [placeholder]="placeholder()"
+      [readonly]="true"
+      [clearable]="clearable()"
+      [ngModel]="displayValue()"
       [valueTpl]="valueTpl"
-      [valueTplContext]="valueTplContext"
-      [size]="size"
-      [bordered]="bordered"
-      [before]="before"
-      [after]="after"
-      [pattern]="pattern"
-      [message]="message"
-      [inputStyle]="inputStyle"
+      [valueTplContext]="valueTplContext()"
+      [size]="size()"
+      [bordered]="bordered()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="patternComputed()"
+      [message]="messageComputed()"
       [pointer]="true"
       [(active)]="active"
       (clearEmit)="clearEmit()"
@@ -33,5 +32,11 @@
       (xMouseenter)="menter()"
       (xMouseleave)="mleave()"
     ></x-input>
+
+    <ng-template #valueTpl>
+      <div class="x-color-picker-template-value">
+        <div class="x-color-picker-template-color" [style]="inputStyle()"></div>
+      </div>
+    </ng-template>
   </div>
 </div>

@@ -2,7 +2,7 @@
   <x-tree-select
     [style.width.rem]="18"
     label="输入搜索"
-    [data]="data1"
+    [data]="data1()"
     [(ngModel)]="model1"
     (ngModelChange)="change($event)"
     search
@@ -12,7 +12,7 @@
   <x-tree-select
     [style.width.rem]="18"
     label="输入搜索（异步）"
-    [data]="data2"
+    [data]="data2()"
     [(ngModel)]="model2"
     (ngModelChange)="change($event)"
     search
@@ -23,7 +23,7 @@
   <x-tree-select
     [style.width.rem]="18"
     label="搜索多选"
-    [data]="data3"
+    [data]="data3()"
     [(ngModel)]="model3"
     (ngModelChange)="change($event)"
     search
@@ -34,7 +34,7 @@
   <x-tree-select
     [style.width.rem]="18"
     label="搜索多选（异步）"
-    [data]="data4"
+    [data]="data4()"
     [(ngModel)]="model4"
     (ngModelChange)="change($event)"
     search

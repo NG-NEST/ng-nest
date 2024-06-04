@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { XSelectComponent, XSelectNode } from '@ng-nest/ui/select';
-import { XData } from '@ng-nest/ui/core';
+import { Component, signal } from '@angular/core';
+import { XSelectComponent } from '@ng-nest/ui/select';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,6 +10,6 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./required.component.scss']
 })
 export class ExRequiredComponent {
-  data: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
-  model!: number;
+  data = signal(['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ']);
+  model = signal<string>('');
 }

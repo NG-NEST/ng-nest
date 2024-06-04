@@ -1,22 +1,9 @@
-import {
-  XTemplate,
-  XPosition,
-  XProperty,
-  XInputBoolean,
-  XBoolean,
-  XWithConfig
-} from '@ng-nest/ui/core';
-import {
-  Input,
-  Output,
-  EventEmitter,
-  Component,
-  InjectionToken,
-  ViewContainerRef
-} from '@angular/core';
+import { XPropertyFunction, XProperty, XToCssPixelValue, XToBoolean } from '@ng-nest/ui/core';
+import { Component, InjectionToken, ViewContainerRef, input, model, output } from '@angular/core';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
-import { XDrawerRef } from './drawer-ref';
 import { XDrawerPortalComponent } from './drawer-portal.component';
+import type { XDrawerRef } from './drawer-ref';
+import type { XTemplate, XPosition, XBoolean, XNumber } from '@ng-nest/ui/core';
 
 /**
  * Drawer
@@ -31,52 +18,47 @@ export const X_DRAWER_DATA = new InjectionToken<any>('XDrawerData');
  * Drawer Property
  */
 @Component({ selector: `${XDrawerPrefix}-property`, template: '' })
-export class XDrawerProperty extends XProperty {
+export class XDrawerProperty extends XPropertyFunction(X_DRAWER_CONFIG_NAME) {
   /**
    * @zh_CN 标题
    * @en_US Title
    */
-  @Input() title?: XTemplate;
+  readonly title = input<XTemplate>();
   /**
    * @zh_CN 显示/隐藏
    * @en_US Show/hide
    */
-  @Input() @XInputBoolean() visible?: XBoolean;
+  readonly visible = model<boolean>(false);
   /**
    * @zh_CN 展示方向
    * @en_US Display direction
    */
-  @Input() @XWithConfig<XPosition>(X_DRAWER_CONFIG_NAME, 'right') placement?: XPosition;
+  readonly placement = input<XPosition>(this.config?.placement ?? 'right');
   /**
    * @zh_CN 尺寸，支持固定值
    * @en_US Size, supports fixed value
    */
-  @Input() @XWithConfig<string>(X_DRAWER_CONFIG_NAME, '30%') size?: string;
+  readonly size = input<string, XNumber>(this.config?.size ?? '30%', { transform: XToCssPixelValue });
   /**
    * @zh_CN 点击遮罩关闭
    * @en_US Click the mask to close
    */
-  @Input() @XWithConfig<XBoolean>(X_DRAWER_CONFIG_NAME, true) backdropClose!: XBoolean;
+  readonly backdropClose = input<boolean, XBoolean>(this.config?.backdropClose ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 是否显示背景遮罩
    * @en_US Whether to display the background mask
    */
-  @Input() @XWithConfig<XBoolean>(X_DRAWER_CONFIG_NAME, true) hasBackdrop!: XBoolean;
+  readonly hasBackdrop = input<boolean, XBoolean>(this.config?.hasBackdrop ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 自定义样式名
    * @en_US Custom style name
    */
-  @Input() @XWithConfig<string>(X_DRAWER_CONFIG_NAME, '') className!: string;
+  readonly className = input<string>(this.config?.className ?? '');
   /**
    * @zh_CN 关闭的事件
    * @en_US Closed event
    */
-  @Output() close = new EventEmitter();
-  /**
-   * @zh_CN 显示/隐藏的事件
-   * @en_US Show/hide event
-   */
-  @Output() visibleChange = new EventEmitter<boolean>();
+  readonly close = output();
 }
 
 /**
@@ -150,8 +132,16 @@ export interface XDrawerPortalOverlayRef extends XPortalOverlayRef<XDrawerPortal
   drawerRef?: XDrawerRef<any>;
 }
 
+/**
+ * @zh_CN 抽屉动画状态
+ * @en_US Drawer animation status
+ */
 export type XDrawerAnimationState = XPosition | 'void';
 
+/**
+ * @zh_CN 抽屉动画事件
+ * @en_US Drawer animation event
+ */
 export interface XDrawerAnimationEvent {
   state: XDrawerAnimationState;
   action: 'start' | 'done';

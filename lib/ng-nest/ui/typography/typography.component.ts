@@ -5,7 +5,8 @@ import {
   ChangeDetectionStrategy,
   Renderer2,
   ElementRef,
-  inject
+  inject,
+  signal
 } from '@angular/core';
 import { XTypographyPrefix, XTypographyProperty } from './typography.property';
 
@@ -18,13 +19,15 @@ import { XTypographyPrefix, XTypographyProperty } from './typography.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTypographyComponent extends XTypographyProperty implements OnInit {
-  firstText!: string;
+  firstText = signal('');
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
 
   ngOnInit() {
     this.renderer.addClass(this.elementRef.nativeElement, XTypographyPrefix);
-    if (this.font) this.renderer.setStyle(this.elementRef.nativeElement, 'font-family', this.font);
-    if (this.text && this.text.length > 0) this.firstText = this.text.slice(0, 1);
+    const font = this.font();
+    const text = this.text();
+    if (font) this.renderer.setStyle(this.elementRef.nativeElement, 'font-family', font);
+    if (text && text.length > 0) this.firstText.set(text.slice(0, 1));
   }
 }

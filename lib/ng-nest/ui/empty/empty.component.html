@@ -1,14 +1,14 @@
 <div #empty class="x-empty">
-  @if (img) {
-    <ng-container *xOutlet="img">
-      <img class="x-empty-img" [src]="img" />
+  @if (img()) {
+    <ng-container *xOutlet="img()">
+      <img class="x-empty-img" [src]="img()" />
     </ng-container>
   } @else {
     <x-icon type="fto-inbox"></x-icon>
   }
-  @if (content) {
-    <ng-container *xOutlet="content">
-      <span>{{ content }}</span>
+  @if (content()) {
+    <ng-container *xOutlet="content()">
+      <span>{{ content() }}</span>
     </ng-container>
   } @else {
     <span>{{ 'empty.noData' | xI18n }}</span>

@@ -18,14 +18,27 @@ import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { XFindComponent } from '@ng-nest/ui/find';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XInputPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXInputComponent,
+        TestXInputLabelComponent,
+        TestXInputIconComponent,
+        TestXInputClearableComponent,
+        TestXInputDisabledComponent,
+        TestXInputRequiredComponent,
+        TestXInputLengthComponent,
+        TestXInputSizeComponent,
+        TestXInputBorderedComponent,
+        TestXInputGroupComponent,
+        TestXInputBeforeAfterComponent,
+        TestXInputFocusComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XInputComponent,
         XInputGroupComponent,
@@ -43,23 +56,9 @@ describe(XInputPrefix, () => {
         XColorPickerComponent,
         XFindComponent,
         XTextareaComponent,
-        XTimePickerModule
-      ],
-      declarations: [
-        TestXInputComponent,
-        TestXInputLabelComponent,
-        TestXInputIconComponent,
-        TestXInputClearableComponent,
-        TestXInputDisabledComponent,
-        TestXInputRequiredComponent,
-        TestXInputLengthComponent,
-        TestXInputSizeComponent,
-        TestXInputBorderedComponent,
-        TestXInputGroupComponent,
-        TestXInputBeforeAfterComponent,
-        TestXInputFocusComponent
-      ]
-    }).compileComponents();
+        XTimePickerModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXInputComponent>;
@@ -315,12 +314,7 @@ class TestXInputIconComponent {}
     </x-row>
     <x-row>
       <x-col span="8">
-        <x-input
-          icon="ado-user"
-          clearable
-          [(ngModel)]="modelIcon"
-          (ngModelChange)="change()"
-        ></x-input>
+        <x-input icon="ado-user" clearable [(ngModel)]="modelIcon" (ngModelChange)="change()"></x-input>
       </x-col>
     </x-row>
     <x-row>
@@ -448,29 +442,13 @@ class TestXInputRequiredComponent {
         <x-input [(ngModel)]="value" (ngModelChange)="change()" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          [(ngModel)]="value"
-          (ngModelChange)="change()"
-          label="用户名"
-          maxlength="50"
-        ></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" label="用户名" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          [(ngModel)]="value"
-          (ngModelChange)="change()"
-          label="用户名"
-          direction="row"
-          maxlength="50"
-        ></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" label="用户名" direction="row" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          [(ngModel)]="value"
-          (ngModelChange)="change()"
-          icon="ado-user"
-          maxlength="50"
-        ></x-input>
+        <x-input [(ngModel)]="value" (ngModelChange)="change()" icon="ado-user" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
         <x-input
@@ -561,22 +539,10 @@ class TestXInputSizeComponent {
         <x-input placeholder="请输入内容" bordered="false"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入内容"
-          bordered="false"
-          label="用户名:"
-          direction="row"
-          maxlength="50"
-        ></x-input>
+        <x-input placeholder="请输入内容" bordered="false" label="用户名:" direction="row" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入内容"
-          bordered="false"
-          icon="ado-user"
-          iconLayout="left"
-          maxlength="50"
-        ></x-input>
+        <x-input placeholder="请输入内容" bordered="false" icon="ado-user" iconLayout="left" maxlength="50"></x-input>
       </x-col>
       <x-col span="24">
         <x-input placeholder="请输入内容" bordered="false" required clearable></x-input>
@@ -749,11 +715,7 @@ class TestXInputGroupComponent {
         <x-input placeholder="请输入网址" [after]="afterSelectTpl"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入网址"
-          [before]="beforeSelectTpl"
-          [after]="afterSelectTpl"
-        ></x-input>
+        <x-input placeholder="请输入网址" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-input>
       </x-col>
       <x-col span="24">
         <x-input placeholder="请输入文字" [before]="beforeButtonTpl"></x-input>
@@ -762,11 +724,7 @@ class TestXInputGroupComponent {
         <x-input placeholder="请输入文字" [after]="afterButtonTpl"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入文字"
-          [before]="beforeButtonTpl"
-          [after]="afterButtonTpl"
-        ></x-input>
+        <x-input placeholder="请输入文字" [before]="beforeButtonTpl" [after]="afterButtonTpl"></x-input>
       </x-col>
       <x-col span="24">
         <x-input placeholder="请输入文字" [before]="beforeInputTpl"></x-input>
@@ -775,11 +733,7 @@ class TestXInputGroupComponent {
         <x-input placeholder="请输入文字" [after]="afterInputTpl"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入文字"
-          [before]="beforeInputTpl"
-          [after]="afterInputTpl"
-        ></x-input>
+        <x-input placeholder="请输入文字" [before]="beforeInputTpl" [after]="afterInputTpl"></x-input>
       </x-col>
       <x-col span="24">
         <x-input placeholder="请输入文字" [before]="beforeDatePickerTpl"></x-input>
@@ -788,11 +742,7 @@ class TestXInputGroupComponent {
         <x-input placeholder="请输入文字" [after]="afterDatePickerTpl"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入文字"
-          [before]="beforeDatePickerTpl"
-          [after]="afterDatePickerTpl"
-        ></x-input>
+        <x-input placeholder="请输入文字" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-input>
       </x-col>
       <x-col span="24">
         <x-input placeholder="请输入文字" [before]="beforeAutoCompleteTpl"></x-input>
@@ -801,11 +751,7 @@ class TestXInputGroupComponent {
         <x-input placeholder="请输入文字" [after]="afterAutoCompleteTpl"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入文字"
-          [before]="beforeAutoCompleteTpl"
-          [after]="afterAutoCompleteTpl"
-        ></x-input>
+        <x-input placeholder="请输入文字" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-input>
       </x-col>
       <x-col span="24">
         <x-input placeholder="请输入文字" [before]="beforeCascadeTpl"></x-input>
@@ -814,11 +760,7 @@ class TestXInputGroupComponent {
         <x-input placeholder="请输入文字" [after]="afterCascadeTpl"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入文字"
-          [before]="beforeCascadeTpl"
-          [after]="afterCascadeTpl"
-        ></x-input>
+        <x-input placeholder="请输入文字" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-input>
       </x-col>
       <x-col span="24">
         <x-input placeholder="请输入文字" [before]="beforeColorPickerTpl"></x-input>
@@ -827,11 +769,7 @@ class TestXInputGroupComponent {
         <x-input placeholder="请输入文字" [after]="afterColorPickerTpl"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入文字"
-          [before]="beforeColorPickerTpl"
-          [after]="afterColorPickerTpl"
-        ></x-input>
+        <x-input placeholder="请输入文字" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-input>
       </x-col>
       <x-col span="24">
         <x-input placeholder="请输入文字" [before]="beforeTimePickerTpl"></x-input>
@@ -840,11 +778,7 @@ class TestXInputGroupComponent {
         <x-input placeholder="请输入文字" [after]="afterTimePickerTpl"></x-input>
       </x-col>
       <x-col span="24">
-        <x-input
-          placeholder="请输入文字"
-          [before]="beforeTimePickerTpl"
-          [after]="afterTimePickerTpl"
-        ></x-input>
+        <x-input placeholder="请输入文字" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-input>
       </x-col>
     </x-row>
     <ng-template #beforeSelectTpl>
@@ -993,5 +927,4 @@ class TestXInputBeforeAfterComponent {
 })
 class TestXInputFocusComponent {
   inputValue = 'Please enter the content';
-  // @ViewChild('inputCom') inputCom!: XInputComponent;
 }

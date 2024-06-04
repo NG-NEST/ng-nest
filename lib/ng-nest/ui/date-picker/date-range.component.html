@@ -1,20 +1,20 @@
 <div
   #dateRange
   class="x-date-range"
-  [ngClass]="classMap"
-  [class.x-flex]="justify || align || direction"
-  [class.x-checked]="value"
-  [class.x-disabled]="disabled"
-  [class.x-required]="requiredIsEmpty"
-  [class.x-invalid]="invalid"
-  [class.x-date-range-bordered]="bordered"
-  [class.x-date-range-active]="active"
-  [class.x-date-range-active-start]="activeType === 'start'"
-  [class.x-date-range-active-end]="activeType === 'end'"
+  [ngClass]="classMap()"
+  [class.x-flex]="justify() || align() || direction()"
+  [class.x-checked]="value()"
+  [class.x-disabled]="disabledComputed()"
+  [class.x-required]="requiredIsEmpty()"
+  [class.x-invalid]="invalid()"
+  [class.x-date-range-bordered]="bordered()"
+  [class.x-date-range-active]="active()"
+  [class.x-date-range-active-start]="activeType() === 'start'"
+  [class.x-date-range-active-end]="activeType() === 'end'"
 >
-  @if (label) {
-    <label [class.x-date-range-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{
-      label
+  @if (label()) {
+    <label [class.x-date-range-label-required]="required()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
+      label()
     }}</label>
   }
   <div class="x-date-range-row">
@@ -30,9 +30,9 @@
         class="x-date-range-input x-date-range-input-start"
         type="text"
         bordered="false"
-        [size]="size"
-        [disabled]="disabled"
-        [placeholder]="getStartPlaceholder"
+        [size]="size()"
+        [disabled]="disabledComputed()"
+        [placeholder]="startPlaceholder()!"
         (xFocus)="onFocus('start')"
         (xClick)="showPortal($event, 'start')"
         [(ngModel)]="startDisplay"
@@ -43,24 +43,24 @@
         class="x-date-range-input x-date-range-input-end"
         type="text"
         bordered="false"
-        [size]="size"
-        [disabled]="disabled"
-        [placeholder]="getEndPlaceholder"
+        [size]="size()"
+        [disabled]="disabledComputed()"
+        [placeholder]="endPlaceholder()!"
         (xFocus)="onFocus('end')"
         (xClick)="showPortal($event, 'end')"
         [(ngModel)]="endDisplay"
-        [icon]="icon"
+        [icon]="icon()"
         (clearEmit)="clearEmit()"
-        [clearable]="showClearable"
+        [clearable]="showClearable()"
       ></x-input>
-      @if (active) {
+      @if (active()) {
         <div class="x-date-range-active-bar"></div>
       }
     </x-input-group>
-    @if (invalid) {
-      <span class="x-date-range-error-message">{{ invalidMessage }}</span>
+    @if (invalid()) {
+      <span class="x-date-range-error-message">{{ invalidMessage() }}</span>
     }
-    @if (requiredIsEmpty || invalid) {
+    @if (requiredIsEmpty() || invalid()) {
       <div class="x-border-error x-top-left"></div>
       <div class="x-border-error x-top-right"></div>
       <div class="x-border-error x-bottom-left"></div>

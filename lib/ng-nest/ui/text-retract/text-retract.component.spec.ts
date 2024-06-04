@@ -8,22 +8,21 @@ import { FormsModule } from '@angular/forms';
 import { XTextRetractPrefix } from './text-retract.property';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTextRetractPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        FormsModule,
+    declarations: [TestXTextRetractComponent],
+    imports: [FormsModule,
         XTextRetractComponent,
         XRowComponent,
         XColComponent,
         XButtonComponent,
-        XIconComponent
-      ],
-      declarations: [TestXTextRetractComponent]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTextRetractComponent>;

@@ -1,9 +1,9 @@
-import { Directive, EventEmitter, Output } from '@angular/core';
+import { Directive, output } from '@angular/core';
 
 /**
  * Drag 指令名称
  * @selector x-drag
- * @decorator Directive
+ * @decorator directive
  */
 export const XDragPrefix = 'x-drag';
 
@@ -12,9 +12,9 @@ export const XDragPrefix = 'x-drag';
  */
 @Directive({ selector: '[x-drag]' })
 export class XDragProperty {
-  @Output() dragStarted = new EventEmitter<XDragDistance>();
-  @Output() dragMoved = new EventEmitter<XDragDistanceOffset>();
-  @Output() dragEnded = new EventEmitter<XDragDistance>();
+  readonly dragStarted = output<XDragDistance>();
+  readonly dragMoved = output<XDragDistanceOffset>();
+  readonly dragEnded = output<XDragDistance>();
 }
 
 export interface XDragDistance {

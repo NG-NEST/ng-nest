@@ -1,20 +1,20 @@
 <div class="x-time-picker-frame">
   <div class="x-time-picker-frame-hour" #hourRef>
-    <x-list [data]="hourData" [(ngModel)]="hour" (nodeClick)="itemClick('hour')"></x-list>
+    <x-list [data]="hourData()" [(ngModel)]="hour" (nodeClick)="itemClick('hour')"></x-list>
   </div>
-  @if (type !== 'hour') {
+  @if (type() !== 'hour') {
     <div class="x-time-picker-frame-minute" #minuteRef>
-      <x-list [data]="minuteData" [(ngModel)]="minute" (nodeClick)="itemClick('minute')"></x-list>
+      <x-list [data]="minuteData()" [(ngModel)]="minute" (nodeClick)="itemClick('minute')"></x-list>
     </div>
   }
-  @if (type === 'time') {
+  @if (type() === 'time') {
     <div class="x-time-picker-frame-second" #secondRef>
-      <x-list [data]="secondData" [(ngModel)]="second" (nodeClick)="itemClick('second')"></x-list>
+      <x-list [data]="secondData()" [(ngModel)]="second" (nodeClick)="itemClick('second')"></x-list>
     </div>
   }
-  @if (use12Hours) {
+  @if (use12Hours()) {
     <div class="x-time-picker-frame-use12Hours" #use12HoursRef>
-      <x-list [data]="use12HoursData" [(ngModel)]="use12Hour" (nodeClick)="itemClick('use12Hours')"></x-list>
+      <x-list [data]="use12HoursData()" [(ngModel)]="use12Hour" (nodeClick)="itemClick('use12Hours')"></x-list>
     </div>
   }
 </div>

@@ -1,17 +1,15 @@
 import {
   XData,
   XParentIdentityProperty,
-  XDataConvert,
-  XInputNumber,
-  XInputBoolean,
   XNumber,
   XBoolean,
   XTemplate,
-  XWithConfig,
-  XSize
+  XSize,
+  XToNumber,
+  XToBoolean
 } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component, TemplateRef, ElementRef } from '@angular/core';
-import { XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { Component, TemplateRef, ElementRef, input, output, model } from '@angular/core';
+import { XFormControlFunction } from '@ng-nest/ui/base-form';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 /**
@@ -20,166 +18,166 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
  * @decorator component
  */
 export const XListPrefix = 'x-list';
-const X_CONFIG_NAME = 'list';
+const X_LIST_CONFIG_NAME = 'list';
 
 /**
  * List Property
  */
 @Component({ selector: `${XListPrefix}-property`, template: '' })
-export class XListProperty extends XControlValueAccessor<any> {
+export class XListProperty extends XFormControlFunction(X_LIST_CONFIG_NAME) {
   /**
    * @zh_CN 列表数据
    * @en_US List data
    */
-  @Input() @XDataConvert() data: XData<XListNode> = [];
+  readonly data = input<XData<XListNode>>([]);
   /**
    * @zh_CN 多选个数，设置为0，不限制选择个数
    * @en_US Multiple choice
    */
-  @Input() @XInputNumber() multiple: XNumber = 1;
+  readonly multiple = input<number, XNumber>(1, { transform: XToNumber });
   /**
    * @zh_CN 多选添加全选功能，适用于 multiple=0
    * @en_US Multi choice to add full selection function
    */
-  @Input() @XInputBoolean() selectAll?: XBoolean;
+  readonly selectAll = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 全选的文字
    * @en_US Selected all text
    * @default '全选'
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) selectAllText?: string;
+  readonly selectAllText = input<string>(this.config?.selectAllText ?? '');
   /**
    * @zh_CN 选中
    * @en_US Selected
    */
-  @Input() @XInputBoolean() checked?: XBoolean;
+  readonly checked = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 拖动
    * @en_US Drag
    */
-  @Input() @XInputBoolean() drag?: XBoolean;
+  readonly drag = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 当开启多选的时候，ngModel 的值为对象数组
    * @en_US When multiple selection is enabled, the value of ngmodel is an array of objects
    */
-  @Input() @XInputBoolean() objectArray?: XBoolean;
+  readonly objectArray = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl?: TemplateRef<any>;
+  readonly nodeTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 列表头部
    * @en_US List header
    */
-  @Input() header?: XTemplate;
+  readonly header = input<XTemplate>();
   /**
    * @zh_CN 列表底部
    * @en_US List footer
    */
-  @Input() footer?: XTemplate;
+  readonly footer = input<XTemplate>();
   /**
    * @zh_CN 滚动区域元素
    * @en_US Rolling area element
    */
-  @Input() scrollElement?: HTMLElement;
-  /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  readonly scrollElement = input<HTMLElement>();
   /**
    * @zh_CN 加载更多
    * @en_US load more
    */
-  @Input() @XInputBoolean() loadMore!: XBoolean;
+  readonly loadMore = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 加载更多的文字
    * @en_US Load more text
    * @default '加载更多'
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) loadMoreText?: string;
+  readonly loadMoreText = input<string>(this.config?.loadMoreText ?? '');
   /**
    * @zh_CN 正在加载中的文字
    * @en_US Loading
    * @default '正在加载中'
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) loadingMoreText?: string;
+  readonly loadingMoreText = input<string>(this.config?.loadingMoreText ?? '');
   /**
    * @zh_CN 开启虚拟滚动，不支持节点拖动功能
    * @en_US Turn on virtual scrolling
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() virtualScroll!: XBoolean;
+  readonly virtualScroll = input<boolean, XBoolean>(this.config?.virtualScroll ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 虚拟滚动高度, 实际会去掉头尾、全选、更多的高度
    * @en_US The virtual rolling height will actually remove the head and end, the full selection, more height
    */
-  @Input() @XWithConfig<XNumber>(X_CONFIG_NAME, 400) @XInputNumber() scrollHeight!: XNumber;
+  readonly scrollHeight = input<number, XNumber>(this.config?.scrollHeight ?? 400, { transform: XToNumber });
   /**
    * @zh_CN 虚拟滚动高度自适应指定元素
    * @en_US virtual rolling height follows the specified object
    */
-  @Input() heightAdaption!: ElementRef<HTMLElement> | HTMLElement;
+  readonly heightAdaption = input<ElementRef<HTMLElement> | HTMLElement>();
   /**
    * @zh_CN 超出可视窗口缓冲区的最小值，对应 cdk scroll 中的参数
    * @en_US Exceed the minimum value of the visible window buffer, corresponding to the parameters in cdk scroll
    */
-  @Input() minBufferPx: number = 100;
+  readonly minBufferPx = input<number, XNumber>(100, { transform: XToNumber });
   /**
    * @zh_CN 渲染新数据缓冲区的像素，对应 cdk scroll 中的参数
    * @en_US Render the pixels of the new data buffer, corresponding to the parameters in cdk scroll
    */
-  @Input() maxBufferPx: number = 200;
+  readonly maxBufferPx = input<number, XNumber>(200, { transform: XToNumber });
   /**
    * @zh_CN 关键字高亮
    * @en_US Keyword highlighting
    */
-  @Input() keywordText!: string | string[];
+  readonly keywordText = input<string | string[]>();
   /**
    * @zh_CN 匹配关键字区分大小写
    * @en_US Case-sensitive
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
+  readonly caseSensitive = input<boolean, XBoolean>(this.config?.caseSensitive ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 在弹框中选择时的样式，根据尺寸来决定
    * @en_US The style selected in the pop-up box is determined by size
    */
-  @Input() @XInputBoolean() inPortal!: XBoolean;
+  readonly inPortal = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN Full event
    * @en_US 全选事件
    */
-  @Output() onSelectAll = new EventEmitter<boolean>();
+  readonly onSelectAll = output<boolean>();
   /**
    * @zh_CN 节点 mouseenter 事件
    * @en_US Node mouseenter event
    */
-  @Output() nodeMouseenter = new EventEmitter<XListNode>();
+  readonly nodeMouseenter = output<XListNode>();
   /**
    * @zh_CN 节点 mouseleave 事件
    * @en_US Node mouseleave event
    */
-  @Output() nodeMouseleave = new EventEmitter<XListNode>();
+  readonly nodeMouseleave = output<XListNode>();
   /**
    * @zh_CN 节点点击事件
    * @en_US Node click event
    */
-  @Output() nodeClick = new EventEmitter<XListNode>();
+  readonly nodeClick = output<XListNode>();
   /**
    * @zh_CN 拖动结束事件
    * @en_US Drag the end
    */
-  @Output() dropListDropped = new EventEmitter<XListDragDrop>();
+  readonly dropListDropped = output<XListDragDrop>();
   /**
    * @zh_CN Tab out 事件
    * @en_US Tab Out event
    */
-  @Output() keyManagerTabOut = new EventEmitter<void>();
+  readonly keyManagerTabOut = output<void>();
   /**
    * @zh_CN Tab out 事件
    * @en_US Tab Out event
    */
-  @Output() keyManagerChange = new EventEmitter<number>();
+  readonly keyManagerChange = output<number>();
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  override readonly size = input<XSize>(this.config?.size ?? 'medium');
 }
 
 /**
@@ -240,82 +238,77 @@ export class XListOptionProperty {
    * @zh_CN 节点参数
    * @en_US Node param
    */
-  @Input() node?: XListNode;
+  readonly node = input<XListNode>();
   /**
    * @zh_CN 选中
    * @en_US Selected
    */
-  @Input() @XInputBoolean() checked?: XBoolean;
+  readonly checked = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl?: TemplateRef<any>;
+  readonly nodeTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 选中
    * @en_US selected
    */
-  @Input() @XInputBoolean() selected?: boolean;
+  readonly selected = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 禁用
-   * @en_US disabled
+   * @en_US forbidden
    */
-  @Input() @XInputBoolean() disabled?: boolean;
+  readonly forbidden = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 激活
    * @en_US active
    */
-  @Input() @XInputBoolean() active?: boolean;
+  readonly active = model<boolean>(false);
   /**
    * @zh_CN 打开弹框
    * @en_US open portal
    */
-  @Input() @XInputBoolean() openPortal?: boolean;
+  readonly openPortal = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 自定义数据对象样式
    * @en_US Customize data object styles
    */
-  @Input() optionClass?: (node: XListNode) => { [className: string]: boolean };
+  readonly optionClass = input<(node: XListNode) => { [className: string]: boolean }>();
   /**
    * @zh_CN 图标
    * @en_US icon
    */
-  @Input() icon?: string;
+  readonly icon = input<string>();
   /**
    * @zh_CN 分割线
    * @en_US Split line
    */
-  @Input() divided?: boolean;
+  readonly divided = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 标签
    * @en_US label
    */
-  @Input() label?: string;
+  readonly label = input<string>();
   /**
-   * @zh_CN 有子节点
+   * @zh_CN 叶子节点
    * @en_US leaf
    */
-  @Input() @XInputBoolean() leaf?: boolean;
+  readonly leaf = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  readonly size = input<XSize>('medium');
   /**
    * @zh_CN 关键字高亮
    * @en_US Keyword highlighting
    */
-  @Input() keywordText!: string | string[];
+  readonly keywordText = input<string | string[]>();
   /**
    * @zh_CN 匹配关键字区分大小写
    * @en_US Case-sensitive
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
-  /**
-   * @zh_CN 有子节点
-   * @en_US leaf
-   */
-  @Output() activeChange = new EventEmitter<boolean>();
+  readonly caseSensitive = input<boolean, XBoolean>(true, { transform: XToBoolean });
 }
 
 /**
@@ -323,8 +316,24 @@ export class XListOptionProperty {
  * @en_US Drag related data
  */
 export type XListDragDrop = {
+  /**
+   * @zh_CN 节点数据集合
+   * @en_US Node data collection
+   */
   data: XListNode[];
+  /**
+   * @zh_CN 当前拖动节点
+   * @en_US The current drag nodes
+   */
   current: XListNode;
+  /**
+   * @zh_CN 当前拖动节点的索引
+   * @en_US The current drag index of the node
+   */
   currentIndex: number;
+  /**
+   * @zh_CN 当前拖动节点事件
+   * @en_US The current drag nodes event
+   */
   event: CdkDragDrop<XListNode[]>;
 };

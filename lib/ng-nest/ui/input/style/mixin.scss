@@ -22,24 +22,37 @@
     .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template),
     .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template) {
       border: $--x-input-border;
-      border-radius: $--x-input-border-radius;
       background-color: $--x-background-a100;
       border-width: 0;
+    }
+    .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template) {
+      border-top-left-radius: $--x-border-radius;
+      border-bottom-left-radius: $--x-border-radius;
+    }
+    .#{$--x-input-prefix}-row-after:not(.x-input-row-before-template) {
+      border-top-right-radius: $--x-border-radius;
+      border-bottom-right-radius: $--x-border-radius;
     }
     .#{$--x-input-prefix}-row-before-template {
       display: contents;
       input,
       .x-button {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+      }
+      input {
+        margin-right: calc(#{$--x-border-width} * -1);
       }
     }
     .#{$--x-input-prefix}-row-after-template {
       display: contents;
       input,
       .x-button {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+      }
+      input {
+        margin-left: calc(#{$--x-border-width} * -1);
       }
     }
     .#{$--x-input-prefix}-row-before-template {
@@ -51,9 +64,7 @@
     .#{$--x-input-prefix}-row-before-template,
     .#{$--x-input-prefix}-row-after-template {
       input:hover,
-      input:focus,
-      .x-button:hover,
-      .x-button:focus {
+      input:focus {
         z-index: 1;
       }
     }

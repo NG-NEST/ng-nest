@@ -1,12 +1,12 @@
 <div class="row">
   <x-checkbox
-    [data]="checkAllData"
+    [data]="checkAllData()"
     [(ngModel)]="checkAll"
     (ngModelChange)="change($event)"
-    [indeterminate]="indeterminate"
+    [indeterminate]="indeterminate()"
     single
   ></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="itemChange($event)"></x-checkbox>
+  <x-checkbox [data]="data()" [(ngModel)]="model" (ngModelChange)="itemChange($event)"></x-checkbox>
 </div>

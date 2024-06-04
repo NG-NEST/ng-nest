@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XPaginationComponent } from '@ng-nest/ui/pagination';
 
 @Component({
@@ -15,9 +15,9 @@ import { XPaginationComponent } from '@ng-nest/ui/pagination';
   ]
 })
 export class ExDefaultComponent {
-  index = 1;
-  size = 10;
-  total = 100;
+  index = signal(1);
+  size = signal(10);
+  total = signal(100);
   change(index: number) {
     console.log(index);
   }

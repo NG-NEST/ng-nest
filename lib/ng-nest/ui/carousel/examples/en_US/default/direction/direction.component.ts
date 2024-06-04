@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XCarouselComponent, XCarouselPanelComponent } from '@ng-nest/ui/carousel';
 
 @Component({
@@ -9,5 +9,5 @@ import { XCarouselComponent, XCarouselPanelComponent } from '@ng-nest/ui/carouse
   styleUrls: ['./direction.component.scss']
 })
 export class ExDirectionComponent {
-  list = [1, 2, 3, 4, 5];
+  list = signal([1, 2, 3, 4, 5]);
 }

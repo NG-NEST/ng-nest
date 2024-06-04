@@ -1,5 +1,6 @@
-import { XProperty, XInputBoolean, XStyle, XBoolean } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XPropertyFunction, XToBoolean } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import type { XStyle, XBoolean } from '@ng-nest/ui/core';
 
 /**
  * Skeleton
@@ -7,32 +8,44 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XSkeletonPrefix = 'x-skeleton';
+const X_SKELETON_CONFIG_NAME = 'skeleton';
+
+/**
+ * @zh_CN 骨架默认数据
+ * @en_US Skeleton default data
+ */
+export const XSkeletonData: XSkeletonRow[] = [
+  { cols: [{ width: '10rem', type: 'title' }] },
+  { cols: [{}] },
+  { cols: [{}] },
+  { cols: [{ span: 16 }] }
+];
 
 /**
  * Skeleton Property
  */
 @Component({ selector: `${XSkeletonPrefix}-property`, template: '' })
-export class XSkeletonProperty extends XProperty {
+export class XSkeletonProperty extends XPropertyFunction(X_SKELETON_CONFIG_NAME) {
   /**
    * @zh_CN 骨架数据
    * @en_US Skeleton data
    */
-  @Input() data: XSkeletonRow[] = [{ cols: [{ width: '10rem', type: 'title' }] }, { cols: [{}] }, { cols: [{}] }, { cols: [{ span: 16 }] }];
+  readonly data = input<XSkeletonRow[]>(XSkeletonData);
   /**
    * @zh_CN 加载中
    * @en_US Loading
    */
-  @Input() @XInputBoolean() loading: XBoolean = true;
+  readonly loading = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 激活动画
    * @en_US Activate animation
    */
-  @Input() @XInputBoolean() active?: XBoolean;
+  readonly active = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 显示边框
    * @en_US Show border
    */
-  @Input() @XInputBoolean() border?: XBoolean;
+  readonly border = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }
 
 /**
@@ -54,7 +67,7 @@ export interface XSkeletonRow {
    * @zh_CN 列间距
    * @en_US Column spacing
    */
-  space?: number;
+  space?: string;
   /**
    * @zh_CN 外边距
    * @en_US Margin

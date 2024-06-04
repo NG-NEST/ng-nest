@@ -1,5 +1,5 @@
 <x-tabs type="tag">
-  @for (label of labels; track label) {
+  @for (label of labels(); track label) {
     <x-tab [label]="label">
       <div [style.padding.rem]="0.625">{{ label }}</div>
     </x-tab>

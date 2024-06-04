@@ -1,31 +1,31 @@
 <div class="row">
-  <x-list [data]="data1" [(ngModel)]="model1"></x-list>
+  <x-list [data]="data1()" [(ngModel)]="model1"></x-list>
 </div>
 <div class="row">
-  <x-list [data]="data2" [(ngModel)]="model2"></x-list>
+  <x-list [data]="data2()" [(ngModel)]="model2"></x-list>
 </div>
 <div class="row">
-  <x-list [data]="data3" [(ngModel)]="model3" multiple></x-list>
+  <x-list [data]="data3()" [(ngModel)]="model3" multiple></x-list>
 </div>
 <div class="row">
-  <x-list [data]="data4" [(ngModel)]="model4" multiple></x-list>
+  <x-list [data]="data4()" [(ngModel)]="model4" multiple></x-list>
 </div>
 <div class="row">
-  <x-list [data]="data5" [(ngModel)]="model5" multiple="2"></x-list>
+  <x-list [data]="data5()" [(ngModel)]="model5" multiple="2"></x-list>
 </div>
 <div class="row">
-  <x-list [data]="data6" [(ngModel)]="model6" multiple="2"></x-list>
+  <x-list [data]="data6()" [(ngModel)]="model6" multiple="2"></x-list>
 </div>
 <div class="row">
   <div>上下拖动</div>
-  <div><x-list [data]="data7" [(ngModel)]="model7" drag></x-list></div>
+  <div><x-list [data]="data7()" [(ngModel)]="model7" drag></x-list></div>
 </div>
 <div class="row">
   <div>模板</div>
-  <div><x-list [data]="data8" [(ngModel)]="model8" [nodeTpl]="nodeTpl"></x-list></div>
+  <div><x-list [data]="data8()" [(ngModel)]="model8" [nodeTpl]="nodeTpl"></x-list></div>
   <ng-template #nodeTpl let-node="$node"> {{ node.label }}<sup>2</sup> </ng-template>
 </div>
 <div class="row">
   <div>头部/底部</div>
-  <div><x-list [data]="data9" [(ngModel)]="model9" [header]="'Header'" [footer]="'Footer'"></x-list></div>
+  <div><x-list [data]="data9()" [(ngModel)]="model9" [header]="'Header'" [footer]="'Footer'"></x-list></div>
 </div>

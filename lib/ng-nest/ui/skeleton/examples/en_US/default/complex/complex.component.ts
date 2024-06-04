@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XSkeletonComponent, XSkeletonRow } from '@ng-nest/ui/skeleton';
 
 @Component({
@@ -8,10 +8,10 @@ import { XSkeletonComponent, XSkeletonRow } from '@ng-nest/ui/skeleton';
   templateUrl: './complex.component.html'
 })
 export class ExComplexComponent {
-  data: XSkeletonRow[] = [
+  data = signal<XSkeletonRow[]>([
     {
       flex: true,
-      space: 1,
+      space: '1rem',
       cols: [
         { type: 'avatar', width: '3rem', height: '3rem' },
         {
@@ -21,7 +21,7 @@ export class ExComplexComponent {
             { cols: [{}] },
             { cols: [{ span: 16 }] },
             {
-              space: 1,
+              space: '1rem',
               flex: true,
               cols: [
                 { width: '3rem' },
@@ -36,5 +36,5 @@ export class ExComplexComponent {
         { type: 'img', width: '10rem', height: '9rem' }
       ]
     }
-  ];
+  ]);
 }

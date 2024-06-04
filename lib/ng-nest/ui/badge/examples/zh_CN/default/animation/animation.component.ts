@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 
@@ -10,12 +10,11 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
   styleUrls: ['./animation.component.scss']
 })
 export class ExAnimationComponent {
-  value = 10;
-
-  valueMax = 98;
+  value = signal(10);
+  valueMax = signal(98);
 
   onPlus(num: number) {
-    this.value = this.value + num;
-    this.valueMax = this.valueMax + num;
+    this.value.update((x) => x + num);
+    this.valueMax.update((x) => x + num);
   }
 }

@@ -1,0 +1,68 @@
+<div x-dialog-title class="ns-name-title">{{ 'api.property' | xI18n }}</div>
+<div x-dialog-content class="ns-name-content">
+  <ng-container *ngTemplateOutlet="typeChild; context: { property: property() }"></ng-container>
+
+  <ng-template #typeChild let-property="property">
+    @if (property) {
+      <div class="property">
+        <ng-container *ngTemplateOutlet="titleTpl; context: { property }"></ng-container>
+        @if (property.default || property.withConfig) {
+          <div class="value">
+            @if (property.default) {
+              <span class="default">
+                <span> {{ 'api.default' | xI18n }}</span>
+                <code>{{ property.default }}</code>
+              </span>
+            }
+            @if (property.withConfig) {
+              <span class="global-config">{{ 'api.globalConfig' | xI18n }} ✔️</span>
+            }
+          </div>
+        }
+        @if (property.signal) {
+          <div class="signal">
+            <span>{{ signalFirstUpper() }}</span>
+            <span>{{ property.inputType }}</span>
+            @if (property.transform) {
+              <span x-popover [content]="transformProperty()?.label!" maxWidth="20rem">{{ property.transform }}</span>
+            }
+          </div>
+        }
+        @if (property.description) {
+          <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
+        }
+        @if (property.example) {
+          <ng-container *ngTemplateOutlet="exampleTpl; context: { example: property.example }"></ng-container>
+        }
+      </div>
+    }
+  </ng-template>
+
+  <ng-template #titleTpl let-property="property">
+    <div class="base">
+      @if (property.signal) {
+        <span class="signal-short">{{ signalShort() }}</span>
+      } @else {
+        <span class="signal-short">P</span>
+      }
+      <code class="name" [innerText]="property.name"></code>
+      <span class="type" (click)="showTypeInfo()">{{ property.type }}</span>
+      <span class="label">{{ property.label }}</span>
+    </div>
+  </ng-template>
+</div>
+<div class="ns-name-close">
+  <x-button x-dialog-close plain circle icon="fto-x"></x-button>
+</div>
+
+<ng-template #exampleTpl let-example="example">
+  @for (ex of example; track $index) {
+    @if (ex.content) {
+      @if (ex.type === 'text') {
+        <div class="example app-markdown" [innerHTML]="ex.content | mdToHtml"></div>
+      } @else if (ex.type === 'code') {
+        <x-highlight [type]="ex.language" [data]="ex.content" showCopy></x-highlight>
+      }
+    }
+  }
+</ng-template>

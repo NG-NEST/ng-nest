@@ -9,23 +9,22 @@ import { FormsModule } from '@angular/forms';
 import { XLinkPrefix } from './link.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XLinkPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
+    declarations: [TestXLinkComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XLinkComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent
-      ],
-      declarations: [TestXLinkComponent]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXLinkComponent>;

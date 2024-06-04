@@ -21,8 +21,6 @@
     align-items: baseline;
     @include flex();
   }
-  &-item-label {
-  }
   &-item-heading {
     background-color: $--x-background-a100;
   }
@@ -30,8 +28,8 @@
     .#{$--x-description-prefix} {
       &-item {
         border: $--x-border-base;
-        margin-left: -1px;
-        margin-top: -1px;
+        margin-left: calc(#{$--x-border-width} * -1);
+        margin-top: calc(#{$--x-border-width} * -1);
       }
     }
   }

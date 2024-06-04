@@ -1,6 +1,7 @@
-import { BooleanInput, coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceArray } from '@angular/cdk/coercion';
 import { CdkDropList } from '@angular/cdk/drag-drop';
-import { Directive, InjectionToken, Input, OnDestroy } from '@angular/core';
+import { Directive, InjectionToken, OnDestroy, input } from '@angular/core';
+import { XBoolean, XToBoolean } from '@ng-nest/ui/core';
 
 export const X_LIST_DROP_GROUP = new InjectionToken<XListDropGroup>('XListDropGroup');
 
@@ -12,14 +13,7 @@ export const X_LIST_DROP_GROUP = new InjectionToken<XListDropGroup>('XListDropGr
 export class XListDropGroup implements OnDestroy {
   readonly dropLists = new Set<CdkDropList>();
 
-  @Input('xListDropGroupDisabled')
-  get disabled(): boolean {
-    return this._disabled;
-  }
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
-  }
-  private _disabled = false;
+  disabled = input<boolean, XBoolean>(false, { transform: XToBoolean, alias: 'xListDropGroupDisabled' });
 
   setConnectedTo() {
     this.dropLists.forEach((x) => {
@@ -33,7 +27,6 @@ export class XListDropGroup implements OnDestroy {
         }
       });
     });
-    console.log(this.dropLists);
   }
 
   ngOnDestroy() {

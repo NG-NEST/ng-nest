@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDrawerComponent } from '@ng-nest/ui/drawer';
 
@@ -10,13 +10,13 @@ import { XDrawerComponent } from '@ng-nest/ui/drawer';
   styleUrls: ['./title.component.scss']
 })
 export class ExTitleComponent {
-  visible!: boolean;
+  visible = signal(false);
 
   open() {
-    this.visible = true;
+    this.visible.set(true);
   }
 
   close() {
-    this.visible = false;
+    this.visible.set(false);
   }
 }

@@ -1,0 +1,48 @@
+{
+  "locale": "en_US",
+  "api": {
+    "property": "Property",
+    "description": "Description",
+    "type": "Type",
+    "value": "Value",
+    "inputType": "Input Type",
+    "outputType": "Output Type",
+    "default": "Default",
+    "globalConfig": "Global Config",
+    "extends": "extends",
+    "extendsDescription": "all parameters of the object"
+  },
+  "header": {
+    "components": "Components",
+    "version": "version",
+    "chinese": "中",
+    "english": "EN",
+    "dark": "Dark",
+    "light": "Light",
+    "search": "Search components",
+    "theme": "Theme",
+    "primary": "Primary",
+    "text": "Text",
+    "success": "Success",
+    "warning": "Warning",
+    "danger": "Danger",
+    "info": "Info",
+    "background": "Background",
+    "border": "Border",
+    "fontSize": "FontSize",
+    "borderWidth": "Border width",
+    "borderRadius": "Border radius",
+    "borderSmallRadius": "Border small radius"
+  },
+  "footer": {
+    "allRightsReserved": "All rights reserved"
+  },
+  "meta": {
+    "description": "Angular and Nest based Web application frameworks follow best practices and conventions to give you a solid development experience"
+  },
+  "exception": {
+    "home": "Home",
+    "back": "Back",
+    "description": "Sorry, the requested page address does not exist in the server."
+  }
+}

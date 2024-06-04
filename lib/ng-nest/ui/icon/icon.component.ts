@@ -1,20 +1,19 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ElementRef,
   Renderer2,
-  ChangeDetectorRef,
-  OnChanges,
-  SimpleChanges,
   HostBinding,
-  inject
+  inject,
+  effect,
+  computed,
+  ChangeDetectorRef
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
-import { warnIconTypeNotFound, warnSVGTagNotFound, XIsChange, XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XWarnIconTypeNotFound, XWarnSVGTagNotFound, XIsEmpty } from '@ng-nest/ui/core';
 
 // 来源路径对应
 export const XSouceUrl: { [property: string]: string } = {
@@ -45,73 +44,21 @@ export const XViewBox = [
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
-  private _svgElement!: SVGElement;
-  private _loaded: boolean = false;
+export class XIconComponent extends XIconProperty {
+  @HostBinding('class') className = XIconPrefix;
+  private svgElement!: SVGElement;
   private document = inject(DOCUMENT);
   private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
-  private iconService = inject(XIconService);
   private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
+  private iconService = inject(XIconService);
 
   @HostBinding('class.x-icon-spin') get getSpin() {
-    return this.spin;
+    return this.spin();
   }
 
-  ngOnInit() {
-    this.renderer.addClass(this.elementRef.nativeElement, XIconPrefix);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const { type, spin, color } = changes;
-    if (XIsChange(type)) {
-      this.setSvgElement();
-      this.renderer.removeClass(this.elementRef.nativeElement, type.previousValue);
-      this.renderer.addClass(this.elementRef.nativeElement, `${this.type}`);
-      this.cdr.detectChanges();
-    }
-    if (XIsChange(spin)) {
-      this.cdr.detectChanges();
-    }
-    if (XIsChange(color)) {
-      this.renderer.setStyle(this.elementRef.nativeElement, 'color', this.color);
-    }
-  }
-
-  getSvg() {
-    if (this._loaded) return;
-    let height = this.document.documentElement.clientHeight;
-    let width = this.document.documentElement.clientWidth;
-    let box = this.elementRef.nativeElement.getBoundingClientRect();
-    if (box.top <= height && box.left <= width) {
-      this.setSvgElement();
-      this.renderer.addClass(this.elementRef.nativeElement, `${this.type}`);
-      this._loaded = true;
-    }
-  }
-
-  setSvgElement() {
-    const typeIcon = this.setSourceUrl(this.type);
-    let icons = [typeIcon];
-    if (XIsEmpty(typeIcon)) return;
-    this.iconService.getSvgs(this.href!, ...icons).subscribe((x) => this.setSvgs(x));
-  }
-
-  setSvgs(svgs: string[]) {
-    if (svgs?.length > 0) {
-      let firstChild = this.elementRef.nativeElement.firstChild;
-      if (firstChild) {
-        this.renderer.removeChild(this.elementRef.nativeElement, firstChild);
-      }
-      this._svgElement = this.buildSvg(svgs.shift() as string) as SVGSVGElement;
-      this.setAttributes(this._svgElement);
-      this.renderer.appendChild(this.elementRef.nativeElement, this._svgElement);
-      this.cdr.markForCheck();
-    }
-  }
-
-  setSourceUrl(type?: string) {
+  sourceUrl = computed(() => {
+    const type = this.type();
     if (typeof type === 'undefined') return '';
     const split = type.split('-');
     const souce = split.shift();
@@ -119,9 +66,28 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     const souceUrl = XSouceUrl[souce];
     const fileName = split.join('-');
     if (!souceUrl || !fileName) {
-      warnIconTypeNotFound();
+      XWarnIconTypeNotFound();
     }
     return `${souceUrl}${fileName}`;
+  });
+
+  constructor() {
+    super();
+    effect(() => this.iconService.getSvg(this.href(), this.sourceUrl()).subscribe((x) => this.setSvgs(x)));
+    effect(() => this.renderer.setStyle(this.elementRef.nativeElement, 'color', this.color()));
+  }
+
+  setSvgs(svg: string) {
+    if (XIsEmpty(svg)) return;
+    let firstChild = this.elementRef.nativeElement.firstChild;
+    if (firstChild) {
+      this.renderer.removeChild(this.elementRef.nativeElement, firstChild);
+    }
+    this.svgElement = this.buildSvg(svg)!;
+    this.setAttributes(this.svgElement);
+    this.renderer.appendChild(this.elementRef.nativeElement, this.svgElement);
+    // TODO: use zoneless, renderer removeChild will not take effect immediately
+    this.cdr.markForCheck();
   }
 
   setAttributes(svgEle: SVGElement) {
@@ -149,7 +115,7 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
     this.setAttribute(result, svg.ele, 'stroke-linecap');
     this.setAttribute(result, svg.ele, 'stroke-linejoin');
     if (!result) {
-      warnSVGTagNotFound();
+      XWarnSVGTagNotFound();
     }
 
     return result;
@@ -180,8 +146,8 @@ export class XIconComponent extends XIconProperty implements OnInit, OnChanges {
   setAnimates(svgs: string[]) {
     if (svgs?.length > 0) {
       let svg = this.createSvg(svgs.shift() as string);
-      for (let i = 0; i < this._svgElement.children.length; i++) {
-        let child = this._svgElement.children[i];
+      for (let i = 0; i < this.svgElement.children.length; i++) {
+        let child = this.svgElement.children[i];
         let toChild = svg?.children[i];
         if (child?.nodeName === 'path' && toChild?.nodeName === 'path') {
           let toAnimate = this.document.createElement('animate');

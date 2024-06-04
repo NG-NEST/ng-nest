@@ -1,18 +1,18 @@
-<x-transfer [data]="data" [(ngModel)]="value" search> </x-transfer>
+<x-transfer [data]="data()" [(ngModel)]="value" search> </x-transfer>
 <br />
 <br />
-<x-transfer [data]="dataTree" [(ngModel)]="modelTree" [type]="'tree'" search> </x-transfer>
+<x-transfer [data]="dataTree()" [(ngModel)]="modelTree" [type]="'tree'" search> </x-transfer>
 <br />
 <br />
 <x-transfer
   #transferCom
   [type]="'table'"
-  [data]="dataTable"
+  [data]="dataTable()"
   [(ngModel)]="valueTable"
   [listStyle]="{ 'width.rem': 21, 'height.rem': 34.25 }"
   [hiddenCheckAll]="[true, true]"
   [titles]="['User List', 'Selected']"
-  [tableColumns]="columns"
+  [tableColumns]="columns()"
   [tableQuery]="query"
   [tableHeadSearchTpl]="[leftHeadSearchTpl]"
 >

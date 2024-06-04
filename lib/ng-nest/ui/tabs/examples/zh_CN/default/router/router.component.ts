@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { XTabComponent, XTabLinkDirective, XTabLinkTemplateDirective, XTabsComponent } from '@ng-nest/ui/tabs';
 
@@ -9,5 +9,5 @@ import { XTabComponent, XTabLinkDirective, XTabLinkTemplateDirective, XTabsCompo
   templateUrl: './router.component.html'
 })
 export class ExRouterComponent {
-  labels = ['用户管理', '配置管理', '角色管理', '任务'];
+  labels = signal(['用户管理', '配置管理', '角色管理', '任务']);
 }

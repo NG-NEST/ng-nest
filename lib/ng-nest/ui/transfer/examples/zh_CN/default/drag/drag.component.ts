@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 
@@ -9,8 +9,10 @@ import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
   templateUrl: './drag.component.html'
 })
 export class ExDragComponent {
-  value = [1, 3, 7];
-  data: XTransferNode[] = Array.from({ length: 15 }).map((_x, i) => {
-    return { id: i + 1, label: '备选项 ' + (i + 1), disabled: [3, 5, 9].indexOf(i + 1) >= 0 };
-  });
+  value = signal([1, 3, 7]);
+  data = signal<XTransferNode[]>(
+    Array.from({ length: 15 }).map((_x, i) => {
+      return { id: i + 1, label: '备选项 ' + (i + 1), disabled: [3, 5, 9].indexOf(i + 1) >= 0 };
+    })
+  );
 }

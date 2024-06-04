@@ -1,15 +1,15 @@
-<div class="x-upload-portal {{ cutType }}" [class.x-upload-portal-ready]="ready">
+<div class="x-upload-portal {{ cutType() }}" [class.x-upload-portal-ready]="ready()">
   <div class="x-upload-portal-tools">
     <div class="x-upload-portal-title">
       <x-icon type="fto-image"></x-icon>
-      <span>{{ file?.name }}</span>
+      <span>{{ name() }}</span>
     </div>
-    <x-icon class="x-upload-portal-close" type="fto-x" (click)="closePortal()"></x-icon>
+    <x-icon class="x-upload-portal-close" type="fto-x" (click)="closePortal.emit()"></x-icon>
   </div>
   <div class="x-upload-portal-img">
-    <img #imgRef class="x-upload-portal-full-img" [src]="file?.url" />
+    <img #imgRef class="x-upload-portal-full-img" [src]="url()" />
     <div #boundaryRef class="x-upload-portal-boundary">
-      <img #imgClipRef class="x-upload-portal-clip-img" [src]="file?.url" />
+      <img #imgClipRef class="x-upload-portal-clip-img" [src]="url()" />
       <div #cutRef class="x-upload-portal-cut">
         <div class="x-upload-portal-cut-top-start"></div>
         <div class="x-upload-portal-cut-top"></div>

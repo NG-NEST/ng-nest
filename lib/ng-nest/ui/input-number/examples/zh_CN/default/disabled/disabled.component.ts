@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 
@@ -10,5 +10,5 @@ import { XInputNumberComponent } from '@ng-nest/ui/input-number';
   styleUrls: ['./disabled.component.scss']
 })
 export class ExDisabledComponent {
-  model = 10;
+  model = signal(10);
 }

@@ -2,6 +2,9 @@
   .box {
     padding: 5rem 10rem;
     width: 45rem;
+    x-button {
+      margin: 1rem;
+    }
   }
   .box .top {
     text-align: center;

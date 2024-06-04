@@ -20,8 +20,6 @@
     display: flex;
     align-items: center;
     position: relative;
-    height: $--x-switch-height;
-    line-height: $--x-switch-height;
   }
   &-slider {
     position: relative;
@@ -58,6 +56,8 @@
   &-text {
     color: $--x-white;
     transition: $--x-animation-duration-slow;
+    display: inline-flex;
+    align-items: center;
   }
   &.x-checked {
     .#{$--x-switch-prefix}-slider {
@@ -65,6 +65,17 @@
       border-color: $--x-primary;
     }
   }
+  &-label-required {
+    &:before {
+      display: inline-block;
+      margin-right: 0.25rem;
+      color: $--x-danger;
+      line-height: 1;
+      font-size: $--x-font-size-small;
+      content: '*';
+    }
+  }
+  &.x-invalid,
   &.x-required {
     > label {
       color: $--x-danger;

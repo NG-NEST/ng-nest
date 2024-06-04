@@ -6,94 +6,83 @@ import {
   OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Renderer2,
   ElementRef,
   ViewContainerRef,
-  ViewChild,
   inject,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  viewChild,
+  signal,
+  computed,
+  ComponentRef,
+  effect
 } from '@angular/core';
 import { XColorPickerProperty } from './color-picker.property';
-import { XIsEmpty, XCorner, XClearClass, XParents } from '@ng-nest/ui/core';
+import { XIsEmpty, XCorner, XParents, XPlacement, XComputed } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import {
   Overlay,
   OverlayConfig,
   FlexibleConnectedPositionStrategy,
-  ConnectedOverlayPositionChange
+  ConnectedOverlayPositionChange,
+  OverlayRef
 } from '@angular/cdk/overlay';
 import { filter, takeUntil } from 'rxjs/operators';
-import { XControlValueAccessor, XValueAccessor } from '@ng-nest/ui/base-form';
+import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-color-picker',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, XInputComponent, XControlValueAccessor],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent],
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XColorPickerComponent)]
 })
-export class XColorPickerComponent
-  extends XColorPickerProperty
-  implements OnInit, AfterViewInit, OnDestroy
-{
-  @ViewChild('colorPicker', { static: true }) colorPicker!: ElementRef<HTMLElement>;
-  @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
+export class XColorPickerComponent extends XColorPickerProperty implements OnInit, AfterViewInit, OnDestroy {
+  colorPicker = viewChild.required('colorPicker', { read: ElementRef<HTMLElement> });
+  inputCom = viewChild.required('inputCom', { read: XInputComponent });
+  private doc = inject(DOCUMENT);
+  primaryColor = XComputed(this.doc.documentElement).getPropertyValue('--x-primary').trim();
 
   override writeValue(value: string) {
-    this.value = value;
-    this.displayValue = value;
-    this.valueChange.next(this.value);
-    this.cdr.detectChanges();
+    this.value.set(value);
   }
 
-  get inputStyle() {
-    return {
-      backgroundColor: this.value,
-      color: 'transparent'
-    };
-  }
+  inputStyle = computed(() => ({
+    backgroundColor: this.value(),
+    color: 'transparent'
+  }));
 
-  override readonly: boolean = true;
-  clearable: boolean = false;
-  enter: boolean = false;
-  animating = false;
-  displayValue: string = '';
-  valueStyle: { [key: string]: string | number } = {};
+  clearable = signal(false);
+  enter = signal(false);
+  animating = signal(false);
+  displayValue = computed(() => this.value());
   portal!: XPortalOverlayRef<XColorPickerPortalComponent>;
-  icon: string = 'fto-chevron-down';
-  box!: DOMRect;
-  protalHeight!: number;
-  maxNodes: number = 6;
-  protalTobottom: boolean = true;
-  valueChange: Subject<any> = new Subject();
-  dataChange: Subject<any> = new Subject();
-  positionChange: Subject<any> = new Subject();
+  icon = signal('fto-chevron-down');
   closeSubject: Subject<void> = new Subject();
-  private _unSubject = new Subject<void>();
   document = inject(DOCUMENT);
-  private renderer = inject(Renderer2);
-  override cdr = inject(ChangeDetectorRef);
+  private unSubject = new Subject<void>();
   private portalService = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
   private overlay = inject(Overlay);
   private elementRef = inject(ElementRef);
 
+  private realPlacement = signal<XPlacement | null>(null);
+  portalComponent = signal<ComponentRef<XColorPickerPortalComponent> | null>(null);
+  portalOverlayRef = signal<OverlayRef | null>(null);
+
+  constructor() {
+    super();
+    effect(() => this.portalComponent()?.setInput('value', this.value() || this.primaryColor));
+    effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
+    effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
+  }
+
   ngOnInit() {
-    this.setFlex(
-      this.colorPicker.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
-    this.setClassMap();
     this.setSubject();
     this.setParantScroll();
   }
@@ -103,78 +92,60 @@ export class XColorPickerComponent
   }
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this.unSubject.next();
+    this.unSubject.unsubscribe();
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
+    this.closeSubject.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.closePortal();
     });
   }
 
-  setValueStyle() {
-    this.valueStyle = {
-      width: `${this.inputCom.inputRef.nativeElement.clientWidth}px`,
-      height: `${this.inputCom.inputRef.nativeElement.clientHeight}px`
-    };
-    if (this.direction === 'column') {
-      this.valueStyle['bottom'] = 0;
-    }
-    if (this.direction === 'row') {
-      this.valueStyle['bottom'] = 0;
-    }
-  }
-
   menter() {
-    if (this.disabled) return;
-    this.enter = true;
-    if (!XIsEmpty(this.value)) {
-      this.icon = '';
-      this.clearable = true;
-      this.cdr.detectChanges();
+    if (this.disabledComputed()) return;
+    this.enter.set(true);
+    if (!XIsEmpty(this.value())) {
+      this.icon.set('');
+      this.clearable.set(true);
     }
   }
 
   mleave() {
-    if (this.disabled) return;
-    this.enter = false;
-    if (this.clearable) {
-      this.icon = 'fto-chevron-down';
-      this.clearable = false;
-      this.cdr.detectChanges();
+    if (this.disabledComputed()) return;
+    this.enter.set(false);
+    if (this.clearable()) {
+      this.icon.set('fto-chevron-down');
+      this.clearable.set(false);
     }
   }
 
   clearEmit() {
-    this.value = '';
-    this.displayValue = '';
+    this.value.set('');
     this.mleave();
-    this.valueChange.next(this.value);
-    if (this.onChange) this.onChange(this.value);
+    if (this.onChange) this.onChange(this.value());
   }
 
   portalAttached() {
-    return this.portal?.overlayRef?.hasAttached();
+    return this.portalOverlayRef()?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal?.overlayRef?.detach();
-      this.active = false;
-      this.cdr.detectChanges();
+      this.portalOverlayRef()?.detach();
+      this.active.set(false);
       return true;
     }
     return false;
   }
 
   destroyPortal() {
-    this.portal?.overlayRef?.dispose();
+    this.portalOverlayRef()?.dispose();
   }
 
   showPortal() {
-    if (this.disabled || this.animating) return;
-    this.active = true;
+    if (this.disabledComputed() || this.animating()) return;
+    this.active.set(true);
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -188,7 +159,7 @@ export class XColorPickerComponent
     });
     this.portal.overlayRef
       ?.outsidePointerEvents()
-      .pipe(takeUntil(this._unSubject))
+      .pipe(takeUntil(this.unSubject))
       .subscribe(() => {
         this.closeSubject.next();
       });
@@ -197,12 +168,13 @@ export class XColorPickerComponent
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((pos: ConnectedOverlayPositionChange) => {
-        const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-        place !== this.placement && this.positionChange.next(place);
-      });
+    position.positionChanges.pipe(takeUntil(this.unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      if (place !== this.realPlacement()) {
+        this.realPlacement.set(place);
+        this.portalOverlayRef()?.updatePosition();
+      }
+    });
   }
 
   setParantScroll() {
@@ -219,10 +191,10 @@ export class XColorPickerComponent
       fromEvent(firstScroll, 'scroll')
         .pipe(
           filter(() => this.portalAttached()!),
-          takeUntil(this._unSubject)
+          takeUntil(this.unSubject)
         )
         .subscribe(() => {
-          this.portal?.overlayRef?.updatePosition();
+          this.portalOverlayRef()?.updatePosition();
           const eract = this.elementRef.nativeElement.getBoundingClientRect();
           const frect = firstScroll!.getBoundingClientRect();
           if (eract.top + eract.height - frect.top < 0 || eract.bottom > frect.bottom) {
@@ -233,50 +205,36 @@ export class XColorPickerComponent
   }
 
   setInstance() {
-    let componentRef = this.portal?.componentRef;
-    if (!componentRef) return;
-    Object.assign(componentRef.instance, {
-      value: this.value,
-      placement: this.placement,
-      valueChange: this.valueChange,
-      positionChange: this.positionChange,
-      inputCom: this.inputCom,
-      closePortal: () => this.closeSubject.next(),
-      destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (color: string) => this.onNodeClick(color),
-      animating: (ing: boolean) => (this.animating = ing)
-    });
-    componentRef.changeDetectorRef.detectChanges();
+    let { componentRef, overlayRef } = this.portal;
+    if (!componentRef || !overlayRef) return;
+    this.portalComponent.set(componentRef);
+    this.portalOverlayRef.set(overlayRef);
+    this.realPlacement.set(this.placement());
+    const { nodeClick, animating } = componentRef.instance;
+    nodeClick.subscribe((color: string) => this.onNodeClick(color));
+    animating.subscribe((ing: boolean) => this.animating.set(ing));
   }
 
   onNodeClick(color: string) {
-    this.value = color;
-    this.displayValue = color;
-    this.inputCom.inputFocus();
-    if (this.onChange) this.onChange(this.value);
+    this.value.set(color);
+    this.inputCom().inputFocus('focus');
+    if (this.onChange) this.onChange(this.value());
     this.formControlValidator();
-    this.cdr.detectChanges();
   }
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputRef,
-      placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      elementRef: this.inputCom().inputRef(),
+      placement: [this.placement() as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-color-picker-portal'
     });
   }
 
   setPortal() {
-    this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
-  }
-
-  setClassMap() {
-    XClearClass(this.labelMap);
-    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
+    this.portalAttached() && this.portalOverlayRef()?.updatePositionStrategy(this.setPlacement());
   }
 
   formControlChanges() {
     this.ngOnInit();
-    this.cdr.detectChanges();
   }
 }

@@ -13,14 +13,14 @@ import { XAddMinutes, XAddHours } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XCommentPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXCommentComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XCommentComponent,
@@ -28,10 +28,9 @@ describe(XCommentPrefix, () => {
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent
-      ],
-      declarations: [TestXCommentComponent]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCommentComponent>;

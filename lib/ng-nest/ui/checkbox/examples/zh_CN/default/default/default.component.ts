@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { XCheckboxComponent, XCheckboxNode } from '@ng-nest/ui/checkbox';
-import { XData } from '@ng-nest/ui/core';
+import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
@@ -12,6 +11,6 @@ import { XInputComponent } from '@ng-nest/ui/input';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  data: XData<XCheckboxNode> = ['QQ', '微信', '钉钉', '微博'];
-  model = ['微信'];
+  data = signal(['QQ', '微信', '钉钉', '微博']);
+  model = signal(['微信']);
 }

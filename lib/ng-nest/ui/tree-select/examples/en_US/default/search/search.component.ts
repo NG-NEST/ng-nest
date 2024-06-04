@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./search.component.scss']
 })
 export class ExSearchComponent {
-  data1: XTreeSelectNode[] = [
+  data1 = signal<XTreeSelectNode[]>([
     { id: 1, label: 'Fruit' },
     { id: 2, label: 'Vegetable' },
     { id: 3, label: 'Drink' },
@@ -28,10 +28,10 @@ export class ExSearchComponent {
     { id: 13, label: 'Millet banana', pid: 5 },
     { id: 14, label: 'Canna edulis', pid: 5 },
     { id: 15, label: 'Emperor banana', pid: 5 }
-  ];
-  model1: any;
+  ]);
+  model1 = signal<number | null>(null);
 
-  data2 = (val: any): Observable<XTreeSelectNode[]> => {
+  data2 = signal((val: any): Observable<XTreeSelectNode[]> => {
     return new Observable((x) => {
       let data = JSON.parse(JSON.stringify(this.data1));
       setTimeout(() => {
@@ -52,15 +52,15 @@ export class ExSearchComponent {
         x.complete();
       }, 300);
     });
-  };
-  model2: any;
+  });
+  model2 = signal<number | null>(null);
 
-  data3 = JSON.parse(JSON.stringify(this.data1));
-  model3: any;
+  data3 = signal(JSON.parse(JSON.stringify(this.data1())));
+  model3 = signal<number[]>([]);
 
-  data4 = (val: any): Observable<XTreeSelectNode[]> => {
+  data4 = signal((val: any): Observable<XTreeSelectNode[]> => {
     return new Observable((x) => {
-      let data = JSON.parse(JSON.stringify(this.data1));
+      let data = JSON.parse(JSON.stringify(this.data1()));
       setTimeout(() => {
         let nodes: XTreeSelectNode[] = data.filter((x: XTreeSelectNode) => x.label.indexOf(val) >= 0);
         const getParent = (node: XTreeSelectNode) => {
@@ -79,8 +79,8 @@ export class ExSearchComponent {
         x.complete();
       }, 300);
     });
-  };
-  model4: any;
+  });
+  model4 = signal<number[]>([]);
 
   change(event: any) {
     console.log(event);

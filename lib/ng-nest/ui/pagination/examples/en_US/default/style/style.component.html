@@ -1,27 +1,50 @@
 <div class="row">
-  <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)" hiddenBorder></x-pagination>
-</div>
-<div class="row">
-  <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)" hiddenBorder [space]="0.25"></x-pagination>
+  <x-pagination
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
+    (indexChange)="change($event)"
+    showBackground
+    space="0"
+  ></x-pagination>
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
-    hiddenBorder
+    showBackground
+  ></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
+    (indexChange)="change($event)"
+    showBackground
+    [space]="8"
+  ></x-pagination>
+</div>
+<div class="row">
+  <x-pagination
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
+    (indexChange)="change($event)"
+    showBackground
     showEllipsis="false"
     showTotal="false"
   ></x-pagination>
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
-    hiddenBorder
+    showBackground
     showEllipsis="false"
     showTotal="false"
     pageLinkSize="1"
@@ -29,11 +52,11 @@
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
-    hiddenBorder
+    showBackground
     showEllipsis="false"
     showTotal="false"
     pageLinkSize="3"
@@ -41,11 +64,11 @@
 </div>
 <div class="row">
   <x-pagination
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
-    hiddenBorder
+    showBackground
     showEllipsis="false"
     showTotal="false"
     pageLinkSize="7"
@@ -53,10 +76,10 @@
 </div>
 <div class="row">
   <x-pagination
-    hiddenBorder
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    showBackground
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     [sizeData]="[5, 10, 20, 100]"
     showSize
@@ -65,10 +88,10 @@
 </div>
 <div class="row">
   <x-pagination
-    hiddenBorder
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    showBackground
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     (sizeChange)="change($event)"
     simple
@@ -77,10 +100,10 @@
 </div>
 <div class="row">
   <x-pagination
-    hiddenBorder
-    [index]="index"
-    [size]="size"
-    [total]="total"
+    showBackground
+    [(index)]="index"
+    [(size)]="size"
+    [total]="total()"
     (indexChange)="change($event)"
     (sizeChange)="change($event)"
     showInputSize

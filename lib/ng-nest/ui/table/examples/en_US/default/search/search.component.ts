@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { SearchService } from './search.service';
 import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   providers: [SearchService]
 })
 export class ExSearchComponent {
-  @ViewChild('tableCom') tableCom!: XTableComponent;
+  tableCom = viewChild.required<XTableComponent>('tableCom');
 
   size = 1000;
   query: XQuery = { filter: [] };
@@ -37,8 +37,6 @@ export class ExSearchComponent {
 
   constructor(public service: SearchService) {}
 
-  ngOnInit() {}
-
   change(val: string, prop: string) {
     if (val === null) return;
     let filter = this.query.filter!;
@@ -50,6 +48,6 @@ export class ExSearchComponent {
       filter = [...filter, pfilter];
       this.query.filter = filter;
     }
-    this.tableCom.change(1);
+    this.tableCom().change(1);
   }
 }

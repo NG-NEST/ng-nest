@@ -1,73 +1,47 @@
-import {
-  OnInit,
-  Renderer2,
-  ElementRef,
-  Directive,
-  OnDestroy,
-  AfterViewInit,
-  OnChanges,
-  SimpleChanges,
-  inject
-} from '@angular/core';
-import { Subject } from 'rxjs';
-import { XConfigService, XIsArray, XIsChange, XIsString, XIsUndefined } from '@ng-nest/ui/core';
+import { ElementRef, Directive, inject, effect, HostBinding, computed } from '@angular/core';
+import { XIsArray, XIsString, XIsUndefined } from '@ng-nest/ui/core';
 import { XKeywordPrefix, XKeywordProperty } from './keyword.property';
 
 @Directive({
   selector: `[${XKeywordPrefix}]`,
   standalone: true
 })
-export class XKeywordDirective
-  extends XKeywordProperty
-  implements OnInit, OnChanges, OnDestroy, AfterViewInit
-{
-  private _unSub = new Subject<void>();
-  private renderer = inject(Renderer2);
+export class XKeywordDirective extends XKeywordProperty {
   private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
-
-  ngOnInit() {
-    this.setClassMap();
+  @HostBinding('class') get cls() {
+    if (!this.color()) {
+      return `${XKeywordPrefix}-${this.type()}`;
+    }
+    return '';
   }
-
-  ngAfterViewInit() {
-    this.setKeyword();
-  }
-
-  ngOnDestroy(): void {
-    this._unSub.next();
-    this._unSub.complete();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const { text } = changes;
-    XIsChange(text) && this.setKeyword();
-  }
-
-  setKeyword() {
-    if (XIsUndefined(this.text)) return;
+  textContent = computed(() => {
+    const text = this.text();
+    if (XIsUndefined(this.text())) return;
     const hele = this.elementRef.nativeElement as HTMLElement;
     let textContent = hele.textContent;
     if (!textContent) return;
     let texts: string[] = [];
-    if (XIsArray(this.text)) {
-      texts = this.text as string[];
-    } else if (XIsString(this.text)) {
-      texts = [this.text as string];
+    if (XIsArray(text)) {
+      texts = text;
+    } else if (XIsString(text)) {
+      texts = [text];
     }
-    const flags = this.caseSensitive ? 'g' : 'gi';
+    const flags = this.caseSensitive() ? 'g' : 'gi';
     for (let tx of texts) {
       const reg = new RegExp(tx, flags);
       textContent = textContent.replace(reg, (p1) => {
         return `<span class="x-keyword-text">${p1}</span>`;
       });
     }
-    hele.innerHTML = textContent;
-  }
+    return textContent;
+  });
 
-  setClassMap() {
-    if (!this.color) {
-      this.renderer.addClass(this.elementRef.nativeElement, `${XKeywordPrefix}-${this.type}`);
-    }
+  constructor() {
+    super();
+    effect(() => {
+      if (!XIsUndefined(this.text())) {
+        this.elementRef.nativeElement.innerHTML = this.textContent();
+      }
+    });
   }
 }

@@ -1,56 +1,56 @@
 <div class="row">
-  <x-radio [data]="data" before="https://" after=".com"></x-radio>
+  <x-radio [data]="data()" before="https://" after=".com"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-radio>
+  <x-radio [data]="data()" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [after]="afterButtonTpl"></x-radio>
+  <x-radio [data]="data()" [after]="afterButtonTpl"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl"></x-radio>
+  <x-radio [data]="data()" [before]="beforeInputTpl" [after]="afterInputTpl"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-radio>
+  <x-radio [data]="data()" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-radio>
+  <x-radio [data]="data()" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-radio>
+  <x-radio [data]="data()" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-radio>
+  <x-radio [data]="data()" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-radio>
+  <x-radio [data]="data()" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl"></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" before="https://" after=".com" button></x-radio>
+  <x-radio [data]="data()" before="https://" after=".com" button></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeSelectTpl" [after]="afterSelectTpl" button></x-radio>
+  <x-radio [data]="data()" [before]="beforeSelectTpl" [after]="afterSelectTpl" button></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [after]="afterButtonTpl" button></x-radio>
+  <x-radio [data]="data()" [after]="afterButtonTpl" button></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeInputTpl" [after]="afterInputTpl" button></x-radio>
+  <x-radio [data]="data()" [before]="beforeInputTpl" [after]="afterInputTpl" button></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl" button></x-radio>
+  <x-radio [data]="data()" [before]="beforeDatePickerTpl" [after]="afterDatePickerTpl" button></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl" button></x-radio>
+  <x-radio [data]="data()" [before]="beforeAutoCompleteTpl" [after]="afterAutoCompleteTpl" button></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeCascadeTpl" [after]="afterCascadeTpl" button></x-radio>
+  <x-radio [data]="data()" [before]="beforeCascadeTpl" [after]="afterCascadeTpl" button></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl" button></x-radio>
+  <x-radio [data]="data()" [before]="beforeColorPickerTpl" [after]="afterColorPickerTpl" button></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="data" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl" button></x-radio>
+  <x-radio [data]="data()" [before]="beforeTimePickerTpl" [after]="afterTimePickerTpl" button></x-radio>
 </div>
 
 <ng-template #beforeSelectTpl>
@@ -60,10 +60,10 @@
   <x-select [style.width.rem]="5" [data]="['.com', '.cn', '.org']"></x-select>
 </ng-template>
 <ng-template #beforeButtonTpl>
-  <x-button>Select</x-button>
+  <x-button flat plain>Select</x-button>
 </ng-template>
 <ng-template #afterButtonTpl>
-  <x-button icon="fto-search"></x-button>
+  <x-button icon="fto-search" flat plain></x-button>
 </ng-template>
 <ng-template #beforeInputTpl>
   <x-input [style.width.%]="30"></x-input>
@@ -92,10 +92,10 @@
   ></x-auto-complete>
 </ng-template>
 <ng-template #beforeCascadeTpl>
-  <x-cascade [style.width.rem]="10" [data]="cascadeData"></x-cascade>
+  <x-cascade [style.width.rem]="10" [data]="cascadeData()"></x-cascade>
 </ng-template>
 <ng-template #afterCascadeTpl>
-  <x-cascade [style.width.rem]="10" [data]="cascadeData"></x-cascade>
+  <x-cascade [style.width.rem]="10" [data]="cascadeData()"></x-cascade>
 </ng-template>
 <ng-template #beforeColorPickerTpl>
   <x-color-picker [style.width.rem]="10"></x-color-picker>

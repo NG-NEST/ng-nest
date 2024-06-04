@@ -1,14 +1,5 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  inject,
-  OnInit
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { XMainPrefix } from './container.property';
-import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XMainPrefix}`,
@@ -18,12 +9,6 @@ import { XConfigService } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMainComponent implements OnInit {
-  private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
-
-  ngOnInit(): void {
-    this.renderer.addClass(this.elementRef.nativeElement, XMainPrefix);
-  }
+export class XMainComponent {
+  @HostBinding('class') className = XMainPrefix;
 }

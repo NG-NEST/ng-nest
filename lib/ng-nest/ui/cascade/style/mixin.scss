@@ -17,7 +17,7 @@
   color: $--x-text;
   border-radius: $--x-border-small-radius;
   box-shadow: $--x-box-shadow;
-  background-color: $--x-background;
+  background-color: $--x-background-100;
   display: flex;
   &:focus {
     outline: none;
@@ -27,7 +27,7 @@
       min-width: 8rem;
     }
     &:not(:first-child) {
-      border-left: $--x-border-width solid $--x-border;
+      border-left: $--x-border-base;
     }
   }
 }

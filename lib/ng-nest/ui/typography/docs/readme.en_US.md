@@ -1,6 +1,7 @@
 ---
 label: 'Typography'
 category: 'Basic'
+hidden: true
 ---
 
 # Typography

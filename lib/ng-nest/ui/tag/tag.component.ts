@@ -1,16 +1,14 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  SimpleChanges,
   HostBinding,
   HostListener,
-  inject,
-  OnChanges
+  computed,
+  signal
 } from '@angular/core';
 import { XTagPrefix, XTagProperty } from './tag.property';
-import { XIsEmpty, XConfigService, XIsChange, XClearClass, XBaseAnimation } from '@ng-nest/ui/core';
+import { XIsEmpty, XBaseAnimation } from '@ng-nest/ui/core';
 import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
@@ -24,46 +22,30 @@ import { XIconComponent } from '@ng-nest/ui/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XBaseAnimation]
 })
-export class XTagComponent extends XTagProperty implements OnInit, OnChanges {
+export class XTagComponent extends XTagProperty {
   @HostBinding('@x-base-animation') public animation = true;
-  animating = false;
+  animating = signal(false);
   @HostListener('@x-base-animation.done', ['$event']) done() {
-    // this.animating(false);
-    this.animating = false;
-    // event.toState === 'void' && this.destroyPortal();
+    this.animating.set(false);
   }
   @HostListener('@x-base-animation.start', ['$event']) start() {
-    this.animating = true;
-  }
-  configService = inject(XConfigService);
-
-  ngOnInit() {
-    this.setClassMap();
+    this.animating.set(true);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const { type, size, dark } = changes;
-    XIsChange(type, size, dark) && this.setClassMap();
-  }
-
-  setClassMap() {
-    XClearClass(this.classMap);
-    this.classMap = {
-      [`${XTagPrefix}-${this.type}`]: !XIsEmpty(this.type),
-      [`${XTagPrefix}-${this.size}`]: !XIsEmpty(this.size),
-      [`${XTagPrefix}-dark`]: Boolean(this.dark),
-      [`${XTagPrefix}-checked`]: Boolean(this.checked)
-    };
-  }
+  classMap = computed(() => ({
+    [`${XTagPrefix}-${this.type()}`]: !XIsEmpty(this.type()),
+    [`${XTagPrefix}-${this.size()}`]: !XIsEmpty(this.size()),
+    [`${XTagPrefix}-dark`]: this.dark(),
+    [`${XTagPrefix}-checked`]: this.checked()
+  }));
 
   onClick() {
-    if (!this.checked || this.manual) return;
-    this.selected = !this.selected;
-    this.selectedChange.emit(this.selected);
+    if (!this.checked() || this.manual()) return;
+    this.selected.update((x) => !x);
   }
 
   onClose(event: Event) {
-    if (this.disabled) return;
+    if (this.disabled()) return;
     this.close.emit(event);
   }
 }

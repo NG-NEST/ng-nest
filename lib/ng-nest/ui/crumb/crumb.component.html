@@ -1,20 +1,20 @@
 <ul #crumbs class="x-crumb">
-  @for (node of nodes; track node.id; let i = $index) {
+  @for (node of data(); track node.id) {
     <li>
       <x-link
-        [title]="nodeTpl ? node.label : ''"
+        [title]="nodeTpl() ? node.label : ''"
         [icon]="node.icon"
-        [disabled]="node.disabled || i === nodes.length - 1"
+        [disabled]="node.disabled || $index === data().length - 1"
         (click)="action('click', node, $event)"
       >
-        @if (!nodeTpl) {
+        @if (!nodeTpl()) {
           {{ node.label }}
         }
-        <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
+        <ng-container *ngTemplateOutlet="nodeTpl()!; context: { $node: node }"></ng-container>
       </x-link>
-      @if (i !== nodes.length - 1) {
+      @if ($index !== data().length - 1) {
         <span class="x-crumb-separator">
-          <ng-container *xOutlet="separator">{{ separator }}</ng-container>
+          <ng-container *xOutlet="separator()">{{ separator() }}</ng-container>
         </span>
       }
     </li>

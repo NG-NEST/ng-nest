@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XUploadComponent } from '@ng-nest/ui/upload';
 
 @Component({
   selector: 'ex-custom',
   standalone: true,
-  imports: [FormsModule, XUploadComponent],
+  imports: [FormsModule, XUploadComponent, JsonPipe],
   templateUrl: './custom.component.html'
 })
 export class ExCustomComponent {
-  model1 = [{ url: 'http://127.0.0.1:3000/upload/1650888347319-新建文本文档.txt', name: '新建文本文档' }];
+  model1 = signal([{ url: 'http://127.0.0.1:3000/upload/1650888347319-新建文本文档.txt', name: '新建文本文档' }]);
 
   change($event: any) {
     console.log($event);

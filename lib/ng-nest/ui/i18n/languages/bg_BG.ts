@@ -1,117 +1,166 @@
 export default {
   locale: 'bg_BG',
   comment: {
-    comments: 'коментар',
-    giveALike: 'като',
+    comments: 'Коментари',
+    giveALike: 'Харесвам',
     reply: 'Отговор',
-    more: 'виж повече',
-    sure: 'пускане',
+    more: 'Повече',
+    sure: 'Уверен',
     placeholder: 'Моля, въведете коментар'
   },
   theme: {
-    darkMode: 'Тъмно режим',
-    initDefault: 'Инициализирайте стойността по подразбиране',
-    primary: 'Основен цвят',
-    success: 'успех',
-    warning: 'протест',
-    danger: 'опасност',
-    info: 'информация',
-    background: 'заден план',
-    border: 'кадър',
+    darkMode: 'Тъмен режим',
+    initDefault:
+      'Инициализирайте стойност по подразбиране',
+    primary: 'Първичен',
+    success: 'Успех',
+    warning: 'Предупреждение',
+    danger: 'Опасност',
+    info: 'Информация',
+    background: 'Фон',
+    border: 'Рамка',
     text: 'Текст'
   },
   calendar: {
-    month: 'месец',
-    year: 'година',
-    lastMonth: 'Първи месец',
-    lastYear: 'миналата година',
-    nextMonth: 'Следващият месец',
-    nextYear: 'следващата година',
-    january: '1месец',
-    february: '2месец',
-    march: '3месец',
-    april: '4месец',
-    may: '5месец',
-    june: '6месец',
-    july: '7месец',
-    august: '8месец',
-    september: '9месец',
-    october: '10месец',
-    november: '11месец',
-    december: '12месец'
+    month: 'Месец',
+    year: 'Година',
+    lastMonth: 'Миналия месец',
+    lastYear: 'Миналата година',
+    nextMonth: 'Следващия месец',
+    nextYear: 'Следващата година',
+    january: 'Януари',
+    february: 'Февруари',
+    march: 'Март',
+    april: 'Април',
+    may: 'Май',
+    june: 'Юни',
+    july: 'Юли',
+    august: 'Август',
+    september: 'Септември',
+    october: 'Октомври',
+    november: 'Ноември',
+    december: 'Декември'
   },
   datePicker: {
-    sure: 'потвърждение',
-    month: 'месец',
-    year: 'година',
-    january: '1месец',
-    february: '2месец',
-    march: '3месец',
-    april: '4месец',
-    may: '5месец',
-    june: '6месец',
-    july: '7месец',
-    august: '8месец',
-    september: '9месец',
-    october: '10месец',
-    november: '11месец',
-    december: '12месец',
-    monday: 'един',
-    tuesday: 'две',
-    wednesday: 'три',
-    thursday: 'четири',
-    friday: 'петици',
-    saturday: 'шест',
-    sunday: 'ден',
-    yesterday: 'вчера',
-    today: 'В днешно време',
-    tomorrow: 'утре'
+    sure: 'Потвърждавам',
+    week: 'Седмица',
+    month: 'Месец',
+    year: 'Година',
+    january: 'Януари',
+    february: 'Февруари',
+    march: 'Март',
+    april: 'Април',
+    may: 'Май',
+    june: 'Юни',
+    july: 'Юли',
+    august: 'Август',
+    september: 'Септември',
+    october: 'Октомври',
+    november: 'Ноември',
+    december: 'Декември',
+    monday: 'Понеделник',
+    tuesday: 'Вторник',
+    wednesday: 'Сряда',
+    thursday: 'Четвъртък',
+    friday: 'Петък',
+    saturday: 'Събота',
+    sunday: 'Неделя',
+    yesterday: 'Вчера',
+    today: 'Днес',
+    tomorrow: 'Утре',
+    thisWeek: 'Тази седмица',
+    lastWeek: 'Миналата седмица',
+    nextWeek: 'Следващата седмица',
+    thisMonth: 'Този месец',
+    lastMonth: 'Миналия месец',
+    nextMonth: 'Следващия месец',
+    thisYear: 'Тази година',
+    lastYear: 'Миналата година',
+    nextYear: 'Следващата година',
+    selectDate: 'Изберете дата',
+    selectWeek: 'Изберете седмица',
+    selectMonth: 'Изберете месец',
+    selectQuarter: 'Изберете тримесечие',
+    selectYear: 'Изберете година',
+    startDate: 'Начална дата',
+    endDate: 'Крайна дата',
+    startMonth: 'Начален месец',
+    endMonth: 'Краен месец',
+    startQuarter: 'Начало на тримесечие',
+    endQuarter: 'Край на тримесечие',
+    startYear: 'Начална година',
+    endYear: 'Крайна година',
+    startWeek: 'Начална седмица',
+    endWeek: 'Крайна седмица'
   },
-  empty: {
-    noData: 'Няма данни'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Сега',
+    selectTime: 'Изберете време',
+    selectHour: 'Изберете час',
+    selectMinute: 'Изберете минута'
   },
+  empty: { noData: 'Няма данни' },
+  image: { previewText: 'Преглед' },
   pagination: {
-    previous: 'Предишна страница',
-    next: 'Следваща страница',
-    total: 'Обща сума',
-    item: 'статия',
-    first: 'първа страница',
-    last: 'Опашка',
-    jump: 'Прескачане',
-    sizePage: '/ cтраница'
+    previous: 'Предишен',
+    next: 'Следващ',
+    total: 'Общо',
+    item: 'Елемент',
+    first: 'Първи',
+    last: 'Последен',
+    jump: 'Отиди на',
+    sizePage: 'Елементи на страница'
   },
   textRetract: {
-    unfold: 'Разгънете',
-    packUp: 'Поставете'
+    unfold: 'Разгърни',
+    packUp: 'Сгъни'
   },
   timeAgo: {
-    just: 'просто',
-    secondsAgo: ' Преди секунди',
-    minutesAgo: ' преди минути',
-    hoursAgo: ' Преди час'
+    just: 'Току-що',
+    secondsAgo: 'Преди секунди',
+    minutesAgo: 'Преди минути',
+    hoursAgo: 'Преди часове'
+  },
+  transfer: {
+    listTitle: 'Списък',
+    treeTitle: 'Дърво',
+    tableTitle: 'Таблица',
+    selectedTitle: 'Избрани елементи',
+    inverse: 'Обърни'
   },
   messageBox: {
-    cancelText: 'анулира',
-    confirmText: 'потвърждаване'
+    cancelText: 'Отказ',
+    confirmText: 'Потвърждение'
   },
   dialog: {
-    cancelText: 'анулира',
-    confirmText: 'потвърждаване'
+    cancelText: 'Отказ',
+    confirmText: 'Потвърждение'
   },
   popconfirm: {
-    cancelText: 'анулира',
-    confirmText: 'потвърждаване'
+    cancelText: 'Отказ',
+    confirmText: 'Потвърждение'
   },
   upload: {
-    uploadText: 'качване на файлове'
+    uploadText: 'Качване на файл',
+    beginUploadText: 'Започни качването на файл',
+    uploadingText: 'Качване',
+    uploadCompleted: 'Качването на файл приключи'
   },
-  pageHeader: {
-    back: 'връщане'
-  },
+  pageHeader: { back: 'Назад' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Избери всички',
+    loadMoreText: 'Зареди още',
+    loadingMoreText: 'Зарежда се'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Избери всички',
+    maxTagContent: 'Още {{surplus}} избрани'
+  },
+  treeSelect: {
+    selectAllText: 'Избери всички',
+    maxTagContent: 'Още {{surplus}} избрани'
+  },
+  form: { required: 'Задължително' }
 };

@@ -8,23 +8,22 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XDropdownPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXDropdownComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XDropdownComponent,
         XButtonComponent,
         XLinkComponent,
         XRowComponent,
-        XColComponent
-      ],
-      declarations: [TestXDropdownComponent]
-    }).compileComponents();
+        XColComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDropdownComponent>;

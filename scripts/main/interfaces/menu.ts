@@ -49,7 +49,7 @@ export interface NcMenu {
    * @type {string}
    * @memberof NcMenu
    */
-  router?: string;
+  routerLink?: string;
   /**
    * 图标
    *

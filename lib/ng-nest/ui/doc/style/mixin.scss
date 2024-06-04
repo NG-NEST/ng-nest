@@ -5,9 +5,9 @@
 @import './param';
 
 @mixin doc {
-  padding: 0 1.5rem;
+  padding: 0 3rem;
   display: block;
-  font-size: 0.875rem;
+  font-size: $--x-font-size;
   > x-anchor > .x-anchor {
     justify-content: center;
     > .x-anchor-content {
@@ -36,12 +36,12 @@
       h4 {
         font-size: 1rem;
         font-weight: 500;
-        margin: 1.125rem 0 0.875rem;
+        margin: 1.125rem 0 $--x-font-size;
         clear: both;
       }
 
       h5 {
-        font-size: 0.875rem;
+        font-size: $--x-font-size;
         font-weight: 500;
         margin: 1rem 0 0.625rem;
         clear: both;
@@ -49,15 +49,11 @@
 
       > p {
         font-weight: 400;
-        margin: 0.875rem 0 0;
-
-        .x-highlight {
-          border: 0.125rem solid $--x-background-a200;
-        }
+        margin: $--x-font-size 0 0;
       }
 
       > ul {
-        margin: 0.875rem 0;
+        margin: $--x-font-size 0;
         > li {
           list-style-type: circle;
           margin-left: 1.25rem;
@@ -68,37 +64,28 @@
       blockquote {
         margin: 0;
         position: relative;
-        padding: 0.5rem 0.5rem 0.5rem 0.875rem;
+        padding: 1rem 1.5rem;
         > p {
           margin: 0;
-        }
-        &:before {
-          content: ' ';
-          position: absolute;
-          top: calc(#{$--x-border-width} * -1);
-          left: calc(#{$--x-border-width} * -1);
-          height: calc(100% + calc(#{$--x-border-width} * 2));
-          width: 0.25rem;
-          border-top-left-radius: $--x-border-radius;
-          border-bottom-left-radius: $--x-border-radius;
-          background-color: $--x-border;
         }
       }
 
       > blockquote {
-        margin-top: 0.875rem;
-        background-color: $--x-background;
+        margin-top: $--x-font-size;
+        background-color: $--x-background-a100;
         border-radius: $--x-border-radius;
-        border: $--x-border-200-base;
+        border: $--x-border-base;
         color: $--x-text-400;
       }
 
       li > code,
       p > code {
-        background-color: $--x-primary-900;
-        border: $--x-border-width solid $--x-primary-800;
-        padding: 0 0.25rem;
-        border-radius: $--x-border-radius;
+        position: relative;
+        padding: 0 0.5rem;
+        color: $--x-danger;
+        background: $--x-danger-900;
+        border-radius: $--x-border-small-radius;
+        display: inline-block;
       }
 
       > p > x-tree-file {
@@ -133,20 +120,14 @@
         width: 100%;
         background: $--x-background;
         border-collapse: collapse;
-        border: $--x-border-base;
+        border-bottom: $--x-border-base;
         tr > th,
         tr > td {
           border-bottom: $--x-border-base;
           text-align: left;
-          padding: 0.5rem 1rem;
+          padding: 0.5rem 0;
         }
         tr {
-          &:last-child {
-            > th,
-            > td {
-              border-width: 0px;
-            }
-          }
           th {
             white-space: nowrap;
             color: $--x-text;
@@ -166,19 +147,19 @@
   }
 }
 
-@mixin code($type, $color, $backgroundColor, $border-color, $border-left-color) {
+@mixin code($type, $color, $backgroundColor, $--border-color, $border-left-color) {
   &#{$type} {
     flex: 1;
     position: relative;
     border-radius: $--x-border-radius;
-    padding: 0.875rem 1rem;
+    padding: $--x-font-size 1rem;
     background-color: $backgroundColor;
     color: $color;
     border: $--x-border-base;
-    border-color: $border-color;
+    border-color: $--border-color;
     text-shadow: none;
     @if map-has-key($--x-doc-states, $type) {
-      padding: 0.5rem 0.5rem 0.5rem 0.875rem;
+      padding: 0.5rem 0.5rem 0.5rem $--x-font-size;
       white-space: normal;
       font-family: $--x-font-family;
     }

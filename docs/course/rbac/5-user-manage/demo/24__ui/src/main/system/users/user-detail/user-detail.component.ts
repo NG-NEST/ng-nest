@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, viewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { XGuid } from '@ng-nest/ui/core';
 import { XFormComponent, XControl } from '@ng-nest/ui/form';
@@ -14,7 +14,7 @@ import { UserService } from './../user.service';
 export class UserDetailComponent implements OnInit {
   id: string = '';
   type: string = '';
-  @ViewChild('form') form!: XFormComponent;
+  form = viewChild.required<XFormComponent>('form');
   controls: XControl[] = [
     { control: 'input', id: 'name', label: '姓名', maxlength: 16, required: true },
     {
@@ -46,7 +46,7 @@ export class UserDetailComponent implements OnInit {
   ];
   title = '';
   get formInvalid() {
-    return this.form?.formGroup?.invalid;
+    return this.form().formGroup().invalid;
   }
   disabled = false;
   constructor(
@@ -78,7 +78,7 @@ export class UserDetailComponent implements OnInit {
     switch (type) {
       case 'info':
         this.userService.get(this.id).subscribe((x) => {
-          this.form.formGroup.patchValue(x);
+          this.form().formGroup().patchValue(x);
         });
         break;
       case 'edit':
@@ -86,12 +86,12 @@ export class UserDetailComponent implements OnInit {
         break;
       case 'save':
         if (this.type === 'add') {
-          this.userService.post(this.form.formGroup.value).subscribe((x) => {
+          this.userService.post(this.form().formGroup().value).subscribe(() => {
             this.message.success('新增成功！');
             this.router.navigate(['/index/users']);
           });
         } else if (this.type === 'edit') {
-          this.userService.put(this.form.formGroup.value).subscribe((x) => {
+          this.userService.put(this.form().formGroup().value).subscribe(() => {
             this.message.success('修改成功！');
             this.router.navigate(['/index/users']);
           });

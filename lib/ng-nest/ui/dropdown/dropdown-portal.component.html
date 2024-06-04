@@ -1,18 +1,18 @@
 <div
   #dropdownPortal
   class="x-dropdown-portal"
-  [style.minWidth]="getMinWidth"
-  [style.maxWidth]="getMaxWidth"
-  [style.minHeight]="getMinHeight"
-  [style.maxHeight]="getMaxHeight"
+  [style.minWidth]="minWidth()"
+  [style.maxWidth]="maxWidth()"
+  [style.minHeight]="minHeight()"
+  [style.maxHeight]="maxHeight()"
 >
   <x-list
-    [data]="data"
-    (nodeClick)="nodeClick($event)"
+    [data]="data()"
+    (nodeClick)="onNodeClick($event)"
     [(ngModel)]="activatedId"
     (nodeMouseenter)="onEnter($event)"
     (nodeMouseleave)="onLeave()"
     [inPortal]="true"
-    [size]="size"
+    [size]="size()"
   ></x-list>
 </div>

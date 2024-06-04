@@ -1,25 +1,36 @@
-import { OnInit, Renderer2, ElementRef, Directive, OnDestroy, inject } from '@angular/core';
+import {
+  OnInit,
+  Renderer2,
+  ElementRef,
+  Directive,
+  OnDestroy,
+  inject,
+  HostBinding,
+  ChangeDetectorRef
+} from '@angular/core';
 import { delay, fromEvent, of, Subject, takeUntil, tap } from 'rxjs';
 import { XRipplePrefix, XRippleProperty } from './ripple.property';
 import { XComputed } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 
 @Directive({
-  selector: '[x-ripple]',
+  selector: `[${XRipplePrefix}]`,
   standalone: true
 })
 export class XRippleDirective extends XRippleProperty implements OnInit, OnDestroy {
-  duration = 500;
-  private _unSub = new Subject<void>();
+  @HostBinding('class') className = `${XRipplePrefix} ${XRipplePrefix}-${this.type()}`;
+
+  private unsub = new Subject<void>();
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
+  private cdr = inject(ChangeDetectorRef);
   private document = inject(DOCUMENT);
 
   ngOnInit() {
-    if (this.disabled) return;
+    if (this.disabled()) return;
 
     fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown')
-      .pipe(takeUntil(this._unSub))
+      .pipe(takeUntil(this.unsub))
       .subscribe((event) => {
         const eleRect = this.elementRef.nativeElement.getBoundingClientRect();
         const radius = this.distanceToFurthestCorner(event.x, event.y, eleRect);
@@ -31,7 +42,7 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
         ripple.style.top = `${offsetY - radius}px`;
         ripple.style.height = `${radius * 2}px`;
         ripple.style.width = `${radius * 2}px`;
-        ripple.style.transitionDuration = `${this.duration}ms`;
+        ripple.style.transitionDuration = `${this.duration()}ms`;
         this.renderer.appendChild(this.elementRef.nativeElement, ripple);
         this.enforceStyleRecalculation(ripple);
         ripple.style.transform = 'scale(1)';
@@ -39,34 +50,30 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
         const downTime = new Date().getTime();
 
         const upEvent = fromEvent<MouseEvent>(this.document.documentElement, 'mouseup')
-          .pipe(takeUntil(this._unSub))
+          .pipe(takeUntil(this.unsub))
           .subscribe(() => {
             const upTime = new Date().getTime();
             of(true)
               .pipe(
-                delay(upTime - downTime > this.duration ? 0 : this.duration - (upTime - downTime)),
+                delay(upTime - downTime > this.duration() ? 0 : this.duration() - (upTime - downTime)),
                 tap(() => {
                   if (this.renderer.parentNode(ripple)) {
                     this.renderer.removeChild(this.elementRef.nativeElement, ripple);
                   }
+                  // TODO: use zoneless, renderer removeChild will not take effect immediately
+                  this.cdr.markForCheck();
                   upEvent.unsubscribe();
                 }),
-                takeUntil(this._unSub)
+                takeUntil(this.unsub)
               )
               .subscribe();
           });
       });
-    this.setClassMap();
   }
 
   ngOnDestroy(): void {
-    this._unSub.next();
-    this._unSub.complete();
-  }
-
-  setClassMap() {
-    this.renderer.addClass(this.elementRef.nativeElement, XRipplePrefix);
-    this.renderer.addClass(this.elementRef.nativeElement, `${XRipplePrefix}-${this.type}`);
+    this.unsub.next();
+    this.unsub.complete();
   }
 
   distanceToFurthestCorner(x: number, y: number, rect: DOMRect) {

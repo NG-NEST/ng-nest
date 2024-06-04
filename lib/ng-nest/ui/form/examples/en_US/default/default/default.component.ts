@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XFormComponent, XFormRow } from '@ng-nest/ui/form';
 import { XData, XQuery } from '@ng-nest/ui/core';
 import { XCalendarNode } from '@ng-nest/ui/calendar';
@@ -70,9 +70,12 @@ const DATA_SELECT: XData<XSelectNode> = [
   providers: [DefaultService, TreeService]
 })
 export class ExDefaultComponent {
-  constructor(public defaultService: DefaultService, public treeService: TreeService) {}
+  constructor(
+    public defaultService: DefaultService,
+    public treeService: TreeService
+  ) {}
 
-  controls: XFormRow[] = [
+  controls = signal<XFormRow[]>([
     {
       title: 'Cascade',
       icon: 'fto-list',
@@ -184,7 +187,7 @@ export class ExDefaultComponent {
           id: 'colorPickerDisabled',
           label: 'disabled',
           span: 8,
-          value: '#1976d2',
+          value: '#3B82F6',
           disabled: true
         },
         {
@@ -590,8 +593,7 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) =>
-            this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
           label: 'table single select',
           span: 8
         },
@@ -604,8 +606,7 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) =>
-            this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
           multiple: true,
           label: 'table multiple select',
           span: 8
@@ -626,8 +627,7 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) =>
-            this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
           treeData: this.treeService.getTreeList,
           treeTableConnect: 'organizationId',
           label: 'tree table single select',
@@ -643,8 +643,7 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) =>
-            this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
           treeData: this.treeService.getTreeList,
           treeTableConnect: 'organizationId',
           multiple: true,
@@ -668,8 +667,7 @@ export class ExDefaultComponent {
             { id: 'position', label: 'position', flex: 1, sort: true },
             { id: 'organization', label: 'organization', flex: 1, sort: true }
           ],
-          tableData: (index: number, size: number, query: XQuery) =>
-            this.defaultService.getList(index, size, query),
+          tableData: (index: number, size: number, query: XQuery) => this.defaultService.getList(index, size, query),
           label: 'required',
           span: 8,
           required: true
@@ -812,5 +810,5 @@ export class ExDefaultComponent {
         }
       ]
     }
-  ];
+  ]);
 }

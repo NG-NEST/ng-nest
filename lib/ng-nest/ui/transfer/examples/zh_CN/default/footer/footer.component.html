@@ -1,4 +1,4 @@
-<x-transfer [data]="data" [(ngModel)]="value" [footerTpl]="[leftFooterTpl, rightFooterTpl]"> </x-transfer>
+<x-transfer [data]="data()" [(ngModel)]="value" [footerTpl]="[leftFooterTpl, rightFooterTpl]"> </x-transfer>
 <ng-template #leftFooterTpl>
   <x-button [size]="'small'" text>left button</x-button>
 </ng-template>

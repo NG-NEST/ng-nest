@@ -56,7 +56,7 @@
         background-color $--x-animation-duration-base;
       position: relative;
       user-select: none;
-      padding-right: 0.875rem;
+      padding-right: $--x-font-size;
       border-radius: $--x-border-radius;
       margin: 0.125rem 0;
       .#{$--x-menu}-text {
@@ -85,17 +85,23 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           text-decoration: none;
+          color: $--x-text;
         }
       }
       &.x-activated {
         color: $--x-primary;
-        background-color: $--x-background-a300;
+        background-color: $--x-primary-900;
         &::after {
           content: '';
           position: absolute;
           height: 100%;
           right: -0.125rem;
           top: 0;
+        }
+        #{$--x-menu}-node {
+          > a {
+            color: $--x-primary;
+          }
         }
       }
       &.#{$--x-menu}-category {
@@ -105,7 +111,7 @@
           background-color: transparent;
         }
         > #{$--x-menu}-node {
-          border-bottom: $--x-border-300-base;
+          border-bottom: $--x-border-base;
         }
       }
     }
@@ -124,7 +130,7 @@
         padding-left: 0 !important;
         padding-right: 0;
         #{$--x-menu}-node {
-          padding-left: 0.875rem;
+          padding-left: $--x-font-size;
         }
         .#{$--x-menu}-text {
           opacity: 0;

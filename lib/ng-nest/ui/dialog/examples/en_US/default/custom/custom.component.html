@@ -29,7 +29,7 @@
 <div class="row">
   <x-button (click)="customForm()">Custom form</x-button>
   <x-dialog title="form" [(visible)]="visibleForm" buttonsCenter>
-    <x-form [controls]="controls"></x-form>
+    <x-form [controls]="controls()"></x-form>
   </x-dialog>
 </div>
 

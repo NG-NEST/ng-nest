@@ -1,117 +1,165 @@
 export default {
   locale: 'sv_SE',
   comment: {
-    comments: 'kommentar',
-    giveALike: 'tycka om',
-    reply: 'Svar',
-    more: 'se mer',
-    sure: 'släpp',
-    placeholder: 'Ange en kommentar'
+    comments: 'Kommentarer',
+    giveALike: 'Gilla',
+    reply: 'Svara',
+    more: 'Visa mer',
+    sure: 'Publicera',
+    placeholder: 'Vänligen skriv en kommentar'
   },
   theme: {
     darkMode: 'Mörkt läge',
-    initDefault: 'Initiera standardvärdet',
-    primary: 'Huvudfärg',
-    success: 'Framgång',
-    warning: 'varning',
-    danger: 'Fara',
-    info: 'information',
-    background: 'bakgrund',
-    border: 'ram',
+    initDefault: 'Initiera standardvärde',
+    primary: 'Primär',
+    success: 'Lyckad',
+    warning: 'Varning',
+    danger: 'Farlig',
+    info: 'Info',
+    background: 'Bakgrund',
+    border: 'Gräns',
     text: 'Text'
   },
   calendar: {
-    month: 'månad',
-    year: 'år',
-    lastMonth: 'Första månaden',
-    lastYear: 'förra året',
+    month: 'Månad',
+    year: 'År',
+    lastMonth: 'Förra månaden',
+    lastYear: 'Förra året',
     nextMonth: 'Nästa månad',
-    nextYear: 'nästa år',
-    january: 'januari',
-    february: 'februari',
+    nextYear: 'Nästa år',
+    january: 'Januari',
+    february: 'Februari',
     march: 'Mars',
-    april: 'april',
+    april: 'April',
     may: 'Maj',
-    june: 'juni',
-    july: 'juli',
-    august: 'augusti',
-    september: 'september',
-    october: 'oktober',
-    november: 'november',
-    december: 'december'
+    june: 'Juni',
+    july: 'Juli',
+    august: 'Augusti',
+    september: 'September',
+    october: 'Oktober',
+    november: 'November',
+    december: 'December'
   },
   datePicker: {
-    sure: 'bekräfta',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'i går',
-    today: 'Nu för tiden',
-    tomorrow: 'i morgon'
+    sure: 'Bekräfta',
+    week: 'Vecka',
+    month: 'Månad',
+    year: 'År',
+    january: 'Januari',
+    february: 'Februari',
+    march: 'Mars',
+    april: 'April',
+    may: 'Maj',
+    june: 'Juni',
+    july: 'Juli',
+    august: 'Augusti',
+    september: 'September',
+    october: 'Oktober',
+    november: 'November',
+    december: 'December',
+    monday: 'Måndag',
+    tuesday: 'Tisdag',
+    wednesday: 'Onsdag',
+    thursday: 'Torsdag',
+    friday: 'Fredag',
+    saturday: 'Lördag',
+    sunday: 'Söndag',
+    yesterday: 'Igår',
+    today: 'Idag',
+    tomorrow: 'Imorgon',
+    thisWeek: 'Denna vecka',
+    lastWeek: 'Förra veckan',
+    nextWeek: 'Nästa vecka',
+    thisMonth: 'Denna månad',
+    lastMonth: 'Förra månaden',
+    nextMonth: 'Nästa månad',
+    thisYear: 'Detta år',
+    lastYear: 'Förra året',
+    nextYear: 'Nästa år',
+    selectDate: 'Välj datum',
+    selectWeek: 'Välj vecka',
+    selectMonth: 'Välj månad',
+    selectQuarter: 'Välj kvartal',
+    selectYear: 'Välj år',
+    startDate: 'Startdatum',
+    endDate: 'Slutdatum',
+    startMonth: 'Startmånad',
+    endMonth: 'Slutmånad',
+    startQuarter: 'Startkvartal',
+    endQuarter: 'Slutkvartal',
+    startYear: 'Startår',
+    endYear: 'Slutår',
+    startWeek: 'Startvecka',
+    endWeek: 'Slutvecka'
   },
-  empty: {
-    noData: 'Nej data'
+  timePicker: {
+    am: 'Förmiddag',
+    pm: 'Eftermiddag',
+    now: 'Nu',
+    selectTime: 'Välj tid',
+    selectHour: 'Välj timme',
+    selectMinute: 'Välj minut'
   },
+  empty: { noData: 'Inga data tillgängliga' },
+  image: { previewText: 'Förhandsgranskning' },
   pagination: {
-    previous: 'Föregående sida',
-    next: 'Nästa sida',
-    total: 'Total',
-    item: 'Artikel',
-    first: 'framsida',
-    last: 'Svans',
-    jump: 'Hoppa',
-    sizePage: '/ Sida'
+    previous: 'Föregående',
+    next: 'Nästa',
+    total: 'Totalt',
+    item: 'Objekt',
+    first: 'Första',
+    last: 'Sista',
+    jump: 'Hoppa till',
+    sizePage: 'Objekt/sida'
   },
   textRetract: {
-    unfold: 'Veckla ut',
-    packUp: 'Lägga åt sidan'
+    unfold: 'Visa mer',
+    packUp: 'Visa mindre'
   },
   timeAgo: {
-    just: 'bara',
-    secondsAgo: 'För några sekunder sedan',
+    just: 'Just nu',
+    secondsAgo: 'sekunder sedan',
     minutesAgo: 'minuter sedan',
-    hoursAgo: 'En timme sedan'
+    hoursAgo: 'timmar sedan'
+  },
+  transfer: {
+    listTitle: 'Lista',
+    treeTitle: 'Träd',
+    tableTitle: 'Tabell',
+    selectedTitle: 'Valda objekt',
+    inverse: 'Invertera'
   },
   messageBox: {
-    cancelText: 'annullera',
-    confirmText: 'bekräfta'
+    cancelText: 'Avbryt',
+    confirmText: 'Bekräfta'
   },
   dialog: {
-    cancelText: 'annullera',
-    confirmText: 'bekräfta'
+    cancelText: 'Avbryt',
+    confirmText: 'Bekräfta'
   },
   popconfirm: {
-    cancelText: 'annullera',
-    confirmText: 'bekräfta'
+    cancelText: 'Avbryt',
+    confirmText: 'Bekräfta'
   },
   upload: {
-    uploadText: 'ladda upp filer'
+    uploadText: 'Ladda upp fil',
+    beginUploadText: 'Börja ladda upp fil',
+    uploadingText: 'Laddar upp',
+    uploadCompleted: 'Uppladdning av fil avslutad'
   },
-  pageHeader: {
-    back: 'lämna tillbaka'
-  },
+  pageHeader: { back: 'Tillbaka' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Välj alla',
+    loadMoreText: 'Ladda mer',
+    loadingMoreText: 'Laddar mer'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Välj alla',
+    maxTagContent: 'Ytterligare {{surplus}} valda'
+  },
+  treeSelect: {
+    selectAllText: 'Välj alla',
+    maxTagContent: 'Ytterligare {{surplus}} valda'
+  },
+  form: { required: 'Obligatoriskt fält' }
 };

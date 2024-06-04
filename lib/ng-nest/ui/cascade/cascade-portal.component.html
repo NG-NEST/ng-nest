@@ -1,12 +1,12 @@
-<div class="x-cascade-portal" tabindex="-1" (click)="inputCom.inputFocus(); stopPropagation($event)">
-  @for (list of nodes; track i; let i = $index) {
+<div class="x-cascade-portal" tabindex="-1" (click)="inputCom()?.inputFocus('focus'); stopPropagation($event)">
+  @for (list of nodes(); track list) {
     <x-list
       [data]="list"
-      [nodeTpl]="nodeTpl"
+      [nodeTpl]="nodeTpl()"
       [(ngModel)]="values"
-      (nodeClick)="nodeClick($event)"
-      (nodeMouseenter)="nodeTrigger === 'hover' && nodeMouseenter($event)"
-      (nodeMouseleave)="nodeTrigger === 'hover' && nodeMouseleave()"
+      (nodeClick)="onNodeClick($event)"
+      (nodeMouseenter)="nodeTrigger() === 'hover' && nodeMouseenter($event)"
+      (nodeMouseleave)="nodeTrigger() === 'hover' && nodeMouseleave()"
       [checked]="true"
       [inPortal]="true"
     ></x-list>

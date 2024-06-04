@@ -1,10 +1,10 @@
 <x-transfer
   [type]="'table'"
-  [data]="data"
+  [data]="data()"
   [(ngModel)]="value"
   [listStyle]="{ 'width.rem': 21, 'height.rem': 31.75 }"
   [hiddenCheckAll]="[true, true]"
   [titles]="['用户列表', '选中用户']"
-  [tableColumns]="columns"
+  [tableColumns]="columns()"
 >
 </x-transfer>

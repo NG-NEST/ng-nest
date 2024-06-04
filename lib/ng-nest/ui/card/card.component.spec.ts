@@ -11,14 +11,14 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XCardPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXCardComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XCardComponent,
@@ -26,10 +26,9 @@ describe(XCardPrefix, () => {
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent
-      ],
-      declarations: [TestXCardComponent]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCardComponent>;

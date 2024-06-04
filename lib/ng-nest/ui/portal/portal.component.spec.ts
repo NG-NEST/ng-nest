@@ -1,17 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, TemplateRef, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewContainerRef, ViewChild, viewChild } from '@angular/core';
 import { PortalPrefix } from './portal.property';
 import { XPortalService } from './portal.service';
 import { Overlay } from '@angular/cdk/overlay';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(PortalPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      declarations: [TestXPortalComponent]
-    }).compileComponents();
+    declarations: [TestXPortalComponent],
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPortalComponent>;
@@ -33,11 +35,15 @@ describe(PortalPrefix, () => {
   `
 })
 class TestXPortalComponent {
-  @ViewChild('temp') temp!: TemplateRef<any>;
-  constructor(private portal: XPortalService, private viewContainerRef: ViewContainerRef, private overlay: Overlay) {}
+  temp = viewChild.required<TemplateRef<any>>('temp');
+  constructor(
+    private portal: XPortalService,
+    private viewContainerRef: ViewContainerRef,
+    private overlay: Overlay
+  ) {}
   showPortal() {
     this.portal.attach({
-      content: this.temp,
+      content: this.temp(),
       viewContainerRef: this.viewContainerRef,
       context: { text: '名字' },
       overlayConfig: {

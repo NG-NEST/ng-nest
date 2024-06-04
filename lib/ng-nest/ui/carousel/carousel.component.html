@@ -1,35 +1,39 @@
 <div
   #carousel
   class="x-carousel"
-  [ngClass]="classMap"
-  [class.x-carousel-arrow-always]="arrow === 'always'"
-  [class.x-carousel-has-current]="current"
-  [class.x-carousel-indicator-outside]="outside || card"
+  [ngClass]="classMap()"
+  [class.x-carousel-arrow-always]="arrow() === 'always'"
+  [class.x-carousel-has-current]="current()"
+  [class.x-carousel-indicator-outside]="outside() || card()"
 >
-  <div #content class="x-carousel-content" [style.height]="height">
-    @if (arrow !== 'never' && direction !== 'vertical') {
-      <x-button class="arrow-left" icon="fto-chevron-left" (click)="action(active, -1)"></x-button>
-      <x-button class="arrow-right" icon="fto-chevron-right" (click)="action(active, 1)"></x-button>
+  <div #content class="x-carousel-content" [style.height]="height()">
+    @if (arrow() !== 'never' && direction() !== 'vertical') {
+      <x-button class="arrow-left" icon="fto-chevron-left" (click)="action(active(), -1)"></x-button>
+      <x-button class="arrow-right" icon="fto-chevron-right" (click)="action(active(), 1)"></x-button>
     }
     <ng-content></ng-content>
-    @if (text) {
-      <div class="x-carousel-text">{{ text }}</div>
+    @if (text()) {
+      <div class="x-carousel-text">{{ text() }}</div>
     }
-    @if (current) {
+    @if (current()) {
       <div class="x-carousel-current">
-        <span class="x-carousel-active">{{ page }}</span> /
-        <span class="x-carousel-count">{{ count }}</span>
+        <span class="x-carousel-active">{{ page() }}</span> /
+        <span class="x-carousel-count">{{ count() }}</span>
       </div>
     }
-    @if (progress) {
+    @if (progress()) {
       <div class="x-carousel-progress">
-        <x-progress [percent]="percent" [color]="progressColor" [info]="false" height="0.325rem"></x-progress>
+        <x-progress [percent]="percent()" [color]="progressColor()" [info]="false" height="0.325rem"></x-progress>
       </div>
     }
   </div>
   <ul class="x-carousel-indicator">
-    @for (panel of panelChanges; track i; let i = $index) {
-      <li [class.x-activated]="getActivated(i)" (click)="action(i, 0, 'click')" (mouseenter)="action(i, 0, 'hover')">
+    @for (panel of panels(); track $index) {
+      <li
+        [class.x-activated]="getActivated($index)"
+        (click)="action($index, 0, 'click')"
+        (mouseenter)="action($index, 0, 'hover')"
+      >
         <x-button type="text"></x-button>
       </li>
     }

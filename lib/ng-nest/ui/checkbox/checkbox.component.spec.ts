@@ -19,15 +19,22 @@ import { XFindComponent } from '@ng-nest/ui/find';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XTagComponent } from '@ng-nest/ui/tag';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XCheckboxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXCheckboxComponent,
+        TestXCheckboxDisabledComponent,
+        TestXCheckboxButtonComponent,
+        TestXCheckboxIconComponent,
+        TestXCheckboxAsyncComponent,
+        TestXCheckboxIndeterminateComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XCheckboxComponent,
@@ -43,17 +50,9 @@ describe(XCheckboxPrefix, () => {
         XTextareaComponent,
         XTimePickerModule,
         XInputComponent,
-        XTagComponent
-      ],
-      declarations: [
-        TestXCheckboxComponent,
-        TestXCheckboxDisabledComponent,
-        TestXCheckboxButtonComponent,
-        TestXCheckboxIconComponent,
-        TestXCheckboxAsyncComponent,
-        TestXCheckboxIndeterminateComponent
-      ]
-    }).compileComponents();
+        XTagComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCheckboxComponent>;

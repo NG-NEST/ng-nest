@@ -3,13 +3,16 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ViewChild,
   ElementRef,
   Renderer2,
-  ChangeDetectorRef,
   inject,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  input,
+  computed,
+  viewChild,
+  signal,
+  output
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -27,14 +30,20 @@ import { XIconComponent } from '@ng-nest/ui/icon';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
-  file?: XUploadNode;
-  @ViewChild('imgRef') imgRef!: ElementRef<HTMLElement>;
-  @ViewChild('imgClipRef') imgClipRef!: ElementRef<HTMLElement>;
-  @ViewChild('boundaryRef') boundaryRef!: ElementRef<HTMLElement>;
-  @ViewChild('cutRef') cutRef!: ElementRef<HTMLElement>;
-  ready = false;
-  cutType: XUploadCutType = '';
-  proportion = 1;
+  file = input<XUploadNode>();
+  name = computed(() => {
+    return this.file()?.name;
+  });
+  url = computed(() => {
+    return this.file()?.url;
+  });
+  imgRef = viewChild.required<ElementRef<HTMLElement>>('imgRef');
+  imgClipRef = viewChild.required<ElementRef<HTMLElement>>('imgClipRef');
+  boundaryRef = viewChild.required<ElementRef<HTMLElement>>('boundaryRef');
+  cutRef = viewChild.required<ElementRef<HTMLElement>>('cutRef');
+  ready = signal(false);
+  cutType = signal<XUploadCutType>('');
+  proportion = signal(1);
   originalSize = {
     width: 0,
     height: 0
@@ -58,33 +67,31 @@ export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
 
   doc = inject(DOCUMENT);
 
-  closePortal!: () => void;
-  destroyPortal!: () => void;
-  surePortal!: (blob: Blob) => void;
-  private _unSubject = new Subject<void>();
+  closePortal = output<void>();
+  surePortal = output<Blob>();
+  private unSubject = new Subject<void>();
   private renderer = inject(Renderer2);
-  private cdr = inject(ChangeDetectorRef);
 
   ngAfterViewInit() {
     this.setCut();
   }
 
   ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.complete();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   setCut() {
-    let width = this.imgRef.nativeElement.clientWidth;
-    let height = this.imgRef.nativeElement.clientHeight;
-    this.renderer.setStyle(this.cutRef.nativeElement, 'width', `${width}px`);
-    this.renderer.setStyle(this.cutRef.nativeElement, 'height', `${height}px`);
-    this.renderer.setStyle(this.boundaryRef.nativeElement, 'width', `${width}px`);
-    this.renderer.setStyle(this.boundaryRef.nativeElement, 'height', `${height}px`);
-    this.renderer.setStyle(this.imgRef.nativeElement, 'width', `${width}px`);
-    this.renderer.setStyle(this.imgRef.nativeElement, 'height', `${height}px`);
-    this.renderer.setStyle(this.imgClipRef.nativeElement, 'width', `${width}px`);
-    this.renderer.setStyle(this.imgClipRef.nativeElement, 'height', `${height}px`);
+    let width = this.imgRef().nativeElement.clientWidth;
+    let height = this.imgRef().nativeElement.clientHeight;
+    this.renderer.setStyle(this.cutRef().nativeElement, 'width', `${width}px`);
+    this.renderer.setStyle(this.cutRef().nativeElement, 'height', `${height}px`);
+    this.renderer.setStyle(this.boundaryRef().nativeElement, 'width', `${width}px`);
+    this.renderer.setStyle(this.boundaryRef().nativeElement, 'height', `${height}px`);
+    this.renderer.setStyle(this.imgRef().nativeElement, 'width', `${width}px`);
+    this.renderer.setStyle(this.imgRef().nativeElement, 'height', `${height}px`);
+    this.renderer.setStyle(this.imgClipRef().nativeElement, 'width', `${width}px`);
+    this.renderer.setStyle(this.imgClipRef().nativeElement, 'height', `${height}px`);
     this.cutBox.width = width;
     this.cutBox.height = height;
     this.boundaryBox = { width, height };
@@ -95,10 +102,9 @@ export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
       left: 0
     };
     this.setOriginalSize();
-    this.ready = true;
-    this.cdr.detectChanges();
+    this.ready.set(true);
 
-    const mouseDown = fromEvent<MouseEvent>(this.cutRef.nativeElement, 'mousedown').pipe(takeUntil(this._unSubject));
+    const mouseDown = fromEvent<MouseEvent>(this.cutRef().nativeElement, 'mousedown').pipe(takeUntil(this.unSubject));
 
     mouseDown.subscribe((downMe: MouseEvent) => {
       let x = downMe.pageX;
@@ -109,8 +115,7 @@ export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
       let className = (downMe.target as HTMLDivElement).className;
       const spt = `${XUploadPortalPrefix}-cut-`;
       if (className.includes(spt)) {
-        this.cutType = className.replace(spt, '') as XUploadCutType;
-        this.cdr.detectChanges();
+        this.cutType.set(className.replace(spt, '') as XUploadCutType);
       }
       fromEvent<MouseEvent>(this.doc.documentElement, 'mousemove')
         .pipe(takeUntil(_unSub))
@@ -119,13 +124,12 @@ export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
           offsetY = moveMe.pageY - y;
           x = moveMe.pageX;
           y = moveMe.pageY;
-          this.setCutEle(this.cutType, offsetX, offsetY);
+          this.setCutEle(this.cutType(), offsetX, offsetY);
         });
       fromEvent<MouseEvent>(this.doc.documentElement, 'mouseup')
         .pipe(takeUntil(_unSub))
         .subscribe(() => {
-          this.cutType = '';
-          this.cdr.detectChanges();
+          this.cutType.set('');
           _unSub.next();
           _unSub.complete();
         });
@@ -134,10 +138,10 @@ export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
 
   setOriginalSize() {
     const img = new Image();
-    img.src = this.file?.url!;
+    img.src = this.url()!;
     img.onload = () => {
       this.originalSize = { width: img.width, height: img.height };
-      this.proportion = this.boundaryBox.width / this.originalSize.width;
+      this.proportion.set(this.boundaryBox.width / this.originalSize.width);
     };
   }
 
@@ -182,7 +186,7 @@ export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
         this.cutBox.y += y;
         break;
     }
-    const boundaryRect = this.boundaryRef.nativeElement.getBoundingClientRect();
+    const boundaryRect = this.boundaryRef().nativeElement.getBoundingClientRect();
 
     const maxY = boundaryRect.height - this.cutBox.height;
     const maxX = boundaryRect.width - this.cutBox.width;
@@ -203,14 +207,14 @@ export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
       left: this.cutBox.x
     };
     this.renderer.setStyle(
-      this.imgClipRef.nativeElement,
+      this.imgClipRef().nativeElement,
       'clip',
       `rect(${this.clipRect.top}px,${this.clipRect.right}px,${this.clipRect.bottom}px,${this.clipRect.left}px)`
     );
-    this.renderer.setStyle(this.cutRef.nativeElement, 'width', `${this.cutBox.width}px`);
-    this.renderer.setStyle(this.cutRef.nativeElement, 'height', `${this.cutBox.height}px`);
+    this.renderer.setStyle(this.cutRef().nativeElement, 'width', `${this.cutBox.width}px`);
+    this.renderer.setStyle(this.cutRef().nativeElement, 'height', `${this.cutBox.height}px`);
     this.renderer.setStyle(
-      this.cutRef.nativeElement,
+      this.cutRef().nativeElement,
       'transform',
       `translate3d(${this.cutBox.x}px, ${this.cutBox.y}px, 0)`
     );
@@ -218,17 +222,17 @@ export class XUploadPortalComponent implements AfterViewInit, OnDestroy {
 
   sure() {
     const canvas = this.doc.createElement('canvas');
-    canvas.width = this.cutBox.width / this.proportion;
-    canvas.height = this.cutBox.height / this.proportion;
+    canvas.width = this.cutBox.width / this.proportion();
+    canvas.height = this.cutBox.height / this.proportion();
     const context = canvas.getContext('2d')!;
     const img = new Image();
-    img.src = this.file?.url!;
+    img.src = this.url()!;
     img.crossOrigin = 'anonymous';
     img.onload = () => {
-      context.drawImage(img, -this.cutBox.x / this.proportion, -this.cutBox.y / this.proportion);
+      context.drawImage(img, -this.cutBox.x / this.proportion(), -this.cutBox.y / this.proportion());
       canvas.toBlob((blob) => {
-        this.surePortal(blob as Blob);
-        this.closePortal();
+        this.surePortal.emit(blob as Blob);
+        this.closePortal.emit();
       });
     };
   }

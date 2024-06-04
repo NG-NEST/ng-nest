@@ -9,14 +9,16 @@
         justify-content: center;
         height: 5rem;
         border-radius: 0.125rem;
-        transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        transition:
+          color 0.3s ease-in-out,
+          background-color 0.3s ease-in-out;
         cursor: pointer;
         > .x-icon {
           font-size: 1.5rem;
           transition: transform 0.3s ease-in-out;
         }
         > span {
-          font-size: 0.75rem;
+          font-size: var(--x-font-size);
           cursor: inherit;
           white-space: nowrap;
           display: block;

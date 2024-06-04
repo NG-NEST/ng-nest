@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XCardComponent } from '@ng-nest/ui/card';
 import { XAddDays } from '@ng-nest/ui/core';
 import { XCountdownComponent } from '@ng-nest/ui/statistic';
@@ -11,5 +11,5 @@ import { XCountdownComponent } from '@ng-nest/ui/statistic';
   styleUrls: ['./down.component.scss']
 })
 export class ExDownComponent {
-  deadline = XAddDays(new Date(), 2).getTime();
+  deadline = signal(XAddDays(new Date(), 2).getTime());
 }

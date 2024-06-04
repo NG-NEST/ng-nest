@@ -13,7 +13,7 @@ export class XDialogCloseDirective {
 }
 
 @Directive({
-  selector: `[x-dialog-title]`,
+  selector: `[x-dialog-title], x-dialog-title`,
   standalone: true
 })
 export class XDialogTitleDirective {

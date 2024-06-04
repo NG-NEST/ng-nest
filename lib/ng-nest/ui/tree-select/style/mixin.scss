@@ -8,6 +8,7 @@
   width: 100%;
   x-input {
     width: 100%;
+    color: #252022;
   }
   &-multiple {
     .x-input-value-template-value {
@@ -57,7 +58,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: $--x-background;
+  background-color: $--x-background-100;
   overflow: hidden auto;
   max-height: calc(calc(#{$--x-tree-select-height} * 6) + calc(#{$--x-border-width} * 7));
   x-tree {
@@ -66,6 +67,14 @@
   x-empty {
     margin: 1rem;
     display: block;
+  }
+  &-virtual-scroll {
+    padding: 0;
+    overflow: hidden;
+
+    .x-tree-content {
+      padding: 0.25rem;
+    }
   }
 }
 

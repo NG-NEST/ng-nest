@@ -3,8 +3,8 @@
   <x-alert title="自定义关闭内容" type="info" closeText="知道了"> </x-alert>
   <x-alert title="关闭事件" type="warning" (close)="close()"> </x-alert>
 
-  <x-alert [title]="titleTpl" type="success" showIcon [duration]="100000" content="秒后关闭"></x-alert>
-  <ng-template #titleTpl> <x-countdown [value]="deadline" format="ss:SSS"></x-countdown></ng-template>
+  <x-alert [title]="titleTpl" type="success" showIcon [duration]="20000" content="秒后关闭"></x-alert>
+  <ng-template #titleTpl> <x-countdown [value]="deadline()" format="ss:SSS"></x-countdown></ng-template>
 
   <x-alert [title]="title1Tpl" [content]="content1Tpl"> </x-alert>
   <ng-template #title1Tpl>📣📣📣</ng-template>

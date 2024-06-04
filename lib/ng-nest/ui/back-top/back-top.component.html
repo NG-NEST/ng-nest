@@ -1,8 +1,10 @@
 <ng-template #backTopTpl>
-  <div class="x-back-top" [ngClass]="classMap" (click)="onBackTop()">
-    @if (!template) {
+  <div class="x-back-top" (click)="onBackTop()">
+    @if (!template()) {
       <x-link icon="fto-arrow-up"> </x-link>
     }
-    <ng-container *ngTemplateOutlet="template"></ng-container>
+    @if (template()) {
+      <ng-container *ngTemplateOutlet="template()!"></ng-container>
+    }
   </div>
 </ng-template>

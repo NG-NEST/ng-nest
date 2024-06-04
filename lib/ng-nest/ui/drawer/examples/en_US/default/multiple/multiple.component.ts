@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDrawerComponent } from '@ng-nest/ui/drawer';
 
@@ -10,31 +10,31 @@ import { XDrawerComponent } from '@ng-nest/ui/drawer';
   styleUrls: ['./multiple.component.scss']
 })
 export class ExMultipleComponent {
-  visible!: boolean;
-  visibleOne!: boolean;
-  visibleTwo!: boolean;
+  visible = signal(false);
+  visibleOne = signal(false);
+  visibleTwo = signal(false);
 
   open() {
-    this.visible = true;
+    this.visible.set(true);
   }
 
   close() {
-    this.visible = false;
+    this.visible.set(false);
   }
 
   openOne() {
-    this.visibleOne = true;
+    this.visibleOne.set(true);
   }
 
   closeOne() {
-    this.visibleOne = false;
+    this.visibleOne.set(false);
   }
 
   openTwo() {
-    this.visibleTwo = true;
+    this.visibleTwo.set(true);
   }
 
   closeTwo() {
-    this.visibleTwo = false;
+    this.visibleTwo.set(false);
   }
 }

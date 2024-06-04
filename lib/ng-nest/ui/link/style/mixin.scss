@@ -43,7 +43,7 @@
       margin-left: 0;
     }
   }
-  @include link-type('', inherit, $--x-primary, $--x-primary-a100, $--x-text-400);
+  @include link-type('initial', $--x-text, $--x-primary, $--x-primary-a100, $--x-text-400);
   @include link-type('primary', $--x-primary, $--x-primary-100, $--x-primary-300, $--x-primary-400);
   @include link-type('success', $--x-success, $--x-success-100, $--x-success-300, $--x-success-400);
   @include link-type('warning', $--x-warning, $--x-warning-100, $--x-warning-300, $--x-warning-400);
@@ -52,10 +52,7 @@
 }
 
 @mixin link-type($type, $color, $hover-color, $active-color, $disabled-color) {
-  @if $type!= '' {
-    $type: '-' + $type;
-  }
-  &#{$type} {
+  &-#{$type} {
     color: $color;
     &:hover {
       color: $hover-color;

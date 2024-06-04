@@ -10,6 +10,12 @@ export const ShareRoutes: Routes = [
     path: '**',
     loadChildren: () => import('../main/exception/404-routes.module').then((x) => x.Exception404Routes)
   }
+  // { path: '**', loadChildren: () => import('../main/api/api-routes.module').then((x) => x.ApiRoutes) }
+  // {
+  //   path: '**',
+  //   loadComponent: () =>
+  //     import('../main/test/auto-complete/auto-complete.component').then((x) => x.TeAutoCompleteComponent)
+  // }
 ];
 
 export const MainRoutes: Routes = [
@@ -51,6 +57,5 @@ export const LayoutRoutes: Routes = [
     path: 'news',
     loadChildren: () => import('../main/news/news-routes.module').then((x) => x.NewsRoutes)
   },
-
   ...ShareRoutes
 ];

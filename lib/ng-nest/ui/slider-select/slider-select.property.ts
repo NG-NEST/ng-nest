@@ -1,7 +1,8 @@
-import { XBoolean, XInputBoolean, XInputNumber, XNumber, XTemplate } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
-import { CdkDragStart, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
-import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
+import { XToBoolean, XToCssPixelValue, XToNumber } from '@ng-nest/ui/core';
+import { Component, TemplateRef, input, model, output } from '@angular/core';
+import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
+import type { CdkDragStart, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
+import type { XAlign, XBoolean, XDirection, XJustify, XNumber, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * SliderSelect
@@ -9,127 +10,349 @@ import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XSliderSelectPrefix = 'x-slider-select';
+const X_SLIDER_SELECT_CONFIG_NAME = 'sliderSelect';
 
 /**
  * SliderSelect Property
  */
 @Component({ selector: `${XSliderSelectPrefix}-property`, template: '' })
-export class XSliderSelectProperty
-  extends XControlValueAccessor<number | number[]>
-  implements XSliderSelectOption
-{
+export class XSliderSelectProperty extends XFormControlFunction(X_SLIDER_SELECT_CONFIG_NAME) {
   /**
    * @zh_CN 最小值
    * @en_US Minimum
    */
-  @Input() @XInputNumber() min: XNumber = 0;
+  readonly min = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 最大值
    * @en_US Max
    */
-  @Input() @XInputNumber() max: XNumber = 100;
+  readonly max = input<number, XNumber>(100, { transform: XToNumber });
   /**
    * @zh_CN 步数
    * @en_US Step count
    */
-  @Input() @XInputNumber() step: XNumber = 1;
+  readonly step = input<number, XNumber>(1, { transform: XToNumber });
   /**
    * @zh_CN 精度，默认根据步数来计算
    * @en_US Precision, calculated based on the number of steps by default
    */
-  @Input() @XInputNumber() precision?: XNumber;
+  readonly precision = input<number | undefined, XNumber>(undefined, { transform: XToNumber });
   /**
    * @zh_CN 显示 tooltip 提示
    * @en_US Display Tooltip prompts
    */
-  @Input() @XInputBoolean() showTooltip?: XBoolean = true;
+  readonly showTooltip = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 反向
    * @en_US Reverse
    */
-  @Input() @XInputBoolean() reverse?: XBoolean;
+  readonly reverse = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 垂直
    * @en_US Vertical
    */
-  @Input() @XInputBoolean() vertical?: XBoolean;
+  readonly vertical = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 范围
    * @en_US Range
    */
-  @Input() @XInputBoolean() range?: XBoolean;
+  readonly range = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 自定义滑块
    * @en_US Custom button
    */
-  @Input() customButton?: XTemplate;
+  readonly customButton = input<XTemplate>();
   /**
    * @zh_CN 刻度标记，key 为实际数字，在 [min,max] 内，可通过 style 设置样式
    * @en_US Scale marking, key is the actual number, in [min, max], you can set style through style
    */
-  @Input() marks: XSliderSelectMark[] = [];
+  readonly marks = input<XSliderSelectMark[]>([]);
   /**
    * @zh_CN 自定义 tooltip
    * @en_US Custom tooltip
    */
-  @Input() tooltipCustom!: XTemplate;
+  readonly tooltipCustom = input<XTemplate>();
+  /**
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
+   */
+  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 标签
+   * @en_US Label
+   */
+  override readonly label = input<string>('');
+  /**
+   * @zh_CN 标签宽度
+   * @en_US Label width
+   */
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
+  /**
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
+   */
+  override readonly labelAlign = input<XAlign>('start');
+  /**
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
+   */
+  override readonly justify = input<XJustify>('start');
+  /**
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
+   */
+  override readonly align = input<XAlign>('start');
+  /**
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
+   */
+  override readonly direction = input<XDirection>('column');
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  override readonly placeholder = input<string | string[]>('');
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  override readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  override readonly required = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  override readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  override readonly valueTpl = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  override readonly valueTplContext = input();
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  override readonly before = input<XTemplate>();
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  override readonly after = input<XTemplate>();
+  /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  override readonly pattern = input<RegExp | RegExp[] | any>(null);
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  override readonly message = input<string | string[]>([]);
+  /**
+   * @zh_CN 激活状态
+   * @en_US Activation state
+   */
+  override readonly active = model<boolean>(false);
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  override readonly inputValidator = input<(value: any) => boolean>();
   /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event
    */
-  @Output() dragStartEmit = new EventEmitter<CdkDragStart>();
+  readonly dragStartEmit = output<CdkDragStart>();
   /**
    * @zh_CN 按住移动中的事件
    * @en_US Hold down the moving event
    */
-  @Output() dragMoveEmit = new EventEmitter<CdkDragMove>();
+  readonly dragMoveEmit = output<CdkDragMove>();
   /**
    * @zh_CN 移动结束的事件
    * @en_US Mobile end event
    */
-  @Output() dragEndEmit = new EventEmitter<CdkDragEnd>();
+  readonly dragEndEmit = output<CdkDragEnd>();
 }
 
 /**
  * SliderSelect Option
- * @undocument true
  */
 export interface XSliderSelectOption extends XFormOption {
   /**
    * @zh_CN 最小值
    * @en_US Minimum
    */
-  min?: XNumber;
+  min?: number;
   /**
    * @zh_CN 最大值
    * @en_US Max
    */
-  max?: XNumber;
+  max?: number;
   /**
    * @zh_CN 步数
    * @en_US Step count
    */
-  step?: XNumber;
+  step?: number;
   /**
    * @zh_CN 精度，默认根据步数来计算
    * @en_US Precision, calculated based on the number of steps by default
    */
-  precision?: XNumber;
+  precision?: number;
+  /**
+   * @zh_CN 显示 tooltip 提示
+   * @en_US Display Tooltip prompts
+   */
+  showTooltip?: boolean;
+  /**
+   * @zh_CN 反向
+   * @en_US Reverse
+   */
+  reverse?: boolean;
+  /**
+   * @zh_CN 垂直
+   * @en_US Vertical
+   */
+  vertical?: boolean;
+  /**
+   * @zh_CN 范围
+   * @en_US Range
+   */
+  range?: boolean;
+  /**
+   * @zh_CN 自定义滑块
+   * @en_US Custom button
+   */
+  customButton?: XTemplate;
+  /**
+   * @zh_CN 刻度标记，key 为实际数字，在 [min,max] 内，可通过 style 设置样式
+   * @en_US Scale marking, key is the actual number, in [min, max], you can set style through style
+   */
+  marks?: XSliderSelectMark[];
+  /**
+   * @zh_CN 自定义 tooltip
+   * @en_US Custom tooltip
+   */
+  tooltipCustom?: XTemplate;
+  /**
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
+   */
+  pointer?: boolean;
+  /**
+   * @zh_CN 标签
+   * @en_US Label
+   */
+  label?: string;
+  /**
+   * @zh_CN 标签宽度
+   * @en_US Label width
+   */
+  labelWidth?: string;
+  /**
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
+   */
+  labelAlign?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
+   */
+  justify?: XJustify;
+  /**
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
+   */
+  align?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
+   */
+  direction?: XDirection;
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  placeholder?: string;
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  disabled?: boolean;
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  required?: boolean;
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  readonly?: boolean;
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  valueTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  valueTplContext?: any;
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  before?: XTemplate;
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  after?: XTemplate;
+  /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  pattern?: RegExp | RegExp[];
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  message?: string | string[];
+  /**
+   * @zh_CN 激活状态
+   * @en_US Activation state
+   */
+  active?: boolean;
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  inputValidator?: (value: any) => boolean;
   /**
    * @zh_CN 开始拖动的事件
    * @en_US Start drag event
    */
-  dragStart?: (dragStart: CdkDragStart) => void;
+  dragStartEmit?: (start: CdkDragStart) => void;
   /**
    * @zh_CN 按住移动中的事件
    * @en_US Hold down the moving event
    */
-  dragMove?: (dragMove: CdkDragMove) => void;
+  dragMoveEmit?: (move: CdkDragMove) => void;
   /**
    * @zh_CN 移动结束的事件
    * @en_US Mobile end event
    */
-  dragEnd?: (dragEnd: CdkDragEnd) => void;
+  dragEndEmit?: (end: CdkDragEnd) => void;
 }
 
 /**

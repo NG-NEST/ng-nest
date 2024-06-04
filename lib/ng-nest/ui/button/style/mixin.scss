@@ -16,8 +16,8 @@
   user-select: none;
   white-space: nowrap;
   touch-action: manipulation;
-  will-change: color, background-color, border, box-shadow;
   box-shadow: $--x-box-shadow;
+  width: 100%;
   &:focus {
     outline: none;
   }
@@ -64,6 +64,7 @@
     stroke-linecap: round;
   }
   &-transition {
+    will-change: color, background-color, border, box-shadow;
     transition:
       color $--x-animation-duration-base ease-in-out,
       background-color $--x-animation-duration-base ease-in-out,
@@ -185,7 +186,7 @@
   $plain-disabled,
   $plain-disabled-background,
   $plain-disabled-border,
-  $box-shadow-color,
+  $--box-shadow-color,
   $plain-box-shadow-color,
   $ripple-background
 ) {
@@ -252,12 +253,12 @@
   }
 }
 
-@mixin disabled($color, $bg-color, $border-color) {
+@mixin disabled($color, $bg-color, $--border-color) {
   color: $color;
   cursor: not-allowed;
   background-image: none;
   background-color: $bg-color;
-  border-color: $border-color;
+  border-color: $--border-color;
   box-shadow: none;
 }
 
@@ -270,7 +271,7 @@
       .#{$--x-button} {
         border-radius: 0;
         position: relative;
-        box-shadow: none;
+        box-shadow: none !important;
         &-round {
           border-radius: 0;
         }
@@ -313,6 +314,7 @@
         border: none;
         padding: 0 $--x-padding-small;
         background-color: transparent;
+        box-shadow: none !important;
         &-icon {
           > .x-icon {
             font-size: 1.125rem;

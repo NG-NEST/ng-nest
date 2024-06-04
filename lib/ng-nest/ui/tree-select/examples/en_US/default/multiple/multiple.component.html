@@ -2,9 +2,9 @@
   <x-tree-select
     label="Multiple"
     [style.width.rem]="24"
-    [data]="data1"
+    [data]="data1()"
     [(ngModel)]="model1"
-    (ngModelChange)="change(model1)"
+    (ngModelChange)="change($event)"
     multiple
   ></x-tree-select>
 </div>
@@ -12,9 +12,9 @@
   <x-tree-select
     label="Default, id array"
     [style.width.rem]="24"
-    [data]="data2"
+    [data]="data2()"
     [(ngModel)]="model2"
-    (ngModelChange)="change(model2)"
+    (ngModelChange)="change($event)"
     multiple
   ></x-tree-select>
 </div>
@@ -22,9 +22,9 @@
   <x-tree-select
     label="Default, object array"
     [style.width.rem]="24"
-    [data]="data3"
+    [data]="data3()"
     [(ngModel)]="model3"
-    (ngModelChange)="change(model3)"
+    (ngModelChange)="change($event)"
     multiple
   ></x-tree-select>
 </div>
@@ -32,9 +32,9 @@
   <x-tree-select
     label="Path"
     [style.width.rem]="24"
-    [data]="data4"
+    [data]="data4()"
     [(ngModel)]="model4"
-    (ngModelChange)="change(model4)"
+    (ngModelChange)="change($event)"
     multiple
     showPath
   ></x-tree-select>
@@ -44,7 +44,7 @@
     label="More"
     [style.width.rem]="24"
     [maxTagCount]="3"
-    [data]="data5"
+    [data]="data5()"
     [(ngModel)]="model5"
     (ngModelChange)="change($event)"
     multiple
@@ -56,7 +56,7 @@
     [style.width.rem]="24"
     [maxTagCount]="3"
     [maxTagContent]="maxTagContentTpl"
-    [data]="data6"
+    [data]="data6()"
     [(ngModel)]="model6"
     (ngModelChange)="change($event)"
     multiple

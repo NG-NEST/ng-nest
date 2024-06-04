@@ -20,14 +20,20 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XTagComponent } from '@ng-nest/ui/tag';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XRadioPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXRadioComponent,
+        TestXRadioDisabledComponent,
+        TestXRadioButtonComponent,
+        TestXRadioIconComponent,
+        TestXRadioAsyncComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XRadioComponent,
@@ -43,16 +49,9 @@ describe(XRadioPrefix, () => {
         XTextareaComponent,
         XTimePickerModule,
         XInputComponent,
-        XTagComponent
-      ],
-      declarations: [
-        TestXRadioComponent,
-        TestXRadioDisabledComponent,
-        TestXRadioButtonComponent,
-        TestXRadioIconComponent,
-        TestXRadioAsyncComponent
-      ]
-    }).compileComponents();
+        XTagComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRadioComponent>;

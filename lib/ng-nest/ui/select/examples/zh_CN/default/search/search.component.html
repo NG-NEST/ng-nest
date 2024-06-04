@@ -1,7 +1,7 @@
 <div class="row">
   <x-select
     label="搜索"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     search
@@ -11,7 +11,7 @@
 <div class="row">
   <x-select
     label="异步搜索"
-    [data]="dataAsync"
+    [data]="dataAsync()"
     [(ngModel)]="modelAsync"
     (ngModelChange)="change($event)"
     search
@@ -21,7 +21,7 @@
 <div class="row">
   <x-select
     label="搜索多选"
-    [data]="dataMultiple"
+    [data]="dataMultiple()"
     [(ngModel)]="modelMultiple"
     (ngModelChange)="change($event)"
     search
@@ -31,7 +31,7 @@
 <div class="row">
   <x-select
     label="搜索多选(异步)"
-    [data]="dataAsync"
+    [data]="dataAsync()"
     [(ngModel)]="modelMultipleAsync"
     (ngModelChange)="change($event)"
     search
@@ -43,7 +43,7 @@
   <x-select
     label="搜索多选(更多)"
     [maxTagCount]="3"
-    [data]="dataMultipleMore"
+    [data]="dataMultipleMore()"
     [(ngModel)]="modelMultipleMore"
     (ngModelChange)="change($event)"
     multiple
@@ -54,7 +54,7 @@
     label="搜索多选(更多自定义模版)"
     [maxTagCount]="3"
     [maxTagContent]="maxTagContentTpl"
-    [data]="dataMultipleMoreTpl"
+    [data]="dataMultipleMoreTpl()"
     [(ngModel)]="modelMultipleMoreTpl"
     (ngModelChange)="change($event)"
     search

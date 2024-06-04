@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ViewChild, TemplateRef, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ViewChild, TemplateRef, ChangeDetectorRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageBoxComponent } from '@ng-nest/ui/message-box';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -10,20 +10,19 @@ import { XPlace } from '@ng-nest/ui/core';
 import { XMessageService } from '@ng-nest/ui/message';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XMessageBoxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
+    declarations: [TestXMessageBoxComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XMessageBoxComponent,
-        XButtonComponent
-      ],
-      declarations: [TestXMessageBoxComponent]
-    }).compileComponents();
+        XButtonComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMessageBoxComponent>;
@@ -139,7 +138,7 @@ describe(XMessageBoxPrefix, () => {
   ]
 })
 class TestXMessageBoxComponent {
-  @ViewChild('contentTpl', { static: true }) contentTpl!: TemplateRef<void>;
+  contentTpl = viewChild.required<TemplateRef<void>>('contentTpl');
   constructor(
     private msgBox: XMessageBoxService,
     private message: XMessageService,
@@ -195,7 +194,7 @@ class TestXMessageBoxComponent {
   alertCustom() {
     this.msgBox.alert({
       title: '自定义内容',
-      content: this.contentTpl,
+      content: this.contentTpl(),
       backdropClose: true,
       callback: (action: XMessageBoxAction) => this.message.info('action: ' + action)
     });

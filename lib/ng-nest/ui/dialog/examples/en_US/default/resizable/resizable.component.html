@@ -1,7 +1,7 @@
-<x-button (click)="visible1 = true">Change the popup position</x-button>
+<x-button (click)="visible1.set(true)">Change the popup position</x-button>
 <br />
 <br />
-<x-button (click)="visible2 = true">fullscreen</x-button>
+<x-button (click)="visible2.set(true)">fullscreen</x-button>
 
 <x-dialog title="Title" [(visible)]="visible1" [beforeClose]="beforeClose1" draggable resizable>
   <span>The more you learn, the more you don't know. The more you learn, the more you don't know. </span>

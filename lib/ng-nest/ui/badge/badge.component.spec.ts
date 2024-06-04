@@ -10,24 +10,23 @@ import { XBadgePrefix } from './badge.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XBadgePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXBadgeComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         FormsModule,
         XBadgeComponent,
         XButtonComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent
-      ],
-      declarations: [TestXBadgeComponent]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXBadgeComponent>;

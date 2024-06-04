@@ -10,24 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XCascadePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        XThemeComponent,
-        XCascadeComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XRadioComponent,
-        XIconComponent
-      ],
-      declarations: [
+    declarations: [
         TestXCascadeComponent,
         TestXCascadeLabelComponent,
         TestXCascadeDisabledComponent,
@@ -35,8 +24,18 @@ describe(XCascadePrefix, () => {
         TestXCascadeSizeComponent,
         TestXCascadeBorderedComponent,
         TestXCascadeCustomComponent
-      ]
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        XThemeComponent,
+        XCascadeComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        XRowComponent,
+        XColComponent,
+        XRadioComponent,
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCascadeComponent>;

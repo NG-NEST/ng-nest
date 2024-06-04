@@ -1,6 +1,6 @@
 <div class="row">
   <x-date-picker
-    [preset]="preset"
+    [preset]="preset()"
     label="日期"
     [(ngModel)]="modelDate"
     (ngModelChange)="change($event)"
@@ -8,7 +8,7 @@
 </div>
 <div class="row">
   <x-date-picker
-    [preset]="preset"
+    [preset]="preset()"
     label="日期时分秒"
     [(ngModel)]="modelDatetime"
     (ngModelChange)="change($event)"
@@ -17,7 +17,7 @@
 </div>
 <div class="row">
   <x-date-range
-    [preset]="presetRange"
+    [preset]="presetRange()"
     label="日期范围"
     [(ngModel)]="modelRangeDatetime"
     (ngModelChange)="change($event)"
@@ -25,7 +25,7 @@
 </div>
 <div class="row">
   <x-date-range
-    [preset]="presetRange"
+    [preset]="presetRange()"
     type="date-time"
     label="日期范围时分秒"
     [(ngModel)]="modelRangeDate"

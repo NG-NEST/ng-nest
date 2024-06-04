@@ -1,117 +1,149 @@
 export default {
   locale: 'ku_IQ',
   comment: {
-    comments: 'agahkişîn',
-    giveALike: 'çawa',
-    reply: 'Bersiv',
-    more: 'bêtir bibînin',
-    sure: 'berdan',
-    placeholder: 'Ji kerema xwe şîroveyek binivîse'
+    comments: 'پەیامەکان',
+    giveALike: 'پسندیدن',
+    reply: 'وەڵام دان',
+    more: 'زیاتر بینەره‌وه',
+    sure: 'بڵێ',
+    placeholder: 'تکایە پەیام بنووسە'
   },
   theme: {
-    darkMode: 'Moda tarî',
-    initDefault: 'Nirxa xwerû destpêkê bikin',
-    primary: 'Rengê sereke',
-    success: 'serketinî',
-    warning: 'caveat',
-    danger: 'Talûke',
-    info: 'agahî',
-    background: 'paşî',
-    border: 'çarçove',
-    text: 'Nivîstok'
+    darkMode: 'ڕێنگی تاریک',
+    initDefault: 'ئەرچاوەی سەرەکی',
+    primary: 'سەرەکی',
+    success: 'سەرکەوتوو',
+    warning: 'ئاگاداری',
+    danger: 'خطر',
+    info: 'زانیاری',
+    background: 'پاشبنەما',
+    border: 'حاجبە',
+    text: 'دەق'
   },
   calendar: {
-    month: 'meh',
-    year: 'sal',
-    lastMonth: 'Meha yekem',
-    lastYear: 'sala borî',
-    nextMonth: 'Meha bê',
-    nextYear: 'Sala were',
-    january: 'Rêbendan',
-    february: 'Reşemî',
-    march: 'Adar',
-    april: 'Avrêl',
-    may: 'Gulan',
-    june: 'Pûşper',
-    july: 'Tîrmeh',
-    august: 'Tebax',
-    september: 'Îlon',
-    october: 'Cotmeh',
-    november: 'Mijdar',
-    december: 'Berfanbar'
+    month: 'مانگ',
+    year: 'ساڵ',
+    lastMonth: 'مانگی پێشوو',
+    lastYear: 'ساڵی پێشوو',
+    nextMonth: 'مانگی داهاتوو',
+    nextYear: 'ساڵی داهاتوو',
+    january: 'کانونی یەکەم',
+    february: 'شوبات',
+    march: 'ئازار',
+    april: 'نیسان',
+    may: 'ئایار',
+    june: 'حوزەیران',
+    july: 'تەممووز',
+    august: 'ئاب',
+    september: 'ئەیلوول',
+    october: 'تشرینی یەکەم',
+    november: 'تشرینی دووەم',
+    december: 'کانونی دووەم'
   },
   datePicker: {
-    sure: 'tesdîqkirin',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'do',
-    today: 'Naha',
-    tomorrow: 'sibêbê'
+    sure: 'دڵنیابکە',
+    week: 'هەفتە',
+    month: 'مانگ',
+    year: 'ساڵ',
+    january: 'کانونی یەکەم',
+    february: 'شوبات',
+    march: 'ئازار',
+    april: 'نیسان',
+    may: 'ئایار',
+    june: 'حوزەیران',
+    july: 'تەممووز',
+    august: 'ئاب',
+    september: 'ئەیلوول',
+    october: 'تشرینی یەکەم',
+    november: 'تشرینی دووەم',
+    december: 'کانونی دووەم',
+    monday: 'دوو شەممە',
+    tuesday: 'سێ شەممە',
+    wednesday: 'چوار شەممە',
+    thursday: 'پێنج شەممە',
+    friday: 'هەینی',
+    saturday: 'شەممە',
+    sunday: 'یەکشەممە',
+    yesterday: 'دوێنێ',
+    today: 'ئەمڕۆ',
+    tomorrow: 'سێرۆ'
+  },
+  timePicker: {
+    am: 'پێش ئێوه',
+    pm: 'پاش ئێوه',
+    now: 'ئێستا',
+    selectTime: 'کات دیاری بکە',
+    selectHour: 'کات دیاری بکە',
+    selectMinute: 'خولەک دیاری بکە'
   },
   empty: {
-    noData: 'Na jimare'
+    noData: 'داتا نییە'
+  },
+  image: {
+    previewText: 'پێشنیارکردن'
   },
   pagination: {
-    previous: 'Rûpela berê',
-    next: 'Rûpelê din',
-    total: 'Hemî',
-    item: 'Tişt',
-    first: 'Rûpela pêşîn',
-    last: 'Terrî',
-    jump: 'Helperkîn',
-    sizePage: '/ Rûpel'
+    previous: 'پێشوو',
+    next: 'دواتر',
+    total: 'کۆی',
+    item: 'ئایتم',
+    first: 'یەکەم',
+    last: 'کۆتایی',
+    jump: 'بازدان',
+    sizePage: 'ئایتم لە هەر پەڕەیەک'
   },
   textRetract: {
-    unfold: 'Ji hevvekirin',
-    packUp: 'Dibistna navendî'
+    unfold: 'بەشەکان',
+    packUp: 'بستن'
   },
   timeAgo: {
-    just: 'adîl',
-    secondsAgo: 'Dûvre berê',
-    minutesAgo: 'hûrdem berî',
-    hoursAgo: 'Berê saetekê'
+    just: 'تازە',
+    secondsAgo: 'چرکەکانی پێش',
+    minutesAgo: 'خولەکانی پێش',
+    hoursAgo: 'کاتژمێری پێش'
+  },
+  transfer: {
+    listTitle: 'لیست',
+    treeTitle: 'درخت',
+    tableTitle: 'خشتە',
+    selectedTitle: 'هەڵبژاردنەکان',
+    inverse: 'وەک'
   },
   messageBox: {
-    cancelText: 'bişûndekirin',
-    confirmText: 'tesdîqkirin'
+    cancelText: 'پاشگەزبوونەوە',
+    confirmText: 'دڵنیابوونەوە'
   },
   dialog: {
-    cancelText: 'bişûndekirin',
-    confirmText: 'tesdîqkirin'
+    cancelText: 'پاشگەزبوونەوە',
+    confirmText: 'دڵنیابوونەوە'
   },
   popconfirm: {
-    cancelText: 'bişûndekirin',
-    confirmText: 'tesdîqkirin'
+    cancelText: 'پاشگەزبوونەوە',
+    confirmText: 'دڵنیابوونەوە'
   },
   upload: {
-    uploadText: 'pelan hilînin'
+    uploadText: 'فایل بارکردن',
+    beginUploadText: 'دەست به بارکردن',
+    uploadingText: 'بارکردن',
+    uploadCompleted: 'بارکردن تەواوبوو'
   },
   pageHeader: {
-    back: 'şûndeşandin'
+    back: 'گەڕانەوە'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'هەموو هەڵبژێردن',
+    loadMoreText: 'زیاتر باربکەوە',
+    loadingMoreText: 'بارکردنی زیاتر...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'هەموو هەڵبژێردن',
+    maxTagContent: 'زۆرتری هەڵبژاردن {{surplus}}'
+  },
+  treeSelect: {
+    selectAllText: 'هەموو هەڵبژێردن',
+    maxTagContent: 'زۆرتری هەڵبژاردن {{surplus}}'
+  },
+  form: {
+    required: 'پێویستە'
   }
 };

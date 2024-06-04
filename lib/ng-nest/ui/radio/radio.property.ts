@@ -1,7 +1,18 @@
-import { XData, XIdentityProperty, XDataConvert, XInputBoolean, XSize, XBoolean, XWithConfig, XTemplate } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
+import { Component, TemplateRef, input, model } from '@angular/core';
 import { XButtonType } from '@ng-nest/ui/button';
-import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
+import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
+import type {
+  XData,
+  XIdentityProperty,
+  XSize,
+  XBoolean,
+  XTemplate,
+  XDirection,
+  XAlign,
+  XJustify,
+  XNumber
+} from '@ng-nest/ui/core';
 
 /**
  * Radio
@@ -9,78 +20,162 @@ import { XControlValueAccessor, XFormOption } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XRadioPrefix = 'x-radio';
-const X_CONFIG_NAME = 'radio';
+const X_RADIO_CONFIG_NAME = 'radio';
 
 /**
  * Radio Property
  */
 @Component({ selector: `${XRadioPrefix}-property`, template: '' })
-export class XRadioProperty extends XControlValueAccessor<any> implements XRadioOption {
+export class XRadioProperty extends XFormControlFunction(X_RADIO_CONFIG_NAME) {
   /**
    * @zh_CN 单选框数据
    * @en_US Radio data
    */
-  @Input() @XDataConvert() data: XData<XRadioNode> = [];
+  readonly data = input<XData<XRadioNode>>([]);
   /**
    * @zh_CN 按钮样式
    * @en_US Button style
    */
-  @Input() @XInputBoolean() button?: XBoolean;
+  readonly button = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 图标样式
    * @en_US Icon style
    */
-  @Input() @XInputBoolean() icon?: XBoolean;
+  readonly icon = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN tag 标签样式
    * @en_US Tag style
    */
-  @Input() @XInputBoolean() tag?: XBoolean;
-  /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
+  readonly tag = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 按钮/图标/ tag 标签样式时生效
    * @en_US Take effect when button style
    */
-  @Input() type: XButtonType = 'initial';
+  readonly type = input<XButtonType>('initial');
   /**
    * @zh_CN tag 标签边框
    * @en_US Tag bordered
    */
-  @Input() @XInputBoolean() tagBordered: XBoolean = true;
+  readonly tagBordered = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN tag 标签深色主题
    * @en_US Tag dark theme
    */
-  @Input() @XInputBoolean() tagDark?: XBoolean;
+  readonly tagDark = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 允许取消选中
    * @en_US Allow cancel checked
    */
-  @Input() @XInputBoolean() allowCancel?: XBoolean;
+  readonly allowCancel = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 垂直布局，不支持 button 和 icon 样式
    * @en_US Vertical layout, does not support button and icon styles
    */
-  @Input() @XInputBoolean() vertical: XBoolean = false;
+  readonly vertical = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  override readonly size = input<XSize>(this.config?.size ?? 'medium');
+  /**
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
+   */
+  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 标签
+   * @en_US Label
+   */
+  override readonly label = input<string>('');
+  /**
+   * @zh_CN 标签宽度
+   * @en_US Label width
+   */
+  override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
+  /**
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
+   */
+  override readonly labelAlign = input<XAlign>('start');
+  /**
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
+   */
+  override readonly justify = input<XJustify>('start');
+  /**
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
+   */
+  override readonly align = input<XAlign>('start');
+  /**
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
+   */
+  override readonly direction = input<XDirection>('column');
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  override readonly placeholder = input<string | string[]>('');
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  override readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  override readonly required = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  override readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  override readonly valueTpl = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  override readonly valueTplContext = input();
   /**
    * @zh_CN 前置标签
    * @en_US Before label
    */
-  @Input() override before!: XTemplate;
+  override readonly before = input<XTemplate>();
   /**
    * @zh_CN 后置标签
    * @en_US After label
    */
-  @Input() override after!: XTemplate;
+  override readonly after = input<XTemplate>();
+  /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  override readonly pattern = input<RegExp | RegExp[] | any>(null);
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  override readonly message = input<string | string[]>([]);
+  /**
+   * @zh_CN 激活状态
+   * @en_US Activation state
+   */
+  override readonly active = model<boolean>(false);
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  override readonly inputValidator = input<(value: any) => boolean>();
 }
 
 /**
  * Radio Option
- * @undocument true
  */
 export interface XRadioOption extends XFormOption {
   /**
@@ -92,22 +187,17 @@ export interface XRadioOption extends XFormOption {
    * @zh_CN 按钮样式
    * @en_US Button style
    */
-  button?: XBoolean;
+  button?: boolean;
   /**
    * @zh_CN 图标样式
    * @en_US Icon style
    */
-  icon?: XBoolean;
+  icon?: boolean;
   /**
    * @zh_CN tag 标签样式
    * @en_US Tag style
    */
-  tag?: XBoolean;
-  /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  size?: XSize;
+  tag?: boolean;
   /**
    * @zh_CN 按钮/图标/ tag 标签样式时生效
    * @en_US Take effect when button style
@@ -117,12 +207,92 @@ export interface XRadioOption extends XFormOption {
    * @zh_CN tag 标签边框
    * @en_US Tag bordered
    */
-  tagBordered?: XBoolean;
+  tagBordered?: boolean;
   /**
    * @zh_CN tag 标签深色主题
    * @en_US Tag dark theme
    */
-  tagDark?: XBoolean;
+  tagDark?: boolean;
+  /**
+   * @zh_CN 允许取消选中
+   * @en_US Allow cancel checked
+   */
+  allowCancel?: boolean;
+  /**
+   * @zh_CN 垂直布局，不支持 button 和 icon 样式
+   * @en_US Vertical layout, does not support button and icon styles
+   */
+  vertical?: boolean;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  size?: XSize;
+  /**
+   * @zh_CN 输入框点击样式
+   * @en_US Input pointer
+   */
+  pointer?: boolean;
+  /**
+   * @zh_CN 标签
+   * @en_US Label
+   */
+  label?: string;
+  /**
+   * @zh_CN 标签宽度
+   * @en_US Label width
+   */
+  labelWidth?: string;
+  /**
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
+   */
+  labelAlign?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
+   */
+  justify?: XJustify;
+  /**
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
+   */
+  align?: XAlign;
+  /**
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
+   */
+  direction?: XDirection;
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  placeholder?: string;
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  disabled?: boolean;
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  required?: boolean;
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  readonly?: boolean;
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  valueTpl?: TemplateRef<any>;
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  valueTplContext?: any;
   /**
    * @zh_CN 前置标签
    * @en_US Before label
@@ -133,6 +303,26 @@ export interface XRadioOption extends XFormOption {
    * @en_US After label
    */
   after?: XTemplate;
+  /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  pattern?: RegExp | RegExp[];
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  message?: string | string[];
+  /**
+   * @zh_CN 激活状态
+   * @en_US Activation state
+   */
+  active?: boolean;
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  inputValidator?: (value: any) => boolean;
 }
 
 /**

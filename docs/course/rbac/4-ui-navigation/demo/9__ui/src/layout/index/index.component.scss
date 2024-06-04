@@ -2,12 +2,12 @@
 
 $sidebar-width: 15rem;
 $sidebar-background-color: #f5f5f5;
-$header-height: 3.25rem;
+$--header-width: 3.25rem;
 $tabs-height: 2.25rem;
 $tabs-width: calc(100% - #{$sidebar-width});
 $tabs-background-color: #f5f5f5;
 $border: 1px solid #dddddd;
-$transition-duration: 0.3s;
+$--transition-duration: 0.3s;
 
 app-index {
   > app-sidebar {
@@ -19,11 +19,11 @@ app-index {
     background-color: $sidebar-background-color;
     border-right: $border;
     > app-header {
-      height: $header-height;
+      height: $--header-width;
       display: block;
     }
     > x-menu {
-      height: calc(100% - #{$header-height});
+      height: calc(100% - #{$--header-width});
       overflow-y: auto;
       &::-webkit-scrollbar {
         width: 0;
@@ -63,7 +63,7 @@ app-index {
       box-sizing: border-box;
       user-select: none;
       position: relative;
-      transition: background-color $transition-duration;
+      transition: background-color $--transition-duration;
       span {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -81,7 +81,7 @@ app-index {
         .x-icon {
           font-weight: bold;
           opacity: 0;
-          transition: color $transition-duration;
+          transition: color $--transition-duration;
           padding: 0.125rem;
         }
       }

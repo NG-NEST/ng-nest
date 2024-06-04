@@ -1,139 +1,33 @@
 import { AnimationTriggerMetadata, trigger, style, animate, transition } from '@angular/animations';
 import { XDuration } from './consts';
 
-// 进场动画
-// const XDURATION_SLOW_EASE_IN = `${XDuration.Slow} ease-in`;
+/**
+ * @zh_CN 进场动画
+ * @en_US Enter an animation
+ */
 const XDURATION_BASE_EASE_IN = `${XDuration.Base} ease-in`;
 const XDURATION_FAST_EASE_IN = `${XDuration.Fast} ease-in`;
-// 移除动画
-// const XDURATION_SLOW_EASE_OUT = `${XDuration.Slow} ease-out`;
+
+/**
+ * @zh_CN 移除动画
+ * @en_US Remove animation
+ */
 const XDURATION_BASE_EASE_OUT = `${XDuration.Base} ease-out`;
 const XDURATION_FAST_EASE_OUT = `${XDuration.Fast} ease-out`;
 
-export const XConnectAnimation: AnimationTriggerMetadata = trigger('x-connect-animation', [
-  transition('void => top-start, void => top, void => top-end, void => center', [
-    style({
-      opacity: 0
-      // transform: 'scaleY(0.8)',
-      // transformOrigin: '0% 100%'
-    }),
-    animate(
-      XDURATION_FAST_EASE_IN,
-      style({
-        opacity: 1
-        // transform: 'scaleY(1)',
-        // transformOrigin: '0% 100%'
-      })
-    )
-  ]),
-  transition('top-start => void, top => void, top-end => void, center => void', [
-    style({
-      opacity: 1
-      // transform: 'scaleY(1)',
-      // transformOrigin: '0% 100%'
-    }),
-    animate(
-      XDURATION_FAST_EASE_OUT,
-      style({
-        opacity: 0
-        // transform: 'scaleY(0.8)',
-        // transformOrigin: '0% 100%'
-      })
-    )
-  ]),
-  transition('void => left', [
-    style({
-      transform: 'translateX(-30%)',
-      opacity: 0
-    }),
-    animate(
-      `${XDuration.Base}`,
-      style({
-        transform: 'translateX(0%)',
-        opacity: 1
-      })
-    )
-  ]),
-  transition('left => void', [
-    style({
-      transform: 'translateX(0%)',
-      opacity: 1,
-      height: '*'
-    }),
-    animate(
-      `${XDuration.Base}`,
-      style({
-        transform: 'translateX(-30%)',
-        opacity: 0,
-        height: 0
-      })
-    )
-  ]),
-  transition('void => right', [
-    style({
-      transform: 'translateX(30%)',
-      opacity: 0
-    }),
-    animate(
-      `${XDuration.Base}`,
-      style({
-        transform: 'translateX(0%)',
-        opacity: 1
-      })
-    )
-  ]),
-  transition('right => void', [
-    style({
-      transform: 'translateX(0%)',
-      opacity: 1,
-      height: '*'
-    }),
-    animate(
-      `${XDuration.Base}`,
-      style({
-        transform: 'translateX(30%)',
-        opacity: 0,
-        height: 0
-      })
-    )
-  ]),
-  transition('void => bottom-start, void => bottom, void => bottom-end', [
-    style({
-      opacity: 0
-      // transform: 'scale(0)',
-      // transformOrigin: '0% 0%'
-    }),
-    animate(
-      XDURATION_FAST_EASE_IN,
-      style({
-        opacity: 1
-        // transform: 'scale(1)',
-        // transformOrigin: '30% 30%'
-      })
-    )
-  ]),
-  transition('bottom-start => void, bottom => void, bottom-end => void', [
-    style({
-      opacity: 1
-      // transform: 'scale(1)',
-      // transformOrigin: '30% 30%'
-    }),
-    animate(
-      XDURATION_FAST_EASE_OUT,
-      style({
-        opacity: 0
-        // transform: 'scale(0)',
-        // transformOrigin: '0% 0%'
-      })
-    )
-  ])
-]);
-
+/**
+ * @zh_CN 弹框连接时的动画，只处理 Y 轴
+ * @en_US The animation when the bomb frame is connected, only the y-axis
+ */
 export const XConnectBaseAnimation: AnimationTriggerMetadata = trigger('x-connect-base-animation', [
   transition(':enter', [style({ opacity: 0, transform: 'scaleY(0.8)' }), animate(XDURATION_FAST_EASE_IN)]),
   transition(':leave', [animate(XDURATION_FAST_EASE_OUT, style({ opacity: 0 }))])
 ]);
 
+/**
+ * @zh_CN 弹框连接时的动画，缩放
+ * @en_US The animation when the bomb frame is connected, zoomed in
+ */
 export const XBaseAnimation: AnimationTriggerMetadata = trigger('x-base-animation', [
   transition(':enter', [style({ opacity: 0, transform: 'scale(0.2)' }), animate(XDURATION_BASE_EASE_IN)]),
   transition(':leave', [animate(XDURATION_BASE_EASE_OUT, style({ opacity: 0, transform: 'scale(0.2)' }))])

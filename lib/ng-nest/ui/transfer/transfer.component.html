@@ -1,27 +1,27 @@
-<div #transfer class="x-transfer" cdkDropListGroup [ngClass]="classMap">
-  <div class="x-transfer-box" [class.x-transfer-has-footer]="left.footerTpl">
-    <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: left }"></ng-container>
-    <div [ngStyle]="left.listStyle!" class="x-transfer-list x-transfer-{{ type }}">
-      @switch (type) {
+<div #transfer class="x-transfer" cdkDropListGroup>
+  <div class="x-transfer-box" [class.x-transfer-has-footer]="left().footerTpl">
+    <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: left() }"></ng-container>
+    <div [ngStyle]="left().listStyle!" class="x-transfer-list x-transfer-{{ type() }}">
+      @switch (type()) {
         @case ('list') {
           <ul
             cdkDropList
             (cdkDropListDropped)="dropCdk($event)"
-            [cdkDropListData]="left.list"
-            [cdkDropListDisabled]="!drag && type === 'list'"
+            [cdkDropListData]="left().list"
+            [cdkDropListDisabled]="!drag() && type() === 'list'"
             [cdkDropListEnterPredicate]="predicate"
             class="x-transfer-droplist"
           >
-            @for (node of left.list; track node.id) {
+            @for (node of left().list; track node.id) {
               <li class="x-transfer-item" cdkDrag [cdkDragData]="node">
-                <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: left }"></ng-container>
+                <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: left() }"></ng-container>
               </li>
             }
           </ul>
         }
         @case ('tree') {
           <x-tree
-            [data]="left.list!"
+            [data]="left().list!"
             multiple
             allowManyActivated
             [(activatedId)]="treeActivatedId"
@@ -29,35 +29,35 @@
             [labelTpl]="treeLabelTpl"
           ></x-tree>
           <ng-template #treeLabelTpl let-node="$node">
-            <span class="x-transfer-tree-label" x-keyword [text]="left.searchInput!">{{ node.label }}</span>
+            <span class="x-transfer-tree-label" x-keyword [text]="left().searchInput!">{{ node.label }}</span>
           </ng-template>
         }
         @case ('table') {
           <x-table
             #leftTableCom
-            [data]="tableData"
-            [columns]="tableColumns!"
+            [data]="tableData()"
+            [columns]="tableColumns()!"
             [(size)]="tableSize"
             [(index)]="tableIndex"
             (indexChange)="getTableData()"
-            [query]="tableQuery"
-            [total]="tableTotal"
-            (activatedRowChange)="onTableCheckedRow($event, left)"
-            (headCheckboxChange)="onTableCheckedAll($event, left)"
+            [query]="tableQuery()"
+            [total]="tableTotal()"
+            (activatedRowChange)="onTableCheckedRow($event!, left())"
+            (headCheckboxChange)="onTableCheckedAll($event, left())"
             hiddenWrapBorder
             hiddenPaginationBorder
             showEllipsis="false"
             showTotal="false"
             paginationPosition="bottom-center"
             allowSelectRow="false"
-            [headSearchTpl]="left.tableHeadSearchTpl"
+            [headSearchTpl]="left().tableHeadSearchTpl"
           ></x-table>
         }
       }
     </div>
-    @if (left.footerTpl) {
+    @if (left().footerTpl) {
       <div class="x-transfer-footer">
-        <ng-container *ngTemplateOutlet="left.footerTpl; context: { $source: left }"></ng-container>
+        <ng-container *ngTemplateOutlet="left().footerTpl!; context: { $source: left() }"></ng-container>
       </div>
     }
   </div>
@@ -65,30 +65,30 @@
     <x-button
       type="primary"
       icon="fto-chevron-right"
-      [disabled]="left.disabledButton"
-      (click)="move(left, right)"
+      [disabled]="left().disabledButton!"
+      (click)="move(left(), right())"
       flat
     ></x-button>
     <x-button
       type="primary"
       icon="fto-chevron-left"
-      [disabled]="right.disabledButton"
-      (click)="move(right, left)"
+      [disabled]="right().disabledButton!"
+      (click)="move(right(), left())"
       flat
     ></x-button>
   </div>
-  <div class="x-transfer-box" [class.x-transfer-has-footer]="right.footerTpl">
-    <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: right }"></ng-container>
+  <div class="x-transfer-box" [class.x-transfer-has-footer]="right().footerTpl">
+    <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: right() }"></ng-container>
 
-    <div [ngStyle]="right.listStyle!" class="x-transfer-list">
-      @switch (type) {
+    <div [ngStyle]="right().listStyle!" class="x-transfer-list">
+      @switch (type()) {
         @case ('table') {
           <x-table
             #rightTableCom
-            [data]="right.list!"
-            [columns]="tableColumns!"
-            (activatedRowChange)="onTableCheckedRow($event, right)"
-            (headCheckboxChange)="onTableCheckedAll($event, right)"
+            [data]="right().list!"
+            [columns]="tableColumns()!"
+            (activatedRowChange)="onTableCheckedRow($event!, right())"
+            (headCheckboxChange)="onTableCheckedAll($event, right())"
             hiddenWrapBorder
             hiddenPaginationBorder
             showPagination="false"
@@ -96,30 +96,32 @@
             showTotal="false"
             paginationPosition="bottom-center"
             allowSelectRow="false"
-            [headSearchTpl]="right.tableHeadSearchTpl"
+            [headSearchTpl]="right().tableHeadSearchTpl"
           ></x-table>
         }
         @default {
           <ul
             cdkDropList
             (cdkDropListDropped)="dropCdk($event)"
-            [cdkDropListData]="right.list"
-            [cdkDropListDisabled]="!drag || (drag && type !== 'list')"
+            [cdkDropListData]="right().list"
+            [cdkDropListDisabled]="!drag() || (drag() && type() !== 'list')"
             [cdkDropListEnterPredicate]="predicate"
             class="x-transfer-droplist"
           >
-            @for (node of right.list; track node.id) {
+            @for (node of right().list; track node.id) {
               <li class="x-transfer-item" cdkDrag [cdkDragData]="node">
-                <ng-container *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: right }"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="sourceNodeTpl; context: { node: node, source: right() }"
+                ></ng-container>
               </li>
             }
           </ul>
         }
       }
     </div>
-    @if (right.footerTpl) {
+    @if (right().footerTpl) {
       <div class="x-transfer-footer">
-        <ng-container *ngTemplateOutlet="right.footerTpl; context: { $source: right }"></ng-container>
+        <ng-container *ngTemplateOutlet="right().footerTpl!; context: { $source: right() }"></ng-container>
       </div>
     }
   </div>
@@ -130,7 +132,7 @@
     <div class="x-transfer-title-left">
       @if (source.title && !source.hiddenCheckAll) {
         <x-checkbox
-          [data]="[titleTpl ? '' : source.title]"
+          [data]="[titleTpl() ? '' : source.title]"
           [(ngModel)]="source.checkedAll"
           (ngModelChange)="checkedAllChange($event, source)"
           [indeterminate]="source.indeterminate"
@@ -140,7 +142,7 @@
       @if (source.title && source.hiddenCheckAll) {
         <span>{{ source.title }}</span>
       }
-      @if (inverse && type === 'list') {
+      @if (inverse() && type() === 'list') {
         <x-link class="x-transfer-inverse" type="primary" (click)="onInverse(source)">{{
           'transfer.inverse' | xI18n
         }}</x-link>
@@ -151,7 +153,7 @@
       ><span class="x-transfer-total">{{ source.checkedCount }} / {{ source.count }}</span></ng-container
     >
   </div>
-  @if (search && type !== 'table') {
+  @if (search() && type() !== 'table') {
     <div class="x-transfer-search">
       <x-input
         icon="fto-search"
@@ -165,7 +167,7 @@
 
 <ng-template #sourceNodeTpl let-node="node" let-source="source">
   <x-checkbox
-    [data]="[{ id: node.id, label: nodeTpl ? nodeTpl : labelTpl, node: node }]"
+    [data]="[{ id: node.id, label: nodeTpl() ? nodeTpl() : labelTpl, node: node }]"
     [disabled]="node.disabled"
     [(ngModel)]="node.checked"
     (ngModelChange)="checkedChange($event, source)"

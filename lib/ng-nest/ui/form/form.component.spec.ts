@@ -1,24 +1,37 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ViewChild, Injectable, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, Injectable, ChangeDetectorRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormComponent } from '@ng-nest/ui/form';
 import { XFormPrefix, XControl, XFormRow } from './form.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XData, XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
+import {
+  XData,
+  XRepositoryAbstract,
+  XQuery,
+  XResultList,
+  XGroupItem,
+  XFilter,
+  XChunk,
+  XSort,
+  XId,
+  XOrderBy
+} from '@ng-nest/ui/core';
 import { XCalendarNode } from '@ng-nest/ui/calendar';
 import { XCheckboxNode } from '@ng-nest/ui/checkbox';
 import { XSelectNode } from '@ng-nest/ui/select';
 import { Observable } from 'rxjs';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTreeNode } from '@ng-nest/ui/tree';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XFormPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, XButtonComponent, XFormComponent],
-      declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent]
-    }).compileComponents();
+    declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent],
+    imports: [BrowserAnimationsModule, XButtonComponent, XFormComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXFormComponent>;
@@ -131,23 +144,23 @@ class UsersServiceTest extends XRepositoryAbstract {
       filters.forEach((x) => {
         switch (x.operation) {
           case '=':
-            result = result.filter((y) => y[x.field] === x.value);
+            result = result.filter((y) => y[x.field!] === x.value);
             break;
           case '>':
-            result = result.filter((y) => y[x.field] > x.value);
+            result = result.filter((y) => y[x.field!] > x.value!);
             break;
           case '>=':
-            result = result.filter((y) => y[x.field] >= x.value);
+            result = result.filter((y) => y[x.field!] >= x.value!);
             break;
           case '<':
-            result = result.filter((y) => y[x.field] < x.value);
+            result = result.filter((y) => y[x.field!] < x.value!);
             break;
           case '<=':
-            result = result.filter((y) => y[x.field] <= x.value);
+            result = result.filter((y) => y[x.field!] <= x.value!);
             break;
           default:
             // '%'
-            result = result.filter((y) => y[x.field].indexOf(x.value) >= 0);
+            result = result.filter((y) => y[x.field!].indexOf(x.value!) >= 0);
             break;
         }
       });
@@ -158,8 +171,8 @@ class UsersServiceTest extends XRepositoryAbstract {
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return XOrderBy(
       data,
-      sort.map(x=> x.field),
-      sort.map(x=> x.value) as ('desc' | 'asc')[]
+      sort.map((x) => x.field!),
+      sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
 }
@@ -242,7 +255,18 @@ const DATA_CASCADE: XData<XCalendarNode> = [
 
 const DATA_CHECKBOX: XData<XCheckboxNode> = ['QQ', '微信', '钉钉', '微博'];
 
-const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ'];
+const DATA_SELECT: XData<XSelectNode> = [
+  'AAAA',
+  'BBBB',
+  'CCCC',
+  'DDDD',
+  'EEEE',
+  'FFFF',
+  'GGGG',
+  'HHHH',
+  'IIII',
+  'JJJJ'
+];
 
 @Component({
   selector: 'test-x-form',
@@ -254,7 +278,11 @@ const DATA_SELECT: XData<XSelectNode> = ['AAAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE',
 })
 class TestXFormComponent {
   disabled = false;
-  constructor(public tableService: UsersServiceTest, public treeService: TreeServiceTest, public cdr: ChangeDetectorRef) {}
+  constructor(
+    public tableService: UsersServiceTest,
+    public treeService: TreeServiceTest,
+    public cdr: ChangeDetectorRef
+  ) {}
 
   onDisabled() {
     this.disabled = !this.disabled;
@@ -430,13 +458,30 @@ class TestXFormComponent {
       icon: 'fto-list',
       controls: [
         { id: 'cascade', control: 'cascade', label: '默认', span: 8, data: DATA_CASCADE },
-        { id: 'cascadeDisabled', control: 'cascade', label: '禁用', span: 8, data: DATA_CASCADE, value: 22, disabled: true },
+        {
+          id: 'cascadeDisabled',
+          control: 'cascade',
+          label: '禁用',
+          span: 8,
+          data: DATA_CASCADE,
+          value: 22,
+          disabled: true
+        },
         { id: 'cascadeRequired', control: 'cascade', label: '必填', span: 8, data: DATA_CASCADE, required: true },
-        { id: 'cascadePlaceholder', control: 'cascade', label: '提示选择', span: 8, data: DATA_CASCADE, placeholder: '请选择城市' }
+        {
+          id: 'cascadePlaceholder',
+          control: 'cascade',
+          label: '提示选择',
+          span: 8,
+          data: DATA_CASCADE,
+          placeholder: '请选择城市'
+        }
       ]
     },
     {
-      controls: [{ control: 'cascade', id: 'cascadeRow', label: '标签位置', direction: 'row', span: 8, data: DATA_CASCADE }]
+      controls: [
+        { control: 'cascade', id: 'cascadeRow', label: '标签位置', direction: 'row', span: 8, data: DATA_CASCADE }
+      ]
     },
     {
       title: 'Checkbox 多选框',
@@ -500,7 +545,14 @@ class TestXFormComponent {
       icon: 'fto-list',
       controls: [
         { control: 'color-picker', id: 'colorPicker', label: '默认', span: 8 },
-        { control: 'color-picker', id: 'colorPickerDisabled', label: '禁用', span: 8, value: '#1976d2', disabled: true },
+        {
+          control: 'color-picker',
+          id: 'colorPickerDisabled',
+          label: '禁用',
+          span: 8,
+          value: '#3B82F6',
+          disabled: true
+        },
         { control: 'color-picker', id: 'colorPickerRequired', label: '必填', span: 8, required: true },
         { control: 'color-picker', id: 'colorPickerPlaceholder', label: '提示选择', span: 8, placeholder: '请选择颜色' }
       ]
@@ -510,7 +562,14 @@ class TestXFormComponent {
       icon: 'fto-list',
       controls: [
         { control: 'date-picker', id: 'datePicker', label: '默认', span: 8 },
-        { control: 'date-picker', id: 'datePickerDisabled', label: '禁用', span: 8, value: '2020-05-19', disabled: true },
+        {
+          control: 'date-picker',
+          id: 'datePickerDisabled',
+          label: '禁用',
+          span: 8,
+          value: '2020-05-19',
+          disabled: true
+        },
         { control: 'date-picker', id: 'datePickerRequired', label: '必填', span: 8, required: true },
         { control: 'date-picker', id: 'datePickerPlaceholder', label: '提示选择', span: 8, placeholder: '请选择日期' },
         { control: 'date-picker', id: 'datePickerYear', label: '选年', span: 8, type: 'year' },
@@ -524,7 +583,14 @@ class TestXFormComponent {
         { control: 'input-number', id: 'inputNumber', label: '默认', span: 8 },
         { control: 'input-number', id: 'inputNumberDisabled', label: '禁用', span: 8, value: 20, disabled: true },
         { control: 'input-number', id: 'inputNumberRequired', label: '必填', span: 8, required: true },
-        { control: 'input-number', id: 'inputNumberMinMax', label: '限制大小( -10 至 10 )', span: 8, min: -10, max: 10 },
+        {
+          control: 'input-number',
+          id: 'inputNumberMinMax',
+          label: '限制大小( -10 至 10 )',
+          span: 8,
+          min: -10,
+          max: 10
+        },
         { control: 'input-number', id: 'inputNumberPrecision', label: '精度', span: 8, precision: 2, step: 0.1 }
       ]
     },
@@ -610,7 +676,15 @@ class TestXFormComponent {
       icon: 'fto-list',
       controls: [
         { control: 'radio', id: 'radio', label: '默认', span: 8, data: DATA_CHECKBOX },
-        { control: 'radio', id: 'radioDisabled', label: '禁用', span: 8, data: DATA_CHECKBOX, value: 'QQ', disabled: true },
+        {
+          control: 'radio',
+          id: 'radioDisabled',
+          label: '禁用',
+          span: 8,
+          data: DATA_CHECKBOX,
+          value: 'QQ',
+          disabled: true
+        },
         { control: 'radio', id: 'radioRequired', label: '必选', span: 8, data: DATA_CHECKBOX, required: true },
         { control: 'radio', id: 'radioButton', label: '按钮样式', span: 8, data: DATA_CHECKBOX, button: true },
         {
@@ -623,7 +697,15 @@ class TestXFormComponent {
           value: 'QQ',
           disabled: true
         },
-        { control: 'radio', id: 'radioButtonRequired', label: '按钮必选', span: 8, data: DATA_CHECKBOX, button: true, required: true }
+        {
+          control: 'radio',
+          id: 'radioButtonRequired',
+          label: '按钮必选',
+          span: 8,
+          data: DATA_CHECKBOX,
+          button: true,
+          required: true
+        }
       ]
     },
     {
@@ -658,9 +740,24 @@ class TestXFormComponent {
       icon: 'fto-list',
       controls: [
         { control: 'select', id: 'select', label: '默认', span: 8, data: DATA_SELECT },
-        { control: 'select', id: 'selectDisabled', label: '禁用', span: 8, data: DATA_SELECT, value: 'BBBB', disabled: true },
+        {
+          control: 'select',
+          id: 'selectDisabled',
+          label: '禁用',
+          span: 8,
+          data: DATA_SELECT,
+          value: 'BBBB',
+          disabled: true
+        },
         { control: 'select', id: 'selectRequired', label: '必填', span: 8, data: DATA_SELECT, required: true },
-        { control: 'select', id: 'selectPlaceholder', label: '提示选择', span: 8, data: DATA_SELECT, placeholder: '请选择城市' },
+        {
+          control: 'select',
+          id: 'selectPlaceholder',
+          label: '提示选择',
+          span: 8,
+          data: DATA_SELECT,
+          placeholder: '请选择城市'
+        },
         {
           control: 'select',
           id: 'selectAsync',
@@ -941,14 +1038,14 @@ class TestXFormRowComponent {
       data: ['乒乓球', '篮球', '足球']
     }
   ];
-  @ViewChild('form') form!: XFormComponent;
+  form = viewChild.required<XFormComponent>('form');
 
   submit() {
-    console.log(this.form);
+    console.log(this.form());
   }
 
   getMessages() {
-    console.log(this.form.getValidatorMessages());
+    console.log(this.form().getValidatorMessages());
   }
 }
 
@@ -972,7 +1069,14 @@ class TestXFormTitleComponent {
     },
     { control: 'input', id: 'password', label: '密码', type: 'password', required: true },
     { control: 'input', id: 'file', label: '文件', required: true },
-    { control: 'select', id: 'type', label: '角色', data: ['普通用户', '管理员', '销售'], value: '管理员', required: true },
+    {
+      control: 'select',
+      id: 'type',
+      label: '角色',
+      data: ['普通用户', '管理员', '销售'],
+      value: '管理员',
+      required: true
+    },
     {
       control: 'cascade',
       id: 'city',

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
@@ -10,7 +10,7 @@ import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
   styleUrls: ['./required.component.scss']
 })
 export class ExRequiredComponent {
-  data1: XTreeSelectNode[] = [
+  data1 = signal<XTreeSelectNode[]>([
     { id: 1, label: 'Fruit' },
     { id: 2, label: 'Vegetable' },
     { id: 3, label: 'Drink' },
@@ -26,8 +26,8 @@ export class ExRequiredComponent {
     { id: 13, label: 'Millet banana', pid: 5 },
     { id: 14, label: 'Canna edulis', pid: 5 },
     { id: 15, label: 'Emperor banana', pid: 5 }
-  ];
-  data2: XTreeSelectNode[] = JSON.parse(JSON.stringify(this.data1));
+  ]);
+  data2 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
 
-  model = 14;
+  model = signal(14);
 }

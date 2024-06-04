@@ -5,7 +5,7 @@
   <x-checkbox
     label="分类："
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     tag
@@ -15,7 +15,7 @@
   <x-checkbox
     label="分类："
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     tagBordered="false"
@@ -26,7 +26,7 @@
   <x-checkbox
     label="分类："
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="primary"
@@ -37,7 +37,7 @@
   <x-checkbox
     label="分类："
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="success"
@@ -48,7 +48,7 @@
   <x-checkbox
     label="分类："
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="info"
@@ -59,7 +59,7 @@
   <x-checkbox
     label="分类："
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="warning"
@@ -70,7 +70,7 @@
   <x-checkbox
     label="分类："
     direction="row"
-    [data]="data"
+    [data]="data()"
     [(ngModel)]="model"
     (ngModelChange)="change($event)"
     type="danger"
@@ -84,7 +84,7 @@
   <x-checkbox
     label="综合："
     direction="row"
-    [data]="data1"
+    [data]="data1()"
     [(ngModel)]="model1"
     (ngModelChange)="change($event)"
     tagBordered="false"
@@ -95,7 +95,7 @@
   <x-checkbox
     label="类型："
     direction="row"
-    [data]="data2"
+    [data]="data2()"
     [(ngModel)]="model2"
     (ngModelChange)="change($event)"
     tagBordered="false"
@@ -106,7 +106,7 @@
   <x-checkbox
     label="年份："
     direction="row"
-    [data]="data3"
+    [data]="data3()"
     [(ngModel)]="model3"
     (ngModelChange)="change($event)"
     tagBordered="false"
@@ -115,7 +115,7 @@
 </div>
 <div class="row">
   选择的数据：
-  @for (item of selected; track item) {
-    <x-tag [@.disabled]="true" type="primary" closable (close)="close(item)">{{ item }}</x-tag>
+  @for (item of selected(); track item) {
+    <x-tag  type="primary" closable (close)="close(item)">{{ item }}</x-tag>
   }
 </div>

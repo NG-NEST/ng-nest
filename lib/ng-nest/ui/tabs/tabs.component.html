@@ -1,24 +1,24 @@
-<div class="x-tabs" [ngClass]="classMap">
-  @if (!sliderHidden) {
+<div class="x-tabs" [ngClass]="classMap()">
+  @if (!sliderHiddenSignal()) {
     <div #list class="x-tabs-list">
       <x-slider
         #slider
-        [animated]="animated && type !== 'tag'"
-        [justify]="justify"
-        [nodeJustify]="nodeJustify"
-        [data]="sliderOption.data"
-        [layout]="sliderOption.layout"
-        [size]="size"
-        [nodeTpl]="nodeTpl"
-        [activatedIndex]="sliderOption.activatedIndex"
-        [showExpand]="showExpand"
-        [expandMaxHeight]="expandMaxHeight"
-        [trigger]="trigger"
-        (indexChange)="activatedChange($event)"
+        [animated]="animated() && type() !== 'tag'"
+        [justify]="justify()"
+        [nodeJustify]="nodeJustifySignal()!"
+        [data]="tabs()"
+        [layout]="sliderLayout()"
+        [size]="size()"
+        [nodeTpl]="nodeTpl()"
+        [activatedIndex]="activatedIndex()"
+        [showExpand]="showExpand()"
+        [expandMaxHeight]="expandMaxHeight()"
+        [trigger]="trigger()"
+        (activatedIndexChange)="activatedChange($event)"
       ></x-slider>
-      @if (actionTpl) {
+      @if (actionTpl()) {
         <div #actionsRef class="x-tabs-actions">
-          <ng-container *ngTemplateOutlet="actionTpl"></ng-container>
+          <ng-container *ngTemplateOutlet="actionTpl()!"></ng-container>
         </div>
       }
     </div>
@@ -26,15 +26,15 @@
   <div
     #content
     class="x-tabs-contents"
-    [class.x-tabs-contents-animated]="animated && (layout === 'top' || layout === 'bottom')"
+    [class.x-tabs-contents-animated]="animated() && (layout() === 'top' || layout() === 'bottom')"
   >
-    @for (tab of listTabs; track tab; let i = $index) {
+    @for (tab of listTabs(); track tab) {
       <x-tab-content
-        [active]="activeIndex == i"
-        [content]="tab.content"
-        [class.x-tab-content-unactivated]="activeIndex != i"
-        [class.x-tab-content-disabled]="tab.disabled"
-        [style.transform]="'translate(' + (-activeIndex || 0) * 100 + '%, 0px)'"
+        [active]="activatedIndex() == $index"
+        [content]="tab.content()"
+        [class.x-tab-content-unactivated]="activatedIndex() !== $index"
+        [class.x-tab-content-disabled]="tab.disabled()"
+        [style.transform]="'translate(' + (-activatedIndex() || 0) * 100 + '%, 0px)'"
       >
       </x-tab-content>
     }

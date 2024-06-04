@@ -1,15 +1,15 @@
-<div #inputNumber class="x-input-number" [class.x-input-number-hidden-button]="hiddenButton">
+<div #inputNumber class="x-input-number" [class.x-input-number-hidden-button]="hiddenButton()">
   <div class="x-input-number-row">
     <ng-template #beforeButtonTpl>
       <x-button
         class="x-input-number-reduce"
         icon="fto-minus"
-        [size]="size"
-        [onlyIcon]="!bordered"
-        [disabled]="disabled || minDisabled"
-        (click)="!minDisabled && plus($event, step, false); formControlValidator()"
+        [size]="size()"
+        [onlyIcon]="!bordered()"
+        [disabled]="disabledComputed() || minDisabled()"
+        (click)="!minDisabled() && plus($event, step(), false); formControlValidator()"
         attrType="button"
-        (mousedown)="!minDisabled && down($event, step, false)"
+        (mousedown)="!minDisabled() && down($event, step(), false)"
         (mouseup)="up($event)"
         plain
         flat
@@ -18,49 +18,48 @@
     <x-input
       #inputEleRef
       class="x-input-number-input"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [labelAlign]="labelAlign"
-      [justify]="justify"
-      [align]="align"
-      [direction]="direction"
-      [disabled]="disabled"
-      [required]="required"
-      [validator]="validator"
-      [icon]="icon"
-      [iconSpin]="iconSpin"
-      [placeholder]="placeholder"
-      [readonly]="readonly"
-      [clearable]="clearable"
-      [(ngModel)]="displayValue"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [disabled]="disabledComputed()"
+      [required]="requiredComputed()"
+      [validator]="validatorComputed()"
+      [icon]="icon()"
+      [iconSpin]="iconSpin()"
+      [placeholder]="placeholder()"
+      [readonly]="readonly()"
+      [clearable]="clearable()"
+      [ngModel]="displayValue()"
       (ngModelChange)="change($event)"
-      [valueTpl]="valueTpl"
-      [valueTplContext]="valueTplContext"
-      [size]="size"
-      [bordered]="bordered"
-      [before]="hiddenButton ? '' : beforeButtonTpl"
-      [after]="hiddenButton ? '' : afterButtonTpl"
-      [pattern]="pattern"
-      [message]="message"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [size]="size()"
+      [bordered]="bordered()"
+      [before]="hiddenButton() ? '' : beforeButtonTpl"
+      [after]="hiddenButton() ? '' : afterButtonTpl"
+      [pattern]="patternComputed()"
+      [message]="messageComputed()"
       (xInput)="onInput($event); formControlValidator()"
-      (xBlur)="onBlur()"
     ></x-input>
     <ng-template #afterButtonTpl>
       <x-button
         class="x-input-number-plus"
         icon="fto-plus"
-        [size]="size"
-        [onlyIcon]="!bordered"
-        [disabled]="disabled || maxDisabled"
-        (click)="!maxDisabled && plus($event, step); formControlValidator()"
+        [size]="size()"
+        [onlyIcon]="!bordered()"
+        [disabled]="disabledComputed() || maxDisabled()"
+        (click)="!maxDisabled() && plus($event, step()); formControlValidator()"
         attrType="button"
-        (mousedown)="!maxDisabled && down($event, step)"
+        (mousedown)="!maxDisabled() && down($event, step())"
         (mouseup)="up($event)"
         plain
         flat
       ></x-button>
     </ng-template>
-    @if (invalid) {
+    @if (invalid()) {
       <div class="x-border-error x-top-left"></div>
       <div class="x-border-error x-top-right"></div>
       <div class="x-border-error x-bottom-left"></div>

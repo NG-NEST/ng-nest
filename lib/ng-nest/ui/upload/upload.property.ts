@@ -1,6 +1,6 @@
-import { XInputBoolean, XBoolean, XTemplate, XPosition, XCorner, XWithConfig, XNumber, XInputNumber } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
-import { XControlValueAccessor } from '@ng-nest/ui/base-form';
+import { XBoolean, XTemplate, XPosition, XCorner, XNumber, XToBoolean, XToNumber } from '@ng-nest/ui/core';
+import { Component, input, output } from '@angular/core';
+import { XFormControlFunction } from '@ng-nest/ui/base-form';
 
 /**
  * Upload
@@ -8,98 +8,98 @@ import { XControlValueAccessor } from '@ng-nest/ui/base-form';
  * @decorator component
  */
 export const XUploadPrefix = 'x-upload';
-const X_CONFIG_NAME = 'upload';
+const X_UPLOAD_CONFIG_NAME = 'upload';
 
 /**
  * Upload Property
  */
 @Component({ selector: `${XUploadPrefix}-property`, template: '' })
-export class XUploadProperty extends XControlValueAccessor<XUploadNode[]> {
+export class XUploadProperty extends XFormControlFunction(X_UPLOAD_CONFIG_NAME) {
   /**
    * @zh_CN 显示文字
    * @en_US Display text
    */
-  @Input() text?: XTemplate;
+  readonly text = input<XTemplate>();
   /**
    * @zh_CN 请求地址
    * @en_US Request address
    */
-  @Input() action?: string;
+  readonly action = input<string>();
   /**
    * @zh_CN 上传文件类型，与原生的 input file 组件一致
    * @en_US Upload file type, consistent with native input file component
    */
-  @Input() accept?: string;
+  readonly accept = input<string>();
   /**
    * @zh_CN 文件显示类型
    * @en_US File display type
    */
-  @Input() type: XUploadType = 'list';
+  readonly type = input<XUploadType>('list');
   /**
    * @zh_CN 图片类型下面加载失败显示
    * @en_US Photo type below loading failed display
    */
-  @Input() imgFallback?: string;
+  readonly imgFallback = input<string>();
   /**
    * @zh_CN 图片剪裁
    * @en_US Picture cropping
    */
-  @Input() @XInputBoolean() imgCut?: XBoolean;
+  readonly imgCut = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 多文件上传
    * @en_US Multiple file upload
    */
-  @Input() @XInputBoolean() multiple?: XBoolean;
+  readonly multiple = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 点击下载
    * @en_US click download
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) @XInputBoolean() download!: XBoolean;
+  readonly download = input<boolean, XBoolean>(this.config?.download ?? true, { transform: XToBoolean });
   /**
-   * @zh_CN 多次上传的模式，cover 覆盖现有 add 继续添加
+   * @zh_CN 多次上传的模式，cover 覆盖现有, add 继续添加
    * @en_US For many upload mode, 'cover' covers the existing, 'add' continue to add
    */
-  @Input() @XWithConfig<XUploadMultipleModel>(X_CONFIG_NAME, 'cover') multipleModel!: XUploadMultipleModel;
+  readonly multipleModel = input<XUploadMultipleModel>(this.config?.multipleModel ?? 'cover');
   /**
    * @zh_CN 文件列表自定义显示模板
    * @en_US File list custom display template
    */
-  @Input() filesTpl?: XTemplate;
+  readonly filesTpl = input<XTemplate>();
   /**
    * @zh_CN 限制单次上传文件个数，只有开启多文件上传 multiple 时生效，默认不做限制
    * @en_US Limit the number of files uploaded files. Do not restrict the default
    */
-  @Input() @XInputNumber() maxLimit?: XNumber;
+  readonly maxLimit = input<number, XNumber>(-1, { transform: XToNumber });
   /**
    * @zh_CN 设置上传的请求头部
    * @en_US Set the upload request header
    */
-  @Input() headers?: { [key: string]: any };
+  readonly headers = input<{ [key: string]: any }>();
   /**
    * @zh_CN 删除按钮的事件
    * @en_US Delete button event
    */
-  @Output() removeClick = new EventEmitter<{ file: XUploadNode; index: number }>();
+  readonly removeClick = output<{ file: XUploadNode; index: number }>();
   /**
    * @zh_CN 开始上传事件
    * @en_US Start upload event
    */
-  @Output() uploadReady = new EventEmitter<XUploadNode>();
+  readonly uploadReady = output<XUploadNode>();
   /**
    * @zh_CN 正在上传事件
    * @en_US Start upload event
    */
-  @Output() uploading = new EventEmitter<XUploadNode>();
+  readonly uploading = output<XUploadNode>();
   /**
    * @zh_CN 上传成功事件
    * @en_US Start upload event
    */
-  @Output() uploadSuccess = new EventEmitter<XUploadNode>();
+  readonly uploadSuccess = output<XUploadNode>();
   /**
    * @zh_CN 上传失败事件
    * @en_US Start upload event
    */
-  @Output() uploadError = new EventEmitter<XUploadNode>();
+  readonly uploadError = output<XUploadNode>();
 }
 
 /**
@@ -154,7 +154,8 @@ export type XUploadMultipleModel = 'cover' | 'add';
 export type XUploadCutType = XPosition | XCorner | '';
 
 /**
- * Upload Portal
+ * @zh_CN 上传显示窗口
+ * @en_US Upload portal
  * @selector x-upload-portal
  * @decorator component
  */

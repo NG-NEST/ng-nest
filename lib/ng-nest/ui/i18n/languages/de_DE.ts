@@ -1,20 +1,21 @@
 export default {
   locale: 'de_DE',
   comment: {
-    comments: 'Kommentar',
-    giveALike: 'mögen',
+    comments: 'Kommentare',
+    giveALike: 'Gefällt mir',
     reply: 'Antworten',
-    more: 'Mehr sehen',
-    sure: 'Freisetzung',
-    placeholder: 'Bitte geben Sie einen Kommentar ein'
+    more: 'Mehr',
+    sure: 'Sicher',
+    placeholder:
+      'Bitte geben Sie einen Kommentar ein'
   },
   theme: {
     darkMode: 'Dunkler Modus',
-    initDefault: 'Initialisieren Sie den Standardwert',
-    primary: 'Hauptfarbe',
+    initDefault: 'Standardwert initialisieren',
+    primary: 'Primär',
     success: 'Erfolg',
-    warning: 'Vorbehalt',
-    danger: 'Achtung',
+    warning: 'Warnung',
+    danger: 'Gefahr',
     info: 'Information',
     background: 'Hintergrund',
     border: 'Rahmen',
@@ -23,95 +24,143 @@ export default {
   calendar: {
     month: 'Monat',
     year: 'Jahr',
-    lastMonth: 'Erster Monat',
-    lastYear: 'vergangenes Jahr',
+    lastMonth: 'Letzten Monat',
+    lastYear: 'Letztes Jahr',
     nextMonth: 'Nächsten Monat',
-    nextYear: 'nächstes Jahr',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12'
+    nextYear: 'Nächstes Jahr',
+    january: 'Januar',
+    february: 'Februar',
+    march: 'März',
+    april: 'April',
+    may: 'Mai',
+    june: 'Juni',
+    july: 'Juli',
+    august: 'August',
+    september: 'September',
+    october: 'Oktober',
+    november: 'November',
+    december: 'Dezember'
   },
   datePicker: {
-    sure: 'bestätigen Sie',
-    month: '',
-    year: '',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12',
-    monday: 'Einer',
-    tuesday: 'zwei',
-    wednesday: 'drei',
-    thursday: 'vier',
-    friday: 'Fünf',
-    saturday: 'sechs',
-    sunday: 'Tag',
-    yesterday: 'gestern',
-    today: 'Heutzutage',
-    tomorrow: 'Morgen'
+    sure: 'Bestätigen',
+    week: 'Woche',
+    month: 'Monat',
+    year: 'Jahr',
+    january: 'Januar',
+    february: 'Februar',
+    march: 'März',
+    april: 'April',
+    may: 'Mai',
+    june: 'Juni',
+    july: 'Juli',
+    august: 'August',
+    september: 'September',
+    october: 'Oktober',
+    november: 'November',
+    december: 'Dezember',
+    monday: 'Montag',
+    tuesday: 'Dienstag',
+    wednesday: 'Mittwoch',
+    thursday: 'Donnerstag',
+    friday: 'Freitag',
+    saturday: 'Samstag',
+    sunday: 'Sonntag',
+    yesterday: 'Gestern',
+    today: 'Heute',
+    tomorrow: 'Morgen',
+    thisWeek: 'Diese Woche',
+    lastWeek: 'Letzte Woche',
+    nextWeek: 'Nächste Woche',
+    thisMonth: 'Dieser Monat',
+    lastMonth: 'Letzten Monat',
+    nextMonth: 'Nächsten Monat',
+    thisYear: 'Dieses Jahr',
+    lastYear: 'Letztes Jahr',
+    nextYear: 'Nächstes Jahr',
+    selectDate: 'Datum auswählen',
+    selectWeek: 'Woche auswählen',
+    selectMonth: 'Monat auswählen',
+    selectQuarter: 'Quartal auswählen',
+    selectYear: 'Jahr auswählen',
+    startDate: 'Startdatum',
+    endDate: 'Enddatum',
+    startMonth: 'Startmonat',
+    endMonth: 'Endmonat',
+    startQuarter: 'Startquartal',
+    endQuarter: 'Endquartal',
+    startYear: 'Startjahr',
+    endYear: 'Endjahr',
+    startWeek: 'Startwoche',
+    endWeek: 'Endwoche'
   },
-  empty: {
-    noData: 'Keine Daten'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Jetzt',
+    selectTime: 'Zeit wählen',
+    selectHour: 'Stunde wählen',
+    selectMinute: 'Minute wählen'
   },
+  empty: { noData: 'Keine Daten' },
+  image: { previewText: 'Vorschau' },
   pagination: {
-    previous: 'Vorherige Seite',
-    next: 'Nächste Seite',
+    previous: 'Zurück',
+    next: 'Weiter',
     total: 'Gesamt',
-    item: 'Artikel',
-    first: 'Titelseite',
-    last: 'Schwanz',
+    item: 'Eintrag',
+    first: 'Erste',
+    last: 'Letzte',
     jump: 'Springen',
-    sizePage: '/ buchseite'
+    sizePage: 'Einträge pro Seite'
   },
   textRetract: {
-    unfold: 'Entfalten',
-    packUp: 'Weglegen'
+    unfold: 'Aufklappen',
+    packUp: 'Zusammenklappen'
   },
   timeAgo: {
-    just: 'gerade',
-    secondsAgo: 'Sekunden zuvor',
-    minutesAgo: 'Vor ein paar Minuten',
-    hoursAgo: 'Vor einer Stunde'
+    just: 'Gerade eben',
+    secondsAgo: 'Vor Sekunden',
+    minutesAgo: 'Vor Minuten',
+    hoursAgo: 'Vor Stunden'
+  },
+  transfer: {
+    listTitle: 'Liste',
+    treeTitle: 'Baum',
+    tableTitle: 'Tabelle',
+    selectedTitle: 'Ausgewählte Elemente',
+    inverse: 'Umkehren'
   },
   messageBox: {
-    cancelText: 'stornieren',
-    confirmText: 'bestätigen'
+    cancelText: 'Abbrechen',
+    confirmText: 'Bestätigen'
   },
   dialog: {
-    cancelText: 'stornieren',
-    confirmText: 'bestätigen'
+    cancelText: 'Abbrechen',
+    confirmText: 'Bestätigen'
   },
   popconfirm: {
-    cancelText: 'stornieren',
-    confirmText: 'bestätigen'
+    cancelText: 'Abbrechen',
+    confirmText: 'Bestätigen'
   },
   upload: {
-    uploadText: 'Daten hochladen'
+    uploadText: 'Datei hochladen',
+    beginUploadText: 'Hochladen beginnen',
+    uploadingText: 'Hochladen',
+    uploadCompleted: 'Hochladen abgeschlossen'
   },
-  pageHeader: {
-    back: 'Rückkehr'
-  },
+  pageHeader: { back: 'Zurück' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Alle auswählen',
+    loadMoreText: 'Mehr laden',
+    loadingMoreText: 'Lädt mehr'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Alle auswählen',
+    maxTagContent: 'Mehr {{surplus}} ausgewählt'
+  },
+  treeSelect: {
+    selectAllText: 'Alle auswählen',
+    maxTagContent: 'Mehr {{surplus}} ausgewählt'
+  },
+  form: { required: 'Erforderlich' }
 };

@@ -13,7 +13,7 @@
 
 @mixin border-error-focus() {
   .x-border-error {
-    border-width: 0.125rem !important;
+    border-width: $--x-border-width !important;
   }
 }
 

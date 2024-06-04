@@ -1,16 +1,16 @@
 <a
   #link
   class="x-link"
-  [ngClass]="classMap"
-  [class.x-link-disabled]="disabled"
-  [class.x-link-underline]="underline && !disabled"
-  [class.x-link-icon-right]="iconRight"
-  [class.x-link-only-icon]="icon && !content.innerHTML.trim()"
-  [attr.href]="href"
-  [attr.target]="target"
+  [ngClass]="classMap()"
+  [class.x-link-disabled]="disabled()"
+  [class.x-link-underline]="underline() && !disabled()"
+  [class.x-link-icon-right]="iconRight()"
+  [class.x-link-only-icon]="icon() && !content.innerHTML.trim()"
+  [attr.href]="href()"
+  [attr.target]="target()"
 >
-  @if (icon) {
-    <x-icon [type]="icon"></x-icon>
+  @if (icon()) {
+    <x-icon [type]="icon()"></x-icon>
   }
   <span #content><ng-content></ng-content></span>
 </a>

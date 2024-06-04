@@ -12,3 +12,4 @@ export * from './group-by';
 export * from './resize';
 export * from './parent-path';
 export * from './property';
+export * from './csspx';

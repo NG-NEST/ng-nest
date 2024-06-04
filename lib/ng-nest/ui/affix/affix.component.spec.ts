@@ -7,20 +7,19 @@ import { XAffixPrefix } from './affix.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XAffixPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXAffixComponent],
+    imports: [BrowserAnimationsModule,
         XAffixComponent,
         XButtonComponent,
-        XThemeComponent
-      ],
-      declarations: [TestXAffixComponent]
-    }).compileComponents();
+        XThemeComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAffixComponent>;

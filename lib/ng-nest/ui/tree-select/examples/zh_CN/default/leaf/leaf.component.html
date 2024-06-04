@@ -1,7 +1,7 @@
 <div class="row">
   <x-tree-select
     [style.width.rem]="15"
-    [data]="data1"
+    [data]="data1()"
     [(ngModel)]="model1"
     (ngModelChange)="change($event)"
     onlyLeaf
@@ -11,9 +11,9 @@
   <x-tree-select
     label="多选"
     [style.width.rem]="15"
-    [data]="data2"
+    [data]="data2()"
     [(ngModel)]="model2"
-    (ngModelChange)="change(model1)"
+    (ngModelChange)="change($event)"
     multiple
     onlyLeaf
   ></x-tree-select>

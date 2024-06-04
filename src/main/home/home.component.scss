@@ -61,22 +61,22 @@ ns-home {
     }
     > .stars {
       z-index: -4;
-      background: #000 url(/assets/img/stars.png) repeat top center;
+      background: #000 url(/img/stars.png) repeat top center;
     }
     > .twinkling {
       z-index: -3;
-      background: transparent url(/assets/img/twinkling.png) repeat top center;
+      background: transparent url(/img/twinkling.png) repeat top center;
       animation: move-twink-back 160s linear infinite;
     }
     > .clouds {
       z-index: -1;
-      background: transparent url(/assets/img/clouds.png) repeat top center;
+      background: transparent url(/img/clouds.png) repeat top center;
       animation: move-clouds-back 200s linear infinite;
       opacity: 0.3;
     }
     > .logo {
       z-index: -2;
-      background: transparent url(/assets/img/logo/logo-512x512.png) no-repeat top center;
+      background: transparent url(/img/logo/logo-512x512.png) no-repeat top center;
       opacity: 0.15;
       width: 700px;
       height: 700px;
@@ -180,7 +180,7 @@ ns-home {
     width: 80%;
     top: 38.5rem;
     font-weight: 600;
-    z-index: 132123123;
+    z-index: 1;
     box-shadow: $--x-box-shadow;
     > ul {
       display: flex;
@@ -191,7 +191,7 @@ ns-home {
           flex: 1;
           .x-button {
             width: 100%;
-            font-size: 0.875rem;
+            font-size: $--x-font-size;
           }
         }
       }

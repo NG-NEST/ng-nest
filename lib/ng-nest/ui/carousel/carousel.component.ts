@@ -1,23 +1,23 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   SimpleChanges,
-  OnChanges,
-  ViewChild,
   PLATFORM_ID,
-  inject
+  inject,
+  computed,
+  viewChild,
+  signal
 } from '@angular/core';
 import { XCarouselPrefix, XCarouselProperty } from './carousel.property';
-import { XIsUndefined, XIsChange, XIsEmpty, XNumber, XResize, XConfigService, XResizeObserver } from '@ng-nest/ui/core';
-import { BehaviorSubject, Subject, Subscription, interval } from 'rxjs';
-import { takeUntil, debounceTime } from 'rxjs/operators';
+import { XIsUndefined, XIsChange, XIsEmpty, XResize } from '@ng-nest/ui/core';
+import { Subject, Subscription, interval } from 'rxjs';
+import { takeUntil, debounceTime, tap } from 'rxjs/operators';
 import { NgClass, isPlatformBrowser } from '@angular/common';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XProgressComponent } from '@ng-nest/ui/progress';
+import type { XResizeObserver } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCarouselPrefix}`,
@@ -28,96 +28,93 @@ import { XProgressComponent } from '@ng-nest/ui/progress';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCarouselComponent extends XCarouselProperty implements OnInit, OnChanges {
-  @ViewChild('carousel') carousel!: ElementRef<HTMLElement>;
-  @ViewChild('content') content!: ElementRef<HTMLElement>;
-  start: number = -1;
-  before!: number;
+export class XCarouselComponent extends XCarouselProperty {
+  carousel = viewChild.required<ElementRef<HTMLElement>>('carousel');
+  content = viewChild.required<ElementRef<HTMLElement>>('content');
+  start = signal(-1);
+  before = signal(-1);
   timer?: Subscription;
   precentTimer?: Subscription;
-  panelChanges: BehaviorSubject<any>[] = [];
   platformId = inject(PLATFORM_ID);
-  isBrowser = true;
-  percent = 0;
-  count = 0;
-  private _unSubject = new Subject<void>();
-  private _resizeObserver!: XResizeObserver;
-  private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
+  isBrowser = isPlatformBrowser(this.platformId);
+  percent = signal(0);
+  count = signal(0);
+  panels = signal<object[]>([]);
+  private unSubject = new Subject<void>();
+  private resizeObserver!: XResizeObserver;
 
-  get page() {
-    return Number(this.active) + 1;
-  }
+  classMap = computed(() => ({
+    [`${XCarouselPrefix}-${this.direction()}`]: !XIsEmpty(this.direction())
+  }));
 
-  ngOnInit() {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-    this.setClassMap();
-  }
+  updatePanel = new Subject<void>();
+
+  page = computed(() => this.active() + 1);
 
   ngAfterViewInit() {
-    this.autoplay && this.resetInterval();
-    XResize(this.content.nativeElement)
-      .pipe(debounceTime(30), takeUntil(this._unSubject))
-      .subscribe((x) => {
-        this.panelChanges.forEach((sub) => sub.next(true));
-        this._resizeObserver = x.resizeObserver;
-        this.cdr.detectChanges();
-      });
+    this.autoplay() && this.resetInterval();
+    XResize(this.content().nativeElement)
+      .pipe(
+        debounceTime(30),
+        tap(({ resizeObserver }) => {
+          this.resizeObserver = resizeObserver;
+          this.updatePanel.next();
+        }),
+        takeUntil(this.unSubject)
+      )
+      .subscribe();
   }
 
   ngOnChanges(simples: SimpleChanges): void {
     const { active } = simples;
-    XIsChange(active) && this.setActiveItem(Number(this.active));
+    XIsChange(active) && this.setActiveItem(this.active());
   }
 
   ngOnDestroy(): void {
     this.timer?.unsubscribe();
     this.precentTimer?.unsubscribe();
-    this.panelChanges.forEach((x) => x.complete());
-    this._unSubject.complete();
-    this._unSubject.unsubscribe();
-    this._resizeObserver?.disconnect();
+    this.unSubject.next();
+    this.unSubject.complete();
+    this.resizeObserver?.disconnect();
+    this.updatePanel.complete();
   }
 
-  action(index: XNumber, increase: number, event?: string): void {
-    if (!XIsUndefined(event) && this.trigger !== event) return;
-    this.autoplay && this.resetInterval();
-    this.setActiveItem(Number(index) + increase);
+  action(index: number, increase: number, event?: string): void {
+    if (!XIsUndefined(event) && this.trigger() !== event) return;
+    this.autoplay() && this.resetInterval();
+    this.setActiveItem(index + increase);
   }
 
   resetInterval(): void {
     if (!this.isBrowser) return;
     this.timer?.unsubscribe();
-    if (this.progress) {
+    if (this.progress()) {
       this.precentTimer?.unsubscribe();
-      this.percent = 0;
-      const js = Number(this.interval) / 100;
-      this.precentTimer = interval(js).subscribe(() => {
-        this.percent += 1;
-        this.cdr.markForCheck();
-      });
+      this.percent.set(0);
+      const js = this.interval() / 100;
+      this.precentTimer = interval(js)
+        .pipe(takeUntil(this.unSubject))
+        .subscribe(() => {
+          this.percent.update((x) => x + 1);
+        });
     }
-    this.timer = interval(Number(this.interval)).subscribe(() => {
-      this.percent = 0;
-      this.setActiveItem(Number(this.active) + 1);
-    });
+    this.timer = interval(this.interval())
+      .pipe(takeUntil(this.unSubject))
+      .subscribe(() => {
+        this.percent.set(0);
+        this.setActiveItem(this.active() + 1);
+      });
   }
 
   setActiveItem(index: number): void {
-    if (this.start === -1) return;
-    this.before = Number(this.active);
-    const nextValue = index > this.start ? 0 : index < 0 ? this.start : index;
-    this.active = nextValue;
-    this.panelChanges.forEach((sub) => sub.next(true));
-    this.activeChange.emit(this.active);
-    this.cdr.markForCheck();
-  }
-
-  setClassMap() {
-    this.classMap[`${XCarouselPrefix}-${this.direction}`] = !XIsEmpty(this.direction);
+    if (this.start() === -1) return;
+    this.before.set(this.active());
+    const nextValue = index > this.start() ? 0 : index < 0 ? this.start() : index;
+    this.active.set(nextValue);
+    this.updatePanel.next();
   }
 
   getActivated(index: number) {
-    return Number(this.active) === index;
+    return this.active() === index;
   }
 }

@@ -1,24 +1,25 @@
 import {
   Component,
   ViewEncapsulation,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   OnInit,
-  OnChanges,
-  SimpleChanges,
-  inject
+  inject,
+  computed,
+  signal,
+  OnDestroy,
+  effect
 } from '@angular/core';
 import { XImageNode, XImagePrefix, XImageProperty } from './image.property';
-import { XConfigService, XIsChange } from '@ng-nest/ui/core';
+import { XConfigService } from '@ng-nest/ui/core';
 import { XDialogService } from '@ng-nest/ui/dialog';
 import { XImagePreviewComponent } from './image-preview.component';
-import { XI18nImage, XI18nService } from '@ng-nest/ui/i18n';
-import { map, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { XI18nService, zh_CN } from '@ng-nest/ui/i18n';
+import { map } from 'rxjs';
 import { XImageGroupComponent } from './image-group.component';
 import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XImagePrefix}`,
@@ -29,84 +30,68 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XImageComponent extends XImageProperty implements OnInit, OnChanges {
-  locale: XI18nImage = {};
-  isError = false;
-  isLoaded = false;
-  private _unSubject = new Subject<void>();
-
-  get getPreviewText() {
-    return this.previewText || this.locale.previewText;
-  }
-
-  private cdr = inject(ChangeDetectorRef);
+export class XImageComponent extends XImageProperty implements OnInit, OnDestroy {
   private dialog = inject(XDialogService);
   private i18n = inject(XI18nService);
   private group = inject(XImageGroupComponent, { optional: true });
   configService = inject(XConfigService);
+  isError = signal(false);
+  isLoaded = signal(false);
 
-  ngOnInit(): void {
-    if (this.group) {
-      this.group.addImage(this);
-    }
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.image as XI18nImage),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        this.cdr.markForCheck();
-      });
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.image!)), { initialValue: zh_CN.image });
+
+  previewTextSignal = computed(() => {
+    return this.previewText() || this.locale().previewText;
+  });
+
+  constructor() {
+    super();
+    effect(
+      () => {
+        this.src();
+        this.isLoaded.set(false);
+      },
+      { allowSignalWrites: true }
+    );
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    let { src } = changes;
-    if (XIsChange(src)) {
-      this.isLoaded = false;
-      this.isError = false;
-      this.cdr.detectChanges();
-    }
+  ngOnInit(): void {
+    this.group && this.group.addImage(this);
   }
 
   ngOnDestroy() {
-    if (this.group) {
-      this.group.removeImage(this);
-    }
+    this.group && this.group.removeImage(this);
   }
 
   onPreview() {
     let data: XImageNode[] = [];
     if (this.group) {
-      const activatedIndex = this.group.images.indexOf(this);
-      data = this.group.images.map((x, index) => ({
-        src: x.src,
-        alt: x.alt,
-        fallback: x.fallback,
+      const activatedIndex = this.group.images().indexOf(this);
+      data = this.group.images().map((x, index) => ({
+        src: x.src(),
+        alt: x.alt(),
+        fallback: x.fallback(),
         activated: index === activatedIndex
       }));
     } else {
-      data = [{ src: this.src, alt: this.alt, fallback: this.fallback }];
+      data = [{ src: this.src(), alt: this.alt(), fallback: this.fallback() }];
     }
     this.dialog.create(XImagePreviewComponent, {
       width: '100%',
       height: '100%',
       className: 'x-image-preview-portal',
-      data: data
+      data
     });
   }
 
-  onError(event: Event) {
-    this.src = this.fallback;
-    this.isError = true;
-    this.cdr.detectChanges();
+  onError(event: ErrorEvent) {
+    this.isError.set(true);
     this.error.emit(event);
   }
 
   onLoad(event: Event) {
-    this.isLoaded = true;
-    this.isError = false;
-    this.cdr.detectChanges();
+    this.isLoaded.set(true);
+    this.isError.set(false);
     this.load.emit(event);
   }
 }

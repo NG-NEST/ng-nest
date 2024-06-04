@@ -1,17 +1,6 @@
-import {
-  XParentIdentityProperty,
-  XData,
-  XSize,
-  XProperty,
-  XDataConvert,
-  XInputNumber,
-  XNumber,
-  XInputBoolean,
-  XBoolean,
-  XWithConfig,
-  XTrigger
-} from '@ng-nest/ui/core';
-import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/core';
+import { XProperty, XPropertyFunction, XToDataArray, XToCssPixelValue, XToBoolean, XToNumber } from '@ng-nest/ui/core';
+import { TemplateRef, Component, input, model, output } from '@angular/core';
+import type { XParentIdentityProperty, XSize, XNumber, XBoolean, XTrigger, XDataArray } from '@ng-nest/ui/core';
 
 /**
  * Menu
@@ -19,83 +8,78 @@ import { TemplateRef, Input, Output, EventEmitter, Component } from '@angular/co
  * @decorator component
  */
 export const XMenuPrefix = 'x-menu';
-const X_CONFIG_NAME = 'menu';
+const X_MENU_CONFIG_NAME = 'menu';
 
 /**
  * Menu Property
  */
 @Component({ selector: `${XMenuPrefix}-property`, template: '' })
-export class XMenuProperty extends XProperty {
+export class XMenuProperty extends XPropertyFunction(X_MENU_CONFIG_NAME) {
   /**
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  @Input() @XDataConvert() data: XData<XMenuNode> = [];
+  readonly data = input<XMenuNode[], XDataArray<XMenuNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 布局方向
    * @en_US Layout direction
    */
-  @Input() layout: XMenuLayout = 'row';
+  readonly layout = input<XMenuLayout>('row');
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
+  readonly size = input<XSize>(this.config?.size ?? 'medium');
   /**
    * @zh_CN 宽度，只有布局 layout 为 'column' 生效
    * @en_US Width, only layout layout is the 'column'
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '12rem') width!: string;
+  readonly width = input<string, XNumber>(this.config?.width ?? '16rem', { transform: XToCssPixelValue });
   /**
    * @zh_CN 缩起菜单
    * @en_US Shrink menu
    */
-  @Input() @XInputBoolean() collapsed: XBoolean = false;
+  readonly collapsed = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 触发方式，只针对横向布局
    * @en_US Trigger mode, only for horizontal layout
    */
-  @Input() @XWithConfig<XMenuTrigger>(X_CONFIG_NAME, 'hover') trigger!: XMenuTrigger;
+  readonly trigger = input<XMenuTrigger>(this.config?.trigger ?? 'hover');
   /**
    * @zh_CN 节点模板
    * @en_US Node template
    */
-  @Input() nodeTpl?: TemplateRef<any>;
+  readonly nodeTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 展开的所有层级，只对 layout 布局为 'column' 的生效
    * @en_US All expanded levels are only effective for the layout of'column'
    */
-  @Input() @XInputBoolean() expandedAll?: XBoolean;
+  readonly expandedAll = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 默认展开的层级，只对 layout 布局为 'column' 的生效
    * @en_US The level expanded by default is only valid for the layout of'column'
    */
-  @Input() @XInputNumber() expandedLevel: XNumber = -1;
+  readonly expandedLevel = input<number, XNumber>(-1, { transform: XToNumber });
   /**
    * @zh_CN 当前激活的节点 id
    * @en_US Currently active node id
    */
-  @Input() activatedId: any;
+  readonly activatedId = model<string | number>();
   /**
    * @zh_CN 滚动容器
    * @en_US Rolling container
    */
-  @Input() target?: string | HTMLElement;
+  readonly target = input<string | HTMLElement>();
   /**
    * @zh_CN 弹框的最小宽度
    * @en_US Portal min-width
    */
-  @Input() portalMinWidth?: string | number;
+  readonly portalMinWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN 节点点击的事件
    * @en_US Node click event
    */
-  @Output() nodeClick = new EventEmitter<XMenuNode>();
-  /**
-   * @zh_CN 节点点击的事件
-   * @en_US Node click event
-   */
-  @Output() activatedIdChange = new EventEmitter<any>();
+  readonly nodeClick = output<XMenuNode>();
 }
 
 /**
@@ -163,10 +147,4 @@ export const XMenuNodePrefix = 'x-menu-node';
  * Menu Node Property
  */
 @Component({ selector: `${XMenuNodePrefix}-property`, template: '' })
-export class XMenuNodeProperty extends XProperty {
-  /**
-   * @zh_CN 节点数据
-   * @en_US Node data
-   */
-  @Input() node!: XMenuNode;
-}
+export class XMenuNodeProperty extends XProperty {}

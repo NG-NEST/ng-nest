@@ -13,7 +13,7 @@
   position: relative;
   > pre {
     display: flex;
-    padding: 0.875rem 0.875rem 0.875rem 3.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 3.5rem;
     margin: 0;
     overflow: auto;
     background-color: $--x-background;
@@ -21,11 +21,11 @@
     counter-reset: line-number;
     > code {
       position: relative;
-      line-height: 1.1875rem;
+      line-height: 1.375rem;
       text-shadow: none;
       white-space: inherit;
       min-width: 100%;
-      color: $--x-text;
+      color: $--x-text-100;
       > span.line-numbers {
         position: absolute;
         pointer-events: none;
@@ -39,7 +39,7 @@
         > span::before {
           border-right: $--x-border-base;
           padding-right: 0.5rem;
-          margin-right: 0.875rem;
+          margin-right: $--x-font-size;
           text-align: right;
           pointer-events: none;
           display: block;
@@ -53,9 +53,8 @@
         pointer-events: none;
         line-height: inherit;
         white-space: pre;
-        width: calc(100% + 3.5rem);
+        width: calc(100% + 5rem);
         left: -3.5rem;
-        border-radius: $--x-border-radius;
         @include line-highlight-type(primary, $--x-primary);
         @include line-highlight-type(success, $--x-success);
         @include line-highlight-type(warning, $--x-warning);
@@ -63,23 +62,6 @@
         @include line-highlight-type(info, $--x-info);
       }
     }
-  }
-  .token.operator,
-  .token.entity,
-  .token.url,
-  .language-css .token.string,
-  .style .token.string {
-    color: $--x-text;
-    background: transparent;
-  }
-  .token.property,
-  .token.tag,
-  .token.boolean,
-  .token.number,
-  .token.constant,
-  .token.symbol,
-  .token.deleted {
-    color: #e6a23c;
   }
   &-actions {
     position: absolute;

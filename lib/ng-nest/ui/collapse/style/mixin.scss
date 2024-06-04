@@ -14,6 +14,9 @@
       &-header {
         border-bottom-color: transparent;
       }
+      &-body {
+        border-bottom-color: transparent;
+      }
     }
   }
   &-bordered {
@@ -55,7 +58,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: $--x-padding-medium 0;
+    padding: $--x-padding-small 0;
     border-bottom: $--x-border-base;
     transition: border-color 0.3s;
     cursor: pointer;
@@ -79,7 +82,7 @@
   }
   &-body {
     overflow: hidden;
-    border-bottom: 0.0625rem solid transparent;
+    border-bottom: $--x-border-width $--x-border-style transparent;
     transition: border-color 0.3s;
   }
   &-content {
@@ -93,7 +96,7 @@
       }
     }
     .x-collapse-panel-body {
-      border-bottom-color: $--x-border;
+      border-bottom-color: $--x-border-500;
     }
   }
 }

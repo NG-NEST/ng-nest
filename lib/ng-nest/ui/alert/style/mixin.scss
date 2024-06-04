@@ -57,7 +57,7 @@
   @include type('loading', $--x-primary, $--x-info-900, $--x-info-600, $--x-info-400);
 }
 
-@mixin type($type, $color, $background, $border-color, $close-color) {
+@mixin type($type, $color, $background, $--border-color, $close-color) {
   &-#{$type} {
     &.x-light {
       color: $color;

@@ -2,4 +2,7 @@
   .row:not(:first-child) {
     margin-top: 1rem;
   }
+  .node {
+    padding: 0 var(--x-padding-medium);
+  }
 }

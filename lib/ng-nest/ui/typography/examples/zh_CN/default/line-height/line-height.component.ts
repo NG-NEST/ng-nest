@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'ex-line-height',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './line-height.component.html'
 })
 export class ExLineHeightComponent {
-  text = '天将降大任于是人也，<br/>必先苦其心志，劳其筋骨<br/>，饿其体肤';
+  text = signal('天将降大任于是人也，<br/>必先苦其心志，劳其筋骨<br/>，饿其体肤');
 }

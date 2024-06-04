@@ -1,8 +1,8 @@
 <div class="row">
-  选中数据：{{ activatedId1 | json }}
-  <x-tree [data]="data1" multiple allowManyActivated [(activatedId)]="activatedId1"> </x-tree>
+  选中数据：{{ activatedId1() | json }}
+  <x-tree [data]="data1()" multiple allowManyActivated [(activatedId)]="activatedId1"> </x-tree>
 </div>
 <div class="row">
-  选中数据：{{ activatedId2 | json }}
-  <x-tree [data]="data2" onlyLeaf nodeOpen multiple allowManyActivated [(activatedId)]="activatedId2"> </x-tree>
+  选中数据：{{ activatedId2() | json }}
+  <x-tree [data]="data2()" onlyLeaf nodeOpen multiple allowManyActivated [(activatedId)]="activatedId2"> </x-tree>
 </div>

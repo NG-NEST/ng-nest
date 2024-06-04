@@ -11,20 +11,28 @@ import {
   X_THEME_EXCHANGES,
   X_THEME_BACKGROUNDS,
   X_THEME_TEXTS,
-  X_THEME_BORDERS
+  X_THEME_BORDERS,
+  X_THEME_VARS,
+  XVarsTheme,
+  X_THEME_DARK_COLORS,
+  X_THEME_LIGHT_COLORS
 } from './theme';
 import { DOCUMENT } from '@angular/common';
-import { XComputed } from '../util';
+import { XCamelToKebab, XComputed, XKebabToCamel } from '../util';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class XThemeService {
   private colorsProp: XColorsTheme = {};
+  private varsProp: XVarsTheme = {};
   private colorsStyleEle!: HTMLStyleElement;
+  private varsStyleEle!: HTMLStyleElement;
   private renderer2: Renderer2;
   private declaration: CSSStyleDeclaration;
   private doc: Document = inject(DOCUMENT);
+  changed = new BehaviorSubject<'light' | 'dark'>('light');
 
   constructor(private factory: RendererFactory2) {
     this.renderer2 = this.factory.createRenderer(null, null);
@@ -32,25 +40,50 @@ export class XThemeService {
   }
 
   setInitialTheme(theme?: XTheme) {
+    this.setVars(theme?.vars);
+    if (theme?.vars) Object.assign(X_THEME_VARS, theme.vars);
     this.setColors(theme?.colors);
     if (theme?.colors) Object.assign(X_THEME_COLORS, theme.colors);
   }
 
   setTheme(theme?: XTheme) {
     this.setColors(theme?.colors);
+    this.setVars(theme?.vars);
+    this.setDark(theme?.dark);
   }
 
   getTheme(includesAll = false): XTheme {
     return {
-      colors: this.getColors(includesAll)
+      colors: this.getColors(includesAll),
+      vars: this.getVars()
     };
   }
 
   setColors(colors?: XColorsTheme) {
     colors = this.getColorsTheme(colors);
     for (let key in colors) {
-      Object.assign(this.colorsProp, this.setRoot(key, colors[key]));
+      Object.assign(this.colorsProp, this.setColorRoot(key, colors[key]));
     }
+    this.createColorsStyle();
+  }
+
+  setDark(dark?: boolean) {
+    const colors = this.getColors();
+    if (dark === true) {
+      Object.assign(colors, X_THEME_DARK_COLORS);
+      this.setDarkColors(colors);
+      this.changed.next('dark');
+    } else if (dark === false) {
+      Object.assign(colors, X_THEME_LIGHT_COLORS);
+      this.setColors(colors);
+      this.changed.next('light');
+    }
+
+    return colors;
+  }
+
+  setDarkColors(colors?: XColorsTheme) {
+    this.colorsProp = this.getDefineColors(colors, X_THEME_PREFIX, true);
     this.createColorsStyle();
   }
 
@@ -64,12 +97,20 @@ export class XThemeService {
     return result;
   }
 
+  getVars(prefix = X_THEME_PREFIX): XVarsTheme {
+    let result: XVarsTheme = {};
+    const keys = Object.keys(this.varsProp);
+    keys.forEach((x) => {
+      result[XKebabToCamel(x.replace(prefix, ''))] = this.declaration.getPropertyValue(`${x}`).trim();
+    });
+    return result;
+  }
+
   getColorsInProperty(colors?: XColorsTheme, prefix = X_THEME_PREFIX): XColorsTheme {
     let result: XColorsTheme = {};
     Object.keys(colors as XColorsTheme).forEach((x) => {
       result[x] = this.declaration.getPropertyValue(`${prefix}${x}`).trim();
     });
-
     return result;
   }
 
@@ -79,15 +120,15 @@ export class XThemeService {
     return colors;
   }
 
-  setRoot(color: string, value: string, prefix = X_THEME_PREFIX) {
+  setColorRoot(color: string, value: string, prefix = X_THEME_PREFIX) {
     let result: XColorsTheme = {};
     if (X_THEME_COLOR_KEYS.includes(color)) {
       for (let amount of X_THEME_AMOUNTS) {
         if (amount === 0) {
           result[`${prefix}${color}`] = value;
         } else {
-          result[`${prefix}${color}${this.getSuffix(amount)}`] = toHex(
-            mixColors(amount > 0 ? X_THEME_MERGE : X_THEME_BLACK_MERGE, value, Math.abs(amount))
+          result[`${prefix}${color}${this.getSuffix(amount)}`] = XToHex(
+            XMixColors(amount > 0 ? X_THEME_MERGE : X_THEME_BLACK_MERGE, value, Math.abs(amount))
           );
         }
       }
@@ -97,11 +138,11 @@ export class XThemeService {
     return result;
   }
 
-  setDarkRoot(color: string, value: string, prefix = X_THEME_PREFIX) {
+  setDarkColorRoot(color: string, value: string, prefix = X_THEME_PREFIX) {
     let result: XColorsTheme = {};
-    const allColors = this.setRoot(color, value, '');
-    if (X_THEME_COLOR_KEYS.includes(color) && !['background'].includes(color)) {
-      const allColors = this.setRoot(color, value, prefix);
+    let allColors = this.setColorRoot(color, value, '');
+    if (X_THEME_COLOR_KEYS.includes(color)) {
+      allColors = this.setColorRoot(color, value, prefix);
       X_THEME_EXCHANGES.forEach((x) => {
         if (x[1] >= -0.1) {
           const curr = this.getSuffix(x[0]);
@@ -119,7 +160,7 @@ export class XThemeService {
     let result: XColorsTheme = {};
     colors = this.getColorsTheme(colors);
     for (let key in colors) {
-      Object.assign(result, this.setRoot(key, colors[key], prefix));
+      Object.assign(result, this.setColorRoot(key, colors[key], prefix));
     }
     if (darken) {
       const colorsFunc = (nums: number[] | number[][], callback: Function) => {
@@ -163,6 +204,21 @@ export class XThemeService {
     return '';
   }
 
+  setVarRoot(va: string, value: string, prefix = X_THEME_PREFIX) {
+    let result: XVarsTheme = {};
+    result[`${prefix}${XCamelToKebab(va)}`] = value;
+    return result;
+  }
+
+  setVars(vars?: XVarsTheme) {
+    if (typeof vars === 'undefined') vars = X_THEME_VARS;
+    else vars = Object.assign({}, X_THEME_VARS, vars);
+    for (let key in vars) {
+      Object.assign(this.varsProp, this.setVarRoot(key, vars[key]));
+    }
+    this.createVarsStyle();
+  }
+
   createColorsStyle() {
     if (this.colorsStyleEle) this.renderer2.removeChild(this.colorsStyleEle.parentNode, this.colorsStyleEle);
     const styles = Object.entries(this.colorsProp)
@@ -173,11 +229,47 @@ export class XThemeService {
     this.renderer2.addClass(this.doc.documentElement, 'x-theme-colors');
     this.doc.documentElement.getElementsByTagName('head')[0].appendChild(this.colorsStyleEle);
   }
+
+  createVarsStyle() {
+    if (this.varsStyleEle) this.renderer2.removeChild(this.varsStyleEle.parentNode, this.varsStyleEle);
+    const styles = Object.entries(this.varsProp)
+      .map((x) => `${x[0]}: ${x[1]};`)
+      .join('');
+    this.varsStyleEle = this.renderer2.createElement('style');
+    this.varsStyleEle.innerHTML = `:root{${styles}}`;
+    this.doc.documentElement.getElementsByTagName('head')[0].appendChild(this.varsStyleEle);
+  }
 }
 
-export function mixColors(color1: string, color2: string, weight: number) {
-  let rgb1 = toRgb(color1);
-  let rgb2 = toRgb(color2);
+/**
+ * @zh_CN RGB 颜色值
+ * @en_US RGB color value
+ */
+export interface XRGBColor {
+  /**
+   * @zh_CN 红
+   * @en_US Red
+   */
+  r: number;
+  /**
+   * @zh_CN 绿
+   * @en_US Green
+   */
+  g: number;
+  /**
+   * @zh_CN 蓝
+   * @en_US Blue
+   */
+  b: number;
+}
+
+/**
+ * @zh_CN 根据权重混合2种颜色
+ * @en_US Mix 2 colors according to heavy weights
+ */
+export function XMixColors(color1: string, color2: string, weight: number): XRGBColor {
+  let rgb1 = XToRgb(color1);
+  let rgb2 = XToRgb(color2);
   let weight1 = weight;
   let weight2 = 1 - weight;
   let result: { r: number; g: number; b: number };
@@ -195,11 +287,19 @@ export function mixColors(color1: string, color2: string, weight: number) {
   return result;
 }
 
-export function toHex(rgb: { r: number; g: number; b: number }) {
+/**
+ * @zh_CN RGB 颜色转换为 Hex
+ * @en_US RGB color converts to hex
+ */
+export function XToHex(rgb: { r: number; g: number; b: number }): string {
   return '#' + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
 }
 
-export function toRgb(hex: string) {
+/**
+ * @zh_CN Hex 颜色转换为 RGB
+ * @en_US Hex color converts to RGB
+ */
+export function XToRgb(hex: string): XRGBColor {
   if (hex.indexOf('#') == 0) hex = hex.slice(1);
   let num = parseInt(hex, 16);
   let r = num >> 16;

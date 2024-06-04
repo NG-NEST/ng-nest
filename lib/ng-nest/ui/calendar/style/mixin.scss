@@ -96,7 +96,7 @@
           }
           td {
             height: 6.75rem;
-            border-top: 0.125rem solid $--x-border;
+            border-top: $--x-border-base;
             text-align: left;
             .x-calendar-date,
             .x-calendar-month {
@@ -124,13 +124,19 @@
           }
         }
       }
+      .x-picker-date-body > table td:first-child,
+      .x-picker-date-body > table td:last-child {
+        border-radius: 0;
+      }
     }
   }
   &-card {
     border: $--x-border-base;
+    border-radius: $--x-border-radius;
     .x-calendar-header {
       padding: 0.5rem;
       border-bottom: $--x-border-base;
+      justify-content: center;
     }
     .x-calendar-body {
       > x-picker-date .x-picker-date,
@@ -143,7 +149,6 @@
             .x-calendar-date,
             .x-calendar-month {
               border: $--x-border-base;
-              border-radius: $--x-border-radius;
               border-color: transparent;
               > span {
                 padding: 0.125rem;

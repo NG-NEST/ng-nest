@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 
@@ -10,5 +10,5 @@ import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
   styleUrls: ['./label.component.scss']
 })
 export class ExLabelComponent {
-  model: any;
+  model = signal<string | null>(null);
 }

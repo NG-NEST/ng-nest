@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { XTreeSelectComponent } from '@ng-nest/ui/tree-select';
+import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
 @Component({
   selector: 'ex-multiple',
@@ -10,7 +10,7 @@ import { XTreeSelectComponent } from '@ng-nest/ui/tree-select';
   styleUrls: ['./multiple.component.scss']
 })
 export class ExMultipleComponent {
-  data1 = [
+  data1 = signal<XTreeSelectNode[]>([
     { id: 1, label: '水果' },
     { id: 2, label: '蔬菜' },
     { id: 3, label: '饮料' },
@@ -26,21 +26,21 @@ export class ExMultipleComponent {
     { id: 13, label: '小米蕉', pid: 5 },
     { id: 14, label: '仙人蕉', pid: 5 },
     { id: 15, label: '皇帝蕉', pid: 5 }
-  ];
-  data2 = JSON.parse(JSON.stringify(this.data1));
-  data3 = JSON.parse(JSON.stringify(this.data1));
-  data4 = JSON.parse(JSON.stringify(this.data1));
-  data5 = JSON.parse(JSON.stringify(this.data1));
-  data6 = JSON.parse(JSON.stringify(this.data1));
-  model1: any;
-  model2 = [4, 13];
-  model3 = [
+  ]);
+  data2 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data3 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data4 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data5 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data6 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  model1 = signal<number | null>(null);
+  model2 = signal([4, 13]);
+  model3 = signal([
     { id: 4, label: '苹果' },
     { id: 13, label: '小米蕉' }
-  ];
-  model4 = [4, 13];
-  model5 = [4, 9, 10, 13];
-  model6 = [4, 9, 10, 13];
+  ]);
+  model4 = signal([4, 13]);
+  model5 = signal([4, 9, 10, 13]);
+  model6 = signal([4, 9, 10, 13]);
 
   change(event: any) {
     console.log(event);

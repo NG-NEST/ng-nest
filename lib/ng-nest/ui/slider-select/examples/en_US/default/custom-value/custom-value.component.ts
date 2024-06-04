@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
@@ -11,6 +11,6 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
   styleUrls: ['./custom-value.component.scss']
 })
 export class ExCustomValueComponent {
-  model1 = 60;
-  model2: number[] = [20, 50];
+  model1 = signal(60);
+  model2 = signal<number[]>([20, 50]);
 }

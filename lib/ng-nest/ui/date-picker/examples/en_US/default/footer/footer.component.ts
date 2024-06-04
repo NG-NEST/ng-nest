@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XDatePickerComponent, XDateRangeComponent } from '@ng-nest/ui/date-picker';
 
@@ -10,15 +10,11 @@ import { XDatePickerComponent, XDateRangeComponent } from '@ng-nest/ui/date-pick
   styleUrls: ['./footer.component.scss']
 })
 export class ExFooterComponent {
-  modelPicker: any;
-
-  modelRange: any;
-
-  modelMonth: any;
-
-  modelYear: any;
-
-  modelDateTime: any;
+  modelPicker = signal<Date | null>(null);
+  modelRange = signal<Date | null>(null);
+  modelMonth = signal<Date | null>(null);
+  modelYear = signal<Date | null>(null);
+  modelDateTime = signal<Date | null>(null);
 
   change(event: any) {
     console.log(event);

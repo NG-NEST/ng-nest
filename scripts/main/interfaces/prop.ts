@@ -1,8 +1,5 @@
 /**
- * 组件中的属性文件对象
- *
- * @export
- * @interface NcProp
+ * 属性文件对象
  */
 export interface NcProp {
   /**
@@ -40,11 +37,23 @@ export interface NcProp {
   /**
    * 继承对象 class
    */
-  extends?: string;
+  extends?: string[];
   /**
    * 实现的接口 interface
    */
   implements?: string;
+  /**
+   * 参数，仅当 type 等于 'function' 时
+   */
+  params?: { [key: string]: string };
+  /**
+   * 返回类型，仅当 type 等于 'function' 时
+   */
+  returnType?: string;
+  /**
+   * 示例
+   */
+  example?: { type: string; content: string; language?: string }[];
 }
 
 export interface NcPrope {
@@ -69,6 +78,14 @@ export interface NcPrope {
    */
   type?: string;
   /**
+   * 转化为的类型
+   */
+  toType?: string;
+  /**
+   * 输入的类型
+   */
+  inputType?: string;
+  /**
    * 描述
    */
   description?: string;
@@ -85,6 +102,18 @@ export interface NcPrope {
    * 针对 interface 中属性配置的说明 @withConfig true
    */
   withConfig?: boolean;
+  /**
+   * 示例
+   */
+  example?: { type: string; content: string; language?: string }[];
+  /**
+   * 转换函数
+   */
+  transform?: string;
+  /**
+   * signal 类型
+   */
+  signal?: 'input' | 'output' | 'model';
 }
 
 /**
@@ -93,6 +122,7 @@ export interface NcPrope {
 export enum NcPropType {
   Interface = 'interface',
   Class = 'class',
+  Function = 'function',
   Const = 'const',
   Type = 'type',
   Enum = 'enum'

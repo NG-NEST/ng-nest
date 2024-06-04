@@ -1,117 +1,177 @@
 export default {
   locale: 'pl_PL',
   comment: {
-    comments: 'komentarz',
-    giveALike: 'lubić',
-    reply: 'Odpowiadać',
+    comments: 'Komentarze',
+    giveALike: 'Polubienie',
+    reply: 'Odpowiedź',
     more: 'Zobacz więcej',
-    sure: 'wydanie',
-    placeholder: 'Wpisz komentarz'
+    sure: 'Opublikuj',
+    placeholder: 'Proszę wprowadzić komentarz'
   },
   theme: {
     darkMode: 'Tryb ciemny',
-    initDefault: 'Zainicjuj wartość domyślną',
-    primary: 'Głównym kolor',
-    success: 'sukces',
-    warning: 'zastrzeżenie',
-    danger: 'Zagrożenie',
+    initDefault: 'Inicjuj domyślnie',
+    primary: 'Podstawowy',
+    success: 'Sukces',
+    warning: 'Ostrzeżenie',
+    danger: 'Niebezpieczeństwo',
     info: 'Informacja',
-    background: 'tło',
-    border: 'rama',
+    background: 'Tło',
+    border: 'Granica',
     text: 'Tekst'
   },
   calendar: {
-    month: 'miesiąc',
-    year: 'rok',
-    lastMonth: 'Pierwszy miesiąc',
-    lastYear: 'ostatni rok',
-    nextMonth: 'W następnym miesiącu',
+    month: 'Miesiąc',
+    year: 'Rok',
+    lastMonth: 'Poprzedni miesiąc',
+    lastYear: 'Poprzedni rok',
+    nextMonth: 'Następny miesiąc',
     nextYear: 'Następny rok',
-    january: 'styczeń',
-    february: 'luty',
-    march: 'Marsz',
-    april: 'kwiecień',
-    may: 'Może',
-    june: 'czerwiec',
-    july: 'lipiec',
-    august: 'sierpień',
-    september: 'wrzesień',
-    october: 'październik',
-    november: 'listopad',
-    december: 'grudzień'
+    january: 'Styczeń',
+    february: 'Luty',
+    march: 'Marzec',
+    april: 'Kwiecień',
+    may: 'Maj',
+    june: 'Czerwiec',
+    july: 'Lipiec',
+    august: 'Sierpień',
+    september: 'Wrzesień',
+    october: 'Październik',
+    november: 'Listopad',
+    december: 'Grudzień'
   },
   datePicker: {
-    sure: 'potwierdzać',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'wczoraj',
-    today: 'Obecnie',
-    tomorrow: 'jutro'
+    sure: 'Potwierdź',
+    week: 'Tydzień',
+    month: 'Miesiąc',
+    year: 'Rok',
+    january: 'Styczeń',
+    february: 'Luty',
+    march: 'Marzec',
+    april: 'Kwiecień',
+    may: 'Maj',
+    june: 'Czerwiec',
+    july: 'Lipiec',
+    august: 'Sierpień',
+    september: 'Wrzesień',
+    october: 'Październik',
+    november: 'Listopad',
+    december: 'Grudzień',
+    monday: 'Poniedziałek',
+    tuesday: 'Wtorek',
+    wednesday: 'Środa',
+    thursday: 'Czwartek',
+    friday: 'Piątek',
+    saturday: 'Sobota',
+    sunday: 'Niedziela',
+    yesterday: 'Wczoraj',
+    today: 'Dzisiaj',
+    tomorrow: 'Jutro',
+    thisWeek: 'Bieżący tydzień',
+    lastWeek: 'Poprzedni tydzień',
+    nextWeek: 'Następny tydzień',
+    thisMonth: 'Bieżący miesiąc',
+    lastMonth: 'Poprzedni miesiąc',
+    nextMonth: 'Następny miesiąc',
+    thisYear: 'Bieżący rok',
+    lastYear: 'Poprzedni rok',
+    nextYear: 'Następny rok',
+    selectDate: 'Wybierz datę',
+    selectWeek: 'Wybierz tydzień',
+    selectMonth: 'Wybierz miesiąc',
+    selectQuarter: 'Wybierz kwartał',
+    selectYear: 'Wybierz rok',
+    startDate: 'Data rozpoczęcia',
+    endDate: 'Data zakończenia',
+    startMonth: 'Miesiąc rozpoczęcia',
+    endMonth: 'Miesiąc zakończenia',
+    startQuarter: 'Kwartał rozpoczęcia',
+    endQuarter: 'Kwartał zakończenia',
+    startYear: 'Rok rozpoczęcia',
+    endYear: 'Rok zakończenia',
+    startWeek: 'Tydzień rozpoczęcia',
+    endWeek: 'Tydzień zakończenia'
+  },
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Teraz',
+    selectTime: 'Wybierz czas',
+    selectHour: 'Wybierz godzinę',
+    selectMinute: 'Wybierz minutę'
   },
   empty: {
-    noData: 'Nie dane'
+    noData: 'Brak danych'
+  },
+  image: {
+    previewText: 'Podgląd'
   },
   pagination: {
-    previous: 'Poprzednia strona',
-    next: 'Następna strona',
-    total: 'Całkowity',
-    item: 'Artykuł',
-    first: 'pierwsza strona',
-    last: 'Ogon',
-    jump: 'Skok',
-    sizePage: '/ strona'
+    previous: 'Poprzedni',
+    next: 'Następny',
+    total: 'Razem',
+    item: 'Element',
+    first: 'Pierwsza',
+    last: 'Ostatnia',
+    jump: 'Przejdź do',
+    sizePage: 'Elementy na stronie'
   },
   textRetract: {
-    unfold: 'Rozwijać się',
-    packUp: 'Odłożyć'
+    unfold: 'Rozwiń',
+    packUp: 'Zwiń'
   },
   timeAgo: {
-    just: 'właśnie',
+    just: 'Właśnie teraz',
     secondsAgo: 'Sekundy temu',
-    minutesAgo: 'minuty temu',
-    hoursAgo: 'Godzinę temu'
+    minutesAgo: 'Minuty temu',
+    hoursAgo: 'Godziny temu'
+  },
+  transfer: {
+    listTitle: 'Lista',
+    treeTitle: 'Drzewo',
+    tableTitle: 'Tabela',
+    selectedTitle: 'Wybrane elementy',
+    inverse: 'Odwróć'
   },
   messageBox: {
     cancelText: 'Anuluj',
-    confirmText: 'potwierdzać'
+    confirmText: 'Potwierdź'
   },
   dialog: {
     cancelText: 'Anuluj',
-    confirmText: 'potwierdzać'
+    confirmText: 'Potwierdź'
   },
   popconfirm: {
     cancelText: 'Anuluj',
-    confirmText: 'potwierdzać'
+    confirmText: 'Potwierdź'
   },
   upload: {
-    uploadText: 'przesłać pliki'
+    uploadText: 'Prześlij plik',
+    beginUploadText:
+      'Rozpocznij przesyłanie pliku',
+    uploadingText: 'Przesyłanie',
+    uploadCompleted:
+      'Przesyłanie pliku zakończone'
   },
   pageHeader: {
-    back: 'powrót'
+    back: 'Powrót'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Wybierz wszystko',
+    loadMoreText: 'Załaduj więcej',
+    loadingMoreText: 'Ładowanie...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Wybierz wszystko',
+    maxTagContent:
+      'Więcej {{surplus}} zaznaczonych'
+  },
+  treeSelect: {
+    selectAllText: 'Wybierz wszystko',
+    maxTagContent:
+      'Więcej {{surplus}} zaznaczonych'
+  },
+  form: {
+    required: 'Pole wymagane'
   }
 };

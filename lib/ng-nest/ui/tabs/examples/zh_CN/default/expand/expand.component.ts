@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTabComponent, XTabsComponent } from '@ng-nest/ui/tabs';
 
 @Component({
@@ -8,7 +8,7 @@ import { XTabComponent, XTabsComponent } from '@ng-nest/ui/tabs';
   templateUrl: './expand.component.html'
 })
 export class ExExpandComponent {
-  labels = [
+  labels = signal([
     '用户管理',
     '配置管理',
     '角色管理',
@@ -22,5 +22,5 @@ export class ExExpandComponent {
     '消息管理',
     '属性设计',
     '流程设计'
-  ];
+  ]);
 }

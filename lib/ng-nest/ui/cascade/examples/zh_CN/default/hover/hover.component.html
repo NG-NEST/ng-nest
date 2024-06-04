@@ -1,8 +1,8 @@
 <x-row>
   <x-col span="12">
-    <x-cascade [data]="data" [(ngModel)]="model1" nodeTrigger="hover"></x-cascade>
+    <x-cascade [data]="data()" [(ngModel)]="model1" nodeTrigger="hover"></x-cascade>
   </x-col>
   <x-col span="12">
-    <x-cascade [data]="data" [(ngModel)]="model2" nodeTrigger="hover" nodeHoverDelay="400"></x-cascade>
+    <x-cascade [data]="data()" [(ngModel)]="model2" nodeTrigger="hover" nodeHoverDelay="400"></x-cascade>
   </x-col>
 </x-row>

@@ -4,12 +4,12 @@ import { XTemplate } from '@ng-nest/ui/core';
 /**
  * I18n
  * @selector xI18n
- * @decorator Pipe
+ * @decorator pipe
  */
 export const XI18nPrefix = 'xI18n';
 
 export interface XI18nProperty {
-  locale: string;
+  locale: XI18nLanguage;
   comment?: XI18nComment;
   theme?: XI18nTheme;
   calendar?: XI18nCalendar;
@@ -179,6 +179,9 @@ export interface XI18nPopconfirm {
 
 export interface XI18nUpload {
   uploadText?: string;
+  beginUploadText?: string;
+  uploadingText?: string;
+  uploadCompleted?: string;
 }
 
 export interface XI18nPageHeader {
@@ -204,5 +207,59 @@ export interface XI18nList {
 export interface XI18nForm {
   required?: string;
 }
+
+export type XI18nLanguage =
+  | 'ar_EG'
+  | 'hy_AM'
+  | 'bg_BG'
+  | 'ca_ES'
+  | 'cs_CZ'
+  | 'da_DK'
+  | 'de_DE'
+  | 'el_GR'
+  | 'en_GB'
+  | 'en_US'
+  | 'es_ES'
+  | 'et_EE'
+  | 'fa_IR'
+  | 'fi_FI'
+  | 'fr_BE'
+  | 'fr_FR'
+  | 'he_IL'
+  | 'hr_HR'
+  | 'hi_IN'
+  | 'hu_HU'
+  | 'id_ID'
+  | 'it_IT'
+  | 'is_IS'
+  | 'ja_JP'
+  | 'ka_GE'
+  | 'kn_IN'
+  | 'ko_KR'
+  | 'ku_IQ'
+  | 'lv_LV'
+  | 'ms_MY'
+  | 'mn_MN'
+  | 'nb_NO'
+  | 'ne_NP'
+  | 'nl_BE'
+  | 'nl_NL'
+  | 'pl_PL'
+  | 'pt_BR'
+  | 'pt_PT'
+  | 'sk_SK'
+  | 'sr_RS'
+  | 'sl_SI'
+  | 'sv_SE'
+  | 'ta_IN'
+  | 'th_TH'
+  | 'tr_TR'
+  | 'ro_RO'
+  | 'ru_RU'
+  | 'uk_UA'
+  | 'vi_VN'
+  | 'zh_CN'
+  | 'zh_TW'
+  | string;
 
 export const X_I18N = new InjectionToken<XI18nProperty>('x-i18n');

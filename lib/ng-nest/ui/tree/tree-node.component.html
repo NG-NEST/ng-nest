@@ -1,82 +1,82 @@
 <div
   class="x-tree-node-content"
-  [class.x-activated]="getActivated"
-  [class.x-disabled]="node.disabled"
-  [class.x-tree-node-sub]="!node.leaf"
-  [class.x-tree-node-last]="isChildrenLast"
-  [style.padding-left.rem]="paddingLeft"
-  [style.height.rem]="node.height ? node.height : nodeHeight ? nodeHeight : ''"
-  [style.align-items]="node.alignItems ? node.alignItems : nodeAlignItems"
-  (click)="!node.disabled && onActivate($event, node)"
+  [class.x-activated]="activated()"
+  [class.x-disabled]="disabled()"
+  [class.x-tree-node-sub]="!leaf()"
+  [class.x-tree-node-last]="isChildrenLast()"
+  [style.padding-left.px]="paddingLeft() + fontSize() / 2"
+  [style.height]="height() ? height() : nodeHeight() ? nodeHeight() : ''"
+  [style.align-items]="alignItems() ? alignItems() : nodeAlignItems()"
+  (click)="!disabled() && onActivate($event, node())"
 >
-  @if (tree.showLine && numLevel > 0) {
-    <div class="x-tree-node-line" [style.width.rem]="paddingLeft">
-      @for (i of verticalLevel; track i) {
+  @if (tree.showLine() && level()! > 0) {
+    <div class="x-tree-node-line" [style.width.px]="paddingLeft()">
+      @for (i of verticalLevel(); track i) {
         <div
           class="x-tree-node-line-vertical"
-          [hidden]="isParentLast[i - 1]"
-          [class.is-last]="i === verticalLevel.length"
-          [style.left.rem]="getVerticalLeft(i)"
+          [hidden]="isParentLast()[i - 1]"
+          [class.is-last]="i === verticalLevel().length"
+          [style.left.px]="getVerticalLeft(i)"
         ></div>
       }
       <div
         class="x-tree-node-line-horizontal"
-        [style.width.rem]="verticalWidth"
-        [style.left.rem]="getVerticalLeft(verticalLevel.length)"
+        [style.width.px]="verticalWidth()"
+        [style.left.px]="getVerticalLeft(verticalLevel().length)"
       ></div>
     </div>
   }
-  @if (showDragIndicator) {
-    <div class="x-tree-node-drag-indicator" [style.width]="indicatorWidth" [ngStyle]="indicatorStyle"></div>
+  @if (showDragIndicator()) {
+    <div class="x-tree-node-drag-indicator" [style.width]="indicatorWidth()" [ngStyle]="indicatorStyle()"></div>
   }
-  @if (node.loading) {
-    <x-icon class="x-tree-node-loading" type="fto-loader" [spin]="node.loading"></x-icon>
+  @if (loading()) {
+    <x-icon class="x-tree-node-loading" type="fto-loader" [spin]="loading()!"></x-icon>
   } @else {
     <div
       class="x-tree-node-right"
-      [class.is-leaf]="node.leaf"
-      [class.is-open]="node.open"
-      [class.is-template]="tree.expandedIcon"
-      [style.width.rem]="verticalWidth * 2"
-      (click)="!tree.nodeOpen && tree.onToggle($event, node)"
+      [class.is-leaf]="leaf()"
+      [class.is-open]="open()"
+      [class.is-template]="tree.expandedIcon()"
+      [style.width.px]="verticalWidth() * 2"
+      (click)="!tree.nodeOpen() && onToggle($event, node())"
     >
-      @if (tree.expandedIcon) {
-        <ng-container *xOutlet="tree.expandedIcon; context: { $node: node }"></ng-container>
+      @if (tree.expandedIcon()) {
+        <ng-container *xOutlet="tree.expandedIcon(); context: { $node: node() }"></ng-container>
       } @else {
         <x-icon type="fto-chevron-right"></x-icon>
       }
     </div>
   }
-  @if (tree.checkbox) {
+  @if (tree.checkbox()) {
     <x-checkbox
-      [data]="[{ label: '', id: node.id }]"
-      [(ngModel)]="node.checked"
+      [data]="[{ label: '', id: id() }]"
+      [(ngModel)]="checked"
       (ngModelChange)="onCheckboxChange()"
-      [indeterminate]="node.indeterminate"
-      [disabled]="node.disabled!"
+      [indeterminate]="indeterminate()!"
+      [disabled]="disabled()!"
       (click)="$event.stopPropagation()"
       single
     ></x-checkbox>
   }
-  @if (!tree.labelTpl) {
+  @if (!tree.labelTpl()) {
     <span
       class="x-tree-node-label"
-      [class.nowrap]="node.nowrap === false || node.nowrap === true ? node.nowrap : nodeNowrap"
-      [title]="node.label"
+      [class.nowrap]="nowrap() === false || nowrap() === true ? nowrap() : nodeNowrap()"
+      [title]="label()"
       x-keyword
-      [text]="tree.keywordText"
-      [caseSensitive]="tree.caseSensitive"
-      >{{ node.label }}</span
+      [text]="tree.keywordText()"
+      [caseSensitive]="tree.caseSensitive()"
+      >{{ label() }}</span
     >
   } @else {
-    <ng-container *xOutlet="tree.labelTpl; context: { $node: node }"></ng-container>
+    <ng-container *xOutlet="tree.labelTpl(); context: { $node: node() }"></ng-container>
   }
   <span class="x-tree-node-operations">
-    @for (action of tree.actions; track action.id) {
-      <x-link [icon]="action.icon" [title]="action.label" (click)="onAction($event, action, node)"></x-link>
+    @for (action of tree.actions(); track action.id) {
+      <x-link [icon]="action.icon" [title]="action.label" (click)="onAction($event, action, node())"></x-link>
     }
   </span>
-  @if (tree.multiple && getActivated) {
+  @if (tree.multiple() && activated()) {
     <x-icon class="x-tree-node-checked" type="fto-check"></x-icon>
   }
 </div>

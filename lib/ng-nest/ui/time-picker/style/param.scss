@@ -21,7 +21,7 @@ $--x-time-picker-placeholder-color: $--x-placeholder-color;
 $--x-time-picker-background-color: $--x-background;
 
 /* 边框样式 */
-$--x-time-picker-border: $--x-border-width $--x-border-style $--x-border;
+$--x-time-picker-border: $--x-border-base;
 
 /* 边框圆角 */
 $--x-time-picker-border-radius: $--x-border-radius;
@@ -38,4 +38,3 @@ $--x-time-picker-icon-padding: $--x-control-padding-horizontal;
 $--x-time-picker-portal-prefix: $--x-prefix + '-time-picker-portal';
 
 $--x-time-picker-frame-prefix: $--x-prefix + '-time-picker-frame';
-

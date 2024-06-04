@@ -2,7 +2,7 @@ import { Injectable, SecurityContext, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscriber } from 'rxjs';
-import { XHasIn } from '@ng-nest/ui/core';
+import { XHasIn, XIsEmpty } from '@ng-nest/ui/core';
 import { XIconPrefix } from './icon.property';
 
 type Task<T> = {
@@ -35,7 +35,6 @@ export class XIconService {
   private execute<T>(task: Task<T>) {
     this.isRunningTask = true;
     if (XHasIn(this.caches, task.name)) {
-      
       task.callback(this.caches[task.name]);
       this.activeTaskXm--;
       this.isRunningTask = false;
@@ -70,22 +69,21 @@ export class XIconService {
     }
   }
 
-  getSvgs(root: string, ...icons: string[]): Observable<string[]> {
-    return new Observable((subscriber: Subscriber<string[]>) => {
-      let result: string[] = [];
-      icons.forEach((icon, index) =>
-        this.addTask({
-          name: icon,
-          observable: this.getSvgElement(root, icon),
-          callback: (svg: string) => {
-            result.push(svg);
-            if (index === icons.length - 1) {
-              subscriber.next(result);
-              subscriber.complete();
-            }
-          }
-        })
-      );
+  getSvg(root: string, icon: string): Observable<string> {
+    return new Observable((subscriber: Subscriber<string>) => {
+      if (XIsEmpty(icon)) {
+        subscriber.next('');
+        subscriber.complete();
+        return;
+      }
+      this.addTask({
+        name: icon,
+        observable: this.getSvgElement(root, icon),
+        callback: (svg: string) => {
+          subscriber.next(svg);
+          subscriber.complete();
+        }
+      });
     });
   }
 

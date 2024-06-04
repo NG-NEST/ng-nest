@@ -1,15 +1,6 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, signal } from '@angular/core';
 import { XCommentReplyPrefix, XCommentReplyProperty } from './comment.property';
-import { XConfigService } from '@ng-nest/ui/core';
-import { takeUntil } from 'rxjs/operators';
-import { XI18nService, XI18nPipe } from '@ng-nest/ui/i18n';
-import { Subject } from 'rxjs';
+import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { FormsModule } from '@angular/forms';
@@ -24,24 +15,9 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCommentReplyComponent extends XCommentReplyProperty {
-  inputValue!: string;
-  private _unSubject = new Subject<void>();
-  private cdr = inject(ChangeDetectorRef);
-  private i18n = inject(XI18nService);
-  configService = inject(XConfigService);
-
-  ngOnInit() {
-    this.i18n.localeChange.pipe(takeUntil(this._unSubject)).subscribe(() => {
-      this.cdr.markForCheck();
-    });
-  }
-
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
+  inputValue = signal<string>('');
 
   sureOnClick() {
-    this.sureClick.emit(this.inputValue);
+    this.sureClick.emit(this.inputValue());
   }
 }

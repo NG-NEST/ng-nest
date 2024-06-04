@@ -8,14 +8,16 @@ import { interval } from 'rxjs';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XPopoverPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeComponent, XPopoverDirective, XButtonComponent, XIconComponent],
-      declarations: [TestXPopoverComponent]
-    }).compileComponents();
+    declarations: [TestXPopoverComponent],
+    imports: [BrowserAnimationsModule, XThemeComponent, XPopoverDirective, XButtonComponent, XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPopoverComponent>;

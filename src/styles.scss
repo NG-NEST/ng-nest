@@ -3,17 +3,15 @@
 @import './styles/index.scss';
 
 @font-face {
-  font-family: 'titillium';
-  src: url('assets/fonts/titillium.eot?#') format('eot'), url('assets/fonts/titillium.woff') format('woff'),
-    url('assets/fonts/titillium.ttf') format('truetype'), url('assets/fonts/titillium.svg#titillium') format('svg');
+  font-family: 'Inter';
+  src: url(/fonts/inter.woff2) format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ubuntu';
-  src: url('assets/fonts/ubuntu.eot?#') format('eot'), url('assets/fonts/ubuntu.ttf') format('truetype'),
-    url('assets/fonts/ubuntu.woff') format('woff'), url('assets/fonts/ubuntu.svg#ubuntu') format('svg');
+  font-family: 'DM Mono';
+  src: url(/fonts/dm-mono.woff2) format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -34,7 +32,6 @@ html {
 
 body {
   background-color: $--x-background;
-  height: 100%;
 }
 
 @include scrollbar();
@@ -76,16 +73,192 @@ a {
 code,
 pre,
 tt {
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  font-family:
+    DM Mono,
+    SFMono-Regular,
+    Consolas,
+    Liberation Mono,
+    Menlo,
+    Courier,
+    monospace;
 }
 
 body,
 input {
-  font-family: 'ubuntu', -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+  font-family:
+    Inter,
+    -apple-system,
+    SF UI Text,
+    Arial,
+    PingFang SC,
+    Hiragino Sans GB,
+    Microsoft YaHei,
+    WenQuanYi Micro Hei,
+    sans-serif;
 }
 
-a,
-p,
-span {
-  letter-spacing: 0.03rem;
+.language-typescript,
+.language-ts,
+.language-json {
+  .token.decorator,
+  .token.keyword,
+  .token.builtin {
+    color: #0546ff;
+  }
+
+  .token.class-name,
+  .token.property,
+  .token.boolean {
+    color: #f637e3;
+  }
+
+  .token.string,
+  .token.number {
+    color: #fa2c05;
+  }
+
+  .token.comment {
+    color: #746e7c;
+  }
+}
+
+.language-html {
+  .token.tag,
+  .token.punctuation {
+    color: #0546ff;
+  }
+  .token.attr-name {
+    color: #f637e3;
+  }
+  .token.attr-value,
+  .token.attr-value .token.punctuation {
+    color: #fa2c05;
+    &.attr-equals {
+      color: #0546ff;
+    }
+  }
+  .token.attr-name {
+    .attr-equals {
+      color: #0546ff;
+    }
+  }
+}
+
+.language-scss {
+  .token.selector,
+  .token.function,
+  .token.keyword {
+    color: #0546ff;
+  }
+  .token.property {
+    color: #f637e3;
+  }
+  .token.string {
+    color: #fa2c05;
+  }
+  .token.punctuation {
+    color: #474747;
+  }
+}
+
+.app-markdown {
+  > *:first-child {
+    margin-top: 0;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 2.25rem 0 1rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+    font-weight: 500;
+    margin: 2rem 0 1rem;
+    clear: both;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin: 1.5rem 0 1rem;
+    clear: both;
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 1.125rem 0 $--x-font-size;
+    clear: both;
+  }
+
+  h5 {
+    font-size: $--x-font-size;
+    font-weight: 500;
+    margin: 1rem 0 0.625rem;
+    clear: both;
+  }
+
+  > p {
+    font-weight: 400;
+    margin: $--x-font-size 0 0;
+  }
+
+  > ul {
+    margin: $--x-font-size 0;
+    > li {
+      list-style-type: circle;
+      margin: 0.125rem 0.125rem 0.125rem 1.25rem;
+      line-height: 1.75rem;
+    }
+  }
+
+  blockquote {
+    margin: 0;
+    position: relative;
+    padding: 0.5rem 0.5rem 0.5rem $--x-font-size;
+    > p {
+      margin: 0;
+    }
+  }
+
+  > blockquote {
+    margin-top: $--x-font-size;
+    background-color: $--x-background-a100;
+    border-radius: $--x-border-radius;
+    border: $--x-border-base;
+    color: $--x-text-400;
+  }
+
+  li > code,
+  p > code {
+    position: relative;
+    padding: 0 0.5rem;
+    color: $--x-danger;
+    background: $--x-danger-900;
+    border-radius: $--x-border-small-radius;
+    display: inline-block;
+  }
+
+  > table {
+    width: 100%;
+    background: $--x-background;
+    border-collapse: collapse;
+    border-bottom: $--x-border-base;
+    tr > th,
+    tr > td {
+      border-bottom: $--x-border-base;
+      text-align: left;
+      padding: 0.5rem 0;
+    }
+    tr {
+      th {
+        white-space: nowrap;
+        color: $--x-text;
+      }
+    }
+  }
 }

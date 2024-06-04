@@ -8,23 +8,22 @@ import { FormsModule } from '@angular/forms';
 import { XRatePrefix } from './rate.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XRatePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
+    declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent],
+    imports: [BrowserAnimationsModule,
         FormsModule,
         XRateComponent,
         XButtonComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent
-      ],
-      declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRateComponent>;

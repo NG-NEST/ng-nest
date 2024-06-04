@@ -1,6 +1,6 @@
 <x-button (click)="onLoadData()">Load data</x-button>
 <div #scroll class="row scroll">
   <x-anchor [scroll]="scroll">
-    <x-anchor-inner [innerHTML]="html"></x-anchor-inner>
+    <x-anchor-inner [innerHTML]="html()"></x-anchor-inner>
   </x-anchor>
 </div>

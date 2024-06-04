@@ -6,14 +6,16 @@ import { XPaginationPrefix } from './pagination.property';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XPaginationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XPaginationComponent, XButtonComponent],
-      declarations: [TestXPaginationComponent, TestXPaginationStyleComponent]
-    }).compileComponents();
+    declarations: [TestXPaginationComponent, TestXPaginationStyleComponent],
+    imports: [BrowserAnimationsModule, XPaginationComponent, XButtonComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPaginationComponent>;

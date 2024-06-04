@@ -1,14 +1,7 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  OnInit,
-  HostBinding,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding, inject, computed } from '@angular/core';
 import { XRowPrefix, XRowProperty } from './layout.property';
+import { DOCUMENT } from '@angular/common';
+import { XComputedStyle, XToCssPx } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XRowPrefix}`,
@@ -18,42 +11,28 @@ import { XRowPrefix, XRowProperty } from './layout.property';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XRowComponent extends XRowProperty implements OnInit {
+export class XRowComponent extends XRowProperty {
+  private document: Document = inject(DOCUMENT);
+  private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
   @HostBinding(`class.x-flex`) get getFlex() {
-    return this.justify || this.align ? true : false;
+    return this.justify() || this.align() ? true : false;
+  }
+  @HostBinding('class') get cls() {
+    let cls: string[] = [XRowPrefix];
+    if (this.justify()) cls.push(`x-justify-${this.justify()}`);
+    if (this.align()) cls.push(`x-align-${this.align()}`);
+    return cls.join(' ');
+  }
+  @HostBinding('style.marginLeft') get marginLeft() {
+    return `-${this.spaceSignal() / 2}px`;
+  }
+  @HostBinding('style.marginRight') get marginRight() {
+    return `-${this.spaceSignal() / 2}px`;
   }
 
-  private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
-
-  ngOnInit() {
-    this.renderer.addClass(this.elementRef.nativeElement, XRowPrefix);
-    this.setSpace();
-    this.setJustify();
-    this.setAlign();
-  }
-
-  setSpace() {
-    if (!this.space) return;
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'margin-left',
-      `-${Number(this.space) / 2}rem`
-    );
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'margin-right',
-      `-${Number(this.space) / 2}rem`
-    );
-  }
-
-  setJustify() {
-    if (!this.justify) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `x-justify-${this.justify}`);
-  }
-
-  setAlign() {
-    if (!this.align) return;
-    this.renderer.addClass(this.elementRef.nativeElement, `x-align-${this.align}`);
-  }
+  spaceSignal = computed(() => {
+    if (!this.space()) return 0;
+    const space = this.space();
+    return XToCssPx(space, this.fontSize());
+  });
 }

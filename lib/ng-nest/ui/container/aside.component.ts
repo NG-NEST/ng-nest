@@ -1,15 +1,5 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  HostBinding,
-  OnInit,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { XAsidePrefix, XAsideProperty } from './container.property';
-import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XAsidePrefix}`,
@@ -19,16 +9,9 @@ import { XConfigService } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAsideComponent extends XAsideProperty implements OnInit {
-  @HostBinding(`style.width.rem`) get getWidth() {
-    return this.width;
-  }
-
-  private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
-
-  ngOnInit(): void {
-    this.renderer.addClass(this.elementRef.nativeElement, XAsidePrefix);
+export class XAsideComponent extends XAsideProperty {
+  @HostBinding('class') className = XAsidePrefix;
+  @HostBinding(`style.width`) get getWidth() {
+    return this.width();
   }
 }

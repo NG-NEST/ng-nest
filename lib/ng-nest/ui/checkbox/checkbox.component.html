@@ -1,38 +1,42 @@
 <div
   #checkbox
   class="x-checkbox"
-  [class.x-flex]="justify || align || direction"
-  [class.x-disabled]="disabled"
-  [class.x-required]="requiredIsEmpty"
-  [class.x-invalid]="invalid"
-  [class.x-checkbox-button]="button"
-  [class.x-checkbox-icon]="icon"
-  [class.x-checkbox-vertical]="vertical"
-  [class.x-checkbox-after]="after"
-  [class.x-checkbox-before]="before"
-  [class.x-checkbox-after-template]="afterIsTemplate"
-  [class.x-checkbox-before-template]="beforeIsTemplate"
+  [class.x-flex]="justify() || align() || direction()"
+  [class.x-disabled]="disabledComputed()"
+  [class.x-required]="requiredIsEmpty()"
+  [class.x-invalid]="invalid()"
+  [class.x-checkbox-button]="button()"
+  [class.x-checkbox-icon]="icon()"
+  [class.x-checkbox-vertical]="vertical()"
+  [class.x-checkbox-after]="after()"
+  [class.x-checkbox-before]="before()"
+  [class.x-checkbox-after-template]="afterIsTemplate()"
+  [class.x-checkbox-before-template]="beforeIsTemplate()"
+  [ngClass]="classMap()"
 >
-  @if (label) {
-    <label [class.x-checkbox-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{
-      label
-    }}</label>
+  @if (label()) {
+    <label
+      [class.x-checkbox-label-required]="requiredComputed()"
+      [style.width]="labelWidth()"
+      [ngClass]="labelMapSignal()"
+      >{{ label() }}</label
+    >
   }
   <div class="x-checkbox-row">
-    @if (before) {
+    @if (before()) {
       <div class="x-checkbox-row-before">
-        <ng-container *xOutlet="before">{{ before }}</ng-container>
+        <ng-container *xOutlet="before()">{{ before() }}</ng-container>
       </div>
     }
     <div class="x-checkbox-row-list">
-      @switch (checkboxType) {
+      @switch (checkboxType()) {
         @case ('initial') {
-          @for (item of nodes; track item.id) {
+          @for (item of nodes(); track item.id) {
             <div
               class="x-checkbox-row-item"
-              [class.x-checked]="getChecked(item.id)"
-              [class.x-disabled]="disabled || item.disabled"
-              [class.x-indeterminate]="indeterminate"
+              [class.x-checked]="item.checked!"
+              [class.x-disabled]="disabledComputed() || item.disabled"
+              [class.x-indeterminate]="indeterminate()"
               (click)="checkboxClick($event, item)"
             >
               <span class="x-checkbox-box"></span>
@@ -44,14 +48,14 @@
         }
         @case ('button') {
           <x-buttons boxShadow="false">
-            @for (item of nodes; track item.id) {
+            @for (item of nodes(); track item.id) {
               <x-button
-                [icon]="item.icon"
-                [title]="item.title"
-                [size]="size"
-                [type]="type"
-                [activated]="getChecked(item.id)"
-                [disabled]="getDisabled(item.disabled)"
+                [icon]="item.icon!"
+                [title]="item.title!"
+                [size]="size()"
+                [type]="type()"
+                [activated]="item.checked!"
+                [disabled]="disabledComputed() || item.disabled!"
                 attrType="button"
                 (click)="checkboxClick($event, item)"
                 plain
@@ -62,14 +66,14 @@
         }
         @case ('icon') {
           <x-buttons boxShadow="false">
-            @for (item of nodes; track item.id) {
+            @for (item of nodes(); track item.id) {
               <x-button
-                [icon]="item.icon"
-                [title]="item.title"
-                [size]="size"
-                [type]="type"
-                [activated]="getChecked(item.id)"
-                [disabled]="getDisabled(item.disabled)"
+                [icon]="item.icon!"
+                [title]="item.title!"
+                [size]="size()"
+                [type]="type()"
+                [activated]="item.checked!"
+                [disabled]="disabledComputed() || item.disabled!"
                 attrType="button"
                 (click)="checkboxClick($event, item)"
                 plain
@@ -79,16 +83,16 @@
           </x-buttons>
         }
         @case ('tag') {
-          @for (item of nodes; track item.id) {
+          @for (item of nodes(); track item) {
             <x-tag
               checked
               manual
-              [type]="type"
-              [size]="size"
-              [bordered]="tagBordered"
-              [dark]="tagDark"
-              [disabled]="getDisabled(item.disabled)"
-              [selected]="getChecked(item.id)"
+              [type]="type()"
+              [size]="size()"
+              [bordered]="tagBordered()"
+              [dark]="tagDark()"
+              [disabled]="disabledComputed() || item.disabled!"
+              [selected]="item.checked!"
               (click)="checkboxClick($event, item)"
               >{{ item.label }}</x-tag
             >
@@ -96,9 +100,9 @@
         }
       }
     </div>
-    @if (after) {
+    @if (after()) {
       <div class="x-checkbox-row-after">
-        <ng-container *xOutlet="after">{{ after }}</ng-container>
+        <ng-container *xOutlet="after()">{{ after() }}</ng-container>
       </div>
     }
   </div>

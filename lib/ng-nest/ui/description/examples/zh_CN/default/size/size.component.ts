@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { XSize } from '@ng-nest/ui/core';
+import type { XSize } from '@ng-nest/ui/core';
 import { XDescriptionComponent, XDescriptionItemComponent } from '@ng-nest/ui/description';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 
@@ -19,6 +19,6 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
   ]
 })
 export class ExSizeComponent {
-  radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size: XSize = 'medium';
+  radioData = signal(['big', 'large', 'medium', 'small', 'mini']);
+  size = signal<XSize>('medium');
 }

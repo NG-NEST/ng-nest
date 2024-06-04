@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XListComponent } from '@ng-nest/ui/list';
 
@@ -9,27 +9,24 @@ import { XListComponent } from '@ng-nest/ui/list';
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })
-export class ExDefaultComponent implements OnInit {
-  data = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, 'DDDD'];
-  data1 = JSON.parse(JSON.stringify(this.data));
-  data2 = JSON.parse(JSON.stringify(this.data));
-  data3 = JSON.parse(JSON.stringify(this.data));
-  data4 = JSON.parse(JSON.stringify(this.data));
-  data5 = JSON.parse(JSON.stringify(this.data));
-  data6 = JSON.parse(JSON.stringify(this.data));
-  data7 = JSON.parse(JSON.stringify(this.data));
-  data8 = JSON.parse(JSON.stringify(this.data));
-  data9 = JSON.parse(JSON.stringify(this.data));
-  model1: any;
-  model2 = 'AAAA';
-  model3: any;
-  model4 = ['AAAA', 'BBBB'];
-  model5: any;
-  model6 = ['BBBB', 'CCCC'];
-  model7 = 'BBBB';
-  model8: any;
-  model9: any;
-  constructor() {}
-
-  ngOnInit() {}
+export class ExDefaultComponent {
+  data = signal(['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, 'DDDD']);
+  data1 = signal(JSON.parse(JSON.stringify(this.data())));
+  data2 = signal(JSON.parse(JSON.stringify(this.data())));
+  data3 = signal(JSON.parse(JSON.stringify(this.data())));
+  data4 = signal(JSON.parse(JSON.stringify(this.data())));
+  data5 = signal(JSON.parse(JSON.stringify(this.data())));
+  data6 = signal(JSON.parse(JSON.stringify(this.data())));
+  data7 = signal(JSON.parse(JSON.stringify(this.data())));
+  data8 = signal(JSON.parse(JSON.stringify(this.data())));
+  data9 = signal(JSON.parse(JSON.stringify(this.data())));
+  model1 = signal('');
+  model2 = signal('AAAA');
+  model3 = signal<string[]>([]);
+  model4 = signal(['AAAA', 'BBBB']);
+  model5 = signal<string[]>([]);
+  model6 = signal(['BBBB', 'CCCC']);
+  model7 = signal('BBBB');
+  model8 = signal('');
+  model9 = signal('');
 }

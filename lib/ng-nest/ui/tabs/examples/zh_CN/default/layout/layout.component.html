@@ -1,12 +1,12 @@
 <div class="row">
-  <x-radio [data]="justifyRadios" [(ngModel)]="justify" button></x-radio>
+  <x-radio [data]="justifyRadios()" [(ngModel)]="justify" button></x-radio>
 </div>
 <div class="row">
-  <x-radio [data]="layoutRadios" [(ngModel)]="layout" button></x-radio>
+  <x-radio [data]="layoutRadios()" [(ngModel)]="layout" button></x-radio>
 </div>
 <div class="row">
-  <x-tabs [layout]="layout" [justify]="justify">
-    @for (label of labels; track label) {
+  <x-tabs [layout]="layout()" [justify]="justify()">
+    @for (label of labels(); track label) {
       <x-tab [label]="label">
         <div class="tab-content">{{ label }}</div>
       </x-tab>
@@ -14,8 +14,8 @@
   </x-tabs>
 </div>
 <div class="row">
-  <x-tabs type="tag" [layout]="layout" [justify]="justify">
-    @for (label of labels; track label) {
+  <x-tabs type="tag" [layout]="layout()" [justify]="justify()">
+    @for (label of labels(); track label) {
       <x-tab [label]="label">
         <div class="tab-content">{{ label }}</div>
       </x-tab>
@@ -23,8 +23,8 @@
   </x-tabs>
 </div>
 <div class="row">
-  <x-tabs type="card" [layout]="layout" [justify]="justify">
-    @for (label of labels; track label) {
+  <x-tabs type="card" [layout]="layout()" [justify]="justify()">
+    @for (label of labels(); track label) {
       <x-tab [label]="label">
         <div class="tab-content">{{ label }}</div>
       </x-tab>

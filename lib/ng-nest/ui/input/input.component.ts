@@ -4,17 +4,16 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Renderer2,
   ElementRef,
-  ViewChild,
-  OnChanges,
-  SimpleChanges,
   TemplateRef,
   HostBinding,
-  inject
+  inject,
+  viewChild,
+  signal,
+  computed
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XIsChange, XClearClass, XConfigService, XIsUndefined, XIsFunction } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsUndefined, XIsFunction, XSize } from '@ng-nest/ui/core';
 import { Subject, distinctUntilChanged, fromEvent, takeUntil } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
@@ -33,132 +32,143 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XInputComponent)]
 })
-export class XInputComponent extends XInputProperty implements OnInit, OnChanges {
-  @ViewChild('inputElement', { static: true }) inputElement!: ElementRef<HTMLElement>;
-  @ViewChild('inputRef', { static: true }) inputRef!: ElementRef<HTMLInputElement>;
-  @ViewChild('inputValueRef') inputValueRef!: ElementRef<HTMLElement>;
-  @ViewChild('maxLengthRef') maxLengthRef!: ElementRef<HTMLElement>;
+export class XInputComponent extends XInputProperty implements OnInit {
+  inputElement = viewChild.required('inputElement', { read: ElementRef<HTMLElement> });
+  inputRef = viewChild.required('inputRef', { read: ElementRef<HTMLInputElement> });
+  inputValueRef = viewChild('inputValueRef', { read: ElementRef<HTMLElement> });
+  maxLengthRef = viewChild('maxLengthRef', { read: ElementRef<HTMLElement> });
 
-  @HostBinding('style.width.px') get getWidth() {
-    return this.width;
+  @HostBinding('style.width') get getWidth() {
+    return this.width();
   }
 
   override writeValue(value: any) {
-    this.value = value;
-    this.isWriteValue = true;
+    this.value.set(value);
+    this.isWriteValue.set(true);
     this.valueChange.next(value);
-    this.isWriteValue = false;
-    this.cdr.detectChanges();
+    this.isWriteValue.set(false);
   }
 
-  valueLength: number = 0;
-  lengthTotal: string = '';
-  paddingLeft: number = 0.75;
-  paddingRight: number = 0.75;
-  clearShow: boolean = false;
-  flexClass: string[] = [];
-  valueChange = new Subject<any>();
-  isComposition = false;
-  isWriteValue = false;
-  private _required: boolean = false;
-  private _unSubject = new Subject<void>();
+  classMap = computed(() => ({
+    [`${XInputPrefix}-${this.size()}`]: !!this.size(),
+    [`x-justify-${this.justify()}`]: !!this.justify(),
+    [`x-align-${this.align()}`]: !!this.align(),
+    [`x-direction-${this.direction()}`]: !!this.direction()
+  }));
+  labelMapSignal = computed(() => ({
+    [`x-text-align-${this.labelAlign()}`]: !!this.labelAlign()
+  }));
 
-  get getIcon() {
-    return !XIsEmpty(this.icon);
-  }
-
-  get getIconLayoutLeft() {
-    return !XIsEmpty(this.icon) && this.iconLayout === 'left';
-  }
-
-  get getIconLayoutRight() {
-    return !XIsEmpty(this.icon) && this.iconLayout === 'right';
-  }
-
-  get getMaxLengthWidth() {
-    if (this.getIconLayoutRight) {
-      return this.paddingLeft;
+  valueLength = signal(0);
+  lengthTotal = signal('');
+  paddingLeft = computed(() => {
+    return this.maxlength() && this.icon() && this.iconLayout() === 'right'
+      ? (this.lengthTotal().length + 2) * 0.5 + 'rem'
+      : this.icon() && this.iconLayout() === 'left'
+        ? this.inputIconPadding()
+        : this.inputPadding();
+  });
+  paddingRight = computed(() => {
+    return this.maxlength() && this.icon() && this.iconLayout() === 'left'
+      ? (this.lengthTotal().length + 2) * 0.5 + 'rem'
+      : ((this.icon() || this.clearShow()) && this.iconLayout() === 'right') ||
+          (this.clearShow() && this.iconLayout() === 'left')
+        ? this.inputIconPadding()
+        : this.maxlength() && !this.icon()
+          ? (this.lengthTotal().length + 2) * 0.5 + 'rem'
+          : this.inputPadding();
+  });
+  clearShow = computed(() => {
+    if (this.clearable() && !this.disabledComputed()) {
+      return !XIsEmpty(this.value());
     } else {
-      return this.paddingRight;
+      return false;
     }
-  }
+  });
+  valueChange = new Subject<any>();
+  isComposition = signal(false);
+  isWriteValue = signal(false);
+  private unSubject = new Subject<void>();
 
-  get beforeIsTemplate() {
-    return this.before instanceof TemplateRef;
-  }
+  getIcon = computed(() => {
+    return !XIsEmpty(this.icon());
+  });
 
-  get afterIsTemplate() {
-    return this.after instanceof TemplateRef;
-  }
+  getIconLayoutLeft = computed(() => {
+    return !XIsEmpty(this.icon()) && this.iconLayout() === 'left';
+  });
 
-  get getTemplateWidth() {
-    return `calc(100% - ${this.paddingLeft + this.paddingRight}rem)`;
-  }
+  getIconLayoutRight = computed(() => {
+    return !XIsEmpty(this.icon()) && this.iconLayout() === 'right';
+  });
 
-  focused = false;
-  private renderer = inject(Renderer2);
+  getMaxLengthWidth = computed(() => {
+    if (this.getIconLayoutRight()) {
+      return this.paddingLeft();
+    } else {
+      return this.paddingRight();
+    }
+  });
+
+  beforeIsTemplate = computed(() => this.before() instanceof TemplateRef);
+  afterIsTemplate = computed(() => this.after() instanceof TemplateRef);
+
+  getTemplateWidth = computed(() => {
+    return `calc(100% - ${this.paddingLeft()} - ${this.paddingRight()})`;
+  });
+
+  focused = signal(false);
+  groupSize = signal<XSize | null>(null);
+  groupBordered = signal<boolean | null>(null);
+
   override cdr = inject(ChangeDetectorRef);
   private inputGroup = inject(XInputGroupComponent, { optional: true });
   elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
 
   ngOnInit() {
-    this.setPadding();
-    this.setFlexClass();
     this.setInheritedValue();
-    this.setClassMap();
     this.setEvent();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const { clearable, size, labelAlign, justify, align, direction, icon, iconSpin, clearShow } = changes;
-    XIsChange(clearable) && this.setClearable();
-    XIsChange(size, labelAlign) && this.setClassMap();
-    XIsChange(justify, align, direction) && this.setFlexClass();
-    XIsChange(icon, iconSpin, clearShow) && this.cdr.detectChanges();
-    XIsChange(size) && this.setPadding();
-  }
-
   ngOnDestroy() {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   setEvent() {
-    fromEvent(this.inputRef.nativeElement, 'compositionstart')
-      .pipe(takeUntil(this._unSubject))
+    const inputRef = this.inputRef().nativeElement;
+    fromEvent(inputRef, 'compositionstart')
+      .pipe(takeUntil(this.unSubject))
       .subscribe(() => {
-        this.isComposition = true;
+        this.isComposition.set(true);
       });
-    fromEvent(this.inputRef.nativeElement, 'compositionend')
-      .pipe(takeUntil(this._unSubject))
-      .subscribe((x: Event) => {
-        this.isComposition = false;
+    fromEvent(inputRef, 'compositionend')
+      .pipe(takeUntil(this.unSubject))
+      .subscribe((x: any) => {
+        this.isComposition.set(false);
         this.inputCheckValue(x);
       });
-    fromEvent(this.inputRef.nativeElement, 'focus')
-      .pipe(takeUntil(this._unSubject))
+    fromEvent(inputRef, 'focus')
+      .pipe(takeUntil(this.unSubject))
       .subscribe(() => {
-        this.focused = true;
-        this.cdr.detectChanges();
+        this.focused.set(true);
       });
-    fromEvent(this.inputRef.nativeElement, 'blur')
-      .pipe(takeUntil(this._unSubject))
+    fromEvent(inputRef, 'blur')
+      .pipe(takeUntil(this.unSubject))
       .subscribe(() => {
-        this.focused = false;
-        this.cdr.detectChanges();
+        this.focused.set(false);
       });
-    fromEvent<InputEvent>(this.inputRef.nativeElement, 'input')
-      .pipe(takeUntil(this._unSubject))
+    fromEvent<InputEvent>(inputRef, 'input')
+      .pipe(takeUntil(this.unSubject))
       .subscribe((x: InputEvent) => {
-        if (!this.isComposition) {
+        if (!this.isComposition()) {
           this.inputCheckValue(x);
         }
       });
     this.valueChange
       .pipe(
-        distinctUntilChanged((a, b) => a === b || (!!this.maxlength && `${b}`.length > Number(this.maxlength))),
-        takeUntil(this._unSubject)
+        distinctUntilChanged((a, b) => a === b || (!!this.maxlength() && `${b}`.length > Number(this.maxlength()))),
+        takeUntil(this.unSubject)
       )
       .subscribe((x) => {
         this.change(x);
@@ -168,10 +178,10 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   inputCheckValue(x: Event) {
     const input = x.target as HTMLInputElement;
     let value = input.value;
-    if (this.type === 'number') {
+    if (this.type() === 'number') {
       const len = XIsEmpty(value) ? 0 : `${value}`.length;
-      if (len > Number(this.maxlength)) {
-        input.value = value.slice(0, Number(this.maxlength));
+      if (len > Number(this.maxlength())) {
+        input.value = value.slice(0, this.maxlength()!);
       }
     }
     this.xInput.emit(x);
@@ -179,17 +189,12 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
   }
 
   change(value: any) {
-    if (this._required && !this.disabled) {
-      this.required = XIsEmpty(value);
-    }
-    this.setClearable();
     if (this.maxlength) {
-      this.valueLength = XIsEmpty(value) ? 0 : `${value}`.length;
-      this.lengthTotal = `${this.valueLength}/${this.maxlength}`;
+      this.valueLength.set(XIsEmpty(value) ? 0 : `${value}`.length);
+      this.lengthTotal.set(`${this.valueLength()}/${this.maxlength()}`);
     }
-    this.setPadding();
-    if (this.onChange && !this.isWriteValue) {
-      if (this.type === 'number') {
+    if (this.onChange && !this.isWriteValue()) {
+      if (this.type() === 'number') {
         if (['', undefined, null].includes(value)) {
           value = null;
         } else {
@@ -198,92 +203,40 @@ export class XInputComponent extends XInputProperty implements OnInit, OnChanges
       }
       this.onChange(value);
     }
-    if (this.validator && XIsFunction(this.inputValidator)) {
-      this.invalidInputValidator = !this.inputValidator(value);
+    if (this.validatorComputed() && XIsFunction(this.inputValidator())) {
+      this.invalidInputValidator.set(!this.inputValidator()!(value));
     }
-    this.cdr.detectChanges();
   }
 
   onClear() {
-    const clearValue = this.value;
-    this.value = '';
-    this.valueChange.next(this.value);
-    this.inputRef.nativeElement.focus();
+    const clearValue = this.value();
+    this.value.set('');
+    this.valueChange.next(this.value());
+    this.inputRef().nativeElement.focus();
     this.clearEmit.emit(clearValue);
-  }
-
-  setFlexClass() {
-    if (this.flexClass.length > 0) {
-      for (let cls of this.flexClass) {
-        this.renderer.removeClass(this.inputElement.nativeElement, cls);
-      }
-    }
-    this.flexClass = this.setFlex(
-      this.inputElement.nativeElement,
-      this.renderer,
-      this.justify,
-      this.align,
-      this.direction
-    );
-  }
-
-  setClearable() {
-    if (this.clearable && !this.disabled) {
-      this.clearShow = !XIsEmpty(this.value);
-    } else {
-      this.clearShow = false;
-    }
-    this.setPadding();
   }
 
   setInheritedValue() {
     if (!this.inputGroup) return;
-    if (!XIsUndefined(this.inputGroup.size)) {
-      this.size = this.inputGroup.size;
+    if (!XIsUndefined(this.inputGroup.size())) {
+      this.groupSize.set(this.inputGroup.size()!);
     }
-    if (!XIsUndefined(this.inputGroup.bordered)) {
-      this.bordered = this.inputGroup.bordered;
+    if (!XIsUndefined(this.inputGroup.bordered())) {
+      this.groupBordered.set(this.inputGroup.bordered()!);
     }
-  }
-
-  setPadding() {
-    this.paddingLeft =
-      this.maxlength && this.icon && this.iconLayout === 'right'
-        ? (this.lengthTotal.length + 2) * 0.5
-        : this.icon && this.iconLayout === 'left'
-          ? Number(this.inputIconPadding)
-          : Number(this.inputPadding);
-    this.paddingRight =
-      this.maxlength && this.icon && this.iconLayout === 'left'
-        ? (this.lengthTotal.length + 2) * 0.5
-        : (this.icon || this.clearShow) && this.iconLayout === 'right'
-          ? Number(this.inputIconPadding)
-          : this.maxlength && !this.icon
-            ? (this.lengthTotal.length + 2) * 0.5
-            : Number(this.inputPadding);
   }
 
   inputFocus(type: 'focus' | 'select' | 'before' | 'after' = 'after') {
-    this.inputRef.nativeElement.focus();
-    if (!this.value) return;
+    this.inputRef().nativeElement.focus();
+    if (!this.value()) return;
     if (type === 'after') {
-      this.inputRef.nativeElement.setSelectionRange(this.value.length, this.value.length);
+      this.inputRef().nativeElement.setSelectionRange(this.value().length, this.value().length);
     } else if (type === 'before') {
-      this.inputRef.nativeElement.setSelectionRange(0, 0);
+      this.inputRef().nativeElement.setSelectionRange(0, 0);
     } else if (type === 'select') {
-      this.inputRef.nativeElement.setSelectionRange(0, this.value.length);
+      this.inputRef().nativeElement.setSelectionRange(0, this.value().length);
     }
   }
 
-  setClassMap() {
-    XClearClass(this.classMap, this.labelMap);
-    this.classMap[`${XInputPrefix}-${this.size}`] = this.size ? true : false;
-    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
-  }
-
-  formControlChanges() {
-    this.valueChange.next(this.value);
-    this.ngOnInit();
-    this.cdr.detectChanges();
-  }
+  formControlChanges() {}
 }

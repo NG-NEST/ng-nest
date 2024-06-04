@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTagComponent } from '@ng-nest/ui/tag';
 
 @Component({
@@ -9,8 +9,11 @@ import { XTagComponent } from '@ng-nest/ui/tag';
   styleUrls: ['./close.component.scss']
 })
 export class ExCloseComponent {
-  tags = ['Label One', 'Label Two', 'Label Three', 'Label Four', 'Label Five'];
+  tags = signal(['Label One', 'Label Two', 'Label Three', 'Label Four', 'Label Five']);
   close(tag: string) {
-    this.tags.splice(this.tags.indexOf(tag), 1);
+    this.tags.update((x) => {
+      x.splice(x.indexOf(tag), 1);
+      return [...x];
+    });
   }
 }

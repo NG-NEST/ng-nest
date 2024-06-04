@@ -1,5 +1,5 @@
 import { ComponentRef, Injectable, inject } from '@angular/core';
-import { XTemplate, XIsXTemplate, fillDefault, XIsString } from '@ng-nest/ui/core';
+import { XTemplate, XIsXTemplate, XFillDefault, XIsString } from '@ng-nest/ui/core';
 import { XMessageBoxOption, XMessageBoxOverlayRef, XMessageBoxRef, XMessageBoxPortal } from './message-box.property';
 import { XMessageBoxComponent } from './message-box.component';
 import { XPortalService } from '@ng-nest/ui/portal';
@@ -60,7 +60,7 @@ export class XMessageBoxService {
       opt = option as XMessageBoxOption;
     }
     this.setLocal();
-    fillDefault(opt, Object.assign(this.default, def));
+    XFillDefault(opt, Object.assign(this.default, def));
     return this.createMessageBoxPlacement(opt);
   }
 

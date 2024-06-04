@@ -1,117 +1,165 @@
 export default {
   locale: 'it_IT',
   comment: {
-    comments: 'commento',
-    giveALike: 'piace',
-    reply: 'rispondere',
-    more: 'Vedi altro',
-    sure: 'pubblicazione',
-    placeholder: 'Per favore, inserisci un commento'
+    comments: 'Commenti',
+    giveALike: 'Mi piace',
+    reply: 'Rispondi',
+    more: 'Di più',
+    sure: 'Sicuro',
+    placeholder: 'Inserisci un commento'
   },
   theme: {
     darkMode: 'Modalità scura',
-    initDefault: 'Inizializza il valore predefinito',
-    primary: 'Colore principale',
-    success: 'successo',
-    warning: 'avvertimento',
+    initDefault: 'Inizializza predefinito',
+    primary: 'Primario',
+    success: 'Successo',
+    warning: 'Avviso',
     danger: 'Pericolo',
-    info: 'informazione',
-    background: 'sfondo',
-    border: 'telaio',
+    info: 'Informazioni',
+    background: 'Sfondo',
+    border: 'Bordo',
     text: 'Testo'
   },
   calendar: {
-    month: 'mese',
-    year: 'anno',
-    lastMonth: 'Primo mese',
-    lastYear: `l'anno scorso`,
-    nextMonth: 'Il prossimo mese',
-    nextYear: `l'anno prossimo`,
-    january: 'gennaio',
-    february: 'febbraio',
-    march: 'marzo',
-    april: 'aprile',
+    month: 'Mese',
+    year: 'Anno',
+    lastMonth: 'Mese scorso',
+    lastYear: 'Anno scorso',
+    nextMonth: 'Mese prossimo',
+    nextYear: 'Anno prossimo',
+    january: 'Gennaio',
+    february: 'Febbraio',
+    march: 'Marzo',
+    april: 'Aprile',
     may: 'Maggio',
-    june: 'giugno',
-    july: 'luglio',
-    august: 'agosto',
-    september: 'settembre',
-    october: 'ottobre',
-    november: 'novembre',
-    december: 'dicembre'
+    june: 'Giugno',
+    july: 'Luglio',
+    august: 'Agosto',
+    september: 'Settembre',
+    october: 'Ottobre',
+    november: 'Novembre',
+    december: 'Dicembre'
   },
   datePicker: {
-    sure: 'Confermare',
-    month: '',
-    year: '',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'ieri',
+    sure: 'Conferma',
+    week: 'Settimana',
+    month: 'Mese',
+    year: 'Anno',
+    january: 'Gennaio',
+    february: 'Febbraio',
+    march: 'Marzo',
+    april: 'Aprile',
+    may: 'Maggio',
+    june: 'Giugno',
+    july: 'Luglio',
+    august: 'Agosto',
+    september: 'Settembre',
+    october: 'Ottobre',
+    november: 'Novembre',
+    december: 'Dicembre',
+    monday: 'Lunedì',
+    tuesday: 'Martedì',
+    wednesday: 'Mercoledì',
+    thursday: 'Giovedì',
+    friday: 'Venerdì',
+    saturday: 'Sabato',
+    sunday: 'Domenica',
+    yesterday: 'Ieri',
     today: 'Oggi',
-    tomorrow: 'Domani'
+    tomorrow: 'Domani',
+    thisWeek: 'Questa settimana',
+    lastWeek: 'Settimana scorsa',
+    nextWeek: 'Settimana prossima',
+    thisMonth: 'Questo mese',
+    lastMonth: 'Mese scorso',
+    nextMonth: 'Mese prossimo',
+    thisYear: "Quest'anno",
+    lastYear: 'Anno scorso',
+    nextYear: 'Anno prossimo',
+    selectDate: 'Seleziona data',
+    selectWeek: 'Seleziona settimana',
+    selectMonth: 'Seleziona mese',
+    selectQuarter: 'Seleziona trimestre',
+    selectYear: 'Seleziona anno',
+    startDate: 'Data di inizio',
+    endDate: 'Data di fine',
+    startMonth: 'Mese di inizio',
+    endMonth: 'Mese di fine',
+    startQuarter: 'Trimestre di inizio',
+    endQuarter: 'Trimestre di fine',
+    startYear: 'Anno di inizio',
+    endYear: 'Anno di fine',
+    startWeek: 'Settimana di inizio',
+    endWeek: 'Settimana di fine'
   },
-  empty: {
-    noData: 'אין מידע'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Ora',
+    selectTime: 'Seleziona ora',
+    selectHour: 'Seleziona ora',
+    selectMinute: 'Seleziona minuto'
   },
+  empty: { noData: 'Nessun dato' },
+  image: { previewText: 'Anteprima' },
   pagination: {
-    previous: 'Pagina precedente',
-    next: 'Pagina successiva',
+    previous: 'Precedente',
+    next: 'Successivo',
     total: 'Totale',
-    item: 'Articolo',
-    first: 'prima pagina',
-    last: 'Coda',
-    jump: 'Salto',
-    sizePage: '/ pagina'
+    item: 'Elemento',
+    first: 'Primo',
+    last: 'Ultimo',
+    jump: 'Vai a',
+    sizePage: 'Elementi per pagina'
   },
   textRetract: {
-    unfold: 'Svelare',
-    packUp: 'Mettere via'
+    unfold: 'Espandi',
+    packUp: 'Riassumi'
   },
   timeAgo: {
-    just: 'appena',
+    just: 'Proprio adesso',
     secondsAgo: 'Secondi fa',
-    minutesAgo: 'minuti fa',
-    hoursAgo: `Un'ora fa`
+    minutesAgo: 'Minuti fa',
+    hoursAgo: 'Ore fa'
+  },
+  transfer: {
+    listTitle: 'Elenco',
+    treeTitle: 'Albero',
+    tableTitle: 'Tabella',
+    selectedTitle: 'Elementi selezionati',
+    inverse: 'Inverti'
   },
   messageBox: {
     cancelText: 'Annulla',
-    confirmText: 'Confermare'
+    confirmText: 'Conferma'
   },
   dialog: {
     cancelText: 'Annulla',
-    confirmText: 'Confermare'
+    confirmText: 'Conferma'
   },
   popconfirm: {
     cancelText: 'Annulla',
-    confirmText: 'Confermare'
+    confirmText: 'Conferma'
   },
   upload: {
-    uploadText: 'caricare files'
+    uploadText: 'Carica file',
+    beginUploadText: 'Inizia il caricamento',
+    uploadingText: 'Caricamento in corso',
+    uploadCompleted: 'Caricamento completato'
   },
-  pageHeader: {
-    back: 'ritorno'
-  },
+  pageHeader: { back: 'Indietro' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Seleziona tutto',
+    loadMoreText: 'Carica altro',
+    loadingMoreText: 'Caricamento in corso'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Seleziona tutto',
+    maxTagContent: 'Altri {{surplus}} selezionati'
+  },
+  treeSelect: {
+    selectAllText: 'Seleziona tutto',
+    maxTagContent: 'Altri {{surplus}} selezionati'
+  },
+  form: { required: 'Obbligatorio' }
 };

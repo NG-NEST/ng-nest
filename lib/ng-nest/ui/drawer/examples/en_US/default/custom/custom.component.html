@@ -3,7 +3,7 @@
   <x-button (click)="openTable()">table</x-button>
   <x-button (click)="openForm()">form</x-button>
 
-  <x-drawer [title]="titleTpl" [visible]="visible" (close)="close()">
+  <x-drawer [title]="titleTpl" [(visible)]="visible" (close)="close()">
     <span>content</span>
   </x-drawer>
 
@@ -12,7 +12,7 @@
     <span>user info</span>
   </ng-template>
 
-  <x-drawer title="table" size="50%" [visible]="visibleTable" (close)="closeTable()">
+  <x-drawer title="table" size="50%" [(visible)]="visibleTable" (close)="closeTable()">
     <table class="custom-table">
       <tr>
         <th>user</th>
@@ -37,7 +37,7 @@
     </table>
   </x-drawer>
 
-  <x-drawer title="form" [visible]="visibleForm" placement="left" (close)="closeForm()">
+  <x-drawer title="form" [(visible)]="visibleForm" placement="left" (close)="closeForm()">
     <ul class="custom-form">
       <li><x-input label="user" direction="row"></x-input></li>
       <li><x-input label="email" direction="row"></x-input></li>

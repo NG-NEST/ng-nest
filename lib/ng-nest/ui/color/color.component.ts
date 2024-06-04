@@ -1,43 +1,32 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, inject, computed, HostBinding } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { XColorPrefix, XColorProperty } from './color.property';
-import { toHex, mixColors, XConfigService, XComputed } from '@ng-nest/ui/core';
+import { XToHex, XMixColors, XComputed } from '@ng-nest/ui/core';
 
 @Component({
-  selector: 'x-color',
+  selector: XColorPrefix,
   standalone: true,
   templateUrl: './color.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XColorComponent extends XColorProperty implements OnInit {
-  colors: string[] = [];
+export class XColorComponent extends XColorProperty {
+  @HostBinding('class') className = XColorPrefix;
   private doc = inject(DOCUMENT);
-  private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
 
-  ngOnInit() {
-    this.renderer.addClass(this.elementRef.nativeElement, XColorPrefix);
-    if (!this.hex || this.hex === 'var(--x-primary)')
-      this.hex = XComputed(this.doc.documentElement).getPropertyValue('--x-primary');
-    if (this.hex) this.setColors();
-  }
-
-  setColors() {
-    let colors = [];
-    for (let amount of this.amounts as Array<number>) {
-      colors.push(toHex(mixColors(this.merge as string, this.hex.trim(), amount as number)));
+  hexSignal = computed(() => {
+    if (!this.hex() || this.hex() === 'var(--x-primary)') {
+      return XComputed(this.doc.documentElement).getPropertyValue('--x-primary');
     }
-    this.colors = colors;
-  }
+    return this.hex();
+  });
+
+  colors = computed(() => {
+    const colors = [];
+    for (let amount of this.amounts()) {
+      colors.push(XToHex(XMixColors(this.merge(), this.hexSignal().trim(), amount)));
+    }
+    return colors;
+  });
 }

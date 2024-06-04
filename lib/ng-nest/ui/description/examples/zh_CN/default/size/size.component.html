@@ -1,5 +1,5 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
-<x-description title="用戶信息" bordered [size]="size">
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
+<x-description title="用戶信息" bordered [size]="size()">
   <x-description-item label="编码：" gridArea="1/1/1/5">909090</x-description-item>
   <x-description-item label="基本资料" gridArea="2/1/5/2" justify="center" align="center"></x-description-item>
   <x-description-item label="姓名：" gridArea="2/2">张三</x-description-item>
@@ -12,7 +12,7 @@
   <x-description-item label="年龄：" gridArea="4/3">37</x-description-item>
   <x-description-item label="爱好：" gridArea="4/4">乒乓球</x-description-item>
 </x-description>
-<x-description title="用戶信息" [size]="size">
+<x-description title="用戶信息" [size]="size()">
   <x-description-item label="编码：" gridArea="1/1/1/4">909090</x-description-item>
   <x-description-item label="姓名：" gridArea="2/1">张三</x-description-item>
   <x-description-item label="账号：" gridArea="2/2">zhangsan</x-description-item>

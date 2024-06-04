@@ -1,19 +1,19 @@
 <ng-template #drawerTpl>
-  @if (container) {
+  @if (hasContainer() && hasBackdrop()) {
     <div class="x-drawer-backdrop" (click)="closePortal()"></div>
   }
   <div
     class="x-drawer"
-    [ngClass]="classMap"
-    [style.width]="width"
-    [style.height]="height"
-    [class.x-drawer-visible]="visible"
-    [@x-slide-animation]="placement"
+    [ngClass]="classMap()"
+    [style.width]="hasContainer() ? width() : '100%'"
+    [style.height]="hasContainer() ? height() : '100%'"
+    [class.x-drawer-visible]="visible()"
+    [@x-slide-animation]="placement()"
   >
-    @if (title) {
+    @if (title()) {
       <div class="x-drawer-header">
         <div class="x-drawer-title">
-          <ng-container *xOutlet="title">{{ title }}</ng-container>
+          <ng-container *xOutlet="title()">{{ title() }}</ng-container>
         </div>
         <x-button
           size="small"
@@ -30,6 +30,6 @@
     </div>
   </div>
 </ng-template>
-@if (container) {
+@if (hasContainer()) {
   <ng-container *ngTemplateOutlet="drawerTpl"></ng-container>
 }

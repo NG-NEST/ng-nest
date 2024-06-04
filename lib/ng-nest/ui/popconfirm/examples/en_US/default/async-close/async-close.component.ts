@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XPopconfirmComponent } from '@ng-nest/ui/popconfirm';
 import { Observable } from 'rxjs';
@@ -10,10 +10,14 @@ import { Observable } from 'rxjs';
   templateUrl: './async-close.component.html'
 })
 export class ExAsyncCloseComponent {
-  confirmAsync = new Observable<void>((x) => {
-    setTimeout(() => {
-      x.next();
-    }, 2000);
-  });
-  cancel() {}
+  confirmAsync = signal(
+    new Observable<void>((x) => {
+      setTimeout(() => {
+        x.next();
+      }, 2000);
+    })
+  );
+  cancel() {
+    console.log('cancel');
+  }
 }

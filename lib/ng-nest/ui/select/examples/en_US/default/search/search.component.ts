@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XSelectComponent } from '@ng-nest/ui/select';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./search.component.scss']
 })
 export class ExSearchComponent {
-  default = [
+  default = signal([
     'AAAA',
     'BBBB',
     'CCCC',
@@ -28,34 +28,36 @@ export class ExSearchComponent {
     'MMMM',
     'NNNN',
     'VVVV'
-  ];
+  ]);
 
-  data = [...this.default];
-  model = '';
+  data = signal([...this.default()]);
+  model = signal('');
 
-  dataAsync = (str: string) =>
-    new Observable<string[]>((x) => {
-      setTimeout(() => {
-        if (XIsEmpty(str)) {
-          x.next([...this.default]);
-        } else {
-          x.next([...this.default.filter((x) => x.indexOf(str) >= 0)!]);
-        }
-        x.complete();
-      }, 1000);
-    });
-  modelAsync = '';
+  dataAsync = signal(
+    (str: string) =>
+      new Observable<string[]>((x) => {
+        setTimeout(() => {
+          if (XIsEmpty(str)) {
+            x.next([...this.default()]);
+          } else {
+            x.next([...this.default().filter((x) => x.indexOf(str) >= 0)!]);
+          }
+          x.complete();
+        }, 1000);
+      })
+  );
+  modelAsync = signal('');
 
-  modelMultipleAsync = [];
+  modelMultipleAsync = signal([]);
 
-  dataMultiple = [...this.default];
-  modelMultiple = [];
+  dataMultiple = signal([...this.default()]);
+  modelMultiple = signal([]);
 
-  dataMultipleMore = [...this.default];
-  modelMultipleMore = [];
+  dataMultipleMore = signal([...this.default()]);
+  modelMultipleMore = signal([]);
 
-  dataMultipleMoreTpl = [...this.default];
-  modelMultipleMoreTpl = ['AAAA', 'BBBB', 'CCCC'];
+  dataMultipleMoreTpl = signal([...this.default()]);
+  modelMultipleMoreTpl = signal(['AAAA', 'BBBB', 'CCCC']);
 
   change(_event: any) {
     console.log(_event);

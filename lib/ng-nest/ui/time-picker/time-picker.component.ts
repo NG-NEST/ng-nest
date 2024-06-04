@@ -6,29 +6,33 @@ import {
   OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Renderer2,
   ElementRef,
   ViewContainerRef,
-  ViewChild,
   inject,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  signal,
+  computed,
+  viewChild,
+  ComponentRef,
+  effect
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerProperty } from './time-picker.property';
-import { XIsEmpty, XIsDate, XIsNumber, XCorner, XClearClass, XIsString, XParents } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsDate, XIsNumber, XCorner, XIsString, XParents, XPlacement } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DOCUMENT, DatePipe } from '@angular/common';
 import {
   Overlay,
   OverlayConfig,
   FlexibleConnectedPositionStrategy,
-  ConnectedOverlayPositionChange
+  ConnectedOverlayPositionChange,
+  OverlayRef
 } from '@angular/cdk/overlay';
 import { takeUntil, map, filter } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nTimePicker, zh_CN } from '@ng-nest/ui/i18n';
 import { FormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTimePickerPrefix}`,
@@ -41,73 +45,105 @@ import { FormsModule } from '@angular/forms';
   providers: [XValueAccessor(XTimePickerComponent), DatePipe]
 })
 export class XTimePickerComponent extends XTimePickerProperty implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('datePicker', { static: true }) datePicker!: ElementRef<HTMLElement>;
-  @ViewChild('inputCom', { static: true }) inputCom!: XInputComponent;
-
-  override writeValue(value: any) {
-    if (XIsDate(value)) {
-      this.value = value.getTime();
-      this.valueType = 'date';
-    } else if (XIsNumber(value)) {
-      this.value = value;
-      this.valueType = 'number';
-    } else if (XIsString(value)) {
-      this.value = new Date(value).getTime();
-      this.valueType = 'string';
-    } else if (XIsEmpty(value)) {
-      this.value = '';
-    }
-    this.setDisplayValue(this.value);
-    this.valueChange.next(this.value);
-    this.cdr.detectChanges();
-  }
-
-  override readonly: boolean = true;
-  clearable: boolean = false;
-  enter: boolean = false;
-  animating = false;
-  displayValue: any = '';
-  portal!: XPortalOverlayRef<XTimePickerPortalComponent>;
-  icon: string = 'fto-clock';
-  box!: DOMRect;
-  protalHeight!: number;
-  maxNodes: number = 8;
-  protalTobottom: boolean = true;
-  valueChange: Subject<any> = new Subject();
-  dataChange: Subject<any> = new Subject();
-  positionChange: Subject<any> = new Subject();
-  closeSubject: Subject<void> = new Subject();
-  valueType: 'date' | 'number' | 'string' = 'date';
-  locale: XI18nTimePicker = {};
-  private _unSubject = new Subject<void>();
-  document = inject(DOCUMENT);
-
-  get getPlaceholder() {
-    if (this.placeholder) return this.placeholder;
-    if (this.type === 'time') {
-      return this.locale.selectTime;
-    } else if (this.type === 'hour') {
-      return this.locale.selectHour;
-    } else if (this.type === 'minute') {
-      return this.locale.selectMinute;
-    } else {
-      return this.locale.selectTime;
-    }
-  }
-
-  private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
-  override cdr = inject(ChangeDetectorRef);
   private portalService = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
   private datePipe = inject(DatePipe);
   private overlay = inject(Overlay);
   private i18n = inject(XI18nService);
 
+  datePicker = viewChild.required<ElementRef<HTMLElement>>('datePicker');
+  inputCom = viewChild.required<XInputComponent>('inputCom');
+
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.timePicker as XI18nTimePicker)), {
+    initialValue: zh_CN.timePicker
+  });
+
+  override writeValue(value: any) {
+    let valueType: 'date' | 'number' | 'string' = 'date';
+    if (XIsEmpty(value)) {
+      value = '';
+    } else if (XIsNumber(value)) {
+      valueType = 'number';
+    } else if (XIsString(value)) {
+      value = new Date(value).getTime();
+      valueType = 'string';
+    } else if (XIsDate(value)) {
+      value = value.getTime();
+    }
+    this.value.set(value);
+    this.valueType.set(valueType);
+  }
+
+  displayValue = computed(() => {
+    const value = this.value();
+    if (!value) return;
+    if (this.use12Hours()) {
+      let dt = new Date(value);
+      let hour = dt.getHours();
+      let suffix = hour >= 12 ? this.locale().pm : this.locale().am;
+      return `${this.datePipe.transform(
+        dt.setHours(hour === 0 ? 12 : hour > 12 ? hour - 12 : hour),
+        this.formatSignal()
+      )} ${suffix}`;
+    } else {
+      return this.datePipe.transform(value, this.formatSignal());
+    }
+  });
+
+  formatSignal = computed(() => {
+    if (this.format() === 'HH:mm:ss') {
+      if (this.type() === 'hour') {
+        return 'HH';
+      } else if (this.type() === 'minute') {
+        return 'HH:mm';
+      }
+    }
+    return this.format();
+  });
+
+  clearable = signal(false);
+  enter = signal(false);
+  animating = signal(false);
+  portal!: XPortalOverlayRef<XTimePickerPortalComponent>;
+  icon = signal('fto-clock');
+  closeSubject: Subject<void> = new Subject();
+  valueType = signal<'date' | 'number' | 'string'>('date');
+  private unSubject = new Subject<void>();
+  document = inject(DOCUMENT);
+
+  getPlaceholder = computed(() => {
+    if (this.placeholder()) return this.placeholder();
+    if (this.type() === 'time') {
+      return this.locale().selectTime;
+    } else if (this.type() === 'hour') {
+      return this.locale().selectHour;
+    } else if (this.type() === 'minute') {
+      return this.locale().selectMinute;
+    } else {
+      return this.locale().selectTime;
+    }
+  });
+
+  private realPlacement = signal<XPlacement | null>(null);
+  portalComponent = signal<ComponentRef<XTimePickerPortalComponent> | null>(null);
+  portalOverlayRef = signal<OverlayRef | null>(null);
+
+  constructor() {
+    super();
+    effect(() => this.portalComponent()?.setInput('value', this.value()));
+    effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
+    effect(() => this.portalComponent()?.setInput('use12Hours', this.use12Hours()));
+    effect(() => this.portalComponent()?.setInput('type', this.type()));
+    effect(() => this.portalComponent()?.setInput('hourStep', this.hourStep()));
+    effect(() => this.portalComponent()?.setInput('minuteStep', this.minuteStep()));
+    effect(() => this.portalComponent()?.setInput('secondStep', this.secondStep()));
+    effect(() => this.portalComponent()?.setInput('preset', this.preset()));
+    effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
+    effect(() => this.portalComponent()?.setInput('disabledTime', this.disabledTime()));
+  }
+
   ngOnInit() {
-    this.setFlex(this.datePicker.nativeElement, this.renderer, this.justify, this.align, this.direction);
-    this.setFormat();
-    this.setClassMap();
     this.setSubject();
     this.setParantScroll();
   }
@@ -117,23 +153,8 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
   }
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-  }
-
-  setClassMap() {
-    XClearClass(this.labelMap);
-    this.labelMap[`x-text-align-${this.labelAlign}`] = this.labelAlign ? true : false;
-  }
-
-  setFormat() {
-    if (this.format === 'HH:mm:ss') {
-      if (this.type === 'hour') {
-        this.format = 'HH';
-      } else if (this.type === 'minute') {
-        this.format = 'HH:mm';
-      }
-    }
+    this.unSubject.next();
+    this.unSubject.complete();
   }
 
   setParantScroll() {
@@ -150,10 +171,10 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
       fromEvent(firstScroll, 'scroll')
         .pipe(
           filter(() => this.portalAttached()!),
-          takeUntil(this._unSubject)
+          takeUntil(this.unSubject)
         )
         .subscribe(() => {
-          this.portal?.overlayRef?.updatePosition();
+          this.portalOverlayRef()?.updatePosition();
           const eract = this.elementRef.nativeElement.getBoundingClientRect();
           const frect = firstScroll!.getBoundingClientRect();
           if (eract.top + eract.height - frect.top < 0 || eract.bottom > frect.bottom) {
@@ -164,72 +185,55 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
   }
 
   setSubject() {
-    this.closeSubject.pipe(takeUntil(this._unSubject)).subscribe(() => {
+    this.closeSubject.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.closePortal();
     });
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.timePicker as XI18nTimePicker),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        if (this.use12Hours) {
-          this.setDisplayValue(this.value);
-        }
-        this.cdr.markForCheck();
-      });
   }
 
   menter() {
-    if (this.disabled) return;
-    this.enter = true;
-    if (!XIsEmpty(this.value)) {
-      this.icon = '';
-      this.clearable = true;
-      this.cdr.detectChanges();
+    if (this.disabledComputed()) return;
+    this.enter.set(true);
+    if (!XIsEmpty(this.value())) {
+      this.icon.set('');
+      this.clearable.set(true);
     }
   }
 
   mleave() {
-    if (this.disabled) return;
-    this.enter = false;
-    if (this.clearable) {
-      this.icon = 'fto-clock';
-      this.clearable = false;
-      this.cdr.detectChanges();
+    if (this.disabledComputed()) return;
+    this.enter.set(false);
+    if (this.clearable()) {
+      this.icon.set('fto-clock');
+      this.clearable.set(false);
     }
   }
 
   clearEmit() {
-    this.value = '';
-    this.displayValue = '';
+    this.value.set('');
     this.mleave();
-    this.valueChange.next(this.value);
-    if (this.onChange) this.onChange(this.value);
+    if (this.onChange) this.onChange(this.value());
   }
 
   portalAttached() {
-    return this.portal?.overlayRef?.hasAttached();
+    return this.portalOverlayRef()?.hasAttached();
   }
 
   closePortal() {
     if (this.portalAttached()) {
-      this.portal?.overlayRef?.detach();
-      this.active = false;
-      this.cdr.detectChanges();
+      this.portalOverlayRef()?.detach();
+      this.active.set(false);
       return true;
     }
     return false;
   }
 
   destroyPortal() {
-    this.portal?.overlayRef?.dispose();
+    this.portalOverlayRef()?.dispose();
   }
 
   showPortal() {
-    if (this.disabled || this.animating) return;
-    this.active = true;
+    if (this.disabledComputed() || this.animating()) return;
+    this.active.set(true);
     const config: OverlayConfig = {
       backdropClass: '',
       positionStrategy: this.setPlacement(),
@@ -243,7 +247,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
     });
     this.portal.overlayRef
       ?.outsidePointerEvents()
-      .pipe(takeUntil(this._unSubject))
+      .pipe(takeUntil(this.unSubject))
       .subscribe(() => {
         this.closeSubject.next();
       });
@@ -252,80 +256,52 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+    position.positionChanges.pipe(takeUntil(this.unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
       const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
-      place !== this.placement && this.positionChange.next(place);
+      if (place !== this.realPlacement()) {
+        this.realPlacement.set(place);
+        this.portalOverlayRef()?.updatePosition();
+      }
     });
   }
 
   setInstance() {
-    let componentRef = this.portal?.componentRef;
-    if (!componentRef) return;
-    Object.assign(componentRef.instance, {
-      type: this.type,
-      value: this.value,
-      placement: this.placement,
-      valueChange: this.valueChange,
-      positionChange: this.positionChange,
-      inputCom: this.inputCom,
-      use12Hours: this.use12Hours,
-      hourStep: this.hourStep,
-      minuteStep: this.minuteStep,
-      secondStep: this.secondStep,
-      preset: this.preset,
-      disabledTime: this.disabledTime,
-      closePortal: () => this.closeSubject.next(),
-      destroyPortal: () => this.destroyPortal(),
-      nodeEmit: (node: Date) => this.onNodeClick(node),
-      animating: (ing: boolean) => (this.animating = ing)
-    });
-    componentRef.changeDetectorRef.detectChanges();
+    let { componentRef, overlayRef } = this.portal;
+    if (!componentRef || !overlayRef) return;
+    this.portalComponent.set(componentRef);
+    this.portalOverlayRef.set(overlayRef);
+    this.realPlacement.set(this.placement());
+    const { nodeClick, animating } = componentRef.instance;
+    nodeClick.subscribe((node: Date) => this.onNodeClick(node));
+    animating.subscribe((ing: boolean) => this.animating.set(ing));
   }
 
   onNodeClick(date: Date) {
-    this.value = this.setValue(date);
-    this.setDisplayValue(date);
-    this.cdr.detectChanges();
-    if (this.onChange) this.onChange(this.value);
+    this.value.set(this.setValue(date));
+    if (this.onChange) this.onChange(this.value());
     this.formControlValidator();
-    this.nodeEmit.emit(this.value);
+    this.nodeEmit.emit(this.value());
   }
 
   setValue(value: Date) {
-    return ['date', 'string'].includes(this.valueType) ? new Date(value) : value.getTime();
-  }
-
-  setDisplayValue(date: Date | number) {
-    if (!date) return;
-    if (this.use12Hours) {
-      let dt = new Date(date);
-      let hour = dt.getHours();
-      let suffix = hour >= 12 ? this.locale.pm : this.locale.am;
-      this.displayValue = `${this.datePipe.transform(
-        dt.setHours(hour === 0 ? 12 : hour > 12 ? hour - 12 : hour),
-        this.format
-      )} ${suffix}`;
-    } else {
-      this.displayValue = this.datePipe.transform(date, this.format);
-    }
+    return ['date', 'string'].includes(this.valueType()) ? new Date(value) : value.getTime();
   }
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: this.inputCom.inputRef,
-      placement: [this.placement as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      elementRef: this.inputCom().inputRef(),
+      placement: [this.placement() as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
       transformOriginOn: 'x-time-picker-portal'
     });
   }
 
   setPortal() {
     if (this.portalAttached()) {
-      this.portal.overlayRef?.updatePositionStrategy(this.setPlacement());
+      this.portalOverlayRef()?.updatePositionStrategy(this.setPlacement());
     }
   }
 
   formControlChanges() {
     this.ngOnInit();
-    this.cdr.detectChanges();
   }
 }

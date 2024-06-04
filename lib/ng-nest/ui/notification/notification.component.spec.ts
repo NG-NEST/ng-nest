@@ -8,15 +8,17 @@ import { XNotificationService } from './notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XCorner } from '@ng-nest/ui/core';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XNotificationComponent } from '@ng-nest/ui/notification';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XNotificationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, XThemeComponent, XButtonComponent],
-      declarations: [TestXNotificationComponent, TestXNotificationTypeComponent]
-    }).compileComponents();
+    declarations: [TestXNotificationComponent, TestXNotificationTypeComponent],
+    imports: [BrowserAnimationsModule, XThemeComponent, XButtonComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXNotificationComponent>;

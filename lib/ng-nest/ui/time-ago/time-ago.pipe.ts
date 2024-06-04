@@ -2,13 +2,16 @@ import { Pipe, PipeTransform, inject } from '@angular/core';
 import { XToDate } from '@ng-nest/ui/core';
 import { DatePipe } from '@angular/common';
 import { XTimeAgoPrefix } from './time-ago.property';
-import { XI18nService, XI18nTimeAgo } from '@ng-nest/ui/i18n';
+import { XI18nService, zh_CN } from '@ng-nest/ui/i18n';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 
 @Pipe({ name: `${XTimeAgoPrefix}`, standalone: true })
 export class XTimeAgoPipe extends DatePipe implements PipeTransform {
-  localeI18n: XI18nTimeAgo = {};
-  private catchContent: any;
   private i18n = inject(XI18nService);
+  private catchContent: any;
+
+  localeI18n = toSignal(this.i18n.localeChange.pipe(map((x) => x.timeAgo)), { initialValue: zh_CN.timeAgo });
 
   override transform(input?: any): any {
     if (!input) return '';
@@ -16,7 +19,6 @@ export class XTimeAgoPipe extends DatePipe implements PipeTransform {
     if (isNaN(date.valueOf())) {
       return input as string;
     }
-    this.localeI18n = this.i18n.getLocale().timeAgo as XI18nTimeAgo;
     const content = this.getDiff(date);
     if (this.catchContent !== content) {
       this.catchContent = content;
@@ -45,12 +47,12 @@ export class XTimeAgoPipe extends DatePipe implements PipeTransform {
     } else if (dayDiff >= 1) {
       result = super.transform(time, 'MM-dd HH:mm') as string;
     } else if (hourDiff >= 1) {
-      result = `${Math.floor(hourDiff)}${this.localeI18n.hoursAgo}`;
+      result = `${Math.floor(hourDiff)}${this.localeI18n()?.hoursAgo}`;
     } else if (minDiff >= 1) {
-      result = `${Math.floor(minDiff)}${this.localeI18n.minutesAgo}`;
+      result = `${Math.floor(minDiff)}${this.localeI18n()?.minutesAgo}`;
     } else if (secondDiff >= 1) {
-      result = `${Math.floor(secondDiff)}${this.localeI18n.secondsAgo}`;
-    } else result = this.localeI18n.just as string;
+      result = `${Math.floor(secondDiff)}${this.localeI18n()?.secondsAgo}`;
+    } else result = this.localeI18n()?.just as string;
     return result;
   }
 }

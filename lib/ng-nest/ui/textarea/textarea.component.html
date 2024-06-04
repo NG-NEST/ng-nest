@@ -1,50 +1,50 @@
 <div
   #textarea
   class="x-textarea"
-  [class.x-flex]="justify || align || direction"
-  [class.x-disabled]="disabled"
-  [class.x-required]="requiredIsEmpty"
-  [class.x-invalid]="invalid"
-  [class.x-clearable]="clearable"
-  [class.x-clear-show]="clearShow"
-  [class.x-textarea-icon]="getIcon"
-  [class.x-textarea-icon-left]="getIconLayoutLeft"
-  [class.x-textarea-icon-right]="getIconLayoutRight"
-  [ngClass]="classMap"
+  [class.x-flex]="justify() || align() || direction()"
+  [class.x-disabled]="disabledComputed()"
+  [class.x-required]="requiredIsEmpty()"
+  [class.x-invalid]="invalid()"
+  [class.x-clearable]="clearable()"
+  [class.x-clear-show]="clearShow()"
+  [class.x-textarea-icon]="getIcon()"
+  [class.x-textarea-icon-left]="getIconLayoutLeft()"
+  [class.x-textarea-icon-right]="getIconLayoutRight()"
+  [ngClass]="classMap()"
 >
-  @if (label) {
-    <label [class.x-textarea-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{
-      label
+  @if (label()) {
+    <label [class.x-textarea-label-required]="requiredComputed()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
+      label()
     }}</label>
   }
   <div class="x-textarea-row">
     <textarea
       #textareaRef
-      [placeholder]="placeholder"
-      [required]="required"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [maxlength]="maxlength"
+      [placeholder]="placeholder()"
+      [required]="requiredComputed()"
+      [disabled]="disabledComputed()"
+      [readonly]="readonly()"
+      [maxlength]="maxlength()"
       [(ngModel)]="value"
       (ngModelChange)="change($event)"
-      [style.height]="height"
-      [style.padding-left.rem]="paddingLeft"
-      [style.padding-right.rem]="paddingRight"
+      [style.height]="height()"
+      [style.padding-left.rem]="paddingLeft()"
+      [style.padding-right.rem]="paddingRight()"
       (input)="formControlValidator()"
     ></textarea>
-    @if (clearShow) {
+    @if (clearShow()) {
       <x-icon class="x-textarea-clear" type="fto-x" (click)="onClear()"></x-icon>
     }
-    @if (icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft)) {
-      <x-icon [type]="icon" [spin]="iconSpin"></x-icon>
+    @if (icon() && ((!clearShow() && getIconLayoutRight()) || getIconLayoutLeft())) {
+      <x-icon [type]="icon()" [spin]="iconSpin()"></x-icon>
     }
-    @if (maxlength) {
-      <span class="x-textarea-max-length">{{ lengthTotal }}</span>
+    @if (maxlength()) {
+      <span class="x-textarea-max-length">{{ lengthTotal() }}</span>
     }
-    @if (invalid) {
-      <span class="x-textarea-error-message">{{ invalidMessage }}</span>
+    @if (invalid()) {
+      <span class="x-textarea-error-message">{{ invalidMessage() }}</span>
     }
-    @if (requiredIsEmpty || invalid) {
+    @if (requiredIsEmpty() || invalid()) {
       <div class="x-border-error x-top-left"></div>
       <div class="x-border-error x-top-right"></div>
       <div class="x-border-error x-bottom-left"></div>

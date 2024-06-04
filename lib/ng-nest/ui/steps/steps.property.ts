@@ -1,15 +1,6 @@
-import {
-  XData,
-  XProperty,
-  XParentIdentityProperty,
-  XDataConvert,
-  XInputNumber,
-  XNumber,
-  XTemplate,
-  XInputBoolean,
-  XBoolean
-} from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XToDataArray, XToNumber, XToBoolean, XPropertyFunction } from '@ng-nest/ui/core';
+import { Component, input, TemplateRef } from '@angular/core';
+import type { XParentIdentityProperty, XNumber, XBoolean, XDataArray } from '@ng-nest/ui/core';
 
 /**
  * Steps
@@ -17,47 +8,48 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XStepsPrefix = 'x-steps';
+const X_STEPS_CONFIG_NAME = 'steps';
 
 /**
  * Steps Property
  */
 @Component({ selector: `${XStepsPrefix}-property`, template: '' })
-export class XStepsProperty extends XProperty {
+export class XStepsProperty extends XPropertyFunction(X_STEPS_CONFIG_NAME) {
   /**
    * @zh_CN 节点数据
    * @en_US Node data
    */
-  @Input() @XDataConvert() data: XData<XStepsNode> = [];
+  readonly data = input<XStepsNode[], XDataArray<XStepsNode>>([], { transform: XToDataArray });
   /**
    * @zh_CN 布局方式
    * @en_US Layout
    */
-  @Input() layout: XStepsLayout = 'row';
+  readonly layout = input<XStepsLayout>('row');
   /**
    * @zh_CN 当前激活节点
    * @en_US Currently active node
    */
-  @Input() @XInputNumber() activatedIndex: XNumber = 0;
+  readonly activatedIndex = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 步骤开始序号
    * @en_US Step start number
    */
-  @Input() @XInputNumber() startIndex: XNumber = 0;
+  readonly startIndex = input<number, XNumber>(0, { transform: XToNumber });
   /**
    * @zh_CN 当前激活节点状态
    * @en_US Current active node status
    */
-  @Input() status?: XStepsStatus;
+  readonly status = input<XStepsStatus>();
   /**
    * @zh_CN 自定义节点
    * @en_US Custom node
    */
-  @Input() customTpl?: XTemplate;
+  readonly customTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 节点设置的状态优先，将不会自动计算当前节点，`activatedIndex` 和 `status` 将失效
    * @en_US the status set by the node takes precedence, and the current node will not be calculated, `activatedIndex` and `status` will be invalidated
    */
-  @Input() @XInputBoolean() nodeStatus?: XBoolean;
+  readonly nodeStatus = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }
 
 export interface XStepsNode extends XParentIdentityProperty<XStepsNode> {

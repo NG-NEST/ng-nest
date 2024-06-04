@@ -1,23 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed, signal } from '@angular/core';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { XBadgePrefix, XBadgeProperty } from './badge.property';
-import {
-  XIsNumber,
-  XIsChange,
-  XIsEmpty,
-  XConfigService,
-  XIsArray,
-  XBadgeAnimation,
-  XBadgeStandaloneAnimation
-} from '@ng-nest/ui/core';
+import { XIsNumber, XIsEmpty, XBadgeAnimation, XBadgeStandaloneAnimation, XIsString } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
@@ -29,65 +13,53 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XBadgeAnimation, XBadgeStandaloneAnimation]
 })
-export class XBadgeComponent extends XBadgeProperty implements OnInit, OnChanges {
-  displayValue: string = '';
-  viewInit = false;
-  range = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '+'];
-  displayNums: any[] = [];
-  maxNums: number[] = [];
+export class XBadgeComponent extends XBadgeProperty {
+  range = signal([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '+']);
 
-  get valueNumber() {
-    return Number(this.value);
-  }
+  valueNumber = computed(() => {
+    return Number(this.value());
+  });
 
-  get getOffsetRight() {
-    if (this.offset && XIsArray(this.offset) && this.offset.length > 0) {
-      return `-${this.offset[0]}`;
-    }
-    return null;
-  }
+  classMap = computed(() => ({
+    [`${XBadgePrefix}-${this.type()}`]: !XIsEmpty(this.type())
+  }));
 
-  get getOffsetTop() {
-    if (this.offset && XIsArray(this.offset) && this.offset.length > 1) {
-      return this.offset[1];
-    }
-    return null;
-  }
-
-  configService = inject(XConfigService);
-
-  ngOnInit() {
-    this.setClassMap();
-  }
-
-  ngOnChanges(simples: SimpleChanges) {
-    const { value } = simples;
-    XIsChange(value) && this.setDisplayValue();
-  }
-
-  setClassMap() {
-    this.classMap[`${XBadgePrefix}-${this.type}`] = !XIsEmpty(this.type);
-  }
-
-  setDisplayValue() {
-    let toNumber = Number(this.value);
-    if (XIsNumber(toNumber) && this.max && toNumber > Number(this.max)) {
-      this.displayValue = `${this.max}+`;
+  displayNums = computed(() => {
+    const value = this.value();
+    const max = this.max();
+    const toNumber = Number(value);
+    let displayValue = '';
+    if (XIsNumber(toNumber) && max && toNumber > max) {
+      displayValue = `${max}+`;
     } else {
-      this.displayValue = `${this.value}`;
+      displayValue = `${value}`;
     }
-    let res: any = [];
-    for (let i = 0; i < this.displayValue.length; i++) {
-      let str = this.displayValue[i];
+    const res: (string | number)[] = [];
+    for (let i = 0; i < displayValue.length; i++) {
+      const str = displayValue[i];
       if (str === '+') {
         res.push(str);
       } else {
         res.push(Number(str));
       }
     }
-    this.displayNums = res;
-    if (this.displayNums.length != this.maxNums.length) {
-      this.maxNums = this.displayNums.map((_x, index) => index) as number[];
+    return res;
+  });
+
+  translateYNumbers = computed(() => {
+    const displayNums = this.displayNums();
+    const nums: number[] = [];
+    for (let num of displayNums) {
+      if (XIsString(num) && num === '+') {
+        nums.push(10 * 100);
+      } else if (XIsNumber(num)) {
+        nums.push(num * 100);
+      }
     }
-  }
+    return nums;
+  });
+
+  maxNums = computed(() => {
+    return this.displayNums().map((_x, index) => index) as number[];
+  });
 }

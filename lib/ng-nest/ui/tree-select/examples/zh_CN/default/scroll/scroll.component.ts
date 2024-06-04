@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTreeSelectComponent } from '@ng-nest/ui/tree-select';
 
 @Component({
@@ -8,7 +8,7 @@ import { XTreeSelectComponent } from '@ng-nest/ui/tree-select';
   templateUrl: './scroll.component.html'
 })
 export class ExScrollComponent {
-  data = [
+  data = signal([
     { id: 1, label: '水果' },
     { id: 2, label: '蔬菜' },
     { id: 3, label: '饮料' },
@@ -26,5 +26,5 @@ export class ExScrollComponent {
     { id: 13, label: '小米蕉', pid: 5 },
     { id: 14, label: '仙人蕉', pid: 5 },
     { id: 15, label: '皇帝蕉', pid: 5 }
-  ];
+  ]);
 }

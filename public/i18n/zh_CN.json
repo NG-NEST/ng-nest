@@ -1,0 +1,48 @@
+{
+  "locale": "zh_CN",
+  "api": {
+    "property": "属性",
+    "description": "描述",
+    "type": "类型",
+    "value": "值",
+    "inputType": "输入类型",
+    "outputType": "输出类型",
+    "default": "默认值",
+    "globalConfig": "全局设置",
+    "extends": "继承",
+    "extendsDescription": "对象的所有参数"
+  },
+  "header": {
+    "components": "组件",
+    "version": "版本",
+    "chinese": "ZH",
+    "english": "EN",
+    "dark": "暗黑风格",
+    "light": "明亮风格",
+    "search": "搜索组件",
+    "theme": "主题",
+    "primary": "主色",
+    "text": "文本",
+    "success": "成功",
+    "warning": "警告",
+    "danger": "危险",
+    "info": "信息",
+    "background": "背景",
+    "border": "边框",
+    "fontSize": "文字大小",
+    "borderWidth": "边框宽度",
+    "borderRadius": "边框圆角",
+    "borderSmallRadius": "边框圆角-小"
+  },
+  "footer": {
+    "allRightsReserved": "版权所有"
+  },
+  "meta": {
+    "description": "基于 Angular 和 Nest 的Web应用程序框架，遵循最佳实践和约定，为您提供可靠的开发经验"
+  },
+  "exception": {
+    "home": "首页",
+    "back": "返回",
+    "description": "抱歉，请求的页面地址在服务器中不存在"
+  }
+}

@@ -11,26 +11,25 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XCollapsePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        XThemeComponent,
+    declarations: [TestXCollapseComponent],
+    imports: [XThemeComponent,
         FormsModule,
         BrowserAnimationsModule,
-        HttpClientTestingModule,
         XCollapseComponent,
         XCollapsePanelComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent
-      ],
-      declarations: [TestXCollapseComponent]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCollapseComponent>;

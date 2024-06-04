@@ -7,7 +7,8 @@ import { By } from '@angular/platform-browser';
 import { XSize } from '@ng-nest/ui/core';
 import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 import { XLinkComponent } from '@ng-nest/ui/link';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
   template: ` <x-button [size]="size">全局配置</x-button>
@@ -41,15 +42,17 @@ describe('x-config', () => {
   };
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [XButtonComponent, HttpClientTestingModule, XDropdownComponent, XLinkComponent],
-      declarations: [NzGlobalConfigTestBasicComponent],
-      providers: [
+    declarations: [NzGlobalConfigTestBasicComponent],
+    imports: [XButtonComponent, XDropdownComponent, XLinkComponent],
+    providers: [
         {
-          provide: X_CONFIG,
-          useValue: config
-        }
-      ]
-    }).compileComponents();
+            provide: X_CONFIG,
+            useValue: config
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

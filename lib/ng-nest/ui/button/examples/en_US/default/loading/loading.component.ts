@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
@@ -9,13 +9,13 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   styleUrls: ['./loading.component.scss']
 })
 export class ExLoadingComponent {
-  loading: boolean = false;
+  loading = signal(false);
 
   save() {
-    if (this.loading) return;
-    this.loading = true;
+    if (this.loading()) return;
+    this.loading.set(true);
     setTimeout(() => {
-      this.loading = false;
+      this.loading.set(false);
     }, 3000);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XAlertComponent } from '@ng-nest/ui/alert';
 import { XAddSeconds } from '@ng-nest/ui/core';
 import { XCountdownComponent } from '@ng-nest/ui/statistic';
@@ -11,6 +11,9 @@ import { XCountdownComponent } from '@ng-nest/ui/statistic';
   styleUrls: ['./custom.component.scss']
 })
 export class ExCustomComponent {
-  deadline = XAddSeconds(new Date(), 10).getTime();
-  close() {}
+  deadline = signal(XAddSeconds(new Date(), 20).getTime());
+
+  close() {
+    console.log('closed');
+  }
 }

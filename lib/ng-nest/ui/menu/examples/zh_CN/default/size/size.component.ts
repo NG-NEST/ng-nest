@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
@@ -9,7 +9,7 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
   styleUrls: ['./size.component.scss']
 })
 export class ExSizeComponent {
-  data = [
+  data = signal([
     { id: 1, label: '最新活动', icon: 'fto-gift' },
     { id: 2, label: '产品', icon: 'fto-package' },
     { id: 3, label: '解决方案', icon: 'fto-layers' },
@@ -23,5 +23,5 @@ export class ExSizeComponent {
     { id: 11, pid: 5, label: '网络' },
     { id: 12, pid: 5, label: '存储' },
     { id: 13, pid: 5, label: '数据库' }
-  ];
+  ]);
 }

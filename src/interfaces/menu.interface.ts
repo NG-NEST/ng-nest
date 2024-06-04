@@ -1,10 +1,10 @@
-export interface Menu {
+export interface AppMenu {
   id?: string;
   pid?: string | null;
   label?: string;
   name?: string;
   enLabel?: string;
-  router?: string;
+  routerLink?: string | any[];
   icon?: string;
   type?: string;
   order?: number;

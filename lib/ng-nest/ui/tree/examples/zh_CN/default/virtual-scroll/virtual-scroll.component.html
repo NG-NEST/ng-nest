@@ -1,17 +1,17 @@
 <h2>基本使用</h2>
 <x-button (click)="add()">新增根节点</x-button>
-<x-button (click)="addChild()" [disabled]="selected ? false : true">新增子节点</x-button>
-<x-button (click)="update()" [disabled]="selected ? false : true">修改节点</x-button>
-<x-button (click)="remove()" [disabled]="selected ? false : true">删除节点</x-button>
-<x-tree #treeCom [data]="data" virtualScroll (activatedChange)="info($event)"> </x-tree>
+<x-button (click)="addChild()" [disabled]="!selected()">新增子节点</x-button>
+<x-button (click)="update()" [disabled]="!selected()">修改节点</x-button>
+<x-button (click)="remove()" [disabled]="!selected()">删除节点</x-button>
+<x-tree #treeCom [data]="data()" virtualScroll (activatedChange)="info($event)"> </x-tree>
 <h2>懒加载</h2>
 <x-button (click)="addLazy()">新增根节点</x-button>
-<x-button (click)="addChildLazy()" [disabled]="selectedLazy ? false : true">新增子节点</x-button>
-<x-button (click)="updateLazy()" [disabled]="selectedLazy ? false : true">修改节点</x-button>
-<x-button (click)="removeLazy()" [disabled]="selectedLazy ? false : true">删除节点</x-button>
-<x-tree #treeComLazy [data]="getData1" virtualScroll lazy (activatedChange)="infoLazy($event)"> </x-tree>
+<x-button (click)="addChildLazy()" [disabled]="!selectedLazy()">新增子节点</x-button>
+<x-button (click)="updateLazy()" [disabled]="!selectedLazy()">修改节点</x-button>
+<x-button (click)="removeLazy()" [disabled]="!selectedLazy()">删除节点</x-button>
+<x-tree #treeComLazy [data]="getData1()" virtualScroll lazy (activatedChange)="infoLazy($event)"> </x-tree>
 <h3>滚动高度自适应</h3>
 <x-input-number label="滚动区域高度" [(ngModel)]="scrollHeight" step="10" min="100" max="800"></x-input-number>
-<div #adaptionRef class="ex-scroll-list" [style.height.px]="scrollHeight">
-  <x-tree [data]="getData2" virtualScroll lazy (activatedChange)="infoLazy($event)" [heightAdaption]="adaptionRef"> </x-tree>
+<div #adaptionRef [style.height.px]="scrollHeight()">
+  <x-tree [data]="getData2()" virtualScroll lazy [heightAdaption]="adaptionRef"> </x-tree>
 </div>

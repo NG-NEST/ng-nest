@@ -1,38 +1,48 @@
 <div
   #find
   class="x-find"
-  [class.x-flex]="justify || align || direction"
-  [class.x-checked]="value"
-  [class.x-disabled]="disabled"
-  [class.x-required]="requiredIsEmpty"
-  [class.x-invalid]="invalid"
-  [ngClass]="classMap"
+  [class.x-flex]="justify() || align() || direction()"
+  [class.x-checked]="value()"
+  [class.x-disabled]="disabledComputed()"
+  [class.x-required]="requiredIsEmpty()"
+  [class.x-invalid]="invalid()"
+  [ngClass]="classMap()"
 >
-  @if (label) {
-    <label [class.x-find-label-required]="required" [style.width]="labelWidth" [ngClass]="labelMap">{{ label }}</label>
+  @if (label()) {
+    <label
+      [class.x-find-label-required]="requiredComputed()"
+      [style.width]="labelWidth()"
+      [ngClass]="labelMapSignal()"
+      >{{ label() }}</label
+    >
   }
   <div class="x-find-row">
     <x-button
       #buttonCom
       icon="fto-search"
-      [onlyIcon]="!bordered"
-      [size]="size"
-      [disabled]="disabled"
+      [onlyIcon]="!bordered()"
+      [size]="size()"
+      [disabled]="disabledComputed()"
       attrType="button"
       (click)="showModal()"
       flat
       plain
     ></x-button>
     <div class="x-find-tags">
-      @if (multiple) {
-        @for (item of value; track item.id; let i = $index) {
-          <x-tag closable [size]="size" [bordered]="bordered" [disabled]="disabled" (close)="tagClose(i)">{{
-            item[columnLabel]
-          }}</x-tag>
+      @if (multiple()) {
+        @for (item of value(); track item.id; let i = $index) {
+          <x-tag
+            closable
+            [size]="size()"
+            [bordered]="bordered()"
+            [disabled]="disabledComputed()"
+            (close)="tagClose(i)"
+            >{{ item[columnLabel()] }}</x-tag
+          >
         }
-      } @else if (value) {
-        <x-tag closable [disabled]="disabled" [bordered]="bordered" [size]="size" (close)="tagClose()">{{
-          value[columnLabel]
+      } @else if (value()) {
+        <x-tag closable [disabled]="disabledComputed()" [bordered]="bordered()" [size]="size()" (close)="tagClose()">{{
+          value()[columnLabel()]
         }}</x-tag>
       }
     </div>
@@ -41,85 +51,81 @@
 
 <x-dialog
   #dialogCom
-  [title]="dialogTitle"
-  [width]="dialogWidth"
-  [height]="dialogHeight"
-  [buttonsCenter]="dialogButtonsCenter"
+  [title]="dialogTitle()"
+  [width]="dialogWidthSignal()"
+  [height]="dialogHeight()"
+  [buttonsCenter]="dialogButtonsCenter()"
   [className]="'x-find-dialog-container'"
   [(visible)]="dialogVisible"
-  (visibleChange)="dialogVisibleChange.emit($event)"
   (closeDone)="dialogCloseDone()"
-  (cancel)="closeModal()"
-  (close)="closeModal()"
   (confirm)="sure()"
 >
-  <div class="x-find-dialog" [class.x-find-dialog-tree-table]="hasTable && hasTree">
-    @if (hasTree) {
-      <div class="x-find-dialog-tree" #treeRef [style.height.px]="hasTreeTable && multiple && height">
+  <div class="x-find-dialog" [class.x-find-dialog-tree-table]="hasTable() && hasTree()">
+    @if (hasTree()) {
+      <div class="x-find-dialog-tree" #treeRef [style.height.px]="hasTreeTable() && multiple() && height()">
         <x-tree
           #treeCom
-          [data]="treeData"
-          nodeHeight="1.8"
+          [data]="treeData()"
+          [nodeHeight]="'1.8rem'"
           [(manual)]="dialogVisible"
-          [activatedId]="treeActivatedId"
-          [expandedLevel]="treeExpandedLevel"
+          [activatedId]="treeActivatedId()"
+          [expandedLevel]="treeExpandedLevel()"
           (activatedChange)="treeActivatedClick($event)"
-          [checkbox]="hasTreeMultiple"
-          [checked]="treeChecked"
+          [checkbox]="hasTreeMultiple()"
+          [checked]="treeChecked()"
           (checkboxChange)="treeCheckboxChange($event)"
-          [levelCheck]="!hasTreeMultiple"
+          [levelCheck]="!hasTreeMultiple()"
         ></x-tree>
       </div>
     }
-    @if (hasTable) {
+    @if (hasTable()) {
       <div class="x-find-dialog-table" #tableRef>
-        @if (hasSearch) {
+        @if (hasSearch()) {
           <div class="x-find-search">
             <x-input
-              [label]="search.label"
+              [label]="search()!.label!"
               direction="row"
               (xKeydown)="searchKeyDown($event)"
-              [(ngModel)]="search.value"
+              [(ngModel)]="search()!.value"
             ></x-input>
-            <x-button type="primary" plain (click)="searchClick()">{{ search.button || '查询' }}</x-button>
+            <x-button plain text (click)="searchClick()">{{ search()!.button || '查询' }}</x-button>
           </div>
         }
         <x-table
           #tableCom
-          [data]="tableData"
-          [columns]="tableColumns"
+          [data]="tableData()"
+          [columns]="tableColumnsSignal()"
           [(manual)]="dialogVisible"
           [(index)]="tableIndex"
           [(size)]="tableSize"
-          [query]="tableQuery"
-          [total]="tableTotal"
-          [allowSelectRow]="!multiple"
-          [allowCheckRow]="multiple"
-          [checkedRow]="tableCheckedRow"
-          [loading]="tableLoading"
-          (indexChange)="tableIndexChange.emit($event)"
+          [(query)]="tableQuery"
+          [(total)]="tableTotal"
+          [allowSelectRow]="!multiple()"
+          [allowCheckRow]="multiple()"
+          [checkedRow]="tableCheckedRow()"
+          [loading]="tableLoading()"
           (sortChange)="tableSortChange.emit($event)"
           [(activatedRow)]="tableActivatedRow"
-          (activatedRowChange)="tableActivatedRowChange($event)"
-          [rowHeight]="tableRowHeight"
-          [bodyHeight]="tableBodyHeight"
-          [virtualScroll]="tableVirtualScroll"
-          [minBufferPx]="tableMinBufferPx"
-          [maxBufferPx]="tableMaxBufferPx"
-          [adaptionHeight]="tableAdaptionHeight"
-          [docPercent]="tableDocPercent"
+          (activatedRowChange)="tableActivatedRowChange($event!)"
+          [rowHeight]="tableRowHeight()"
+          [bodyHeight]="tableBodyHeight()!"
+          [virtualScroll]="tableVirtualScroll()"
+          [minBufferPx]="tableMinBufferPx()"
+          [maxBufferPx]="tableMaxBufferPx()"
+          [adaptionHeight]="tableAdaptionHeight()!"
+          [docPercent]="tableDocPercent()"
         ></x-table>
       </div>
     }
-    @if (multiple) {
-      <div class="x-find-dialog-checked" [class.x-find-empty]="getEmpty" [style.height.px]="height">
-        @if (getEmpty) {
-          <x-empty [content]="dialogEmptyContent"></x-empty>
+    @if (multiple()) {
+      <div class="x-find-dialog-checked" [class.x-find-empty]="getEmpty()" [style.height.px]="height()">
+        @if (getEmpty()) {
+          <x-empty [content]="dialogEmptyContent()"></x-empty>
         }
         <div class="x-find-dialog-tags">
-          @for (item of temp; track item.id; let i = $index) {
+          @for (item of temp(); track item.id; let i = $index) {
             <x-tag closable (close)="tempClose(i, item)">
-              <span>{{ item[columnLabel] }}</span>
+              <span>{{ item[columnLabel()] }}</span>
             </x-tag>
           }
         </div>

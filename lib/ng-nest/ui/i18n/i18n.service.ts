@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import zh_CN from './languages/zh_CN';
-import { XI18nProperty, X_I18N } from './i18n.property';
+import { XI18nLanguage, XI18nProperty, X_I18N } from './i18n.property';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -25,9 +25,7 @@ export class XI18nService {
     let content = this._getObjectPath(this._locale, path) as string;
     if (typeof content === 'string') {
       if (data) {
-        Object.keys(data).forEach(
-          (key) => (content = content.replace(new RegExp(`%${key}%`, 'g'), data[key]))
-        );
+        Object.keys(data).forEach((key) => (content = content.replace(new RegExp(`%${key}%`, 'g'), data[key])));
       }
       return content;
     }
@@ -38,7 +36,7 @@ export class XI18nService {
     return this._locale;
   }
 
-  getLocaleId(): string {
+  getLocaleId(): XI18nLanguage {
     return this._locale ? this._locale.locale : '';
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XStepsComponent } from '@ng-nest/ui/steps';
 
@@ -9,10 +9,10 @@ import { XStepsComponent } from '@ng-nest/ui/steps';
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
-  activatedIndex = 0;
-  data: string[] = ['Step 1', 'Step 2', 'Step 3'];
+  activatedIndex = signal(0);
+  data = signal(['Step 1', 'Step 2', 'Step 3']);
   next() {
-    this.activatedIndex++;
-    if (this.activatedIndex > this.data.length - 1) this.activatedIndex = 0;
+    this.activatedIndex.update((x) => ++x);
+    if (this.activatedIndex() > this.data().length - 1) this.activatedIndex.set(0);
   }
 }

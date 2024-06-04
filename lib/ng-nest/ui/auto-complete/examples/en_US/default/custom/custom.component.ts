@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XIconComponent } from '@ng-nest/ui/icon';
@@ -14,10 +14,12 @@ import { Observable } from 'rxjs';
 })
 export class ExCustomComponent {
   // 传参手动匹配
-  model = '';
-  data = (str: string) =>
-    new Observable<string[]>((x) => {
-      x.next([`${str}`, `${str}${str}`, `${str}${str}${str}`]);
-      x.complete();
-    });
+  model = signal('');
+  data = signal(
+    (str: string) =>
+      new Observable<string[]>((x) => {
+        x.next([`${str}`, `${str}${str}`, `${str}${str}${str}`]);
+        x.complete();
+      })
+  );
 }

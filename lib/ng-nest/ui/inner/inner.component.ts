@@ -1,16 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  OnChanges,
-  SimpleChanges,
-  inject
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { XInnerPrefix, XInnerProperty } from './inner.property';
-import { XConfigService } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XInnerPrefix}`,
@@ -20,22 +9,9 @@ import { XConfigService } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XInnerComponent extends XInnerProperty implements OnInit, OnChanges {
-  private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
-  private _ele: HTMLElement = this.elementRef.nativeElement;
-
-  ngOnInit() {
-    this.renderer.addClass(this._ele, XInnerPrefix);
-    this.setStyle();
-  }
-
-  ngOnChanges(_changes: SimpleChanges): void {
-    this.setStyle();
-  }
-
-  setStyle() {
-    this.renderer.setStyle(this._ele, 'padding', this.padding);
+export class XInnerComponent extends XInnerProperty {
+  @HostBinding('class') className = XInnerPrefix;
+  @HostBinding('style.padding') get getPadding() {
+    return this.padding();
   }
 }

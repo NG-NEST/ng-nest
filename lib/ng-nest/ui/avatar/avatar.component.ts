@@ -1,33 +1,23 @@
 import {
   Component,
   ViewEncapsulation,
-  Renderer2,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
   OnDestroy,
-  ViewChild,
-  AfterViewInit,
-  OnChanges,
-  SimpleChanges,
-  inject
+  inject,
+  signal,
+  computed,
+  viewChild,
+  effect
 } from '@angular/core';
 import { XAvatarPrefix, XAvatarProperty } from './avatar.property';
-import {
-  XIsEmpty,
-  XConfigService,
-  XIsNumber,
-  XIsString,
-  XResize,
-  XIsObject,
-  XResponseSize,
-  XIsChange,
-  XResizeObserver
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XIsNumber, XIsString, XIsObject, XComputedStyle, XResize, XToCssPx } from '@ng-nest/ui/core';
 import { DOCUMENT, NgClass, NgStyle } from '@angular/common';
-import { Subject, takeUntil } from 'rxjs';
+import { debounceTime, map } from 'rxjs';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { toSignal } from '@angular/core/rxjs-interop';
+import type { XClassMap, XResizeObserver, XResponseSize } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XAvatarPrefix}`,
@@ -38,102 +28,102 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAvatarComponent extends XAvatarProperty implements OnDestroy, OnChanges, AfterViewInit {
-  isImgError: boolean = false;
-
-  styleMap: { [key: string]: any } = {};
-  document = inject(DOCUMENT);
-  private _unSubject = new Subject<void>();
-  private _resizeObserver!: XResizeObserver;
-
-  @ViewChild('labelRef') labelRef!: ElementRef<HTMLElement>;
-
-  private renderer = inject(Renderer2);
+export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
+  private document = inject(DOCUMENT);
+  private labelRef = viewChild<ElementRef<HTMLElement>>('labelRef');
+  private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
+  private resizeObserver!: XResizeObserver;
   private elementRef = inject(ElementRef);
-  private cdr = inject(ChangeDetectorRef);
-  configService = inject(XConfigService);
+  private labelWidth = signal(this.labelRef()?.nativeElement.clientWidth);
+  private documentWidth = toSignal(
+    XResize(this.document.documentElement).pipe(
+      debounceTime(30),
+      map(({ resizeObserver }) => {
+        this.resizeObserver = resizeObserver;
+        return this.document.documentElement.clientWidth;
+      })
+    ),
+    {
+      initialValue: this.document.documentElement.clientWidth
+    }
+  );
+  isImgError = signal(false);
+  styleMap = computed(() => {
+    const size = this.size();
+    const width = this.documentWidth();
+    if (XIsNumber(size)) {
+      return {
+        height: `${size}px`,
+        width: `${size}px`,
+        lineHeight: `${size}px`,
+        fontSize: `${size * 0.6}px`
+      };
+    } else if (XIsObject<XResponseSize>(size)) {
+      const { xs, sm, md, lg, xl } = size;
+      let nsize = 40;
+      if (xs && width < 768) {
+        nsize = xs;
+      }
+      if (sm && width >= 768) {
+        nsize = sm;
+      }
+      if (md && width >= 992) {
+        nsize = md;
+      }
+      if (lg && width >= 1200) {
+        nsize = lg;
+      }
+      if (xl && width >= 1920) {
+        nsize = xl;
+      }
+      return {
+        height: `${nsize}px`,
+        width: `${nsize}px`,
+        lineHeight: `${nsize}px`,
+        fontSize: `${nsize * 0.6}px`
+      };
+    } else {
+      return {};
+    }
+  });
+  classMap = computed(() => {
+    const classMap: XClassMap = {
+      [`${XAvatarPrefix}-${this.shape()}`]: !XIsEmpty(this.shape())
+    };
+    const size = this.size();
+    if (XIsString(size)) {
+      classMap[`${XAvatarPrefix}-${size}`] = !XIsEmpty(size);
+    } else if (XIsObject<XResponseSize>(size)) {
+      classMap[`${XAvatarPrefix}-medium`] = true;
+    }
+
+    return classMap;
+  });
+  labelStyleMap = computed(() => {
+    const label = this.label();
+    const labelRef = this.labelRef();
+    const labelWidth = this.labelWidth();
+    if (!label || !this.elementRef || !labelRef || !labelWidth) return {};
+    const eleWidth = this.elementRef.nativeElement.clientWidth;
+    let scale = (eleWidth - XToCssPx(this.gap(), this.fontSize()) * 2) / labelWidth;
+    scale = scale > 1 ? 1 : scale;
+    return { transform: `scale(${scale})` };
+  });
+
+  constructor() {
+    super();
+    effect(() => this.documentWidth());
+  }
+
+  ngAfterContentChecked() {
+    this.labelWidth.set(this.labelRef()?.nativeElement.clientWidth);
+  }
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.complete();
-    this._resizeObserver?.disconnect();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    let { label } = changes;
-    XIsChange(label) && setTimeout(() => this.setLabel());
-  }
-
-  ngAfterViewInit(): void {
-    this.setClassMap();
-    this.setLabel();
-  }
-
-  setClassMap() {
-    this.classMap = {
-      [`${XAvatarPrefix}-${this.shape}`]: !XIsEmpty(this.shape)
-    };
-    if (XIsNumber(this.size)) {
-      const nsize = Number(this.size);
-      this.setStyleMap(nsize);
-      this.cdr.detectChanges();
-    } else if (XIsString(this.size)) {
-      this.classMap[`${XAvatarPrefix}-${this.size}`] = !XIsEmpty(this.size);
-      this.cdr.detectChanges();
-    } else if (XIsObject(this.size)) {
-      this.classMap[`${XAvatarPrefix}-medium`] = true;
-      const sz = this.size as XResponseSize;
-      let { xs, sm, md, lg, xl } = sz;
-      if (!xs && !sm && !md && !lg && !xl) return;
-      XResize(this.document.documentElement)
-        .pipe(takeUntil(this._unSubject))
-        .subscribe((x) => {
-          this._resizeObserver = x.resizeObserver;
-          const width = this.document.documentElement.clientWidth;
-          let nsize = 40;
-          if (xs && width < 768) {
-            nsize = xs;
-          }
-          if (sm && width >= 768) {
-            nsize = sm;
-          }
-          if (md && width >= 992) {
-            nsize = md;
-          }
-          if (lg && width >= 1200) {
-            nsize = lg;
-          }
-          if (xl && width >= 1920) {
-            nsize = xl;
-          }
-          this.setStyleMap(nsize);
-          this.cdr.detectChanges();
-          this.setLabel();
-        });
-    }
-  }
-
-  setStyleMap(size: number) {
-    this.styleMap = {
-      height: `${size}px`,
-      width: `${size}px`,
-      lineHeight: `${size}px`,
-      fontSize: `${size * 0.6}px`
-    };
-  }
-
-  setLabel() {
-    if (!this.label) return;
-    if (!this.elementRef || !this.labelRef) return;
-    const eleWidth = this.elementRef.nativeElement.clientWidth;
-    const labelWidth = this.labelRef.nativeElement.clientWidth;
-    let scale = (eleWidth - Number(this.gap) * 2) / labelWidth;
-    scale = scale > 1 ? 1 : scale;
-    this.renderer.setStyle(this.labelRef.nativeElement, 'transform', `scale(${scale})`);
+    this.resizeObserver?.disconnect();
   }
 
   imgError() {
-    this.isImgError = true;
-    this.cdr.detectChanges();
+    this.isImgError.set(true);
   }
 }

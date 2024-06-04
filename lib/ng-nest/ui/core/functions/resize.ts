@@ -1,9 +1,24 @@
 import { Observable, Subscriber } from 'rxjs';
 
+/**
+ * @zh_CN 监听元素大小边界尺寸的变化
+ * @en_US Monitoring elements of the size of the boundary size
+ */
 export type XResizeObserver = ResizeObserver | null;
+
+/**
+ * @zh_CN ResizeObserver 回调函数参数的对象
+ * @en_US Object of ResizeobServer's callback function parameter
+ */
 export type XResizeObserverEntry = ResizeObserverEntry | null;
 
-export const XResize = (...element: Element[]): Observable<{ entry: XResizeObserverEntry; resizeObserver: XResizeObserver }> => {
+/**
+ * @zh_CN 这个函数的功能是创建一个Observable，用于监听多个元素的尺寸变化
+ * @en_US The function of this function is to create an Observable to monitor the size changes of multiple elements.
+ */
+export function XResize(
+  ...element: Element[]
+): Observable<{ entry: XResizeObserverEntry; resizeObserver: XResizeObserver }> {
   return new Observable(
     (
       x: Subscriber<{
@@ -22,9 +37,6 @@ export const XResize = (...element: Element[]): Observable<{ entry: XResizeObser
       for (let ele of element) {
         if (ele) resizeObserver.observe(ele);
       }
-
-      //XResize 取消订阅的时候自动销毁
-      //resizeObserver.disconnect();
     }
   );
-};
+}

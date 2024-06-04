@@ -20,7 +20,7 @@
   box-shadow: $--x-box-shadow;
   position: relative;
   display: flex;
-  background-color: $--x-background;
+  background-color: $--x-background-100;
   overflow-y: auto;
   max-height: calc(calc(#{$--x-auto-complete-height} * 6) + calc(#{$--x-border-width} * 7));
   &:focus {

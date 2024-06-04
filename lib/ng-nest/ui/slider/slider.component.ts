@@ -1,30 +1,17 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ElementRef,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
-  ViewChild,
   AfterViewInit,
   OnDestroy,
-  SimpleChange,
-  inject
+  inject,
+  computed,
+  signal,
+  viewChild
 } from '@angular/core';
 import { XSliderPrefix, XSliderNode, XSliderProperty } from './slider.property';
-import {
-  XClassMap,
-  XIsChange,
-  XResize,
-  XPosition,
-  XIsUndefined,
-  XIsEmpty,
-  XSetData,
-  XConfigService,
-  XResizeObserver
-} from '@ng-nest/ui/core';
+import { XResize, XPosition, XIsUndefined, XIsEmpty, XResizeObserver } from '@ng-nest/ui/core';
 import { Subject, of } from 'rxjs';
 import { takeUntil, debounceTime, delay } from 'rxjs/operators';
 import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
@@ -42,67 +29,57 @@ import { XDropdownComponent } from '@ng-nest/ui/dropdown';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XSliderComponent extends XSliderProperty implements OnInit, OnChanges, OnDestroy, AfterViewInit {
-  @ViewChild('sliderScroll') sliderScroll!: ElementRef<HTMLElement>;
-  @ViewChild('sliderNodes') sliderNodes!: ElementRef<HTMLElement>;
-  nodes: XSliderNode[] = [];
-  activated!: XSliderNode | null;
-  scrollClassMap: XClassMap = {};
-  nodeClassMap: XClassMap = {};
-  showArrow = false;
-  activatedId = '';
+export class XSliderComponent extends XSliderProperty implements OnDestroy, AfterViewInit {
+  sliderScroll = viewChild.required('sliderScroll', { read: ElementRef<HTMLElement> });
+  sliderNodes = viewChild.required('sliderNodes', { read: ElementRef<HTMLElement> });
+  activated = signal<XSliderNode | null>(null);
+  showArrow = signal(false);
+  activatedId = signal('');
   timeoutHide: any;
   hoverDelay = 200;
   hoverDelayUnsub = new Subject<void>();
-  private _offset: number = 0;
-  get offset(): number {
-    return this._offset;
-  }
-  set offset(value: number) {
-    this._offset = Math.floor(value);
-    this.transform = `translate${this.dir}(-${this._offset}px)`;
-    this.cdr.detectChanges();
-  }
-  direction: XPosition = 'right';
-  maxOffset: number = 0;
-  get dir(): 'X' | 'Y' {
-    return this.layout === 'row' ? 'X' : 'Y';
-  }
-  get sizeName() {
-    return this.layout === 'row' ? 'Width' : 'Height';
-  }
-  transform?: string;
-  highlightBox = {
-    width: '',
-    height: '',
-    left: '',
-    top: ''
-  };
-  private _unSubject = new Subject<void>();
-  private _resizeObserver!: XResizeObserver;
-  private cdr = inject(ChangeDetectorRef);
+  offset = signal(0);
+  transform = computed(() => `translate${this.dir()}(-${this.offset()}px)`);
+
+  direction = signal<XPosition>('right');
+  maxOffset = signal(0);
+  dir = computed(() => (this.layout() === 'row' ? 'X' : 'Y'));
+  sizeName = computed(() => (this.layout() === 'row' ? 'Width' : 'Height'));
+  highlightBox = computed(() => {
+    this.resizeChanged();
+    if (!this.activated()) return {};
+    const activeEle: HTMLElement = this.sliderNodes().nativeElement.querySelector(
+      `li:nth-child(${this.activatedIndex() + 1})`
+    )!;
+    if (!activeEle) return {};
+    return {
+      width: `${activeEle.offsetWidth}px`,
+      height: `${activeEle.offsetHeight}px`,
+      left: `${activeEle.offsetLeft}px`,
+      top: `${activeEle.offsetTop}px`
+    };
+  });
+  resizeChanged = signal<DOMRectReadOnly | null>(null);
+  private unSubject = new Subject<void>();
+  private resizeObserver!: XResizeObserver;
   elementRef = inject(ElementRef);
-  configService = inject(XConfigService);
 
-  ngOnInit() {
-    this.setClassMap();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    const { data, layout, justify, nodeJustify, activatedIndex } = changes;
-    XIsChange(data) && this.setData();
-    XIsChange(layout) && this.setChange(this.classMap, layout);
-    XIsChange(justify) && this.setChange(this.scrollClassMap, justify, 'x-justify');
-    XIsChange(nodeJustify) && this.setChange(this.nodeClassMap, nodeJustify, 'x-justify');
-    XIsChange(activatedIndex) &&
-      this.setDirection(activatedIndex.currentValue, activatedIndex.previousValue) &&
-      this.setActivated();
-  }
+  classMap = computed(() => ({
+    [`${XSliderPrefix}-${this.layout()}`]: !XIsEmpty(this.layout()),
+    [`${XSliderPrefix}-show-arrow`]: this.showArrow()
+  }));
+  scrollClassMap = computed(() => ({
+    [`x-justify-${this.justify()}`]: !XIsEmpty(this.justify())
+  }));
+  nodeClassMap = computed(() => ({
+    [`x-justify-${this.nodeJustify()}`]: !XIsEmpty(this.nodeJustify()),
+    [`x-size-${this.size()}`]: !XIsEmpty(this.size())
+  }));
 
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-    this._resizeObserver?.disconnect();
+    this.unSubject.next();
+    this.unSubject.complete();
+    this.resizeObserver?.disconnect();
     this.hoverDelayUnsub.next();
     this.hoverDelayUnsub.complete();
   }
@@ -112,33 +89,19 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
     this.setActivated();
   }
 
-  setClassMap() {
-    this.classMap[`${XSliderPrefix}-${this.layout}`] = !XIsEmpty(this.layout);
-    this.scrollClassMap[`x-justify-${this.justify}`] = !XIsEmpty(this.justify);
-    this.nodeClassMap = {
-      [`x-justify-${this.nodeJustify}`]: !XIsEmpty(this.nodeJustify),
-      [`x-size-${this.size}`]: !XIsEmpty(this.size)
-    };
-  }
-
-  setChange(map: XClassMap, change: SimpleChange, prefix = XSliderPrefix) {
-    map[`${prefix}-${change.previousValue}`] = false;
-    map[`${prefix}-${change.currentValue}`] = true;
-    this.cdr.detectChanges();
-  }
-
   setSubscribe() {
-    XResize(this.sliderScroll.nativeElement, this.sliderNodes.nativeElement)
-      .pipe(debounceTime(30), takeUntil(this._unSubject))
+    XResize(this.sliderScroll().nativeElement, this.sliderNodes().nativeElement)
+      .pipe(debounceTime(30), takeUntil(this.unSubject))
       .subscribe((x) => {
-        this._resizeObserver = x.resizeObserver;
+        this.resizeObserver = x.resizeObserver;
         this.sizeChecked();
         this.setActivated();
+        this.resizeChanged.set(x.entry?.contentRect || null);
       });
   }
 
   onEnter(event: Event | null, node: XSliderNode, index: number) {
-    if (node.disabled || this.trigger === 'click') return;
+    if (node.disabled || this.trigger() === 'click') return;
     of(true)
       .pipe(delay(this.hoverDelay), takeUntil(this.hoverDelayUnsub))
       .subscribe(() => {
@@ -151,7 +114,7 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
   }
 
   onLeave(node: XSliderNode) {
-    if (node.disabled || this.trigger === 'click') return;
+    if (node.disabled || this.trigger() === 'click') return;
     this.hoverDelayUnsub.next();
   }
 
@@ -161,67 +124,64 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
       event.stopPropagation();
     }
     if (node.disabled) return;
-    this.setDirection(index, Number(this.activatedIndex));
-    this.activatedIndex = index;
-    this.activated = node;
-    this.activatedId = node.id;
-    this.setHighlight();
+    this.setDirection(index, this.activatedIndex());
+    this.activatedIndex.set(index);
+    this.activated.set(node);
+    this.activatedId.set(node.id);
     this.setTranslate();
     this.indexChange.emit(index);
     this.nodeChange.emit(node);
   }
 
   dropdownClick(node: XSliderNode) {
-    const index = this.nodes.indexOf(node);
+    const index = this.data().indexOf(node);
     this.nodeClick(null, node, index);
   }
 
   scrollPrev() {
-    if (this.offset === 0) return;
-    const scrollSize = this.sliderScroll.nativeElement[`offset${this.sizeName}`];
-    const currentOffset = this.offset;
+    if (this.offset() === 0) return;
+    const scrollSize = this.sliderScroll().nativeElement[`offset${this.sizeName()}`];
+    const currentOffset = this.offset();
     if (!currentOffset) return;
     const offset = currentOffset > scrollSize ? currentOffset - scrollSize : 0;
-    this.offset = offset;
+    this.offset.set(Math.floor(offset));
   }
 
   scrollNext() {
-    if (this.offset === this.maxOffset) return;
-    const sliderSize = this.sliderNodes.nativeElement[`offset${this.sizeName}`];
-    const scrollSize = this.sliderScroll.nativeElement[`offset${this.sizeName}`];
-    const currentOffset = this.offset;
+    if (this.offset() === this.maxOffset()) return;
+    const sliderSize = this.sliderNodes().nativeElement[`offset${this.sizeName()}`];
+    const scrollSize = this.sliderScroll().nativeElement[`offset${this.sizeName()}`];
+    const currentOffset = this.offset();
     if (sliderSize - currentOffset <= scrollSize) return;
     const offset = sliderSize - currentOffset > scrollSize * 2 ? currentOffset + scrollSize : sliderSize - scrollSize;
-    this.offset = offset;
+    this.offset.set(Math.floor(offset));
   }
 
   setDirection(index: number, before: number) {
     const increase = index > before;
-    this.direction = this.layout === 'row' ? (increase ? 'right' : 'left') : increase ? 'bottom' : 'top';
-    return this.direction;
+    this.direction.set(this.layout() === 'row' ? (increase ? 'right' : 'left') : increase ? 'bottom' : 'top');
+    return this.direction();
   }
 
   setTranslate() {
     if (
-      XIsUndefined(this.sliderScroll) ||
-      XIsUndefined(this.sliderNodes) ||
-      typeof this.sliderScroll.nativeElement.getBoundingClientRect !== 'function'
+      XIsUndefined(this.sliderScroll()) ||
+      XIsUndefined(this.sliderNodes()) ||
+      typeof this.sliderScroll().nativeElement.getBoundingClientRect !== 'function'
     )
       return;
-    const sliderRect = this.sliderScroll.nativeElement?.getBoundingClientRect();
-    const sliderNodesRect = this.sliderNodes.nativeElement?.getBoundingClientRect();
+    const sliderRect = this.sliderScroll().nativeElement?.getBoundingClientRect();
+    const sliderNodesRect = this.sliderNodes().nativeElement?.getBoundingClientRect();
     let moveIndex =
-      ['bottom', 'right'].indexOf(this.direction) !== -1
-        ? Number(this.activatedIndex) + 2
-        : Number(this.activatedIndex);
-    moveIndex = moveIndex > this.nodes.length ? this.nodes.length : moveIndex === 0 ? 1 : moveIndex;
-    let moveEle = this.sliderNodes.nativeElement?.querySelector(`li:nth-child(${moveIndex})`);
+      ['bottom', 'right'].indexOf(this.direction()) !== -1 ? this.activatedIndex() + 2 : this.activatedIndex();
+    moveIndex = moveIndex > this.data().length ? this.data().length : moveIndex === 0 ? 1 : moveIndex;
+    let moveEle = this.sliderNodes().nativeElement?.querySelector(`li:nth-child(${moveIndex})`);
     let maxOffset = 0;
     if (XIsEmpty(moveEle)) return;
     const moveRect = moveEle!.getBoundingClientRect();
-    const currentOffset = this.offset;
+    const currentOffset = this.offset();
     let offset = currentOffset;
-    if (this.layout === 'row') {
+    if (this.layout() === 'row') {
       maxOffset = sliderNodesRect.width - sliderRect.width;
       if (moveRect.left < sliderRect.left) {
         offset = currentOffset - (sliderRect.left - moveRect.left);
@@ -238,66 +198,44 @@ export class XSliderComponent extends XSliderProperty implements OnInit, OnChang
         offset = currentOffset + (moveRect.bottom - sliderRect.bottom);
       }
     }
-    this.maxOffset = Math.ceil(maxOffset);
+    this.maxOffset.set(Math.ceil(maxOffset));
     offset = Math.max(Math.ceil(offset), 0);
-    if ([this.maxOffset + 1, this.maxOffset - 1].includes(offset)) {
-      this.offset = this.maxOffset;
+    if (!this.showArrow()) {
+      this.offset.set(0);
     } else {
-      this.offset = Math.min(offset, this.maxOffset);
+      if ([this.maxOffset() + 1, this.maxOffset() - 1].includes(offset)) {
+        this.offset.set(this.maxOffset());
+      } else {
+        this.offset.set(Math.min(offset, this.maxOffset()));
+      }
     }
   }
 
   sizeChecked() {
-    const size = this.sliderNodes.nativeElement[`offset${this.sizeName}`];
-    const scrollSize = this.sliderScroll.nativeElement[`offset${this.sizeName}`];
-    const showArrow = this.nodes.length > 1 && size > scrollSize;
-    if (this.showArrow !== showArrow) {
-      this.showArrow = showArrow;
-      this.classMap[`${XSliderPrefix}-show-arrow`] = this.showArrow;
-      if (!this.showArrow) {
-        this.offset = 0;
+    const size = this.sliderNodes().nativeElement[`offset${this.sizeName()}`];
+    const scrollSize = this.sliderScroll().nativeElement[`offset${this.sizeName()}`];
+    const showArrow = this.data().length > 1 && size > scrollSize;
+    if (this.showArrow() !== showArrow) {
+      this.showArrow.set(showArrow);
+      if (!this.showArrow()) {
+        this.offset.set(0);
       }
-      this.cdr.detectChanges();
     }
   }
 
   setActivated() {
-    if (this.nodes.length > 0) {
-      this.activated = this.nodes[Number(this.activatedIndex)];
-      if (this.activated) {
-        this.activatedId = this.activated.id;
+    if (this.data().length > 0) {
+      this.activated.set(this.data()[this.activatedIndex()]);
+      if (this.activated()) {
+        this.activatedId.set(this.activated()?.id);
       }
     } else {
-      this.activated = null;
+      this.activated.set(null);
     }
-    this.setHighlight();
     this.setTranslate();
   }
 
-  setHighlight() {
-    if (XIsUndefined(this.sliderNodes)) return;
-    const activeEle: HTMLElement = this.sliderNodes.nativeElement.querySelector(
-      `li:nth-child(${Number(this.activatedIndex) + 1})`
-    )!;
-    if (!activeEle) return;
-    this.highlightBox = {
-      width: `${activeEle.offsetWidth}px`,
-      height: `${activeEle.offsetHeight}px`,
-      left: `${activeEle.offsetLeft}px`,
-      top: `${activeEle.offsetTop}px`
-    };
-    this.cdr.detectChanges();
-  }
-
-  private setData() {
-    XSetData<XSliderNode>(this.data, this._unSubject).subscribe((x) => {
-      this.nodes = x;
-      this.cdr.detectChanges();
-      setTimeout(() => this.setActivated());
-    });
-  }
-
   getActivated(index: number) {
-    return Number(this.activatedIndex) === index;
+    return this.activatedIndex() === index;
   }
 }

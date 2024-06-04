@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
@@ -8,7 +8,7 @@ import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
   templateUrl: './default.component.html'
 })
 export class ExDefaultComponent {
-  data: XTreeNode[] = [
+  data = signal<XTreeNode[]>([
     { id: 1, label: '一级 1' },
     { id: 2, label: '一级 2' },
     { id: 3, label: '一级 3' },
@@ -28,5 +28,5 @@ export class ExDefaultComponent {
     { id: 22, label: '三级 1-1-2', pid: 5 },
     { id: 23, label: '三级 1-1-3', pid: 5 },
     { id: 24, label: '三级 1-1-4', pid: 5 }
-  ];
+  ]);
 }

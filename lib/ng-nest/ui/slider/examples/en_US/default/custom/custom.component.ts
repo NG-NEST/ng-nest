@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { XData } from '@ng-nest/ui/core';
+import { Component, signal } from '@angular/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
-import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
+import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-custom',
@@ -11,7 +10,7 @@ import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
   styleUrls: ['./custom.component.scss']
 })
 export class ExCustomComponent {
-  data: XData<XSliderNode> = [
+  data = signal([
     { label: 'User Management', icon: 'fto-box' },
     { label: 'Configuration management', icon: 'fto-settings' },
     'Role management',
@@ -20,5 +19,5 @@ export class ExCustomComponent {
     'News',
     'Process',
     'News'
-  ];
+  ]);
 }

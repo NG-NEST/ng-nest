@@ -3,8 +3,8 @@
 } @else if (config.lang === 'en_US') {
   <x-button (click)="action('zh_CN')" size="big" circle>中</x-button>
 }
-@if (theme === 'light') {
+@if (theme() === 'light') {
   <x-button (click)="action('dark')" title="暗黑风格" size="big" icon="fto-moon" circle></x-button>
-} @else if (theme === 'dark') {
+} @else if (theme() === 'dark') {
   <x-button (click)="action('light')" title="明亮风格" size="big" icon="fto-sun" circle></x-button>
 }

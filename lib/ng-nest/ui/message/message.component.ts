@@ -21,7 +21,7 @@ export class XMessageComponent {
 
   onClose(item: XMessageOption) {
     this.message.list?.splice(this.message.list.indexOf(item), 1);
-    item.duration$?.unsubscribe();
+    item.durationSubscription?.unsubscribe();
     this.cdr.detectChanges();
   }
 
@@ -32,12 +32,12 @@ export class XMessageComponent {
   }
 
   onEnter(item: XMessageOption) {
-    item.duration$?.unsubscribe();
+    item.durationSubscription?.unsubscribe();
   }
 
   onLeave(item: XMessageOption) {
     if (item.duration) {
-      item.duration$ = of(true)
+      item.durationSubscription = of(true)
         .pipe(delay(item.duration))
         .subscribe(() => this.onClose(item));
     }

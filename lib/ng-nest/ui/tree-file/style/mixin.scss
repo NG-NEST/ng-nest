@@ -18,18 +18,6 @@
     transition: $--x-animation-duration-slow;
     .x-tree {
       padding: 0.5rem;
-      &-node-content {
-        height: 1.375rem;
-        &:hover {
-          background-color: $--x-border;
-        }
-        &.x-activated {
-          background-color: $--x-border;
-        }
-        x-icon {
-          font-size: 1rem;
-        }
-      }
     }
   }
   &-body {
@@ -41,14 +29,13 @@
   }
   &-crumb {
     background-color: $--x-background;
+    border-top-left-radius: $--x-border-radius;
+    border-top-right-radius: $--x-border-radius;
     display: flex;
     > x-link {
-      line-height: 1.5rem;
-      height: 1.5rem;
+      line-height: 1.75rem;
+      height: 1.75rem;
       transition: $--x-animation-duration-base;
-      &:hover {
-        // background-color: $--x-border;
-      }
       > a {
         padding: 0 0.5rem;
       }

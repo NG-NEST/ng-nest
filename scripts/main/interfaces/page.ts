@@ -1,4 +1,5 @@
 import { firstLetterCapital } from '../utils';
+import { NcProp } from './prop';
 import { NcTemplate, NcTemplateType } from './template';
 
 export const ncPrefix = 'ns';
@@ -20,6 +21,8 @@ export class NcPage {
   order?: number;
   default?: boolean;
   lang?: string;
+  props?: NcProp[] = [];
+  hidden?: boolean = false;
   constructor(param: NcPage) {
     Object.assign(this, param);
     if (!this.fileName) {

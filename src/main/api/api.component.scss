@@ -1,0 +1,15 @@
+:host {
+  .ns-api {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  .ns-api-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    cursor: pointer;
+  }
+}

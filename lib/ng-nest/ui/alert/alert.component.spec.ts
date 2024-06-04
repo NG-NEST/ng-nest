@@ -9,23 +9,22 @@ import { XCountdownComponent } from '@ng-nest/ui/statistic';
 import { XAddSeconds } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XThemeComponent } from '@ng-nest/ui/theme';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XAlertPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXAlertComponent],
+    imports: [BrowserAnimationsModule,
         FormsModule,
         BrowserAnimationsModule,
         XButtonComponent,
         XAlertComponent,
         XCountdownComponent,
-        XThemeComponent
-      ],
-      declarations: [TestXAlertComponent]
-    }).compileComponents();
+        XThemeComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAlertComponent>;
@@ -66,16 +65,8 @@ describe(XAlertPrefix, () => {
       <x-alert title="不可关闭" type="success" hideClose> </x-alert>
       <x-alert title="自定义关闭内容" type="info" closeText="知道了"> </x-alert>
       <x-alert title="关闭事件" type="warning" (close)="close()"> </x-alert>
-      <x-alert
-        [title]="titleTpl"
-        type="success"
-        showIcon
-        duration="10000"
-        content="秒后关闭"
-      ></x-alert>
-      <ng-template #titleTpl>
-        <x-countdown [value]="deadline" format="ss:SSS"></x-countdown
-      ></ng-template>
+      <x-alert [title]="titleTpl" type="success" showIcon duration="10000" content="秒后关闭"></x-alert>
+      <ng-template #titleTpl> <x-countdown [value]="deadline" format="ss:SSS"></x-countdown></ng-template>
     </div>
     <div class="row">
       <x-alert title="成功提示" type="success" showIcon> </x-alert>
@@ -93,8 +84,7 @@ describe(XAlertPrefix, () => {
       <x-alert title="错误提示" type="error" [content]="content" showIcon> </x-alert>
     </div>
     <div class="row">
-      <x-alert title="控制关闭" type="success" [hide]="hide" (close)="close()" manual showIcon>
-      </x-alert>
+      <x-alert title="控制关闭" type="success" [hide]="hide" (close)="close()" manual showIcon> </x-alert>
       <x-button (click)="toggle()">{{ hide ? '显示' : '隐藏' }}</x-button>
     </div>
   `,

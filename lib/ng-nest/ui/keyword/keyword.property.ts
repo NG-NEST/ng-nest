@@ -1,5 +1,6 @@
-import { XBoolean, XInputBoolean, XProperty, XType, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Directive } from '@angular/core';
+import { XPropertyFunction, XToBoolean } from '@ng-nest/ui/core';
+import { Directive, input } from '@angular/core';
+import type { XBoolean, XType } from '@ng-nest/ui/core';
 
 /**
  * Keyword
@@ -7,33 +8,33 @@ import { Input, Directive } from '@angular/core';
  * @decorator directive
  */
 export const XKeywordPrefix = 'x-keyword';
-const X_CONFIG_NAME = 'keyword';
+const X_KEYWORD_CONFIG_NAME = 'keyword';
 
 /**
  * Keyword Property
  */
 @Directive({ selector: '[x-keyword]', standalone: true })
-export class XKeywordProperty extends XProperty {
+export class XKeywordProperty extends XPropertyFunction(X_KEYWORD_CONFIG_NAME) {
   /**
    * @zh_CN 类型
    * @en_US Types of
    */
-  @Input() @XWithConfig<XKeywordType>(X_CONFIG_NAME, 'primary') type?: XKeywordType;
+  readonly type = input<XKeywordType>(this.config?.type ?? 'primary');
   /**
    * @zh_CN 匹配关键字区分大小写
    * @en_US Case-sensitive
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) caseSensitive!: XBoolean;
+  readonly caseSensitive = input<boolean, XBoolean>(this.config?.caseSensitive ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 颜色
    * @en_US color
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME) color?: string;
+  readonly color = input<string>(this.config?.color ?? '');
   /**
    * @zh_CN 文字
    * @en_US text
    */
-  @Input() text!: string | string[];
+  readonly text = input<string | string[]>();
 }
 
 /**

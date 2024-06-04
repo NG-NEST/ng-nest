@@ -15,7 +15,6 @@ export * from '@ng-nest/ui/icon';
 export * from '@ng-nest/ui/i18n';
 export * from '@ng-nest/ui/link';
 export * from '@ng-nest/ui/theme';
-export * from '@ng-nest/ui/typography';
 
 /**
  * Data

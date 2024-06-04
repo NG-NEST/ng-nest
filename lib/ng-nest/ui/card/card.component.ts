@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed } from '@angular/core';
 import { XCardPrefix, XCardProperty } from './card.property';
-import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { NgClass, NgStyle } from '@angular/common';
@@ -14,14 +14,8 @@ import { NgClass, NgStyle } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XCardComponent extends XCardProperty implements OnInit {
-  configService = inject(XConfigService);
-
-  ngOnInit() {
-    this.setClassMap();
-  }
-
-  setClassMap() {
-    this.classMap[`${XCardPrefix}-${this.shadow}`] = !XIsEmpty(this.shadow);
-  }
+export class XCardComponent extends XCardProperty {
+  classMap = computed(() => ({
+    [`${XCardPrefix}-${this.shadow()}`]: !XIsEmpty(this.shadow())
+  }));
 }

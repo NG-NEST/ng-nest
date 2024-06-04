@@ -1,25 +1,35 @@
-import { Injectable } from '@angular/core';
-import { XI18nService, XI18nProperty, zh_CN, en_US } from '@ng-nest/ui/i18n';
+import { Injectable, Renderer2, RendererFactory2, inject, signal } from '@angular/core';
+import { XI18nService, XI18nProperty, zh_CN, en_US, XI18nLanguage } from '@ng-nest/ui/i18n';
 import { HttpClient } from '@angular/common/http';
-import { Location } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
-import { XStorageService } from '@ng-nest/ui/core';
+import { XStorageService, XThemeService } from '@ng-nest/ui/core';
 import { Platform } from '@angular/cdk/platform';
+import { PrismService } from './prism.service';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
-  defaultLang: string;
-  langs = ['zh_CN', 'en_US'];
-  cacheLangs: { [lang: string]: XI18nProperty } = {};
-  versions: string[] = [];
-  version = '17.0.11';
-  navName = 'NG-NEST';
+  doc: Document = inject(DOCUMENT);
+  colorsStyleEle!: HTMLStyleElement;
+  defaultLang = signal<XI18nLanguage | null>(null);
+  langs = signal(['zh_CN', 'en_US']);
+  cacheLangs = signal<{ [lang: string]: XI18nProperty }>({});
+  versions = signal<string[]>([]);
+  version = signal('18.0.0');
+  navName = signal('NG-NEST');
+  renderer2: Renderer2;
+  light = signal({
+    '--layout-border-color': '#f6f6f6;'
+  });
+  dark = signal({
+    '--layout-border-color': '#252525;'
+  });
 
-  get lang() {
+  get lang(): XI18nLanguage {
     let lg = this.storage.getLocal('Lang');
     if (!lg) {
-      this.storage.setLocal('Lang', this.defaultLang);
-      return this.defaultLang;
+      this.storage.setLocal('Lang', this.defaultLang());
+      return this.defaultLang()!;
     }
     return lg;
   }
@@ -33,10 +43,18 @@ export class ConfigService {
     private location: Location,
     private meta: Meta,
     private storage: XStorageService,
-    private platform: Platform
+    private theme: XThemeService,
+    private platform: Platform,
+    private prism: PrismService,
+    private factory: RendererFactory2
   ) {
-    this.defaultLang = this.i18n.getLocaleId();
+    this.renderer2 = this.factory.createRenderer(null, null);
+    this.defaultLang.set(this.i18n.getLocaleId());
     this.handleLang();
+    this.prism.init();
+    this.theme.changed.subscribe((x) => {
+      this.setTheme(x);
+    });
   }
 
   init() {
@@ -54,29 +72,29 @@ export class ConfigService {
 
   checkPath() {
     const path = this.location.path();
-    let lang = this.langs.find((x) => path.indexOf(`/${x}/`) >= 0);
+    let lang = this.langs().find((x) => path.indexOf(`/${x}/`) >= 0);
     return lang;
   }
 
   setLocale(locale?: string, callback?: () => void) {
     let lang = locale;
     if (!lang) lang = this.lang;
-    if (this.cacheLangs[lang]) {
+    if (this.cacheLangs()[lang]) {
       this.lang = lang as string;
-      this.i18n.setLocale(this.cacheLangs[lang], true);
+      this.i18n.setLocale(this.cacheLangs()[lang], true);
       this.setMeta();
       callback && callback();
     } else {
-      let url = `/assets/i18n/${lang}.json`;
+      let url = `/i18n/${lang}.json`;
       if (!this.platform.isBrowser) {
-        url = `https://ngnest.com${url}`;
+        url = `https://ngnest.com/assets${url}`;
       }
       this.http.get<XI18nProperty>(url).subscribe((x) => {
         this.lang = lang as string;
         const localeProps = this.setLocaleProps(x, this.lang);
         this.i18n.setLocale(localeProps, true);
         this.setMeta();
-        this.cacheLangs[this.lang] = localeProps;
+        this.cacheLangs()[this.lang] = localeProps;
         callback && callback();
       });
     }
@@ -99,15 +117,36 @@ export class ConfigService {
     description?.setAttribute('content', meta.description);
   }
 
+  setTheme(theme: 'light' | 'dark') {
+    let colors = this.light();
+    if (theme === 'light') {
+      colors = this.light();
+    } else if (theme === 'dark') {
+      colors = this.dark();
+    }
+    if (this.colorsStyleEle) {
+      this.renderer2.removeChild(this.colorsStyleEle.parentNode, this.colorsStyleEle);
+    }
+    const styles = Object.entries(colors)
+      .map((x) => `${x[0]}: ${x[1]};`)
+      .join('');
+    this.colorsStyleEle = this.renderer2.createElement('style');
+    this.colorsStyleEle.innerHTML = `.ns-colors{${styles}}`;
+    this.renderer2.addClass(this.doc.documentElement, 'ns-colors');
+    this.doc.documentElement.getElementsByTagName('head')[0].appendChild(this.colorsStyleEle);
+  }
+
   getVersions() {
-    this.http.get<{ versions: string[] }>(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`).subscribe((x) => {
-      const versions = x.versions;
-      if (!versions.includes(this.version)) {
-        if (versions.length > 0) {
-          versions.splice(1, 0, this.version);
+    this.http
+      .get<{ versions: string[] }>(`https://ngnest.com/static/json/version.json?v=${new Date().getTime()}`)
+      .subscribe((x) => {
+        const versions = x.versions;
+        if (!versions.includes(this.version())) {
+          if (versions.length > 0) {
+            versions.splice(1, 0, this.version());
+          }
         }
-      }
-      this.versions = versions;
-    });
+        this.versions.set(versions);
+      });
   }
 }

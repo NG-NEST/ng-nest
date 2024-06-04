@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } from '@angular/core';
-import { XDrawerContainerProperty, X_DRAWER_CONTAINER } from './drawer.property';
+import { XDrawerContainerPrefix, XDrawerContainerProperty, X_DRAWER_CONTAINER } from './drawer.property';
 
 @Component({
-  selector: 'x-drawer-container',
+  selector: XDrawerContainerPrefix,
   standalone: true,
   templateUrl: './drawer-container.component.html',
   styleUrls: ['./drawer-container.component.scss'],
@@ -16,5 +16,5 @@ import { XDrawerContainerProperty, X_DRAWER_CONTAINER } from './drawer.property'
   ]
 })
 export class XDrawerContainerComponent extends XDrawerContainerProperty {
-  @HostBinding('class.x-drawer-container') _has = true;
+  @HostBinding('class') className = XDrawerContainerPrefix;
 }

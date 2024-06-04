@@ -3,17 +3,17 @@ import {
   ViewContainerRef,
   Directive,
   HostListener,
-  OnChanges,
-  SimpleChanges,
   OnDestroy,
   HostBinding,
-  inject
+  inject,
+  signal,
+  ComponentRef,
+  effect
 } from '@angular/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XTooltipPortalComponent } from './tooltip-portal.component';
 import { XTooltipPrefix, XTooltipProperty } from './tooltip.property';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { XIsChange, XPlacement } from '@ng-nest/ui/core';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {
   OverlayConfig,
@@ -21,79 +21,92 @@ import {
   ConnectedOverlayPositionChange,
   Overlay
 } from '@angular/cdk/overlay';
+import type { XPlacement } from '@ng-nest/ui/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}`, standalone: true })
-export class XTooltipDirective extends XTooltipProperty implements OnChanges, OnDestroy {
+export class XTooltipDirective extends XTooltipProperty implements OnDestroy {
   portal!: XPortalOverlayRef<XTooltipPortalComponent>;
-  box!: DOMRect;
-  contentChange: BehaviorSubject<any> = new BehaviorSubject(null);
-  positionChange: Subject<any> = new Subject();
+  box = signal<DOMRect | null>(null);
   timeoutHide: any;
   timeoutShow: any;
-  private _unSubject = new Subject();
+  mouseover = signal(false);
+  private unSubject = new Subject<void>();
+  private realPlacement = signal<XPlacement | null>(null);
   private elementRef = inject(ElementRef);
   private portalService = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
   private overlay = inject(Overlay);
 
   @HostBinding('class.x-tooltip-show') get _show() {
-    return this.visible;
+    return this.visible();
   }
 
   @HostListener('mouseenter') mouseenter() {
-    !this.disabled && !this.manual && this.show();
+    this.mouseover.set(true);
+    !this.disabled() && !this.manual() && this.show();
   }
 
   @HostListener('mouseleave') mouseleave() {
-    !this.disabled && !this.manual && this.hide();
+    this.mouseover.set(false);
+    !this.disabled() && !this.manual() && this.hide();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const { content, visible } = changes;
-    XIsChange(content) && this.contentChange.next(this.content);
-    if (XIsChange(visible)) {
-      if (this.visible) this.show();
+  portalComponent = signal<ComponentRef<XTooltipPortalComponent> | null>(null);
+  visibleChanged = toObservable(this.visible);
+
+  constructor() {
+    super();
+    effect(() => this.portalComponent()?.setInput('content', this.content()));
+    effect(() => this.portalComponent()?.setInput('box', this.box()));
+    effect(() => this.portalComponent()?.setInput('color', this.color()));
+    effect(() => this.portalComponent()?.setInput('backgroundColor', this.backgroundColor()));
+    effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
+    this.visibleChanged.subscribe((x) => {
+      if (x) this.show();
       else this.hide();
-    }
+    });
   }
 
   ngOnDestroy(): void {
-    this.contentChange.unsubscribe();
+    this.unSubject.next();
+    this.unSubject.unsubscribe();
   }
 
   show() {
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
     if (this.timeoutShow) clearTimeout(this.timeoutShow);
-    if (!this.portal || (this.portal && !this.portal.overlayRef?.hasAttached())) {
+    if ((!this.portal || (this.portal && !this.portal.overlayRef?.hasAttached())) && this.mouseover()) {
       this.timeoutShow = setTimeout(() => {
-        this.visible = true;
         this.createPortal();
-      }, this.mouseEnterDelay);
+        this.visible.set(true);
+      }, this.mouseEnterDelay());
     }
   }
 
   hide() {
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
     if (this.timeoutShow) clearTimeout(this.timeoutShow);
-    if (this.portal?.overlayRef?.hasAttached()) {
+    if (this.portal?.overlayRef?.hasAttached() && !this.mouseover()) {
       this.timeoutHide = setTimeout(() => {
-        this.visible = false;
         this.portal.overlayRef?.dispose();
-      }, this.mouseLeaveDelay);
+        this.visible.set(false);
+      }, this.mouseLeaveDelay());
     }
   }
 
   createPortal() {
+    const connectTo = this.connectTo();
     const config: OverlayConfig = {
-      panelClass: this.panelClass,
+      panelClass: this.panelClass(),
       backdropClass: '',
       positionStrategy: this.portalService.setPlacement({
-        elementRef: this.connectTo
-          ? this.connectTo instanceof ElementRef
-            ? this.connectTo
-            : new ElementRef(this.connectTo)
+        elementRef: connectTo
+          ? connectTo instanceof ElementRef
+            ? connectTo
+            : new ElementRef(connectTo)
           : this.elementRef,
-        placement: [this.placement as XPlacement, 'bottom', 'top', 'left', 'right']
+        placement: [this.placement(), 'top', 'bottom', 'left', 'right']
       }),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };
@@ -108,37 +121,32 @@ export class XTooltipDirective extends XTooltipProperty implements OnChanges, On
 
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
-    position.positionChanges.pipe(takeUntil(this._unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
+    position.positionChanges.pipe(takeUntil(this.unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
       const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
-      place !== this.placement && this.positionChange.next(place);
+      if (place !== this.realPlacement()) {
+        this.realPlacement.set(place);
+        this.portal.overlayRef?.updatePosition();
+      }
     });
   }
 
   setInstance() {
     let componentRef = this.portal?.componentRef;
     if (!componentRef) return;
-    this.box = this.elementRef.nativeElement.getBoundingClientRect();
-    Object.assign(componentRef.instance, {
-      box: this.box,
-      content: this.content,
-      contentChange: this.contentChange,
-      color: this.color,
-      backgroundColor: this.backgroundColor,
-      placement: this.placement,
-      positionChange: this.positionChange,
-      portalHover: (hover: boolean) => {
-        if (this.timeoutHide && hover) {
-          clearTimeout(this.timeoutHide);
-        } else {
-          this.hide();
-        }
-      },
-      viewInit: () => this.updatePortal()
+    this.portalComponent.set(componentRef);
+    this.realPlacement.set(this.placement());
+    this.box.set(this.elementRef.nativeElement.getBoundingClientRect());
+    const { hoverChanged } = componentRef.instance;
+    hoverChanged.subscribe((hover: boolean) => {
+      if (this.timeoutHide && hover) {
+        clearTimeout(this.timeoutHide);
+      } else {
+        this.hide();
+      }
     });
-    componentRef.changeDetectorRef.detectChanges();
   }
 
   updatePortal() {
-    this.portal?.overlayRef?.updatePosition();
+    this.portal.overlayRef?.updatePosition();
   }
 }

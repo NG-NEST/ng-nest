@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
@@ -11,7 +11,7 @@ import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
   styleUrls: ['./material-design.component.scss']
 })
 export class ExMaterialDesignComponent {
-  tabs = [
+  tabs = signal([
     {
       type: 'mdo',
       name: 'Outlined',
@@ -2662,5 +2662,5 @@ export class ExMaterialDesignComponent {
         'toggle-toggle-on'
       ]
     }
-  ];
+  ]);
 }

@@ -1,6 +1,6 @@
-@if (loading) {
-  <div #skeleton class="x-skeleton" [ngClass]="classMap">
-    <ng-container *ngTemplateOutlet="rowsTpl; context: { rows: data }"></ng-container>
+@if (loading()) {
+  <div #skeleton class="x-skeleton" [class.x-skeleton-active]="active()" [class.x-skeleton-border]="border()">
+    <ng-container *ngTemplateOutlet="rowsTpl; context: { rows: data() }"></ng-container>
   </div>
 } @else {
   <ng-content></ng-content>
@@ -14,8 +14,8 @@
           [span]="col.span"
           [inherit]="col.width || col.height ? true : false"
           [ngStyle]="col.style"
-          [style.padding-top.rem]="border && row.space / 2"
-          [style.padding-bottom.rem]="border && row.space / 2"
+          [style.padding-top.px]="border() && toCssPx(row.space) / 2"
+          [style.padding-bottom.px]="border() && toCssPx(row.space) / 2"
           [ngClass]="{
             title: col.type === 'title',
             img: col.type === 'img',

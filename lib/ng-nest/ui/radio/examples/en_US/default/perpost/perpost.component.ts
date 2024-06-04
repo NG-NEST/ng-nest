@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
-import { XData } from '@ng-nest/ui/core';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XRadioComponent, XRadioNode } from '@ng-nest/ui/radio';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
@@ -30,8 +29,8 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
   styleUrls: ['./perpost.component.scss']
 })
 export class ExPerpostComponent {
-  data: XData<XRadioNode> = ['ngnest', 'github'];
-  cascadeData = [
+  data = signal(['ngnest', 'github']);
+  cascadeData = signal([
     { id: 1, label: 'AAAA' },
     { id: 2, label: 'BBBB' },
     { id: 3, label: 'CCCC' },
@@ -68,5 +67,5 @@ export class ExPerpostComponent {
     { id: 34, label: 'AAAA-4-2', pid: 8 },
     { id: 35, label: 'AAAA-4-3', pid: 8 },
     { id: 36, label: 'AAAA-4-4', pid: 8 }
-  ];
+  ]);
 }

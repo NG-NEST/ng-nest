@@ -1,34 +1,35 @@
 export default {
   locale: 'hi_IN',
   comment: {
-    comments: 'टिप्पणी',
+    comments: 'टिप्पणियाँ',
     giveALike: 'पसंद',
-    reply: 'जवाब दे दो',
-    more: 'और देखें',
-    sure: 'रिहाई',
-    placeholder: 'कृपया एक टिप्पणी दर्ज करें'
+    reply: 'जवाब दें',
+    more: 'अधिक',
+    sure: 'विश्वसनीय',
+    placeholder: 'कृपया टिप्पणी दर्ज करें'
   },
   theme: {
     darkMode: 'डार्क मोड',
-    initDefault: 'डिफ़ॉल्ट मान को प्रारंभ करें',
-    primary: 'मुखय रंग',
+    initDefault:
+      'डिफ़ॉल्ट मूल्य का प्रारंभिकीकरण',
+    primary: 'प्रमुख',
     success: 'सफलता',
     warning: 'चेतावनी',
     danger: 'खतरा',
     info: 'जानकारी',
     background: 'पृष्ठभूमि',
-    border: 'ढांचा',
-    text: 'टेक्स्ट'
+    border: 'सीमा',
+    text: 'पाठ'
   },
   calendar: {
     month: 'महीना',
     year: 'साल',
-    lastMonth: 'पहला महीना',
-    lastYear: 'पिछले साल',
-    nextMonth: 'अगले महीने',
-    nextYear: 'अगले वर्ष',
+    lastMonth: 'पिछला महीना',
+    lastYear: 'पिछला साल',
+    nextMonth: 'अगला महीना',
+    nextYear: 'अगला साल',
     january: 'जनवरी',
-    february: 'फरवरी',
+    february: 'फ़रवरी',
     march: 'मार्च',
     april: 'अप्रैल',
     may: 'मई',
@@ -41,11 +42,12 @@ export default {
     december: 'दिसंबर'
   },
   datePicker: {
-    sure: 'पुष्टि करना',
-    month: '',
-    year: '',
+    sure: 'विश्वसनीय',
+    week: 'सप्ताह',
+    month: 'महीना',
+    year: 'साल',
     january: 'जनवरी',
-    february: 'फरवरी',
+    february: 'फ़रवरी',
     march: 'मार्च',
     april: 'अप्रैल',
     may: 'मई',
@@ -56,62 +58,109 @@ export default {
     october: 'अक्टूबर',
     november: 'नवंबर',
     december: 'दिसंबर',
-    monday: 'एक',
-    tuesday: 'दो',
-    wednesday: 'तीन',
-    thursday: 'चार',
-    friday: 'फाइव्स',
-    saturday: 'छह',
-    sunday: 'दिन',
-    yesterday: 'बीता हुआ कल',
-    today: 'आजकल',
-    tomorrow: 'कल'
+    monday: 'सोमवार',
+    tuesday: 'मंगलवार',
+    wednesday: 'बुधवार',
+    thursday: 'गुरुवार',
+    friday: 'शुक्रवार',
+    saturday: 'शनिवार',
+    sunday: 'रविवार',
+    yesterday: 'कल',
+    today: 'आज',
+    tomorrow: 'कल',
+    thisWeek: 'इस सप्ताह',
+    lastWeek: 'पिछले सप्ताह',
+    nextWeek: 'अगले सप्ताह',
+    thisMonth: 'इस महीने',
+    lastMonth: 'पिछले महीने',
+    nextMonth: 'अगले महीने',
+    thisYear: 'इस साल',
+    lastYear: 'पिछले साल',
+    nextYear: 'अगले साल',
+    selectDate: 'तारीख चुनें',
+    selectWeek: 'सप्ताह चुनें',
+    selectMonth: 'महीना चुनें',
+    selectQuarter: 'तिमाही चुनें',
+    selectYear: 'साल चुनें',
+    startDate: 'प्रारंभ तिथि',
+    endDate: 'समाप्ति तिथि',
+    startMonth: 'प्रारंभ महीना',
+    endMonth: 'समाप्ति महीना',
+    startQuarter: 'प्रारंभ तिमाही',
+    endQuarter: 'समाप्ति तिमाही',
+    startYear: 'प्रारंभ साल',
+    endYear: 'समाप्ति साल',
+    startWeek: 'प्रारंभ सप्ताह',
+    endWeek: 'समाप्ति सप्ताह'
   },
-  empty: {
-    noData: 'कोई आकड़ा उपलब्ध नहीं है'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'अब',
+    selectTime: 'समय चुनें',
+    selectHour: 'घंटा चुनें',
+    selectMinute: 'मिनट चुनें'
   },
+  empty: { noData: 'कोई डेटा नहीं' },
+  image: { previewText: 'पूर्वावलोकन' },
   pagination: {
-    previous: 'पिछला पृष्ठ',
-    next: 'अगला पृष्ठ',
-    total: 'संपूर्ण',
-    item: 'लेख',
-    first: 'मुखपृष्ठ',
-    last: 'पूंछ',
-    jump: 'कूद',
-    sizePage: 'पट्टी/पृष्ठ'
+    previous: 'पिछला',
+    next: 'अगला',
+    total: 'कुल',
+    item: 'आइटम',
+    first: 'प्रथम',
+    last: 'अंतिम',
+    jump: 'जाएँ',
+    sizePage: 'आइटम/पृष्ठ'
   },
   textRetract: {
-    unfold: 'उधेड़ना',
-    packUp: 'जेल भेजना'
+    unfold: 'खोलें',
+    packUp: 'संचित करें'
   },
   timeAgo: {
-    just: 'केवल',
-    secondsAgo: 'एक सेकंड पहले',
-    minutesAgo: 'कुछ देर पहले',
-    hoursAgo: 'एक घंटा पहले'
+    just: 'अभी',
+    secondsAgo: 'सेकंड पहले',
+    minutesAgo: 'मिनट पहले',
+    hoursAgo: 'घंटे पहले'
+  },
+  transfer: {
+    listTitle: 'सूची',
+    treeTitle: 'वृक्ष',
+    tableTitle: 'तालिका',
+    selectedTitle: 'चयनित आइटम',
+    inverse: 'उलटा'
   },
   messageBox: {
-    cancelText: 'रद्द करना',
+    cancelText: 'रद्द करें',
     confirmText: 'पुष्टि करें'
   },
   dialog: {
-    cancelText: 'रद्द करना',
+    cancelText: 'रद्द करें',
     confirmText: 'पुष्टि करें'
   },
   popconfirm: {
-    cancelText: 'रद्द करना',
+    cancelText: 'रद्द करें',
     confirmText: 'पुष्टि करें'
   },
   upload: {
-    uploadText: 'फाइल अपलोड करो'
+    uploadText: 'फ़ाइल अपलोड करें',
+    beginUploadText: 'फ़ाइल अपलोड करना शुरू करें',
+    uploadingText: 'अपलोड हो रहा है',
+    uploadCompleted: 'फ़ाइल अपलोड हो गई है'
   },
-  pageHeader: {
-    back: 'वापसी'
-  },
+  pageHeader: { back: 'पीछे' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'सभी का चयन करें',
+    loadMoreText: 'और लोड करें',
+    loadingMoreText: 'लोड हो रहा है'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'सभी का चयन करें',
+    maxTagContent: 'अधिक {{surplus}} चयनित हैं'
+  },
+  treeSelect: {
+    selectAllText: 'सभी का चयन करें',
+    maxTagContent: 'अधिक {{surplus}} चयनित हैं'
+  },
+  form: { required: 'आवश्यक' }
 };

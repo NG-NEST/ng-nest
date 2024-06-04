@@ -1,4 +1,4 @@
-<x-crumb [data]="data" [nodeTpl]="nodeTpl"></x-crumb>
+<x-crumb [data]="data()" [nodeTpl]="nodeTpl"></x-crumb>
 <ng-template #nodeTpl let-node="$node">
   <x-tag>{{ node.label }}</x-tag>
 </ng-template>

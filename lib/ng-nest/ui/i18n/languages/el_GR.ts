@@ -1,117 +1,169 @@
 export default {
   locale: 'el_GR',
   comment: {
-    comments: 'σχόλιο',
-    giveALike: 'αρέσει',
+    comments: 'Σχόλια',
+    giveALike: 'Μου αρέσει',
     reply: 'Απάντηση',
-    more: 'δείτε περισσότερα',
-    sure: 'ελευθέρωση',
+    more: 'Περισσότερα',
+    sure: 'Σίγουρος',
     placeholder: 'Παρακαλώ εισάγετε ένα σχόλιο'
   },
   theme: {
     darkMode: 'Σκοτεινή λειτουργία',
-    initDefault: 'Αρχικοποιήστε την προεπιλεγμένη τιμή',
-    primary: 'Κύριο χρώμα',
-    success: 'επιτυχία',
-    warning: 'ανακοπή',
+    initDefault:
+      'Αρχικοποίηση προεπιλεγμένης τιμής',
+    primary: 'Πρωτεύων',
+    success: 'Επιτυχία',
+    warning: 'Προειδοποίηση',
     danger: 'Κίνδυνος',
-    info: 'πληροφορίες',
-    background: 'Ιστορικό',
-    border: 'πλαίσιο',
+    info: 'Πληροφορίες',
+    background: 'Φόντο',
+    border: 'Περιγράμματα',
     text: 'Κείμενο'
   },
   calendar: {
-    month: 'μήνας',
-    year: 'έτος',
-    lastMonth: 'Πρώτος μήνας',
-    lastYear: 'πέρυσι',
-    nextMonth: 'Τον επόμενο μήνα',
-    nextYear: 'του χρόνου',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12'
+    month: 'Μήνας',
+    year: 'Έτος',
+    lastMonth: 'Προηγούμενος μήνας',
+    lastYear: 'Προηγούμενο έτος',
+    nextMonth: 'Επόμενος μήνας',
+    nextYear: 'Επόμενο έτος',
+    january: 'Ιανουάριος',
+    february: 'Φεβρουάριος',
+    march: 'Μάρτιος',
+    april: 'Απρίλιος',
+    may: 'Μάιος',
+    june: 'Ιούνιος',
+    july: 'Ιούλιος',
+    august: 'Αύγουστος',
+    september: 'Σεπτέμβριος',
+    october: 'Οκτώβριος',
+    november: 'Νοέμβριος',
+    december: 'Δεκέμβριος'
   },
   datePicker: {
-    sure: 'επιβεβαιώνω',
-    month: '',
-    year: '',
-    january: '1',
-    february: '2',
-    march: '3',
-    april: '4',
-    may: '5',
-    june: '6',
-    july: '7',
-    august: '8',
-    september: '9',
-    october: '10',
-    november: '11',
-    december: '12',
-    monday: 'Ενας',
-    tuesday: 'δύο',
-    wednesday: 'τρία',
-    thursday: 'τέσσερα',
-    friday: 'Πέντε',
-    saturday: 'έξι',
-    sunday: 'ημέρα',
-    yesterday: 'εχθές',
-    today: 'Στην εποχή μας',
-    tomorrow: 'αύριο'
+    sure: 'Σίγουρος',
+    week: 'Εβδομάδα',
+    month: 'Μήνας',
+    year: 'Έτος',
+    january: 'Ιανουάριος',
+    february: 'Φεβρουάριος',
+    march: 'Μάρτιος',
+    april: 'Απρίλιος',
+    may: 'Μάιος',
+    june: 'Ιούνιος',
+    july: 'Ιούλιος',
+    august: 'Αύγουστος',
+    september: 'Σεπτέμβριος',
+    october: 'Οκτώβριος',
+    november: 'Νοέμβριος',
+    december: 'Δεκέμβριος',
+    monday: 'Δευτέρα',
+    tuesday: 'Τρίτη',
+    wednesday: 'Τετάρτη',
+    thursday: 'Πέμπτη',
+    friday: 'Παρασκευή',
+    saturday: 'Σάββατο',
+    sunday: 'Κυριακή',
+    yesterday: 'Χθες',
+    today: 'Σήμερα',
+    tomorrow: 'Αύριο',
+    thisWeek: 'Αυτή η εβδομάδα',
+    lastWeek: 'Προηγούμενη εβδομάδα',
+    nextWeek: 'Επόμενη εβδομάδα',
+    thisMonth: 'Αυτός ο μήνας',
+    lastMonth: 'Προηγούμενος μήνας',
+    nextMonth: 'Επόμενος μήνας',
+    thisYear: 'Φέτος',
+    lastYear: 'Προηγούμενο έτος',
+    nextYear: 'Επόμενο έτος',
+    selectDate: 'Επιλέξτε ημερομηνία',
+    selectWeek: 'Επιλέξτε εβδομάδα',
+    selectMonth: 'Επιλέξτε μήνα',
+    selectQuarter: 'Επιλέξτε τρίμηνο',
+    selectYear: 'Επιλέξτε έτος',
+    startDate: 'Ημερομηνία έναρξης',
+    endDate: 'Ημερομηνία λήξης',
+    startMonth: 'Έναρξη μήνα',
+    endMonth: 'Τέλος μήνα',
+    startQuarter: 'Έναρξη τριμήνου',
+    endQuarter: 'Τέλος τριμήνου',
+    startYear: 'Έναρξη έτους',
+    endYear: 'Τέλος έτους',
+    startWeek: 'Έναρξη εβδομάδας',
+    endWeek: 'Τέλος εβδομάδας'
   },
-  empty: {
-    noData: 'Χωρίς δεδομένα'
+  timePicker: {
+    am: 'ΠΜ',
+    pm: 'ΜΜ',
+    now: 'Τώρα',
+    selectTime: 'Επιλογή ώρας',
+    selectHour: 'Επιλογή ώρας',
+    selectMinute: 'Επιλογή λεπτού'
   },
+  empty: { noData: 'Δεν υπάρχουν δεδομένα' },
+  image: { previewText: 'Προεπισκόπηση' },
   pagination: {
-    previous: 'Προηγούμενη σελίδα',
-    next: 'Επόμενη σελίδα',
+    previous: 'Προηγούμενο',
+    next: 'Επόμενο',
     total: 'Σύνολο',
-    item: 'Αρθρο',
-    first: 'εξώφυλλο',
-    last: 'Ουρά',
-    jump: 'Αλμα',
-    sizePage: '/Σελίδα'
+    item: 'Στοιχείο',
+    first: 'Πρώτο',
+    last: 'Τελευταίο',
+    jump: 'Μετάβαση σε',
+    sizePage: 'Στοιχεία/σελίδα'
   },
   textRetract: {
-    unfold: 'Ξεδιπλώνονται',
-    packUp: 'Αποταμιεύω'
+    unfold: 'Ξεδίπλωμα',
+    packUp: 'Συσκευασία'
   },
   timeAgo: {
-    just: 'μόλις',
-    secondsAgo: 'Πριν από δευτερόλεπτα',
-    minutesAgo: 'λεπτά πριν',
-    hoursAgo: 'Πριν από μία ώρα'
+    just: 'Μόλις τώρα',
+    secondsAgo: 'Πριν από λίγα δευτερόλεπτα',
+    minutesAgo: 'Πριν από λίγα λεπτά',
+    hoursAgo: 'Πριν από λίγες ώρες'
+  },
+  transfer: {
+    listTitle: 'Λίστα',
+    treeTitle: 'Δέντρο',
+    tableTitle: 'Πίνακας',
+    selectedTitle: 'Επιλεγμένα στοιχεία',
+    inverse: 'Αντιστροφή'
   },
   messageBox: {
-    cancelText: 'Ματαίωση',
-    confirmText: 'επιβεβαιώνω'
+    cancelText: 'Ακύρωση',
+    confirmText: 'Επιβεβαίωση'
   },
   dialog: {
-    cancelText: 'Ματαίωση',
-    confirmText: 'επιβεβαιώνω'
+    cancelText: 'Ακύρωση',
+    confirmText: 'Επιβεβαίωση'
   },
   popconfirm: {
-    cancelText: 'Ματαίωση',
-    confirmText: 'επιβεβαιώνω'
+    cancelText: 'Ακύρωση',
+    confirmText: 'Επιβεβαίωση'
   },
   upload: {
-    uploadText: 'ανεβάστε αρχεία'
+    uploadText: 'Ανέβασμα αρχείου',
+    beginUploadText: 'Έναρξη ανεβάσματος αρχείου',
+    uploadingText: 'Ανέβασμα',
+    uploadCompleted:
+      'Ολοκλήρωση ανεβάσματος αρχείου'
   },
-  pageHeader: {
-    back: 'ΕΠΙΣΤΡΟΦΗ'
-  },
+  pageHeader: { back: 'Πίσω' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Επιλογή όλων',
+    loadMoreText: 'Φόρτωση περισσότερων',
+    loadingMoreText: 'Φόρτωση περισσότερων'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Επιλογή όλων',
+    maxTagContent:
+      'Περισσότερα {{surplus}} επιλεγμένα'
+  },
+  treeSelect: {
+    selectAllText: 'Επιλογή όλων',
+    maxTagContent:
+      'Περισσότερα {{surplus}} επιλεγμένα'
+  },
+  form: { required: 'Απαιτείται' }
 };

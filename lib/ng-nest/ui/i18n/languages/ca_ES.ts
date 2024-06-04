@@ -1,117 +1,167 @@
 export default {
   locale: 'ca_ES',
   comment: {
-    comments: 'comentar',
-    giveALike: `M'agrada`,
+    comments: 'Comentaris',
+    giveALike: "M'agrada",
     reply: 'Respon',
-    more: 'veure més',
-    sure: 'alliberament',
-    placeholder: 'Introduïu un comentari'
+    more: 'Més',
+    sure: 'Segur',
+    placeholder:
+      'Si us plau, introdueix un comentari'
   },
   theme: {
     darkMode: 'Mode fosc',
-    initDefault: 'Inicialitzeu el valor per defecte',
-    primary: 'Color principal',
-    success: 'èxit',
-    warning: 'advertència',
+    initDefault: 'Inicialitzar valor per defecte',
+    primary: 'Principal',
+    success: 'Èxit',
+    warning: 'Advertència',
     danger: 'Perill',
-    info: 'informació',
-    background: 'fons',
-    border: 'marc',
+    info: 'Informació',
+    background: 'Fons',
+    border: 'Vora',
     text: 'Text'
   },
   calendar: {
-    month: 'mes',
-    year: 'curs',
-    lastMonth: 'Primer mes',
-    lastYear: `l'any passat`,
-    nextMonth: 'El mes que ve',
-    nextYear: `l'any que vé`,
-    january: '1mes',
-    february: '2mes',
-    march: '3mes',
-    april: '4mes',
-    may: '5mes',
-    june: '6mes',
-    july: '7mes',
-    august: '8mes',
-    september: '9mes',
-    october: '10mes',
-    november: '11mes',
-    december: '12mes'
+    month: 'Mes',
+    year: 'Any',
+    lastMonth: 'Mes anterior',
+    lastYear: 'Any anterior',
+    nextMonth: 'Pròxim mes',
+    nextYear: 'Pròxim any',
+    january: 'Gener',
+    february: 'Febrer',
+    march: 'Març',
+    april: 'Abril',
+    may: 'Maig',
+    june: 'Juny',
+    july: 'Juliol',
+    august: 'Agost',
+    september: 'Setembre',
+    october: 'Octubre',
+    november: 'Novembre',
+    december: 'Desembre'
   },
   datePicker: {
-    sure: 'confirmar',
-    month: 'mes',
-    year: 'curs',
-    january: '1mes',
-    february: '2mes',
-    march: '3mes',
-    april: '4mes',
-    may: '5mes',
-    june: '6mes',
-    july: '7mes',
-    august: '8mes',
-    september: '9mes',
-    october: '10mes',
-    november: '11mes',
-    december: '12mes',
-    monday: 'Un',
-    tuesday: 'dos',
-    wednesday: 'tres',
-    thursday: 'quatre',
-    friday: 'Cinc',
-    saturday: 'sis',
-    sunday: 'dia',
-    yesterday: 'ahir',
-    today: 'Actualment',
-    tomorrow: 'demà'
+    sure: 'Confirmar',
+    week: 'Setmana',
+    month: 'Mes',
+    year: 'Any',
+    january: 'Gener',
+    february: 'Febrer',
+    march: 'Març',
+    april: 'Abril',
+    may: 'Maig',
+    june: 'Juny',
+    july: 'Juliol',
+    august: 'Agost',
+    september: 'Setembre',
+    october: 'Octubre',
+    november: 'Novembre',
+    december: 'Desembre',
+    monday: 'Dilluns',
+    tuesday: 'Dimarts',
+    wednesday: 'Dimecres',
+    thursday: 'Dijous',
+    friday: 'Divendres',
+    saturday: 'Dissabte',
+    sunday: 'Diumenge',
+    yesterday: 'Ahir',
+    today: 'Avui',
+    tomorrow: 'Demà',
+    thisWeek: 'Aquesta setmana',
+    lastWeek: 'Setmana passada',
+    nextWeek: 'Setmana següent',
+    thisMonth: 'Aquest mes',
+    lastMonth: 'Mes passat',
+    nextMonth: 'Pròxim mes',
+    thisYear: 'Aquest any',
+    lastYear: 'Any passat',
+    nextYear: 'Pròxim any',
+    selectDate: 'Selecciona una data',
+    selectWeek: 'Selecciona una setmana',
+    selectMonth: 'Selecciona un mes',
+    selectQuarter: 'Selecciona un trimestre',
+    selectYear: 'Selecciona un any',
+    startDate: "Data d'inici",
+    endDate: 'Data de finalització',
+    startMonth: "Mes d'inici",
+    endMonth: 'Mes de finalització',
+    startQuarter: "Trimestre d'inici",
+    endQuarter: 'Trimestre de finalització',
+    startYear: "Any d'inici",
+    endYear: 'Any de finalització',
+    startWeek: "Setmana d'inici",
+    endWeek: 'Setmana de finalització'
   },
-  empty: {
-    noData: 'No hi ha dades'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Ara',
+    selectTime: 'Selecciona una hora',
+    selectHour: 'Selecciona una hora',
+    selectMinute: 'Selecciona un minut'
   },
+  empty: { noData: 'Sense dades' },
+  image: { previewText: 'Vista prèvia' },
   pagination: {
-    previous: 'Pàgina anterior',
-    next: 'Pàgina següent',
+    previous: 'Anterior',
+    next: 'Següent',
     total: 'Total',
     item: 'Article',
-    first: 'portada',
-    last: 'Cua',
-    jump: 'Saltar',
-    sizePage: '/ pàgina'
+    first: 'Primer',
+    last: 'Últim',
+    jump: 'Anar a',
+    sizePage: 'Articles per pàgina'
   },
   textRetract: {
     unfold: 'Desplegar',
-    packUp: 'Deixa’t'
+    packUp: 'Plegar'
   },
   timeAgo: {
-    just: 'només',
+    just: 'Ara mateix',
     secondsAgo: 'Fa uns segons',
-    minutesAgo: 'fa uns minuts',
-    hoursAgo: 'Fa una hora'
+    minutesAgo: 'Fa uns minuts',
+    hoursAgo: 'Fa unes hores'
+  },
+  transfer: {
+    listTitle: 'Llista',
+    treeTitle: 'Arbre',
+    tableTitle: 'Taula',
+    selectedTitle: 'Elements seleccionats',
+    inverse: 'Invertir'
   },
   messageBox: {
-    cancelText: 'cancel · lar',
-    confirmText: 'confirmar'
+    cancelText: 'Cancel·lar',
+    confirmText: 'Confirmar'
   },
   dialog: {
-    cancelText: 'cancel · lar',
-    confirmText: 'confirmar'
+    cancelText: 'Cancel·lar',
+    confirmText: 'Confirmar'
   },
   popconfirm: {
-    cancelText: 'cancel · lar',
-    confirmText: 'confirmar'
+    cancelText: 'Cancel·lar',
+    confirmText: 'Confirmar'
   },
   upload: {
-    uploadText: 'pengeu fitxers'
+    uploadText: 'Pujar fitxer',
+    beginUploadText: 'Començar a pujar fitxer',
+    uploadingText: 'Pujant',
+    uploadCompleted:
+      'Càrrega del fitxer completada'
   },
-  pageHeader: {
-    back: 'tornar'
-  },
+  pageHeader: { back: 'Enrere' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Seleccionar tot',
+    loadMoreText: 'Carregar més',
+    loadingMoreText: 'Carregant més'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'Seleccionar tot',
+    maxTagContent: 'Més {{surplus}} seleccionats'
+  },
+  treeSelect: {
+    selectAllText: 'Seleccionar tot',
+    maxTagContent: 'Més {{surplus}} seleccionats'
+  },
+  form: { required: 'Obligatori' }
 };

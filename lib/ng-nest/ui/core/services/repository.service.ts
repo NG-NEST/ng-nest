@@ -1,6 +1,6 @@
-import { XId, XQuery, XResultList } from '../interfaces';
 import { XHttpService } from './http.service';
 import { Observable } from 'rxjs';
+import type { XId, XQuery, XResultList } from '../interfaces';
 
 export interface XRepositoryInput {
   api?: string;
@@ -21,7 +21,10 @@ export abstract class XRepositoryAbstract {
 
 export class XRepositoryService<Entity extends XId> extends XRepositoryAbstract {
   api = '';
-  constructor(public http: XHttpService, public input: XRepositoryInput) {
+  constructor(
+    public http: XHttpService,
+    public input: XRepositoryInput
+  ) {
     super();
     this.api = typeof input.api !== 'undefined' ? input.api : '';
   }

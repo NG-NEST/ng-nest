@@ -19,7 +19,7 @@
   color: $--x-text;
   border-radius: $--x-border-small-radius;
   box-shadow: $--x-box-shadow;
-  background-color: $--x-background;
+  background-color: $--x-background-100;
   &-preset {
     display: flex;
     align-items: center;
@@ -33,11 +33,19 @@
 
 @mixin time-picker-frame {
   $prefix: $--x-time-picker-frame-prefix;
-  margin: 0.0625rem 0;
   display: block;
   height: 100%;
-  > div:not(:first-child) {
-    border-left: $--x-time-picker-border;
+  > div {
+    width: 4.25rem;
+    max-height: 16rem;
+    padding-bottom: 13.5rem;
+    padding: 0.25rem 0.25rem 13.75rem 0.25rem;
+    &:first-child {
+      width: 4.125rem;
+    }
+    &:not(:first-child) {
+      border-left: $--x-time-picker-border;
+    }
   }
   &-hour,
   &-minute,
@@ -46,9 +54,6 @@
     position: relative;
     float: left;
     overflow: hidden;
-    width: 3.625rem;
-    max-height: 15rem;
-    padding-bottom: calc(#{$--x-border-width} * 2 + 13.125rem);
     &:hover {
       overflow-y: auto;
     }
@@ -59,6 +64,7 @@
           min-width: 3.625rem;
           > .x-list-option {
             padding-left: 0.6rem;
+            border-radius: 0;
             &:not(:first-child) {
               margin-top: 0;
             }

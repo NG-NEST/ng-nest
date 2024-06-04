@@ -10,14 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTreeSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXTreeSelectComponent],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XTreeSelectComponent,
         FormsModule,
@@ -25,10 +25,9 @@ describe(XTreeSelectPrefix, () => {
         XInputComponent,
         XRowComponent,
         XColComponent,
-        XRadioComponent
-      ],
-      declarations: [TestXTreeSelectComponent]
-    }).compileComponents();
+        XRadioComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTreeSelectComponent>;

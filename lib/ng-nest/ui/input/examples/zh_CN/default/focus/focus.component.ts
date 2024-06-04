@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -11,5 +11,5 @@ import { XInputComponent } from '@ng-nest/ui/input';
   styleUrls: ['./focus.component.scss']
 })
 export class ExFocusComponent {
-  inputValue = '这是一段文字';
+  inputValue = signal('这是一段文字');
 }

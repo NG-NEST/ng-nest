@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
+import type { XColorsTheme } from '@ng-nest/ui/core';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 
 @Component({
@@ -11,5 +12,5 @@ import { XThemeComponent } from '@ng-nest/ui/theme';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  model: any;
+  model = signal<XColorsTheme>({});
 }

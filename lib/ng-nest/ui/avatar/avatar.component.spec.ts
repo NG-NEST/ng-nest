@@ -10,24 +10,23 @@ import { XAvatarPrefix } from './avatar.property';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XAvatarPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [TestXAvatarComponent],
+    imports: [BrowserAnimationsModule,
         FormsModule,
         XAvatarComponent,
         XRowComponent,
         XColComponent,
         XIconComponent,
         XBadgeComponent,
-        XThemeComponent
-      ],
-      declarations: [TestXAvatarComponent]
-    }).compileComponents();
+        XThemeComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAvatarComponent>;

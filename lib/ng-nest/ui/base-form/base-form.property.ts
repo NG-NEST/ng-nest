@@ -1,13 +1,15 @@
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, input, model } from '@angular/core';
 import {
   XAlign,
   XBoolean,
   XDirection,
-  XInputBoolean,
   XJustify,
+  XNumber,
   XProperty,
   XSize,
-  XTemplate
+  XTemplate,
+  XToBoolean,
+  XToCssPixelValue
 } from '@ng-nest/ui/core';
 
 /**
@@ -16,89 +18,105 @@ import {
 @Component({ selector: 'x-form-prop', template: '' })
 export class XFormProp extends XProperty {
   /**
-   * 标签
+   * @zh_CN 标签
+   * @en_US Label
    */
-  @Input() label?: string = '';
+  readonly label = input<string>('');
   /**
-   * 标签宽度
+   * @zh_CN 标签宽度
+   * @en_US Label width
    */
-  @Input() labelWidth?: string = '';
+  readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
-   * 标签文字对齐方式
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
    */
-  @Input() labelAlign?: XAlign = 'start';
+  readonly labelAlign = input<XAlign>('start');
   /**
-   * flex 布局下的子元素水平排列方式
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
    */
-  @Input() justify?: XJustify = 'start';
+  readonly justify = input<XJustify>('start');
   /**
-   * flex 布局下的子元素垂直排列方式
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
    */
-  @Input() align?: XAlign = 'start';
+  readonly align = input<XAlign>('start');
   /**
-   * flex 布局下的子元素排列方向
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
    */
-  @Input() direction?: XDirection = 'column';
+  readonly direction = input<XDirection>('column');
   /**
-   * 输入提示信息
+   * @zh_CN 尺寸
+   * @en_US Size
    */
-  @Input() placeholder?: string | string[] = '';
+  readonly size = input<XSize>('medium');
   /**
-   * 禁用
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
    */
-  @Input() @XInputBoolean() disabled: XBoolean = false;
+  readonly placeholder = input<string | string[]>('');
   /**
-   * 必填
+   * @zh_CN 禁用
+   * @en_US Disabled
    */
-  @Input() @XInputBoolean() required: XBoolean = false;
+  readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
-   * 只读
+   * @zh_CN 必填
+   * @en_US Required
    */
-  @Input() @XInputBoolean() readonly: XBoolean = false;
+  readonly required = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 值模板
    * @en_US Node template
    */
-  @Input() valueTpl?: TemplateRef<any>;
+  readonly valueTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 值模板参数
    * @en_US Node template
    */
-  @Input() valueTplContext: any;
+  readonly valueTplContext = input();
   /**
    * @zh_CN 前置标签
    * @en_US Before label
    */
-  @Input() before!: XTemplate;
+  readonly before = input<XTemplate>();
   /**
    * @zh_CN 后置标签
    * @en_US After label
    */
-  @Input() after!: XTemplate;
+  readonly after = input<XTemplate>();
   /**
-   * 正则验证规则
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
    */
-  @Input() pattern?: any;
+  readonly pattern = input<any>();
   /**
-   * 验证不通过提示文字
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
    */
-  @Input() message?: string | string[];
+  readonly message = input<string | string[]>('');
   /**
-   * 激活状态
+   * @zh_CN 激活状态
+   * @en_US Activation state
    */
-  @Input() @XInputBoolean() active: XBoolean = false;
+  readonly active = model<boolean>(false);
   /**
-   * 输入框点击样式
+   * @zh_CN 输入框点击样式
+   * @en_US Enter box click style
    */
-  @Input() @XInputBoolean() pointer: XBoolean = false;
+  readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
-   * 输入验证函数
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
    */
-  @Input() inputValidator!: (value: any) => boolean;
-  /**
-   * 激活状态
-   */
-  @Output() activeChange = new EventEmitter<XBoolean>();
+  readonly inputValidator = input<(value: any) => boolean>();
 }
 
 export interface XFormOption {
@@ -137,11 +155,11 @@ export interface XFormOption {
   /**
    * 禁用
    */
-  disabled?: XBoolean;
+  disabled?: boolean;
   /**
    * 必填
    */
-  required?: XBoolean;
+  required?: boolean;
   /**
    * 正则验证规则
    */
@@ -153,13 +171,125 @@ export interface XFormOption {
   /**
    * 激活状态
    */
-  active?: XBoolean;
+  active?: boolean;
   /**
    * 输入框点击样式
    */
-  pointer?: XBoolean;
+  pointer?: boolean;
   /**
    * 输入验证函数
    */
   inputValidator?: (value: any) => boolean;
+}
+
+/**
+ * 表单对象共有的参数
+ */
+@Component({ selector: 'x-formcontrol-prop', template: '' })
+export class XFormControlProp extends XProperty {
+  /**
+   * @zh_CN 初始启用验证，在输入值都自动开启
+   * @en_US Initial enable validation, which is automatically enabled when the input value is
+   */
+  readonly validator = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 标签
+   * @en_US Label
+   */
+  readonly label = input<string>('');
+  /**
+   * @zh_CN 标签宽度
+   * @en_US Label width
+   */
+  readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
+  /**
+   * @zh_CN 标签文字对齐方式
+   * @en_US Label text alignment method
+   */
+  readonly labelAlign = input<XAlign>('start');
+  /**
+   * @zh_CN flex 布局下的子元素水平排列方式
+   * @en_US The level of sub-element level arrangement under flex layout
+   */
+  readonly justify = input<XJustify>('start');
+  /**
+   * @zh_CN flex 布局下的子元素垂直排列方式
+   * @en_US sub-element vertical arrangement method under flex layout
+   */
+  readonly align = input<XAlign>('start');
+  /**
+   * @zh_CN flex 布局下的子元素排列方向
+   * @en_US The direction of the sub-element arrangement under flex layout
+   */
+  readonly direction = input<XDirection>('column');
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  readonly size = input<XSize>('medium');
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  readonly placeholder = input<string | string[]>('');
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  readonly required = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 值模板
+   * @en_US Node template
+   */
+  readonly valueTpl = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 值模板参数
+   * @en_US Node template
+   */
+  readonly valueTplContext = input();
+  /**
+   * @zh_CN 前置标签
+   * @en_US Before label
+   */
+  readonly before = input<XTemplate>();
+  /**
+   * @zh_CN 后置标签
+   * @en_US After label
+   */
+  readonly after = input<XTemplate>();
+  /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  readonly pattern = input<RegExp | RegExp[]>([]);
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  readonly message = input<string | string[]>([]);
+  /**
+   * @zh_CN 激活状态
+   * @en_US Activation state
+   */
+  readonly active = model<boolean>(false);
+  /**
+   * @zh_CN 输入框点击样式
+   * @en_US Enter box click style
+   */
+  readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  readonly inputValidator = input<(value: any) => boolean>();
 }

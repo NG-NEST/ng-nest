@@ -1,138 +1,134 @@
 <table
   #table
   class="x-table"
-  [ngClass]="classMap"
-  [x-loading]="loading && getting"
-  [class.x-table-wrap-border-hidden]="hiddenWrapBorder"
-  [class.x-table-scroll-left]="getScrollLeft"
-  [class.x-table-scroll-left-max]="scrollLeftMax"
-  [class.x-table-scroll-top]="getScrollTop"
-  [class.x-table-has-scroll-right]="scrollYWidth"
-  [class.x-table-has-scroll-bottom]="scrollXWidth"
-  [class.x-table-bordered]="bordered"
-  [class.x-table-td-adaption-height]="rowHeight == 0"
-  [class.x-table-cell-config]="cellConfig"
+  [ngClass]="classMap()"
+  [x-loading]="loading() && getting()"
+  [class.x-table-wrap-border-hidden]="hiddenWrapBorder()"
+  [class.x-table-scroll-left]="getScrollLeft()"
+  [class.x-table-scroll-left-max]="scrollLeftMax()"
+  [class.x-table-scroll-top]="getScrollTop()"
+  [class.x-table-has-scroll-right]="scrollYWidth()"
+  [class.x-table-has-scroll-bottom]="scrollXWidth()"
+  [class.x-table-bordered]="bordered()"
+  [class.x-table-td-adaption-height]="rowHeight() == 0"
+  [class.x-table-cell-config]="!!cellConfigSignal()"
 >
-  @if (header) {
-    <caption #caption class="x-table-header" [style.height.px]="getRowHeight" [style.min-height.px]="getRowHeight">
-      <ng-container *xOutlet="header">{{ header }}</ng-container>
+  @if (header()) {
+    <caption #caption class="x-table-header" [style.height.px]="getRowHeight()" [style.min-height.px]="getRowHeight()">
+      <ng-container *xOutlet="header()">{{ header() }}</ng-container>
     </caption>
   }
-  @if (showHeader && (headerPosition === 'top' || headerPosition === 'top-bottom')) {
+  @if (showHeader() && (headerPosition() === 'top' || headerPosition() === 'top-bottom')) {
     <x-table-head
-      [columns]="columns"
-      [rowHeight]="rowHeight"
-      [columnTpl]="headColumnTpl"
-      [scrollYWidth]="scrollYWidth"
-      [scrollXWidth]="scrollXWidth"
-      [cellConfig]="cellConfig?.thead"
+      [columns]="columns()"
+      [rowHeight]="rowHeight()"
+      [columnTpl]="headColumnTpl()"
+      [scrollYWidth]="scrollYWidth()"
+      [scrollXWidth]="scrollXWidth()!"
+      [cellConfig]="cellConfigSignal()?.thead"
       [position]="'top'"
-      [table]="this"
     ></x-table-head>
   }
   <x-table-body
-    [data]="treeTable ? treeTableData : tableData"
-    [columns]="columns"
-    [itemSize]="itemSize"
-    [rowHeight]="rowHeight"
-    [bodyHeight]="bodyHeight"
-    [columnTpl]="bodyColumnTpl"
-    [allowSelectRow]="allowSelectRow"
-    [virtualScroll]="virtualScroll"
-    [minBufferPx]="minBufferPx"
-    [maxBufferPx]="maxBufferPx"
-    [adaptionHeight]="adaptionHeight"
-    [docPercent]="docPercent"
-    [scroll]="scroll"
-    [rowClass]="rowClass"
-    [cellConfig]="cellConfig?.tbody"
-    [expandedAll]="expandedAll"
-    [expandTpl]="expandTpl"
+    [data]="treeTable() ? treeTableData() : tableData()"
+    [columns]="columns()"
+    [itemSize]="itemSize()"
+    [rowHeight]="rowHeight()"
+    [bodyHeight]="bodyHeight()!"
+    [columnTpl]="bodyColumnTpl()"
+    [allowSelectRow]="allowSelectRow()"
+    [virtualScroll]="virtualScroll()"
+    [minBufferPx]="minBufferPx()"
+    [maxBufferPx]="maxBufferPx()"
+    [adaptionHeight]="adaptionHeight()!"
+    [docPercent]="docPercent()"
+    [scroll]="scroll()"
+    [rowClass]="rowClass()"
+    [cellConfig]="cellConfigSignal()?.tbody"
+    [expandedAll]="expandedAll()"
+    [expandTpl]="expandTpl()"
     [(activatedRow)]="activatedRow"
-    (activatedRowChange)="activatedRowChange.emit($event)"
-    [table]="this"
   ></x-table-body>
-  @if (showHeader && (headerPosition === 'bottom' || headerPosition === 'top-bottom')) {
+  @if (showHeader() && (headerPosition() === 'bottom' || headerPosition() === 'top-bottom')) {
     <x-table-head
-      [columns]="columns"
-      [rowHeight]="rowHeight"
-      [columnTpl]="headColumnTpl"
-      [scrollYWidth]="scrollYWidth"
-      [scrollXWidth]="scrollXWidth"
-      [cellConfig]="cellConfig?.thead"
+      [columns]="columns()"
+      [rowHeight]="rowHeight()"
+      [columnTpl]="headColumnTpl()"
+      [scrollYWidth]="scrollYWidth()"
+      [scrollXWidth]="scrollXWidth()!"
+      [cellConfig]="cellConfigSignal()?.thead"
       [position]="'bottom'"
-      [table]="this"
     ></x-table-head>
   }
-  @if (footer) {
-    <x-table-foot [table]="this" [footer]="footer" [rowHeight]="rowHeight"></x-table-foot>
+  @if (footer()) {
+    <x-table-foot [footer]="footer()" [rowHeight]="rowHeight()"></x-table-foot>
   }
   @if (hasStickyTopRight()) {
     <div
       #stickyTopRightEle
       class="x-table-sticky-right-scroll"
-      [class.x-table-border-bottom]="headSearchTpl"
-      [style.top.px]="getStickyTopScrollTop"
-      [style.width.px]="scrollYWidth"
-      [style.height.px]="getRowHeight"
-      [style.min-height.px]="getRowHeight"
+      [class.x-table-border-bottom]="headSearchTpl()"
+      [style.top.px]="getStickyTopScrollTop()"
+      [style.width.px]="scrollYWidth()"
+      [style.height.px]="getRowHeight()"
+      [style.min-height.px]="getRowHeight()"
     ></div>
   }
-  @if (hasStickyTopRight() && headSearchTpl) {
+  @if (hasStickyTopRight() && headSearchTpl()) {
     <div
       class="x-table-sticky-right-scroll"
-      [style.top.px]="getStickyTopScrollTop + getStickyTopRightEleHeight"
-      [style.width.px]="scrollYWidth"
-      [style.height.px]="getRowHeight"
-      [style.min-height.px]="getRowHeight"
+      [style.top.px]="getStickyTopScrollTop() + getStickyTopRightEleHeight()"
+      [style.width.px]="scrollYWidth()"
+      [style.height.px]="getRowHeight()"
+      [style.min-height.px]="getRowHeight()"
     ></div>
   }
   @if (hasStickyBottomRight()) {
     <div
       #stickyBottomRightEle
       class="x-table-sticky-right-scroll"
-      [style.bottom.px]="getStickyBottomScrollTop"
-      [style.width.px]="scrollYWidth"
-      [style.height.px]="getRowHeight"
-      [style.min-height.px]="getRowHeight"
+      [style.bottom.px]="getStickyBottomScrollTop()"
+      [style.width.px]="scrollYWidth()"
+      [style.height.px]="getRowHeight()"
+      [style.min-height.px]="getRowHeight()"
     ></div>
   }
-  @if (hasStickyBottomRight() && headSearchTpl) {
+  @if (hasStickyBottomRight() && headSearchTpl()) {
     <div
       class="x-table-sticky-right-scroll"
-      [class.x-table-border-bottom]="headSearchTpl"
-      [style.bottom.px]="getStickyBottomScrollTop + getStickyBottomRightEleHeight"
-      [style.width.px]="scrollYWidth"
-      [style.height.px]="getRowHeight"
-      [style.min-height.px]="getRowHeight"
+      [class.x-table-border-bottom]="headSearchTpl()"
+      [style.bottom.px]="getStickyBottomScrollTop() + getStickyBottomRightEleHeight()"
+      [style.width.px]="scrollYWidth()"
+      [style.height.px]="getRowHeight()"
+      [style.min-height.px]="getRowHeight()"
     ></div>
   }
 </table>
-@if (showPagination && size) {
+@if (showPagination() && size()) {
   <x-pagination
     #pagination
     [(index)]="index"
     [(size)]="size"
     [(query)]="query"
-    [total]="total"
+    [total]="total()"
     (indexChange)="pageChange('index')"
     (sizeChange)="pageChange('size')"
-    [showEllipsis]="showEllipsis"
-    [showTotal]="showTotal"
-    [space]="space"
-    [hiddenBorder]="hiddenPaginationBorder!"
-    [showSize]="showSize"
-    [showJump]="showJump"
-    [jumpWidth]="jumpWidth"
-    [showInputSize]="showInputSize"
-    [inputSizeWidth]="inputSizeWidth"
-    [sizeData]="sizeData"
-    [sizeWidth]="sizeWidth"
-    [pageLinkSize]="pageLinkSize"
-    [disabled]="disabled"
-    [totalTpl]="totalTpl"
-    [simple]="simple"
-    [simpleIndexWidth]="simpleIndexWidth"
+    [showEllipsis]="showEllipsis()"
+    [showTotal]="showTotal()"
+    [space]="space()"
+    [showBackground]="showBackground()"
+    [showSize]="showSize()"
+    [showJump]="showJump()"
+    [jumpWidth]="jumpWidth()"
+    [showInputSize]="showInputSize()"
+    [inputSizeWidth]="inputSizeWidth()"
+    [sizeData]="sizeData()"
+    [sizeWidth]="sizeWidth()"
+    [pageLinkSize]="pageLinkSize()"
+    [disabled]="disabled()"
+    [totalTpl]="totalTpl()"
+    [simple]="simple()"
+    [simpleIndexWidth]="simpleIndexWidth()"
   >
   </x-pagination>
 }

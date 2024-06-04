@@ -1,5 +1,5 @@
-import { XProperty, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XNumber, XPropertyFunction, XToCssPixelValue } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
 
 /**
  * Inner
@@ -7,16 +7,16 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XInnerPrefix = 'x-inner';
-const X_CONFIG_NAME = 'inner';
+const X_INNER_CONFIG_NAME = 'inner';
 
 /**
  * Inner Property
  */
 @Component({ selector: `${XInnerPrefix}-property`, template: '' })
-export class XInnerProperty extends XProperty {
+export class XInnerProperty extends XPropertyFunction(X_INNER_CONFIG_NAME) {
   /**
    * @zh_CN 内边距
    * @en_US Inner padding
    */
-  @Input() @XWithConfig<string>(X_CONFIG_NAME, '1rem') padding?: string;
+  readonly padding = input<string, XNumber>(this.config?.padding ?? '1rem', { transform: XToCssPixelValue });
 }

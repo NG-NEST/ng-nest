@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, Injectable, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, DebugElement, Injectable, ChangeDetectorRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTreeComponent } from '@ng-nest/ui/tree';
 import { XTreePrefix, XTreeNode, XTreeAction } from './tree.property';
@@ -16,14 +16,22 @@ import { XMessageService } from '@ng-nest/ui/message';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTreePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
+    declarations: [
+        TestXTreeComponent,
+        TestXTreeLazyComponent,
+        TestXTreeCheckedComponent,
+        TestXTreeDiabledComponent,
+        TestXTreeCustomComponent,
+        TestXTreeEventComponent,
+        TestXTreeOperationComponent
+    ],
+    imports: [BrowserAnimationsModule,
         XThemeComponent,
         XTreeComponent,
         XRowComponent,
@@ -33,18 +41,9 @@ describe(XTreePrefix, () => {
         XFormComponent,
         XLinkComponent,
         XInputNumberComponent,
-        XIconComponent
-      ],
-      declarations: [
-        TestXTreeComponent,
-        TestXTreeLazyComponent,
-        TestXTreeCheckedComponent,
-        TestXTreeDiabledComponent,
-        TestXTreeCustomComponent,
-        TestXTreeEventComponent,
-        TestXTreeOperationComponent
-      ]
-    }).compileComponents();
+        XIconComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTreeComponent>;
@@ -136,7 +135,7 @@ describe(XTreePrefix, () => {
 class TreeServiceTest {
   data: XTreeNode[] = [
     { id: 1, label: '一级 1', nowrap: false, alignItems: 'start' },
-    { id: 2, label: '一级 2', height: 3 },
+    { id: 2, label: '一级 2', height: '3rem' },
     { id: 3, label: '一级 3' },
     { id: 5, label: '二级 1-1', pid: 1 },
     { id: 6, label: '二级 1-2', pid: 1 },
@@ -384,30 +383,27 @@ class TestXTreeCustomComponent {
   providers: [TreeServiceTest]
 })
 class TestXTreeEventComponent {
-  @ViewChild('treeCom', { static: true }) treeCom!: XTreeComponent;
+  treeCom = viewChild.required<XTreeComponent>('treeCom');
   activatedNode!: XTreeNode;
   selectedNodes: XTreeNode[] = [];
   expandedAll: boolean = true;
   content: any;
-  constructor(public service: TreeServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(public service: TreeServiceTest) {}
 
   activatedChange(node: XTreeNode) {
     this.activatedNode = node;
-    this.cdr.detectChanges();
   }
 
   getCheckedKeys() {
-    this.content = this.treeCom.getCheckedKeys();
-    this.cdr.detectChanges();
+    this.content = this.treeCom().getCheckedKeys();
   }
 
   setCheckedKeys(keys = []) {
-    this.treeCom.setCheckedKeys(keys);
+    this.treeCom().setCheckedKeys(keys);
   }
 
   setExpandedAll() {
     this.expandedAll = !this.expandedAll;
-    this.cdr.detectChanges();
   }
 }
 
@@ -489,7 +485,7 @@ interface Organization extends XTreeNode {
   providers: [OrganizationService]
 })
 class TestXTreeOperationComponent {
-  @ViewChild('treeCom') treeCom!: XTreeComponent;
+  treeCom = viewChild.required<XTreeComponent>('treeCom');
   formGroup = new UntypedFormGroup({});
 
   get disabled() {
@@ -568,7 +564,11 @@ class TestXTreeOperationComponent {
       ]
     }
   ];
-  constructor(private service: OrganizationService, private message: XMessageService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private service: OrganizationService,
+    private message: XMessageService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   action(type: string, node: Organization) {
     switch (type) {
@@ -610,7 +610,7 @@ class TestXTreeOperationComponent {
         break;
       case 'delete':
         this.service.delete(node.id).subscribe(() => {
-          this.treeCom.removeNode(node);
+          this.treeCom().removeNode(node);
           this.formGroup.reset();
           this.message.success('删除成功！');
         });
@@ -619,14 +619,14 @@ class TestXTreeOperationComponent {
         if (this.type === 'add' || this.type === 'add-root') {
           this.service.post(this.formGroup.value).subscribe((x) => {
             this.type = 'info';
-            this.treeCom.addNode(x);
+            this.treeCom().addNode(x);
             this.cdr.detectChanges();
             this.message.success('新增成功！');
           });
         } else if (this.type === 'edit') {
           this.service.put(this.formGroup.value).subscribe(() => {
             this.type = 'info';
-            this.treeCom.updateNode(node, this.formGroup.value);
+            this.treeCom().updateNode(node, this.formGroup.value);
             this.cdr.detectChanges();
             this.message.success('修改成功！');
           });

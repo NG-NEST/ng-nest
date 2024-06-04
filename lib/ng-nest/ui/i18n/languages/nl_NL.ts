@@ -1,117 +1,174 @@
 export default {
   locale: 'nl_NL',
   comment: {
-    comments: 'commentaar',
-    giveALike: 'Leuk vinden',
-    reply: 'Antwoord',
-    more: 'Bekijk meer',
-    sure: 'vrijlating',
-    placeholder: 'Voer een opmerking in'
+    comments: 'Opmerkingen',
+    giveALike: 'Vind ik leuk',
+    reply: 'Antwoorden',
+    more: 'Meer bekijken',
+    sure: 'Publiceren',
+    placeholder:
+      'Voer alstublieft een opmerking in'
   },
   theme: {
     darkMode: 'Donkere modus',
-    initDefault: 'Initialiseer de standaardwaarde',
-    primary: 'Hoofdkleur',
-    success: 'succes',
-    warning: 'caveat',
+    initDefault: 'Standaard initialiseren',
+    primary: 'Primair',
+    success: 'Succes',
+    warning: 'Waarschuwing',
     danger: 'Gevaar',
-    info: 'informatie',
-    background: 'achtergrond',
-    border: 'kader',
+    info: 'Informatie',
+    background: 'Achtergrond',
+    border: 'Rand',
     text: 'Tekst'
   },
   calendar: {
-    month: 'maand',
-    year: 'jaar',
-    lastMonth: 'Eerste maand',
-    lastYear: 'vorig jaar',
+    month: 'Maand',
+    year: 'Jaar',
+    lastMonth: 'Vorige maand',
+    lastYear: 'Vorig jaar',
     nextMonth: 'Volgende maand',
-    nextYear: 'volgend jaar',
-    january: 'januari',
-    february: 'februari',
-    march: 'maart',
-    april: 'april',
-    may: 'mei',
-    june: 'juni',
-    july: 'juli',
-    august: 'augustus',
-    september: 'september',
-    october: 'oktober',
+    nextYear: 'Volgend jaar',
+    january: 'Januari',
+    february: 'Februari',
+    march: 'Maart',
+    april: 'April',
+    may: 'Mei',
+    june: 'Juni',
+    july: 'Juli',
+    august: 'Augustus',
+    september: 'September',
+    october: 'Oktober',
     november: 'November',
-    december: 'december'
+    december: 'December'
   },
   datePicker: {
-    sure: 'bevestigen',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
-    yesterday: 'gisteren',
-    today: 'Vandaag de dag',
-    tomorrow: 'morgen'
+    sure: 'Bevestigen',
+    week: 'Week',
+    month: 'Maand',
+    year: 'Jaar',
+    january: 'Januari',
+    february: 'Februari',
+    march: 'Maart',
+    april: 'April',
+    may: 'Mei',
+    june: 'Juni',
+    july: 'Juli',
+    august: 'Augustus',
+    september: 'September',
+    october: 'Oktober',
+    november: 'November',
+    december: 'December',
+    monday: 'Maandag',
+    tuesday: 'Dinsdag',
+    wednesday: 'Woensdag',
+    thursday: 'Donderdag',
+    friday: 'Vrijdag',
+    saturday: 'Zaterdag',
+    sunday: 'Zondag',
+    yesterday: 'Gisteren',
+    today: 'Vandaag',
+    tomorrow: 'Morgen',
+    thisWeek: 'Deze week',
+    lastWeek: 'Vorige week',
+    nextWeek: 'Volgende week',
+    thisMonth: 'Deze maand',
+    lastMonth: 'Vorige maand',
+    nextMonth: 'Volgende maand',
+    thisYear: 'Dit jaar',
+    lastYear: 'Vorig jaar',
+    nextYear: 'Volgend jaar',
+    selectDate: 'Selecteer datum',
+    selectWeek: 'Selecteer week',
+    selectMonth: 'Selecteer maand',
+    selectQuarter: 'Selecteer kwartaal',
+    selectYear: 'Selecteer jaar',
+    startDate: 'Startdatum',
+    endDate: 'Einddatum',
+    startMonth: 'Startmaand',
+    endMonth: 'Eindmaand',
+    startQuarter: 'Startkwartaal',
+    endQuarter: 'Eindkwartaal',
+    startYear: 'Startjaar',
+    endYear: 'Eindjaar',
+    startWeek: 'Startweek',
+    endWeek: 'Eindweek'
+  },
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'Nu',
+    selectTime: 'Selecteer tijd',
+    selectHour: 'Selecteer uur',
+    selectMinute: 'Selecteer minuut'
   },
   empty: {
-    noData: 'Nee gegevens'
+    noData: 'Geen gegevens'
+  },
+  image: {
+    previewText: 'Voorbeeld'
   },
   pagination: {
-    previous: 'Vorige pagina',
-    next: 'Volgende bladzijde',
+    previous: 'Vorige',
+    next: 'Volgende',
     total: 'Totaal',
-    item: 'Artikel',
-    first: 'voorpagina',
-    last: 'Staart',
-    jump: 'Springen',
-    sizePage: '/ bladzijde'
+    item: 'Item',
+    first: 'Eerste',
+    last: 'Laatste',
+    jump: 'Ga naar',
+    sizePage: 'Items per pagina'
   },
   textRetract: {
-    unfold: 'Ontvouwen',
-    packUp: 'Wegdoen'
+    unfold: 'Uitvouwen',
+    packUp: 'Inklappen'
   },
   timeAgo: {
-    just: 'alleen maar',
+    just: 'Zojuist',
     secondsAgo: 'Seconden geleden',
-    minutesAgo: 'minuten geleden',
-    hoursAgo: 'Een uur geleden'
+    minutesAgo: 'Minuten geleden',
+    hoursAgo: 'Uren geleden'
+  },
+  transfer: {
+    listTitle: 'Lijst',
+    treeTitle: 'Boom',
+    tableTitle: 'Tabel',
+    selectedTitle: 'Geselecteerde items',
+    inverse: 'Omkeren'
   },
   messageBox: {
-    cancelText: 'Annuleer',
-    confirmText: 'bevestigen'
+    cancelText: 'Annuleren',
+    confirmText: 'Bevestigen'
   },
   dialog: {
-    cancelText: 'Annuleer',
-    confirmText: 'bevestigen'
+    cancelText: 'Annuleren',
+    confirmText: 'Bevestigen'
   },
   popconfirm: {
-    cancelText: 'Annuleer',
-    confirmText: 'bevestigen'
+    cancelText: 'Annuleren',
+    confirmText: 'Bevestigen'
   },
   upload: {
-    uploadText: 'upload bestanden'
+    uploadText: 'Upload bestand',
+    beginUploadText: 'Begin met uploaden',
+    uploadingText: 'Uploaden',
+    uploadCompleted: 'Uploaden voltooid'
   },
   pageHeader: {
-    back: 'terugkeer'
+    back: 'Terug'
   },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'Selecteer alles',
+    loadMoreText: 'Meer laden',
+    loadingMoreText: 'Laden...'
   },
   select: {
-    selectAllText: 'Select all'
+    selectAllText: 'Selecteer alles',
+    maxTagContent: 'Meer {{surplus}} geselecteerd'
+  },
+  treeSelect: {
+    selectAllText: 'Selecteer alles',
+    maxTagContent: 'Meer {{surplus}} geselecteerd'
+  },
+  form: {
+    required: 'Verplicht veld'
   }
 };

@@ -1,5 +1,6 @@
-import { XDirection, XProperty, XNumber, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Component } from '@angular/core';
+import { XPropertyFunction, XToCssPixelValue } from '@ng-nest/ui/core';
+import { Component, input } from '@angular/core';
+import type { XDirection, XNumber } from '@ng-nest/ui/core';
 
 /**
  * Container
@@ -7,18 +8,19 @@ import { Input, Component } from '@angular/core';
  * @decorator component
  */
 export const XContainerPrefix = 'x-container';
-const X_CONFIG_NAME = 'container';
+const X_CONTAINER_CONFIG_NAME = 'container';
 
 /**
  * Container Property
  */
 @Component({ selector: `${XContainerPrefix}-property`, template: '' })
-export class XContainerProperty extends XProperty {
+export class XContainerProperty extends XPropertyFunction(X_CONTAINER_CONFIG_NAME) {
   /**
    * @zh_CN flex 布局下的子元素排列方向，子元素中有 x-header 或 x-footer 时为 column
    * @en_US The arrangement direction of the sub-elements under the flex layout. When the sub-elements have x-header or x-footer, it is column
+   * @default ''
    */
-  @Input() @XWithConfig<XDirection>(X_CONFIG_NAME) direction?: XDirection;
+  readonly direction = input<XDirection>(this.config?.direction!);
 }
 
 /**
@@ -27,18 +29,18 @@ export class XContainerProperty extends XProperty {
  * @decorator component
  */
 export const XHeaderPrefix = 'x-header';
-const X_CONFIG_NAME_HEADER = 'header';
+const X_HEADER_CONFIG_NAME = 'header';
 
 /**
  * Header Property
  */
 @Component({ selector: `${XHeaderPrefix}-property`, template: '' })
-export class XHeaderProperty extends XProperty {
+export class XHeaderProperty extends XPropertyFunction(X_HEADER_CONFIG_NAME) {
   /**
-   * @zh_CN 高度，rem
-   * @en_US Height, rem
+   * @zh_CN 高度
+   * @en_US Height
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME_HEADER, 3) height?: number;
+  readonly height = input<string, XNumber>(this.config?.height ?? '3rem', { transform: XToCssPixelValue });
 }
 
 /**
@@ -47,18 +49,18 @@ export class XHeaderProperty extends XProperty {
  * @decorator component
  */
 export const XAsidePrefix = 'x-aside';
-const X_CONFIG_NAME_ASIDE = 'aside';
+const X_ASIDE_CONFIG_NAME = 'aside';
 
 /**
  * Aside Property
  */
 @Component({ selector: `${XAsidePrefix}-property`, template: '' })
-export class XAsideProperty extends XProperty {
+export class XAsideProperty extends XPropertyFunction(X_ASIDE_CONFIG_NAME) {
   /**
-   * @zh_CN 宽度，rem
-   * @en_US Width, rem
+   * @zh_CN 宽度
+   * @en_US Width
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME_ASIDE, 12) width?: number;
+  readonly width = input<string, XNumber>(this.config?.width ?? '12rem', { transform: XToCssPixelValue });
 }
 
 /**
@@ -74,16 +76,16 @@ export const XMainPrefix = 'x-main';
  * @decorator component
  */
 export const XFooterPrefix = 'x-footer';
-const X_CONFIG_NAME_FOOTER = 'footer';
+const X_FOOTER_CONFIG_NAME = 'footer';
 
 /**
  * Footer Property
  */
 @Component({ selector: `${XFooterPrefix}-property`, template: '' })
-export class XFooterProperty extends XProperty {
+export class XFooterProperty extends XPropertyFunction(X_FOOTER_CONFIG_NAME) {
   /**
-   * @zh_CN 高度，rem
-   * @en_US Height, rem
+   * @zh_CN 高度
+   * @en_US Height
    */
-  @Input() @XWithConfig<number>(X_CONFIG_NAME_FOOTER, 3) height: XNumber = 3;
+  readonly height = input<string, XNumber>(this.config?.height ?? '3rem', { transform: XToCssPixelValue });
 }

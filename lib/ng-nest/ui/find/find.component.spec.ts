@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XFindPrefix, XFindSearchOption } from './find.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XDialogOption } from '@ng-nest/ui/dialog';
 import {
   XRepositoryAbstract,
   XQuery,
@@ -23,31 +22,30 @@ import { Observable } from 'rxjs';
 import { XTreeNode } from '@ng-nest/ui/tree';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XRadioComponent } from '@ng-nest/ui/radio';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XFindPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        XThemeComponent,
-        XFindComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XRadioComponent
-      ],
-      declarations: [
+    declarations: [
         TestXFindComponent,
         TestXFindLabelComponent,
         TestXFindDisabledComponent,
         TestXFindFunctionComponent,
         TestXFindSizeComponent,
         TestXFindBorderedComponent
-      ]
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        XThemeComponent,
+        XFindComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        XRowComponent,
+        XColComponent,
+        XRadioComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXFindComponent>;
@@ -196,23 +194,23 @@ class UsersServiceTest extends XRepositoryAbstract {
       filters.forEach((x) => {
         switch (x.operation) {
           case '=':
-            result = result.filter((y) => y[x.field] === x.value);
+            result = result.filter((y) => y[x.field!] === x.value);
             break;
           case '>':
-            result = result.filter((y) => y[x.field] > x.value);
+            result = result.filter((y) => y[x.field!] > x.value!);
             break;
           case '>=':
-            result = result.filter((y) => y[x.field] >= x.value);
+            result = result.filter((y) => y[x.field!] >= x.value!);
             break;
           case '<':
-            result = result.filter((y) => y[x.field] < x.value);
+            result = result.filter((y) => y[x.field!] < x.value!);
             break;
           case '<=':
-            result = result.filter((y) => y[x.field] <= x.value);
+            result = result.filter((y) => y[x.field!] <= x.value!);
             break;
           default:
             // '%'
-            result = result.filter((y) => y[x.field].indexOf(x.value) >= 0);
+            result = result.filter((y) => y[x.field!].indexOf(x.value) >= 0);
             break;
         }
       });
@@ -223,7 +221,7 @@ class UsersServiceTest extends XRepositoryAbstract {
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
     return XOrderBy(
       data,
-      sort.map((x) => x.field),
+      sort.map((x) => x.field!),
       sort.map((x) => x.value) as ('desc' | 'asc')[]
     ) as User[] | XGroupItem[];
   }
@@ -350,9 +348,6 @@ interface User extends XId {
   providers: [UsersServiceTest, TreeServiceTest]
 })
 class TestXFindComponent {
-  dialog: XDialogOption = {
-    width: '65rem'
-  };
   searchOption: XFindSearchOption = {
     label: '用户',
     button: '搜索',
@@ -396,12 +391,10 @@ class TestXFindComponent {
     },
     getData: (visible: boolean = true) => {
       if (visible) console.log(this.table.query);
-      this.tableService
-        .getList(this.table.index, this.table.size, this.table.query)
-        .subscribe((x) => {
-          [this.table.data, this.table.total] = [x.list as [], Number(x.total)];
-          this.cdr.detectChanges();
-        });
+      this.tableService.getList(this.table.index, this.table.size, this.table.query).subscribe((x) => {
+        [this.table.data, this.table.total] = [x.list as [], Number(x.total)];
+        this.cdr.detectChanges();
+      });
     }
   };
 
@@ -499,8 +492,7 @@ class TestXFindFunctionComponent {
       { id: 'position', label: '职位', flex: 1, sort: true },
       { id: 'organization', label: '组织机构', flex: 1, sort: true }
     ],
-    data: (index: number, size: number, query: XQuery) =>
-      this.tableService.getList(index, size, query)
+    data: (index: number, size: number, query: XQuery) => this.tableService.getList(index, size, query)
   };
 
   model1 = { id: 1, label: '姓名1' };

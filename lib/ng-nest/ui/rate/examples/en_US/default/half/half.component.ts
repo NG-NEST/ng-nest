@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XRateComponent } from '@ng-nest/ui/rate';
 
@@ -10,5 +10,5 @@ import { XRateComponent } from '@ng-nest/ui/rate';
   styleUrls: ['./half.component.scss']
 })
 export class ExHalfComponent {
-  model = 3.5;
+  model = signal(3.5);
 }

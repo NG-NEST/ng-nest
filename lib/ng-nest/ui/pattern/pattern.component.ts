@@ -1,27 +1,14 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  Renderer2,
-  ElementRef,
-  inject,
-  OnInit
-} from '@angular/core';
-import { PatternPrefix } from './pattern.property';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { XPatternPrefix } from './pattern.property';
 
 @Component({
-  selector: 'x-pattern',
+  selector: XPatternPrefix,
   standalone: true,
   templateUrl: './pattern.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XPatternComponent implements OnInit {
-  private renderer = inject(Renderer2);
-  private elementRef = inject(ElementRef);
-
-  ngOnInit(): void {
-    this.renderer.addClass(this.elementRef.nativeElement, PatternPrefix);
-  }
+export class XPatternComponent {
+  @HostBinding('class') className = XPatternPrefix;
 }

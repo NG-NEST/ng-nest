@@ -1,15 +1,15 @@
 <div class="row">
-  <x-checkbox [data]="data" button></x-checkbox>
+  <x-checkbox [data]="data()" button></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox [data]="data" [(ngModel)]="model" button></x-checkbox>
+  <x-checkbox [data]="data()" [(ngModel)]="model" button></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox [data]="data" button disabled></x-checkbox>
+  <x-checkbox [data]="data()" button disabled></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox [data]="data" [(ngModel)]="model" button disabled></x-checkbox>
+  <x-checkbox [data]="data()" [(ngModel)]="model" button disabled></x-checkbox>
 </div>
 <div class="row">
-  <x-checkbox [data]="dataDisabled" button></x-checkbox>
+  <x-checkbox [data]="dataDisabled()" button></x-checkbox>
 </div>

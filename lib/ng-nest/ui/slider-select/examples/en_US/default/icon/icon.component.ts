@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
@@ -11,5 +11,5 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
   styleUrls: ['./icon.component.scss']
 })
 export class ExIconComponent {
-  model1 = 60;
+  model1 = signal(60);
 }

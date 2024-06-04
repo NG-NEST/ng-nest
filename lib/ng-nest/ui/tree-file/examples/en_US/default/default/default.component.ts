@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTreeFileComponent, XTreeFileNode } from '@ng-nest/ui/tree-file';
 
 @Component({
@@ -9,7 +9,7 @@ import { XTreeFileComponent, XTreeFileNode } from '@ng-nest/ui/tree-file';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  data: XTreeFileNode[] = [
+  data = signal<XTreeFileNode[]>([
     { id: '1__my-app', label: 'my-app' },
     {
       id: '1__my-app/e2e/src/app.e2e-spec.ts',
@@ -271,5 +271,5 @@ export class ExDefaultComponent {
       type: 'json',
       highlightLines: {}
     }
-  ];
+  ]);
 }

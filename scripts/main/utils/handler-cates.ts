@@ -4,6 +4,7 @@ import { NcCate, NcCates, NcCode, NcCodeBox } from '../interfaces/examples';
 import { orderBy, parseMdDoc } from '.';
 import { NcPage } from '../interfaces/page';
 import { NcTemplate } from '../interfaces/template';
+import { existsSync } from 'fs-extra';
 
 /**
  * 示例分类处理
@@ -12,9 +13,10 @@ import { NcTemplate } from '../interfaces/template';
  * @param {NcCates} cates
  */
 export function hanlderCates(cates: NcCates, page: NcPage) {
+  cates.list = [];
+  if (!existsSync(cates.folderPath)) return;
   let folder = fs.readdirSync(cates.folderPath, 'utf8');
   let component = page.templates.find((x) => x.type == 'default' && x.name == 'component');
-  cates.list = [];
   folder.forEach((x) => {
     let catePath = path.join(cates.folderPath, x);
     if (fs.lstatSync(catePath).isDirectory()) {

@@ -1,19 +1,19 @@
 import {
   Directive,
   TemplateRef,
-  Input,
   ViewContainerRef,
   SimpleChanges,
   EmbeddedViewRef,
   OnChanges,
   SimpleChange,
-  inject
+  inject,
+  input
 } from '@angular/core';
 
 @Directive({ selector: '[xOutlet]', standalone: true })
 export class XOutletDirective implements OnChanges {
-  @Input() xOutletContext: any;
-  @Input() xOutlet: any | TemplateRef<any>;
+  xOutletContext = input<any>();
+  xOutlet = input<TemplateRef<any> | any>();
   private embeddedViewRef!: EmbeddedViewRef<any>;
   private viewContainer = inject(ViewContainerRef);
   private templateRef = inject(TemplateRef<any>);
@@ -58,13 +58,13 @@ export class XOutletDirective implements OnChanges {
 
   private recreateView(): void {
     this.viewContainer.clear();
-    const isTemplateRef = this.xOutlet instanceof TemplateRef;
-    const templateRef = isTemplateRef ? this.xOutlet : this.templateRef;
-    this.embeddedViewRef = this.viewContainer.createEmbeddedView(templateRef, this.xOutletContext);
+    const isTemplateRef = this.xOutlet() instanceof TemplateRef;
+    const templateRef = isTemplateRef ? this.xOutlet() : this.templateRef;
+    this.embeddedViewRef = this.viewContainer.createEmbeddedView(templateRef, this.xOutletContext());
   }
 
   private updateContext(): void {
-    const newCtx = this.xOutletContext;
+    const newCtx = this.xOutletContext();
     const oldCtx = this.embeddedViewRef!.context;
     if (newCtx) {
       for (const propName of Object.keys(newCtx)) {

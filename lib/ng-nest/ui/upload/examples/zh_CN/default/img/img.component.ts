@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XUploadComponent } from '@ng-nest/ui/upload';
@@ -11,7 +11,7 @@ import { XUploadComponent } from '@ng-nest/ui/upload';
   styleUrls: ['./img.component.scss']
 })
 export class ExImgComponent {
-  imgs = [
+  imgs = signal([
     {
       url: 'https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png',
       name: '明亮风格'
@@ -21,5 +21,5 @@ export class ExImgComponent {
       name: '黑暗风格'
     },
     { url: 'error', name: '错误的地址' }
-  ];
+  ]);
 }

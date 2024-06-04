@@ -30,6 +30,7 @@
   }
   > span {
     white-space: nowrap;
+    transition: transform $--x-animation-duration-base;
   }
   @include avatar-size('big', $--x-avatar-size-big);
   @include avatar-size('large', $--x-avatar-size-large);

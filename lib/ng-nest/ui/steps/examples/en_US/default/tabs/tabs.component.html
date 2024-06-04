@@ -1,8 +1,8 @@
 <div class="row">
-  <x-steps [data]="data" [activatedIndex]="activated"> </x-steps>
+  <x-steps [data]="data()" [activatedIndex]="activated()"> </x-steps>
 </div>
 <div class="row">
-  <x-tabs sliderHidden [activatedIndex]="activated">
+  <x-tabs sliderHidden [activatedIndex]="activated()">
     <x-tab> <div class="custom-steps-content">Content 1</div></x-tab>
     <x-tab> <div class="custom-steps-content">Content 2</div></x-tab>
     <x-tab> <div class="custom-steps-content">Content 3</div></x-tab>
@@ -10,13 +10,13 @@
 </div>
 <div class="row">
   <x-buttons space="1">
-    @if (activated > 0) {
+    @if (activated() > 0) {
       <x-button (click)="pre()">Previous</x-button>
     }
-    @if (activated < 2) {
+    @if (activated() < 2) {
       <x-button (click)="next()">Next step</x-button>
     }
-    @if (activated === 2) {
+    @if (activated() === 2) {
       <x-button type="primary" (click)="done()">Submit</x-button>
     }
   </x-buttons>

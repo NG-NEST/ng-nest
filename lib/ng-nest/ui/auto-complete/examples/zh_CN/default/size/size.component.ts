@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { XAutoCompleteComponent, XAutoCompleteNode } from '@ng-nest/ui/auto-complete';
-import { XData, XSize } from '@ng-nest/ui/core';
+import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
+import type { XSize } from '@ng-nest/ui/core';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 
@@ -13,19 +13,7 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
   styleUrls: ['./size.component.scss']
 })
 export class ExSizeComponent {
-  radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size: XSize = 'medium';
-  data: XData<XAutoCompleteNode> = [
-    'AAAA',
-    'AAA',
-    'BBBB',
-    'CCCC',
-    'DDDD',
-    'EEEE',
-    'FFFF',
-    'GGGG',
-    'HHHH',
-    'IIII',
-    'JJJJ'
-  ];
+  radioData = signal(['big', 'large', 'medium', 'small', 'mini']);
+  size = signal<XSize>('medium');
+  data = signal(['AAAA', 'AAA', 'BBBB', 'CCCC', 'DDDD', 'EEEE', 'FFFF', 'GGGG', 'HHHH', 'IIII', 'JJJJ']);
 }

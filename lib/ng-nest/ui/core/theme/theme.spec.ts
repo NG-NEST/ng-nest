@@ -6,7 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XConfig, X_CONFIG } from '../config';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
   template: `<div class="row">
@@ -69,15 +70,17 @@ describe('x-theme', () => {
   };
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [XButtonComponent, HttpClientTestingModule, BrowserAnimationsModule, XColorPickerComponent, FormsModule, ReactiveFormsModule],
-      declarations: [XGlobalThemeTestBasicComponent],
-      providers: [
+    declarations: [XGlobalThemeTestBasicComponent],
+    imports: [XButtonComponent, BrowserAnimationsModule, XColorPickerComponent, FormsModule, ReactiveFormsModule],
+    providers: [
         {
-          provide: X_CONFIG,
-          useValue: config
-        }
-      ]
-    }).compileComponents();
+            provide: X_CONFIG,
+            useValue: config
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

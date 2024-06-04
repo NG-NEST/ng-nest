@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 import { Observable } from 'rxjs';
 
@@ -31,7 +31,7 @@ export class ExLazyComponent {
     { id: 24, label: 'Level 3 1-1-4', pid: 5 }
   ];
 
-  getTreeList = (pid?: any): Observable<XTreeNode[]> => {
+  getTreeList = signal((pid?: any): Observable<XTreeNode[]> => {
     return new Observable((x) => {
       let result = this.data
         .filter((y) => y.pid === pid)
@@ -44,5 +44,5 @@ export class ExLazyComponent {
         x.complete();
       }, 500);
     });
-  };
+  });
 }

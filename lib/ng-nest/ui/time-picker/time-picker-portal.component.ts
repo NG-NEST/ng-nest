@@ -2,12 +2,12 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  OnInit,
-  OnDestroy,
   HostBinding,
   HostListener,
-  inject
+  inject,
+  input,
+  model,
+  output
 } from '@angular/core';
 import {
   XTimePickerDisabledTime,
@@ -15,13 +15,13 @@ import {
   XTimePickerPreset,
   XTimePickerType
 } from './time-picker.property';
-import { XBoolean, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
-import { Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { map } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { XI18nService, XI18nTimePicker } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nTimePicker, zh_CN } from '@ng-nest/ui/i18n';
 import { XTimePickerFrameComponent } from './time-picker-frame.component';
 import { XButtonComponent } from '@ng-nest/ui/button';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTimePickerPortalPrefix}`,
@@ -33,59 +33,32 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XConnectBaseAnimation]
 })
-export class XTimePickerPortalComponent implements OnInit, OnDestroy {
-  @HostBinding('@x-connect-base-animation') public placement!: XPositionTopBottom;
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    this.animating(false);
-    event.toState === 'void' && this.destroyPortal();
-  }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
-    this.animating(true);
-  }
-  type: XTimePickerType = 'time';
-  value: any;
-  valueChange!: Subject<any>;
-  positionChange!: Subject<any>;
-  closePortal!: Function;
-  destroyPortal!: Function;
-  animating!: Function;
-  inputCom!: XInputComponent;
-  use12Hours!: XBoolean;
-  hourStep!: number;
-  minuteStep!: number;
-  secondStep!: number;
-  preset: XTimePickerPreset[] = [];
-  disabledTime!: XTimePickerDisabledTime;
-  nodeEmit!: (date: Date) => void;
-  locale: XI18nTimePicker = {};
-
-  private _unSubject = new Subject<void>();
-  private cdr = inject(ChangeDetectorRef);
+export class XTimePickerPortalComponent {
   private i18n = inject(XI18nService);
-
-  ngOnInit(): void {
-    this.valueChange.pipe(takeUntil(this._unSubject)).subscribe((x: any) => {
-      this.value = x;
-    });
-    this.positionChange.pipe(takeUntil(this._unSubject)).subscribe((x) => {
-      this.placement = x;
-      this.cdr.detectChanges();
-    });
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.timePicker as XI18nTimePicker),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        this.cdr.markForCheck();
-      });
+  @HostBinding('@x-connect-base-animation') public get getPlacement() {
+    return this.placement();
   }
-
-  ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
+  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: string }) {
+    event.toState !== 'void' && this.animating.emit(false);
   }
+  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: string }) {
+    event.toState !== 'void' && this.animating.emit(true);
+  }
+  value = model<any>();
+  type = input<XTimePickerType>('time');
+  placement = input<XPositionTopBottom>();
+  inputCom = input<XInputComponent>();
+  use12Hours = input<boolean>();
+  hourStep = input<number>();
+  minuteStep = input<number>();
+  secondStep = input<number>();
+  preset = input<XTimePickerPreset[]>([]);
+  disabledTime = input<XTimePickerDisabledTime>();
+  animating = output<boolean>();
+  nodeClick = output<Date>();
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.timePicker as XI18nTimePicker)), {
+    initialValue: zh_CN.timePicker
+  });
 
   stopPropagation(event: Event): void {
     event.stopPropagation();
@@ -93,13 +66,13 @@ export class XTimePickerPortalComponent implements OnInit, OnDestroy {
 
   onPresetFunc(item: XTimePickerPreset) {
     let date = item.func();
-    this.valueChange.next(date);
-    this.nodeEmit(date);
+    this.value.set(date);
+    this.nodeClick.emit(date);
   }
 
   onNow() {
     let date = new Date();
-    this.valueChange.next(date);
-    this.nodeEmit(date);
+    this.value.set(date);
+    this.nodeClick.emit(date);
   }
 }

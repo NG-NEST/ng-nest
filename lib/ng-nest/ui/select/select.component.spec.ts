@@ -10,23 +10,13 @@ import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XRadioComponent } from '@ng-nest/ui/radio';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
-        XThemeComponent,
-        XSelectComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XRadioComponent
-      ],
-      declarations: [
+    declarations: [
         TestXSelectComponent,
         TestXSelectAsyncComponent,
         TestXSelectLabelComponent,
@@ -36,8 +26,17 @@ describe(XSelectPrefix, () => {
         TestXSelectCustomNodeComponent,
         TestXSelectBorderedComponent,
         TestXSelectSizeComponent
-      ]
-    }).compileComponents();
+    ],
+    imports: [BrowserAnimationsModule,
+        XThemeComponent,
+        XSelectComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        XRowComponent,
+        XColComponent,
+        XRadioComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSelectComponent>;

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { XSize } from '@ng-nest/ui/core';
+import type { XSize } from '@ng-nest/ui/core';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XListComponent } from '@ng-nest/ui/list';
 
@@ -12,8 +12,7 @@ import { XListComponent } from '@ng-nest/ui/list';
   styleUrls: ['./size.component.scss']
 })
 export class ExSizeComponent {
-  radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size: XSize = 'medium';
-
-  data = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, 'DDDD'];
+  radioData = signal(['big', 'large', 'medium', 'small', 'mini']);
+  size = signal<XSize>('medium');
+  data = signal(['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, 'DDDD']);
 }

@@ -1,5 +1,6 @@
-import { XType, XSize, XProperty, XInputBoolean, XBoolean, XWithConfig } from '@ng-nest/ui/core';
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { XPropertyFunction, XToBoolean } from '@ng-nest/ui/core';
+import { Component, input, output, model } from '@angular/core';
+import type { XType, XSize, XBoolean } from '@ng-nest/ui/core';
 
 /**
  * Tag
@@ -7,71 +8,66 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
  * @decorator component
  */
 export const XTagPrefix = 'x-tag';
-const X_CONFIG_NAME = 'tag';
+const X_TAG_CONFIG_NAME = 'tag';
 
 /**
  * Tag Property
  */
 @Component({ selector: `${XTagPrefix}-property`, template: '' })
-export class XTagProperty extends XProperty {
+export class XTagProperty extends XPropertyFunction(X_TAG_CONFIG_NAME) {
   /**
    * @zh_CN 标签样式类型
    * @en_US Label style type
    */
-  @Input() type: XType = 'initial';
+  readonly type = input<XType>('initial');
   /**
    * @zh_CN 尺寸
    * @en_US Size
    */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size?: XSize;
+  readonly size = input<XSize>(this.config?.size ?? 'medium');
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
-  @Input() @XInputBoolean() @XWithConfig<XBoolean>(X_CONFIG_NAME, true) bordered!: XBoolean;
+  readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 显示关闭按钮
    * @en_US Show close button
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() closable?: XBoolean;
+  readonly closable = input<boolean, XBoolean>(this.config?.closable ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 深色主题
    * @en_US Dark theme
    */
-  @Input() @XWithConfig<XBoolean>(X_CONFIG_NAME) @XInputBoolean() dark?: XBoolean;
+  readonly dark = input<boolean, XBoolean>(this.config?.dark ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 禁用
    * @en_US Disabled
    */
-  @Input() @XInputBoolean() disabled: XBoolean = false;
+  readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 可选择标签
    * @en_US checked
    */
-  @Input() @XInputBoolean() checked: XBoolean = false;
+  readonly checked = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 手动控制选择标签是否选中
    * @en_US Manual control
    */
-  @Input() @XInputBoolean() manual: XBoolean = false;
+  readonly manual = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 选中
    * @en_US Selected
    */
-  @Input() selected?: boolean;
+  readonly selected = model<boolean>(false);
   /**
    * @zh_CN 样式
    * @en_US Style
    */
-  @Input() style?: { [cssStyle: string]: any };
+  readonly style = input<{ [cssStyle: string]: any }>();
   /**
    * @zh_CN 点击关闭的事件
    * @en_US Click to close the event
    */
-  @Output() close = new EventEmitter<Event>();
-  /**
-   * @zh_CN 选中事件
-   * @en_US Selected event
-   */
-  @Output() selectedChange = new EventEmitter<boolean>();
+  readonly close = output<Event>();
 }

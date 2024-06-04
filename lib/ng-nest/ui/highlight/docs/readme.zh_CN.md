@@ -1,5 +1,6 @@
 ---
 label: 'Highlight 代码高亮'
+category: 'Other'
 ---
 
 # Highlight 代码高亮

@@ -59,17 +59,23 @@
     > x-alert .x-alert {
       left: 0 !important;
       top: 0 !important;
+      border-radius: 0 !important;
     }
     .#{$--x-dialog}-content {
-      max-height: calc(100vh - 7rem) !important;
-      height: calc(100vh - 7rem) !important;
+      max-height: calc(100vh - 7.875rem) !important;
+      height: calc(100vh - 7.875rem) !important;
     }
   }
   &-default-maximize {
     .#{$--x-dialog}-content {
-      max-height: calc(100vh - 7rem) !important;
-      height: calc(100vh - 7rem) !important;
+      max-height: calc(100vh - 7.875rem) !important;
+      height: calc(100vh - 7.875rem) !important;
       flex: initial;
+    }
+    > x-alert .x-alert {
+      left: 0 !important;
+      top: 0 !important;
+      border-radius: 0 !important;
     }
   }
 }
@@ -82,7 +88,7 @@
   box-sizing: border-box;
   min-height: inherit;
   max-height: inherit;
-  background-color: $--x-background;
+  background-color: $--x-background-100;
   box-shadow: $--x-box-shadow;
   border-radius: $--x-border-small-radius;
   &-title {
@@ -105,7 +111,6 @@
     max-height: 70vh;
     overflow: auto;
     color: $--x-text-300;
-    font-size: calc(#{$--x-font-size} - 0.0625rem);
     line-height: 1.325rem;
   }
   &-actions {

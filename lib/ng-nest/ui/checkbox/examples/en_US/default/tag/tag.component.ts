@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XTagComponent } from '@ng-nest/ui/tag';
@@ -11,40 +11,49 @@ import { XTagComponent } from '@ng-nest/ui/tag';
   styleUrls: ['./tag.component.scss']
 })
 export class ExTagComponent {
-  data = ['All', 'A class', 'B class', 'C class', 'D class'];
+  data = signal(['All', 'A class', 'B class', 'C class', 'D class']);
 
-  model = ['All'];
+  model = signal(['All']);
 
-  data1 = ['Hot', 'Positive', 'Latest'];
-  model1: string[] = ['Hot'];
+  data1 = signal(['Hot', 'Positive', 'Latest']);
+  model1 = signal(['Hot']);
 
-  data2 = ['Comedy', 'Animation', 'ScienceFiction', 'Love'];
-  model2: string[] = [];
+  data2 = signal(['Comedy', 'Animation', 'ScienceFiction', 'Love']);
+  model2 = signal<string[]>([]);
 
-  data3 = [2023, 2022, 2021, 2020];
-  model3: number[] = [];
+  data3 = signal([2023, 2022, 2021, 2020]);
+  model3 = signal<number[]>([]);
 
-  selected: (string | number)[] = ['Hot'];
+  selected = signal<(string | number)[]>(['Hot']);
 
   change(value: string) {
     console.log(value);
-    const val = [...this.model1, ...this.model2, ...this.model3];
-    this.selected = val;
+    const val = [...this.model1(), ...this.model2(), ...this.model3()];
+    this.selected.set(val);
   }
 
   close($event: string | number) {
-    this.selected.splice(this.selected.indexOf($event), 1);
-    if (this.model1.includes($event as string)) {
-      this.model1.splice(this.model1.indexOf($event as string), 1);
-      this.model1 = [...this.model1];
+    this.selected.update((x) => {
+      x.splice(x.indexOf($event), 1);
+      return [...x];
+    });
+    if (this.model1().includes($event as string)) {
+      this.model1.update((x) => {
+        x.splice(x.indexOf($event as string), 1);
+        return [...x];
+      });
     }
-    if (this.model2.includes($event as string)) {
-      this.model2.splice(this.model2.indexOf($event as string), 1);
-      this.model2 = [...this.model2];
+    if (this.model2().includes($event as string)) {
+      this.model2.update((x) => {
+        x.splice(x.indexOf($event as string), 1);
+        return [...x];
+      });
     }
-    if (this.model3.includes($event as number)) {
-      this.model3.splice(this.model3.indexOf($event as number), 1);
-      this.model3 = [...this.model3];
+    if (this.model3().includes($event as number)) {
+      this.model3.update((x) => {
+        x.splice(x.indexOf($event as number), 1);
+        return [...x];
+      });
     }
   }
 }

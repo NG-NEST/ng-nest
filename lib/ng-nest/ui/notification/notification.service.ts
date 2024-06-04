@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { XTemplate, XIsXTemplate, fillDefault, XIsEmpty, XIsString } from '@ng-nest/ui/core';
+import { XTemplate, XIsXTemplate, XFillDefault, XIsEmpty, XIsString } from '@ng-nest/ui/core';
 import {
   XNotificationOption,
   XNotificationOverlayRef,
@@ -66,7 +66,7 @@ export class XNotificationService {
       opt = option as XNotificationOption;
       opt.type = type;
     }
-    fillDefault(opt, this.default);
+    XFillDefault(opt, this.default);
     return this.createNotificationPlacement(opt);
   }
 
@@ -98,11 +98,11 @@ export class XNotificationService {
 
   private setDuration(option: XNotificationOption) {
     if (option.duration) {
-      option.duration$ = of(true)
+      option.durationSubscription = of(true)
         .pipe(delay(option.duration))
         .subscribe(() => {
           this.removeNotification(option);
-          option.duration$ && option.duration$.unsubscribe();
+          option.durationSubscription && option.durationSubscription.unsubscribe();
         });
     }
   }

@@ -34,7 +34,7 @@
 </x-input-group>
 <x-input-group compact>
   <x-input [style.width.%]="25" placeholder="Input content"></x-input>
-  <x-cascade [style.width.%]="25" [data]="cascadeData"></x-cascade>
+  <x-cascade [style.width.%]="25" [data]="cascadeData()"></x-cascade>
 </x-input-group>
 <x-input-group compact>
   <x-input [style.width.%]="25" placeholder="Input content"></x-input>
@@ -47,8 +47,4 @@
 <x-input-group compact>
   <x-input [style.width.%]="25" placeholder="Input content"></x-input>
   <x-time-picker></x-time-picker>
-</x-input-group>
-<x-input-group compact>
-  <x-input [style.width.%]="25" placeholder="Input content"></x-input>
-  <x-textarea [style.width.%]="25"></x-textarea>
 </x-input-group>

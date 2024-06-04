@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XCascadeComponent, XCascadeNode } from '@ng-nest/ui/cascade';
-import { XData, XSize } from '@ng-nest/ui/core';
+import type { XSize } from '@ng-nest/ui/core';
 import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 
@@ -13,9 +13,9 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
   styleUrls: ['./size.component.scss']
 })
 export class ExSizeComponent {
-  radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size: XSize = 'medium';
-  data: XData<XCascadeNode> = [
+  radioData = signal(['big', 'large', 'medium', 'small', 'mini']);
+  size = signal<XSize>('medium');
+  data = signal<XCascadeNode[]>([
     { id: 1, label: 'AAAA' },
     { id: 2, label: 'BBBB' },
     { id: 3, label: 'CCCC' },
@@ -52,5 +52,5 @@ export class ExSizeComponent {
     { id: 34, label: 'AAAA-4-2', pid: 8 },
     { id: 35, label: 'AAAA-4-3', pid: 8 },
     { id: 36, label: 'AAAA-4-4', pid: 8 }
-  ];
+  ]);
 }

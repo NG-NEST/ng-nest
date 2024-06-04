@@ -1,51 +1,45 @@
 import { Subject } from 'rxjs';
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   SimpleChanges,
   OnChanges,
   QueryList,
   ElementRef,
-  ViewChild,
   HostBinding,
   HostListener,
   ViewChildren,
   inject,
   AfterRenderPhase,
-  afterRender
+  afterRender,
+  viewChild,
+  signal,
+  computed
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
-import {
-  XIsChange,
-  XSetData,
-  XConfigService,
-  XIsEmpty,
-  XIsUndefined,
-  XIsNull,
-  XResize,
-  XResizeObserver
-} from '@ng-nest/ui/core';
+import { XIsChange, XSetData, XIsEmpty, XIsUndefined, XIsNull, XResize, XResizeObserver } from '@ng-nest/ui/core';
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
 import { map, takeUntil, debounceTime } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { XI18nList, XI18nService } from '@ng-nest/ui/i18n';
+import { XI18nList, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { XListDropGroup, X_LIST_DROP_GROUP } from './list-drop-group.directive';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XListPrefix}`,
   standalone: true,
   imports: [
+    NgClass,
     FormsModule,
     ReactiveFormsModule,
     CdkDropList,
@@ -62,25 +56,31 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XListComponent)]
 })
-export class XListComponent extends XListProperty implements OnInit, OnChanges {
-  nodes: XListNode[] = [];
-  selectedNodes: XListNode[] = [];
-  @ViewChild('headerRef') headerRef!: ElementRef<HTMLElement>;
-  @ViewChild('footerRef') footerRef!: ElementRef<HTMLElement>;
-  @ViewChild('selectAllRef') selectAllRef!: ElementRef<HTMLElement>;
-  @ViewChild('loadMoreRef') loadMoreRef!: ElementRef<HTMLElement>;
-  @ViewChild('virtualBody') virtualBody!: CdkVirtualScrollViewport;
-  @ViewChild(CdkDropList) dropList!: CdkDropList;
-  @ViewChild('listItems') listItems!: ElementRef<HTMLElement>;
+export class XListComponent extends XListProperty implements OnChanges {
+  private unSubject = new Subject<void>();
+  private i18n = inject(XI18nService);
+  private group = inject<XListDropGroup>(X_LIST_DROP_GROUP, { optional: true, skipSelf: true });
+  nodes = signal<XListNode[]>([]);
+  selectedNodes = signal<XListNode[]>([]);
+  headerRef = viewChild<ElementRef<HTMLElement>>('headerRef');
+  footerRef = viewChild<ElementRef<HTMLElement>>('footerRef');
+  selectAllRef = viewChild<ElementRef<HTMLElement>>('selectAllRef');
+  loadMoreRef = viewChild<ElementRef<HTMLElement>>('loadMoreRef');
+  virtualBody = viewChild<CdkVirtualScrollViewport>('virtualBody');
+  dropList = viewChild<CdkDropList>(CdkDropList);
   @ViewChildren(XListOptionComponent)
   options!: QueryList<XListOptionComponent>;
   keyManager!: ActiveDescendantKeyManager<XListOptionComponent>;
-  isSelectAll = false;
-  locale: XI18nList = {};
-  loadMoreIndex = 0;
-  icon: string = '';
-  iconSpin: boolean = false;
-  private _resizeObserver!: XResizeObserver;
+  isSelectAll = signal(false);
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.list as XI18nList)), { initialValue: zh_CN.list });
+  loadMoreIndex = signal(0);
+  icon = signal('');
+  iconSpin = signal(false);
+  scrollHeightSignal = signal(0);
+  classMap = computed(() => ({
+    [`${XListPrefix}-${this.size()}`]: this.size() ? true : false
+  }));
+  private resizeObserver!: XResizeObserver;
 
   @HostBinding('attr.role') role = 'listbox';
   @HostBinding('attr.tabindex') tabindex = -1;
@@ -90,7 +90,7 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     const activeIndex = this.keyManager.activeItemIndex as number;
     if ($event.keyCode === ENTER && !XIsUndefined(activeIndex)) {
       this.setUnActive(activeIndex);
-      this.onNodeClick($event, this.nodes[activeIndex]);
+      this.onNodeClick($event, this.nodes()[activeIndex]);
     }
   }
 
@@ -102,74 +102,41 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
     big: 36
   };
 
-  get getItemSize() {
-    return this.itemSizeMap[this.size];
-  }
+  itemSize = computed(() => this.itemSizeMap[this.size()]);
+  isEmpty = computed(() => XIsEmpty(this.nodes()));
+  getSelectAllText = computed(() => this.selectAllText() || this.locale().selectAllText);
+  getLoadMoreText = computed(() => this.loadMoreText() || this.locale().loadMoreText);
+  getLoadingMoreText = computed(() => this.loadingMoreText() || this.locale().loadingMoreText);
 
-  get isEmpty() {
-    return XIsEmpty(this.nodes);
-  }
-
-  get getSelectAllText() {
-    return this.selectAllText || this.locale.selectAllText;
-  }
-
-  get getLoadMoreText() {
-    return this.loadMoreText || this.locale.loadMoreText;
-  }
-
-  get getLoadingMoreText() {
-    return this.loadingMoreText || this.locale.loadingMoreText;
-  }
-
-  get getVirtualScrollHeight() {
+  getVirtualScrollHeight() {
     let headerH = 0,
       footerH = 0,
       selectAllH = 0,
       loadMoreH = 0;
-    if (this.headerRef) headerH = this.headerRef.nativeElement.clientHeight;
-    if (this.footerRef) footerH = this.footerRef.nativeElement.clientHeight;
-    if (this.selectAllRef) selectAllH = this.selectAllRef.nativeElement.clientHeight;
-    if (this.loadMoreRef) loadMoreH = this.loadMoreRef.nativeElement.clientHeight;
+    if (this.headerRef()) headerH = this.headerRef()!.nativeElement.clientHeight;
+    if (this.footerRef()) footerH = this.footerRef()!.nativeElement.clientHeight;
+    if (this.selectAllRef()) selectAllH = this.selectAllRef()!.nativeElement.clientHeight;
+    if (this.loadMoreRef()) loadMoreH = this.loadMoreRef()!.nativeElement.clientHeight;
 
-    return Number(this.scrollHeight) - headerH - footerH - selectAllH - loadMoreH;
+    return this.scrollHeightSignal() - headerH - footerH - selectAllH - loadMoreH;
   }
 
   override writeValue(value: any): void {
-    this.value = value;
+    this.value.set(value);
     this.setSelected();
     this.setKeyManager();
-    this.cdr.detectChanges();
   }
-
-  private _unSubject = new Subject<void>();
-  override cdr = inject(ChangeDetectorRef);
-  private i18n = inject(XI18nService);
-  private group = inject<XListDropGroup>(X_LIST_DROP_GROUP, { optional: true, skipSelf: true });
-  configService = inject(XConfigService);
 
   constructor() {
     super();
     afterRender(
       () => {
-        if (this.virtualScroll && this.scrollHeight) {
-          this.virtualBody?.checkViewportSize();
+        if (this.virtualScroll() && this.scrollHeight()) {
+          this.virtualBody()?.checkViewportSize();
         }
       },
       { phase: AfterRenderPhase.MixedReadWrite }
     );
-  }
-
-  ngOnInit() {
-    this.i18n.localeChange
-      .pipe(
-        map((x) => x.list as XI18nList),
-        takeUntil(this._unSubject)
-      )
-      .subscribe((x) => {
-        this.locale = x;
-        this.cdr.markForCheck();
-      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -179,74 +146,85 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
 
   ngAfterViewInit() {
     this.initKeyManager();
-    if (this.virtualScroll && this.heightAdaption) {
+    if (this.virtualScroll() && this.heightAdaption()) {
       this.setVirtualScrollHeight();
-      XResize(this.heightAdaption as HTMLElement)
-        .pipe(debounceTime(30), takeUntil(this._unSubject))
+      XResize(this.heightAdaption() as HTMLElement)
+        .pipe(debounceTime(30), takeUntil(this.unSubject))
         .subscribe((x) => {
-          this._resizeObserver = x.resizeObserver;
+          this.resizeObserver = x.resizeObserver;
           this.setVirtualScrollHeight();
         });
+    } else {
+      this.scrollHeightSignal.set(this.scrollHeight());
     }
-    if (this.group && this.dropList) {
-      this.group.dropLists.add(this.dropList);
+    if (this.group && this.dropList()) {
+      this.group.dropLists.add(this.dropList()!);
       this.group.setConnectedTo();
     }
   }
 
+  minBufferPxSignal = computed(() => {
+    if (this.virtualScroll() && this.heightAdaption()) {
+      return this.getVirtualScrollHeight();
+    } else {
+      return this.minBufferPx();
+    }
+  });
+  maxBufferPxSignal = computed(() => {
+    if (this.virtualScroll() && this.heightAdaption()) {
+      return this.getVirtualScrollHeight() * 1.2;
+    } else {
+      return this.maxBufferPx();
+    }
+  });
+
   ngOnDestroy(): void {
-    this._unSubject.next();
-    this._unSubject.unsubscribe();
-    this._resizeObserver?.disconnect();
-    this.group?.dropLists.delete(this.dropList);
+    this.unSubject.next();
+    this.unSubject.complete();
+    this.resizeObserver?.disconnect();
+    this.group?.dropLists.delete(this.dropList()!);
   }
 
   private setVirtualScrollHeight() {
-    this.scrollHeight = (this.heightAdaption as HTMLElement).clientHeight;
-    this.minBufferPx = this.getVirtualScrollHeight;
-    this.maxBufferPx = this.getVirtualScrollHeight * 1.2;
-    this.virtualBody['_scrollStrategy']['_minBufferPx'] = this.minBufferPx;
-    this.virtualBody['_scrollStrategy']['_maxBufferPx'] = this.maxBufferPx;
-    this.cdr.detectChanges();
+    this.scrollHeightSignal.set((this.heightAdaption() as HTMLElement).clientHeight);
+    this.virtualBody()!['_scrollStrategy']['_minBufferPx'] = this.minBufferPxSignal();
+    this.virtualBody()!['_scrollStrategy']['_maxBufferPx'] = this.maxBufferPxSignal();
   }
 
   private setData() {
-    if (this.loadMore) {
-      this.icon = 'fto-loader';
-      this.iconSpin = true;
+    if (this.loadMore()) {
+      this.icon.set('fto-loader');
+      this.iconSpin.set(true);
     }
-    XSetData<XListNode>(this.data, this._unSubject, true, this.loadMoreIndex).subscribe((x) => {
-      if (this.loadMore) {
-        this.nodes = [...this.nodes, ...x];
-        this.icon = '';
-        this.iconSpin = false;
+    XSetData<XListNode>(this.data(), this.unSubject, true, this.loadMoreIndex()).subscribe((x) => {
+      if (this.loadMore()) {
+        this.nodes.update((y) => [...y, ...x]);
+        this.icon.set('');
+        this.iconSpin.set(false);
       } else {
-        this.nodes = x;
+        this.nodes.set(x);
       }
       this.setSelected();
       this.setKeyManager();
-      this.cdr.detectChanges();
     });
   }
 
   private initKeyManager() {
     this.keyManager = new ActiveDescendantKeyManager<XListOptionComponent>(this.options).withWrap();
-
-    this.keyManager.tabOut.pipe(takeUntil(this._unSubject)).subscribe(() => {
+    this.keyManager.tabOut.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.setUnActive(this.keyManager.activeItemIndex as number);
       this.keyManagerTabOut.emit();
     });
-
-    this.keyManager.change.pipe(takeUntil(this._unSubject)).subscribe((num: number) => {
+    this.keyManager.change.pipe(takeUntil(this.unSubject)).subscribe((num: number) => {
       this.setScorllTop(num);
       this.keyManagerChange.emit(num);
     });
   }
 
   setScorllTop(_num: number) {
-    if (!this.scrollElement || !this.keyManager.activeItem) return;
-    let ele = this.keyManager.activeItem!.elementRef.nativeElement as HTMLElement;
-    let list = this.scrollElement;
+    let list = this.scrollElement();
+    if (!list || !this.keyManager.activeItem) return;
+    let ele = this.keyManager.activeItem.elementRef.nativeElement as HTMLElement;
     let min = list.scrollTop;
     let max = list.scrollTop + list.clientHeight;
     if (ele.offsetTop + ele.clientHeight > max) {
@@ -259,58 +237,63 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   setSelected() {
-    if (this.nodes.length > 0) {
-      this.nodes
+    const nodes = this.nodes();
+    const value = this.value();
+    const objectArray = this.objectArray();
+    if (nodes.length > 0) {
+      nodes
         .filter((x) => x.selected)
         .map((x) => {
           x.selected = false;
         });
       let valArry: any[] = [];
-      if (this.value instanceof Array) {
-        valArry = this.value;
-        if (valArry.length === this.nodes.length) {
-          this.isSelectAll = true;
+      if (value instanceof Array) {
+        valArry = value;
+        if (valArry.length === nodes.length) {
+          this.isSelectAll.set(true);
         }
       } else {
-        valArry = [this.value];
+        valArry = [value];
       }
 
       let ids = [];
       let selectedNodes = [];
-      if (this.objectArray) {
+      if (objectArray) {
         ids = valArry.filter((x) => !XIsUndefined(x) && !XIsNull(x)).map((x) => x.id);
       } else {
         ids = valArry;
       }
       for (let id of ids) {
-        let node = this.nodes.find((x) => x.id === id);
+        let node = nodes.find((x) => x.id === id);
         if (node) {
           node.selected = true;
           selectedNodes.push(node);
         }
       }
-      this.selectedNodes = selectedNodes;
+      this.selectedNodes.set(selectedNodes);
     }
   }
 
   setKeyManager() {
-    if (XIsUndefined(this.keyManager) || XIsUndefined(this.nodes) || this.nodes.length === 0) return;
+    if (XIsUndefined(this.keyManager) || XIsEmpty(this.nodes())) return;
     let activeIndex = 0;
-    if (XIsEmpty(this.value)) {
+    let value = this.value();
+    let objectArray = this.objectArray();
+    if (XIsEmpty(value)) {
       this.keyManager.updateActiveItem(activeIndex);
       return;
     }
     let valArry: any[] = [];
-    if (this.value instanceof Array) {
-      valArry = this.value;
+    if (value instanceof Array) {
+      valArry = value;
     } else {
-      valArry = [this.value];
+      valArry = [value];
     }
     const first = valArry[0];
-    if (this.objectArray) {
-      activeIndex = this.nodes.findIndex((x) => x.id === first.id);
+    if (objectArray) {
+      activeIndex = this.nodes().findIndex((x) => x.id === first.id);
     } else {
-      activeIndex = this.nodes.findIndex((x) => x.id === first);
+      activeIndex = this.nodes().findIndex((x) => x.id === first);
     }
     this.keyManager.updateActiveItem(activeIndex);
     this.setScorllTop(activeIndex);
@@ -322,43 +305,47 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
       return;
     }
     if (node.disabled) return;
-    if (node.selected && this.multiple === 1) {
+    if (node.selected && this.multiple() === 1) {
       node.event = event;
       this.nodeClick.emit(node);
       return;
     }
     const selected = !node.selected;
     if (selected) {
-      if (this.selectedNodes.length < Number(this.multiple) || this.multiple === 0) {
+      if (this.selectedNodes().length < this.multiple() || this.multiple() === 0 || isNaN(this.multiple())) {
         node.selected = selected;
-        this.selectedNodes = [...this.selectedNodes, node];
-        if (this.selectedNodes.length === this.nodes.length) {
-          this.isSelectAll = true;
+        this.selectedNodes.update((x) => [...x, node]);
+        if (this.selectedNodes().length === this.nodes().length) {
+          this.isSelectAll.set(true);
         }
-        this.cdr.detectChanges();
-      } else if (this.multiple === 1 && this.selectedNodes.length === 1) {
+      } else if (this.multiple() === 1 && this.selectedNodes().length === 1) {
         node.selected = selected;
-        this.selectedNodes[0].selected = false;
-        this.selectedNodes[0] = node;
-        this.cdr.detectChanges();
+        this.selectedNodes.update((x) => {
+          x[0].selected = false;
+          x[0] = node;
+          return [...x];
+        });
       } else {
         return;
       }
     } else {
       node.selected = selected;
-      this.selectedNodes.splice(
-        this.selectedNodes.findIndex((x) => x.id == node.id),
-        1
-      );
-      this.isSelectAll = false;
+      this.selectedNodes.update((x) => {
+        x.splice(
+          x.findIndex((x) => x.id == node.id),
+          1
+        );
+        return [...x];
+      });
+      this.isSelectAll.set(false);
     }
-    if (this.multiple === 1 && this.selectedNodes.length === 1) {
-      this.value = this.objectArray ? this.selectedNodes[0] : this.selectedNodes[0].id;
+
+    if (this.multiple() === 1 && this.selectedNodes().length === 1) {
+      this.value.set(this.objectArray() ? this.selectedNodes()[0] : this.selectedNodes()[0].id);
     } else {
-      this.value = this.objectArray ? this.selectedNodes : this.selectedNodes.map((x) => x.id);
+      this.value.set(this.objectArray() ? this.selectedNodes() : this.selectedNodes().map((x) => x.id));
     }
-    if (this.onChange) this.onChange(this.value);
-    this.cdr.detectChanges();
+    if (this.onChange) this.onChange(this.value());
     node.event = event;
     this.nodeClick.emit(node);
   }
@@ -382,14 +369,16 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   dropCdk(event: CdkDragDrop<XListNode[]>) {
-    moveItemInArray(this.nodes, event.previousIndex, event.currentIndex);
+    this.nodes.update((x) => {
+      moveItemInArray(x, event.previousIndex, event.currentIndex);
+      return [...x];
+    });
     this.dropListDropped.emit({
-      data: this.nodes,
-      current: this.nodes[event.currentIndex],
+      data: this.nodes(),
+      current: this.nodes()[event.currentIndex],
       currentIndex: event.currentIndex,
       event: event
     });
-    this.cdr.detectChanges();
   }
 
   predicate(_drag: CdkDrag<XListNode>, _drop: CdkDropList<XListNode>) {
@@ -397,27 +386,27 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   onSelectAllNodes() {
-    this.isSelectAll = !this.isSelectAll;
-    if (this.isSelectAll) {
-      this.nodes.map((x) => {
-        x.selected = true;
-        return x;
+    this.isSelectAll.update((x) => !x);
+    if (this.isSelectAll()) {
+      this.nodes.update((x) => {
+        x.forEach((y) => (y.selected = true));
+        return [...x];
       });
-      this.selectedNodes = [...this.nodes];
+      this.selectedNodes.set(this.nodes());
     } else {
-      this.nodes.map((x) => {
-        x.selected = false;
-        return x;
+      this.nodes.update((x) => {
+        x.forEach((y) => (y.selected = false));
+        return [...x];
       });
-      this.selectedNodes = [];
+      this.selectedNodes.set([]);
     }
-    this.value = this.objectArray ? this.selectedNodes : this.selectedNodes.map((x) => x.id);
-    if (this.onChange) this.onChange(this.value);
-    this.onSelectAll.emit(this.isSelectAll);
+    this.value.set(this.objectArray() ? this.selectedNodes() : this.selectedNodes().map((x) => x.id));
+    if (this.onChange) this.onChange(this.value());
+    this.onSelectAll.emit(this.isSelectAll());
   }
 
   onLoadMore() {
-    this.loadMoreIndex++;
+    this.loadMoreIndex.update((x) => x + 1);
     this.setData();
   }
 
@@ -426,6 +415,6 @@ export class XListComponent extends XListProperty implements OnInit, OnChanges {
   }
 
   setUnActive(num: number) {
-    if (num > -1) this.nodes[num].active = false;
+    if (num > -1) this.nodes()[num].active = false;
   }
 }

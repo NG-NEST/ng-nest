@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { XData } from '@ng-nest/ui/core';
-import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
+import { Component, signal } from '@angular/core';
+import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-scroll',
@@ -9,7 +8,7 @@ import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
   templateUrl: './scroll.component.html'
 })
 export class ExScrollComponent {
-  data: XData<XSliderNode> = [
+  data = signal([
     'User Management',
     'Configuration Management',
     'Role Management',
@@ -18,5 +17,5 @@ export class ExScrollComponent {
     'Messages',
     'Processes',
     'News'
-  ];
+  ]);
 }

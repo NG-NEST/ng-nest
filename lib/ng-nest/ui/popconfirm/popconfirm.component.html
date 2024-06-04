@@ -3,32 +3,34 @@
   class="x-popconfirm"
   x-popover
   [title]="titleTpl"
-  [content]="content"
+  [content]="content()"
   [footer]="footerTpl"
-  [placement]="placement"
-  [trigger]="trigger"
-  [width]="width"
-  [condition]="condition"
+  [placement]="placement()"
+  [trigger]="trigger()"
+  [width]="width()"
+  [maxWidth]="maxWidth()"
+  [minWidth]="minWidth()"
+  [condition]="condition()"
   [(visible)]="visible"
-  (click)="onClick()"
+  (click)="onClick($event)"
 >
   <ng-content></ng-content>
 </div>
 
 <ng-template #titleTpl>
   <div class="x-popconfirm-title">
-    <ng-container *xOutlet="title">
-      @if (icon) {
-        <x-icon [style.color]="iconColor" [type]="icon"></x-icon>
+    <ng-container *xOutlet="title()">
+      @if (icon()) {
+        <x-icon [style.color]="iconColor()" [type]="icon()"></x-icon>
       }
-      <span>{{ title }}</span>
+      <span>{{ title() }}</span>
     </ng-container>
   </div>
 </ng-template>
 
 <ng-template #footerTpl>
   <div class="x-popconfirm-buttons">
-    <x-button (click)="onCancel()" flat plain>{{ getCancelText }}</x-button>
-    <x-button type="primary" flat (click)="onConfirm()" [loading]="loading">{{ getConfirmText }}</x-button>
+    <x-button (click)="onCancel($event)" flat plain>{{ cancelTextSignal() }}</x-button>
+    <x-button type="primary" flat (click)="onConfirm($event)" [loading]="loading()">{{ confirmTextSignal() }}</x-button>
   </div>
 </ng-template>

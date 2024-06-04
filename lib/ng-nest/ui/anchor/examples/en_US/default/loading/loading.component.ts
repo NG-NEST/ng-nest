@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XAnchorComponent, XAnchorInnerComponent } from '@ng-nest/ui/anchor';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
@@ -10,11 +10,12 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   styleUrls: ['./loading.component.scss']
 })
 export class ExLoadingComponent {
-  html = ``;
-  loadIndex = 0;
+  html = signal(``);
+  loadIndex = signal(0);
 
   onLoadData() {
-    this.html += `<h1>1 Theme</h1>
+    this.html.update((x) => {
+      x += `<h1>1 Theme</h1>
     <p>This is the topic-one information.</p>
     <p>This is the topic-one information.</p>
     <p>This is the topic-one information.</p>
@@ -114,13 +115,15 @@ export class ExLoadingComponent {
     <p>This is a branch and a description.</p>
     <p>This is a branch and a description.</p>
     <p>This is a branch and a description.</p>`;
+      return x;
+    });
 
-    this.loadIndex++;
+    this.loadIndex.update((x) => ++x);
 
-    if (this.loadIndex % 2 === 0) {
-      this.html = `<p>This is a branch and a description.</p>
+    if (this.loadIndex() % 2 === 0) {
+      this.html.set(`<p>This is a branch and a description.</p>
       <p>This is a branch and a description.</p>
-      <p>This is a branch and a description.</p>`;
+      <p>This is a branch and a description.</p>`);
     }
   }
 }

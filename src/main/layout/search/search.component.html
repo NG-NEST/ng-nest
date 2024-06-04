@@ -1,9 +1,9 @@
 <section>
   <x-auto-complete
-    [data]="getSearchData"
+    [data]="getSearchData()"
     [debounceTime]="0"
     (nodeEmit)="pagaTo($event)"
     [bordered]="false"
-    placeholder="{{ 'header.search' | xI18n }}"
+    [placeholder]="'header.search' | xI18n"
   ></x-auto-complete>
 </section>

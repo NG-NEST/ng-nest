@@ -1,7 +1,7 @@
 <div class="row">
   <x-tree-select
     label="Observable load once"
-    [data]="getData1"
+    [data]="getData1()"
     [(ngModel)]="model1"
     (ngModelChange)="change($event)"
     async
@@ -10,7 +10,7 @@
 <div class="row">
   <x-tree-select
     label="Function repeated loading"
-    [data]="getData2"
+    [data]="getData2()"
     [(ngModel)]="model2"
     (ngModelChange)="change($event)"
     async

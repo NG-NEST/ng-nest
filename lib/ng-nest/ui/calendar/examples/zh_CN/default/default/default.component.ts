@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XCalendarComponent, XCalendarData } from '@ng-nest/ui/calendar';
 import { DatePipe } from '@angular/common';
 
@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class ExDefaultComponent {
-  data: XCalendarData = {};
+  data = signal<XCalendarData>({});
   constructor(private pipeDate: DatePipe) {}
 
   rangeChange(range: Date[]) {
@@ -31,6 +31,6 @@ export class ExDefaultComponent {
       if (i === 10) break;
     }
 
-    this.data = dt;
+    this.data.set(dt);
   }
 }

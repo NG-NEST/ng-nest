@@ -121,6 +121,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./highlight/highlight.component').then((x) => x.TeHighlightComponent)
       },
       {
+        path: 'icon',
+        loadComponent: () => import('./icon/icon.component').then((x) => x.TeIconComponent)
+      },
+      {
         path: 'image',
         loadComponent: () => import('./image/image.component').then((x) => x.TeImageComponent)
       },
@@ -223,6 +227,10 @@ export const TestRoutes: Routes = [
       {
         path: 'steps',
         loadComponent: () => import('./steps/steps.component').then((x) => x.TeStepsComponent)
+      },
+      {
+        path: 'switch',
+        loadComponent: () => import('./switch/switch.component').then((x) => x.TeSwitchComponent)
       },
       {
         path: 'table',

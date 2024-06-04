@@ -1,4 +1,4 @@
-<x-steps [data]="data" [customTpl]="customTpl" [activatedIndex]="activatedIndex"> </x-steps>
+<x-steps [data]="data()" [customTpl]="customTpl" [activatedIndex]="activatedIndex()"> </x-steps>
 <ng-template #customTpl let-node="$node" let-index="$index">
   @switch (node.status) {
     @case ('process') {

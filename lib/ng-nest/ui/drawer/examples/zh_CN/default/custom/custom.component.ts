@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XDrawerComponent } from '@ng-nest/ui/drawer/drawer.component';
@@ -22,31 +22,31 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
   styleUrls: ['./custom.component.scss']
 })
 export class ExCustomComponent {
-  visible!: boolean;
-  visibleTable!: boolean;
-  visibleForm!: boolean;
+  visible = signal(false);
+  visibleTable = signal(false);
+  visibleForm = signal(false);
 
   open() {
-    this.visible = true;
+    this.visible.set(true);
   }
 
   close() {
-    this.visible = false;
+    this.visible.set(false);
   }
 
   openTable() {
-    this.visibleTable = true;
+    this.visibleTable.set(true);
   }
 
   closeTable() {
-    this.visibleTable = false;
+    this.visibleTable.set(false);
   }
 
   openForm() {
-    this.visibleForm = true;
+    this.visibleForm.set(true);
   }
 
   closeForm() {
-    this.visibleForm = false;
+    this.visibleForm.set(false);
   }
 }

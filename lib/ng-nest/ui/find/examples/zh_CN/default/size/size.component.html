@@ -1,16 +1,16 @@
-<x-radio [data]="radioData" [(ngModel)]="size"></x-radio>
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
 <div class="row">
-  <x-find [size]="size"></x-find>
+  <x-find [size]="size()"></x-find>
 </div>
 <div class="row">
-  <x-find [size]="size" label="用户名" direction="row"></x-find>
+  <x-find [size]="size()" label="用户名" direction="row"></x-find>
 </div>
 <div class="row">
-  <x-find [size]="size" label="用户名"></x-find>
+  <x-find [size]="size()" label="用户名"></x-find>
 </div>
 <div class="row">
-  <x-find [size]="size" [(ngModel)]="model" multiple></x-find>
+  <x-find [size]="size()" [(ngModel)]="model" multiple></x-find>
 </div>
 <div class="row">
-  <x-find disabled [size]="size"></x-find>
+  <x-find disabled [size]="size()"></x-find>
 </div>

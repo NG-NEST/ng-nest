@@ -1,32 +1,32 @@
 export default {
   locale: 'ka_GE',
   comment: {
-    comments: 'კომენტარი',
-    giveALike: 'მოსწონს',
+    comments: 'კომენტარები',
+    giveALike: 'მომწონს',
     reply: 'პასუხი',
-    more: 'მეტის ნახვა',
-    sure: 'გაათავისუფლა',
-    placeholder: 'გთხოვთ, შეიყვანოთ კომენტარი'
+    more: 'მეტი',
+    sure: 'დამტკიცება',
+    placeholder: 'შეავსეთ კომენტარი'
   },
   theme: {
     darkMode: 'ბნელი რეჟიმი',
-    initDefault: 'ნაგულისხმევი მნიშვნელობის ინიციალიზაცია',
-    primary: 'ძირითადი ფერი',
+    initDefault: 'აგრეთვების ამოღება',
+    primary: 'ძირითადი',
     success: 'წარმატება',
     warning: 'გაფრთხილება',
     danger: 'საფრთხე',
     info: 'ინფორმაცია',
     background: 'ფონი',
-    border: 'ჩარჩო',
+    border: 'საზღვაო',
     text: 'ტექსტი'
   },
   calendar: {
     month: 'თვე',
     year: 'წელი',
-    lastMonth: 'Პირველი თვე',
-    lastYear: 'გასულ წელს',
-    nextMonth: 'Შემდეგი თვე',
-    nextYear: 'მომავალ წელს',
+    lastMonth: 'წინა თვე',
+    lastYear: 'წინა წელი',
+    nextMonth: 'მომავალი თვე',
+    nextYear: 'მომავალი წელი',
     january: 'იანვარი',
     february: 'თებერვალი',
     march: 'მარტი',
@@ -42,76 +42,124 @@ export default {
   },
   datePicker: {
     sure: 'დადასტურება',
-    month: '',
-    year: '',
-    january: '1月',
-    february: '2月',
-    march: '3月',
-    april: '4月',
-    may: '5月',
-    june: '6月',
-    july: '7月',
-    august: '8月',
-    september: '9月',
-    october: '10月',
-    november: '11月',
-    december: '12月',
-    monday: '一',
-    tuesday: '二',
-    wednesday: '三',
-    thursday: '四',
-    friday: '五',
-    saturday: '六',
-    sunday: '日',
+    week: 'კვირა',
+    month: 'თვე',
+    year: 'წელი',
+    january: 'იანვარი',
+    february: 'თებერვალი',
+    march: 'მარტი',
+    april: 'აპრილი',
+    may: 'მაისი',
+    june: 'ივნისი',
+    july: 'ივლისი',
+    august: 'აგვისტო',
+    september: 'სექტემბერი',
+    october: 'ოქტომბერი',
+    november: 'ნოემბერი',
+    december: 'დეკემბერი',
+    monday: 'ორშაბათი',
+    tuesday: 'სამშაბათი',
+    wednesday: 'ოთხშაბათი',
+    thursday: 'ხუთშაბათი',
+    friday: 'პარასკევი',
+    saturday: 'შაბათი',
+    sunday: 'კვირა',
     yesterday: 'გუშინ',
     today: 'დღეს',
-    tomorrow: 'ხვალ'
+    tomorrow: 'ხვალ',
+    thisWeek: 'ამ კვირაში',
+    lastWeek: 'წინა კვირაში',
+    nextWeek: 'მომავალ კვირაში',
+    thisMonth: 'ამ თვეში',
+    lastMonth: 'წინა თვეში',
+    nextMonth: 'მომავალ თვეში',
+    thisYear: 'ამ წელში',
+    lastYear: 'წინა წელში',
+    nextYear: 'მომავალ წელში',
+    selectDate: 'აირჩიეთ თარიღი',
+    selectWeek: 'აირჩიეთ კვირა',
+    selectMonth: 'აირჩიეთ თვე',
+    selectQuarter: 'აირჩიეთ კვარტალი',
+    selectYear: 'აირჩიეთ წელი',
+    startDate: 'დასაწყისი თარიღი',
+    endDate: 'სრული თარიღი',
+    startMonth: 'დასაწყისი თვე',
+    endMonth: 'სრული თვე',
+    startQuarter: 'დასაწყისი კვარტალი',
+    endQuarter: 'სრული კვარტალი',
+    startYear: 'დასაწყისი წელი',
+    endYear: 'სრული წელი',
+    startWeek: 'დასაწყისი კვირა',
+    endWeek: 'სრული კვირა'
   },
-  empty: {
-    noData: 'არა მონაცემები'
+  timePicker: {
+    am: 'AM',
+    pm: 'PM',
+    now: 'ახლა',
+    selectTime: 'აირჩიეთ დრო',
+    selectHour: 'აირჩიეთ საათი',
+    selectMinute: 'აირჩიეთ წუთი'
   },
+  empty: { noData: 'მონაცემები არ არის' },
+  image: { previewText: 'წინასწარი ნახვა' },
   pagination: {
-    previous: 'Წინა გვერდი',
-    next: 'Შემდეგი გვერდი',
+    previous: 'წინა',
+    next: 'შემდეგი',
     total: 'სულ',
-    item: 'მუხლი',
-    first: 'წინა გვერდი',
-    last: 'კუდი',
-    jump: 'ხტომა',
-    sizePage: '/ გვერდი'
+    item: 'ელემენტი',
+    first: 'პირველი',
+    last: 'ბოლო',
+    jump: 'გადასვლა',
+    sizePage: 'ელემენტი/გვერდი'
   },
   textRetract: {
-    unfold: 'გახსნილია',
-    packUp: 'Მოიშორეთ'
+    unfold: 'გახსნა',
+    packUp: 'დაყოფა'
   },
   timeAgo: {
-    just: 'უბრალოდ',
+    just: 'ახლა',
     secondsAgo: 'წამის წინ',
     minutesAgo: 'წუთის წინ',
-    hoursAgo: 'Ერთი საათის წინ'
+    hoursAgo: 'საათის წინ'
+  },
+  transfer: {
+    listTitle: 'სია',
+    treeTitle: 'ხე',
+    tableTitle: 'ცხრილი',
+    selectedTitle: 'არჩეული ელემენტები',
+    inverse: 'ინვერტირება'
   },
   messageBox: {
     cancelText: 'გაუქმება',
-    confirmText: 'დაადასტუროს'
+    confirmText: 'დადასტურება'
   },
   dialog: {
     cancelText: 'გაუქმება',
-    confirmText: 'დაადასტუროს'
+    confirmText: 'დადასტურება'
   },
   popconfirm: {
     cancelText: 'გაუქმება',
-    confirmText: 'დაადასტუროს'
+    confirmText: 'დადასტურება'
   },
   upload: {
-    uploadText: 'ატვირთეთ ფაილები'
+    uploadText: 'ფაილის ატვირთვა',
+    beginUploadText: 'ფაილის ატვირთვის დაწყება',
+    uploadingText: 'ატვირთვა',
+    uploadCompleted: 'ფაილი ატვირთულია'
   },
-  pageHeader: {
-    back: 'დაბრუნების'
-  },
+  pageHeader: { back: 'უკან' },
   list: {
-    selectAllText: 'Select all'
+    selectAllText: 'ყველას არჩევა',
+    loadMoreText: 'მეტი ჩატვირთვა',
+    loadingMoreText: 'იტვირთება'
   },
   select: {
-    selectAllText: 'Select all'
-  }
+    selectAllText: 'ყველას არჩევა',
+    maxTagContent: 'მეტი {{surplus}} არჩევისთვის'
+  },
+  treeSelect: {
+    selectAllText: 'ყველას არჩევა',
+    maxTagContent: 'მეტი {{surplus}} არჩევისთვის'
+  },
+  form: { required: 'აუცილებელი' }
 };

@@ -1,15 +1,27 @@
-@if (layout.small || layout.xsmall) {
+@if (layout.small() || layout.xsmall()) {
   <x-button class="menu" icon="fto-list" (click)="onLeftDrawer(true)" flat></x-button>
 }
 <ns-logo></ns-logo>
 <ns-search></ns-search>
 <ns-nav></ns-nav>
-@if (layout.xsmall) {
+@if (layout.xsmall()) {
   <x-button class="menu right" icon="fto-list" (click)="onRightDrawer(true)" onlyIcon flat></x-button>
 }
-<x-drawer [visible]="layout.leftDrawerVisible" placement="left" (close)="onLeftDrawer(false)" size="16.25rem">
-  <ns-sider class="drawer"></ns-sider>
+<x-drawer
+  [visible]="layout.leftDrawerVisible()"
+  className="drawer"
+  placement="left"
+  (close)="onLeftDrawer(false)"
+  size="16.25rem"
+>
+  <ns-sider></ns-sider>
 </x-drawer>
-<x-drawer [visible]="layout.rightDrawerVisible" placement="right" (close)="onRightDrawer(false)" size="12.25rem">
-  <ns-nav class="drawer"></ns-nav>
+<x-drawer
+  [visible]="layout.rightDrawerVisible()"
+  className="drawer"
+  placement="right"
+  (close)="onRightDrawer(false)"
+  size="12.25rem"
+>
+  <ns-nav></ns-nav>
 </x-drawer>

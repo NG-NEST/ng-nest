@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { XHighlightComponent } from '@ng-nest/ui/highlight';
 
 @Component({
@@ -8,7 +8,7 @@ import { XHighlightComponent } from '@ng-nest/ui/highlight';
   templateUrl: './html.component.html'
 })
 export class ExHtmlComponent {
-  html = `<!DOCTYPE html>
+  html = signal(`<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -21,5 +21,5 @@ export class ExHtmlComponent {
   <body>
     NG-NEST
   </body>
-</html>`;
+</html>`);
 }

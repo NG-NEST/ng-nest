@@ -4,14 +4,16 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPatternComponent } from '@ng-nest/ui/pattern';
 import { PatternPrefix } from './pattern.property';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(PatternPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, XPatternComponent],
-      declarations: [TestXPatternComponent]
-    }).compileComponents();
+    declarations: [TestXPatternComponent],
+    imports: [XPatternComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPatternComponent>;

@@ -1,10 +1,10 @@
 <div class="row">
-  <x-dropdown [data]="data">
+  <x-dropdown [data]="data()">
     <x-button type="primary" icon="fto-chevron-down" direction="row-reverse"> Hover me </x-button>
   </x-dropdown>
 </div>
 <div class="row">
-  <x-dropdown [data]="data" trigger="click">
+  <x-dropdown [data]="data()" trigger="click">
     <x-link type="primary" icon="fto-chevron-down" iconRight> Click me </x-link>
   </x-dropdown>
 </div>

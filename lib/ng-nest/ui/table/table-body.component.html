@@ -1,8 +1,8 @@
 <tbody #tbody>
-  @if (cellConfig) {
-    @for (row of data; track row.id; let i = $index) {
-      <tr [style.gridTemplateColumns]="cellConfig.gridTemplateColumns">
-        @for (column of cellConfig.cells; track column; let j = $index) {
+  @if (cellConfig()) {
+    @for (row of data(); track row.id; let i = $index) {
+      <tr [style.gridTemplateColumns]="cellConfig()!.gridTemplateColumns">
+        @for (column of cellConfig()!.cells; track column; let j = $index) {
           <td
             [title]="getTitle(row, column)"
             [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
@@ -20,19 +20,19 @@
       </tr>
     }
   } @else {
-    @if (virtualScroll) {
+    @if (virtualScroll()) {
       <cdk-virtual-scroll-viewport
         #virtualBody
-        [itemSize]="getItemSize"
-        [minBufferPx]="minBufferPx"
-        [maxBufferPx]="maxBufferPx"
-        [style.height.px]="bodyHeight"
+        [itemSize]="getItemSize()"
+        [minBufferPx]="minBufferPxSignal()"
+        [maxBufferPx]="maxBufferPxSignal()"
+        [style.height.px]="bodyHeightSignal()"
       >
         <tr
-          *cdkVirtualFor="let row of data; let index = index; trackBy: trackByItem"
-          [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
-          [style.height.px]="getRowHeight"
-          [style.min-height.px]="getRowHeight"
+          *cdkVirtualFor="let row of data(); let index = index; trackBy: trackByItem"
+          [class.x-table-activated]="allowSelectRow() && activatedRow()?.id === row.id"
+          [style.height.px]="getRowHeight()"
+          [style.min-height.px]="getRowHeight()"
           (click)="rowClick($event, row)"
         >
           <!-- rowHeight 为 0 的时候，index 下标获取不到 -->
@@ -40,53 +40,51 @@
         </tr>
       </cdk-virtual-scroll-viewport>
     } @else {
-      @for (row of data; track row.id; let i = $index) {
+      @for (row of data(); track row.id; let i = $index) {
         <tr
-          [class.x-table-activated]="allowSelectRow && activatedRow?.id === row.id"
-          [style.height.px]="getRowHeight"
-          [style.min-height.px]="getRowHeight"
+          [class.x-table-activated]="allowSelectRow() && activatedRow()?.id === row.id"
+          [style.height.px]="getRowHeight()"
+          [style.min-height.px]="getRowHeight()"
           (click)="rowClick($event, row)"
         >
           <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
         </tr>
-        @if (table.treeTable && row.children && row.expanded) {
-          <div class="x-table-children" [class.x-table-expandTpl]="expandTpl">
+        @if (table.treeTable() && row.children && row.expanded) {
+          <div class="x-table-children" [class.x-table-expandTpl]="expandTpl()">
             <x-table-body
               [data]="row.children"
-              [columns]="table.columns"
-              [itemSize]="table.itemSize"
-              [rowHeight]="table.rowHeight"
-              [columnTpl]="table.bodyColumnTpl"
-              [allowSelectRow]="table.allowSelectRow"
-              [rowClass]="table.rowClass"
-              [cellConfig]="table.cellConfig?.tbody"
+              [columns]="table.columns()"
+              [itemSize]="table.itemSize()"
+              [rowHeight]="table.rowHeight()"
+              [columnTpl]="table.bodyColumnTpl()"
+              [allowSelectRow]="table.allowSelectRow()"
+              [rowClass]="table.rowClass()"
+              [cellConfig]="table.cellConfig()?.tbody"
               [(activatedRow)]="table.activatedRow"
-              [expandedAll]="expandedAll"
-              [expandTpl]="expandTpl"
-              (activatedRowChange)="table.activatedRowChange.emit($event)"
+              [expandedAll]="expandedAll()"
+              [expandTpl]="expandTpl()"
               [level]="row.level! + 1"
-              [table]="table"
             ></x-table-body>
           </div>
         }
       }
     }
   }
-  @if (table.showEmpty && isEmpty && level === 0) {
-    <x-empty [img]="table.emptyImg" [content]="table.emptyContent"></x-empty>
+  @if (table.showEmpty() && isEmpty() && level() === 0) {
+    <x-empty [img]="table.emptyImg()!" [content]="table.emptyContent()!"></x-empty>
   }
 </tbody>
 
 <ng-template #rowTpl let-row="row" let-i="i">
-  @if (level > 0 && expandTpl) {
-    <ng-container *xOutlet="expandTpl; context: { $row: row, $index: i, $level: level }"></ng-container>
-  } @else if (level === 0 || !expandTpl) {
-    <ng-container *xOutlet="rowDefault; context: { row: row, i: i, level: level }"></ng-container>
+  @if (level() > 0 && expandTpl()) {
+    <ng-container *xOutlet="expandTpl(); context: { $row: row, $index: i, $level: level() }"></ng-container>
+  } @else if (level() === 0 || !expandTpl()) {
+    <ng-container *xOutlet="rowDefault; context: { row: row, i: i, level: level() }"></ng-container>
   }
 </ng-template>
 
 <ng-template #rowDefault let-row="row" let-i="i">
-  @for (column of columns; track column.id; let j = $index) {
+  @for (column of columns(); track column.id; let j = $index) {
     <td
       [style.width.px]="column.width"
       [style.flex]="getFlex(column)"
@@ -99,7 +97,7 @@
       [class.x-table-sticky-right-first]="table.getStickyRightFirst(column)"
       [style.left.px]="column.left"
       [style.right.px]="column.right"
-      [ngClass]="!rowClass ? {} : rowClass(row, i)"
+      [ngClass]="!rowClass() ? {} : rowClass()!(row, i)"
     >
       <ng-template *ngTemplateOutlet="cellTpl; context: { column: column, row: row, i: i }"></ng-template>
     </td>
@@ -135,10 +133,12 @@
           [style.margin-left.rem]="row.level - 0.5"
         ></x-button>
       }
-      <ng-container *xOutlet="columnTpl[column.id]; context: { $column: column, $row: row, $index: table.getIndex(i) }">
-        <ng-container *xOutlet="table.bodyTdTpl; context: { $column: column, $row: row, $index: table.getIndex(i) }">
+      <ng-container
+        *xOutlet="columnTpl()[column.id]; context: { $column: column, $row: row, $index: table.getIndex(i) }"
+      >
+        <ng-container *xOutlet="table.bodyTdTpl(); context: { $column: column, $row: row, $index: table.getIndex(i) }">
           <div [innerHTML]="row[column.id]" [style.text-align]="column.textAlign"></div>
-          {{ table.rowExpandNext && table.rowExpandNext.id === column.id ? 'x-table-body-level-' + row.level : '' }}
+          {{ table.rowExpand() && table.rowExpand()!.id === column.id ? 'x-table-body-level-' + row.level : '' }}
         </ng-container>
       </ng-container>
     }

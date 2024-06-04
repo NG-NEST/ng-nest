@@ -1,5 +1,6 @@
-import { XPlacement, XInputBoolean, XBoolean, XWithConfig, XTemplate } from '@ng-nest/ui/core';
-import { Input, Directive, ElementRef } from '@angular/core';
+import { XPropertyFunction, XToBoolean, XToNumber } from '@ng-nest/ui/core';
+import { Directive, ElementRef, input, model } from '@angular/core';
+import type { XPlacement, XBoolean, XTemplate, XNumber } from '@ng-nest/ui/core';
 
 /**
  * Tooltip
@@ -7,68 +8,68 @@ import { Input, Directive, ElementRef } from '@angular/core';
  * @decorator directive
  */
 export const XTooltipPrefix = 'x-tooltip';
-const X_CONFIG_NAME = 'tooltip';
+const X_TOOLTIP_CONFIG_NAME = 'tooltip';
 
 /**
  * Tooltip Property
  */
 @Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}` })
-export class XTooltipProperty {
+export class XTooltipProperty extends XPropertyFunction(X_TOOLTIP_CONFIG_NAME) {
   /**
    * @zh_CN 内容
    * @en_US Content
    */
-  @Input() content!: XTemplate;
+  readonly content = input<XTemplate>();
   /**
    * @zh_CN 显示位置
    * @en_US Display position
    */
-  @Input() @XWithConfig<XPlacement>(X_CONFIG_NAME, 'bottom') placement?: XPlacement;
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'top');
   /**
    * @zh_CN 显示/隐藏
    * @en_US Show/hide
    */
-  @Input() @XInputBoolean() visible?: XBoolean;
+  readonly visible = model<boolean>(false);
   /**
    * @zh_CN 内部样式
    * @en_US panel class
    */
-  @Input() panelClass?: string | string[];
+  readonly panelClass = input<string | string[]>();
   /**
    * @zh_CN 指定参考对象
    * @en_US specify reference object
    */
-  @Input() connectTo?: ElementRef<HTMLElement> | HTMLElement;
+  readonly connectTo = input<ElementRef<HTMLElement> | HTMLElement>();
   /**
    * @zh_CN 背景颜色
    * @en_US Background color
    */
-  @Input() backgroundColor?: string;
+  readonly backgroundColor = input<string>();
   /**
    * @zh_CN 文字颜色
    * @en_US Text color
    */
-  @Input() color?: string;
+  readonly color = input<string>();
   /**
    * @zh_CN 手动处理关闭事件
    * @en_US Manually handle the shutdown event
    */
-  @Input() @XInputBoolean() manual?: XBoolean;
+  readonly manual = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 鼠标移入后延时多少才显示
    * @en_US How much is the mouse transfer after transfer
    */
-  @Input() mouseEnterDelay: number = 150;
+  readonly mouseEnterDelay = input<number, XNumber>(150, { transform: XToNumber });
   /**
    * @zh_CN 鼠标移出后延时多少才隐藏
    * @en_US How much hidden is hidden after the mouse is removed
    */
-  @Input() mouseLeaveDelay: number = 100;
+  readonly mouseLeaveDelay = input<number, XNumber>(100, { transform: XToNumber });
   /**
    * @zh_CN 禁用显示
    * @en_US Disable display
    */
-  @Input() @XInputBoolean() disabled?: XBoolean = false;
+  readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }
 
 /**

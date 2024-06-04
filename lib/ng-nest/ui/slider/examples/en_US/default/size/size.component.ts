@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { XData } from '@ng-nest/ui/core';
-import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
+import { Component, signal } from '@angular/core';
+import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-size',
@@ -10,7 +9,7 @@ import { XSliderComponent, XSliderNode } from '@ng-nest/ui/slider';
   styleUrls: ['./size.component.scss']
 })
 export class ExSizeComponent {
-  data: XData<XSliderNode> = [
+  data = signal([
     'User Management',
     'Configuration Management',
     'Role Management',
@@ -19,5 +18,5 @@ export class ExSizeComponent {
     'Messages',
     'Processes',
     'News'
-  ];
+  ]);
 }
