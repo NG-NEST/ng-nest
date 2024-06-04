@@ -2,7 +2,7 @@
   class="x-progress"
   [ngClass]="classMap()"
   [class.x-progress-steps]="stepsArray().length > 0"
-  [class.x-progress-steps-flex]="stepFlex"
+  [class.x-progress-steps-flex]="stepFlex()"
 >
   @switch (type()) {
     @case ('circle') {

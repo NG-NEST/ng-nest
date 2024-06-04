@@ -42,11 +42,6 @@ export class XTextareaProperty extends XFormControlFunction(X_TEXTAREA_CONFIG_NA
    */
   readonly maxlength = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  @Input() @XWithConfig<XSize>(X_CONFIG_NAME, 'medium') size!: XSize;
-  /**
    * @zh_CN 高度
    * @en_US height
    */

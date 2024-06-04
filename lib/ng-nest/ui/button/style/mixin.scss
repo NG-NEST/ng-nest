@@ -110,6 +110,7 @@
   &-only-icon,
   &-only-icon.#{$--x-button}-initial,
   &-text {
+    color: $--x-text;
     border: none;
     background-color: transparent;
     box-shadow: none;
