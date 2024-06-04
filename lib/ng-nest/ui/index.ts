@@ -6,7 +6,6 @@ export * from '@ng-nest/ui/core';
 /**
  * Basic
  */
-export * from '@ng-nest/ui/border';
 export * from '@ng-nest/ui/button';
 export * from '@ng-nest/ui/color';
 export * from '@ng-nest/ui/container';

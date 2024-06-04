@@ -1,3 +1,34 @@
+# [18.0.0](https://github.com/NG-NEST/ng-nest/compare/17.0.11...18.0.0) (2024-06-04)
+
+
+### Bug Fixes
+
+* **docs:** fix refresh the selected menu ([0689041](https://github.com/NG-NEST/ng-nest/commit/0689041abb167756814b7e83d748c521ed263825))
+* **modue:button:** fix first transition ([362ca4b](https://github.com/NG-NEST/ng-nest/commit/362ca4bc55c3f3235f32acc48c9095ba18c7221a))
+* **module:button:** fix a custom width issue ([9d7ceaf](https://github.com/NG-NEST/ng-nest/commit/9d7ceafabf1bcf707e7ffd0ed368e70480682f43))
+* **module:dialog:** fix repeated execution ([e810a9f](https://github.com/NG-NEST/ng-nest/commit/e810a9f8b36b4d2cc834761e5d96788571c62028))
+* **module:icon:** fix icon color property ([ec9c5dd](https://github.com/NG-NEST/ng-nest/commit/ec9c5dd749339a7378233f58efc9074dd2b11b67))
+* **module:input:** fix template value width ([e256267](https://github.com/NG-NEST/ng-nest/commit/e2562679890c2d70545fc9e25d9199b047a9bd74))
+* **module:table:** fix column drag ([26c3d1b](https://github.com/NG-NEST/ng-nest/commit/26c3d1b8e7f40a04edba9c0ac641bce6a725944d))
+* **signal:** fix example error ([7f9ac32](https://github.com/NG-NEST/ng-nest/commit/7f9ac3229f72c2536166a1e4e1bb8ab88c7ab165))
+
+
+### Features
+
+* **docs:** add core types ([f32ec9b](https://github.com/NG-NEST/ng-nest/commit/f32ec9b624f48c73496126d5cfabcf034002be3c))
+* **module:button:** add flat and text ([e39d5af](https://github.com/NG-NEST/ng-nest/commit/e39d5af6f1010e23f0f02235d3bcbd42053ef5a6))
+* **module:dialog:** add max width and height ([f52740a](https://github.com/NG-NEST/ng-nest/commit/f52740a34c38b237c0823edba0d7947fd375c2d9))
+* **module:i18n:** add XI18nLanguage type ([b276b47](https://github.com/NG-NEST/ng-nest/commit/b276b470a432a307d523a12acc944bc9326b6d42))
+* **module:input-number:** add hidden button property ([e3f4f6d](https://github.com/NG-NEST/ng-nest/commit/e3f4f6d3024faf55ad5abffa9d2c212433ce36bf))
+* **module:table:** add headThTpl property ([7aa3d1f](https://github.com/NG-NEST/ng-nest/commit/7aa3d1f66990803b175e748bc575167efb69de11))
+* **sit:** add input type popover ([9ecb3e2](https://github.com/NG-NEST/ng-nest/commit/9ecb3e2e0e66d73085256d391f2c65ea107c2008))
+* **sit:** add reference api page ([3b589ec](https://github.com/NG-NEST/ng-nest/commit/3b589ec25f690fefa80cf1869b52343bb1691d49))
+* **sit:** add reference child type ([afec342](https://github.com/NG-NEST/ng-nest/commit/afec342c52a005412d8e2e9b3a295d53c5491322))
+* **sit:** add reference dialog ([9623969](https://github.com/NG-NEST/ng-nest/commit/9623969891b98d9763efb4c7c06e6f5cd82b8d89))
+* **sit:** add type popover ([c99dc39](https://github.com/NG-NEST/ng-nest/commit/c99dc399493c6582c79db3e8f7a3d6edb6b2c92f))
+
+
+
 ## [17.0.11](https://github.com/NG-NEST/ng-nest/compare/17.0.10...17.0.11) (2024-05-27)
 
 
