@@ -53,7 +53,7 @@ export interface NcProp {
   /**
    * 示例
    */
-  example?: string;
+  example?: { type: string; content: string; language?: string }[];
 }
 
 export interface NcPrope {
@@ -105,7 +105,7 @@ export interface NcPrope {
   /**
    * 示例
    */
-  example?: string;
+  example?: { type: string; content: string; language?: string }[];
   /**
    * 转换函数
    */

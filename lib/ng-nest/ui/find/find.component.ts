@@ -260,7 +260,6 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
   }
 
   rowMultiple(data: XTableRow) {
-    console.log(data['$checked']);
     if (typeof this.temp() === 'undefined') this.temp.set([]);
     if (data['$checked']) {
       this.temp.update((x) => {
@@ -277,7 +276,6 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
         return [...x];
       });
     }
-    console.log(this.temp());
   }
 
   treeMultiple(node: XTreeNode) {

@@ -9,6 +9,7 @@ import { XCollapseModule } from '@ng-nest/ui/collapse';
 import { MdToHtmlPipe } from '../md-to-html.pipe';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { XPopoverDirective } from '@ng-nest/ui/popover';
+import { XHighlightComponent } from '@ng-nest/ui/highlight';
 
 @Component({
   selector: 'ns-api-name',
@@ -20,6 +21,7 @@ import { XPopoverDirective } from '@ng-nest/ui/popover';
     XDialogModule,
     XPopoverDirective,
     XI18nPipe,
+    XHighlightComponent,
     MdToHtmlPipe
   ],
   templateUrl: './api-name.component.html',

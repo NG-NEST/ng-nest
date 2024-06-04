@@ -6,7 +6,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Badge 动画",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XBadgeAnimation",
     "value": "trigger('x-badge-animation', [transition(':enter', [style({ opacity: 0, transform: 'scale(0) translate(50%, -50%)' }),animate(XDURATION_SLOW_EASE_IN,style({opacity: 1,transform: 'scale(1) translate(50%, -50%)'}))]),transition(':leave', [style({ opacity: 1, transform: 'scale(1) translate(50%, -50%)' }),animate(XDURATION_SLOW_EASE_OUT,style({opacity: 0,transform: 'scale(0) translate(50%, -50%)'}))])])"
@@ -15,7 +20,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "弹框连接时的动画，只处理 Y 轴",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XConnectBaseAnimation",
     "value": "trigger('x-connect-base-animation', [transition(':enter', [style({ opacity: 0, transform: 'scaleY(0.8)' }), animate(XDURATION_FAST_EASE_IN)]),transition(':leave', [animate(XDURATION_FAST_EASE_OUT, style({ opacity: 0 }))])])"
@@ -24,7 +34,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "enum",
     "label": "动画执行时间",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDuration",
     "value": "{Slow = '0.3s',Base = '0.2s',Fast = '0.1s'}"
@@ -33,7 +48,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "移入移出动画",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMoveAnimation",
     "value": "trigger('x-move-animation', [transition('void => top-start, void => top, void => top-end, void => center', [style({transform: 'translateY(-200%)',opacity: 0}),animate(`${XDuration.Base}`,style({transform: 'translateY(0%)',opacity: 1}))]),transition('top-start => void, top => void, top-end => void, center => void', [style({transform: 'translateY(0%)',opacity: 1,height: '*'}),animate(`${XDuration.Base}`,style({transform: 'translateY(-200%)',opacity: 0,height: 0}))]),transition('void => left', [style({transform: 'translateX(-30%)',opacity: 0}),animate(`${XDuration.Base}`,style({transform: 'translateX(0%)',opacity: 1}))]),transition('left => void', [style({transform: 'translateX(0%)',opacity: 1,height: '*'}),animate(`${XDuration.Base}`,style({transform: 'translateX(-30%)',opacity: 0,height: 0}))]),transition('void => right', [style({transform: 'translateX(30%)',opacity: 0}),animate(`${XDuration.Base}`,style({transform: 'translateX(0%)',opacity: 1}))]),transition('right => void', [style({transform: 'translateX(0%)',opacity: 1,height: '*'}),animate(`${XDuration.Base}`,style({transform: 'translateX(30%)',opacity: 0,height: 0}))]),transition('void => bottom-start, void => bottom, void => bottom-end', [style({transform: 'translateY(200%)',opacity: 0,height: 0}),animate(`${XDuration.Base}`,style({transform: 'translateY(0%)',opacity: 1,height: '*'}))]),transition('bottom-start => void, bottom => void, bottom-end => void', [style({transform: 'translateY(0%)',opacity: 1}),animate(`${XDuration.Base}`,style({transform: 'translateY(200%)',opacity: 0}))])])"
@@ -42,7 +62,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "组件和主题全局配置信息",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "components",
@@ -54,7 +79,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "components",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "theme",
@@ -66,7 +96,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "theme",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XConfig"
@@ -75,7 +110,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "组件全局配置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XComponentConfig"
   },
@@ -83,7 +123,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "该函数用于将给定的数组拆分成多个小数组",
     "description": "每个小数组的长度由函数的第二个参数指定，默认为 1。\n如果给定的数组为空或者小数组长度小于等于 0，则函数返回一个空数组。\n函数通过循环遍历给定的数组，并使用 slice 方法将数组拆分成小数组，然后将小数组添加到结果数组中，最后返回结果数组。",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XChunk<T>",
     "params": {
@@ -95,7 +140,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "该函数是一个深拷贝函数，用于克隆一个对象或数组",
     "description": "它会递归地复制对象的所有属性，包括嵌套对象和数组，生成一个全新的独立副本。\n对于非对象和非数组类型的值，直接返回该值。\n函数接受一个参数 value，表示需要进行深拷贝的值。\n首先创建一个空的结果对象 result，如果 value 是数组，则 result 也是一个空数组。\n遍历 value 的所有属性，如果属性是对象，则递归调用 XCloneDeep 函数进行深拷贝，并将结果赋值给 result 对应的属性。\n最后返回 result，即深拷贝后的对象或数组。",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCloneDeep",
     "params": {
@@ -107,7 +157,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 value 为 boolean 值",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToBoolean",
     "params": {
@@ -119,7 +174,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 value 为像素值",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToCssPixelValue",
     "params": {
@@ -131,7 +191,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 value 为 number 值",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToNumber",
     "params": {
@@ -144,7 +209,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 value 为指定的 list 数据 [{ label: any; id: any }, ....]",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToDataConvert<T>",
     "params": {
@@ -156,7 +226,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 value 为指定的 list 数据 [{ label: any; id: any }, ....]",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToDataArray<T>",
     "params": {
@@ -168,7 +243,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据 data 的类型获取实际的数据",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSetData<T>",
     "params": {
@@ -182,7 +262,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据 id、pid 获取子节点",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XGetChildren<T extends XParentIdentityProperty<T>>",
     "params": {
@@ -196,7 +281,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "将对象键值对反转",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInvertKeyValues",
     "params": {
@@ -208,7 +298,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "设置样式名称为 false",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XClearClass",
     "params": {
@@ -220,7 +315,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "设置样式名称为 false",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XClearClassSignal",
     "params": {
@@ -232,7 +332,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "属性装饰器返回类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPropDecorator",
     "value": "(target: any, propName: string) => void"
@@ -241,7 +346,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "创建 XInputBoolean 属性装饰器",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputBoolean",
     "params": {},
@@ -251,7 +361,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "创建 XInputNumber 属性装饰器",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputNumber",
     "params": {},
@@ -261,7 +376,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "创建 XInputNumber 属性装饰器",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputCssPixelValue",
     "params": {},
@@ -271,7 +391,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "创建 XDataConvert 属性装饰器",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDataConvert",
     "params": {},
@@ -281,7 +406,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "限制给定数值 value 的范围",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XClamp",
     "params": {
@@ -295,7 +425,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 csspx 为像素宽度",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToCssPx",
     "params": {
@@ -307,7 +442,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 css 为 rem 宽度",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToCssRem",
     "params": {
@@ -319,7 +459,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "日期类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDate",
     "value": "string | Date | number"
@@ -328,7 +473,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "转换 Date",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToDate",
     "params": {
@@ -340,7 +490,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加毫秒数，负数为减少",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAddMilliseconds",
     "params": {
@@ -353,7 +508,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加秒数，负数为减少",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAddSeconds",
     "params": {
@@ -366,7 +526,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加分钟数，负数为减少",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAddMinutes",
     "params": {
@@ -379,7 +544,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加小时数，负数为减少",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAddHours",
     "params": {
@@ -392,7 +562,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加天数，负数为减少",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAddDays",
     "params": {
@@ -405,7 +580,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加月数，负数为减少",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAddMonths",
     "params": {
@@ -418,7 +598,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "日期添加年数，负数为减少",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAddYears",
     "params": {
@@ -431,7 +616,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取给定日期的 ISO 周数",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDateWeek",
     "params": {
@@ -443,7 +633,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取指定日期的 ISO 周年份",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDateWeekYear",
     "params": {
@@ -455,7 +650,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取指定日期的年份和周数",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDateYearWeek",
     "params": {
@@ -467,7 +667,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取指定日期的年份和季度",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDateYearQuarter",
     "params": {
@@ -479,7 +684,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取指定日期所属的季度",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDateQuarter",
     "params": {
@@ -491,7 +701,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "通过参数 n 来截取数组",
     "description": "如果 n 未定义或为 0，则返回与原数组相同的数组\n如果原数组长度小于 1 或小于等于 n 的绝对值，则返回一个空数组\n如果 n 大于 0，则截取从第 n 个元素开始到数组末尾的子数组\n如果 n 小于等于 0，则截取从第 0 个元素到倒数第 n 个元素",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDrop<T>",
     "params": {
@@ -503,7 +718,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "用于设置元素的 flex 样式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSetFlex",
     "params": {
@@ -516,7 +736,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据属性 name 来对数组分组",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XGroupBy<T>",
     "params": {
@@ -529,7 +754,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "生成 GUID",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XGuid",
     "params": {},
@@ -539,7 +769,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断一个对象是否包含指定的属性",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XHasIn",
     "params": {
@@ -552,7 +787,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据指定元素来排序",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XOrderBy<T>",
     "params": {
@@ -565,7 +805,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取元素的父节点路径",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XParentPath",
     "params": {
@@ -577,7 +822,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取元素的父元素路径",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XParents",
     "params": {
@@ -589,7 +839,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "组件公共属性",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XProperty"
   },
@@ -597,7 +852,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "组件公共属性，通过函数返回，注入全局配置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPropertyFunction<T extends XComponentConfigKey>",
     "params": {},
@@ -607,7 +867,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "从数组中移除满足条件的元素，并返回被移除的元素组成的数组",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XRemove<T>",
     "params": {
@@ -620,7 +885,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "监听元素大小边界尺寸的变化",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XResizeObserver",
     "value": "ResizeObserver | null"
@@ -629,7 +899,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "ResizeObserver 回调函数参数的对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XResizeObserverEntry",
     "value": "ResizeObserverEntry | null"
@@ -638,7 +913,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "这个函数的功能是创建一个Observable，用于监听多个元素的尺寸变化",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XResize",
     "params": {
@@ -651,7 +931,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "data 数据类型",
     "description": "通用的泛型数据类型，一般是指数组、可订阅对象并且流数据为数组类型、函数等",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XData<T>",
     "value": "T[] | Observable<T[] | any[]> | any[] | Function"
@@ -660,7 +945,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "data 数据类型",
     "description": "通用的泛型数据类型，一般是指数组",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDataArray<T>",
     "value": "string | number | (T | string | number)[]"
@@ -669,7 +959,21 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "boolean 数据类型",
     "description": "此类型作为组件的输入参数，一般会使用 `XToBoolean` 转换函数，转换成 true 或 false",
-    "example": "```html\n// true\n<my-component disabled></my-component>\n<my-component disabled=\"true\"></my-component>\n<my-component [disabled]=\"true\"></my-component>\n\n// false\n<my-component disabled=\"false\"></my-component>\n<my-component [disabled]=\"false\"></my-component>\n```\n",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      },
+      {
+        "type": "code",
+        "language": "html",
+        "content": "// true\n<my-component disabled></my-component>\n<my-component disabled=\"true\"></my-component>\n<my-component [disabled]=\"true\"></my-component>\n\n// false\n<my-component disabled=\"false\"></my-component>\n<my-component [disabled]=\"false\"></my-component>"
+      },
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XBoolean",
     "value": "boolean | string"
@@ -678,7 +982,21 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "number 数据类型",
     "description": "此类型作为组件的输入参数，一般会使用 `XToNumber` 转换函数，转换成数字类型\n如果是宽高尺寸，会通过 `XToCssPixelValue` 转换函数，转换成字符串尺寸",
-    "example": "```html\n// XToNumber => num = 10\n<my-component max=\"10\"></my-component>\n<my-component [max]=\"10\"></my-component>\n<my-component [max]=\"'10'\"></my-component>\n\n// XToCssPixelValue\n// width = '200px'\n<my-component width=\"200\"></my-component>\n<my-component width=\"200px\"></my-component>\n<my-component [width]=\"200\"></my-component>\n<my-component [width]=\"'200'\"></my-component>\n<my-component [width]=\"'200px'\"></my-component>\n// width = '20rem'\n<my-component width=\"20rem\"></my-component>\n<my-component [width]=\"'20rem'\"></my-component>\n// width = '50%'\n<my-component width=\"50%\"></my-component>\n<my-component [width]=\"'50%'\"></my-component>\n```\n",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      },
+      {
+        "type": "code",
+        "language": "html",
+        "content": "// XToNumber => num = 10\n<my-component max=\"10\"></my-component>\n<my-component [max]=\"10\"></my-component>\n<my-component [max]=\"'10'\"></my-component>\n\n// XToCssPixelValue\n// width = '200px'\n<my-component width=\"200\"></my-component>\n<my-component width=\"200px\"></my-component>\n<my-component [width]=\"200\"></my-component>\n<my-component [width]=\"'200'\"></my-component>\n<my-component [width]=\"'200px'\"></my-component>\n// width = '20rem'\n<my-component width=\"20rem\"></my-component>\n<my-component [width]=\"'20rem'\"></my-component>\n// width = '50%'\n<my-component width=\"50%\"></my-component>\n<my-component [width]=\"'50%'\"></my-component>"
+      },
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XNumber",
     "value": "number | string"
@@ -687,7 +1005,21 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "模板类型",
     "description": "一般会配合 `outlet` 指令来指定一个参数即可为基本数据类型，也可为模板",
-    "example": "```html\n// label = \"string\"\n<ng-container *xOutlet=\"label\">{{ label }}</ng-container>\n\n<ng-container *xOutlet=\"labelTpl\">{{ labelTpl }}</ng-container>\n<ng-template #labelTpl>this is a label template</ng-template>\n```\n",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      },
+      {
+        "type": "code",
+        "language": "html",
+        "content": "// label = \"string\"\n<ng-container *xOutlet=\"label\">{{ label }}</ng-container>\n\n<ng-container *xOutlet=\"labelTpl\">{{ labelTpl }}</ng-container>\n<ng-template #labelTpl>this is a label template</ng-template>"
+      },
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTemplate",
     "value": "string | number | Date | TemplateRef<any>"
@@ -696,7 +1028,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "函数返回类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTypeFunc",
     "value": "(object: any) => boolean"
@@ -705,7 +1042,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "类型判断",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsType",
     "params": {
@@ -717,7 +1059,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "值改变判断",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsChange",
     "params": {
@@ -729,7 +1076,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为字符串类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsString",
     "params": {
@@ -741,7 +1093,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为数组类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsArray<T>",
     "params": {
@@ -753,7 +1110,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为数字类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsNumber",
     "params": {
@@ -765,7 +1127,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为布尔类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsBoolean",
     "params": {
@@ -777,7 +1144,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为对象类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsObject<T>",
     "params": {
@@ -789,7 +1161,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为 null 类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsNull",
     "params": {
@@ -801,7 +1178,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为函数类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsFunction",
     "params": {
@@ -813,7 +1195,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为日期类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsDate",
     "params": {
@@ -825,7 +1212,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为正则表达式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsRegExp",
     "params": {
@@ -837,7 +1229,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为 undefined",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsUndefined",
     "params": {
@@ -849,7 +1246,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的值是否为字符串、数字、布尔值或日期",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsValue<T>",
     "params": {
@@ -861,7 +1263,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断一个对象是否为空",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsEmpty",
     "params": {},
@@ -871,7 +1278,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为非空数组",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsValueArray<T>",
     "params": {
@@ -883,7 +1295,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为非空对象数组",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsObjectArray<T>",
     "params": {
@@ -895,7 +1312,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为 Observable",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsObservable<T>",
     "params": {
@@ -907,7 +1329,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为 TemplateRef",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsTemplateRef<T>",
     "params": {
@@ -919,7 +1346,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为 XTemplateRef",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsXTemplate",
     "params": {
@@ -931,7 +1363,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断给定的对象是否为 InputSignal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsInputSignal",
     "params": {
@@ -943,7 +1380,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "标识对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "id",
@@ -955,7 +1397,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "id",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -967,7 +1414,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XIdentityProperty"
@@ -976,7 +1428,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "父节点标识对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "pid",
@@ -988,7 +1445,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pid",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "level",
@@ -1000,7 +1462,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "level",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "leaf",
@@ -1012,7 +1479,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "leaf",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "children",
@@ -1024,7 +1496,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "children",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "childrenLoaded",
@@ -1036,7 +1513,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "childrenLoaded",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "selected",
@@ -1048,7 +1530,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "selected",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -1060,7 +1547,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "open",
@@ -1072,7 +1564,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "open",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XParentIdentityProperty<T>",
@@ -1084,7 +1581,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "标识对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "id",
@@ -1096,7 +1598,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "id",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -1108,7 +1615,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XIdentity"
@@ -1117,7 +1629,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "方位 左右",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPositionLeftRight",
     "value": "'left' | 'right'"
@@ -1126,7 +1643,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "方位 上下",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPositionTopBottom",
     "value": "'top' | 'bottom'"
@@ -1135,7 +1657,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "方位",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPosition",
     "value": "XPositionTopBottom | XPositionLeftRight"
@@ -1144,7 +1671,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "风格类型",
     "description": "- `'initial'` : 默认\n- `'primary'` : 主要\n- `'success'` : 成功\n- `'info'` : 信息\n- `'warning'` : 警告\n- `'danger'` : 危险\n- `'text'` : 文本",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XType",
     "value": "'initial' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'"
@@ -1153,7 +1685,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "状态类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XStatus",
     "value": "'success' | 'info' | 'warning' | 'error' | 'loading'"
@@ -1162,7 +1699,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式名映射类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XClassMap",
     "value": "{ [property: string]: boolean }"
@@ -1171,7 +1713,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式映射类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XStyleMap",
     "value": "{ [property: string]: any }"
@@ -1180,7 +1727,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式主题",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XEffect",
     "value": "'light' | 'dark' | 'white'"
@@ -1189,7 +1741,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式属性",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XStyle",
     "value": "{ [property: string]: any }"
@@ -1198,7 +1755,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "尺寸",
     "description": "- `'big'` : 超大\n- `'large'` : 大型\n- `'medium'` : 中等\n- `'small'` : 小型\n- `'mini'` : 迷你",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSize",
     "value": "'big' | 'large' | 'medium' | 'small' | 'mini'"
@@ -1207,7 +1769,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "响应尺寸",
     "description": "- `xs` <768px\n- `sm` ≥768px\n- `md` ≥992px\n- `lg` ≥1200px\n- `xl` ≥1920px",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XResponseSize",
     "value": "{ xs?: number; sm?: number; md?: number; lg?: number; xl?: number }"
@@ -1216,7 +1783,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "flex 布局下的子元素水平排列方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XJustify",
     "value": "'start' | 'end' | 'center' | 'space-around' | 'space-between'"
@@ -1225,7 +1797,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "flex 布局下的子元素垂直排列方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAlign",
     "value": "'start' | 'center' | 'end'"
@@ -1234,7 +1811,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "flex 布局下的子元素排列方向",
     "description": "- `'column'` : 将 flex 项目从上到下垂直排列，就像列一样\n- `'column-reverse'` : 与 `'column'` 相反，将 flex 项目从下到上垂直排列\n- `'row'` : 将 flex 项目从左到右水平排列，就像行一样\n- `'row-reverse'` : 与 `'row'` 相反，将 flex 项目从右到左水平排列",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDirection",
     "value": "'column' | 'column-reverse' | 'row' | 'row-reverse'"
@@ -1243,7 +1825,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "相对与连接元素的位置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPlacement",
     "value": "XPosition | XCorner | 'left-start' | 'left-end' | 'right-start' | 'right-end'"
@@ -1252,7 +1839,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "四个角落",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCorner",
     "value": "'top-start' | 'top-end' | 'bottom-start' | 'bottom-end'"
@@ -1261,7 +1853,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "九宫格方位",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPlace",
     "value": "XPosition | XCorner | 'center'"
@@ -1270,7 +1867,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "形状",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XShape",
     "value": "'circle' | 'square'"
@@ -1279,7 +1881,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "适应方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFit",
     "value": "'fill' | 'contain' | 'cover' | 'none' | 'scale-down'"
@@ -1288,7 +1895,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "阴影显示配置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XShadow",
     "value": "'always' | 'hover' | 'never'"
@@ -1297,7 +1909,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "切换方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTrigger",
     "value": "'hover' | 'click'"
@@ -1306,7 +1923,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "展示的方向",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDisplayDirection",
     "value": "'horizontal' | 'vertical'"
@@ -1315,7 +1937,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "文字对齐方向",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTextAlign",
     "value": "'left' | 'center' | 'right'"
@@ -1324,7 +1951,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "标识",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "id",
@@ -1336,7 +1968,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "id",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XId"
@@ -1345,7 +1982,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列表返回数据",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "list",
@@ -1357,7 +1999,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "list",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "total",
@@ -1369,7 +2016,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "total",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "query",
@@ -1381,7 +2033,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "query",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XResultList<Entity",
@@ -1393,7 +2050,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "查询条件",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "index",
@@ -1405,7 +2067,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "index",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -1417,7 +2084,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "sort",
@@ -1429,7 +2101,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "sort",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "filter",
@@ -1441,7 +2118,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "filter",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "group",
@@ -1453,7 +2135,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "group",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XQuery"
@@ -1462,7 +2149,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "过滤规则",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "field",
@@ -1474,7 +2166,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "field",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "value",
@@ -1486,7 +2183,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "value",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "operation",
@@ -1498,7 +2200,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "operation",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "relation",
@@ -1510,7 +2217,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "relation",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XFilter"
@@ -1519,7 +2231,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "比较符号",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XOperation",
     "value": "'%' | '=' | '>' | '>=' | '<' | '<='"
@@ -1528,7 +2245,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "排序规则",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSort",
     "extends": [
@@ -1539,7 +2261,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "分组数据",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "count",
@@ -1551,7 +2278,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "count",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -1563,7 +2295,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XGroupItem",
@@ -1575,7 +2312,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "RGB 颜色值",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "r",
@@ -1587,7 +2329,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "r",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "g",
@@ -1599,7 +2346,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "g",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "b",
@@ -1611,7 +2363,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "b",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XRGBColor"
@@ -1620,7 +2377,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "根据权重混合2种颜色",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMixColors",
     "params": {
@@ -1634,7 +2396,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "RGB 颜色转换为 Hex",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToHex",
     "params": {
@@ -1648,7 +2415,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "Hex 颜色转换为 RGB",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XToRgb",
     "params": {
@@ -1660,7 +2432,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "该函数将字符串中的驼峰命名法转换为减号命名法",
     "description": "- 采用正则表达式匹配字符串中每个连续的大小写字母边界\n- 将其替换为小写字母和连字符的组合\n- 最后将整个字符串转换为小写\n- 例如，`XCamelToKebab('helloWorld')` 将返回 `hello-world`",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCamelToKebab",
     "params": {},
@@ -1670,7 +2447,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断值不为 null 或 undefined",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsNotNil<T>",
     "params": {
@@ -1682,7 +2464,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "判断值为 null 或 undefined",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIsNil",
     "params": {
@@ -1694,7 +2481,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取元素的指定样式的计算值",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XComputedStyle",
     "params": {
@@ -1707,7 +2499,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "获取元素的计算样式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XComputed",
     "params": {
@@ -1719,7 +2516,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "删除当前标签，保留内容",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XRemoveNgTag",
     "params": {
@@ -1731,7 +2533,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "去除 HTML 标签",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XStripTags",
     "params": {
@@ -1744,7 +2551,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "该函数将字符串中的减号命名法转换为驼峰命名法",
     "description": "- 使用正则表达式匹配所有连字符后的字母 ( `(\\w)` )\n- 用 `toUpperCase()` 将这些字母转换为大写\n- 替换原字符串中的连字符和小写字母为大写字母\n- 例如，`XKebabToCamel('hello-world')` 将返回 `helloWorld`",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XKebabToCamel",
     "params": {},
@@ -1754,7 +2566,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "svg 标签不存在的警告信息",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XWarnSVGTagNotFound",
     "params": {},
@@ -1764,7 +2581,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "icon 不存在的警告信息",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XWarnIconTypeNotFound",
     "params": {},
@@ -1774,7 +2596,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "function",
     "label": "填充默认值",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFillDefault",
     "params": {
@@ -1786,7 +2613,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Affix",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAffixPrefix",
     "selector": "x-affix",
@@ -1797,7 +2629,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Affix Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "top",
@@ -1809,7 +2646,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "this.config?.top!",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -1822,7 +2664,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "this.config?.left!",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       }
     ],
@@ -1835,7 +2682,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Alert",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAlertPrefix",
     "selector": "x-alert",
@@ -1846,7 +2698,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Alert Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "hide",
@@ -1858,7 +2715,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -1871,7 +2733,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -1884,7 +2751,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -1897,7 +2769,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'info'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -1910,7 +2787,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'light'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -1923,7 +2805,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -1936,7 +2823,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -1949,7 +2841,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -1962,7 +2859,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -1975,7 +2877,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -1988,7 +2895,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2001,7 +2913,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2014,7 +2931,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2027,7 +2949,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -2040,7 +2967,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -2053,7 +2985,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'0'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -2066,7 +3003,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'0'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -2079,7 +3021,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2092,7 +3039,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2105,7 +3057,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2118,7 +3075,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2131,7 +3093,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2144,7 +3111,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -2157,7 +3129,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAlertType",
     "value": "XStatus"
@@ -2166,7 +3143,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "设置投放容器外部的 CdkDrag 的位置。可用于为返回的用户恢复元素的位置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAlertDragFreeDragPosition",
     "value": "{ x: number; y: number }"
@@ -2175,7 +3157,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Anchor",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAnchorPrefix",
     "selector": "x-anchor",
@@ -2186,7 +3173,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Anchor Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "scroll",
@@ -2198,7 +3190,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2211,7 +3208,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'0'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -2224,7 +3226,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'0'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -2237,7 +3244,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "this.config?.affixWidth!",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -2250,7 +3262,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'right'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2263,7 +3280,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -2276,7 +3298,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Anchor inner",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAnchorInnerPrefix",
     "selector": "x-anchor-inner",
@@ -2287,7 +3314,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Anchor inner Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAnchorInnerProperty"
   },
@@ -2295,7 +3327,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "布局方式，相对内容的位置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAnchorLayout",
     "value": "XPositionLeftRight"
@@ -2304,7 +3341,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "AutoComplete",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAutoCompletePrefix",
     "selector": "x-auto-complete",
@@ -2315,7 +3357,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "AutoComplete Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -2327,7 +3374,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2340,7 +3392,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -2353,7 +3410,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2366,7 +3428,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2379,7 +3446,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2392,7 +3464,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2405,7 +3482,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2418,7 +3500,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2431,7 +3518,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2444,7 +3536,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2457,7 +3554,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -2470,7 +3572,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2483,7 +3590,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2496,7 +3608,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2509,7 +3626,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2522,7 +3644,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2535,7 +3662,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2548,7 +3680,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2561,7 +3698,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -2574,7 +3716,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2587,7 +3734,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2600,7 +3752,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2613,7 +3770,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2626,7 +3788,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2639,7 +3806,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2652,7 +3824,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2665,7 +3842,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -2678,7 +3860,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -2691,7 +3878,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "AutoComplete Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -2703,7 +3895,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "data",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "debounceTime",
@@ -2715,7 +3912,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "debounceTime",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placement",
@@ -2727,7 +3929,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeTpl",
@@ -2739,7 +3946,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -2751,7 +3963,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "caseSensitive",
@@ -2763,7 +3980,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "caseSensitive",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "onlySelect",
@@ -2775,7 +3997,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "onlySelect",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -2787,7 +4014,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -2799,7 +4031,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -2811,7 +4048,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -2823,7 +4065,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -2835,7 +4082,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -2847,7 +4099,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -2859,7 +4116,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -2871,7 +4133,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -2883,7 +4150,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -2895,7 +4167,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -2907,7 +4184,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -2919,7 +4201,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -2931,7 +4218,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -2943,7 +4235,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -2955,7 +4252,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -2967,7 +4269,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -2979,7 +4286,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -2991,7 +4303,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -3003,7 +4320,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -3015,7 +4337,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeEmit",
@@ -3027,7 +4354,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XAutoCompleteOption",
@@ -3039,7 +4371,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "AutoComplete 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAutoCompleteNode",
     "extends": [
@@ -3050,7 +4387,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "AutoComplete Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAutoCompletePortalPrefix",
     "selector": "x-auto-complete-portal",
@@ -3061,7 +4403,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Avatar",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAvatarPrefix",
     "selector": "x-avatar",
@@ -3072,7 +4419,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Avatar Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "label",
@@ -3084,7 +4436,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-avatar label=\"ng-nest\"></x-avatar>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar label=\"ng-nest\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3097,7 +4463,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-avatar size=\"big\" icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"large\" icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"medium\"  icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"small\" icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"mini\" icon=\"fto-user\"></x-avatar>\n<x-avatar [size]=\"100\" icon=\"fto-user\"></x-avatar>\n<x-avatar [size]=\"{ xs: 20, sm: 60, md: 90, lg: 120, xl: 160 }\" icon=\"fto-user\"></x-avatar>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar size=\"big\" icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"large\" icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"medium\"  icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"small\" icon=\"fto-user\"></x-avatar>\n<x-avatar size=\"mini\" icon=\"fto-user\"></x-avatar>\n<x-avatar [size]=\"100\" icon=\"fto-user\"></x-avatar>\n<x-avatar [size]=\"{ xs: 20, sm: 60, md: 90, lg: 120, xl: 160 }\" icon=\"fto-user\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3110,7 +4490,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-avatar icon=\"fto-user\"></x-avatar>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar icon=\"fto-user\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3123,7 +4517,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'circle'",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-avatar icon=\"fto-user\" shape=\"circle\"></x-avatar>\n<x-avatar icon=\"fto-user\" shape=\"square\"></x-avatar>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar icon=\"fto-user\" shape=\"circle\"></x-avatar>\n<x-avatar icon=\"fto-user\" shape=\"square\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3136,7 +4544,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-avatar src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3149,7 +4571,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'cover'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar fit=\"fill\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"contain\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"cover\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"none\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"scale-down\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3158,11 +4594,25 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "string",
         "inputType": "InputSignalWithTransform<string, XNumber>",
         "signal": "input",
-        "label": "字符类型的时候左右边距，px",
+        "label": "字符类型的时候左右边距",
         "default": "'4px'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar label=\"ng-nest\" gap=\"5\"></x-avatar>\n<x-avatar label=\"ng-nest\" gap=\"5px\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -3175,7 +4625,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'#999999'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar label=\"ng-nest\" backgroundColor=\"#999999\"></x-avatar>\n<x-avatar label=\"ng-nest\" backgroundColor=\"#888888\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -3188,7 +4652,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "头像形状",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAvatarShape",
     "value": "XShape"
@@ -3197,7 +4666,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "当展示类型为图片的时候，设置图片如何适应容器框",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAvatarFit",
     "value": "XFit"
@@ -3206,7 +4680,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "尺寸类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAvatarSize",
     "value": "number | XSize | XResponseSize"
@@ -3215,7 +4694,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Avatar Group",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAvatarGroupPrefix",
     "selector": "x-avatar-group",
@@ -3226,7 +4710,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Avatar Group Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAvatarGroupProperty",
     "extends": [
@@ -3237,7 +4726,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "BackTop",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XBackTopPrefix",
     "selector": "x-back-top",
@@ -3248,7 +4742,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "BackTop Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "right",
@@ -3260,7 +4759,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'2.5rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -3273,7 +4777,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'2.5rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -3286,7 +4795,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -3299,7 +4813,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3312,7 +4831,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -3325,7 +4849,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Badge",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XBadgePrefix",
     "selector": "x-badge",
@@ -3336,7 +4865,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Badge Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -3344,11 +4878,25 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "XBadgeType",
         "inputType": "InputSignal<XBadgeType>",
         "signal": "input",
-        "label": "背景颜色",
+        "label": "类型，背景颜色",
         "default": "'danger'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-badge value=\"12\" type=\"primary\">\n  <x-button>primary</x-button>\n</x-badge>\n<x-badge value=\"12\" type=\"success\">\n  <x-button>success</x-button>\n</x-badge>\n<x-badge value=\"12\" type=\"info\">\n  <x-button>info</x-button>\n</x-badge>\n<x-badge value=\"12\" type=\"warning\">\n  <x-button>warning</x-button>\n</x-badge>\n<x-badge value=\"12\" type=\"danger\">\n  <x-button>danger</x-button>\n</x-badge>\n<x-badge value=\"12\" type=\"text\">\n  <x-button>text</x-button>\n</x-badge>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3361,7 +4909,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "99",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-badge value=\"200\" max=\"99\">\n  <x-button>99</x-button>\n</x-badge>\n<x-badge value=\"300\" max=\"200\">\n  <x-button>200</x-button>\n</x-badge>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -3374,7 +4936,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-badge value=\"88\">\n  <x-button>value</x-button>\n</x-badge>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToString"
       },
       {
@@ -3387,7 +4963,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-badge value=\"88\" offsetLeft=\"5px\">\n  <x-button>value</x-button>\n</x-badge>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -3400,7 +4990,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-badge value=\"88\" offsetTop=\"5px\">\n  <x-button>value</x-button>\n</x-badge>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -3413,7 +5017,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-badge dot>\n  <x-button>value</x-button>\n</x-badge>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3426,7 +5044,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-badge standalone value=\"25\"></x-badge>\n<x-badge standalone value=\"200\" max=\"99\"></x-badge>\n<x-badge standalone value=\"hot\"></x-badge>\n<x-badge standalone dot></x-badge>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -3439,7 +5071,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "标记类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XBadgeType",
     "value": "XType"
@@ -3448,7 +5085,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Button",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XButtonPrefix",
     "selector": "x-button",
@@ -3459,7 +5101,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Button Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -3471,7 +5118,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'initial'",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-button>Initial</x-button>\n<x-button type=\"primary\">Primary</x-button>\n<x-button type=\"success\">Success</x-button>\n<x-button type=\"warning\">Warning</x-button>\n<x-button type=\"danger\">Danger</x-button>\n<x-button type=\"info\">Info</x-button>\n<x-button [type]=\"'primary'\">Primary</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button>Initial</x-button>\n<x-button type=\"primary\">Primary</x-button>\n<x-button type=\"success\">Success</x-button>\n<x-button type=\"warning\">Warning</x-button>\n<x-button type=\"danger\">Danger</x-button>\n<x-button type=\"info\">Info</x-button>\n<x-button [type]=\"'primary'\">Primary</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3484,7 +5145,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-button icon=\"fto-edit\"></x-button>\n<x-button icon=\"fto-edit\">Edit</x-button>\n<x-button [icon]=\"'fto-edit'\">Edit</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button icon=\"fto-edit\"></x-button>\n<x-button icon=\"fto-edit\">Edit</x-button>\n<x-button [icon]=\"'fto-edit'\">Edit</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3497,7 +5172,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-button title=\"information\"></x-button>\n<x-button [title]=\"'information'\"></x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button title=\"information\"></x-button>\n<x-button [title]=\"'information'\"></x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3510,7 +5199,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'row'",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-button direction=\"column\" icon=\"edit\">Button</x-button>\n<x-button direction=\"column-reverse\" icon=\"edit\">Button</x-button>\n<x-button direction=\"row\" icon=\"edit\">Button</x-button>\n<x-button direction=\"row-reverse\" icon=\"edit\">Button</x-button>\n<x-button [direction]=\"row\" icon=\"edit\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button direction=\"column\" icon=\"edit\">Button</x-button>\n<x-button direction=\"column-reverse\" icon=\"edit\">Button</x-button>\n<x-button direction=\"row\" icon=\"edit\">Button</x-button>\n<x-button direction=\"row-reverse\" icon=\"edit\">Button</x-button>\n<x-button [direction]=\"row\" icon=\"edit\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3523,7 +5226,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-button tabindex=\"0\"></x-button>\n<x-button [tabindex]=\"0\"></x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button tabindex=\"0\"></x-button>\n<x-button [tabindex]=\"0\"></x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -3536,7 +5253,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-button size=\"big\">Big</x-button>\n<x-button size=\"large\">Large</x-button>\n<x-button size=\"medium\">Medium</x-button>\n<x-button size=\"small\">Small</x-button>\n<x-button size=\"mini\">Mini</x-button>\n<x-button [size]=\"'medium'\">Medium</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button size=\"big\">Big</x-button>\n<x-button size=\"large\">Large</x-button>\n<x-button size=\"medium\">Medium</x-button>\n<x-button size=\"small\">Small</x-button>\n<x-button size=\"mini\">Mini</x-button>\n<x-button [size]=\"'medium'\">Medium</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3549,7 +5280,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-button icon=\"fto-edit\" onlyIcon></x-button>\n<x-button icon=\"fto-edit\" onlyIcon=\"true\"></x-button>\n<x-button icon=\"fto-edit\" [onlyIcon]=\"true\"></x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button icon=\"fto-edit\" onlyIcon></x-button>\n<x-button icon=\"fto-edit\" onlyIcon=\"true\"></x-button>\n<x-button icon=\"fto-edit\" [onlyIcon]=\"true\"></x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3562,7 +5307,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-button activated>Button</x-button>\n<x-button activated=\"true\">Button</x-button>\n<x-button [activated]=\"true\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button activated>Button</x-button>\n<x-button activated=\"true\">Button</x-button>\n<x-button [activated]=\"true\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3575,7 +5334,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-button disabled>Button</x-button>\n<x-button disabled=\"true\">Button</x-button>\n<x-button [disabled]=\"true\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button disabled>Button</x-button>\n<x-button disabled=\"true\">Button</x-button>\n<x-button [disabled]=\"true\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3588,7 +5361,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-button plain>Button</x-button>\n<x-button plain=\"true\">Button</x-button>\n<x-button [plain]=\"true\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button plain>Button</x-button>\n<x-button plain=\"true\">Button</x-button>\n<x-button [plain]=\"true\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3601,7 +5388,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-button flat>Button</x-button>\n<x-button flat=\"true\">Button</x-button>\n<x-button [flat]=\"true\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button flat>Button</x-button>\n<x-button flat=\"true\">Button</x-button>\n<x-button [flat]=\"true\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3614,7 +5415,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-button text>Button</x-button>\n<x-button text=\"true\">Button</x-button>\n<x-button [text]=\"true\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button text>Button</x-button>\n<x-button text=\"true\">Button</x-button>\n<x-button [text]=\"true\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3627,7 +5442,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-button round>Button</x-button>\n<x-button round=\"true\">Button</x-button>\n<x-button [round]=\"true\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button round>Button</x-button>\n<x-button round=\"true\">Button</x-button>\n<x-button [round]=\"true\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3640,7 +5469,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-button circle>Button</x-button>\n<x-button circle=\"true\">Button</x-button>\n<x-button [circle]=\"true\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button circle>Button</x-button>\n<x-button circle=\"true\">Button</x-button>\n<x-button [circle]=\"true\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3653,7 +5496,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-button loading>Button</x-button>\n<x-button loading=\"true\">Button</x-button>\n<x-button [loading]=\"true\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button loading>Button</x-button>\n<x-button loading=\"true\">Button</x-button>\n<x-button [loading]=\"true\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3666,7 +5523,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-button closable>Button</x-button>\n<x-button closable=\"true\">Button</x-button>\n<x-button [closable]=\"true\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button closable>Button</x-button>\n<x-button closable=\"true\">Button</x-button>\n<x-button [closable]=\"true\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3679,7 +5550,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'button'",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-button attrType=\"button\">Button</x-button>\n<x-button attrType=\"submit\">Button</x-button>\n<x-button attrType=\"reset\">Button</x-button>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-button attrType=\"button\">Button</x-button>\n<x-button attrType=\"submit\">Button</x-button>\n<x-button attrType=\"reset\">Button</x-button>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -3692,7 +5577,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "按钮类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XButtonType",
     "value": "XType"
@@ -3701,7 +5591,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "按钮类型属性",
     "description": "- `'submit'` : 此类型用于提交表单数据\n- `'reset'` : 此类型用于重置表单中的数据\n- `'button'` : 此类型用于自定义按钮行为",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XButtonAttrType",
     "value": "'submit' | 'button' | 'reset'"
@@ -3710,7 +5605,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Buttons",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XButtonsPrefix",
     "selector": "x-buttons",
@@ -3721,7 +5621,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Buttons Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "space",
@@ -3733,7 +5638,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "```html\n// ex: 10,'10px','1rem'\n<x-buttons space=\"1rem\">\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "// ex: 10,'10px','1rem'\n<x-buttons space=\"1rem\">\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -3746,7 +5665,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-buttons hiddenBorder>\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-buttons hiddenBorder>\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3759,7 +5692,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-buttons boxShadow>\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-buttons boxShadow>\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -3772,7 +5719,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-buttons round>\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-buttons round>\n <x-button>Button1</button>\n <x-button>Button2</button>\n</x-buttons>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -3785,7 +5746,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Calendar",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCalendarPrefix",
     "selector": "x-calendar",
@@ -3796,7 +5762,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Calendar Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -3808,7 +5779,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-calendar [data]=\"{ '2020-2-22': [{id: '1',label: '1'}], '2020-2-24': [{id: '2, label: '2'}] }\"></x-calendar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3821,7 +5806,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'month'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-calendar model=\"month\"></x-calendar>\n<x-calendar model=\"year\"></x-calendar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3834,7 +5833,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'calendar'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-calendar displayType=\"calendar\"></x-calendar>\n<x-calendar displayType=\"card\"></x-calendar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3847,7 +5860,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-calendar [headerLeftTemp]=\"headerLeftTemp\"></x-calendar>\n<ng-template #headerLeftTemp> custom title </ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3860,7 +5887,30 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-calendar (dateChange)=\"onDateChange($event)\"></x-calendar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "...\nonDateChange(date: Date) {\n  console.log(date)\n}\n..."
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3873,7 +5923,30 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-calendar (rangeChange)=\"onRangeChange($event)\"></x-calendar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "...\nonRangeChange(dates: Date[]) {\n  console.log(dates)\n}\n..."
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -3886,7 +5959,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Calendar 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "[property: string]",
@@ -3898,7 +5976,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XCalendarData"
@@ -3907,7 +5990,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Calendar 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCalendarNode",
     "extends": [
@@ -3918,7 +6006,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "显示模式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCalendarModel",
     "value": "'month' | 'year'"
@@ -3927,7 +6020,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "显示类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCalendarType",
     "value": "'calendar' | 'card'"
@@ -3936,7 +6034,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Card",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCardPrefix",
     "selector": "x-card",
@@ -3947,7 +6050,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Card Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "width",
@@ -3959,7 +6067,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-card width=\"20rem\">Card</div>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -3972,7 +6094,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-card [bodyStyle]=\"{ padding: 0 }\">Card</div>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3985,7 +6121,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-card width=\"20rem\" [header]=\"header\">\n  <ng-template #header>\n    <span>Title</span>\n    <x-button type=\"text\">action</x-button>\n  </ng-template>\n  Card\n</x-card>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -3998,7 +6148,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'always'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-card shadow=\"always\">Always</x-card>\n<x-card shadow=\"hover\">Hover</x-card>\n<x-card shadow=\"never\">Never</x-card>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -4011,7 +6175,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "阴影显示配置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCardShadow",
     "value": "XShadow"
@@ -4020,7 +6189,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "卡片内容样式类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCardBodyStyle",
     "value": "{ [property: string]: XNumber }"
@@ -4029,7 +6203,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Carousel",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCarouselPrefix",
     "selector": "x-carousel",
@@ -4040,7 +6219,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Carousel Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "active",
@@ -4052,7 +6236,30 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel [active]=\"1\" (activeChange)=\"activeChange($event)\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>\n<x-carousel [(active)]=\"active\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "active = signal(1)\nactiveChange(active: number) {\n  console.log(active)\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4065,7 +6272,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'15rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel height=\"18rem\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -4078,7 +6299,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'hover'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel trigger=\"click\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4091,7 +6326,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'hover'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel arrow=\"always\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>\n<x-carousel arrow=\"never\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4104,7 +6353,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'horizontal'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel direction=\"vertical\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4117,7 +6380,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel autoplay=\"false\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -4126,11 +6403,25 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "number",
         "inputType": "InputSignalWithTransform<number, XNumber>",
         "signal": "input",
-        "label": "自动切换时间间隔",
+        "label": "自动切换时间间隔，ms",
         "default": "3000",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel interval=\"5000\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -4139,11 +6430,25 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
-        "label": "切换器否显示在外面",
+        "label": "切换器是否显示在外面",
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel outside>\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -4156,7 +6461,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel card>\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -4169,7 +6488,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel text=\"text info\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4182,7 +6515,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel progress>\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -4195,7 +6542,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel progress progressColor=\"blue\">\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4208,7 +6569,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel current>\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -4221,7 +6596,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "指示器切换方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCarouselTrigger",
     "value": "XTrigger"
@@ -4230,7 +6610,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "切换箭头显示方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCarouselArrow",
     "value": "XShadow"
@@ -4239,7 +6624,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "走马灯展示的方向",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCarouselDirection",
     "value": "XDisplayDirection"
@@ -4248,7 +6638,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Carousel Panel",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCarouselPanelPrefix",
     "selector": "x-carousel-panel",
@@ -4259,7 +6654,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Carousel Panel Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "active",
@@ -4271,7 +6671,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-carousel>\n  <x-carousel-panel>0</x-carousel-panel>\n  <x-carousel-panel active>1</x-carousel-panel>\n</x-carousel>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -4284,7 +6698,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Cascade",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCascadePrefix",
     "selector": "x-cascade",
@@ -4295,7 +6714,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Cascade Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -4307,7 +6731,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4320,7 +6749,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4333,7 +6767,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -4346,7 +6785,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'click'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4359,7 +6803,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -4372,7 +6821,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4385,7 +6839,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4398,7 +6857,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -4411,7 +6875,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4424,7 +6893,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -4437,7 +6911,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4450,7 +6929,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4463,7 +6947,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4476,7 +6965,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4489,7 +6983,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4502,7 +7001,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -4515,7 +7019,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -4528,7 +7037,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -4541,7 +7055,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4554,7 +7073,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4567,7 +7091,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4580,7 +7109,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4593,7 +7127,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4606,7 +7145,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4619,7 +7163,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4632,7 +7181,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -4645,7 +7199,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -4658,7 +7217,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Cascade Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -4670,7 +7234,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "data",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placement",
@@ -4682,7 +7251,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -4694,7 +7268,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeTrigger",
@@ -4706,7 +7285,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeTrigger",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeHoverDelay",
@@ -4718,7 +7302,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeHoverDelay",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeTpl",
@@ -4730,7 +7319,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -4742,7 +7336,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -4754,7 +7353,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -4766,7 +7370,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -4778,7 +7387,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -4790,7 +7404,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -4802,7 +7421,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -4814,7 +7438,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -4826,7 +7455,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -4838,7 +7472,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -4850,7 +7489,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -4862,7 +7506,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -4874,7 +7523,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -4886,7 +7540,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -4898,7 +7557,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -4910,7 +7574,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -4922,7 +7591,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -4934,7 +7608,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -4946,7 +7625,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -4958,7 +7642,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -4970,7 +7659,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeEmit",
@@ -4982,7 +7676,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XCascadeOption",
@@ -4994,7 +7693,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Cascade 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCascadeNode",
     "extends": [
@@ -5005,7 +7709,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "子节点触发方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCascadeNodeTrigger",
     "value": "XTrigger"
@@ -5014,7 +7723,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Cascade-Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCascadePortalPrefix",
     "selector": "x-cascade-portal",
@@ -5025,7 +7739,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Checkbox",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCheckboxPrefix",
     "selector": "x-checkbox",
@@ -5036,7 +7755,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Checkbox Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -5048,7 +7772,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataConvert"
       },
       {
@@ -5061,7 +7790,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5074,7 +7808,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5087,7 +7826,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5100,7 +7844,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5113,7 +7862,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'initial'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5126,7 +7880,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5139,7 +7898,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5152,7 +7916,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5165,7 +7934,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5178,7 +7952,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5191,7 +7970,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5204,7 +7988,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5217,7 +8006,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -5230,7 +8024,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5243,7 +8042,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5256,7 +8060,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5269,7 +8078,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5282,7 +8096,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5295,7 +8114,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5308,7 +8132,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5321,7 +8150,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5334,7 +8168,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5347,7 +8186,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5360,7 +8204,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5373,7 +8222,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5386,7 +8240,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5399,7 +8258,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5412,7 +8276,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5425,7 +8294,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -5438,7 +8312,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Checkbox Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -5450,7 +8329,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "data",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "button",
@@ -5462,7 +8346,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "button",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "icon",
@@ -5474,7 +8363,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tag",
@@ -5486,7 +8380,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tag",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "indeterminate",
@@ -5498,7 +8397,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "indeterminate",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "type",
@@ -5510,7 +8414,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tagBordered",
@@ -5522,7 +8431,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tagBordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tagDark",
@@ -5534,7 +8448,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tagDark",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "single",
@@ -5546,7 +8465,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "single",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "vertical",
@@ -5558,7 +8482,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "vertical",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -5570,7 +8499,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -5582,7 +8516,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -5594,7 +8533,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -5606,7 +8550,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -5618,7 +8567,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -5630,7 +8584,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -5642,7 +8601,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -5654,7 +8618,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -5666,7 +8635,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -5678,7 +8652,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -5690,7 +8669,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -5702,7 +8686,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -5714,7 +8703,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -5726,7 +8720,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -5738,7 +8737,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -5750,7 +8754,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -5762,7 +8771,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -5774,7 +8788,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -5786,7 +8805,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -5798,7 +8822,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XCheckboxOption",
@@ -5810,7 +8839,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Checkbox 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "disabled",
@@ -5822,7 +8856,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "checked",
@@ -5834,7 +8873,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "checked",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "icon",
@@ -5846,7 +8890,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "title",
@@ -5858,7 +8907,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "title",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -5870,7 +8924,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XCheckboxNode",
@@ -5882,7 +8941,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Collapse",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCollapsePrefix",
     "selector": "x-collapse",
@@ -5893,7 +8957,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Collapse Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "accordion",
@@ -5905,7 +8974,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse accordion>\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\"></x-collapse-panel>\n</x-collapse>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5918,7 +9001,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse [icon]=\"iconTpl\">\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\"></x-collapse-panel>\n</x-collapse>\n<ng-template #iconTpl>\n  <x-icon type=\"ado-caret-right\"></x-icon>\n</ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5931,7 +9028,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse showIcon=\"false\">\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\"></x-collapse-panel>\n</x-collapse>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5944,7 +9055,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'right'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse iconPosition=\"left\">\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\"></x-collapse-panel>\n</x-collapse>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -5957,7 +9082,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse ghost>\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\"></x-collapse-panel>\n</x-collapse>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5970,7 +9109,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse bordered>\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\"></x-collapse-panel>\n</x-collapse>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -5983,7 +9136,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse [active]=\"[0, 1]\">\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\"></x-collapse-panel>\n</x-collapse>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -5996,7 +9163,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "图标位置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCollapseIconPosition",
     "value": "'left' | 'right'"
@@ -6005,7 +9177,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Collapse Panel",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCollapsePanelPrefix",
     "selector": "x-collapse-panel",
@@ -6016,7 +9193,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Collapse Panel Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "label",
@@ -6028,7 +9210,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse>\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel [label]=\"labelTpl\"></x-collapse-panel>\n</x-collapse>\n<ng-template #labelTpl>Title 2</ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6041,7 +9237,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse>\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\" active></x-collapse-panel>\n</x-collapse>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -6054,7 +9264,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-collapse>\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\" disabled></x-collapse-panel>\n</x-collapse>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -6067,7 +9291,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Color",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XColorPrefix",
     "selector": "x-color",
@@ -6078,7 +9307,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Color Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "label",
@@ -6090,7 +9324,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'color'",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-color label=\"primary\"></x-color>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-color label=\"primary\"></x-color>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6103,7 +9351,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'var(--x-primary)'",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-color hex=\"#67c23a\"></x-color>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-color hex=\"#67c23a\"></x-color>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6116,7 +9378,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'#ffffff'",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-color merge=\"#ffffff\"></x-color>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-color merge=\"#ffffff\"></x-color>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6129,7 +9405,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[-0.1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-color [amounts]=\"[0.8, 0.9]\"></x-color>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-color [amounts]=\"[0.8, 0.9]\"></x-color>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -6142,7 +9432,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "ColorPicker",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XColorPickerPrefix",
     "selector": "x-color-picker",
@@ -6153,7 +9448,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "ColorPicker Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "placement",
@@ -6165,7 +9465,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6178,7 +9483,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -6191,7 +9501,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6204,7 +9519,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -6217,7 +9537,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6230,7 +9555,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -6243,7 +9573,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6256,7 +9591,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6269,7 +9609,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6282,7 +9627,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6295,7 +9645,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6308,7 +9663,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -6321,7 +9681,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -6334,7 +9699,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -6347,7 +9717,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6360,7 +9735,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6373,7 +9753,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6386,7 +9771,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6399,7 +9789,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6412,7 +9807,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6425,7 +9825,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6438,7 +9843,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -6451,7 +9861,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "ColorPicker Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "placement",
@@ -6463,7 +9878,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -6475,7 +9895,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -6487,7 +9912,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -6499,7 +9929,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -6511,7 +9946,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -6523,7 +9963,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -6535,7 +9980,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -6547,7 +9997,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -6559,7 +10014,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -6571,7 +10031,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -6583,7 +10048,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -6595,7 +10065,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -6607,7 +10082,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -6619,7 +10099,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -6631,7 +10116,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -6643,7 +10133,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -6655,7 +10150,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -6667,7 +10167,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -6679,7 +10184,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -6691,7 +10201,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -6703,7 +10218,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -6715,7 +10235,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XColorPickerOption",
@@ -6727,7 +10252,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "颜色种类",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XColorType",
     "value": "'hex' | 'rgba' | 'hsla'"
@@ -6736,7 +10266,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "ColorPicker-Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XColorPickerPortalPrefix",
     "selector": "x-color-picker-portal",
@@ -6747,7 +10282,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Comment",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCommentPrefix",
     "selector": "x-comment",
@@ -6758,7 +10298,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Comment Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -6770,7 +10315,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataArray"
       },
       {
@@ -6783,7 +10333,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "512",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -6796,7 +10351,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6809,7 +10369,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6822,7 +10387,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6835,7 +10405,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -6848,7 +10423,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -6861,7 +10441,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Comment 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "author",
@@ -6873,7 +10458,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "author",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "src",
@@ -6885,7 +10475,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "src",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "datetime",
@@ -6897,7 +10492,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "datetime",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "content",
@@ -6909,7 +10509,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "content",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "likes",
@@ -6921,7 +10526,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "likes",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "count",
@@ -6933,7 +10543,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "count",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "replyAuthor",
@@ -6945,7 +10560,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "replyAuthor",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "replyContent",
@@ -6957,7 +10577,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "replyContent",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "commentShow",
@@ -6969,7 +10594,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "commentShow",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XCommentNode",
@@ -6981,7 +10611,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Comment Reply",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCommentReplyPrefix",
     "selector": "x-comment-reply",
@@ -6992,7 +10627,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Comment Reply Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "maxlength",
@@ -7004,7 +10644,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "512",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -7017,7 +10662,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -7030,7 +10680,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Container",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XContainerPrefix",
     "selector": "x-container",
@@ -7041,7 +10696,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Container Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "direction",
@@ -7053,7 +10713,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -7066,7 +10731,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Header",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XHeaderPrefix",
     "selector": "x-header",
@@ -7077,7 +10747,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Header Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "height",
@@ -7089,7 +10764,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'3rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       }
     ],
@@ -7102,7 +10782,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Aside",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAsidePrefix",
     "selector": "x-aside",
@@ -7113,7 +10798,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Aside Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "width",
@@ -7125,7 +10815,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'12rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       }
     ],
@@ -7138,7 +10833,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "main",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMainPrefix",
     "selector": "x-main",
@@ -7149,7 +10849,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Footer",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFooterPrefix",
     "selector": "x-footer",
@@ -7160,7 +10865,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Footer Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "height",
@@ -7172,7 +10882,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'3rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       }
     ],
@@ -7185,7 +10900,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Crumb",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCrumbPrefix",
     "selector": "x-crumb",
@@ -7196,7 +10916,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Crumb Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -7208,7 +10933,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataArray"
       },
       {
@@ -7221,7 +10951,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7234,7 +10969,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'/'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7247,7 +10987,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -7260,7 +11005,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Crumb 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "icon",
@@ -7272,7 +11022,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -7284,7 +11039,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -7296,7 +11056,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XCrumbNode",
@@ -7308,7 +11073,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Crumb 点击返回的对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "event",
@@ -7320,7 +11090,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "event",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "node",
@@ -7332,7 +11107,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "node",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XCrumbNodeClick"
@@ -7341,7 +11121,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "DatePicker",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDatePickerPrefix",
     "selector": "x-date-picker",
@@ -7352,7 +11137,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "DatePicker Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -7364,7 +11154,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7377,7 +11172,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'yyyy-MM-dd'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7390,7 +11190,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -7403,7 +11208,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7416,7 +11226,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -7429,7 +11244,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataConvert"
       },
       {
@@ -7442,7 +11262,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7455,7 +11280,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7468,7 +11298,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7481,7 +11316,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7494,7 +11334,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -7507,7 +11352,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7520,7 +11370,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -7533,7 +11388,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7546,7 +11406,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7559,7 +11424,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7572,7 +11442,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7585,7 +11460,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7598,7 +11478,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -7611,7 +11496,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -7624,7 +11514,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -7637,7 +11532,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7650,7 +11550,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7663,7 +11568,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7676,7 +11586,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7689,7 +11604,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7702,7 +11622,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7715,7 +11640,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7728,7 +11658,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -7741,7 +11676,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -7754,7 +11694,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "DatePicker Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -7766,7 +11711,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "format",
@@ -7778,7 +11728,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "format",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "clearable",
@@ -7790,7 +11745,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clearable",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placement",
@@ -7802,7 +11762,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -7814,7 +11779,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "preset",
@@ -7826,7 +11796,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "preset",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "extraFooter",
@@ -7838,7 +11813,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "extraFooter",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabledDate",
@@ -7850,7 +11830,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabledDate",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabledTime",
@@ -7862,7 +11847,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabledTime",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -7874,7 +11864,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -7886,7 +11881,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -7898,7 +11898,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -7910,7 +11915,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -7922,7 +11932,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -7934,7 +11949,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -7946,7 +11966,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -7958,7 +11983,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -7970,7 +12000,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -7982,7 +12017,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -7994,7 +12034,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -8006,7 +12051,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -8018,7 +12068,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -8030,7 +12085,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -8042,7 +12102,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -8054,7 +12119,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -8066,7 +12136,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -8078,7 +12153,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -8090,7 +12170,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -8102,7 +12187,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeEmit",
@@ -8114,7 +12204,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XDatePickerOption",
@@ -8126,7 +12221,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "DateRange",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDateRangePrefix",
     "selector": "x-date-range",
@@ -8137,7 +12237,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "DateRange Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -8149,7 +12254,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8162,7 +12272,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'yyyy-MM-dd'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8175,7 +12290,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -8188,7 +12308,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8201,7 +12326,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -8214,7 +12344,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataConvert"
       },
       {
@@ -8227,7 +12362,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8240,7 +12380,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8253,7 +12398,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8266,7 +12416,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8279,7 +12434,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -8292,7 +12452,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8305,7 +12470,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -8318,7 +12488,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8331,7 +12506,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8344,7 +12524,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8357,7 +12542,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8370,7 +12560,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8383,7 +12578,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -8396,7 +12596,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -8409,7 +12614,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -8422,7 +12632,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8435,7 +12650,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8448,7 +12668,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8461,7 +12686,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8474,7 +12704,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8487,7 +12722,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8500,7 +12740,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8513,7 +12758,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -8526,7 +12776,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -8539,7 +12794,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "DateRange Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -8551,7 +12811,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "format",
@@ -8563,7 +12828,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "format",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "clearable",
@@ -8575,7 +12845,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clearable",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placement",
@@ -8587,7 +12862,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -8599,7 +12879,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "preset",
@@ -8611,7 +12896,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "preset",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "extraFooter",
@@ -8623,7 +12913,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "extraFooter",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabledDate",
@@ -8635,7 +12930,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabledDate",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabledTime",
@@ -8647,7 +12947,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabledTime",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -8659,7 +12964,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -8671,7 +12981,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -8683,7 +12998,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -8695,7 +13015,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -8707,7 +13032,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -8719,7 +13049,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -8731,7 +13066,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -8743,7 +13083,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -8755,7 +13100,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -8767,7 +13117,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -8779,7 +13134,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -8791,7 +13151,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -8803,7 +13168,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -8815,7 +13185,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -8827,7 +13202,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -8839,7 +13219,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -8851,7 +13236,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -8863,7 +13253,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -8875,7 +13270,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -8887,7 +13287,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeEmit",
@@ -8899,7 +13304,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XDateRangeOption",
@@ -8911,7 +13321,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "禁用日期的自定义类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDatePickerDisabledDate",
     "value": "(current: Date) => boolean"
@@ -8920,7 +13335,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "禁用时间的自定义类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDatePickerDisabledTime",
     "value": "(type?: XDatePickerRangType) => XDatePickerDisabledTimeFn"
@@ -8929,7 +13349,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "禁用时间的自定义函数",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDatePickerDisabledTimeFn",
     "value": "XDatePickerDisabledTimeFn = {/*** @zh_CN 禁用小时的自定义函数* @en_US Disable hour custom function*/disabledHours?: () => number[];/*** @zh_CN 禁用分钟的自定义函数* @en_US Disable the custom function of the minute*/disabledMinutes?: () => number[];/*** @zh_CN 禁用秒的自定义函数* @en_US Custom function of disable seconds*/disabledSeconds?: () => number[];};"
@@ -8938,7 +13363,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "快捷选择按钮",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "func",
@@ -8950,7 +13380,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "func",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XDatePickerPreset",
@@ -8962,7 +13397,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "快捷范围选择按钮",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "func",
@@ -8974,7 +13414,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "func",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XDateRangePreset",
@@ -8986,7 +13431,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "日期选择类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDatePickerType",
     "value": "'date' | 'week' | 'month' | 'quarter' | 'year' | 'date-time' | 'date-hour' | 'date-minute';"
@@ -8995,7 +13445,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "日期数据类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDatePickerModelType",
     "value": "'date' | 'number' | 'string'"
@@ -9004,7 +13459,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "DatePicker Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDatePickerPortalPrefix",
     "selector": "x-date-picker-portal",
@@ -9015,7 +13475,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "DateRange Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDateRangePortalPrefix",
     "selector": "x-date-range-portal",
@@ -9026,7 +13491,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "PickerDate",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPickerDatePrefix",
     "selector": "x-picker-date",
@@ -9037,7 +13507,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "PickerDate Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -9049,7 +13524,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9062,7 +13542,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "new Date(",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9075,7 +13560,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9088,7 +13578,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9101,7 +13596,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9114,7 +13614,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9127,7 +13632,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9140,7 +13650,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9153,7 +13668,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9166,7 +13686,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9179,7 +13704,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9192,7 +13722,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9205,7 +13740,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9218,7 +13758,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9231,7 +13776,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9244,7 +13794,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9257,7 +13812,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9270,7 +13830,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9283,7 +13848,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -9296,7 +13866,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "单个日期数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "date",
@@ -9308,7 +13883,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "date",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isLastOrNext",
@@ -9320,7 +13900,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isLastOrNext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isNow",
@@ -9332,7 +13917,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isNow",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isFirstDay",
@@ -9344,7 +13934,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isFirstDay",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isLastDay",
@@ -9356,7 +13951,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isLastDay",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isInRange",
@@ -9368,7 +13968,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isInRange",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isInRangeHover",
@@ -9380,7 +13985,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isInRangeHover",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isInRangeHoverLeft",
@@ -9392,7 +14002,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isInRangeHoverLeft",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isInRangeHoverRight",
@@ -9404,7 +14019,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isInRangeHoverRight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeStartLeft",
@@ -9416,7 +14036,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeStartLeft",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeStartRight",
@@ -9428,7 +14053,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeStartRight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeEndLeft",
@@ -9440,7 +14070,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeEndLeft",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeEndRight",
@@ -9452,7 +14087,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeEndRight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeHover",
@@ -9464,7 +14104,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeHover",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeHoverStart",
@@ -9476,7 +14121,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeHoverStart",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeHoverEnd",
@@ -9488,7 +14138,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeHoverEnd",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeHoverStartLeft",
@@ -9500,7 +14155,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeHoverStartLeft",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeHoverStartRight",
@@ -9512,7 +14172,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeHoverStartRight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeHoverEndLeft",
@@ -9524,7 +14189,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeHoverEndLeft",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isRangeHoverEndRight",
@@ -9536,7 +14206,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isRangeHoverEndRight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isActive",
@@ -9548,7 +14223,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isActive",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "isDisabled",
@@ -9560,7 +14240,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "isDisabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "type",
@@ -9572,7 +14257,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "week",
@@ -9584,7 +14274,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "week",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XDateCell"
@@ -9593,7 +14288,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "当前选择的是开始/结束日期",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDatePickerRangType",
     "value": "'start' | 'end'"
@@ -9602,7 +14302,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "PickerMonth",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPickerMonthPrefix",
     "selector": "x-picker-month",
@@ -9613,7 +14318,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "PickerMonth Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -9625,7 +14335,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9638,7 +14353,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "new Date(",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9651,7 +14371,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9664,7 +14389,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9677,7 +14407,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9690,7 +14425,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9703,7 +14443,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9716,7 +14461,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9729,7 +14479,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9742,7 +14497,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9755,7 +14515,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9768,7 +14533,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9781,7 +14551,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9794,7 +14569,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9807,7 +14587,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9820,7 +14605,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -9833,7 +14623,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "PickerQuarter",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPickerQuarterPrefix",
     "selector": "x-picker-quarter",
@@ -9844,7 +14639,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "PickerQuarter Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -9856,7 +14656,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9869,7 +14674,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "new Date(",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9882,7 +14692,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9895,7 +14710,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9908,7 +14728,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9921,7 +14746,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9934,7 +14764,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9947,7 +14782,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -9960,7 +14800,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9973,7 +14818,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9986,7 +14836,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -9999,7 +14854,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10012,7 +14872,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10025,7 +14890,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10038,7 +14908,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10051,7 +14926,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -10064,7 +14944,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "DateQuarter",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDateQuarterPrefix",
     "selector": "xDateQuarter",
@@ -10075,7 +14960,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "PickerYear",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPickerYearPrefix",
     "selector": "x-picker-year",
@@ -10086,7 +14976,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "PickerYear Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -10098,7 +14993,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'date'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10111,7 +15011,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "new Date(",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10124,7 +15029,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10137,7 +15047,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10150,7 +15065,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10163,7 +15083,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10176,7 +15101,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10189,7 +15119,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10202,7 +15137,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10215,7 +15155,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10228,7 +15173,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10241,7 +15191,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10254,7 +15209,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10267,7 +15227,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10280,7 +15245,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10293,7 +15263,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10306,7 +15281,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -10319,7 +15299,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Description",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDescriptionPrefix",
     "selector": "x-description",
@@ -10330,7 +15315,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Description Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "title",
@@ -10342,7 +15332,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description title=\"Title\">\n  <x-description-item>name</x-description-item>\n</x-description>\n<x-description [title]=\"titleTpl\">\n  <x-description-item>name</x-description-item>\n</x-description>\n<ng-template #titleTpl>Title</ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10355,7 +15359,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description title=\"Title\" bordered>\n  <x-description-item>name</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10368,7 +15386,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description title=\"Title\" bordered gridTemplateColumns=\"1fr 1fr\">\n  <x-description-item gridArea=\"1/1/2/2\">name</x-description-item>\n  <x-description-item gridArea=\"1/2/3/2\">age</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10381,7 +15413,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description title=\"Title\" size=\"big\">\n  <x-description-item>name</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -10394,7 +15440,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Description Item",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDescriptionItemPrefix",
     "selector": "x-description-item",
@@ -10405,7 +15456,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Description Item Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "gridArea",
@@ -10417,7 +15473,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description>\n  <x-description-item gridArea=\"1/1/2/2\">name</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10430,7 +15500,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description>\n  <x-description-item label=\"name1\">name1</x-description-item>\n  <x-description-item [label]=\"nameTpl\">name2</x-description-item>\n</x-description>\n<ng-template #nameTpl></ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10443,7 +15527,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description>\n  <x-description-item justify=\"end\">end</x-description-item>\n  <x-description-item justify=\"center\">center</x-description-item>\n  <x-description-item justify=\"start\">start</x-description-item>\n  <x-description-item justify=\"space-around\">space-around</x-description-item>\n  <x-description-item justify=\"space-between\">space-between</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10456,7 +15554,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description>\n  <x-description-item align=\"end\">end</x-description-item>\n  <x-description-item align=\"center\">center</x-description-item>\n  <x-description-item align=\"start\">start</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10469,7 +15581,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'row'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description>\n  <x-description-item direction=\"column\">column</x-description-item>\n  <x-description-item direction=\"column-reverse\">column-reverse</x-description-item>\n  <x-description-item direction=\"row\">row</x-description-item>\n  <x-description-item direction=\"row-reverse\">row-reverse</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10482,7 +15608,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description>\n  <x-description-item width=\"100px\">width100</x-description-item>\n  <x-description-item width=\"200px\">width200</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -10495,7 +15635,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description>\n  <x-description-item flex=\"1\">flex1</x-description-item>\n  <x-description-item flex=\"2\">flex2</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -10508,7 +15662,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-description>\n  <x-description-item label=\"name\" heading></x-description-item>\n  <x-description-item>name1</x-description-item>\n</x-description>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -10518,7 +15686,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Dialog",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogPrefix",
     "selector": "x-dialog",
@@ -10529,7 +15702,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Dialog Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "title",
@@ -10541,7 +15719,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10554,7 +15737,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10567,7 +15755,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'center'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10580,7 +15773,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'1rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -10593,7 +15791,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'info'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10606,7 +15809,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10619,7 +15827,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10632,7 +15845,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10645,7 +15863,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -10658,7 +15881,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -10671,7 +15899,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'32rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -10684,7 +15917,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -10697,7 +15935,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'18rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -10710,7 +15953,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'8rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -10723,7 +15971,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'white'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10736,7 +15989,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10749,7 +16007,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10762,7 +16025,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'取消'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10775,7 +16043,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10788,7 +16061,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'确认'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10801,7 +16079,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10814,7 +16097,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10827,7 +16115,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10840,7 +16133,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10853,7 +16151,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10866,7 +16169,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -10879,7 +16187,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10892,7 +16205,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10905,7 +16223,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10918,7 +16241,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10931,7 +16259,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -10944,7 +16277,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -10957,7 +16295,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Dialog Container",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogContainerPrefix",
     "selector": "x-dialog-container",
@@ -10968,7 +16311,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Dialog Container Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogContainerProperty",
     "extends": [
@@ -10979,7 +16327,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "弹框动画状态",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogAnimationState",
     "value": "XPlace | 'void'"
@@ -10988,7 +16341,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "弹框动画事件",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogAnimationEvent"
   },
@@ -10996,7 +16354,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "关闭的回调函数类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogCallback"
   },
@@ -11004,7 +16367,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发关闭的类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogAction",
     "value": "'confirm' | 'cancel' | 'close'"
@@ -11013,7 +16381,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "创建的弹框对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogOverlayRef",
     "extends": [
@@ -11024,7 +16397,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "创建的弹框对象，通过服务",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogPortalOverlayRef",
     "extends": [
@@ -11035,7 +16413,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDialogType",
     "value": "XStatus"
@@ -11044,7 +16427,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Drawer",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDrawerPrefix",
     "selector": "x-drawer",
@@ -11055,7 +16443,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Drawer Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "title",
@@ -11067,7 +16460,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11080,7 +16478,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11093,7 +16496,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'right'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11106,7 +16514,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'30%'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -11119,7 +16532,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -11132,7 +16550,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -11145,7 +16568,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11158,7 +16586,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -11171,7 +16604,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Drawer Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "placement",
@@ -11183,7 +16621,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -11195,7 +16638,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "className",
@@ -11207,7 +16655,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "className",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "backdropClose",
@@ -11219,7 +16672,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "backdropClose",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hasBackdrop",
@@ -11231,7 +16689,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hasBackdrop",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "data",
@@ -11243,7 +16706,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "data",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "viewContainerRef",
@@ -11255,7 +16723,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "viewContainerRef",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XDrawerOption"
@@ -11264,7 +16737,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Drawer Container",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDrawerContainerPrefix",
     "selector": "x-drawer-container",
@@ -11275,7 +16753,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Drawer Container Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDrawerContainerProperty",
     "extends": [
@@ -11286,7 +16769,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "抽屉动画状态",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDrawerAnimationState",
     "value": "XPosition | 'void'"
@@ -11295,7 +16783,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "抽屉动画事件",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDrawerAnimationEvent"
   },
@@ -11303,7 +16796,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Dropdown",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDropdownPrefix",
     "selector": "x-dropdown",
@@ -11314,7 +16812,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Dropdown Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -11326,7 +16829,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataArray"
       },
       {
@@ -11339,7 +16847,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'hover'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11352,7 +16865,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11365,7 +16883,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -11378,7 +16901,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -11391,7 +16919,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -11404,7 +16937,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -11417,7 +16955,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -11430,7 +16973,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -11443,7 +16991,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -11456,7 +17009,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11469,7 +17027,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11482,7 +17045,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -11495,7 +17063,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Dropdown 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDropdownNode",
     "extends": [
@@ -11506,7 +17079,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "显示方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDropdownTrigger",
     "value": "XTrigger"
@@ -11515,7 +17093,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Dropdown Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDropdownPortalPrefix",
     "selector": "x-dropdown-portal",
@@ -11526,7 +17109,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Empty",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XEmptyPrefix",
     "selector": "x-empty",
@@ -11537,7 +17125,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Empty Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "img",
@@ -11549,7 +17142,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-empty img=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-empty>\n<x-empty [img]=\"imgTpl\"></x-empty>\n<ng-template #imgTpl><x-icon type=\"fto-user\"></x-icon></ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11562,7 +17169,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-empty content=\"None data\"></x-empty>\n<x-empty [content]=\"contentTpl\"></x-empty>\n<ng-template #contentTpl>\n  <x-icon type=\"fto-user\"></x-icon>\n  None data\n</ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -11575,7 +17196,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Find",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFindPrefix",
     "selector": "x-find",
@@ -11586,7 +17212,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Find search option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFindSearchOption",
     "extends": [
@@ -11597,7 +17228,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Find Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "bordered",
@@ -11609,7 +17245,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -11622,7 +17263,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -11635,7 +17281,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'label'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11648,7 +17299,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'查找选择'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11661,7 +17317,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'选择'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11674,7 +17335,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'60px'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -11687,7 +17353,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'请选择数据'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11700,7 +17371,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -11713,7 +17389,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -11726,7 +17407,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11739,7 +17425,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -11752,7 +17443,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataConvert"
       },
       {
@@ -11765,7 +17461,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11778,7 +17479,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "10",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11791,7 +17497,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11804,7 +17515,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11817,7 +17533,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11830,7 +17551,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11843,7 +17569,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11856,7 +17587,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11869,7 +17605,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -11882,7 +17623,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -11895,7 +17641,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -11908,7 +17659,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -11921,7 +17677,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "100",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -11934,7 +17695,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -11947,7 +17713,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -11960,7 +17731,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -11973,7 +17749,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "42",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -11986,7 +17767,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataConvert"
       },
       {
@@ -11999,7 +17785,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12012,7 +17803,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -12025,7 +17821,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12038,7 +17839,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -12051,7 +17857,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12064,7 +17875,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12077,7 +17893,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12090,7 +17911,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -12103,7 +17929,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12116,7 +17947,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -12129,7 +17965,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12142,7 +17983,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12155,7 +18001,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12168,7 +18019,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12181,7 +18037,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12194,7 +18055,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -12207,7 +18073,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -12220,7 +18091,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -12233,7 +18109,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12246,7 +18127,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12259,7 +18145,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12272,7 +18163,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12285,7 +18181,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12298,7 +18199,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12311,7 +18217,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -12324,7 +18235,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -12337,7 +18253,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Find Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "bordered",
@@ -12349,7 +18270,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "multiple",
@@ -12361,7 +18287,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "multiple",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "columnLabel",
@@ -12373,7 +18304,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "columnLabel",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dialogTitle",
@@ -12385,7 +18321,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dialogTitle",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dialogCheckboxLabel",
@@ -12397,7 +18338,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dialogCheckboxLabel",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dialogCheckboxWidth",
@@ -12409,7 +18355,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dialogCheckboxWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dialogEmptyContent",
@@ -12421,7 +18372,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dialogEmptyContent",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dialogWidth",
@@ -12433,7 +18389,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dialogWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dialogHeight",
@@ -12445,7 +18406,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dialogHeight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dialogVisible",
@@ -12457,7 +18423,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dialogVisible",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dialogButtonsCenter",
@@ -12469,7 +18440,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dialogButtonsCenter",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableData",
@@ -12481,7 +18457,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableData",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableIndex",
@@ -12493,7 +18474,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableIndex",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableSize",
@@ -12505,7 +18491,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableSize",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableQuery",
@@ -12517,7 +18508,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableQuery",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableTotal",
@@ -12529,7 +18525,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableTotal",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableSortChange",
@@ -12541,7 +18542,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableSortChange",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableColumns",
@@ -12553,7 +18559,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableColumns",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableActivatedRow",
@@ -12565,7 +18576,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableActivatedRow",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableRowEmit",
@@ -12577,7 +18593,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableRowEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableCheckedRow",
@@ -12589,7 +18610,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableCheckedRow",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableLoading",
@@ -12601,7 +18627,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableLoading",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableVirtualScroll",
@@ -12613,7 +18644,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableVirtualScroll",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableBodyHeight",
@@ -12625,7 +18661,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableBodyHeight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableMinBufferPx",
@@ -12637,7 +18678,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableMinBufferPx",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableMaxBufferPx",
@@ -12649,7 +18695,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableMaxBufferPx",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableAdaptionHeight",
@@ -12661,7 +18712,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableAdaptionHeight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableDocPercent",
@@ -12673,7 +18729,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableDocPercent",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableRowHeight",
@@ -12685,7 +18746,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableRowHeight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "treeData",
@@ -12697,7 +18763,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "treeData",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "treeActivatedId",
@@ -12709,7 +18780,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "treeActivatedId",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "treeExpandedLevel",
@@ -12721,7 +18797,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "treeExpandedLevel",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "treeChecked",
@@ -12733,7 +18814,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "treeChecked",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "treeCheckbox",
@@ -12745,7 +18831,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "treeCheckbox",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "treeTableConnect",
@@ -12757,7 +18848,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "treeTableConnect",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "search",
@@ -12769,7 +18865,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "search",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -12781,7 +18882,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -12793,7 +18899,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -12805,7 +18916,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -12817,7 +18933,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -12829,7 +18950,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -12841,7 +18967,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -12853,7 +18984,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -12865,7 +19001,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -12877,7 +19018,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -12889,7 +19035,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -12901,7 +19052,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -12913,7 +19069,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -12925,7 +19086,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -12937,7 +19103,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -12949,7 +19120,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -12961,7 +19137,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -12973,7 +19154,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -12985,7 +19171,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -12997,7 +19188,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -13009,7 +19205,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XFindOption",
@@ -13021,7 +19222,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Form",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFormPrefix",
     "selector": "x-form",
@@ -13032,7 +19238,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "模板",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFormTemplate",
     "value": "{ [property: string]: TemplateRef<any> }"
@@ -13041,7 +19252,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Form Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "formGroup",
@@ -13053,7 +19269,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "new UntypedFormGroup({})",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -13066,7 +19287,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -13079,7 +19305,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'1.75rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -13092,7 +19323,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -13105,7 +19341,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -13118,7 +19359,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -13131,7 +19377,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'100%'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -13144,7 +19395,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -13157,7 +19413,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -13170,7 +19431,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -13183,7 +19449,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "控件对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "id",
@@ -13195,7 +19466,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "id",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "value",
@@ -13207,7 +19483,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "value",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "defaultValue",
@@ -13219,7 +19500,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "defaultValue",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "control",
@@ -13231,7 +19517,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "control",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -13243,7 +19534,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -13255,7 +19551,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -13267,7 +19568,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hidden",
@@ -13279,7 +19585,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hidden",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "span",
@@ -13291,7 +19602,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "span",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -13303,7 +19619,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -13315,7 +19636,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -13327,7 +19653,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "change",
@@ -13339,7 +19670,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "change",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -13351,7 +19687,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XControlOption"
@@ -13360,7 +19701,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "控件对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "value",
@@ -13372,7 +19718,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "value",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nonNullable",
@@ -13384,7 +19735,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nonNullable",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "control",
@@ -13396,7 +19752,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "control",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -13408,7 +19769,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -13420,7 +19786,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -13432,7 +19803,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hidden",
@@ -13444,7 +19820,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hidden",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "span",
@@ -13456,7 +19837,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "span",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -13468,7 +19854,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -13480,7 +19871,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -13492,7 +19888,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "change",
@@ -13504,7 +19905,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "change",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "setValidators",
@@ -13516,7 +19922,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "setValidators",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -13528,7 +19939,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XControl",
@@ -13540,7 +19956,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "表单行对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "title",
@@ -13552,7 +19973,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "title",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "icon",
@@ -13564,7 +19990,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "controls",
@@ -13576,7 +20007,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "controls",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hidden",
@@ -13588,7 +20024,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hidden",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XFormRow"
@@ -13597,7 +20038,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XControlPrefix",
     "selector": "x-control",
@@ -13608,7 +20054,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Control Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "option",
@@ -13620,7 +20071,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -13630,7 +20086,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Form control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "messages",
@@ -13642,7 +20103,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "messages",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XFormControl",
@@ -13654,7 +20120,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "表单控件参数",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFormControlOption",
     "value": "XInputControlOption | XSelectControlOption | XCascadeControlOption | XCheckboxControlOption | XColorPickerControlOption | XDatePickerControlOption | XInputNumberControlOption | XRadioControlOption | XRateControlOption | XSliderSelectControlOption | XSwitchControlOption | XTimePickerControlOption | XFindControlOption | XTemplateControlOption;"
@@ -13663,7 +20134,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "表单控件组件",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFormControlComponent",
     "value": "XInputComponent | XSelectComponent | XCascadeComponent | XCheckboxComponent | XColorPickerComponent | XDatePickerComponent | XInputNumberComponent | XRadioComponent | XRateComponent | XSliderSelectComponent | XSwitchComponent | XTimePickerComponent | XTextareaComponent | XFindComponent | XAutoCompleteComponent;"
@@ -13672,7 +20148,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "表单控件类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFormControlType",
     "value": "XInputControl | XSelectControl | XCascadeControl | XCheckboxControl | XColorPickerControl | XDatePickerControl | XInputNumberControl | XRadioControl | XRateControl | XSliderSelectControl | XSwitchControl | XTimePickerControl | XTextareaControl | XFindControl | XAutoCompleteControl;"
@@ -13681,7 +20162,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "表单控件类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XControlType",
     "value": "'input' | 'select' | 'cascade' | 'checkbox' | 'color-picker' | 'date-picker' | 'input-number' | 'radio' | 'rate' | 'slider-select' | 'switch' | 'time-picker' | 'textarea' | 'find' | 'auto-complete' | 'template';"
@@ -13690,7 +20176,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Input Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputControlOption",
     "extends": [
@@ -13702,7 +20193,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Select Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSelectControlOption",
     "extends": [
@@ -13714,7 +20210,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Cascade Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCascadeControlOption",
     "extends": [
@@ -13726,7 +20227,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Checkbox Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCheckboxControlOption",
     "extends": [
@@ -13738,7 +20244,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "ColorPicker Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XColorPickerControlOption",
     "extends": [
@@ -13750,7 +20261,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "DatePicker Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XDatePickerControlOption",
     "extends": [
@@ -13762,7 +20278,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "InputNumber Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputNumberControlOption",
     "extends": [
@@ -13774,7 +20295,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Radio Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XRadioControlOption",
     "extends": [
@@ -13786,7 +20312,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Rate Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XRateControlOption",
     "extends": [
@@ -13798,7 +20329,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "SliderSelect Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSliderSelectControlOption",
     "extends": [
@@ -13810,7 +20346,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Switch Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSwitchControlOption",
     "extends": [
@@ -13822,7 +20363,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "TimePicker Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimePickerControlOption",
     "extends": [
@@ -13834,7 +20380,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Textarea Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTextareaControlOption",
     "extends": [
@@ -13846,7 +20397,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Find Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XFindControlOption",
     "extends": [
@@ -13858,7 +20414,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "AutoComplete Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XAutoCompleteControlOption",
     "extends": [
@@ -13870,7 +20431,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Template Control",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTemplateControlOption",
     "extends": [
@@ -13882,7 +20448,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Highlight",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XHighlightPrefix",
     "selector": "x-highlight",
@@ -13893,7 +20464,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Highlight Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -13905,7 +20481,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -13918,7 +20499,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -13931,7 +20517,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -13944,7 +20535,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -13957,7 +20553,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "高亮行数据",
     "description": "示例：{'danger': '1, 2, 4', 'primary': '7-10, 12, 15-20'}",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "primary",
@@ -13969,7 +20570,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "primary",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "success",
@@ -13981,7 +20587,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "success",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "warning",
@@ -13993,7 +20604,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "warning",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "danger",
@@ -14005,7 +20621,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "danger",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "info",
@@ -14017,7 +20638,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "info",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XHighlightLines"
@@ -14026,7 +20652,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Icon",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIconPrefix",
     "selector": "x-icon",
@@ -14037,7 +20668,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Icon Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "href",
@@ -14049,7 +20685,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'https://ngnest.com/static/icons/'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14062,7 +20703,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-icon type=\"fto-activity\"></x-icon>\n<x-icon type=\"fto-airplay\"></x-icon>\n<x-icon type=\"fto-anchor\"></x-icon>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-icon type=\"fto-activity\"></x-icon>\n<x-icon type=\"fto-airplay\"></x-icon>\n<x-icon type=\"fto-anchor\"></x-icon>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14075,7 +20730,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-icon color=\"red\" type=\"fto-activity\"></x-icon>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-icon color=\"red\" type=\"fto-activity\"></x-icon>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14088,7 +20757,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-icon spin=\"true\" type=\"fto-loader\"></x-icon>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-icon spin=\"true\" type=\"fto-loader\"></x-icon>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -14101,7 +20784,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "图标来源",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XIconSource",
     "value": "'ant-design' | 'eva' | 'feather' | 'font-awesome' | 'material-design'"
@@ -14110,7 +20798,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Image",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XImagePrefix",
     "selector": "x-image",
@@ -14121,7 +20814,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Image Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "src",
@@ -14133,7 +20831,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-image\n  width=\"100px\"\n  height=\"100px\"\n  src=\"https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png\"\n></x-image>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14146,7 +20858,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-image\n  width=\"100px\"\n  height=\"100px\"\n  src=\"https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png\"\n></x-image>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -14159,7 +20885,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-image\n  width=\"100px\"\n  height=\"100px\"\n  src=\"https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png\"\n></x-image>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -14172,7 +20912,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-image\n  alt=\"ng-nest-admin-light\"\n  width=\"100px\"\n  height=\"100px\"\n  src=\"https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png\"\n></x-image>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14185,7 +20939,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-image\n  width=\"100px\"\n  height=\"100px\"\n  src=\"error\"\n  fallback=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMIAAADDCAYAAADQvc6UAAABRWlDQ1BJQ0MgUHJvZmlsZQAAKJFjYGASSSwoyGFhYGDIzSspCnJ3UoiIjFJgf8LAwSDCIMogwMCcmFxc4BgQ4ANUwgCjUcG3awyMIPqyLsis7PPOq3QdDFcvjV3jOD1boQVTPQrgSkktTgbSf4A4LbmgqISBgTEFyFYuLykAsTuAbJEioKOA7DkgdjqEvQHEToKwj4DVhAQ5A9k3gGyB5IxEoBmML4BsnSQk8XQkNtReEOBxcfXxUQg1Mjc0dyHgXNJBSWpFCYh2zi+oLMpMzyhRcASGUqqCZ16yno6CkYGRAQMDKMwhqj/fAIcloxgHQqxAjIHBEugw5sUIsSQpBobtQPdLciLEVJYzMPBHMDBsayhILEqEO4DxG0txmrERhM29nYGBddr//5/DGRjYNRkY/l7////39v///y4Dmn+LgeHANwDrkl1AuO+pmgAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAwqADAAQAAAABAAAAwwAAAAD9b/HnAAAHlklEQVR4Ae3dP3PTWBSGcbGzM6GCKqlIBRV0dHRJFarQ0eUT8LH4BnRU0NHR0UEFVdIlFRV7TzRksomPY8uykTk/zewQfKw/9znv4yvJynLv4uLiV2dBoDiBf4qP3/ARuCRABEFAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghgg0Aj8i0JO4OzsrPv69Wv+hi2qPHr0qNvf39+iI97soRIh4f3z58/u7du3SXX7Xt7Z2enevHmzfQe+oSN2apSAPj09TSrb+XKI/f379+08+A0cNRE2ANkupk+ACNPvkSPcAAEibACyXUyfABGm3yNHuAECRNgAZLuYPgEirKlHu7u7XdyytGwHAd8jjNyng4OD7vnz51dbPT8/7z58+NB9+/bt6jU/TI+AGWHEnrx48eJ/EsSmHzx40L18+fLyzxF3ZVMjEyDCiEDjMYZZS5wiPXnyZFbJaxMhQIQRGzHvWR7XCyOCXsOmiDAi1HmPMMQjDpbpEiDCiL358eNHurW/5SnWdIBbXiDCiA38/Pnzrce2YyZ4//59F3ePLNMl4PbpiL2J0L979+7yDtHDhw8vtzzvdGnEXdvUigSIsCLAWavHp/+qM0BcXMd/q25n1vF57TYBp0a3mUzilePj4+7k5KSLb6gt6ydAhPUzXnoPR0dHl79WGTNCfBnn1uvSCJdegQhLI1vvCk+fPu2ePXt2tZOYEV6/fn31dz+shwAR1sP1cqvLntbEN9MxA9xcYjsxS1jWR4AIa2Ibzx0tc44fYX/16lV6NDFLXH+YL32jwiACRBiEbf5KcXoTIsQSpzXx4N28Ja4BQoK7rgXiydbHjx/P25TaQAJEGAguWy0+2Q8PD6/Ki4R8EVl+bzBOnZY95fq9rj9zAkTI2SxdidBHqG9+skdw43borCXO/ZcJdraPWdv22uIEiLA4q7nvvCug8WTqzQveOH26fodo7g6uFe/a17W3+nFBAkRYENRdb1vkkz1CH9cPsVy/jrhr27PqMYvENYNlHAIesRiBYwRy0V+8iXP8+/fvX11Mr7L7ECueb/r48eMqm7FuI2BGWDEG8cm+7G3NEOfmdcTQw4h9/55lhm7DekRYKQPZF2ArbXTAyu4kDYB2YxUzwg0gi/41ztHnfQG26HbGel/crVrm7tNY+/1btkOEAZ2M05r4FB7r9GbAIdxaZYrHdOsgJ/wCEQY0J74TmOKnbxxT9n3FgGGWWsVdowHtjt9Nnvf7yQM2aZU/TIAIAxrw6dOnAWtZZcoEnBpNuTuObWMEiLAx1HY0ZQJEmHJ3HNvGCBBhY6jtaMoEiJB0Z29vL6ls58vxPcO8/zfrdo5qvKO+d3Fx8Wu8zf1dW4p/cPzLly/dtv9Ts/EbcvGAHhHyfBIhZ6NSiIBTo0LNNtScABFyNiqFCBChULMNNSdAhJyNSiECRCjUbEPNCRAhZ6NSiAARCjXbUHMCRMjZqBQiQIRCzTbUnAARcjYqhQgQoVCzDTUnQIScjUohAkQo1GxDzQkQIWejUogAEQo121BzAkTI2agUIkCEQs021JwAEXI2KoUIEKFQsw01J0CEnI1KIQJEKNRsQ80JECFno1KIABEKNdtQcwJEyNmoFCJAhELNNtScABFyNiqFCBChULMNNSdAhJyNSiECRCjUbEPNCRAhZ6NSiAARCjXbUHMCRMjZqBQiQIRCzTbUnAARcjYqhQgQoVCzDTUnQIScjUohAkQo1GxDzQkQIWejUogAEQo121BzAkTI2agUIkCEQs021JwAEXI2KoUIEKFQsw01J0CEnI1KIQJEKNRsQ80JECFno1KIABEKNdtQcwJEyNmoFCJAhELNNtScABFyNiqFCBChULMNNSdAhJyNSiECRCjUbEPNCRAhZ6NSiAARCjXbUHMCRMjZqBQiQIRCzTbUnAARcjYqhQgQoVCzDTUnQIScjUohAkQo1GxDzQkQIWejUogAEQo121BzAkTI2agUIkCEQs021JwAEXI2KoUIEKFQsw01J0CEnI1KIQJEKNRsQ80JECFno1KIABEKNdtQcwJEyNmoFCJAhELNNtScABFyNiqFCBChULMNNSdAhJyNSiEC/wGgKKC4YMA4TAAAAABJRU5ErkJggg==\"\n></x-image>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14198,7 +20966,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'预览'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-image\n  width=\"100px\"\n  height=\"100px\"\n  src=\"https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png\"\n  previewText=\"查看\"\n></x-image>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14207,11 +20989,16 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "string",
         "inputType": "InputSignal<string>",
         "signal": "input",
-        "label": "渐进加载显示的图片",
+        "label": "渐进加载显示的图片地址",
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14224,7 +21011,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14237,7 +21029,30 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-image\n  width=\"100px\"\n  height=\"100px\"\n  src=\"error\"\n  (error)=\"onError($event)\"\n></x-image>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "onError(event: ErrorEvent) {\n  console.log(event)\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14250,7 +21065,30 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-image\n  width=\"100px\"\n  height=\"100px\"\n  src=\"https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png\"\n  (load)=\"onLoad($event)\"\n></x-image>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "onLoad(event: Event) {\n  console.log(event)\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -14263,7 +21101,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "图片节点数据",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "src",
@@ -14275,7 +21118,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "src",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "alt",
@@ -14287,7 +21135,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "alt",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "fallback",
@@ -14299,7 +21152,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "fallback",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "activated",
@@ -14311,7 +21169,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "activated",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XImageNode"
@@ -14320,7 +21183,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Image Preview",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XImagePreviewPrefix",
     "selector": "x-image-preview",
@@ -14331,7 +21199,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Image Preview Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XImagePreviewProperty",
     "extends": [
@@ -14342,7 +21215,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Inner",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInnerPrefix",
     "selector": "x-inner",
@@ -14353,7 +21231,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Inner Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "padding",
@@ -14365,7 +21248,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'1rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       }
     ],
@@ -14378,7 +21266,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Input",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputPrefix",
     "selector": "x-input",
@@ -14389,7 +21282,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Input Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -14401,7 +21299,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'text'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14414,7 +21317,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -14427,7 +21335,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14440,7 +21353,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'right'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14453,7 +21371,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -14466,7 +21389,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -14479,7 +21407,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -14492,7 +21425,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -14505,7 +21443,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -14518,7 +21461,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -14531,7 +21479,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14544,7 +21497,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'0.75rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -14557,7 +21515,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'2.15rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -14570,7 +21533,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -14583,7 +21551,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14596,7 +21569,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -14609,7 +21587,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14622,7 +21605,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -14635,7 +21623,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14648,7 +21641,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14661,7 +21659,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14674,7 +21677,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14687,7 +21695,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14700,7 +21713,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -14713,7 +21731,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -14726,7 +21749,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -14739,7 +21767,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14752,7 +21785,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14765,7 +21803,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14778,7 +21821,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14791,7 +21839,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14804,7 +21857,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14817,7 +21875,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14830,7 +21893,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14843,7 +21911,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14856,7 +21929,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14869,7 +21947,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14882,7 +21965,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14895,7 +21983,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14908,7 +22001,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14921,7 +22019,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14934,7 +22037,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -14947,7 +22055,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -14960,7 +22073,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Input Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -14972,7 +22090,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "clearable",
@@ -14984,7 +22107,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clearable",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "icon",
@@ -14996,7 +22124,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "iconLayout",
@@ -15008,7 +22141,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "iconLayout",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "iconSpin",
@@ -15020,7 +22158,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "iconSpin",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "maxlength",
@@ -15032,7 +22175,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "maxlength",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "max",
@@ -15044,7 +22192,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "max",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "min",
@@ -15056,7 +22209,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "min",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "width",
@@ -15068,7 +22226,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "width",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -15080,7 +22243,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputStyle",
@@ -15092,7 +22260,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputStyle",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputPadding",
@@ -15104,7 +22277,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputPadding",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputIconPadding",
@@ -15116,7 +22294,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputIconPadding",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "validator",
@@ -15128,7 +22311,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "validator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -15140,7 +22328,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -15152,7 +22345,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -15164,7 +22362,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -15176,7 +22379,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -15188,7 +22396,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -15200,7 +22413,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -15212,7 +22430,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -15224,7 +22447,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -15236,7 +22464,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -15248,7 +22481,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -15260,7 +22498,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -15272,7 +22515,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -15284,7 +22532,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -15296,7 +22549,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -15308,7 +22566,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -15320,7 +22583,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -15332,7 +22600,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -15344,7 +22617,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -15356,7 +22634,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -15368,7 +22651,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "clearEmit",
@@ -15380,7 +22668,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clearEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "xFocus",
@@ -15392,7 +22685,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "xFocus",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "xBlur",
@@ -15404,7 +22702,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "xBlur",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "xInput",
@@ -15416,7 +22719,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "xInput",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "xKeydown",
@@ -15428,7 +22736,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "xKeydown",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "xClick",
@@ -15440,7 +22753,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "xClick",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "xMouseenter",
@@ -15452,7 +22770,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "xMouseenter",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "xMouseleave",
@@ -15464,7 +22787,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "xMouseleave",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "xComposition",
@@ -15476,7 +22804,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "xComposition",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XInputOption",
@@ -15488,7 +22821,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "输入框类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputType",
     "value": "'text' | 'password' | 'number'"
@@ -15497,7 +22835,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "图标布局方式，指在输入框中的位置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputIconLayoutType",
     "value": "XPositionLeftRight"
@@ -15506,7 +22849,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Input Group",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputGroupPrefix",
     "selector": "x-input-group",
@@ -15517,7 +22865,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Input Group Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "size",
@@ -15529,7 +22882,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "this.config?.size",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15542,7 +22900,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -15555,7 +22918,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -15568,7 +22936,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "InputNumber",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XInputNumberPrefix",
     "selector": "x-input-number",
@@ -15579,7 +22952,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "InputNumber Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "min",
@@ -15591,7 +22969,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "Number.MIN_SAFE_INTEGER",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -15604,7 +22987,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "Number.MAX_SAFE_INTEGER",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -15617,7 +23005,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -15630,7 +23023,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "40",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -15643,7 +23041,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -15656,7 +23059,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -15669,7 +23077,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15682,7 +23095,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -15695,7 +23113,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15708,7 +23131,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -15721,7 +23149,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15734,7 +23167,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -15747,7 +23185,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15760,7 +23203,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15773,7 +23221,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15786,7 +23239,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15799,7 +23257,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15812,7 +23275,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -15825,7 +23293,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -15838,7 +23311,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -15851,7 +23329,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15864,7 +23347,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15877,7 +23365,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15890,7 +23383,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15903,7 +23401,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15916,7 +23419,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15929,7 +23437,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -15942,7 +23455,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -15955,7 +23473,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "InputNumber Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "min",
@@ -15967,7 +23490,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "min",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "max",
@@ -15979,7 +23507,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "max",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "step",
@@ -15991,7 +23524,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "step",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "debounce",
@@ -16003,7 +23541,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "debounce",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "precision",
@@ -16015,7 +23558,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "precision",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -16027,7 +23575,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "formatter",
@@ -16039,7 +23592,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "formatter",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hiddenButton",
@@ -16051,7 +23609,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hiddenButton",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -16063,7 +23626,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -16075,7 +23643,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -16087,7 +23660,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -16099,7 +23677,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -16111,7 +23694,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -16123,7 +23711,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -16135,7 +23728,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -16147,7 +23745,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -16159,7 +23762,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -16171,7 +23779,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -16183,7 +23796,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -16195,7 +23813,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -16207,7 +23830,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -16219,7 +23847,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -16231,7 +23864,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -16243,7 +23881,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -16255,7 +23898,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -16267,7 +23915,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -16279,7 +23932,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -16291,7 +23949,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XInputNumberOption",
@@ -16303,7 +23966,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Row",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XRowPrefix",
     "selector": "x-row",
@@ -16314,7 +23982,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Row Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "space",
@@ -16326,7 +23999,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -16339,7 +24017,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16352,7 +24035,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -16365,7 +24053,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Col",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XColPrefix",
     "selector": "x-col",
@@ -16376,7 +24069,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Col Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "span",
@@ -16388,7 +24086,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "24",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16401,7 +24104,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16414,7 +24122,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16427,7 +24140,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16440,7 +24158,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16453,7 +24176,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16466,7 +24194,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16479,7 +24212,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -16492,7 +24230,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Link",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XLinkPrefix",
     "selector": "x-link",
@@ -16503,7 +24246,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Link Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "href",
@@ -16515,7 +24263,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-link href=\"https://www.ngnest.com\" target=\"_blank\">ng-nest</x-link>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-link href=\"https://www.ngnest.com\" target=\"_blank\">ng-nest</x-link>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16528,7 +24290,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-link icon=\"fto-chevron-left\">left</x-link>\n<x-link icon=\"fto-chevron-right\">right</x-link>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-link icon=\"fto-chevron-left\">left</x-link>\n<x-link icon=\"fto-chevron-right\">right</x-link>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16541,7 +24317,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-link underline>underline</x-link>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-link underline>underline</x-link>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16554,7 +24344,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-link disabled>disabled</x-link>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-link disabled>disabled</x-link>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16567,7 +24371,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "```html\n<x-link icon=\"fto-chevron-left\">left</x-link>\n<x-link icon=\"fto-chevron-right\" iconRight>right</x-link>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-link icon=\"fto-chevron-left\">left</x-link>\n<x-link icon=\"fto-chevron-right\" iconRight>right</x-link>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16580,7 +24398,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16593,7 +24416,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'initial'",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-link type=\"primary\">primary</x-link>\n<x-link type=\"success\">success</x-link>\n<x-link type=\"warning\">warning</x-link>\n<x-link type=\"danger\">danger</x-link>\n<x-link type=\"info\">info</x-link>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-link type=\"primary\">primary</x-link>\n<x-link type=\"success\">success</x-link>\n<x-link type=\"warning\">warning</x-link>\n<x-link type=\"danger\">danger</x-link>\n<x-link type=\"info\">info</x-link>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16606,7 +24443,21 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "```html\n<x-link href=\"https://www.ngnest.com\" target=\"_self\">ng-nest</x-link>\n<x-link href=\"https://www.ngnest.com\" target=\"_blank\">ng-nest</x-link>\n```\n",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-link href=\"https://www.ngnest.com\" target=\"_self\">ng-nest</x-link>\n<x-link href=\"https://www.ngnest.com\" target=\"_blank\">ng-nest</x-link>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -16619,7 +24470,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "链接类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XLinkType",
     "value": "XType"
@@ -16628,7 +24484,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "List",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XListPrefix",
     "selector": "x-list",
@@ -16639,7 +24500,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "List Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -16651,7 +24517,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16664,7 +24535,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16677,7 +24553,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16690,7 +24571,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'全选'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16703,7 +24589,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16716,7 +24607,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16729,7 +24625,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16742,7 +24643,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16755,7 +24661,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16768,7 +24679,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16781,7 +24697,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16794,7 +24715,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16807,7 +24733,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'加载更多'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16820,7 +24751,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'正在加载中'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16833,7 +24769,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16846,7 +24787,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "400",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16859,7 +24805,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16872,7 +24823,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "100",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16885,7 +24841,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -16898,7 +24859,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16911,7 +24877,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16924,7 +24895,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -16937,7 +24913,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16950,7 +24931,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16963,7 +24949,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16976,7 +24967,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -16989,7 +24985,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17002,7 +25003,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17015,7 +25021,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17028,7 +25039,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -17041,7 +25057,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "List 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "icon",
@@ -17053,7 +25074,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "divided",
@@ -17065,7 +25091,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "divided",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "event",
@@ -17077,7 +25108,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "event",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hover",
@@ -17089,7 +25125,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hover",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "openPortal",
@@ -17101,7 +25142,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "openPortal",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -17113,7 +25159,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "change",
@@ -17125,7 +25176,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "change",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XListNode",
@@ -17137,7 +25193,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "List Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XListOptionPrefix",
     "selector": "x-list-option",
@@ -17148,7 +25209,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "List Option Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "node",
@@ -17160,7 +25226,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17173,7 +25244,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -17186,7 +25262,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17199,7 +25280,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -17212,7 +25298,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -17225,7 +25316,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17238,7 +25334,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -17251,7 +25352,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17264,7 +25370,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17277,7 +25388,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -17290,7 +25406,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17303,7 +25424,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -17316,7 +25442,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17329,7 +25460,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17342,7 +25478,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -17352,7 +25493,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Loading",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XLoadingPrefix",
     "selector": "x-loading",
@@ -17363,7 +25509,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Loading Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "loading",
@@ -17375,7 +25526,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolea"
       },
       {
@@ -17388,7 +25544,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "10",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -17401,7 +25562,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17414,7 +25580,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "this.config?.text!",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17427,7 +25598,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "this.config?.icon!",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17440,7 +25616,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "this.config?.color!",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17453,7 +25634,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -17466,7 +25652,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17479,7 +25670,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "this.config?.background!",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -17492,7 +25688,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Menu",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMenuPrefix",
     "selector": "x-menu",
@@ -17503,7 +25704,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Menu Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -17515,7 +25721,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataArray"
       },
       {
@@ -17528,7 +25739,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'row'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17541,7 +25757,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17554,7 +25775,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'16rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -17567,7 +25793,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -17580,7 +25811,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'hover'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17593,7 +25829,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17606,7 +25847,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -17619,7 +25865,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "-1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -17632,7 +25883,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17645,7 +25901,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -17658,7 +25919,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -17671,7 +25937,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -17684,7 +25955,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "MenuNode 节点数据",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "icon",
@@ -17696,7 +25972,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "open",
@@ -17708,7 +25989,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "open",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "childrenLoaded",
@@ -17720,7 +26006,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "childrenLoaded",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "category",
@@ -17732,7 +26023,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "category",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "categoryNode",
@@ -17744,7 +26040,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "categoryNode",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "change",
@@ -17756,7 +26057,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "change",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "routerLink",
@@ -17768,7 +26074,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "routerLink",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XMenuNode",
@@ -17780,7 +26091,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "布局方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMenuLayout",
     "value": "'row' | 'column'"
@@ -17789,7 +26105,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMenuTrigger",
     "value": "XTrigger"
@@ -17798,7 +26119,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Menu Node",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMenuNodePrefix",
     "selector": "x-menu-node",
@@ -17809,7 +26135,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Menu Node Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMenuNodeProperty",
     "extends": [
@@ -17820,7 +26151,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Message",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessagePrefix",
     "selector": "x-message",
@@ -17831,7 +26167,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Message Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "id",
@@ -17843,7 +26184,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "id",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placement",
@@ -17855,7 +26201,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "offset",
@@ -17867,7 +26218,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "offset",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "type",
@@ -17879,7 +26235,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "displayType",
@@ -17891,7 +26252,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "displayType",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "width",
@@ -17903,7 +26269,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "width",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "height",
@@ -17915,7 +26286,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "height",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "duration",
@@ -17927,7 +26303,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "duration",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hideClose",
@@ -17939,7 +26320,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hideClose",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "showIcon",
@@ -17951,7 +26337,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "showIcon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "durationSubscription",
@@ -17963,7 +26354,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "durationSubscription",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "durationSub",
@@ -17975,7 +26371,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "durationSub",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XMessageOption",
@@ -17987,7 +26388,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "创建的消息对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessageOverlayRef",
     "extends": [
@@ -17998,7 +26404,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "九宫格中的消息对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessagePlacement"
   },
@@ -18006,7 +26417,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "九宫格中的消息对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "ref",
@@ -18018,7 +26434,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "ref",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "list",
@@ -18030,7 +26451,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "list",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "closeAll",
@@ -18042,7 +26468,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "closeAll",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XMessagePlacementRef"
@@ -18051,7 +26482,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessageType",
     "value": "XStatus"
@@ -18060,7 +26496,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "多个消息的时候，显示类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessageDisplayType",
     "value": "'list' | 'single'"
@@ -18069,7 +26510,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "MessageBox",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessageBoxPrefix",
     "selector": "x-message-box",
@@ -18080,7 +26526,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "MessageBox Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "placement",
@@ -18092,7 +26543,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "offset",
@@ -18104,7 +26560,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "offset",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "type",
@@ -18116,7 +26577,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "width",
@@ -18128,7 +26594,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "width",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "height",
@@ -18140,7 +26611,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "height",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hideClose",
@@ -18152,7 +26628,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hideClose",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "showIcon",
@@ -18164,7 +26645,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "showIcon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "showCancel",
@@ -18176,7 +26662,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "showCancel",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "callback",
@@ -18188,7 +26679,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "callback",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "backdropClose",
@@ -18200,7 +26696,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "backdropClose",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "confirmText",
@@ -18212,7 +26713,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "confirmText",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "cancelText",
@@ -18224,7 +26730,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "cancelText",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "showInput",
@@ -18236,7 +26747,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "showInput",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputPattern",
@@ -18248,7 +26764,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputPattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputInvalidMessage",
@@ -18260,7 +26781,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputInvalidMessage",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputPlaceholder",
@@ -18272,7 +26798,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputPlaceholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputType",
@@ -18284,7 +26815,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputType",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValue",
@@ -18296,7 +26832,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValue",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -18308,7 +26849,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "beforeClose",
@@ -18320,7 +26866,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "beforeClose",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "confirmLoading",
@@ -18332,7 +26883,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "confirmLoading",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XMessageBoxOption",
@@ -18344,7 +26900,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "关闭的回调函数类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessageBoxCallback"
   },
@@ -18352,7 +26913,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "确认加载",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessageBoxConfirmLoading",
     "value": "() => Observable<boolean>"
@@ -18361,7 +26927,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发关闭的类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessageBoxAction",
     "value": "'confirm' | 'cancel' | 'close'"
@@ -18370,7 +26941,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "创建的消息对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessageBoxOverlayRef",
     "extends": [
@@ -18381,7 +26957,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XMessageBoxType",
     "value": "XStatus"
@@ -18390,7 +26971,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Notification",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XNotificationPrefix",
     "selector": "x-notification",
@@ -18401,7 +26987,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Notification Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "placement",
@@ -18413,7 +27004,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "offset",
@@ -18425,7 +27021,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "offset",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "type",
@@ -18437,7 +27038,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "width",
@@ -18449,7 +27055,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "width",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "height",
@@ -18461,7 +27072,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "height",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "duration",
@@ -18473,7 +27089,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "duration",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hideClose",
@@ -18485,7 +27106,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hideClose",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "showIcon",
@@ -18497,7 +27123,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "showIcon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "durationSubscription",
@@ -18509,7 +27140,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "durationSubscription",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "durationSub",
@@ -18521,7 +27157,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "durationSub",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XNotificationOption",
@@ -18533,7 +27174,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "创建的消息对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XNotificationOverlayRef",
     "extends": [
@@ -18544,7 +27190,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "九宫格中的消息对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XNotificationPlacement"
   },
@@ -18552,7 +27203,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XNotificationType",
     "value": "XStatus"
@@ -18561,7 +27217,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Outlet 指令名称",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XOutletPrefix",
     "selector": "x-outlet",
@@ -18572,7 +27233,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "PageHeader",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPageHeaderPrefix",
     "selector": "x-page-header",
@@ -18583,7 +27249,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "PageHeader Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "backIcon",
@@ -18595,7 +27266,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'fto-arrow-left'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18608,7 +27284,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18621,7 +27302,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18634,7 +27320,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18647,7 +27338,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -18660,7 +27356,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Pagination",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPaginationPrefix",
     "selector": "x-pagination",
@@ -18671,7 +27372,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "分页选择条数",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPaginationSizeData",
     "value": "[10, 20, 50, 100]"
@@ -18680,7 +27386,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Pagination Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "index",
@@ -18692,7 +27403,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18705,7 +27421,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "10",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18718,7 +27439,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -18731,7 +27457,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18744,7 +27475,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "5",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -18757,7 +27493,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -18770,7 +27511,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -18783,7 +27529,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'0.25rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -18796,7 +27547,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -18809,7 +27565,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -18822,7 +27583,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'6.875rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -18835,7 +27601,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -18848,7 +27619,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'3.125rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -18861,7 +27637,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "XPaginationSizeData",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18874,7 +27655,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -18887,7 +27673,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -18900,7 +27691,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'3.125rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -18913,7 +27709,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18926,7 +27727,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -18939,7 +27745,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'8.125rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       }
     ],
@@ -18952,7 +27763,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Pattern",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPatternPrefix",
     "selector": "x-pattern",
@@ -18963,7 +27779,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Popconfirm",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPopconfirmPrefix",
     "selector": "x-popconfirm",
@@ -18974,7 +27795,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Popconfirm Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "title",
@@ -18986,7 +27812,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -18999,7 +27830,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19012,7 +27848,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19025,7 +27866,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'click'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19038,7 +27884,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19051,7 +27902,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'15rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19064,7 +27920,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'15rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19077,7 +27938,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'fto-help-circle'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19090,7 +27956,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'#e6a23c'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19103,7 +27974,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19116,7 +27992,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19129,7 +28010,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19142,7 +28028,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19155,7 +28046,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19168,7 +28064,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -19181,7 +28082,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Popover",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPopoverPrefix",
     "selector": "x-popover",
@@ -19192,7 +28098,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Popover Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "title",
@@ -19204,7 +28115,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19217,7 +28133,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19230,7 +28151,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19243,7 +28169,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19256,7 +28187,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19269,7 +28205,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'top'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19282,7 +28223,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'hover'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19295,7 +28241,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19308,7 +28259,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'10rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19321,7 +28277,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'10rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19334,7 +28295,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19347,7 +28313,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19360,7 +28331,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "150",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -19373,7 +28349,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "100",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       }
     ],
@@ -19386,7 +28367,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "激活方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPopoverTrigger",
     "value": "'hover' | 'click' | 'focus'"
@@ -19395,7 +28381,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Popover Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPopoverPortalPrefix",
     "selector": "x-popover-portal",
@@ -19406,7 +28397,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Progress",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XProgressPrefix",
     "selector": "x-progress",
@@ -19417,7 +28413,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Progress Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -19429,7 +28430,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'line'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19442,7 +28448,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -19455,7 +28466,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'1rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19468,7 +28484,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'normal'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19481,7 +28502,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19494,7 +28520,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'3.5rem'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19507,7 +28538,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19520,7 +28556,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19533,7 +28574,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19546,7 +28592,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19559,7 +28610,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -19572,7 +28628,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'2rem'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19585,7 +28646,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19598,7 +28664,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'1rem'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19611,7 +28682,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'8rem'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19624,7 +28700,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "80",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -19637,7 +28718,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -19650,7 +28736,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "进度条类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XProgressType",
     "value": "'line' | 'circle' | 'dashboard'"
@@ -19659,7 +28750,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "进度条颜色",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XProgressColor",
     "value": "string | XProgressColorNode[] | Function"
@@ -19668,7 +28764,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "进度条节点颜色",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "color",
@@ -19680,7 +28781,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "color",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "percent",
@@ -19692,7 +28798,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "percent",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XProgressColorNode"
@@ -19701,7 +28812,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "状态",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XProgressStatus",
     "value": "'normal' | 'active' | 'success' | 'exception' | 'warning'"
@@ -19710,7 +28826,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "渐变颜色",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XProgressGradient",
     "value": "{ direction?: string } & ({ from: string; to: string } | { [percent: string]: string })"
@@ -19719,7 +28840,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Radio",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XRadioPrefix",
     "selector": "x-radio",
@@ -19730,7 +28856,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Radio Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -19742,7 +28873,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19755,7 +28891,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19768,7 +28909,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19781,7 +28927,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19794,7 +28945,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'initial'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19807,7 +28963,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19820,7 +28981,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19833,7 +28999,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19846,7 +29017,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19859,7 +29035,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19872,7 +29053,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19885,7 +29071,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19898,7 +29089,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -19911,7 +29107,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19924,7 +29125,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19937,7 +29143,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19950,7 +29161,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19963,7 +29179,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -19976,7 +29197,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -19989,7 +29215,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -20002,7 +29233,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -20015,7 +29251,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20028,7 +29269,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20041,7 +29287,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20054,7 +29305,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20067,7 +29323,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20080,7 +29341,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20093,7 +29359,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20106,7 +29377,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -20119,7 +29395,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Radio Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -20131,7 +29412,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "data",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "button",
@@ -20143,7 +29429,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "button",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "icon",
@@ -20155,7 +29446,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tag",
@@ -20167,7 +29463,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tag",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "type",
@@ -20179,7 +29480,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tagBordered",
@@ -20191,7 +29497,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tagBordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tagDark",
@@ -20203,7 +29514,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tagDark",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "allowCancel",
@@ -20215,7 +29531,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "allowCancel",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "vertical",
@@ -20227,7 +29548,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "vertical",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -20239,7 +29565,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -20251,7 +29582,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -20263,7 +29599,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -20275,7 +29616,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -20287,7 +29633,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -20299,7 +29650,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -20311,7 +29667,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -20323,7 +29684,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -20335,7 +29701,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -20347,7 +29718,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -20359,7 +29735,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -20371,7 +29752,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -20383,7 +29769,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -20395,7 +29786,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -20407,7 +29803,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -20419,7 +29820,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -20431,7 +29837,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -20443,7 +29854,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -20455,7 +29871,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -20467,7 +29888,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XRadioOption",
@@ -20479,7 +29905,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Radio 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "disabled",
@@ -20491,7 +29922,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "icon",
@@ -20503,7 +29939,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "title",
@@ -20515,7 +29956,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "title",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XRadioNode",
@@ -20527,7 +29973,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Rate",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XRatePrefix",
     "selector": "x-rate",
@@ -20538,7 +29989,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Rate Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "count",
@@ -20550,7 +30006,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "5",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -20563,7 +30024,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -20576,7 +30042,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20589,7 +30060,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20602,7 +30078,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -20615,7 +30096,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20628,7 +30114,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -20641,7 +30132,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20654,7 +30150,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20667,7 +30168,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20680,7 +30186,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20693,7 +30204,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20706,7 +30222,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -20719,7 +30240,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -20732,7 +30258,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -20745,7 +30276,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20758,7 +30294,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20771,7 +30312,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20784,7 +30330,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20797,7 +30348,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20810,7 +30366,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20823,7 +30384,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -20836,7 +30402,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -20849,7 +30420,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "颜色类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XRateColor",
     "value": "string | { [color: string]: (rate: number) => boolean }"
@@ -20858,7 +30434,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Rate Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "count",
@@ -20870,7 +30451,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "count",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "half",
@@ -20882,7 +30468,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "half",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "color",
@@ -20894,7 +30485,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "color",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "customTemp",
@@ -20906,7 +30502,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "customTemp",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -20918,7 +30519,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -20930,7 +30536,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -20942,7 +30553,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -20954,7 +30570,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -20966,7 +30587,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -20978,7 +30604,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -20990,7 +30621,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -21002,7 +30638,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -21014,7 +30655,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -21026,7 +30672,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -21038,7 +30689,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -21050,7 +30706,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -21062,7 +30723,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -21074,7 +30740,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -21086,7 +30757,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -21098,7 +30774,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -21110,7 +30791,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -21122,7 +30808,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -21134,7 +30825,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XRateOption",
@@ -21146,7 +30842,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Resizable 指令名称",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XResizablePrefix",
     "selector": "x-resizable",
@@ -21157,7 +30858,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Resizable Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "xResizable",
@@ -21169,7 +30875,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21182,7 +30893,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'all'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21195,7 +30911,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21208,7 +30929,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'0'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -21221,7 +30947,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'0'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -21234,7 +30965,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21247,7 +30983,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21260,7 +31001,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -21273,7 +31019,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "调整方位",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XResizablePosition",
     "value": "XPosition | XCorner | 'all'"
@@ -21282,7 +31033,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "调整尺寸的事件对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "event",
@@ -21294,7 +31050,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "event",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "clientWidth",
@@ -21306,7 +31067,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clientWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "clientHeight",
@@ -21318,7 +31084,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clientHeight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "offsetLeft",
@@ -21330,7 +31101,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "offsetLeft",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "offsetTop",
@@ -21342,7 +31118,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "offsetTop",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -21354,7 +31135,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XResizableEvent"
@@ -21363,7 +31149,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Result",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XResultPrefix",
     "selector": "x-result",
@@ -21374,7 +31165,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Result Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "status",
@@ -21386,7 +31182,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'info'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21399,7 +31200,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21412,7 +31218,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21425,7 +31236,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -21438,7 +31254,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "结果状态",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XResultStatus",
     "value": "XStatus | '403' | '404' | '500' | 'custom'"
@@ -21447,7 +31268,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Select",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSelectPrefix",
     "selector": "x-select",
@@ -21458,7 +31284,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Select Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -21470,7 +31301,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataConvert"
       },
       {
@@ -21483,7 +31319,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21496,7 +31337,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21509,7 +31355,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21522,7 +31373,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21535,7 +31391,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21548,7 +31409,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21561,7 +31427,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21574,7 +31445,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21587,7 +31463,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'12rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -21600,7 +31481,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -21613,7 +31499,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21626,7 +31517,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21639,7 +31535,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -21652,7 +31553,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "显示所有",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -21665,7 +31571,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'更多{{surplus}}个选中'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21678,7 +31589,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21691,7 +31607,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21704,7 +31625,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21717,7 +31643,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21730,7 +31661,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -21743,7 +31679,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21756,7 +31697,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21769,7 +31715,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21782,7 +31733,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21795,7 +31751,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21808,7 +31769,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21821,7 +31787,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21834,7 +31805,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -21847,7 +31823,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21860,7 +31841,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21873,7 +31859,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21886,7 +31877,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21899,7 +31895,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21912,7 +31913,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21925,7 +31931,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -21938,7 +31949,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -21951,7 +31967,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Select Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -21963,7 +31984,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "data",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "clearable",
@@ -21975,7 +32001,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clearable",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "async",
@@ -21987,7 +32018,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "async",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placement",
@@ -21999,7 +32035,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "multiple",
@@ -22011,7 +32052,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "multiple",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "selectAll",
@@ -22023,7 +32069,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "selectAll",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "selectAllText",
@@ -22035,7 +32086,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "selectAllText",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeTpl",
@@ -22047,7 +32103,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -22059,7 +32120,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "portalMaxHeight",
@@ -22071,7 +32137,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "portalMaxHeight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "portalWidth",
@@ -22083,7 +32154,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "portalWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "search",
@@ -22095,7 +32171,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "search",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "caseSensitive",
@@ -22107,7 +32188,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "caseSensitive",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "debounceTime",
@@ -22119,7 +32205,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "debounceTime",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "maxTagCount",
@@ -22131,7 +32222,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "maxTagCount",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "maxTagContent",
@@ -22143,7 +32239,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "maxTagContent",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "virtualScroll",
@@ -22155,7 +32256,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "virtualScroll",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -22167,7 +32273,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -22179,7 +32290,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -22191,7 +32307,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -22203,7 +32324,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -22215,7 +32341,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -22227,7 +32358,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -22239,7 +32375,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -22251,7 +32392,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -22263,7 +32409,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -22275,7 +32426,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -22287,7 +32443,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -22299,7 +32460,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -22311,7 +32477,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -22323,7 +32494,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -22335,7 +32511,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -22347,7 +32528,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -22359,7 +32545,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -22371,7 +32562,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -22383,7 +32579,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -22395,7 +32596,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XSelectOption",
@@ -22407,7 +32613,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Select 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSelectNode",
     "extends": [
@@ -22418,7 +32629,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Select Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSelectPortalPrefix",
     "selector": "x-select-portal",
@@ -22429,7 +32645,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Skeleton",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSkeletonPrefix",
     "selector": "x-skeleton",
@@ -22440,7 +32661,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "骨架默认数据",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSkeletonData",
     "value": "[{ cols: [{ width: '10rem', type: 'title' }] },{ cols: [{}] },{ cols: [{}] },{ cols: [{ span: 16 }] }]"
@@ -22449,7 +32675,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Skeleton Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -22461,7 +32692,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "XSkeletonData",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -22474,7 +32710,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -22487,7 +32728,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -22500,7 +32746,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -22513,7 +32764,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "行",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "cols",
@@ -22525,7 +32781,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "cols",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "flex",
@@ -22537,7 +32798,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "flex",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "space",
@@ -22549,7 +32815,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "space",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "margin",
@@ -22561,7 +32832,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "margin",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "style",
@@ -22573,7 +32849,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "style",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XSkeletonRow"
@@ -22582,7 +32863,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "span",
@@ -22594,7 +32880,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "span",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "width",
@@ -22606,7 +32897,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "width",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "height",
@@ -22618,7 +32914,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "height",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "type",
@@ -22630,7 +32931,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "rows",
@@ -22642,7 +32948,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "rows",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "style",
@@ -22654,7 +32965,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "style",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XSkeletonCol"
@@ -22663,7 +32979,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "列类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSkeletonType",
     "value": "'title' | 'img' | 'avatar' | 'transparent'"
@@ -22672,7 +32993,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Slider",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSliderPrefix",
     "selector": "x-slider",
@@ -22683,7 +33009,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Slider Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -22695,7 +33026,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataArray"
       },
       {
@@ -22708,7 +33044,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -22721,7 +33062,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -22734,7 +33080,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'click'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -22747,7 +33098,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'row'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -22760,7 +33116,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -22773,7 +33134,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'center'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -22786,7 +33152,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -22799,7 +33170,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -22812,7 +33188,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -22825,7 +33206,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -22838,7 +33224,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'15rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -22851,7 +33242,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -22864,7 +33260,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -22877,7 +33278,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -22890,7 +33296,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Slider 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "label",
@@ -22902,7 +33313,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -22914,7 +33330,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XSliderNode",
@@ -22926,7 +33347,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSliderTrigger",
     "value": "XTrigger"
@@ -22935,7 +33361,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "布局方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSliderLayout",
     "value": "'row' | 'column'"
@@ -22944,7 +33375,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "SliderSelect",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSliderSelectPrefix",
     "selector": "x-slider-select",
@@ -22955,7 +33391,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "SliderSelect Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "min",
@@ -22967,7 +33408,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -22980,7 +33426,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "100",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -22993,7 +33444,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -23006,7 +33462,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "undefined",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -23019,7 +33480,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -23032,7 +33498,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -23045,7 +33516,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -23058,7 +33534,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -23071,7 +33552,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23084,7 +33570,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23097,7 +33588,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23110,7 +33606,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -23123,7 +33624,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23136,7 +33642,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -23149,7 +33660,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23162,7 +33678,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23175,7 +33696,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23188,7 +33714,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23201,7 +33732,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23214,7 +33750,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -23227,7 +33768,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -23240,7 +33786,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -23253,7 +33804,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23266,7 +33822,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23279,7 +33840,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23292,7 +33858,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23305,7 +33876,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23318,7 +33894,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23331,7 +33912,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23344,7 +33930,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23357,7 +33948,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23370,7 +33966,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23383,7 +33984,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -23396,7 +34002,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "SliderSelect Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "min",
@@ -23408,7 +34019,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "min",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "max",
@@ -23420,7 +34036,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "max",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "step",
@@ -23432,7 +34053,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "step",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "precision",
@@ -23444,7 +34070,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "precision",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "showTooltip",
@@ -23456,7 +34087,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "showTooltip",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "reverse",
@@ -23468,7 +34104,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "reverse",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "vertical",
@@ -23480,7 +34121,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "vertical",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "range",
@@ -23492,7 +34138,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "range",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "customButton",
@@ -23504,7 +34155,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "customButton",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "marks",
@@ -23516,7 +34172,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "marks",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tooltipCustom",
@@ -23528,7 +34189,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tooltipCustom",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -23540,7 +34206,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -23552,7 +34223,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -23564,7 +34240,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -23576,7 +34257,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -23588,7 +34274,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -23600,7 +34291,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -23612,7 +34308,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -23624,7 +34325,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -23636,7 +34342,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -23648,7 +34359,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -23660,7 +34376,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -23672,7 +34393,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -23684,7 +34410,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -23696,7 +34427,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -23708,7 +34444,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -23720,7 +34461,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -23732,7 +34478,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -23744,7 +34495,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -23756,7 +34512,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragStartEmit",
@@ -23768,7 +34529,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragStartEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragMoveEmit",
@@ -23780,7 +34546,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragMoveEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragEndEmit",
@@ -23792,7 +34563,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragEndEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XSliderSelectOption",
@@ -23804,7 +34580,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "刻度标记",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "value",
@@ -23816,7 +34597,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "value",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -23828,7 +34614,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "style",
@@ -23840,7 +34631,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "style",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "offset",
@@ -23852,7 +34648,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "offset",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XSliderSelectMark"
@@ -23861,7 +34662,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Statistic",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XStatisticPrefix",
     "selector": "x-statistic",
@@ -23872,7 +34678,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Statistic Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "value",
@@ -23884,7 +34695,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23897,7 +34713,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23910,7 +34731,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23923,7 +34749,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23936,7 +34767,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -23949,7 +34785,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Countdown",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XCountdownPrefix",
     "selector": "x-countdown",
@@ -23960,7 +34801,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Countdown Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "value",
@@ -23972,7 +34818,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23985,7 +34836,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -23998,7 +34854,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24011,7 +34872,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24024,7 +34890,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24037,7 +34908,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'HH:mm:ss'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24050,7 +34926,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -24063,7 +34944,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Steps",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XStepsPrefix",
     "selector": "x-steps",
@@ -24074,7 +34960,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Steps Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -24086,7 +34977,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataArray"
       },
       {
@@ -24099,7 +34995,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'row'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24112,7 +35013,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -24125,7 +35031,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -24138,7 +35049,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24151,7 +35067,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24164,7 +35085,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -24177,7 +35103,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "布局方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XStepsLayout",
     "value": "'row' | 'column'"
@@ -24186,7 +35117,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "节点状态",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XStepsStatus",
     "value": "'wait' | 'process' | 'finish' | 'error'"
@@ -24195,7 +35131,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Switch",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XSwitchPrefix",
     "selector": "x-switch",
@@ -24206,7 +35147,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Switch Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "loading",
@@ -24218,7 +35164,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -24231,7 +35182,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -24244,7 +35200,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24257,7 +35218,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24270,7 +35236,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24283,7 +35254,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -24296,7 +35272,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24309,7 +35290,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -24322,7 +35308,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24335,7 +35326,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24348,7 +35344,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24361,7 +35362,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24374,7 +35380,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24387,7 +35398,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -24400,7 +35416,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -24413,7 +35434,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -24426,7 +35452,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24439,7 +35470,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24452,7 +35488,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24465,7 +35506,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24478,7 +35524,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24491,7 +35542,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24504,7 +35560,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24517,7 +35578,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -24530,7 +35596,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Switch Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "loading",
@@ -24542,7 +35613,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "loading",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "manual",
@@ -24554,7 +35630,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "manual",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "checkedText",
@@ -24566,7 +35647,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "checkedText",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "unCheckedText",
@@ -24578,7 +35664,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "unCheckedText",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -24590,7 +35681,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -24602,7 +35698,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -24614,7 +35715,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -24626,7 +35732,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -24638,7 +35749,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -24650,7 +35766,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -24662,7 +35783,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -24674,7 +35800,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -24686,7 +35817,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -24698,7 +35834,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -24710,7 +35851,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -24722,7 +35868,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -24734,7 +35885,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -24746,7 +35902,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -24758,7 +35919,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -24770,7 +35936,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -24782,7 +35953,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -24794,7 +35970,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -24806,7 +35987,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -24818,7 +36004,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XSwitchOption",
@@ -24830,7 +36021,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Table",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTablePrefix",
     "selector": "x-table",
@@ -24841,7 +36037,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Table Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -24853,7 +36054,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataConvert"
       },
       {
@@ -24866,7 +36072,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24879,7 +36090,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "42",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -24892,7 +36108,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -24905,7 +36126,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -24918,7 +36144,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -24931,7 +36162,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'top'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24944,7 +36180,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24957,7 +36198,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24970,7 +36216,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24983,7 +36234,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -24996,7 +36252,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25009,7 +36270,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25022,7 +36288,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25035,7 +36306,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25048,7 +36324,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25061,7 +36342,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25074,7 +36360,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25087,7 +36378,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25100,7 +36396,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25113,7 +36414,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "undefined",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -25126,7 +36432,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "42",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -25139,7 +36450,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "100",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -25152,7 +36468,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -25165,7 +36486,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "undefined",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -25178,7 +36504,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -25191,7 +36522,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25204,7 +36540,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25217,7 +36558,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25230,7 +36576,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25243,7 +36594,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25256,7 +36612,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25269,7 +36630,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25282,7 +36648,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom-left'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25295,7 +36666,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25308,7 +36684,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25321,7 +36702,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25334,7 +36720,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25347,7 +36738,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25360,7 +36756,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "-1",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -25373,7 +36774,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25386,7 +36792,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25399,7 +36810,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25412,7 +36828,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "undefined",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25425,7 +36846,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "undefined",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25438,7 +36864,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25451,7 +36882,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "10",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25464,7 +36900,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25477,7 +36918,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25490,7 +36936,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "5",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -25503,7 +36954,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25516,7 +36972,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25529,7 +36990,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'0.25rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -25542,7 +37008,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25555,7 +37026,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25568,7 +37044,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'6.875rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -25581,7 +37062,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25594,7 +37080,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'3.125rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -25607,7 +37098,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "XPaginationSizeData",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25620,7 +37116,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25633,7 +37134,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25646,7 +37152,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'3.125rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -25659,7 +37170,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25672,7 +37188,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -25685,7 +37206,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'8.125rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -25698,7 +37224,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25711,7 +37242,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25724,7 +37260,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25737,7 +37278,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25750,7 +37296,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -25763,7 +37314,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -25776,7 +37332,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "行数据",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "expanded",
@@ -25788,7 +37349,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "expanded",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -25800,7 +37366,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTableRow",
@@ -25812,7 +37383,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列参数",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -25824,7 +37400,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "width",
@@ -25836,7 +37417,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "width",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "flex",
@@ -25848,7 +37434,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "flex",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "search",
@@ -25860,7 +37451,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "search",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "sort",
@@ -25872,7 +37468,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "sort",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "left",
@@ -25884,7 +37485,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "left",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "right",
@@ -25896,7 +37502,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "right",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "action",
@@ -25908,7 +37519,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "action",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "rowChecked",
@@ -25920,7 +37536,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "rowChecked",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "rowExpand",
@@ -25932,7 +37553,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "rowExpand",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "textAlign",
@@ -25944,7 +37570,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "textAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragWidth",
@@ -25956,7 +37587,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "draggingWidth",
@@ -25968,7 +37604,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "draggingWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragWidthStarted",
@@ -25980,7 +37621,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragWidthStarted",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragWidthMoved",
@@ -25992,7 +37638,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragWidthMoved",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragWidthEnded",
@@ -26004,7 +37655,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragWidthEnded",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragColumn",
@@ -26016,7 +37672,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragColumn",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragging",
@@ -26028,7 +37689,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragging",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "headChecked",
@@ -26040,7 +37706,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "headChecked",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "headExpand",
@@ -26052,7 +37723,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "headExpand",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -26064,7 +37740,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTableColumn",
@@ -26076,7 +37757,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列头宽度拖动事件",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "column",
@@ -26088,7 +37774,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "column",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "position",
@@ -26100,7 +37791,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "position",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTableDragWidthEvent"
@@ -26109,7 +37805,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "列头 checkbox 事件数据",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "rows",
@@ -26121,7 +37822,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "rows",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "checkbox",
@@ -26133,7 +37839,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "checkbox",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTableHeadCheckbox"
@@ -26142,7 +37853,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "单元格配置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "thead",
@@ -26154,7 +37870,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "thead",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tbody",
@@ -26166,7 +37887,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tbody",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTableCellConfig"
@@ -26175,7 +37901,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "单元格配置规则",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "gridTemplateColumns",
@@ -26187,7 +37918,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "gridTemplateColumns",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "cells",
@@ -26199,7 +37935,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "cells",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTableCellConfigRule"
@@ -26208,7 +37949,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "单元格合并配置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "gridArea",
@@ -26220,7 +37966,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "gridArea",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -26232,7 +37983,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "width",
@@ -26244,7 +38000,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "width",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "left",
@@ -26256,7 +38017,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "left",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "right",
@@ -26268,7 +38034,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "right",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "id",
@@ -26280,7 +38051,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "id",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dragWidth",
@@ -26292,7 +38068,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dragWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -26304,7 +38085,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTableCell"
@@ -26313,7 +38099,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "列类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XColumnType",
     "value": "'label' | 'index' | 'checkbox' | 'expand'"
@@ -26322,7 +38113,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "列头显示位置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTableHeaderPosition",
     "value": "'top' | 'bottom' | 'top-bottom'"
@@ -26331,7 +38127,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "分页器位置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XPaginationPosition",
     "value": "'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';"
@@ -26340,7 +38141,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "模板",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTableTemplate",
     "value": "{ [property: string]: TemplateRef<any> }"
@@ -26349,7 +38155,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Table Head",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTableHeadPrefix",
     "selector": "x-table-head",
@@ -26360,7 +38171,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Table Head Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "columns",
@@ -26372,7 +38188,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26385,7 +38206,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "42",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26398,7 +38224,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26411,7 +38242,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26424,7 +38260,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26437,7 +38278,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26450,7 +38296,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -26463,7 +38314,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Table Body",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTableBodyPrefix",
     "selector": "x-table-body",
@@ -26474,7 +38330,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Table Body Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -26486,7 +38347,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26499,7 +38365,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26512,7 +38383,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26525,7 +38401,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26538,7 +38419,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "42",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26551,7 +38437,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26564,7 +38455,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -26577,7 +38473,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -26590,7 +38491,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "42",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26603,7 +38509,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "100",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26616,7 +38527,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26629,7 +38545,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26642,7 +38563,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26655,7 +38581,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26668,7 +38599,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26681,7 +38617,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26694,7 +38635,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -26707,7 +38653,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -26720,7 +38671,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -26733,7 +38689,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Table Foot",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTableFootPrefix",
     "selector": "x-table-foot",
@@ -26744,7 +38705,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Table Foot Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "footer",
@@ -26756,7 +38722,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26769,7 +38740,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       }
     ],
@@ -26782,7 +38758,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tabs",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTabsPrefix",
     "selector": "x-tabs",
@@ -26793,7 +38774,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Tabs Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -26805,7 +38791,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataArray"
       },
       {
@@ -26818,7 +38809,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26831,7 +38827,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'block'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26844,7 +38845,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'top'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26857,7 +38863,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'click'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26870,7 +38881,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26883,7 +38899,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -26896,7 +38917,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26909,7 +38935,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26922,7 +38953,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26935,7 +38971,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -26948,7 +38989,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -26961,7 +39007,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -26974,7 +39025,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'15rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -26987,7 +39043,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27000,7 +39061,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27013,7 +39079,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -27026,7 +39097,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tabs 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "disabled",
@@ -27038,7 +39114,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -27050,7 +39131,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTabsNode",
@@ -27062,7 +39148,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "触发方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTabsTrigger",
     "value": "XTrigger"
@@ -27071,7 +39162,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "激活的tab",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XActivatedTab"
   },
@@ -27079,7 +39175,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "样式类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTabsType",
     "value": "'block' | 'tag' | 'card'"
@@ -27088,7 +39189,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "布局方式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTabsLayout",
     "value": "'top' | 'right' | 'bottom' | 'left'"
@@ -27097,7 +39203,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tab",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTabPrefix",
     "selector": "x-tab",
@@ -27108,7 +39219,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Tab Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "label",
@@ -27120,7 +39236,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27133,7 +39254,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -27143,7 +39269,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tag",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTagPrefix",
     "selector": "x-tag",
@@ -27154,7 +39285,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Tag Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -27166,7 +39302,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'initial'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27179,7 +39320,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27192,7 +39338,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27205,7 +39356,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27218,7 +39374,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27231,7 +39392,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27244,7 +39410,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27257,7 +39428,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27270,7 +39446,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27283,7 +39464,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27296,7 +39482,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -27309,7 +39500,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TextRetract",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTextRetractPrefix",
     "selector": "x-text-retract",
@@ -27320,7 +39516,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "TextRetract Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "content",
@@ -27332,7 +39533,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27345,7 +39551,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "256",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       }
     ],
@@ -27358,7 +39569,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Textarea",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTextareaPrefix",
     "selector": "x-textarea",
@@ -27369,7 +39585,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Textarea Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "clearable",
@@ -27381,7 +39602,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27394,7 +39620,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27407,7 +39638,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'right'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27420,7 +39656,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27433,7 +39674,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -27446,7 +39692,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'6rem'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -27459,7 +39710,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27472,7 +39728,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27485,7 +39746,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -27498,7 +39764,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27511,7 +39782,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27524,7 +39800,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27537,7 +39818,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27550,7 +39836,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27563,7 +39854,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27576,7 +39872,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27589,7 +39890,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -27602,7 +39908,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27615,7 +39926,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27628,7 +39944,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27641,7 +39962,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27654,7 +39980,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27667,7 +39998,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27680,7 +40016,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27693,7 +40034,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -27706,7 +40052,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -27719,7 +40070,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Textarea Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "clearable",
@@ -27731,7 +40087,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clearable",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "icon",
@@ -27743,7 +40104,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "iconLayout",
@@ -27755,7 +40121,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "iconLayout",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "iconSpin",
@@ -27767,7 +40138,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "iconSpin",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "maxlength",
@@ -27779,7 +40155,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "maxlength",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "height",
@@ -27791,7 +40172,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "height",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "clearEmit",
@@ -27803,7 +40189,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clearEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -27815,7 +40206,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -27827,7 +40223,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -27839,7 +40240,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -27851,7 +40257,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -27863,7 +40274,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -27875,7 +40291,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -27887,7 +40308,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -27899,7 +40325,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -27911,7 +40342,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -27923,7 +40359,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -27935,7 +40376,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -27947,7 +40393,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -27959,7 +40410,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -27971,7 +40427,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -27983,7 +40444,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -27995,7 +40461,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -28007,7 +40478,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -28019,7 +40495,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -28031,7 +40512,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTextareaOption",
@@ -28043,7 +40529,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "图标布局方式，指在输入框中的位置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTextareaIconLayoutType",
     "value": "XPositionLeftRight"
@@ -28052,7 +40543,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Theme",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XThemePrefix",
     "selector": "x-theme",
@@ -28063,7 +40559,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "混合的颜色占比",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XThemeAmounts",
     "value": "[-0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]"
@@ -28072,7 +40573,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Theme Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "prefix",
@@ -28084,7 +40590,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'--x-'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28097,7 +40608,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "XThemeAmounts",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28110,7 +40626,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -28123,7 +40644,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -28136,7 +40662,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28149,7 +40680,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -28162,7 +40698,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TimeAgo",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimeAgoPrefix",
     "selector": "xTimeAgo",
@@ -28173,7 +40714,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TimePicker",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimePickerPrefix",
     "selector": "x-time-picker",
@@ -28184,7 +40730,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "TimePicker Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -28196,7 +40747,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'time'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28209,7 +40765,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'HH:mm:ss'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28222,7 +40783,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28235,7 +40801,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -28248,7 +40819,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -28261,7 +40837,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -28274,7 +40855,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -28287,7 +40873,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -28300,7 +40891,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28313,7 +40909,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28326,7 +40927,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28339,7 +40945,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -28352,7 +40963,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -28365,7 +40981,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28378,7 +40999,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -28391,7 +41017,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28404,7 +41035,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28417,7 +41053,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28430,7 +41071,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28443,7 +41089,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28456,7 +41107,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -28469,7 +41125,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -28482,7 +41143,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -28495,7 +41161,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28508,7 +41179,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28521,7 +41197,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28534,7 +41215,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28547,7 +41233,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28560,7 +41251,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28573,7 +41269,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28586,7 +41287,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -28599,7 +41305,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -28612,7 +41323,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "TimePicker Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "type",
@@ -28624,7 +41340,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "format",
@@ -28636,7 +41357,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "format",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placement",
@@ -28648,7 +41374,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "use12Hours",
@@ -28660,7 +41391,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "use12Hours",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -28672,7 +41408,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hourStep",
@@ -28684,7 +41425,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hourStep",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "minuteStep",
@@ -28696,7 +41442,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "minuteStep",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "secondStep",
@@ -28708,7 +41459,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "secondStep",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "preset",
@@ -28720,7 +41476,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "preset",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabledTime",
@@ -28732,7 +41493,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabledTime",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeEmit",
@@ -28744,7 +41510,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeEmit",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -28756,7 +41527,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -28768,7 +41544,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -28780,7 +41561,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -28792,7 +41578,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -28804,7 +41595,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -28816,7 +41612,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -28828,7 +41629,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -28840,7 +41646,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -28852,7 +41663,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -28864,7 +41680,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -28876,7 +41697,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -28888,7 +41714,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -28900,7 +41731,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -28912,7 +41748,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -28924,7 +41765,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -28936,7 +41782,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -28948,7 +41799,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -28960,7 +41816,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -28972,7 +41833,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -28984,7 +41850,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTimePickerOption",
@@ -28996,7 +41867,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "时间选择",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimePickerType",
     "value": "'time' | 'hour' | 'minute'"
@@ -29005,7 +41881,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "快捷选择按钮",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "func",
@@ -29017,7 +41898,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "func",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTimePickerPreset",
@@ -29029,7 +41915,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TimePickerPortal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimePickerPortalPrefix",
     "selector": "x-time-picker-portal",
@@ -29040,7 +41931,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TimePickerFrame",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimePickerFramePrefix",
     "selector": "x-time-picker-frame",
@@ -29051,7 +41947,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "禁用时间的自定义类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimePickerDisabledTime",
     "value": "(param?: any) => XTimePickerDisabledTimeFn"
@@ -29060,7 +41961,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TimeRange",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimeRangePrefix",
     "selector": "xTimeRange",
@@ -29071,7 +41977,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Timeline",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimelinePrefix",
     "selector": "x-timeline",
@@ -29082,7 +41993,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Timeline Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -29094,7 +42010,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataArray"
       },
       {
@@ -29107,7 +42028,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29120,7 +42046,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29133,7 +42064,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29146,7 +42082,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'left'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -29159,7 +42100,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Timeline 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "time",
@@ -29171,7 +42117,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "time",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "content",
@@ -29183,7 +42134,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "content",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -29195,7 +42151,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "type",
@@ -29207,7 +42168,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "icon",
@@ -29219,7 +42185,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "color",
@@ -29231,7 +42202,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "color",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "loading",
@@ -29243,7 +42219,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "loading",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "dashed",
@@ -29255,7 +42236,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "dashed",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -29267,7 +42253,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTimelineNode",
@@ -29279,7 +42270,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "时间轴的相对位置",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTimelineMode",
     "value": "'left' | 'right' | 'alternate'"
@@ -29288,7 +42284,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tooltip",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTooltipPrefix",
     "selector": "x-tooltip",
@@ -29299,7 +42300,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Tooltip Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "content",
@@ -29311,7 +42317,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29324,7 +42335,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'top'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29337,7 +42353,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29350,7 +42371,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29363,7 +42389,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29376,7 +42407,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29389,7 +42425,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29402,7 +42443,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -29415,7 +42461,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "150",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -29428,7 +42479,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "100",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -29441,7 +42497,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -29454,7 +42515,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tooltip Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTooltipPortalPrefix",
     "selector": "x-tooltip-portal",
@@ -29465,7 +42531,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Transfer",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTransferPrefix",
     "selector": "x-transfer",
@@ -29476,7 +42547,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Transfer Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -29488,7 +42564,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataConvert"
       },
       {
@@ -29501,7 +42582,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'list'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29514,7 +42600,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "['List', 'Selected']",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29527,7 +42618,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29540,7 +42636,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29553,7 +42654,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -29566,7 +42672,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -29579,7 +42690,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29592,7 +42708,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29605,7 +42726,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29618,7 +42744,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29631,7 +42762,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29644,7 +42780,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29657,7 +42798,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "10",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29670,7 +42816,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29683,7 +42834,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29696,7 +42852,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       }
     ],
@@ -29709,7 +42870,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Transfer Node",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "checked",
@@ -29721,7 +42887,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "checked",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "index",
@@ -29733,7 +42904,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "index",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -29745,7 +42921,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTransferNode",
@@ -29757,7 +42938,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Transfer Source",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "title",
@@ -29769,7 +42955,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "title",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "searchInput",
@@ -29781,7 +42972,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "searchInput",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "checkedAll",
@@ -29793,7 +42989,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "checkedAll",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "checkedCount",
@@ -29805,7 +43006,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "checkedCount",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "count",
@@ -29817,7 +43023,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "count",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "indeterminate",
@@ -29829,7 +43040,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "indeterminate",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "list",
@@ -29841,7 +43057,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "list",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "searchList",
@@ -29853,7 +43074,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "searchList",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabledButton",
@@ -29865,7 +43091,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabledButton",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "hiddenCheckAll",
@@ -29877,7 +43108,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "hiddenCheckAll",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "listStyle",
@@ -29889,7 +43125,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "listStyle",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -29901,7 +43142,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "footerTpl",
@@ -29913,7 +43159,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "footerTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "tableHeadSearchTpl",
@@ -29925,7 +43176,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "tableHeadSearchTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTransferSource"
@@ -29934,7 +43190,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "数据方向",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTransferDirection",
     "value": "'left' | 'right'"
@@ -29943,7 +43204,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "数据类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTransferType",
     "value": "'list' | 'tree' | 'table'"
@@ -29952,7 +43218,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "穿梭框样式，使用方式与 ngStyle 相同",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTransferListStyle",
     "value": "XStyleMap | XStyleMap[]"
@@ -29961,7 +43232,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tree",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTreePrefix",
     "selector": "x-tree",
@@ -29972,7 +43248,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Tree Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -29984,7 +43265,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -29997,7 +43283,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30010,7 +43301,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30023,7 +43319,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30036,7 +43337,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30049,7 +43355,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30062,7 +43373,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30075,7 +43391,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "-1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -30088,7 +43409,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30101,7 +43427,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'1.5rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -30114,7 +43445,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30127,7 +43463,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -30140,7 +43481,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30153,7 +43499,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30166,7 +43517,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30179,7 +43535,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30192,7 +43553,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30205,7 +43571,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30218,7 +43589,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30231,7 +43607,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'center'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30244,7 +43625,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30257,7 +43643,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30270,7 +43661,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30283,7 +43679,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'400px'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -30296,7 +43697,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30309,7 +43715,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "34",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -30322,7 +43733,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "100",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -30335,7 +43751,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -30348,7 +43769,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30361,7 +43787,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30374,7 +43805,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30387,7 +43823,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30400,7 +43841,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30413,7 +43859,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30426,7 +43877,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -30439,7 +43895,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30452,7 +43913,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30465,7 +43931,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30478,7 +43949,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -30491,7 +43967,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tree 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "activated",
@@ -30503,7 +43984,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "activated",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "change",
@@ -30515,7 +44001,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "change",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "checked",
@@ -30527,7 +44018,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "checked",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -30539,7 +44035,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "indeterminate",
@@ -30551,7 +44052,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "indeterminate",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "height",
@@ -30563,7 +44069,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "height",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nowrap",
@@ -30575,7 +44086,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nowrap",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "alignItems",
@@ -30587,7 +44103,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "alignItems",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "loading",
@@ -30599,7 +44120,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "loading",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "showDragIndicator",
@@ -30611,7 +44137,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "showDragIndicator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -30623,7 +44154,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTreeNode",
@@ -30635,7 +44171,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tree 节点操作",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "handler",
@@ -30647,7 +44188,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "handler",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "icon",
@@ -30659,7 +44205,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "icon",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTreeAction",
@@ -30671,7 +44222,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tree 节点拖动事件",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "event",
@@ -30683,7 +44239,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "event",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "from",
@@ -30695,7 +44256,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "from",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "to",
@@ -30707,7 +44273,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "to",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "position",
@@ -30719,7 +44290,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "position",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTreeNodeDragEvent"
@@ -30728,7 +44304,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TreeNode",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTreeNodePrefix",
     "selector": "x-tree-node",
@@ -30739,7 +44320,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "TreeNode Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "node",
@@ -30751,7 +44337,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "{}",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30764,7 +44355,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "0",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30777,7 +44373,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30790,7 +44391,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30803,7 +44409,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'center'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30816,7 +44427,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30829,7 +44445,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30842,7 +44463,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30855,7 +44481,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30868,7 +44499,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30881,7 +44517,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30894,7 +44535,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30907,7 +44553,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30920,7 +44571,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30933,7 +44589,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30946,7 +44607,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30959,7 +44625,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30972,7 +44643,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -30985,7 +44661,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -30998,7 +44679,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "TreeFile",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTreeFilePrefix",
     "selector": "x-tree-file",
@@ -31009,7 +44695,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "TreeFile Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -31021,7 +44712,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31034,7 +44730,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31047,7 +44748,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31060,7 +44766,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31073,7 +44784,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31086,7 +44802,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31099,7 +44820,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'37.5rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -31112,7 +44838,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'1rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -31125,7 +44856,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31138,7 +44874,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31151,7 +44892,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31164,7 +44910,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "-1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       }
     ],
@@ -31177,7 +44928,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "TreeFile 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "children",
@@ -31189,7 +44945,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "children",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "content",
@@ -31201,7 +44962,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "content",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "type",
@@ -31213,7 +44979,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "type",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "fileType",
@@ -31225,7 +44996,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "fileType",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "url",
@@ -31237,7 +45013,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "url",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "crumbData",
@@ -31249,7 +45030,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "crumbData",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "contentLoaded",
@@ -31261,7 +45047,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "contentLoaded",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "highlightLines",
@@ -31273,7 +45064,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "highlightLines",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTreeFileNode",
@@ -31285,7 +45081,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "文件分类",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTreeFileType",
     "value": "'code' | 'img'"
@@ -31294,7 +45095,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "支持显示的图片格式",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTreeFileImgs",
     "value": "['webp', 'png', 'jpg', 'gif', 'jpeg', 'ico']"
@@ -31303,7 +45109,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tree Select",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTreeSelectPrefix",
     "selector": "x-tree-select",
@@ -31314,7 +45125,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Tree Select Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -31326,7 +45142,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToDataConvert"
       },
       {
@@ -31339,7 +45160,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31352,7 +45178,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31365,7 +45196,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'bottom'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31378,7 +45214,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31391,7 +45232,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31404,7 +45250,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31417,7 +45268,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31430,7 +45286,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "-1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -31443,7 +45304,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31456,7 +45322,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'12rem'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -31469,7 +45340,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31482,7 +45358,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31495,7 +45376,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "200",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -31508,7 +45394,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "-1",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -31521,7 +45412,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'更多{{surplus}}个选中'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31534,7 +45430,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31547,7 +45448,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31560,7 +45466,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "' / '",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31573,7 +45484,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31586,7 +45502,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'medium'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31599,7 +45520,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31612,7 +45538,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31625,7 +45556,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToCssPixelValue"
       },
       {
@@ -31638,7 +45574,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31651,7 +45592,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31664,7 +45610,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'start'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31677,7 +45628,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'column'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31690,7 +45646,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "''",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31703,7 +45664,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31716,7 +45682,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31729,7 +45700,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -31742,7 +45718,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31755,7 +45736,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31768,7 +45754,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31781,7 +45772,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31794,7 +45790,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "null",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31807,7 +45808,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "[]",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31820,7 +45826,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -31833,7 +45844,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -31846,7 +45862,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tree Select Option",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "data",
@@ -31858,7 +45879,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "data",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "clearable",
@@ -31870,7 +45896,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "clearable",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "async",
@@ -31882,7 +45913,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "async",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placement",
@@ -31894,7 +45930,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placement",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "multiple",
@@ -31906,7 +45947,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "multiple",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "selectAll",
@@ -31918,7 +45964,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "selectAll",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "selectAllText",
@@ -31930,7 +45981,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "selectAllText",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "nodeTpl",
@@ -31942,7 +45998,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "nodeTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "expandedLevel",
@@ -31954,7 +46015,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "expandedLevel",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "bordered",
@@ -31966,7 +46032,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "bordered",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "portalMaxHeight",
@@ -31978,7 +46049,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "portalMaxHeight",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "search",
@@ -31990,7 +46066,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "search",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "caseSensitive",
@@ -32002,7 +46083,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "caseSensitive",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "debounceTime",
@@ -32014,7 +46100,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "debounceTime",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "maxTagCount",
@@ -32026,7 +46117,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "maxTagCount",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "maxTagContent",
@@ -32038,7 +46134,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "maxTagContent",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "virtualScroll",
@@ -32050,7 +46151,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "virtualScroll",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "showPath",
@@ -32062,7 +46168,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "showPath",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "separator",
@@ -32074,7 +46185,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "separator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "onlyLeaf",
@@ -32086,7 +46202,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "onlyLeaf",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "size",
@@ -32098,7 +46219,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "size",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pointer",
@@ -32110,7 +46236,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pointer",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "label",
@@ -32122,7 +46253,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "label",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelWidth",
@@ -32134,7 +46270,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelWidth",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "labelAlign",
@@ -32146,7 +46287,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "labelAlign",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "justify",
@@ -32158,7 +46304,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "justify",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "align",
@@ -32170,7 +46321,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "align",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "direction",
@@ -32182,7 +46338,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "direction",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -32194,7 +46355,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "placeholder",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -32206,7 +46372,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "disabled",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "required",
@@ -32218,7 +46389,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "required",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "readonly",
@@ -32230,7 +46406,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "readonly",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTpl",
@@ -32242,7 +46423,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTpl",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "valueTplContext",
@@ -32254,7 +46440,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "valueTplContext",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "before",
@@ -32266,7 +46457,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "before",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "after",
@@ -32278,7 +46474,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "after",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "pattern",
@@ -32290,7 +46491,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "pattern",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "message",
@@ -32302,7 +46508,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "message",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "active",
@@ -32314,7 +46525,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "active",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "inputValidator",
@@ -32326,7 +46542,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "inputValidator",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTreeSelectOption",
@@ -32338,7 +46559,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Tree Select 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "path",
@@ -32350,7 +46576,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "path",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "[property: string]",
@@ -32362,7 +46593,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XTreeSelectNode",
@@ -32374,7 +46610,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Tree Select Portal",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTreeSelectPortalPrefix",
     "selector": "x-tree-select-portal",
@@ -32385,7 +46626,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Typography",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XTypographyPrefix",
     "selector": "x-typography",
@@ -32396,7 +46642,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Typography Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "font",
@@ -32408,7 +46659,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'Helvetica Neue",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32421,7 +46677,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -32434,7 +46695,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "Upload",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XUploadPrefix",
     "selector": "x-upload",
@@ -32445,7 +46711,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "class",
     "label": "Upload Property",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "text",
@@ -32457,7 +46728,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32470,7 +46746,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32483,7 +46764,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32496,7 +46782,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'list'",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32509,7 +46800,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32522,7 +46818,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -32535,7 +46836,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "false",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -32548,7 +46854,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "true",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToBoolean"
       },
       {
@@ -32561,7 +46872,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "'cover'",
         "withConfig": true,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32574,7 +46890,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32587,7 +46908,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "-1",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": "XToNumber"
       },
       {
@@ -32600,7 +46926,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32613,7 +46944,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32626,7 +46962,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32639,7 +46980,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32652,7 +46998,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       },
       {
@@ -32665,7 +47016,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "default": "",
         "withConfig": false,
         "description": "",
-        "example": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
         "transform": ""
       }
     ],
@@ -32678,7 +47034,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "interface",
     "label": "Upload 数据对象",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [
       {
         "name": "url",
@@ -32690,7 +47051,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "url",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "state",
@@ -32702,7 +47068,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "state",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "percent",
@@ -32714,7 +47085,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "percent",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       },
       {
         "name": "body",
@@ -32726,7 +47102,12 @@ export const zh_CN: {[key: string]: AppProp} = {
         "decorator": [],
         "attr": "body",
         "propType": "",
-        "example": ""
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XUploadNode",
@@ -32738,7 +47119,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "文件状态",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XStateType",
     "value": "'ready' | 'uploading' | 'success' | 'error'"
@@ -32747,7 +47133,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "文件显示类型",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XUploadType",
     "value": "'list' | 'img'"
@@ -32756,7 +47147,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "多次上传的模式，cover 覆盖现有 add 继续添加",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XUploadMultipleModel",
     "value": "'cover' | 'add'"
@@ -32765,7 +47161,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "type",
     "label": "剪裁的方位",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XUploadCutType",
     "value": "XPosition | XCorner | ''"
@@ -32774,7 +47175,12 @@ export const zh_CN: {[key: string]: AppProp} = {
     "type": "const",
     "label": "上传显示窗口",
     "description": "",
-    "example": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
     "properties": [],
     "name": "XUploadPortalPrefix",
     "selector": "x-upload-portal",

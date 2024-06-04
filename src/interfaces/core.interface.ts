@@ -63,7 +63,7 @@ export interface AppProp {
   /**
    * 示例
    */
-  example?: string;
+  example?: { type: string; content: string; language?: string }[];
   /**
    * 其它属性
    */
@@ -119,7 +119,7 @@ export interface AppPrope {
   /**
    * 示例
    */
-  example?: string;
+  example?: { type: string; content: string; language?: string }[];
   /**
    * 转换函数
    */

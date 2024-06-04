@@ -89,16 +89,40 @@ export class XAvatarProperty extends XPropertyFunction(X_AVATAR_CONFIG_NAME) {
   /**
    * @zh_CN 图片适应方式
    * @en_US Image adaptation method
+   * @example
+   *
+   * ```html
+   * <x-avatar fit="fill" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="contain" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="cover" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="none" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="scale-down" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * ```
+   *
    */
   readonly fit = input<XAvatarFit>(this.config?.fit ?? 'cover');
   /**
-   * @zh_CN 字符类型的时候左右边距，px
-   * @en_US When the character type is the left and right distance, PX
+   * @zh_CN 字符类型的时候左右边距
+   * @en_US When the character type is the left and right distance
+   * @example
+   *
+   * ```html
+   * <x-avatar label="ng-nest" gap="5"></x-avatar>
+   * <x-avatar label="ng-nest" gap="5px"></x-avatar>
+   * ```
+   *
    */
   readonly gap = input<string, XNumber>(this.config?.gap ?? '4px', { transform: XToCssPixelValue });
   /**
    * @zh_CN 背景颜色
    * @en_US Background color
+   * @example
+   *
+   * ```html
+   * <x-avatar label="ng-nest" backgroundColor="#999999"></x-avatar>
+   * <x-avatar label="ng-nest" backgroundColor="#888888"></x-avatar>
+   * ```
+   *
    */
   readonly backgroundColor = input<string>(this.config?.backgroundColor ?? '#999999');
 }

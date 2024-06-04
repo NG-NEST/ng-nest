@@ -32,7 +32,7 @@
           <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
         }
         @if (property.example) {
-          <div class="example app-markdown" [innerHTML]="property.example | mdToHtml"></div>
+          <ng-container *ngTemplateOutlet="exampleTpl; context: { example: property.example }"></ng-container>
         }
       </div>
     }
@@ -54,3 +54,15 @@
 <div class="ns-name-close">
   <x-button x-dialog-close plain circle icon="fto-x"></x-button>
 </div>
+
+<ng-template #exampleTpl let-example="example">
+  @for (ex of example; track $index) {
+    @if (ex.content) {
+      @if (ex.type === 'text') {
+        <div class="example app-markdown" [innerHTML]="ex.content | mdToHtml"></div>
+      } @else if (ex.type === 'code') {
+        <x-highlight [type]="ex.language" [data]="ex.content" showCopy></x-highlight>
+      }
+    }
+  }
+</ng-template>

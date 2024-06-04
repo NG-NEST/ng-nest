@@ -1,5 +1,6 @@
 export * from './first-letter-capital';
 export * from './md-to-html';
+export * from './md-split';
 export * from './replace-key';
 export * from './check-mkdir';
 export * from './copy-dir';

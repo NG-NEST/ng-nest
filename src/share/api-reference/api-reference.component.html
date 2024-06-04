@@ -54,7 +54,7 @@
             <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
           }
           @if (property.example) {
-            <div class="example app-markdown" [innerHTML]="property.example | mdToHtml"></div>
+            <ng-container *ngTemplateOutlet="exampleTpl; context: { example: property.example }"></ng-container>
           }
         </div>
       } @else if (property.type === 'interface') {
@@ -74,7 +74,7 @@
             <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
           }
           @if (property.example) {
-            <div class="example app-markdown" [innerHTML]="property.example | mdToHtml"></div>
+            <ng-container *ngTemplateOutlet="exampleTpl; context: { example: property.example }"></ng-container>
           }
           @if (property.properties && property.properties.length > 0) {
             <div class="properties">
@@ -106,7 +106,7 @@
             <div class="description app-markdown" [innerHTML]="property.description | mdToHtml"></div>
           }
           @if (property.example) {
-            <div class="example app-markdown" [innerHTML]="property.example | mdToHtml"></div>
+            <ng-container *ngTemplateOutlet="exampleTpl; context: { example: property.example }"></ng-container>
           }
           @if (property.children && property.children.length > 0) {
             <div class="children">
@@ -142,3 +142,15 @@
 <div class="ns-reference-close">
   <x-button x-dialog-close plain circle icon="fto-x"></x-button>
 </div>
+
+<ng-template #exampleTpl let-example="example">
+  @for (ex of example; track $index) {
+    @if (ex.content) {
+      @if (ex.type === 'text') {
+        <div class="example app-markdown" [innerHTML]="ex.content | mdToHtml"></div>
+      } @else if (ex.type === 'code') {
+        <x-highlight [type]="ex.language" [data]="ex.content" showCopy></x-highlight>
+      }
+    }
+  }
+</ng-template>

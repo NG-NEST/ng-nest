@@ -1,6 +1,7 @@
 import * as fs from 'fs-extra';
 import * as readline from 'readline';
 import { NcDecorator, NcProp, NcPropType, NcPrope } from '../interfaces/prop';
+import { mdSplit } from './md-split';
 
 const DocKeywords = [
   '@zh_CN',
@@ -170,7 +171,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           const example = getDocs(docItem, '@example') as string;
           prop.label = label ? label : docItem[docItem.start + 1];
           prop.description = description;
-          prop.example = example;
+          prop.example = mdSplit(example);
           prop.properties = [];
           switch (prop.type) {
             case NcPropType.Const:
@@ -319,7 +320,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
           if (docItem) {
             let def = getDocs(docItem, '@default') as string;
             let withConfig = getDocs(docItem, '@withConfig') as string;
-            let example = getDocs(docItem, '@example', true) as string;
+            let example = mdSplit(getDocs(docItem, '@example', true) as string);
             const { label, description } = getLabelAndDescription(docItem, lang);
             const attr = (
               propd.length > 1 && propd[0].indexOf("'") !== -1 ? propd[0].replace(/(.*)\(\'(.*)\'\)/, '$2') : name
@@ -424,7 +425,7 @@ export function getProperty(line: string, docItem: any = {}, lang = '') {
     }
   }
   let docDef = getDocs(docItem, '@default') as string;
-  let example = getDocs(docItem, '@example', true) as string;
+  let example = mdSplit(getDocs(docItem, '@example', true) as string);
   const { label, description } = getLabelAndDescription(docItem, lang);
 
   const property: NcPrope = {

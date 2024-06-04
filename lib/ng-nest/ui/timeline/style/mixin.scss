@@ -65,7 +65,7 @@
     color: $--x-text-300;
   }
   &-time {
-    font-size: var(--x-font-size);
+    font-size: $--x-font-size;
     color: $--x-text-400;
   }
   &-loading {
