@@ -15,7 +15,14 @@
         <div class="x-drawer-title">
           <ng-container *xOutlet="title">{{ title }}</ng-container>
         </div>
-        <x-button class="x-drawer-close" icon="fto-x" (click)="closePortal()" onlyIcon closable></x-button>
+        <x-button
+          size="small"
+          class="x-drawer-close"
+          icon="fto-x"
+          type="text"
+          (click)="closePortal()"
+          closable
+        ></x-button>
       </div>
     }
     <div class="x-drawer-content">

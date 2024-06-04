@@ -9,17 +9,17 @@
   color: var(--x-white);
   &-primary {
     padding: 1rem;
-    border-top-left-radius: 0.125rem;
-    border-top-right-radius: 0.125rem;
+    border-top-left-radius: $--x-border-radius;
+    border-top-right-radius: $--x-border-radius;
   }
   &-only {
-    border-bottom-left-radius: 0.125rem;
-    border-bottom-right-radius: 0.125rem;
+    border-bottom-left-radius: $--x-border-radius;
+    border-bottom-right-radius: $--x-border-radius;
   }
   &-hex {
     margin-top: 0.25rem;
     display: block;
-    font-size: 0.75rem;
+    font-size: $--x-font-size-small;
     opacity: 0.7;
   }
   &-gradual {
@@ -29,10 +29,10 @@
     flex: 1;
     height: 2.5rem;
     &:first-child {
-      border-bottom-left-radius: 0.125rem;
+      border-bottom-left-radius: $--x-border-radius;
     }
     &:last-child {
-      border-bottom-right-radius: 0.125rem;
+      border-bottom-right-radius: $--x-border-radius;
     }
   }
 }

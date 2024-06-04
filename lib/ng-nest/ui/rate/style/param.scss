@@ -1,5 +1,5 @@
 // Rate style paramters
 
 $--x-rate-prefix: $--x-prefix + '-rate';
-$--x-rate-height: calc(#{$--x-font-size} + 0.875rem);
+$--x-rate-height: $--x-height-medium;
 $--x-rate-icon-font-size: calc(#{$--x-font-size-big} + 0.125rem);

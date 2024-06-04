@@ -9,6 +9,7 @@
   [class.x-clear-show]="clearShow"
   [class.x-input-icon]="getIcon"
   [class.x-input-active]="active"
+  [class.x-input-focus]="focused"
   [class.x-input-pointer]="pointer"
   [class.x-input-bordered]="bordered"
   [class.x-input-icon-left]="getIconLayoutLeft"
@@ -75,8 +76,8 @@
       @if (icon && ((!clearShow && getIconLayoutRight) || getIconLayoutLeft || iconSpin)) {
         <x-icon [type]="icon" [spin]="iconSpin" (click)="xClick.emit($event)"></x-icon>
       }
-      @if (maxlength) {
-        <span class="x-input-max-length">{{ lengthTotal }}</span>
+      @if (maxlength && lengthTotal) {
+        <span class="x-input-max-length" [style.width.rem]="getMaxLengthWidth">{{ lengthTotal }}</span>
       }
       @if (invalid) {
         <span class="x-input-error-message">{{ invalidMessage }}</span>

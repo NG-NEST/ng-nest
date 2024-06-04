@@ -18,14 +18,18 @@
       opacity: 1;
       height: fit-content;
       &.x-tab-content-unactivated {
-        transition: height 0s, opacity 0s;
+        transition:
+          height 0s,
+          opacity 0s;
         height: 0;
         opacity: 0;
       }
     }
     &-animated {
       > .x-tab-content {
-        transition: transform $--x-animation-duration-slow cubic-bezier(0.645, 0.045, 0.355, 1), height 0s,
+        transition:
+          transform $--x-animation-duration-slow cubic-bezier(0.645, 0.045, 0.355, 1),
+          height 0s,
           opacity $--x-animation-duration-slow;
         &.x-tab-content-unactivated {
           display: inherit;
@@ -89,10 +93,54 @@
   @include block(bottom, top, top-left-radius, top-right-radius);
   @include block(left, right, top-right-radius, bottom-right-radius);
 
-  @include tag(top, bottom, top-left-radius, top-right-radius, left, bottom, width, bottom);
-  @include tag(right, left, top-right-radius, bottom-right-radius, top, left, height, left);
-  @include tag(bottom, bottom, bottom-left-radius, bottom-right-radius, left, top, width, top);
-  @include tag(left, right, top-left-radius, bottom-left-radius, top, right, height, right);
+  @include tag(
+    top,
+    bottom,
+    top-left-radius,
+    top-right-radius,
+    bottom-left-radius,
+    bottom-right-radius,
+    left,
+    bottom,
+    width,
+    bottom
+  );
+  @include tag(
+    right,
+    left,
+    top-right-radius,
+    bottom-right-radius,
+    top-left-radius,
+    bottom-left-radius,
+    top,
+    left,
+    height,
+    left
+  );
+  @include tag(
+    bottom,
+    bottom,
+    bottom-left-radius,
+    bottom-right-radius,
+    top-left-radius,
+    top-right-radius,
+    left,
+    top,
+    width,
+    top
+  );
+  @include tag(
+    left,
+    right,
+    top-left-radius,
+    bottom-left-radius,
+    top-right-radius,
+    bottom-right-radius,
+    top,
+    right,
+    height,
+    right
+  );
 
   @include card(top, bottom, width, top, bottom, left, right, first, left, last, right);
   @include card(right, left, height, left, right, top, bottom, first, top, last, bottom);
@@ -105,24 +153,33 @@
     &.#{$--x-tabs-prefix} {
       &-#{$layout} {
         > .#{$--x-tabs-prefix}-list {
-          border-#{$border}: $--x-border-base;
+          // border-#{$border}: $--x-border-base;
+          padding-#{$border}: 0.25rem;
           > x-slider {
             width: 100%;
-            .x-slider-scroll > ul > li {
-              &.x-slider-highlight {
-                border-#{$border}: none;
-                border-#{$border-radius-first}: 0;
-                border-#{$border-radius-second}: 0;
-              }
-            }
           }
+        }
+        > .#{$--x-tabs-prefix}-contents {
+          background-color: $--x-background-a200;
+          border-radius: $--x-border-radius;
         }
       }
     }
   }
 }
 
-@mixin tag($layout, $border, $border-radio-first, $border-radio-second, $border-none, $border-activated, $border-size, $border-position) {
+@mixin tag(
+  $layout,
+  $border,
+  $border-radius-first,
+  $border-radius-second,
+  $border-radius-three,
+  $border-radius-four,
+  $border-none,
+  $border-activated,
+  $border-size,
+  $border-position
+) {
   &-tag {
     &.#{$--x-tabs-prefix} {
       &-#{$layout} {
@@ -136,19 +193,31 @@
                 position: absolute;
                 #{$border-position}: 0;
                 #{$border-size}: 100%;
-                border-#{$border}: $--x-border-base;
+                border-#{$border}: $--x-tabs-border-base;
+              }
+              &:not(.x-slider-show-arrow) > .x-slider-scroll > ul {
+                background-color: $--x-background-a200;
+                border-radius: 0;
+                border-#{$border-radius-first}: $--x-border-radius;
+                border-#{$border-radius-second}: $--x-border-radius;
+                padding: 0;
+              }
+              &.x-slider-show-arrow {
+                padding: 0;
+                border-#{$border-radius-three}: 0;
+                border-#{$border-radius-four}: 0;
               }
               &-scroll {
                 > ul {
                   z-index: 1;
+
                   > li {
-                    border: $--x-border-base;
-                    background-color: $--x-background;
+                    border: $--x-tabs-border-base;
                     &:first-child {
-                      border-#{$border-radio-first}: 0.125rem;
+                      border-#{$border-radius-first}: $--x-border-radius;
                     }
                     &:nth-last-child(2) {
-                      border-#{$border-radio-second}: 0.125rem;
+                      border-#{$border-radius-second}: $--x-border-radius;
                     }
                     &:not(:first-child) {
                       border-#{$border-none}: none;
@@ -158,12 +227,21 @@
                     }
                     &.x-slider-activated {
                       border-#{$border-activated}-color: $--x-background;
+                      background-color: $--x-background;
+                      border-#{$border-radius-first}: $--x-border-radius;
+                      border-#{$border-radius-second}: $--x-border-radius;
                     }
                   }
                 }
               }
             }
           }
+        }
+        .#{$--x-tabs-prefix}-contents {
+          border: $--x-tabs-border-base;
+          border-#{$layout}: none;
+          border-#{$border-radius-three}: $--x-border-radius;
+          border-#{$border-radius-four}: $--x-border-radius;
         }
       }
     }
@@ -188,12 +266,17 @@
       &-#{$layout} {
         border: $--x-border-base;
         border-#{$layout}: none;
-        box-shadow: $--x-box-shadow-light;
+        box-shadow: $--x-box-shadow;
         .#{$--x-tabs-prefix}-list {
           border-#{$border}: none;
           > x-slider {
             width: 100%;
             .x-slider {
+              &:not(.x-slider-show-arrow) > .x-slider-scroll > ul {
+                background-color: transparent;
+                border-radius: 0;
+                padding: 0;
+              }
               &-scroll {
                 background-color: $--x-background;
                 &::after,
@@ -217,6 +300,7 @@
                       border-#{$border-li-second}: $--x-border-base;
                       border-#{$border}-color: $--x-background;
                       background-color: $--x-background;
+                      border-radius: 0;
                     }
                     &.x-slider-activated {
                       border-#{$border}-color: $--x-background;

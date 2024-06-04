@@ -7,7 +7,8 @@ import {
   OnDestroy,
   SimpleChanges,
   ViewChild,
-  inject
+  inject,
+  PLATFORM_ID
 } from '@angular/core';
 import { XAlertPrefix, XAlertProperty } from './alert.property';
 import { XFadeAnimation, XIsEmpty, XConfigService, XIsChange, XClearClass } from '@ng-nest/ui/core';
@@ -19,12 +20,20 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XResizableDirective } from '@ng-nest/ui/resizable';
-import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: `${XAlertPrefix}`,
   standalone: true,
-  imports: [NgClass, NgTemplateOutlet, DragDropModule, XIconComponent, XButtonComponent, XOutletDirective, XResizableDirective],
+  imports: [
+    NgClass,
+    NgTemplateOutlet,
+    DragDropModule,
+    XIconComponent,
+    XButtonComponent,
+    XOutletDirective,
+    XResizableDirective
+  ],
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -36,6 +45,7 @@ export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy
   private _unSubject = new Subject<void>();
   private cdr = inject(ChangeDetectorRef);
   configService = inject(XConfigService);
+  isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   ngOnInit() {
     this.setClassMap();
@@ -63,7 +73,7 @@ export class XAlertComponent extends XAlertProperty implements OnInit, OnDestroy
   }
 
   setDuration() {
-    if (this.duration) {
+    if (this.duration && this.isBrowser) {
       of(true)
         .pipe(delay(Number(this.duration)), takeUntil(this._unSubject))
         .subscribe(() => {

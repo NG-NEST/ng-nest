@@ -12,10 +12,11 @@
     justify-content: center;
   }
   .box {
-    width: 16rem;
-    height: 10rem;
-    padding: 0.5rem;
+    width: 32rem;
+    height: 20rem;
+    padding: 1rem;
     border: 0.0625rem solid var(--x-border);
+    border-radius: var(--x-border-radius);
   }
   .row {
     height: 3rem;

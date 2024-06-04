@@ -17,9 +17,8 @@
   height: 100%;
   font-size: $--x-time-picker-font-size;
   color: $--x-text;
-  border: $--x-time-picker-border;
-  border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-light;
+  border-radius: $--x-border-small-radius;
+  box-shadow: $--x-box-shadow;
   background-color: $--x-background;
   &-preset {
     display: flex;
@@ -64,6 +63,18 @@
               margin-top: 0;
             }
           }
+        }
+      }
+    }
+  }
+
+  &-use12Hours {
+    width: 4.5rem;
+    > x-list {
+      > .x-list {
+        width: 4.5rem;
+        > x-list-option {
+          min-width: 4.5rem;
         }
       }
     }

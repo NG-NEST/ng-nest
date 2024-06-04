@@ -7,31 +7,32 @@
 @mixin examples {
   display: block;
   .#{$prefix}-html {
-    padding: 1rem;
-    margin: 1rem 0;
-    border: $--x-border-base;
-    border-radius: 0.125rem;
+    padding: 1.5rem;
+    border: 0.125rem solid $--x-background-a200;
+    border-bottom-left-radius: $--x-border-radius;
+    border-bottom-right-radius: $--x-border-radius;
     position: relative;
   }
   .#{$prefix}-tools {
     position: absolute;
     position: absolute;
-    bottom: -0.875rem;
+    top: -1rem;
     left: 0;
     display: flex;
     width: 100%;
     justify-content: center;
     .x-buttons {
-      background-color: $--x-background;
       padding: 0 0.25rem;
     }
   }
   .#{$prefix}-code {
-    padding: 1rem 0;
+    margin-top: 0.25rem;
     > x-tabs > .x-tabs {
       border-radius: 0.125rem;
       > .x-tabs-contents > .x-tab-content > .x-highlight {
-        border-top: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border: 0;
         > pre {
           background-color: transparent;
         }
@@ -39,10 +40,8 @@
     }
   }
   .#{$prefix}-info {
-    padding: 1rem;
-    border: $--x-border-base;
-    border-radius: 0.125rem;
-    background-color: $--x-background-a100;
+    padding: 1rem 1.5rem;
+    background-color: $--x-background-a200;
     > p {
       margin: 0.25rem 0 0;
       &:first-of-type {
@@ -66,32 +65,19 @@
     &-top {
       > .x-tabs-list {
         border: none;
-        background: rgba(0, 0, 0, 0.05);
       }
     }
     &-left,
     &-top {
-      @include tabs-list();
+      > .x-tabs-contents {
+        background-color: transparent;
+      }
     }
     &-left {
       > .x-tabs-list {
         padding: 0;
         > x-slider > .x-slider > .x-slider-scroll > ul {
           min-width: 6rem;
-        }
-      }
-    }
-  }
-}
-
-@mixin tabs-list() {
-  > .x-tabs-list {
-    > x-slider {
-      > .x-slider-row,
-      > .x-slider-column {
-        > .x-slider-scroll > ul > li.x-slider-highlight {
-          border-radius: $--x-border-radius;
-          border: $--x-border-base;
         }
       }
     }

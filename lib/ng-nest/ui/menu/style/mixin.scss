@@ -30,14 +30,7 @@
   }
   x-slider {
     .x-slider-scroll > ul > li {
-      &.x-slider-highlight {
-        background-color: inherit;
-        border-radius: 0;
-        border: none;
-        border-bottom: 0.125rem solid $--x-primary;
-      }
       > x-link {
-        padding: 0 !important;
         height: inherit !important;
         line-height: inherit !important;
       }
@@ -61,10 +54,11 @@
       transition:
         width $--x-animation-duration-base,
         background-color $--x-animation-duration-base;
-      border-right: 0.125rem solid $--x-border;
       position: relative;
       user-select: none;
       padding-right: 0.875rem;
+      border-radius: $--x-border-radius;
+      margin: 0.125rem 0;
       .#{$--x-menu}-text {
         flex: 1;
         margin: 0 0.25rem;
@@ -77,7 +71,7 @@
       }
       &:hover {
         color: $--x-primary;
-        background-color: $--x-background-a100;
+        background-color: $--x-background-a200;
       }
       #{$--x-menu}-node {
         flex: 1;
@@ -95,14 +89,13 @@
       }
       &.x-activated {
         color: $--x-primary;
-        background-color: $--x-background-a100;
+        background-color: $--x-background-a300;
         &::after {
           content: '';
           position: absolute;
           height: 100%;
           right: -0.125rem;
           top: 0;
-          border-right: 0.125rem solid $--x-primary;
         }
       }
       &.#{$--x-menu}-category {

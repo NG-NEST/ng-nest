@@ -49,13 +49,10 @@
 }
 
 @mixin select-portal {
-  margin: 0.0625rem 0;
-  font-size: $--x-select-font-size;
   color: $--x-text;
-  border: $--x-select-border;
   width: 100%;
-  border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-light;
+  border-radius: $--x-border-small-radius;
+  box-shadow: $--x-box-shadow;
   position: relative;
   display: flex;
   background-color: $--x-background;

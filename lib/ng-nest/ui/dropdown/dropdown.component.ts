@@ -191,6 +191,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnC
       maxHeight: this.portalMaxHeight,
       activatedId: this.activatedId,
       activatedIdSub: this.activatedIdSub,
+      size: this.size,
       close: () => this.closeSubject.next(),
       positionChange: this.positionChange,
       destroyPortal: () => this.destroyPortal(),

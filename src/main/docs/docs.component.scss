@@ -9,8 +9,10 @@ ns-docs {
     position: fixed;
     left: 0;
     top: $header-height;
-    transition: margin $transition-duration-slow, opacity $transition-duration-slow;
-    box-shadow: $--x-box-shadow-light;
+    transition:
+      margin $transition-duration-slow,
+      opacity $transition-duration-slow;
+    box-shadow: $--x-box-shadow;
     > section {
       position: relative;
       height: 100%;
@@ -27,14 +29,8 @@ ns-docs {
         width: $sider-width;
       }
       .x-menu-nodes > .x-menu-node {
-        border-right: none;
-        margin: 0 0.5rem;
-        &.x-activated::after {
-          border-right: none;
-        }
-        // &.x-menu-category > x-menu-node {
-        // border-color: rgba(0, 0, 0, 0.1);
-        // }
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
       }
     }
     &.drawer {

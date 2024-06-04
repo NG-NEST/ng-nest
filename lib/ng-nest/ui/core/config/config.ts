@@ -142,6 +142,7 @@ export interface XAlertConfig {
 
 export interface XAnchorConfig {
   affixTop?: string;
+  affixBottom?: string;
   affixWidth?: string;
   layout?: XPositionLeftRight;
   justify?: XJustify;
@@ -180,12 +181,15 @@ export interface XButtonConfig {
   plain?: XBoolean;
   round?: XBoolean;
   circle?: XBoolean;
+  flat?: XBoolean;
+  text?: XBoolean;
   attrType?: 'submit' | 'button' | 'reset';
 }
 
 export interface XButtonsConfig {
   space?: XNumber;
   hiddenBorder?: XBoolean;
+  showBoxShadow?: XBoolean;
 }
 
 export interface XCalendarConfig {}
@@ -300,6 +304,7 @@ export interface XDrawerConfig {
 export interface XDropdownConfig {
   trigger?: XTrigger;
   placement?: XPlacement;
+  size?: XSize;
 }
 
 export interface XDescriptionConfig {

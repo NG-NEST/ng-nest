@@ -68,13 +68,15 @@
           &::after {
             top: 50%;
             left: 50%;
-            width: 0.5rem;
-            height: 0.5rem;
+            width: 0.75rem;
+            height: 0.75rem;
             background-color: $--x-primary;
             border: 0;
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
+            border-radius: 0.125rem;
             content: ' ';
+            transition: transform 0.2s;
           }
         }
       }
@@ -86,13 +88,13 @@
             border: 0.125rem solid $--x-background-100;
             border-top: 0;
             border-left: 0;
-            top: 0.3875rem;
-            left: 0.1875rem;
-            width: 0.3125rem;
-            height: 0.625rem;
+            top: 0.575rem;
+            left: 0.325rem;
+            width: 0.425rem;
+            height: 0.825rem;
             transform: rotate(40deg) scale(1) translate(-50%, -50%);
             opacity: 1;
-            transition: all 0.2s;
+            transition: transform 0.2s;
             content: ' ';
           }
         }
@@ -134,9 +136,9 @@
 
   &-box {
     border: $--x-border-width solid $--x-border;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 0.0625rem;
+    width: calc(#{$--x-checkbox-height} - 0.875rem);
+    height: calc(#{$--x-checkbox-height} - 0.875rem);
+    border-radius: 0.425rem;
     background-color: $--x-background-a100;
     position: relative;
     display: inline-block;
@@ -157,7 +159,7 @@
       border-left: 0;
       transform: rotate(40deg) scale(0) translate(-50%, -50%);
       opacity: 0;
-      transition: all 0.3s;
+      transition: scale 0.2s;
       content: ' ';
     }
   }
@@ -331,7 +333,7 @@
   color: $--x-text-400;
   cursor: not-allowed;
   .#{$--x-checkbox-prefix}-box {
-    border-color: $--x-border-100;
+    border-color: $--x-border-a900;
     background-color: $--x-border-300;
     &::after {
       border-color: $--x-text-400;

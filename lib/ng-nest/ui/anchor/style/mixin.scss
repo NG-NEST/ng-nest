@@ -32,13 +32,13 @@
       .x-slider-column > .x-slider-scroll {
         overflow-y: auto;
         > ul > li {
-          border-#{$border}: 0.125rem solid $--x-border;
+          // border-#{$border}: 0.125rem solid $--x-border;
           &.x-slider-highlight {
-            border: none;
-            border-top-#{$border}-radius: 0;
-            border-bottom-#{$border}-radius: 0;
+            // border: none;
+            // border-top-#{$border}-radius: 0;
+            // border-bottom-#{$border}-radius: 0;
             z-index: 2;
-            border-#{$border}: 0.125rem solid $--x-primary;
+            // border-#{$border}: 0.125rem solid $--x-primary;
           }
         }
       }

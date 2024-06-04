@@ -154,7 +154,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
         let borderTop = parseFloat(XComputedStyle(this.scroll, 'border-top'));
         let bottom = parseFloat(XComputedStyle(this.scroll, 'padding-bottom'));
         let borderBottom = parseFloat(XComputedStyle(this.scroll, 'border-bottom'));
-        this.sliderHeight = height - top - bottom - borderTop - borderBottom - this.getTop();
+        this.sliderHeight = height - top - bottom - borderTop - borderBottom - this.getTop() - this.getBottom();
       }
     }
   }
@@ -173,6 +173,15 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     if (XIsNumber(this.affixTop)) return Number(this.affixTop);
     else if (this.affixTop.indexOf('rem') !== -1) return Number(this.affixTop.replace(/rem/g, '')) * this._fontSize;
     else if (this.affixTop.indexOf('px') !== -1) return Number(this.affixTop.replace(/px/g, ''));
+    return 0;
+  }
+
+  private getBottom() {
+    if (this.affixBottom === '0') return 0;
+    if (XIsNumber(this.affixBottom)) return Number(this.affixBottom);
+    else if (this.affixBottom.indexOf('rem') !== -1)
+      return Number(this.affixBottom.replace(/rem/g, '')) * this._fontSize;
+    else if (this.affixBottom.indexOf('px') !== -1) return Number(this.affixBottom.replace(/px/g, ''));
     return 0;
   }
 

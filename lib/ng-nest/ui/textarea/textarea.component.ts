@@ -41,8 +41,8 @@ export class XTextareaComponent extends XTextareaProperty implements OnInit, OnC
   private _required: boolean = false;
   valueLength: number = 0;
   lengthTotal: string = '';
-  paddingLeft: number = 0.4;
-  paddingRight: number = 0.4;
+  paddingLeft: number = 0.75;
+  paddingRight: number = 0.75;
   clearShow: boolean = false;
 
   get getIcon() {
@@ -103,8 +103,8 @@ export class XTextareaComponent extends XTextareaProperty implements OnInit, OnC
   }
 
   setPadding() {
-    this.paddingLeft = this.icon && this.iconLayout === 'left' ? 1.8 : 0.4;
-    this.paddingRight = this.icon && this.iconLayout === 'right' ? 1.8 : 0.4;
+    this.paddingLeft = this.icon && this.iconLayout === 'left' ? 2.15 : 0.75;
+    this.paddingRight = this.icon && this.iconLayout === 'right' ? 2.15 : 0.75;
   }
 
   setClassMap() {

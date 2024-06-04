@@ -244,7 +244,7 @@
         <ng-container *ngTemplateOutlet="presetTpl"></ng-container>
       }
     </div>
-    <x-button type="primary" (click)="!sureDisabled && sureTime()" size="small" [disabled]="sureDisabled">{{
+    <x-button type="primary" text (click)="!sureDisabled && sureTime()" size="small" [disabled]="sureDisabled">{{
       locale.sure
     }}</x-button>
   </div>

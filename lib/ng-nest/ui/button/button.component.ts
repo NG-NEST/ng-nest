@@ -9,7 +9,9 @@ import {
   ElementRef,
   Renderer2,
   ViewChild,
-  inject
+  inject,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { XIsChange, XConfigService, XIsEmpty, XClearClass } from '@ng-nest/ui/core';
 import { delay, of } from 'rxjs';
@@ -18,6 +20,7 @@ import { XButtonsComponent } from './buttons.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRippleDirective } from '@ng-nest/ui/ripple';
 import { NgClass } from '@angular/common';
+import { FocusMonitor } from '@angular/cdk/a11y';
 
 @Component({
   selector: `${XButtonPrefix}`,
@@ -28,7 +31,7 @@ import { NgClass } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges {
+export class XButtonComponent extends XButtonProperty implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   transition = false;
   @ViewChild('buttonRef', { static: true }) buttonRef!: ElementRef;
 
@@ -36,11 +39,17 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
   private cdr = inject(ChangeDetectorRef);
   private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
+  private focusMontitor = inject(FocusMonitor);
   configService = inject(XConfigService);
 
   ngOnInit(): void {
     this.setSpace();
+    this.setRound();
     this.setClassMap();
+  }
+
+  ngAfterViewInit() {
+    this.focusMontitor.monitor(this.buttonRef, true);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -50,12 +59,17 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
     XIsChange(type, plain, size, direction) && this.setClassMap();
   }
 
+  ngOnDestroy() {
+    this.focusMontitor.stopMonitoring(this.buttonRef);
+  }
+
   setClassMap() {
     XClearClass(this.classMap);
     this.classMap = {
       [`${XButtonPrefix}-${this.type}`]: !XIsEmpty(this.type) && XIsEmpty(this.plain),
       [`${XButtonPrefix}-${this.type}-plain`]: !XIsEmpty(this.type) && !XIsEmpty(this.plain),
-      [`${XButtonPrefix}-plain`]: XIsEmpty(this.type) && !XIsEmpty(this.plain),
+      [`${XButtonPrefix}-${this.type}-text`]: !XIsEmpty(this.type) && !XIsEmpty(this.text),
+      [`${XButtonPrefix}-${this.type}-flat`]: !XIsEmpty(this.type) && !XIsEmpty(this.flat),
       [`x-size-${this.size}`]: !XIsEmpty(this.size),
       [`x-direction-${this.direction}`]: !XIsEmpty(this.direction)
     };
@@ -73,6 +87,13 @@ export class XButtonComponent extends XButtonProperty implements OnInit, OnChang
     if (!this.buttons?.space) return;
     this.renderer.setStyle(this.elementRef.nativeElement, 'margin-left', `${Number(this.buttons.space) / 2}rem`);
     this.renderer.setStyle(this.elementRef.nativeElement, 'margin-right', `${Number(this.buttons.space) / 2}rem`);
+  }
+
+  setRound() {
+    if (!this.buttons?.round) return;
+    if (this.round === undefined) {
+      this.round = true;
+    }
   }
 
   setDisabled() {

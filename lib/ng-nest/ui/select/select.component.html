@@ -27,7 +27,6 @@
       [pattern]="pattern"
       [message]="message"
       [pointer]="true"
-      [inputPadding]="inputPadding"
       [(active)]="active"
       (clearEmit)="clearEmit()"
       (xKeydown)="onKeydown($event)"
@@ -43,12 +42,18 @@
 
 <ng-template #multipleValueTpl>
   @for (node of displayNodes; track node.id; let i = $index) {
-    <x-tag [@.disabled]="true" [closable]="!disabled" (close)="closeNode($event, node, i)" [size]="size">{{
-      node.label
-    }}</x-tag>
+    <x-tag
+      [@.disabled]="true"
+      [bordered]="false"
+      [closable]="!disabled"
+      [type]="'info'"
+      (close)="closeNode($event, node, i)"
+      [size]="size"
+      >{{ node.label }}</x-tag
+    >
   }
   @if (showDisplayMore) {
-    <x-tag [@.disabled]="true" [size]="size">
+    <x-tag [@.disabled]="true" [bordered]="false" [type]="'info'" [size]="size">
       <ng-container *xOutlet="getMaxTagContent; context: { $surplus: selectedSurplus, $total: selectedTotal }">{{
         displayMore
       }}</ng-container>
@@ -58,9 +63,8 @@
   @if (search) {
     <x-input
       #multipleInput
-      bordered="false"
+      [bordered]="false"
       [size]="size"
-      inputPadding="0.275"
       [(ngModel)]="multipleSearchValue"
       (xInput)="onInput($event)"
       (xKeydown)="onKeydown($event)"

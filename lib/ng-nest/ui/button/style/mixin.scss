@@ -6,7 +6,8 @@
 
 @mixin button {
   position: relative;
-  border: $--x-border-width solid;
+  border: none;
+  outline: none;
   border-radius: $--x-border-radius;
   font-size: $--x-font-size-small;
   text-align: center;
@@ -15,7 +16,8 @@
   user-select: none;
   white-space: nowrap;
   touch-action: manipulation;
-  will-change: color, background-color, border;
+  will-change: color, background-color, border, box-shadow;
+  box-shadow: $--x-box-shadow;
   &:focus {
     outline: none;
   }
@@ -62,11 +64,15 @@
     stroke-linecap: round;
   }
   &-transition {
-    transition: color $--x-animation-duration-base ease-in-out, background-color $--x-animation-duration-base ease-in-out,
-      border $--x-animation-duration-base ease-in-out;
+    transition:
+      color $--x-animation-duration-base ease-in-out,
+      background-color $--x-animation-duration-base ease-in-out,
+      border $--x-animation-duration-base ease-in-out,
+      box-shadow $--x-animation-duration-base ease-in-out;
   }
   &-disabled {
     transform: none !important;
+    opacity: 0.6;
   }
   &-round {
     border-radius: 5rem;
@@ -74,7 +80,21 @@
   &-circle {
     border-radius: 50%;
     padding: 0 !important;
-    width: 1.675rem;
+    &.x-size-big {
+      width: $--x-height-big;
+    }
+    &.x-size-large {
+      width: $--x-height-large;
+    }
+    &.x-size-medium {
+      width: $--x-height-medium;
+    }
+    &.x-size-small {
+      width: $--x-height-small;
+    }
+    &.x-size-mini {
+      width: $--x-height-mini;
+    }
     .#{$--x-button}-loading {
       margin-right: 0;
       margin-left: 0;
@@ -92,16 +112,18 @@
     border: none;
     background-color: transparent;
     box-shadow: none;
-    &:focus,
     &:hover,
     &:active {
-      @include button-color($--x-button-hover, rgba(0, 0, 0, 0.1), transparent);
+      @include button-color($--x-button-hover, $--x-button-initial-hover-background, transparent);
     }
   }
   &-closable {
     color: $--x-text-400;
+    box-shadow: none;
+    background: none;
     &:hover {
-      color: $--x-text-300;
+      background: none;
+      color: $--x-text;
     }
   }
 
@@ -164,42 +186,68 @@
   $plain-disabled-background,
   $plain-disabled-border,
   $box-shadow-color,
-  $plain-box-shadow-color
+  $plain-box-shadow-color,
+  $ripple-background
 ) {
   &-#{$type} {
     @include button-color($color, $background, $border);
-    &:hover {
+    &:hover:not(.x-button-disabled):not(.x-button-activated),
+    &.cdk-program-focused:not(.x-button-disabled),
+    &.cdk-keyboard-focused:not(.x-button-disabled) {
       @include button-color($hover, $hover-background, $hover-border);
+      box-shadow: $--x-box-shadow-hover;
     }
-    &:active {
+    &:active:not(.x-button-disabled) {
       @include button-color($active, $active-background, $active-border);
-    }
-    &:focus {
-      @include button-color($active, $active-background, $active-border);
-      box-shadow: $--x-box-shadow-focus;
     }
     &.#{$--x-button}-disabled {
       @include disabled($disabled, $disabled-background, $disabled-border);
     }
     &-plain {
       @include button-color($plain-color, $plain-background, $plain-border);
-      &:hover {
-        @include button-color($plain-hover, $plain-hover-background, $plain-hover-border);
+      &:hover:not(.x-button-disabled):not(.x-button-activated),
+      &.cdk-program-focused:not(.x-button-disabled),
+      &.cdk-keyboard-focused:not(.x-button-disabled) {
+        @include button-color($color, $plain-hover-background, $plain-hover-border);
       }
-      &:active {
-        @include button-color($plain-active, $plain-active-background, $plain-active-border);
-      }
-      &:focus {
-        @include button-color($plain-active, $plain-active-background, $plain-active-border);
-        box-shadow: $--x-box-shadow-focus;
+      &:active:not(.x-button-disabled) {
+        @include button-color($color, $plain-active-background, $plain-active-border);
       }
       &.#{$--x-button}-disabled {
         @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);
+      }
+      &.#{$--x-button}-activated {
+        z-index: 2;
+        @include button-color($active, $active-background, $active-border);
+      }
+    }
+    &-text {
+      box-shadow: none;
+      @include button-color($plain-color, transparent, $plain-border);
+      &:hover:not(.x-button-disabled):not(.x-button-activated),
+      &.cdk-program-focused:not(.x-button-disabled),
+      &.cdk-keyboard-focused:not(.x-button-disabled) {
+        box-shadow: none;
+        @include button-color($plain-color, $plain-background, $plain-border);
+      }
+      &.#{$--x-button}-disabled {
+        @include disabled($plain-disabled, transparent, $plain-disabled-border);
+      }
+    }
+    &-flat {
+      box-shadow: none;
+      &:hover:not(.x-button-disabled):not(.x-button-activated),
+      &.cdk-program-focused:not(.x-button-disabled),
+      &.cdk-keyboard-focused:not(.x-button-disabled) {
+        box-shadow: none;
       }
     }
     &.#{$--x-button}-activated {
       z-index: 2;
       @include button-color($active, $active-background, $active-border);
+    }
+    .x-ripple-element {
+      background-color: $ripple-background;
     }
   }
 }
@@ -211,30 +259,18 @@
   background-color: $bg-color;
   border-color: $border-color;
   box-shadow: none;
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color;
-    background-color: $bg-color;
-    border-color: $border-color;
-  }
-  &:active {
-    .x-button-inner {
-      transform: none;
-    }
-  }
 }
 
 @mixin buttons {
   display: inline-flex;
   position: relative;
+
   &:not(.#{$--x-buttons}-space) {
     > #{$--x-button} {
       .#{$--x-button} {
-        border-left-width: $--x-border-width;
-        border-right-width: $--x-border-width;
         border-radius: 0;
         position: relative;
+        box-shadow: none;
         &-round {
           border-radius: 0;
         }
@@ -242,9 +278,6 @@
         &-activated {
           z-index: 1;
         }
-      }
-      &:not(:first-child) .#{$--x-button} {
-        margin-left: -1px;
       }
       &:hover {
         z-index: 1;
@@ -254,8 +287,8 @@
       }
       &:first-child {
         .#{$--x-button} {
-          border-top-left-radius: 0.125rem;
-          border-bottom-left-radius: 0.125rem;
+          border-top-left-radius: $--x-border-radius;
+          border-bottom-left-radius: $--x-border-radius;
         }
         .#{$--x-button}-round {
           border-top-left-radius: 5rem;
@@ -264,8 +297,8 @@
       }
       &:last-child {
         .#{$--x-button} {
-          border-top-right-radius: 0.125rem;
-          border-bottom-right-radius: 0.125rem;
+          border-top-right-radius: $--x-border-radius;
+          border-bottom-right-radius: $--x-border-radius;
         }
         .#{$--x-button}-round {
           border-top-right-radius: 5rem;
@@ -277,11 +310,10 @@
   &-hiddenBorder {
     > #{$--x-button} {
       .#{$--x-button} {
-        border: 0;
-        padding: 0 0.4rem;
+        border: none;
+        padding: 0 $--x-padding-small;
         background-color: transparent;
         &-icon {
-          padding: 0.2rem 0.4rem;
           > .x-icon {
             font-size: 1.125rem;
           }
@@ -291,6 +323,13 @@
         }
       }
     }
+  }
+  &-box-shadow:not(.#{$--x-buttons}-space) {
+    border-radius: $--x-border-radius;
+    box-shadow: $--x-box-shadow;
+  }
+  &-round:not(.#{$--x-buttons}-space) {
+    border-radius: 5rem;
   }
 }
 

@@ -1,7 +1,7 @@
 <div #transfer class="x-transfer" cdkDropListGroup [ngClass]="classMap">
   <div class="x-transfer-box" [class.x-transfer-has-footer]="left.footerTpl">
     <ng-container *ngTemplateOutlet="sourceTitleTpl; context: { source: left }"></ng-container>
-    <div [ngStyle]="left.listStyle!" class="x-transfer-list">
+    <div [ngStyle]="left.listStyle!" class="x-transfer-list x-transfer-{{ type }}">
       @switch (type) {
         @case ('list') {
           <ul
@@ -67,12 +67,14 @@
       icon="fto-chevron-right"
       [disabled]="left.disabledButton"
       (click)="move(left, right)"
+      flat
     ></x-button>
     <x-button
       type="primary"
       icon="fto-chevron-left"
       [disabled]="right.disabledButton"
       (click)="move(right, left)"
+      flat
     ></x-button>
   </div>
   <div class="x-transfer-box" [class.x-transfer-has-footer]="right.footerTpl">

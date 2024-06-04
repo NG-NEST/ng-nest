@@ -6,7 +6,7 @@
 
 #{$--x-textarea-prefix} {
   display: inline-block;
-  width: 12rem;
+  width: 16rem;
 }
 .#{$--x-textarea-prefix} {
   @include textarea();

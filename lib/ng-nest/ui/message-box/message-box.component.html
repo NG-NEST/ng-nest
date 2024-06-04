@@ -43,9 +43,9 @@
         </div>
         <x-buttons space="1">
           @if (msgInput.showCancel) {
-            <x-button (click)="onCancel()">{{ msgInput.cancelText }}</x-button>
+            <x-button (click)="onCancel()" flat plain>{{ msgInput.cancelText }}</x-button>
           }
-          <x-button type="primary" (click)="onConfirm()" [disabled]="formGroup!.invalid" [loading]="loading">{{
+          <x-button type="primary" flat (click)="onConfirm()" [disabled]="formGroup!.invalid" [loading]="loading">{{
             msgInput.confirmText
           }}</x-button>
         </x-buttons>

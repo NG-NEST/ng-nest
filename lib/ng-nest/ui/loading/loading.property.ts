@@ -1,4 +1,4 @@
-import { XProperty, XInputBoolean, XSize, XTemplate, XBoolean, XWithConfig, XNumber } from '@ng-nest/ui/core';
+import { XProperty, XInputBoolean, XSize, XTemplate, XBoolean, XWithConfig, XNumber, XCorner } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -49,6 +49,11 @@ export class XLoadingProperty extends XProperty {
    * @en_US Full-screen display
    */
   @Input() @XInputBoolean() fullScreen?: XBoolean;
+  /**
+   * @zh_CN 圆角覆盖显示
+   * @en_US Rounded corner coverage display
+   */
+  @Input() radius?: XBoolean | XCorner[];
   /**
    * @zh_CN 背景样式
    * @en_US Background style

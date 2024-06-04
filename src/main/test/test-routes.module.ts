@@ -105,6 +105,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./dropdown/dropdown.component').then((x) => x.TeDropdownComponent)
       },
       {
+        path: 'empty',
+        loadComponent: () => import('./empty/empty.component').then((x) => x.TeEmptyComponent)
+      },
+      {
         path: 'find',
         loadComponent: () => import('./find/find.component').then((x) => x.TeFindComponent)
       },

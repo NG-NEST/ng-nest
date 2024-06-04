@@ -42,7 +42,14 @@
     line-height: $--x-list-height;
     font-weight: bold;
   }
-
+  &-portal {
+    padding: 0.25rem;
+    x-list-option .x-list-option {
+      padding: 0 calc(#{$--x-padding-medium} - 0.5rem);
+      margin: 0.125rem 0;
+      border-radius: 0.5rem;
+    }
+  }
   &-leaf,
   &-checked {
     right: 0;
@@ -53,6 +60,7 @@
     color: $--x-text-300;
     margin-right: 0.25rem;
   }
+
   > x-empty {
     margin: 1rem;
     display: block;
@@ -61,7 +69,10 @@
 
 @mixin list-option {
   @include option();
-  transition: border-color $--x-animation-duration-base, background-color $--x-animation-duration-base, color $--x-animation-duration-base;
+  transition:
+    border-color $--x-animation-duration-base,
+    background-color $--x-animation-duration-base,
+    color $--x-animation-duration-base;
   &-content {
     overflow: hidden;
     white-space: nowrap;
@@ -90,7 +101,7 @@
     }
   }
   &.x-selected:not(.x-disabled) {
-    background-color: $--x-background-a400;
+    background-color: $--x-background-a300;
     color: $--x-primary;
     > x-icon {
       color: $--x-primary;

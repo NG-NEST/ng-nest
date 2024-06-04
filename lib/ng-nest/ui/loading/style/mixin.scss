@@ -35,6 +35,21 @@
     stroke: $--x-primary;
     stroke-linecap: round;
   }
+  &-radius {
+    border-radius: $--x-border-radius;
+  }
+  &-top-left-radius {
+    border-top-left-radius: $--x-border-radius;
+  }
+  &-top-right-radius {
+    border-top-right-radius: $--x-border-radius;
+  }
+  &-bottom-left-radius {
+    border-bottom-left-radius: $--x-border-radius;
+  }
+  &-bottom-right-radius {
+    border-bottom-right-radius: $--x-border-radius;
+  }
   @include size('big', 2.175rem);
   @include size('large', 1.875rem);
   @include size('medium', 1.675rem);

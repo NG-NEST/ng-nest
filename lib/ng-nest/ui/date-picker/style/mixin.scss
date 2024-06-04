@@ -16,9 +16,8 @@
   margin: 0.0625rem 0;
   font-size: $--x-date-picker-font-size;
   color: $--x-text;
-  border: $--x-date-picker-border;
-  border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-light;
+  border-radius: $--x-border-small-radius;
+  box-shadow: $--x-box-shadow;
   background-color: $--x-background;
   width: 16rem;
   display: flex;
@@ -30,7 +29,14 @@
     }
     .x-picker-date-body tbody tr:not(.x-date-week-active):hover .x-picker-date-item:not(.x-date-in-range) {
       background-color: $--x-background-a200;
-      border-radius: $--x-border-radius;
+      &:first-child {
+        border-top-left-radius: $--x-border-radius;
+        border-bottom-left-radius: $--x-border-radius;
+      }
+      &:last-child {
+        border-top-right-radius: $--x-border-radius;
+        border-bottom-right-radius: $--x-border-radius;
+      }
     }
   }
   &.date-time {
@@ -142,7 +148,9 @@
         &.x-date-week-start-active,
         &.x-date-week-end-active {
           .x-picker-date-item,
-          .x-picker-date-item.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
+          .x-picker-date-item.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(
+              .x-date-last-or-next
+            )
             .x-date-text {
             background-color: $--x-primary;
             color: $--x-background-100;
@@ -217,7 +225,8 @@
       &.x-date-last-or-next {
         color: $--x-text-700;
       }
-      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
+      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
+        .x-date-text {
         color: $--x-primary;
         border-color: $--x-primary;
       }
@@ -341,7 +350,8 @@
       &.x-date-last-or-next {
         color: $--x-text-700;
       }
-      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
+      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
+        .x-date-text {
         color: $--x-primary;
         border-color: $--x-primary;
       }
@@ -465,7 +475,8 @@
       &.x-date-last-or-next {
         color: $--x-text-700;
       }
-      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
+      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
+        .x-date-text {
         color: $--x-primary;
         border-color: $--x-primary;
       }
@@ -589,7 +600,8 @@
       &.x-date-last-or-next {
         color: $--x-text-700;
       }
-      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next) .x-date-text {
+      &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
+        .x-date-text {
         color: $--x-primary;
         border-color: $--x-primary;
       }
@@ -674,7 +686,7 @@
     left: 0;
     font-size: $--x-font-size - 0.125rem;
     color: $--x-danger;
-    margin-bottom: calc(calc(#{$--x-font-size} + 0.45rem) * -1);
+    margin-bottom: calc(calc(#{$--x-font-size}) * -2);
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -706,6 +718,7 @@
     background-image: none;
     box-shadow: $--x-date-picker-box-shadow;
     transition: all $--x-animation-duration-slow;
+    border-radius: $--x-border-radius;
     .x-input-group {
       display: flex;
       align-items: center;
@@ -714,8 +727,11 @@
         flex: 1;
         width: 50%;
         input {
-          padding-left: 0.4rem !important;
-          padding-right: 0.4rem !important;
+          padding-left: $--x-padding-medium !important;
+          padding-right: $--x-padding-medium !important;
+        }
+        .x-input-row > .x-input-input > input {
+          box-shadow: none;
         }
       }
     }
@@ -727,7 +743,6 @@
       .x-input-group {
         > x-input input {
           background-color: transparent;
-          border-radius: 0;
         }
       }
     }
@@ -763,6 +778,18 @@
       }
     }
   }
+  &-input-start {
+    .x-input-row > .x-input-input > input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  &-input-end {
+    .x-input-row > .x-input-input > input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
   @include size('big', $--x-height-big, 0 $--x-padding-big);
   @include size('large', $--x-height-large, 0 $--x-padding-large);
   @include size('medium', $--x-height-medium, 0 $--x-padding-medium);
@@ -796,9 +823,8 @@
   margin: 0.0625rem 0;
   font-size: $--x-date-picker-font-size;
   color: $--x-text;
-  border: $--x-date-picker-border;
-  border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-light;
+  border-radius: $--x-border-small-radius;
+  box-shadow: $--x-box-shadow;
   background-color: $--x-background;
   width: 34rem;
   display: flex;
@@ -813,10 +839,19 @@
           background-color: $--x-primary-800;
         }
       }
-      &:not(.x-date-week-active):not(.x-date-week-start-active):not(.x-date-week-end-active):not(.x-date-week-in-range):hover
+      &:not(.x-date-week-active):not(.x-date-week-start-active):not(.x-date-week-end-active):not(
+          .x-date-week-in-range
+        ):hover
         .x-picker-date-item {
         background-color: $--x-background-a200;
-        border-radius: $--x-border-radius;
+        &:first-child {
+          border-top-left-radius: $--x-border-radius;
+          border-bottom-left-radius: $--x-border-radius;
+        }
+        &:last-child {
+          border-top-right-radius: $--x-border-radius;
+          border-bottom-right-radius: $--x-border-radius;
+        }
       }
     }
   }
@@ -900,7 +935,8 @@
         &::after {
           background-color: $--x-primary-800;
           transform: translate(-0.25rem, -50%);
-          border-radius: $--x-border-radius;
+          border-top-right-radius: $--x-border-radius;
+          border-bottom-right-radius: $--x-border-radius;
           z-index: 0;
         }
         &.x-date-in-range-hover {
@@ -916,7 +952,8 @@
         &::after {
           background-color: $--x-primary-800;
           transform: translate(0.25rem, -50%);
-          border-radius: $--x-border-radius;
+          border-top-left-radius: $--x-border-radius;
+          border-bottom-left-radius: $--x-border-radius;
           z-index: 0;
         }
         &.x-date-in-range-hover {
@@ -925,7 +962,9 @@
           }
         }
       }
-      &.x-date-range-start.x-date-range-end.x-date-range-start-right:not(.x-date-last-or-next):not(.x-date-last-day):not(:last-child) {
+      &.x-date-range-start.x-date-range-end.x-date-range-start-right:not(.x-date-last-or-next):not(
+          .x-date-last-day
+        ):not(:last-child) {
         &::after {
           display: none;
         }
@@ -1001,6 +1040,8 @@
           &::before {
             border-left-color: $--x-primary;
             transform: translate(0.25rem, -50%);
+            border-top-left-radius: $--x-border-radius;
+            border-bottom-left-radius: $--x-border-radius;
           }
         }
         &.x-date-range-hover-start:not(.x-date-last-or-next) {
@@ -1012,6 +1053,8 @@
           &::before {
             border-right-color: $--x-primary;
             transform: translate(-0.25rem, -50%);
+            border-top-right-radius: $--x-border-radius;
+            border-bottom-right-radius: $--x-border-radius;
           }
         }
         &-start-left:not(:first-child):not(.x-date-last-or-next):not(.x-date-first-day),
@@ -1020,6 +1063,8 @@
             border-top-color: $--x-primary;
             border-bottom-color: $--x-primary;
             transform: translate(-0.3125rem, -50%);
+            border-top-right-radius: $--x-border-radius;
+            border-bottom-right-radius: $--x-border-radius;
           }
         }
         &-start-right:not(:last-child):not(.x-date-last-or-next):not(.x-date-last-day),
@@ -1028,6 +1073,8 @@
             border-top-color: $--x-primary;
             border-bottom-color: $--x-primary;
             transform: translate(0.3125rem, -50%);
+            border-top-left-radius: $--x-border-radius;
+            border-bottom-left-radius: $--x-border-radius;
           }
         }
       }

@@ -1,11 +1,4 @@
-import {
-  XIdentityProperty,
-  XProperty,
-  XJustify,
-  XWithConfig,
-  XPositionLeftRight,
-  XNumber
-} from '@ng-nest/ui/core';
+import { XIdentityProperty, XProperty, XJustify, XWithConfig, XPositionLeftRight, XNumber } from '@ng-nest/ui/core';
 import { Input, Component } from '@angular/core';
 
 /**
@@ -31,6 +24,11 @@ export class XAnchorProperty extends XProperty {
    * @en_US Top distance
    */
   @Input() @XWithConfig<string>(X_CONFIG_NAME, '0') affixTop!: string;
+  /**
+   * @zh_CN 底部距离
+   * @en_US Bottom distance
+   */
+  @Input() @XWithConfig<string>(X_CONFIG_NAME, '0') affixBottom!: string;
   /**
    * @zh_CN 导航宽度
    * @en_US Navigation Width

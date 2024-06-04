@@ -10,6 +10,7 @@
   }
   x-color.border {
     border: 0.0625rem solid var(--x-border);
+    border-radius: var(--x-border-radius);
   }
   x-color.black {
     color: var(--x-text-a300);

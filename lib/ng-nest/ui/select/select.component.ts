@@ -125,7 +125,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   box!: DOMRect;
   protalHeight!: number;
   maxNodes: number = 6;
-  inputPadding = 0.4;
   protalTobottom: boolean = true;
   asyncLoading = false;
   animating = false;

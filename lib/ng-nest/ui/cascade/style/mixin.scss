@@ -15,9 +15,8 @@
   margin: 0.0625rem 0;
   font-size: $--x-cascade-font-size;
   color: $--x-text;
-  border: $--x-cascade-border;
-  border-radius: $--x-border-radius;
-  box-shadow: $--x-box-shadow-light;
+  border-radius: $--x-border-small-radius;
+  box-shadow: $--x-box-shadow;
   background-color: $--x-background;
   display: flex;
   &:focus {

@@ -1,21 +1,23 @@
 import { OnInit, Renderer2, ElementRef, Directive, OnDestroy, inject } from '@angular/core';
-import { fromEvent, of, Subject } from 'rxjs';
-import { delay, takeUntil, tap } from 'rxjs/operators';
+import { delay, fromEvent, of, Subject, takeUntil, tap } from 'rxjs';
 import { XRipplePrefix, XRippleProperty } from './ripple.property';
 import { XComputed } from '@ng-nest/ui/core';
+import { DOCUMENT } from '@angular/common';
 
 @Directive({
   selector: '[x-ripple]',
   standalone: true
 })
 export class XRippleDirective extends XRippleProperty implements OnInit, OnDestroy {
-  duration = 800;
+  duration = 500;
   private _unSub = new Subject<void>();
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
+  private document = inject(DOCUMENT);
 
   ngOnInit() {
     if (this.disabled) return;
+
     fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown')
       .pipe(takeUntil(this._unSub))
       .subscribe((event) => {
@@ -33,17 +35,26 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
         this.renderer.appendChild(this.elementRef.nativeElement, ripple);
         this.enforceStyleRecalculation(ripple);
         ripple.style.transform = 'scale(1)';
-        ripple.style.opacity = '0';
+        ripple.style.opacity = '0.3';
+        const downTime = new Date().getTime();
 
-        of(true)
-          .pipe(
-            delay(this.duration),
-            tap(() => {
-              this.renderer.removeChild(this.elementRef.nativeElement, ripple);
-            }),
-            takeUntil(this._unSub)
-          )
-          .subscribe();
+        const upEvent = fromEvent<MouseEvent>(this.document.documentElement, 'mouseup')
+          .pipe(takeUntil(this._unSub))
+          .subscribe(() => {
+            const upTime = new Date().getTime();
+            of(true)
+              .pipe(
+                delay(upTime - downTime > this.duration ? 0 : this.duration - (upTime - downTime)),
+                tap(() => {
+                  if (this.renderer.parentNode(ripple)) {
+                    this.renderer.removeChild(this.elementRef.nativeElement, ripple);
+                  }
+                  upEvent.unsubscribe();
+                }),
+                takeUntil(this._unSub)
+              )
+              .subscribe();
+          });
       });
     this.setClassMap();
   }
@@ -58,7 +69,7 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
     this.renderer.addClass(this.elementRef.nativeElement, `${XRipplePrefix}-${this.type}`);
   }
 
-  distanceToFurthestCorner(x: number, y: number, rect: ClientRect) {
+  distanceToFurthestCorner(x: number, y: number, rect: DOMRect) {
     const distX = Math.max(Math.abs(x - rect.left), Math.abs(x - rect.right));
     const distY = Math.max(Math.abs(y - rect.top), Math.abs(y - rect.bottom));
     return Math.sqrt(distX * distX + distY * distY);

@@ -1,0 +1,8 @@
+{
+    "commentTranslate.targetLanguage": "en",
+    "commentTranslate.source": "Baidu",
+    "commentTranslate.maxTranslationLength": 1000,
+    "commentTranslate.hover.enabled": false,
+    "commentTranslate.hover.content": false,
+    "commentTranslate.selectTargetLanguageWhenReplacing": false
+}

@@ -26,6 +26,9 @@
         &.x-activated {
           background-color: $--x-border;
         }
+        x-icon {
+          font-size: 1rem;
+        }
       }
     }
   }
@@ -82,7 +85,7 @@
         max-width: 100%;
         height: auto;
         margin: auto;
-        box-shadow: $--x-box-shadow-light;
+        box-shadow: $--x-box-shadow;
         border-radius: $--x-border-radius;
         background-color: $--x-background-a100;
       }

@@ -57,7 +57,7 @@ export class XTextareaProperty extends XControlValueAccessor<any> implements XTe
    * @zh_CN 高度
    * @en_US height
    */
-  @Input() height: string = '4rem';
+  @Input() height: string = '6rem';
   /**
    * @zh_CN 清除按钮的事件
    * @en_US Clear button event

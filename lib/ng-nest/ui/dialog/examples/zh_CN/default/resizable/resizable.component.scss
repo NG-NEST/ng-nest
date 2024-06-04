@@ -1,12 +1,15 @@
 :host {
   .box {
-    width: 16rem;
-    height: 10rem;
-    padding: 0.5rem;
+    width: 32rem;
+    height: 20rem;
+    padding: 1rem;
+    border-radius: var(--x-border-radius);
     border: 0.0625rem solid var(--x-border);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
   }
   .row {
-    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
