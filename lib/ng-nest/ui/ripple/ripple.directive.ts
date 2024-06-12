@@ -18,7 +18,9 @@ import { DOCUMENT } from '@angular/common';
   standalone: true
 })
 export class XRippleDirective extends XRippleProperty implements OnInit, OnDestroy {
-  @HostBinding('class') className = `${XRipplePrefix} ${XRipplePrefix}-${this.type()}`;
+  @HostBinding('class') get className() {
+    return `${XRipplePrefix} ${XRipplePrefix}-${this.type()}`;
+  }
 
   private unsub = new Subject<void>();
   private renderer = inject(Renderer2);

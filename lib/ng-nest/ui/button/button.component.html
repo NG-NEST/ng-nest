@@ -5,19 +5,19 @@
   [ngClass]="classMap()"
   [class.x-button-only-icon]="onlyIcon()"
   [class.x-button-activated]="activated()"
-  [class.x-button-disabled]="disabled()"
+  [class.x-button-disabled]="disabledComputed()"
   [class.x-button-round]="roundSignal()"
   [class.x-button-circle]="circle()"
-  [class.x-button-icon]="icon() && !content.innerHTML.trim()"
+  [class.x-button-icon]="icon() && content.innerHTML.trim() !== ''"
   [class.x-button-icon-not-content]="icon() && content.innerHTML.trim() === ''"
   [class.x-button-closable]="closable()"
   [class.x-button-transition]="transition()"
   [title]="title()"
   x-ripple
   [type]="type()"
-  [disabled]="disabled()"
+  [disabled]="disabledComputed()"
   [attr.type]="attrType()"
-  [style.disabled]="disabledComputed()"
+  [attr.disabled]="disabledComputed() || null"
 >
   @if (direction() === 'row' && icon() && !loading()) {
     <x-icon [type]="icon()"></x-icon>

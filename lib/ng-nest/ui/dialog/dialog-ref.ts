@@ -1,7 +1,7 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ElementRef, Renderer2 } from '@angular/core';
 import { Subject, filter, take } from 'rxjs';
-import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
+import { XPortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRefOption } from './dialog.property';
 
@@ -95,7 +95,7 @@ export class XDialogRef<C> {
         dialogRef.overlayRef?.updatePositionStrategy(
           this.portalService.setPlace(this.option.placement, this.option.offset!)
         );
-        this.renderer.addClass(hostElement, PortalResizablePrefix);
+        this.renderer.addClass(hostElement, XPortalResizablePrefix);
         setTimeout(() => {
           Object.assign(dialogBox, this.portalService.setResizable(overlayElement!, this.option.placement));
           this.containerInstance.offsetLeft = overlayElement!.offsetLeft;

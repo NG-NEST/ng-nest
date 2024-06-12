@@ -2,7 +2,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
 import { Injectable, RendererFactory2, TemplateRef, inject } from '@angular/core';
 import { XFillDefault, XConfigService, XDialogConfig } from '@ng-nest/ui/core';
-import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
+import { XPortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRef } from './dialog-ref';
 import { XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
@@ -63,7 +63,7 @@ export class XDialogService {
       width: defaultMaximize ? this.default.width : option.width,
       height: defaultMaximize ? null : option.height,
       minWidth: option.minWidth,
-      minHeight: option.minHeight,
+      minHeight: option.minHeight
     });
     instance.placement = option.placement;
     instance.option = option;
@@ -75,7 +75,7 @@ export class XDialogService {
     dialogRef.option = option;
     dialogRef.fullscreen = defaultMaximize;
     if (option.resizable && !defaultMaximize) {
-      this.renderer.addClass(hostElement, PortalResizablePrefix);
+      this.renderer.addClass(hostElement, XPortalResizablePrefix);
       setTimeout(() => {
         Object.assign(dialogBox, this.portalService.setResizable(overlayElement!, option.placement));
         instance.offsetLeft = overlayElement!.offsetLeft;

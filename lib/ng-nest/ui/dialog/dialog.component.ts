@@ -23,7 +23,7 @@ import {
   XDialogAction,
   X_DIALOG_CONTAINER
 } from './dialog.property';
-import { PortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
+import { XPortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import { XI18nDialog, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
@@ -174,7 +174,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
       minHeight: this.minHeight()
     });
     if (this.resizableSignal() && !this.isDefaultMaximize()) {
-      this.renderer.addClass(hostElement, PortalResizablePrefix);
+      this.renderer.addClass(hostElement, XPortalResizablePrefix);
       setTimeout(() => {
         Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement()!, this.placement()));
         this.styleOffsetLeft.set(this.overlayElement()?.offsetLeft!);

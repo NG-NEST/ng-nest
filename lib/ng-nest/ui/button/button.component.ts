@@ -42,7 +42,7 @@ export class XButtonComponent extends XButtonProperty implements AfterViewInit, 
     return this.buttons?.space();
   }
   @HostBinding('style.pointerEvents') get pointerEvents() {
-    return this.loading() || this.disabled() ? 'none' : '';
+    return this.disabledComputed() ? 'none' : '';
   }
 
   constructor() {
@@ -66,7 +66,7 @@ export class XButtonComponent extends XButtonProperty implements AfterViewInit, 
   });
 
   disabledComputed = computed(() => {
-    return this.loading() || this.disabled() ? 'none' : '';
+    return this.loading() || this.disabled();
   });
 
   ngAfterViewInit() {

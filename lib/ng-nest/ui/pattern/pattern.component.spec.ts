@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPatternComponent } from '@ng-nest/ui/pattern';
-import { PatternPrefix } from './pattern.property';
+import { XPatternPrefix } from './pattern.property';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-describe(PatternPrefix, () => {
+describe(XPatternPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
     declarations: [TestXPatternComponent],
@@ -30,7 +30,7 @@ describe(PatternPrefix, () => {
     });
     it('should className.', () => {
       fixture.detectChanges();
-      expect(element.classList).toContain(PatternPrefix);
+      expect(element.classList).toContain(XPatternPrefix);
     });
   });
 });

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ViewChild, TemplateRef, ChangeDetectorRef, viewChild } from '@angular/core';
+import { Component, DebugElement, TemplateRef, ChangeDetectorRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageBoxComponent } from '@ng-nest/ui/message-box';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -16,13 +16,10 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XMessageBoxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXMessageBoxComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
-        XMessageBoxComponent,
-        XButtonComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXMessageBoxComponent],
+      imports: [BrowserAnimationsModule, XThemeComponent, XMessageBoxComponent, XButtonComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMessageBoxComponent>;

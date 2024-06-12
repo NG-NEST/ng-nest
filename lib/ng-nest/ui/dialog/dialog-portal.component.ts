@@ -10,6 +10,7 @@ import {
   Renderer2,
   ViewEncapsulation,
   contentChildren,
+  inject,
   viewChild
 } from '@angular/core';
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
@@ -46,6 +47,7 @@ export class XDialogPortalComponent extends BasePortalOutlet {
       totalTime
     });
   }
+  renderer = inject(Renderer2);
   portalOutlet = viewChild.required(CdkPortalOutlet);
   dragRef = viewChild.required(CdkDrag);
   handles = contentChildren(CdkDragHandle, { descendants: true });
@@ -66,10 +68,6 @@ export class XDialogPortalComponent extends BasePortalOutlet {
   distance = { x: 0, y: 0 };
 
   dialogBox: { [key: string]: any } = {};
-
-  constructor(private renderer: Renderer2) {
-    super();
-  }
 
   ngOnInit() {
     this.dialogBox['draggable'] = this.defaultMaximize ? this.dialogBox['draggable'] : this.option.draggable;

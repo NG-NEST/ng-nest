@@ -45,7 +45,9 @@ export const XViewBox = [
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XIconComponent extends XIconProperty {
-  @HostBinding('class') className = XIconPrefix;
+  @HostBinding('class') get className() {
+    return `${XIconPrefix} ${this.type()}`;
+  }
   private svgElement!: SVGElement;
   private document = inject(DOCUMENT);
   private elementRef = inject(ElementRef);
