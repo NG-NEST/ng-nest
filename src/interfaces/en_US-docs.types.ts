@@ -24003,6 +24003,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-row space=\"1rem\">\n  <x-col span=\"6\">col-1</x-col>\n  <x-col span=\"6\">col-2</x-col>\n</x-row>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToCssPixelValue"
@@ -24021,6 +24030,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-row justify=\"end\">\n  <x-col span=\"6\">col-1</x-col>\n  <x-col span=\"6\">col-2</x-col>\n</x-row>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": ""
@@ -24036,6 +24054,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": false,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-row align=\"end\">\n  <x-col span=\"6\">col-1</x-col>\n  <x-col span=\"6\">col-2</x-col>\n</x-row>"
+          },
           {
             "type": "text",
             "content": ""
@@ -24090,6 +24117,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-row>\n  <x-col span=\"6\">col-1</x-col>\n  <x-col span=\"18\">col-2</x-col>\n</x-row>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToNumber"
@@ -24105,6 +24141,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": false,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-row>\n  <x-col span=\"6\">col-1</x-col>\n  <x-col span=\"12\" offset=\"6\">col-2</x-col>\n</x-row>"
+          },
           {
             "type": "text",
             "content": ""
@@ -24213,6 +24258,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": false,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-row>\n  <x-col span=\"6\" inherit>col-1</x-col>\n  <x-col span=\"12\" offset=\"6\" inherit>col-2</x-col>\n</x-row>"
+          },
           {
             "type": "text",
             "content": ""

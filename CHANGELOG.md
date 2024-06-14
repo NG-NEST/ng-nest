@@ -1,3 +1,14 @@
+## [18.0.1](https://github.com/NG-NEST/ng-nest/compare/18.0.0...18.0.1) (2024-06-14)
+
+
+### Bug Fixes
+
+* **module:button:** fix button icon style ([8a36221](https://github.com/NG-NEST/ng-nest/commit/8a36221f2471f2617fcbe4448601fa08b2534c5d))
+* **module:form:** fix set FormGroup value ([1755d72](https://github.com/NG-NEST/ng-nest/commit/1755d72e7de7377594798732870d162f8c6d9c7a)), closes [#225](https://github.com/NG-NEST/ng-nest/issues/225)
+* **spec:** fix ng-nest-ui test error ([1e6834c](https://github.com/NG-NEST/ng-nest/commit/1e6834c85da93574b1dcd0c7c30049b0917a4387))
+
+
+
 # [18.0.0](https://github.com/NG-NEST/ng-nest/compare/17.0.11...18.0.0) (2024-06-04)
 
 
