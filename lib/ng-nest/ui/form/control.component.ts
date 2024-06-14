@@ -45,7 +45,6 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerComponent, XTimePickerModule } from '@ng-nest/ui/time-picker';
-// import { XSelectComponent } from '@ng-nest/ui/select';
 
 @Component({
   selector: 'x-control',
@@ -116,6 +115,11 @@ export class XControlComponent extends XControlProperty implements OnInit, After
       .subscribe((x) => {
         this.setMessages(x);
       });
+    this.formControl()!
+      .valueChanges.pipe(takeUntil(this._unSubject))
+      .subscribe((x) => {
+        this.value.set(x);
+      });
     this.option().setValidators = () => this.setValidators();
     this.form.formGroup().addControl(this.option().id, this.formControl());
   }
@@ -128,17 +132,13 @@ export class XControlComponent extends XControlProperty implements OnInit, After
       if (key in this.componentRef.instance) {
         const val = (this.componentRef.instance as any)[key];
         if (XIsFunction(val)) {
-          const valStr = val.toString();
-          if (valStr.startsWith('[Input Signal:')) {
+          const valSymbols = Object.getOwnPropertySymbols(val);
+          if (valSymbols.length !== 1) break;
+          const valSymbol = val[valSymbols[0]];
+          if (valSymbol.hasOwnProperty('transformFn')) {
             // input
             this.componentRef.setInput(key, this.option()[key]);
-          } else if (valStr.startsWith('[Model Signal:')) {
-            // model
-            this.componentRef.setInput(key, this.option()[key]);
-            val.subscribe((x: any) => {
-              this.option()[key] = x;
-            });
-          } else if (valStr.startsWith('[Signal:')) {
+          } else {
             // signal
             val.set(this.option()[key]);
           }
