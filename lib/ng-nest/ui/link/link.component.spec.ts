@@ -1,91 +1,116 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XLinkComponent } from '@ng-nest/ui/link';
-import { FormsModule } from '@angular/forms';
-import { XLinkPrefix } from './link.property';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+import { XLinkComponent, XLinkPrefix, XLinkType } from '@ng-nest/ui/link';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
+@Component({
+  standalone: true,
+  imports: [XLinkComponent],
+  template: `<x-link>Link</x-link>`
+})
+class XTestLinkComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XLinkComponent],
+  template: `<x-link
+    [href]="href()"
+    [icon]="icon()"
+    [underline]="underline()"
+    [disabled]="disabled()"
+    [iconRight]="iconRight()"
+    [preventDefault]="preventDefault()"
+    [type]="type()"
+    [target]="target()"
+    >Link</x-link
+  >`
+})
+class XTestLinkPropertyComponent {
+  href = signal('');
+  icon = signal('');
+  underline = signal(false);
+  disabled = signal(false);
+  iconRight = signal(false);
+  preventDefault = signal(false);
+  type = signal<XLinkType>('initial');
+  target = signal('');
+}
 
 describe(XLinkPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXLinkComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
-        FormsModule,
-        XLinkComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      imports: [XTestLinkComponent, XTestLinkPropertyComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXLinkComponent>;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestLinkComponent>;
     let link: DebugElement;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXLinkComponent);
+      fixture = TestBed.createComponent(XTestLinkComponent);
+      link = fixture.debugElement.query(By.css('.x-link'));
       fixture.detectChanges();
-      link = fixture.debugElement.query(By.directive(XLinkComponent));
     });
-    it('should create.', () => {
-      expect(link).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XLinkComponent));
+      expect(com).toBeDefined();
+    });
+    it('property.', () => {
+      expect(link.nativeElement).toHaveClass('x-link-initial');
+      expect(link.nativeElement).not.toHaveClass('x-link-disabled');
+      expect(link.nativeElement).not.toHaveClass('x-link-underline');
+      expect(link.nativeElement).not.toHaveClass('x-link-icon-right');
+      expect(link.nativeElement).not.toHaveClass('x-link-only-icon');
+      expect(link.nativeElement.hasAttribute('href')).toBe(false);
+      expect(link.nativeElement.hasAttribute('target')).toBe(false);
+      expect(link.nativeElement.textContent).toBe('Link');
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestLinkPropertyComponent>;
+    let component: XTestLinkPropertyComponent;
+    let link: DebugElement;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestLinkPropertyComponent);
+      link = fixture.debugElement.query(By.css('.x-link'));
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('href.', () => {
+      component.href.set('https://www.ngnest.com');
+      fixture.detectChanges();
+      expect(link.nativeElement.getAttribute('href')).toBe('https://www.ngnest.com');
+    });
+    it('underline.', () => {
+      component.underline.set(true);
+      fixture.detectChanges();
+      expect(link.nativeElement).toHaveClass('x-link-underline');
+    });
+    it('disabled.', () => {
+      component.disabled.set(true);
+      fixture.detectChanges();
+      expect(link.nativeElement).toHaveClass('x-link-disabled');
+    });
+    it('iconRight.', () => {
+      component.iconRight.set(true);
+      fixture.detectChanges();
+      expect(link.nativeElement).toHaveClass('x-link-icon-right');
+    });
+    it('type.', () => {
+      component.type.set('danger');
+      fixture.detectChanges();
+      expect(link.nativeElement).toHaveClass('x-link-danger');
+    });
+    it('target.', () => {
+      component.target.set('_blank');
+      fixture.detectChanges();
+      expect(link.nativeElement.getAttribute('href')).toBe('_blank');
     });
   });
 });
-
-@Component({
-  template: `
-    <x-theme showDark></x-theme>
-    <x-row>
-      <x-col span="24">
-        <x-link href="https://www.ngnest.com" target="_blank">默认链接</x-link>
-        <x-link type="primary">主要链接</x-link>
-        <x-link type="success">成功链接</x-link>
-        <x-link type="warning">警告链接</x-link>
-        <x-link type="danger">危险链接</x-link>
-        <x-link type="info">信息链接</x-link>
-      </x-col>
-      <x-col span="24">
-        <x-link href="https://www.ngnest.com" target="_blank" disabled>默认链接</x-link>
-        <x-link type="primary" disabled>主要链接</x-link>
-        <x-link type="success" disabled>成功链接</x-link>
-        <x-link type="warning" disabled>警告链接</x-link>
-        <x-link type="danger" disabled>危险链接</x-link>
-        <x-link type="info" disabled>信息链接</x-link>
-      </x-col>
-      <x-col span="24">
-        <x-link underline>有下划线</x-link>
-        <x-link>无下划线</x-link>
-      </x-col>
-      <x-col span="24">
-        <x-link icon="fto-chevron-left" underline>后退</x-link>
-        <x-link icon="fto-chevron-right" underline iconRight>前进</x-link>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-      x-row > x-col > x-link:not(:first-child) {
-        margin-left: 1rem;
-      }
-    `
-  ]
-})
-class TestXLinkComponent {
-  model = 3;
-}

@@ -117,6 +117,11 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    */
   readonly virtualScroll = input<boolean, XBoolean>(this.config?.virtualScroll ?? false, { transform: XToBoolean });
   /**
+   * @zh_CN 搜索时允许选择输入的值
+   * @en_US Allow the value of the input when searching for
+   */
+  readonly allowInput = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */

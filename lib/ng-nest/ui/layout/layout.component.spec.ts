@@ -1,477 +1,193 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XRowPrefix } from './layout.property';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XRowPrefix } from './layout.property';
+import { XLayoutModule } from './layout.module';
+import { XRowComponent } from './row.component';
+import { XColComponent } from './col.component';
+import { XAlign, XJustify } from '@ng-nest/ui/core';
 
-describe(`${XRowPrefix}`, () => {
+@Component({
+  standalone: true,
+  imports: [XLayoutModule],
+  template: `
+    <x-row>
+      <x-col><div>one</div></x-col>
+      <x-col><div>two</div></x-col>
+      <x-col><div>three</div></x-col>
+    </x-row>
+  `
+})
+class XTestLayoutComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XLayoutModule],
+  template: `
+    <x-row [space]="space()" [justify]="justify()" [align]="align()">
+      <x-col
+        [span]="span()"
+        [offset]="offset()"
+        [xs]="xs()"
+        [sm]="sm()"
+        [md]="md()"
+        [lg]="lg()"
+        [xl]="xl()"
+        [inherit]="inherit()"
+      >
+        <div>one</div>
+      </x-col>
+      <x-col
+        [span]="span()"
+        [offset]="offset()"
+        [xs]="xs()"
+        [sm]="sm()"
+        [md]="md()"
+        [lg]="lg()"
+        [xl]="xl()"
+        [inherit]="inherit()"
+      >
+        <div>two</div>
+      </x-col>
+      <x-col
+        [span]="span()"
+        [offset]="offset()"
+        [xs]="xs()"
+        [sm]="sm()"
+        [md]="md()"
+        [lg]="lg()"
+        [xl]="xl()"
+        [inherit]="inherit()"
+      >
+        <div>three</div>
+      </x-col>
+    </x-row>
+  `
+})
+class XTestLayoutPropertyComponent {
+  space = signal('');
+  justify = signal<XJustify | ''>('');
+  align = signal<XAlign | ''>('');
+  span = signal(24);
+  offset = signal(0);
+  xs = signal(0);
+  sm = signal(0);
+  md = signal(0);
+  lg = signal(0);
+  xl = signal(0);
+  inherit = signal(false);
+}
+
+describe(XRowPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
-        TestLayoutComponent,
-        TestSpaceLayoutComponent,
-        TestBlendLayoutComponent,
-        TestOffsetLayoutComponent,
-        TestFlexLayoutComponent,
-        TestLayoutLayoutComponent,
-        TestHiddenLayoutComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
-        XRowComponent,
-        XColComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      imports: [XTestLayoutComponent, XTestLayoutPropertyComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestLayoutComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestLayoutComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestLayoutComponent);
+      fixture = TestBed.createComponent(XTestLayoutComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XRowComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const row = fixture.debugElement.query(By.directive(XRowComponent));
+      expect(row).toBeDefined();
+
+      const col = fixture.debugElement.query(By.directive(XColComponent));
+      expect(col).toBeDefined();
     });
-  });
-  describe(`space.`, () => {
-    let fixture: ComponentFixture<TestSpaceLayoutComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestSpaceLayoutComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XRowComponent));
-    });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('property.', () => {
+      const row = fixture.debugElement.query(By.directive(XRowComponent));
+      expect(row.nativeElement).toHaveClass('x-row');
+      expect(row.nativeElement.style.marginLeft).toBe('0px');
+      expect(row.nativeElement.style.marginRight).toBe('0px');
+
+      const col = fixture.debugElement.query(By.directive(XColComponent));
+      expect(col.nativeElement).toHaveClass('x-col');
+      expect(col.nativeElement).toHaveClass('x-col-24');
+      expect(col.nativeElement.style.paddingLeft).toBe('0px');
+      expect(col.nativeElement.style.paddingRight).toBe('0px');
     });
   });
-  describe(`blend.`, () => {
-    let fixture: ComponentFixture<TestBlendLayoutComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestBlendLayoutComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestLayoutPropertyComponent>;
+    let component: XTestLayoutPropertyComponent;
+    let row: DebugElement;
+    let col: DebugElement;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestLayoutPropertyComponent);
+      component = fixture.componentInstance;
+      row = fixture.debugElement.query(By.directive(XRowComponent));
+      col = fixture.debugElement.query(By.directive(XColComponent));
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XRowComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
-    });
-  });
-  describe(`offset.`, () => {
-    let fixture: ComponentFixture<TestOffsetLayoutComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestOffsetLayoutComponent);
+    it('space.', () => {
+      expect(row.nativeElement.style.marginLeft).toBe('0px');
+      expect(row.nativeElement.style.marginRight).toBe('0px');
+
+      component.space.set('16px');
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XRowComponent));
+      expect(row.nativeElement.style.marginLeft).toBe('-8px');
+      expect(row.nativeElement.style.marginRight).toBe('-8px');
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
-    });
-  });
-  describe(`flex.`, () => {
-    let fixture: ComponentFixture<TestFlexLayoutComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestFlexLayoutComponent);
+    it('justify.', () => {
+      component.justify.set('center');
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XRowComponent));
+      expect(row.nativeElement).toHaveClass('x-justify-center');
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
-    });
-  });
-  describe(`layout.`, () => {
-    let fixture: ComponentFixture<TestLayoutLayoutComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestLayoutLayoutComponent);
+    it('align.', () => {
+      component.align.set('center');
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XRowComponent));
+      expect(row.nativeElement).toHaveClass('x-align-center');
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
-    });
-  });
-  describe(`hidden.`, () => {
-    let fixture: ComponentFixture<TestHiddenLayoutComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestHiddenLayoutComponent);
+    it('span.', () => {
+      expect(col.nativeElement).toHaveClass('x-col-24');
+      component.span.set(12);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XRowComponent));
+      expect(col.nativeElement).toHaveClass('x-col-12');
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('offset.', () => {
+      component.offset.set(2);
+      fixture.detectChanges();
+      expect(col.nativeElement).toHaveClass('x-col-offset-2');
+    });
+    it('xs.', () => {
+      component.xs.set(2);
+      fixture.detectChanges();
+      expect(col.nativeElement).toHaveClass('x-col-xs-2');
+    });
+    it('sm.', () => {
+      component.sm.set(2);
+      fixture.detectChanges();
+      expect(col.nativeElement).toHaveClass('x-col-sm-2');
+    });
+    it('md.', () => {
+      component.md.set(2);
+      fixture.detectChanges();
+      expect(col.nativeElement).toHaveClass('x-col-md-2');
+    });
+    it('lg.', () => {
+      component.lg.set(2);
+      fixture.detectChanges();
+      expect(col.nativeElement).toHaveClass('x-col-lg-2');
+    });
+    it('xl.', () => {
+      component.xl.set(2);
+      fixture.detectChanges();
+      expect(col.nativeElement).toHaveClass('x-col-xl-2');
+    });
+    it('inherit.', () => {
+      component.inherit.set(true);
+      fixture.detectChanges();
+      expect(col.nativeElement).toHaveClass('x-col-inherit');
     });
   });
 });
-
-@Component({
-  selector: 'test-x-layout',
-  template: `
-    <x-theme showDark></x-theme>
-    <x-row>
-      <x-col span="12">col-12</x-col>
-      <x-col span="12">col-12</x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">col-8</x-col>
-      <x-col span="8">col-8</x-col>
-      <x-col span="8">col-8</x-col>
-    </x-row>
-    <x-row>
-      <x-col span="6">col-6</x-col>
-      <x-col span="6">col-6</x-col>
-      <x-col span="6">col-6</x-col>
-      <x-col span="6">col-6</x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        margin: 1rem 0;
-      }
-      x-row > x-col {
-        color: var(--x-text);
-        padding: 1rem;
-        text-align: center;
-        border-radius: 0.125rem;
-      }
-      x-row > x-col:nth-child(odd) {
-        background-color: var(--x-info-400);
-      }
-      x-row > x-col:nth-child(even) {
-        background-color: var(--x-info-500);
-      }
-    `
-  ]
-})
-class TestLayoutComponent {}
-
-@Component({
-  selector: 'test-space-x-layout',
-  template: `
-    <x-theme showDark></x-theme>
-    <x-row space="1">
-      <x-col span="12"><div>col-12</div></x-col>
-      <x-col span="12"><div>col-12</div></x-col>
-    </x-row>
-    <x-row space="2">
-      <x-col span="8"><div>col-8</div></x-col>
-      <x-col span="8"><div>col-8</div></x-col>
-      <x-col span="8"><div>col-8</div></x-col>
-    </x-row>
-    <x-row space="3">
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        margin: 1rem 0;
-      }
-      x-row > x-col > div {
-        color: var(--x-text);
-        padding: 1rem;
-        text-align: center;
-        border-radius: 0.125rem;
-      }
-      x-row > x-col:nth-child(odd) > div {
-        background-color: var(--x-info-400);
-      }
-      x-row > x-col:nth-child(even) > div {
-        background-color: var(--x-info-500);
-      }
-    `
-  ]
-})
-class TestSpaceLayoutComponent {}
-
-@Component({
-  selector: 'test-blend-x-layout',
-  template: `
-    <x-theme showDark></x-theme>
-    <x-row space="1">
-      <x-col span="12"><div>col-12</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="8"><div>col-8</div></x-col>
-      <x-col span="8"><div>col-8</div></x-col>
-      <x-col span="4"><div>col-4</div></x-col>
-      <x-col span="4"><div>col-4</div></x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="4"><div>col-4</div></x-col>
-      <x-col span="20"><div>col-20</div></x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        margin: 1rem 0;
-      }
-      x-row > x-col > div {
-        color: var(--x-text);
-        padding: 1rem;
-        text-align: center;
-        border-radius: 0.125rem;
-      }
-      x-row > x-col:nth-child(odd) > div {
-        background-color: var(--x-info-400);
-      }
-      x-row > x-col:nth-child(even) > div {
-        background-color: var(--x-info-500);
-      }
-    `
-  ]
-})
-class TestBlendLayoutComponent {}
-
-@Component({
-  selector: 'test-offset-x-layout',
-  template: `
-    <x-theme showDark></x-theme>
-    <x-row space="1">
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6" offset="6"><div>col-6</div></x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="6" offset="6"><div>col-6</div></x-col>
-      <x-col span="6" offset="6"><div>col-6</div></x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="18" offset="6"><div>col-18</div></x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        margin: 1rem 0;
-      }
-      x-row > x-col > div {
-        color: var(--x-text);
-        padding: 1rem;
-        text-align: center;
-        border-radius: 0.125rem;
-      }
-      x-row > x-col:nth-child(odd) > div {
-        background-color: var(--x-info-400);
-      }
-      x-row > x-col:nth-child(even) > div {
-        background-color: var(--x-info-500);
-      }
-    `
-  ]
-})
-class TestOffsetLayoutComponent {}
-
-@Component({
-  selector: 'test-flex-x-layout',
-  template: `
-    <x-theme showDark></x-theme>
-    <x-row justify="start">
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-    </x-row>
-    <x-row justify="end">
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-    </x-row>
-    <x-row justify="center">
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-    </x-row>
-    <x-row justify="space-around">
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-    </x-row>
-    <x-row justify="space-between">
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-      <x-col span="6"><div>col-6</div></x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        margin: 1rem 0;
-      }
-      x-row > x-col > div {
-        color: var(--x-text);
-        padding: 1rem;
-        text-align: center;
-        border-radius: 0.125rem;
-      }
-      x-row > x-col:nth-child(odd) > div {
-        background-color: var(--x-info-400);
-      }
-      x-row > x-col:nth-child(even) > div {
-        background-color: var(--x-info-500);
-      }
-    `
-  ]
-})
-class TestFlexLayoutComponent {}
-
-@Component({
-  selector: 'test-layout-x-layout',
-  template: `
-    <x-theme showDark></x-theme>
-    <x-row space="1">
-      <x-col xs="8" sm="6" md="4" lg="3" xl="1">
-        <div></div>
-      </x-col>
-      <x-col xs="4" sm="6" md="8" lg="9" xl="11">
-        <div></div>
-      </x-col>
-      <x-col xs="4" sm="6" md="8" lg="9" xl="11">
-        <div></div>
-      </x-col>
-      <x-col xs="8" sm="6" md="4" lg="3" xl="1">
-        <div></div>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        margin: 1rem 0;
-      }
-      x-row > x-col > div {
-        color: var(--x-text);
-        padding: 1rem;
-        text-align: center;
-        border-radius: 0.125rem;
-      }
-      x-row > x-col:nth-child(odd) > div {
-        background-color: var(--x-info-400);
-      }
-      x-row > x-col:nth-child(even) > div {
-        background-color: var(--x-info-500);
-      }
-    `
-  ]
-})
-class TestLayoutLayoutComponent {}
-
-@Component({
-  selector: 'test-hidden-x-layout',
-  template: `
-    <x-theme showDark></x-theme>
-    <x-row space="1">
-      <x-col span="6" x-hidden-sm-only>
-        <div>hidden-xs-only</div>
-      </x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="6" x-hidden-sm-only>
-        <div>hidden-sm-only</div>
-      </x-col>
-      <x-col span="6" x-hidden-sm-and-down>
-        <div>hidden-sm-and-down</div>
-      </x-col>
-      <x-col span="6" x-hidden-sm-and-up>
-        <div>hidden-sm-and-up</div>
-      </x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="6" x-hidden-md-only>
-        <div>hidden-md-only</div>
-      </x-col>
-      <x-col span="6" x-hidden-md-and-down>
-        <div>hidden-md-and-down</div>
-      </x-col>
-      <x-col span="6" x-hidden-md-and-up>
-        <div>hidden-md-and-up</div>
-      </x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="6" x-hidden-lg-only>
-        <div>hidden-lg-only</div>
-      </x-col>
-      <x-col span="6" x-hidden-lg-and-down>
-        <div>hidden-lg-and-down</div>
-      </x-col>
-      <x-col span="6" x-hidden-lg-and-up>
-        <div>hidden-lg-and-up</div>
-      </x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="6" x-hidden-xl-only>
-        <div>hidden-xl-only</div>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        margin: 1rem 0;
-      }
-      x-row > x-col > div {
-        color: var(--x-text);
-        padding: 1rem;
-        text-align: center;
-        border-radius: 0.125rem;
-      }
-      x-row > x-col:nth-child(odd) > div {
-        background-color: var(--x-info-400);
-      }
-      x-row > x-col:nth-child(even) > div {
-        background-color: var(--x-info-500);
-      }
-    `
-  ]
-})
-class TestHiddenLayoutComponent {}

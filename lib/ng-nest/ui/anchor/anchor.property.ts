@@ -18,31 +18,80 @@ export class XAnchorProperty extends XPropertyFunction(X_ANCHOR_CONFIG_NAME) {
   /**
    * @zh_CN 滚动区域对象
    * @en_US Scroll area object
+   * @example
+   *
+   * ```html
+   * <div #scroll style="height: 60rem; width: 100%; overflow: auto;">
+   *   <x-anchor [scroll]="scroll">
+   *     ...
+   *   </x-anchor>
+   * </div>
+   * ```
    */
   readonly scroll = input<HTMLElement>();
   /**
    * @zh_CN 顶部距离
    * @en_US Top distance
+   * @example
+   *
+   * ```html
+   * <x-anchor affixTop="100">
+   *   ...
+   * </x-anchor>
+   * ```
+   *
    */
   readonly affixTop = input<string, XNumber>(this.config?.affixTop ?? '0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 底部距离
    * @en_US Bottom distance
+   * @example
+   *
+   * ```html
+   * <x-anchor affixBottom="100">
+   *   ...
+   * </x-anchor>
+   * ```
+   *
    */
   readonly affixBottom = input<string, XNumber>(this.config?.affixBottom ?? '0', { transform: XToCssPixelValue });
   /**
    * @zh_CN 导航宽度
    * @en_US Navigation Width
+   * @example
+   *
+   * ```html
+   * <x-anchor affixWidth="150">
+   *   ...
+   * </x-anchor>
+   * ```
+   *
    */
   readonly affixWidth = input<string, XNumber>(this.config?.affixWidth!, { transform: XToCssPixelValue });
   /**
    * @zh_CN 导航相对内容位置
    * @en_US Navigation relative content position
+   * @example
+   *
+   * ```html
+   * <x-anchor layout="left">
+   *   ...
+   * </x-anchor>
+   * ```
+   *
    */
   readonly layout = input<XAnchorLayout>(this.config?.layout ?? 'right');
   /**
    * @zh_CN 对齐方式
    * @en_US Alignment
+   * @example
+   *
+   * ```html
+   * <x-anchor justify="end">
+   *   ...
+   * </x-anchor>
+   * ```
+   *
    */
   readonly justify = input<XJustify>(this.config?.justify ?? 'start');
 }

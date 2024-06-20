@@ -10,8 +10,8 @@ import { XDirection, XSize } from '@ng-nest/ui/core';
 
 @Component({
   standalone: true,
-  imports: [XButtonComponent, XIconComponent],
-  template: ` <x-button>Button</x-button> <x-icon [type]="'fto-x'"></x-icon>`
+  imports: [XButtonComponent],
+  template: ` <x-button>Button</x-button>`
 })
 class XTestButtonComponent {}
 
@@ -171,11 +171,5 @@ describe(XButtonPrefix, () => {
       expect(debugButton).toHaveClass(`${XButtonPrefix}-disabled`);
       expect(debugButton.hasAttribute('disabled')).toBe(true);
     });
-  });
-  describe(`output.`, () => {
-    it('test.', () => {});
-  });
-  describe(`event.`, () => {
-    it('test.', () => {});
   });
 });

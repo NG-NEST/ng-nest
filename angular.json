@@ -132,7 +132,7 @@
           "options": {
             "tsConfig": "lib/ng-nest/ui/tsconfig.spec.json",
             "karmaConfig": "lib/ng-nest/ui/karma.conf.js",
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [],
             "codeCoverage": true,
             "styles": ["lib/ng-nest/ui/style/core/index.scss", "node_modules/prismjs/themes/prism.css"],
             "scripts": [

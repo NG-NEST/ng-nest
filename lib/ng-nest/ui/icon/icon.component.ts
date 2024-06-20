@@ -59,6 +59,10 @@ export class XIconComponent extends XIconProperty {
     return this.spin();
   }
 
+  @HostBinding('style.color') get getColor() {
+    return this.color();
+  }
+
   sourceUrl = computed(() => {
     const type = this.type();
     if (typeof type === 'undefined') return '';
@@ -76,7 +80,6 @@ export class XIconComponent extends XIconProperty {
   constructor() {
     super();
     effect(() => this.iconService.getSvg(this.href(), this.sourceUrl()).subscribe((x) => this.setSvgs(x)));
-    effect(() => this.renderer.setStyle(this.elementRef.nativeElement, 'color', this.color()));
   }
 
   setSvgs(svg: string) {

@@ -1,112 +1,81 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XAvatarComponent } from '@ng-nest/ui/avatar';
-import { FormsModule } from '@angular/forms';
-import { XAvatarPrefix } from './avatar.property';
-import { XThemeComponent } from '@ng-nest/ui/theme';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XBadgeComponent } from '@ng-nest/ui/badge';
+import { XAvatarComponent, XAvatarFit, XAvatarPrefix, XAvatarShape, XAvatarSize } from '@ng-nest/ui/avatar';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
+@Component({
+  standalone: true,
+  imports: [XAvatarComponent],
+  template: `<x-avatar></x-avatar>`
+})
+class XTestAvatarComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XAvatarComponent],
+  template: `
+    <x-avatar
+      [label]="label()"
+      [size]="size()"
+      [icon]="icon()"
+      [shape]="shape()"
+      [src]="src()"
+      [fit]="fit()"
+      [gap]="gap()"
+      [backgroundColor]="backgroundColor()"
+    ></x-avatar>
+  `
+})
+class XTestAvatarPropertyComponent {
+  label = signal('');
+  size = signal<XAvatarSize>('medium');
+  icon = signal('');
+  shape = signal<XAvatarShape>('circle');
+  src = signal('');
+  fit = signal<XAvatarFit>('cover');
+  gap = signal('4px');
+  backgroundColor = signal('#999999');
+}
 
 describe(XAvatarPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXAvatarComponent],
-    imports: [BrowserAnimationsModule,
-        FormsModule,
-        XAvatarComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent,
-        XBadgeComponent,
-        XThemeComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      imports: [XTestAvatarComponent, XTestAvatarPropertyComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXAvatarComponent>;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestAvatarComponent>;
     let avatar: DebugElement;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXAvatarComponent);
+      fixture = TestBed.createComponent(XTestAvatarComponent);
+      avatar = fixture.debugElement.query(By.css('.x-avatar'));
       fixture.detectChanges();
-      avatar = fixture.debugElement.query(By.directive(XAvatarComponent));
     });
-    it('should create.', () => {
-      expect(avatar).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XAvatarComponent));
+      expect(com).toBeDefined();
+    });
+    it('property.', () => {
+      expect(avatar.nativeElement).not.toHaveClass('x-avatar-label');
+      expect(avatar.nativeElement).not.toHaveClass('x-avatar-error');
+      expect(avatar.nativeElement).toHaveClass('x-avatar-medium');
     });
   });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestAvatarPropertyComponent>;
+    let component: XTestAvatarPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestAvatarPropertyComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('label.', () => {});
+  });
 });
-
-@Component({
-  template: `
-    <x-theme showDark></x-theme>
-    <div class="row">
-      <x-avatar size="big" [src]="src"></x-avatar>
-      <x-avatar size="large" [src]="src"></x-avatar>
-      <x-avatar [src]="src"></x-avatar>
-      <x-avatar size="small" [src]="src"></x-avatar>
-      <x-avatar size="mini" [src]="src"></x-avatar>
-    </div>
-    <div class="row">
-      <x-avatar size="big" shape="square" [src]="src"></x-avatar>
-      <x-avatar size="large" shape="square" [src]="src"></x-avatar>
-      <x-avatar shape="square" [src]="src"></x-avatar>
-      <x-avatar size="small" shape="square" [src]="src"></x-avatar>
-      <x-avatar size="mini" shape="square" [src]="src"></x-avatar>
-    </div>
-    <div class="row">
-      <x-avatar size="big" [icon]="icon"></x-avatar>
-      <x-avatar size="large" [icon]="icon"></x-avatar>
-      <x-avatar [icon]="icon"></x-avatar>
-      <x-avatar size="small" [icon]="icon"></x-avatar>
-      <x-avatar size="mini" [icon]="icon"></x-avatar>
-    </div>
-    <div class="row">
-      <x-avatar size="big" [label]="label"></x-avatar>
-      <x-avatar size="large" [label]="label"></x-avatar>
-      <x-avatar [label]="label"></x-avatar>
-      <x-avatar size="small" [label]="label"></x-avatar>
-      <x-avatar size="mini" [label]="label"></x-avatar>
-    </div>
-    <div class="row">
-      <x-avatar src="https://empty"></x-avatar>
-    </div>
-    <div class="row">
-      <x-avatar size="big" [src]="srcFit" fit="fill"></x-avatar>
-      <x-avatar size="big" [src]="srcFit" fit="contain"></x-avatar>
-      <x-avatar size="big" [src]="srcFit" fit="cover"></x-avatar>
-      <x-avatar size="big" [src]="srcFit" fit="none"></x-avatar>
-      <x-avatar size="big" [src]="srcFit" fit="scale-down"></x-avatar>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        display: flex;
-        align-items: center;
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-avatar:not(:first-child) {
-        margin-left: 1rem;
-      }
-    `
-  ]
-})
-class TestXAvatarComponent {
-  src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
-  srcFit = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
-  icon = 'fto-user';
-  label = '王';
-}

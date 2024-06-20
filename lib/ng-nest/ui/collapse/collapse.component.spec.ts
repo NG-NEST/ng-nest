@@ -1,140 +1,163 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCollapseComponent, XCollapsePanelComponent } from '@ng-nest/ui/collapse';
-import { FormsModule } from '@angular/forms';
-import { XCollapsePrefix } from './collapse.property';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerComponent } from '@ng-nest/ui/container';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XCollapseComponent } from './collapse.component';
+import { XCollapsePanelComponent } from './collapse-panel.component';
+import { XCollapseIconPosition, XCollapsePrefix } from './collapse.property';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { XIconComponent } from '../icon';
+
+@Component({
+  standalone: true,
+  imports: [XCollapseComponent, XCollapsePanelComponent],
+  template: `
+    <x-collapse>
+      <x-collapse-panel label="one">one panel</x-collapse-panel>
+      <x-collapse-panel label="two">two panel</x-collapse-panel>
+      <x-collapse-panel label="three">three panel</x-collapse-panel>
+    </x-collapse>
+  `
+})
+class XTestCollapseComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XCollapseComponent, XCollapsePanelComponent, XIconComponent],
+  template: `
+    <x-collapse
+      [accordion]="accordion()"
+      [icon]="iconTpl"
+      [showIcon]="showIcon()"
+      [iconPosition]="iconPosition()"
+      [ghost]="ghost()"
+      [bordered]="bordered()"
+    >
+      <x-collapse-panel label="one">one panel</x-collapse-panel>
+      <x-collapse-panel label="two">two panel</x-collapse-panel>
+      <x-collapse-panel label="three">three panel</x-collapse-panel>
+    </x-collapse>
+    <ng-template #iconTpl>
+      <x-icon type="ado-caret-right"></x-icon>
+    </ng-template>
+  `
+})
+class XTestCollapsePropertyComponent {
+  accordion = signal(false);
+  showIcon = signal(true);
+  iconPosition = signal<XCollapseIconPosition>('right');
+  ghost = signal(false);
+  bordered = signal(false);
+}
 
 describe(XCollapsePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXCollapseComponent],
-    imports: [XThemeComponent,
-        FormsModule,
-        BrowserAnimationsModule,
-        XCollapseComponent,
-        XCollapsePanelComponent,
-        XButtonComponent,
-        XContainerComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      imports: [XTestCollapseComponent, XTestCollapsePropertyComponent],
+      providers: [
+        provideAnimations(),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXCollapseComponent>;
-    let collapse: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestCollapseComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCollapseComponent);
+      fixture = TestBed.createComponent(XTestCollapseComponent);
       fixture.detectChanges();
-      collapse = fixture.debugElement.query(By.directive(XCollapseComponent));
     });
-    it('should create.', () => {
-      expect(collapse).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XCollapseComponent));
+      expect(com).toBeDefined();
+
+      const panels = fixture.debugElement.queryAll(By.directive(XCollapsePanelComponent));
+      expect(panels).toBeDefined();
+    });
+    it('property.', () => {
+      const color = fixture.debugElement.query(By.css('.x-collapse'));
+      expect(color).toBeDefined();
+
+      const labels = fixture.debugElement.queryAll(By.css('.x-collapse-panel-header-title'));
+      expect(labels[0].nativeElement.textContent).toBe('one');
+      expect(labels[1].nativeElement.textContent).toBe('two');
+      expect(labels[2].nativeElement.textContent).toBe('three');
+
+      const bodies = fixture.debugElement.queryAll(By.css('.x-collapse-panel-body'));
+      expect(bodies.length).toBe(0);
+
+      const headers = fixture.debugElement.queryAll(By.css('.x-collapse-panel-header'));
+      headers[0].nativeElement.click();
+      headers[1].nativeElement.click();
+      headers[2].nativeElement.click();
+      fixture.detectChanges();
+      const com = fixture.debugElement.query(By.css('x-collapse'));
+      const active = com.componentInstance.active();
+      expect(active).toContain(0);
+      expect(active).toContain(1);
+      expect(active).toContain(2);
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestCollapsePropertyComponent>;
+    let component: XTestCollapsePropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestCollapsePropertyComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('accordion.', () => {
+      component.accordion.set(true);
+      fixture.detectChanges();
+      const headers = fixture.debugElement.queryAll(By.css('.x-collapse-panel-header'));
+      headers[0].nativeElement.click();
+      headers[1].nativeElement.click();
+      headers[2].nativeElement.click();
+      fixture.detectChanges();
+      const com = fixture.debugElement.query(By.css('x-collapse'));
+      const active = com.componentInstance.active();
+      expect(active).not.toContain(0);
+      expect(active).not.toContain(1);
+      expect(active).toContain(2);
+    });
+    it('icon.', () => {
+      const icon = fixture.debugElement.query(By.css('.ado-caret-right'));
+      expect(icon).not.toBeNull();
+    });
+    it('showIcon.', () => {
+      const icon = fixture.debugElement.query(By.css('.ado-caret-right'));
+      expect(icon).not.toBeNull();
+
+      component.showIcon.set(false);
+      fixture.detectChanges();
+      const iconChange = fixture.debugElement.query(By.css('.ado-caret-right'));
+      expect(iconChange).toBeNull();
+    });
+    it('iconPosition.', () => {
+      const header = fixture.debugElement.query(By.css('.x-collapse-panel-header'));
+      expect(header.nativeElement).toHaveClass('x-collapse-panel-icon-right');
+
+      component.iconPosition.set('left');
+      fixture.detectChanges();
+      expect(header.nativeElement).toHaveClass('x-collapse-panel-icon-left');
+    });
+    it('ghost.', () => {
+      const collapse = fixture.debugElement.query(By.css('.x-collapse'));
+      expect(collapse.nativeElement).not.toHaveClass('x-collapse-ghost');
+
+      component.ghost.set(true);
+      fixture.detectChanges();
+      expect(collapse.nativeElement).toHaveClass('x-collapse-ghost');
+    });
+    it('bordered.', () => {
+      const collapse = fixture.debugElement.query(By.css('.x-collapse'));
+      expect(collapse.nativeElement).not.toHaveClass('x-collapse-bordered');
+
+      component.bordered.set(true);
+      fixture.detectChanges();
+      expect(collapse.nativeElement).toHaveClass('x-collapse-bordered');
     });
   });
 });
-
-@Component({
-  template: `
-    <x-theme showDark></x-theme>
-    <div class="row">
-      <x-collapse>
-        <x-collapse-panel label="一致性 Consistency" active>
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>
-            在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。
-          </div>
-        </x-collapse-panel>
-        <x-collapse-panel label="反馈 Feedback" active>
-          <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-          <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
-        </x-collapse-panel>
-        <x-collapse-panel label="效率 Efficiency">
-          <div>简化流程：设计简洁直观的操作流程；</div>
-          <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-          <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
-        </x-collapse-panel>
-        <x-collapse-panel label="可控 Controllability">
-          <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-          <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
-        </x-collapse-panel>
-      </x-collapse>
-    </div>
-    <div class="row">
-      <x-collapse accordion>
-        <x-collapse-panel label="一致性 Consistency" active>
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>
-            在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。
-          </div>
-        </x-collapse-panel>
-        <x-collapse-panel label="反馈 Feedback">
-          <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-          <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
-        </x-collapse-panel>
-        <x-collapse-panel label="效率 Efficiency">
-          <div>简化流程：设计简洁直观的操作流程；</div>
-          <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-          <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
-        </x-collapse-panel>
-        <x-collapse-panel label="可控 Controllability">
-          <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-          <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
-        </x-collapse-panel>
-      </x-collapse>
-    </div>
-    <div class="row">
-      <x-collapse accordion>
-        <x-collapse-panel [label]="labelTmpOne" active>
-          <ng-template #labelTmpOne> <x-icon type="fto-home"></x-icon> 一致性 </ng-template>
-          <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-          <div>
-            在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。
-          </div>
-        </x-collapse-panel>
-        <x-collapse-panel [label]="labelTmpTwo">
-          <ng-template #labelTmpTwo> <x-icon type="fto-heart"></x-icon> 反馈 </ng-template>
-          <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-          <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
-        </x-collapse-panel>
-        <x-collapse-panel label="效率 Efficiency">
-          <div>简化流程：设计简洁直观的操作流程；</div>
-          <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-          <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
-        </x-collapse-panel>
-        <x-collapse-panel label="可控 Controllability">
-          <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-          <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
-        </x-collapse-panel>
-      </x-collapse>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        width: 24rem;
-        padding: 1.625rem 1rem;
-      }
-      .row:not(:first-child) {
-        margin-top: 2rem;
-      }
-    `
-  ]
-})
-class TestXCollapseComponent {}

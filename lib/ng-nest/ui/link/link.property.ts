@@ -73,11 +73,6 @@ export class XLinkProperty extends XPropertyFunction(X_LINK_CONFIG_NAME) {
    */
   readonly iconRight = input<boolean, XBoolean>(this.config?.iconRight ?? false, { transform: XToBoolean });
   /**
-   * @zh_CN 阻止超链接的默认行为
-   * @en_US Block the default behavior of hyperlinks
-   */
-  readonly preventDefault = input<boolean, XBoolean>(this.config?.preventDefault ?? false, { transform: XToBoolean });
-  /**
    * @zh_CN 链接类型
    * @en_US Link type
    * @example
