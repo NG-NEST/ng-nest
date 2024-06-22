@@ -2,12 +2,11 @@ import { XDocComponent } from '@ng-nest/ui/doc';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XDescriptionComponent } from './description.component';
-import { ChangeDetectorRef, Component, DebugElement } from '@angular/core';
+import { ChangeDetectorRef, Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XDescriptionModule } from '@ng-nest/ui/description';
 import { XDescriptionPrefix } from './description.property';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
@@ -17,22 +16,27 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XDescriptionPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXDescriptionComponent,
         TestXDescriptionBorderedComponent,
         TestXDescriptionGridComponent,
         TestXDescriptionSizeComponent
-    ],
-    imports: [BrowserAnimationsModule,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
-        XThemeComponent,
         XDescriptionModule,
         XRadioComponent,
         XRowComponent,
         XColComponent,
-        XDocComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XDocComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDescriptionComponent>;
@@ -87,7 +91,7 @@ describe(XDescriptionPrefix, () => {
 @Component({
   selector: 'test-x-description',
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-description title="UserInfo">
       <x-description-item label="编码：" gridArea="1/1/1/4">909090</x-description-item>
       <x-description-item label="姓名：" gridArea="2/1">张三</x-description-item>
@@ -116,15 +120,10 @@ class TestXDescriptionComponent {}
 @Component({
   selector: 'test-x-description-bordered',
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-description title="UserInfo" bordered>
       <x-description-item label="编码：" gridArea="1/1/1/5">909090</x-description-item>
-      <x-description-item
-        label="基本资料"
-        gridArea="2/1/5/2"
-        justify="center"
-        align="center"
-      ></x-description-item>
+      <x-description-item label="基本资料" gridArea="2/1/5/2" justify="center" align="center"></x-description-item>
       <x-description-item label="姓名：" gridArea="2/2">张三</x-description-item>
       <x-description-item label="账号：" gridArea="2/3">zhangsan</x-description-item>
       <x-description-item label="密码：" gridArea="2/4">******</x-description-item>
@@ -151,15 +150,9 @@ class TestXDescriptionBorderedComponent {}
 @Component({
   selector: 'test-x-description-grid',
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-description title="UserInfo" bordered gridTemplateColumns="100px 1fr 1fr 1fr 1fr 1fr 1fr">
-      <x-description-item
-        label="编码"
-        justify="center"
-        align="center"
-        gridArea="1/1/2/2"
-        heading
-      ></x-description-item>
+      <x-description-item label="编码" justify="center" align="center" gridArea="1/1/2/2" heading></x-description-item>
       <x-description-item gridArea="1/2/1/8">909090</x-description-item>
       <x-description-item
         label="基本资料"
@@ -232,16 +225,11 @@ class TestXDescriptionGridComponent {}
 @Component({
   selector: 'test-x-description-grid',
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
     <x-description title="UserInfo" bordered [size]="size">
       <x-description-item label="编码：" gridArea="1/1/1/5">909090</x-description-item>
-      <x-description-item
-        label="基本资料"
-        gridArea="2/1/5/2"
-        justify="center"
-        align="center"
-      ></x-description-item>
+      <x-description-item label="基本资料" gridArea="2/1/5/2" justify="center" align="center"></x-description-item>
       <x-description-item label="姓名：" gridArea="2/2">张三</x-description-item>
       <x-description-item label="账号：" gridArea="2/3">zhangsan</x-description-item>
       <x-description-item label="密码：" gridArea="2/4">******</x-description-item>

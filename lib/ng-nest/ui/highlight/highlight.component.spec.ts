@@ -1,22 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XHighlightComponent } from '@ng-nest/ui/highlight';
 import { XHighlightPrefix, XHighlightLines } from './highlight.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XHighlightPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXHighlightComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
-        XHighlightComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXHighlightComponent],
+      imports: [BrowserAnimationsModule,  XHighlightComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXHighlightComponent>;
@@ -35,7 +37,7 @@ describe(XHighlightPrefix, () => {
 @Component({
   selector: 'test-x-highlight',
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-highlight
       *ngFor="let item of list"
       [type]="item.type"

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { XButtonComponent, XButtonModule } from '@ng-nest/ui/button';
 import { X_CONFIG, XConfig } from './config';
-import { Component } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -32,7 +32,8 @@ describe('x-config', () => {
         {
           provide: X_CONFIG,
           useValue: config
-        }
+        },
+        provideExperimentalZonelessChangeDetection()
       ]
     });
     TestBed.compileComponents();

@@ -10,7 +10,7 @@ import { XAddHours, XAddMinutes } from '@ng-nest/ui/core';
 })
 export class ExDefaultComponent {
   now = signal(new Date());
-  src = signal('https://ngnest.com/assets/img/logo/logo-144x144.png');
+  src = signal('https://ngnest.com/img/logo/logo-144x144.png');
   content = signal(`The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 
   The more you learn, the more you don't know. The more you learn, the more you don't know. 

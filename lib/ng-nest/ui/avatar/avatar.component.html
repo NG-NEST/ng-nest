@@ -17,7 +17,7 @@
     <x-icon type="fto-image"></x-icon>
   }
   @if (label()) {
-    <span #labelRef [ngStyle]="labelStyleMap()" *xOutlet="label(); context: { $label: label() }">
+    <span #labelRef class="x-avatar-text" [ngStyle]="labelStyleMap()" *xOutlet="label(); context: { $label: label() }">
       {{ label() }}
     </span>
   }

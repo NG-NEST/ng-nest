@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogPrefix } from './dialog.property';
@@ -11,7 +11,6 @@ import { XInputComponent } from '@ng-nest/ui/input';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XLinkComponent } from '@ng-nest/ui/link';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { interval } from 'rxjs';
 import { XFormComponent } from '@ng-nest/ui/form';
@@ -22,9 +21,9 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XDialogPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXDialogComponent, TestXDialogDraggableComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXDialogComponent, TestXDialogDraggableComponent],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         XInputComponent,
         XRadioComponent,
@@ -32,9 +31,14 @@ describe(XDialogPrefix, () => {
         XButtonComponent,
         XIconComponent,
         XLinkComponent,
-        XFormComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XFormComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDialogComponent>;
@@ -66,7 +70,7 @@ describe(XDialogPrefix, () => {
   template: `
     <x-button (click)="english()">切换为英文</x-button>
     <x-button (click)="chinese()">切换为中文</x-button>
-    <x-theme showDark></x-theme>
+    
     <div class="box">
       <div class="row">
         <x-button (click)="dialog('top-start')">上左</x-button>
@@ -230,7 +234,11 @@ class TestXDialogComponent {
   visibleForm!: boolean;
   visibleCustom!: boolean;
 
-  constructor(private cdr: ChangeDetectorRef, private msgBox: XMessageBoxService, private i18nService: XI18nService) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private msgBox: XMessageBoxService,
+    private i18nService: XI18nService
+  ) {
     // interval(1000).subscribe((x) => {
     //   console.log(this.visibleForm);
     //   this.cdr.detectChanges();

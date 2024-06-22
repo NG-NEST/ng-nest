@@ -1,6 +1,6 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTagComponent } from '@ng-nest/ui/tag';
@@ -9,25 +9,31 @@ import { XTagPrefix } from './tag.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTagPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXTagComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXTagComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         XTagComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTagComponent>;
@@ -45,7 +51,7 @@ describe(XTagPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-tag>标签</x-tag>
       <x-tag type="primary">标签</x-tag>

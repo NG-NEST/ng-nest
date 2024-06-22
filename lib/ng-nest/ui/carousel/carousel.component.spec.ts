@@ -1,7 +1,7 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XCarouselComponent, XCarouselPanelComponent } from '@ng-nest/ui/carousel';
@@ -11,21 +11,20 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XCarouselPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXCarouselComponent,
         TestXCarouselCardComponent,
         TestXCarouselDirectionComponent,
         TestXCarouselTabsComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         XCarouselComponent,
         XCarouselPanelComponent,
@@ -35,9 +34,14 @@ describe(XCarouselPrefix, () => {
         XColComponent,
         XIconComponent,
         XTabsComponent,
-        XTabComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XTabComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCarouselComponent>;
@@ -91,7 +95,6 @@ describe(XCarouselPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-carousel autoplay="false" height="12rem">
         <x-carousel-panel *ngFor="let item of list">
@@ -158,7 +161,6 @@ class TestXCarouselComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-carousel height="15rem" card>
         <x-carousel-panel *ngFor="let item of list">
@@ -204,7 +206,6 @@ class TestXCarouselCardComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-carousel height="15rem" direction="vertical">
         <x-carousel-panel *ngFor="let item of list">
@@ -250,7 +251,6 @@ class TestXCarouselDirectionComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-tabs>
         <x-tab label="1111">

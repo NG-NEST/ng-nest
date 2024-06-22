@@ -1,6 +1,6 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
@@ -11,16 +11,17 @@ import { XContainerComponent } from '@ng-nest/ui/container';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XLoadingPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXLoadingComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXLoadingComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         BrowserAnimationsModule,
         XLoadingComponent,
@@ -28,9 +29,14 @@ describe(XLoadingPrefix, () => {
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXLoadingComponent>;
@@ -48,7 +54,7 @@ describe(XLoadingPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <div x-loading="true" size="big">
         <ng-container *ngTemplateOutlet="tableTpl"></ng-container>

@@ -225,7 +225,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
 
   ngOnDestroy(): void {
     this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this.unSubject.complete();
   }
 
   setSubject() {

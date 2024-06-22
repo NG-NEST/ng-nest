@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { XTabsPrefix, XTabsLayout } from './tabs.property';
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XJustify } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -16,17 +16,23 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XTabsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXTabsComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXTabsComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         XTabsComponent,
         XTabComponent,
         XRadioComponent,
         XIconComponent,
-        XButtonComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XButtonComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTabsComponent>;
@@ -45,7 +51,7 @@ describe(XTabsPrefix, () => {
 @Component({
   selector: 'test-x-tabs',
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-tabs>
         <x-tab *ngFor="let label of labels" [label]="label">

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 import { XDropdownPrefix, XDropdownNode } from './dropdown.property';
@@ -7,23 +7,29 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XDropdownPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXDropdownComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXDropdownComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         XDropdownComponent,
         XButtonComponent,
         XLinkComponent,
         XRowComponent,
-        XColComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XColComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDropdownComponent>;
@@ -41,7 +47,7 @@ describe(XDropdownPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-dropdown [data]="data">
         <x-link type="primary" icon="fto-chevron-down" iconRight> 下拉菜单 </x-link>
@@ -52,23 +58,17 @@ describe(XDropdownPrefix, () => {
     </div>
     <div class="row">
       <x-dropdown [data]="data">
-        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse">
-          下拉菜单
-        </x-button>
+        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse"> 下拉菜单 </x-button>
       </x-dropdown>
     </div>
     <div class="row">
       <x-dropdown [data]="dataProp" trigger="click">
-        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse">
-          下拉菜单
-        </x-button>
+        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse"> 下拉菜单 </x-button>
       </x-dropdown>
     </div>
     <div class="row">
       <x-dropdown [data]="dataLeaf">
-        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse">
-          下拉菜单
-        </x-button>
+        <x-button type="primary" icon="fto-chevron-down" direction="row-reverse"> 下拉菜单 </x-button>
       </x-dropdown>
     </div>
   `,

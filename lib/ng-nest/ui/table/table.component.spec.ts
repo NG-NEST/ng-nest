@@ -1,5 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, Injectable, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  Injectable,
+  ChangeDetectorRef,
+  provideExperimentalZonelessChangeDetection
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTableComponent } from '@ng-nest/ui/table';
 import { FormsModule } from '@angular/forms';
@@ -34,7 +40,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XTablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXTableComponent,
         TestXTableScrollComponent,
         TestXTableAdaptionComponent,
@@ -45,8 +51,9 @@ describe(XTablePrefix, () => {
         TestXTableCheckboxComponent,
         TestXTableRowSizeComponent,
         TestXTablePaginationComponent
-    ],
-    imports: [BrowserAnimationsModule,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         XDescriptionModule,
         XTableComponent,
@@ -57,9 +64,14 @@ describe(XTablePrefix, () => {
         XInputComponent,
         XSelectComponent,
         XSwitchComponent,
-        XDialogComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XDialogComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTableComponent>;
@@ -449,7 +461,10 @@ class TestXTableWidthDragComponent {
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private service: UsersServiceTest,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {}
 
@@ -520,7 +535,10 @@ class TestXTableAdaptionComponent {
 
   visible = false;
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private service: UsersServiceTest,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {}
 
@@ -598,7 +616,10 @@ class TestXTableFunctionComponent {
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private service: UsersServiceTest,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngAfterViewInit() {
     interval(10).subscribe(() => this.cdr.detectChanges());
@@ -670,7 +691,10 @@ class TestXTableMergeColumnComponent {
     }
   };
 
-  constructor(private service: UsersServiceTest, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private service: UsersServiceTest,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngAfterViewInit() {
     interval(10).subscribe(() => this.cdr.detectChanges());

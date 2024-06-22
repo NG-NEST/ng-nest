@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { XI18nPipe, XI18nDirective } from '@ng-nest/ui/i18n';
 import { XI18nPrefix } from './i18n.property';
 import { XCommentComponent, XCommentNode } from '@ng-nest/ui/comment';
@@ -14,13 +14,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XI18nPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXI18nComponent],
-    imports: [XI18nPipe,
-        XI18nDirective,
-        XButtonComponent,
-        XCommentComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXI18nComponent],
+      imports: [XI18nPipe, XI18nDirective, XButtonComponent, XCommentComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXI18nComponent>;
@@ -48,7 +49,7 @@ describe(XI18nPrefix, () => {
 })
 class TestXI18nComponent {
   now = new Date();
-  src = 'https://ngnest.com/assets/img/logo/logo-144x144.png';
+  src = 'https://ngnest.com/img/logo/logo-144x144.png';
   content = `天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
     天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
     天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
@@ -137,7 +138,10 @@ class TestXI18nComponent {
     }
   ];
 
-  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private i18nService: XI18nService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   index = 1;
 

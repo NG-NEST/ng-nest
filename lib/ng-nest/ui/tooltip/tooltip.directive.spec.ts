@@ -1,25 +1,25 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTooltipDirective } from '@ng-nest/ui/tooltip';
 import { XTooltipPrefix } from './tooltip.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTooltipPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXTooltipComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
-        BrowserAnimationsModule,
-        XTooltipDirective,
-        XButtonComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXTooltipComponent],
+      imports: [BrowserAnimationsModule,  BrowserAnimationsModule, XTooltipDirective, XButtonComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTooltipComponent>;
@@ -38,7 +38,7 @@ describe(XTooltipPrefix, () => {
 @Component({
   selector: 'test-x-tooltip',
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="box">
       <div class="top">
         <x-button x-tooltip content="上左上左上左上左上左上左上左上左上左上左" placement="top-start">上左</x-button>

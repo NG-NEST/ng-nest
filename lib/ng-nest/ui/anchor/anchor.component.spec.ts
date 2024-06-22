@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XAnchorComponent } from '@ng-nest/ui/anchor';
 import { XAnchorPrefix } from './anchor.property';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -13,13 +12,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XAnchorPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXAnchorComponent],
-    imports: [BrowserAnimationsModule,
-        XAnchorComponent,
-        XThemeComponent,
-        XButtonComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXAnchorComponent],
+      imports: [BrowserAnimationsModule, XAnchorComponent, XButtonComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAnchorComponent>;
@@ -168,7 +168,6 @@ const htmlTemplate = `
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div #scroll class="row scroll">
       <x-anchor [scroll]="scroll" layout="left"> ${htmlTemplate} </x-anchor>
     </div>

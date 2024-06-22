@@ -1,6 +1,6 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XUploadComponent } from '@ng-nest/ui/upload';
@@ -14,22 +14,28 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XUploadPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXUploadComponent,
         TestXUploadDisabledComponent,
         TestXUploadImgComponent,
         TestXUploadImgCutComponent
-    ],
-    imports: [BrowserAnimationsModule,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         XIconComponent,
         XUploadComponent,
         XButtonComponent,
         XRowComponent,
-        XColComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XColComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXUploadComponent>;

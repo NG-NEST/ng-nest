@@ -10,5 +10,5 @@ import { XBadgeComponent } from '@ng-nest/ui/badge';
   styleUrls: ['./badge.component.scss']
 })
 export class ExBadgeComponent {
-  src = signal('https://ngnest.com/assets/img/logo/logo-144x144.png');
+  src = signal('https://ngnest.com/img/logo/logo-144x144.png');
 }

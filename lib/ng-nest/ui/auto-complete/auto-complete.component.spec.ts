@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +9,6 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XSelectComponent } from '@ng-nest/ui/select';
@@ -27,7 +26,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XAutoCompletePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXAutoCompleteComponent,
         TestXAutoCompleteAsyncComponent,
         TestXAutoCompleteLabelComponent,
@@ -37,9 +36,9 @@ describe(XAutoCompletePrefix, () => {
         TestXAutoCompleteBorderedComponent,
         TestXAutoCompleteBeforeAfterComponent,
         TestXAutoCompleteCustomComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         XAutoCompleteComponent,
         FormsModule,
         ReactiveFormsModule,
@@ -55,9 +54,14 @@ describe(XAutoCompletePrefix, () => {
         XTextareaComponent,
         XTimePickerModule,
         XDatePickerComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAutoCompleteComponent>;
@@ -185,7 +189,6 @@ const data: XData<XAutoCompleteNode> = [
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
         <x-auto-complete [data]="data1" [(ngModel)]="model1"></x-auto-complete>
@@ -221,7 +224,6 @@ class TestXAutoCompleteComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-auto-complete label="方式" [data]="data" [(ngModel)]="model"></x-auto-complete>
@@ -267,7 +269,6 @@ class TestXAutoCompleteLabelComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-auto-complete [data]="data" disabled></x-auto-complete>
@@ -303,7 +304,6 @@ class TestXAutoCompleteDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-auto-complete [data]="data" [(ngModel)]="model1" required></x-auto-complete>
@@ -339,7 +339,6 @@ class TestXAutoCompleteRequiredComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col>
         <x-auto-complete [data]="data" [(ngModel)]="model"></x-auto-complete>
@@ -721,7 +720,6 @@ class TestXAutoCompleteBeforeAfterComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="8">
         <x-auto-complete [data]="data1" [(ngModel)]="model1" [nodeTpl]="nodeTpl"></x-auto-complete>

@@ -1,6 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, TemplateRef, ViewContainerRef, viewChild } from '@angular/core';
+import {
+  Component,
+  TemplateRef,
+  ViewContainerRef,
+  provideExperimentalZonelessChangeDetection,
+  viewChild
+} from '@angular/core';
 import { XPortalPrefix } from './portal.property';
 import { XPortalService } from './portal.service';
 import { Overlay } from '@angular/cdk/overlay';
@@ -12,7 +18,11 @@ describe(XPortalPrefix, () => {
     TestBed.configureTestingModule({
       declarations: [TestXPortalComponent],
       imports: [],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
     }).compileComponents();
   });
   describe(`default.`, () => {

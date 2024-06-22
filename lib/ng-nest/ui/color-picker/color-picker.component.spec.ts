@@ -1,14 +1,13 @@
 import { interval } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XColorPickerPrefix } from './color-picker.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -16,24 +15,29 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XColorPickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXColorPickerComponent,
         TestXColorPickerLabelComponent,
         TestXColorPickerDisabledComponent,
         TestXColorPickerRequiredComponent,
         TestXColorPickerSizeComponent,
         TestXColorPickerBorderedComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         XColorPickerComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XRadioComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXColorPickerComponent>;
@@ -111,7 +115,7 @@ describe(XColorPickerPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="12">
         <x-color-picker [(ngModel)]="model1"></x-color-picker>
@@ -159,7 +163,7 @@ class TestXColorPickerComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="12">
         <x-color-picker label="颜色" [(ngModel)]="model"></x-color-picker>
@@ -208,7 +212,7 @@ class TestXColorPickerLabelComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="12">
         <x-color-picker disabled></x-color-picker>
@@ -242,7 +246,7 @@ class TestXColorPickerDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="12">
         <x-color-picker [(ngModel)]="model" required></x-color-picker>

@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XMessageComponent } from './message.component';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessagePrefix } from './message.property';
 import { XMessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XConfig, XPlace, X_CONFIG } from '@ng-nest/ui/core';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -22,17 +22,18 @@ describe(XMessagePrefix, () => {
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
-    imports: [BrowserAnimationsModule, XThemeComponent, XButtonComponent],
-    providers: [
+      declarations: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
+      imports: [BrowserAnimationsModule,  XButtonComponent],
+      providers: [
         {
-            provide: X_CONFIG,
-            useValue: config
+          provide: X_CONFIG,
+          useValue: config
         },
         provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting()
-    ]
-}).compileComponents();
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMessageComponent>;
@@ -74,7 +75,7 @@ describe(XMessagePrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="box">
       <div class="row">
         <x-button (click)="open('top-start', '上左')">上左</x-button>
@@ -130,7 +131,7 @@ class TestXMessageComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-button (click)="message.success('成功提示')">成功提示</x-button>
       <x-button (click)="message.info('消息提示')">消息提示</x-button>
@@ -138,9 +139,13 @@ class TestXMessageComponent {
       <x-button (click)="message.error('错误提示')">错误提示</x-button>
     </div>
     <div class="row">
-      <x-button type="success" plain (click)="message.success({ title: '成功提示', effect: 'light' })">成功提示</x-button>
+      <x-button type="success" plain (click)="message.success({ title: '成功提示', effect: 'light' })"
+        >成功提示</x-button
+      >
       <x-button type="info" plain (click)="message.info({ title: '消息提示', effect: 'light' })">消息提示</x-button>
-      <x-button type="warning" plain (click)="message.warning({ title: '警告提示', effect: 'light' })">警告提示</x-button>
+      <x-button type="warning" plain (click)="message.warning({ title: '警告提示', effect: 'light' })"
+        >警告提示</x-button
+      >
       <x-button type="danger" plain (click)="message.error({ title: '错误提示', effect: 'light' })">错误提示</x-button>
     </div>
     <div class="row">
@@ -150,7 +155,9 @@ class TestXMessageComponent {
       <x-button type="danger" (click)="message.error({ title: '错误提示', effect: 'dark' })">错误提示</x-button>
     </div>
     <div class="row">
-      <x-button type="success" plain (click)="message.success({ title: '成功提示', hideClose: false })">成功提示，包含关闭按钮</x-button>
+      <x-button type="success" plain (click)="message.success({ title: '成功提示', hideClose: false })"
+        >成功提示，包含关闭按钮</x-button
+      >
       <x-button type="success" (click)="message.success({ title: '成功提示', hideClose: false, effect: 'dark' })"
         >成功提示，包含关闭按钮</x-button
       >
@@ -193,7 +200,7 @@ class TestXMessageTypeComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="box">
       <div class="row">
         <x-button (click)="open('top-start', '上左')">上左</x-button>

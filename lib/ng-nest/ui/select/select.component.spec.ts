@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +8,7 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { Observable, interval } from 'rxjs';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -16,7 +16,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXSelectComponent,
         TestXSelectAsyncComponent,
         TestXSelectLabelComponent,
@@ -26,17 +26,23 @@ describe(XSelectPrefix, () => {
         TestXSelectCustomNodeComponent,
         TestXSelectBorderedComponent,
         TestXSelectSizeComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
+        
         XSelectComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XRadioComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSelectComponent>;
@@ -164,7 +170,7 @@ const data: XData<XSelectNode> = [
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="8">
         <x-select [data]="data1" [(ngModel)]="model1"></x-select>
@@ -202,7 +208,7 @@ class TestXSelectComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-select label="方式" [data]="data" [(ngModel)]="model"></x-select>
@@ -248,7 +254,7 @@ class TestXSelectLabelComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-select [data]="data" disabled></x-select>
@@ -284,7 +290,7 @@ class TestXSelectDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-select [data]="data" [(ngModel)]="model1" required></x-select>
@@ -320,7 +326,7 @@ class TestXSelectRequiredComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-select [data]="data" [(ngModel)]="model" (ngModelChange)="change()" async></x-select>
@@ -361,7 +367,7 @@ class TestXSelectAsyncComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="8">
         <x-select [data]="data1" [(ngModel)]="model1" multiple></x-select>
@@ -400,7 +406,7 @@ class TestXSelectMultipleComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="8">
         <x-select [data]="data1" [(ngModel)]="model1" (ngModelChange)="change($event)" [nodeTpl]="nodeTpl"></x-select>

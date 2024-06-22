@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XRippleDirective } from '@ng-nest/ui/ripple';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRipplePrefix } from './ripple.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -11,10 +11,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XRipplePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXRippleDirective],
-    imports: [XRippleDirective, XButtonComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXRippleDirective],
+      imports: [XRippleDirective, XButtonComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRippleDirective>;

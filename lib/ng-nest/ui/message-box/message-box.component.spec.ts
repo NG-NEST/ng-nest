@@ -1,5 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, TemplateRef, ChangeDetectorRef, viewChild } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  TemplateRef,
+  ChangeDetectorRef,
+  viewChild,
+  provideExperimentalZonelessChangeDetection
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageBoxComponent } from '@ng-nest/ui/message-box';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -8,7 +15,7 @@ import { XMessageBoxService } from './message-box.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';
 import { XMessageService } from '@ng-nest/ui/message';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -17,8 +24,12 @@ describe(XMessageBoxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestXMessageBoxComponent],
-      imports: [BrowserAnimationsModule, XThemeComponent, XMessageBoxComponent, XButtonComponent],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      imports: [BrowserAnimationsModule,  XMessageBoxComponent, XButtonComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -39,7 +50,7 @@ describe(XMessageBoxPrefix, () => {
   template: `
     <x-button (click)="english()">切换为英文</x-button>
     <x-button (click)="chinese()">切换为中文</x-button>
-    <x-theme showDark></x-theme>
+    
     <div class="box">
       <div class="row">
         <x-button (click)="alert('top-start', '上左')">上左</x-button>

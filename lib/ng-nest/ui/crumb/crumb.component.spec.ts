@@ -1,26 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCrumbComponent } from '@ng-nest/ui/crumb';
 import { XCrumbPrefix } from './crumb.property';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTagComponent } from '@ng-nest/ui/tag';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XCrumbPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXCrumbComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
-        XCrumbComponent,
-        XIconComponent,
-        XTagComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXCrumbComponent],
+      imports: [BrowserAnimationsModule, XCrumbComponent, XIconComponent, XTagComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCrumbComponent>;
@@ -39,7 +38,7 @@ describe(XCrumbPrefix, () => {
 @Component({
   selector: 'test-x-crumb',
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-crumb [data]="data"></x-crumb>
     <x-crumb [data]="dataIcon"></x-crumb>
     <x-crumb [data]="data" separator="·"></x-crumb>

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPaginationComponent } from '@ng-nest/ui/pagination';
 import { XPaginationPrefix } from './pagination.property';
@@ -12,10 +12,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XPaginationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXPaginationComponent, TestXPaginationStyleComponent],
-    imports: [BrowserAnimationsModule, XPaginationComponent, XButtonComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXPaginationComponent, TestXPaginationStyleComponent],
+      imports: [BrowserAnimationsModule, XPaginationComponent, XButtonComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPaginationComponent>;
@@ -107,7 +111,10 @@ class TestXPaginationComponent {
   size = 10;
   total = 100;
 
-  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private i18nService: XI18nService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   change(_index: number) {
     // console.log(index);
@@ -254,7 +261,10 @@ class TestXPaginationStyleComponent {
   size = 10;
   total = 100;
 
-  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private i18nService: XI18nService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   change(_index: number) {
     // console.log(index);

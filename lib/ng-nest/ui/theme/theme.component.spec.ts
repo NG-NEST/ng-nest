@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XThemePrefix } from './theme.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XFormComponent } from '@ng-nest/ui/form';
@@ -11,21 +10,28 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XThemeComponent } from './theme.component';
 
 describe(XThemePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXThemeComponent],
-    imports: [BrowserAnimationsModule,
+      declarations: [TestXThemeComponent],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         XButtonComponent,
         XButtonsComponent,
         XThemeComponent,
         XSwitchComponent,
-        XFormComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XFormComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXThemeComponent>;
@@ -311,7 +317,10 @@ class TestXThemeComponent {
     }, 3000);
   }
 
-  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private i18nService: XI18nService,
+    private cdr: ChangeDetectorRef
+  ) {}
   ngOnInit() {}
 
   english() {

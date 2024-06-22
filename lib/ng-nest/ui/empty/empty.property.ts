@@ -20,7 +20,7 @@ export class XEmptyProperty extends XPropertyFunction(X_EMPTY_CONFIG_NAME) {
    * @example
    *
    * ```html
-   * <x-empty img="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-empty>
+   * <x-empty img="https://ngnest.com/img/logo/logo-144x144.png"></x-empty>
    * <x-empty [img]="imgTpl"></x-empty>
    * <ng-template #imgTpl><x-icon type="fto-user"></x-icon></ng-template>
    * ```

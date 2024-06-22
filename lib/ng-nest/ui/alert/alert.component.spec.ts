@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XAlertComponent } from '@ng-nest/ui/alert';
@@ -8,23 +8,27 @@ import { XAlertPrefix } from './alert.property';
 import { XCountdownComponent } from '@ng-nest/ui/statistic';
 import { XAddSeconds } from '@ng-nest/ui/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XAlertPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXAlertComponent],
-    imports: [BrowserAnimationsModule,
+      declarations: [TestXAlertComponent],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         BrowserAnimationsModule,
         XButtonComponent,
         XAlertComponent,
-        XCountdownComponent,
-        XThemeComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XCountdownComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAlertComponent>;
@@ -42,7 +46,6 @@ describe(XAlertPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-alert title="成功提示" type="success"> </x-alert>
       <x-alert title="消息提示" type="info"> </x-alert>

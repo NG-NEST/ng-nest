@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ import { XInputPrefix } from './input.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
@@ -24,7 +24,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XInputPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXInputComponent,
         TestXInputLabelComponent,
         TestXInputIconComponent,
@@ -37,9 +37,10 @@ describe(XInputPrefix, () => {
         TestXInputGroupComponent,
         TestXInputBeforeAfterComponent,
         TestXInputFocusComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
+        
         XInputComponent,
         XInputGroupComponent,
         FormsModule,
@@ -56,9 +57,14 @@ describe(XInputPrefix, () => {
         XColorPickerComponent,
         XFindComponent,
         XTextareaComponent,
-        XTimePickerModule],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XTimePickerModule
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXInputComponent>;
@@ -208,7 +214,7 @@ describe(XInputPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-input></x-input>
@@ -241,7 +247,7 @@ class TestXInputComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-input label="用户名"></x-input>
@@ -274,7 +280,7 @@ class TestXInputLabelComponent {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-input icon="ado-user"></x-input>
@@ -301,7 +307,7 @@ class TestXInputIconComponent {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="8">
         <x-input clearable [(ngModel)]="model" (ngModelChange)="change()"></x-input>
@@ -354,7 +360,7 @@ class TestXInputClearableComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="8">
         <x-input disabled></x-input>
@@ -396,7 +402,7 @@ class TestXInputDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="8">
         <x-input required [(ngModel)]="value" (ngModelChange)="change()"></x-input>
@@ -436,7 +442,7 @@ class TestXInputRequiredComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-input [(ngModel)]="value" (ngModelChange)="change()" maxlength="50"></x-input>
@@ -484,7 +490,7 @@ class TestXInputLengthComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
     <x-row>
       <x-col span="24">
@@ -533,7 +539,7 @@ class TestXInputSizeComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-input placeholder="请输入内容" bordered="false"></x-input>
@@ -575,7 +581,7 @@ class TestXInputBorderedComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-input-group size="big">
       <x-row space="0.5">
         <x-col span="4">
@@ -697,7 +703,7 @@ class TestXInputGroupComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-input placeholder="请输入域名" after=".com"></x-input>
@@ -898,7 +904,7 @@ class TestXInputBeforeAfterComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-buttons>

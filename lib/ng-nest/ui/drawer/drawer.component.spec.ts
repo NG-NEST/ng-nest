@@ -1,6 +1,6 @@
 // import {} from 'jasmine';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -11,30 +11,36 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XPosition } from '@ng-nest/ui/core';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XDrawerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXDrawerComponent,
         TestXDrawerTitleComponent,
         TestXDrawerCustomComponent,
         TestXDrawerMultipleComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
+        
         XDrawerComponent,
         FormsModule,
         XInputComponent,
         XIconComponent,
         XRadioComponent,
         XButtonComponent,
-        XButtonsComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XButtonsComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDrawerComponent>;
@@ -88,7 +94,7 @@ describe(XDrawerPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-radio [data]="data" [(ngModel)]="value"></x-radio>
       <x-button (click)="open()">打开</x-button>
@@ -139,7 +145,7 @@ class TestXDrawerComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-button (click)="open()">不包含标题</x-button>
       <x-drawer [visible]="visible" (close)="close()">
@@ -175,7 +181,7 @@ class TestXDrawerTitleComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-button (click)="open()">自定义标题</x-button>
       <x-button (click)="openTable()">表格内容</x-button>
@@ -303,7 +309,7 @@ class TestXDrawerCustomComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-button (click)="open()">嵌套多个</x-button>
 

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XInnerComponent } from '@ng-nest/ui/inner';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInnerPrefix } from './inner.property';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -10,10 +10,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XInnerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXInnerComponent],
-    imports: [XInnerComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXInnerComponent],
+      imports: [XInnerComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXInnerComponent>;

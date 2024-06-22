@@ -1,11 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, NgModule } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  ChangeDetectorRef,
+  NgModule,
+  provideExperimentalZonelessChangeDetection
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMenuComponent } from '@ng-nest/ui/menu';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMenuPrefix, XMenuNode } from './menu.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { RouterModule, Routes } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { interval } from 'rxjs';
@@ -15,7 +21,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XMenuPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXMenuComponent,
         TestXMenuExpandedComponent,
         TestXMenuCollapsedComponent,
@@ -23,14 +29,15 @@ describe(XMenuPrefix, () => {
         TestXMenuTestTwoCollapsedComponent,
         TestXMenuTestThreeCollapsedComponent,
         TestXMenuWindowsComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
-        XMenuComponent,
-        XButtonComponent,
-        TestMenuRoutesModule],
-    providers: [{ provide: APP_BASE_HREF, useValue: '/' }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      ],
+      imports: [BrowserAnimationsModule,  XMenuComponent, XButtonComponent, TestMenuRoutesModule],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXMenuComponent>;
@@ -84,7 +91,7 @@ describe(XMenuPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-menu [data]="data"> </x-menu>
     </div>
@@ -990,7 +997,7 @@ class TestXMenuComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row" #scroll>
       <x-menu [data]="dataLeaf" layout="column" activatedId="48" [target]="scroll"> </x-menu>
     </div>
@@ -1083,7 +1090,7 @@ class TestXMenuExpandedComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="layout">
       <div class="nav">
         <x-button (click)="onCollapsed()" icon="fto-list" type="primary"></x-button>
@@ -1195,7 +1202,7 @@ export class TestMenuRoutesModule {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-menu [data]="data" (nodeClick)="nodeClick($event)" [(activatedId)]="activatedId" [portalMinWidth]="'10rem'">
       </x-menu>

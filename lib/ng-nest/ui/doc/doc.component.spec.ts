@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDocComponent } from '@ng-nest/ui/doc';
 import { XDocPrefix } from './doc.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
@@ -20,16 +19,16 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XDocPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXDocComponent,
         ExColorComponent,
         ExCustomComponent,
         ExDefaultComponent,
         ExDotComponent,
         ExMaxComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         XDocComponent,
         XIconComponent,
         XRowComponent,
@@ -41,9 +40,14 @@ describe(XDocPrefix, () => {
         XTabsComponent,
         XTabComponent,
         XHighlightComponent,
-        XPatternComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XPatternComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDocComponent>;
@@ -62,7 +66,7 @@ describe(XDocPrefix, () => {
 @Component({
   selector: 'test-x-doc',
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-doc>
       <h1 id="badge-标记">Badge 标记</h1>
       <p>出现在按钮、图标旁的数字或状态标记。</p>

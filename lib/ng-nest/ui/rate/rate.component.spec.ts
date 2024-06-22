@@ -1,6 +1,6 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XRateComponent } from '@ng-nest/ui/rate';
@@ -14,16 +14,22 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XRatePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent],
-    imports: [BrowserAnimationsModule,
+      declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         XRateComponent,
         XButtonComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRateComponent>;

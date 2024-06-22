@@ -1,5 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, Injectable, ChangeDetectorRef, viewChild } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  Injectable,
+  ChangeDetectorRef,
+  viewChild,
+  provideExperimentalZonelessChangeDetection
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormComponent } from '@ng-nest/ui/form';
 import { XFormPrefix, XControl, XFormRow } from './form.property';
@@ -28,10 +35,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XFormPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent],
-    imports: [BrowserAnimationsModule, XButtonComponent, XFormComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXFormComponent, TestXFormRowComponent, TestXFormTitleComponent],
+      imports: [BrowserAnimationsModule, XButtonComponent, XFormComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXFormComponent>;

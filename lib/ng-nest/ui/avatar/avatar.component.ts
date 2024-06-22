@@ -8,7 +8,8 @@ import {
   signal,
   computed,
   viewChild,
-  effect
+  effect,
+  AfterViewChecked
 } from '@angular/core';
 import { XAvatarPrefix, XAvatarProperty } from './avatar.property';
 import { XIsEmpty, XIsNumber, XIsString, XIsObject, XComputedStyle, XResize, XToCssPx } from '@ng-nest/ui/core';
@@ -28,12 +29,12 @@ import type { XClassMap, XResizeObserver, XResponseSize } from '@ng-nest/ui/core
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
+export class XAvatarComponent extends XAvatarProperty implements OnDestroy, AfterViewChecked {
   private document = inject(DOCUMENT);
+  private avatar = viewChild.required<ElementRef<HTMLElement>>('avatar');
   private labelRef = viewChild<ElementRef<HTMLElement>>('labelRef');
   private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
   private resizeObserver!: XResizeObserver;
-  private elementRef = inject(ElementRef);
   private labelWidth = signal(this.labelRef()?.nativeElement.clientWidth);
   private documentWidth = toSignal(
     XResize(this.document.documentElement).pipe(
@@ -103,8 +104,8 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
     const label = this.label();
     const labelRef = this.labelRef();
     const labelWidth = this.labelWidth();
-    if (!label || !this.elementRef || !labelRef || !labelWidth) return {};
-    const eleWidth = this.elementRef.nativeElement.clientWidth;
+    if (!label || !this.avatar() || !labelRef || !labelWidth) return {};
+    const eleWidth = this.avatar().nativeElement.clientWidth;
     let scale = (eleWidth - XToCssPx(this.gap(), this.fontSize()) * 2) / labelWidth;
     scale = scale > 1 ? 1 : scale;
     return { transform: `scale(${scale})` };
@@ -115,8 +116,10 @@ export class XAvatarComponent extends XAvatarProperty implements OnDestroy {
     effect(() => this.documentWidth());
   }
 
-  ngAfterContentChecked() {
-    this.labelWidth.set(this.labelRef()?.nativeElement.clientWidth);
+  ngAfterViewChecked() {
+    if (this.labelRef()) {
+      this.labelWidth.set(this.labelRef()?.nativeElement.clientWidth);
+    }
   }
 
   ngOnDestroy(): void {

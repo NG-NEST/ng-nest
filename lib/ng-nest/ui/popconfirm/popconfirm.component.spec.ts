@@ -1,6 +1,6 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XPopconfirmComponent } from '@ng-nest/ui/popconfirm';
@@ -10,7 +10,7 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -18,9 +18,10 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XPopconfirmPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXPopconfirmComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXPopconfirmComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         XPopconfirmComponent,
         XButtonComponent,
@@ -28,9 +29,14 @@ describe(XPopconfirmPrefix, () => {
         XRowComponent,
         XColComponent,
         XIconComponent,
-        XSwitchComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XSwitchComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPopconfirmComponent>;
@@ -48,7 +54,7 @@ describe(XPopconfirmPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-popconfirm title="确定删除吗？" (confirm)="confirm()" (cancel)="cancel()">
         <x-button icon="fto-trash-2">删除</x-button>

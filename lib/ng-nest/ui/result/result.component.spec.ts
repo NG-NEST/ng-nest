@@ -1,6 +1,6 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XResultComponent } from '@ng-nest/ui/result';
@@ -9,16 +9,17 @@ import { XResultPrefix } from './result.property';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XResultPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXResultComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXResultComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         XResultComponent,
         XButtonComponent,
@@ -26,9 +27,14 @@ describe(XResultPrefix, () => {
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXResultComponent>;
@@ -46,7 +52,7 @@ describe(XResultPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-result
         status="success"
@@ -90,12 +96,7 @@ describe(XResultPrefix, () => {
       </x-result>
     </div>
     <div class="row">
-      <x-result
-        icon="fto-smile"
-        status="success"
-        title="自定义图标"
-        subTitle="感谢您参与我们的调查。"
-      >
+      <x-result icon="fto-smile" status="success" title="自定义图标" subTitle="感谢您参与我们的调查。">
         <x-button type="primary">返回列表</x-button>
       </x-result>
     </div>
@@ -104,7 +105,7 @@ describe(XResultPrefix, () => {
         <x-button type="primary">返回列表</x-button>
       </x-result>
       <ng-template #iconTpl>
-        <img [style.width.rem]="18" src="https://ngnest.com/assets/img/logo/logo-144x144.png" />
+        <img [style.width.rem]="18" src="https://ngnest.com/img/logo/logo-144x144.png" />
       </ng-template>
     </div>
   `,

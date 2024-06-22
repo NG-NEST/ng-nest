@@ -1,7 +1,7 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XCardComponent } from '@ng-nest/ui/card';
@@ -10,25 +10,29 @@ import { XCardPrefix } from './card.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XCardPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXCardComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXCardComponent],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         XCardComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCardComponent>;
@@ -46,7 +50,6 @@ describe(XCardPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-card width="20rem">
         <ul>
@@ -67,7 +70,7 @@ describe(XCardPrefix, () => {
     </div>
     <div class="row">
       <x-card width="16rem" class="card" [bodyStyle]="{ padding: 0 }">
-        <img src="https://ngnest.com/assets/img/logo/logo-144x144.png" />
+        <img src="https://ngnest.com/img/logo/logo-144x144.png" />
         <div class="bottom">
           <p>好吃的汉堡</p>
           <div class="time">

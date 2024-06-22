@@ -1,23 +1,27 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPopoverDirective } from '@ng-nest/ui/popover';
 import { XPopoverPrefix } from './popover.property';
 import { interval } from 'rxjs';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XPopoverPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXPopoverComponent],
-    imports: [BrowserAnimationsModule, XThemeComponent, XPopoverDirective, XButtonComponent, XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXPopoverComponent],
+      imports: [BrowserAnimationsModule,  XPopoverDirective, XButtonComponent, XIconComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXPopoverComponent>;
@@ -36,7 +40,7 @@ describe(XPopoverPrefix, () => {
 @Component({
   selector: 'test-x-popover',
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="box">
       <div class="top">
         <x-button x-popover content="上左上左上左上左上左上左上左上左上左上左" placement="top-start">上左</x-button>

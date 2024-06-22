@@ -39,6 +39,6 @@ npm 18.0.1
 
 ## 交流群号
 
-| <img src="https://ngnest.com/assets/img/tim.jpg" width="250" /> | <img src="https://ngnest.com/assets/img/weixin.jpg" width="250" /> |
+| <img src="https://ngnest.com/img/tim.jpg" width="250" /> | <img src="https://ngnest.com/img/weixin.jpg" width="250" /> |
 | --------------------------------------------------------------- | ------------------------------------------------------------------ |
 | QQ                                                              | 微信                                                               |

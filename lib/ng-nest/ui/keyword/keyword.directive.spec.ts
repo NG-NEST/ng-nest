@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XKeywordPrefix } from './keyword.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -10,10 +10,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XKeywordPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXKeywordComponent],
-    imports: [XKeywordDirective, XButtonComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXKeywordComponent],
+      imports: [XKeywordDirective, XButtonComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXKeywordComponent>;

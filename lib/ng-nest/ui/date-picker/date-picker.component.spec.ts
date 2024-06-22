@@ -1,7 +1,7 @@
 import { interval } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDatePickerComponent, XDateRangeComponent } from '@ng-nest/ui/date-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +26,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XDatePickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXDatePickerComponent,
         TestXDatePickerLabelComponent,
         TestXDatePickerDisabledComponent,
@@ -38,8 +38,9 @@ describe(XDatePickerPrefix, () => {
         TestXDatePickerBeforeAfterComponent,
         TestXDatePickerTodayComponent,
         TestXDateRangeComponent
-    ],
-    imports: [BrowserAnimationsModule,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         XDatePickerComponent,
         XDateRangeComponent,
         FormsModule,
@@ -55,9 +56,14 @@ describe(XDatePickerPrefix, () => {
         XColorPickerComponent,
         XFindComponent,
         XTextareaComponent,
-        XTimePickerModule],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XTimePickerModule
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXDatePickerComponent>;
@@ -224,7 +230,10 @@ describe(XDatePickerPrefix, () => {
 class TestXDatePickerComponent {
   model1: any;
   model2 = new Date();
-  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {
+  constructor(
+    private i18nService: XI18nService,
+    private cdr: ChangeDetectorRef
+  ) {
     interval(0).subscribe(() => {
       this.cdr.detectChanges();
     });

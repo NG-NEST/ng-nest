@@ -1,13 +1,12 @@
 import { interval } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCascadeComponent } from '@ng-nest/ui/cascade';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XCascadePrefix, XCascadeNode } from './cascade.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -16,7 +15,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XCascadePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXCascadeComponent,
         TestXCascadeLabelComponent,
         TestXCascadeDisabledComponent,
@@ -24,18 +23,23 @@ describe(XCascadePrefix, () => {
         TestXCascadeSizeComponent,
         TestXCascadeBorderedComponent,
         TestXCascadeCustomComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         XCascadeComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
         XRadioComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCascadeComponent>;
@@ -164,7 +168,6 @@ const data: XCascadeNode[] = [
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-cascade [data]="data1" [(ngModel)]="model1"></x-cascade>
@@ -211,7 +214,6 @@ class TestXCascadeComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-cascade label="方式" [data]="data" [(ngModel)]="model"></x-cascade>
@@ -219,12 +221,7 @@ class TestXCascadeComponent {
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade
-          label="方式"
-          [data]="data"
-          [(ngModel)]="model"
-          direction="column-reverse"
-        ></x-cascade>
+        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="column-reverse"></x-cascade>
       </x-col>
     </x-row>
     <x-row>
@@ -234,12 +231,7 @@ class TestXCascadeComponent {
     </x-row>
     <x-row>
       <x-col span="12">
-        <x-cascade
-          label="方式"
-          [data]="data"
-          [(ngModel)]="model"
-          direction="row-reverse"
-        ></x-cascade>
+        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="row-reverse"></x-cascade>
       </x-col>
     </x-row>
   `,
@@ -268,7 +260,6 @@ class TestXCascadeLabelComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-cascade [data]="data" disabled></x-cascade>
@@ -300,7 +291,6 @@ class TestXCascadeDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-cascade [data]="data" [(ngModel)]="model1" required></x-cascade>
@@ -344,31 +334,13 @@ class TestXCascadeRequiredComponent {
         <x-cascade [data]="data" [size]="size"></x-cascade>
       </x-col>
       <x-col span="24">
-        <x-cascade
-          [data]="data"
-          [size]="size"
-          label="用户名"
-          direction="row"
-          maxlength="50"
-        ></x-cascade>
+        <x-cascade [data]="data" [size]="size" label="用户名" direction="row" maxlength="50"></x-cascade>
       </x-col>
       <x-col span="24">
-        <x-cascade
-          [data]="data"
-          [size]="size"
-          label="用户名"
-          direction="column"
-          maxlength="50"
-        ></x-cascade>
+        <x-cascade [data]="data" [size]="size" label="用户名" direction="column" maxlength="50"></x-cascade>
       </x-col>
       <x-col span="24">
-        <x-cascade
-          [data]="data"
-          [size]="size"
-          icon="ado-user"
-          iconLayout="left"
-          maxlength="50"
-        ></x-cascade>
+        <x-cascade [data]="data" [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-cascade>
       </x-col>
       <x-col span="24">
         <x-cascade [data]="data" required clearable [size]="size"></x-cascade>
@@ -413,13 +385,7 @@ class TestXCascadeSizeComponent {
         <x-cascade [data]="data" placeholder="请选择日期" bordered="false"></x-cascade>
       </x-col>
       <x-col span="24">
-        <x-cascade
-          [data]="data"
-          placeholder="请选择日期"
-          bordered="false"
-          label="日生:"
-          direction="row"
-        ></x-cascade>
+        <x-cascade [data]="data" placeholder="请选择日期" bordered="false" label="日生:" direction="row"></x-cascade>
       </x-col>
       <x-col span="24">
         <x-cascade [data]="data" placeholder="请选择日期" bordered="false"></x-cascade>
@@ -458,12 +424,7 @@ class TestXCascadeBorderedComponent {
   template: `
     <x-row>
       <x-col span="24">
-        <x-cascade
-          [data]="data"
-          placeholder="请选择"
-          [nodeTpl]="nodeTpl"
-          [valueTpl]="valueTpl"
-        ></x-cascade>
+        <x-cascade [data]="data" placeholder="请选择" [nodeTpl]="nodeTpl" [valueTpl]="valueTpl"></x-cascade>
       </x-col>
       <x-col span="24">
         <x-cascade
@@ -475,9 +436,7 @@ class TestXCascadeBorderedComponent {
         ></x-cascade>
       </x-col>
     </x-row>
-    <ng-template #nodeTpl let-node="$node">
-      <x-icon type="fto-map-pin"></x-icon> {{ node.label }}
-    </ng-template>
+    <ng-template #nodeTpl let-node="$node"> <x-icon type="fto-map-pin"></x-icon> {{ node.label }} </ng-template>
     <ng-template #valueTpl let-nodes="$nodes">
       <ng-container *ngFor="let node of nodes; index as i">
         <x-icon type="fto-chevron-right" *ngIf="i > 0"></x-icon> {{ node.label }}

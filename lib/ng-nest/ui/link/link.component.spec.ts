@@ -21,7 +21,6 @@ class XTestLinkComponent {}
     [underline]="underline()"
     [disabled]="disabled()"
     [iconRight]="iconRight()"
-    [preventDefault]="preventDefault()"
     [type]="type()"
     [target]="target()"
     >Link</x-link
@@ -33,7 +32,6 @@ class XTestLinkPropertyComponent {
   underline = signal(false);
   disabled = signal(false);
   iconRight = signal(false);
-  preventDefault = signal(false);
   type = signal<XLinkType>('initial');
   target = signal('');
 }
@@ -110,7 +108,7 @@ describe(XLinkPrefix, () => {
     it('target.', () => {
       component.target.set('_blank');
       fixture.detectChanges();
-      expect(link.nativeElement.getAttribute('href')).toBe('_blank');
+      expect(link.nativeElement.getAttribute('target')).toBe('_blank');
     });
   });
 });

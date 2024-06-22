@@ -1,7 +1,7 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
@@ -10,7 +10,7 @@ import { XEmptyPrefix } from './empty.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -18,18 +18,24 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XEmptyPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXEmptyComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXEmptyComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         XEmptyComponent,
         XButtonComponent,
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXEmptyComponent>;
@@ -49,12 +55,12 @@ describe(XEmptyPrefix, () => {
   template: `
     <x-button (click)="english()">切换为英文</x-button>
     <x-button (click)="chinese()">切换为中文</x-button>
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-empty></x-empty>
     </div>
     <div class="row">
-      <x-empty img="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-empty>
+      <x-empty img="https://ngnest.com/img/logo/logo-144x144.png"></x-empty>
     </div>
     <div class="row">
       <x-empty content="没有数据了"></x-empty>
@@ -90,7 +96,10 @@ describe(XEmptyPrefix, () => {
   ]
 })
 class TestXEmptyComponent {
-  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private i18nService: XI18nService,
+    private cdr: ChangeDetectorRef
+  ) {}
   english() {
     this.i18nService.setLocale(en_US);
     this.cdr.detectChanges();

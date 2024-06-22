@@ -1,5 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, Injectable } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  ChangeDetectorRef,
+  Injectable,
+  provideExperimentalZonelessChangeDetection
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFindComponent } from '@ng-nest/ui/find';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,7 +26,7 @@ import {
 } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 import { XTreeNode } from '@ng-nest/ui/tree';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -28,24 +34,30 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XFindPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXFindComponent,
         TestXFindLabelComponent,
         TestXFindDisabledComponent,
         TestXFindFunctionComponent,
         TestXFindSizeComponent,
         TestXFindBorderedComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
+        
         XFindComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XRadioComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXFindComponent>;
@@ -275,7 +287,7 @@ interface User extends XId {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <!-- <x-row>
       <x-find
         label="表格单选"
@@ -422,7 +434,7 @@ class TestXFindComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <!-- <x-row>
       <x-find label="表格单选" [(ngModel)]="model1" [tableColumns]="table.columns" [tableData]="table.data"></x-find>
     </x-row> -->
@@ -522,7 +534,7 @@ class TestXFindFunctionComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="12">
         <x-find label="方式"></x-find>
@@ -563,7 +575,7 @@ class TestXFindLabelComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="12">
         <x-find disabled></x-find>
@@ -594,7 +606,7 @@ class TestXFindDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
     <x-row>
       <x-col span="24">
@@ -647,7 +659,7 @@ class TestXFindSizeComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-find bordered="false"></x-find>

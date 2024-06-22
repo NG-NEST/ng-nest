@@ -1,11 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { XAffixPrefix } from './affix.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -13,13 +12,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XAffixPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXAffixComponent],
-    imports: [BrowserAnimationsModule,
-        XAffixComponent,
-        XButtonComponent,
-        XThemeComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXAffixComponent],
+      imports: [BrowserAnimationsModule, XAffixComponent, XButtonComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXAffixComponent>;
@@ -37,7 +37,6 @@ describe(XAffixPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row scroll">
       <x-affix top="0">
         <x-button>滚动条下滑，我将固定到顶部</x-button>

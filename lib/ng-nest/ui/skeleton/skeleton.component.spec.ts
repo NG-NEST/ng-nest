@@ -1,6 +1,12 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  ChangeDetectorRef,
+  ViewEncapsulation,
+  provideExperimentalZonelessChangeDetection
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XSkeletonComponent } from '@ng-nest/ui/skeleton';
@@ -12,16 +18,17 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XSkeletonPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXSkeletonComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXSkeletonComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         XSkeletonComponent,
         XSwitchComponent,
@@ -31,9 +38,14 @@ describe(XSkeletonPrefix, () => {
         XColComponent,
         XAvatarComponent,
         XIconComponent,
-        XLinkComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XLinkComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSkeletonComponent>;
@@ -52,7 +64,7 @@ describe(XSkeletonPrefix, () => {
 @Component({
   template: `
     <div class="test-skeletion">
-      <x-theme showDark></x-theme>
+      
       <div class="row">
         <x-skeleton></x-skeleton>
       </div>
@@ -82,7 +94,7 @@ describe(XSkeletonPrefix, () => {
             <x-skeleton [loading]="loadingList" [data]="dataCustom" active>
               <x-row justify="start" space="1">
                 <x-col inherit class="content">
-                  <x-avatar src="https://ngnest.com/assets/img/logo/logo-144x144.png" size="medium"></x-avatar>
+                  <x-avatar src="https://ngnest.com/img/logo/logo-144x144.png" size="medium"></x-avatar>
                 </x-col>
                 <x-col class="content">
                   <x-row>
@@ -111,7 +123,7 @@ describe(XSkeletonPrefix, () => {
                 </x-col>
                 <x-col inherit class="content">
                   <img
-                    src="https://ngnest.com/assets/img/logo/logo-144x144.png"
+                    src="https://ngnest.com/img/logo/logo-144x144.png"
                     [style.width]="'10rem'"
                     [style.height]="'9rem'"
                   />
@@ -162,7 +174,7 @@ class TestXSkeletonComponent {
   dataCustom: XSkeletonRow[] = [
     {
       flex: true,
-      space: "1rem",
+      space: '1rem',
       cols: [
         { type: 'avatar', width: '3rem', height: '3rem' },
         {
@@ -172,7 +184,7 @@ class TestXSkeletonComponent {
             { cols: [{}] },
             { cols: [{ span: 16 }] },
             {
-              space: "1rem",
+              space: '1rem',
               flex: true,
               cols: [
                 { width: '3rem' },
@@ -191,7 +203,7 @@ class TestXSkeletonComponent {
   dataTable: XSkeletonRow[] = [
     {
       flex: true,
-      space: "1rem",
+      space: '1rem',
       cols: [
         { type: 'title', width: '3rem' },
         { type: 'title', span: 4 },
@@ -202,22 +214,22 @@ class TestXSkeletonComponent {
     },
     {
       flex: true,
-      space: "1rem",
+      space: '1rem',
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: "1rem",
+      space: '1rem',
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: "1rem",
+      space: '1rem',
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     },
     {
       flex: true,
-      space: "1rem",
+      space: '1rem',
       cols: [{ width: '3rem' }, { span: 4 }, { span: 6 }, { span: 4 }, { span: 10 }]
     }
   ];

@@ -86,7 +86,7 @@ export class XTabsComponent extends XTabsProperty implements OnDestroy, AfterVie
 
   ngOnDestroy(): void {
     this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this.unSubject.complete();
     this.resizeObserver?.disconnect();
   }
 

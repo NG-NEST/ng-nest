@@ -1,6 +1,6 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTextRetractComponent } from '@ng-nest/ui/text-retract';
@@ -14,15 +14,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XTextRetractPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXTextRetractComponent],
-    imports: [FormsModule,
-        XTextRetractComponent,
-        XRowComponent,
-        XColComponent,
-        XButtonComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXTextRetractComponent],
+      imports: [FormsModule, XTextRetractComponent, XRowComponent, XColComponent, XButtonComponent, XIconComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTextRetractComponent>;
@@ -57,7 +56,10 @@ class TestXTextRetractComponent {
     天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
     天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。`;
 
-  constructor(private i18nService: XI18nService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private i18nService: XI18nService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   english() {
     this.i18nService.setLocale(en_US);

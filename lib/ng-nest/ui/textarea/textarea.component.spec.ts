@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,14 +7,14 @@ import { XTextareaPrefix } from './textarea.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { interval } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XTextareaPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXTextareaComponent,
         TestXTextareaLabelComponent,
         TestXTextareaIconComponent,
@@ -22,16 +22,22 @@ describe(XTextareaPrefix, () => {
         TestXTextareaDisabledComponent,
         TestXTextareaRequiredComponent,
         TestXTextareaLengthComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
+        
         XTextareaComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
-        XColComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XColComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTextareaComponent>;
@@ -121,7 +127,7 @@ describe(XTextareaPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-textarea></x-textarea>
@@ -154,7 +160,7 @@ class TestXTextareaComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-textarea label="用户名"></x-textarea>
@@ -187,7 +193,7 @@ class TestXTextareaLabelComponent {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-textarea icon="ado-user"></x-textarea>
@@ -214,7 +220,7 @@ class TestXTextareaIconComponent {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="8">
         <x-textarea clearable [(ngModel)]="model" (ngModelChange)="change()"></x-textarea>
@@ -267,7 +273,7 @@ class TestXTextareaClearableComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="8">
         <x-textarea disabled></x-textarea>
@@ -309,7 +315,7 @@ class TestXTextareaDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="8">
         <x-textarea required [(ngModel)]="value" (ngModelChange)="change()"></x-textarea>
@@ -349,7 +355,7 @@ class TestXTextareaRequiredComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-textarea [(ngModel)]="value" (ngModelChange)="change()" maxlength="50"></x-textarea>

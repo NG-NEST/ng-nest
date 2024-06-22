@@ -1,6 +1,6 @@
 import { XDocComponent } from '@ng-nest/ui/doc';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTypographyComponent } from '@ng-nest/ui/typography';
@@ -11,10 +11,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XTypographyPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXTypographyComponent],
-    imports: [XTypographyComponent, XRowComponent, XColComponent, XDocComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXTypographyComponent],
+      imports: [XTypographyComponent, XRowComponent, XColComponent, XDocComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTypographyComponent>;

@@ -83,7 +83,7 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
 
   ngOnDestroy(): void {
     this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this.unSubject.complete();
   }
 
   checkboxClick(event: Event, node: XCheckboxNode) {

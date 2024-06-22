@@ -1,7 +1,7 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { Observable } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XRadioComponent } from '@ng-nest/ui/radio';
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { XRadioPrefix, XRadioNode } from './radio.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
@@ -26,15 +26,16 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XRadioPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXRadioComponent,
         TestXRadioDisabledComponent,
         TestXRadioButtonComponent,
         TestXRadioIconComponent,
         TestXRadioAsyncComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         XRadioComponent,
         XAutoCompleteComponent,
@@ -49,9 +50,14 @@ describe(XRadioPrefix, () => {
         XTextareaComponent,
         XTimePickerModule,
         XInputComponent,
-        XTagComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XTagComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXRadioComponent>;
@@ -126,7 +132,7 @@ const iconData: XData<XRadioNode> = [
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-radio [data]="data"></x-radio>
@@ -156,7 +162,7 @@ class TestXRadioComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-radio [data]="data" disabled></x-radio>
@@ -190,7 +196,7 @@ class TestXRadioDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-radio [data]="data" button></x-radio>
@@ -230,7 +236,7 @@ class TestXRadioButtonComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-radio [data]="data" icon></x-radio>
@@ -275,7 +281,7 @@ class TestXRadioIconComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>

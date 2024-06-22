@@ -93,7 +93,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   ngOnDestroy(): void {
     this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this.unSubject.complete();
   }
 
   setSubject() {

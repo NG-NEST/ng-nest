@@ -1,6 +1,6 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTransferComponent } from '@ng-nest/ui/transfer';
@@ -9,7 +9,7 @@ import { XTransferPrefix, XTransferNode } from './transfer.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XContainerComponent } from '@ng-nest/ui/container';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XTreeComponent } from '@ng-nest/ui/tree';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XSelectComponent } from '@ng-nest/ui/select';
@@ -19,9 +19,10 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XTransferPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXTransferComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXTransferComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         ReactiveFormsModule,
         XTransferComponent,
@@ -32,9 +33,14 @@ describe(XTransferPrefix, () => {
         XIconComponent,
         XTreeComponent,
         XSelectComponent,
-        XInputComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XInputComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTransferComponent>;
@@ -52,7 +58,7 @@ describe(XTransferPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-transfer
         [data]="data"

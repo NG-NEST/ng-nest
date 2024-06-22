@@ -1,14 +1,14 @@
 import { interval } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XListComponent } from '@ng-nest/ui/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XListPrefix, XListNode } from './list.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XData } from '@ng-nest/ui/core';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,18 +18,24 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XListPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXListComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXListComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         XRadioComponent,
         XListComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XInputNumberComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XInputNumberComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXListComponent>;
@@ -49,7 +55,7 @@ const data: XData<XListNode> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, '
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row space="1">
       <x-col span="6">
         <x-list [data]="data1" [(ngModel)]="model1" (ngModelChange)="change()" (nodeClick)="nodeEmit()"></x-list>

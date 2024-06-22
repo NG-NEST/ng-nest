@@ -17,7 +17,6 @@
             (mouseleave)="onLeave(node)"
             [ngClass]="nodeClassMap()"
             [href]="showAnchor() ? '#' + node.id : ''"
-            [preventDefault]="showAnchor()"
           >
             <ng-container *ngTemplateOutlet="nodeTpl()!; context: { $node: node }"></ng-container>
             @if (!nodeTpl()) {

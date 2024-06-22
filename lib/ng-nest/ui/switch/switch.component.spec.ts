@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XSwitchPrefix } from './switch.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -16,9 +16,10 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XSwitchPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         XSwitchComponent,
         FormsModule,
         ReactiveFormsModule,
@@ -26,9 +27,14 @@ describe(XSwitchPrefix, () => {
         XColComponent,
         XRadioComponent,
         XInputComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSwitchComponent>;
@@ -70,7 +76,7 @@ describe(XSwitchPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="12">
         <x-switch [(ngModel)]="model1" (ngModelChange)="change($event)"></x-switch>
@@ -107,7 +113,7 @@ class TestXSwitchComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="12">
         <x-switch label="方式"></x-switch>
@@ -148,7 +154,7 @@ class TestXSwitchLabelComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="12">
         <x-switch disabled></x-switch>

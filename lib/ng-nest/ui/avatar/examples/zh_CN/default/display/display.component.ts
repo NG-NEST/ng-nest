@@ -9,7 +9,7 @@ import { XAvatarComponent } from '@ng-nest/ui/avatar';
   styleUrls: ['./display.component.scss']
 })
 export class ExDisplayComponent {
-  src = signal('https://ngnest.com/assets/img/logo/logo-144x144.png');
+  src = signal('https://ngnest.com/img/logo/logo-144x144.png');
   icon = signal('fto-user');
   label = signal('王');
 }

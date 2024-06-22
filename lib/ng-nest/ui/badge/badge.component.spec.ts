@@ -1,7 +1,7 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
@@ -9,24 +9,28 @@ import { FormsModule } from '@angular/forms';
 import { XBadgePrefix } from './badge.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XBadgePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXBadgeComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXBadgeComponent],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         XBadgeComponent,
         XButtonComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXBadgeComponent>;
@@ -44,7 +48,6 @@ describe(XBadgePrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-badge value="12">
         <x-button>评论</x-button>

@@ -81,7 +81,7 @@ export class XAvatarProperty extends XPropertyFunction(X_AVATAR_CONFIG_NAME) {
    * @example
    *
    * ```html
-   * <x-avatar src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar src="https://ngnest.com/img/logo/logo-144x144.png"></x-avatar>
    * ```
    *
    */
@@ -92,11 +92,11 @@ export class XAvatarProperty extends XPropertyFunction(X_AVATAR_CONFIG_NAME) {
    * @example
    *
    * ```html
-   * <x-avatar fit="fill" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-   * <x-avatar fit="contain" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-   * <x-avatar fit="cover" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-   * <x-avatar fit="none" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
-   * <x-avatar fit="scale-down" src="https://ngnest.com/assets/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="fill" src="https://ngnest.com/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="contain" src="https://ngnest.com/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="cover" src="https://ngnest.com/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="none" src="https://ngnest.com/img/logo/logo-144x144.png"></x-avatar>
+   * <x-avatar fit="scale-down" src="https://ngnest.com/img/logo/logo-144x144.png"></x-avatar>
    * ```
    *
    */

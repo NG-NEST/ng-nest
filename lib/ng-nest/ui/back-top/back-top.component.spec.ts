@@ -1,29 +1,33 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XBackTopComponent } from '@ng-nest/ui/back-top';
 import { XBackTopPrefix } from './back-top.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XBackTopPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXBackTopComponent, TestXBackTopTabsComponent],
-    imports: [BrowserAnimationsModule,
+      declarations: [TestXBackTopComponent, TestXBackTopTabsComponent],
+      imports: [
+        BrowserAnimationsModule,
         XBackTopComponent,
         XButtonComponent,
         BrowserAnimationsModule,
         XTabsComponent,
-        XTabComponent,
-        XThemeComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XTabComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXBackTopComponent>;
@@ -53,7 +57,6 @@ describe(XBackTopPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-back-top> </x-back-top>
       <x-back-top [template]="templateTpl" bottom="6rem" visibilityHeight="100"> </x-back-top>
@@ -122,18 +125,11 @@ class TestXBackTopComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-tabs>
-        <x-tab label="1111">
-          <x-back-top> </x-back-top>
-        </x-tab>
-        <x-tab label="2222">
-          <x-back-top right="6rem"> </x-back-top>
-        </x-tab>
-        <x-tab label="3333">
-          <x-back-top right="12rem"> </x-back-top>
-        </x-tab>
+        <x-tab label="1111"> </x-tab>
+        <x-tab label="2222"> </x-tab>
+        <x-tab label="3333"> </x-tab>
       </x-tabs>
     </div>
   `,

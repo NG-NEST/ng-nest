@@ -1,7 +1,7 @@
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { Observable } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { XCheckboxPrefix, XCheckboxNode } from './checkbox.property';
 import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
@@ -26,16 +25,16 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XCheckboxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXCheckboxComponent,
         TestXCheckboxDisabledComponent,
         TestXCheckboxButtonComponent,
         TestXCheckboxIconComponent,
         TestXCheckboxAsyncComponent,
         TestXCheckboxIndeterminateComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
         XCheckboxComponent,
         XButtonComponent,
@@ -50,9 +49,14 @@ describe(XCheckboxPrefix, () => {
         XTextareaComponent,
         XTimePickerModule,
         XInputComponent,
-        XTagComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XTagComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXCheckboxComponent>;
@@ -139,14 +143,10 @@ const iconData: XData<XCheckboxNode> = [
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
-        <x-checkbox
-          [data]="['一个选项']"
-          [(ngModel)]="model1"
-          (ngModelChange)="change($event)"
-        ></x-checkbox>
+        <x-checkbox [data]="['一个选项']" [(ngModel)]="model1" (ngModelChange)="change($event)"></x-checkbox>
       </x-col>
       <x-col span="24">
         <x-checkbox [data]="data"></x-checkbox>
@@ -180,7 +180,7 @@ class TestXCheckboxComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-checkbox [data]="data" disabled></x-checkbox>
@@ -214,18 +214,13 @@ class TestXCheckboxDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-checkbox [data]="data" button></x-checkbox>
       </x-col>
       <x-col span="24">
-        <x-checkbox
-          [data]="data"
-          [(ngModel)]="model"
-          (ngModelChange)="change($event)"
-          button
-        ></x-checkbox>
+        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" button></x-checkbox>
       </x-col>
       <x-col span="24">
         <x-checkbox [data]="data" button disabled></x-checkbox>
@@ -263,18 +258,13 @@ class TestXCheckboxButtonComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-checkbox [data]="data" icon></x-checkbox>
       </x-col>
       <x-col span="24">
-        <x-checkbox
-          [data]="data"
-          [(ngModel)]="model"
-          (ngModelChange)="change($event)"
-          icon
-        ></x-checkbox>
+        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" icon></x-checkbox>
       </x-col>
       <x-col span="24">
         <x-checkbox [data]="data" icon disabled></x-checkbox>
@@ -318,7 +308,7 @@ class TestXCheckboxIconComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>
@@ -367,7 +357,7 @@ class TestXCheckboxAsyncComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col span="24">
         <x-checkbox
@@ -378,11 +368,7 @@ class TestXCheckboxAsyncComponent {
         ></x-checkbox>
       </x-col>
       <x-col span="24">
-        <x-checkbox
-          [data]="data"
-          [(ngModel)]="model"
-          (ngModelChange)="itemChange($event)"
-        ></x-checkbox>
+        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="itemChange($event)"></x-checkbox>
       </x-col>
     </x-row>
   `,

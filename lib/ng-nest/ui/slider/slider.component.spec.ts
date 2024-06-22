@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XSliderPrefix, XSliderNode } from './slider.property';
@@ -7,22 +7,28 @@ import { XData } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XSliderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXSliderComponent],
-    imports: [XSliderComponent,
-        XThemeComponent,
+      declarations: [TestXSliderComponent],
+      imports: [
+        XSliderComponent,
+        
         BrowserAnimationsModule,
         XIconComponent,
         XTabsComponent,
-        XTabComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XTabComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSliderComponent>;
@@ -40,7 +46,7 @@ describe(XSliderPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-slider [data]="data"> </x-slider>
     </div>

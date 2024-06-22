@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ChangeDetectorRef, Component, DebugElement } from '@angular/core';
+import { ChangeDetectorRef, Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XInputNumberPrefix } from './input-number.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XInputNumberPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXInputNumberComponent,
         TestXInputNumberLabelComponent,
         TestXInputNumberLimitComponent,
@@ -23,17 +23,23 @@ describe(XInputNumberPrefix, () => {
         TestXInputNumberRequiredComponent,
         TestXInputNumberSizeComponent,
         TestXInputNumberBorderedComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
+        
         XInputNumberComponent,
         FormsModule,
         ReactiveFormsModule,
         XRowComponent,
         XColComponent,
-        XRadioComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XRadioComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXInputNumberComponent>;
@@ -135,7 +141,7 @@ describe(XInputNumberPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-input-number></x-input-number>
@@ -159,7 +165,7 @@ class TestXInputNumberComponent {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-input-number label="数量"></x-input-number>
@@ -201,7 +207,7 @@ class TestXInputNumberLabelComponent {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-input-number max="10"></x-input-number>
@@ -238,7 +244,7 @@ class TestXInputNumberLimitComponent {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-input-number precision="2" step="0.1"></x-input-number>
@@ -265,7 +271,7 @@ class TestXInputNumberPrecisionComponent {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-input-number disabled></x-input-number>
@@ -297,7 +303,7 @@ class TestXInputNumberDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row>
       <x-col>
         <x-input-number required></x-input-number>

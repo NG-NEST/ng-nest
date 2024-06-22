@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTimelineComponent } from '@ng-nest/ui/timeline';
 import { XTimelinePrefix, XTimelineNode } from './timeline.property';
@@ -7,7 +7,7 @@ import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 import { XCardComponent } from '@ng-nest/ui/card';
 import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -16,16 +16,22 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XTimelinePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXTimelineComponent],
-    imports: [BrowserAnimationsModule,
+      declarations: [TestXTimelineComponent],
+      imports: [
+        BrowserAnimationsModule,
         FormsModule,
-        XThemeComponent,
+        
         XTimelineComponent,
         XCardComponent,
         XTimeAgoPipe,
-        XRadioComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XRadioComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimelineComponent>;
@@ -43,7 +49,7 @@ describe(XTimelinePrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <div class="row">
       <x-card>
         <x-timeline [data]="data"></x-timeline>

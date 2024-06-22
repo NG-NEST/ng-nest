@@ -1,36 +1,42 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef } from '@angular/core';
+import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XStepsComponent } from '@ng-nest/ui/steps';
 import { XStepsPrefix } from './steps.property';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XStepsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXStepsComponent, TestXStepsDotComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXStepsComponent, TestXStepsDotComponent],
+      imports: [
+        BrowserAnimationsModule,
+
         XStepsComponent,
         XButtonComponent,
         XButtonsComponent,
         XTabsComponent,
-        XTabComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XTabComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXStepsComponent>;
     let steps: DebugElement;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXStepsComponent);
-      fixture.detectChanges();
       steps = fixture.debugElement.query(By.directive(XStepsComponent));
+      fixture.detectChanges();
     });
     it('should create.', () => {
       expect(steps).toBeDefined();
@@ -52,7 +58,6 @@ describe(XStepsPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-steps [data]="data" [activatedIndex]="activatedIndex"> </x-steps>
     </div>
@@ -158,7 +163,6 @@ class TestXStepsComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <div class="row">
       <x-steps [data]="data" [customTpl]="customTpl" [activatedIndex]="activatedIndex"> </x-steps>
     </div>

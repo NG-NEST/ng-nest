@@ -4,7 +4,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XButtonPrefix, XButtonType } from './button.property';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { XDirection, XSize } from '@ng-nest/ui/core';
 
@@ -30,11 +29,12 @@ class XTestButtonComponent {}
       [activated]="activated()"
       [disabled]="disabled()"
     >
-      Button
+      {{ content() }}
     </x-button>
   `
 })
 class XTestButtonPropertyComponent {
+  content = signal('Button');
   type = signal<XButtonType>('primary');
   icon = signal('fto-x');
   title = signal('title');
@@ -94,12 +94,10 @@ describe(XButtonPrefix, () => {
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestButtonPropertyComponent>;
     let component: XTestButtonPropertyComponent;
-    let button: DebugElement;
     let debugButton: HTMLButtonElement;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestButtonPropertyComponent);
       component = fixture.componentInstance;
-      button = fixture.debugElement.query(By.directive(XButtonComponent));
       debugButton = fixture.debugElement.query(By.css('button')).nativeElement;
       fixture.detectChanges();
     });
@@ -111,9 +109,11 @@ describe(XButtonPrefix, () => {
       expect(debugButton).toHaveClass(`${XButtonPrefix}-danger`);
     });
     it('icon.', () => {
+      component.content.set('');
+      fixture.detectChanges();
       expect(debugButton).toHaveClass(`${XButtonPrefix}-icon`);
 
-      const icon = button.query(By.directive(XIconComponent));
+      const icon = fixture.debugElement.query(By.css('.x-icon'));
       expect(icon).toBeDefined();
       expect(icon.nativeElement).toHaveClass('fto-x');
 

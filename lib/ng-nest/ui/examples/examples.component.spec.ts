@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XExamplesComponent } from '@ng-nest/ui/examples';
 import { XExamplesPrefix } from './examples.property';
@@ -10,10 +10,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XExamplesPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXExamplesComponent],
-    imports: [XExamplesComponent, XTabsComponent, XTabComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      declarations: [TestXExamplesComponent],
+      imports: [XExamplesComponent, XTabsComponent, XTabComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXExamplesComponent>;

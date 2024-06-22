@@ -9,5 +9,5 @@ import { XAvatarComponent, XAvatarGroupComponent } from '@ng-nest/ui/avatar';
   styleUrls: ['./group.component.scss']
 })
 export class ExGroupComponent {
-  src = signal('https://ngnest.com/assets/img/logo/logo-144x144.png');
+  src = signal('https://ngnest.com/img/logo/logo-144x144.png');
 }

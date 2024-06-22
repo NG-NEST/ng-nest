@@ -1,5 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, Injectable, ChangeDetectorRef, viewChild } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  Injectable,
+  ChangeDetectorRef,
+  viewChild,
+  provideExperimentalZonelessChangeDetection
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTreeComponent } from '@ng-nest/ui/tree';
 import { XTreePrefix, XTreeNode, XTreeAction } from './tree.property';
@@ -13,7 +20,7 @@ import { UntypedFormGroup } from '@angular/forms';
 import { XRepositoryService, XHttpService, XGuid } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XMessageService } from '@ng-nest/ui/message';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -22,7 +29,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XTreePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXTreeComponent,
         TestXTreeLazyComponent,
         TestXTreeCheckedComponent,
@@ -30,9 +37,10 @@ describe(XTreePrefix, () => {
         TestXTreeCustomComponent,
         TestXTreeEventComponent,
         TestXTreeOperationComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
+        
         XTreeComponent,
         XRowComponent,
         XColComponent,
@@ -41,9 +49,14 @@ describe(XTreePrefix, () => {
         XFormComponent,
         XLinkComponent,
         XInputNumberComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXTreeComponent>;
@@ -173,7 +186,7 @@ class TreeServiceTest {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row space="1">
       <x-col span="8">
         <x-tree [data]="service.data"> </x-tree>
@@ -206,7 +219,7 @@ class TestXTreeComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row space="1">
       <x-col span="8">
         <x-tree [data]="service.getTreeList" lazy> </x-tree>
@@ -236,7 +249,7 @@ class TestXTreeLazyComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row space="1">
       <x-col span="8">
         <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox> </x-tree>
@@ -263,7 +276,7 @@ class TestXTreeCheckedComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row space="1">
       <x-col span="8">
         <x-tree [data]="service.data" [expanded]="[1, 3]" [checked]="[8, 15, 18]" checkbox> </x-tree>
@@ -290,7 +303,7 @@ class TestXTreeDiabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row space="1">
       <x-col span="12">
         <x-tree [data]="service.data" checkbox [labelTpl]="labelTpl"> </x-tree>
@@ -337,7 +350,7 @@ class TestXTreeCustomComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row space="1">
       <x-col span="8">
         <ul class="operations">
@@ -424,7 +437,7 @@ interface Organization extends XTreeNode {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row space="1">
       <x-col span="8">
         <x-button (click)="action('add-root', selected)">添加根节点</x-button>

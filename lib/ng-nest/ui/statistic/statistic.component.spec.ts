@@ -1,6 +1,6 @@
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XStatisticComponent, XCountdownComponent } from '@ng-nest/ui/statistic';
@@ -11,16 +11,17 @@ import { XContainerComponent } from '@ng-nest/ui/container';
 import { XCardComponent } from '@ng-nest/ui/card';
 import { XAddDays } from '@ng-nest/ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
+
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe(XStatisticPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestXStatisticComponent],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      declarations: [TestXStatisticComponent],
+      imports: [
+        BrowserAnimationsModule,
+        
         FormsModule,
         XStatisticComponent,
         XCountdownComponent,
@@ -29,9 +30,14 @@ describe(XStatisticPrefix, () => {
         XContainerComponent,
         XRowComponent,
         XColComponent,
-        XIconComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XIconComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXStatisticComponent>;
@@ -49,7 +55,7 @@ describe(XStatisticPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
+    
     <x-row space="1">
       <x-col span="12">
         <x-card>
@@ -58,14 +64,14 @@ describe(XStatisticPrefix, () => {
       </x-col>
       <x-col span="12">
         <x-card>
-          <x-statistic label="销售总额（CNY）" value="{{ 1023123.122 | number : '1.0-2' }}"> </x-statistic>
+          <x-statistic label="销售总额（CNY）" value="{{ 1023123.122 | number: '1.0-2' }}"> </x-statistic>
         </x-card>
       </x-col>
       <x-col span="12">
         <x-card>
           <x-statistic
             label="上升比例"
-            value="{{ 15.28 | number : '1.0-2' }}"
+            value="{{ 15.28 | number: '1.0-2' }}"
             [prefix]="prefixTempOne"
             suffix="%"
             [valueStyle]="{ color: '#67c23a' }"
@@ -78,7 +84,7 @@ describe(XStatisticPrefix, () => {
         <x-card>
           <x-statistic
             label="下降比例"
-            value="{{ 2.28 | number : '1.0-2' }}"
+            value="{{ 2.28 | number: '1.0-2' }}"
             [prefix]="prefixTempTwo"
             suffix="%"
             [valueStyle]="{ color: '#f56c6c' }"

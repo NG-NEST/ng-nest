@@ -70,7 +70,7 @@ export class XTooltipDirective extends XTooltipProperty implements OnDestroy {
 
   ngOnDestroy(): void {
     this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this.unSubject.complete();
   }
 
   show() {

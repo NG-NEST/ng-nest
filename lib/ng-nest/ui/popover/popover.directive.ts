@@ -94,7 +94,7 @@ export class XPopoverDirective extends XPopoverProperty implements OnDestroy, On
 
   ngOnDestroy(): void {
     this.unSubject.next();
-    this.unSubject.unsubscribe();
+    this.unSubject.complete();
   }
 
   show() {

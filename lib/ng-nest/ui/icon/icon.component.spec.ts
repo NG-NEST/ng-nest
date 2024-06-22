@@ -60,6 +60,7 @@ describe(XIconPrefix, () => {
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestIconPropertyComponent);
       component = fixture.componentInstance;
+      icon = fixture.debugElement.query(By.directive(XIconComponent));
       fixture.detectChanges();
     });
     it('type.', () => {

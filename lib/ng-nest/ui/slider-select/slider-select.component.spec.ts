@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +7,6 @@ import { XSliderSelectPrefix } from './slider-select.property';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XThemeComponent } from '@ng-nest/ui/theme';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -16,16 +15,16 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XSliderSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [
+      declarations: [
         TestXSliderSelectComponent,
         TestXSliderSelectLabelComponent,
         TestXSliderSelectLimitComponent,
         TestXSliderSelectPrecisionComponent,
         TestXSliderSelectDisabledComponent,
         TestXSliderSelectTabsComponent
-    ],
-    imports: [BrowserAnimationsModule,
-        XThemeComponent,
+      ],
+      imports: [
+        BrowserAnimationsModule,
         XSliderSelectComponent,
         FormsModule,
         ReactiveFormsModule,
@@ -34,9 +33,14 @@ describe(XSliderSelectPrefix, () => {
         XTabsComponent,
         XTabComponent,
         XIconComponent,
-        XButtonComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        XButtonComponent
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideExperimentalZonelessChangeDetection()
+      ]
+    }).compileComponents();
   });
   describe(`default.`, () => {
     let fixture: ComponentFixture<TestXSliderSelectComponent>;
@@ -114,7 +118,6 @@ describe(XSliderSelectPrefix, () => {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select></x-slider-select>
@@ -145,7 +148,6 @@ class TestXSliderSelectComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select max="10" [(ngModel)]="model1"></x-slider-select>
@@ -183,7 +185,6 @@ class TestXSliderSelectLimitComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select min="0" max="1" step="0.1"></x-slider-select>
@@ -212,7 +213,6 @@ class TestXSliderSelectPrecisionComponent {}
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select label="数量" [(ngModel)]="model"></x-slider-select>
@@ -253,7 +253,6 @@ class TestXSliderSelectLabelComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-row>
       <x-col span="12">
         <x-slider-select disabled></x-slider-select>
@@ -284,7 +283,6 @@ class TestXSliderSelectDisabledComponent {
 
 @Component({
   template: `
-    <x-theme showDark></x-theme>
     <x-tabs>
       <x-tab label="1111">
         <x-row>
