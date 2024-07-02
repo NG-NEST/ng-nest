@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, inject, computed, signal } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, inject, computed, signal, effect } from '@angular/core';
 import { XCalendarPrefix, XCalendarProperty } from './calendar.property';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { DatePipe, LowerCasePipe, NgClass, NgTemplateOutlet } from '@angular/common';
@@ -80,6 +80,16 @@ export class XCalendarComponent extends XCalendarProperty {
 
     return dt;
   });
+
+  constructor() {
+    super();
+    effect(
+      () => {
+        this.modelSignal.set(this.model());
+      },
+      { allowSignalWrites: true }
+    );
+  }
 
   action(next: number) {
     let datetime = new Date(this.datetime().getTime());

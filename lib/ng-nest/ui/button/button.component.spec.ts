@@ -109,9 +109,11 @@ describe(XButtonPrefix, () => {
       expect(debugButton).toHaveClass(`${XButtonPrefix}-danger`);
     });
     it('icon.', () => {
+      expect(debugButton).toHaveClass(`${XButtonPrefix}-icon`);
+
       component.content.set('');
       fixture.detectChanges();
-      expect(debugButton).toHaveClass(`${XButtonPrefix}-icon`);
+      expect(debugButton).toHaveClass(`${XButtonPrefix}-icon-not-content`);
 
       const icon = fixture.debugElement.query(By.css('.x-icon'));
       expect(icon).toBeDefined();

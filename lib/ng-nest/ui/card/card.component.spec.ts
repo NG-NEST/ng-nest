@@ -1,32 +1,44 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  TemplateRef,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+  viewChild
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCardComponent } from '@ng-nest/ui/card';
-import { FormsModule } from '@angular/forms';
-import { XCardPrefix } from './card.property';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerComponent } from '@ng-nest/ui/container';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XCardComponent, XCardPrefix, XCardShadow } from '@ng-nest/ui/card';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
+@Component({
+  standalone: true,
+  imports: [XCardComponent],
+  template: `<x-card></x-card>`
+})
+class XTestCardComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XCardComponent],
+  template: `
+    <x-card [width]="width()" [bodyStyle]="bodyStyle()" [header]="header()" [shadow]="shadow()"></x-card>
+    <ng-template #headerTpl>header title</ng-template>
+  `
+})
+class XTestCardPropertyComponent {
+  width = signal('');
+  bodyStyle = signal({});
+  headerTpl = viewChild.required<TemplateRef<any>>('headerTpl');
+  header = signal<TemplateRef<any> | null>(null);
+  shadow = signal<XCardShadow>('always');
+}
 
 describe(XCardPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXCardComponent],
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        XCardComponent,
-        XButtonComponent,
-        XContainerComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent
-      ],
+      imports: [XTestCardComponent, XTestCardPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -34,101 +46,57 @@ describe(XCardPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXCardComponent>;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestCardComponent>;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(XTestCardComponent);
+      fixture.detectChanges();
+    });
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XCardComponent));
+      expect(com).toBeDefined();
+    });
+    it('property.', () => {
+      const card = fixture.debugElement.query(By.css('.x-card'));
+      expect(card.nativeElement).toHaveClass('x-card-always');
+    });
+  });
+  describe(`input.`, () => {
+    let fixture: ComponentFixture<XTestCardPropertyComponent>;
+    let component: XTestCardPropertyComponent;
     let card: DebugElement;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCardComponent);
+      fixture = TestBed.createComponent(XTestCardPropertyComponent);
+      component = fixture.componentInstance;
+      card = fixture.debugElement.query(By.css('.x-card'));
       fixture.detectChanges();
-      card = fixture.debugElement.query(By.directive(XCardComponent));
     });
-    it('should create.', () => {
-      expect(card).toBeDefined();
+    it('width.', () => {
+      component.width.set('15rem');
+      fixture.detectChanges();
+
+      expect(card.nativeElement.style.width).toBe('15rem');
+    });
+    it('body style.', () => {
+      component.bodyStyle.set({ padding: '10px' });
+      fixture.detectChanges();
+
+      const body = fixture.debugElement.query(By.css('.x-card-body'));
+      expect(body.nativeElement.style.padding).toBe('10px');
+    });
+    it('header.', () => {
+      component.header.set(component.headerTpl());
+      fixture.detectChanges();
+
+      const header = fixture.debugElement.query(By.css('.x-card-header'));
+      expect(header.nativeElement.textContent.trim()).toBe('header title');
+    });
+    it('shadow.', () => {
+      expect(card.nativeElement).toHaveClass('x-card-always');
+      component.shadow.set('hover');
+      fixture.detectChanges();
+
+      expect(card.nativeElement).toHaveClass('x-card-hover');
     });
   });
 });
-
-@Component({
-  template: `
-    <div class="row">
-      <x-card width="20rem">
-        <ul>
-          <li *ngFor="let item of list">{{ '列表内容 ' + item }}</li>
-        </ul>
-      </x-card>
-    </div>
-    <div class="row">
-      <x-card width="20rem" [header]="header">
-        <ng-template #header>
-          <span>卡片名称</span>
-          <x-button type="text">操作按钮</x-button>
-        </ng-template>
-        <ul>
-          <li *ngFor="let item of list">{{ '列表内容 ' + item }}</li>
-        </ul>
-      </x-card>
-    </div>
-    <div class="row">
-      <x-card width="16rem" class="card" [bodyStyle]="{ padding: 0 }">
-        <img src="https://ngnest.com/img/logo/logo-144x144.png" />
-        <div class="bottom">
-          <p>好吃的汉堡</p>
-          <div class="time">
-            <span>2019-10-11 22:10</span>
-            <x-button type="text">操作按钮</x-button>
-          </div>
-        </div>
-      </x-card>
-    </div>
-    <div class="row ">
-      <x-row space="1">
-        <x-col span="8">
-          <x-card shadow="always"> 总是显示 </x-card>
-        </x-col>
-        <x-col span="8">
-          <x-card shadow="hover"> 鼠标悬浮时显示 </x-card>
-        </x-col>
-        <x-col span="8">
-          <x-card shadow="never"> 从不显示 </x-card>
-        </x-col>
-      </x-row>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-card:not(:first-child) {
-        margin-left: 2rem;
-      }
-      .row .card img {
-        width: 100%;
-        display: block;
-      }
-      .row .card .bottom {
-        padding: 0.625rem;
-      }
-      .row .card .bottom > p {
-        margin: 0;
-        font-size: 1rem;
-      }
-      .row .card .bottom > .time {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .row .card .bottom > .time > span {
-        color: var(--x-text-400);
-      }
-    `
-  ]
-})
-class TestXCardComponent {
-  list = [1, 2, 3, 4, 5, 6];
-}

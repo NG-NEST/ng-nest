@@ -1,4 +1,4 @@
-import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XThemeService } from './theme.service';
 import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
@@ -68,7 +68,7 @@ describe('x-theme', () => {
       }
     }
   };
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [XGlobalThemeTestBasicComponent],
       imports: [XButtonComponent, BrowserAnimationsModule, XColorPickerComponent, FormsModule, ReactiveFormsModule],
@@ -82,7 +82,7 @@ describe('x-theme', () => {
         provideExperimentalZonelessChangeDetection()
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(XGlobalThemeTestBasicComponent);

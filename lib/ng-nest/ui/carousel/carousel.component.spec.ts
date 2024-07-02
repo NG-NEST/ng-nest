@@ -1,41 +1,60 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCarouselComponent, XCarouselPanelComponent } from '@ng-nest/ui/carousel';
-import { FormsModule } from '@angular/forms';
-import { XCarouselPrefix } from './carousel.property';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerComponent } from '@ng-nest/ui/container';
-import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  XCarouselArrow,
+  XCarouselComponent,
+  XCarouselDirection,
+  XCarouselModule,
+  XCarouselPrefix,
+  XCarouselTrigger
+} from '@ng-nest/ui/carousel';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XButtonComponent } from '@ng-nest/ui/button';
+
+@Component({
+  standalone: true,
+  imports: [XCarouselModule],
+  template: `
+    <x-carousel>
+      <x-carousel-panel>1</x-carousel-panel>
+      <x-carousel-panel>2</x-carousel-panel>
+      <x-carousel-panel>3</x-carousel-panel>
+    </x-carousel>
+  `
+})
+class XTestCarouselComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XCarouselModule],
+  template: `
+    <x-carousel
+      [(active)]="active"
+      [height]="height()"
+      [trigger]="trigger()"
+      [arrow]="arrow()"
+      [direction]="direction()"
+    >
+      <x-carousel-panel>1</x-carousel-panel>
+      <x-carousel-panel>2</x-carousel-panel>
+      <x-carousel-panel>3</x-carousel-panel>
+    </x-carousel>
+  `
+})
+class XTestCarouselPropertyComponent {
+  active = signal(0);
+  height = signal('15rem');
+  trigger = signal<XCarouselTrigger>('hover');
+  arrow = signal<XCarouselArrow>('hover');
+  direction = signal<XCarouselDirection>('horizontal');
+}
 
 describe(XCarouselPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestXCarouselComponent,
-        TestXCarouselCardComponent,
-        TestXCarouselDirectionComponent,
-        TestXCarouselTabsComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        XCarouselComponent,
-        XCarouselPanelComponent,
-        XButtonComponent,
-        XContainerComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent,
-        XTabsComponent,
-        XTabComponent
-      ],
+      imports: [XTestCarouselComponent, XTestCarouselPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -43,264 +62,87 @@ describe(XCarouselPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXCarouselComponent>;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestCarouselComponent>;
     let carousel: DebugElement;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCarouselComponent);
+      fixture = TestBed.createComponent(XTestCarouselComponent);
+      carousel = fixture.debugElement.query(By.css('.x-carousel'));
       fixture.detectChanges();
-      carousel = fixture.debugElement.query(By.directive(XCarouselComponent));
     });
-    it('should create.', () => {
-      expect(carousel).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XCarouselComponent));
+      expect(com).toBeDefined();
+    });
+    it('property.', () => {
+      const indicator = fixture.debugElement.query(By.css('.x-carousel-indicator'));
+      const list = indicator.queryAll(By.css('li'));
+      expect(list[0].nativeElement).toHaveClass('x-activated');
+
+      const content = fixture.debugElement.query(By.css('.x-carousel-content'));
+      expect(content.nativeElement.style.height).toBe('15rem');
+
+      list[1].nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
+      fixture.detectChanges();
+      expect(list[1].nativeElement).toHaveClass('x-activated');
+
+      carousel.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
+      fixture.detectChanges();
+      const button = content.query(By.directive(XButtonComponent));
+      expect(button.nativeElement.style.opacity).toBe(1);
+
+      expect(carousel.nativeElement).toHaveClass('x-carousel-horizontal');
     });
   });
-  describe(`card.`, () => {
-    let fixture: ComponentFixture<TestXCarouselCardComponent>;
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestCarouselPropertyComponent>;
+    let component: XTestCarouselPropertyComponent;
     let carousel: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCarouselCardComponent);
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestCarouselPropertyComponent);
+      component = fixture.componentInstance;
+      carousel = fixture.debugElement.query(By.css('.x-carousel'));
       fixture.detectChanges();
-      carousel = fixture.debugElement.query(By.directive(XCarouselComponent));
     });
-    it('should create.', () => {
-      expect(carousel).toBeDefined();
-    });
-  });
-  describe(`direction.`, () => {
-    let fixture: ComponentFixture<TestXCarouselDirectionComponent>;
-    let carousel: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCarouselDirectionComponent);
+    it('active.', () => {
+      const indicator = fixture.debugElement.query(By.css('.x-carousel-indicator'));
+      const list = indicator.queryAll(By.css('li'));
+      expect(list[0].nativeElement).toHaveClass('x-activated');
+
+      component.active.set(1);
       fixture.detectChanges();
-      carousel = fixture.debugElement.query(By.directive(XCarouselComponent));
+      expect(list[1].nativeElement).toHaveClass('x-activated');
     });
-    it('should create.', () => {
-      expect(carousel).toBeDefined();
-    });
-  });
-  describe(`tabs.`, () => {
-    let fixture: ComponentFixture<TestXCarouselTabsComponent>;
-    let carousel: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCarouselTabsComponent);
+    it('height.', () => {
+      component.height.set('150px');
       fixture.detectChanges();
-      carousel = fixture.debugElement.query(By.directive(XCarouselComponent));
+      const content = fixture.debugElement.query(By.css('.x-carousel-content'));
+      expect(content.nativeElement.style.height).toBe('150px');
     });
-    it('should create.', () => {
-      expect(carousel).toBeDefined();
+    it('trigger.', () => {
+      const indicator = fixture.debugElement.query(By.css('.x-carousel-indicator'));
+      const list = indicator.queryAll(By.css('li'));
+      list[1].nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
+      fixture.detectChanges();
+      expect(list[1].nativeElement).toHaveClass('x-activated');
+
+      component.trigger.set('click');
+      fixture.detectChanges();
+      list[2].nativeElement.click();
+      fixture.detectChanges();
+      expect(list[2].nativeElement).toHaveClass('x-activated');
+    });
+    it('arrow.', () => {
+      component.arrow.set('always');
+      fixture.detectChanges();
+      const content = fixture.debugElement.query(By.css('.x-carousel-content'));
+      const button = content.query(By.directive(XButtonComponent));
+      expect(button.nativeElement.style.opacity).toBe(1);
+    });
+    it('direction.', () => {
+      component.direction.set('vertical');
+      fixture.detectChanges();
+      expect(carousel.nativeElement).toHaveClass('x-carousel-horizontal');
     });
   });
 });
-
-@Component({
-  template: `
-    <div class="row">
-      <x-carousel autoplay="false" height="12rem">
-        <x-carousel-panel *ngFor="let item of list">
-          <h3>{{ item }}</h3>
-        </x-carousel-panel>
-      </x-carousel>
-    </div>
-    <div class="row">
-      <x-carousel height="12rem" trigger="click">
-        <x-carousel-panel *ngFor="let item of list">
-          <h3>{{ item }}</h3>
-        </x-carousel-panel>
-      </x-carousel>
-    </div>
-    <div class="row">
-      <x-carousel height="12rem" outside>
-        <x-carousel-panel *ngFor="let item of list">
-          <h3>{{ item }}</h3>
-        </x-carousel-panel>
-      </x-carousel>
-    </div>
-    <div class="row">
-      <x-carousel height="12rem" arrow="always">
-        <x-carousel-panel *ngFor="let item of list">
-          <h3>{{ item }}</h3>
-        </x-carousel-panel>
-      </x-carousel>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        width: 24rem;
-        padding: 1.625rem 1rem;
-        border: 0.0625rem solid var(--x-border);
-        background-color: var(--x-background);
-      }
-      .row:not(:first-child) {
-        margin-top: 2rem;
-      }
-      .row x-carousel-panel:nth-child(odd) {
-        background-color: var(--x-info-800);
-      }
-      .row x-carousel-panel:nth-child(even) {
-        background-color: var(--x-info-600);
-      }
-      .row x-carousel-panel h3 {
-        text-align: center;
-        line-height: 12rem;
-        margin: 0;
-        color: var(--x-text-300);
-      }
-    `
-  ]
-})
-class TestXCarouselComponent {
-  list = [1, 2, 3, 4, 5];
-}
-
-@Component({
-  template: `
-    <div class="row">
-      <x-carousel height="15rem" card>
-        <x-carousel-panel *ngFor="let item of list">
-          <h3>{{ item }}</h3>
-        </x-carousel-panel>
-      </x-carousel>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        width: 100%;
-        padding: 1.625rem 1rem;
-        border: 0.0625rem solid var(--x-border);
-        background-color: var(--x-background);
-      }
-      .row:not(:first-child) {
-        margin-top: 2rem;
-      }
-      .row x-carousel-panel:nth-child(odd) {
-        background-color: var(--x-info-800);
-      }
-      .row x-carousel-panel:nth-child(even) {
-        background-color: var(--x-info-600);
-      }
-      .row x-carousel-panel h3 {
-        text-align: center;
-        line-height: 15rem;
-        margin: 0;
-        color: var(--x-text-300);
-      }
-    `
-  ]
-})
-class TestXCarouselCardComponent {
-  list = [1, 2, 3, 4, 5];
-}
-
-@Component({
-  template: `
-    <div class="row">
-      <x-carousel height="15rem" direction="vertical">
-        <x-carousel-panel *ngFor="let item of list">
-          <h3>{{ item }}</h3>
-        </x-carousel-panel>
-      </x-carousel>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        width: 100%;
-        padding: 1.625rem 1rem;
-        border: 0.0625rem solid var(--x-border);
-        background-color: var(--x-background);
-      }
-      .row:not(:first-child) {
-        margin-top: 2rem;
-      }
-      .row x-carousel-panel:nth-child(odd) {
-        background-color: var(--x-info-800);
-      }
-      .row x-carousel-panel:nth-child(even) {
-        background-color: var(--x-info-600);
-      }
-      .row x-carousel-panel h3 {
-        text-align: center;
-        line-height: 15rem;
-        margin: 0;
-        color: var(--x-text-300);
-      }
-    `
-  ]
-})
-class TestXCarouselDirectionComponent {
-  list = [1, 2, 3, 4, 5];
-}
-
-@Component({
-  template: `
-    <div class="row">
-      <x-tabs>
-        <x-tab label="1111">
-          <x-carousel height="15rem" card>
-            <x-carousel-panel *ngFor="let item of list">
-              <h3>{{ item }}</h3>
-            </x-carousel-panel>
-          </x-carousel>
-        </x-tab>
-        <x-tab label="2222">
-          <x-carousel height="15rem" card>
-            <x-carousel-panel *ngFor="let item of list">
-              <h3>{{ item }}</h3>
-            </x-carousel-panel>
-          </x-carousel>
-        </x-tab>
-      </x-tabs>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        width: 100%;
-        padding: 1.625rem 1rem;
-        border: 0.0625rem solid var(--x-border);
-        background-color: var(--x-background);
-      }
-      .row:not(:first-child) {
-        margin-top: 2rem;
-      }
-      .row x-carousel-panel:nth-child(odd) {
-        background-color: var(--x-info-800);
-      }
-      .row x-carousel-panel:nth-child(even) {
-        background-color: var(--x-info-600);
-      }
-      .row x-carousel-panel h3 {
-        text-align: center;
-        line-height: 15rem;
-        margin: 0;
-        color: var(--x-text-300);
-      }
-    `
-  ]
-})
-class TestXCarouselTabsComponent {
-  list = [1, 2, 3, 4, 5];
-}

@@ -1,124 +1,140 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XBadgeComponent } from '@ng-nest/ui/badge';
-import { FormsModule } from '@angular/forms';
-import { XBadgePrefix } from './badge.property';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XBadgeComponent, XBadgePrefix, XBadgeType } from '@ng-nest/ui/badge';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+@Component({
+  standalone: true,
+  imports: [XBadgeComponent],
+  template: `
+    <x-badge value="10">
+      <button>Button</button>
+    </x-badge>
+  `
+})
+class XTestBadgeComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XBadgeComponent],
+  template: `
+    <x-badge
+      [type]="type()"
+      [max]="max()"
+      [value]="value()"
+      [offsetLeft]="offsetLeft()"
+      [offsetTop]="offsetTop()"
+      [dot]="dot()"
+      [standalone]="standalone()"
+    >
+      <button>Button</button>
+    </x-badge>
+  `
+})
+class XTestBadgePropertyComponent {
+  type = signal<XBadgeType>('danger');
+  value = signal(10);
+  max = signal(99);
+  offsetLeft = signal('');
+  offsetTop = signal('');
+  dot = signal(false);
+  standalone = signal(false);
+}
 
 describe(XBadgePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXBadgeComponent],
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        XBadgeComponent,
-        XButtonComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent
-      ],
+      imports: [XTestBadgeComponent, XTestBadgePropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXBadgeComponent>;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestBadgeComponent>;
     let badge: DebugElement;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXBadgeComponent);
+      fixture = TestBed.createComponent(XTestBadgeComponent);
+      badge = fixture.debugElement.query(By.css('.x-badge'));
       fixture.detectChanges();
-      badge = fixture.debugElement.query(By.directive(XBadgeComponent));
     });
-    it('should create.', () => {
-      expect(badge).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XBadgeComponent));
+      expect(com).toBeDefined();
+    });
+    it('property.', () => {
+      expect(badge.nativeElement).toHaveClass('x-badge-danger');
+      let scrolls = fixture.debugElement.queryAll(By.css('.x-badge-scroll'));
+      expect(scrolls[0].nativeElement.style.transform).toBe('translateY(-100%)');
+      expect(scrolls[1].nativeElement.style.transform).toBe('translateY(0%)');
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestBadgePropertyComponent>;
+    let component: XTestBadgePropertyComponent;
+    let badge: DebugElement;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestBadgePropertyComponent);
+      component = fixture.componentInstance;
+      badge = fixture.debugElement.query(By.css('.x-badge'));
+      fixture.detectChanges();
+    });
+    it('type.', () => {
+      expect(badge.nativeElement).toHaveClass('x-badge-danger');
+
+      component.type.set('primary');
+      fixture.detectChanges();
+      expect(badge.nativeElement).toHaveClass('x-badge-primary');
+    });
+    it('max.', () => {
+      component.value.set(200);
+      fixture.detectChanges();
+      let scrolls = fixture.debugElement.queryAll(By.css('.x-badge-scroll'));
+      expect(scrolls[0].nativeElement.style.transform).toBe('translateY(-900%)');
+      expect(scrolls[1].nativeElement.style.transform).toBe('translateY(-900%)');
+      expect(scrolls[2].nativeElement.style.transform).toBe('translateY(-1000%)');
+
+      component.max.set(300);
+      fixture.detectChanges();
+      scrolls = fixture.debugElement.queryAll(By.css('.x-badge-scroll'));
+      expect(scrolls[0].nativeElement.style.transform).toBe('translateY(-200%)');
+      expect(scrolls[1].nativeElement.style.transform).toBe('translateY(0%)');
+      expect(scrolls[2].nativeElement.style.transform).toBe('translateY(0%)');
+    });
+    it('value.', () => {
+      component.value.set(50);
+      fixture.detectChanges();
+      let scrolls = fixture.debugElement.queryAll(By.css('.x-badge-scroll'));
+      expect(scrolls[0].nativeElement.style.transform).toBe('translateY(-500%)');
+      expect(scrolls[1].nativeElement.style.transform).toBe('translateY(0%)');
+    });
+    it('offsetLeft.', () => {
+      component.offsetLeft.set('10px');
+      fixture.detectChanges();
+      let sup = fixture.debugElement.query(By.css('sup'));
+      expect(sup.nativeElement.style.marginRight).toBe('10px');
+    });
+    it('offsetTop.', () => {
+      component.offsetTop.set('10px');
+      fixture.detectChanges();
+      let sup = fixture.debugElement.query(By.css('sup'));
+      expect(sup.nativeElement.style.marginTop).toBe('10px');
+    });
+    it('dot.', () => {
+      component.dot.set(true);
+      fixture.detectChanges();
+      expect(badge.nativeElement).toHaveClass('x-badge-dot');
+    });
+    it('standalone.', () => {
+      component.standalone.set(true);
+      fixture.detectChanges();
+      expect(badge.nativeElement).toHaveClass('x-badge-standalone');
     });
   });
 });
-
-@Component({
-  template: `
-    <div class="row">
-      <x-badge value="12">
-        <x-button>评论</x-button>
-      </x-badge>
-      <x-badge value="3">
-        <x-button>回复</x-button>
-      </x-badge>
-    </div>
-    <div class="row">
-      <x-badge value="12" type="primary">
-        <x-button>评论</x-button>
-      </x-badge>
-      <x-badge value="12" type="success">
-        <x-button>评论</x-button>
-      </x-badge>
-      <x-badge value="12" type="info">
-        <x-button>评论</x-button>
-      </x-badge>
-      <x-badge value="12" type="warning">
-        <x-button>评论</x-button>
-      </x-badge>
-      <x-badge value="12" type="danger">
-        <x-button>评论</x-button>
-      </x-badge>
-      <x-badge value="12" type="text">
-        <x-button>评论</x-button>
-      </x-badge>
-    </div>
-    <div class="row">
-      <x-badge value="200" max="99">
-        <x-button>评论</x-button>
-      </x-badge>
-      <x-badge value="300" max="200">
-        <x-button>回复</x-button>
-      </x-badge>
-    </div>
-    <div class="row">
-      <x-badge value="new">
-        <x-button>评论</x-button>
-      </x-badge>
-      <x-badge value="hot">
-        <x-button>回复</x-button>
-      </x-badge>
-    </div>
-    <div class="row">
-      <x-badge dot>
-        <x-button type="primary">评论</x-button>
-      </x-badge>
-      <x-badge dot>
-        <x-icon type="fto-user"></x-icon>
-      </x-badge>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        display: flex;
-        align-items: center;
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-badge:not(:first-child) {
-        margin-left: 2rem;
-      }
-    `
-  ]
-})
-class TestXBadgeComponent {}

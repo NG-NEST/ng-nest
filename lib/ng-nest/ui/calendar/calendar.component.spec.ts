@@ -1,35 +1,64 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, TemplateRef, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCalendarComponent } from '@ng-nest/ui/calendar';
-import { FormsModule } from '@angular/forms';
-import { XCalendarPrefix, XCalendarData } from './calendar.property';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerComponent } from '@ng-nest/ui/container';
-import { interval } from 'rxjs';
-import { DatePipe } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
+import {
+  XCalendarComponent,
+  XCalendarData,
+  XCalendarModel,
+  XCalendarPrefix,
+  XCalendarType
+} from '@ng-nest/ui/calendar';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XRadioComponent } from '@ng-nest/ui/radio';
+import { XDatePickerComponent, XPickerDateComponent, XPickerMonthComponent } from '@ng-nest/ui/date-picker';
+import { DatePipe } from '@angular/common';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+
+@Component({
+  standalone: true,
+  imports: [XCalendarComponent],
+  template: `<x-calendar></x-calendar>`
+})
+class XTestCalendarComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XCalendarComponent],
+  template: `
+    <x-calendar
+      [data]="data()"
+      [model]="model()"
+      [displayType]="displayType()"
+      [headerLeftTemp]="headerLeftTemp()"
+      (dateChange)="dateChange($event)"
+      (rangeChange)="rangeChange($event)"
+    ></x-calendar>
+    <ng-template #hlt> custom title </ng-template>
+  `
+})
+class XTestCalendarPropertyComponent {
+  hlt = viewChild.required<TemplateRef<any>>('hlt');
+  data = signal<XCalendarData>({});
+  model = signal<XCalendarModel>('month');
+  displayType = signal<XCalendarType>('calendar');
+  headerLeftTemp = signal<TemplateRef<any> | null>(null);
+
+  activetedDate = signal<Date | null>(null);
+  dateChange(date: Date) {
+    this.activetedDate.set(date);
+  }
+
+  rangeDate = signal<Date[]>([]);
+  rangeChange(dates: Date[]) {
+    this.rangeDate.set(dates);
+  }
+}
 
 describe(XCalendarPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXCalendarComponent],
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        XCalendarComponent,
-        XButtonComponent,
-        XContainerComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent
-      ],
+      imports: [XTestCalendarComponent, XTestCalendarPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -37,81 +66,102 @@ describe(XCalendarPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXCalendarComponent>;
-    let calendar: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestCalendarComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCalendarComponent);
+      fixture = TestBed.createComponent(XTestCalendarComponent);
       fixture.detectChanges();
-      calendar = fixture.debugElement.query(By.directive(XCalendarComponent));
     });
-    it('should create.', () => {
-      expect(calendar).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XCalendarComponent));
+      expect(com).toBeDefined();
+    });
+    it('property.', () => {
+      const com = fixture.debugElement.query(By.directive(XCalendarComponent));
+      const radio = com.query(By.directive(XRadioComponent));
+      expect(radio).toBeDefined();
+      const datePicker = fixture.debugElement.query(By.directive(XDatePickerComponent));
+      expect(datePicker).toBeDefined();
+      const pickerDate = fixture.debugElement.query(By.directive(XPickerDateComponent));
+      expect(pickerDate).toBeDefined();
+      const buttons = fixture.debugElement.query(By.directive(XButtonsComponent));
+      expect(buttons).toBeDefined();
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestCalendarPropertyComponent>;
+    let component: XTestCalendarPropertyComponent;
+    let datePipe: DatePipe;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestCalendarPropertyComponent);
+      component = fixture.componentInstance;
+      datePipe = new DatePipe('en-US');
+      fixture.detectChanges();
+    });
+    it('data.', () => {
+      component.data.set({
+        [`${datePipe.transform(new Date(), 'yyyy-MM-dd')}`]: Array.from({ length: 10 }).map((_item, index) => ({
+          id: `${index + 1}:`,
+          label: index
+        }))
+      });
+      fixture.detectChanges();
+
+      const dateNow = fixture.debugElement.query(By.css('.x-date-now'));
+      const list = dateNow.queryAll(By.css('li'));
+      expect(list.length).toBe(10);
+    });
+    it('model.', () => {
+      component.model.set('year');
+      fixture.detectChanges();
+
+      const pickerMonth = fixture.debugElement.query(By.directive(XPickerMonthComponent));
+      expect(pickerMonth).toBeDefined();
+    });
+    it('display type.', () => {
+      component.displayType.set('card');
+      fixture.detectChanges();
+
+      const calendar = fixture.debugElement.query(By.css('.x-calendar'));
+      expect(calendar.nativeElement).toHaveClass('x-calendar-card');
+    });
+    it('header left temp.', () => {
+      component.headerLeftTemp.set(component.hlt());
+      fixture.detectChanges();
+
+      const hl = fixture.debugElement.query(By.css('.x-calendar-header-left'));
+      expect(hl.nativeElement.textContent.trim()).toBe('custom title');
+    });
+  });
+  describe(`output`, () => {
+    let fixture: ComponentFixture<XTestCalendarPropertyComponent>;
+    let component: XTestCalendarPropertyComponent;
+    let datePipe: DatePipe;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestCalendarPropertyComponent);
+      component = fixture.componentInstance;
+      datePipe = new DatePipe('en-US');
+      fixture.detectChanges();
+    });
+    it('date change.', () => {
+      const item = fixture.debugElement.query(By.css('.x-date-last-or-next'));
+      item.nativeElement.click();
+      fixture.detectChanges();
+      const dateItem = fixture.debugElement.query(By.css('.x-date-now'));
+      dateItem.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(datePipe.transform(component.activetedDate(), 'yyyy-MM-dd')).toBe(
+        datePipe.transform(new Date(), 'yyyy-MM-dd')
+      );
+    });
+    it('range change.', () => {
+      const buttons = fixture.debugElement.query(By.directive(XButtonsComponent));
+      const button = buttons.query(By.directive(XButtonComponent));
+      button.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.rangeDate().length).toBe(2);
     });
   });
 });
-
-@Component({
-  template: `
-    <x-button (click)="english()">切换为英文</x-button>
-    <x-button (click)="chinese()">切换为中文</x-button>
-    <div class="row">
-      <x-calendar [data]="data" (rangeChange)="rangeChange($event)"></x-calendar>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ],
-  providers: [DatePipe]
-})
-class TestXCalendarComponent {
-  data: XCalendarData = {};
-  constructor(
-    private i18nService: XI18nService,
-    private cdr: ChangeDetectorRef,
-    private pipeDate: DatePipe
-  ) {
-    interval(0).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-
-  rangeChange(range: Date[]) {
-    let first = range[0].getTime();
-    let last = range[1].getTime();
-    let dt: { [property: string]: { id: string | null; label: string }[] } = {};
-    let i = 0;
-    while (true) {
-      let rd = Math.floor(Math.random() * (last - first + 1)) + first;
-      dt[this.pipeDate.transform(rd, 'yyyy-MM-dd') as string] = [
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容1，处理内容1' },
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容2，处理内容2' },
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容3，处理内容3' },
-        { id: this.pipeDate.transform(rd, 'HH:mm '), label: '处理内容4，处理内容4' }
-      ];
-      i++;
-      if (i === 10) break;
-    }
-
-    this.data = dt;
-  }
-
-  english() {
-    this.i18nService.setLocale(en_US);
-    this.cdr.detectChanges();
-  }
-
-  chinese() {
-    this.i18nService.setLocale(zh_CN);
-    this.cdr.detectChanges();
-  }
-}

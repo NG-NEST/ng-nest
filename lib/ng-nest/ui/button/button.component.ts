@@ -10,7 +10,8 @@ import {
   HostBinding,
   signal,
   afterRender,
-  viewChild
+  viewChild,
+  AfterContentChecked
 } from '@angular/core';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XButtonPrefix, XButtonProperty } from './button.property';
@@ -29,10 +30,12 @@ import { FocusMonitor } from '@angular/cdk/a11y';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XButtonComponent extends XButtonProperty implements AfterViewInit, OnDestroy {
+export class XButtonComponent extends XButtonProperty implements AfterViewInit, AfterContentChecked, OnDestroy {
   buttonRef = viewChild.required('buttonRef', { read: ElementRef<HTMLElement> });
+  contentRef = viewChild.required('content', { read: ElementRef<HTMLElement> });
   private buttons = inject(XButtonsComponent, { optional: true, host: true });
   private focusMontitor = inject(FocusMonitor);
+  contentIsEmpty = signal(false);
   transition = signal(false);
 
   @HostBinding('style.marginLeft') get marginLeft() {
@@ -71,6 +74,10 @@ export class XButtonComponent extends XButtonProperty implements AfterViewInit, 
 
   ngAfterViewInit() {
     this.focusMontitor.monitor(this.buttonRef(), true);
+  }
+
+  ngAfterContentChecked() {
+    this.contentIsEmpty.set(XIsEmpty(this.contentRef().nativeElement.innerHTML.trim()));
   }
 
   ngOnDestroy() {

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, DebugElement, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XThemePrefix } from './theme.property';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -255,7 +255,7 @@ describe(XThemePrefix, () => {
       </x-buttons>
     </div>
     <div class="row">
-      <x-button icon="fto-save" type="primary" [loading]="loading" (click)="save()">保存</x-button>
+      <x-button icon="fto-save" type="primary" [loading]="loading()" (click)="save()">保存</x-button>
     </div>
     <div class="row">
       <x-button size="big">超大按钮</x-button>
@@ -304,32 +304,24 @@ describe(XThemePrefix, () => {
   ]
 })
 class TestXThemeComponent {
-  model: any;
-  dark = true;
-  loading: boolean = false;
+  model = signal('');
+  dark = signal(true);
+  loading = signal(false);
   save() {
-    if (this.loading) return;
-    this.loading = true;
-    this.cdr.detectChanges();
+    if (this.loading()) return;
+    this.loading.set(true);
     setTimeout(() => {
-      this.loading = false;
-      this.cdr.detectChanges();
+      this.loading.set(false);
     }, 3000);
   }
 
-  constructor(
-    private i18nService: XI18nService,
-    private cdr: ChangeDetectorRef
-  ) {}
-  ngOnInit() {}
+  constructor(private i18nService: XI18nService) {}
 
   english() {
     this.i18nService.setLocale(en_US);
-    this.cdr.detectChanges();
   }
 
   chinese() {
     this.i18nService.setLocale(zh_CN);
-    this.cdr.detectChanges();
   }
 }
