@@ -1,0 +1,14 @@
+<x-table
+  [columns]="columns"
+  [data]="data()"
+  [(index)]="index"
+  [(size)]="size"
+  [(total)]="total"
+  [rowHeight]="0"
+  [scroll]="{ x: 1200, y: 300 }"
+  [virtualScroll]="true"
+  [adaptionHeight]="105"
+  (indexChange)="indexChange()"
+  (sizeChange)="sizeChange()"
+>
+</x-table>

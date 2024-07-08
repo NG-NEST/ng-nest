@@ -10,21 +10,22 @@ import {
   computed,
   viewChild,
   signal,
-  effect
+  effect,
+  AfterViewInit,
+  AfterViewChecked
 } from '@angular/core';
 import { XTableBodyPrefix, XTableBodyProperty, XTableRow, XTableColumn, XTableCell } from './table.property';
 import { XRemoveNgTag, XResize, XNumber, XStripTags, XParentPath, XResizeObserver } from '@ng-nest/ui/core';
 import { Subject, fromEvent } from 'rxjs';
 import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
-import { map, takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTableComponent } from './table.component';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTableBodyPrefix}`,
@@ -43,7 +44,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTableBodyComponent extends XTableBodyProperty implements OnInit {
+export class XTableBodyComponent extends XTableBodyProperty implements OnInit, AfterViewInit, AfterViewChecked {
   renderer = inject(Renderer2);
   elementRef = inject(ElementRef<HTMLElement>);
   cdr = inject(ChangeDetectorRef);
@@ -60,27 +61,21 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit {
   getItemSize = computed(() =>
     this.rowHeight() !== 0 && this.itemSize() > this.rowHeight() ? this.rowHeight() : this.itemSize()
   );
-  docChanged = toSignal(
-    fromEvent(this.doc.defaultView!, 'resize').pipe(map(() => this.doc.documentElement.clientWidth))
-  );
+  docClientHeight = signal(this.doc.documentElement.clientHeight);
+  headHeight = signal(0);
+  captionHeight = signal(0);
+  footHeight = signal(0);
+  paginationHeight = signal(0);
 
   bodyHeightSignal = computed(() => {
     const adaptionHeight = this.adaptionHeight();
     if (adaptionHeight && adaptionHeight > 0) {
-      this.docChanged();
-      const captionHeight = this.table.caption()?.nativeElement.clientHeight || 0;
-      let headHeight = 0;
-      for (let thead of this.table.theads()) {
-        headHeight += thead.nativeElement.clientHeight;
-      }
-      const footHeight = this.table.tfoot()?.nativeElement.clientHeight || 0;
-      const paginationHeight = this.table.pagination()?.elementRef.nativeElement.clientHeight || 0;
       let bodyHeight =
-        this.docPercent() * this.doc.documentElement.clientHeight -
-        captionHeight -
-        headHeight -
-        footHeight -
-        paginationHeight -
+        this.docPercent() * this.docClientHeight() -
+        this.captionHeight() -
+        this.headHeight() -
+        this.footHeight() -
+        this.paginationHeight() -
         adaptionHeight;
       if (bodyHeight < 0) bodyHeight = 0;
       return bodyHeight;
@@ -94,7 +89,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit {
   minBufferPxSignal = computed(() => {
     const adaptionHeight = this.adaptionHeight();
     if (adaptionHeight && adaptionHeight > 0) {
-      return this.bodyHeight();
+      return this.bodyHeightSignal();
     }
     return this.minBufferPx();
   });
@@ -102,7 +97,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit {
   maxBufferPxSignal = computed(() => {
     const adaptionHeight = this.adaptionHeight();
     if (adaptionHeight && adaptionHeight > 0) {
-      return this.bodyHeight()! * 1.2;
+      return this.bodyHeightSignal()! * 1.2;
     }
     return this.maxBufferPx();
   });
@@ -124,13 +119,33 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit {
   ngOnInit() {
     XRemoveNgTag(this.elementRef.nativeElement);
     if (this.level() > 0) XRemoveNgTag(this.tbody().nativeElement);
+
+    fromEvent(this.doc.defaultView!, 'resize')
+      .pipe(debounceTime(30), takeUntil(this.unSubject))
+      .subscribe(() => {
+        this.docClientHeight.set(this.doc.documentElement.clientHeight);
+      });
   }
 
   ngAfterViewInit() {
     this.table.virtualBody.set(this.virtualBody()!);
-    // this.table.bodyChange = () => this.cdr.detectChanges();
+    this.docClientHeight.set(this.doc.documentElement.clientHeight);
     this.setSubject();
     this.setScroll();
+  }
+
+  ngAfterViewChecked(): void {
+    let headHeight = 0;
+    for (let thead of this.table.theads()) {
+      headHeight += thead.nativeElement.clientHeight;
+    }
+    this.headHeight.set(headHeight);
+    const captionHeight = this.table.caption()?.nativeElement.clientHeight || 0;
+    this.captionHeight.set(captionHeight);
+    const footHeight = this.table.tfoot()?.nativeElement.clientHeight || 0;
+    this.footHeight.set(footHeight);
+    const paginationHeight = this.table.pagination()?.elementRef.nativeElement.clientHeight || 0;
+    this.paginationHeight.set(paginationHeight);
   }
 
   ngOnDestroy(): void {
@@ -148,7 +163,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit {
         this.renderer.setStyle(this.table.scrollContentEle()!, 'width', `${this.scroll()?.x}px`);
       }
       XResize(this.table.table().nativeElement, this.table.scrollContentEle()!)
-        .pipe(takeUntil(this.unSubject))
+        .pipe(debounceTime(30), takeUntil(this.unSubject))
         .subscribe((x) => {
           this.resizeObserver = x.resizeObserver;
           this.setScroll();
