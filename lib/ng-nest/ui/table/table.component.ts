@@ -12,7 +12,8 @@ import {
   signal,
   viewChild,
   inject,
-  viewChildren
+  viewChildren,
+  AfterViewChecked
 } from '@angular/core';
 import {
   XTablePrefix,
@@ -51,7 +52,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XTableComponent extends XTableProperty implements OnInit, OnDestroy {
+export class XTableComponent extends XTableProperty implements OnInit, OnDestroy, AfterViewChecked {
   renderer = inject(Renderer2);
   elementRef = inject(ElementRef<HTMLElement>);
   cdr = inject(ChangeDetectorRef);
@@ -161,6 +162,9 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     return { thead: setRule(cellConfig.thead), tbody: setRule(cellConfig.tbody) };
   });
 
+  tbodyHeight = signal(0);
+  tbodyScrollHeight = signal(0);
+
   ngOnInit() {
     this.setRowChecked();
     this.setRowExpand();
@@ -177,6 +181,21 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     }
     XIsChange(columns, activatedRow, showPagination) && this.cdr.detectChanges();
     XIsChange(manual) && this.setManual();
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.bodyCom().length > 0) {
+      const first = this.bodyCom()[0].tbody().nativeElement;
+      this.tbodyHeight.set(first.clientHeight);
+      this.tbodyScrollHeight.set(first.scrollHeight);
+      // let trs = first.tbody().nativeElement.querySelectorAll('tr');
+      // let i = 0;
+      // let h = 0;
+      // while (i < trs.length) {
+      //   h += trs[i].clientHeight;
+      // }
+      // this.trsHeight.set(h);
+    }
   }
 
   ngOnDestroy() {

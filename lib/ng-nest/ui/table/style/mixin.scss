@@ -263,6 +263,11 @@
   &-border-top {
     border-top: $--x-border-base;
   }
+  &-last-tr-bordered {
+    > tbody tr:last-child > td {
+      border-bottom: $--x-border-base;
+    }
+  }
   &-row-size {
     @include rowSize(
       big,

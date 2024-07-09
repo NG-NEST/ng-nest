@@ -12,6 +12,7 @@
   [class.x-table-bordered]="bordered()"
   [class.x-table-td-adaption-height]="rowHeight() == 0"
   [class.x-table-cell-config]="!!cellConfigSignal()"
+  [class.x-table-last-tr-bordered]="!!adaptionHeight() || tbodyHeight() >= tbodyScrollHeight()"
 >
   @if (header()) {
     <caption #caption class="x-table-header" [style.height.px]="getRowHeight()" [style.min-height.px]="getRowHeight()">

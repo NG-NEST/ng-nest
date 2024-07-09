@@ -50,7 +50,7 @@
     [style.height.px]="getRowHeight()"
     [style.min-height.px]="getRowHeight()"
     [style.padding-right.px]="scrollYWidth()"
-    [style.width.px]="scrollXWidth()"
+    [style.min-width.px]="scrollXWidth()"
     [class.x-table-search]="case === 'search'"
   >
     @for (column of initColumns(); track column.id) {
