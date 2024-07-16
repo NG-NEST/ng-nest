@@ -32,7 +32,6 @@ export class XListDropGroup implements OnDestroy {
         }
       });
     });
-    console.log(this.dropLists);
   }
 
   ngOnDestroy() {

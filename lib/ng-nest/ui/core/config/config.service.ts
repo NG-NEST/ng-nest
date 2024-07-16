@@ -109,9 +109,7 @@ export function XWithConfig<T>(componentName: XComponentConfigKey, innerDefaultV
         }
 
         const componentConfig = this.configService?.getConfigForComponent(componentName) || {};
-        console.log(componentConfig)
         const configValue = componentConfig[propName];
-        console.log(configValue, propName, )
 
         return isDefined(configValue) ? configValue : innerDefaultValue;
       },

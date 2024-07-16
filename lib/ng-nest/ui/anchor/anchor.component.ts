@@ -80,7 +80,6 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     let scrollTop = hElement.offsetTop - this.anchor.nativeElement.offsetTop - parseFloat(XComputedStyle(hElement, 'margin-top'));
     let maxScrollTop = this.scroll.scrollHeight - this.scroll.clientHeight;
     if (scrollTop > maxScrollTop) scrollTop = maxScrollTop;
-    console.log(scrollTop);
     this.scrollTo(this.scroll, parseInt(`${scrollTop}`), 150);
   }
 

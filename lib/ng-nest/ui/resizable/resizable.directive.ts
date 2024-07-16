@@ -252,7 +252,6 @@ export class XResizableDirective extends XResizableProperty implements OnInit, O
         }
         break;
       case 'left':
-        console.log(this.minWidth);
         if (overMinWidth && underMaxWidth) {
           this.renderer.setStyle(this.ele, 'left', `${box.offsetLeft}px`);
           this.renderer.setStyle(this.ele, 'width', `${box.clientWidth}px`);

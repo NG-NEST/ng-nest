@@ -172,7 +172,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     );
     this.setClassMap();
     this.setSubject();
-    console.log(this.size)
     if (this.multiple) {
       this.valueTpl = this.multipleValueTpl;
     }
