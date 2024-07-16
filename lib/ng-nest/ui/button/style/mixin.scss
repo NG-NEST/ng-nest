@@ -95,6 +95,10 @@
     }
   }
   &-icon-not-content {
+    &.x-direction-row > .x-icon {
+      margin-right: 0;
+      margin-left: 0;
+    }
     .#{$--x-button}-loading {
       margin-right: 0;
       margin-left: 0;
