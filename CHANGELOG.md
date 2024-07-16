@@ -1,3 +1,15 @@
+## [18.0.2](https://github.com/NG-NEST/ng-nest/compare/18.0.1...18.0.2) (2024-07-16)
+
+
+### Bug Fixes
+
+* **module:button:** fix button style ([08aac84](https://github.com/NG-NEST/ng-nest/commit/08aac84292560fe97f544c067363a2a4e79e9e32))
+* **module:button:** fix no-content icon style ([059f540](https://github.com/NG-NEST/ng-nest/commit/059f540f058bdf9089412aa3a9ef5cf6715d3bdd))
+* **module:table:** fix table adaption height ([0709778](https://github.com/NG-NEST/ng-nest/commit/07097785723b638bb1fb4cac5c32d33c63ab782d))
+* **module:table:** fix table last tr td border ([cc278af](https://github.com/NG-NEST/ng-nest/commit/cc278af1aa7f53572d0a32a386cf5e2f0dfd933b))
+
+
+
 ## [18.0.1](https://github.com/NG-NEST/ng-nest/compare/18.0.0...18.0.1) (2024-06-14)
 
 

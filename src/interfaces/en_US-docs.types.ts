@@ -2650,6 +2650,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-affix top=\"5rem\">\n  <div>有垂直滚动条，我与顶部距离5rem</div>\n</x-affix>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToCssPixelValue"
@@ -2665,6 +2674,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": true,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-affix left=\"5rem\">\n  <div>有横向滚动条，我与左边距离5rem</div>\n</x-affix>"
+          },
           {
             "type": "text",
             "content": ""
@@ -2719,6 +2737,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"隐藏，看不见\" hide> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToBoolean"
@@ -2734,6 +2761,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": false,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"Title\" > </x-alert>"
+          },
           {
             "type": "text",
             "content": ""
@@ -2755,6 +2791,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert content=\"Content\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": ""
@@ -2770,6 +2815,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": false,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert type=\"success\" > </x-alert>\n<x-alert type=\"info\" > </x-alert>\n<x-alert type=\"warning\" > </x-alert>\n<x-alert type=\"error\" > </x-alert>\n<x-alert type=\"loading\" > </x-alert>"
+          },
           {
             "type": "text",
             "content": ""
@@ -2791,6 +2845,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert effect=\"light\" > </x-alert>\n<x-alert effect=\"dark\" > </x-alert>\n<x-alert effect=\"white\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": ""
@@ -2806,6 +2869,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": true,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"no close button\" hideClose> </x-alert>"
+          },
           {
             "type": "text",
             "content": ""
@@ -2827,6 +2899,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"close button is text\" closeText=\"close\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": ""
@@ -2842,6 +2923,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": true,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert type=\"success\" showIcon> </x-alert>\n<x-alert type=\"info\" showIcon> </x-alert>\n<x-alert type=\"warning\" showIcon> </x-alert>\n<x-alert type=\"error\" showIcon> </x-alert>\n<x-alert type=\"loading\" showIcon> </x-alert>"
+          },
           {
             "type": "text",
             "content": ""
@@ -2863,6 +2953,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"disabled animation\" disabledAnimation> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToBoolean"
@@ -2873,11 +2972,20 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "number",
         "inputType": "InputSignalWithTransform<number, XNumber>",
         "signal": "input",
-        "label": "Delay close, the default value of 0 means do not close",
+        "label": "Delay close, the default value of 0 means do not close. ms",
         "default": "0",
         "withConfig": true,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"duration close\" duration=\"1000\"> </x-alert>"
+          },
           {
             "type": "text",
             "content": ""
@@ -2899,6 +3007,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"manual close\" manual> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToBoolean"
@@ -2914,6 +3031,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": true,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"draggable alert\" draggable> </x-alert>"
+          },
           {
             "type": "text",
             "content": ""
@@ -2935,6 +3061,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable alert\" resizable> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToBoolean"
@@ -2950,6 +3085,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": false,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable alert\" resizable offsetLeft=\"100\"> </x-alert>"
+          },
           {
             "type": "text",
             "content": ""
@@ -2971,6 +3115,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable alert\" resizable offsetTop=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToNumber"
@@ -2986,6 +3139,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": true,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"alert min-width\" minWidth=\"100\"> </x-alert>"
+          },
           {
             "type": "text",
             "content": ""
@@ -3007,6 +3169,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"alert min-height\" minHeight=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToCssPixelValue"
@@ -3022,6 +3193,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": false,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<div #element style=\"width:300px; height: 300px\">\n  <x-alert title=\"draggable boundary\" draggable [dragBoundary]=\"element\"> </x-alert>\n</div>"
+          },
           {
             "type": "text",
             "content": ""
@@ -3043,6 +3223,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"draggable boundary\" draggable [dragFreeDragPosition]=\"{ x: 100, y: 100 }\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": ""
@@ -3061,6 +3250,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"operation template\" [operationTpl]=\"operationTpl\"> </x-alert>\n<ng-template #operationTpl>\n  <x-button>Button</x-button>\n</ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": ""
@@ -3071,11 +3269,29 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "",
         "inputType": "",
         "signal": "output",
-        "label": "Closed events",
+        "label": "Closed event",
         "default": "",
         "withConfig": false,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"operation template\" (close)=\"close()\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "close() {\n  console.log(\"close\")\n}"
+          },
           {
             "type": "text",
             "content": ""
@@ -3097,6 +3313,24 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"draggable event\" draggable (dragEnded)=\"dragEnded($event)\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "dragEnded(event: CdkDragEnd) {\n  console.log(event)\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": ""
@@ -3112,6 +3346,24 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": false,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable event\" resizable (resizing)=\"resizing($event)\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "resizing(event: XResizableEvent) {\n  console.log(event)\n}"
+          },
           {
             "type": "text",
             "content": ""
@@ -3194,6 +3446,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<div #scroll style=\"height: 60rem; width: 100%; overflow: auto;\">\n  <x-anchor [scroll]=\"scroll\">\n    ...\n  </x-anchor>\n</div>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": ""
@@ -3209,6 +3470,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": true,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor affixTop=\"100\">\n  ...\n</x-anchor>"
+          },
           {
             "type": "text",
             "content": ""
@@ -3230,6 +3500,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor affixBottom=\"100\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": "XToCssPixelValue"
@@ -3245,6 +3524,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": true,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor affixWidth=\"150\">\n  ...\n</x-anchor>"
+          },
           {
             "type": "text",
             "content": ""
@@ -3266,6 +3554,15 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "text",
             "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor layout=\"left\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
           }
         ],
         "transform": ""
@@ -3281,6 +3578,15 @@ export const en_US: {[key: string]: AppProp} = {
         "withConfig": true,
         "description": "",
         "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor justify=\"end\">\n  ...\n</x-anchor>"
+          },
           {
             "type": "text",
             "content": ""
@@ -4552,7 +4858,7 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "code",
             "language": "html",
-            "content": "<x-avatar src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>"
+            "content": "<x-avatar src=\"https://ngnest.com/img/logo/logo-144x144.png\"></x-avatar>"
           },
           {
             "type": "text",
@@ -4579,7 +4885,7 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "code",
             "language": "html",
-            "content": "<x-avatar fit=\"fill\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"contain\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"cover\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"none\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"scale-down\" src=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-avatar>"
+            "content": "<x-avatar fit=\"fill\" src=\"https://ngnest.com/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"contain\" src=\"https://ngnest.com/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"cover\" src=\"https://ngnest.com/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"none\" src=\"https://ngnest.com/img/logo/logo-144x144.png\"></x-avatar>\n<x-avatar fit=\"scale-down\" src=\"https://ngnest.com/img/logo/logo-144x144.png\"></x-avatar>"
           },
           {
             "type": "text",
@@ -17150,7 +17456,7 @@ export const en_US: {[key: string]: AppProp} = {
           {
             "type": "code",
             "language": "html",
-            "content": "<x-empty img=\"https://ngnest.com/assets/img/logo/logo-144x144.png\"></x-empty>\n<x-empty [img]=\"imgTpl\"></x-empty>\n<ng-template #imgTpl><x-icon type=\"fto-user\"></x-icon></ng-template>"
+            "content": "<x-empty img=\"https://ngnest.com/img/logo/logo-144x144.png\"></x-empty>\n<x-empty [img]=\"imgTpl\"></x-empty>\n<ng-template #imgTpl><x-icon type=\"fto-user\"></x-icon></ng-template>"
           },
           {
             "type": "text",
@@ -24443,24 +24749,6 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "preventDefault",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "Block the default behavior of hyperlinks",
-        "default": "false",
-        "withConfig": true,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
         "name": "type",
         "type": "XLinkType",
         "toType": "XLinkType",
@@ -31642,6 +31930,24 @@ export const en_US: {[key: string]: AppProp} = {
         "label": "Turn on virtual scrolling",
         "default": "false",
         "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "allowInput",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Allow the value of the input when searching for",
+        "default": "false",
+        "withConfig": false,
         "description": "",
         "example": [
           {
