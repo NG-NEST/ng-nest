@@ -1,3 +1,12 @@
+## [16.0.18](https://github.com/NG-NEST/ng-nest/compare/16.0.17...16.0.18) (2024-07-16)
+
+
+### Bug Fixes
+
+* **config:** clear console ([33739a9](https://github.com/NG-NEST/ng-nest/commit/33739a9199a2cb928bdbfcfcf59c4a7e5198784c))
+
+
+
 ## [16.0.17](https://github.com/NG-NEST/ng-nest/compare/16.0.16...16.0.17) (2024-05-27)
 
 
