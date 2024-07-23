@@ -1,3 +1,12 @@
+## [18.0.3](https://github.com/NG-NEST/ng-nest/compare/18.0.2...18.0.3) (2024-07-23)
+
+
+### Bug Fixes
+
+* **module:input:** fix input number ([a722d5c](https://github.com/NG-NEST/ng-nest/commit/a722d5cf059ad1a1aaea934fd27437348a2f2bc0))
+
+
+
 ## [18.0.2](https://github.com/NG-NEST/ng-nest/compare/18.0.1...18.0.2) (2024-07-16)
 
 
