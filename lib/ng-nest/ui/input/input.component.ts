@@ -179,9 +179,17 @@ export class XInputComponent extends XInputProperty implements OnInit {
     const input = x.target as HTMLInputElement;
     let value = input.value;
     if (this.type() === 'number') {
-      const len = XIsEmpty(value) ? 0 : `${value}`.length;
-      if (len > Number(this.maxlength())) {
-        input.value = value.slice(0, this.maxlength()!);
+      if (!XIsEmpty(value)) {
+        const len = XIsEmpty(value) ? 0 : `${value}`.length;
+        if (this.maxlength() && len > Number(this.maxlength())) {
+          input.value = value.slice(0, this.maxlength()!);
+        }
+        if (!XIsEmpty(this.min()) && Number(value) <= this.min()!) {
+          input.value = `${this.min()!}`;
+        }
+        if (!XIsEmpty(this.max()) && Number(value) >= this.max()!) {
+          input.value = `${this.max()!}`;
+        }
       }
     }
     this.xInput.emit(x);
@@ -189,7 +197,7 @@ export class XInputComponent extends XInputProperty implements OnInit {
   }
 
   change(value: any) {
-    if (this.maxlength) {
+    if (this.maxlength()) {
       this.valueLength.set(XIsEmpty(value) ? 0 : `${value}`.length);
       this.lengthTotal.set(`${this.valueLength()}/${this.maxlength()}`);
     }
