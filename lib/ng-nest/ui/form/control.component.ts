@@ -119,6 +119,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
       .valueChanges.pipe(takeUntil(this._unSubject))
       .subscribe((x) => {
         this.value.set(x);
+        this.componentRef?.instance.writeValue(x);
       });
     this.option().setValidators = () => this.setValidators();
     this.form.formGroup().addControl(this.option().id, this.formControl());
