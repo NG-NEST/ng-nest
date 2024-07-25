@@ -1,3 +1,12 @@
+## [18.0.4](https://github.com/NG-NEST/ng-nest/compare/18.0.3...18.0.4) (2024-07-25)
+
+
+### Bug Fixes
+
+* **module:form:** fix patch value invalid ([c585c3f](https://github.com/NG-NEST/ng-nest/commit/c585c3f402eeda33f7b2ed258fe6ba0af53ae8a6))
+
+
+
 ## [18.0.3](https://github.com/NG-NEST/ng-nest/compare/18.0.2...18.0.3) (2024-07-23)
 
 
