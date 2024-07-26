@@ -7,8 +7,7 @@
   <x-list
     #list
     [data]="data()!"
-    [ngModel]="value()"
-    (ngModelChange)="value.set($event)"
+    [(ngModel)]="value"
     (nodeClick)="onNodeClick($event)"
     (keyManagerChange)="onActive($event)"
     (keyManagerTabOut)="onTabOut()"
@@ -19,7 +18,7 @@
     [selectAll]="selectAll()"
     [selectAllText]="getSelectAllText()!"
     [nodeTpl]="nodeTpl()"
-    [scrollElement]="search() ? undefined : selectPortal"
+    [scrollElement]="selectPortal"
     [virtualScroll]="virtualScroll()"
     [size]="size()!"
     [heightAdaption]="selectPortal"

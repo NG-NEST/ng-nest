@@ -1,4 +1,4 @@
-import { Subject, fromEvent } from 'rxjs';
+import { Subject, fromEvent, of } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -48,7 +48,7 @@ import {
   OverlayConfig,
   OverlayRef
 } from '@angular/cdk/overlay';
-import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
+import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map, filter, delay } from 'rxjs/operators';
 import {
   DOWN_ARROW,
   UP_ARROW,
@@ -93,7 +93,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   multipleValueTpl = viewChild.required<TemplateRef<void>>('multipleValueTpl');
   multipleInput = viewChild<XInputComponent>('multipleInput');
 
-  getReadonly = computed(() => (this.readonly() && !this.search()) || (this.search() && this.multiple()));
+  getReadonly = computed(() => this.readonly() || !this.search());
   getMaxTagContent = computed(() => this.maxTagContent() || this.locale().maxTagContent);
 
   noPortalWidthPlacements: XPlacement[] = ['bottom', 'top'];
@@ -164,10 +164,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   inputChanged = toSignal(this.inputChange);
   portalData = computed(() => {
     const nodes = this.nodes();
-    if (XIsFunction(this.data())) return nodes;
-    if (XIsEmpty(this.inputChanged())) return nodes;
+    if (XIsFunction(this.data()) || XIsEmpty(this.inputChanged())) return nodes;
     return this.searchNodes();
   });
+  allowAgian = signal(true);
 
   constructor() {
     super();
@@ -240,7 +240,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         !this.portalAttached() &&
         [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER, BACKSPACE].includes(keyCode)
       ) {
-        this.inputChange.next(this.displayValue());
+        this.modelChange(this.displayValue());
       }
       if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
         this.closeSubject.next();
@@ -518,6 +518,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       this.portal?.overlayRef?.detach();
       this.active.set(false);
       this.multipleSearchValue.set('');
+      this.allowAgian.set(false);
+      of(true)
+        .pipe(delay(200))
+        .subscribe(() => this.allowAgian.set(true));
       return true;
     }
     return false;
@@ -528,7 +532,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   showPortal(click = false) {
-    if (this.disabledComputed() || this.iconSpin() || this.animating()) return;
+    if (this.disabledComputed() || !this.allowAgian() || this.iconSpin() || this.animating()) return;
     this.active.set(true);
     if ((this.async() && XIsObservable(this.data()) && this.nodes().length === 0) || XIsFunction(this.data())) {
       this.icon.set('fto-loader');
@@ -656,6 +660,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         return { ...x };
       });
       this.value.set(node.id);
+      if (this.search()) {
+        this.inputChange.next('');
+      }
       this.closeSubject.next();
     }
     if (this.search() && this.multiple() && this.multipleInput()) {
