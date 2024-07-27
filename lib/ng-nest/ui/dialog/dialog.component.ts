@@ -179,8 +179,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
         Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement()!, this.placement()));
         this.styleOffsetLeft.set(this.overlayElement()?.offsetLeft!);
         this.styleOffsetTop.set(this.overlayElement()?.offsetTop!);
-        console.log(this.styleOffsetLeft());
-        console.log(this.styleOffsetTop());
         const dialogDraggable = this.overlayElement()?.querySelector('.x-alert-draggable')!;
         this.initHeight = dialogDraggable.clientHeight;
         this.dialogContent = this.overlayElement()?.querySelector('.x-dialog-content')!;

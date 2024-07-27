@@ -69,10 +69,6 @@ export class XRadioComponent extends XRadioProperty implements OnChanges, OnDest
     this.unSubject.complete();
   }
 
-  override writeValue(value: any) {
-    this.value.set(value);
-  }
-
   radioClick(event: Event, node: XRadioNode) {
     event.preventDefault();
     if (this.disabledComputed() || node.disabled || (!this.allowCancel() && node.id === this.value())) return;
@@ -89,9 +85,5 @@ export class XRadioComponent extends XRadioProperty implements OnChanges, OnDest
     XSetData<XRadioNode>(this.data(), this.unSubject).subscribe((x) => {
       this.nodes.set(x);
     });
-  }
-
-  formControlChanges() {
-    this.setData();
   }
 }

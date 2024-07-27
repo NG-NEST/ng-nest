@@ -55,10 +55,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnInit, OnChanges {
   inputCom = viewChild.required('inputCom', { read: XInputComponent });
 
-  override writeValue(value: any) {
-    this.value.set(value);
-  }
-
   nodes = signal<XAutoCompleteNode[]>([]);
   searchNodes = signal<XAutoCompleteNode[]>([]);
   icon = signal('');
@@ -347,13 +343,6 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     if (!this.onlySelect) {
       this.onChange && this.onChange(value);
     }
-  }
-
-  formControlChanges() {
-    this.setData();
-    this.ngOnInit();
-    this.writeValue(this.value());
-    this.ngAfterViewInit();
   }
 
   onKeydown($event: KeyboardEvent) {

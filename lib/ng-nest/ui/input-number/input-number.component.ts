@@ -31,10 +31,6 @@ export class XInputNumberComponent extends XInputNumberProperty {
   inputNumber = viewChild.required<ElementRef<HTMLElement>>('inputNumber');
   inputEleRef = viewChild.required<XInputComponent>('inputEleRef');
 
-  override writeValue(value: any) {
-    this.value.set(value);
-  }
-
   displayValue = computed(() => {
     const value = this.value();
     const formatter = this.formatter();
@@ -144,6 +140,4 @@ export class XInputNumberComponent extends XInputNumberProperty {
     this.inputEleRef().inputRef().nativeElement.value = this.displayValue();
     this.valueChange.next(this.value());
   }
-
-  formControlChanges() {}
 }

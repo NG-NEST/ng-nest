@@ -27,10 +27,6 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 export class XTextareaComponent extends XTextareaProperty {
   textareaRef = viewChild.required<ElementRef<HTMLElement>>('textareaRef');
 
-  override writeValue(value: any) {
-    this.value.set(value);
-  }
-
   valueLength = computed(() => {
     if (this.maxlength()) {
       return XIsEmpty(this.value()) ? 0 : `${this.value()}`.length;
@@ -81,6 +77,4 @@ export class XTextareaComponent extends XTextareaProperty {
     this.clearEmit.emit(clearValue);
     this.textareaRef().nativeElement.focus();
   }
-
-  formControlChanges() {}
 }

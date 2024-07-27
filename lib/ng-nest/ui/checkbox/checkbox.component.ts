@@ -35,10 +35,6 @@ import { NgClass } from '@angular/common';
 export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, OnDestroy {
   checkbox = viewChild.required('checkbox', { read: ElementRef<HTMLElement> });
 
-  override writeValue(value: boolean | Array<any>) {
-    this.value.set(value);
-  }
-
   beforeIsTemplate = computed(() => this.before() instanceof TemplateRef);
   afterIsTemplate = computed(() => this.after() instanceof TemplateRef);
 
@@ -121,9 +117,5 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
     XSetData<XCheckboxNode>(this.data(), this.unSubject).subscribe((x) => {
       this.nodes.set(x);
     });
-  }
-
-  formControlChanges() {
-    this.setData();
   }
 }

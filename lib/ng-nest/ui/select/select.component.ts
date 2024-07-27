@@ -36,7 +36,9 @@ import {
   XPlacement,
   XComputed,
   XResizeObserver,
-  XParents
+  XParents,
+  XIsUndefined,
+  XIsNull
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -101,7 +103,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   override writeValue(value: any) {
     if (this.multiple()) {
-      if (XIsEmpty(value)) {
+      if (XIsNull(value) || XIsUndefined(value)) {
         value = [];
       }
       if (!XIsArray(value)) {
@@ -378,7 +380,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   clearEmit() {
-    this.value.set(this.multiple() ? [] : '');
+    this.value.update((x) => {
+      if (this.multiple()) {
+        x.splice(0, x.length);
+        return x;
+      } else {
+        return '';
+      }
+    });
     this.displayValue.set('');
     this.multipleSearchValue.set('');
     this.selectedNodes.set([]);
@@ -396,7 +405,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.nodes().length > 0) {
       if (this.multiple()) {
         if (XIsEmpty(this.value())) {
-          this.value.set([]);
+          if (XIsUndefined(this.value()) || XIsNull(this.value())) {
+            this.value.set([]);
+          } else {
+            this.value.update((x) => {
+              x.splice(0, x.length);
+              return x;
+            });
+          }
           this.displayValue.set('');
           this.selectedNodes.set([]);
           this.displayNodes.set([]);
@@ -475,12 +491,12 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (inx >= 0) {
       this.value.update((x) => {
         x.splice(inx, 1);
-        return [...x];
+        return x;
       });
       if (this.onChange) this.onChange(this.value());
       this.selectedNodes.update((x) => {
         x.splice(index, 1);
-        return [...x];
+        return x;
       });
       this.setDisplayNodes();
     }
@@ -618,30 +634,34 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           if (node.selected) {
             this.value.update((x) => {
               x.push(node);
-              return [...x];
+              return x;
             });
           } else {
             let inx = this.value().findIndex((x: XSelectNode) => x.id === node.id);
             this.value.update((x) => {
               x.splice(inx, 1);
-              return [...x];
+              return x;
             });
           }
         } else if (XIsArray(value)) {
           if (node.selected) {
             this.value.update((x) => {
               x.push(node.id);
-              return [...x];
+              return x;
             });
           } else {
             this.value.update((x) => {
               x.splice(x.indexOf(node.id), 1);
-              return [...x];
+              return x;
             });
           }
         }
       } else {
-        this.value.set(value);
+        this.value.update((x) => {
+          x.splice(0, x.length);
+          x.push(...(value as any[]));
+          return x;
+        });
       }
       if (this.multipleInput()) {
         const input = this.multipleInput()!.elementRef.nativeElement;
@@ -688,13 +708,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   setPortal() {
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
-  }
-
-  formControlChanges() {
-    this.setData();
-    this.ngOnInit();
-    this.writeValue(this.value());
-    this.ngAfterViewInit();
   }
 
   onKeydown($event: KeyboardEvent) {

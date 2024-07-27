@@ -33,6 +33,11 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    */
   readonly data = input<XData<XSelectNode>, XData<XSelectNode>>([], { transform: XToDataConvert });
   /**
+   * @zh_CN 宽度
+   * @en_US width
+   */
+  readonly width = input<string, XNumber>('', { transform: XToCssPixelValue });
+  /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */

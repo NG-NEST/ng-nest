@@ -255,7 +255,6 @@ export class XResizableDirective extends XResizableProperty implements OnDestroy
         }
         break;
       case 'left':
-        console.log(this.minWidth);
         if (overMinWidth && underMaxWidth) {
           this.renderer.setStyle(this.elementRef.nativeElement, 'left', `${box.offsetLeft}px`);
           this.renderer.setStyle(this.elementRef.nativeElement, 'width', `${box.clientWidth}px`);

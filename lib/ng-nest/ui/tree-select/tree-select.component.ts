@@ -682,13 +682,6 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     this.portalAttached() && this.portal?.overlayRef?.updatePositionStrategy(this.setPlacement());
   }
 
-  formControlChanges() {
-    this.setData();
-    this.ngOnInit();
-    this.writeValue(this.value());
-    this.ngAfterViewInit();
-  }
-
   onKeydown($event: KeyboardEvent) {
     this.keydownSubject.next($event);
     if ($event.keyCode !== TAB && !this.search()) {

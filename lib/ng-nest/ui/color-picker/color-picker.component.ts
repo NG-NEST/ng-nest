@@ -48,10 +48,6 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   private doc = inject(DOCUMENT);
   primaryColor = XComputed(this.doc.documentElement).getPropertyValue('--x-primary').trim();
 
-  override writeValue(value: string) {
-    this.value.set(value);
-  }
-
   inputStyle = computed(() => ({
     backgroundColor: this.value(),
     color: 'transparent'
@@ -232,9 +228,5 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   setPortal() {
     this.portalAttached() && this.portalOverlayRef()?.updatePositionStrategy(this.setPlacement());
-  }
-
-  formControlChanges() {
-    this.ngOnInit();
   }
 }

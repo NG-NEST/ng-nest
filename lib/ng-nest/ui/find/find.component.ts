@@ -113,10 +113,6 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
 
-  override writeValue(value: any) {
-    this.value.set(value);
-  }
-
   classMap = computed(() => ({
     [`${XFindPrefix}-${this.size()}`]: !!this.size(),
     [`x-justify-${this.justify()}`]: !!this.justify(),
@@ -316,10 +312,6 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
 
   treeCheckboxChange(node: XTreeNode) {
     this.treeMultiple(node);
-  }
-
-  formControlChanges() {
-    this.treeCom()?.setData();
   }
 
   searchKeyDown(event: KeyboardEvent): void {

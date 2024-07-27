@@ -29,15 +29,9 @@ export class XSwitchComponent extends XSwitchProperty {
     [`x-text-align-${this.labelAlign()}`]: !!this.labelAlign()
   }));
 
-  override writeValue(value: any) {
-    this.value.set(value);
-  }
-
   switchClick() {
     if (this.disabledComputed() || this.loading() || this.manual()) return;
     this.value.update((x) => !x);
     if (this.onChange) this.onChange(this.value());
   }
-
-  formControlChanges() {}
 }

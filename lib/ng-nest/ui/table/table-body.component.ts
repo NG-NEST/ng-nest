@@ -233,7 +233,6 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
 
   getIndex(index: number, item: XTableRow) {
     if (!isNaN(index)) return index;
-    console.log(this.data(), item);
     return this.data().indexOf(item);
   }
 

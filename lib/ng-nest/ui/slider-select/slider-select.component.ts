@@ -381,6 +381,4 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
       }
     }
   }
-
-  formControlChanges() {}
 }

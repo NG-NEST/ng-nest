@@ -48,10 +48,6 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
   cascade = viewChild.required('cascade', { read: ElementRef<HTMLElement> });
   inputCom = viewChild.required('inputCom', { read: XInputComponent });
 
-  override writeValue(value: any) {
-    this.value.set(value);
-  }
-
   clearable = signal(false);
   enter = signal(false);
   animating = signal(false);
@@ -279,10 +275,5 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
 
   setPortal() {
     this.portalAttached() && this.portalOverlayRef()?.updatePositionStrategy(this.setPlacement());
-  }
-
-  formControlChanges() {
-    this.ngOnInit();
-    this.setData();
   }
 }

@@ -93,9 +93,10 @@ export class XControlComponent extends XControlProperty implements OnInit, After
 
   constructor() {
     super();
+
     effect(
       () => {
-        this.formControl()?.setValue(this.value());
+        this.formControl()!.patchValue(this.value());
       },
       { allowSignalWrites: true }
     );
@@ -118,8 +119,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     this.formControl()!
       .valueChanges.pipe(takeUntil(this._unSubject))
       .subscribe((x) => {
-        this.value.set(x);
-        this.componentRef?.instance.writeValue(x);
+        this.componentRef.instance.writeValue(x);
       });
     this.option().setValidators = () => this.setValidators();
     this.form.formGroup().addControl(this.option().id, this.formControl());
@@ -151,7 +151,11 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     }
 
     // value
-    this.value = this.componentRef.instance['value'];
+    if (this.option().value !== undefined) {
+      this.componentRef.instance.writeValue(this.option().value);
+    }
+
+    this.value = this.componentRef.instance.value;
 
     this.form.controlTypes[this.option().id] = this.option();
     this.form.controlComponents[this.option().id] = this.componentRef.instance;
