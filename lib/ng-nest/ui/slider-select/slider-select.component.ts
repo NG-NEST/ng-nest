@@ -70,6 +70,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   });
 
   override value = signal<number | number[]>(0);
+  starting = signal(false);
 
   startOffset = signal(0);
   startVisible = signal(false);
@@ -147,6 +148,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   );
 
   override writeValue(value: number | number[]) {
+    if (this.starting()) return;
     if (XIsNull(value) || XIsUndefined(value)) {
       if (this.range()) {
         value = [this.min(), this.min()];
@@ -247,6 +249,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   }
 
   started(drag: CdkDragStart, type: 'start' | 'end' | 'both' = 'start') {
+    this.starting.set(true);
     if (['start', 'both'].includes(type)) {
       const start = this.startOffset();
       this.start.set(start);
@@ -294,6 +297,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
         this.endVisible.set(false);
       }
     }
+    this.starting.set(false);
     this.dragEndEmit.emit(drag);
   }
 
