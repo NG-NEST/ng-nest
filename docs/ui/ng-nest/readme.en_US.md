@@ -21,7 +21,7 @@ NG-NEST is an open source Web application framework based on Angular and NEST, m
 
 ## Current version
 
-npm 18.0.4
+npm 18.0.5
 
 ## Support Angular version
 

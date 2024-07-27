@@ -31652,6 +31652,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToDataConvert"
       },
       {
+        "name": "width",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
         "name": "clearable",
         "type": "XBoolean",
         "toType": "boolean",

@@ -1,3 +1,14 @@
+## [18.0.5](https://github.com/NG-NEST/ng-nest/compare/18.0.4...18.0.5) (2024-07-27)
+
+
+### Bug Fixes
+
+* **module:form:** fix select multiple error ([3aae391](https://github.com/NG-NEST/ng-nest/commit/3aae391b9466c2a899a3253480df7ca532c40887))
+* **module:form:** fix slider select error ([4923df4](https://github.com/NG-NEST/ng-nest/commit/4923df4dda4ff989733781795ef5ac2518c50727))
+* **module:select:** fix search default effective ([4cc6a49](https://github.com/NG-NEST/ng-nest/commit/4cc6a49e8607489be1dd2ed2a3a710866922f18a))
+
+
+
 ## [18.0.4](https://github.com/NG-NEST/ng-nest/compare/18.0.3...18.0.4) (2024-07-25)
 
 
