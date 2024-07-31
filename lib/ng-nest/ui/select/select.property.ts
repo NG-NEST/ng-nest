@@ -93,7 +93,7 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    * @zh_CN 输入搜索
    * @en_US Input search
    */
-  readonly search = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  readonly search = input<boolean, XBoolean>(this.config?.search ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 匹配区分大小写
    * @en_US Case-sensitive
