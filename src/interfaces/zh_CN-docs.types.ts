@@ -31857,7 +31857,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "输入搜索",
         "default": "false",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
         "example": [
           {

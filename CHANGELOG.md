@@ -1,3 +1,12 @@
+## [18.0.6](https://github.com/NG-NEST/ng-nest/compare/18.0.5...18.0.6) (2024-07-31)
+
+
+### Bug Fixes
+
+* **module:select:** fix search config ([342a369](https://github.com/NG-NEST/ng-nest/commit/342a3698c47002d1151fd992c050643e2e4039a5))
+
+
+
 ## [18.0.5](https://github.com/NG-NEST/ng-nest/compare/18.0.4...18.0.5) (2024-07-27)
 
 

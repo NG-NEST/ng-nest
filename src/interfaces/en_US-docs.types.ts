@@ -31857,7 +31857,7 @@ export const en_US: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "Input search",
         "default": "false",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
         "example": [
           {
