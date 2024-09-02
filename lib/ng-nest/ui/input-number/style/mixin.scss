@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin input-number {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   &-input {
     width: 100%;
     input {

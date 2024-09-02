@@ -10,10 +10,12 @@
 }
 
 @mixin tooltip-portal {
-  display: inline-flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
+  & {
+    display: inline-flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
   .#{$--x-tooltip-portal-prefix}-arrow-hidden {
     visibility: hidden;
   }

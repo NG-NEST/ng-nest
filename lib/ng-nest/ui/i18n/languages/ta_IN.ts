@@ -114,7 +114,13 @@ export default {
     first: 'முதல்',
     last: 'கடைசி',
     jump: 'விழும்படி',
-    sizePage: 'உருப்படி/பக்கம்'
+    sizePage: 'உருப்படி/பக்கம்',
+    inputSizeTooltipEnter: 'உறுதிப்படுத்த Enter விசையைப் பயன்படுத்தவும்',
+    inputSizeTooltipBlur: 'மையம் இழக்கும்போது உறுதிப்படுத்தவும்',
+    inputSizeTooltipBoth: 'Enter விசையுடன் அல்லது மையம் இழக்கும்போது உறுதிப்படுத்தவும்',
+    jumpTooltipEnter: 'உறுதிப்படுத்த Enter விசையைப் பயன்படுத்தவும்',
+    jumpTooltipBlur: 'மையம் இழக்கும்போது உறுதிப்படுத்தவும்',
+    jumpTooltipBoth: 'Enter விசையுடன் அல்லது மையம் இழக்கும்போது உறுதிப்படுத்தவும்'
   },
   textRetract: {
     unfold: 'விரிக்க',
@@ -161,13 +167,11 @@ export default {
   },
   select: {
     selectAllText: 'அனைத்தும் தேர்ந்தெடு',
-    maxTagContent:
-      'மேலும் {{surplus}} தேர்ந்தெடுத்த உருப்படிகள்'
+    maxTagContent: 'மேலும் {{surplus}} தேர்ந்தெடுத்த உருப்படிகள்'
   },
   treeSelect: {
     selectAllText: 'அனைத்தும் தேர்ந்தெடு',
-    maxTagContent:
-      'மேலும் {{surplus}} தேர்ந்தெடுத்த உருப்படிகள்'
+    maxTagContent: 'மேலும் {{surplus}} தேர்ந்தெடுத்த உருப்படிகள்'
   },
   form: {
     required: 'கட்டாயமாக தேவை'

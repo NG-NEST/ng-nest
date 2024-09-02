@@ -7,7 +7,7 @@ import {
   XToDataConvert
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, model, output } from '@angular/core';
-import { XPaginationSizeData } from '@ng-nest/ui/pagination';
+import { XPaginationInputIndexSizeSureType, XPaginationSizeData } from '@ng-nest/ui/pagination';
 import { XSelectNode } from '@ng-nest/ui/select';
 import type {
   XNumber,
@@ -336,6 +336,11 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    */
   readonly showInputSize = input<boolean, XBoolean>(this.config?.showInputSize ?? false, { transform: XToBoolean });
   /**
+   * @zh_CN 输入分页框的 tooltip 提示信息，默认根据输入确认改变的方式来显示
+   * @en_US Enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input
+   */
+  readonly inputSizeTooltipText = input<string>(this.config?.inputSizeTooltipText ?? '');
+  /**
    * @zh_CN 分页条数输入框的宽度
    * @en_US size with input
    */
@@ -358,6 +363,11 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    */
   readonly showJump = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
+   * @zh_CN 跳转输入框的 tooltip 提示信息，默认根据输入确认改变的方式来显示
+   * @en_US The tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes
+   */
+  readonly jumpTooltipText = input<string>(this.config?.jumpTooltipText ?? '');
+  /**
    * @zh_CN 跳转页的宽度
    * @en_US size with
    */
@@ -379,6 +389,13 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
   readonly simpleIndexWidth = input<string, XNumber>(this.config?.simpleIndexWidth ?? '8.125rem', {
     transform: XToCssPixelValue
   });
+  /**
+   * @zh_CN 输入确认改变的方式，针对输入分页大小和输入跳转页
+   * @en_US The method for confirming changes in input is based on the input page size and input jump page
+   */
+  readonly inputIndexSizeSureType = input<XPaginationInputIndexSizeSureType>(
+    this.config?.inputIndexSizeSureType ?? 'enter'
+  );
   /**
    * @zh_CN 列头拖动开始事件，返回拖动的列
    * @en_US Column Header Drag End Event

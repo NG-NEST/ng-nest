@@ -110,7 +110,13 @@ export default {
     first: 'První',
     last: 'Poslední',
     jump: 'Přejít na',
-    sizePage: 'Položky na stránku'
+    sizePage: 'Položky na stránku',
+    inputSizeTooltipEnter: 'Použijte klávesu Enter pro potvrzení',
+    inputSizeTooltipBlur: 'Potvrďte při ztrátě zaostření',
+    inputSizeTooltipBoth: 'Potvrďte klávesou Enter nebo při ztrátě zaostření',
+    jumpTooltipEnter: 'Použijte klávesu Enter pro potvrzení',
+    jumpTooltipBlur: 'Potvrďte při ztrátě zaostření',
+    jumpTooltipBoth: 'Potvrďte klávesou Enter nebo při ztrátě zaostření'
   },
   textRetract: {
     unfold: 'Rozbalit',

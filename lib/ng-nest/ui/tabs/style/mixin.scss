@@ -5,8 +5,10 @@
 @import './param';
 
 @mixin tabs {
-  display: flex;
-  overflow: hidden;
+  & {
+    display: flex;
+    overflow: hidden;
+  }
   &-contents {
     flex: 1;
     display: flex;

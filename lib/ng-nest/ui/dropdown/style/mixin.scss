@@ -5,22 +5,26 @@
 @import './param';
 
 @mixin dropdown {
-  display: inline-block;
+  & {
+    display: inline-block;
+  }
   &.x-visible {
     color: $--x-primary;
   }
 }
 
 @mixin dropdown-portal {
-  margin: 0.0625rem 0;
-  color: $--x-text;
-  width: 100%;
-  background-color: $--x-background-100;
-  border-radius: $--x-border-small-radius;
-  box-shadow: $--x-box-shadow;
-  position: relative;
-  display: flex;
-  overflow: auto;
+  & {
+    margin: 0.0625rem 0;
+    color: $--x-text;
+    width: 100%;
+    background-color: $--x-background-100;
+    border-radius: $--x-border-small-radius;
+    box-shadow: $--x-box-shadow;
+    position: relative;
+    display: flex;
+    overflow: auto;
+  }
   .x-open-portal {
     background-color: $--x-background-a200;
   }

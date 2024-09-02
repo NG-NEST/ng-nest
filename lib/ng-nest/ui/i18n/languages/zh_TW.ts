@@ -114,7 +114,13 @@ export default {
     first: '首頁',
     last: '尾頁',
     jump: '跳至',
-    sizePage: '條/頁'
+    sizePage: '條/頁',
+    inputSizeTooltipEnter: '使用 Enter 鍵確認',
+    inputSizeTooltipBlur: '失去焦點確認',
+    inputSizeTooltipBoth: 'Enter 鍵或失去焦點確認',
+    jumpTooltipEnter: '使用 Enter 鍵確認',
+    jumpTooltipBlur: '失去焦點確認',
+    jumpTooltipBoth: 'Enter 鍵或失去焦點確認'
   },
   textRetract: {
     unfold: '展開',

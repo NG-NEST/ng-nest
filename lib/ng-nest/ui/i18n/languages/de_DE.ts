@@ -6,8 +6,7 @@ export default {
     reply: 'Antworten',
     more: 'Mehr',
     sure: 'Sicher',
-    placeholder:
-      'Bitte geben Sie einen Kommentar ein'
+    placeholder: 'Bitte geben Sie einen Kommentar ein'
   },
   theme: {
     darkMode: 'Dunkler Modus',
@@ -111,7 +110,13 @@ export default {
     first: 'Erste',
     last: 'Letzte',
     jump: 'Springen',
-    sizePage: 'Einträge pro Seite'
+    sizePage: 'Einträge pro Seite',
+    inputSizeTooltipEnter: 'Verwenden Sie die Enter-Taste zur Bestätigung',
+    inputSizeTooltipBlur: 'Bestätigen Sie beim Verlust des Fokus',
+    inputSizeTooltipBoth: 'Bestätigen Sie mit der Enter-Taste oder beim Verlust des Fokus',
+    jumpTooltipEnter: 'Verwenden Sie die Enter-Taste zur Bestätigung',
+    jumpTooltipBlur: 'Bestätigen Sie beim Verlust des Fokus',
+    jumpTooltipBoth: 'Bestätigen Sie mit der Enter-Taste oder beim Verlust des Fokus'
   },
   textRetract: {
     unfold: 'Aufklappen',

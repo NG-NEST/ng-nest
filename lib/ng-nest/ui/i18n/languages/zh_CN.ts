@@ -114,7 +114,13 @@ export default {
     first: '首页',
     last: '尾页',
     jump: '跳至',
-    sizePage: '条/页'
+    sizePage: '条/页',
+    inputSizeTooltipEnter: '使用 Enter 键确认',
+    inputSizeTooltipBlur: '失去焦点确认',
+    inputSizeTooltipBoth: 'Enter 键或失去焦点确认',
+    jumpTooltipEnter: '使用 Enter 键确认',
+    jumpTooltipBlur: '失去焦点确认',
+    jumpTooltipBoth: 'Enter 键或失去焦点确认'
   },
   textRetract: {
     unfold: '展开',

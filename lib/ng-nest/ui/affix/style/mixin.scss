@@ -5,6 +5,8 @@
 @import './param';
 
 @mixin affix {
-  position: sticky;
-  display: inline-block;
+  & {
+    position: sticky;
+    display: inline-block;
+  }
 }

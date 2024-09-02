@@ -5,11 +5,13 @@
 @import './param';
 
 @mixin card {
-  font-size: $--x-font-size;
-  box-sizing: border-box;
-  position: relative;
-  border-radius: $--x-border-radius;
-  transition: box-shadow 0.3s;
+  & {
+    font-size: $--x-font-size;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: $--x-border-radius;
+    transition: box-shadow 0.3s;
+  }
   &-always {
     box-shadow: $--x-card-box-shadow;
   }

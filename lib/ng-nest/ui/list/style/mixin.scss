@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin list {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   &:focus {
     outline: none;
   }

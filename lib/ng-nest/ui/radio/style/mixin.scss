@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin radio {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   @include flex();
   > label {
     display: inline-block;

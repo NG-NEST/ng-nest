@@ -5,6 +5,8 @@
 @import './param';
 
 @mixin text-retract {
-  font-size: $--x-font-size;
-  display: inline;
+  & {
+    font-size: $--x-font-size;
+    display: inline;
+  }
 }

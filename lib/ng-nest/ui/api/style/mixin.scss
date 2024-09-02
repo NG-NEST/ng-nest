@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin api {
-  display: block;
+  & {
+    display: block;
+  }
   > .#{$prefix}-selector {
     &:not(:first-child) {
       margin-top: 1rem;

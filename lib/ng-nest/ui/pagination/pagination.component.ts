@@ -10,7 +10,7 @@ import {
   inject
 } from '@angular/core';
 import { XPaginationPrefix, XPaginationProperty } from './pagination.property';
-import { XI18nPipe } from '@ng-nest/ui/i18n';
+import { XI18nPagination, XI18nPipe, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { ENTER } from '@angular/cdk/keycodes';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
@@ -18,6 +18,9 @@ import { XSelectComponent } from '@ng-nest/ui/select';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XToDataArray } from '@ng-nest/ui/core';
+import { XTooltipModule } from '@ng-nest/ui/tooltip';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 
 @Component({
   selector: `${XPaginationPrefix}`,
@@ -29,6 +32,7 @@ import { XToDataArray } from '@ng-nest/ui/core';
     XI18nPipe,
     XSelectComponent,
     XInputComponent,
+    XTooltipModule,
     XOutletDirective
   ],
   templateUrl: './pagination.component.html',
@@ -38,6 +42,10 @@ import { XToDataArray } from '@ng-nest/ui/core';
 })
 export class XPaginationComponent extends XPaginationProperty implements OnInit {
   elementRef = inject(ElementRef);
+  private i18n = inject(XI18nService);
+  locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.pagination as XI18nPagination)), {
+    initialValue: zh_CN.pagination
+  });
 
   @HostBinding('class') className = XPaginationPrefix;
 
@@ -70,6 +78,34 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
 
   sizeDataSignal = computed(() => XToDataArray(this.sizeData()));
 
+  inputSizeTooltip = computed(() => {
+    if (this.inputSizeTooltipText()) return this.inputSizeTooltipText();
+    if (this.inputIndexSizeSureType() === 'enter') {
+      return this.locale().inputSizeTooltipEnter;
+    }
+    if (this.inputIndexSizeSureType() === 'blur') {
+      return this.locale().inputSizeTooltipBlur;
+    }
+    if (this.inputIndexSizeSureType() === 'both') {
+      return this.locale().inputSizeTooltipBoth;
+    }
+    return '';
+  });
+
+  jumpTooltip = computed(() => {
+    if (this.jumpTooltipText()) return this.jumpTooltipText();
+    if (this.inputIndexSizeSureType() === 'enter') {
+      return this.locale().jumpTooltipEnter;
+    }
+    if (this.inputIndexSizeSureType() === 'blur') {
+      return this.locale().jumpTooltipBlur;
+    }
+    if (this.inputIndexSizeSureType() === 'both') {
+      return this.locale().jumpTooltipBoth;
+    }
+    return '';
+  });
+
   ngOnInit() {
     this.inputSize.set(this.size().toString());
   }
@@ -87,18 +123,31 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
     }
   }
 
+  onJumpBlur(_event: MouseEvent) {
+    if (!['blur', 'both'].includes(this.inputIndexSizeSureType())) return;
+    const jumpPage = this.jumpPage().trim();
+    const page = Number(jumpPage);
+    this.onJumpPageChange(page);
+  }
+
   onJumpKeydown(event: KeyboardEvent) {
+    if (!['enter', 'both'].includes(this.inputIndexSizeSureType())) return;
     const jumpPage = this.jumpPage().trim();
     if (jumpPage !== '' && event.keyCode === ENTER) {
-      if (Number(jumpPage) <= this.indexFirst()) {
-        this.jump(this.indexFirst());
-      } else if (Number(jumpPage) >= this.lastIndex()) {
-        this.jump(this.lastIndex());
-      } else {
-        this.jump(Number(jumpPage));
-      }
-      this.jumpPage.set('');
+      const page = Number(jumpPage);
+      this.onJumpPageChange(page);
     }
+  }
+
+  onJumpPageChange(page: number) {
+    if (page <= this.indexFirst()) {
+      this.jump(this.indexFirst());
+    } else if (page >= this.lastIndex()) {
+      this.jump(this.lastIndex());
+    } else {
+      this.jump(page);
+    }
+    this.jumpPage.set('');
   }
 
   onSimpleKeydown(event: KeyboardEvent) {
@@ -118,22 +167,34 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
     }
   }
 
+  onInputSizeBlur(_event: MouseEvent) {
+    if (!['blur', 'both'].includes(this.inputIndexSizeSureType())) return;
+    const inputSize = this.inputSize().trim();
+    const inputNumber = Number(inputSize);
+    this.onSizeChange(inputNumber);
+  }
+
   onInputSizeKeydown(event: KeyboardEvent) {
+    if (!['enter', 'both'].includes(this.inputIndexSizeSureType())) return;
     const inputSize = this.inputSize().trim();
     if (inputSize !== '' && event.keyCode === ENTER) {
       const inputNumber = Number(inputSize);
-      if (inputNumber % 1 !== 0) {
-        this.inputSize.set(`${Math.round(inputNumber)}`);
-      }
-      if (isNaN(inputNumber)) {
-        this.inputSize.set(`${this.size()}`);
-      }
-      if (inputNumber <= 0) {
-        this.inputSize.set(`${this.size()}`);
-      } else if (inputNumber !== this.size()) {
-        this.size.set(inputNumber);
-        this.sizeChanged();
-      }
+      this.onSizeChange(inputNumber);
+    }
+  }
+
+  onSizeChange(size: number) {
+    if (size % 1 !== 0) {
+      this.inputSize.set(`${Math.round(size)}`);
+    }
+    if (isNaN(size)) {
+      this.inputSize.set(`${this.size()}`);
+    }
+    if (size <= 0) {
+      this.inputSize.set(`${this.size()}`);
+    } else if (size !== this.size()) {
+      this.size.set(size);
+      this.sizeChanged();
     }
   }
 

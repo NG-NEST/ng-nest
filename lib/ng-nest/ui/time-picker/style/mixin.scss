@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin time-picker {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   x-input {
     width: 100%;
   }
@@ -32,9 +34,11 @@
 }
 
 @mixin time-picker-frame {
-  $prefix: $--x-time-picker-frame-prefix;
-  display: block;
-  height: 100%;
+  & {
+    $prefix: $--x-time-picker-frame-prefix;
+    display: block;
+    height: 100%;
+  }
   > div {
     width: 4.25rem;
     max-height: 16rem;

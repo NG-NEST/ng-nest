@@ -114,7 +114,13 @@ export default {
     first: 'पहिलो',
     last: 'अन्तिम',
     jump: 'सम्म पुग्नुहोस्',
-    sizePage: 'प्रति पृष्ठ वस्तुहरू'
+    sizePage: 'प्रति पृष्ठ वस्तुहरू',
+    inputSizeTooltipEnter: 'पुष्टिकरणको लागि Enter कुञ्जी प्रयोग गर्नुहोस्',
+    inputSizeTooltipBlur: 'फोकस गुमाउँदा पुष्टि गर्नुहोस्',
+    inputSizeTooltipBoth: 'Enter कुञ्जी वा फोकस गुमाउँदा पुष्टि गर्नुहोस्',
+    jumpTooltipEnter: 'पुष्टिकरणको लागि Enter कुञ्जी प्रयोग गर्नुहोस्',
+    jumpTooltipBlur: 'फोकस गुमाउँदा पुष्टि गर्नुहोस्',
+    jumpTooltipBoth: 'Enter कुञ्जी वा फोकस गुमाउँदा पुष्टि गर्नुहोस्'
   },
   textRetract: {
     unfold: 'फैलाउनुहोस्',

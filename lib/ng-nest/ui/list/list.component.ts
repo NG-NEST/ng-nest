@@ -1,22 +1,5 @@
 import { Subject } from 'rxjs';
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-  SimpleChanges,
-  OnChanges,
-  QueryList,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  ViewChildren,
-  inject,
-  AfterRenderPhase,
-  afterRender,
-  viewChild,
-  signal,
-  computed
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges, OnChanges, QueryList, ElementRef, HostBinding, HostListener, ViewChildren, inject, afterRender, viewChild, signal, computed } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
 import { XIsChange, XSetData, XIsEmpty, XIsUndefined, XIsNull, XResize, XResizeObserver } from '@ng-nest/ui/core';
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -130,12 +113,12 @@ export class XListComponent extends XListProperty implements OnChanges {
   constructor() {
     super();
     afterRender(
-      () => {
+      { mixedReadWrite: () => {
         if (this.virtualScroll() && this.scrollHeight()) {
-          this.virtualBody()?.checkViewportSize();
+            this.virtualBody()?.checkViewportSize();
         }
-      },
-      { phase: AfterRenderPhase.MixedReadWrite }
+    } },
+      
     );
   }
 

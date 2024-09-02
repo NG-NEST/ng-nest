@@ -114,7 +114,13 @@ export default {
     first: 'Первая',
     last: 'Последняя',
     jump: 'Перейти на',
-    sizePage: 'Элементов на странице'
+    sizePage: 'Элементов на странице',
+    inputSizeTooltipEnter: 'Используйте клавишу Enter для подтверждения',
+    inputSizeTooltipBlur: 'Подтвердите при потере фокуса',
+    inputSizeTooltipBoth: 'Подтвердите с помощью клавиши Enter или при потере фокуса',
+    jumpTooltipEnter: 'Используйте клавишу Enter для подтверждения',
+    jumpTooltipBlur: 'Подтвердите при потере фокуса',
+    jumpTooltipBoth: 'Подтвердите с помощью клавиши Enter или при потере фокуса'
   },
   textRetract: {
     unfold: 'Развернуть',

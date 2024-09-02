@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin select {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   x-input {
     width: 100%;
   }

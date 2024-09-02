@@ -27939,7 +27939,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
-        "label": "显示输入分页条数（不能跟下拉选项同时使用）",
+        "label": "显示输入分页框（不能跟下拉选项同时使用），默认使用回车确认改变",
         "default": "false",
         "withConfig": true,
         "description": "",
@@ -27950,6 +27950,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "inputSizeTooltipText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "输入分页框的 tooltip 提示信息，默认根据输入确认改变的方式来显示",
+        "default": "''",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "inputSizeWidth",
@@ -28011,7 +28029,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
-        "label": "显示跳转输入框",
+        "label": "显示跳转输入框，默认使用回车确认改变",
         "default": "false",
         "withConfig": false,
         "description": "",
@@ -28022,6 +28040,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "jumpTooltipText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "跳转输入框的 tooltip 提示信息，默认根据输入确认改变的方式来显示",
+        "default": "''",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "jumpWidth",
@@ -28094,12 +28130,44 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "inputIndexSizeSureType",
+        "type": "XPaginationInputIndexSizeSureType",
+        "toType": "XPaginationInputIndexSizeSureType",
+        "inputType": "InputSignal<XPaginationInputIndexSizeSureType>",
+        "signal": "input",
+        "label": "输入确认改变的方式，针对输入分页大小和输入跳转页",
+        "default": "'enter'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XPaginationProperty",
     "extends": [
       "XPropertyFunction(X_PAGINATION_CONFIG_NAME)"
     ]
+  },
+  "XPaginationInputIndexSizeSureType": {
+    "type": "type",
+    "label": "输入确认改变的方式，针对输入分页大小和输入跳转页",
+    "description": "- `'enter'` : 输入后使用回车键确认\n- `'blur'` : 输入后失去焦点后确认\n- `'both'` : 上面2种都可以触发确认操作",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XPaginationInputIndexSizeSureType",
+    "value": "'enter' | 'blur' | 'both'"
   },
   "XPatternPrefix": {
     "type": "const",
@@ -37449,6 +37517,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "inputSizeTooltipText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "输入分页框的 tooltip 提示信息，默认根据输入确认改变的方式来显示",
+        "default": "''",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "inputSizeWidth",
         "type": "XNumber",
         "toType": "string",
@@ -37521,6 +37607,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "jumpTooltipText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "跳转输入框的 tooltip 提示信息，默认根据输入确认改变的方式来显示",
+        "default": "''",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "jumpWidth",
         "type": "XNumber",
         "toType": "string",
@@ -37591,6 +37695,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "inputIndexSizeSureType",
+        "type": "XPaginationInputIndexSizeSureType",
+        "toType": "XPaginationInputIndexSizeSureType",
+        "inputType": "InputSignal<XPaginationInputIndexSizeSureType>",
+        "signal": "input",
+        "label": "输入确认改变的方式，针对输入分页大小和输入跳转页",
+        "default": "'enter'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "columnDragStarted",

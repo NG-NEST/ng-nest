@@ -5,8 +5,10 @@
 @import './param';
 
 @mixin transfer {
-  display: inline-flex;
-  align-items: center;
+  & {
+    display: inline-flex;
+    align-items: center;
+  }
   &-title {
     padding: 0.25rem 0.5625rem;
     display: flex;

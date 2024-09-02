@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin Pattern {
-  display: block;
+  & {
+    display: block;
+  }
   > table {
     > tr {
       > td {

@@ -5,8 +5,10 @@
 @import './param';
 
 @mixin form {
-  display: inline-block;
-  overflow: hidden;
+  & {
+    display: inline-block;
+    overflow: hidden;
+  }
   &-title {
     display: inline-flex;
     align-items: center;

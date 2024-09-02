@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin pagination {
-  display: inline-flex;
+  & {
+    display: inline-flex;
+  }
   > .x-buttons {
     &.x-buttons-hiddenBorder {
       > x-button > .x-button {

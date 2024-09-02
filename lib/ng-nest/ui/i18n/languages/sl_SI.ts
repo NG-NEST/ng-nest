@@ -110,7 +110,13 @@ export default {
     first: 'Prvi',
     last: 'Zadnji',
     jump: 'Skoči na',
-    sizePage: 'Artiklov na stran'
+    sizePage: 'Artiklov na stran',
+    inputSizeTooltipEnter: 'Uporabite tipko Enter za potrditev',
+    inputSizeTooltipBlur: 'Potrdite, ko izgubite fokus',
+    inputSizeTooltipBoth: 'Potrdite s tipko Enter ali ko izgubite fokus',
+    jumpTooltipEnter: 'Uporabite tipko Enter za potrditev',
+    jumpTooltipBlur: 'Potrdite, ko izgubite fokus',
+    jumpTooltipBoth: 'Potrdite s tipko Enter ali ko izgubite fokus'
   },
   textRetract: {
     unfold: 'Razvij',

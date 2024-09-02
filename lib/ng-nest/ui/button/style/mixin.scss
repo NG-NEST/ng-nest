@@ -5,19 +5,21 @@
 @import './param';
 
 @mixin button {
-  position: relative;
-  border: none;
-  outline: none;
-  border-radius: $--x-border-radius;
-  font-size: $--x-font-size-small;
-  text-align: center;
-  background-clip: border-box;
-  cursor: pointer;
-  user-select: none;
-  white-space: nowrap;
-  touch-action: manipulation;
-  box-shadow: $--x-box-shadow;
-  width: 100%;
+  & {
+    position: relative;
+    border: none;
+    outline: none;
+    border-radius: $--x-border-radius;
+    font-size: $--x-font-size-small;
+    text-align: center;
+    background-clip: border-box;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    touch-action: manipulation;
+    box-shadow: $--x-box-shadow;
+    width: 100%;
+  }
   &:focus {
     outline: none;
   }
@@ -194,7 +196,9 @@
     &.cdk-program-focused:not(.x-button-disabled),
     &.cdk-keyboard-focused:not(.x-button-disabled) {
       @include button-color($hover, $hover-background, $hover-border);
-      box-shadow: $--x-box-shadow-hover;
+      & {
+        box-shadow: $--x-box-shadow-hover;
+      }
     }
     &:active:not(.x-button-disabled) {
       @include button-color($active, $active-background, $active-border);
@@ -261,8 +265,10 @@
 }
 
 @mixin buttons {
-  display: inline-flex;
-  position: relative;
+  & {
+    display: inline-flex;
+    position: relative;
+  }
 
   &:not(.#{$--x-buttons}-space) {
     > #{$--x-button} {

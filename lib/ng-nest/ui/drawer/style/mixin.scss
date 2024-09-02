@@ -5,9 +5,11 @@
 @import './param';
 
 @mixin drawer {
-  background-color: $--x-background;
-  position: relative;
-  box-shadow: $--x-box-shadow;
+  & {
+    background-color: $--x-background;
+    position: relative;
+    box-shadow: $--x-box-shadow;
+  }
   &-header {
     padding: 1rem 1rem 0.5rem 1rem;
   }
@@ -39,13 +41,15 @@
 }
 
 @mixin drawer-portal {
-  height: 100%;
-  width: 100%;
-  background-color: $--x-background-100;
-  position: relative;
-  box-shadow: $--x-box-shadow;
-  overflow: auto;
-  padding: 1rem;
+  & {
+    height: 100%;
+    width: 100%;
+    background-color: $--x-background-100;
+    position: relative;
+    box-shadow: $--x-box-shadow;
+    overflow: auto;
+    padding: 1rem;
+  }
   &-title {
     display: block;
     margin: 0 0 0.5rem 0;
@@ -64,17 +68,21 @@
 }
 
 @mixin drawer-container {
-  position: relative;
-  z-index: 1;
-  box-sizing: border-box;
-  display: block;
-  overflow: hidden;
+  & {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+  }
   .#{$--x-drawer} {
     position: absolute;
     display: block;
     outline: 0;
     z-index: 2;
-    transition: transform 0.2s ease-in, visibility 0.2s ease-in;
+    transition:
+      transform 0.2s ease-in,
+      visibility 0.2s ease-in;
     visibility: hidden;
     &-left {
       transform: translate3d(-100%, 0, 0);
@@ -113,7 +121,9 @@
       z-index: -1;
       pointer-events: auto;
       background: rgba(0, 0, 0, 0.32);
-      transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0 ease-in 0.4s;
+      transition:
+        opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+        z-index 0 ease-in 0.4s;
       opacity: 0;
     }
   }

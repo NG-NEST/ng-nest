@@ -5,11 +5,13 @@
 @import './param';
 
 @mixin badge {
-  font-size: $--x-font-size;
-  display: inline-block;
-  box-sizing: border-box;
-  text-align: center;
-  position: relative;
+  & {
+    font-size: $--x-font-size;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+  }
   > sup {
     position: absolute;
     top: 0;

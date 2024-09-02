@@ -10,8 +10,7 @@ export default {
   },
   theme: {
     darkMode: 'حالت تاریک',
-    initDefault:
-      'مقدار پیش‌فرض را مقداردهی اولیه کنید',
+    initDefault: 'مقدار پیش‌فرض را مقداردهی اولیه کنید',
     primary: 'اصلی',
     success: 'موفقیت',
     warning: 'هشدار',
@@ -111,7 +110,13 @@ export default {
     first: 'اولی',
     last: 'آخری',
     jump: 'پرش به',
-    sizePage: 'آیتم/صفحه'
+    sizePage: 'آیتم/صفحه',
+    inputSizeTooltipEnter: 'از کلید Enter برای تأیید استفاده کنید',
+    inputSizeTooltipBlur: 'تأیید هنگام از دست دادن تمرکز',
+    inputSizeTooltipBoth: 'تأیید با کلید Enter یا هنگام از دست دادن تمرکز',
+    jumpTooltipEnter: 'از کلید Enter برای تأیید استفاده کنید',
+    jumpTooltipBlur: 'تأیید هنگام از دست دادن تمرکز',
+    jumpTooltipBoth: 'تأیید با کلید Enter یا هنگام از دست دادن تمرکز'
   },
   textRetract: {
     unfold: 'باز کردن',

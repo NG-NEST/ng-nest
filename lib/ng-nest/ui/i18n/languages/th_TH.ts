@@ -114,7 +114,13 @@ export default {
     first: 'หน้าแรก',
     last: 'หน้าสุดท้าย',
     jump: 'ไปยัง',
-    sizePage: 'รายการ/หน้า'
+    sizePage: 'รายการ/หน้า',
+    inputSizeTooltipEnter: 'ใช้ปุ่ม Enter เพื่อยืนยัน',
+    inputSizeTooltipBlur: 'ยืนยันเมื่อสูญเสียโฟกัส',
+    inputSizeTooltipBoth: 'ยืนยันด้วยปุ่ม Enter หรือเมื่อสูญเสียโฟกัส',
+    jumpTooltipEnter: 'ใช้ปุ่ม Enter เพื่อยืนยัน',
+    jumpTooltipBlur: 'ยืนยันเมื่อสูญเสียโฟกัส',
+    jumpTooltipBoth: 'ยืนยันด้วยปุ่ม Enter หรือเมื่อสูญเสียโฟกัส'
   },
   textRetract: {
     unfold: 'แสดงเพิ่มเติม',

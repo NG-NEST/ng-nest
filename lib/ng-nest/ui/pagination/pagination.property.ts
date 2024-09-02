@@ -78,10 +78,15 @@ export class XPaginationProperty extends XPropertyFunction(X_PAGINATION_CONFIG_N
    */
   readonly sizeWidth = input<string, XNumber>(this.config?.sizeWidth ?? '6.875rem', { transform: XToCssPixelValue });
   /**
-   * @zh_CN 显示输入分页条数（不能跟下拉选项同时使用）
-   * @en_US Display the number of input page breaks (cannot exist with the drop-down options of page breaks)
+   * @zh_CN 显示输入分页框（不能跟下拉选项同时使用），默认使用回车确认改变
+   * @en_US Display the number of input page breaks (cannot exist with the drop-down options of page breaks). default to using Enter to confirm changes
    */
   readonly showInputSize = input<boolean, XBoolean>(this.config?.showInputSize ?? false, { transform: XToBoolean });
+  /**
+   * @zh_CN 输入分页框的 tooltip 提示信息，默认根据输入确认改变的方式来显示
+   * @en_US Enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input
+   */
+  readonly inputSizeTooltipText = input<string>(this.config?.inputSizeTooltipText ?? '');
   /**
    * @zh_CN 分页条数输入框的宽度
    * @en_US size with input
@@ -100,10 +105,15 @@ export class XPaginationProperty extends XPropertyFunction(X_PAGINATION_CONFIG_N
    */
   readonly disabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
-   * @zh_CN 显示跳转输入框
-   * @en_US Show size
+   * @zh_CN 显示跳转输入框，默认使用回车确认改变
+   * @en_US Show size. default to using Enter to confirm changes
    */
   readonly showJump = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 跳转输入框的 tooltip 提示信息，默认根据输入确认改变的方式来显示
+   * @en_US The tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes
+   */
+  readonly jumpTooltipText = input<string>(this.config?.jumpTooltipText ?? '');
   /**
    * @zh_CN 跳转页的宽度
    * @en_US size with
@@ -126,4 +136,23 @@ export class XPaginationProperty extends XPropertyFunction(X_PAGINATION_CONFIG_N
   readonly simpleIndexWidth = input<string, XNumber>(this.config?.simpleIndexWidth ?? '8.125rem', {
     transform: XToCssPixelValue
   });
+  /**
+   * @zh_CN 输入确认改变的方式，针对输入分页大小和输入跳转页
+   * @en_US The method for confirming changes in input is based on the input page size and input jump page
+   */
+  readonly inputIndexSizeSureType = input<XPaginationInputIndexSizeSureType>(
+    this.config?.inputIndexSizeSureType ?? 'enter'
+  );
 }
+
+/**
+ * @zh_CN 输入确认改变的方式，针对输入分页大小和输入跳转页
+ * - `'enter'` : 输入后使用回车键确认
+ * - `'blur'` : 输入后失去焦点后确认
+ * - `'both'` : 上面2种都可以触发确认操作
+ * @en_US The method for confirming changes in input is based on the input page size and input jump page
+ * - `'enter'` : After entering, use the enter key to confirm
+ * - `'blur'` : Confirm after losing focus after input
+ * - `'both'` : Both of the above can trigger confirmation operations
+ */
+export type XPaginationInputIndexSizeSureType = 'enter' | 'blur' | 'both';

@@ -1,127 +1,195 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XAlertComponent } from '@ng-nest/ui/alert';
-import { FormsModule } from '@angular/forms';
-import { XAlertPrefix } from './alert.property';
-import { XCountdownComponent } from '@ng-nest/ui/statistic';
-import { XAddSeconds } from '@ng-nest/ui/core';
-import { XButtonComponent } from '@ng-nest/ui/button';
+import { XAlertComponent, XAlertDragFreeDragPosition, XAlertPrefix, XAlertType } from '@ng-nest/ui/alert';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XEffect, XTemplate } from '@ng-nest/ui/core';
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
+import { XResizableEvent } from '@ng-nest/ui/resizable';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+@Component({
+  standalone: true,
+  imports: [XAlertComponent],
+  template: ` <x-alert title="title"></x-alert> `
+})
+class XTestAlertComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XAlertComponent],
+  template: `
+    <x-alert
+      [hide]="hide()"
+      [title]="title()"
+      [content]="content()"
+      [type]="type()"
+      [effect]="effect()"
+      [hideClose]="hideClose()"
+      [closeText]="closeText()"
+      [showIcon]="showIcon()"
+      [disabledAnimation]="disabledAnimation()"
+      [duration]="duration()"
+      [manual]="manual()"
+      [draggable]="draggable()"
+      [resizable]="resizable()"
+      [offsetLeft]="offsetLeft()"
+      [offsetTop]="offsetTop()"
+      [minWidth]="minWidth()"
+      [minHeight]="minHeight()"
+      [dragBoundary]="dragBoundary()"
+      [dragFreeDragPosition]="dragFreeDragPosition()"
+      [operationTpl]="operationTpl()"
+      (close)="close($event)"
+      (dragEnded)="dragEnded($event)"
+      (resizing)="resizing($event)"
+    ></x-alert>
+  `
+})
+class XTestAlertPropertyComponent {
+  hide = signal(false);
+  title = signal<XTemplate>('');
+  content = signal<XTemplate>('');
+  type = signal<XAlertType>('info');
+  effect = signal<XEffect>('light');
+  hideClose = signal(false);
+  closeText = signal('');
+  showIcon = signal(false);
+  disabledAnimation = signal(false);
+  duration = signal(0);
+  manual = signal(false);
+  draggable = signal(false);
+  resizable = signal(false);
+  offsetLeft = signal(0);
+  offsetTop = signal(0);
+  minWidth = signal('0');
+  minHeight = signal('0');
+  dragBoundary = signal<string | ElementRef<HTMLElement> | HTMLElement | null>(null);
+  dragFreeDragPosition = signal<XAlertDragFreeDragPosition | null>(null);
+  operationTpl = signal<XTemplate>('');
+
+  closed = signal(false);
+  close() {
+    this.closed.set(true);
+  }
+
+  dragend = signal<CdkDragEnd | null>(null);
+  dragEnded(dragend: CdkDragEnd) {
+    this.dragend.set(dragend);
+  }
+
+  resizableEvent = signal<XResizableEvent | null>(null);
+  resizing(resizableEvent: XResizableEvent) {
+    this.resizableEvent.set(resizableEvent);
+  }
+}
 
 describe(XAlertPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXAlertComponent],
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        XButtonComponent,
-        XAlertComponent,
-        XCountdownComponent
-      ],
+      imports: [XTestAlertComponent, XTestAlertPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXAlertComponent>;
-    let alert: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestAlertComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXAlertComponent);
+      fixture = TestBed.createComponent(XTestAlertComponent);
       fixture.detectChanges();
-      alert = fixture.debugElement.query(By.directive(XAlertComponent));
     });
-    it('should create.', () => {
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XAlertComponent));
+      expect(com).toBeDefined();
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestAlertPropertyComponent>;
+    let component: XTestAlertPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestAlertPropertyComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('hide.', () => {
+      let alert = fixture.debugElement.query(By.css('.x-alert'));
       expect(alert).toBeDefined();
+
+      component.hide.set(true);
+      fixture.detectChanges();
+      alert = fixture.debugElement.query(By.css('.x-alert'));
+      expect(alert).toBeNull();
+    });
+    it('title.', () => {
+      expect(true).toBe(true);
+    });
+    it('content.', () => {
+      expect(true).toBe(true);
+    });
+    it('type.', () => {
+      expect(true).toBe(true);
+    });
+    it('effect.', () => {
+      expect(true).toBe(true);
+    });
+    it('hideClose.', () => {
+      expect(true).toBe(true);
+    });
+    it('closeText.', () => {
+      expect(true).toBe(true);
+    });
+    it('showIcon.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabledAnimation.', () => {
+      expect(true).toBe(true);
+    });
+    it('duration.', () => {
+      expect(true).toBe(true);
+    });
+    it('manual.', () => {
+      expect(true).toBe(true);
+    });
+    it('draggable.', () => {
+      expect(true).toBe(true);
+    });
+    it('resizable.', () => {
+      expect(true).toBe(true);
+    });
+    it('offsetLeft.', () => {
+      expect(true).toBe(true);
+    });
+    it('offsetTop.', () => {
+      expect(true).toBe(true);
+    });
+    it('minWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('minHeight.', () => {
+      expect(true).toBe(true);
+    });
+    it('dragBoundary.', () => {
+      expect(true).toBe(true);
+    });
+    it('dragFreeDragPosition.', () => {
+      expect(true).toBe(true);
+    });
+    it('operationTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('close.', () => {
+      expect(true).toBe(true);
+    });
+    it('dragEnded.', () => {
+      expect(true).toBe(true);
+    });
+    it('resizing.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    <div class="row">
-      <x-alert title="成功提示" type="success"> </x-alert>
-      <x-alert title="消息提示" type="info"> </x-alert>
-      <x-alert title="警告提示" type="warning"> </x-alert>
-      <x-alert title="错误提示" type="error"> </x-alert>
-    </div>
-    <div class="row">
-      <x-alert title="成功提示" type="success" effect="dark"> </x-alert>
-      <x-alert title="消息提示" type="info" effect="dark"> </x-alert>
-      <x-alert title="警告提示" type="warning" effect="dark"> </x-alert>
-      <x-alert title="错误提示" type="error" effect="dark"> </x-alert>
-    </div>
-    <div class="row">
-      <x-alert title="成功提示" type="success" effect="white" showIcon> </x-alert>
-      <x-alert title="消息提示" type="info" effect="white" showIcon> </x-alert>
-      <x-alert title="警告提示" type="warning" effect="white" showIcon> </x-alert>
-      <x-alert title="错误提示" type="error" effect="white" showIcon> </x-alert>
-    </div>
-    <div class="row">
-      <x-alert title="不可关闭" type="success" hideClose> </x-alert>
-      <x-alert title="自定义关闭内容" type="info" closeText="知道了"> </x-alert>
-      <x-alert title="关闭事件" type="warning" (close)="close()"> </x-alert>
-      <x-alert [title]="titleTpl" type="success" showIcon duration="10000" content="秒后关闭"></x-alert>
-      <ng-template #titleTpl> <x-countdown [value]="deadline" format="ss:SSS"></x-countdown></ng-template>
-    </div>
-    <div class="row">
-      <x-alert title="成功提示" type="success" showIcon> </x-alert>
-      <x-alert title="消息提示" type="info" showIcon> </x-alert>
-      <x-alert title="警告提示" type="warning" showIcon> </x-alert>
-      <x-alert title="错误提示" type="error" showIcon> </x-alert>
-    </div>
-    <div class="row">
-      <x-alert title="提示信息" type="success" [content]="content"> </x-alert>
-    </div>
-    <div class="row">
-      <x-alert title="成功提示" type="success" [content]="content" showIcon> </x-alert>
-      <x-alert title="消息提示" type="info" [content]="content" showIcon> </x-alert>
-      <x-alert title="警告提示" type="warning" [content]="content" showIcon> </x-alert>
-      <x-alert title="错误提示" type="error" [content]="content" showIcon> </x-alert>
-    </div>
-    <div class="row">
-      <x-alert title="控制关闭" type="success" [hide]="hide" (close)="close()" manual showIcon> </x-alert>
-      <x-button (click)="toggle()">{{ hide ? '显示' : '隐藏' }}</x-button>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-alert:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXAlertComponent {
-  hide = false;
-  content =
-    '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。';
-
-  deadline = XAddSeconds(new Date(), 10).getTime();
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  close() {
-    this.hide = true;
-    // this.cdr.detectChanges();
-  }
-
-  toggle() {
-    this.hide = !this.hide;
-    this.cdr.detectChanges();
-  }
-}

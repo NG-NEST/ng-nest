@@ -114,7 +114,13 @@ export default {
     first: 'Перша',
     last: 'Остання',
     jump: 'Перейти до',
-    sizePage: 'Елементів/сторінку'
+    sizePage: 'Елементів/сторінку',
+    inputSizeTooltipEnter: 'Підтвердження клавішею Enter',
+    inputSizeTooltipBlur: 'Підтвердження при втраті фокусу',
+    inputSizeTooltipBoth: 'Підтвердження клавішею Enter або при втраті фокусу',
+    jumpTooltipEnter: 'Підтвердження клавішею Enter',
+    jumpTooltipBlur: 'Підтвердження при втраті фокусу',
+    jumpTooltipBoth: 'Підтвердження клавішею Enter або при втраті фокусу'
   },
   textRetract: {
     unfold: 'Розгорнути',

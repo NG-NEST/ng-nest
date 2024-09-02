@@ -110,7 +110,13 @@ export default {
     first: 'Primo',
     last: 'Ultimo',
     jump: 'Vai a',
-    sizePage: 'Elementi per pagina'
+    sizePage: 'Elementi per pagina',
+    inputSizeTooltipEnter: 'Usa il tasto Enter per confermare',
+    inputSizeTooltipBlur: 'Conferma quando si perde il focus',
+    inputSizeTooltipBoth: 'Conferma con il tasto Enter o quando si perde il focus',
+    jumpTooltipEnter: 'Usa il tasto Enter per confermare',
+    jumpTooltipBlur: 'Conferma quando si perde il focus',
+    jumpTooltipBoth: 'Conferma con il tasto Enter o quando si perde il focus'
   },
   textRetract: {
     unfold: 'Espandi',

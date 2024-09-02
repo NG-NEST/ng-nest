@@ -110,7 +110,13 @@ export default {
     first: 'Prvo',
     last: 'Poslednje',
     jump: 'Skoči na',
-    sizePage: 'Stavki po stranici'
+    sizePage: 'Stavki po stranici',
+    inputSizeTooltipEnter: 'Koristite Enter taster za potvrdu',
+    inputSizeTooltipBlur: 'Potvrdite kada izgubite fokus',
+    inputSizeTooltipBoth: 'Potvrdite Enter tasterom ili kada izgubite fokus',
+    jumpTooltipEnter: 'Koristite Enter taster za potvrdu',
+    jumpTooltipBlur: 'Potvrdite kada izgubite fokus',
+    jumpTooltipBoth: 'Potvrdite Enter tasterom ili kada izgubite fokus'
   },
   textRetract: {
     unfold: 'Proširi',

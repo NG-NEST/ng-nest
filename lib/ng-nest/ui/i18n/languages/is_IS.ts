@@ -110,7 +110,13 @@ export default {
     first: 'Fyrst',
     last: 'Síðast',
     jump: 'Sjálfgefinn',
-    sizePage: 'Stærð/Blad'
+    sizePage: 'Stærð/Blad',
+    inputSizeTooltipEnter: 'Notaðu Enter-takkann til að staðfesta',
+    inputSizeTooltipBlur: 'Staðfesta þegar fókus tapast',
+    inputSizeTooltipBoth: 'Staðfesta með Enter-takka eða þegar fókus tapast',
+    jumpTooltipEnter: 'Notaðu Enter-takkann til að staðfesta',
+    jumpTooltipBlur: 'Staðfesta þegar fókus tapast',
+    jumpTooltipBoth: 'Staðfesta með Enter-takka eða þegar fókus tapast'
   },
   textRetract: {
     unfold: 'Opna',

@@ -5,9 +5,11 @@
 @import './param';
 
 @mixin page-header {
-  display: inline-flex;
-  align-items: center;
-  height: $--x-height-large;
+  & {
+    display: inline-flex;
+    align-items: center;
+    height: $--x-height-large;
+  }
   &-backIcon {
     .x-button {
       font-size: $--x-font-size;

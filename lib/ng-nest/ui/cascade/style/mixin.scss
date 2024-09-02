@@ -5,20 +5,24 @@
 @import './param';
 
 @mixin cascade {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   x-input {
     width: 100%;
   }
 }
 
 @mixin cascade-portal {
-  margin: 0.0625rem 0;
-  font-size: $--x-cascade-font-size;
-  color: $--x-text;
-  border-radius: $--x-border-small-radius;
-  box-shadow: $--x-box-shadow;
-  background-color: $--x-background-100;
-  display: flex;
+  & {
+    margin: 0.0625rem 0;
+    font-size: $--x-cascade-font-size;
+    color: $--x-text;
+    border-radius: $--x-border-small-radius;
+    box-shadow: $--x-box-shadow;
+    background-color: $--x-background-100;
+    display: flex;
+  }
   &:focus {
     outline: none;
   }

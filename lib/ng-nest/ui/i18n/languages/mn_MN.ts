@@ -114,7 +114,13 @@ export default {
     first: 'Эхнийх',
     last: 'Сүүлийх',
     jump: 'Шилжих',
-    sizePage: 'Хуудас дээрх зүйлс'
+    sizePage: 'Хуудас дээрх зүйлс',
+    inputSizeTooltipEnter: 'Confirm хийхийн тулд Enter товчийг ашиглана уу',
+    inputSizeTooltipBlur: 'Фокус алдагдах үед баталгаажуулна уу',
+    inputSizeTooltipBoth: 'Enter товчийг ашиглан эсвэл фокус алдагдах үед баталгаажуулна уу',
+    jumpTooltipEnter: 'Confirm хийхийн тулд Enter товчийг ашиглана уу',
+    jumpTooltipBlur: 'Фокус алдагдах үед баталгаажуулна уу',
+    jumpTooltipBoth: 'Enter товчийг ашиглан эсвэл фокус алдагдах үед баталгаажуулна уу'
   },
   textRetract: {
     unfold: 'Хаах',

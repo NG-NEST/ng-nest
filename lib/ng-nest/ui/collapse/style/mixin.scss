@@ -5,10 +5,12 @@
 @import './param';
 
 @mixin collapse {
-  font-size: $--x-font-size;
-  box-sizing: border-box;
-  border-top: $--x-border-base;
-  border-bottom: $--x-border-base;
+  & {
+    font-size: $--x-font-size;
+    box-sizing: border-box;
+    border-top: $--x-border-base;
+    border-bottom: $--x-border-base;
+  }
   x-collapse-panel:last-child {
     .x-collapse-panel {
       &-header {
@@ -53,7 +55,9 @@
 }
 
 @mixin collapse-panel {
-  box-sizing: border-box;
+  & {
+    box-sizing: border-box;
+  }
   &-header {
     display: flex;
     align-items: center;

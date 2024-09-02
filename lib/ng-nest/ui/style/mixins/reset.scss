@@ -1,5 +1,7 @@
 // Component
 @mixin reset-component {
-  margin: 0;
-  padding: 0;
+  & {
+    margin: 0;
+    padding: 0;
+  }
 }

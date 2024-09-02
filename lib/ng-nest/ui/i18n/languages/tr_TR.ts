@@ -114,7 +114,13 @@ export default {
     first: 'İlk',
     last: 'Son',
     jump: 'Atla',
-    sizePage: 'Öğe/Sayfa'
+    sizePage: 'Öğe/Sayfa',
+    inputSizeTooltipEnter: 'Enter tuşu ile onaylayın',
+    inputSizeTooltipBlur: 'Odak kaybolduğunda onaylayın',
+    inputSizeTooltipBoth: 'Enter tuşu veya odak kaybolduğunda onaylayın',
+    jumpTooltipEnter: 'Enter tuşu ile onaylayın',
+    jumpTooltipBlur: 'Odak kaybolduğunda onaylayın',
+    jumpTooltipBoth: 'Enter tuşu veya odak kaybolduğunda onaylayın'
   },
   textRetract: {
     unfold: 'Aç',

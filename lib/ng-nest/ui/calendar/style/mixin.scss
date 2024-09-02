@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin calendar {
-  box-sizing: border-box;
+  & {
+    box-sizing: border-box;
+  }
   &-header {
     display: flex;
     align-items: center;

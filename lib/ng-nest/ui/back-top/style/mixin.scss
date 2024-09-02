@@ -5,9 +5,11 @@
 @import './param';
 
 @mixin back-top {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  & {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   > x-link .x-link {
     width: 2.5rem;
     height: 2.5rem;

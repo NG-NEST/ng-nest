@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin tree-select {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   x-input {
     width: 100%;
     color: #252022;

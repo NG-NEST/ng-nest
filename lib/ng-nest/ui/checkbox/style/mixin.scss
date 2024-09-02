@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin checkbox {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   @include flex();
   > label {
     display: inline-block;
@@ -328,8 +330,10 @@
 }
 
 @mixin disabled {
-  color: $--x-text-400;
-  cursor: not-allowed;
+  & {
+    color: $--x-text-400;
+    cursor: not-allowed;
+  }
   .#{$--x-checkbox-prefix}-box {
     border-color: $--x-border-a900;
     background-color: $--x-border-300;

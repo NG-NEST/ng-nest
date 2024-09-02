@@ -9,10 +9,12 @@
 }
 
 @mixin popover-portal {
-  display: inline-flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
+  & {
+    display: inline-flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
   > .#{$--x-popover-portal-prefix}-inner {
     font-size: $--x-font-size;
     background-color: $--x-background-100;

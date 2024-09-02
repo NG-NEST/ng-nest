@@ -110,7 +110,13 @@ export default {
     first: 'ಮೊದಲನೆ',
     last: 'ಕೊನೆಯ',
     jump: 'ಜಿಂಕು',
-    sizePage: 'ಐಟಂ/ಪುಟ'
+    sizePage: 'ಐಟಂ/ಪುಟ',
+    inputSizeTooltipEnter: 'ಪರಿಶೀಲನೆಗೆ Enter ಕೀ ಬಳಸಿ',
+    inputSizeTooltipBlur: 'ಫೋಕಸ್ ಕಳೆದುಕೊಂಡಾಗ ದೃಢೀಕರಿಸಿ',
+    inputSizeTooltipBoth: 'Enter ಕೀ ಅಥವಾ ಫೋಕಸ್ ಕಳೆದುಕೊಂಡಾಗ ದೃಢೀಕರಿಸಿ',
+    jumpTooltipEnter: 'ಪರಿಶೀಲನೆಗೆ Enter ಕೀ ಬಳಸಿ',
+    jumpTooltipBlur: 'ಫೋಕಸ್ ಕಳೆದುಕೊಂಡಾಗ ದೃಢೀಕರಿಸಿ',
+    jumpTooltipBoth: 'Enter ಕೀ ಅಥವಾ ಫೋಕಸ್ ಕಳೆದುಕೊಂಡಾಗ ದೃಢೀಕರಿಸಿ'
   },
   textRetract: {
     unfold: 'ಹರಿದು ಹಾಕಿ',
@@ -155,13 +161,11 @@ export default {
   },
   select: {
     selectAllText: 'ಎಲ್ಲಾವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
-    maxTagContent:
-      'ಹೆಚ್ಚು {{surplus}} ಆಯ್ಕೆಯಾಗಿದೆ'
+    maxTagContent: 'ಹೆಚ್ಚು {{surplus}} ಆಯ್ಕೆಯಾಗಿದೆ'
   },
   treeSelect: {
     selectAllText: 'ಎಲ್ಲಾವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
-    maxTagContent:
-      'ಹೆಚ್ಚು {{surplus}} ಆಯ್ಕೆಯಾಗಿದೆ'
+    maxTagContent: 'ಹೆಚ್ಚು {{surplus}} ಆಯ್ಕೆಯಾಗಿದೆ'
   },
   form: { required: 'ಅಗತ್ಯ' }
 };

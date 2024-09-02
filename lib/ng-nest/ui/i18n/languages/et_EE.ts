@@ -110,7 +110,13 @@ export default {
     first: 'Esimene',
     last: 'Viimane',
     jump: 'Hüpata',
-    sizePage: 'Üksused/lehekülg'
+    sizePage: 'Üksused/lehekülg',
+    inputSizeTooltipEnter: 'Kasuta Enter-klahvi kinnitamiseks',
+    inputSizeTooltipBlur: 'Kinnita fookuse kaotamisel',
+    inputSizeTooltipBoth: 'Kinnita Enter-klahviga või fookuse kaotamisel',
+    jumpTooltipEnter: 'Kasuta Enter-klahvi kinnitamiseks',
+    jumpTooltipBlur: 'Kinnita fookuse kaotamisel',
+    jumpTooltipBoth: 'Kinnita Enter-klahviga või fookuse kaotamisel'
   },
   textRetract: {
     unfold: 'Laienda',
@@ -145,8 +151,7 @@ export default {
     uploadText: 'Laadi üles fail',
     beginUploadText: 'Alusta faili üleslaadimist',
     uploadingText: 'Üleslaadimine',
-    uploadCompleted:
-      'Faili üleslaadimine lõpetatud'
+    uploadCompleted: 'Faili üleslaadimine lõpetatud'
   },
   pageHeader: { back: 'Tagasi' },
   list: {

@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin typography {
-  color: var(--x-text);
+  & {
+    color: var(--x-text);
+  }
   h4,
   h1,
   p {

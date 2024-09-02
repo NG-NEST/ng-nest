@@ -110,7 +110,13 @@ export default {
     first: '最初',
     last: '最後',
     jump: 'ジャンプ',
-    sizePage: '項目/ページ'
+    sizePage: '項目/ページ',
+    inputSizeTooltipEnter: 'Enterキーを使用して確認します',
+    inputSizeTooltipBlur: 'フォーカスを失ったときに確認します',
+    inputSizeTooltipBoth: 'Enterキーまたはフォーカスを失ったときに確認します',
+    jumpTooltipEnter: 'Enterキーを使用して確認します',
+    jumpTooltipBlur: 'フォーカスを失ったときに確認します',
+    jumpTooltipBoth: 'Enterキーまたはフォーカスを失ったときに確認します'
   },
   textRetract: {
     unfold: '展開',
@@ -143,11 +149,9 @@ export default {
   },
   upload: {
     uploadText: 'ファイルをアップロード',
-    beginUploadText:
-      'ファイルのアップロードを開始',
+    beginUploadText: 'ファイルのアップロードを開始',
     uploadingText: 'アップロード中',
-    uploadCompleted:
-      'ファイルのアップロードが完了しました'
+    uploadCompleted: 'ファイルのアップロードが完了しました'
   },
   pageHeader: { back: '戻る' },
   list: {

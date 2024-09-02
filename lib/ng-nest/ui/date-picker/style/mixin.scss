@@ -5,23 +5,27 @@
 @import './param';
 
 @mixin date-picker {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   x-input {
     width: 100%;
   }
 }
 
 @mixin date-picker-portal {
-  $prefix: $--x-date-picker-portal-prefix;
-  margin: 0.0625rem 0;
-  font-size: $--x-date-picker-font-size;
-  color: $--x-text;
-  border-radius: $--x-border-small-radius;
-  box-shadow: $--x-box-shadow;
-  background-color: $--x-background-100;
-  width: 16rem;
-  display: flex;
-  flex-direction: column;
+  & {
+    $prefix: $--x-date-picker-portal-prefix;
+    margin: 0.0625rem 0;
+    font-size: $--x-date-picker-font-size;
+    color: $--x-text;
+    border-radius: $--x-border-small-radius;
+    box-shadow: $--x-box-shadow;
+    background-color: $--x-background-100;
+    width: 16rem;
+    display: flex;
+    flex-direction: column;
+  }
   &.week {
     width: 18.125rem;
     .x-picker-date-body .x-picker-date-item:not(.x-date-in-range):not(.x-date-active) .x-date-text {
@@ -642,7 +646,9 @@
 }
 
 @mixin date-range {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   @include flex();
   > label {
     display: inline-block;
@@ -819,16 +825,18 @@
 }
 
 @mixin date-range-portal {
-  $prefix: $--x-date-range-portal-prefix;
-  margin: 0.0625rem 0;
-  font-size: $--x-date-picker-font-size;
-  color: $--x-text;
-  border-radius: $--x-border-small-radius;
-  box-shadow: $--x-box-shadow;
-  background-color: $--x-background-100;
-  width: 34rem;
-  display: flex;
-  flex-direction: column;
+  & {
+    $prefix: $--x-date-range-portal-prefix;
+    margin: 0.0625rem 0;
+    font-size: $--x-date-picker-font-size;
+    color: $--x-text;
+    border-radius: $--x-border-small-radius;
+    box-shadow: $--x-box-shadow;
+    background-color: $--x-background-100;
+    width: 34rem;
+    display: flex;
+    flex-direction: column;
+  }
   &.week {
     .x-picker-date-body .x-picker-date-item:not(.x-date-in-range):not(.x-date-active) .x-date-text {
       background-color: transparent;

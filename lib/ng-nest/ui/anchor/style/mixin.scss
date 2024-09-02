@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin anchor {
-  display: flex;
+  & {
+    display: flex;
+  }
   &-content {
     flex: 1;
   }

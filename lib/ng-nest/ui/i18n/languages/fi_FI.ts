@@ -110,7 +110,13 @@ export default {
     first: 'Ensimmäinen',
     last: 'Viimeinen',
     jump: 'Hyppää',
-    sizePage: 'Kohdetta/sivu'
+    sizePage: 'Kohdetta/sivu',
+    inputSizeTooltipEnter: 'Käytä Enter-näppäintä vahvistamiseen',
+    inputSizeTooltipBlur: 'Vahvista, kun kohdistus katoaa',
+    inputSizeTooltipBoth: 'Vahvista Enter-näppäimellä tai kun kohdistus katoaa',
+    jumpTooltipEnter: 'Käytä Enter-näppäintä vahvistamiseen',
+    jumpTooltipBlur: 'Vahvista, kun kohdistus katoaa',
+    jumpTooltipBoth: 'Vahvista Enter-näppäimellä tai kun kohdistus katoaa'
   },
   textRetract: {
     unfold: 'Avaa',

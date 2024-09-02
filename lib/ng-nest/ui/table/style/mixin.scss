@@ -5,11 +5,13 @@
 @import './param';
 
 @mixin table {
-  display: flex;
-  flex-direction: column;
-  border-collapse: collapse;
-  width: 100%;
-  position: relative;
+  & {
+    display: flex;
+    flex-direction: column;
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+  }
   &:not(.x-table-wrap-border-hidden) {
     border: $--x-border-base;
   }

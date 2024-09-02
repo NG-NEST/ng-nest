@@ -110,7 +110,13 @@ export default {
     first: 'პირველი',
     last: 'ბოლო',
     jump: 'გადასვლა',
-    sizePage: 'ელემენტი/გვერდი'
+    sizePage: 'ელემენტი/გვერდი',
+    inputSizeTooltipEnter: 'გამოიყენეთ Enter ღილაკი დასტურისთვის',
+    inputSizeTooltipBlur: 'დასტურება ფოკუსის დაკარგვისას',
+    inputSizeTooltipBoth: 'დასტურება Enter ღილაკით ან ფოკუსის დაკარგვისას',
+    jumpTooltipEnter: 'გამოიყენეთ Enter ღილაკი დასტურისთვის',
+    jumpTooltipBlur: 'დასტურება ფოკუსის დაკარგვისას',
+    jumpTooltipBoth: 'დასტურება Enter ღილაკით ან ფოკუსის დაკარგვისას'
   },
   textRetract: {
     unfold: 'გახსნა',

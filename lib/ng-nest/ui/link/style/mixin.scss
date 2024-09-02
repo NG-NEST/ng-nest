@@ -5,17 +5,19 @@
 @import './param';
 
 @mixin link {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
-  position: relative;
-  text-decoration: none;
-  outline: none;
-  cursor: pointer;
-  padding: 0;
-  transition: all $--x-animation-duration-base ease-in-out;
+  & {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    position: relative;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all $--x-animation-duration-base ease-in-out;
+  }
   > x-icon {
     margin-right: 0.125rem;
   }

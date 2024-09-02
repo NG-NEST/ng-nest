@@ -115,7 +115,13 @@ export default {
     first: 'First page',
     last: 'Last page',
     jump: 'Go to',
-    sizePage: '/ page'
+    sizePage: '/ page',
+    inputSizeTooltipEnter: 'Use Enter key to confirm',
+    inputSizeTooltipBlur: 'Confirm on losing focus',
+    inputSizeTooltipBoth: 'Confirm with Enter key or on losing focus',
+    jumpTooltipEnter: 'Use Enter key to confirm',
+    jumpTooltipBlur: 'Confirm on losing focus',
+    jumpTooltipBoth: 'Confirm with Enter key or on losing focus'
   },
   textRetract: {
     unfold: 'Unfold',

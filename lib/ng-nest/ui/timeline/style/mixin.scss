@@ -6,7 +6,9 @@
 @import './param';
 
 @mixin timeline {
-  display: block;
+  & {
+    display: block;
+  }
   ul,
   li {
     margin: 0;

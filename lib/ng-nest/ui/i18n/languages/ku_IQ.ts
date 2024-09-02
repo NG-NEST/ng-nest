@@ -90,7 +90,13 @@ export default {
     first: 'یەکەم',
     last: 'کۆتایی',
     jump: 'بازدان',
-    sizePage: 'ئایتم لە هەر پەڕەیەک'
+    sizePage: 'ئایتم لە هەر پەڕەیەک',
+    inputSizeTooltipEnter: 'Bi şîfrekê Enterê pejirandin',
+    inputSizeTooltipBlur: 'Gava foka jêhatîdibe, pejirandin',
+    inputSizeTooltipBoth: 'Bi şîfrekê Enterê an gava foka jêhatîdibe, pejirandin',
+    jumpTooltipEnter: 'Bi şîfrekê Enterê pejirandin',
+    jumpTooltipBlur: 'Gava foka jêhatîdibe, pejirandin',
+    jumpTooltipBoth: 'Bi şîfrekê Enterê an gava foka jêhatîdibe, pejirandin'
   },
   textRetract: {
     unfold: 'بەشەکان',

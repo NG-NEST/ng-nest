@@ -114,7 +114,13 @@ export default {
     first: 'Pirmie',
     last: 'Pēdējie',
     jump: 'Pāriet uz',
-    sizePage: 'Vienumi uz lapu'
+    sizePage: 'Vienumi uz lapu',
+    inputSizeTooltipEnter: 'Izmantojiet Enter taustiņu, lai apstiprinātu',
+    inputSizeTooltipBlur: 'Apstipriniet, kad zaudējat fokusu',
+    inputSizeTooltipBoth: 'Apstipriniet ar Enter taustiņu vai kad zaudējat fokusu',
+    jumpTooltipEnter: 'Izmantojiet Enter taustiņu, lai apstiprinātu',
+    jumpTooltipBlur: 'Apstipriniet, kad zaudējat fokusu',
+    jumpTooltipBoth: 'Apstipriniet ar Enter taustiņu vai kad zaudējat fokusu'
   },
   textRetract: {
     unfold: 'Izvērst',

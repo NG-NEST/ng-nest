@@ -15,7 +15,7 @@ export class ConfigService {
   langs = signal(['zh_CN', 'en_US']);
   cacheLangs = signal<{ [lang: string]: XI18nProperty }>({});
   versions = signal<string[]>([]);
-  version = signal('18.0.6');
+  version = signal('18.0.7');
   navName = signal('NG-NEST');
   renderer2: Renderer2;
   light = signal({

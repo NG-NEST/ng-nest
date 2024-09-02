@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin color-picker {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   x-input {
     width: 100%;
     .x-input-value-template-value {
@@ -31,14 +33,16 @@
 }
 
 @mixin color-picker-portal {
-  margin: 0.0625rem 0;
-  font-size: $--x-color-picker-font-size;
-  color: $--x-text;
-  border-radius: $--x-border-small-radius;
-  box-shadow: $--x-box-shadow;
-  background-color: $--x-background-100;
-  width: 17rem;
-  overflow: hidden;
+  & {
+    margin: 0.0625rem 0;
+    font-size: $--x-color-picker-font-size;
+    color: $--x-text;
+    border-radius: $--x-border-small-radius;
+    box-shadow: $--x-box-shadow;
+    background-color: $--x-background-100;
+    width: 17rem;
+    overflow: hidden;
+  }
   &:focus {
     outline: none;
   }

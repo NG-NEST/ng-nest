@@ -5,8 +5,10 @@
 @import './param';
 
 @mixin comment {
-  font-size: $--x-font-size;
-  box-sizing: border-box;
+  & {
+    font-size: $--x-font-size;
+    box-sizing: border-box;
+  }
   p {
     line-height: 1.5;
     margin: 0.375rem 0;

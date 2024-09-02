@@ -10,8 +10,7 @@ export default {
   },
   theme: {
     darkMode: 'डार्क मोड',
-    initDefault:
-      'डिफ़ॉल्ट मूल्य का प्रारंभिकीकरण',
+    initDefault: 'डिफ़ॉल्ट मूल्य का प्रारंभिकीकरण',
     primary: 'प्रमुख',
     success: 'सफलता',
     warning: 'चेतावनी',
@@ -111,7 +110,13 @@ export default {
     first: 'प्रथम',
     last: 'अंतिम',
     jump: 'जाएँ',
-    sizePage: 'आइटम/पृष्ठ'
+    sizePage: 'आइटम/पृष्ठ',
+    inputSizeTooltipEnter: 'पुष्टिकरण के लिए Enter कुंजी का उपयोग करें',
+    inputSizeTooltipBlur: 'फोकस खोने पर पुष्टि करें',
+    inputSizeTooltipBoth: 'Enter कुंजी या फोकस खोने पर पुष्टि करें',
+    jumpTooltipEnter: 'पुष्टिकरण के लिए Enter कुंजी का उपयोग करें',
+    jumpTooltipBlur: 'फोकस खोने पर पुष्टि करें',
+    jumpTooltipBoth: 'Enter कुंजी या फोकस खोने पर पुष्टि करें'
   },
   textRetract: {
     unfold: 'खोलें',

@@ -6,8 +6,7 @@ export default {
     reply: 'Respon',
     more: 'Més',
     sure: 'Segur',
-    placeholder:
-      'Si us plau, introdueix un comentari'
+    placeholder: 'Si us plau, introdueix un comentari'
   },
   theme: {
     darkMode: 'Mode fosc',
@@ -111,7 +110,13 @@ export default {
     first: 'Primer',
     last: 'Últim',
     jump: 'Anar a',
-    sizePage: 'Articles per pàgina'
+    sizePage: 'Articles per pàgina',
+    inputSizeTooltipEnter: 'Utilitzeu la tecla Enter per confirmar',
+    inputSizeTooltipBlur: 'Confirmeu quan es perd el focus',
+    inputSizeTooltipBoth: 'Confirmeu amb la tecla Enter o quan es perdi el focus',
+    jumpTooltipEnter: 'Utilitzeu la tecla Enter per confirmar',
+    jumpTooltipBlur: 'Confirmeu quan es perd el focus',
+    jumpTooltipBoth: 'Confirmeu amb la tecla Enter o quan es perdi el focus'
   },
   textRetract: {
     unfold: 'Desplegar',
@@ -146,8 +151,7 @@ export default {
     uploadText: 'Pujar fitxer',
     beginUploadText: 'Començar a pujar fitxer',
     uploadingText: 'Pujant',
-    uploadCompleted:
-      'Càrrega del fitxer completada'
+    uploadCompleted: 'Càrrega del fitxer completada'
   },
   pageHeader: { back: 'Enrere' },
   list: {

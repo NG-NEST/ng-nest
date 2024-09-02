@@ -5,8 +5,10 @@
 @import './param';
 
 @mixin color {
-  display: block;
-  color: var(--x-white);
+  & {
+    display: block;
+    color: var(--x-white);
+  }
   &-primary {
     padding: 1rem;
     border-top-left-radius: $--x-border-radius;

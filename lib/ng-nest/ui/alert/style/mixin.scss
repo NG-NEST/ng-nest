@@ -5,13 +5,15 @@
 @import './param';
 
 @mixin alert {
-  background-color: $--x-background;
-  border: 0.0625rem solid $--x-border-300;
-  border-radius: $--x-border-radius;
-  padding: 0.5rem 1rem;
-  position: relative;
-  display: flex;
-  align-items: center;
+  & {
+    background-color: $--x-background;
+    border: 0.0625rem solid $--x-border-300;
+    border-radius: $--x-border-radius;
+    padding: 0.5rem 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
   &-close {
     position: absolute;
     top: 0.425rem;

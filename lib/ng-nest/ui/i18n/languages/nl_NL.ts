@@ -6,8 +6,7 @@ export default {
     reply: 'Antwoorden',
     more: 'Meer bekijken',
     sure: 'Publiceren',
-    placeholder:
-      'Voer alstublieft een opmerking in'
+    placeholder: 'Voer alstublieft een opmerking in'
   },
   theme: {
     darkMode: 'Donkere modus',
@@ -115,7 +114,13 @@ export default {
     first: 'Eerste',
     last: 'Laatste',
     jump: 'Ga naar',
-    sizePage: 'Items per pagina'
+    sizePage: 'Items per pagina',
+    inputSizeTooltipEnter: 'Gebruik de Enter-toets om te bevestigen',
+    inputSizeTooltipBlur: 'Bevestig bij verlies van focus',
+    inputSizeTooltipBoth: 'Bevestig met de Enter-toets of bij verlies van focus',
+    jumpTooltipEnter: 'Gebruik de Enter-toets om te bevestigen',
+    jumpTooltipBlur: 'Bevestig bij verlies van focus',
+    jumpTooltipBoth: 'Bevestig met de Enter-toets of bij verlies van focus'
   },
   textRetract: {
     unfold: 'Uitvouwen',

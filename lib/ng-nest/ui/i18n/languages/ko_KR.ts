@@ -114,7 +114,13 @@ export default {
     first: '첫 페이지',
     last: '마지막 페이지',
     jump: '이동',
-    sizePage: '페이지 당 항목'
+    sizePage: '페이지 당 항목',
+    inputSizeTooltipEnter: '확인을 위해 Enter 키를 사용하세요',
+    inputSizeTooltipBlur: '포커스를 잃었을 때 확인하세요',
+    inputSizeTooltipBoth: 'Enter 키를 사용하거나 포커스를 잃었을 때 확인하세요',
+    jumpTooltipEnter: '확인을 위해 Enter 키를 사용하세요',
+    jumpTooltipBlur: '포커스를 잃었을 때 확인하세요',
+    jumpTooltipBoth: 'Enter 키를 사용하거나 포커스를 잃었을 때 확인하세요'
   },
   textRetract: {
     unfold: '펼치기',

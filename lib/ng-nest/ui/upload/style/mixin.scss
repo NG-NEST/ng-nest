@@ -5,8 +5,10 @@
 @import './param';
 
 @mixin upload {
-  color: $--x-text;
-  font-size: $--x-font-size;
+  & {
+    color: $--x-text;
+    font-size: $--x-font-size;
+  }
   &-buttons {
     display: inline-flex;
     > .x-button:not(:first-child) {
@@ -174,11 +176,13 @@
 }
 
 @mixin upload-portal {
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
+  & {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
   &-tools {
     width: 100%;
     height: 3.25rem;

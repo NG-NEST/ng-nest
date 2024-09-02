@@ -110,7 +110,13 @@ export default {
     first: 'ראשון',
     last: 'אחרון',
     jump: 'קפיצה',
-    sizePage: 'פריטים/דף'
+    sizePage: 'פריטים/דף',
+    inputSizeTooltipEnter: 'השתמש במקש Enter לאישור',
+    inputSizeTooltipBlur: 'אשר כאשר מאבדים את הפוקוס',
+    inputSizeTooltipBoth: 'אשר עם מקש Enter או כאשר מאבדים את הפוקוס',
+    jumpTooltipEnter: 'השתמש במקש Enter לאישור',
+    jumpTooltipBlur: 'אשר כאשר מאבדים את הפוקוס',
+    jumpTooltipBoth: 'אשר עם מקש Enter או כאשר מאבדים את הפוקוס'
   },
   textRetract: { unfold: 'פתח', packUp: 'קפוץ' },
   timeAgo: {

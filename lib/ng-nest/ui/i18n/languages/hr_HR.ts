@@ -10,8 +10,7 @@ export default {
   },
   theme: {
     darkMode: 'Tamni način',
-    initDefault:
-      'Inicijalizacija zadane vrijednosti',
+    initDefault: 'Inicijalizacija zadane vrijednosti',
     primary: 'Primarno',
     success: 'Uspjeh',
     warning: 'Upozorenje',
@@ -111,7 +110,13 @@ export default {
     first: 'Prva',
     last: 'Zadnja',
     jump: 'Skoči',
-    sizePage: 'Stavke/stranica'
+    sizePage: 'Stavke/stranica',
+    inputSizeTooltipEnter: 'Koristite Enter tipku za potvrdu',
+    inputSizeTooltipBlur: 'Potvrdite kada izgubite fokus',
+    inputSizeTooltipBoth: 'Potvrdite tipkom Enter ili kada izgubite fokus',
+    jumpTooltipEnter: 'Koristite Enter tipku za potvrdu',
+    jumpTooltipBlur: 'Potvrdite kada izgubite fokus',
+    jumpTooltipBoth: 'Potvrdite tipkom Enter ili kada izgubite fokus'
   },
   textRetract: {
     unfold: 'Razviti',

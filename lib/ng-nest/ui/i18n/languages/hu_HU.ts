@@ -110,7 +110,13 @@ export default {
     first: 'Első',
     last: 'Utolsó',
     jump: 'Ugrás',
-    sizePage: 'Elem/oldal'
+    sizePage: 'Elem/oldal',
+    inputSizeTooltipEnter: 'Használja az Enter billentyűt a megerősítéshez',
+    inputSizeTooltipBlur: 'Erősítse meg a fókusz elvesztésekor',
+    inputSizeTooltipBoth: 'Megerősítés Enter billentyűvel vagy a fókusz elvesztésekor',
+    jumpTooltipEnter: 'Használja az Enter billentyűt a megerősítéshez',
+    jumpTooltipBlur: 'Erősítse meg a fókusz elvesztésekor',
+    jumpTooltipBoth: 'Megerősítés Enter billentyűvel vagy a fókusz elvesztésekor'
   },
   textRetract: {
     unfold: 'Kinyit',

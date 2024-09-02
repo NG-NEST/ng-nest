@@ -6,13 +6,11 @@ export default {
     reply: 'Responder',
     more: 'Más',
     sure: 'Seguro',
-    placeholder:
-      'Por favor, introduce un comentario'
+    placeholder: 'Por favor, introduce un comentario'
   },
   theme: {
     darkMode: 'Modo oscuro',
-    initDefault:
-      'Inicializar valor predeterminado',
+    initDefault: 'Inicializar valor predeterminado',
     primary: 'Primario',
     success: 'Éxito',
     warning: 'Advertencia',
@@ -112,7 +110,13 @@ export default {
     first: 'Primero',
     last: 'Último',
     jump: 'Saltar a',
-    sizePage: 'Artículos/página'
+    sizePage: 'Artículos/página',
+    inputSizeTooltipEnter: 'Utiliza la tecla Enter para confirmar',
+    inputSizeTooltipBlur: 'Confirma al perder el foco',
+    inputSizeTooltipBoth: 'Confirma con la tecla Enter o al perder el foco',
+    jumpTooltipEnter: 'Utiliza la tecla Enter para confirmar',
+    jumpTooltipBlur: 'Confirma al perder el foco',
+    jumpTooltipBoth: 'Confirma con la tecla Enter o al perder el foco'
   },
   textRetract: {
     unfold: 'Desplegar',
@@ -147,8 +151,7 @@ export default {
     uploadText: 'Subir archivo',
     beginUploadText: 'Comenzar a subir archivo',
     uploadingText: 'Subiendo',
-    uploadCompleted:
-      'Subida de archivo completada'
+    uploadCompleted: 'Subida de archivo completada'
   },
   pageHeader: { back: 'Atrás' },
   list: {

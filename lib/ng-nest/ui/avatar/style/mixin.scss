@@ -5,14 +5,16 @@
 @import './param';
 
 @mixin avatar {
-  font-size: $--x-font-size;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  text-align: center;
-  overflow: hidden;
-  color: $--x-background-100;
+  & {
+    font-size: $--x-font-size;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: hidden;
+    color: $--x-background-100;
+  }
   > img {
     display: block;
     height: 100%;

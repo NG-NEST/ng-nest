@@ -110,7 +110,13 @@ export default {
     first: 'Pertama',
     last: 'Terakhir',
     jump: 'Lompat',
-    sizePage: 'Item/Halaman'
+    sizePage: 'Item/Halaman',
+    inputSizeTooltipEnter: 'Gunakan tombol Enter untuk mengonfirmasi',
+    inputSizeTooltipBlur: 'Konfirmasi saat kehilangan fokus',
+    inputSizeTooltipBoth: 'Konfirmasi dengan tombol Enter atau saat kehilangan fokus',
+    jumpTooltipEnter: 'Gunakan tombol Enter untuk mengonfirmasi',
+    jumpTooltipBlur: 'Konfirmasi saat kehilangan fokus',
+    jumpTooltipBoth: 'Konfirmasi dengan tombol Enter atau saat kehilangan fokus'
   },
   textRetract: {
     unfold: 'Buka',

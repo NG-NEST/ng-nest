@@ -20,9 +20,11 @@
 }
 
 @mixin progress {
-  display: inline-flex;
-  align-items: center;
-  width: 100%;
+  & {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+  }
   &-track {
     width: 100%;
     display: inline-flex;

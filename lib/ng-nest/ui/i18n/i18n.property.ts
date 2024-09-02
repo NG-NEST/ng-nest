@@ -141,6 +141,12 @@ export interface XI18nPagination {
   next?: string;
   total?: string;
   item?: string;
+  inputSizeTooltipEnter?: string;
+  inputSizeTooltipBlur?: string;
+  inputSizeTooltipBoth?: string;
+  jumpTooltipEnter?: string;
+  jumpTooltipBlur?: string;
+  jumpTooltipBoth?: string;
 }
 
 export interface XI18nTextRetract {

@@ -5,9 +5,11 @@
 @import './param';
 
 @mixin doc {
-  padding: 0 3rem;
-  display: block;
-  font-size: $--x-font-size;
+  & {
+    padding: 0 3rem;
+    display: block;
+    font-size: $--x-font-size;
+  }
   > x-anchor > .x-anchor {
     justify-content: center;
     > .x-anchor-content {

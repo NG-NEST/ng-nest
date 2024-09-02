@@ -110,7 +110,13 @@ export default {
     first: 'الأول',
     last: 'الأخير',
     jump: 'الانتقال إلى',
-    sizePage: 'عناصر في الصفحة'
+    sizePage: 'عناصر في الصفحة',
+    inputSizeTooltipEnter: 'استخدم مفتاح Enter للتأكيد',
+    inputSizeTooltipBlur: 'التأكيد عند فقدان التركيز',
+    inputSizeTooltipBoth: 'التأكيد باستخدام مفتاح Enter أو عند فقدان التركيز',
+    jumpTooltipEnter: 'استخدم مفتاح Enter للتأكيد',
+    jumpTooltipBlur: 'التأكيد عند فقدان التركيز',
+    jumpTooltipBoth: 'التأكيد باستخدام مفتاح Enter أو عند فقدان التركيز'
   },
   textRetract: { unfold: 'فتح', packUp: 'طي' },
   timeAgo: {

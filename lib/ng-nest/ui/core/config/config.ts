@@ -475,11 +475,14 @@ export interface XPaginationConfig {
   sizeWidth?: string;
   sizeData?: number[];
   showInputSize?: boolean;
+  inputSizeTooltipText?: string;
   inputSizeWidth?: number;
   showJump?: boolean;
   jumpWidth?: string;
+  jumpTooltipText?: string;
   simple?: boolean;
   simpleIndexWidth?: string;
+  inputIndexSizeSureType?: 'enter' | 'blur' | 'both';
 }
 
 export interface XPatternConfig {}
@@ -594,11 +597,14 @@ export interface XTableConfig {
   sizeWidth?: string;
   sizeData?: number[];
   showInputSize?: boolean;
+  inputSizeTooltipText?: string;
   inputSizeWidth?: number;
   showJump?: boolean;
   jumpWidth?: string;
+  jumpTooltipText?: string;
   simple?: boolean;
   simpleIndexWidth?: string;
+  inputIndexSizeSureType?: 'enter' | 'blur' | 'both';
 }
 
 export interface XTabsConfig {

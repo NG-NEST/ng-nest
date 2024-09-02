@@ -10,8 +10,7 @@ export default {
   },
   theme: {
     darkMode: 'Σκοτεινή λειτουργία',
-    initDefault:
-      'Αρχικοποίηση προεπιλεγμένης τιμής',
+    initDefault: 'Αρχικοποίηση προεπιλεγμένης τιμής',
     primary: 'Πρωτεύων',
     success: 'Επιτυχία',
     warning: 'Προειδοποίηση',
@@ -111,7 +110,13 @@ export default {
     first: 'Πρώτο',
     last: 'Τελευταίο',
     jump: 'Μετάβαση σε',
-    sizePage: 'Στοιχεία/σελίδα'
+    sizePage: 'Στοιχεία/σελίδα',
+    inputSizeTooltipEnter: 'Χρησιμοποιήστε το πλήκτρο Enter για επιβεβαίωση',
+    inputSizeTooltipBlur: 'Επιβεβαιώστε όταν χαθεί η εστίαση',
+    inputSizeTooltipBoth: 'Επιβεβαιώστε με το πλήκτρο Enter ή όταν χαθεί η εστίαση',
+    jumpTooltipEnter: 'Χρησιμοποιήστε το πλήκτρο Enter για επιβεβαίωση',
+    jumpTooltipBlur: 'Επιβεβαιώστε όταν χαθεί η εστίαση',
+    jumpTooltipBoth: 'Επιβεβαιώστε με το πλήκτρο Enter ή όταν χαθεί η εστίαση'
   },
   textRetract: {
     unfold: 'Ξεδίπλωμα',
@@ -146,8 +151,7 @@ export default {
     uploadText: 'Ανέβασμα αρχείου',
     beginUploadText: 'Έναρξη ανεβάσματος αρχείου',
     uploadingText: 'Ανέβασμα',
-    uploadCompleted:
-      'Ολοκλήρωση ανεβάσματος αρχείου'
+    uploadCompleted: 'Ολοκλήρωση ανεβάσματος αρχείου'
   },
   pageHeader: { back: 'Πίσω' },
   list: {
@@ -157,13 +161,11 @@ export default {
   },
   select: {
     selectAllText: 'Επιλογή όλων',
-    maxTagContent:
-      'Περισσότερα {{surplus}} επιλεγμένα'
+    maxTagContent: 'Περισσότερα {{surplus}} επιλεγμένα'
   },
   treeSelect: {
     selectAllText: 'Επιλογή όλων',
-    maxTagContent:
-      'Περισσότερα {{surplus}} επιλεγμένα'
+    maxTagContent: 'Περισσότερα {{surplus}} επιλεγμένα'
   },
   form: { required: 'Απαιτείται' }
 };

@@ -6,8 +6,7 @@ export default {
     reply: 'Răspunde',
     more: 'Vezi mai mult',
     sure: 'Publică',
-    placeholder:
-      'Te rog să introduci un comentariu'
+    placeholder: 'Te rog să introduci un comentariu'
   },
   theme: {
     darkMode: 'Mod întunecat',
@@ -115,7 +114,13 @@ export default {
     first: 'Prima',
     last: 'Ultima',
     jump: 'Sari la',
-    sizePage: 'Elemente pe pagină'
+    sizePage: 'Elemente pe pagină',
+    inputSizeTooltipEnter: 'Utilizați tasta Enter pentru a confirma',
+    inputSizeTooltipBlur: 'Confirmați când pierdeți focalizarea',
+    inputSizeTooltipBoth: 'Confirmați cu tasta Enter sau când pierdeți focalizarea',
+    jumpTooltipEnter: 'Utilizați tasta Enter pentru a confirma',
+    jumpTooltipBlur: 'Confirmați când pierdeți focalizarea',
+    jumpTooltipBoth: 'Confirmați cu tasta Enter sau când pierdeți focalizarea'
   },
   textRetract: {
     unfold: 'Deschide',
@@ -148,11 +153,9 @@ export default {
   },
   upload: {
     uploadText: 'Încarcă fișier',
-    beginUploadText:
-      'Începe încărcarea fișierului',
+    beginUploadText: 'Începe încărcarea fișierului',
     uploadingText: 'Se încarcă',
-    uploadCompleted:
-      'Încărcarea fișierului finalizată'
+    uploadCompleted: 'Încărcarea fișierului finalizată'
   },
   pageHeader: {
     back: 'Înapoi'

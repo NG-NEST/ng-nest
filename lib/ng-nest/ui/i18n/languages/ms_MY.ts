@@ -114,7 +114,13 @@ export default {
     first: 'Pertama',
     last: 'Terakhir',
     jump: 'Pergi ke',
-    sizePage: 'Item setiap halaman'
+    sizePage: 'Item setiap halaman',
+    inputSizeTooltipEnter: 'Gunakan kekunci Enter untuk mengesahkan',
+    inputSizeTooltipBlur: 'Sahkan apabila fokus hilang',
+    inputSizeTooltipBoth: 'Sahkan dengan kekunci Enter atau apabila fokus hilang',
+    jumpTooltipEnter: 'Gunakan kekunci Enter untuk mengesahkan',
+    jumpTooltipBlur: 'Sahkan apabila fokus hilang',
+    jumpTooltipBoth: 'Sahkan dengan kekunci Enter atau apabila fokus hilang'
   },
   textRetract: {
     unfold: 'Buka',

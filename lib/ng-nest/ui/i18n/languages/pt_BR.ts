@@ -114,7 +114,13 @@ export default {
     first: 'Primeira',
     last: 'Última',
     jump: 'Ir para',
-    sizePage: 'Itens por Página'
+    sizePage: 'Itens por Página',
+    inputSizeTooltipEnter: 'Use a tecla Enter para confirmar',
+    inputSizeTooltipBlur: 'Confirme ao perder o foco',
+    inputSizeTooltipBoth: 'Confirme com a tecla Enter ou ao perder o foco',
+    jumpTooltipEnter: 'Use a tecla Enter para confirmar',
+    jumpTooltipBlur: 'Confirme ao perder o foco',
+    jumpTooltipBoth: 'Confirme com a tecla Enter ou ao perder o foco'
   },
   textRetract: {
     unfold: 'Expandir',

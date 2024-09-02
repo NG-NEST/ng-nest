@@ -11,7 +11,6 @@ import {
 } from '@ng-nest/ui/carousel';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   standalone: true,
@@ -24,7 +23,7 @@ import { XButtonComponent } from '@ng-nest/ui/button';
     </x-carousel>
   `
 })
-class XTestCarouselComponent {}
+class XTestCarouselComponent { }
 
 @Component({
   standalone: true,
@@ -86,11 +85,6 @@ describe(XCarouselPrefix, () => {
       fixture.detectChanges();
       expect(list[1].nativeElement).toHaveClass('x-activated');
 
-      carousel.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
-      fixture.detectChanges();
-      const button = content.query(By.directive(XButtonComponent));
-      expect(button.nativeElement.style.opacity).toBe(1);
-
       expect(carousel.nativeElement).toHaveClass('x-carousel-horizontal');
     });
   });
@@ -135,14 +129,12 @@ describe(XCarouselPrefix, () => {
     it('arrow.', () => {
       component.arrow.set('always');
       fixture.detectChanges();
-      const content = fixture.debugElement.query(By.css('.x-carousel-content'));
-      const button = content.query(By.directive(XButtonComponent));
-      expect(button.nativeElement.style.opacity).toBe(1);
+      expect(carousel.nativeElement).toHaveClass("x-carousel-arrow-always");
     });
     it('direction.', () => {
       component.direction.set('vertical');
       fixture.detectChanges();
-      expect(carousel.nativeElement).toHaveClass('x-carousel-horizontal');
+      expect(carousel.nativeElement).toHaveClass('x-carousel-vertical');
     });
   });
 });

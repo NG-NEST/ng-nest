@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin examples {
-  display: block;
+  & {
+    display: block;
+  }
   .#{$prefix}-html {
     padding: 1.5rem 1.5rem 3.75rem;
     border: $--x-border-base;

@@ -5,7 +5,9 @@
 @import './param';
 
 @mixin steps {
-  display: flex;
+  & {
+    display: flex;
+  }
   &-node {
     position: relative;
     flex: 1;

@@ -110,7 +110,13 @@ export default {
     first: 'Första',
     last: 'Sista',
     jump: 'Hoppa till',
-    sizePage: 'Objekt/sida'
+    sizePage: 'Objekt/sida',
+    inputSizeTooltipEnter: 'Använd Enter-tangenten för att bekräfta',
+    inputSizeTooltipBlur: 'Bekräfta när fokus tappas',
+    inputSizeTooltipBoth: 'Bekräfta med Enter-tangenten eller när fokus tappas',
+    jumpTooltipEnter: 'Använd Enter-tangenten för att bekräfta',
+    jumpTooltipBlur: 'Bekräfta när fokus tappas',
+    jumpTooltipBoth: 'Bekräfta med Enter-tangenten eller när fokus tappas'
   },
   textRetract: {
     unfold: 'Visa mer',

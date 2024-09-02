@@ -114,7 +114,13 @@ export default {
     first: 'Pierwsza',
     last: 'Ostatnia',
     jump: 'Przejdź do',
-    sizePage: 'Elementy na stronie'
+    sizePage: 'Elementy na stronie',
+    inputSizeTooltipEnter: 'Użyj klawisza Enter, aby potwierdzić',
+    inputSizeTooltipBlur: 'Potwierdź, gdy stracisz fokus',
+    inputSizeTooltipBoth: 'Potwierdź klawiszem Enter lub gdy stracisz fokus',
+    jumpTooltipEnter: 'Użyj klawisza Enter, aby potwierdzić',
+    jumpTooltipBlur: 'Potwierdź, gdy stracisz fokus',
+    jumpTooltipBoth: 'Potwierdź klawiszem Enter lub gdy stracisz fokus'
   },
   textRetract: {
     unfold: 'Rozwiń',
@@ -147,11 +153,9 @@ export default {
   },
   upload: {
     uploadText: 'Prześlij plik',
-    beginUploadText:
-      'Rozpocznij przesyłanie pliku',
+    beginUploadText: 'Rozpocznij przesyłanie pliku',
     uploadingText: 'Przesyłanie',
-    uploadCompleted:
-      'Przesyłanie pliku zakończone'
+    uploadCompleted: 'Przesyłanie pliku zakończone'
   },
   pageHeader: {
     back: 'Powrót'
@@ -163,13 +167,11 @@ export default {
   },
   select: {
     selectAllText: 'Wybierz wszystko',
-    maxTagContent:
-      'Więcej {{surplus}} zaznaczonych'
+    maxTagContent: 'Więcej {{surplus}} zaznaczonych'
   },
   treeSelect: {
     selectAllText: 'Wybierz wszystko',
-    maxTagContent:
-      'Więcej {{surplus}} zaznaczonych'
+    maxTagContent: 'Więcej {{surplus}} zaznaczonych'
   },
   form: {
     required: 'Pole wymagane'

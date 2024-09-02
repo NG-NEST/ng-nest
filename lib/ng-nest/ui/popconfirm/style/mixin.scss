@@ -5,5 +5,7 @@
 @import './param';
 
 @mixin popconfirm {
-  display: inline-block;
+  & {
+    display: inline-block;
+  }
 }

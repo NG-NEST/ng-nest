@@ -10,8 +10,7 @@ export default {
   },
   theme: {
     darkMode: 'Mode sombre',
-    initDefault:
-      'Initialiser la valeur par défaut',
+    initDefault: 'Initialiser la valeur par défaut',
     primary: 'Principal',
     success: 'Succès',
     warning: 'Avertissement',
@@ -111,7 +110,13 @@ export default {
     first: 'Premier',
     last: 'Dernier',
     jump: 'Sauter à',
-    sizePage: 'Articles/page'
+    sizePage: 'Articles/page',
+    inputSizeTooltipEnter: 'Utilisez la touche Enter pour confirmer',
+    inputSizeTooltipBlur: 'Confirmez lorsque vous perdez le focus',
+    inputSizeTooltipBoth: 'Confirmez avec la touche Enter ou lorsque vous perdez le focus',
+    jumpTooltipEnter: 'Utilisez la touche Enter pour confirmer',
+    jumpTooltipBlur: 'Confirmez lorsque vous perdez le focus',
+    jumpTooltipBoth: 'Confirmez avec la touche Enter ou lorsque vous perdez le focus'
   },
   textRetract: {
     unfold: 'Déplier',
@@ -144,8 +149,7 @@ export default {
   },
   upload: {
     uploadText: 'Télécharger le fichier',
-    beginUploadText:
-      'Commencer le téléchargement',
+    beginUploadText: 'Commencer le téléchargement',
     uploadingText: 'Téléchargement en cours',
     uploadCompleted: 'Téléchargement terminé'
   },

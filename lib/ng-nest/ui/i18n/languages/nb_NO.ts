@@ -114,7 +114,13 @@ export default {
     first: 'Første',
     last: 'Siste',
     jump: 'Gå til',
-    sizePage: 'Elementer per side'
+    sizePage: 'Elementer per side',
+    inputSizeTooltipEnter: 'Bruk Enter-tasten for å bekrefte',
+    inputSizeTooltipBlur: 'Bekreft når fokus er tapt',
+    inputSizeTooltipBoth: 'Bekreft med Enter-tasten eller når fokus er tapt',
+    jumpTooltipEnter: 'Bruk Enter-tasten for å bekrefte',
+    jumpTooltipBlur: 'Bekreft når fokus er tapt',
+    jumpTooltipBoth: 'Bekreft med Enter-tasten eller når fokus er tapt'
   },
   textRetract: {
     unfold: 'Utvide',

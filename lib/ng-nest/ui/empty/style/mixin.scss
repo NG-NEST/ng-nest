@@ -5,10 +5,12 @@
 @import './param';
 
 @mixin empty {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  color: $--x-text-800;
+  & {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: $--x-text-800;
+  }
   > .x-icon {
     font-size: calc(#{$--x-font-size} + 1.125rem);
   }

@@ -58,10 +58,13 @@
 @if (showInputSize()) {
   <div class="x-pagination-input-size">
     <x-input
+      x-tooltip
+      [content]="inputSizeTooltip()"
       [style.width]="inputSizeWidth()"
       [disabled]="disabled()"
       [bordered]="showBackground()"
       [(ngModel)]="inputSize"
+      (xBlur)="onInputSizeBlur($event)"
       (xKeydown)="onInputSizeKeydown($event)"
     ></x-input>
     <span> {{ 'pagination.sizePage' | xI18n }} </span>
@@ -71,9 +74,12 @@
   <div class="x-pagination-jump">
     <span>{{ 'pagination.jump' | xI18n }}</span>
     <x-input
+      x-tooltip
+      [content]="jumpTooltip()"
       [bordered]="showBackground()"
       [style.width]="jumpWidth()"
       [(ngModel)]="jumpPage"
+      (xBlur)="onJumpBlur($event)"
       (xKeydown)="onJumpKeydown($event)"
     ></x-input>
   </div>

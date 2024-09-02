@@ -5,11 +5,13 @@
 @import './param';
 
 @mixin tree-file {
-  display: flex;
-  background-color: $--x-background;
-  border-radius: $--x-border-radius;
-  border: $--x-border-base;
-  color: $--x-text;
+  & {
+    display: flex;
+    background-color: $--x-background;
+    border-radius: $--x-border-radius;
+    border: $--x-border-base;
+    color: $--x-text;
+  }
   &-catalog {
     width: 0;
     overflow: auto;

@@ -5,24 +5,28 @@
 @import './param';
 
 @mixin auto-complete {
-  width: 100%;
+  & {
+    width: 100%;
+  }
   x-input {
     width: 100%;
   }
 }
 
 @mixin auto-complete-portal {
-  margin: 0.0625rem 0;
-  font-size: $--x-auto-complete-font-size;
-  color: $--x-text;
-  width: 100%;
-  border-radius: $--x-border-small-radius;
-  box-shadow: $--x-box-shadow;
-  position: relative;
-  display: flex;
-  background-color: $--x-background-100;
-  overflow-y: auto;
-  max-height: calc(calc(#{$--x-auto-complete-height} * 6) + calc(#{$--x-border-width} * 7));
+  & {
+    margin: 0.0625rem 0;
+    font-size: $--x-auto-complete-font-size;
+    color: $--x-text;
+    width: 100%;
+    border-radius: $--x-border-small-radius;
+    box-shadow: $--x-box-shadow;
+    position: relative;
+    display: flex;
+    background-color: $--x-background-100;
+    overflow-y: auto;
+    max-height: calc(calc(#{$--x-auto-complete-height} * 6) + calc(#{$--x-border-width} * 7));
+  }
   &:focus {
     outline: none;
   }

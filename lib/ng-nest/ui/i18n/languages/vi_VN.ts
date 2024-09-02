@@ -114,7 +114,13 @@ export default {
     first: 'Đầu tiên',
     last: 'Cuối cùng',
     jump: 'Đến',
-    sizePage: 'số mục/trang'
+    sizePage: 'số mục/trang',
+    inputSizeTooltipEnter: 'Xác nhận bằng phím Enter',
+    inputSizeTooltipBlur: 'Xác nhận khi mất tiêu điểm',
+    inputSizeTooltipBoth: 'Xác nhận bằng phím Enter hoặc khi mất tiêu điểm',
+    jumpTooltipEnter: 'Xác nhận bằng phím Enter',
+    jumpTooltipBlur: 'Xác nhận khi mất tiêu điểm',
+    jumpTooltipBoth: 'Xác nhận bằng phím Enter hoặc khi mất tiêu điểm'
   },
   textRetract: {
     unfold: 'Mở rộng',

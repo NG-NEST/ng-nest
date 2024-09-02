@@ -10,8 +10,7 @@ export default {
   },
   theme: {
     darkMode: 'Тъмен режим',
-    initDefault:
-      'Инициализирайте стойност по подразбиране',
+    initDefault: 'Инициализирайте стойност по подразбиране',
     primary: 'Първичен',
     success: 'Успех',
     warning: 'Предупреждение',
@@ -111,7 +110,13 @@ export default {
     first: 'Първи',
     last: 'Последен',
     jump: 'Отиди на',
-    sizePage: 'Елементи на страница'
+    sizePage: 'Елементи на страница',
+    inputSizeTooltipEnter: 'Използвайте клавиша Enter за потвърждение',
+    inputSizeTooltipBlur: 'Потвърдете при загуба на фокус',
+    inputSizeTooltipBoth: 'Потвърдете с клавиша Enter или при загуба на фокус',
+    jumpTooltipEnter: 'Използвайте клавиша Enter за потвърждение',
+    jumpTooltipBlur: 'Потвърдете при загуба на фокус',
+    jumpTooltipBoth: 'Потвърдете с клавиша Enter или при загуба на фокус'
   },
   textRetract: {
     unfold: 'Разгърни',

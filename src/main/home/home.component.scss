@@ -1,39 +1,42 @@
 @import '../../styles/index.scss';
 
-ns-home {
-  @mixin flex-center {
-    display: flex;
-    align-items: center;
-  }
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
 
-  @keyframes move-clouds-back {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: 10000px 0;
-    }
+@keyframes move-clouds-back {
+  from {
+    background-position: 0 0;
   }
-  @keyframes move-twink-back {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: -10000px 5000px;
-    }
+  to {
+    background-position: 10000px 0;
   }
-  @keyframes shine {
-    from {
-      background-position: -300px;
-    }
-    to {
-      background-position: 300px;
-    }
+}
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
   }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+@keyframes shine {
+  from {
+    background-position: -300px;
+  }
+  to {
+    background-position: 300px;
+  }
+}
+
+ns-home {
   @include flex-center();
-  position: relative;
-  justify-content: center;
-  flex-direction: column;
+  & {
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+  }
   > section.starry-sky {
     position: fixed;
     top: 0;

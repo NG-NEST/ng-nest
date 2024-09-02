@@ -110,7 +110,13 @@ export default {
     first: 'Առաջին',
     last: 'Վերջին',
     jump: 'Բեռնել',
-    sizePage: 'Չափս/էջ'
+    sizePage: 'Չափս/էջ',
+    inputSizeTooltipEnter: 'Օգտագործեք Enter բանալին հաստատելու համար',
+    inputSizeTooltipBlur: 'Հաստատեք ուշադրությունը կորցնելու ժամանակ',
+    inputSizeTooltipBoth: 'Հաստատեք Enter բանալիով կամ ուշադրությունը կորցնելու ժամանակ',
+    jumpTooltipEnter: 'Օգտագործեք Enter բանալին հաստատելու համար',
+    jumpTooltipBlur: 'Հաստատեք ուշադրությունը կորցնելու ժամանակ',
+    jumpTooltipBoth: 'Հաստատեք Enter բանալիով կամ ուշադրությունը կորցնելու ժամանակ'
   },
   textRetract: {
     unfold: 'Բացել',

@@ -27939,7 +27939,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
-        "label": "Display the number of input page breaks (cannot exist with the drop-down options of page breaks)",
+        "label": "Display the number of input page breaks (cannot exist with the drop-down options of page breaks). default to using Enter to confirm changes",
         "default": "false",
         "withConfig": true,
         "description": "",
@@ -27950,6 +27950,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "inputSizeTooltipText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input",
+        "default": "''",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "inputSizeWidth",
@@ -28011,7 +28029,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
-        "label": "Show size",
+        "label": "Show size. default to using Enter to confirm changes",
         "default": "false",
         "withConfig": false,
         "description": "",
@@ -28022,6 +28040,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "jumpTooltipText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "The tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes",
+        "default": "''",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "jumpWidth",
@@ -28094,12 +28130,44 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "inputIndexSizeSureType",
+        "type": "XPaginationInputIndexSizeSureType",
+        "toType": "XPaginationInputIndexSizeSureType",
+        "inputType": "InputSignal<XPaginationInputIndexSizeSureType>",
+        "signal": "input",
+        "label": "The method for confirming changes in input is based on the input page size and input jump page",
+        "default": "'enter'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XPaginationProperty",
     "extends": [
       "XPropertyFunction(X_PAGINATION_CONFIG_NAME)"
     ]
+  },
+  "XPaginationInputIndexSizeSureType": {
+    "type": "type",
+    "label": "The method for confirming changes in input is based on the input page size and input jump page",
+    "description": "- `'enter'` : After entering, use the enter key to confirm\n- `'blur'` : Confirm after losing focus after input\n- `'both'` : Both of the above can trigger confirmation operations",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XPaginationInputIndexSizeSureType",
+    "value": "'enter' | 'blur' | 'both'"
   },
   "XPatternPrefix": {
     "type": "const",
@@ -37449,6 +37517,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "inputSizeTooltipText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input",
+        "default": "''",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "inputSizeWidth",
         "type": "XNumber",
         "toType": "string",
@@ -37521,6 +37607,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "jumpTooltipText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "The tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes",
+        "default": "''",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "jumpWidth",
         "type": "XNumber",
         "toType": "string",
@@ -37591,6 +37695,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "inputIndexSizeSureType",
+        "type": "XPaginationInputIndexSizeSureType",
+        "toType": "XPaginationInputIndexSizeSureType",
+        "inputType": "InputSignal<XPaginationInputIndexSizeSureType>",
+        "signal": "input",
+        "label": "The method for confirming changes in input is based on the input page size and input jump page",
+        "default": "'enter'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "columnDragStarted",

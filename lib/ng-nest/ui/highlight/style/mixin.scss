@@ -5,12 +5,14 @@
 @import './param';
 
 @mixin highlight {
-  display: block;
-  line-height: 0;
-  width: 100%;
-  border: $--x-border-base;
-  border-radius: $--x-border-radius;
-  position: relative;
+  & {
+    display: block;
+    line-height: 0;
+    width: 100%;
+    border: $--x-border-base;
+    border-radius: $--x-border-radius;
+    position: relative;
+  }
   > pre {
     display: flex;
     padding: 1.5rem 1.5rem 1.5rem 3.5rem;
