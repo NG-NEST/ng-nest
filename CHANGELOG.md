@@ -1,3 +1,12 @@
+## [18.0.7](https://github.com/NG-NEST/ng-nest/compare/18.0.6...18.0.7) (2024-09-02)
+
+
+### Features
+
+* **module:pagination:** add input size sure type ([78f03a1](https://github.com/NG-NEST/ng-nest/commit/78f03a120bbd3894377cf5573876b0b6d4410fec))
+
+
+
 ## [18.0.6](https://github.com/NG-NEST/ng-nest/compare/18.0.5...18.0.6) (2024-07-31)
 
 
