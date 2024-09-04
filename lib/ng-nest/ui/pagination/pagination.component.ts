@@ -7,7 +7,8 @@ import {
   computed,
   HostBinding,
   ElementRef,
-  inject
+  inject,
+  SimpleChanges
 } from '@angular/core';
 import { XPaginationPrefix, XPaginationProperty } from './pagination.property';
 import { XI18nPagination, XI18nPipe, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
@@ -17,7 +18,7 @@ import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XSelectComponent } from '@ng-nest/ui/select';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { XToDataArray } from '@ng-nest/ui/core';
+import { XIsChange, XToDataArray } from '@ng-nest/ui/core';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
@@ -108,6 +109,11 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
 
   ngOnInit() {
     this.inputSize.set(this.size().toString());
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const { size } = changes;
+    XIsChange(size) && this.inputSize.set(this.size().toString());
   }
 
   sizeChanged() {
