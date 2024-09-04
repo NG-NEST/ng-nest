@@ -1,3 +1,12 @@
+## [18.0.8](https://github.com/NG-NEST/ng-nest/compare/18.0.7...18.0.8) (2024-09-04)
+
+
+### Bug Fixes
+
+* **module:pagination:** fix external change of size ([77f7990](https://github.com/NG-NEST/ng-nest/commit/77f79901303681cee26cf25a6a85f02f3239a552))
+
+
+
 ## [18.0.7](https://github.com/NG-NEST/ng-nest/compare/18.0.6...18.0.7) (2024-09-02)
 
 
