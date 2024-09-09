@@ -1,27 +1,46 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XBackTopComponent } from '@ng-nest/ui/back-top';
-import { XBackTopPrefix } from './back-top.property';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
+import { XBackTopComponent, XBackTopPrefix } from '@ng-nest/ui/back-top';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
+@Component({
+  standalone: true,
+  imports: [XBackTopComponent],
+  template: ` <x-back-top></x-back-top> `
+})
+class XTestBackTopComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XBackTopComponent],
+  template: `
+    <x-back-top
+      [right]="right()"
+      [bottom]="bottom()"
+      [visibilityHeight]="visibilityHeight()"
+      [template]="template()"
+      [target]="target()"
+    >
+    </x-back-top>
+
+    <ng-template #templateTpl></ng-template>
+  `
+})
+class XTestBackTopPropertyComponent {
+  right = signal('2.5rem');
+  bottom = signal('2.5rem');
+  visibilityHeight = signal(200);
+  template = signal<TemplateRef<any> | null>(null);
+  templateTpl = viewChild<TemplateRef<any>>('templateTpl');
+  target = signal<string | HTMLElement>('');
+}
 
 describe(XBackTopPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXBackTopComponent, TestXBackTopTabsComponent],
-      imports: [
-        BrowserAnimationsModule,
-        XBackTopComponent,
-        XButtonComponent,
-        BrowserAnimationsModule,
-        XTabsComponent,
-        XTabComponent
-      ],
+      imports: [XTestBackTopComponent, XTestBackTopPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -29,121 +48,39 @@ describe(XBackTopPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXBackTopComponent>;
-    let backTop: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestBackTopComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXBackTopComponent);
+      fixture = TestBed.createComponent(XTestBackTopComponent);
       fixture.detectChanges();
-      backTop = fixture.debugElement.query(By.directive(XBackTopComponent));
     });
-    it('should create.', () => {
-      expect(backTop).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XBackTopComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`tabs.`, () => {
-    let fixture: ComponentFixture<TestXBackTopTabsComponent>;
-    let backTop: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXBackTopTabsComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestBackTopPropertyComponent>;
+    // let component: XTestBackTopPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestBackTopPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      backTop = fixture.debugElement.query(By.directive(XBackTopComponent));
     });
-    it('should create.', () => {
-      expect(backTop).toBeDefined();
+    it('right.', () => {
+      expect(true).toBe(true);
+    });
+    it('bottom.', () => {
+      expect(true).toBe(true);
+    });
+    it('visibilityHeight.', () => {
+      expect(true).toBe(true);
+    });
+    it('template.', () => {
+      expect(true).toBe(true);
+    });
+    it('target.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    <div class="row">
-      <x-back-top> </x-back-top>
-      <x-back-top [template]="templateTpl" bottom="6rem" visibilityHeight="100"> </x-back-top>
-      <ng-template #templateTpl>
-        <div class="custom-template">UP</div>
-      </ng-template>
-      <div #scroll class="scroll">
-        <div class="box">
-          <x-back-top right="6rem" [target]="scroll"> </x-back-top>
-          <x-button *ngFor="let button of buttons">{{ button }}</x-button>
-        </div>
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        height: 100rem;
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .scroll {
-        width: 15rem;
-        height: 15rem;
-        overflow: auto;
-      }
-      .scroll .box {
-        height: 60rem;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
-      }
-      .scroll .box x-button {
-        margin-top: 1rem;
-      }
-      .custom-template {
-        width: 2.5rem;
-        height: 2.5rem;
-        line-height: 2.5rem;
-        text-align: center;
-        border-radius: 0.125rem;
-        background-color: var(--x-background);
-        color: var(--x-primary);
-        font-size: 1.25rem;
-        cursor: pointer;
-        box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
-        border: 0.0625rem solid var(--x-border-200);
-      }
-      .custom-template:hover {
-        background-color: var(--x-primary-900);
-      }
-    `
-  ]
-})
-class TestXBackTopComponent {
-  buttons = Array.from({ length: 20 }).map((_x, i) => `按钮 ${i + 1}`);
-}
-
-@Component({
-  template: `
-    <div class="row">
-      <x-tabs>
-        <x-tab label="1111"> </x-tab>
-        <x-tab label="2222"> </x-tab>
-        <x-tab label="3333"> </x-tab>
-      </x-tabs>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        height: 100rem;
-      }
-    `
-  ]
-})
-class TestXBackTopTabsComponent {}

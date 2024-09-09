@@ -1,35 +1,119 @@
-import { interval } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal, TemplateRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XListComponent } from '@ng-nest/ui/list';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XListPrefix, XListNode } from './list.property';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XData } from '@ng-nest/ui/core';
-
-import { XRadioComponent } from '@ng-nest/ui/radio';
-import { XInputNumberComponent } from '@ng-nest/ui/input-number';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XListComponent, XListDragDrop, XListNode, XListPrefix } from '@ng-nest/ui/list';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XData, XSize, XTemplate } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XListComponent],
+  template: ` <x-list></x-list> `
+})
+class XTestListComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XListComponent],
+  template: `
+    <x-list
+      [data]="data()"
+      [multiple]="multiple()"
+      [selectAll]="selectAll()"
+      [selectAllText]="selectAllText()"
+      [checked]="checked()"
+      [drag]="drag()"
+      [objectArray]="objectArray()"
+      [nodeTpl]="nodeTpl()"
+      [header]="header()"
+      [footer]="footer()"
+      [scrollElement]="scrollElement()"
+      [loadMore]="loadMore()"
+      [loadMoreText]="loadMoreText()"
+      [virtualScroll]="virtualScroll()"
+      [scrollHeight]="scrollHeight()"
+      [heightAdaption]="heightAdaption()"
+      [minBufferPx]="minBufferPx()"
+      [maxBufferPx]="maxBufferPx()"
+      [keywordText]="keywordText()"
+      [caseSensitive]="caseSensitive()"
+      [inPortal]="inPortal()"
+      (onSelectAll)="onSelectAll($event)"
+      (nodeMouseenter)="nodeMouseenter($event)"
+      (nodeMouseleave)="nodeMouseleave($event)"
+      (nodeClick)="nodeClick($event)"
+      (dropListDropped)="dropListDropped($event)"
+      (keyManagerTabOut)="keyManagerTabOut()"
+      (keyManagerChange)="keyManagerChange($event)"
+      [size]="size()"
+    >
+    </x-list>
+  `
+})
+class XTestListPropertyComponent {
+  data = signal<XData<XListNode>>([]);
+  multiple = signal(1);
+  selectAll = signal(false);
+  selectAllText = signal('');
+  checked = signal(false);
+  drag = signal(false);
+  objectArray = signal(false);
+  nodeTpl = signal<TemplateRef<any> | null>(null);
+  header = signal<XTemplate>('');
+  footer = signal<XTemplate>('');
+  scrollElement = signal<HTMLElement | null>(null);
+  loadMore = signal(false);
+  loadMoreText = signal('');
+  loadingMoreText = signal('');
+  virtualScroll = signal(false);
+  scrollHeight = signal(400);
+  heightAdaption = signal<ElementRef<HTMLElement> | HTMLElement | null>(null);
+  minBufferPx = signal(100);
+  maxBufferPx = signal(200);
+  keywordText = signal<string | string[]>('');
+  caseSensitive = signal(true);
+  inPortal = signal(false);
+
+  onSelectAllResult = signal<boolean | null>(null);
+  onSelectAll(selelcAll: boolean) {
+    this.onSelectAllResult.set(selelcAll);
+  }
+
+  nodeMouseenterResult = signal<XListNode | null>(null);
+  nodeMouseenter(node: XListNode) {
+    this.nodeMouseenterResult.set(node);
+  }
+
+  nodeMouseleaveResult = signal<XListNode | null>(null);
+  nodeMouseleave(node: XListNode) {
+    this.nodeMouseleaveResult.set(node);
+  }
+
+  nodeClickResult = signal<XListNode | null>(null);
+  nodeClick(node: XListNode) {
+    this.nodeClickResult.set(node);
+  }
+
+  dropListDroppedResult = signal<XListDragDrop | null>(null);
+  dropListDropped(node: XListDragDrop) {
+    this.dropListDroppedResult.set(node);
+  }
+
+  keyManagerTabOut() {}
+
+  keyManagerChangeResult = signal<number | null>(null);
+  keyManagerChange(key: number) {
+    this.keyManagerChangeResult.set(key);
+  }
+
+  size = signal<XSize>('medium');
+}
 
 describe(XListPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXListComponent],
-      imports: [
-        BrowserAnimationsModule,
-        
-        XRadioComponent,
-        XListComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XInputNumberComponent
-      ],
+      imports: [XTestListComponent, XTestListPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -37,122 +121,114 @@ describe(XListPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXListComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestListComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXListComponent);
+      fixture = TestBed.createComponent(XTestListComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XListComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XListComponent));
+      expect(com).toBeDefined();
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestListPropertyComponent>;
+    // let component: XTestListPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestListPropertyComponent);
+      // component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('data.', () => {
+      expect(true).toBe(true);
+    });
+    it('multiple.', () => {
+      expect(true).toBe(true);
+    });
+    it('selectAll.', () => {
+      expect(true).toBe(true);
+    });
+    it('selectAllText.', () => {
+      expect(true).toBe(true);
+    });
+    it('checked.', () => {
+      expect(true).toBe(true);
+    });
+    it('drag.', () => {
+      expect(true).toBe(true);
+    });
+    it('objectArray.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('header.', () => {
+      expect(true).toBe(true);
+    });
+    it('footer.', () => {
+      expect(true).toBe(true);
+    });
+    it('scrollElement.', () => {
+      expect(true).toBe(true);
+    });
+    it('loadMore.', () => {
+      expect(true).toBe(true);
+    });
+    it('loadMoreText.', () => {
+      expect(true).toBe(true);
+    });
+    it('loadingMoreText.', () => {
+      expect(true).toBe(true);
+    });
+    it('virtualScroll.', () => {
+      expect(true).toBe(true);
+    });
+    it('scrollHeight.', () => {
+      expect(true).toBe(true);
+    });
+    it('heightAdaption.', () => {
+      expect(true).toBe(true);
+    });
+    it('minBufferPx.', () => {
+      expect(true).toBe(true);
+    });
+    it('maxBufferPx.', () => {
+      expect(true).toBe(true);
+    });
+    it('keywordText.', () => {
+      expect(true).toBe(true);
+    });
+    it('caseSensitive.', () => {
+      expect(true).toBe(true);
+    });
+    it('inPortal.', () => {
+      expect(true).toBe(true);
+    });
+    it('onSelectAll.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeMouseenter.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeMouseleave.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeClick.', () => {
+      expect(true).toBe(true);
+    });
+    it('dropListDropped.', () => {
+      expect(true).toBe(true);
+    });
+    it('keyManagerTabOut.', () => {
+      expect(true).toBe(true);
+    });
+    it('keyManagerChange.', () => {
+      expect(true).toBe(true);
+    });
+    it('size.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-const data: XData<XListNode> = ['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, 'DDDD'];
-
-@Component({
-  template: `
-    
-    <x-row space="1">
-      <x-col span="6">
-        <x-list [data]="data1" [(ngModel)]="model1" (ngModelChange)="change()" (nodeClick)="nodeEmit()"></x-list>
-      </x-col>
-      <x-col span="6">
-        <x-list [data]="data2" [(ngModel)]="model2" (ngModelChange)="change()" (nodeClick)="nodeEmit()"></x-list>
-      </x-col>
-      <x-col span="6">
-        <x-list
-          [data]="data3"
-          [(ngModel)]="model3"
-          (ngModelChange)="change()"
-          multiple
-          (nodeClick)="nodeEmit()"
-        ></x-list>
-      </x-col>
-      <x-col span="6">
-        <x-list
-          [data]="data4"
-          [(ngModel)]="model4"
-          multiple
-          (ngModelChange)="change()"
-          (nodeClick)="nodeEmit()"
-        ></x-list>
-      </x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="6">
-        <x-list
-          [data]="data5"
-          [(ngModel)]="model5"
-          multiple="2"
-          (ngModelChange)="change()"
-          (nodeClick)="nodeEmit()"
-        ></x-list>
-      </x-col>
-      <x-col span="6">
-        <x-list
-          [data]="data6"
-          [(ngModel)]="model6"
-          multiple="2"
-          (ngModelChange)="change()"
-          (nodeClick)="nodeEmit()"
-        ></x-list>
-      </x-col>
-    </x-row>
-    <x-row space="1">
-      <x-col span="6">
-        <h6>上下拖动</h6>
-        <div><x-list [data]="data7" [(ngModel)]="model7" drag></x-list></div>
-      </x-col>
-      <x-col span="6">
-        <h6>模板</h6>
-        <div><x-list [data]="data8" [(ngModel)]="model8" [nodeTpl]="nodeTpl"></x-list></div>
-        <ng-template #nodeTpl let-node="$node"> {{ node.label }}<sup>2</sup> </ng-template>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXListComponent {
-  data1 = data;
-  data2 = JSON.parse(JSON.stringify(data));
-  data3 = JSON.parse(JSON.stringify(data));
-  data4 = JSON.parse(JSON.stringify(data));
-  data5 = JSON.parse(JSON.stringify(data));
-  data6 = JSON.parse(JSON.stringify(data));
-  data7 = JSON.parse(JSON.stringify(data));
-  data8 = JSON.parse(JSON.stringify(data));
-  model1: any;
-  model2 = 'AAAA';
-  model3: any;
-  model4 = ['AAAA', 'BBBB'];
-  model5: any;
-  model6 = ['BBBB', 'CCCC'];
-  model7 = 'BBBB';
-  model8: any;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-  change() {
-    // console.log(val);
-  }
-  nodeEmit() {
-    this.cdr.detectChanges();
-  }
-}

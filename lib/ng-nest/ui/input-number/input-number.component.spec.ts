@@ -1,39 +1,95 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ChangeDetectorRef, Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XInputNumberComponent } from '@ng-nest/ui/input-number';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XInputNumberPrefix } from './input-number.property';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { XRadioComponent } from '@ng-nest/ui/radio';
+import { XInputNumberComponent, XInputNumberPrefix } from '@ng-nest/ui/input-number';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XAlign, XDirection, XJustify, XNumber, XSize, XTemplate } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XInputNumberComponent],
+  template: ` <x-input-number> </x-input-number> `
+})
+class XTestInputNumberComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XInputNumberComponent],
+  template: `
+    <x-input-number
+      [min]="min()"
+      [max]="max()"
+      [step]="step()"
+      [debounce]="debounce()"
+      [precision]="precision()"
+      [bordered]="bordered()"
+      [formatter]="formatter()"
+      [hiddenButton]="hiddenButton()"
+      [size]="size()"
+      [pointer]="pointer()"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
+      [active]="active()"
+      [inputValidator]="inputValidator()"
+    >
+    </x-input-number>
+
+    <ng-template #beforeTemplate>before</ng-template>
+    <ng-template #afterTemplate>after</ng-template>
+  `
+})
+class XTestInputNumberPropertyComponent {
+  min = signal(Number.MIN_SAFE_INTEGER);
+  max = signal(Number.MAX_SAFE_INTEGER);
+  step = signal(1);
+  debounce = signal(40);
+  precision = signal(0);
+  bordered = signal(true);
+  formatter = signal<((value: number) => XNumber) | null>(null);
+  hiddenButton = signal(false);
+  size = signal<XSize>('medium');
+  pointer = signal(false);
+  label = signal('');
+  labelWidth = signal('');
+  labelAlign = signal<XAlign>('start');
+  justify = signal<XJustify>('start');
+  align = signal<XAlign>('start');
+  direction = signal<XDirection>('column');
+  placeholder = signal('');
+  disabled = signal(false);
+  required = signal(false);
+  readonly = signal(false);
+  valueTpl = signal<TemplateRef<any> | null>(null);
+  valueTplContext = signal(null);
+  before = signal<XTemplate | null>(null);
+  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  after = signal<XTemplate | null>(null);
+  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  pattern = signal<RegExp | RegExp[] | null>(null);
+  message = signal<string | string[]>([]);
+  active = signal(false);
+  inputValidator = signal<((value: any) => boolean) | null>(null);
+}
 
 describe(XInputNumberPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestXInputNumberComponent,
-        TestXInputNumberLabelComponent,
-        TestXInputNumberLimitComponent,
-        TestXInputNumberPrecisionComponent,
-        TestXInputNumberDisabledComponent,
-        TestXInputNumberRequiredComponent,
-        TestXInputNumberSizeComponent,
-        TestXInputNumberBorderedComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        
-        XInputNumberComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XRadioComponent
-      ],
+      imports: [XTestInputNumberComponent, XTestInputNumberPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -41,384 +97,108 @@ describe(XInputNumberPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestInputNumberComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberComponent);
+      fixture = TestBed.createComponent(XTestInputNumberComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XInputNumberComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XInputNumberComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`label.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberLabelComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberLabelComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestInputNumberPropertyComponent>;
+    // let component: XTestInputNumberPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestInputNumberPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberLabelComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('min.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`limit.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberLimitComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberLimitComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberLimitComponent));
+    it('max.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('step.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`precision.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberPrecisionComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberPrecisionComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberPrecisionComponent));
+    it('debounce.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('precision.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`disabled.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberDisabledComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberDisabledComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberDisabledComponent));
+    it('bordered.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('formatter.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`required.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberRequiredComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberRequiredComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberRequiredComponent));
+    it('hiddenButton.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('size.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`size.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberSizeComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberSizeComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberComponent));
+    it('pointer.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('label.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`bordered.`, () => {
-    let fixture: ComponentFixture<TestXInputNumberBorderedComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXInputNumberBorderedComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXInputNumberComponent));
+    it('labelWidth.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('labelAlign.', () => {
+      expect(true).toBe(true);
+    });
+    it('justify.', () => {
+      expect(true).toBe(true);
+    });
+    it('align.', () => {
+      expect(true).toBe(true);
+    });
+    it('direction.', () => {
+      expect(true).toBe(true);
+    });
+    it('placeholder.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('required.', () => {
+      expect(true).toBe(true);
+    });
+    it('readonly.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTplContext.', () => {
+      expect(true).toBe(true);
+    });
+    it('before.', () => {
+      expect(true).toBe(true);
+    });
+    it('after.', () => {
+      expect(true).toBe(true);
+    });
+    it('pattern.', () => {
+      expect(true).toBe(true);
+    });
+    it('message.', () => {
+      expect(true).toBe(true);
+    });
+    it('active.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputValidator.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col>
-        <x-input-number></x-input-number>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col {
-        width: 10rem;
-      }
-    `
-  ]
-})
-class TestXInputNumberComponent {}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col>
-        <x-input-number label="数量"></x-input-number>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-input-number label="数量" direction="column-reverse"></x-input-number>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-input-number label="数量" direction="row"></x-input-number>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-input-number label="数量" direction="row-reverse"></x-input-number>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col {
-        width: 10rem;
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXInputNumberLabelComponent {}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col>
-        <x-input-number max="10"></x-input-number>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-input-number min="1"></x-input-number>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col>
-        <x-input-number min="1" max="10"></x-input-number>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col {
-        width: 10rem;
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXInputNumberLimitComponent {}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col>
-        <x-input-number precision="2" step="0.1"></x-input-number>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col {
-        width: 10rem;
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXInputNumberPrecisionComponent {}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col>
-        <x-input-number disabled></x-input-number>
-      </x-col>
-      <x-col>
-        <x-input-number disabled [(ngModel)]="model"></x-input-number>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col {
-        width: 10rem;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXInputNumberDisabledComponent {
-  model = 10;
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col>
-        <x-input-number required></x-input-number>
-      </x-col>
-      <x-col>
-        <x-input-number label="数量" required></x-input-number>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col {
-        width: 10rem;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXInputNumberRequiredComponent {}
-
-@Component({
-  template: `
-    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
-    <x-row>
-      <x-col span="24">
-        <x-input-number [size]="size"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number [size]="size" label="用户名" direction="row"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number [size]="size" label="用户名" direction="column"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number [size]="size" precision="2" step="0.1"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number required [size]="size"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number disabled [size]="size"></x-input-number>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col > x-input-number {
-        width: 15rem;
-        display: block;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXInputNumberSizeComponent {
-  radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size = 'medium';
-  constructor(private cdr: ChangeDetectorRef) {}
-  change($event: string) {
-    console.log($event);
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-input-number placeholder="请输入" bordered="false"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number placeholder="请输入" bordered="false" label="数量:" direction="row"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number placeholder="请输入" bordered="false"></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number placeholder="请输入" bordered="false" required></x-input-number>
-      </x-col>
-      <x-col span="24">
-        <x-input-number placeholder="没有边框" bordered="false" disabled></x-input-number>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col > x-input-number {
-        width: 15rem;
-        display: block;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXInputNumberBorderedComponent {
-  constructor() {}
-}

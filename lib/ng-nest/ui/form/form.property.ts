@@ -46,8 +46,8 @@ export type XFormTemplate = { [property: string]: TemplateRef<any> };
 export class XFormProperty extends XFormControlFunction(X_FORM_CONFIG_NAME) {
   /**
    * @zh_CN 表单 FormGroup
-   * @en_US Form FormGroup
-   * @default new UntypedFormGroup({})
+(   * @en_US Form FormGroup
+)   * @default new UntypedFormGroup({})
    */
   readonly formGroup = input<UntypedFormGroup>(new UntypedFormGroup({}));
   /**

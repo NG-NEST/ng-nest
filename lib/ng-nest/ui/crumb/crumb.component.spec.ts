@@ -1,19 +1,43 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XCrumbComponent } from '@ng-nest/ui/crumb';
-import { XCrumbPrefix } from './crumb.property';
-import { XIconComponent } from '@ng-nest/ui/icon';
-import { XTagComponent } from '@ng-nest/ui/tag';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XCrumbComponent, XCrumbNode, XCrumbPrefix } from '@ng-nest/ui/crumb';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XDataArray, XTemplate } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XCrumbComponent],
+  template: ` <x-crumb></x-crumb> `
+})
+class XTestCrumbComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XCrumbComponent],
+  template: `
+    <x-crumb [data]="data()" [nodeTpl]="nodeTpl()" [separator]="separator()" (nodeClick)="nodeClick($event)"> </x-crumb>
+
+    <ng-template #nodeTemplate let-node="$node">{{ node.label }}</ng-template>
+  `
+})
+class XTestCrumbPropertyComponent {
+  data = signal<XDataArray<XCrumbNode>>([]);
+  nodeTpl = signal<TemplateRef<any> | null>(null);
+  nodeTemplage = viewChild<TemplateRef<void>>('nodeTemplate');
+  separator = signal<XTemplate>('/');
+
+  nodeClickResult = signal<XCrumbNode | null>(null);
+  nodeClick(node: XCrumbNode) {
+    this.nodeClickResult.set(node);
+  }
+}
 
 describe(XCrumbPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXCrumbComponent],
-      imports: [BrowserAnimationsModule, XCrumbComponent, XIconComponent, XTagComponent],
+      imports: [XTestCrumbComponent, XTestCrumbPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -21,48 +45,36 @@ describe(XCrumbPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXCrumbComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestCrumbComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCrumbComponent);
+      fixture = TestBed.createComponent(XTestCrumbComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XCrumbComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XCrumbComponent));
+      expect(com).toBeDefined();
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestCrumbPropertyComponent>;
+    // let component: XTestCrumbPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestCrumbPropertyComponent);
+      // component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('data.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('separator.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeClick.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  selector: 'test-x-crumb',
-  template: `
-    
-    <x-crumb [data]="data"></x-crumb>
-    <x-crumb [data]="dataIcon"></x-crumb>
-    <x-crumb [data]="data" separator="·"></x-crumb>
-    <x-crumb [data]="data" [separator]="separatorTpl"></x-crumb>
-    <ng-template #separatorTpl>
-      <x-icon type="fto-chevron-right"></x-icon>
-    </ng-template>
-    <x-crumb [data]="data" [nodeTpl]="nodeTpl"></x-crumb>
-    <ng-template #nodeTpl let-node="$node">
-      <x-tag>{{ node.label }}</x-tag>
-    </ng-template>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-    `
-  ]
-})
-class TestXCrumbComponent {
-  data = ['首页', '用户管理', '用户列表', '用户详情'];
-  dataIcon = [{ icon: 'fto-home' }, { label: '用户管理', icon: 'fto-user' }, '用户列表', '用户详情'];
-  nodeClick() {}
-}

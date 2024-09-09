@@ -10,7 +10,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
   imports: [XAffixComponent],
   template: `
     <x-affix>
-      <div>固定</div>
+      <div>affix</div>
     </x-affix>
   `
 })

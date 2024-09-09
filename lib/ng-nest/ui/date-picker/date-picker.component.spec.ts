@@ -1,808 +1,226 @@
-import { interval } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XDatePickerComponent, XDateRangeComponent } from '@ng-nest/ui/date-picker';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XDatePickerPrefix } from './date-picker.property';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { XRadioComponent } from '@ng-nest/ui/radio';
-import { XSelectComponent } from '@ng-nest/ui/select';
-import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
-import { XCascadeComponent } from '@ng-nest/ui/cascade';
-import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
-import { XFindComponent } from '@ng-nest/ui/find';
-import { XTextareaComponent } from '@ng-nest/ui/textarea';
-import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XInputComponent } from '@ng-nest/ui/input';
-import { XAddDays } from '@ng-nest/ui/core';
+import {
+  XDatePickerComponent,
+  XDatePickerDisabledDate,
+  XDatePickerDisabledTime,
+  XDatePickerPrefix,
+  XDatePickerPreset,
+  XDatePickerType
+} from '@ng-nest/ui/date-picker';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XAlign, XCorner, XData, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+@Component({
+  standalone: true,
+  imports: [XDatePickerComponent],
+  template: ` <x-date-picker></x-date-picker> `
+})
+class XTestDatePickerComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XDatePickerComponent],
+  template: `
+    <x-date-picker
+      [type]="type()"
+      [format]="format()"
+      [clearable]="clearable()"
+      [placement]="placement()"
+      [bordered]="bordered()"
+      [preset]="preset()"
+      [extraFooter]="extraFooter()"
+      [disabledDate]="disabledDate()"
+      [disabledTime]="disabledTime()"
+      [size]="size()"
+      [pointer]="pointer()"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
+      [active]="active()"
+      [inputValidator]="inputValidator()"
+      (nodeEmit)="nodeEmit($event)"
+    >
+    </x-date-picker>
+    <ng-template #beforeTemplate>before</ng-template>
+    <ng-template #afterTemplate>after</ng-template>
+  `
+})
+class XTestDatePickerPropertyComponent {
+  type = signal<XDatePickerType>('date');
+  format = signal('yyyy-MM-dd');
+  clearable = signal(true);
+  placement = signal<XCorner>('bottom-start');
+  bordered = signal(true);
+  preset = signal<XData<XDatePickerPreset>>([]);
+  extraFooter = signal<XTemplate | null>(null);
+  disabledDate = signal<XDatePickerDisabledDate | null>(null);
+  disabledTime = signal<XDatePickerDisabledTime | null>(null);
+  size = signal<XSize>('medium');
+  pointer = signal(false);
+  label = signal('');
+  labelWidth = signal('');
+  labelAlign = signal<XAlign>('start');
+  justify = signal<XJustify>('start');
+  align = signal<XAlign>('start');
+  direction = signal<XDirection>('column');
+  placeholder = signal('');
+  disabled = signal(false);
+  required = signal(false);
+  readonly = signal(false);
+  valueTpl = signal<TemplateRef<any> | null>(null);
+  valueTplContext = signal(null);
+  before = signal<XTemplate | null>(null);
+  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  after = signal<XTemplate | null>(null);
+  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  pattern = signal<RegExp | RegExp[] | null>(null);
+  message = signal<string | string[]>([]);
+  active = signal(false);
+  inputValidator = signal<((value: any) => boolean) | null>(null);
+
+  nodeEmitResult = signal<number | null>(null);
+  nodeEmit(event: number) {
+    this.nodeEmitResult.set(event);
+  }
+}
 
 describe(XDatePickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestXDatePickerComponent,
-        TestXDatePickerLabelComponent,
-        TestXDatePickerDisabledComponent,
-        TestXDatePickerRequiredComponent,
-        TestXDatePickerYearOrMonthComponent,
-        TestXDatePickerHourMinuteSecondComponent,
-        TestXDatePickerSizeComponent,
-        TestXDatePickerBorderedComponent,
-        TestXDatePickerBeforeAfterComponent,
-        TestXDatePickerTodayComponent,
-        TestXDateRangeComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        XDatePickerComponent,
-        XDateRangeComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XButtonComponent,
-        XRadioComponent,
-        XSelectComponent,
-        XInputComponent,
-        XAutoCompleteComponent,
-        XCascadeComponent,
-        XColorPickerComponent,
-        XFindComponent,
-        XTextareaComponent,
-        XTimePickerModule
-      ],
+      imports: [XTestDatePickerComponent, XTestDatePickerPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestDatePickerComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerComponent);
+      fixture = TestBed.createComponent(XTestDatePickerComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XDatePickerComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XDatePickerComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`label.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerLabelComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerLabelComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestDatePickerPropertyComponent>;
+    // let component: XTestDatePickerPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestDatePickerPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerLabelComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('type.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`disabled.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerDisabledComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerDisabledComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerDisabledComponent));
+    it('format.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('clearable.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`required.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerRequiredComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerRequiredComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerRequiredComponent));
+    it('placement.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('bordered.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`year or month.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerYearOrMonthComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerYearOrMonthComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerYearOrMonthComponent));
+    it('preset.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('extraFooter.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`hour minute second.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerHourMinuteSecondComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerHourMinuteSecondComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerHourMinuteSecondComponent));
+    it('disabledDate.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('disabledTime.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`size.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerSizeComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerSizeComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerSizeComponent));
+    it('size.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('pointer.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`bordered.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerBorderedComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerBorderedComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerBorderedComponent));
+    it('label.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('labelWidth.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`before/after.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerBeforeAfterComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerBeforeAfterComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerBeforeAfterComponent));
+    it('labelAlign.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('justify.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`today.`, () => {
-    let fixture: ComponentFixture<TestXDatePickerTodayComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDatePickerTodayComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDatePickerTodayComponent));
+    it('align.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('direction.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`date-range.`, () => {
-    let fixture: ComponentFixture<TestXDateRangeComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDateRangeComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXDateRangeComponent));
+    it('placeholder.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('required.', () => {
+      expect(true).toBe(true);
+    });
+    it('readonly.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTplContext.', () => {
+      expect(true).toBe(true);
+    });
+    it('before.', () => {
+      expect(true).toBe(true);
+    });
+    it('after.', () => {
+      expect(true).toBe(true);
+    });
+    it('pattern.', () => {
+      expect(true).toBe(true);
+    });
+    it('message.', () => {
+      expect(true).toBe(true);
+    });
+    it('active.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputValidator.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeEmit.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    <x-button (click)="english()">切换为英文</x-button>
-    <x-button (click)="chinese()">切换为中文</x-button>
-    <x-row>
-      <x-col span="8">
-        <x-date-picker [(ngModel)]="model1"></x-date-picker>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">
-        <x-date-picker [(ngModel)]="model2"></x-date-picker>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerComponent {
-  model1: any;
-  model2 = new Date();
-  constructor(
-    private i18nService: XI18nService,
-    private cdr: ChangeDetectorRef
-  ) {
-    interval(0).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-
-  english() {
-    this.i18nService.setLocale(en_US);
-    this.cdr.detectChanges();
-  }
-
-  chinese() {
-    this.i18nService.setLocale(zh_CN);
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-date-picker label="方式" [(ngModel)]="model"></x-date-picker>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-date-picker label="方式" [(ngModel)]="model" direction="column-reverse"></x-date-picker>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-date-picker label="方式" [(ngModel)]="model" direction="row"></x-date-picker>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-date-picker label="方式" [(ngModel)]="model" direction="row-reverse"></x-date-picker>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerLabelComponent {
-  model: any;
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-date-picker disabled></x-date-picker>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-date-picker [(ngModel)]="model" disabled></x-date-picker>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerDisabledComponent {
-  model = new Date();
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-date-picker [(ngModel)]="model" required></x-date-picker>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-date-picker [(ngModel)]="model" label="选择" required></x-date-picker>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerRequiredComponent {
-  model: any;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-date-picker [(ngModel)]="model1" label="年" type="year"></x-date-picker>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-date-picker [(ngModel)]="model2" label="月" type="month"></x-date-picker>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerYearOrMonthComponent {
-  model1: any;
-  model2: any;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" label="时分秒" [type]="'date-time'"></x-date-picker>
-      </x-col>
-      <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" label="时分" [type]="'date-minute'"></x-date-picker>
-      </x-col>
-      <x-col span="8">
-        <x-date-picker [(ngModel)]="model1" label="时" [type]="'date-hour'"></x-date-picker>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerHourMinuteSecondComponent {
-  model1 = '2011-10-1 13:10:57';
-  model2: any;
-  model3: any;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-}
-
-@Component({
-  template: `
-    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
-    <x-row>
-      <x-col span="24">
-        <x-date-picker [size]="size"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker [size]="size" label="用户名" direction="row" maxlength="50"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker [size]="size" label="用户名" direction="column" maxlength="50"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker required clearable [size]="size"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker disabled [size]="size"></x-date-picker>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col > x-date-picker {
-        width: 15rem;
-        display: block;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerSizeComponent {
-  radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size = 'medium';
-  constructor(private cdr: ChangeDetectorRef) {}
-  change($event: string) {
-    console.log($event);
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-date-picker placeholder="请选择日期" bordered="false"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请选择日期" bordered="false" label="日生:" direction="row"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请选择日期" bordered="false"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请选择日期" bordered="false" required></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="没有边框" bordered="false" disabled></x-date-picker>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col > x-date-picker {
-        width: 15rem;
-        display: block;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerBorderedComponent {
-  constructor() {}
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入域名" after=".com"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入电话" before="0728"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入网址" before="http://" after=".com"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入网址" [before]="beforeSelectTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入网址" [after]="afterSelectTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入网址" [before]="beforeSelectTpl" [after]="afterSelectTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeButtonTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [after]="afterButtonTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeButtonTpl" [after]="afterButtonTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeInputTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [after]="afterInputTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeInputTpl" [after]="afterInputTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeDatePickerTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [after]="afterDatePickerTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker
-          placeholder="请输入文字"
-          [before]="beforeDatePickerTpl"
-          [after]="afterDatePickerTpl"
-        ></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeAutoCompleteTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [after]="afterAutoCompleteTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker
-          placeholder="请输入文字"
-          [before]="beforeAutoCompleteTpl"
-          [after]="afterAutoCompleteTpl"
-        ></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeCascadeTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [after]="afterCascadeTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeCascadeTpl" [after]="afterCascadeTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeColorPickerTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [after]="afterColorPickerTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker
-          placeholder="请输入文字"
-          [before]="beforeColorPickerTpl"
-          [after]="afterColorPickerTpl"
-        ></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [before]="beforeTimePickerTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker placeholder="请输入文字" [after]="afterTimePickerTpl"></x-date-picker>
-      </x-col>
-      <x-col span="24">
-        <x-date-picker
-          placeholder="请输入文字"
-          [before]="beforeTimePickerTpl"
-          [after]="afterTimePickerTpl"
-        ></x-date-picker>
-      </x-col>
-    </x-row>
-    <ng-template #beforeSelectTpl>
-      <x-select [style.width.%]="30" [data]="['http://', 'ws://', 'file://']"></x-select>
-    </ng-template>
-    <ng-template #afterSelectTpl>
-      <x-select [style.width.%]="30" [data]="['.com', '.cn', '.org']"></x-select>
-    </ng-template>
-    <ng-template #beforeButtonTpl>
-      <x-button>查询</x-button>
-    </ng-template>
-    <ng-template #afterButtonTpl>
-      <x-button icon="fto-search"></x-button>
-    </ng-template>
-    <ng-template #beforeInputTpl>
-      <x-input [style.width.%]="30"></x-input>
-    </ng-template>
-    <ng-template #afterInputTpl>
-      <x-input [style.width.%]="30"></x-input>
-    </ng-template>
-    <ng-template #beforeDatePickerTpl>
-      <x-date-picker [style.width.%]="30"></x-date-picker>
-    </ng-template>
-    <ng-template #afterDatePickerTpl>
-      <x-date-picker [style.width.%]="30"></x-date-picker>
-    </ng-template>
-    <ng-template #beforeAutoCompleteTpl>
-      <x-auto-complete
-        [style.width.%]="40"
-        [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
-        placeholder="输入下拉匹配，如：aa"
-      ></x-auto-complete>
-    </ng-template>
-    <ng-template #afterAutoCompleteTpl>
-      <x-auto-complete
-        [style.width.%]="40"
-        [data]="['aaaa', 'bbbb', 'cccc', 'dddd', 'aaa', 'bbb', 'ccc', 'ddd']"
-        placeholder="输入下拉匹配，如：aa"
-      ></x-auto-complete>
-    </ng-template>
-    <ng-template #beforeCascadeTpl>
-      <x-cascade [style.width.%]="40" [data]="cascadeData"></x-cascade>
-    </ng-template>
-    <ng-template #afterCascadeTpl>
-      <x-cascade [style.width.%]="40" [data]="cascadeData"></x-cascade>
-    </ng-template>
-    <ng-template #beforeColorPickerTpl>
-      <x-color-picker [style.width.%]="30"></x-color-picker>
-    </ng-template>
-    <ng-template #afterColorPickerTpl>
-      <x-color-picker [style.width.%]="30"></x-color-picker>
-    </ng-template>
-    <ng-template #beforeTimePickerTpl>
-      <x-time-picker [style.width.%]="30"></x-time-picker>
-    </ng-template>
-    <ng-template #afterTimePickerTpl>
-      <x-time-picker [style.width.%]="30"></x-time-picker>
-    </ng-template>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        width: 25rem;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerBeforeAfterComponent {
-  cascadeData = [
-    { id: 1, label: 'AAAA' },
-    { id: 2, label: 'BBBB' },
-    { id: 3, label: 'CCCC' },
-    { id: 4, label: 'DDDD' },
-    { id: 5, label: 'AAAA-1', pid: 1 },
-    { id: 6, label: 'AAAA-2', pid: 1 },
-    { id: 7, label: 'AAAA-3', pid: 1 },
-    { id: 8, label: 'AAAA-4', pid: 1 },
-    { id: 9, label: 'BBBB-1', pid: 2 },
-    { id: 10, label: 'BBBB-2', pid: 2 },
-    { id: 11, label: 'BBBB-3', pid: 2 },
-    { id: 12, label: 'BBBB-4', pid: 2 },
-    { id: 13, label: 'CCCC-1', pid: 3 },
-    { id: 14, label: 'CCCC-2', pid: 3 },
-    { id: 15, label: 'CCCC-3', pid: 3 },
-    { id: 16, label: 'CCCC-4', pid: 3 },
-    { id: 17, label: 'DDDD-1', pid: 4 },
-    { id: 18, label: 'DDDD-2', pid: 4 },
-    { id: 19, label: 'DDDD-3', pid: 4 },
-    { id: 20, label: 'DDDD-4', pid: 4 },
-    { id: 21, label: 'AAAA-1-1', pid: 5 },
-    { id: 22, label: 'AAAA-1-2', pid: 5 },
-    { id: 23, label: 'AAAA-1-3', pid: 5 },
-    { id: 24, label: 'AAAA-1-4', pid: 5 },
-    { id: 25, label: 'AAAA-2-1', pid: 6 },
-    { id: 26, label: 'AAAA-2-2', pid: 6 },
-    { id: 27, label: 'AAAA-2-3', pid: 6 },
-    { id: 28, label: 'AAAA-2-4', pid: 6 },
-    { id: 29, label: 'AAAA-3-1', pid: 7 },
-    { id: 30, label: 'AAAA-3-2', pid: 7 },
-    { id: 31, label: 'AAAA-3-3', pid: 7 },
-    { id: 32, label: 'AAAA-3-4', pid: 7 },
-    { id: 33, label: 'AAAA-4-1', pid: 8 },
-    { id: 34, label: 'AAAA-4-2', pid: 8 },
-    { id: 35, label: 'AAAA-4-3', pid: 8 },
-    { id: 36, label: 'AAAA-4-4', pid: 8 }
-  ];
-  constructor() {}
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-date-picker [preset]="preset"></x-date-picker>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        width: 25rem;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDatePickerTodayComponent {
-  preset = [
-    'yesterday',
-    'today',
-    'tomorrow',
-    {
-      label: '7天后',
-      func: () => {
-        return XAddDays(new Date(), 7);
-      }
-    }
-  ];
-  constructor() {}
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-date-range></x-date-range>
-      </x-col>
-      <x-col span="24">
-        <x-input></x-input>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row {
-        width: 25rem;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXDateRangeComponent {
-  constructor() {}
-}

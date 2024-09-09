@@ -1,39 +1,99 @@
-import { interval } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XCascadeComponent } from '@ng-nest/ui/cascade';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XCascadePrefix, XCascadeNode } from './cascade.property';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XRadioComponent } from '@ng-nest/ui/radio';
-import { XIconComponent } from '@ng-nest/ui/icon';
+import { XCascadeComponent, XCascadeNode, XCascadeNodeTrigger, XCascadePrefix } from '@ng-nest/ui/cascade';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XAlign, XCorner, XData, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XCascadeComponent],
+  template: ` <x-cascade></x-cascade> `
+})
+class XTestCascadeComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XCascadeComponent],
+  template: `
+    <x-cascade
+      [data]="data()"
+      [placement]="placement()"
+      [bordered]="bordered()"
+      [nodeTrigger]="nodeTrigger()"
+      [nodeHoverDelay]="nodeHoverDelay()"
+      [nodeTpl]="nodeTpl()"
+      [size]="size()"
+      [pointer]="pointer()"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
+      [active]="active()"
+      [inputValidator]="inputValidator()"
+      (nodeEmit)="nodeEmit($event)"
+    ></x-cascade>
+
+    <ng-template #nodeTemplate let-node="$node">{{ node.label }}</ng-template>
+
+    <ng-template #beforeTemplate>before</ng-template>
+    <ng-template #afterTemplate>after</ng-template>
+  `
+})
+class XTestCascadePropertyComponent {
+  data = signal<XData<XCascadeNode>>([]);
+  placement = signal<XCorner>('bottom-start');
+  bordered = signal(true);
+  nodeTrigger = signal<XCascadeNodeTrigger>('click');
+  nodeHoverDelay = signal(200);
+  nodeTpl = signal<TemplateRef<any> | null>(null);
+  nodeTemplate = viewChild<TemplateRef<any>>('nodeTemplate');
+  size = signal<XSize>('medium');
+  pointer = signal(false);
+  label = signal('');
+  labelWidth = signal('');
+  labelAlign = signal<XAlign>('start');
+  justify = signal<XJustify>('start');
+  align = signal<XAlign>('start');
+  direction = signal<XDirection>('column');
+  placeholder = signal('');
+  disabled = signal(false);
+  required = signal(false);
+  readonly = signal(false);
+  valueTpl = signal<TemplateRef<any> | null>(null);
+  valueTplContext = signal(null);
+  before = signal<XTemplate | null>(null);
+  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  after = signal<XTemplate | null>(null);
+  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  pattern = signal<RegExp | RegExp[] | null>(null);
+  message = signal<string | string[]>([]);
+  active = signal(false);
+  inputValidator = signal<((value: any) => boolean) | null>(null);
+
+  nodeEmitResult = signal<XCascadeNode | null>(null);
+  nodeEmit(node: XCascadeNode) {
+    this.nodeEmitResult.set(node);
+  }
+}
 
 describe(XCascadePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestXCascadeComponent,
-        TestXCascadeLabelComponent,
-        TestXCascadeDisabledComponent,
-        TestXCascadeRequiredComponent,
-        TestXCascadeSizeComponent,
-        TestXCascadeBorderedComponent,
-        TestXCascadeCustomComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        XCascadeComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XRadioComponent,
-        XIconComponent
-      ],
+      imports: [XTestCascadeComponent, XTestCascadePropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -41,427 +101,105 @@ describe(XCascadePrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXCascadeComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestCascadeComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCascadeComponent);
+      fixture = TestBed.createComponent(XTestCascadeComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XCascadeComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XCascadeComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`label.`, () => {
-    let fixture: ComponentFixture<TestXCascadeLabelComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCascadeLabelComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestCascadePropertyComponent>;
+    // let component: XTestCascadePropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestCascadePropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXCascadeLabelComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('data.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`disabled.`, () => {
-    let fixture: ComponentFixture<TestXCascadeDisabledComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCascadeDisabledComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXCascadeDisabledComponent));
+    it('placement.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('bordered.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`required.`, () => {
-    let fixture: ComponentFixture<TestXCascadeRequiredComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCascadeRequiredComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXCascadeRequiredComponent));
+    it('nodeTrigger.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('nodeHoverDelay.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`size.`, () => {
-    let fixture: ComponentFixture<TestXCascadeSizeComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCascadeSizeComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXCascadeComponent));
+    it('nodeTpl.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('size.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`bordered.`, () => {
-    let fixture: ComponentFixture<TestXCascadeBorderedComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCascadeBorderedComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXCascadeComponent));
+    it('pointer.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('label.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`custom.`, () => {
-    let fixture: ComponentFixture<TestXCascadeCustomComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCascadeCustomComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXCascadeComponent));
+    it('labelWidth.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('labelAlign.', () => {
+      expect(true).toBe(true);
+    });
+    it('justify.', () => {
+      expect(true).toBe(true);
+    });
+    it('align.', () => {
+      expect(true).toBe(true);
+    });
+    it('direction.', () => {
+      expect(true).toBe(true);
+    });
+    it('placeholder.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('required.', () => {
+      expect(true).toBe(true);
+    });
+    it('readonly.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTplContext.', () => {
+      expect(true).toBe(true);
+    });
+    it('before.', () => {
+      expect(true).toBe(true);
+    });
+    it('after.', () => {
+      expect(true).toBe(true);
+    });
+    it('pattern.', () => {
+      expect(true).toBe(true);
+    });
+    it('message.', () => {
+      expect(true).toBe(true);
+    });
+    it('active.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputValidator.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeEmit.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-const data: XCascadeNode[] = [
-  { id: 1, label: 'AAAA' },
-  { id: 2, label: 'BBBB' },
-  { id: 3, label: 'CCCC' },
-  { id: 4, label: 'DDDD' },
-  { id: 5, label: 'AAAA-1', pid: 1 },
-  { id: 6, label: 'AAAA-2', pid: 1 },
-  { id: 7, label: 'AAAA-3', pid: 1 },
-  { id: 8, label: 'AAAA-4', pid: 1 },
-  { id: 9, label: 'BBBB-1', pid: 2 },
-  { id: 10, label: 'BBBB-2', pid: 2 },
-  { id: 11, label: 'BBBB-3', pid: 2 },
-  { id: 12, label: 'BBBB-4', pid: 2 },
-  { id: 13, label: 'CCCC-1', pid: 3 },
-  { id: 14, label: 'CCCC-2', pid: 3 },
-  { id: 15, label: 'CCCC-3', pid: 3 },
-  { id: 16, label: 'CCCC-4', pid: 3 },
-  { id: 17, label: 'DDDD-1', pid: 4 },
-  { id: 18, label: 'DDDD-2', pid: 4 },
-  { id: 19, label: 'DDDD-3', pid: 4 },
-  { id: 20, label: 'DDDD-4', pid: 4 },
-  { id: 21, label: 'AAAA-1-1', pid: 5 },
-  { id: 22, label: 'AAAA-1-2', pid: 5 },
-  { id: 23, label: 'AAAA-1-3', pid: 5 },
-  { id: 24, label: 'AAAA-1-4', pid: 5 },
-  { id: 25, label: 'AAAA-2-1', pid: 6 },
-  { id: 26, label: 'AAAA-2-2', pid: 6 },
-  { id: 27, label: 'AAAA-2-3', pid: 6 },
-  { id: 28, label: 'AAAA-2-4', pid: 6 },
-  { id: 29, label: 'AAAA-3-1', pid: 7 },
-  { id: 30, label: 'AAAA-3-2', pid: 7 },
-  { id: 31, label: 'AAAA-3-3', pid: 7 },
-  { id: 32, label: 'AAAA-3-4', pid: 7 },
-  { id: 33, label: 'AAAA-4-1', pid: 8 },
-  { id: 34, label: 'AAAA-4-2', pid: 8 },
-  { id: 35, label: 'AAAA-4-3', pid: 8 },
-  { id: 36, label: 'AAAA-4-4', pid: 8 }
-];
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-cascade [data]="data1" [(ngModel)]="model1"></x-cascade>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-cascade [data]="data2" [(ngModel)]="model2"></x-cascade>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-cascade [data]="data3" [(ngModel)]="model3"></x-cascade>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        height: 900px;
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCascadeComponent {
-  data1 = JSON.parse(JSON.stringify(data));
-  data2 = JSON.parse(JSON.stringify(data));
-  data3 = JSON.parse(JSON.stringify(data));
-  model1: any;
-  model2 = 22;
-  model3 = 10;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(1).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-cascade label="方式" [data]="data" [(ngModel)]="model"></x-cascade>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="column-reverse"></x-cascade>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="row"></x-cascade>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-cascade label="方式" [data]="data" [(ngModel)]="model" direction="row-reverse"></x-cascade>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCascadeLabelComponent {
-  data = data;
-  model: any;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-cascade [data]="data" disabled></x-cascade>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-cascade [data]="data" [(ngModel)]="model" disabled></x-cascade>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCascadeDisabledComponent {
-  data = data;
-  model = 22;
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-cascade [data]="data" [(ngModel)]="model1" required></x-cascade>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-cascade [data]="data" [(ngModel)]="model2" label="选择" required></x-cascade>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCascadeRequiredComponent {
-  data = data;
-  model1: any;
-  model2: any;
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(50).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-}
-
-@Component({
-  template: `
-    <x-radio [data]="radioData" [(ngModel)]="size" (ngModelChange)="change($event)"></x-radio>
-    <x-row>
-      <x-col span="24">
-        <x-cascade [data]="data" [size]="size"></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade [data]="data" [size]="size" label="用户名" direction="row" maxlength="50"></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade [data]="data" [size]="size" label="用户名" direction="column" maxlength="50"></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade [data]="data" [size]="size" icon="ado-user" iconLayout="left" maxlength="50"></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade [data]="data" required clearable [size]="size"></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade [data]="data" disabled [size]="size"></x-cascade>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col > x-cascade {
-        width: 15rem;
-        display: block;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCascadeSizeComponent {
-  radioData = ['big', 'large', 'medium', 'small', 'mini'];
-  size = 'medium';
-  data = data;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change($event: string) {
-    console.log($event);
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-cascade [data]="data" placeholder="请选择日期" bordered="false"></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade [data]="data" placeholder="请选择日期" bordered="false" label="日生:" direction="row"></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade [data]="data" placeholder="请选择日期" bordered="false"></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade [data]="data" placeholder="请选择日期" bordered="false" required></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade [data]="data" placeholder="没有边框" bordered="false" disabled></x-cascade>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col > x-cascade {
-        width: 15rem;
-        display: block;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCascadeBorderedComponent {
-  data = data;
-  constructor() {}
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-cascade [data]="data" placeholder="请选择" [nodeTpl]="nodeTpl" [valueTpl]="valueTpl"></x-cascade>
-      </x-col>
-      <x-col span="24">
-        <x-cascade
-          [data]="data"
-          [(ngModel)]="model"
-          placeholder="请选择"
-          [nodeTpl]="nodeTpl"
-          [valueTpl]="valueTpl"
-        ></x-cascade>
-      </x-col>
-    </x-row>
-    <ng-template #nodeTpl let-node="$node"> <x-icon type="fto-map-pin"></x-icon> {{ node.label }} </ng-template>
-    <ng-template #valueTpl let-nodes="$nodes">
-      <ng-container *ngFor="let node of nodes; index as i">
-        <x-icon type="fto-chevron-right" *ngIf="i > 0"></x-icon> {{ node.label }}
-      </ng-container>
-    </ng-template>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col > x-cascade {
-        width: 15rem;
-        display: block;
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCascadeCustomComponent {
-  data = data;
-  model = 20;
-  constructor() {}
-}

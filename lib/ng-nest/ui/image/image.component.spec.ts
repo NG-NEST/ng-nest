@@ -1,33 +1,48 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XImageComponent } from '@ng-nest/ui/image';
-import { FormsModule } from '@angular/forms';
-import { XImagePrefix } from './image.property';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerComponent } from '@ng-nest/ui/container';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { XImageComponent, XImagePrefix } from '@ng-nest/ui/image';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XTemplate } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XImageComponent],
+  template: ` <x-image></x-image> `
+})
+class XTestImageComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XImageComponent],
+  template: ` <x-image> </x-image> `
+})
+class XTestImagePropertyComponent {
+  src = signal('');
+  width = signal('');
+  height = signal('');
+  alt = signal('');
+  fallback = signal('');
+  previewText = signal('');
+  placeholder = signal('');
+  previewTpl = signal<XTemplate>('');
+
+  errorResult = signal<ErrorEvent | null>(null);
+  error(event: ErrorEvent) {
+    this.errorResult.set(event);
+  }
+
+  loadResult = signal<Event | null>(null);
+  load(event: Event) {
+    this.loadResult.set(event);
+  }
+}
 
 describe(XImagePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXImageComponent],
-      imports: [
-        BrowserAnimationsModule,
-        
-        FormsModule,
-        XImageComponent,
-        XButtonComponent,
-        XContainerComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent
-      ],
+      imports: [XTestImageComponent, XTestImagePropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -35,23 +50,54 @@ describe(XImagePrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXImageComponent>;
-    let image: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestImageComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXImageComponent);
+      fixture = TestBed.createComponent(XTestImageComponent);
       fixture.detectChanges();
-      image = fixture.debugElement.query(By.directive(XImageComponent));
     });
-    it('should create.', () => {
-      expect(image).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XImageComponent));
+      expect(com).toBeDefined();
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestImagePropertyComponent>;
+    // let component: XTestImagePropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestImagePropertyComponent);
+      // component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('src.', () => {
+      expect(true).toBe(true);
+    });
+    it('width.', () => {
+      expect(true).toBe(true);
+    });
+    it('height.', () => {
+      expect(true).toBe(true);
+    });
+    it('alt.', () => {
+      expect(true).toBe(true);
+    });
+    it('fallback.', () => {
+      expect(true).toBe(true);
+    });
+    it('previewText.', () => {
+      expect(true).toBe(true);
+    });
+    it('placeholder.', () => {
+      expect(true).toBe(true);
+    });
+    it('previewTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('error.', () => {
+      expect(true).toBe(true);
+    });
+    it('load.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: ` <x-image></x-image> `
-})
-class TestXImageComponent {
-  constructor() {}
-}

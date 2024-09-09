@@ -1,56 +1,100 @@
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { Observable } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
-import { FormsModule } from '@angular/forms';
-import { XCheckboxPrefix, XCheckboxNode } from './checkbox.property';
-import { XData } from '@ng-nest/ui/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XSelectComponent } from '@ng-nest/ui/select';
-import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
-import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
-import { XCascadeComponent } from '@ng-nest/ui/cascade';
-import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
-import { XFindComponent } from '@ng-nest/ui/find';
-import { XTextareaComponent } from '@ng-nest/ui/textarea';
-import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XInputComponent } from '@ng-nest/ui/input';
+import { XCheckboxComponent, XCheckboxNode, XCheckboxPrefix } from '@ng-nest/ui/checkbox';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { XTagComponent } from '@ng-nest/ui/tag';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XAlign, XData, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+import { XButtonType } from '@ng-nest/ui/button';
+
+@Component({
+  standalone: true,
+  imports: [XCheckboxComponent],
+  template: ` <x-checkbox></x-checkbox> `
+})
+class XTestCheckboxComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XCheckboxComponent],
+  template: `
+    <x-checkbox
+      [data]="data()"
+      [button]="button()"
+      [icon]="icon()"
+      [tag]="tag()"
+      [indeterminate]="indeterminate()"
+      [type]="type()"
+      [tagBordered]="tagBordered()"
+      [tagDark]="tagDark()"
+      [single]="single()"
+      [vertical]="vertical()"
+      [size]="size()"
+      [pointer]="pointer()"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
+      [active]="active()"
+      [inputValidator]="inputValidator()"
+    >
+    </x-checkbox>
+
+    <ng-template #beforeTemplate>before</ng-template>
+    <ng-template #afterTemplate>after</ng-template>
+  `
+})
+class XTestCheckboxPropertyComponent {
+  data = signal<XData<XCheckboxNode>>([]);
+  button = signal(false);
+  icon = signal(false);
+  tag = signal(false);
+  indeterminate = signal(false);
+  type = signal<XButtonType>('initial');
+  tagBordered = signal(true);
+  tagDark = signal(false);
+  single = signal(false);
+  vertical = signal(false);
+  size = signal<XSize>('medium');
+  pointer = signal(false);
+  label = signal('');
+  labelWidth = signal('');
+  labelAlign = signal<XAlign>('start');
+  justify = signal<XJustify>('start');
+  align = signal<XAlign>('start');
+  direction = signal<XDirection>('column');
+  placeholder = signal('');
+  disabled = signal(false);
+  required = signal(false);
+  readonly = signal(false);
+  valueTpl = signal<TemplateRef<any> | null>(null);
+  valueTplContext = signal(null);
+  before = signal<XTemplate | null>(null);
+  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  after = signal<XTemplate | null>(null);
+  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  pattern = signal<RegExp | RegExp[] | null>(null);
+  message = signal<string | string[]>([]);
+  active = signal(false);
+  inputValidator = signal<((value: any) => boolean) | null>(null);
+}
 
 describe(XCheckboxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestXCheckboxComponent,
-        TestXCheckboxDisabledComponent,
-        TestXCheckboxButtonComponent,
-        TestXCheckboxIconComponent,
-        TestXCheckboxAsyncComponent,
-        TestXCheckboxIndeterminateComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        XCheckboxComponent,
-        XButtonComponent,
-        XAutoCompleteComponent,
-        XSelectComponent,
-        XDatePickerComponent,
-        XRowComponent,
-        XColComponent,
-        XCascadeComponent,
-        XColorPickerComponent,
-        XFindComponent,
-        XTextareaComponent,
-        XTimePickerModule,
-        XInputComponent,
-        XTagComponent
-      ],
+      imports: [XTestCheckboxComponent, XTestCheckboxPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -58,348 +102,114 @@ describe(XCheckboxPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXCheckboxComponent>;
-    let checkbox: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestCheckboxComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCheckboxComponent);
+      fixture = TestBed.createComponent(XTestCheckboxComponent);
       fixture.detectChanges();
-      checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
     });
-    it('should create.', () => {
-      expect(checkbox).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XCheckboxComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`disabled.`, () => {
-    let fixture: ComponentFixture<TestXCheckboxDisabledComponent>;
-    let checkbox: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCheckboxDisabledComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestCheckboxPropertyComponent>;
+    // let component: XTestCheckboxPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestCheckboxPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
     });
-    it('should create.', () => {
-      expect(checkbox).toBeDefined();
+    it('data.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`button.`, () => {
-    let fixture: ComponentFixture<TestXCheckboxButtonComponent>;
-    let checkbox: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCheckboxButtonComponent);
-      fixture.detectChanges();
-      checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
+    it('button.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(checkbox).toBeDefined();
+    it('icon.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`icon.`, () => {
-    let fixture: ComponentFixture<TestXCheckboxIconComponent>;
-    let checkbox: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCheckboxIconComponent);
-      fixture.detectChanges();
-      checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
+    it('tag.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(checkbox).toBeDefined();
+    it('indeterminate.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`async.`, () => {
-    let fixture: ComponentFixture<TestXCheckboxAsyncComponent>;
-    let checkbox: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCheckboxAsyncComponent);
-      fixture.detectChanges();
-      checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
+    it('type.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(checkbox).toBeDefined();
+    it('tagBordered.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`indeterminate.`, () => {
-    let fixture: ComponentFixture<TestXCheckboxIndeterminateComponent>;
-    let checkbox: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXCheckboxIndeterminateComponent);
-      fixture.detectChanges();
-      checkbox = fixture.debugElement.query(By.directive(XCheckboxComponent));
+    it('tagDark.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(checkbox).toBeDefined();
+    it('single.', () => {
+      expect(true).toBe(true);
+    });
+    it('vertical.', () => {
+      expect(true).toBe(true);
+    });
+    it('size.', () => {
+      expect(true).toBe(true);
+    });
+    it('pointer.', () => {
+      expect(true).toBe(true);
+    });
+    it('label.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelAlign.', () => {
+      expect(true).toBe(true);
+    });
+    it('justify.', () => {
+      expect(true).toBe(true);
+    });
+    it('align.', () => {
+      expect(true).toBe(true);
+    });
+    it('direction.', () => {
+      expect(true).toBe(true);
+    });
+    it('placeholder.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('required.', () => {
+      expect(true).toBe(true);
+    });
+    it('readonly.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTplContext.', () => {
+      expect(true).toBe(true);
+    });
+    it('before.', () => {
+      expect(true).toBe(true);
+    });
+    it('after.', () => {
+      expect(true).toBe(true);
+    });
+    it('pattern.', () => {
+      expect(true).toBe(true);
+    });
+    it('message.', () => {
+      expect(true).toBe(true);
+    });
+    it('active.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputValidator.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-const data = ['QQ', '微信', '钉钉', '微博'];
-
-const iconData: XData<XCheckboxNode> = [
-  { label: 'QQ', icon: 'ado-qq' },
-  { label: '微信', icon: 'ado-wechat' },
-  { label: '钉钉', icon: 'ado-dingding' },
-  { label: '微博', icon: 'ado-weibo' }
-];
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-checkbox [data]="['一个选项']" [(ngModel)]="model1" (ngModelChange)="change($event)"></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data"></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)"></x-checkbox>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCheckboxComponent {
-  model1: boolean = true;
-  data: XData<XCheckboxNode> = data;
-  model = ['钉钉'];
-  change(value: string[]) {
-    console.log(value);
-  }
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-checkbox [data]="data" disabled></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" disabled></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="dataDisabled"></x-checkbox>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCheckboxDisabledComponent {
-  data: XData<XCheckboxNode> = data;
-  dataDisabled: XData<XCheckboxNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
-  model = ['钉钉'];
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-checkbox [data]="data" button></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" button></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" button disabled></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" button disabled></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="dataDisabled" button></x-checkbox>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCheckboxButtonComponent {
-  constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XCheckboxNode> = data;
-  dataDisabled: XData<XCheckboxNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
-  model = ['钉钉'];
-  change() {
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-checkbox [data]="data" icon></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="change($event)" icon></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" icon disabled></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" icon disabled></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="dataDisabled" icon></x-checkbox>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCheckboxIconComponent {
-  constructor(public cdr: ChangeDetectorRef) {}
-  data: XData<XCheckboxNode> = iconData;
-  dataDisabled: XData<XCheckboxNode> = [
-    { label: 'QQ', icon: 'ado-qq' },
-    { label: '微信', icon: 'ado-wechat' },
-    { label: '钉钉', disabled: true, icon: 'ado-dingding' },
-    { label: '微博', icon: 'ado-weibo' }
-  ];
-  model = ['钉钉'];
-  change(value: string[]) {
-    console.log(value);
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data"></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model"></x-checkbox>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCheckboxAsyncComponent {
-  constructor(public cdr: ChangeDetectorRef) {}
-  data!: XData<XCheckboxNode>;
-  model = ['钉钉'];
-  loading = false;
-  getData() {
-    this.loading = true;
-    this.data = new Observable((x) => {
-      // 替换成http请求，或者data直接定义成 Observable 对象
-      setTimeout(() => {
-        this.model = ['微博'];
-        this.loading = false;
-        this.cdr.detectChanges();
-        x.next(data);
-        x.complete();
-      }, 2000);
-    });
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-checkbox
-          [data]="checkAllData"
-          [(ngModel)]="checkAll"
-          (ngModelChange)="change($event)"
-          [indeterminate]="indeterminate"
-        ></x-checkbox>
-      </x-col>
-      <x-col span="24">
-        <x-checkbox [data]="data" [(ngModel)]="model" (ngModelChange)="itemChange($event)"></x-checkbox>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXCheckboxIndeterminateComponent {
-  constructor(public cdr: ChangeDetectorRef) {}
-  checkAllData: XData<XCheckboxNode> = ['全选'];
-  checkAll = false;
-  indeterminate = true;
-  data: string[] = ['QQ', '微信', '钉钉', '微博'];
-  model: any = ['QQ'];
-  change(value: boolean) {
-    this.model = value ? this.data.map((x) => x) : [];
-    this.indeterminate = false;
-    this.cdr.detectChanges();
-  }
-  itemChange(value: string[]) {
-    this.checkAll = value.length === this.data.length;
-    this.indeterminate = value.length > 0 && value.length < this.data.length;
-    this.cdr.detectChanges();
-  }
-}

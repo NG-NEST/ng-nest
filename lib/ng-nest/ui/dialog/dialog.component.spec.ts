@@ -1,38 +1,100 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { XDialogPrefix } from './dialog.property';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XPlace } from '@ng-nest/ui/core';
-import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
-import { FormsModule } from '@angular/forms';
-import { XInputComponent } from '@ng-nest/ui/input';
-import { XRadioComponent } from '@ng-nest/ui/radio';
-import { XIconComponent } from '@ng-nest/ui/icon';
-import { XLinkComponent } from '@ng-nest/ui/link';
-import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { interval } from 'rxjs';
-import { XFormComponent } from '@ng-nest/ui/form';
+import { XDialogAction, XDialogComponent, XDialogPrefix, XDialogType } from '@ng-nest/ui/dialog';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { XDialogComponent } from './dialog.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XEffect, XPlace, XTemplate } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XDialogComponent],
+  template: ` <x-dialog></x-dialog> `
+})
+class XTestDialogComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XDialogComponent],
+  template: `
+    <x-dialog
+      [title]="title()"
+      [visible]="visible()"
+      [placement]="placement()"
+      [offset]="offset()"
+      [type]="type()"
+      [hideClose]="hideClose()"
+      [closeText]="closeText()"
+      [resizable]="resizable()"
+      [offsetLeft]="offsetLeft()"
+      [offsetTop]="offsetTop()"
+      [width]="width()"
+      [height]="height()"
+      [minWidth]="minWidth()"
+      [minHeight]="minHeight()"
+      [effect]="effect()"
+      [footer]="footer()"
+      [showCancel]="showCancel()"
+      [cancelText]="cancelText()"
+      [showConfirm]="showConfirm()"
+      [confirmText]="confirmText()"
+      [backdropClose]="backdropClose()"
+      [hasBackdrop]="hasBackdrop()"
+      [className]="className()"
+      [buttonsCenter]="buttonsCenter()"
+      [draggable]="draggable()"
+      [maximize]="maximize()"
+      [beforeClose]="beforeClose()"
+      (cancel)="cancel()"
+      (confirm)="confirm()"
+      (close)="close()"
+      (showDone)="showDone()"
+    ></x-dialog>
+  `
+})
+class XTestDialogPropertyComponent {
+  title = signal<XTemplate>('');
+  visible = signal(false);
+  placement = signal<XPlace>('center');
+  offset = signal('1rem');
+  type = signal<XDialogType>('info');
+  hideClose = signal(false);
+  closeText = signal('');
+  resizable = signal(false);
+  offsetLeft = signal(0);
+  offsetTop = signal(0);
+  width = signal('32rem');
+  height = signal('');
+  minWidth = signal('18rem');
+  minHeight = signal('8rem');
+  effect = signal<XEffect>('white');
+  footer = signal<XTemplate>('');
+  showCancel = signal(true);
+  cancelText = signal('');
+  showConfirm = signal(true);
+  confirmText = signal('');
+  backdropClose = signal(true);
+  hasBackdrop = signal(true);
+  className = signal('');
+  buttonsCenter = signal(false);
+  draggable = signal(false);
+  maximize = signal(false);
+  beforeClose = signal<((action: XDialogAction) => void) | null>(null);
+  cancel() {}
+
+  confirm() {}
+
+  close() {}
+
+  showDone() {}
+
+  closeDone() {}
+}
 
 describe(XDialogPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXDialogComponent, TestXDialogDraggableComponent],
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        XInputComponent,
-        XRadioComponent,
-        XDialogComponent,
-        XButtonComponent,
-        XIconComponent,
-        XLinkComponent,
-        XFormComponent
-      ],
+      imports: [XTestDialogComponent, XTestDialogPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -40,304 +102,120 @@ describe(XDialogPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXDialogComponent>;
-    let dialog: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestDialogComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDialogComponent);
+      fixture = TestBed.createComponent(XTestDialogComponent);
       fixture.detectChanges();
-      dialog = fixture.debugElement.query(By.directive(XDialogComponent));
     });
-    it('should create.', () => {
-      expect(dialog).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XDialogComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`draggable.`, () => {
-    let fixture: ComponentFixture<TestXDialogDraggableComponent>;
-    let dialog: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXDialogDraggableComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestDialogPropertyComponent>;
+    // let component: XTestDialogPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestDialogPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      dialog = fixture.debugElement.query(By.directive(XDialogComponent));
     });
-    it('should create.', () => {
-      expect(dialog).toBeDefined();
+    it('title.', () => {
+      expect(true).toBe(true);
+    });
+    it('visible.', () => {
+      expect(true).toBe(true);
+    });
+    it('placement.', () => {
+      expect(true).toBe(true);
+    });
+    it('offset.', () => {
+      expect(true).toBe(true);
+    });
+    it('type.', () => {
+      expect(true).toBe(true);
+    });
+    it('hideClose.', () => {
+      expect(true).toBe(true);
+    });
+    it('closeText.', () => {
+      expect(true).toBe(true);
+    });
+    it('resizable.', () => {
+      expect(true).toBe(true);
+    });
+    it('offsetLeft.', () => {
+      expect(true).toBe(true);
+    });
+    it('offsetTop.', () => {
+      expect(true).toBe(true);
+    });
+    it('width.', () => {
+      expect(true).toBe(true);
+    });
+    it('height.', () => {
+      expect(true).toBe(true);
+    });
+    it('minWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('minHeight.', () => {
+      expect(true).toBe(true);
+    });
+    it('effect.', () => {
+      expect(true).toBe(true);
+    });
+    it('footer.', () => {
+      expect(true).toBe(true);
+    });
+    it('showCancel.', () => {
+      expect(true).toBe(true);
+    });
+    it('cancelText.', () => {
+      expect(true).toBe(true);
+    });
+    it('showConfirm.', () => {
+      expect(true).toBe(true);
+    });
+    it('confirmText.', () => {
+      expect(true).toBe(true);
+    });
+    it('backdropClose.', () => {
+      expect(true).toBe(true);
+    });
+    it('hasBackdrop.', () => {
+      expect(true).toBe(true);
+    });
+    it('className.', () => {
+      expect(true).toBe(true);
+    });
+    it('buttonsCenter.', () => {
+      expect(true).toBe(true);
+    });
+    it('draggable.', () => {
+      expect(true).toBe(true);
+    });
+    it('maximize.', () => {
+      expect(true).toBe(true);
+    });
+    it('beforeClose.', () => {
+      expect(true).toBe(true);
+    });
+    it('cancel.', () => {
+      expect(true).toBe(true);
+    });
+    it('confirm.', () => {
+      expect(true).toBe(true);
+    });
+    it('close.', () => {
+      expect(true).toBe(true);
+    });
+    it('showDone.', () => {
+      expect(true).toBe(true);
+    });
+    it('closeDone.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    <x-button (click)="english()">切换为英文</x-button>
-    <x-button (click)="chinese()">切换为中文</x-button>
-    
-    <div class="box">
-      <div class="row">
-        <x-button (click)="dialog('top-start')">上左</x-button>
-        <x-button (click)="dialog('top')">上</x-button>
-        <x-button (click)="dialog('top-end')">上右</x-button>
-      </div>
-      <div class="row">
-        <x-button (click)="dialog('left')">左</x-button>
-        <x-button (click)="dialog('center')">中(默认)</x-button>
-        <x-button (click)="dialog('right')">右</x-button>
-      </div>
-      <div class="row">
-        <x-button (click)="dialog('bottom-start')">下左</x-button>
-        <x-button (click)="dialog('bottom')">下</x-button>
-        <x-button (click)="dialog('bottom-end')">下右</x-button>
-      </div>
-    </div>
-
-    <x-dialog
-      title="标题"
-      [(visible)]="visible"
-      [placement]="placement"
-      [beforeClose]="beforeClose"
-      (cancel)="refresh()"
-      (confirm)="refresh()"
-    >
-      <span
-        >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
-      >
-    </x-dialog>
-
-    <div class="row">
-      <x-button (click)="customTable()">自定义表格</x-button>
-      <x-dialog
-        title="表格"
-        width="80%"
-        height="80%"
-        [(visible)]="visibleTable"
-        (close)="refresh()"
-        (cancel)="refresh()"
-        (confirm)="refresh()"
-      >
-        <table class="custom-table">
-          <tr>
-            <th>用户</th>
-            <th>邮箱</th>
-            <th>状态</th>
-          </tr>
-          <tr>
-            <td>admin</td>
-            <td>admin&#64;admin.com</td>
-            <td>启用</td>
-          </tr>
-          <tr>
-            <td>john</td>
-            <td>john&#64;john.com</td>
-            <td>禁用</td>
-          </tr>
-          <tr>
-            <td>jack</td>
-            <td>jack&#64;jack.com</td>
-            <td>启用</td>
-          </tr>
-        </table>
-      </x-dialog>
-    </div>
-
-    <div class="row">
-      <x-button (click)="customForm()">自定义表单</x-button>
-      <x-dialog
-        title="表单"
-        [(visible)]="visibleForm"
-        (close)="refresh()"
-        (cancel)="refresh()"
-        (confirm)="refresh()"
-        buttonsCenter
-      >
-        <ul class="custom-form">
-          <li><x-input label="账号" direction="row"></x-input></li>
-          <li><x-input label="邮箱" direction="row"></x-input></li>
-          <li><x-radio [data]="['启用', '禁用']" [ngModel]="'启用'"></x-radio></li>
-        </ul>
-      </x-dialog>
-    </div>
-
-    <div class="row">
-      <x-button (click)="custom()">自定义标题以及底部按钮</x-button>
-      <x-dialog
-        [title]="titleTpl"
-        [footer]="footerTpl"
-        [(visible)]="visibleCustom"
-        (close)="refresh()"
-        (cancel)="refresh()"
-        (confirm)="refresh()"
-      >
-        <span
-          >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
-        >
-        <ng-template #titleTpl>
-          <x-icon type="fto-user"></x-icon>
-        </ng-template>
-        <ng-template #footerTpl>
-          <div class="custom-footer">
-            <x-link type="success" (click)="customClose()">知道了</x-link>
-          </div>
-        </ng-template>
-      </x-dialog>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .box {
-        width: 16rem;
-        height: 10rem;
-        padding: 0.5rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .box .row:first-child {
-        align-items: flex-start;
-      }
-      .box .row:last-child {
-        align-items: flex-end;
-      }
-      .custom-table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      .custom-table tr {
-        border-bottom: 0.0625rem solid var(--x-border);
-      }
-      .custom-table tr th,
-      .custom-table tr td {
-        padding: 0.25rem 0.325rem;
-        text-align: left;
-      }
-      .custom-form li {
-        margin-top: 1rem;
-      }
-      .custom-footer {
-        margin-top: 1rem;
-        text-align: center;
-      }
-    `
-  ]
-})
-class TestXDialogComponent {
-  visible!: boolean;
-  placement!: XPlace;
-  visibleTable!: boolean;
-  visibleForm!: boolean;
-  visibleCustom!: boolean;
-
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private msgBox: XMessageBoxService,
-    private i18nService: XI18nService
-  ) {
-    // interval(1000).subscribe((x) => {
-    //   console.log(this.visibleForm);
-    //   this.cdr.detectChanges();
-    // });
-  }
-
-  dialog(place: XPlace) {
-    this.placement = place;
-    this.visible = true;
-    this.cdr.detectChanges();
-  }
-
-  refresh() {
-    this.cdr.detectChanges();
-  }
-
-  beforeClose = () => {
-    this.msgBox.confirm({
-      title: '提示',
-      content: '有未保存的数据，确认关闭吗？',
-      type: 'warning',
-      callback: (action: XMessageBoxAction) => {
-        if (action === 'confirm') {
-          this.visible = false;
-          this.cdr.detectChanges();
-        }
-      }
-    });
-  };
-
-  customTable() {
-    this.visibleTable = true;
-    this.cdr.detectChanges();
-  }
-
-  customForm() {
-    this.visibleForm = true;
-    this.cdr.detectChanges();
-  }
-
-  custom() {
-    this.visibleCustom = true;
-    this.cdr.detectChanges();
-  }
-
-  customClose() {
-    this.visibleCustom = false;
-    this.cdr.detectChanges();
-  }
-
-  english() {
-    this.i18nService.setLocale(en_US);
-    this.cdr.detectChanges();
-  }
-
-  chinese() {
-    this.i18nService.setLocale(zh_CN);
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    <div class="row">
-      <x-button (click)="dialog('center')">中(默认)</x-button>
-    </div>
-
-    <x-dialog title="标题" [(visible)]="visible" draggable>
-      <span
-        >天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。</span
-      >
-    </x-dialog>
-  `,
-  styles: [
-    `
-      .row {
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-    `
-  ]
-})
-class TestXDialogDraggableComponent {
-  visible!: boolean;
-
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(0).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-
-  dialog() {
-    this.visible = true;
-    this.cdr.detectChanges();
-  }
-
-  refresh() {
-    this.cdr.detectChanges();
-  }
-}

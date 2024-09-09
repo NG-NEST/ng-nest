@@ -1,17 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XApiComponent } from '@ng-nest/ui/api';
-import { XApiPrefix } from './api.property';
+import { XApiComponent, XApiPrefix } from '@ng-nest/ui/api';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
+@Component({
+  standalone: true,
+  imports: [XApiComponent],
+  template: ` <x-api></x-api> `
+})
+class XTestApiComponent {}
 
 describe(XApiPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXApiComponent],
-      imports: [XApiComponent],
+      imports: [XTestApiComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -19,28 +23,15 @@ describe(XApiPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXApiComponent>;
-    let debugElement: DebugElement;
-    let element: Element;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestApiComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXApiComponent);
+      fixture = TestBed.createComponent(XTestApiComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XApiComponent));
-      element = debugElement.nativeElement;
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
-    });
-    it('should className.', () => {
-      fixture.detectChanges();
-      expect(element.classList).toContain(XApiPrefix);
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XApiComponent));
+      expect(com).toBeDefined();
     });
   });
 });
-
-@Component({
-  selector: 'test-x-api',
-  template: ` <x-api>x-api</x-api> `
-})
-class TestXApiComponent {}

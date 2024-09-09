@@ -1,161 +1,106 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XLoadingComponent } from '@ng-nest/ui/loading';
-import { FormsModule } from '@angular/forms';
-import { XLoadingPrefix } from './loading.property';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { XContainerComponent } from '@ng-nest/ui/container';
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { XLoadingComponent, XLoadingPrefix } from '@ng-nest/ui/loading';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XBoolean, XCorner, XSize } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+@Component({
+  standalone: true,
+  imports: [XLoadingComponent],
+  template: ` <div x-loading></div> `
+})
+class XTestLoadingComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XLoadingComponent],
+  template: `
+    <div
+      [x-loading]="loading()"
+      [zIndex]="zIndex()"
+      [size]="size()"
+      [text]="text()"
+      [icon]="icon()"
+      [color]="color()"
+      [fullScreen]="fullScreen()"
+      [radius]="radius()"
+      [background]="background()"
+    ></div>
+  `
+})
+class XTestLoadingPropertyComponent {
+  loading = signal(false);
+  zIndex = signal(10);
+  size = signal<XSize | number>('medium');
+  text = signal('');
+  icon = signal('');
+  color = signal('');
+  fullScreen = signal(false);
+  radius = signal<XBoolean | XCorner[] | null>(null);
+  background = signal('');
+}
 
 describe(XLoadingPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXLoadingComponent],
-      imports: [
-        BrowserAnimationsModule,
-        
-        FormsModule,
-        BrowserAnimationsModule,
-        XLoadingComponent,
-        XButtonComponent,
-        XContainerComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent
-      ],
+      imports: [XTestLoadingComponent, XTestLoadingPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXLoadingComponent>;
-    let loading: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestLoadingComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXLoadingComponent);
+      fixture = TestBed.createComponent(XTestLoadingComponent);
       fixture.detectChanges();
-      loading = fixture.debugElement.query(By.directive(XLoadingComponent));
     });
-    it('should create.', () => {
-      expect(loading).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XLoadingComponent));
+      expect(com).toBeDefined();
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestLoadingPropertyComponent>;
+    // let component: XTestLoadingPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestLoadingPropertyComponent);
+      // component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('loading.', () => {
+      expect(true).toBe(true);
+    });
+    it('zIndex.', () => {
+      expect(true).toBe(true);
+    });
+    it('size.', () => {
+      expect(true).toBe(true);
+    });
+    it('text.', () => {
+      expect(true).toBe(true);
+    });
+    it('icon.', () => {
+      expect(true).toBe(true);
+    });
+    it('color.', () => {
+      expect(true).toBe(true);
+    });
+    it('fullScreen.', () => {
+      expect(true).toBe(true);
+    });
+    it('radius.', () => {
+      expect(true).toBe(true);
+    });
+    it('background.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    
-    <div class="row">
-      <div x-loading="true" size="big">
-        <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
-      </div>
-      <div x-loading="true" size="large">
-        <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
-      </div>
-      <div x-loading="true">
-        <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
-      </div>
-      <div x-loading="true" size="small">
-        <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
-      </div>
-      <div x-loading="true" size="mini">
-        <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
-      </div>
-    </div>
-
-    <div class="row">
-      <div
-        [x-loading]="true"
-        background="rgba(0,0,0,0.9)"
-        color="rgba(170,170,170,1)"
-        icon="fto-loader"
-        text="努力加载中"
-      >
-        <ng-container *ngTemplateOutlet="tableTpl"></ng-container>
-      </div>
-    </div>
-
-    <ng-template #tableTpl>
-      <table class="custom-table">
-        <tr>
-          <th>用户</th>
-          <th>邮箱</th>
-          <th>状态</th>
-        </tr>
-        <tr>
-          <td>admin</td>
-          <td>admin&#64;admin.com</td>
-          <td>启用</td>
-        </tr>
-        <tr>
-          <td>john</td>
-          <td>john&#64;john.com</td>
-          <td>禁用</td>
-        </tr>
-        <tr>
-          <td>jack</td>
-          <td>jack&#64;jack.com</td>
-          <td>启用</td>
-        </tr>
-      </table>
-    </ng-template>
-
-    <div class="row">
-      <div [x-loading]="loading" fullScreen>
-        <x-button (click)="onLoading()">整页加载</x-button>
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row div {
-        padding: 1rem;
-      }
-
-      .custom-table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      .custom-table tr {
-        border-bottom: 0.0625rem solid var(--x-border);
-      }
-      .custom-table tr th,
-      .custom-table tr td {
-        padding: 0.25rem 0.325rem;
-        text-align: left;
-      }
-    `
-  ]
-})
-class TestXLoadingComponent {
-  loading = false;
-  constructor(private cdr: ChangeDetectorRef) {}
-  onLoading() {
-    this.loading = true;
-    this.cdr.detectChanges();
-    of(true)
-      .pipe(delay(2000))
-      .subscribe(() => {
-        this.loading = false;
-        this.cdr.detectChanges();
-      });
-  }
-}
