@@ -40,7 +40,7 @@
     "conventional-changelog": "^6.0.0",
     "conventional-changelog-cli": "^5.0.0",
     "core-js": "^3.37.1",
-    "express": "^4.18.2",
+    "express": "^4.21.0",
     "fs-extra": "^11.2.0",
     "marked": "^12.0.1",
     "marked-highlight": "^2.1.1",
