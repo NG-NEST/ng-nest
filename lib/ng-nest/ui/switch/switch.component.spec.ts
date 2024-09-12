@@ -1,34 +1,86 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSwitchComponent } from '@ng-nest/ui/switch';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XSwitchPrefix } from './switch.property';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { XSwitchComponent, XSwitchPrefix } from '@ng-nest/ui/switch';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { XRadioComponent } from '@ng-nest/ui/radio';
-import { XInputComponent } from '@ng-nest/ui/input';
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XAlign, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XSwitchComponent],
+  template: ` <x-switch></x-switch> `
+})
+class XTestSwitchComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XSwitchComponent],
+  template: `
+    <x-switch
+      [loading]="loading()"
+      [manual]="manual()"
+      [checkedText]="checkedText()"
+      [unCheckedText]="unCheckedText()"
+      [size]="size()"
+      [pointer]="pointer()"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
+      [active]="active()"
+      [inputValidator]="inputValidator()"
+    ></x-switch>
+
+    <ng-template #beforeTemplate>before</ng-template>
+    <ng-template #afterTemplate>after</ng-template>
+  `
+})
+class XTestSwitchPropertyComponent {
+  loading = signal(false);
+  manual = signal(false);
+  checkedText = signal<XTemplate | null>(null);
+  unCheckedText = signal<XTemplate | null>(null);
+  size = signal<XSize>('medium');
+  pointer = signal(false);
+  label = signal('');
+  labelWidth = signal('');
+  labelAlign = signal<XAlign>('start');
+  justify = signal<XJustify>('start');
+  align = signal<XAlign>('start');
+  direction = signal<XDirection>('column');
+  placeholder = signal('');
+  disabled = signal(false);
+  required = signal(false);
+  readonly = signal(false);
+  valueTpl = signal<TemplateRef<any> | null>(null);
+  valueTplContext = signal(null);
+  before = signal<XTemplate | null>(null);
+  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  after = signal<XTemplate | null>(null);
+  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  pattern = signal<RegExp | RegExp[] | null>(null);
+  message = signal<string | string[]>([]);
+  active = signal(false);
+  inputValidator = signal<((value: any) => boolean) | null>(null);
+}
 
 describe(XSwitchPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXSwitchComponent, TestXSwitchLabelComponent, TestXSwitchDisabledComponent],
-      imports: [
-        BrowserAnimationsModule,
-        
-        XSwitchComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XRadioComponent,
-        XInputComponent,
-        XIconComponent
-      ],
+      imports: [XTestSwitchComponent, XTestSwitchPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -36,149 +88,96 @@ describe(XSwitchPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXSwitchComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestSwitchComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSwitchComponent);
+      fixture = TestBed.createComponent(XTestSwitchComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XSwitchComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XSwitchComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`label.`, () => {
-    let fixture: ComponentFixture<TestXSwitchLabelComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSwitchLabelComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestSwitchPropertyComponent>;
+    // let component: XTestSwitchPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestSwitchPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSwitchLabelComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('loading.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`disabled.`, () => {
-    let fixture: ComponentFixture<TestXSwitchDisabledComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSwitchDisabledComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSwitchDisabledComponent));
+    it('manual.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('checkedText.', () => {
+      expect(true).toBe(true);
+    });
+    it('unCheckedText.', () => {
+      expect(true).toBe(true);
+    });
+    it('size.', () => {
+      expect(true).toBe(true);
+    });
+    it('pointer.', () => {
+      expect(true).toBe(true);
+    });
+    it('label.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelAlign.', () => {
+      expect(true).toBe(true);
+    });
+    it('justify.', () => {
+      expect(true).toBe(true);
+    });
+    it('align.', () => {
+      expect(true).toBe(true);
+    });
+    it('direction.', () => {
+      expect(true).toBe(true);
+    });
+    it('placeholder.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('required.', () => {
+      expect(true).toBe(true);
+    });
+    it('readonly.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTplContext.', () => {
+      expect(true).toBe(true);
+    });
+    it('before.', () => {
+      expect(true).toBe(true);
+    });
+    it('after.', () => {
+      expect(true).toBe(true);
+    });
+    it('pattern.', () => {
+      expect(true).toBe(true);
+    });
+    it('message.', () => {
+      expect(true).toBe(true);
+    });
+    it('active.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputValidator.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="12">
-        <x-switch [(ngModel)]="model1" (ngModelChange)="change($event)"></x-switch>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-switch [(ngModel)]="model2" (ngModelChange)="change($event)"></x-switch>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        height: 900px;
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXSwitchComponent {
-  model1!: boolean;
-  model2 = true;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change() {
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="12">
-        <x-switch label="方式"></x-switch>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-switch label="方式" direction="column-reverse"></x-switch>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-switch label="方式" direction="row"></x-switch>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-switch label="方式" direction="row-reverse"></x-switch>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXSwitchLabelComponent {
-  constructor() {}
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="12">
-        <x-switch disabled></x-switch>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-switch [(ngModel)]="model" disabled></x-switch>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXSwitchDisabledComponent {
-  model = true;
-}

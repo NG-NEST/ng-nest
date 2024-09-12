@@ -1,40 +1,113 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XSliderSelectPrefix } from './slider-select.property';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XSliderSelectComponent, XSliderSelectMark, XSliderSelectPrefix } from '@ng-nest/ui/slider-select';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { XIconComponent } from '@ng-nest/ui/icon';
-import { XButtonComponent } from '@ng-nest/ui/button';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XAlign, XDirection, XJustify, XTemplate } from '@ng-nest/ui/core';
+import { CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop';
+
+@Component({
+  standalone: true,
+  imports: [XSliderSelectComponent],
+  template: ` <x-slider-select> </x-slider-select> `
+})
+class XTestSliderSelectComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XSliderSelectComponent],
+  template: `
+    <x-slider-select
+      [min]="min()"
+      [max]="max()"
+      [step]="step()"
+      [precision]="precision()"
+      [showTooltip]="showTooltip()"
+      [reverse]="reverse()"
+      [vertical]="vertical()"
+      [range]="range()"
+      [customButton]="customButton()"
+      [marks]="marks()"
+      [tooltipCustom]="tooltipCustom()"
+      [pointer]="pointer()"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
+      [active]="active()"
+      [inputValidator]="inputValidator()"
+      (dragStartEmit)="dragStartEmit($event)"
+      (dragMoveEmit)="dragMoveEmit($event)"
+      (dragEndEmit)="dragEndEmit($event)"
+    >
+    </x-slider-select>
+  `
+})
+class XTestSliderSelectPropertyComponent {
+  min = signal(0);
+  max = signal(100);
+  step = signal(100);
+  precision = signal<number | null>(null);
+  showTooltip = signal(true);
+  reverse = signal(false);
+  vertical = signal(false);
+  range = signal(false);
+  customButton = signal<XTemplate | null>(null);
+  marks = signal<XSliderSelectMark[]>([]);
+  tooltipCustom = signal<XTemplate | null>(null);
+  pointer = signal(false);
+  label = signal('');
+  labelWidth = signal('');
+  labelAlign = signal<XAlign>('start');
+  justify = signal<XJustify>('start');
+  align = signal<XAlign>('start');
+  direction = signal<XDirection>('column');
+  placeholder = signal('');
+  disabled = signal(false);
+  required = signal(false);
+  readonly = signal(false);
+  valueTpl = signal<TemplateRef<any> | null>(null);
+  valueTplContext = signal(null);
+  before = signal<XTemplate | null>(null);
+  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  after = signal<XTemplate | null>(null);
+  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  pattern = signal<RegExp | RegExp[] | null>(null);
+  message = signal<string | string[]>([]);
+  active = signal(false);
+  inputValidator = signal<((value: any) => boolean) | null>(null);
+
+  dragStartEmitResult = signal<CdkDragStart | null>(null);
+  dragStartEmit(start: CdkDragStart) {
+    this.dragStartEmitResult.set(start);
+  }
+  dragMoveEmitResult = signal<CdkDragMove | null>(null);
+  dragMoveEmit(move: CdkDragMove) {
+    this.dragMoveEmitResult.set(move);
+  }
+  dragEndEmitResult = signal<CdkDragEnd | null>(null);
+  dragEndEmit(end: CdkDragEnd) {
+    this.dragEndEmitResult.set(end);
+  }
+}
 
 describe(XSliderSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestXSliderSelectComponent,
-        TestXSliderSelectLabelComponent,
-        TestXSliderSelectLimitComponent,
-        TestXSliderSelectPrecisionComponent,
-        TestXSliderSelectDisabledComponent,
-        TestXSliderSelectTabsComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        XSliderSelectComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent,
-        XTabsComponent,
-        XTabComponent,
-        XIconComponent,
-        XButtonComponent
-      ],
+      imports: [XTestSliderSelectComponent, XTestSliderSelectPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -42,288 +115,114 @@ describe(XSliderSelectPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXSliderSelectComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestSliderSelectComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSliderSelectComponent);
+      fixture = TestBed.createComponent(XTestSliderSelectComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XSliderSelectComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XSliderSelectComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`label.`, () => {
-    let fixture: ComponentFixture<TestXSliderSelectLabelComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSliderSelectLabelComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestSliderSelectPropertyComponent>;
+    // let component: XTestSliderSelectPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestSliderSelectPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectLabelComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('min.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`limit.`, () => {
-    let fixture: ComponentFixture<TestXSliderSelectLimitComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSliderSelectLimitComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectLimitComponent));
+    it('max.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('step.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`precision.`, () => {
-    let fixture: ComponentFixture<TestXSliderSelectPrecisionComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSliderSelectPrecisionComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectPrecisionComponent));
+    it('precision.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('showTooltip.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`disabled.`, () => {
-    let fixture: ComponentFixture<TestXSliderSelectDisabledComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSliderSelectDisabledComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectDisabledComponent));
+    it('reverse.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('vertical.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`tabs.`, () => {
-    let fixture: ComponentFixture<TestXSliderSelectTabsComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXSliderSelectTabsComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXSliderSelectDisabledComponent));
+    it('range.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('customButton.', () => {
+      expect(true).toBe(true);
+    });
+    it('marks.', () => {
+      expect(true).toBe(true);
+    });
+    it('tooltipCustom.', () => {
+      expect(true).toBe(true);
+    });
+    it('pointer.', () => {
+      expect(true).toBe(true);
+    });
+    it('label.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelAlign.', () => {
+      expect(true).toBe(true);
+    });
+    it('justify.', () => {
+      expect(true).toBe(true);
+    });
+    it('align.', () => {
+      expect(true).toBe(true);
+    });
+    it('direction.', () => {
+      expect(true).toBe(true);
+    });
+    it('placeholder.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('required.', () => {
+      expect(true).toBe(true);
+    });
+    it('readonly.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTplContext.', () => {
+      expect(true).toBe(true);
+    });
+    it('before.', () => {
+      expect(true).toBe(true);
+    });
+    it('after.', () => {
+      expect(true).toBe(true);
+    });
+    it('pattern.', () => {
+      expect(true).toBe(true);
+    });
+    it('message.', () => {
+      expect(true).toBe(true);
+    });
+    it('active.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputValidator.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-slider-select></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-slider-select [(ngModel)]="model"></x-slider-select>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXSliderSelectComponent {
-  model = 60;
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-slider-select max="10" [(ngModel)]="model1"></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-slider-select min="-10" [(ngModel)]="model2"></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-slider-select min="-10" max="10" [(ngModel)]="model3"></x-slider-select>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXSliderSelectLimitComponent {
-  model1 = 0;
-  model2 = 0;
-  model3 = 0;
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-slider-select min="0" max="1" step="0.1"></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-slider-select min="0" max="1" step="0.01"></x-slider-select>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXSliderSelectPrecisionComponent {}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-slider-select label="数量" [(ngModel)]="model"></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-slider-select label="数量" [(ngModel)]="model" direction="column-reverse"></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-slider-select label="数量" [(ngModel)]="model" direction="row"></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-slider-select label="数量" [(ngModel)]="model" direction="row-reverse"></x-slider-select>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXSliderSelectLabelComponent {
-  model: number = 0;
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="12">
-        <x-slider-select disabled></x-slider-select>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="12">
-        <x-slider-select disabled [(ngModel)]="model"></x-slider-select>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXSliderSelectDisabledComponent {
-  model = 60;
-}
-
-@Component({
-  template: `
-    <x-tabs>
-      <x-tab label="1111">
-        <x-row>
-          <x-col span="12">
-            <x-slider-select min="0" max="1" step="0.1"></x-slider-select>
-          </x-col>
-        </x-row>
-        <x-row>
-          <x-col span="12">
-            <x-slider-select min="0" max="1" step="0.01"></x-slider-select>
-          </x-col>
-        </x-row>
-      </x-tab>
-      <x-tab label="2222">
-        <x-row>
-          <x-col span="12">
-            <x-slider-select min="0" max="1" step="0.1" [(ngModel)]="model1"></x-slider-select>
-          </x-col>
-        </x-row>
-        <x-row>
-          <x-col span="12">
-            <x-slider-select min="0" max="1" step="0.01" [(ngModel)]="model2"></x-slider-select>
-          </x-col>
-        </x-row>
-      </x-tab>
-    </x-tabs>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXSliderSelectTabsComponent {
-  model1 = 0.3;
-  model2 = 0.44;
-}

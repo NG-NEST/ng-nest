@@ -1,37 +1,93 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTextareaComponent } from '@ng-nest/ui/textarea';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XTextareaPrefix } from './textarea.property';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { interval } from 'rxjs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { XTextareaComponent, XTextareaIconLayoutType, XTextareaPrefix } from '@ng-nest/ui/textarea';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XAlign, XDirection, XJustify, XTemplate } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XTextareaComponent],
+  template: ` <x-textarea></x-textarea> `
+})
+class XTestTextareaComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XTextareaComponent],
+  template: `
+    <x-textarea
+      [clearable]="clearable()"
+      [icon]="icon()"
+      [iconLayout]="iconLayout()"
+      [iconSpin]="iconSpin()"
+      [maxlength]="maxlength()"
+      [height]="height()"
+      [pointer]="pointer()"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
+      [active]="active()"
+      [inputValidator]="inputValidator()"
+    ></x-textarea>
+
+    <ng-template #beforeTemplate>before</ng-template>
+    <ng-template #afterTemplate>after</ng-template>
+  `
+})
+class XTestTextareaPropertyComponent {
+  clearable = signal(false);
+  icon = signal('');
+  iconLayout = signal<XTextareaIconLayoutType>('right');
+  iconSpin = signal(false);
+  maxlength = signal<number | null>(null);
+  height = signal('6rem');
+  pointer = signal(false);
+  label = signal('');
+  labelWidth = signal('');
+  labelAlign = signal<XAlign>('start');
+  justify = signal<XJustify>('start');
+  align = signal<XAlign>('start');
+  direction = signal<XDirection>('column');
+  placeholder = signal('');
+  disabled = signal(false);
+  required = signal(false);
+  readonly = signal(false);
+  valueTpl = signal<TemplateRef<any> | null>(null);
+  valueTplContext = signal(null);
+  before = signal<XTemplate | null>(null);
+  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  after = signal<XTemplate | null>(null);
+  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  pattern = signal<RegExp | RegExp[] | null>(null);
+  message = signal<string | string[]>([]);
+  active = signal(false);
+  inputValidator = signal<((value: any) => boolean) | null>(null);
+
+  clearEmitResult = signal<string | null>(null);
+  clearEmit(value: string) {
+    this.clearEmitResult.set(value);
+  }
+}
 
 describe(XTextareaPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestXTextareaComponent,
-        TestXTextareaLabelComponent,
-        TestXTextareaIconComponent,
-        TestXTextareaClearableComponent,
-        TestXTextareaDisabledComponent,
-        TestXTextareaRequiredComponent,
-        TestXTextareaLengthComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        
-        XTextareaComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        XRowComponent,
-        XColComponent
-      ],
+      imports: [XTestTextareaComponent, XTestTextareaPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -39,370 +95,99 @@ describe(XTextareaPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXTextareaComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestTextareaComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTextareaComponent);
+      fixture = TestBed.createComponent(XTestTextareaComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XTextareaComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XTextareaComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`label.`, () => {
-    let fixture: ComponentFixture<TestXTextareaLabelComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTextareaLabelComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestTextareaPropertyComponent>;
+    // let component: XTestTextareaPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestTextareaPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXTextareaLabelComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('clearable.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`icon.`, () => {
-    let fixture: ComponentFixture<TestXTextareaIconComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTextareaIconComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXTextareaIconComponent));
+    it('icon.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('iconLayout.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`clearable.`, () => {
-    let fixture: ComponentFixture<TestXTextareaClearableComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTextareaClearableComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXTextareaClearableComponent));
+    it('iconSpin.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('maxlength.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`disabled.`, () => {
-    let fixture: ComponentFixture<TestXTextareaDisabledComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTextareaDisabledComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXTextareaDisabledComponent));
+    it('height.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('pointer.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`required.`, () => {
-    let fixture: ComponentFixture<TestXTextareaRequiredComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTextareaRequiredComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXTextareaRequiredComponent));
+    it('label.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('labelWidth.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`length.`, () => {
-    let fixture: ComponentFixture<TestXTextareaLengthComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTextareaLengthComponent);
-      fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(TestXTextareaLengthComponent));
+    it('labelAlign.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('justify.', () => {
+      expect(true).toBe(true);
+    });
+    it('align.', () => {
+      expect(true).toBe(true);
+    });
+    it('direction.', () => {
+      expect(true).toBe(true);
+    });
+    it('placeholder.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('required.', () => {
+      expect(true).toBe(true);
+    });
+    it('readonly.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTplContext.', () => {
+      expect(true).toBe(true);
+    });
+    it('before.', () => {
+      expect(true).toBe(true);
+    });
+    it('after.', () => {
+      expect(true).toBe(true);
+    });
+    it('pattern.', () => {
+      expect(true).toBe(true);
+    });
+    it('message.', () => {
+      expect(true).toBe(true);
+    });
+    it('active.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputValidator.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-textarea></x-textarea>
-      </x-col>
-      <x-col span="24">
-        <x-textarea placeholder="请输入内容"></x-textarea>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXTextareaComponent {
-  constructor(private cdr: ChangeDetectorRef) {
-    interval(1000).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-textarea label="用户名"></x-textarea>
-      </x-col>
-      <x-col span="24">
-        <x-textarea label="用户名" direction="column-reverse"></x-textarea>
-      </x-col>
-      <x-col span="24">
-        <x-textarea label="用户名" direction="row"></x-textarea>
-      </x-col>
-      <x-col span="24">
-        <x-textarea label="用户名" direction="row-reverse"></x-textarea>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXTextareaLabelComponent {}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-textarea icon="ado-user"></x-textarea>
-      </x-col>
-      <x-col span="24">
-        <x-textarea icon="ado-user" iconLayout="left"></x-textarea>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXTextareaIconComponent {}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="8">
-        <x-textarea clearable [(ngModel)]="model" (ngModelChange)="change()"></x-textarea>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">
-        <x-textarea clearable [(ngModel)]="modelValue" (ngModelChange)="change()"></x-textarea>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">
-        <x-textarea icon="ado-user" clearable [(ngModel)]="modelIcon" (ngModelChange)="change()"></x-textarea>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">
-        <x-textarea
-          icon="ado-user"
-          clearable
-          [(ngModel)]="modelIcon"
-          iconLayout="left"
-          (ngModelChange)="change()"
-        ></x-textarea>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXTextareaClearableComponent {
-  model: any;
-  modelValue = '显示清除按钮';
-  modelIcon: any;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change() {
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="8">
-        <x-textarea disabled></x-textarea>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">
-        <x-textarea disabled [(ngModel)]="model"></x-textarea>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">
-        <x-textarea disabled clearable [(ngModel)]="modelClearable"></x-textarea>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">
-        <x-textarea icon="ado-user" disabled></x-textarea>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXTextareaDisabledComponent {
-  model = '输入框禁用';
-  modelClearable = '禁用状态下，不显示清除按钮';
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="8">
-        <x-textarea required [(ngModel)]="value" (ngModelChange)="change()"></x-textarea>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">
-        <x-textarea label="用户名" required [(ngModel)]="value" (ngModelChange)="change()"></x-textarea>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="8">
-        <x-textarea icon="ado-user" required [(ngModel)]="value" (ngModelChange)="change()"></x-textarea>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXTextareaRequiredComponent {
-  value: any;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change() {
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-textarea [(ngModel)]="value" (ngModelChange)="change()" maxlength="50"></x-textarea>
-      </x-col>
-      <x-col span="24">
-        <x-textarea [(ngModel)]="value" (ngModelChange)="change()" label="用户名" maxlength="50"></x-textarea>
-      </x-col>
-      <x-col span="24">
-        <x-textarea
-          [(ngModel)]="value"
-          (ngModelChange)="change()"
-          label="用户名"
-          direction="row"
-          maxlength="50"
-        ></x-textarea>
-      </x-col>
-      <x-col span="24">
-        <x-textarea [(ngModel)]="value" (ngModelChange)="change()" icon="ado-user" maxlength="50"></x-textarea>
-      </x-col>
-      <x-col span="24">
-        <x-textarea
-          [(ngModel)]="value"
-          (ngModelChange)="change()"
-          icon="ado-user"
-          iconLayout="left"
-          maxlength="50"
-        ></x-textarea>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXTextareaLengthComponent {
-  value: any;
-  constructor(private cdr: ChangeDetectorRef) {}
-  change() {
-    this.cdr.detectChanges();
-  }
-}

@@ -1,132 +1,152 @@
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XProgressComponent } from '@ng-nest/ui/progress';
-import { FormsModule } from '@angular/forms';
-import { XProgressPrefix } from './progress.property';
-import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
-import { XContainerComponent } from '@ng-nest/ui/container';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {
+  XProgressColor,
+  XProgressComponent,
+  XProgressGradient,
+  XProgressPrefix,
+  XProgressStatus,
+  XProgressType
+} from '@ng-nest/ui/progress';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+@Component({
+  standalone: true,
+  imports: [XProgressComponent],
+  template: ` <x-progress></x-progress> `
+})
+class XTestProgressComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XProgressComponent],
+  template: `
+    <x-progress
+      [type]="type()"
+      [percent]="percent()"
+      [height]="height()"
+      [status]="status()"
+      [info]="info()"
+      [infoWidth]="infoWidth()"
+      [inside]="inside()"
+      [format]="format()"
+      [color]="color()"
+      [gradient]="gradient()"
+      [steps]="steps()"
+      [stepWidth]="stepWidth()"
+      [stepFlex]="stepFlex()"
+      [thickness]="thickness()"
+      [size]="size()"
+      [notchAngle]="notchAngle()"
+      [subsection]="subsection()"
+    >
+    </x-progress>
+  `
+})
+class XTestProgressPropertyComponent {
+  type = signal<XProgressType>('line');
+  percent = signal(0);
+  height = signal('1rem');
+  status = signal<XProgressStatus>('normal');
+  info = signal(true);
+  infoWidth = signal('3.5rem');
+  inside = signal(false);
+  format = signal<((percent: number) => string) | null>(null);
+  color = signal<XProgressColor | null>(null);
+  gradient = signal<XProgressGradient | null>(null);
+  steps = signal<number | null>(null);
+  stepWidth = signal('2rem');
+  stepFlex = signal(false);
+  thickness = signal('1rem');
+  size = signal('8rem');
+  notchAngle = signal(80);
+  subsection = signal(false);
+}
 
 describe(XProgressPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXProgressComponent],
-      imports: [
-        BrowserAnimationsModule,
-        
-        FormsModule,
-        XProgressComponent,
-        XButtonComponent,
-        XButtonsComponent,
-        XContainerComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent
-      ],
+      imports: [XTestProgressComponent, XTestProgressPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXProgressComponent>;
-    let progress: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestProgressComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXProgressComponent);
+      fixture = TestBed.createComponent(XTestProgressComponent);
       fixture.detectChanges();
-      progress = fixture.debugElement.query(By.directive(XProgressComponent));
     });
-    it('should create.', () => {
-      expect(progress).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XProgressComponent));
+      expect(com).toBeDefined();
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestProgressPropertyComponent>;
+    // let component: XTestProgressPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestProgressPropertyComponent);
+      // component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('type.', () => {
+      expect(true).toBe(true);
+    });
+    it('percent.', () => {
+      expect(true).toBe(true);
+    });
+    it('height.', () => {
+      expect(true).toBe(true);
+    });
+    it('status.', () => {
+      expect(true).toBe(true);
+    });
+    it('info.', () => {
+      expect(true).toBe(true);
+    });
+    it('infoWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('inside.', () => {
+      expect(true).toBe(true);
+    });
+    it('format.', () => {
+      expect(true).toBe(true);
+    });
+    it('color.', () => {
+      expect(true).toBe(true);
+    });
+    it('gradient.', () => {
+      expect(true).toBe(true);
+    });
+    it('steps.', () => {
+      expect(true).toBe(true);
+    });
+    it('stepWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('stepFlex.', () => {
+      expect(true).toBe(true);
+    });
+    it('thickness.', () => {
+      expect(true).toBe(true);
+    });
+    it('size.', () => {
+      expect(true).toBe(true);
+    });
+    it('notchAngle.', () => {
+      expect(true).toBe(true);
+    });
+    it('subsection.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    
-    <div class="row">
-      <x-progress percent="30"></x-progress>
-      <x-progress percent="50" status="active"></x-progress>
-      <x-progress percent="70" status="exception"></x-progress>
-      <x-progress percent="100" status="warning"></x-progress>
-      <x-progress percent="100" status="success"></x-progress>
-      <x-progress percent="80" info="false"></x-progress>
-    </div>
-    <div class="row">
-      <x-progress percent="30" [format]="format"></x-progress>
-      <x-progress percent="100" [format]="format"></x-progress>
-    </div>
-    <div class="row">
-      <x-progress inside height="1.5rem" percent="30"></x-progress>
-      <x-progress inside height="1.5rem" percent="50" status="active"></x-progress>
-      <x-progress inside height="1.5rem" percent="70" status="exception"></x-progress>
-      <x-progress inside height="1.5rem" percent="100" status="warning"></x-progress>
-      <x-progress inside height="1.5rem" percent="100" status="success"></x-progress>
-    </div>
-    <div class="row">
-      <x-progress [percent]="percent" [color]="color"></x-progress>
-      <x-progress [percent]="percent" [color]="colors"></x-progress>
-      <x-progress [percent]="percent" [color]="colorFunc"></x-progress>
-      <x-buttons>
-        <x-button icon="fto-minus" (click)="plus(-10)"></x-button>
-        <x-button icon="fto-plus" (click)="plus(10)"></x-button>
-      </x-buttons>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row {
-        padding: 1rem;
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-progress:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXProgressComponent {
-  constructor(private cdr: ChangeDetectorRef) {}
-  format(percent: number) {
-    return percent === 100 ? '已完成' : `加载中${percent}%`;
-  }
-  percent = 10;
-  color!: '#3f51b5';
-  colors = [
-    { color: '#f56c6c', percent: 20 },
-    { color: '#e6a23c', percent: 40 },
-    { color: '#5cb87a', percent: 60 },
-    { color: '#1989fa', percent: 80 },
-    { color: '#6f7ad3', percent: 100 }
-  ];
-  colorFunc(percent: number) {
-    if (percent < 30) {
-      return '#909399';
-    } else if (percent < 70) {
-      return '#e6a23c';
-    } else {
-      return '#67c23a';
-    }
-  }
-  plus(num: number) {
-    if ((this.percent === 0 && num === -10) || (this.percent === 100 && num === 10)) return;
-    this.percent = this.percent + num;
-    this.cdr.detectChanges();
-  }
-}

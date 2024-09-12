@@ -667,7 +667,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   private setFooterTpl() {
-    if (XIsUndefined(this.footerTpl())) return;
+    if (XIsEmpty(this.footerTpl())) return;
     if (this.footerTpl()!.length > 0) {
       this.left.update((x) => {
         x.footerTpl = this.footerTpl()![0];
@@ -683,7 +683,7 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   private setTableHeadSearchTpl() {
-    if (XIsUndefined(this.tableHeadSearchTpl())) return;
+    if (XIsEmpty(this.tableHeadSearchTpl())) return;
     if (this.tableHeadSearchTpl()!.length > 0) {
       this.left.update((x) => {
         x.tableHeadSearchTpl = this.tableHeadSearchTpl()![0];

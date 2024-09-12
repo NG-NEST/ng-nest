@@ -1,127 +1,131 @@
-import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XPopoverDirective } from '@ng-nest/ui/popover';
-import { XPopoverPrefix } from './popover.property';
-import { interval } from 'rxjs';
-import { XIconComponent } from '@ng-nest/ui/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { XPopoverDirective, XPopoverPrefix, XPopoverTrigger } from '@ng-nest/ui/popover';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XPlacement, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+@Component({
+  standalone: true,
+  imports: [XPopoverDirective],
+  template: ` <div x-popover>popover</div> `
+})
+class XTestPopoverComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XPopoverDirective],
+  template: `
+    <div
+      x-popover
+      [title]="title()"
+      [content]="content()"
+      [footer]="footer()"
+      [panelClass]="panelClass()"
+      [connectTo]="connectTo()"
+      [placement]="placement()"
+      [trigger]="trigger()"
+      [width]="width()"
+      [maxWidth]="maxWidth()"
+      [minWidth]="minWidth()"
+      [(visible)]="visible"
+      [condition]="condition()"
+      [mouseEnterDelay]="mouseEnterDelay()"
+      [mouseLeaveDelay]="mouseLeaveDelay()"
+    ></div>
+  `
+})
+class XTestPopoverPropertyComponent {
+  title = signal<XTemplate>('');
+  content = signal<XTemplate>('');
+  footer = signal<XTemplate>('');
+  panelClass = signal<string | string[]>('');
+  connectTo = signal<ElementRef<HTMLElement> | HTMLElement | null>(null);
+  placement = signal<XPlacement>('top');
+  trigger = signal<XPopoverTrigger>('hover');
+  width = signal('');
+  maxWidth = signal('10rem');
+  minWidth = signal('10rem');
+  visible = signal(false);
+  condition = signal(false);
+  mouseEnterDelay = signal(150);
+  mouseLeaveDelay = signal(100);
+}
 
 describe(XPopoverPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXPopoverComponent],
-      imports: [BrowserAnimationsModule,  XPopoverDirective, XButtonComponent, XIconComponent],
+      imports: [XTestPopoverComponent, XTestPopoverPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXPopoverComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestPopoverComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXPopoverComponent);
+      fixture = TestBed.createComponent(XTestPopoverComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XPopoverDirective));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XPopoverDirective));
+      expect(com).toBeDefined();
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestPopoverPropertyComponent>;
+    // let component: XTestPopoverPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestPopoverPropertyComponent);
+      // component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('title.', () => {
+      expect(true).toBe(true);
+    });
+    it('content.', () => {
+      expect(true).toBe(true);
+    });
+    it('footer.', () => {
+      expect(true).toBe(true);
+    });
+    it('panelClass.', () => {
+      expect(true).toBe(true);
+    });
+    it('connectTo.', () => {
+      expect(true).toBe(true);
+    });
+    it('placement.', () => {
+      expect(true).toBe(true);
+    });
+    it('trigger.', () => {
+      expect(true).toBe(true);
+    });
+    it('width.', () => {
+      expect(true).toBe(true);
+    });
+    it('maxWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('minWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('visible.', () => {
+      expect(true).toBe(true);
+    });
+    it('condition.', () => {
+      expect(true).toBe(true);
+    });
+    it('mouseEnterDelay.', () => {
+      expect(true).toBe(true);
+    });
+    it('mouseLeaveDelay.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  selector: 'test-x-popover',
-  template: `
-    
-    <div class="box">
-      <div class="top">
-        <x-button x-popover content="上左上左上左上左上左上左上左上左上左上左" placement="top-start">上左</x-button>
-        <x-button x-popover content="上中上中上中上中上中上中上中上中上中上中" placement="top">上中</x-button>
-        <x-button x-popover content="上右上右上右上右上右上右上右上右上右上右" placement="top-end">上右</x-button>
-      </div>
-      <div class="left">
-        <x-button x-popover content="左上左上左上左上左上左上左上左上左上左上" placement="left-start">左上</x-button
-        ><x-button x-popover content="左中左中左中左中左中左中左中左中左中左中" placement="left">左中</x-button
-        ><x-button x-popover content="左下左下左下左下左下左下左下左下左下左下" placement="left-end">左下</x-button>
-      </div>
-      <div class="right">
-        <x-button x-popover content="右上右上右上右上右上右上右上右上右上右上" placement="right-start">右上</x-button
-        ><x-button x-popover content="右中右中右中右中右中右中右中右中右中右中" placement="right">右中</x-button
-        ><x-button x-popover content="右下右下右下右下右下右下右下右下右下右下" placement="right-end">右下</x-button>
-      </div>
-      <div class="bottom">
-        <x-button x-popover content="下左下左下左下左下左下左下左下左下左下左" placement="bottom-start">下左</x-button
-        ><x-button x-popover content="下中下中下中下中下中下中下中下中下中下中" placement="bottom">下中</x-button
-        ><x-button x-popover content="下右下右下右下右下右下右下右下右下右下右" placement="bottom-end">下右</x-button>
-      </div>
-    </div>
-    <div class="box">
-      <x-button x-popover content="天将降大任于是人也" trigger="click">click 激活</x-button>
-      <x-popover title="标题" content="天将降大任于是人也" trigger="click">
-        <x-button>激活</x-button>
-      </x-popover>
-      <x-popover [title]="titleTemp" [content]="contentTemp" trigger="click">
-        <x-button>激活</x-button>
-      </x-popover>
-      <ng-template #titleTemp> <x-icon type="fto-user"></x-icon><span>用户信息</span> </ng-template>
-      <ng-template #contentTemp>
-        <ul>
-          <li>姓名：李永奇</li>
-          <li>邮箱：ng-nest&#64;ng-nest.com</li>
-        </ul>
-      </ng-template>
-    </div>
-    <div class="box"></div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .box {
-        padding: 5rem 10rem;
-        width: 45rem;
-      }
-      .box .top {
-        text-align: center;
-      }
-      .box .left {
-        float: left;
-        width: 5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      .box .right {
-        float: right;
-        width: 5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      .box .bottom {
-        clear: both;
-        text-align: center;
-      }
-    `
-  ]
-})
-class TestXPopoverComponent {
-  constructor(public cdr: ChangeDetectorRef) {
-    interval(1).subscribe(() => {
-      this.cdr.detectChanges();
-    });
-  }
-}

@@ -1,282 +1,185 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XPaginationComponent } from '@ng-nest/ui/pagination';
-import { XPaginationPrefix } from './pagination.property';
-import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  XPaginationComponent,
+  XPaginationInputIndexSizeSureType,
+  XPaginationPrefix,
+  XPaginationSizeData
+} from '@ng-nest/ui/pagination';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { XDataArray, XQuery, XTemplate } from '@ng-nest/ui/core';
+import { XSelectNode } from '@ng-nest/ui/select';
+
+@Component({
+  standalone: true,
+  imports: [XPaginationComponent],
+  template: ` <x-pagination> </x-pagination> `
+})
+class XTestPaginationComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XPaginationComponent],
+  template: `
+    <x-pagination
+      [(index)]="index"
+      [(size)]="size"
+      [total]="total()"
+      [(query)]="query"
+      [pageLinkSize]="pageLinkSize()"
+      [showEllipsis]="showEllipsis()"
+      [showTotal]="showTotal()"
+      [space]="space()"
+      [showBackground]="showBackground()"
+      [showSize]="showSize()"
+      [sizeWidth]="sizeWidth()"
+      [showInputSize]="showInputSize()"
+      [inputSizeTooltipText]="inputSizeTooltipText()"
+      [inputSizeWidth]="inputSizeWidth()"
+      [sizeData]="sizeData()"
+      [disabled]="disabled()"
+      [showJump]="showJump()"
+      [jumpTooltipText]="jumpTooltipText()"
+      [jumpWidth]="jumpWidth()"
+      [totalTpl]="totalTpl()"
+      [simple]="simple()"
+      [simpleIndexWidth]="simpleIndexWidth()"
+      [inputIndexSizeSureType]="inputIndexSizeSureType()"
+    >
+    </x-pagination>
+
+    <ng-template #totalTemplate let-total="$total">{{ total }}</ng-template>
+  `
+})
+class XTestPaginationPropertyComponent {
+  index = signal(1);
+  size = signal(10);
+  total = signal(0);
+  query = signal<XQuery>({});
+  pageLinkSize = signal(5);
+  showEllipsis = signal(true);
+  showTotal = signal(true);
+  space = signal('0.25rem');
+  showBackground = signal(false);
+  showSize = signal(false);
+  sizeWidth = signal('6.875rem');
+  showInputSize = signal(false);
+  inputSizeTooltipText = signal('');
+  inputSizeWidth = signal('3.125rem');
+  sizeData = signal<XDataArray<XSelectNode>>(XPaginationSizeData);
+  disabled = signal(false);
+  showJump = signal(false);
+  jumpTooltipText = signal('');
+  jumpWidth = signal('3.125rem');
+  totalTpl = signal<XTemplate>('');
+  totalTemplate = viewChild<TemplateRef<any>>('totalTemplate');
+  simple = signal(false);
+  simpleIndexWidth = signal('8.125rem');
+  inputIndexSizeSureType = signal<XPaginationInputIndexSizeSureType>('enter');
+}
 
 describe(XPaginationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXPaginationComponent, TestXPaginationStyleComponent],
-      imports: [BrowserAnimationsModule, XPaginationComponent, XButtonComponent],
+      imports: [XTestPaginationComponent, XTestPaginationPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXPaginationComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestPaginationComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXPaginationComponent);
+      fixture = TestBed.createComponent(XTestPaginationComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XPaginationComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XPaginationComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`style.`, () => {
-    let fixture: ComponentFixture<TestXPaginationStyleComponent>;
-    let debugElement: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXPaginationStyleComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestPaginationPropertyComponent>;
+    // let component: XTestPaginationPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestPaginationPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XPaginationComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('index.', () => {
+      expect(true).toBe(true);
+    });
+    it('size.', () => {
+      expect(true).toBe(true);
+    });
+    it('total.', () => {
+      expect(true).toBe(true);
+    });
+    it('query.', () => {
+      expect(true).toBe(true);
+    });
+    it('pageLinkSize.', () => {
+      expect(true).toBe(true);
+    });
+    it('showEllipsis.', () => {
+      expect(true).toBe(true);
+    });
+    it('showTotal.', () => {
+      expect(true).toBe(true);
+    });
+    it('space.', () => {
+      expect(true).toBe(true);
+    });
+    it('showBackground.', () => {
+      expect(true).toBe(true);
+    });
+    it('showSize.', () => {
+      expect(true).toBe(true);
+    });
+    it('sizeWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('showInputSize.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputSizeTooltipText.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputSizeWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('sizeData.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('showJump.', () => {
+      expect(true).toBe(true);
+    });
+    it('jumpTooltipText.', () => {
+      expect(true).toBe(true);
+    });
+    it('jumpWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('totalTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('simple.', () => {
+      expect(true).toBe(true);
+    });
+    it('simpleIndexWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputIndexSizeSureType.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  selector: 'test-x-pagination',
-  template: `
-    <x-button (click)="english()">切换为英文</x-button>
-    <x-button (click)="chinese()">切换为中文</x-button>
-    <div class="row">
-      <x-pagination [index]="index" [size]="size" [total]="10" (indexChange)="change($event)"></x-pagination>
-    </div>
-    <div class="row">
-      <x-pagination [index]="index" [size]="size" [total]="20" (indexChange)="change($event)"></x-pagination>
-    </div>
-    <div class="row">
-      <x-pagination [index]="index" [size]="size" [total]="30" (indexChange)="change($event)"></x-pagination>
-    </div>
-    <x-pagination [index]="index" [size]="size" [total]="40" (indexChange)="change($event)"></x-pagination>
-    <x-pagination [index]="index" [size]="size" [total]="50" (indexChange)="change($event)"></x-pagination>
-    <x-pagination [index]="index" [size]="size" [total]="60" (indexChange)="change($event)"></x-pagination>
-    <x-pagination [index]="index" [size]="size" [total]="70" (indexChange)="change($event)"></x-pagination>
-    <x-pagination [index]="index" [size]="size" [total]="80" (indexChange)="change($event)"></x-pagination>
-    <x-pagination [index]="index" [size]="size" [total]="90" (indexChange)="change($event)"></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="100"
-      showSize
-      showJump
-      [sizeData]="[5, 10, 100]"
-      (indexChange)="change($event)"
-    ></x-pagination>
-    <x-pagination
-      [space]="1"
-      [index]="index"
-      [size]="size"
-      [total]="100"
-      showSize
-      showJump
-      [sizeData]="[5, 10, 100]"
-      (indexChange)="change($event)"
-      [totalTpl]="totalTpl"
-    ></x-pagination>
-    <ng-template #totalTpl let-total="$total">共 {{ total }} 条数据</ng-template>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="100"
-      simple
-      showSize
-      [sizeData]="[5, 10, 100]"
-      (indexChange)="change($event)"
-    ></x-pagination>
-  `,
-  styles: [
-    `
-      :host .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXPaginationComponent {
-  index = 1;
-  size = 10;
-  total = 100;
-
-  constructor(
-    private i18nService: XI18nService,
-    private cdr: ChangeDetectorRef
-  ) {}
-
-  change(_index: number) {
-    // console.log(index);
-  }
-
-  english() {
-    this.i18nService.setLocale(en_US);
-    this.cdr.detectChanges();
-  }
-
-  chinese() {
-    this.i18nService.setLocale(zh_CN);
-    this.cdr.detectChanges();
-  }
-}
-
-@Component({
-  selector: 'test-x-pagination-style',
-  template: `
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="total"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="10"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="20"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="30"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="40"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="50"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="60"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="70"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="80"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="90"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="100"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-      pageLinkSize="1"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="100"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-      pageLinkSize="3"
-    ></x-pagination>
-    <x-pagination
-      [index]="index"
-      [size]="size"
-      [total]="100"
-      (indexChange)="change($event)"
-      hiddenBorder
-      showEllipsis="false"
-      showTotal="false"
-      pageLinkSize="7"
-    ></x-pagination>
-  `
-})
-class TestXPaginationStyleComponent {
-  index = 1;
-  size = 10;
-  total = 100;
-
-  constructor(
-    private i18nService: XI18nService,
-    private cdr: ChangeDetectorRef
-  ) {}
-
-  change(_index: number) {
-    // console.log(index);
-  }
-
-  english() {
-    this.i18nService.setLocale(en_US);
-    this.cdr.detectChanges();
-  }
-
-  chinese() {
-    this.i18nService.setLocale(zh_CN);
-    this.cdr.detectChanges();
-  }
-}

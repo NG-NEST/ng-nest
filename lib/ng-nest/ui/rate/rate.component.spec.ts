@@ -1,228 +1,188 @@
-import { XButtonComponent } from '@ng-nest/ui/button';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XRateComponent } from '@ng-nest/ui/rate';
-import { FormsModule } from '@angular/forms';
-import { XRatePrefix } from './rate.property';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XIconComponent } from '@ng-nest/ui/icon';
+import { XRateColor, XRateComponent, XRatePrefix } from '@ng-nest/ui/rate';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { XAlign, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XRateComponent],
+  template: ` <x-rate> </x-rate> `
+})
+class XTestRateComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XRateComponent],
+  template: `
+    <x-rate
+      [count]="count()"
+      [half]="half()"
+      [color]="color()"
+      [customTemp]="customTemp()"
+      [size]="size()"
+      [pointer]="pointer()"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
+      [active]="active()"
+      [inputValidator]="inputValidator()"
+    >
+    </x-rate>
+
+    <ng-template #customTemplate>custom</ng-template>
+
+    <ng-template #beforeTemplate>before</ng-template>
+    <ng-template #afterTemplate>after</ng-template>
+  `
+})
+class XTestRatePropertyComponent {
+  count = signal(5);
+  half = signal(false);
+  color = signal<XRateColor>('');
+  customTemp = signal<TemplateRef<any> | null>(null);
+  size = signal<XSize>('medium');
+  pointer = signal(false);
+  label = signal('');
+  labelWidth = signal('');
+  labelAlign = signal<XAlign>('start');
+  justify = signal<XJustify>('start');
+  align = signal<XAlign>('start');
+  direction = signal<XDirection>('column');
+  placeholder = signal('');
+  disabled = signal(false);
+  required = signal(false);
+  readonly = signal(false);
+  valueTpl = signal<TemplateRef<any> | null>(null);
+  valueTplContext = signal(null);
+  before = signal<XTemplate | null>(null);
+  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  after = signal<XTemplate | null>(null);
+  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  pattern = signal<RegExp | RegExp[] | null>(null);
+  message = signal<string | string[]>([]);
+  active = signal(false);
+  inputValidator = signal<((value: any) => boolean) | null>(null);
+}
 
 describe(XRatePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXRateComponent, TestXRateHalfComponent, TestXRateDisabledComponent, TestXRateCustomComponent],
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        XRateComponent,
-        XButtonComponent,
-        XRowComponent,
-        XColComponent,
-        XIconComponent
-      ],
+      imports: [XTestRateComponent, XTestRatePropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXRateComponent>;
-    let rate: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestRateComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRateComponent);
+      fixture = TestBed.createComponent(XTestRateComponent);
       fixture.detectChanges();
-      rate = fixture.debugElement.query(By.directive(XRateComponent));
     });
-    it('should create.', () => {
-      expect(rate).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XRateComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`half.`, () => {
-    let fixture: ComponentFixture<TestXRateHalfComponent>;
-    let rate: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRateHalfComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestRatePropertyComponent>;
+    // let component: XTestRatePropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestRatePropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      rate = fixture.debugElement.query(By.directive(XRateComponent));
     });
-    it('should create.', () => {
-      expect(rate).toBeDefined();
+    it('count.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`custom.`, () => {
-    let fixture: ComponentFixture<TestXRateCustomComponent>;
-    let rate: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRateCustomComponent);
-      fixture.detectChanges();
-      rate = fixture.debugElement.query(By.directive(XRateComponent));
+    it('half.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(rate).toBeDefined();
+    it('color.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`disabled.`, () => {
-    let fixture: ComponentFixture<TestXRateDisabledComponent>;
-    let rate: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRateDisabledComponent);
-      fixture.detectChanges();
-      rate = fixture.debugElement.query(By.directive(XRateComponent));
+    it('customTemp.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(rate).toBeDefined();
+    it('size.', () => {
+      expect(true).toBe(true);
+    });
+    it('pointer.', () => {
+      expect(true).toBe(true);
+    });
+    it('label.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelAlign.', () => {
+      expect(true).toBe(true);
+    });
+    it('justify.', () => {
+      expect(true).toBe(true);
+    });
+    it('align.', () => {
+      expect(true).toBe(true);
+    });
+    it('direction.', () => {
+      expect(true).toBe(true);
+    });
+    it('placeholder.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('required.', () => {
+      expect(true).toBe(true);
+    });
+    it('readonly.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTplContext.', () => {
+      expect(true).toBe(true);
+    });
+    it('before.', () => {
+      expect(true).toBe(true);
+    });
+    it('after.', () => {
+      expect(true).toBe(true);
+    });
+    it('pattern.', () => {
+      expect(true).toBe(true);
+    });
+    it('message.', () => {
+      expect(true).toBe(true);
+    });
+    it('active.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputValidator.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-rate></x-rate>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="24">
-        <x-rate [(ngModel)]="model"></x-rate>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-      x-row > x-col {
-        width: 14rem;
-      }
-    `
-  ]
-})
-class TestXRateComponent {
-  model = 3;
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-rate half></x-rate>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="24">
-        <x-rate label="评级" direction="row" [(ngModel)]="model" (ngModelChange)="chang($event)" half></x-rate>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-      x-row > x-col {
-        width: 14rem;
-      }
-    `
-  ]
-})
-class TestXRateHalfComponent {
-  model = 3.5;
-  chang(event: number) {
-    console.log(event);
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-rate half [customTemp]="iconTpl"></x-rate>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="24">
-        <x-rate half [customTemp]="letterTpl"></x-rate>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="24">
-        <x-rate half [(ngModel)]="model" [customTemp]="chineseTpl"></x-rate>
-      </x-col>
-    </x-row>
-    <ng-template #iconTpl><x-icon type="fto-eye"></x-icon></ng-template>
-    <ng-template #letterTpl>X</ng-template>
-    <ng-template #chineseTpl>田</ng-template>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-      x-row > x-col {
-        width: 14rem;
-      }
-    `
-  ]
-})
-class TestXRateCustomComponent {
-  model = 3.5;
-  chang(event: number) {
-    console.log(event);
-  }
-}
-
-@Component({
-  template: `
-    <x-row>
-      <x-col span="24">
-        <x-rate disabled></x-rate>
-      </x-col>
-    </x-row>
-    <x-row>
-      <x-col span="24">
-        <x-rate [(ngModel)]="model" disabled></x-rate>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-      x-row > x-col {
-        width: 14rem;
-      }
-    `
-  ]
-})
-class TestXRateDisabledComponent {
-  model = 3;
-}

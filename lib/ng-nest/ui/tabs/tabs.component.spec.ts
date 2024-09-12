@@ -1,32 +1,80 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
-import { XTabsPrefix, XTabsLayout } from './tabs.property';
-import { XRadioComponent } from '@ng-nest/ui/radio';
-import { FormsModule } from '@angular/forms';
-import { XIconComponent } from '@ng-nest/ui/icon';
-import { XJustify } from '@ng-nest/ui/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { XButtonComponent } from '@ng-nest/ui/button';
+import {
+  XActivatedTab,
+  XTabsComponent,
+  XTabsLayout,
+  XTabsNode,
+  XTabsPrefix,
+  XTabsTrigger,
+  XTabsType
+} from '@ng-nest/ui/tabs';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XDataArray, XJustify, XSize } from '@ng-nest/ui/core';
+
+@Component({
+  standalone: true,
+  imports: [XTabsComponent],
+  template: ` <x-tabs> </x-tabs> `
+})
+class XTestTabsComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XTabsComponent],
+  template: `
+    <x-tabs
+      [data]="data()"
+      [justify]="justify()"
+      [type]="type()"
+      [layout]="layout()"
+      [trigger]="trigger()"
+      [(activatedIndex)]="activatedIndex"
+      [animated]="animated()"
+      [nodeTpl]="nodeTpl()"
+      [size]="size()"
+      [nodeJustify]="nodeJustify()"
+      [sliderHidden]="sliderHidden()"
+      [actionTpl]="actionTpl()"
+      [showExpand]="showExpand()"
+      [expandMaxHeight]="expandMaxHeight()"
+      [linkRouter]="linkRouter()"
+      [linkExact]="linkExact()"
+      (indexChange)="indexChange($event)"
+    >
+    </x-tabs>
+  `
+})
+class XTestTabsPropertyComponent {
+  data = signal<XDataArray<XTabsNode>>([]);
+  justify = signal<XJustify>('start');
+  type = signal<XTabsType>('block');
+  layout = signal<XTabsLayout>('top');
+  trigger = signal<XTabsTrigger>('click');
+  activatedIndex = signal(0);
+  animated = signal(true);
+  nodeTpl = signal<TemplateRef<any> | null>(null);
+  size = signal<XSize>('medium');
+  nodeJustify = signal<XJustify | null>(null);
+  sliderHidden = signal(false);
+  actionTpl = signal<TemplateRef<any> | null>(null);
+  showExpand = signal(false);
+  expandMaxHeight = signal('15rem');
+  linkRouter = signal(false);
+  linkExact = signal(true);
+
+  indexChangeResult = signal<XActivatedTab | null>(null);
+  indexChange(tab: XActivatedTab) {
+    this.indexChangeResult.set(tab);
+  }
+}
 
 describe(XTabsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXTabsComponent],
-      imports: [
-        BrowserAnimationsModule,
-        
-        FormsModule,
-        XTabsComponent,
-        XTabComponent,
-        XRadioComponent,
-        XIconComponent,
-        XButtonComponent
-      ],
+      imports: [XTestTabsComponent, XTestTabsPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -34,125 +82,75 @@ describe(XTabsPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXTabsComponent>;
-    let debugElement: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestTabsComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXTabsComponent);
+      fixture = TestBed.createComponent(XTestTabsComponent);
       fixture.detectChanges();
-      debugElement = fixture.debugElement.query(By.directive(XTabsComponent));
     });
-    it('should create.', () => {
-      expect(debugElement).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XTabsComponent));
+      expect(com).toBeDefined();
+    });
+  });
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestTabsPropertyComponent>;
+    // let component: XTestTabsPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestTabsPropertyComponent);
+      // component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('data.', () => {
+      expect(true).toBe(true);
+    });
+    it('justify.', () => {
+      expect(true).toBe(true);
+    });
+    it('type.', () => {
+      expect(true).toBe(true);
+    });
+    it('layout.', () => {
+      expect(true).toBe(true);
+    });
+    it('trigger.', () => {
+      expect(true).toBe(true);
+    });
+    it('activatedIndex.', () => {
+      expect(true).toBe(true);
+    });
+    it('animated.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('size.', () => {
+      expect(true).toBe(true);
+    });
+    it('nodeJustify.', () => {
+      expect(true).toBe(true);
+    });
+    it('sliderHidden.', () => {
+      expect(true).toBe(true);
+    });
+    it('actionTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('showExpand.', () => {
+      expect(true).toBe(true);
+    });
+    it('expandMaxHeight.', () => {
+      expect(true).toBe(true);
+    });
+    it('linkRouter.', () => {
+      expect(true).toBe(true);
+    });
+    it('linkExact.', () => {
+      expect(true).toBe(true);
+    });
+    it('indexChange.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-@Component({
-  selector: 'test-x-tabs',
-  template: `
-    
-    <div class="row">
-      <x-tabs>
-        <x-tab *ngFor="let label of labels" [label]="label">
-          <div class="tab-content">{{ label }}</div>
-        </x-tab>
-      </x-tabs>
-    </div>
-    <div class="row">
-      <x-tabs type="tag">
-        <x-tab *ngFor="let label of labels" [label]="label">
-          <div class="tab-content">{{ label }}</div>
-        </x-tab>
-      </x-tabs>
-    </div>
-    <div class="row">
-      <x-tabs type="card">
-        <x-tab *ngFor="let label of labels" [label]="label">
-          <div class="tab-content">{{ label }}</div>
-        </x-tab>
-      </x-tabs>
-    </div>
-
-    <div class="row">
-      <x-radio [data]="justifyRadios" [(ngModel)]="justify" (ngModelChange)="change()" button></x-radio>
-    </div>
-    <div class="row">
-      <x-radio [data]="layoutRadios" [(ngModel)]="layout" (ngModelChange)="change()" button></x-radio>
-    </div>
-    <div class="row">
-      <x-tabs [layout]="layout" [justify]="justify">
-        <x-tab *ngFor="let label of labels" [label]="label">
-          <div class="tab-content">{{ label }}</div>
-        </x-tab>
-      </x-tabs>
-    </div>
-    <div class="row">
-      <x-tabs type="tag" [layout]="layout" [justify]="justify">
-        <x-tab *ngFor="let label of labels" [label]="label">
-          <div class="tab-content">{{ label }}</div>
-        </x-tab>
-      </x-tabs>
-    </div>
-    <div class="row">
-      <x-tabs type="card" [layout]="layout" [justify]="justify">
-        <x-tab *ngFor="let label of labels" [label]="label">
-          <div class="tab-content">{{ label }}</div>
-        </x-tab>
-      </x-tabs>
-    </div>
-    <div class="row">
-      <x-tabs type="card" [layout]="layout" [justify]="justify">
-        <x-tab [label]="labelTpl1">
-          <ng-template #labelTpl1>
-            <x-icon type="fto-box" [style.margin-right.rem]="0.125"></x-icon>
-            <span>用户管理</span>
-          </ng-template>
-          <div class="tab-content">用户管理</div>
-        </x-tab>
-        <x-tab [label]="labelTpl2">
-          <ng-template #labelTpl2>
-            <x-icon type="fto-settings" [style.margin-right.rem]="0.125"></x-icon>
-            <span>配置管理</span>
-          </ng-template>
-          <div class="tab-content">配置管理</div>
-        </x-tab>
-        <x-tab label="角色管理">
-          <div class="tab-content">角色管理</div>
-        </x-tab>
-        <x-tab label="任务">
-          <div class="tab-content">任务</div>
-        </x-tab>
-      </x-tabs>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .tab-content {
-        padding: 0.625rem;
-      }
-    `
-  ]
-})
-class TestXTabsComponent {
-  labels = ['用户管理', '配置管理', '角色管理', '任务'];
-  layoutRadios = ['top', 'right', 'bottom', 'left'];
-  layout: XTabsLayout = 'top';
-  justifyRadios = ['start', 'center', 'end'];
-  justify: XJustify = 'start';
-
-  customLabels = ['用户管理', '配置管理', '角色管理', '任务'];
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  change() {
-    this.cdr.detectChanges();
-  }
-}

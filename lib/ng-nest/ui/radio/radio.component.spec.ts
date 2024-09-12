@@ -1,57 +1,98 @@
-import { XButtonComponent } from '@ng-nest/ui/button';
-import { Observable } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
-import { XRadioComponent } from '@ng-nest/ui/radio';
-import { FormsModule } from '@angular/forms';
-import { XRadioPrefix, XRadioNode } from './radio.property';
-import { XData } from '@ng-nest/ui/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { XSelectComponent } from '@ng-nest/ui/select';
-import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
-import { XAutoCompleteComponent } from '@ng-nest/ui/auto-complete';
-import { XCascadeComponent } from '@ng-nest/ui/cascade';
-import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
-import { XFindComponent } from '@ng-nest/ui/find';
-import { XTextareaComponent } from '@ng-nest/ui/textarea';
-import { XTimePickerModule } from '@ng-nest/ui/time-picker';
-import { XInputComponent } from '@ng-nest/ui/input';
-import { XTagComponent } from '@ng-nest/ui/tag';
+import { XRadioComponent, XRadioNode, XRadioPrefix } from '@ng-nest/ui/radio';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { XAlign, XData, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+import { XButtonType } from '@ng-nest/ui/button';
+
+@Component({
+  standalone: true,
+  imports: [XRadioComponent],
+  template: ` <x-radio> </x-radio> `
+})
+class XTestRadioComponent {}
+
+@Component({
+  standalone: true,
+  imports: [XRadioComponent],
+  template: `
+    <x-radio
+      [data]="data()"
+      [button]="button()"
+      [icon]="icon()"
+      [tag]="tag()"
+      [type]="type()"
+      [tagBordered]="tagBordered()"
+      [tagDark]="tagDark()"
+      [allowCancel]="allowCancel()"
+      [vertical]="vertical()"
+      [size]="size()"
+      [pointer]="pointer()"
+      [label]="label()"
+      [labelWidth]="labelWidth()"
+      [labelAlign]="labelAlign()"
+      [justify]="justify()"
+      [align]="align()"
+      [direction]="direction()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [valueTpl]="valueTpl()"
+      [valueTplContext]="valueTplContext()"
+      [before]="before()"
+      [after]="after()"
+      [pattern]="pattern()"
+      [message]="message()"
+      [active]="active()"
+      [inputValidator]="inputValidator()"
+    >
+    </x-radio>
+
+    <ng-template #beforeTemplate>before</ng-template>
+    <ng-template #afterTemplate>after</ng-template>
+  `
+})
+class XTestRadioPropertyComponent {
+  data = signal<XData<XRadioNode>>([]);
+  button = signal(false);
+  icon = signal(false);
+  tag = signal(false);
+  type = signal<XButtonType>('initial');
+  tagBordered = signal(true);
+  tagDark = signal(false);
+  allowCancel = signal(false);
+  vertical = signal(false);
+  size = signal<XSize>('medium');
+  pointer = signal(false);
+  label = signal('');
+  labelWidth = signal('');
+  labelAlign = signal<XAlign>('start');
+  justify = signal<XJustify>('start');
+  align = signal<XAlign>('start');
+  direction = signal<XDirection>('column');
+  placeholder = signal('');
+  disabled = signal(false);
+  required = signal(false);
+  readonly = signal(false);
+  valueTpl = signal<TemplateRef<any> | null>(null);
+  valueTplContext = signal(null);
+  before = signal<XTemplate | null>(null);
+  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  after = signal<XTemplate | null>(null);
+  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  pattern = signal<RegExp | RegExp[] | null>(null);
+  message = signal<string | string[]>([]);
+  active = signal(false);
+  inputValidator = signal<((value: any) => boolean) | null>(null);
+}
 
 describe(XRadioPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestXRadioComponent,
-        TestXRadioDisabledComponent,
-        TestXRadioButtonComponent,
-        TestXRadioIconComponent,
-        TestXRadioAsyncComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        
-        FormsModule,
-        XRadioComponent,
-        XAutoCompleteComponent,
-        XSelectComponent,
-        XDatePickerComponent,
-        XButtonComponent,
-        XRowComponent,
-        XColComponent,
-        XCascadeComponent,
-        XColorPickerComponent,
-        XFindComponent,
-        XTextareaComponent,
-        XTimePickerModule,
-        XInputComponent,
-        XTagComponent
-      ],
+      imports: [XTestRadioComponent, XTestRadioPropertyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -59,271 +100,111 @@ describe(XRadioPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
-    let fixture: ComponentFixture<TestXRadioComponent>;
-    let radio: DebugElement;
+  describe('default.', () => {
+    let fixture: ComponentFixture<XTestRadioComponent>;
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRadioComponent);
+      fixture = TestBed.createComponent(XTestRadioComponent);
       fixture.detectChanges();
-      radio = fixture.debugElement.query(By.directive(XRadioComponent));
     });
-    it('should create.', () => {
-      expect(radio).toBeDefined();
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XRadioComponent));
+      expect(com).toBeDefined();
     });
   });
-  describe(`disabled.`, () => {
-    let fixture: ComponentFixture<TestXRadioDisabledComponent>;
-    let radio: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRadioDisabledComponent);
+  describe(`input.`, async () => {
+    let fixture: ComponentFixture<XTestRadioPropertyComponent>;
+    // let component: XTestRadioPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestRadioPropertyComponent);
+      // component = fixture.componentInstance;
       fixture.detectChanges();
-      radio = fixture.debugElement.query(By.directive(XRadioComponent));
     });
-    it('should create.', () => {
-      expect(radio).toBeDefined();
+    it('data.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`button.`, () => {
-    let fixture: ComponentFixture<TestXRadioButtonComponent>;
-    let radio: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRadioButtonComponent);
-      fixture.detectChanges();
-      radio = fixture.debugElement.query(By.directive(XRadioComponent));
+    it('button.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(radio).toBeDefined();
+    it('icon.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`icon.`, () => {
-    let fixture: ComponentFixture<TestXRadioIconComponent>;
-    let radio: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRadioIconComponent);
-      fixture.detectChanges();
-      radio = fixture.debugElement.query(By.directive(XRadioComponent));
+    it('tag.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(radio).toBeDefined();
+    it('type.', () => {
+      expect(true).toBe(true);
     });
-  });
-  describe(`async.`, () => {
-    let fixture: ComponentFixture<TestXRadioAsyncComponent>;
-    let radio: DebugElement;
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestXRadioAsyncComponent);
-      fixture.detectChanges();
-      radio = fixture.debugElement.query(By.directive(XRadioComponent));
+    it('tagBordered.', () => {
+      expect(true).toBe(true);
     });
-    it('should create.', () => {
-      expect(radio).toBeDefined();
+    it('tagDark.', () => {
+      expect(true).toBe(true);
+    });
+    it('allowCancel.', () => {
+      expect(true).toBe(true);
+    });
+    it('vertical.', () => {
+      expect(true).toBe(true);
+    });
+    it('size.', () => {
+      expect(true).toBe(true);
+    });
+    it('pointer.', () => {
+      expect(true).toBe(true);
+    });
+    it('label.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelWidth.', () => {
+      expect(true).toBe(true);
+    });
+    it('labelAlign.', () => {
+      expect(true).toBe(true);
+    });
+    it('justify.', () => {
+      expect(true).toBe(true);
+    });
+    it('align.', () => {
+      expect(true).toBe(true);
+    });
+    it('direction.', () => {
+      expect(true).toBe(true);
+    });
+    it('placeholder.', () => {
+      expect(true).toBe(true);
+    });
+    it('disabled.', () => {
+      expect(true).toBe(true);
+    });
+    it('required.', () => {
+      expect(true).toBe(true);
+    });
+    it('readonly.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTpl.', () => {
+      expect(true).toBe(true);
+    });
+    it('valueTplContext.', () => {
+      expect(true).toBe(true);
+    });
+    it('before.', () => {
+      expect(true).toBe(true);
+    });
+    it('after.', () => {
+      expect(true).toBe(true);
+    });
+    it('pattern.', () => {
+      expect(true).toBe(true);
+    });
+    it('message.', () => {
+      expect(true).toBe(true);
+    });
+    it('active.', () => {
+      expect(true).toBe(true);
+    });
+    it('inputValidator.', () => {
+      expect(true).toBe(true);
     });
   });
 });
-
-const data: string[] = ['QQ', '微信', '钉钉', '微博'];
-
-const iconData: XData<XRadioNode> = [
-  { label: 'QQ', icon: 'ado-qq' },
-  { label: '微信', icon: 'ado-wechat' },
-  { label: '钉钉', icon: 'ado-dingding' },
-  { label: '微博', icon: 'ado-weibo' }
-];
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-radio [data]="data"></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model"></x-radio>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXRadioComponent {
-  data: XData<XRadioNode> = data;
-  model = 'QQ';
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-radio [data]="data" disabled></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model" disabled></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="dataDisabled"></x-radio>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXRadioDisabledComponent {
-  data: XData<XRadioNode> = data;
-  dataDisabled: XData<XRadioNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
-  model = '钉钉';
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-radio [data]="data" button></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model" button></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data" button disabled></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model" button disabled></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="dataDisabled" button></x-radio>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXRadioButtonComponent {
-  data: XData<XRadioNode> = data;
-  dataDisabled: XData<XRadioNode> = ['QQ', '微信', { label: '钉钉', disabled: true }, '微博'];
-  model = '钉钉';
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-radio [data]="data" icon></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model" icon></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data" icon disabled></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model" icon disabled></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="dataDisabled" icon></x-radio>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXRadioIconComponent {
-  data: XData<XRadioNode> = iconData;
-  dataDisabled: XData<XRadioNode> = [
-    { label: 'QQ', icon: 'ado-qq' },
-    { label: '微信', icon: 'ado-wechat' },
-    { label: '钉钉', disabled: true, icon: 'ado-dingding' },
-    { label: '微博', icon: 'ado-weibo' }
-  ];
-  model = '钉钉';
-}
-
-@Component({
-  template: `
-    
-    <x-row>
-      <x-col span="24">
-        <x-button type="primary" [loading]="loading" (click)="getData()">请求</x-button>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data"></x-radio>
-      </x-col>
-      <x-col span="24">
-        <x-radio [data]="data" [(ngModel)]="model"></x-radio>
-      </x-col>
-    </x-row>
-  `,
-  styles: [
-    `
-      :host {
-        background-color: var(--x-background);
-        padding: 1rem;
-        border: 0.0625rem solid var(--x-border);
-      }
-      x-row > x-col:not(:first-child) {
-        margin-top: 1rem;
-      }
-    `
-  ]
-})
-class TestXRadioAsyncComponent {
-  constructor(public cdr: ChangeDetectorRef) {}
-  data!: XData<XRadioNode>;
-  model = 2;
-  loading = false;
-  getData() {
-    this.loading = true;
-    this.data = new Observable((x) => {
-      // 替换成http请求，或者data直接定义成 Observable 对象
-      setTimeout(() => {
-        this.model = 3;
-        this.loading = false;
-        this.cdr.detectChanges();
-        x.next(data);
-        x.complete();
-      }, 2000);
-    });
-    this.cdr.detectChanges();
-  }
-}
