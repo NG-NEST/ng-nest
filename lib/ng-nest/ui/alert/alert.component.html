@@ -53,7 +53,7 @@
       <div class="x-alert-close">
         <div class="x-alert-operation" *xOutlet="operationTpl()">{{ operationTpl() }}</div>
         @if (!hideClose()) {
-          <x-button size="small" [icon]="!closeText() ? 'fto-x' : ''" [type]="'text'" (click)="onClose()" closable>
+          <x-button class="x-alert-operation-close" size="small" [icon]="!closeText() ? 'fto-x' : ''" [type]="'text'" (click)="onClose()" closable>
             {{ closeText() }}
           </x-button>
         }
