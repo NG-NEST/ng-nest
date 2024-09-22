@@ -18,7 +18,14 @@ class XTestAnchorComponent {}
   imports: [XAnchorComponent],
   template: `
     <div #scrollRef style="height: 60rem; width: 100%; overflow: auto;">
-      <x-anchor [scroll]="scroll()" [affixTop]="affixTop()" [affixBottom]="affixBottom()" [affixWidth]="affixWidth()">
+      <x-anchor
+        [scroll]="scroll()"
+        [affixTop]="affixTop()"
+        [affixBottom]="affixBottom()"
+        [affixWidth]="affixWidth()"
+        [layout]="layout()"
+        [justify]="justify()"
+      >
       </x-anchor>
     </div>
   `
@@ -73,18 +80,36 @@ describe(XAnchorPrefix, () => {
       expect(com.componentInstance.scrollElement()).toBe(component.scrollRef());
     });
     it('affixTop.', () => {
-      expect(true).toBe(true);
+      let affix = fixture.debugElement.query(By.css('.x-affix'));
+      expect(affix.nativeElement.style.top).toBe('0px');
+
+      component.affixTop.set(100);
+      fixture.detectChanges();
+      expect(affix.nativeElement.style.top).toBe('100px');
     });
     it('affixBottom.', () => {
-      expect(true).toBe(true);
+      let slider = fixture.debugElement.query(By.css('.x-anchor-slider'));
+      expect(slider.nativeElement.style.height).toBe('0px');
     });
     it('affixWidth.', () => {
-      expect(true).toBe(true);
+      let slider = fixture.debugElement.query(By.css('.x-anchor-slider'));
+      expect(slider.nativeElement.style.width).toBe('');
+
+      component.affixWidth.set('100px');
+      fixture.detectChanges();
+      expect(slider.nativeElement.style.width).toBe('100px');
     });
     it('layout.', () => {
-      expect(true).toBe(true);
+      let anchor = fixture.debugElement.query(By.css('.x-anchor'));
+      expect(anchor.nativeElement.classList).toContain('x-anchor-right');
+
+      component.layout.set('left');
+      fixture.detectChanges();
+      anchor = fixture.debugElement.query(By.css('.x-anchor'));
+      expect(anchor.nativeElement.classList).toContain('x-anchor-left');
     });
     it('justify.', () => {
+      // test x-slider nodeJustify
       expect(true).toBe(true);
     });
   });
