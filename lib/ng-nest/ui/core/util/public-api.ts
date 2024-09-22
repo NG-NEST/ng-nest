@@ -7,3 +7,4 @@ export * from './html';
 export * from './check';
 export * from './camel-to-kebab';
 export * from './kebab-to-camel';
+export * from './sleep';
