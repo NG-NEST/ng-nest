@@ -4,7 +4,8 @@ import { By } from '@angular/platform-browser';
 import { XAutoCompleteComponent, XAutoCompleteNode, XAutoCompletePrefix } from '@ng-nest/ui/auto-complete';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XData, XDirection, XJustify, XPositionTopBottom, XSize, XTemplate } from '@ng-nest/ui/core';
+import { XAlign, XData, XDirection, XJustify, XPositionTopBottom, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -49,7 +50,7 @@ class XTestAutoCompleteComponent {}
     ></x-auto-complete>
 
     <ng-template #nodeTemplate let-node="$node">
-      <div>{{ node.label }}</div>
+      <div>{{ node.label }} tpl</div>
     </ng-template>
 
     <ng-template #beforeTemplate>before</ng-template>
@@ -61,7 +62,7 @@ class XTestAutoCompletePropertyComponent {
   debounceTime = signal(200);
   placement = signal<XPositionTopBottom>('bottom');
   nodeTpl = signal<TemplateRef<any> | null>(null);
-  nodeTemplate = viewChild<TemplateRef<any>>('nodeTemplate');
+  nodeTemplate = viewChild.required<TemplateRef<any>>('nodeTemplate');
   bordered = signal(true);
   caseSensitive = signal(true);
   onlySelect = signal(false);
@@ -99,10 +100,12 @@ describe(XAutoCompletePrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestAutoCompleteComponent, XTestAutoCompletePropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -118,43 +121,113 @@ describe(XAutoCompletePrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestAutoCompletePropertyComponent>;
-    // let component: XTestAutoCompletePropertyComponent;
+    let component: XTestAutoCompletePropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestAutoCompletePropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('data.', () => {
-      expect(true).toBe(true);
+    const showPortal = async () => {
+      const autoComplete = fixture.debugElement.query(By.directive(XAutoCompleteComponent));
+      const instance = autoComplete.componentInstance as XAutoCompleteComponent;
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.focus();
+      instance.value.set('a');
+      fixture.detectChanges();
+      await XSleep(50);
+      const event = new Event('input', { bubbles: true });
+      input.nativeElement.dispatchEvent(event);
+      const change = new Event('change', { bubbles: true });
+      input.nativeElement.dispatchEvent(change);
+      fixture.detectChanges();
+
+      await XSleep(300);
+      const list = fixture.debugElement.query(By.css('.x-list'));
+
+      return { input, list, instance };
+    };
+    it('data.', async () => {
+      const { list } = await showPortal();
+      expect(list.nativeElement.innerText).toBe('aa');
     });
-    it('debounceTime.', () => {
-      expect(true).toBe(true);
+    it('debounceTime.', async () => {
+      const { list } = await showPortal();
+      expect(list).toBeDefined();
     });
-    it('placement.', () => {
-      expect(true).toBe(true);
+    it('placement.', async () => {
+      const autoComplete = fixture.debugElement.query(By.directive(XAutoCompleteComponent));
+      await showPortal();
+
+      const portal = fixture.debugElement.query(By.css('.x-auto-complete-portal'));
+      const autoCompleteRect = autoComplete.nativeElement.getBoundingClientRect();
+      const portalRect = portal.nativeElement.getBoundingClientRect();
+      const leftDiff = autoCompleteRect.left - portalRect.left;
+      const topDiff = autoCompleteRect.top + autoCompleteRect.height - portalRect.top;
+      // Pixels may be decimal points
+      expect(leftDiff > -1 && leftDiff < 1).toBe(true);
+      expect(topDiff > -1 && topDiff < 1).toBe(true);
     });
-    it('nodeTpl.', () => {
-      expect(true).toBe(true);
+    it('nodeTpl.', async () => {
+      component.nodeTpl.set(component.nodeTemplate());
+      fixture.detectChanges();
+      const { list } = await showPortal();
+      expect(list.nativeElement.innerText).toBe('aa tpl');
     });
-    it('bordered.', () => {
-      expect(true).toBe(true);
+    it('bordered.', async () => {
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-bordered');
+
+      component.bordered.set(false);
+      fixture.detectChanges();
+      expect(input.nativeElement).not.toHaveClass('x-input-bordered');
     });
-    it('caseSensitive.', () => {
-      expect(true).toBe(true);
+    it('caseSensitive.', async () => {
+      const { input, list, instance } = await showPortal();
+      expect(list.nativeElement.innerText).toBe('aa');
+
+      input.nativeElement.focus();
+      instance.value.set('A');
+      const event = new Event('input', { bubbles: true });
+      input.nativeElement.dispatchEvent(event);
+      const change = new Event('change', { bubbles: true });
+      input.nativeElement.dispatchEvent(change);
+      fixture.detectChanges();
+
+      await XSleep(300);
+      const listContent = fixture.debugElement.query(By.css('.x-list-content'));
+      expect(listContent.nativeElement.innerText).toBe('');
     });
-    it('onlySelect.', () => {
-      expect(true).toBe(true);
+    it('onlySelect.', async () => {
+      component.onlySelect.set(true);
+      fixture.detectChanges();
+      let { instance } = await showPortal();
+      instance.closePortal();
+      fixture.detectChanges();
+      expect(instance.value()).toBe('');
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-medium');
+      component.size.set('large');
+      fixture.detectChanges();
+      expect(input.nativeElement).toHaveClass('x-input-large');
     });
     it('pointer.', () => {
-      expect(true).toBe(true);
+      component.pointer.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-pointer');
     });
-    it('label.', () => {
-      expect(true).toBe(true);
+    it('label.', async () => {
+      component.label.set('label');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.innerText).toBe('label');
     });
     it('labelWidth.', () => {
+      component.labelWidth.set('100px');
       expect(true).toBe(true);
     });
     it('labelAlign.', () => {
