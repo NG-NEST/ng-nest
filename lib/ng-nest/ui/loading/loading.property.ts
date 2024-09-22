@@ -34,17 +34,17 @@ export class XLoadingProperty extends XPropertyFunction(X_LOADING_CONFIG_NAME) {
    * @zh_CN 显示文字，支持自定义模板
    * @en_US Display text, support custom template
    */
-  readonly text = input<XTemplate>(this.config?.text!);
+  readonly text = input<XTemplate | null>(this.config?.text ?? null);
   /**
    * @zh_CN 显示的图标
    * @en_US Icon displayed
    */
-  readonly icon = input<string>(this.config?.icon!);
+  readonly icon = input<string | null>(this.config?.icon ?? null);
   /**
    * @zh_CN 颜色
    * @en_US Color
    */
-  readonly color = input<string>(this.config?.color!);
+  readonly color = input<string | null>(this.config?.color ?? null);
   /**
    * @zh_CN 全屏显示
    * @en_US Full-screen display
@@ -59,5 +59,5 @@ export class XLoadingProperty extends XPropertyFunction(X_LOADING_CONFIG_NAME) {
    * @zh_CN 背景样式
    * @en_US Background style
    */
-  readonly background = input<string>(this.config?.background!);
+  readonly background = input<string | null>(this.config?.background ?? null);
 }
