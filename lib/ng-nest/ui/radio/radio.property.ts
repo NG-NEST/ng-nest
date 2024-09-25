@@ -1,11 +1,10 @@
 import { XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
-import { Component, TemplateRef, input, model } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { XButtonType } from '@ng-nest/ui/button';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 import type {
   XData,
   XIdentityProperty,
-  XSize,
   XBoolean,
   XTemplate,
   XDirection,
@@ -73,16 +72,6 @@ export class XRadioProperty extends XFormControlFunction(X_RADIO_CONFIG_NAME) {
    */
   readonly vertical = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  override readonly size = input<XSize>(this.config?.size ?? 'medium');
-  /**
-   * @zh_CN 输入框点击样式
-   * @en_US Input pointer
-   */
-  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
-  /**
    * @zh_CN 标签
    * @en_US Label
    */
@@ -113,11 +102,6 @@ export class XRadioProperty extends XFormControlFunction(X_RADIO_CONFIG_NAME) {
    */
   override readonly direction = input<XDirection>('column');
   /**
-   * @zh_CN 输入提示信息
-   * @en_US Enter prompt information
-   */
-  override readonly placeholder = input<string | string[]>('');
-  /**
    * @zh_CN 禁用
    * @en_US Disabled
    */
@@ -128,21 +112,6 @@ export class XRadioProperty extends XFormControlFunction(X_RADIO_CONFIG_NAME) {
    */
   override readonly required = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
-   * @zh_CN 只读
-   * @en_US Readonly
-   */
-  override readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
-  /**
-   * @zh_CN 值模板
-   * @en_US Node template
-   */
-  override readonly valueTpl = input<TemplateRef<any>>();
-  /**
-   * @zh_CN 值模板参数
-   * @en_US Node template
-   */
-  override readonly valueTplContext = input();
-  /**
    * @zh_CN 前置标签
    * @en_US Before label
    */
@@ -152,26 +121,6 @@ export class XRadioProperty extends XFormControlFunction(X_RADIO_CONFIG_NAME) {
    * @en_US After label
    */
   override readonly after = input<XTemplate>();
-  /**
-   * @zh_CN 正则验证规则
-   * @en_US Regular verification rules
-   */
-  override readonly pattern = input<RegExp | RegExp[] | any>(null);
-  /**
-   * @zh_CN 验证不通过提示文字
-   * @en_US Verify not pass the prompt text
-   */
-  override readonly message = input<string | string[]>([]);
-  /**
-   * @zh_CN 激活状态
-   * @en_US Activation state
-   */
-  override readonly active = model<boolean>(false);
-  /**
-   * @zh_CN 输入验证函数
-   * @en_US Enter the verification function
-   */
-  override readonly inputValidator = input<(value: any) => boolean>();
 }
 
 /**
@@ -224,16 +173,6 @@ export interface XRadioOption extends XFormOption {
    */
   vertical?: boolean;
   /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  size?: XSize;
-  /**
-   * @zh_CN 输入框点击样式
-   * @en_US Input pointer
-   */
-  pointer?: boolean;
-  /**
    * @zh_CN 标签
    * @en_US Label
    */
@@ -264,11 +203,6 @@ export interface XRadioOption extends XFormOption {
    */
   direction?: XDirection;
   /**
-   * @zh_CN 输入提示信息
-   * @en_US Enter prompt information
-   */
-  placeholder?: string;
-  /**
    * @zh_CN 禁用
    * @en_US Disabled
    */
@@ -279,21 +213,6 @@ export interface XRadioOption extends XFormOption {
    */
   required?: boolean;
   /**
-   * @zh_CN 只读
-   * @en_US Readonly
-   */
-  readonly?: boolean;
-  /**
-   * @zh_CN 值模板
-   * @en_US Node template
-   */
-  valueTpl?: TemplateRef<any>;
-  /**
-   * @zh_CN 值模板参数
-   * @en_US Node template
-   */
-  valueTplContext?: any;
-  /**
    * @zh_CN 前置标签
    * @en_US Before label
    */
@@ -303,26 +222,6 @@ export interface XRadioOption extends XFormOption {
    * @en_US After label
    */
   after?: XTemplate;
-  /**
-   * @zh_CN 正则验证规则
-   * @en_US Regular verification rules
-   */
-  pattern?: RegExp | RegExp[];
-  /**
-   * @zh_CN 验证不通过提示文字
-   * @en_US Verify not pass the prompt text
-   */
-  message?: string | string[];
-  /**
-   * @zh_CN 激活状态
-   * @en_US Activation state
-   */
-  active?: boolean;
-  /**
-   * @zh_CN 输入验证函数
-   * @en_US Enter the verification function
-   */
-  inputValidator?: (value: any) => boolean;
 }
 
 /**
