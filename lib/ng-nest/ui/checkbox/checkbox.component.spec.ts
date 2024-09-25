@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { XCheckboxComponent, XCheckboxNode, XCheckboxPrefix } from '@ng-nest/ui/checkbox';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XData, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+import { XAlign, XData, XDirection, XJustify, XTemplate } from '@ng-nest/ui/core';
 import { XButtonType } from '@ng-nest/ui/button';
 
 @Component({
@@ -29,26 +29,16 @@ class XTestCheckboxComponent {}
       [tagDark]="tagDark()"
       [single]="single()"
       [vertical]="vertical()"
-      [size]="size()"
-      [pointer]="pointer()"
       [label]="label()"
       [labelWidth]="labelWidth()"
       [labelAlign]="labelAlign()"
       [justify]="justify()"
       [align]="align()"
       [direction]="direction()"
-      [placeholder]="placeholder()"
       [disabled]="disabled()"
       [required]="required()"
-      [readonly]="readonly()"
-      [valueTpl]="valueTpl()"
-      [valueTplContext]="valueTplContext()"
       [before]="before()"
       [after]="after()"
-      [pattern]="pattern()"
-      [message]="message()"
-      [active]="active()"
-      [inputValidator]="inputValidator()"
     >
     </x-checkbox>
 
@@ -67,28 +57,18 @@ class XTestCheckboxPropertyComponent {
   tagDark = signal(false);
   single = signal(false);
   vertical = signal(false);
-  size = signal<XSize>('medium');
-  pointer = signal(false);
   label = signal('');
   labelWidth = signal('');
   labelAlign = signal<XAlign>('start');
   justify = signal<XJustify>('start');
   align = signal<XAlign>('start');
   direction = signal<XDirection>('column');
-  placeholder = signal('');
   disabled = signal(false);
   required = signal(false);
-  readonly = signal(false);
-  valueTpl = signal<TemplateRef<any> | null>(null);
-  valueTplContext = signal(null);
   before = signal<XTemplate | null>(null);
-  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  beforeTemplate = viewChild.required<TemplateRef<any>>('beforeTemplate');
   after = signal<XTemplate | null>(null);
-  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
-  pattern = signal<RegExp | RegExp[] | null>(null);
-  message = signal<string | string[]>([]);
-  active = signal(false);
-  inputValidator = signal<((value: any) => boolean) | null>(null);
+  afterTemplate = viewChild.required<TemplateRef<any>>('afterTemplate');
 }
 
 describe(XCheckboxPrefix, () => {
@@ -115,10 +95,10 @@ describe(XCheckboxPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCheckboxPropertyComponent>;
-    // let component: XTestCheckboxPropertyComponent;
+    let component: XTestCheckboxPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestCheckboxPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('data.', () => {
@@ -151,65 +131,64 @@ describe(XCheckboxPrefix, () => {
     it('vertical.', () => {
       expect(true).toBe(true);
     });
-    it('size.', () => {
-      expect(true).toBe(true);
-    });
-    it('pointer.', () => {
-      expect(true).toBe(true);
-    });
-    it('label.', () => {
-      expect(true).toBe(true);
+    it('label.', async () => {
+      component.label.set('label');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.innerText).toBe('label');
     });
     it('labelWidth.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelWidth.set('100px');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.style.width).toBe('100px');
     });
     it('labelAlign.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelAlign.set('end');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement).toHaveClass('x-text-align-end');
     });
     it('justify.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.justify.set('end');
+      fixture.detectChanges();
+      const checkbox = fixture.debugElement.query(By.css('.x-checkbox'));
+      expect(checkbox.nativeElement).toHaveClass('x-justify-end');
     });
     it('align.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.align.set('end');
+      fixture.detectChanges();
+      const checkbox = fixture.debugElement.query(By.css('.x-checkbox'));
+      expect(checkbox.nativeElement).toHaveClass('x-align-end');
     });
     it('direction.', () => {
-      expect(true).toBe(true);
-    });
-    it('placeholder.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.direction.set('row');
+      fixture.detectChanges();
+      const checkbox = fixture.debugElement.query(By.css('.x-checkbox'));
+      expect(checkbox.nativeElement).toHaveClass('x-direction-row');
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
-    });
-    it('required.', () => {
-      expect(true).toBe(true);
-    });
-    it('readonly.', () => {
-      expect(true).toBe(true);
-    });
-    it('valueTpl.', () => {
-      expect(true).toBe(true);
-    });
-    it('valueTplContext.', () => {
-      expect(true).toBe(true);
+      component.disabled.set(true);
+      fixture.detectChanges();
+      const checkbox = fixture.debugElement.query(By.css('.x-checkbox'));
+      expect(checkbox.nativeElement).toHaveClass('x-disabled');
     });
     it('before.', () => {
-      expect(true).toBe(true);
+      component.before.set(component.beforeTemplate());
+      fixture.detectChanges();
+      const tpl = fixture.debugElement.query(By.css('.x-checkbox-row-before'));
+      expect(tpl.nativeElement.innerText).toBe('before');
     });
     it('after.', () => {
-      expect(true).toBe(true);
-    });
-    it('pattern.', () => {
-      expect(true).toBe(true);
-    });
-    it('message.', () => {
-      expect(true).toBe(true);
-    });
-    it('active.', () => {
-      expect(true).toBe(true);
-    });
-    it('inputValidator.', () => {
-      expect(true).toBe(true);
+      component.after.set(component.afterTemplate());
+      fixture.detectChanges();
+      const tpl = fixture.debugElement.query(By.css('.x-checkbox-row-after'));
+      expect(tpl.nativeElement.innerText).toBe('after');
     });
   });
 });
