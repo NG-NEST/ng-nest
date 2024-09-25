@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSwitchComponent, XSwitchPrefix } from '@ng-nest/ui/switch';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -23,29 +23,15 @@ class XTestSwitchComponent {}
       [checkedText]="checkedText()"
       [unCheckedText]="unCheckedText()"
       [size]="size()"
-      [pointer]="pointer()"
       [label]="label()"
       [labelWidth]="labelWidth()"
       [labelAlign]="labelAlign()"
       [justify]="justify()"
       [align]="align()"
       [direction]="direction()"
-      [placeholder]="placeholder()"
       [disabled]="disabled()"
       [required]="required()"
-      [readonly]="readonly()"
-      [valueTpl]="valueTpl()"
-      [valueTplContext]="valueTplContext()"
-      [before]="before()"
-      [after]="after()"
-      [pattern]="pattern()"
-      [message]="message()"
-      [active]="active()"
-      [inputValidator]="inputValidator()"
     ></x-switch>
-
-    <ng-template #beforeTemplate>before</ng-template>
-    <ng-template #afterTemplate>after</ng-template>
   `
 })
 class XTestSwitchPropertyComponent {
@@ -54,27 +40,14 @@ class XTestSwitchPropertyComponent {
   checkedText = signal<XTemplate | null>(null);
   unCheckedText = signal<XTemplate | null>(null);
   size = signal<XSize>('medium');
-  pointer = signal(false);
   label = signal('');
   labelWidth = signal('');
   labelAlign = signal<XAlign>('start');
   justify = signal<XJustify>('start');
   align = signal<XAlign>('start');
   direction = signal<XDirection>('column');
-  placeholder = signal('');
   disabled = signal(false);
   required = signal(false);
-  readonly = signal(false);
-  valueTpl = signal<TemplateRef<any> | null>(null);
-  valueTplContext = signal(null);
-  before = signal<XTemplate | null>(null);
-  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
-  after = signal<XTemplate | null>(null);
-  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
-  pattern = signal<RegExp | RegExp[] | null>(null);
-  message = signal<string | string[]>([]);
-  active = signal(false);
-  inputValidator = signal<((value: any) => boolean) | null>(null);
 }
 
 describe(XSwitchPrefix, () => {
@@ -101,10 +74,10 @@ describe(XSwitchPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestSwitchPropertyComponent>;
-    // let component: XTestSwitchPropertyComponent;
+    let component: XTestSwitchPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestSwitchPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('loading.', () => {
@@ -120,64 +93,65 @@ describe(XSwitchPrefix, () => {
       expect(true).toBe(true);
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-switch'));
+      expect(input.nativeElement).toHaveClass('x-switch-medium');
+      component.size.set('large');
+      fixture.detectChanges();
+      expect(input.nativeElement).toHaveClass('x-switch-large');
     });
-    it('pointer.', () => {
-      expect(true).toBe(true);
-    });
-    it('label.', () => {
-      expect(true).toBe(true);
+    it('label.', async () => {
+      component.label.set('label');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.innerText).toBe('label');
     });
     it('labelWidth.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelWidth.set('100px');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.style.width).toBe('100px');
     });
     it('labelAlign.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelAlign.set('end');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement).toHaveClass('x-text-align-end');
     });
     it('justify.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.justify.set('end');
+      fixture.detectChanges();
+      const sw = fixture.debugElement.query(By.css('.x-switch'));
+      expect(sw.nativeElement).toHaveClass('x-justify-end');
     });
     it('align.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.align.set('end');
+      fixture.detectChanges();
+      const sw = fixture.debugElement.query(By.css('.x-switch'));
+      expect(sw.nativeElement).toHaveClass('x-align-end');
     });
     it('direction.', () => {
-      expect(true).toBe(true);
-    });
-    it('placeholder.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.direction.set('row');
+      fixture.detectChanges();
+      const sw = fixture.debugElement.query(By.css('.x-switch'));
+      expect(sw.nativeElement).toHaveClass('x-direction-row');
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
+      component.disabled.set(true);
+      fixture.detectChanges();
+      const sw = fixture.debugElement.query(By.css('.x-switch'));
+      expect(sw.nativeElement).toHaveClass('x-disabled');
     });
     it('required.', () => {
-      expect(true).toBe(true);
-    });
-    it('readonly.', () => {
-      expect(true).toBe(true);
-    });
-    it('valueTpl.', () => {
-      expect(true).toBe(true);
-    });
-    it('valueTplContext.', () => {
-      expect(true).toBe(true);
-    });
-    it('before.', () => {
-      expect(true).toBe(true);
-    });
-    it('after.', () => {
-      expect(true).toBe(true);
-    });
-    it('pattern.', () => {
-      expect(true).toBe(true);
-    });
-    it('message.', () => {
-      expect(true).toBe(true);
-    });
-    it('active.', () => {
-      expect(true).toBe(true);
-    });
-    it('inputValidator.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.required.set(true);
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement).toHaveClass('x-switch-label-required');
     });
   });
 });
