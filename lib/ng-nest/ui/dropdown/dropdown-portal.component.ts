@@ -44,11 +44,13 @@ export class XDropdownPortalComponent {
   @HostBinding('@x-connect-base-animation') public get getPlacement() {
     return this.placement();
   }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    event.toState !== 'void' && !this.isDestroy() && this.animating.emit(false);
+  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+    if (this.destroy()) return;
+    this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
-    event.toState !== 'void' && !this.isDestroy() && this.animating.emit(true);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+    if (this.destroy()) return;
+    this.animating.emit(true);
   }
   data = input<XDropdownNode[]>([]);
   trigger = input<XDropdownTrigger>('hover');
@@ -70,8 +72,9 @@ export class XDropdownPortalComponent {
   portalPlacement = signal<XPositionTopBottom | null>(null);
   childAnimating = signal(false);
   activatedId = model<any>();
-  isDestroy = signal(false);
+  destroy = signal(false);
   private unSubject = new Subject<void>();
+  private destroyRef = inject(DestroyRef);
 
   @HostListener('mouseenter') mouseenter() {
     this.portalHover.emit(true);
@@ -96,9 +99,13 @@ export class XDropdownPortalComponent {
     effect(() => this.portalComponent()?.setInput('size', this.size()));
     effect(() => this.portalComponent()?.setInput('placement', this.portalPlacement()));
     effect(() => this.portalComponent()?.setInput('activatedId', this.activatedId()));
+  }
 
-    inject(DestroyRef).onDestroy(() => {
-      this.isDestroy.set(true);
+  ngOnInit() {
+    this.destroyRef.onDestroy(() => {
+      this.destroy.set(true);
+      this.unSubject.next();
+      this.unSubject.complete();
     });
   }
 
