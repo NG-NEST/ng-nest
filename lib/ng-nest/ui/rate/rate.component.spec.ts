@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRateColor, XRateComponent, XRatePrefix } from '@ng-nest/ui/rate';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { XAlign, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+import { XAlign, XDirection, XJustify } from '@ng-nest/ui/core';
 
 @Component({
   standalone: true,
@@ -23,33 +23,18 @@ class XTestRateComponent {}
       [half]="half()"
       [color]="color()"
       [customTemp]="customTemp()"
-      [size]="size()"
-      [pointer]="pointer()"
       [label]="label()"
       [labelWidth]="labelWidth()"
       [labelAlign]="labelAlign()"
       [justify]="justify()"
       [align]="align()"
       [direction]="direction()"
-      [placeholder]="placeholder()"
       [disabled]="disabled()"
       [required]="required()"
-      [readonly]="readonly()"
-      [valueTpl]="valueTpl()"
-      [valueTplContext]="valueTplContext()"
-      [before]="before()"
-      [after]="after()"
-      [pattern]="pattern()"
-      [message]="message()"
-      [active]="active()"
-      [inputValidator]="inputValidator()"
     >
     </x-rate>
 
     <ng-template #customTemplate>custom</ng-template>
-
-    <ng-template #beforeTemplate>before</ng-template>
-    <ng-template #afterTemplate>after</ng-template>
   `
 })
 class XTestRatePropertyComponent {
@@ -57,28 +42,14 @@ class XTestRatePropertyComponent {
   half = signal(false);
   color = signal<XRateColor>('');
   customTemp = signal<TemplateRef<any> | null>(null);
-  size = signal<XSize>('medium');
-  pointer = signal(false);
   label = signal('');
   labelWidth = signal('');
   labelAlign = signal<XAlign>('start');
   justify = signal<XJustify>('start');
   align = signal<XAlign>('start');
   direction = signal<XDirection>('column');
-  placeholder = signal('');
   disabled = signal(false);
   required = signal(false);
-  readonly = signal(false);
-  valueTpl = signal<TemplateRef<any> | null>(null);
-  valueTplContext = signal(null);
-  before = signal<XTemplate | null>(null);
-  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
-  after = signal<XTemplate | null>(null);
-  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
-  pattern = signal<RegExp | RegExp[] | null>(null);
-  message = signal<string | string[]>([]);
-  active = signal(false);
-  inputValidator = signal<((value: any) => boolean) | null>(null);
 }
 
 describe(XRatePrefix, () => {
@@ -90,7 +61,8 @@ describe(XRatePrefix, () => {
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -106,10 +78,10 @@ describe(XRatePrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestRatePropertyComponent>;
-    // let component: XTestRatePropertyComponent;
+    let component: XTestRatePropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestRatePropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('count.', () => {
@@ -124,65 +96,52 @@ describe(XRatePrefix, () => {
     it('customTemp.', () => {
       expect(true).toBe(true);
     });
-    it('size.', () => {
-      expect(true).toBe(true);
-    });
-    it('pointer.', () => {
-      expect(true).toBe(true);
-    });
-    it('label.', () => {
-      expect(true).toBe(true);
+    it('label.', async () => {
+      component.label.set('label');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.innerText).toBe('label');
     });
     it('labelWidth.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelWidth.set('100px');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.style.width).toBe('100px');
     });
     it('labelAlign.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelAlign.set('end');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement).toHaveClass('x-text-align-end');
     });
     it('justify.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.justify.set('end');
+      fixture.detectChanges();
+      const rate = fixture.debugElement.query(By.css('.x-rate'));
+      expect(rate.nativeElement).toHaveClass('x-justify-end');
     });
     it('align.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.align.set('end');
+      fixture.detectChanges();
+      const rate = fixture.debugElement.query(By.css('.x-rate'));
+      expect(rate.nativeElement).toHaveClass('x-align-end');
     });
     it('direction.', () => {
-      expect(true).toBe(true);
-    });
-    it('placeholder.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.direction.set('row');
+      fixture.detectChanges();
+      const rate = fixture.debugElement.query(By.css('.x-rate'));
+      expect(rate.nativeElement).toHaveClass('x-direction-row');
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
-    });
-    it('required.', () => {
-      expect(true).toBe(true);
-    });
-    it('readonly.', () => {
-      expect(true).toBe(true);
-    });
-    it('valueTpl.', () => {
-      expect(true).toBe(true);
-    });
-    it('valueTplContext.', () => {
-      expect(true).toBe(true);
-    });
-    it('before.', () => {
-      expect(true).toBe(true);
-    });
-    it('after.', () => {
-      expect(true).toBe(true);
-    });
-    it('pattern.', () => {
-      expect(true).toBe(true);
-    });
-    it('message.', () => {
-      expect(true).toBe(true);
-    });
-    it('active.', () => {
-      expect(true).toBe(true);
-    });
-    it('inputValidator.', () => {
-      expect(true).toBe(true);
+      component.disabled.set(true);
+      fixture.detectChanges();
+      const rate = fixture.debugElement.query(By.css('.x-rate'));
+      expect(rate.nativeElement).toHaveClass('x-disabled');
     });
   });
 });
