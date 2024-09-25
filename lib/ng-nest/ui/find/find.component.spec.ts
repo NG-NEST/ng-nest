@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFindComponent, XFindPrefix, XFindSearchOption } from '@ng-nest/ui/find';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { XTableColumn, XTableRow } from '@ng-nest/ui/table';
-import { XAlign, XData, XDirection, XJustify, XQuery, XSize, XSort, XTemplate } from '@ng-nest/ui/core';
+import { XAlign, XData, XDirection, XJustify, XQuery, XSize, XSort } from '@ng-nest/ui/core';
 import { XTreeNode } from '@ng-nest/ui/tree';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -58,26 +59,19 @@ class XTestFindComponent {}
       [treeTableConnect]="treeTableConnect()"
       [search]="search()"
       [size]="size()"
-      [pointer]="pointer()"
       [label]="label()"
       [labelWidth]="labelWidth()"
       [labelAlign]="labelAlign()"
       [justify]="justify()"
       [align]="align()"
       [direction]="direction()"
-      [placeholder]="placeholder()"
       [disabled]="disabled()"
       [required]="required()"
-      [readonly]="readonly()"
-      [valueTpl]="valueTpl()"
-      [valueTplContext]="valueTplContext()"
-      [before]="before()"
-      [after]="after()"
-      [pattern]="pattern()"
-      [message]="message()"
-      [active]="active()"
-      [inputValidator]="inputValidator()"
     ></x-find>
+
+    <ng-template #valueTemplate let-value="$value">
+      <div>{{ value }} tpl</div>
+    </ng-template>
 
     <ng-template #beforeTemplate>before</ng-template>
     <ng-template #afterTemplate>after</ng-template>
@@ -132,27 +126,14 @@ class XTestFindPropertyComponent {
   treeTableConnect = signal('');
   search = signal<XFindSearchOption | null>(null);
   size = signal<XSize>('medium');
-  pointer = signal(false);
   label = signal('');
   labelWidth = signal('');
   labelAlign = signal<XAlign>('start');
   justify = signal<XJustify>('start');
   align = signal<XAlign>('start');
   direction = signal<XDirection>('column');
-  placeholder = signal('');
   disabled = signal(false);
   required = signal(false);
-  readonly = signal(false);
-  valueTpl = signal<TemplateRef<any> | null>(null);
-  valueTplContext = signal(null);
-  before = signal<XTemplate | null>(null);
-  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
-  after = signal<XTemplate | null>(null);
-  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
-  pattern = signal<RegExp | RegExp[] | null>(null);
-  message = signal<string | string[]>([]);
-  active = signal(false);
-  inputValidator = signal<((value: any) => boolean) | null>(null);
 }
 
 describe(XFindPrefix, () => {
@@ -160,10 +141,12 @@ describe(XFindPrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestFindComponent, XTestFindPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -179,10 +162,10 @@ describe(XFindPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestFindPropertyComponent>;
-    // let component: XTestFindPropertyComponent;
+    let component: XTestFindPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestFindPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('bordered.', () => {
@@ -294,64 +277,65 @@ describe(XFindPrefix, () => {
       expect(true).toBe(true);
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-button'));
+      expect(input.nativeElement).toHaveClass('x-size-medium');
+      component.size.set('large');
+      fixture.detectChanges();
+      expect(input.nativeElement).toHaveClass('x-size-large');
     });
-    it('pointer.', () => {
-      expect(true).toBe(true);
-    });
-    it('label.', () => {
-      expect(true).toBe(true);
+    it('label.', async () => {
+      component.label.set('label');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.innerText).toBe('label');
     });
     it('labelWidth.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelWidth.set('100px');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.style.width).toBe('100px');
     });
     it('labelAlign.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelAlign.set('end');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement).toHaveClass('x-text-align-end');
     });
     it('justify.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.justify.set('end');
+      fixture.detectChanges();
+      const find = fixture.debugElement.query(By.css('.x-find'));
+      expect(find.nativeElement).toHaveClass('x-justify-end');
     });
     it('align.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.align.set('end');
+      fixture.detectChanges();
+      const find = fixture.debugElement.query(By.css('.x-find'));
+      expect(find.nativeElement).toHaveClass('x-align-end');
     });
     it('direction.', () => {
-      expect(true).toBe(true);
-    });
-    it('placeholder.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.direction.set('row');
+      fixture.detectChanges();
+      const find = fixture.debugElement.query(By.css('.x-find'));
+      expect(find.nativeElement).toHaveClass('x-direction-row');
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
+      component.disabled.set(true);
+      fixture.detectChanges();
+      const find = fixture.debugElement.query(By.css('.x-find'));
+      expect(find.nativeElement).toHaveClass('x-disabled');
     });
     it('required.', () => {
-      expect(true).toBe(true);
-    });
-    it('readonly.', () => {
-      expect(true).toBe(true);
-    });
-    it('valueTpl.', () => {
-      expect(true).toBe(true);
-    });
-    it('valueTplContext.', () => {
-      expect(true).toBe(true);
-    });
-    it('before.', () => {
-      expect(true).toBe(true);
-    });
-    it('after.', () => {
-      expect(true).toBe(true);
-    });
-    it('pattern.', () => {
-      expect(true).toBe(true);
-    });
-    it('message.', () => {
-      expect(true).toBe(true);
-    });
-    it('active.', () => {
-      expect(true).toBe(true);
-    });
-    it('inputValidator.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.required.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('label'));
+      expect(input.nativeElement).toHaveClass('x-find-label-required');
     });
   });
 });
