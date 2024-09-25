@@ -17,9 +17,9 @@
       [placeholder]="placeholder()"
       [readonly]="getReadonly()"
       [clearable]="showClearable()"
-      [(ngModel)]="displayValue"
-      [valueTpl]="valueTplSignal() ? valueTplSignal() : nodeTpl()"
-      [valueTplContext]="valueTplContextSignal()"
+      [(ngModel)]="value"
+      [valueTpl]="valueTplComputed()"
+      [valueTplContext]="valueTplContextComputed()"
       [size]="size()"
       [bordered]="bordered()"
       [before]="before()"
@@ -39,6 +39,8 @@
     ></x-input>
   </div>
 </div>
+
+<ng-template #valueTemplate>{{ displayValue() }}</ng-template>
 
 <ng-template #multipleValueTpl>
   @for (node of displayNodes(); track node.id; let i = $index) {

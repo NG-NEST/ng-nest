@@ -10,7 +10,9 @@ import {
   computed,
   output,
   HostBinding,
-  HostListener
+  HostListener,
+  signal,
+  DestroyRef
 } from '@angular/core';
 import { XTreeSelectNode, XTreeSelectPortalPrefix } from './tree-select.property';
 import { XConnectBaseAnimation, XIsEmpty, XPlacement, XSize } from '@ng-nest/ui/core';
@@ -35,11 +37,13 @@ export class XTreeSelectPortalComponent {
   @HostBinding('@x-connect-base-animation') public get getPlacement() {
     return this.placement();
   }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(false);
+  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+    if (this.destroy()) return;
+    this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(true);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+    if (this.destroy()) return;
+    this.animating.emit(true);
   }
 
   tree = viewChild.required<XTreeComponent>('tree');
@@ -68,11 +72,20 @@ export class XTreeSelectPortalComponent {
 
   isEmpty = computed(() => XIsEmpty(this.data()));
 
+  destroy = signal(false);
+  private destroyRef = inject(DestroyRef);
+
   locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.treeSelect as XI18nTreeSelect)), {
     initialValue: zh_CN.treeSelect
   });
 
   getSelectAllText = computed(() => this.selectAllText() || this.locale().selectAllText);
+
+  ngOnInit(): void {
+    this.destroyRef.onDestroy(() => {
+      this.destroy.set(true);
+    });
+  }
 
   stopPropagation(event: Event): void {
     event.stopPropagation();

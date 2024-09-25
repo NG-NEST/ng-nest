@@ -123,12 +123,32 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   animating = signal(false);
   selectedSurplus = signal(0);
   selectedTotal = signal(0);
-  valueTplContextSignal = signal<{ $node: any; $isValue: boolean }>({ $node: null, $isValue: true });
+
   closeSubject: Subject<void> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   inputChange: Subject<any> = new Subject();
   composition = signal(false);
   multipleInputSizeChange = new Subject<number>();
+  valueTemplate = viewChild.required<TemplateRef<void>>('valueTemplate');
+
+  valueTplComputed = computed(() => {
+    if (this.nodeTpl()) {
+      return this.nodeTpl();
+    }
+    if (this.valueTpl()) {
+      return this.valueTpl();
+    }
+    if (this.multiple()) {
+      return this.multipleValueTpl();
+    }
+    return this.valueTemplate();
+  });
+
+  valueTplContextSignal = signal<{ $node: any; $isValue: boolean }>({ $node: null, $isValue: true });
+  valueTplContextComputed = computed(() => {
+    return this.valueTplContext() ? this.valueTplContext() : this.valueTplContextSignal();
+  });
+
   valueTplSignal = computed(() => {
     if (this.multiple()) {
       return this.multipleValueTpl();
