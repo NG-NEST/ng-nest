@@ -12,7 +12,8 @@ import {
   signal,
   viewChild,
   ComponentRef,
-  effect
+  effect,
+  computed
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompleteProperty, XAutoCompletePrefix } from './auto-complete.property';
 import {
@@ -62,6 +63,9 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   animating = signal(false);
 
   valueTplContextSignal = signal<{ $node: any; $isValue: boolean }>({ $node: null, $isValue: true });
+  valueTplContextComputed = computed(() => {
+    return this.valueTplContext() ? this.valueTplContext() : this.valueTplContextSignal();
+  });
 
   inputChange = new BehaviorSubject<any>(null);
   closeSubject: Subject<void> = new Subject();
