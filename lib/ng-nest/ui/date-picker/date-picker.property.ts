@@ -454,16 +454,6 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    */
   override readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
-   * @zh_CN 值模板
-   * @en_US Node template
-   */
-  override readonly valueTpl = input<TemplateRef<any>>();
-  /**
-   * @zh_CN 值模板参数
-   * @en_US Node template
-   */
-  override readonly valueTplContext = input();
-  /**
    * @zh_CN 前置标签
    * @en_US Before label
    */
@@ -483,11 +473,6 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    * @en_US Verify not pass the prompt text
    */
   override readonly message = input<string | string[]>([]);
-  /**
-   * @zh_CN 激活状态
-   * @en_US Activation state
-   */
-  override readonly active = model<boolean>(false);
   /**
    * @zh_CN 输入验证函数
    * @en_US Enter the verification function
@@ -610,16 +595,6 @@ export interface XDateRangeOption extends XFormOption {
    */
   readonly?: boolean;
   /**
-   * @zh_CN 值模板
-   * @en_US Node template
-   */
-  valueTpl?: TemplateRef<any>;
-  /**
-   * @zh_CN 值模板参数
-   * @en_US Node template
-   */
-  valueTplContext?: any;
-  /**
    * @zh_CN 前置标签
    * @en_US Before label
    */
@@ -639,11 +614,6 @@ export interface XDateRangeOption extends XFormOption {
    * @en_US Verify not pass the prompt text
    */
   message?: string | string[];
-  /**
-   * @zh_CN 激活状态
-   * @en_US Activation state
-   */
-  active?: boolean;
   /**
    * @zh_CN 输入验证函数
    * @en_US Enter the verification function

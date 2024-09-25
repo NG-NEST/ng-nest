@@ -11,7 +11,8 @@ import {
   viewChild,
   computed,
   signal,
-  model
+  model,
+  DestroyRef
 } from '@angular/core';
 import {
   XDatePickerDisabledDate,
@@ -68,15 +69,19 @@ export class XDatePickerPortalComponent implements AfterViewInit {
   @HostBinding('@x-connect-base-animation') public get getPlacement() {
     return this.placement();
   }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: string }) {
-    event.toState !== 'void' && this.animating.emit(false);
+  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+    if (this.destroy()) return;
+    this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: string }) {
-    event.toState !== 'void' && this.animating.emit(true);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+    if (this.destroy()) return;
+    this.animating.emit(true);
   }
 
   private i18n = inject(XI18nService);
   private _type = signal<XDatePickerType>('date');
+  destroy = signal(false);
+  private destroyRef = inject(DestroyRef);
 
   timePickerFrame = viewChild('timePickerFrame', { read: XTimePickerFrameComponent });
   value = input<any>();
@@ -118,6 +123,12 @@ export class XDatePickerPortalComponent implements AfterViewInit {
     }
     return res;
   });
+
+  ngOnInit() {
+    this.destroyRef.onDestroy(() => {
+      this.destroy.set(true);
+    });
+  }
 
   ngAfterViewInit() {
     this.init();

@@ -1,5 +1,5 @@
 /**
- * @zh_CN ÑÓÊ±ÐÝÃß
+ * @zh_CN å»¶è¿Ÿæ—¶é—´
  * @en_US Delayed sleep
  */
 export function XSleep(time: number) {

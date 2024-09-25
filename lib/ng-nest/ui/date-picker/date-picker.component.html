@@ -12,12 +12,13 @@
       [disabled]="disabledComputed()"
       [required]="requiredComputed()"
       [validator]="validatorComputed()"
+      [inputValidator]="inputValidator()"
       [icon]="icon()"
       [placeholder]="placeholderSignal()!"
       [readonly]="readonly()"
       [clearable]="clearable() && inputClearable()"
-      [ngModel]="displayValue()"
-      [valueTpl]="valueTpl()"
+      [(ngModel)]="value"
+      [valueTpl]="valueTpl() ? valueTpl() : valueTemplate"
       [valueTplContext]="valueTplContext()"
       [size]="size()"
       [bordered]="bordered()"
@@ -33,5 +34,9 @@
       (xMouseenter)="menter()"
       (xMouseleave)="mleave()"
     ></x-input>
+
+    <ng-template #valueTemplate>
+      {{ displayValue() }}
+    </ng-template>
   </div>
 </div>

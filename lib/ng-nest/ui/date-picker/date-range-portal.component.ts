@@ -11,7 +11,8 @@ import {
   viewChild,
   signal,
   inject,
-  model
+  model,
+  DestroyRef
 } from '@angular/core';
 import {
   XDateRangePortalPrefix,
@@ -73,11 +74,13 @@ export class XDateRangePortalComponent implements AfterViewInit {
   @HostBinding('@x-connect-base-animation') public get getPlacement() {
     return this.placement();
   }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: string }) {
-    event.toState !== 'void' && this.animating.emit(false);
+  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+    if (this.destroy()) return;
+    this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: string }) {
-    event.toState !== 'void' && this.animating.emit(true);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+    if (this.destroy()) return;
+    this.animating.emit(true);
   }
 
   datePipe = inject(DatePipe);
@@ -119,6 +122,9 @@ export class XDateRangePortalComponent implements AfterViewInit {
   timeHover = signal(false);
   nodeClickCount = signal(0);
 
+  destroy = signal(false);
+  private destroyRef = inject(DestroyRef);
+
   isDatePicker = computed(() => {
     return ['date', 'quarter', 'week', 'month', 'year'].includes(this.type());
   });
@@ -138,6 +144,12 @@ export class XDateRangePortalComponent implements AfterViewInit {
       return true;
     }
   });
+
+  ngOnInit() {
+    this.destroyRef.onDestroy(() => {
+      this.destroy.set(true);
+    });
+  }
 
   ngAfterViewInit() {
     this.init();
