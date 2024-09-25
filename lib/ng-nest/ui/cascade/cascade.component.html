@@ -12,12 +12,13 @@
       [disabled]="disabledComputed()"
       [required]="requiredComputed()"
       [validator]="validatorComputed()"
+      [inputValidator]="inputValidator()"
       [icon]="icon()"
       [placeholder]="placeholder()"
-      [readonly]="true"
+      [readonly]="readonly()"
       [clearable]="clearable()"
-      [ngModel]="displayValue()"
-      [valueTpl]="valueTpl()"
+      [(ngModel)]="value"
+      [valueTpl]="valueTpl() ? valueTpl() : valueTemplate"
       [valueTplContext]="valueTplContextSignal()"
       [size]="size()"
       [bordered]="bordered()"
@@ -34,3 +35,7 @@
     ></x-input>
   </div>
 </div>
+
+<ng-template #valueTemplate>
+  {{ displayValue() }}
+</ng-template>

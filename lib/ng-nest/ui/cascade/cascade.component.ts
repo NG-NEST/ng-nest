@@ -69,6 +69,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
     }
   });
   valueTplContextSignal = computed(() => {
+    if (this.valueTplContext()) return this.valueTplContext();
     let node = this.datas().find((x) => x.id === this.value()) as XCascadeNode;
     if (XIsEmpty(node)) {
       return { $node: null, $nodes: null, $isValue: true };

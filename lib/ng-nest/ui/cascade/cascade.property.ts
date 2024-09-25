@@ -117,7 +117,7 @@ export class XCascadeProperty extends XFormControlFunction(X_CASCADE_CONFIG_NAME
    * @zh_CN 只读
    * @en_US Readonly
    */
-  override readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  override readonly readonly = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 值模板
    * @en_US Node template

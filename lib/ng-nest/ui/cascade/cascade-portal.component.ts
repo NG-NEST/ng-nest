@@ -9,7 +9,9 @@ import {
   output,
   model,
   signal,
-  OnDestroy
+  inject,
+  DestroyRef,
+  OnInit
 } from '@angular/core';
 import { XCascadeNode, XCascadeNodeTrigger } from './cascade.property';
 import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
@@ -30,15 +32,17 @@ import { toObservable } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XConnectBaseAnimation]
 })
-export class XCascadePortalComponent implements OnDestroy {
+export class XCascadePortalComponent implements OnInit {
   @HostBinding('@x-connect-base-animation') public get getPlacement() {
     return this.placement();
   }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(false);
+  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+    if (this.destroy()) return;
+    this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(true);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+    if (this.destroy()) return;
+    this.animating.emit(true);
   }
 
   value = input<any>();
@@ -54,9 +58,11 @@ export class XCascadePortalComponent implements OnDestroy {
   nodeClick = output<{ node: XCascadeNode; nodes: XCascadeNode[]; label: string }>();
   selecteds = signal<XCascadeNode[]>([]);
   values = signal<XCascadeNode[]>([]);
+  destroy = signal(false);
 
   private unSubject = new Subject<void>();
   private hoverDelayUnSub = new Subject<void>();
+  private destroyRef = inject(DestroyRef);
 
   valueChanged = toObservable(this.value)
     .pipe(
@@ -65,11 +71,14 @@ export class XCascadePortalComponent implements OnDestroy {
     )
     .subscribe();
 
-  ngOnDestroy(): void {
-    this.hoverDelayUnSub.next();
-    this.hoverDelayUnSub.complete();
-    this.unSubject.next();
-    this.unSubject.complete();
+  ngOnInit() {
+    this.destroyRef.onDestroy(() => {
+      this.destroy.set(true);
+      this.hoverDelayUnSub.next();
+      this.hoverDelayUnSub.complete();
+      this.unSubject.next();
+      this.unSubject.complete();
+    });
   }
 
   init() {
