@@ -3,7 +3,6 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   OnInit,
-  OnDestroy,
   HostBinding,
   HostListener,
   TemplateRef,
@@ -13,7 +12,8 @@ import {
   output,
   signal,
   computed,
-  inject
+  inject,
+  DestroyRef
 } from '@angular/core';
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { Subject } from 'rxjs';
@@ -35,18 +35,22 @@ import { toSignal } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XConnectBaseAnimation]
 })
-export class XSelectPortalComponent implements OnInit, OnDestroy {
+export class XSelectPortalComponent implements OnInit {
   @HostBinding('@x-connect-base-animation') public get getPlacement() {
     return this.placement();
   }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(false);
+  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+    if (this.destroy()) return;
+    this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(true);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+    if (this.destroy()) return;
+    this.animating.emit(true);
   }
 
+  destroy = signal(false);
   private unSubject = new Subject<void>();
+  private destroyRef = inject(DestroyRef);
   private i18n = inject(XI18nService);
 
   list = viewChild.required<XListComponent>('list');
@@ -83,11 +87,11 @@ export class XSelectPortalComponent implements OnInit, OnDestroy {
     this.keydownSubject.pipe(takeUntil(this.unSubject)).subscribe((x) => {
       this.list().keydown(x);
     });
-  }
-
-  ngOnDestroy(): void {
-    this.unSubject.next();
-    this.unSubject.complete();
+    this.destroyRef.onDestroy(() => {
+      this.destroy.set(true);
+      this.unSubject.next();
+      this.unSubject.complete();
+    });
   }
 
   stopPropagation(event: Event): void {

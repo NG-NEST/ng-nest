@@ -135,7 +135,7 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    * @zh_CN 输入框点击样式
    * @en_US Input pointer
    */
-  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  override readonly pointer = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 标签
    * @en_US Label

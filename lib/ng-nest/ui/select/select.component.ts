@@ -94,6 +94,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   select = viewChild.required<ElementRef<HTMLElement>>('select');
   multipleValueTpl = viewChild.required<TemplateRef<void>>('multipleValueTpl');
   multipleInput = viewChild<XInputComponent>('multipleInput');
+  valueTemplate = viewChild.required<TemplateRef<void>>('valueTemplate');
 
   getReadonly = computed(() => this.readonly() || !this.search());
   getMaxTagContent = computed(() => this.maxTagContent() || this.locale().maxTagContent);
@@ -140,14 +141,23 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
 
-  valueTplSignal = computed(() => {
+  valueTplComputed = computed(() => {
+    if (this.nodeTpl()) {
+      return this.nodeTpl();
+    }
+    if (this.valueTpl()) {
+      return this.valueTpl();
+    }
     if (this.multiple()) {
       return this.multipleValueTpl();
     }
-    return this.valueTpl();
+    return this.valueTemplate();
   });
 
   valueTplContextSignal = signal<{ $node: any; $isValue: boolean }>({ $node: null, $isValue: true });
+  valueTplContextComputed = computed(() => {
+    return this.valueTplContext() ? this.valueTplContext() : this.valueTplContextSignal();
+  });
   placements = computed(() => {
     let placement = this.placement();
     if (this.portalWidth()) {
