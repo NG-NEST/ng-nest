@@ -11,6 +11,7 @@ import {
 } from '@ng-nest/ui/carousel';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -30,7 +31,8 @@ class XTestCarouselComponent {}
   imports: [XCarouselModule],
   template: `
     <x-carousel
-      [active]="active()"
+      [(active)]="active"
+      (activeChange)="activeChange($event)"
       [trigger]="trigger()"
       [arrow]="arrow()"
       [direction]="direction()"
@@ -50,7 +52,13 @@ class XTestCarouselComponent {}
   `
 })
 class XTestCarouselPropertyComponent {
-  active = signal('15rem');
+  active = signal(0);
+
+  activeChangeResult = signal<number | null>(null);
+  actvieChange(index: number) {
+    this.activeChangeResult.set(index);
+  }
+  height = signal('15rem');
   trigger = signal<XCarouselTrigger>('hover');
   arrow = signal<XCarouselArrow>('hover');
   direction = signal<XCarouselDirection>('horizontal');
@@ -71,10 +79,12 @@ describe(XCarouselPrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestCarouselComponent, XTestCarouselPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
