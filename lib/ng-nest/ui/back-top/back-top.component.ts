@@ -40,7 +40,8 @@ export class XBackTopComponent extends XBackTopProperty implements OnDestroy {
 
   scroll = computed(() => {
     const tg = this.target();
-    return XIsString(tg) ? this.doc.querySelector(tg) : tg || this.doc.defaultView;
+    if (!tg) return this.doc.defaultView;
+    return XIsString(tg) ? this.doc?.querySelector(tg) : tg;
   });
 
   constructor() {
