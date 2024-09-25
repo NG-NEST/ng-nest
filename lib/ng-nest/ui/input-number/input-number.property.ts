@@ -5,12 +5,11 @@ import {
   XJustify,
   XNumber,
   XSize,
-  XTemplate,
   XToBoolean,
   XToCssPixelValue,
   XToNumber
 } from '@ng-nest/ui/core';
-import { Component, TemplateRef, input, model } from '@angular/core';
+import { Component, TemplateRef, input } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 
 /**
@@ -72,11 +71,6 @@ export class XInputNumberProperty extends XFormControlFunction(X_INPUT_NUMBER_CO
    */
   override readonly size = input<XSize>(this.config?.size ?? 'medium');
   /**
-   * @zh_CN 输入框点击样式
-   * @en_US Input pointer
-   */
-  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
-  /**
    * @zh_CN 标签
    * @en_US Label
    */
@@ -137,16 +131,6 @@ export class XInputNumberProperty extends XFormControlFunction(X_INPUT_NUMBER_CO
    */
   override readonly valueTplContext = input();
   /**
-   * @zh_CN 前置标签
-   * @en_US Before label
-   */
-  override readonly before = input<XTemplate>();
-  /**
-   * @zh_CN 后置标签
-   * @en_US After label
-   */
-  override readonly after = input<XTemplate>();
-  /**
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
@@ -156,11 +140,6 @@ export class XInputNumberProperty extends XFormControlFunction(X_INPUT_NUMBER_CO
    * @en_US Verify not pass the prompt text
    */
   override readonly message = input<string | string[]>([]);
-  /**
-   * @zh_CN 激活状态
-   * @en_US Activation state
-   */
-  override readonly active = model<boolean>(false);
   /**
    * @zh_CN 输入验证函数
    * @en_US Enter the verification function
@@ -217,11 +196,6 @@ export interface XInputNumberOption extends XFormOption {
    * @en_US Size
    */
   size?: XSize;
-  /**
-   * @zh_CN 输入框点击样式
-   * @en_US Input pointer
-   */
-  pointer?: boolean;
   /**
    * @zh_CN 标签
    * @en_US Label
@@ -283,16 +257,6 @@ export interface XInputNumberOption extends XFormOption {
    */
   valueTplContext?: any;
   /**
-   * @zh_CN 前置标签
-   * @en_US Before label
-   */
-  before?: XTemplate;
-  /**
-   * @zh_CN 后置标签
-   * @en_US After label
-   */
-  after?: XTemplate;
-  /**
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
@@ -302,11 +266,6 @@ export interface XInputNumberOption extends XFormOption {
    * @en_US Verify not pass the prompt text
    */
   message?: string | string[];
-  /**
-   * @zh_CN 激活状态
-   * @en_US Activation state
-   */
-  active?: boolean;
   /**
    * @zh_CN 输入验证函数
    * @en_US Enter the verification function

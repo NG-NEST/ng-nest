@@ -27,14 +27,15 @@
       [disabled]="disabledComputed()"
       [required]="requiredComputed()"
       [validator]="validatorComputed()"
+      [inputValidator]="inputValidator()"
       [icon]="icon()"
       [iconSpin]="iconSpin()"
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [clearable]="clearable()"
-      [ngModel]="displayValue()"
+      [(ngModel)]="value"
       (ngModelChange)="change($event)"
-      [valueTpl]="valueTpl()"
+      [valueTpl]="valueTpl() ? valueTpl() : valueTemplate"
       [valueTplContext]="valueTplContext()"
       [size]="size()"
       [bordered]="bordered()"
@@ -59,6 +60,7 @@
         flat
       ></x-button>
     </ng-template>
+    <ng-template #valueTemplate>{{ displayValue() }}</ng-template>
     @if (invalid()) {
       <div class="x-border-error x-top-left"></div>
       <div class="x-border-error x-top-right"></div>

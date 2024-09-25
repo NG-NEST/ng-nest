@@ -47,7 +47,7 @@
           (click)="xClick.emit($event)"
         >
           <ng-container
-            *ngTemplateOutlet="valueTpl()!; context: valueTplContext() ? valueTplContext() : { $value: value() }"
+            *xOutlet="valueTpl()!; context: valueTplContext() ? valueTplContext() : { $value: value() }"
           ></ng-container>
         </div>
       }
@@ -55,7 +55,7 @@
         #inputRef
         autocomplete="off"
         class="x-input-frame"
-        [class.x-input-has-value-template]="valueTpl()"
+        [class.x-input-has-value-template]="!!valueTpl()"
         [ngStyle]="inputStyle()"
         [type]="type()"
         [placeholder]="placeholder()"
