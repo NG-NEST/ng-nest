@@ -86,7 +86,7 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    * @zh_CN 输入框点击样式
    * @en_US Input pointer
    */
-  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  override readonly pointer = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 初始启用验证，在输入值都自动开启
    * @en_US Initial enable validation, which is automatically enabled when the input value is
@@ -141,7 +141,7 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    * @zh_CN 只读
    * @en_US Readonly
    */
-  override readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  override readonly readonly = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 值模板
    * @en_US Node template
