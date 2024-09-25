@@ -5,7 +5,6 @@ import {
   OnInit,
   ElementRef,
   Renderer2,
-  OnDestroy,
   HostListener,
   HostBinding,
   inject,
@@ -13,7 +12,8 @@ import {
   output,
   model,
   viewChild,
-  signal
+  signal,
+  DestroyRef
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
 import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
@@ -37,15 +37,17 @@ import { FormsModule } from '@angular/forms';
   providers: [DecimalPipe, PercentPipe],
   animations: [XConnectBaseAnimation]
 })
-export class XColorPickerPortalComponent implements OnInit, OnDestroy {
+export class XColorPickerPortalComponent implements OnInit {
   @HostBinding('@x-connect-base-animation') public get getPlacement() {
     return this.placement();
   }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(false);
+  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+    if (this.destroy()) return;
+    this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start(event: { toState: any }) {
-    event.toState !== 'void' && this.animating.emit(true);
+  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+    if (this.destroy()) return;
+    this.animating.emit(true);
   }
 
   panelRef = viewChild.required('panelRef', { read: ElementRef<HTMLElement> });
@@ -77,7 +79,9 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
   });
   hex = signal<string>('');
 
+  destroy = signal(false);
   private unSubject = new Subject<void>();
+  private destroyRef = inject(DestroyRef);
 
   private renderer = inject(Renderer2);
   private decimal = inject(DecimalPipe);
@@ -85,11 +89,11 @@ export class XColorPickerPortalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.colorConvert();
-  }
-
-  ngOnDestroy(): void {
-    this.unSubject.next();
-    this.unSubject.complete();
+    this.destroyRef.onDestroy(() => {
+      this.destroy.set(true);
+      this.unSubject.next();
+      this.unSubject.complete();
+    });
   }
 
   ngAfterViewInit() {

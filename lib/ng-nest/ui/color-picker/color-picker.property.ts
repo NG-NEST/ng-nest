@@ -35,7 +35,7 @@ export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NA
    * @zh_CN 输入框点击样式
    * @en_US Input pointer
    */
-  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  override readonly pointer = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 标签
    * @en_US Label
@@ -85,7 +85,7 @@ export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NA
    * @zh_CN 只读
    * @en_US Readonly
    */
-  override readonly readonly = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  override readonly readonly = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 值模板
    * @en_US Node template

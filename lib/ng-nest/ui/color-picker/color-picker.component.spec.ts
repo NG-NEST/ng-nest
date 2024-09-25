@@ -4,7 +4,8 @@ import { By } from '@angular/platform-browser';
 import { XColorPickerComponent, XColorPickerPrefix } from '@ng-nest/ui/color-picker';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XCorner, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+import { XAlign, XCorner, XDirection, XIsNumber, XJustify, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -43,6 +44,14 @@ class XTestColorPickerComponent {}
     >
     </x-color-picker>
 
+    <ng-template #valueTemplate let-value="$value">
+      <div>{{ value }} tpl</div>
+    </ng-template>
+
+    <ng-template #nodeTemplate let-node="$node">
+      <div>{{ node.label }} tpl</div>
+    </ng-template>
+
     <ng-template #beforeTemplate>before</ng-template>
     <ng-template #afterTemplate>after</ng-template>
   `
@@ -63,11 +72,12 @@ class XTestColorPickerPropertyComponent {
   required = signal(false);
   readonly = signal(false);
   valueTpl = signal<TemplateRef<any> | null>(null);
-  valueTplContext = signal(null);
+  valueTemplate = viewChild.required<TemplateRef<any>>('valueTemplate');
+  valueTplContext = signal<any | null>(null);
   before = signal<XTemplate | null>(null);
-  beforeTemplate = viewChild<TemplateRef<any>>('beforeTemplate');
+  beforeTemplate = viewChild.required<TemplateRef<any>>('beforeTemplate');
   after = signal<XTemplate | null>(null);
-  afterTemplate = viewChild<TemplateRef<any>>('afterTemplate');
+  afterTemplate = viewChild.required<TemplateRef<any>>('afterTemplate');
   pattern = signal<RegExp | RegExp[] | null>(null);
   message = signal<string | string[]>([]);
   active = signal(false);
@@ -79,10 +89,12 @@ describe(XColorPickerPrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestColorPickerComponent, XTestColorPickerPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -98,10 +110,10 @@ describe(XColorPickerPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestColorPickerPropertyComponent>;
-    // let component: XTestColorPickerPropertyComponent;
+    let component: XTestColorPickerPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestColorPickerPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('placement.', () => {
@@ -111,64 +123,148 @@ describe(XColorPickerPrefix, () => {
       expect(true).toBe(true);
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-medium');
+      component.size.set('large');
+      fixture.detectChanges();
+      expect(input.nativeElement).toHaveClass('x-input-large');
     });
     it('pointer.', () => {
-      expect(true).toBe(true);
+      component.pointer.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-pointer');
     });
-    it('label.', () => {
-      expect(true).toBe(true);
+    it('label.', async () => {
+      component.label.set('label');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.innerText).toBe('label');
     });
     it('labelWidth.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelWidth.set('100px');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement.style.width).toBe('100px');
     });
     it('labelAlign.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.labelAlign.set('end');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(label.nativeElement).toHaveClass('x-text-align-end');
     });
     it('justify.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.justify.set('end');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-justify-end');
     });
     it('align.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.align.set('end');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-align-end');
     });
     it('direction.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      component.direction.set('row');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-direction-row');
     });
     it('placeholder.', () => {
-      expect(true).toBe(true);
+      component.placeholder.set('placeholder');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      expect(input.nativeElement.getAttribute('placeholder')).toBe('placeholder');
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
+      component.disabled.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-disabled');
     });
     it('required.', () => {
-      expect(true).toBe(true);
+      component.required.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      expect(input.nativeElement.required).toBe(true);
     });
     it('readonly.', () => {
-      expect(true).toBe(true);
+      component.readonly.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      expect(input.nativeElement.readOnly).toBe(true);
     });
     it('valueTpl.', () => {
-      expect(true).toBe(true);
+      component.valueTpl.set(component.valueTemplate());
+      fixture.detectChanges();
+      const tpl = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(tpl.nativeElement.innerText).toBe('tpl');
     });
     it('valueTplContext.', () => {
-      expect(true).toBe(true);
+      component.valueTplContext.set({ $value: 'content' });
+      component.valueTpl.set(component.valueTemplate());
+      fixture.detectChanges();
+      const tpl = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(tpl.nativeElement.innerText).toBe('content tpl');
     });
     it('before.', () => {
-      expect(true).toBe(true);
+      component.before.set(component.beforeTemplate());
+      fixture.detectChanges();
+      const tpl = fixture.debugElement.query(By.css('.x-input-row-before'));
+      expect(tpl.nativeElement.innerText).toBe('before');
     });
     it('after.', () => {
-      expect(true).toBe(true);
+      component.after.set(component.afterTemplate());
+      fixture.detectChanges();
+      const tpl = fixture.debugElement.query(By.css('.x-input-row-after'));
+      expect(tpl.nativeElement.innerText).toBe('after');
     });
     it('pattern.', () => {
-      expect(true).toBe(true);
+      component.pattern.set(/^\d+$/);
+      const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
+      const instance = com.componentInstance as XColorPickerComponent;
+      // Manually triggering verification, usually triggered by inputting values
+      instance.value.set('aa');
+      instance.validatorSignal.set(true);
+      fixture.detectChanges();
+      const borderError = fixture.debugElement.query(By.css('.x-border-error'));
+      expect(borderError).toBeDefined();
     });
-    it('message.', () => {
-      expect(true).toBe(true);
+    it('message.', async () => {
+      component.pattern.set(/^\d+$/);
+      component.message.set('It must be a number');
+      const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
+      const instance = com.componentInstance as XColorPickerComponent;
+      // Manually triggering verification, usually triggered by inputting values
+      instance.value.set('aa');
+      instance.validatorSignal.set(true);
+      fixture.detectChanges();
+      await XSleep(100);
+      const message = fixture.debugElement.query(By.css('.x-input-error-message'));
+      expect(message.nativeElement.innerText).toBe('It must be a number');
     });
     it('active.', () => {
-      expect(true).toBe(true);
+      component.active.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-active');
     });
     it('inputValidator.', () => {
-      expect(true).toBe(true);
+      component.inputValidator.set((val: string | number) => XIsNumber(val));
+      const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
+      const instance = com.componentInstance as XColorPickerComponent;
+      // Manually triggering verification, usually triggered by inputting values
+      instance.value.set('aa');
+      instance.validatorSignal.set(true);
+      fixture.detectChanges();
+      const borderError = fixture.debugElement.query(By.css('.x-border-error'));
+      expect(borderError).toBeDefined();
     });
   });
 });
