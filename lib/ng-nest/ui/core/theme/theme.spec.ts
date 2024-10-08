@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XConfig, X_CONFIG } from '../config';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { By } from '@angular/platform-browser';
 
 @Component({
   template: `<div class="row">
@@ -59,7 +60,7 @@ class XGlobalThemeTestBasicComponent {
   }
 }
 
-describe('x-theme', () => {
+describe('x-theme service', () => {
   let fixture: ComponentFixture<XGlobalThemeTestBasicComponent>;
   let config: XConfig = {
     theme: {
@@ -89,6 +90,8 @@ describe('x-theme', () => {
   });
   it('should theme work', () => {
     fixture.detectChanges();
-    expect(true).toBe(true);
+    const button = fixture.debugElement.query(By.css('.x-button.x-button-primary'));
+    const style = getComputedStyle(button.nativeElement);
+    expect(style.backgroundColor).toBe('rgb(240, 240, 240)');
   });
 });

@@ -6,6 +6,8 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { XAlign, XData, XDirection, XJustify, XTemplate } from '@ng-nest/ui/core';
 import { XButtonType } from '@ng-nest/ui/button';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -16,7 +18,7 @@ class XTestCheckboxComponent {}
 
 @Component({
   standalone: true,
-  imports: [XCheckboxComponent],
+  imports: [FormsModule, XCheckboxComponent],
   template: `
     <x-checkbox
       [data]="data()"
@@ -39,6 +41,7 @@ class XTestCheckboxComponent {}
       [required]="required()"
       [before]="before()"
       [after]="after()"
+      [(ngModel)]="value"
     >
     </x-checkbox>
 
@@ -69,6 +72,8 @@ class XTestCheckboxPropertyComponent {
   beforeTemplate = viewChild.required<TemplateRef<any>>('beforeTemplate');
   after = signal<XTemplate | null>(null);
   afterTemplate = viewChild.required<TemplateRef<any>>('afterTemplate');
+
+  value = signal<string | boolean | null>(null);
 }
 
 describe(XCheckboxPrefix, () => {
@@ -76,10 +81,12 @@ describe(XCheckboxPrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestCheckboxComponent, XTestCheckboxPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -102,34 +109,79 @@ describe(XCheckboxPrefix, () => {
       fixture.detectChanges();
     });
     it('data.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const checkbox = fixture.debugElement.query(By.css('.x-checkbox'));
+      expect(checkbox.nativeElement.innerText).toBe('aa\nbb');
     });
     it('button.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.button.set(true);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.query(By.css('x-buttons'));
+      expect(buttons).toBeTruthy();
     });
     it('icon.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.icon.set(true);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.query(By.css('x-buttons'));
+      expect(buttons).toBeTruthy();
     });
     it('tag.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.tag.set(true);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('x-tag'));
+      expect(tag).toBeTruthy();
     });
     it('indeterminate.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.indeterminate.set(true);
+      fixture.detectChanges();
+      const item = fixture.debugElement.query(By.css('.x-checkbox-row-item'));
+      expect(item.nativeElement).toHaveClass('x-indeterminate');
     });
     it('type.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.button.set(true);
+      component.type.set('danger');
+      fixture.detectChanges();
+      const button = fixture.debugElement.query(By.css('.x-button'));
+      expect(button.nativeElement).toHaveClass('x-button-danger-plain');
     });
     it('tagBordered.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.tag.set(true);
+      component.tagBordered.set(false);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      expect(tag.nativeElement).not.toHaveClass('x-tag-bordered');
     });
     it('tagDark.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.tag.set(true);
+      component.tagDark.set(true);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      expect(tag.nativeElement).toHaveClass('x-tag-dark');
     });
     it('single.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa']);
+      component.single.set(true);
+      fixture.detectChanges();
+      const item = fixture.debugElement.query(By.css('.x-checkbox-row-item'));
+      item.nativeElement.dispatchEvent(new Event('click'));
+      expect(component.value()).toBe(true);
+      item.nativeElement.dispatchEvent(new Event('click'));
+      expect(component.value()).toBe(false);
     });
     it('vertical.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.vertical.set(true);
+      fixture.detectChanges();
+      const checkbox = fixture.debugElement.query(By.css('.x-checkbox'));
+      expect(checkbox.nativeElement).toHaveClass('x-checkbox-vertical');
     });
     it('label.', async () => {
       component.label.set('label');

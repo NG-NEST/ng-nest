@@ -52,7 +52,7 @@ class XTestCascadeComponent {}
       <div>{{ value }} tpl</div>
     </ng-template>
 
-    <ng-template #nodeTemplate let-node="$node">{{ node.label }}</ng-template>
+    <ng-template #nodeTemplate let-node="$node">{{ node.label }} tpl</ng-template>
 
     <ng-template #beforeTemplate>before</ng-template>
     <ng-template #afterTemplate>after</ng-template>
@@ -65,7 +65,7 @@ class XTestCascadePropertyComponent {
   nodeTrigger = signal<XCascadeNodeTrigger>('click');
   nodeHoverDelay = signal(200);
   nodeTpl = signal<TemplateRef<any> | null>(null);
-  nodeTemplate = viewChild<TemplateRef<any>>('nodeTemplate');
+  nodeTemplate = viewChild.required<TemplateRef<any>>('nodeTemplate');
   size = signal<XSize>('medium');
   pointer = signal(false);
   label = signal('');
@@ -128,23 +128,85 @@ describe(XCascadePrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('data.', () => {
-      expect(true).toBe(true);
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XCascadeComponent));
+      const instance = com.componentInstance as XCascadeComponent;
+      component.data.set([
+        { id: 'aa', label: 'aa' },
+        { id: 'bb', label: 'bb', pid: 'aa' }
+      ]);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(100);
+      const list = fixture.debugElement.query(By.css('.x-list'));
+
+      return { input, list, instance, com };
+    };
+    it('data.', async () => {
+      const { list } = await showPortal();
+      expect(list.nativeElement.innerText).toBe('aa');
     });
-    it('placement.', () => {
-      expect(true).toBe(true);
+    it('placement.', async () => {
+      const { com } = await showPortal();
+
+      const portal = fixture.debugElement.query(By.css('.x-cascade-portal'));
+      const comRect = com.nativeElement.getBoundingClientRect();
+      const portalRect = portal.nativeElement.getBoundingClientRect();
+      const leftDiff = comRect.left - portalRect.left;
+      const topDiff = comRect.top + comRect.height - portalRect.top;
+      // Pixels may be decimal points
+      expect(leftDiff >= -1 && leftDiff <= 1).toBe(true);
+      expect(topDiff >= -1 && topDiff <= 1).toBe(true);
     });
     it('bordered.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-bordered');
+
+      component.bordered.set(false);
+      fixture.detectChanges();
+      expect(input.nativeElement).not.toHaveClass('x-input-bordered');
     });
-    it('nodeTrigger.', () => {
-      expect(true).toBe(true);
+    it('nodeTrigger.', async () => {
+      const { list } = await showPortal();
+      const option = list.query(By.css('x-list-option'));
+      option.nativeElement.click();
+      fixture.detectChanges();
+      const list2 = fixture.debugElement.query(By.css('x-list:nth-child(2)'));
+      expect(list2.nativeElement.innerText).toBe('bb');
     });
-    it('nodeHoverDelay.', () => {
-      expect(true).toBe(true);
+    it('nodeTrigger hover.', async () => {
+      component.nodeTrigger.set('hover');
+      fixture.detectChanges();
+      const { list } = await showPortal();
+      const option = list.query(By.css('x-list-option'));
+      option.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(250);
+      const list2 = fixture.debugElement.query(By.css('x-list:nth-child(2)'));
+      expect(list2.nativeElement.innerText).toBe('bb');
     });
-    it('nodeTpl.', () => {
-      expect(true).toBe(true);
+    it('nodeHoverDelay.', async () => {
+      component.nodeTrigger.set('hover');
+      component.nodeHoverDelay.set(300);
+      fixture.detectChanges();
+      const { list } = await showPortal();
+      const option = list.query(By.css('x-list-option'));
+      option.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(100);
+      let list2 = fixture.debugElement.query(By.css('x-list:nth-child(2)'));
+      expect(list2).toBeNull();
+      await XSleep(300);
+      list2 = fixture.debugElement.query(By.css('x-list:nth-child(2)'));
+      expect(list2).not.toBeNull();
+    });
+    it('nodeTpl.', async () => {
+      component.nodeTpl.set(component.nodeTemplate());
+      fixture.detectChanges();
+      const { list } = await showPortal();
+      expect(list.nativeElement.innerText).toBe('aa tpl');
     });
     it('size.', () => {
       const input = fixture.debugElement.query(By.css('.x-input'));

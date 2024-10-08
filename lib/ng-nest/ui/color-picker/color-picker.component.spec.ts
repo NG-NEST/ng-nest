@@ -116,11 +116,34 @@ describe(XColorPickerPrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('placement.', () => {
-      expect(true).toBe(true);
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
+      const instance = com.componentInstance as XColorPickerComponent;
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(100);
+
+      return { input, instance, com };
+    };
+    it('placement.', async () => {
+      const { com } = await showPortal();
+      const portal = fixture.debugElement.query(By.css('.x-color-picker-portal'));
+      const comRect = com.nativeElement.getBoundingClientRect();
+      const portalRect = portal.nativeElement.getBoundingClientRect();
+      const leftDiff = comRect.left - portalRect.left;
+      const topDiff = comRect.top + comRect.height - portalRect.top;
+      // Pixels may be decimal points
+      expect(leftDiff >= -1 && leftDiff <= 1).toBe(true);
+      expect(topDiff >= -1 && topDiff <= 1).toBe(true);
     });
     it('bordered.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-bordered');
+
+      component.bordered.set(false);
+      fixture.detectChanges();
+      expect(input.nativeElement).not.toHaveClass('x-input-bordered');
     });
     it('size.', () => {
       const input = fixture.debugElement.query(By.css('.x-input'));

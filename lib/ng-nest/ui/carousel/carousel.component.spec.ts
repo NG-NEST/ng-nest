@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {
   XCarouselArrow,
@@ -12,6 +12,7 @@ import {
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { XSleep } from '@ng-nest/ui/core';
 
 @Component({
   standalone: true,
@@ -32,7 +33,7 @@ class XTestCarouselComponent {}
   template: `
     <x-carousel
       [(active)]="active"
-      (activeChange)="activeChange($event)"
+      [height]="height()"
       [trigger]="trigger()"
       [arrow]="arrow()"
       [direction]="direction()"
@@ -46,18 +47,13 @@ class XTestCarouselComponent {}
       [current]="current()"
     >
       <x-carousel-panel>1</x-carousel-panel>
-      <x-carousel-panel [active]="panelActive()">2</x-carousel-panel>
+      <x-carousel-panel>2</x-carousel-panel>
       <x-carousel-panel>3</x-carousel-panel>
     </x-carousel>
   `
 })
 class XTestCarouselPropertyComponent {
   active = signal(0);
-
-  activeChangeResult = signal<number | null>(null);
-  actvieChange(index: number) {
-    this.activeChangeResult.set(index);
-  }
   height = signal('15rem');
   trigger = signal<XCarouselTrigger>('hover');
   arrow = signal<XCarouselArrow>('hover');
@@ -71,7 +67,7 @@ class XTestCarouselPropertyComponent {
   progressColor = signal('');
   current = signal(false);
 
-  panelActive = signal(false);
+  carouselPanelActive = viewChild.required<XCarouselComponent>('carouselPanelActive');
 }
 
 describe(XCarouselPrefix, () => {
@@ -100,50 +96,119 @@ describe(XCarouselPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCarouselPropertyComponent>;
-    // let component: XTestCarouselPropertyComponent;
+    let component: XTestCarouselPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestCarouselPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('active.', () => {
-      expect(true).toBe(true);
+      const ul = fixture.debugElement.query(By.css('.x-carousel-indicator'));
+      const lis = ul.nativeElement.querySelectorAll('li');
+      expect(lis[0]).toHaveClass('x-activated');
+
+      component.active.set(1);
+      fixture.detectChanges();
+      expect(lis[1]).toHaveClass('x-activated');
+    });
+    it('height.', () => {
+      const content = fixture.debugElement.query(By.css('.x-carousel-content'));
+      expect(content.nativeElement.style.height).toBe('15rem');
+
+      component.height.set('20rem');
+      fixture.detectChanges();
+      expect(content.nativeElement.style.height).toBe('20rem');
     });
     it('trigger.', () => {
-      expect(true).toBe(true);
+      const ul = fixture.debugElement.query(By.css('.x-carousel-indicator'));
+      const lis = ul.nativeElement.querySelectorAll('li');
+      lis[1].dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      expect(lis[1]).toHaveClass('x-activated');
+
+      component.trigger.set('click');
+      fixture.detectChanges();
+      lis[2].dispatchEvent(new Event('click'));
+      fixture.detectChanges();
+      expect(lis[2]).toHaveClass('x-activated');
     });
-    it('arrow.', () => {
-      expect(true).toBe(true);
+    it('arrow.', async () => {
+      const arrow = fixture.debugElement.query(By.css('.arrow-left'));
+      let style = getComputedStyle(arrow.nativeElement);
+      expect(style.opacity).toBe('0');
+    });
+    it('arrow always.', () => {
+      component.arrow.set('always');
+      fixture.detectChanges();
+      const arrow = fixture.debugElement.query(By.css('.arrow-left'));
+      let style = getComputedStyle(arrow.nativeElement);
+      expect(style.opacity).toBe('1');
     });
     it('direction.', () => {
-      expect(true).toBe(true);
+      const carousel = fixture.debugElement.query(By.css('.x-carousel'));
+      expect(carousel.nativeElement).toHaveClass('x-carousel-horizontal');
+
+      component.direction.set('vertical');
+      fixture.detectChanges();
+      expect(carousel.nativeElement).toHaveClass('x-carousel-vertical');
     });
-    it('autoplay.', () => {
-      expect(true).toBe(true);
+    it('autoplay.', async () => {
+      await XSleep(component.interval() + 100);
+      const ul = fixture.debugElement.query(By.css('.x-carousel-indicator'));
+      const lis = ul.nativeElement.querySelectorAll('li');
+      expect(lis[1]).toHaveClass('x-activated');
     });
-    it('interval.', () => {
-      expect(true).toBe(true);
+    it('interval.', async () => {
+      component.interval.set(4000);
+      fixture.detectChanges();
+      await XSleep(3000);
+      const ul = fixture.debugElement.query(By.css('.x-carousel-indicator'));
+      const lis = ul.nativeElement.querySelectorAll('li');
+      expect(lis[0]).toHaveClass('x-activated');
+      await XSleep(1000);
+      expect(lis[1]).toHaveClass('x-activated');
     });
     it('outside.', () => {
-      expect(true).toBe(true);
+      component.outside.set(true);
+      fixture.detectChanges();
+      const carousel = fixture.debugElement.query(By.css('.x-carousel'));
+      expect(carousel.nativeElement).toHaveClass('x-carousel-indicator-outside');
     });
     it('card.', () => {
-      expect(true).toBe(true);
+      component.card.set(true);
+      fixture.detectChanges();
+      const carousel = fixture.debugElement.query(By.css('.x-carousel'));
+      expect(carousel.nativeElement).toHaveClass('x-carousel-indicator-outside');
+
+      const panels = fixture.debugElement.queryAll(By.css('x-carousel-panel'));
+      panels.forEach((panel) => {
+        expect(panel.nativeElement).toHaveClass('x-carousel-card');
+      });
     });
     it('text.', () => {
-      expect(true).toBe(true);
+      component.text.set('text');
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-carousel-text'));
+      expect(text.nativeElement.innerText).toBe('text');
     });
     it('progress.', () => {
-      expect(true).toBe(true);
+      component.progress.set(true);
+      fixture.detectChanges();
+      const progress = fixture.debugElement.query(By.css('.x-carousel-progress'));
+      expect(progress).toBeDefined();
     });
     it('progressColor.', () => {
-      expect(true).toBe(true);
+      component.progress.set(true);
+      component.progressColor.set('rgb(0, 0, 0)');
+      fixture.detectChanges();
+      const progressBg = fixture.debugElement.query(By.css('.x-progress-bg'));
+      expect(progressBg.nativeElement.style.backgroundColor).toBe('rgb(0, 0, 0)');
     });
     it('current.', () => {
-      expect(true).toBe(true);
-    });
-    it('panelActive.', () => {
-      expect(true).toBe(true);
+      component.current.set(true);
+      fixture.detectChanges();
+      const current = fixture.debugElement.query(By.css('.x-carousel-current'));
+      expect(current).toBeDefined();
     });
   });
 });

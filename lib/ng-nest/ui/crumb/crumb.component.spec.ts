@@ -5,6 +5,7 @@ import { XCrumbComponent, XCrumbNode, XCrumbPrefix } from '@ng-nest/ui/crumb';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { XDataArray, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -19,13 +20,13 @@ class XTestCrumbComponent {}
   template: `
     <x-crumb [data]="data()" [nodeTpl]="nodeTpl()" [separator]="separator()" (nodeClick)="nodeClick($event)"> </x-crumb>
 
-    <ng-template #nodeTemplate let-node="$node">{{ node.label }}</ng-template>
+    <ng-template #nodeTemplate let-node="$node">{{ node.label }} tpl</ng-template>
   `
 })
 class XTestCrumbPropertyComponent {
   data = signal<XDataArray<XCrumbNode>>([]);
   nodeTpl = signal<TemplateRef<any> | null>(null);
-  nodeTemplage = viewChild<TemplateRef<void>>('nodeTemplate');
+  nodeTemplage = viewChild.required<TemplateRef<void>>('nodeTemplate');
   separator = signal<XTemplate>('/');
 
   nodeClickResult = signal<XCrumbNode | null>(null);
@@ -39,10 +40,12 @@ describe(XCrumbPrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestCrumbComponent, XTestCrumbPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -58,20 +61,33 @@ describe(XCrumbPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCrumbPropertyComponent>;
-    // let component: XTestCrumbPropertyComponent;
+    let component: XTestCrumbPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestCrumbPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('data.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+
+      const ul = fixture.debugElement.query(By.css('.x-crumb'));
+      expect(ul.nativeElement.innerText).toBe('aa\n/\nbb\n/\ncc');
     });
     it('nodeTpl.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa']);
+      component.nodeTpl.set(component.nodeTemplage());
+      fixture.detectChanges();
+
+      const ul = fixture.debugElement.query(By.css('.x-crumb'));
+      expect(ul.nativeElement.innerText).toBe('aa tpl');
     });
     it('separator.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.separator.set('>');
+      fixture.detectChanges();
+      const ul = fixture.debugElement.query(By.css('.x-crumb'));
+      expect(ul.nativeElement.innerText).toBe('aa\n>\nbb');
     });
     it('nodeClick.', () => {
       expect(true).toBe(true);
