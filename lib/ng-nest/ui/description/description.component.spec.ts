@@ -5,6 +5,7 @@ import { XDescriptionComponent, XDescriptionModule, XDescriptionPrefix } from '@
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { XAlign, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -66,10 +67,12 @@ describe(XDescriptionPrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestDescriptionComponent, XTestDescriptionPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -85,47 +88,98 @@ describe(XDescriptionPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDescriptionPropertyComponent>;
-    // let component: XTestDescriptionPropertyComponent;
+    let component: XTestDescriptionPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestDescriptionPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('title.', () => {
-      expect(true).toBe(true);
+      component.title.set('title');
+      fixture.detectChanges();
+
+      const header = fixture.debugElement.query(By.css('.x-description-header'));
+      expect(header.nativeElement.innerText).toBe('title');
     });
     it('bordered.', () => {
-      expect(true).toBe(true);
+      component.bordered.set(true);
+      fixture.detectChanges();
+
+      const description = fixture.debugElement.query(By.css('.x-description'));
+      expect(description.nativeElement).toHaveClass('x-description-bordered');
     });
     it('gridTemplateColumns.', () => {
-      expect(true).toBe(true);
+      component.gridTemplateColumns.set('100px 100px 100px');
+      fixture.detectChanges();
+
+      const items = fixture.debugElement.queryAll(By.css('.x-description-item'));
+      for (let item of items) {
+        expect(item.nativeElement.clientWidth).toBe(100);
+      }
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      component.size.set('small');
+      fixture.detectChanges();
+
+      const description = fixture.debugElement.query(By.css('.x-description'));
+      expect(description.nativeElement).toHaveClass('x-description-small');
     });
     it('gridArea.', () => {
-      expect(true).toBe(true);
+      component.gridTemplateColumns.set('100px 100px 100px');
+      component.gridArea.set('1/1/1/4');
+      fixture.detectChanges();
+
+      const item = fixture.debugElement.query(By.css('.x-description-item'));
+      expect(item.nativeElement.clientWidth).toBe(300);
     });
     it('label.', () => {
-      expect(true).toBe(true);
+      component.label.set('label');
+      fixture.detectChanges();
+
+      const label = fixture.debugElement.query(By.css('.x-description-item .x-description-item-label'));
+      expect(label.nativeElement.innerText).toBe('label');
     });
     it('justify.', () => {
-      expect(true).toBe(true);
+      component.justify.set('end');
+      fixture.detectChanges();
+
+      const item = fixture.debugElement.query(By.css('.x-description-item'));
+      expect(item.nativeElement).toHaveClass('x-justify-end');
     });
     it('align.', () => {
-      expect(true).toBe(true);
+      component.align.set('end');
+      fixture.detectChanges();
+
+      const item = fixture.debugElement.query(By.css('.x-description-item'));
+      expect(item.nativeElement).toHaveClass('x-align-end');
     });
     it('direction.', () => {
-      expect(true).toBe(true);
+      component.direction.set('column');
+      fixture.detectChanges();
+
+      const item = fixture.debugElement.query(By.css('.x-description-item'));
+      expect(item.nativeElement).toHaveClass('x-direction-column');
     });
     it('width.', () => {
-      expect(true).toBe(true);
+      component.width.set('100px');
+      fixture.detectChanges();
+
+      const item = fixture.debugElement.query(By.css('.x-description-item'));
+      expect(item.nativeElement.clientWidth).toBe(100);
     });
     it('flex.', () => {
-      expect(true).toBe(true);
+      component.flex.set(1);
+      fixture.detectChanges();
+
+      const grid = fixture.debugElement.query(By.css('.x-description-grid'));
+      expect(grid.nativeElement.style.gridTemplateColumns).toBe('1fr');
     });
     it('heading.', () => {
-      expect(true).toBe(true);
+      component.heading.set(true);
+      fixture.detectChanges();
+      
+      const item = fixture.debugElement.query(By.css('.x-description-item'));
+      expect(item.nativeElement).toHaveClass('x-description-item-heading');
     });
   });
 });
