@@ -1,5 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import {
+  Component,
+  inject,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+  TemplateRef,
+  viewChild
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {
   XDatePickerComponent,
@@ -11,8 +18,21 @@ import {
 } from '@ng-nest/ui/date-picker';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XCorner, XData, XDirection, XIsNumber, XJustify, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
+import {
+  XAddDays,
+  XAlign,
+  XCorner,
+  XData,
+  XDirection,
+  XIsNumber,
+  XJustify,
+  XSize,
+  XSleep,
+  XTemplate
+} from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -22,10 +42,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 class XTestDatePickerComponent {}
 
 @Component({
+  providers: [DatePipe],
   standalone: true,
-  imports: [XDatePickerComponent],
+  imports: [XDatePickerComponent, FormsModule],
   template: `
     <x-date-picker
+      [(ngModel)]="model"
       [type]="type()"
       [format]="format()"
       [clearable]="clearable()"
@@ -69,6 +91,8 @@ class XTestDatePickerComponent {}
 
     <ng-template #beforeTemplate>before</ng-template>
     <ng-template #afterTemplate>after</ng-template>
+
+    <ng-template #extraFooterTemplate>footer tpl</ng-template>
   `
 })
 class XTestDatePickerPropertyComponent {
@@ -79,6 +103,7 @@ class XTestDatePickerPropertyComponent {
   bordered = signal(true);
   preset = signal<XData<XDatePickerPreset>>([]);
   extraFooter = signal<XTemplate | null>(null);
+  extraFooterTemplate = viewChild.required<TemplateRef<any>>('extraFooterTemplate');
   disabledDate = signal<XDatePickerDisabledDate | null>(null);
   disabledTime = signal<XDatePickerDisabledTime | null>(null);
   size = signal<XSize>('medium');
@@ -109,6 +134,10 @@ class XTestDatePickerPropertyComponent {
   nodeEmit(event: number) {
     this.nodeEmitResult.set(event);
   }
+
+  model = signal<any>(null);
+
+  datePipe = inject(DatePipe);
 }
 
 describe(XDatePickerPrefix, () => {
@@ -143,32 +172,137 @@ describe(XDatePickerPrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('type.', () => {
-      expect(true).toBe(true);
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XDatePickerComponent));
+      const instance = com.componentInstance as XDatePickerComponent;
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(50);
+      const event = new Event('input', { bubbles: true });
+      input.nativeElement.dispatchEvent(event);
+      const change = new Event('change', { bubbles: true });
+      input.nativeElement.dispatchEvent(change);
+      fixture.detectChanges();
+
+      await XSleep(300);
+
+      return { com, input, instance };
+    };
+    it('type.', async () => {
+      const date = new Date();
+      component.model.set(date);
+      fixture.detectChanges();
+      await XSleep(0);
+      const val = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(val.nativeElement.innerText).toBe(component.datePipe.transform(date, component.format()));
+
+      component.type.set('month');
+      fixture.detectChanges();
+      expect(val.nativeElement.innerText).toBe(component.datePipe.transform(date, 'yyyy-MM'));
+
+      component.type.set('year');
+      fixture.detectChanges();
+      expect(val.nativeElement.innerText).toBe(component.datePipe.transform(date, 'yyyy'));
     });
-    it('format.', () => {
-      expect(true).toBe(true);
+    it('format.', async () => {
+      const date = new Date();
+      component.format.set('yyyy年MM月dd日');
+      component.model.set(date);
+      await XSleep(0);
+      const val = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(val.nativeElement.innerText).toBe(component.datePipe.transform(date, 'yyyy年MM月dd日'));
     });
-    it('clearable.', () => {
-      expect(true).toBe(true);
+    it('clearable.', async () => {
+      component.clearable.set(true);
+      component.model.set(new Date());
+      fixture.detectChanges();
+      await XSleep(0);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      const clear = fixture.debugElement.query(By.css('.x-input-clear'));
+      expect(clear).toBeTruthy();
     });
-    it('placement.', () => {
-      expect(true).toBe(true);
+    it('placement.', async () => {
+      const { com } = await showPortal();
+      const portal = fixture.debugElement.query(By.css('.x-date-picker-portal'));
+      const box = com.nativeElement.getBoundingClientRect();
+      const portalRect = portal.nativeElement.getBoundingClientRect();
+      const leftDiff = box.left - portalRect.left;
+      const topDiff = box.top + box.height - portalRect.top;
+      // Pixels may be decimal points
+      expect(leftDiff >= -1 && leftDiff <= 1).toBe(true);
+      expect(topDiff >= -1 && topDiff <= 1).toBe(true);
     });
     it('bordered.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-bordered');
+
+      component.bordered.set(false);
+      fixture.detectChanges();
+      expect(input.nativeElement).not.toHaveClass('x-input-bordered');
     });
-    it('preset.', () => {
-      expect(true).toBe(true);
+    it('preset.', async () => {
+      component.preset.set([
+        'yesterday',
+        'today',
+        'tomorrow',
+        {
+          label: '7天后',
+          func: () => {
+            return XAddDays(new Date(), 7);
+          }
+        }
+      ]);
+      fixture.detectChanges();
+
+      await showPortal();
+      const preset = fixture.debugElement.query(By.css('.x-date-picker-portal-preset'));
+      expect(preset.nativeElement.innerText).toBe('昨天\n今天\n明天\n7天后');
     });
-    it('extraFooter.', () => {
-      expect(true).toBe(true);
+    it('extraFooter.', async () => {
+      component.extraFooter.set(component.extraFooterTemplate());
+      fixture.detectChanges();
+
+      await showPortal();
+      const footer = fixture.debugElement.query(By.css('.x-date-picker-portal-extra-footer'));
+      expect(footer.nativeElement.innerText).toBe('footer tpl');
     });
-    it('disabledDate.', () => {
-      expect(true).toBe(true);
+    it('disabledDate.', async () => {
+      const now = new Date();
+      component.disabledDate.set((current: Date): boolean => {
+        const currentDate = new Date(component.datePipe.transform(current, 'yyyy-MM-dd')!).getTime();
+        const today = new Date(component.datePipe.transform(now, 'yyyy-MM-dd')!).getTime();
+        return currentDate > today;
+      });
+      fixture.detectChanges();
+
+      await showPortal();
+      const disabled = fixture.debugElement.query(By.css('.x-date-disabled'));
+      const title = disabled.nativeElement.getAttribute('title');
+      expect(title).toBe(component.datePipe.transform(XAddDays(now, 1), 'yyyy-MM-dd'));
     });
-    it('disabledTime.', () => {
-      expect(true).toBe(true);
+    it('disabledTime.', async () => {
+      component.type.set('date-time');
+      component.disabledTime.set(() => ({
+        disabledHours: () => Array.from({ length: 12 }).map((_, i) => i),
+        disabledMinutes: () => Array.from({ length: 30 }).map((_, i) => i),
+        disabledSeconds: () => Array.from({ length: 40 }).map((_, i) => i)
+      }));
+      fixture.detectChanges();
+
+      await showPortal();
+
+      const hours = fixture.debugElement.queryAll(By.css('.x-time-picker-frame-hour .x-disabled'));
+      expect(hours.length).toBe(12);
+
+      const minutes = fixture.debugElement.queryAll(By.css('.x-time-picker-frame-minute .x-disabled'));
+      expect(minutes.length).toBe(30);
+
+      const seconds = fixture.debugElement.queryAll(By.css('.x-time-picker-frame-second .x-disabled'));
+      expect(seconds.length).toBe(40);
     });
     it('size.', () => {
       const input = fixture.debugElement.query(By.css('.x-input'));
@@ -314,8 +448,16 @@ describe(XDatePickerPrefix, () => {
       const borderError = fixture.debugElement.query(By.css('.x-border-error'));
       expect(borderError).toBeDefined();
     });
-    it('nodeEmit.', () => {
-      expect(true).toBe(true);
+    it('nodeEmit.', async () => {
+      await showPortal();
+
+      const dateNow = fixture.debugElement.query(By.css('.x-date-now'));
+      dateNow.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(0);
+      expect(component.datePipe.transform(component.nodeEmitResult(), 'yyyy-MM-dd')).toBe(
+        dateNow.nativeElement.getAttribute('title')
+      );
     });
   });
 });
