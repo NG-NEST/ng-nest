@@ -21,7 +21,7 @@
       <div class="x-loading-spinner" [style.color]="color()">
         @if (icon()) {
           <div class="x-loading-icon" [style.font-size.px]="sizeNumber()">
-            <x-icon [type]="icon()"></x-icon>
+            <x-icon [type]="icon()!"></x-icon>
           </div>
         } @else {
           <svg
