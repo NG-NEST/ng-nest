@@ -20,7 +20,7 @@ export class ExTodayComponent {
     'today',
     'tomorrow',
     {
-      label: '七天后',
+      label: '7澶╁悗',
       func: () => {
         return XAddDays(new Date(), 7);
       }
@@ -38,7 +38,7 @@ export class ExTodayComponent {
     'thisYear',
     // 'nextYear',
     {
-      label: '5天内',
+      label: '5澶╁唴',
       func: () => {
         let now = new Date();
         return [now, XAddDays(new Date(), 5)];

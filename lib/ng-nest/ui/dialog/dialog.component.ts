@@ -12,7 +12,8 @@ import {
   signal,
   computed,
   AfterViewInit,
-  viewChild
+  viewChild,
+  effect
 } from '@angular/core';
 import { XMoveBoxAnimation, XIsFunction, XConfigService, XOpacityAnimation } from '@ng-nest/ui/core';
 import {
@@ -115,15 +116,20 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     this.visibleChanged.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.setVisible();
     });
+    effect(
+      () => {
+        this.draggableSignal.set(this.draggable());
+        this.resizableSignal.set(this.resizable());
+        this.maximizeSignal.set(this.maximize());
+        this.dialogBox['draggable'] = this.draggableSignal();
+        this.dialogBox['resizable'] = this.resizableSignal();
+      },
+      { allowSignalWrites: true }
+    );
   }
 
   ngOnInit() {
     this.scrollStrategy = this.protalService.overlay.scrollStrategies.block();
-    this.draggableSignal.set(this.draggable());
-    this.resizableSignal.set(this.resizable());
-    this.maximizeSignal.set(this.maximize());
-    this.dialogBox['draggable'] = this.draggableSignal();
-    this.dialogBox['resizable'] = this.resizableSignal();
   }
 
   ngAfterViewInit(): void {
@@ -179,8 +185,8 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
         Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement()!, this.placement()));
         this.styleOffsetLeft.set(this.overlayElement()?.offsetLeft!);
         this.styleOffsetTop.set(this.overlayElement()?.offsetTop!);
-        const dialogDraggable = this.overlayElement()?.querySelector('.x-alert-draggable')!;
-        this.initHeight = dialogDraggable.clientHeight;
+        const dialog = this.overlayElement()?.querySelector('.x-alert')!;
+        this.initHeight = dialog.clientHeight;
         this.dialogContent = this.overlayElement()?.querySelector('.x-dialog-content')!;
         this.initContentHeight = this.dialogContent.clientHeight;
       });

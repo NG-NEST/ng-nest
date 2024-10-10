@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XDialogAction, XDialogComponent, XDialogPrefix, XDialogType } from '@ng-nest/ui/dialog';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XEffect, XPlace, XTemplate } from '@ng-nest/ui/core';
+import { XComputedStyle, XEffect, XPlace, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -49,7 +50,10 @@ class XTestDialogComponent {}
       (confirm)="confirm()"
       (close)="close()"
       (showDone)="showDone()"
+      (closeDone)="closeDone()"
     ></x-dialog>
+
+    <ng-template #footerTpl>footer tpl</ng-template>
   `
 })
 class XTestDialogPropertyComponent {
@@ -68,7 +72,8 @@ class XTestDialogPropertyComponent {
   minWidth = signal('18rem');
   minHeight = signal('8rem');
   effect = signal<XEffect>('white');
-  footer = signal<XTemplate>('');
+  footer = signal<XTemplate | null>(null);
+  footerTpl = viewChild.required<TemplateRef<void>>('footerTpl');
   showCancel = signal(true);
   cancelText = signal('');
   showConfirm = signal(true);
@@ -80,15 +85,31 @@ class XTestDialogPropertyComponent {
   draggable = signal(false);
   maximize = signal(false);
   beforeClose = signal<((action: XDialogAction) => void) | null>(null);
-  cancel() {}
 
-  confirm() {}
+  cancelResult = signal(false);
+  cancel() {
+    this.cancelResult.set(true);
+  }
 
-  close() {}
+  confirmResult = signal(false);
+  confirm() {
+    this.confirmResult.set(true);
+  }
 
-  showDone() {}
+  closeResult = signal(false);
+  close() {
+    this.closeResult.set(true);
+  }
 
-  closeDone() {}
+  showDoneResult = signal(false);
+  showDone() {
+    this.showDoneResult.set(true);
+  }
+
+  closeDoneResult = signal(false);
+  closeDone() {
+    this.closeDoneResult.set(true);
+  }
 }
 
 describe(XDialogPrefix, () => {
@@ -96,10 +117,12 @@ describe(XDialogPrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestDialogComponent, XTestDialogPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -115,107 +138,285 @@ describe(XDialogPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDialogPropertyComponent>;
-    // let component: XTestDialogPropertyComponent;
+    let component: XTestDialogPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestDialogPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('title.', () => {
-      expect(true).toBe(true);
+    const showDialog = async () => {
+      component.visible.set(true);
+      fixture.detectChanges();
+      await XSleep(300);
+    };
+    const closeDialog = async () => {
+      component.visible.set(false);
+      fixture.detectChanges();
+      await XSleep(300);
+    };
+    it('title.', async () => {
+      component.title.set('title');
+      fixture.detectChanges();
+      await showDialog();
+      const title = fixture.debugElement.query(By.css('.x-alert-title'));
+      expect(title.nativeElement.innerText).toBe('title');
     });
-    it('visible.', () => {
-      expect(true).toBe(true);
+    it('visible.', async () => {
+      await showDialog();
+      let dialog = fixture.debugElement.query(By.css('.x-dialog'));
+      expect(dialog).toBeTruthy();
+
+      await closeDialog();
+      dialog = fixture.debugElement.query(By.css('.x-dialog'));
+      expect(dialog).not.toBeTruthy();
     });
-    it('placement.', () => {
-      expect(true).toBe(true);
+    it('placement.', async () => {
+      await showDialog();
+      let wrapper = document.querySelector<HTMLDivElement>('.cdk-global-overlay-wrapper')!;
+      expect(wrapper.style.justifyContent).toBe('center');
+      expect(wrapper.style.alignItems).toBe('center');
+
+      await closeDialog();
+      component.placement.set('top');
+      await showDialog();
+      wrapper = document.querySelector<HTMLDivElement>('.cdk-global-overlay-wrapper')!;
+      expect(wrapper.style.justifyContent).toBe('center');
+      expect(wrapper.style.alignItems).toBe('flex-start');
     });
-    it('offset.', () => {
-      expect(true).toBe(true);
+    it('offset.', async () => {
+      component.placement.set('top');
+      component.offset.set('40px');
+      await showDialog();
+      const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
+      const marginTop = Number(XComputedStyle(overlay, 'marginTop'));
+      expect(marginTop).toBe(40);
     });
-    it('type.', () => {
-      expect(true).toBe(true);
+    it('type.', async () => {
+      component.type.set('error');
+      await showDialog();
+      const error = fixture.debugElement.query(By.css('.x-alert-error'));
+      expect(error).toBeTruthy();
     });
-    it('hideClose.', () => {
-      expect(true).toBe(true);
+    it('hideClose.', async () => {
+      await showDialog();
+      let close = fixture.debugElement.query(By.css('.x-alert-operation-close'));
+      expect(close).toBeTruthy();
+
+      await closeDialog();
+      component.hideClose.set(true);
+      await showDialog();
+      close = fixture.debugElement.query(By.css('.x-alert-operation-close'));
+      expect(close).not.toBeTruthy();
     });
-    it('closeText.', () => {
-      expect(true).toBe(true);
+    it('closeText.', async () => {
+      component.closeText.set('close');
+      await showDialog();
+      const close = fixture.debugElement.query(By.css('.x-alert-close'));
+      expect(close.nativeElement.innerText).toBe('close');
     });
-    it('resizable.', () => {
-      expect(true).toBe(true);
+    it('resizable.', async () => {
+      component.resizable.set(true);
+      fixture.detectChanges();
+      await showDialog();
+      const dialog = fixture.debugElement.query(By.css('.x-alert'));
+      expect(dialog.nativeElement).toHaveClass('x-resizable');
     });
-    it('offsetLeft.', () => {
+    it('offsetLeft.', async () => {
+      // test resizable directive
       expect(true).toBe(true);
     });
     it('offsetTop.', () => {
+      // test resizable directive
       expect(true).toBe(true);
     });
-    it('width.', () => {
-      expect(true).toBe(true);
+    it('width.', async () => {
+      component.width.set('800px');
+      fixture.detectChanges();
+      await showDialog();
+
+      const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
+      expect(overlay.clientWidth).toBe(800);
     });
-    it('height.', () => {
-      expect(true).toBe(true);
+    it('height.', async () => {
+      component.height.set('300px');
+      fixture.detectChanges();
+      await showDialog();
+
+      const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
+      expect(overlay.clientHeight).toBe(300);
     });
-    it('minWidth.', () => {
-      expect(true).toBe(true);
+    it('minWidth.', async () => {
+      component.minWidth.set('400px');
+      fixture.detectChanges();
+      await showDialog();
+      const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
+      const minWidth = Number(XComputedStyle(overlay, 'minWidth'));
+      expect(minWidth).toBe(400);
     });
-    it('minHeight.', () => {
-      expect(true).toBe(true);
+    it('minHeight.', async () => {
+      component.minHeight.set('300px');
+      fixture.detectChanges();
+      await showDialog();
+      const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
+      const minHeight = Number(XComputedStyle(overlay, 'minHeight'));
+      expect(minHeight).toBe(300);
     });
-    it('effect.', () => {
-      expect(true).toBe(true);
+    it('effect.', async () => {
+      component.effect.set('dark');
+      fixture.detectChanges();
+      await showDialog();
+      const dialog = fixture.debugElement.query(By.css('.x-alert'));
+      expect(dialog.nativeElement).toHaveClass('x-dark');
     });
-    it('footer.', () => {
-      expect(true).toBe(true);
+    it('footer.', async () => {
+      component.footer.set(component.footerTpl());
+      fixture.detectChanges();
+      await showDialog();
+
+      const buttons = fixture.debugElement.query(By.css('.x-dialog-buttons'));
+      expect(buttons.nativeElement.innerText).toBe('footer tpl');
     });
-    it('showCancel.', () => {
-      expect(true).toBe(true);
+    it('showCancel.', async () => {
+      await showDialog();
+      let cancel = fixture.debugElement.query(By.css('.x-dialog-cancel'));
+      expect(cancel).toBeTruthy();
+
+      await closeDialog();
+      component.showCancel.set(false);
+      await showDialog();
+      cancel = fixture.debugElement.query(By.css('.x-dialog-cancel'));
+      expect(cancel).not.toBeTruthy();
     });
-    it('cancelText.', () => {
-      expect(true).toBe(true);
+    it('cancelText.', async () => {
+      component.cancelText.set('cancel text');
+      fixture.detectChanges();
+      await showDialog();
+      const cancel = fixture.debugElement.query(By.css('.x-dialog-cancel'));
+      expect(cancel.nativeElement.innerText).toBe('cancel text');
     });
-    it('showConfirm.', () => {
-      expect(true).toBe(true);
+    it('showConfirm.', async () => {
+      await showDialog();
+      let confirm = fixture.debugElement.query(By.css('.x-dialog-confirm'));
+      expect(confirm).toBeTruthy();
+
+      await closeDialog();
+      component.showConfirm.set(false);
+      await showDialog();
+      confirm = fixture.debugElement.query(By.css('.x-dialog-confirm'));
+      expect(confirm).not.toBeTruthy();
     });
-    it('confirmText.', () => {
-      expect(true).toBe(true);
+    it('confirmText.', async () => {
+      component.confirmText.set('confirm text');
+      fixture.detectChanges();
+      await showDialog();
+      const confirm = fixture.debugElement.query(By.css('.x-dialog-confirm'));
+      expect(confirm.nativeElement.innerText).toBe('confirm text');
     });
-    it('backdropClose.', () => {
-      expect(true).toBe(true);
+    it('backdropClose.', async () => {
+      await showDialog();
+      const back = document.querySelector<HTMLDivElement>('.cdk-overlay-backdrop')!;
+      back.click();
+      fixture.detectChanges();
+      const dialog = fixture.debugElement.query(By.css('.x-dialog'));
+      expect(dialog).not.toBeTruthy();
     });
-    it('hasBackdrop.', () => {
-      expect(true).toBe(true);
+    it('hasBackdrop.', async () => {
+      await showDialog();
+      let back = document.querySelector<HTMLDivElement>('.cdk-overlay-backdrop')!;
+      expect(back).toBeTruthy();
+
+      await closeDialog();
+      component.hasBackdrop.set(false);
+      fixture.detectChanges();
+      await showDialog();
+      back = document.querySelector<HTMLDivElement>('.cdk-overlay-backdrop')!;
+      expect(back).not.toBeTruthy();
     });
-    it('className.', () => {
-      expect(true).toBe(true);
+    it('className.', async () => {
+      component.className.set('class-test');
+      await showDialog();
+      const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
+      expect(overlay).toHaveClass('class-test');
     });
-    it('buttonsCenter.', () => {
-      expect(true).toBe(true);
+    it('buttonsCenter.', async () => {
+      component.buttonsCenter.set(true);
+      fixture.detectChanges();
+      await showDialog();
+      const buttons = fixture.debugElement.query(By.css('.x-dialog-buttons'));
+      expect(buttons.nativeElement).toHaveClass('x-dialog-buttons-center');
     });
-    it('draggable.', () => {
-      expect(true).toBe(true);
+    it('draggable.', async () => {
+      component.draggable.set(true);
+      fixture.detectChanges();
+      await showDialog();
+      const dialog = fixture.debugElement.query(By.css('.x-alert'));
+      expect(dialog.nativeElement).toHaveClass('x-alert-draggable');
     });
-    it('maximize.', () => {
-      expect(true).toBe(true);
+    it('maximize.', async () => {
+      component.maximize.set(true);
+      fixture.detectChanges();
+      await showDialog();
+
+      const maximize = fixture.debugElement.query(By.css('.x-dialog-maximize'));
+      expect(maximize).toBeTruthy();
+
+      maximize.nativeElement.click();
+      fixture.detectChanges();
+
+      const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
+      expect(overlay.style.minWidth).toBe('100%');
+      expect(overlay.style.minHeight).toBe('100%');
     });
-    it('beforeClose.', () => {
-      expect(true).toBe(true);
+    it('beforeClose.', async () => {
+      let beforeLet = false;
+      component.beforeClose.set(() => {
+        beforeLet = true;
+      });
+
+      await showDialog();
+      const confirm = fixture.debugElement.query(By.css('.x-dialog-confirm'));
+      confirm.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(beforeLet).toBe(true);
     });
-    it('cancel.', () => {
-      expect(true).toBe(true);
+    it('cancel.', async () => {
+      await showDialog();
+      const cancel = fixture.debugElement.query(By.css('.x-dialog-cancel'));
+      cancel.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.cancelResult()).toBe(true);
     });
-    it('confirm.', () => {
-      expect(true).toBe(true);
+    it('confirm.', async () => {
+      await showDialog();
+      const confirm = fixture.debugElement.query(By.css('.x-dialog-confirm'));
+      confirm.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.confirmResult()).toBe(true);
     });
-    it('close.', () => {
-      expect(true).toBe(true);
+    it('close.', async () => {
+      await showDialog();
+      const close = fixture.debugElement.query(By.css('.x-alert-operation-close'));
+      close.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.closeResult()).toBe(true);
     });
-    it('showDone.', () => {
-      expect(true).toBe(true);
+    it('showDone.', async () => {
+      await showDialog();
+      expect(component.showDoneResult()).toBe(true);
     });
-    it('closeDone.', () => {
-      expect(true).toBe(true);
+    it('closeDone.', async () => {
+      await showDialog();
+
+      const close = fixture.debugElement.query(By.css('.x-alert-operation-close'));
+      close.nativeElement.click();
+      fixture.detectChanges();
+
+      await XSleep(300);
+      expect(component.closeDoneResult()).toBe(true);
     });
   });
 });

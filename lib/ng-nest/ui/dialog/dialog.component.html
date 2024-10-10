@@ -48,10 +48,12 @@
         @if (showCancel() || showConfirm()) {
           <x-buttons space="0.5rem">
             @if (showCancel()) {
-              <x-button (click)="onClose('cancel')" flat plain>{{ getCancelText() }}</x-button>
+              <x-button class="x-dialog-cancel" (click)="onClose('cancel')" flat plain>{{ getCancelText() }}</x-button>
             }
             @if (showConfirm()) {
-              <x-button type="primary" flat (click)="onClose('confirm')">{{ getConfirmText() }}</x-button>
+              <x-button class="x-dialog-confirm" type="primary" flat (click)="onClose('confirm')">{{
+                getConfirmText()
+              }}</x-button>
             }
           </x-buttons>
         }
@@ -68,6 +70,7 @@
       [icon]="isMaximize() ? 'fto-minimize' : 'fto-maximize'"
       [onlyIcon]="true"
       (click)="onSize()"
+      class="x-dialog-maximize"
     ></x-button>
   }
 </ng-template>
