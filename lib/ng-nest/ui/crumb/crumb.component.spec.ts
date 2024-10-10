@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XCrumbComponent, XCrumbNode, XCrumbPrefix } from '@ng-nest/ui/crumb';
+import { XCrumbComponent, XCrumbNode, XCrumbNodeClick, XCrumbPrefix } from '@ng-nest/ui/crumb';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { XDataArray, XTemplate } from '@ng-nest/ui/core';
@@ -29,8 +29,8 @@ class XTestCrumbPropertyComponent {
   nodeTemplage = viewChild.required<TemplateRef<void>>('nodeTemplate');
   separator = signal<XTemplate>('/');
 
-  nodeClickResult = signal<XCrumbNode | null>(null);
-  nodeClick(node: XCrumbNode) {
+  nodeClickResult = signal<XCrumbNodeClick | null>(null);
+  nodeClick(node: XCrumbNodeClick) {
     this.nodeClickResult.set(node);
   }
 }
@@ -90,7 +90,12 @@ describe(XCrumbPrefix, () => {
       expect(ul.nativeElement.innerText).toBe('aa\n>\nbb');
     });
     it('nodeClick.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa']);
+      fixture.detectChanges();
+      const link = fixture.debugElement.query(By.css('x-link'));
+      link.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.nodeClickResult()?.node.id).toBe('aa');
     });
   });
 });
