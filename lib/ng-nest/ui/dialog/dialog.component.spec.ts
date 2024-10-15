@@ -122,7 +122,7 @@ describe(XDialogPrefix, () => {
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: true }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -160,6 +160,7 @@ describe(XDialogPrefix, () => {
       await showDialog();
       const title = fixture.debugElement.query(By.css('.x-alert-title'));
       expect(title.nativeElement.innerText).toBe('title');
+      await closeDialog();
     });
     it('visible.', async () => {
       await showDialog();
@@ -172,16 +173,19 @@ describe(XDialogPrefix, () => {
     });
     it('placement.', async () => {
       await showDialog();
+      fixture.detectChanges();
       let wrapper = document.querySelector<HTMLDivElement>('.cdk-global-overlay-wrapper')!;
       expect(wrapper.style.justifyContent).toBe('center');
       expect(wrapper.style.alignItems).toBe('center');
 
       await closeDialog();
       component.placement.set('top');
+      fixture.detectChanges();
       await showDialog();
       wrapper = document.querySelector<HTMLDivElement>('.cdk-global-overlay-wrapper')!;
       expect(wrapper.style.justifyContent).toBe('center');
       expect(wrapper.style.alignItems).toBe('flex-start');
+      await closeDialog();
     });
     it('offset.', async () => {
       component.placement.set('top');
@@ -190,12 +194,14 @@ describe(XDialogPrefix, () => {
       const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
       const marginTop = Number(XComputedStyle(overlay, 'marginTop'));
       expect(marginTop).toBe(40);
+      await closeDialog();
     });
     it('type.', async () => {
       component.type.set('error');
       await showDialog();
       const error = fixture.debugElement.query(By.css('.x-alert-error'));
       expect(error).toBeTruthy();
+      await closeDialog();
     });
     it('hideClose.', async () => {
       await showDialog();
@@ -207,12 +213,14 @@ describe(XDialogPrefix, () => {
       await showDialog();
       close = fixture.debugElement.query(By.css('.x-alert-operation-close'));
       expect(close).not.toBeTruthy();
+      await closeDialog();
     });
     it('closeText.', async () => {
       component.closeText.set('close');
       await showDialog();
       const close = fixture.debugElement.query(By.css('.x-alert-close'));
       expect(close.nativeElement.innerText).toBe('close');
+      await closeDialog();
     });
     it('resizable.', async () => {
       component.resizable.set(true);
@@ -220,6 +228,7 @@ describe(XDialogPrefix, () => {
       await showDialog();
       const dialog = fixture.debugElement.query(By.css('.x-alert'));
       expect(dialog.nativeElement).toHaveClass('x-resizable');
+      await closeDialog();
     });
     it('offsetLeft.', async () => {
       // test resizable directive
@@ -230,12 +239,13 @@ describe(XDialogPrefix, () => {
       expect(true).toBe(true);
     });
     it('width.', async () => {
-      component.width.set('800px');
+      component.width.set('300px');
       fixture.detectChanges();
       await showDialog();
 
       const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
-      expect(overlay.clientWidth).toBe(800);
+      expect(overlay.clientWidth).toBe(300);
+      await closeDialog();
     });
     it('height.', async () => {
       component.height.set('300px');
@@ -244,6 +254,7 @@ describe(XDialogPrefix, () => {
 
       const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
       expect(overlay.clientHeight).toBe(300);
+      await closeDialog();
     });
     it('minWidth.', async () => {
       component.minWidth.set('400px');
@@ -252,6 +263,7 @@ describe(XDialogPrefix, () => {
       const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
       const minWidth = Number(XComputedStyle(overlay, 'minWidth'));
       expect(minWidth).toBe(400);
+      await closeDialog();
     });
     it('minHeight.', async () => {
       component.minHeight.set('300px');
@@ -260,6 +272,7 @@ describe(XDialogPrefix, () => {
       const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
       const minHeight = Number(XComputedStyle(overlay, 'minHeight'));
       expect(minHeight).toBe(300);
+      await closeDialog();
     });
     it('effect.', async () => {
       component.effect.set('dark');
@@ -267,6 +280,7 @@ describe(XDialogPrefix, () => {
       await showDialog();
       const dialog = fixture.debugElement.query(By.css('.x-alert'));
       expect(dialog.nativeElement).toHaveClass('x-dark');
+      await closeDialog();
     });
     it('footer.', async () => {
       component.footer.set(component.footerTpl());
@@ -275,6 +289,7 @@ describe(XDialogPrefix, () => {
 
       const buttons = fixture.debugElement.query(By.css('.x-dialog-buttons'));
       expect(buttons.nativeElement.innerText).toBe('footer tpl');
+      await closeDialog();
     });
     it('showCancel.', async () => {
       await showDialog();
@@ -286,6 +301,7 @@ describe(XDialogPrefix, () => {
       await showDialog();
       cancel = fixture.debugElement.query(By.css('.x-dialog-cancel'));
       expect(cancel).not.toBeTruthy();
+      await closeDialog();
     });
     it('cancelText.', async () => {
       component.cancelText.set('cancel text');
@@ -293,6 +309,7 @@ describe(XDialogPrefix, () => {
       await showDialog();
       const cancel = fixture.debugElement.query(By.css('.x-dialog-cancel'));
       expect(cancel.nativeElement.innerText).toBe('cancel text');
+      await closeDialog();
     });
     it('showConfirm.', async () => {
       await showDialog();
@@ -304,6 +321,7 @@ describe(XDialogPrefix, () => {
       await showDialog();
       confirm = fixture.debugElement.query(By.css('.x-dialog-confirm'));
       expect(confirm).not.toBeTruthy();
+      await closeDialog();
     });
     it('confirmText.', async () => {
       component.confirmText.set('confirm text');
@@ -311,6 +329,7 @@ describe(XDialogPrefix, () => {
       await showDialog();
       const confirm = fixture.debugElement.query(By.css('.x-dialog-confirm'));
       expect(confirm.nativeElement.innerText).toBe('confirm text');
+      await closeDialog();
     });
     it('backdropClose.', async () => {
       await showDialog();
@@ -319,6 +338,7 @@ describe(XDialogPrefix, () => {
       fixture.detectChanges();
       const dialog = fixture.debugElement.query(By.css('.x-dialog'));
       expect(dialog).not.toBeTruthy();
+      await closeDialog();
     });
     it('hasBackdrop.', async () => {
       await showDialog();
@@ -331,12 +351,14 @@ describe(XDialogPrefix, () => {
       await showDialog();
       back = document.querySelector<HTMLDivElement>('.cdk-overlay-backdrop')!;
       expect(back).not.toBeTruthy();
+      await closeDialog();
     });
     it('className.', async () => {
       component.className.set('class-test');
       await showDialog();
       const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
       expect(overlay).toHaveClass('class-test');
+      await closeDialog();
     });
     it('buttonsCenter.', async () => {
       component.buttonsCenter.set(true);
@@ -344,6 +366,7 @@ describe(XDialogPrefix, () => {
       await showDialog();
       const buttons = fixture.debugElement.query(By.css('.x-dialog-buttons'));
       expect(buttons.nativeElement).toHaveClass('x-dialog-buttons-center');
+      await closeDialog();
     });
     it('draggable.', async () => {
       component.draggable.set(true);
@@ -351,6 +374,7 @@ describe(XDialogPrefix, () => {
       await showDialog();
       const dialog = fixture.debugElement.query(By.css('.x-alert'));
       expect(dialog.nativeElement).toHaveClass('x-alert-draggable');
+      await closeDialog();
     });
     it('maximize.', async () => {
       component.maximize.set(true);
@@ -366,6 +390,7 @@ describe(XDialogPrefix, () => {
       const overlay = document.querySelector<HTMLDivElement>('.x-dialog-overlay')!;
       expect(overlay.style.minWidth).toBe('100%');
       expect(overlay.style.minHeight).toBe('100%');
+      await closeDialog();
     });
     it('beforeClose.', async () => {
       let beforeLet = false;
@@ -379,6 +404,7 @@ describe(XDialogPrefix, () => {
       fixture.detectChanges();
 
       expect(beforeLet).toBe(true);
+      await closeDialog();
     });
     it('cancel.', async () => {
       await showDialog();
@@ -387,6 +413,7 @@ describe(XDialogPrefix, () => {
       fixture.detectChanges();
 
       expect(component.cancelResult()).toBe(true);
+      await closeDialog();
     });
     it('confirm.', async () => {
       await showDialog();
@@ -395,6 +422,7 @@ describe(XDialogPrefix, () => {
       fixture.detectChanges();
 
       expect(component.confirmResult()).toBe(true);
+      await closeDialog();
     });
     it('close.', async () => {
       await showDialog();
@@ -403,19 +431,18 @@ describe(XDialogPrefix, () => {
       fixture.detectChanges();
 
       expect(component.closeResult()).toBe(true);
+      await closeDialog();
     });
     it('showDone.', async () => {
       await showDialog();
+      await XSleep(1000);
       expect(component.showDoneResult()).toBe(true);
+      await closeDialog();
     });
     it('closeDone.', async () => {
       await showDialog();
-
-      const close = fixture.debugElement.query(By.css('.x-alert-operation-close'));
-      close.nativeElement.click();
-      fixture.detectChanges();
-
-      await XSleep(300);
+      await closeDialog();
+      await XSleep(1000);
       expect(component.closeDoneResult()).toBe(true);
     });
   });

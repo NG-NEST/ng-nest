@@ -144,6 +144,22 @@ export function XGetChildren<T extends XParentIdentityProperty<T>>(nodes: T[], n
 }
 
 /**
+ * @zh_CN 递归检查并设置节点是否具有子节点
+ * @en_US Recursively checks and sets whether nodes have children
+ */
+export function XHasChildren<T extends XParentIdentityProperty<T>>(nodes: T[], level: number): T[] {
+  for (let node of nodes) {
+    node.level = level;
+    node.leaf = node.children && node.children.length > 0;
+    if (node.leaf) {
+      XHasChildren(node.children!, level + 1);
+    }
+  }
+
+  return nodes;
+}
+
+/**
  * @zh_CN 将对象键值对反转
  * @en_US Reversal the key value of the object
  */

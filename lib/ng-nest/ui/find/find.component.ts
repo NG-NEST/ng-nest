@@ -8,10 +8,19 @@ import {
   OnDestroy,
   computed,
   viewChild,
-  signal
+  signal,
+  inject
 } from '@angular/core';
 import { XFindProperty, XFindPrefix } from './find.property';
-import { XResize, XIsUndefined, XIsChange, XResizeObserver, XIsEmpty } from '@ng-nest/ui/core';
+import {
+  XResize,
+  XIsUndefined,
+  XIsChange,
+  XResizeObserver,
+  XIsEmpty,
+  XToCssPx,
+  XComputedStyle
+} from '@ng-nest/ui/core';
 import { XTableColumn, XTableComponent, XTableRow } from '@ng-nest/ui/table';
 import { XDialogComponent } from '@ng-nest/ui/dialog';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -23,7 +32,7 @@ import { XTagComponent } from '@ng-nest/ui/tag';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
-import { NgClass } from '@angular/common';
+import { DOCUMENT, NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { toObservable } from '@angular/core/rxjs-interop';
 
@@ -57,6 +66,7 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
   buttonCom = viewChild.required<XButtonComponent>('buttonCom');
   tableRef = viewChild<ElementRef<HTMLElement>>('tableRef');
   treeRef = viewChild<ElementRef<HTMLElement>>('treeRef');
+
   tableRefChanged = toObservable(this.tableRef)
     .pipe(tap((x) => x && this.multiple() && this.setSubscribe()))
     .subscribe();
@@ -67,17 +77,21 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
   tableColumnsSignal = computed(() => {
     if (!this.multiple()) return this.tableColumns();
     if (this.hasTable()) {
-      if (!this.tableColumns().find((x) => x.rowChecked)) {
+      let checkboxColumn = this.tableColumns().find((x) => x.rowChecked);
+      if (!checkboxColumn) {
         return [
           {
             id: '$checked',
             label: this.dialogCheckboxLabel(),
             rowChecked: true,
             type: 'checkbox',
-            width: this.dialogCheckboxWidth()
+            width: XToCssPx(this.dialogCheckboxWidth(), this.fontSize())
           },
           ...this.tableColumns()
         ] as XTableColumn[];
+      } else {
+        checkboxColumn.label = this.dialogCheckboxLabel();
+        checkboxColumn.width = XToCssPx(this.dialogCheckboxWidth(), this.fontSize());
       }
     }
     return this.tableColumns();
@@ -112,6 +126,8 @@ export class XFindComponent extends XFindProperty implements OnChanges, OnDestro
 
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
+  private document = inject(DOCUMENT);
+  private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
 
   classMap = computed(() => ({
     [`${XFindPrefix}-${this.size()}`]: !!this.size(),

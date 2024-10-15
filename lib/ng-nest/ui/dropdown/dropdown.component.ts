@@ -14,7 +14,7 @@ import {
   effect
 } from '@angular/core';
 import { XDropdownPrefix, XDropdownNode, XDropdownProperty } from './dropdown.property';
-import { XIsEmpty, XGetChildren, XPositionTopBottom, XPlacement } from '@ng-nest/ui/core';
+import { XIsEmpty, XHasChildren, XGetChildren, XPositionTopBottom, XPlacement } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XDropdownPortalComponent } from './dropdown-portal.component';
@@ -48,7 +48,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     if (!this.children()) {
       return data.filter((y) => XIsEmpty(y.pid)).map((y) => XGetChildren<XDropdownNode>(data, y, 0));
     }
-    return data;
+    return XHasChildren(data, 0);
   });
   portal!: XPortalOverlayRef<XDropdownPortalComponent>;
   timeoutHide: any;

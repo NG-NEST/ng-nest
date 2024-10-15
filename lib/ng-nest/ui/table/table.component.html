@@ -49,6 +49,7 @@
     [expandedAll]="expandedAll()"
     [expandTpl]="expandTpl()"
     [(activatedRow)]="activatedRow"
+    (rowClick)="rowClick.emit($event)"
   ></x-table-body>
   @if (showHeader() && (headerPosition() === 'bottom' || headerPosition() === 'top-bottom')) {
     <x-table-head

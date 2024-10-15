@@ -247,7 +247,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
     return it ? XStripTags(it) : '';
   }
 
-  rowClick(event: Event, row: XTableRow) {
+  onRowClick(event: Event, row: XTableRow) {
     if (row.disabled) return;
     if (this.table.allowCheckRow() && this.table.rowChecked()) {
       if (!XParentPath(event.target as HTMLElement).includes('x-checkbox')) {
@@ -256,6 +256,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
       }
     }
     this.activatedRow.set(row);
+    this.rowClick.emit(row);
   }
 
   onExpanded(_event: Event, node: XTableRow) {

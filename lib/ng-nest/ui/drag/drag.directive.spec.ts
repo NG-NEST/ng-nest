@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { XDragDirective, XDragDistance, XDragDistanceOffset, XDragPrefix } from '@ng-nest/ui/drag';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -43,10 +44,12 @@ describe(XDragPrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestDragComponent, XTestDragPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -62,20 +65,40 @@ describe(XDragPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDragPropertyComponent>;
-    // let component: XTestDragPropertyComponent;
+    let component: XTestDragPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestDragPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('dragStarted.', () => {
-      expect(true).toBe(true);
+      const com = fixture.debugElement.query(By.directive(XDragDirective));
+      com.nativeElement.dispatchEvent(new MouseEvent('mousedown'));
+      fixture.detectChanges();
+      expect(component.dragStartedResult()).not.toBe(null);
+      com.nativeElement.dispatchEvent(new MouseEvent('mouseup', { view: window, bubbles: true, cancelable: true }));
     });
     it('dragMoved.', () => {
-      expect(true).toBe(true);
+      const com = fixture.debugElement.query(By.directive(XDragDirective));
+      com.nativeElement.dispatchEvent(new MouseEvent('mousedown', { view: window, bubbles: true, cancelable: true }));
+      fixture.detectChanges();
+      com.nativeElement.dispatchEvent(
+        new MouseEvent('mousemove', { view: window, bubbles: true, cancelable: true, clientX: 100, clientY: 100 })
+      );
+      fixture.detectChanges();
+      expect(component.dragMovedResult()).not.toBe(null);
+      com.nativeElement.dispatchEvent(new MouseEvent('mouseup', { view: window, bubbles: true, cancelable: true }));
     });
     it('dragEnded.', () => {
-      expect(true).toBe(true);
+      const com = fixture.debugElement.query(By.directive(XDragDirective));
+      com.nativeElement.dispatchEvent(new MouseEvent('mousedown', { view: window, bubbles: true, cancelable: true }));
+      fixture.detectChanges();
+      com.nativeElement.dispatchEvent(
+        new MouseEvent('mousemove', { view: window, bubbles: true, cancelable: true, clientX: 100, clientY: 100 })
+      );
+      fixture.detectChanges();
+      com.nativeElement.dispatchEvent(new MouseEvent('mouseup', { view: window, bubbles: true, cancelable: true }));
+      expect(component.dragEndedResult()).not.toBe(null);
     });
   });
 });

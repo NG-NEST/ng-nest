@@ -5,7 +5,6 @@ import {
   ChangeDetectionStrategy,
   TemplateRef,
   ViewContainerRef,
-  OnDestroy,
   HostBinding,
   inject,
   OnInit,
@@ -13,7 +12,8 @@ import {
   computed,
   AfterViewInit,
   viewChild,
-  effect
+  effect,
+  DestroyRef
 } from '@angular/core';
 import { XMoveBoxAnimation, XIsFunction, XConfigService, XOpacityAnimation } from '@ng-nest/ui/core';
 import {
@@ -48,7 +48,7 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XMoveBoxAnimation, XOpacityAnimation]
 })
-export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit, OnDestroy {
+export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit {
   private renderer = inject(Renderer2);
   private viewContainerRef = inject(ViewContainerRef);
   private protalService = inject(XPortalService);
@@ -111,6 +111,10 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   visibleChanged = toObservable(this.visible);
   draggableChanged = toObservable(this.draggable);
 
+  destroy = signal(false);
+
+  private destroyRef = inject(DestroyRef);
+
   constructor() {
     super();
     this.visibleChanged.pipe(takeUntil(this.unSubject)).subscribe(() => {
@@ -130,16 +134,16 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
 
   ngOnInit() {
     this.scrollStrategy = this.protalService.overlay.scrollStrategies.block();
+    this.destroyRef.onDestroy(() => {
+      this.destroy.set(true);
+      this.backdropClick$?.unsubscribe();
+      this.unSubject.next();
+      this.unSubject.complete();
+    });
   }
 
   ngAfterViewInit(): void {
     this.viewInit.set(true);
-  }
-
-  ngOnDestroy(): void {
-    this.backdropClick$?.unsubscribe();
-    this.unSubject.next();
-    this.unSubject.complete();
   }
 
   setVisible() {
@@ -300,7 +304,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
 
   moveDone($event: { toState: string }) {
     if ($event.toState === 'void') {
-      this.closeDone.emit($event);
+      !this.destroy() && this.closeDone.emit($event);
       this.isMaximize.set(false);
       this.dialogBox = {
         draggable: this.draggableSignal(),
@@ -309,7 +313,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
       this.distance = { x: 0, y: 0 };
       this.dialogRef?.overlayRef?.dispose();
     } else {
-      this.showDone.emit($event);
+      !this.destroy() && this.showDone.emit($event);
     }
   }
 

@@ -157,6 +157,11 @@ export class XFindProperty extends XFormControlFunction(X_FIND_CONFIG_NAME) {
     transform: XToBoolean
   });
   /**
+   * @zh_CN 表格滚动区域高宽
+   * @en_US table height and width of rolling area
+   */
+  readonly tableScroll = input<{ x: number; y: number }>();
+  /**
    * @zh_CN 表格 body 数据高度
    * @en_US Table body data height
    */

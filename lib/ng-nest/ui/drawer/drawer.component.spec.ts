@@ -4,7 +4,8 @@ import { By } from '@angular/platform-browser';
 import { XDrawerComponent, XDrawerPrefix } from '@ng-nest/ui/drawer';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XPosition, XTemplate } from '@ng-nest/ui/core';
+import { XPosition, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -21,6 +22,7 @@ class XTestDrawerComponent {}
       [title]="title()"
       [visible]="visible()"
       [placement]="placement()"
+      [size]="size()"
       [backdropClose]="backdropClose()"
       [hasBackdrop]="hasBackdrop()"
       [className]="className()"
@@ -37,7 +39,11 @@ class XTestDrawerPropertyComponent {
   backdropClose = signal(true);
   hasBackdrop = signal(true);
   className = signal('');
-  close() {}
+
+  closeResult = signal(false);
+  close() {
+    this.closeResult.set(true);
+  }
 }
 
 describe(XDrawerPrefix, () => {
@@ -45,10 +51,12 @@ describe(XDrawerPrefix, () => {
     TestBed.configureTestingModule({
       imports: [XTestDrawerComponent, XTestDrawerPropertyComponent],
       providers: [
+        provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -64,35 +72,90 @@ describe(XDrawerPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDrawerPropertyComponent>;
-    // let component: XTestDrawerPropertyComponent;
+    let component: XTestDrawerPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestDrawerPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('title.', () => {
-      expect(true).toBe(true);
+    const showDrawer = async () => {
+      component.visible.set(true);
+      fixture.detectChanges();
+      await XSleep(300);
+    };
+    const closeDrawer = async () => {
+      component.visible.set(false);
+      fixture.detectChanges();
+      await XSleep(300);
+    };
+    it('title.', async () => {
+      component.title.set('title');
+      await showDrawer();
+      const title = fixture.debugElement.query(By.css('.x-drawer-title'));
+      expect(title.nativeElement.innerText).toBe('title');
+      await closeDrawer();
     });
-    it('visible.', () => {
-      expect(true).toBe(true);
+    it('visible.', async () => {
+      await showDrawer();
+      let drawer = fixture.debugElement.query(By.css('.x-drawer'));
+      expect(drawer).toBeTruthy();
+      await closeDrawer();
+      drawer = fixture.debugElement.query(By.css('.x-drawer'));
+      expect(drawer).toBeFalsy();
     });
-    it('placement.', () => {
-      expect(true).toBe(true);
+    it('placement.', async () => {
+      component.placement.set('left');
+      fixture.detectChanges();
+
+      await showDrawer();
+      const drawer = fixture.debugElement.query(By.css('.x-drawer'));
+      expect(drawer.nativeElement).toHaveClass('x-drawer-left');
+      await closeDrawer();
     });
-    it('size.', () => {
-      expect(true).toBe(true);
+    it('size.', async () => {
+      component.size.set('200px');
+      fixture.detectChanges();
+      await showDrawer();
+
+      const overlay = document.querySelector('.cdk-overlay-pane')!;
+      expect(overlay.clientWidth).toBe(200);
+      await closeDrawer();
     });
-    it('backdropClose.', () => {
-      expect(true).toBe(true);
+    it('backdropClose.', async () => {
+      await showDrawer();
+      const back = document.querySelector<HTMLDivElement>('.cdk-overlay-backdrop')!;
+      back.click();
+      fixture.detectChanges();
+      const drawer = fixture.debugElement.query(By.css('.x-drawer'));
+      expect(drawer).not.toBeTruthy();
+
+      await closeDrawer();
     });
-    it('hasBackdrop.', () => {
-      expect(true).toBe(true);
+    it('hasBackdrop.', async () => {
+      await showDrawer();
+      let back = document.querySelector<HTMLDivElement>('.cdk-overlay-backdrop')!;
+      expect(back).toBeTruthy();
+
+      await closeDrawer();
+      component.hasBackdrop.set(false);
+      fixture.detectChanges();
+      await showDrawer();
+      back = document.querySelector<HTMLDivElement>('.cdk-overlay-backdrop')!;
+      expect(back).not.toBeTruthy();
+      await closeDrawer();
     });
-    it('className.', () => {
-      expect(true).toBe(true);
+    it('className.', async () => {
+      component.className.set('class-test');
+      await showDrawer();
+      const overlay = document.querySelector<HTMLDivElement>('.cdk-overlay-pane')!;
+      expect(overlay).toHaveClass('class-test');
+
+      await closeDrawer();
     });
-    it('close.', () => {
-      expect(true).toBe(true);
+    it('close.', async () => {
+      await showDrawer();
+      await closeDrawer();
+      expect(component.closeResult()).toBe(true);
     });
   });
 });

@@ -71,8 +71,8 @@
           [activatedId]="treeActivatedId()"
           [expandedLevel]="treeExpandedLevel()"
           (activatedChange)="treeActivatedClick($event)"
-          [checkbox]="hasTreeMultiple()"
-          [checked]="treeChecked()"
+          [checkbox]="hasTreeMultiple() || treeCheckbox()"
+          [(checked)]="treeChecked"
           (checkboxChange)="treeCheckboxChange($event)"
           [levelCheck]="!hasTreeMultiple()"
         ></x-tree>
@@ -110,10 +110,12 @@
           [rowHeight]="tableRowHeight()"
           [bodyHeight]="tableBodyHeight()!"
           [virtualScroll]="tableVirtualScroll()"
+          [scroll]="tableScroll()"
           [minBufferPx]="tableMinBufferPx()"
           [maxBufferPx]="tableMaxBufferPx()"
           [adaptionHeight]="tableAdaptionHeight()!"
           [docPercent]="tableDocPercent()"
+          (rowClick)="tableRowEmit.emit($event)"
         ></x-table>
       </div>
     }

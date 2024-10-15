@@ -137,7 +137,7 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    */
   readonly virtualScroll = input<boolean, XBoolean>(this.config?.virtualScroll ?? false, { transform: XToBoolean });
   /**
-   * @zh_CN body 数据高度
+   * @zh_CN body 数据高度，只有开启虚拟滚动的时候生效
    * @en_US body data height
    */
   readonly bodyHeight = input<number | undefined, XNumber>(undefined, { transform: XToNumber });
@@ -396,6 +396,11 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
   readonly inputIndexSizeSureType = input<XPaginationInputIndexSizeSureType>(
     this.config?.inputIndexSizeSureType ?? 'enter'
   );
+  /**
+   * @zh_CN 行点击事件
+   * @en_US Row click event
+   */
+  readonly rowClick = output<XTableRow>();
   /**
    * @zh_CN 列头拖动开始事件，返回拖动的列
    * @en_US Column Header Drag End Event
@@ -858,6 +863,11 @@ export class XTableBodyProperty extends XProperty {
    * @en_US Customized expansion content
    */
   readonly expandTpl = input<XTemplate>();
+  /**
+   * @zh_CN 行点击事件
+   * @en_US Row click event
+   */
+  readonly rowClick = output<XTableRow>();
 }
 
 /**

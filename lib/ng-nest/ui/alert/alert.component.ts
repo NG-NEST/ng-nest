@@ -2,12 +2,12 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  OnDestroy,
   inject,
   PLATFORM_ID,
   computed,
   signal,
-  effect
+  effect,
+  DestroyRef
 } from '@angular/core';
 import { XAlertPrefix, XAlertProperty } from './alert.property';
 import { XFadeAnimation, XIsEmpty } from '@ng-nest/ui/core';
@@ -38,7 +38,7 @@ import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [XFadeAnimation]
 })
-export class XAlertComponent extends XAlertProperty implements OnDestroy {
+export class XAlertComponent extends XAlertProperty {
   styleHide = signal(false);
   classMap = computed(() => ({
     [`${XAlertPrefix}-${this.type()}`]: !XIsEmpty(this.type()),
@@ -50,15 +50,17 @@ export class XAlertComponent extends XAlertProperty implements OnDestroy {
   private unSubject = new Subject<void>();
   private durationSubscription?: Subscription;
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private destoryRef = inject(DestroyRef);
+  private destory = signal(false);
 
   constructor() {
     super();
     effect(() => this.setDuration());
-  }
-
-  ngOnDestroy() {
-    this.unSubject.next();
-    this.unSubject.complete();
+    this.destoryRef.onDestroy(() => {
+      this.destory.set(true);
+      this.unSubject.next();
+      this.unSubject.complete();
+    });
   }
 
   setDuration() {
@@ -74,7 +76,7 @@ export class XAlertComponent extends XAlertProperty implements OnDestroy {
 
   onClose() {
     if (this.manual()) {
-      this.close.emit();
+      !this.destory() && this.close.emit();
     } else {
       this.styleHide.set(true);
     }
@@ -82,7 +84,7 @@ export class XAlertComponent extends XAlertProperty implements OnDestroy {
 
   onCloseAnimationDone() {
     if (this.hide()) {
-      this.close.emit();
+      !this.destory() && this.close.emit();
     }
   }
 }

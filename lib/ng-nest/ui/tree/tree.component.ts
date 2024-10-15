@@ -65,7 +65,6 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   hoverTreeNode = signal<XTreeNode | null>(null);
   hoverTreeEle!: ElementRef;
   draggingTreeNode = signal<XTreeNode | null>(null);
-  hasChecked = signal(false);
 
   isEmpty = computed(() => XIsEmpty(this.nodes()));
 
@@ -238,7 +237,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     parentOpen = true,
     lazyParant?: XTreeNode
   ) {
-    if (XIsEmpty(this.checked()) || !this.hasChecked()) this.checked.set([]);
+    if (XIsEmpty(this.checked())) this.checked.set([]);
     const getChildren = (node: XTreeNode, level: number) => {
       if (init) {
         node.level = level;
@@ -340,7 +339,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   setCheckedKeys(keys: any[] = []) {
-    if (!XIsEmpty(keys)) this.hasChecked.set(true);
+    // if (!XIsEmpty(keys)) this.hasChecked.set(true);
     const setChildren = (nodes: XTreeNode[], clear = false) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
@@ -380,8 +379,9 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   }
 
   setExpanded() {
-    for (let item of this.nodes()) {
-      if (item.open && item.children) {
+    for (let i = 0; i < this.nodes().length; i++) {
+      let item = this.nodes()[i];
+      if (item.open && item.children && item.children.length > 0) {
         let index = this.nodes().indexOf(item);
         this.nodes.update((x) => {
           x.splice(index + 1, 0, ...(item.children as XTreeNode[]));

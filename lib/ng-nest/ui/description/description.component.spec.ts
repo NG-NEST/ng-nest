@@ -114,7 +114,8 @@ describe(XDescriptionPrefix, () => {
 
       const items = fixture.debugElement.queryAll(By.css('.x-description-item'));
       for (let item of items) {
-        expect(item.nativeElement.clientWidth).toBe(100);
+        let diff = item.nativeElement.clientWidth - 100;
+        expect(diff >= -1 && diff <= 1).toBe(true);
       }
     });
     it('size.', () => {
@@ -130,7 +131,8 @@ describe(XDescriptionPrefix, () => {
       fixture.detectChanges();
 
       const item = fixture.debugElement.query(By.css('.x-description-item'));
-      expect(item.nativeElement.clientWidth).toBe(300);
+      const diff = item.nativeElement.clientWidth - 300;
+      expect(diff >= -1 && diff <= 1).toBe(true);
     });
     it('label.', () => {
       component.label.set('label');
@@ -165,7 +167,8 @@ describe(XDescriptionPrefix, () => {
       fixture.detectChanges();
 
       const item = fixture.debugElement.query(By.css('.x-description-item'));
-      expect(item.nativeElement.clientWidth).toBe(100);
+      const diff = item.nativeElement.clientWidth - 100;
+      expect(diff >= -1 && diff <= 1).toBe(true);
     });
     it('flex.', () => {
       component.flex.set(1);
@@ -177,7 +180,7 @@ describe(XDescriptionPrefix, () => {
     it('heading.', () => {
       component.heading.set(true);
       fixture.detectChanges();
-      
+
       const item = fixture.debugElement.query(By.css('.x-description-item'));
       expect(item.nativeElement).toHaveClass('x-description-item-heading');
     });

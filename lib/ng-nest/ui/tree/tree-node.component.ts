@@ -204,7 +204,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
 
   onCheckboxChange() {
     this.setCheckbox();
-    this.tree.checkboxChange.emit(this.node());
+    this.tree.checkboxChange?.emit(this.node());
   }
 
   getVerticalLeft(i: number) {
