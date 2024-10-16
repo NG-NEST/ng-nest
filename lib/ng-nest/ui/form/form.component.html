@@ -8,6 +8,9 @@
   [ngClass]="classMap()"
   (ngSubmit)="onSubmit($event)"
 >
+  @if (title()) {
+    <div class="x-form-title">{{ title() }}</div>
+  }
   @switch (controlsType()) {
     @case ('controls') {
       <ng-container *ngTemplateOutlet="controlsTemp; context: { controls: controls() }"> </ng-container>

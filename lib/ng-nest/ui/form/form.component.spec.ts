@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormComponent, XFormControlOption, XFormPrefix, XFormRow, XFormTemplate } from '@ng-nest/ui/form';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormBuilder, FormsModule, UntypedFormGroup } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { XComputedStyle } from '@ng-nest/ui/core';
 
 @Component({
   standalone: true,
@@ -30,7 +31,10 @@ class XTestFormComponent {}
       [disabled]="disabled()"
       (xSubmit)="xSubmit($event)"
     >
+      <button class="submit-button" type="submit">submit</button>
     </x-form>
+
+    <ng-template #nameTpl let-option="$option">{{ option.label }} tpl</ng-template>
   `
 })
 class XTestFormPropertyComponent {
@@ -42,6 +46,7 @@ class XTestFormPropertyComponent {
   controls = signal<XFormControlOption[] | XFormRow[]>([]);
   width = signal('100%');
   controlTpl = signal<XFormTemplate>({});
+  nameTpl = viewChild.required<TemplateRef<void>>('nameTpl');
   disabled = signal(false);
 
   xSubmitResult = signal<SubmitEvent | null>(null);
@@ -49,7 +54,7 @@ class XTestFormPropertyComponent {
     this.xSubmitResult.set(event);
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(public fb: FormBuilder) {}
 }
 
 describe(XFormPrefix, () => {
@@ -78,41 +83,97 @@ describe(XFormPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestFormPropertyComponent>;
-    // let component: XTestFormPropertyComponent;
+    let component: XTestFormPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestFormPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('formGroup.', () => {
-      expect(true).toBe(true);
+      component.formGroup.set(component.fb.group({ id: [] }));
+      component.controls.set([{ control: 'input', id: 'name', label: 'name' }]);
+      fixture.detectChanges();
+      const controls = fixture.debugElement.queryAll(By.css('x-control'));
+      expect(controls.length).toBe(1);
+      const formControls = Object.values(component.formGroup().controls);
+      expect(formControls.length).toBe(2);
     });
     it('title.', () => {
-      expect(true).toBe(true);
+      component.title.set('title');
+      fixture.detectChanges();
+      const title = fixture.debugElement.query(By.css('.x-form-title'));
+      expect(title.nativeElement.innerText).toBe('title');
     });
     it('space.', () => {
-      expect(true).toBe(true);
+      component.space.set('30px');
+      component.controls.set([
+        { control: 'input', id: 'name1', label: 'name1', span: 12 },
+        { control: 'input', id: 'name2', label: 'name2', span: 12 }
+      ]);
+      fixture.detectChanges();
+      const cols = fixture.debugElement.queryAll(By.css('x-col'));
+      expect(cols.length).toBe(2);
+
+      const widthRight = Number(XComputedStyle(cols[0].nativeElement, 'padding-right'));
+      const widthLeft = Number(XComputedStyle(cols[1].nativeElement, 'padding-left'));
+      expect(widthRight + widthLeft).toBe(30);
     });
     it('span.', () => {
-      expect(true).toBe(true);
+      component.controls.set([
+        { control: 'input', id: 'name1', label: 'name1', span: 12 },
+        { control: 'input', id: 'name2', label: 'name2', span: 12 }
+      ]);
+      fixture.detectChanges();
+      const cols = fixture.debugElement.queryAll(By.css('x-col'));
+      expect(cols.length).toBe(2);
+      const diff = cols[0].nativeElement.clientWidth - cols[1].nativeElement.clientWidth;
+      expect(diff >= -1 && diff <= 1).toBe(true);
     });
     it('labelSuffix.', () => {
-      expect(true).toBe(true);
+      component.labelSuffix.set(':');
+      component.controls.set([{ control: 'input', id: 'name', label: 'name' }]);
+      fixture.detectChanges();
+      const labelText = fixture.debugElement.query(By.css('.x-text-align-start'));
+      expect(labelText.nativeElement.innerText).toBe('name:');
     });
     it('controls.', () => {
-      expect(true).toBe(true);
+      component.controls.set([
+        { control: 'input', id: 'name1', label: 'name1', span: 12 },
+        { control: 'input', id: 'name2', label: 'name2', span: 12 }
+      ]);
+      fixture.detectChanges();
+      const controls = fixture.debugElement.queryAll(By.css('x-control'));
+      expect(controls.length).toBe(2);
     });
     it('width.', () => {
-      expect(true).toBe(true);
+      component.width.set('300px');
+      component.controls.set([{ control: 'input', id: 'name', label: 'name' }]);
+      fixture.detectChanges();
+      const form = fixture.debugElement.query(By.css('form'));
+      expect(form.nativeElement.clientWidth).toBe(300);
     });
     it('controlTpl.', () => {
-      expect(true).toBe(true);
+      component.controls.set([{ control: 'input', id: 'name', label: 'name' }]);
+      component.controlTpl.set({ name: component.nameTpl() });
+      fixture.detectChanges();
+      const col = fixture.debugElement.query(By.css('x-col'));
+      expect(col.nativeElement.innerText).toBe('name tpl');
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
+      component.controls.set([{ control: 'input', id: 'name', label: 'name' }]);
+      fixture.detectChanges();
+      component.disabled.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-disabled');
     });
     it('xSubmit.', () => {
-      expect(true).toBe(true);
+      component.controls.set([{ control: 'input', id: 'name', label: 'name', value: 'ng-nest' }]);
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('.submit-button'));
+      btn.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.xSubmitResult()).not.toBeNull();
     });
   });
 });
