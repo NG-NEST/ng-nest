@@ -65,7 +65,7 @@ export class XIconComponent extends XIconProperty {
 
   sourceUrl = computed(() => {
     const type = this.type();
-    if (typeof type === 'undefined') return '';
+    if (typeof type === 'undefined' || type === '') return '';
     const split = type.split('-');
     const souce = split.shift();
     if (typeof souce === 'undefined') return '';

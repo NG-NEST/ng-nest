@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XImageComponent, XImagePrefix } from '@ng-nest/ui/image';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -16,7 +16,23 @@ class XTestImageComponent {}
 @Component({
   standalone: true,
   imports: [XImageComponent],
-  template: ` <x-image> </x-image> `
+  template: `
+    <x-image
+      [src]="src()"
+      [width]="width()"
+      [height]="height()"
+      [alt]="alt()"
+      [fallback]="fallback()"
+      [previewText]="previewText()"
+      [placeholder]="placeholder()"
+      [previewTpl]="previewTpl()"
+      (error)="error($event)"
+      (load)="load($event)"
+    >
+    </x-image>
+
+    <ng-template #previewTemplate let-image="$image"> perview tpl </ng-template>
+  `
 })
 class XTestImagePropertyComponent {
   src = signal('');
@@ -27,6 +43,7 @@ class XTestImagePropertyComponent {
   previewText = signal('');
   placeholder = signal('');
   previewTpl = signal<XTemplate>('');
+  previewTemplate = viewChild.required<XTemplate>('previewTemplate');
 
   errorResult = signal<ErrorEvent | null>(null);
   error(event: ErrorEvent) {
@@ -43,11 +60,8 @@ describe(XImagePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestImageComponent, XTestImagePropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -63,41 +77,79 @@ describe(XImagePrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestImagePropertyComponent>;
-    // let component: XTestImagePropertyComponent;
+    let component: XTestImagePropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestImagePropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
+    const src = 'https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png';
     it('src.', () => {
-      expect(true).toBe(true);
+      component.src.set(src);
+      fixture.detectChanges();
+      const img = fixture.debugElement.query(By.css('img'));
+      expect(img.nativeElement.src).toBe(src);
     });
     it('width.', () => {
-      expect(true).toBe(true);
+      component.src.set(src);
+      component.width.set('100px');
+      fixture.detectChanges();
+      const img = fixture.debugElement.query(By.css('img'));
+      expect(img.nativeElement.clientWidth).toBe(100);
     });
     it('height.', () => {
-      expect(true).toBe(true);
+      component.src.set(src);
+      component.height.set('100px');
+      fixture.detectChanges();
+      const img = fixture.debugElement.query(By.css('img'));
+      expect(img.nativeElement.clientHeight).toBe(100);
     });
     it('alt.', () => {
-      expect(true).toBe(true);
+      component.src.set(src);
+      component.alt.set('alt text');
+      fixture.detectChanges();
+      const img = fixture.debugElement.query(By.css('img')).nativeElement as HTMLImageElement;
+      expect(img.getAttribute('alt')).toBe('alt text');
     });
-    it('fallback.', () => {
-      expect(true).toBe(true);
+    it('fallback.', async () => {
+      component.src.set('error');
+      component.fallback.set(src);
+      fixture.detectChanges();
+      await XSleep(10);
+      const img = fixture.debugElement.query(By.css('.x-image-img:nth-child(2)'));
+      expect(img.nativeElement.src).toBe(src);
     });
     it('previewText.', () => {
-      expect(true).toBe(true);
+      component.src.set(src);
+      component.previewText.set('preview text');
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-image-text'));
+      expect(text.nativeElement.innerText).toBe('preview text');
     });
     it('placeholder.', () => {
-      expect(true).toBe(true);
+      component.src.set('error');
+      component.placeholder.set(src);
+      fixture.detectChanges();
+      const img = fixture.debugElement.query(By.css('img:nth-child(2)'));
+      expect(img.nativeElement.src).toBe(src);
     });
     it('previewTpl.', () => {
-      expect(true).toBe(true);
+      component.previewTpl.set(component.previewTemplate());
+      fixture.detectChanges();
+      const image = fixture.debugElement.query(By.css('.x-image'));
+      expect(image.nativeElement.innerText.trim()).toBe('perview tpl');
     });
-    it('error.', () => {
-      expect(true).toBe(true);
+    it('error.', async () => {
+      component.src.set('error');
+      fixture.detectChanges();
+      await XSleep(10);
+      expect(component.errorResult()?.type).toBe('error');
     });
-    it('load.', () => {
-      expect(true).toBe(true);
+    it('load.', async () => {
+      component.src.set(src);
+      fixture.detectChanges();
+      await XSleep(10);
+      console.log(component.loadResult());
     });
   });
 });
