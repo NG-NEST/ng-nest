@@ -49,18 +49,40 @@ export class XTreeService {
     return res;
   }
 
-  moveNode(data: XTreeNode[], from: XTreeNode, to: XTreeNode, pos: -1 | 1) {
+  moveNode(data: XTreeNode[], from: XTreeNode, to: XTreeNode, pos: -1 | 0 | 1) {
     if (XIsEmpty(data)) return;
+    const isAddChildNode = pos === 0;
     const formIndex = data.findIndex((x) => x.id === from.id);
     const toIndex = data.findIndex((x) => x.id === to.id);
     XRemove(data, (x) => x.id === from.id);
     if (from.pid === to.pid) {
+      let diffLevel = 0;
+      if (isAddChildNode) {
+        from.pid = to.id;
+        diffLevel = to.level! + 1 - from.level!;
+        from.level = to.level! + 1;
+        to.open = true;
+      } else {
+        diffLevel = to.level! - from.level!;
+      }
+      const fromChildren = this.getChildren(data, from);
+      fromChildren.forEach((x) => {
+        x.level = x.level! + diffLevel;
+      });
       const index = toIndex > formIndex ? toIndex - 1 : toIndex;
       data.splice(pos === -1 ? index : index + 1, 0, from);
     } else if (from.pid !== to.pid) {
-      from.pid = to.pid;
-      const diffLevel = to.level! - from.level!;
-      from.level = to.level;
+      let diffLevel = 0;
+      if (isAddChildNode) {
+        from.pid = to.id;
+        diffLevel = to.level! + 1 - from.level!;
+        from.level = to.level! + 1;
+        to.open = true;
+      } else {
+        from.pid = to.pid;
+        diffLevel = to.level! - from.level!;
+        from.level = to.level;
+      }
       const fromChildren = this.getChildren(data, from);
       fromChildren.forEach((x) => {
         x.level = x.level! + diffLevel;

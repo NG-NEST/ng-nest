@@ -34,9 +34,12 @@ export class ExDragComponent {
     if (type === 'started') {
       console.log('Started drag node:', event.from?.label);
     } else {
-      console.log(
-        `DragDrop node [${event.from?.label}] to [${event.to?.label}] node ${event.position === -1 ? 'Front' : 'Back'}`
-      );
+      const posMap = new Map<number, string>([
+        [-1, 'Front'],
+        [0, 'Inside'],
+        [1, 'Back']
+      ]);
+      console.log(`DragDrop node [${event.from?.label}] to [${event.to?.label}] node ${posMap.get(event.position!)}`);
     }
   }
 }

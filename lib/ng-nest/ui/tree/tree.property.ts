@@ -318,7 +318,7 @@ export interface XTreeNodeDragEvent {
    * @zh_CN 对应节点的前面还是后面
    * @en_US The front or back of the corresponding node
    */
-  position?: -1 | 1;
+  position?: -1 | 0 | 1;
 }
 
 /**

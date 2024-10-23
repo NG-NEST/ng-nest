@@ -61,7 +61,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   treeData = signal<XTreeNode[]>([]);
 
   dragging = signal(false);
-  dragPosition = signal<-1 | 1>(-1);
+  dragPosition = signal<-1 | 0 | 1>(-1);
   hoverTreeNode = signal<XTreeNode | null>(null);
   hoverTreeEle!: ElementRef;
   draggingTreeNode = signal<XTreeNode | null>(null);
@@ -187,7 +187,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     }
   }
 
-  insertNode(dragNode: XTreeNode, hoverNode: XTreeNode, dragPosition: -1 | 1) {
+  insertNode(dragNode: XTreeNode, hoverNode: XTreeNode, dragPosition: -1 | 0 | 1) {
     let parent = this.nodes().find((x) => x.id === dragNode.pid);
     this.treeService.moveNode(this.treeData(), dragNode, hoverNode, dragPosition);
     this.setDataChange(this.treeData(), true, false, true, parent);
@@ -201,10 +201,12 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     const target = this.hoverTreeEle.nativeElement as HTMLElement;
     const { top, height } = target.getBoundingClientRect();
     const des = Math.max(height * 0.5, 2);
-    if (y > top && y < top + des) {
+    if (y > top && y < top + des - 2) {
       this.dragPosition.set(-1);
-    } else if (y > top + des && y < top + height) {
+    } else if (y > top + des + 2 && y < top + height) {
       this.dragPosition.set(1);
+    } else if (y >= top + des - 2 && y <= top + des + 2) {
+      this.dragPosition.set(0);
     }
     hoverTreeNode.change && hoverTreeNode.change();
     this.nodeDragMoved.emit({

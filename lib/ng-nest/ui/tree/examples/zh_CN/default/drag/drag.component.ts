@@ -34,9 +34,12 @@ export class ExDragComponent {
     if (type === 'started') {
       console.log('开始拖动节点：', event.from?.label);
     } else {
-      console.log(
-        `拖动节点 [${event.from?.label}] 至 [${event.to?.label}] 节点的 ${event.position === -1 ? '前面' : '后面'}`
-      );
+      const posMap = new Map<number, string>([
+        [-1, '前面'],
+        [0, '里面'],
+        [1, '后面']
+      ]);
+      console.log(`拖动节点 [${event.from?.label}] 至 [${event.to?.label}] 节点的 ${posMap.get(event.position!)}`);
     }
   }
 }

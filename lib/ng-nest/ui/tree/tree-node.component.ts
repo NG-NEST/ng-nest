@@ -100,6 +100,9 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
   paddingLeft = computed(() => (this.level()! ? this.level()! : 0) * XToCssPx(this.tree.spacing(), this.fontSize()));
 
   indicatorWidth = computed(() => {
+    if (this.tree.dragPosition() === 0) {
+      return `calc(100% - ${this.paddingLeft() + XToCssPx(this.tree.spacing(), this.fontSize()) + (this.leaf() ? this.fontSize() * 1.5 : 0)}px)`;
+    }
     return `calc(100% - ${this.paddingLeft() + (this.leaf() ? this.fontSize() * 1.5 : 0)}px)`;
   });
 
@@ -108,6 +111,10 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
       return { bottom: `-${0.0625 * this.fontSize()}px` };
     } else if (this.tree.dragPosition() === -1) {
       return { top: `-${0.0625 * this.fontSize()}px` };
+    } else if (this.tree.dragPosition() === 0) {
+      return {
+        bottom: `-${0.0625 * this.fontSize()}px`
+      };
     }
     return {};
   });
