@@ -1,12 +1,4 @@
-import {
-  XIdentity,
-  XBoolean,
-  XIsEmpty,
-  XNumber,
-  XToCssPixelValue,
-  XToNumber,
-  XToBoolean
-} from '@ng-nest/ui/core';
+import { XIdentity, XBoolean, XIsEmpty, XNumber, XToCssPixelValue, XToNumber, XToBoolean } from '@ng-nest/ui/core';
 import { Component, TemplateRef, model, input, output } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { XInputOption, XInputComponent } from '@ng-nest/ui/input';
@@ -46,8 +38,8 @@ export type XFormTemplate = { [property: string]: TemplateRef<any> };
 export class XFormProperty extends XFormControlFunction(X_FORM_CONFIG_NAME) {
   /**
    * @zh_CN 表单 FormGroup
-(   * @en_US Form FormGroup
-)   * @default new UntypedFormGroup({})
+   * @en_US Form FormGroup
+   * @default new UntypedFormGroup({})
    */
   readonly formGroup = input<UntypedFormGroup>(new UntypedFormGroup({}));
   /**
@@ -101,7 +93,7 @@ export class XFormProperty extends XFormControlFunction(X_FORM_CONFIG_NAME) {
  * @zh_CN 控件对象
  * @en_US Control object
  */
-export interface XControlOption  {
+export interface XControlOption {
   /**
    * @zh_CN 列 Id
    * @en_US The column Id

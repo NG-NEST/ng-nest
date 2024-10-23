@@ -1,3 +1,19 @@
+## [18.0.9](https://github.com/NG-NEST/ng-nest/compare/18.0.8...18.0.9) (2024-10-23)
+
+
+### Bug Fixes
+
+* **module:dropdown:** fix animation error ([ad229d5](https://github.com/NG-NEST/ng-nest/commit/ad229d5707fc2f71adb4d16d662dfbda42b06718))
+* **module:loading:** fix icon type ([aadd9bc](https://github.com/NG-NEST/ng-nest/commit/aadd9bc6bb276088d24f96e5d10395c87adeb0fa))
+* **module:loading:** fix type error ([aae2d29](https://github.com/NG-NEST/ng-nest/commit/aae2d29efa31354cfe3c2f82f96409fe82922fa2))
+
+
+### Features
+
+* **module:tree:** add drag create sub node ([ebe03ac](https://github.com/NG-NEST/ng-nest/commit/ebe03aca8722ded78f3159849e66bc31f812d1d7)), closes [#232](https://github.com/NG-NEST/ng-nest/issues/232)
+
+
+
 ## [18.0.8](https://github.com/NG-NEST/ng-nest/compare/18.0.7...18.0.8) (2024-09-04)
 
 

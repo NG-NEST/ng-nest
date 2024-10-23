@@ -277,6 +277,24 @@ export const zh_CN: {[key: string]: AppProp} = {
     },
     "returnType": "T"
   },
+  "XHasChildren<T extends XParentIdentityProperty<T>>": {
+    "type": "function",
+    "label": "递归检查并设置节点是否具有子节点",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XHasChildren<T extends XParentIdentityProperty<T>>",
+    "params": {
+      "nodes": "T[]",
+      "level": "number"
+    },
+    "returnType": "T[]"
+  },
   "XInvertKeyValues": {
     "type": "function",
     "label": "将对象键值对反转",
@@ -2608,6 +2626,21 @@ export const zh_CN: {[key: string]: AppProp} = {
       "property": "string"
     },
     "returnType": "any })"
+  },
+  "XSleep": {
+    "type": "function",
+    "label": "延迟时间",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSleep",
+    "params": {},
+    "returnType": "number)"
   },
   "XAffixPrefix": {
     "type": "const",
@@ -7340,7 +7373,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "只读",
-        "default": "false",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "example": [
@@ -8249,42 +8282,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "size",
-        "type": "XSize",
-        "toType": "XSize",
-        "inputType": "InputSignal<XSize>",
-        "signal": "input",
-        "label": "尺寸",
-        "default": "'medium'",
-        "withConfig": true,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "输入框点击样式",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
         "name": "label",
         "type": "string",
         "toType": "string",
@@ -8393,24 +8390,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
@@ -8435,24 +8414,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "必填",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "只读",
         "default": "false",
         "withConfig": false,
         "description": "",
@@ -8525,78 +8486,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
-        "signal": "input",
-        "label": "正则验证规则",
-        "default": "null",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "验证不通过提示文字",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "toType": "boolean",
-        "inputType": "ModelSignal<boolean>",
-        "signal": "model",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "toType": "(value: any) => boolean",
-        "inputType": "InputSignal<(value: any) => boolean>",
-        "signal": "input",
-        "label": "输入验证函数",
         "default": "",
         "withConfig": false,
         "description": "",
@@ -8796,40 +8685,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pointer",
-        "type": "boolean",
-        "label": "输入框点击样式",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pointer",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "label",
         "type": "string",
         "label": "标签",
@@ -8932,23 +8787,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "placeholder",
-        "type": "string",
-        "label": "输入提示信息",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placeholder",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "disabled",
         "type": "boolean",
         "label": "禁用",
@@ -8983,57 +8821,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "readonly",
-        "type": "boolean",
-        "label": "只读",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "readonly",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTpl",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTplContext",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "before",
         "type": "XTemplate",
         "label": "前置标签",
@@ -9059,74 +8846,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "after",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[]",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pattern",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "message",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "label": "激活状态",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "active",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "inputValidator",
         "propType": "",
         "example": [
           {
@@ -9822,7 +9541,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "输入框点击样式",
-        "default": "false",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "example": [
@@ -10002,7 +9721,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "只读",
-        "default": "false",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "example": [
@@ -12929,42 +12648,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "toType": "TemplateRef<any>",
-        "inputType": "InputSignal<TemplateRef<any>>",
-        "signal": "input",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "",
-        "toType": "",
-        "inputType": "",
-        "signal": "input",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
@@ -13026,24 +12709,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "验证不通过提示文字",
         "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "toType": "boolean",
-        "inputType": "ModelSignal<boolean>",
-        "signal": "model",
-        "label": "激活状态",
-        "default": "false",
         "withConfig": false,
         "description": "",
         "example": [
@@ -13465,40 +13130,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTpl",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTplContext",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "before",
         "type": "XTemplate",
         "label": "前置标签",
@@ -13558,23 +13189,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "message",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "label": "激活状态",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "active",
         "propType": "",
         "example": [
           {
@@ -17956,6 +17570,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "tableScroll",
+        "type": "{ x: number; y: number }",
+        "toType": "{ x: number; y: number }",
+        "inputType": "InputSignal<{ x: number; y: number }>",
+        "signal": "input",
+        "label": "表格滚动区域高宽",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "tableBodyHeight",
         "type": "XNumber",
         "toType": "number | null",
@@ -18208,24 +17840,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "pointer",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "输入框点击样式",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
         "name": "label",
         "type": "string",
         "toType": "string",
@@ -18334,24 +17948,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
@@ -18386,168 +17982,6 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "toType": "TemplateRef<any>",
-        "inputType": "InputSignal<TemplateRef<any>>",
-        "signal": "input",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "",
-        "toType": "",
-        "inputType": "",
-        "signal": "input",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
-        "signal": "input",
-        "label": "正则验证规则",
-        "default": "null",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "验证不通过提示文字",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "toType": "boolean",
-        "inputType": "ModelSignal<boolean>",
-        "signal": "model",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "toType": "(value: any) => boolean",
-        "inputType": "InputSignal<(value: any) => boolean>",
-        "signal": "input",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
       }
     ],
     "name": "XFindProperty",
@@ -19196,23 +18630,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "pointer",
-        "type": "boolean",
-        "label": "输入框点击样式",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pointer",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "label",
         "type": "string",
         "label": "标签",
@@ -19315,23 +18732,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "placeholder",
-        "type": "string",
-        "label": "输入提示信息",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placeholder",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "disabled",
         "type": "boolean",
         "label": "禁用",
@@ -19357,91 +18757,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "required",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "readonly",
-        "type": "boolean",
-        "label": "只读",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "readonly",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTpl",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTplContext",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "before",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "after",
         "propType": "",
         "example": [
           {
@@ -23428,24 +22743,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "pointer",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "输入框点击样式",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
         "name": "label",
         "type": "string",
         "toType": "string",
@@ -23662,42 +22959,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "before",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
@@ -23723,24 +22984,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "验证不通过提示文字",
         "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "toType": "boolean",
-        "inputType": "ModelSignal<boolean>",
-        "signal": "model",
-        "label": "激活状态",
-        "default": "false",
         "withConfig": false,
         "description": "",
         "example": [
@@ -23931,23 +23174,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "size",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pointer",
-        "type": "boolean",
-        "label": "输入框点击样式",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pointer",
         "propType": "",
         "example": [
           {
@@ -24161,40 +23387,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "before",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "after",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "pattern",
         "type": "RegExp | RegExp[]",
         "label": "正则验证规则",
@@ -24220,23 +23412,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "message",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "label": "激活状态",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "active",
         "propType": "",
         "example": [
           {
@@ -25914,12 +25089,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "text",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
+        "type": "XTemplate | null",
+        "toType": "XTemplate | null",
+        "inputType": "InputSignal<XTemplate | null>",
         "signal": "input",
         "label": "显示文字，支持自定义模板",
-        "default": "this.config?.text!",
+        "default": "null",
         "withConfig": true,
         "description": "",
         "example": [
@@ -25932,12 +25107,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "icon",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "string | null",
+        "toType": "string | null",
+        "inputType": "InputSignal<string | null>",
         "signal": "input",
         "label": "显示的图标",
-        "default": "this.config?.icon!",
+        "default": "null",
         "withConfig": true,
         "description": "",
         "example": [
@@ -25950,12 +25125,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "color",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "string | null",
+        "toType": "string | null",
+        "inputType": "InputSignal<string | null>",
         "signal": "input",
         "label": "颜色",
-        "default": "this.config?.color!",
+        "default": "null",
         "withConfig": true,
         "description": "",
         "example": [
@@ -26004,12 +25179,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "background",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "string | null",
+        "toType": "string | null",
+        "inputType": "InputSignal<string | null>",
         "signal": "input",
         "label": "背景样式",
-        "default": "this.config?.background!",
+        "default": "null",
         "withConfig": true,
         "description": "",
         "example": [
@@ -29436,42 +28611,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "size",
-        "type": "XSize",
-        "toType": "XSize",
-        "inputType": "InputSignal<XSize>",
-        "signal": "input",
-        "label": "尺寸",
-        "default": "'medium'",
-        "withConfig": true,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "pointer",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "输入框点击样式",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
         "name": "label",
         "type": "string",
         "toType": "string",
@@ -29580,24 +28719,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
@@ -29634,60 +28755,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "readonly",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "toType": "TemplateRef<any>",
-        "inputType": "InputSignal<TemplateRef<any>>",
-        "signal": "input",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "",
-        "toType": "",
-        "inputType": "",
-        "signal": "input",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "before",
         "type": "XTemplate",
         "toType": "XTemplate",
@@ -29712,78 +28779,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
-        "signal": "input",
-        "label": "正则验证规则",
-        "default": "null",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "验证不通过提示文字",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "toType": "boolean",
-        "inputType": "ModelSignal<boolean>",
-        "signal": "model",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "toType": "(value: any) => boolean",
-        "inputType": "InputSignal<(value: any) => boolean>",
-        "signal": "input",
-        "label": "输入验证函数",
         "default": "",
         "withConfig": false,
         "description": "",
@@ -29966,40 +28961,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pointer",
-        "type": "boolean",
-        "label": "输入框点击样式",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pointer",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "label",
         "type": "string",
         "label": "标签",
@@ -30102,23 +29063,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "placeholder",
-        "type": "string",
-        "label": "输入提示信息",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placeholder",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "disabled",
         "type": "boolean",
         "label": "禁用",
@@ -30153,57 +29097,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "readonly",
-        "type": "boolean",
-        "label": "只读",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "readonly",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTpl",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTplContext",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "before",
         "type": "XTemplate",
         "label": "前置标签",
@@ -30229,74 +29122,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "after",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[]",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pattern",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "message",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "label": "激活状态",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "active",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "inputValidator",
         "propType": "",
         "example": [
           {
@@ -30479,24 +29304,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "pointer",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "输入框点击样式",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
         "name": "label",
         "type": "string",
         "toType": "string",
@@ -30605,24 +29412,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
@@ -30657,168 +29446,6 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "toType": "TemplateRef<any>",
-        "inputType": "InputSignal<TemplateRef<any>>",
-        "signal": "input",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "",
-        "toType": "",
-        "inputType": "",
-        "signal": "input",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
-        "signal": "input",
-        "label": "正则验证规则",
-        "default": "null",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "验证不通过提示文字",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "toType": "boolean",
-        "inputType": "ModelSignal<boolean>",
-        "signal": "model",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "toType": "(value: any) => boolean",
-        "inputType": "InputSignal<(value: any) => boolean>",
-        "signal": "input",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
       }
     ],
     "name": "XRateProperty",
@@ -30911,23 +29538,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "customTemp",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pointer",
-        "type": "boolean",
-        "label": "输入框点击样式",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pointer",
         "propType": "",
         "example": [
           {
@@ -31039,23 +29649,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "placeholder",
-        "type": "string",
-        "label": "输入提示信息",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placeholder",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "disabled",
         "type": "boolean",
         "label": "禁用",
@@ -31081,159 +29674,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "required",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "readonly",
-        "type": "boolean",
-        "label": "只读",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "readonly",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTpl",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTplContext",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "before",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "after",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[]",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pattern",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "message",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "label": "激活状态",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "active",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "inputValidator",
         "propType": "",
         "example": [
           {
@@ -32068,7 +30508,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "输入框点击样式",
-        "default": "false",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "example": [
@@ -34043,24 +32483,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "pointer",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "输入框点击样式",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
         "name": "label",
         "type": "string",
         "toType": "string",
@@ -34169,24 +32591,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
@@ -34221,168 +32625,6 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "toType": "TemplateRef<any>",
-        "inputType": "InputSignal<TemplateRef<any>>",
-        "signal": "input",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "",
-        "toType": "",
-        "inputType": "",
-        "signal": "input",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
-        "signal": "input",
-        "label": "正则验证规则",
-        "default": "null",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "验证不通过提示文字",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "toType": "boolean",
-        "inputType": "ModelSignal<boolean>",
-        "signal": "model",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "toType": "(value: any) => boolean",
-        "inputType": "InputSignal<(value: any) => boolean>",
-        "signal": "input",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
       },
       {
         "name": "dragStartEmit",
@@ -34643,23 +32885,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "pointer",
-        "type": "boolean",
-        "label": "输入框点击样式",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pointer",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "label",
         "type": "string",
         "label": "标签",
@@ -34762,23 +32987,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "placeholder",
-        "type": "string",
-        "label": "输入提示信息",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placeholder",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "disabled",
         "type": "boolean",
         "label": "禁用",
@@ -34804,159 +33012,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "required",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "readonly",
-        "type": "boolean",
-        "label": "只读",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "readonly",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTpl",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTplContext",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "before",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "after",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[]",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pattern",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "message",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "label": "激活状态",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "active",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "inputValidator",
         "propType": "",
         "example": [
           {
@@ -35691,24 +33746,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "pointer",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "输入框点击样式",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
         "name": "label",
         "type": "string",
         "toType": "string",
@@ -35817,24 +33854,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
@@ -35869,168 +33888,6 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
-      },
-      {
-        "name": "readonly",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "只读",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "toType": "TemplateRef<any>",
-        "inputType": "InputSignal<TemplateRef<any>>",
-        "signal": "input",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "",
-        "toType": "",
-        "inputType": "",
-        "signal": "input",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
-        "signal": "input",
-        "label": "正则验证规则",
-        "default": "null",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "验证不通过提示文字",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "toType": "boolean",
-        "inputType": "ModelSignal<boolean>",
-        "signal": "model",
-        "label": "激活状态",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "toType": "(value: any) => boolean",
-        "inputType": "InputSignal<(value: any) => boolean>",
-        "signal": "input",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
       }
     ],
     "name": "XSwitchProperty",
@@ -36126,23 +33983,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "size",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pointer",
-        "type": "boolean",
-        "label": "输入框点击样式",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pointer",
         "propType": "",
         "example": [
           {
@@ -36254,23 +34094,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
-        "name": "placeholder",
-        "type": "string",
-        "label": "输入提示信息",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "placeholder",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
         "name": "disabled",
         "type": "boolean",
         "label": "禁用",
@@ -36296,159 +34119,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "required",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "readonly",
-        "type": "boolean",
-        "label": "只读",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "readonly",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTpl",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "valueTplContext",
-        "type": "any",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "valueTplContext",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "before",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "after",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "pattern",
-        "type": "RegExp | RegExp[]",
-        "label": "正则验证规则",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "pattern",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "message",
-        "type": "string | string[]",
-        "label": "验证不通过提示文字",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "message",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "label": "激活状态",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "active",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "inputValidator",
-        "type": "(value: any) => boolean",
-        "label": "输入验证函数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "inputValidator",
         "propType": "",
         "example": [
           {
@@ -36856,7 +34526,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "number | undefined",
         "inputType": "InputSignalWithTransform<number | undefined, XNumber>",
         "signal": "input",
-        "label": "body 数据高度",
+        "label": "body 数据高度，只有开启虚拟滚动的时候生效",
         "default": "undefined",
         "withConfig": false,
         "description": "",
@@ -37705,6 +35375,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "label": "输入确认改变的方式，针对输入分页大小和输入跳转页",
         "default": "'enter'",
         "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "rowClick",
+        "type": "XTableRow",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XTableRow>",
+        "signal": "output",
+        "label": "行点击事件",
+        "default": "",
+        "withConfig": false,
         "description": "",
         "example": [
           {
@@ -39178,6 +36866,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "rowClick",
+        "type": "XTableRow",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XTableRow>",
+        "signal": "output",
+        "label": "行点击事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XTableBodyProperty",
@@ -40201,24 +37907,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
-        "name": "pointer",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "输入框点击样式",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
         "name": "label",
         "type": "string",
         "toType": "string",
@@ -40327,24 +38015,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
-        "name": "placeholder",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
-        "signal": "input",
-        "label": "输入提示信息",
-        "default": "''",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "disabled",
         "type": "XBoolean",
         "toType": "boolean",
@@ -40399,78 +38069,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "valueTpl",
-        "type": "TemplateRef<any>",
-        "toType": "TemplateRef<any>",
-        "inputType": "InputSignal<TemplateRef<any>>",
-        "signal": "input",
-        "label": "值模板",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "valueTplContext",
-        "type": "",
-        "toType": "",
-        "inputType": "",
-        "signal": "input",
-        "label": "值模板参数",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "before",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "前置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "after",
-        "type": "XTemplate",
-        "toType": "XTemplate",
-        "inputType": "InputSignal<XTemplate>",
-        "signal": "input",
-        "label": "后置标签",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "pattern",
         "type": "RegExp | RegExp[] | any",
         "toType": "RegExp | RegExp[] | any",
@@ -40496,24 +38094,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "验证不通过提示文字",
         "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "active",
-        "type": "boolean",
-        "toType": "boolean",
-        "inputType": "ModelSignal<boolean>",
-        "signal": "model",
-        "label": "激活状态",
-        "default": "false",
         "withConfig": false,
         "description": "",
         "example": [
@@ -41442,7 +39022,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "输入框点击样式",
-        "default": "false",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "example": [
@@ -41640,7 +39220,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "只读",
-        "default": "false",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "example": [
@@ -44782,7 +42362,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "position",
-        "type": "-1 | 1",
+        "type": "-1 | 0 | 1",
         "label": "对应节点的前面还是后面",
         "default": "",
         "withConfig": false,
