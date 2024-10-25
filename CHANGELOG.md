@@ -1,3 +1,12 @@
+## [18.0.10](https://github.com/NG-NEST/ng-nest/compare/18.0.9...18.0.10) (2024-10-25)
+
+
+### Bug Fixes
+
+* **module:select:** fix search invalid ([696d535](https://github.com/NG-NEST/ng-nest/commit/696d535e15b8f058303b4f2e73d9aca3c6de73c7))
+
+
+
 ## [18.0.9](https://github.com/NG-NEST/ng-nest/compare/18.0.8...18.0.9) (2024-10-23)
 
 
