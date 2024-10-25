@@ -94,7 +94,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   select = viewChild.required<ElementRef<HTMLElement>>('select');
   multipleValueTpl = viewChild.required<TemplateRef<void>>('multipleValueTpl');
   multipleInput = viewChild<XInputComponent>('multipleInput');
+  searchInput = viewChild<XInputComponent>('searchInput');
   valueTemplate = viewChild.required<TemplateRef<void>>('valueTemplate');
+  searchTemplate = viewChild.required<TemplateRef<void>>('searchTemplate');
 
   getReadonly = computed(() => this.readonly() || !this.search());
   getMaxTagContent = computed(() => this.maxTagContent() || this.locale().maxTagContent);
@@ -150,6 +152,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     }
     if (this.multiple()) {
       return this.multipleValueTpl();
+    }
+    if (this.search()) {
+      return this.searchTemplate();
     }
     return this.valueTemplate();
   });
@@ -578,6 +583,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     }
     if (this.search() && this.multiple()) {
       this.multipleInput()?.inputFocus();
+    } else if (this.search() && !this.multiple()) {
+      this.searchInput()?.inputFocus();
     } else {
       this.inputCom().inputFocus('focus');
     }

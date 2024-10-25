@@ -11,7 +11,8 @@
   x-input {
     width: 100%;
   }
-  &-multiple {
+  &-multiple,
+  &-search-single {
     .x-input-value-template-value {
       display: flex;
       align-items: center;
@@ -44,6 +45,17 @@
         }
         .x-input-row > .x-input-input > input {
           background-color: transparent;
+        }
+      }
+    }
+  }
+  &-search-single {
+    .x-input-value-template-value {
+      left: 0.75rem !important;
+      > x-input {
+        width: 100%;
+        .x-input-row > .x-input-input > input {
+          padding: 0 !important;
         }
       }
     }

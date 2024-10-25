@@ -1,4 +1,9 @@
-<div #select class="x-select" [class.x-select-multiple]="multiple()">
+<div
+  #select
+  class="x-select"
+  [class.x-select-multiple]="multiple()"
+  [class.x-select-search-single]="search() && !multiple()"
+>
   <div class="x-select-row">
     <x-input
       #inputCom
@@ -43,6 +48,17 @@
 </div>
 
 <ng-template #valueTemplate>{{ displayValue() }}</ng-template>
+
+<ng-template #searchTemplate>
+  <x-input
+    #searchInput
+    [bordered]="false"
+    [size]="size()"
+    [(ngModel)]="displayValue"
+    (xInput)="onInput($event)"
+    (xKeydown)="onKeydown($event)"
+  ></x-input>
+</ng-template>
 
 <ng-template #multipleValueTpl>
   @for (node of displayNodes(); track node.id; let i = $index) {
