@@ -395,10 +395,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   clearEmit() {
-    this.value.update((x) => {
+    this.value.update(() => {
       if (this.multiple()) {
-        x.splice(0, x.length);
-        return x;
+        return [];
       } else {
         return '';
       }
