@@ -33,11 +33,13 @@
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [clearable]="clearable()"
-      [(ngModel)]="value"
+      [ngModel]="displayValue()"
       (ngModelChange)="change($event)"
-      [valueTpl]="valueTpl() ? valueTpl() : valueTemplate"
+      [valueTpl]="valueTpl()"
       [valueTplContext]="valueTplContext()"
       [size]="size()"
+      [min]="min()"
+      [max]="max()"
       [bordered]="bordered()"
       [before]="hiddenButton() ? '' : beforeButtonTpl"
       [after]="hiddenButton() ? '' : afterButtonTpl"
@@ -60,7 +62,6 @@
         flat
       ></x-button>
     </ng-template>
-    <ng-template #valueTemplate>{{ displayValue() }}</ng-template>
     @if (invalid()) {
       <div class="x-border-error x-top-left"></div>
       <div class="x-border-error x-top-right"></div>

@@ -1,5 +1,21 @@
-import { Subject } from 'rxjs';
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges, OnChanges, QueryList, ElementRef, HostBinding, HostListener, ViewChildren, inject, afterRender, viewChild, signal, computed } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  SimpleChanges,
+  OnChanges,
+  QueryList,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  ViewChildren,
+  inject,
+  afterRender,
+  viewChild,
+  signal,
+  computed
+} from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
 import { XIsChange, XSetData, XIsEmpty, XIsUndefined, XIsNull, XResize, XResizeObserver } from '@ng-nest/ui/core';
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -63,6 +79,7 @@ export class XListComponent extends XListProperty implements OnChanges {
   classMap = computed(() => ({
     [`${XListPrefix}-${this.size()}`]: this.size() ? true : false
   }));
+  private sizeChange: Subscription | null = null;
   private resizeObserver!: XResizeObserver;
 
   @HostBinding('attr.role') role = 'listbox';
@@ -112,31 +129,29 @@ export class XListComponent extends XListProperty implements OnChanges {
 
   constructor() {
     super();
-    afterRender(
-      { mixedReadWrite: () => {
+    afterRender({
+      mixedReadWrite: () => {
         if (this.virtualScroll() && this.scrollHeight()) {
-            this.virtualBody()?.checkViewportSize();
+          this.virtualBody()?.checkViewportSize();
         }
-    } },
-      
-    );
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { data } = changes;
+    const { data, scrollHeight, heightAdaption } = changes;
     XIsChange(data) && this.setData();
+    XIsChange(scrollHeight) &&
+      this.virtualScroll() &&
+      !this.heightAdaption() &&
+      this.scrollHeightSignal.set(this.scrollHeight());
+    XIsChange(heightAdaption) && this.virtualScroll() && this.setHeightAdaption();
   }
 
   ngAfterViewInit() {
     this.initKeyManager();
     if (this.virtualScroll() && this.heightAdaption()) {
-      this.setVirtualScrollHeight();
-      XResize(this.heightAdaption() as HTMLElement)
-        .pipe(debounceTime(30), takeUntil(this.unSubject))
-        .subscribe((x) => {
-          this.resizeObserver = x.resizeObserver;
-          this.setVirtualScrollHeight();
-        });
+      this.setHeightAdaption();
     } else {
       this.scrollHeightSignal.set(this.scrollHeight());
     }
@@ -144,6 +159,16 @@ export class XListComponent extends XListProperty implements OnChanges {
       this.group.dropLists.add(this.dropList()!);
       this.group.setConnectedTo();
     }
+  }
+
+  setHeightAdaption() {
+    this.setVirtualScrollHeight();
+    this.sizeChange = XResize(this.heightAdaption() as HTMLElement)
+      .pipe(debounceTime(30), takeUntil(this.unSubject))
+      .subscribe((x) => {
+        this.resizeObserver = x.resizeObserver;
+        this.setVirtualScrollHeight();
+      });
   }
 
   minBufferPxSignal = computed(() => {

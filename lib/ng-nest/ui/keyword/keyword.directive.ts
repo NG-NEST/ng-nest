@@ -30,6 +30,9 @@ export class XKeywordDirective extends XKeywordProperty {
     for (let tx of texts) {
       const reg = new RegExp(tx, flags);
       textContent = textContent.replace(reg, (p1) => {
+        if (this.color()) {
+          return `<span class="x-keyword-text" style="color:${this.color()}">${p1}</span>`;
+        }
         return `<span class="x-keyword-text">${p1}</span>`;
       });
     }

@@ -2,9 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInputComponent, XInputIconLayoutType, XInputPrefix, XInputType } from '@ng-nest/ui/input';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XDirection, XIsNumber, XJustify, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XAlign, XComputedStyle, XDirection, XIsNumber, XJustify, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -15,9 +16,10 @@ class XTestInputComponent {}
 
 @Component({
   standalone: true,
-  imports: [XInputComponent],
+  imports: [XInputComponent, FormsModule],
   template: `
     <x-input
+      [(ngModel)]="model"
       [type]="type()"
       [clearable]="clearable()"
       [icon]="icon()"
@@ -76,6 +78,7 @@ class XTestInputComponent {}
   `
 })
 class XTestInputPropertyComponent {
+  model = signal('');
   type = signal<XInputType>('text');
   clearable = signal(false);
   icon = signal('');
@@ -119,18 +122,18 @@ class XTestInputPropertyComponent {
     this.clearEmitResult.set(event);
   }
 
-  xFocusResult = signal<any>(null);
-  xFocus(event: any) {
+  xFocusResult = signal<FocusEvent | null>(null);
+  xFocus(event: FocusEvent) {
     this.xFocusResult.set(event);
   }
 
-  xBlurResult = signal<any>(null);
-  xBlur(event: any) {
+  xBlurResult = signal<FocusEvent | null>(null);
+  xBlur(event: FocusEvent) {
     this.xBlurResult.set(event);
   }
 
-  xInputResult = signal<any>(null);
-  xInput(event: any) {
+  xInputResult = signal<InputEvent | null>(null);
+  xInput(event: InputEvent) {
     this.xInputResult.set(event);
   }
 
@@ -164,11 +167,8 @@ describe(XInputPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestInputComponent, XTestInputPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -191,46 +191,114 @@ describe(XInputPrefix, () => {
       fixture.detectChanges();
     });
     it('type.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input-frame')).nativeElement;
+      const type = input.getAttribute('type');
+      expect(type).toBe('text');
+      component.type.set('password');
+      fixture.detectChanges();
+      const type2 = input.getAttribute('type');
+      expect(type2).toBe('password');
     });
-    it('clearable.', () => {
-      expect(true).toBe(true);
+    it('clearable.', async () => {
+      component.clearable.set(true);
+      component.model.set('input text');
+      fixture.detectChanges();
+      await XSleep(50);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      const clear = fixture.debugElement.query(By.css('.x-input-clear'));
+      expect(clear).toBeTruthy();
     });
     it('icon.', () => {
-      expect(true).toBe(true);
+      component.icon.set('fto-user');
+      fixture.detectChanges();
+      const icon = fixture.debugElement.query(By.css('.fto-user'));
+      expect(icon).toBeTruthy();
     });
     it('iconLayout.', () => {
-      expect(true).toBe(true);
+      component.icon.set('fto-user');
+      component.iconLayout.set('left');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-icon-left');
     });
     it('iconSpin.', () => {
-      expect(true).toBe(true);
+      component.icon.set('fto-loader');
+      component.iconSpin.set(true);
+      fixture.detectChanges();
+      const icon = fixture.debugElement.query(By.css('.x-icon'));
+      expect(icon.nativeElement).toHaveClass('x-icon-spin');
     });
-    it('maxlength.', () => {
-      expect(true).toBe(true);
+    it('maxlength.', async () => {
+      component.maxlength.set(10);
+      component.model.set('data');
+      fixture.detectChanges();
+      await XSleep(100);
+      const maxText = fixture.debugElement.query(By.css('.x-input-max-length'));
+      expect(maxText.nativeElement.innerText).toBe('4/10');
     });
     it('max.', () => {
-      expect(true).toBe(true);
+      component.max.set(10);
+      component.type.set('number');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame')).nativeElement;
+      const max = Number(input.getAttribute('max'));
+      expect(max).toBe(10);
     });
     it('min.', () => {
-      expect(true).toBe(true);
+      component.min.set(10);
+      component.type.set('number');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame')).nativeElement;
+      const min = Number(input.getAttribute('min'));
+      expect(min).toBe(10);
     });
     it('width.', () => {
-      expect(true).toBe(true);
+      component.width.set('200px');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('x-input'));
+      expect(input.nativeElement.clientWidth).toBe(200);
     });
     it('bordered.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-bordered');
+
+      component.bordered.set(false);
+      fixture.detectChanges();
+      expect(input.nativeElement).not.toHaveClass('x-input-bordered');
     });
     it('inputStyle.', () => {
-      expect(true).toBe(true);
+      component.inputStyle.set({ color: 'rgb(0, 255, 0)' });
+      component.model.set('data');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame')).nativeElement;
+      const color = XComputedStyle(input, 'color');
+      expect(color).toBe('rgb(0, 255, 0)');
     });
     it('inputPadding.', () => {
-      expect(true).toBe(true);
+      component.inputPadding.set('32px');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame')).nativeElement;
+      const paddingLeft = XComputedStyle(input, 'padding-left');
+      const paddingRight = XComputedStyle(input, 'padding-right');
+      expect(paddingLeft).toBe('32');
+      expect(paddingRight).toBe('32');
     });
     it('inputIconPadding.', () => {
-      expect(true).toBe(true);
+      component.inputIconPadding.set('32px');
+      component.icon.set('fto-user');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame')).nativeElement;
+      const paddingRight = XComputedStyle(input, 'padding-right');
+      expect(paddingRight).toBe('32');
     });
     it('validator.', () => {
-      expect(true).toBe(true);
+      component.required.set(true);
+      component.validator.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input')).nativeElement;
+      expect(input).toHaveClass('x-required');
     });
     it('size.', () => {
       const input = fixture.debugElement.query(By.css('.x-input'));
@@ -376,31 +444,77 @@ describe(XInputPrefix, () => {
       const borderError = fixture.debugElement.query(By.css('.x-border-error'));
       expect(borderError).toBeDefined();
     });
-    it('clearEmit.', () => {
-      expect(true).toBe(true);
+    it('clearEmit.', async () => {
+      component.clearable.set(true);
+      component.model.set('input text');
+      fixture.detectChanges();
+      await XSleep(50);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      const clear = fixture.debugElement.query(By.css('.x-input-clear'));
+      expect(clear).toBeTruthy();
+      clear.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.clearEmitResult()).toBe('input text');
     });
     it('xFocus.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.focus();
+      fixture.detectChanges();
+      expect(component.xFocusResult()!.type).toBe('focus');
     });
     it('xBlur.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.focus();
+      fixture.detectChanges();
+      input.nativeElement.blur();
+      fixture.detectChanges();
+      expect(component.xBlurResult()!.type).toBe('blur');
     });
     it('xInput.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.dispatchEvent(new InputEvent('input', { bubbles: true, data: 'text' }));
+      fixture.detectChanges();
+      expect(component.xInputResult()!.type).toBe('input');
+      expect(component.xInputResult()!.data).toBe('text');
     });
     it('xKeydown.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, key: 'g' }));
+      fixture.detectChanges();
+      expect(component.xKeydownResult()!.type).toBe('keydown');
+      expect(component.xKeydownResult()!.key).toBe('g');
     });
     it('xClick.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.xClickResult()!.type).toBe('click');
     });
     it('xMouseenter.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      expect(component.xMouseenterResult()!.type).toBe('mouseenter');
     });
     it('xMouseleave.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      fixture.detectChanges();
+      expect(component.xMouseleaveResult()!.type).toBe('mouseleave');
     });
     it('xComposition.', () => {
+      // The user indirectly inputs text (such as using an input method) triggering, which cannot be simulated temporarily
+
+      // const input = fixture.debugElement.query(By.css('.x-input-input')).nativeElement;
+      // input.focus();
+      // fixture.detectChanges();
+      // input.dispatchEvent(new CompositionEvent('compositionend', { bubbles: true, cancelable: true, data: 't' }));
+      // fixture.detectChanges();
+      // console.log(component.xCompositionResult());
       expect(true).toBe(true);
     });
   });

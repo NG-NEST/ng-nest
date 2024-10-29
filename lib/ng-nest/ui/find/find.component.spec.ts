@@ -228,7 +228,7 @@ describe(XFindPrefix, () => {
       ]);
       component.model.set({ id: 1, label: 'test1', name: 'name1' });
       fixture.detectChanges();
-      await XSleep(0);
+      await XSleep(100);
       const tag = fixture.debugElement.query(By.css('.x-find .x-tag'));
       expect(tag.nativeElement.innerText).toBe('name1');
     });

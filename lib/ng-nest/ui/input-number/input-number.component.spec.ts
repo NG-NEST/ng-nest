@@ -2,9 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XInputNumberComponent, XInputNumberPrefix } from '@ng-nest/ui/input-number';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XAlign, XDirection, XIsNumber, XJustify, XNumber, XSize, XSleep } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -15,9 +16,10 @@ class XTestInputNumberComponent {}
 
 @Component({
   standalone: true,
-  imports: [XInputNumberComponent],
+  imports: [XInputNumberComponent, FormsModule],
   template: `
     <x-input-number
+      [(ngModel)]="value"
       [min]="min()"
       [max]="max()"
       [step]="step()"
@@ -52,6 +54,7 @@ class XTestInputNumberComponent {}
   `
 })
 class XTestInputNumberPropertyComponent {
+  value = signal<number | null>(null);
   min = signal(Number.MIN_SAFE_INTEGER);
   max = signal(Number.MAX_SAFE_INTEGER);
   step = signal(1);
@@ -84,11 +87,8 @@ describe(XInputNumberPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestInputNumberComponent, XTestInputNumberPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations, provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -111,28 +111,76 @@ describe(XInputNumberPrefix, () => {
       fixture.detectChanges();
     });
     it('min.', () => {
-      expect(true).toBe(true);
+      component.min.set(10);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame')).nativeElement;
+      const min = Number(input.getAttribute('min'));
+      expect(min).toBe(10);
     });
     it('max.', () => {
-      expect(true).toBe(true);
+      component.max.set(10);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame')).nativeElement;
+      const max = Number(input.getAttribute('max'));
+      expect(max).toBe(10);
     });
     it('step.', () => {
-      expect(true).toBe(true);
+      component.step.set(10);
+      fixture.detectChanges();
+      const plus = fixture.debugElement.query(By.css('.x-input-number-plus')).nativeElement;
+      plus.click();
+      plus.click();
+      fixture.detectChanges();
+      expect(component.value()).toBe(20);
     });
-    it('debounce.', () => {
-      expect(true).toBe(true);
+    it('debounce.', async () => {
+      const plus = fixture.debugElement.query(By.css('.x-input-number-plus')).nativeElement;
+      plus.dispatchEvent(new MouseEvent('mousedown'));
+      await XSleep(550);
+      plus.dispatchEvent(new MouseEvent('mouseup'));
+      expect(component.value()).toBe(Math.floor((550 - 150) / 40) - 1);
+
+      component.debounce.set(100);
+      component.value.set(0);
+      fixture.detectChanges();
+      plus.dispatchEvent(new MouseEvent('mousedown'));
+      await XSleep(550);
+      plus.dispatchEvent(new MouseEvent('mouseup'));
+      expect(component.value()).toBe(Math.floor((550 - 150) / 100) - 1);
     });
     it('precision.', () => {
-      expect(true).toBe(true);
+      component.precision.set(2);
+      component.step.set(0.1);
+      fixture.detectChanges();
+      const plus = fixture.debugElement.query(By.css('.x-input-number-plus')).nativeElement;
+      plus.click();
+      plus.click();
+      fixture.detectChanges();
+      expect(component.value()).toBe(0.2);
     });
     it('bordered.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-bordered');
+
+      component.bordered.set(false);
+      fixture.detectChanges();
+      expect(input.nativeElement).not.toHaveClass('x-input-bordered');
     });
-    it('formatter.', () => {
-      expect(true).toBe(true);
+    it('formatter.', async () => {
+      component.formatter.set((value: number): XNumber => `$ ${value}`);
+      component.value.set(100);
+      fixture.detectChanges();
+      await XSleep(20);
+      const input = fixture.debugElement.query(By.css('.x-input-frame')).nativeElement;
+      expect(input.value).toBe('$ 100');
     });
     it('hiddenButton.', () => {
-      expect(true).toBe(true);
+      component.hiddenButton.set(true);
+      fixture.detectChanges();
+      const reduce = fixture.debugElement.query(By.css('.x-input-number-reduce'));
+      const plus = fixture.debugElement.query(By.css('.x-input-number-plus'));
+      expect(reduce).toBeFalsy();
+      expect(plus).toBeFalsy();
     });
     it('size.', () => {
       const input = fixture.debugElement.query(By.css('.x-input'));

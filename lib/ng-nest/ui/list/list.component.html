@@ -87,8 +87,8 @@
       @if (icon() && iconSpin()) {
         <x-icon [type]="icon()" [spin]="iconSpin()"></x-icon>
       }
-      {{ icon() && iconSpin() ? getLoadingMoreText() : getLoadMoreText() }}
-    </ng-template>
+      {{ icon() && iconSpin() ? getLoadingMoreText() : getLoadMoreText() }}</ng-template
+    >
   }
   @if (isEmpty()) {
     <x-empty></x-empty>

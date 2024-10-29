@@ -1,10 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+  TemplateRef,
+  viewChild
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XListComponent, XListDragDrop, XListNode, XListPrefix } from '@ng-nest/ui/list';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XData, XSize, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XData, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -15,43 +24,50 @@ class XTestListComponent {}
 
 @Component({
   standalone: true,
-  imports: [XListComponent],
+  imports: [XListComponent, FormsModule],
   template: `
-    <x-list
-      [data]="data()"
-      [multiple]="multiple()"
-      [selectAll]="selectAll()"
-      [selectAllText]="selectAllText()"
-      [checked]="checked()"
-      [drag]="drag()"
-      [objectArray]="objectArray()"
-      [nodeTpl]="nodeTpl()"
-      [header]="header()"
-      [footer]="footer()"
-      [scrollElement]="scrollElement()"
-      [loadMore]="loadMore()"
-      [loadMoreText]="loadMoreText()"
-      [virtualScroll]="virtualScroll()"
-      [scrollHeight]="scrollHeight()"
-      [heightAdaption]="heightAdaption()"
-      [minBufferPx]="minBufferPx()"
-      [maxBufferPx]="maxBufferPx()"
-      [keywordText]="keywordText()"
-      [caseSensitive]="caseSensitive()"
-      [inPortal]="inPortal()"
-      (onSelectAll)="onSelectAll($event)"
-      (nodeMouseenter)="nodeMouseenter($event)"
-      (nodeMouseleave)="nodeMouseleave($event)"
-      (nodeClick)="nodeClick($event)"
-      (dropListDropped)="dropListDropped($event)"
-      (keyManagerTabOut)="keyManagerTabOut()"
-      (keyManagerChange)="keyManagerChange($event)"
-      [size]="size()"
-    >
-    </x-list>
+    <div #scrollElementRef style="overflow: auto; height: 100px">
+      <x-list
+        [(ngModel)]="value"
+        [data]="data()"
+        [multiple]="multiple()"
+        [selectAll]="selectAll()"
+        [selectAllText]="selectAllText()"
+        [checked]="checked()"
+        [drag]="drag()"
+        [objectArray]="objectArray()"
+        [nodeTpl]="nodeTpl()"
+        [header]="header()"
+        [footer]="footer()"
+        [scrollElement]="scrollElement()"
+        [loadMore]="loadMore()"
+        [loadMoreText]="loadMoreText()"
+        [loadingMoreText]="loadingMoreText()"
+        [virtualScroll]="virtualScroll()"
+        [scrollHeight]="scrollHeight()"
+        [heightAdaption]="heightAdaption()"
+        [minBufferPx]="minBufferPx()"
+        [maxBufferPx]="maxBufferPx()"
+        [keywordText]="keywordText()"
+        [caseSensitive]="caseSensitive()"
+        [inPortal]="inPortal()"
+        (onSelectAll)="onSelectAll($event)"
+        (nodeMouseenter)="nodeMouseenter($event)"
+        (nodeMouseleave)="nodeMouseleave($event)"
+        (nodeClick)="nodeClick($event)"
+        (dropListDropped)="dropListDropped($event)"
+        (keyManagerTabOut)="keyManagerTabOut()"
+        (keyManagerChange)="keyManagerChange($event)"
+        [size]="size()"
+      >
+      </x-list>
+
+      <ng-template #nodeTemplate let-node="$node">{{ node.label }} tpl</ng-template>
+    </div>
   `
 })
 class XTestListPropertyComponent {
+  value = signal<string | string[] | XListNode[]>('');
   data = signal<XData<XListNode>>([]);
   multiple = signal(1);
   selectAll = signal(false);
@@ -60,9 +76,11 @@ class XTestListPropertyComponent {
   drag = signal(false);
   objectArray = signal(false);
   nodeTpl = signal<TemplateRef<any> | null>(null);
+  nodeTemplate = viewChild.required<TemplateRef<void>>('nodeTemplate');
   header = signal<XTemplate>('');
   footer = signal<XTemplate>('');
   scrollElement = signal<HTMLElement | null>(null);
+  scrollElementRef = viewChild.required<ElementRef<HTMLDivElement>>('scrollElementRef');
   loadMore = signal(false);
   loadMoreText = signal('');
   loadingMoreText = signal('');
@@ -114,11 +132,8 @@ describe(XListPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestListComponent, XTestListPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -134,62 +149,199 @@ describe(XListPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestListPropertyComponent>;
-    // let component: XTestListPropertyComponent;
+    let component: XTestListPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestListPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('data.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const options = fixture.debugElement.queryAll(By.css('x-list-option'));
+      expect(options[0].nativeElement.innerText).toBe('aa');
+      expect(options[1].nativeElement.innerText).toBe('bb');
+      expect(options[2].nativeElement.innerText).toBe('cc');
     });
     it('multiple.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      component.multiple.set(2);
+      fixture.detectChanges();
+      const options = fixture.debugElement.queryAll(By.css('x-list-option'));
+      for (let option of options) {
+        option.nativeElement.click();
+      }
+      fixture.detectChanges();
+      expect((component.value() as string[]).join(',')).toBe('aa,bb');
     });
     it('selectAll.', () => {
-      expect(true).toBe(true);
+      component.multiple.set(0);
+      component.selectAll.set(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+
+      const selectAll = fixture.debugElement.query(By.css('.x-list-select-all x-list-option')).nativeElement;
+      selectAll.click();
+      fixture.detectChanges();
+      expect((component.value() as string[]).join(',')).toBe('aa,bb,cc');
     });
     it('selectAllText.', () => {
-      expect(true).toBe(true);
+      component.multiple.set(0);
+      component.selectAll.set(true);
+      component.selectAllText.set('select all');
+      fixture.detectChanges();
+      const selectAll = fixture.debugElement.query(By.css('.x-list-select-all x-list-option')).nativeElement;
+      expect(selectAll.innerText).toBe('select all');
     });
     it('checked.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      component.checked.set(true);
+      fixture.detectChanges();
+      const option = fixture.debugElement.query(By.css('x-list-option:nth-child(1)')).nativeElement;
+      option.click();
+      fixture.detectChanges();
+      const checked = option.querySelector('.x-list-checked');
+      expect(checked).toBeTruthy();
     });
-    it('drag.', () => {
+    it('drag.', async () => {
+      // cdk drag. unable to simulate the drag effect through javascript
+      //
+      // component.data.set(['aa', 'bb', 'cc']);
+      // component.drag.set(true);
+      // fixture.detectChanges();
+      // const option = fixture.debugElement.query(By.css('x-list-option:nth-child(1)')).nativeElement;
+      // option.dispatchEvent(new MouseEvent('mousedown', { view: window, bubbles: true, cancelable: true }));
+      // fixture.detectChanges();
+      // option.dispatchEvent(
+      //   new MouseEvent('mousemove', { view: window, bubbles: true, cancelable: true, clientX: 0, clientY: 72 })
+      // );
+      // fixture.detectChanges();
+      // option.dispatchEvent(new MouseEvent('mouseup', { view: window, bubbles: true, cancelable: true }));
+      // fixture.detectChanges();
+
       expect(true).toBe(true);
     });
     it('objectArray.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      component.multiple.set(2);
+      component.objectArray.set(true);
+      fixture.detectChanges();
+      const options = fixture.debugElement.queryAll(By.css('x-list-option'));
+      for (let option of options) {
+        option.nativeElement.click();
+      }
+      fixture.detectChanges();
+      expect((component.value() as XListNode[]).map((x) => x.id).join(',')).toBe('aa,bb');
     });
     it('nodeTpl.', () => {
-      expect(true).toBe(true);
+      component.nodeTpl.set(component.nodeTemplate());
+      component.data.set(['aa']);
+      fixture.detectChanges();
+      const option = fixture.debugElement.query(By.css('x-list-option'));
+      expect(option.nativeElement.innerText).toBe('aa tpl');
     });
     it('header.', () => {
-      expect(true).toBe(true);
+      component.header.set('header');
+      fixture.detectChanges();
+      const header = fixture.debugElement.query(By.css('.x-list-header')).nativeElement;
+      expect(header.innerText).toBe('header');
     });
     it('footer.', () => {
-      expect(true).toBe(true);
+      component.footer.set('header');
+      fixture.detectChanges();
+      const footer = fixture.debugElement.query(By.css('.x-list-footer')).nativeElement;
+      expect(footer.innerText).toBe('footer');
     });
     it('scrollElement.', () => {
-      expect(true).toBe(true);
+      component.scrollElement.set(component.scrollElementRef().nativeElement);
+      component.data.set(['aa', 'bb', 'cc', 'dd', 'ee', 'ff']);
+      fixture.detectChanges();
+      const diff =
+        component.scrollElementRef().nativeElement.scrollHeight -
+        component.scrollElementRef().nativeElement.clientHeight;
+      expect(diff > 0).toBe(true);
     });
-    it('loadMore.', () => {
-      expect(true).toBe(true);
+    it('loadMore.', async () => {
+      const list = ['AA', 'BB', 'CC', 'DD'];
+      component.loadMore.set(true);
+      component.data.set(
+        (index: number) =>
+          new Observable<string[]>((x) => {
+            setTimeout(() => {
+              x.next(list.map((x) => `${x}-${index}`));
+              x.complete();
+            }, 50);
+          })
+      );
+      fixture.detectChanges();
+      await XSleep(80);
+      const loadMore = fixture.debugElement.query(By.css('.x-list-load-more x-list-option'));
+      loadMore.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(80);
+      const options = fixture.debugElement.queryAll(By.css('.x-list-content x-list-option'));
+      expect(options.length).toBe(8);
     });
-    it('loadMoreText.', () => {
-      expect(true).toBe(true);
+    it('loadMoreText.', async () => {
+      component.loadMore.set(true);
+      component.loadMoreText.set('load more');
+      const list = ['AA', 'BB', 'CC', 'DD'];
+      component.data.set(
+        (index: number) =>
+          new Observable<string[]>((x) => {
+            setTimeout(() => {
+              x.next(list.map((x) => `${x}-${index}`));
+              x.complete();
+            }, 50);
+          })
+      );
+      fixture.detectChanges();
+      await XSleep(80);
+      const loadMore = fixture.debugElement.query(By.css('.x-list-load-more x-list-option'));
+      expect(loadMore.nativeElement.innerText).toBe('load more');
     });
-    it('loadingMoreText.', () => {
-      expect(true).toBe(true);
+    it('loadingMoreText.', async () => {
+      component.loadMore.set(true);
+      component.loadingMoreText.set('loading');
+      const list = ['AA', 'BB', 'CC', 'DD'];
+      component.data.set(
+        (index: number) =>
+          new Observable<string[]>((x) => {
+            setTimeout(() => {
+              x.next(list.map((x) => `${x}-${index}`));
+              x.complete();
+            }, 50);
+          })
+      );
+      fixture.detectChanges();
+      await XSleep(80);
+      const loadMore = fixture.debugElement.query(By.css('.x-list-load-more x-list-option'));
+      loadMore.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(30);
+      expect(loadMore.nativeElement.innerText.trim()).toBe('loading');
     });
     it('virtualScroll.', () => {
-      expect(true).toBe(true);
+      component.virtualScroll.set(true);
+      component.scrollHeight.set(100);
+      component.data.set(Array.from({ length: 100 }).map((_x, i) => `a${i + 1}`));
+      fixture.detectChanges();
+      const options = fixture.debugElement.queryAll(By.css('.x-list-content x-list-option'));
+      expect(options.length < 100).toBe(true);
     });
     it('scrollHeight.', () => {
-      expect(true).toBe(true);
+      component.virtualScroll.set(true);
+      component.scrollHeight.set(100);
+      component.data.set(Array.from({ length: 100 }).map((_x, i) => `a${i + 1}`));
+      fixture.detectChanges();
+      const content = fixture.debugElement.query(By.css('.x-list-content'));
+      expect(content.nativeElement.clientHeight).toBe(100);
     });
     it('heightAdaption.', () => {
-      expect(true).toBe(true);
+      component.virtualScroll.set(true);
+      component.heightAdaption.set(component.scrollElementRef().nativeElement);
+      component.data.set(Array.from({ length: 100 }).map((_x, i) => `a${i + 1}`));
+      fixture.detectChanges();
     });
     it('minBufferPx.', () => {
       expect(true).toBe(true);
