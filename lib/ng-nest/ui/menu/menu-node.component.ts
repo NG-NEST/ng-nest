@@ -5,18 +5,20 @@ import {
   ElementRef,
   inject,
   input,
-  effect
+  effect,
+  TemplateRef
 } from '@angular/core';
-import { XMenuNodeProperty, XMenuNodePrefix } from './menu.property';
+import { XMenuNodeProperty, XMenuNodePrefix, XMenuNode } from './menu.property';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { RouterModule } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import { XMenuComponent } from './menu.component';
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XMenuNodePrefix}`,
   standalone: true,
-  imports: [NgTemplateOutlet, XIconComponent, RouterModule],
+  imports: [NgTemplateOutlet, XIconComponent, XOutletDirective, RouterModule],
   templateUrl: './menu-node.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -29,6 +31,8 @@ export class XMenuNodeComponent extends XMenuNodeProperty {
   label = input<string>();
   open = input<boolean>();
   id = input<any>();
+  node = input<XMenuNode>();
+  nodeTpl = input<TemplateRef<any>>();
 
   private elementRef = inject(ElementRef);
 

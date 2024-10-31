@@ -115,7 +115,7 @@ describe(XImagePrefix, () => {
       component.src.set('error');
       component.fallback.set(src);
       fixture.detectChanges();
-      await XSleep(10);
+      await XSleep(300);
       const img = fixture.debugElement.query(By.css('.x-image-img:nth-child(2)'));
       expect(img.nativeElement.src).toBe(src);
     });
@@ -142,7 +142,7 @@ describe(XImagePrefix, () => {
     it('error.', async () => {
       component.src.set('error');
       fixture.detectChanges();
-      await XSleep(10);
+      await XSleep(300);
       expect(component.errorResult()?.type).toBe('error');
     });
     it('load.', async () => {

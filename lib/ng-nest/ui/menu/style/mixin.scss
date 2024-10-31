@@ -118,7 +118,7 @@
   }
   &-collapsed {
     &.#{$--x-menu}-column {
-      width: 3rem;
+      width: 3rem !important;
     }
     .#{$--x-menu}-nodes {
       x-dropdown,

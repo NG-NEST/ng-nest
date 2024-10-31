@@ -247,7 +247,7 @@ describe(XListPrefix, () => {
       expect(header.innerText).toBe('header');
     });
     it('footer.', () => {
-      component.footer.set('header');
+      component.footer.set('footer');
       fixture.detectChanges();
       const footer = fixture.debugElement.query(By.css('.x-list-footer')).nativeElement;
       expect(footer.innerText).toBe('footer');
@@ -342,45 +342,94 @@ describe(XListPrefix, () => {
       component.heightAdaption.set(component.scrollElementRef().nativeElement);
       component.data.set(Array.from({ length: 100 }).map((_x, i) => `a${i + 1}`));
       fixture.detectChanges();
+      const content = fixture.debugElement.query(By.css('.x-list-content'));
+      expect(content.nativeElement.clientHeight).toBe(100);
     });
     it('minBufferPx.', () => {
+      // cdk scroll minBufferPx
       expect(true).toBe(true);
     });
     it('maxBufferPx.', () => {
+      // cdk scroll maxBufferPx
       expect(true).toBe(true);
     });
     it('keywordText.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aabb', 'ccdd', 'eeff']);
+      component.keywordText.set(['aa']);
+      fixture.detectChanges();
+      const keywordText = fixture.debugElement.query(By.css('.x-keyword-text')).nativeElement;
+      expect(keywordText.innerText).toBe('aa');
     });
     it('caseSensitive.', () => {
-      expect(true).toBe(true);
+      component.data.set(['AAbb', 'aabb', 'eeff']);
+      component.keywordText.set(['aa']);
+      component.caseSensitive.set(false);
+      fixture.detectChanges();
+      const keywordText = fixture.debugElement.queryAll(By.css('.x-keyword-text'));
+      expect(keywordText[0].nativeElement.innerText).toBe('AA');
+      expect(keywordText[1].nativeElement.innerText).toBe('aa');
     });
     it('inPortal.', () => {
-      expect(true).toBe(true);
+      component.inPortal.set(true);
+      fixture.detectChanges();
+      const list = fixture.debugElement.query(By.css('.x-list')).nativeElement;
+      expect(list).toHaveClass('x-list-portal');
     });
     it('onSelectAll.', () => {
-      expect(true).toBe(true);
+      component.multiple.set(0);
+      component.selectAll.set(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+
+      const selectAll = fixture.debugElement.query(By.css('.x-list-select-all x-list-option')).nativeElement;
+      selectAll.click();
+      fixture.detectChanges();
+      expect(component.onSelectAllResult()).toBe(true);
     });
     it('nodeMouseenter.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const option = fixture.debugElement.query(By.css('.x-list-content x-list-option'));
+      option.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      expect(component.nodeMouseenterResult()!.id).toBe('aa');
     });
     it('nodeMouseleave.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const option = fixture.debugElement.query(By.css('.x-list-content x-list-option'));
+      option.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      option.nativeElement.dispatchEvent(new Event('mouseleave'));
+      fixture.detectChanges();
+      expect(component.nodeMouseleaveResult()!.id).toBe('aa');
     });
     it('nodeClick.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const option = fixture.debugElement.query(By.css('.x-list-content x-list-option'));
+      option.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.nodeClickResult()!.id).toBe('aa');
     });
     it('dropListDropped.', () => {
+      // cdk drap drop
       expect(true).toBe(true);
     });
     it('keyManagerTabOut.', () => {
+      // cdk a11y KeyManager
       expect(true).toBe(true);
     });
     it('keyManagerChange.', () => {
+      // cdk a11y KeyManager
       expect(true).toBe(true);
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      component.size.set('small');
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const option = fixture.debugElement.query(By.css('.x-list-content .x-list-option'));
+      expect(option.nativeElement).toHaveClass('x-list-option-small');
     });
   });
 });

@@ -12,9 +12,10 @@
     <span>{{ lastIndex() }}</span>
   </div>
 } @else {
-  <x-buttons [space]="space()" [hiddenBorder]="!showBackground()" [boxShadow]="false">
+  <x-buttons class="x-pagination-group" [space]="space()" [hiddenBorder]="!showBackground()" [boxShadow]="false">
     @if (showEllipsis()) {
       <x-button
+        class="x-pagination-first"
         [icon]="'fto-chevrons-left'"
         [title]="'pagination.first' | xI18n"
         [disabled]="disabled() || firstActivated()"
@@ -25,13 +26,20 @@
     }
     <ng-container *xOutlet="previousTpl"></ng-container>
     @for (item of indexes(); track item) {
-      <x-button [disabled]="disabled()" plain flat [activated]="getActivated(item)" (click)="jump(item)">{{
-        item
-      }}</x-button>
+      <x-button
+        class="x-pagination-link"
+        [disabled]="disabled()"
+        plain
+        flat
+        [activated]="getActivated(item)"
+        (click)="jump(item)"
+        >{{ item }}</x-button
+      >
     }
     <ng-container *xOutlet="nextTpl"></ng-container>
     @if (showEllipsis() && !simple()) {
       <x-button
+        class="x-pagination-last"
         [icon]="'fto-chevrons-right'"
         [title]="'pagination.last' | xI18n"
         [disabled]="disabled() || lastActivated()"

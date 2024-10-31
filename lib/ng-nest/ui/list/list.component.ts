@@ -79,7 +79,7 @@ export class XListComponent extends XListProperty implements OnChanges {
   classMap = computed(() => ({
     [`${XListPrefix}-${this.size()}`]: this.size() ? true : false
   }));
-  private sizeChange: Subscription | null = null;
+  sizeChange: Subscription | null = null;
   private resizeObserver!: XResizeObserver;
 
   @HostBinding('attr.role') role = 'listbox';
@@ -163,6 +163,7 @@ export class XListComponent extends XListProperty implements OnChanges {
 
   setHeightAdaption() {
     this.setVirtualScrollHeight();
+    if (this.sizeChange) this.sizeChange.unsubscribe();
     this.sizeChange = XResize(this.heightAdaption() as HTMLElement)
       .pipe(debounceTime(30), takeUntil(this.unSubject))
       .subscribe((x) => {
@@ -195,6 +196,7 @@ export class XListComponent extends XListProperty implements OnChanges {
 
   private setVirtualScrollHeight() {
     this.scrollHeightSignal.set((this.heightAdaption() as HTMLElement).clientHeight);
+    if (!this.virtualBody()) return;
     this.virtualBody()!['_scrollStrategy']['_minBufferPx'] = this.minBufferPxSignal();
     this.virtualBody()!['_scrollStrategy']['_maxBufferPx'] = this.maxBufferPxSignal();
   }

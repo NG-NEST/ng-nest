@@ -18,7 +18,7 @@
   }
 </div>
 
-<ng-template #nodeTpl let-node="$node">
+<ng-template #nodeTemplate let-node="$node">
   @if (node.level === 0 && collapsed()) {
     <x-dropdown
       [disabled]="!node.leaf"
@@ -38,6 +38,8 @@
         [label]="node.label"
         [open]="node.open"
         [id]="node.id"
+        [nodeTpl]="nodeTpl()"
+        [node]="node"
       ></x-menu-node>
     </x-dropdown>
   }
@@ -49,6 +51,8 @@
       [label]="node.label"
       [open]="node.open"
       [id]="node.id"
+      [nodeTpl]="nodeTpl()"
+      [node]="node"
     ></x-menu-node>
   }
 </ng-template>
@@ -65,7 +69,7 @@
     children
   >
     <div class="x-menu-node" [ngClass]="nodeClassMap()">
-      <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
+      <ng-container *ngTemplateOutlet="nodeTemplate; context: { $node: node }"></ng-container>
     </div>
   </x-dropdown>
 </ng-template>
@@ -79,7 +83,7 @@
     (click)="onToggle($event, node)"
     [style.padding-left.rem]="(node.level + 1) * 0.875"
   >
-    <ng-container *ngTemplateOutlet="nodeTpl; context: { $node: node }"></ng-container>
+    <ng-container *ngTemplateOutlet="nodeTemplate; context: { $node: node }"></ng-container>
   </div>
   @if (node.childrenLoaded || (node.leaf && node.open)) {
     <div class="x-menu-nodes" [hidden]="!node.open">

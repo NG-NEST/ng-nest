@@ -30,7 +30,9 @@
 
 <ng-template #footerTpl>
   <div class="x-popconfirm-buttons">
-    <x-button (click)="onCancel($event)" flat plain>{{ cancelTextSignal() }}</x-button>
-    <x-button type="primary" flat (click)="onConfirm($event)" [loading]="loading()">{{ confirmTextSignal() }}</x-button>
+    <x-button class="x-popconfirm-cancel" (click)="onCancel($event)" flat plain>{{ cancelTextSignal() }}</x-button>
+    <x-button class="x-popconfirm-confirm" type="primary" flat (click)="onConfirm($event)" [loading]="loading()">{{
+      confirmTextSignal()
+    }}</x-button>
   </div>
 </ng-template>

@@ -10,9 +10,12 @@
   @if (icon()) {
     <x-icon class="x-menu-icon" [type]="icon()"></x-icon>
   }
-  @if (label()) {
-    <span class="x-menu-text">{{ label() }}</span>
+  @if (nodeTpl()) {
+    <ng-container *ngTemplateOutlet="nodeTpl()!; context: { $node: node()! }"></ng-container>
+  } @else if (label()) {
+    <span class="x-menu-text">{{ label() }} </span>
   }
+  @if (label()) {}
   @if (leaf()) {
     <x-icon class="x-menu-arrow" [class.is-open]="open()" type="fto-chevron-down"></x-icon>
   }

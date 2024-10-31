@@ -1,10 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+  TemplateRef,
+  viewChild
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPopoverDirective, XPopoverPrefix, XPopoverTrigger } from '@ng-nest/ui/popover';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XPlacement, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XPlacement, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
@@ -34,13 +40,18 @@ class XTestPopoverComponent {}
       [condition]="condition()"
       [mouseEnterDelay]="mouseEnterDelay()"
       [mouseLeaveDelay]="mouseLeaveDelay()"
-    ></div>
+    >
+      text
+    </div>
+
+    <ng-template #footerTemplate>footer tpl</ng-template>
   `
 })
 class XTestPopoverPropertyComponent {
   title = signal<XTemplate>('');
   content = signal<XTemplate>('');
-  footer = signal<XTemplate>('');
+  footer = signal<XTemplate | null>(null);
+  footerTemplate = viewChild.required<TemplateRef<any>>('footerTemplate');
   panelClass = signal<string | string[]>('');
   connectTo = signal<ElementRef<HTMLElement> | HTMLElement | null>(null);
   placement = signal<XPlacement>('top');
@@ -58,12 +69,8 @@ describe(XPopoverPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestPopoverComponent, XTestPopoverPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -79,23 +86,62 @@ describe(XPopoverPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestPopoverPropertyComponent>;
-    // let component: XTestPopoverPropertyComponent;
+    let component: XTestPopoverPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestPopoverPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('title.', () => {
-      expect(true).toBe(true);
+    const showPortal = async (type: 'click' | 'hover' = 'hover') => {
+      const com = fixture.debugElement.query(By.directive(XPopoverDirective));
+      if (type === 'click') {
+        com.nativeElement.click();
+      } else if (type === 'hover') {
+        com.nativeElement.dispatchEvent(new Event('mouseenter'));
+      }
+      fixture.detectChanges();
+      await XSleep(300);
+    };
+    const closePortal = async (type: 'click' | 'hover' = 'hover') => {
+      const portal = fixture.debugElement.query(By.css('x-popover-portal'));
+      if (type === 'hover') {
+        portal.nativeElement.dispatchEvent(new Event('mouseenter'));
+        portal.nativeElement.dispatchEvent(new Event('mouseleave'));
+      }
+      fixture.detectChanges();
+      await XSleep(300);
+    };
+    it('title.', async () => {
+      component.title.set('title');
+      fixture.detectChanges();
+      await showPortal();
+      const title = fixture.debugElement.query(By.css('.x-popover-portal-title'));
+      expect(title.nativeElement.innerText).toBe('title');
+      await closePortal();
     });
-    it('content.', () => {
-      expect(true).toBe(true);
+    it('content.', async () => {
+      component.content.set('content');
+      fixture.detectChanges();
+      await showPortal();
+      const content = fixture.debugElement.query(By.css('.x-popover-portal-content'));
+      expect(content.nativeElement.innerText).toBe('content');
+      await closePortal();
     });
-    it('footer.', () => {
-      expect(true).toBe(true);
+    it('footer.', async () => {
+      component.footer.set(component.footerTemplate());
+      fixture.detectChanges();
+      await showPortal();
+      const footer = fixture.debugElement.query(By.css('.x-popover-portal-footer'));
+      expect(footer.nativeElement.innerText).toBe('footer tpl');
+      await closePortal();
     });
-    it('panelClass.', () => {
-      expect(true).toBe(true);
+    it('panelClass.', async () => {
+      component.panelClass.set('panel-class');
+      fixture.detectChanges();
+      await showPortal();
+      const panel = fixture.debugElement.query(By.css('.cdk-overlay-pane'));
+      expect(panel.nativeElement).toHaveClass('panel-class');
+      await closePortal();
     });
     it('connectTo.', () => {
       expect(true).toBe(true);

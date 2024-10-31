@@ -7,10 +7,9 @@ import {
   XPaginationPrefix,
   XPaginationSizeData
 } from '@ng-nest/ui/pagination';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { XDataArray, XQuery, XTemplate } from '@ng-nest/ui/core';
+import { XComputedStyle, XDataArray, XQuery, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { XSelectNode } from '@ng-nest/ui/select';
 
 @Component({
@@ -75,7 +74,7 @@ class XTestPaginationPropertyComponent {
   jumpTooltipText = signal('');
   jumpWidth = signal('3.125rem');
   totalTpl = signal<XTemplate>('');
-  totalTemplate = viewChild<TemplateRef<any>>('totalTemplate');
+  totalTemplate = viewChild.required<TemplateRef<any>>('totalTemplate');
   simple = signal(false);
   simpleIndexWidth = signal('8.125rem');
   inputIndexSizeSureType = signal<XPaginationInputIndexSizeSureType>('enter');
@@ -85,12 +84,8 @@ describe(XPaginationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestPaginationComponent, XTestPaginationPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -106,80 +101,221 @@ describe(XPaginationPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestPaginationPropertyComponent>;
-    // let component: XTestPaginationPropertyComponent;
+    let component: XTestPaginationPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestPaginationPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('index.', () => {
-      expect(true).toBe(true);
+      component.index.set(2);
+      component.total.set(100);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('x-button.x-pagination-link button'));
+      expect(buttons[1].nativeElement).toHaveClass('x-button-activated');
+      expect(buttons[1].nativeElement.innerText).toBe('2');
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      component.size.set(5);
+      component.total.set(20);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('x-button.x-pagination-link'));
+      expect(buttons.length).toBe(20 / 5);
     });
     it('total.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      fixture.detectChanges();
+      const total = fixture.debugElement.query(By.css('.x-pagination-total'));
+      expect(total.nativeElement.innerText.replace(/[^\d]/g, '')).toBe('100');
     });
     it('query.', () => {
+      // This component does not generate any meaning and is used to add query conditions in conjunction with the table component
+      component.query.set({ filter: [{ field: 'aa', value: 'bb' }] });
       expect(true).toBe(true);
     });
     it('pageLinkSize.', () => {
-      expect(true).toBe(true);
+      component.pageLinkSize.set(10);
+      component.total.set(1000);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('x-button.x-pagination-link'));
+      expect(buttons.length).toBe(10);
     });
     it('showEllipsis.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.showEllipsis.set(false);
+      fixture.detectChanges();
+      const first = fixture.debugElement.query(By.css('x-button.x-pagination-first'));
+      const last = fixture.debugElement.query(By.css('x-button.x-pagination-last'));
+      expect(first).toBeFalsy();
+      expect(last).toBeFalsy();
     });
     it('showTotal.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.showTotal.set(false);
+      fixture.detectChanges();
+      const total = fixture.debugElement.query(By.css('.x-pagination-total'));
+      expect(total).toBeFalsy();
     });
     it('space.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.space.set('10px');
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('x-button.x-pagination-link'));
+      for (let button of buttons) {
+        const marginLeft = Number(XComputedStyle(button.nativeElement, 'margin-left'));
+        const marginRight = Number(XComputedStyle(button.nativeElement, 'margin-right'));
+        expect(marginLeft).toBe(10);
+        expect(marginRight).toBe(10);
+      }
     });
     it('showBackground.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.showBackground.set(true);
+      fixture.detectChanges();
+      const group = fixture.debugElement.query(By.css('.x-pagination-group'));
+      expect(group.nativeElement).not.toHaveClass('x-buttons-hiddenBorder');
     });
     it('showSize.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.showSize.set(true);
+      fixture.detectChanges();
+      const size = fixture.debugElement.query(By.css('.x-pagination-size'));
+      expect(size).toBeTruthy();
     });
     it('sizeWidth.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.showSize.set(true);
+      component.sizeWidth.set('100px');
+      fixture.detectChanges();
+      const size = fixture.debugElement.query(By.css('.x-pagination-size'));
+      expect(size.nativeElement.clientWidth).toBe(100);
     });
     it('showInputSize.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.showInputSize.set(true);
+      fixture.detectChanges();
+      const size = fixture.debugElement.query(By.css('.x-pagination-input-size'));
+      expect(size).toBeTruthy();
     });
-    it('inputSizeTooltipText.', () => {
-      expect(true).toBe(true);
+    it('inputSizeTooltipText.', async () => {
+      component.total.set(100);
+      component.showInputSize.set(true);
+      component.inputSizeTooltipText.set('Enter sure');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-pagination-input-size x-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(500);
+      const tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
+      expect(tooltip.innerText).toBe('Enter sure');
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      await XSleep(300);
     });
     it('inputSizeWidth.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.showInputSize.set(true);
+      component.inputSizeWidth.set('100px');
+      fixture.detectChanges();
+      const size = fixture.debugElement.query(By.css('.x-pagination-input-size x-input'));
+      expect(size.nativeElement.clientWidth).toBe(100);
     });
-    it('sizeData.', () => {
-      expect(true).toBe(true);
+    it('sizeData.', async () => {
+      component.total.set(100);
+      component.showSize.set(true);
+      component.sizeData.set([10, 50, 100]);
+      fixture.detectChanges();
+      const select = fixture.debugElement.query(By.css('.x-pagination-size .x-input-frame'));
+      select.nativeElement.click();
+      await XSleep(500);
+      const selectPortal = document.querySelector('.x-select-portal') as HTMLElement;
+      expect(selectPortal.innerText.replace(/[^\d]/g, '')).toBe('1050100');
+      const option = document.querySelector('x-list-option:nth-child(2)') as HTMLElement;
+      option.click();
+      fixture.detectChanges();
+      await XSleep(300);
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.disabled.set(true);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('x-button button'));
+      for (let button of buttons) {
+        expect(button.nativeElement).toHaveClass('x-button-disabled');
+      }
     });
     it('showJump.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.showJump.set(true);
+      fixture.detectChanges();
+      const jump = fixture.debugElement.query(By.css('.x-pagination-jump'));
+      expect(jump).toBeTruthy();
     });
-    it('jumpTooltipText.', () => {
-      expect(true).toBe(true);
+    it('jumpTooltipText.', async () => {
+      component.total.set(100);
+      component.showJump.set(true);
+      component.jumpTooltipText.set('Enter sure');
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-pagination-jump x-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(500);
+      const tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
+      expect(tooltip.innerText).toBe('Enter sure');
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      await XSleep(300);
     });
     it('jumpWidth.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.showJump.set(true);
+      component.jumpWidth.set('100px');
+      fixture.detectChanges();
+      const jump = fixture.debugElement.query(By.css('.x-pagination-jump x-input'));
+      expect(jump.nativeElement.clientWidth).toBe(100);
     });
     it('totalTpl.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.totalTpl.set(component.totalTemplate());
+      fixture.detectChanges();
+      const total = fixture.debugElement.query(By.css('.x-pagination-total'));
+      expect(total.nativeElement.innerText).toBe('100');
     });
     it('simple.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.simple.set(true);
+      fixture.detectChanges();
+      const simple = fixture.debugElement.query(By.css('.x-pagination-simple'));
+      expect(simple).toBeTruthy();
     });
     it('simpleIndexWidth.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.simple.set(true);
+      component.simpleIndexWidth.set('200px');
+      fixture.detectChanges();
+      const simpleInput = fixture.debugElement.query(By.css('.x-pagination-simple x-input'));
+      expect(simpleInput.nativeElement.clientWidth).toBe(200);
     });
-    it('inputIndexSizeSureType.', () => {
-      expect(true).toBe(true);
+    it('inputIndexSizeSureType.', async () => {
+      component.total.set(100);
+      component.showInputSize.set(true);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-pagination-input-size x-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(300);
+      let tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
+      expect(tooltip.innerText).toBe('使用 Enter 键确认');
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      await XSleep(300);
+
+      component.inputIndexSizeSureType.set('blur');
+      fixture.detectChanges();
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(300);
+      tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
+      expect(tooltip.innerText).toBe('失去焦点确认');
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      await XSleep(300);
     });
   });
 });

@@ -11,7 +11,8 @@ import {
   computed,
   viewChild,
   signal,
-  output
+  output,
+  DestroyRef
 } from '@angular/core';
 import { XTooltipPortalPrefix } from './tooltip.property';
 import { XPlacement, XFadeAnimation, XTemplate, XIsEmpty } from '@ng-nest/ui/core';
@@ -36,16 +37,27 @@ export class XTooltipPortalComponent {
   backgroundColor = input<string>();
   hoverChanged = output<boolean>();
   arrowHidden = signal(true);
+  destroy = signal(false);
+  private destroyRef = inject(DestroyRef);
+
+  constructor() {
+    this.destroyRef.onDestroy(() => {
+      this.destroy.set(true);
+    });
+  }
 
   @HostListener('mouseenter') mouseenter() {
+    if (this.destroy()) return;
     this.hoverChanged.emit(true);
   }
   @HostListener('mouseleave') mouseleave() {
+    if (this.destroy()) return;
     this.hoverChanged.emit(false);
   }
 
   @HostBinding('@x-fade-animation') animation = true;
   @HostListener('@x-fade-animation.done', ['$event']) done(event: { toState: any }) {
+    if (this.destroy()) return;
     if (event.toState === true) {
       this.setArrow();
       this.arrowHidden.set(false);

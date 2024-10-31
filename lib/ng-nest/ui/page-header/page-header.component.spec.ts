@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPageHeaderComponent, XPageHeaderPrefix } from '@ng-nest/ui/page-header';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -42,11 +42,8 @@ describe(XPageHeaderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestPageHeaderComponent, XTestPageHeaderPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -62,26 +59,41 @@ describe(XPageHeaderPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestPageHeaderPropertyComponent>;
-    // let component: XTestPageHeaderPropertyComponent;
+    let component: XTestPageHeaderPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestPageHeaderPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('backIcon.', () => {
-      expect(true).toBe(true);
+      component.backIcon.set('fto-chevron-left');
+      fixture.detectChanges();
+      const icon = fixture.debugElement.query(By.css('x-icon'));
+      expect(icon.nativeElement).toHaveClass('fto-chevron-left');
     });
     it('backText.', () => {
-      expect(true).toBe(true);
+      component.backText.set('back');
+      fixture.detectChanges();
+      const pageHeader = fixture.debugElement.query(By.css('.x-page-header'));
+      expect(pageHeader.nativeElement.innerText).toBe('back');
     });
     it('title.', () => {
-      expect(true).toBe(true);
+      component.title.set('title');
+      fixture.detectChanges();
+      const pageHeaderTitle = fixture.debugElement.query(By.css('.x-page-header-title'));
+      expect(pageHeaderTitle.nativeElement.innerText).toBe('title');
     });
     it('subTitle.', () => {
-      expect(true).toBe(true);
+      component.subTitle.set('sub title');
+      fixture.detectChanges();
+      const pageHeaderSubTitle = fixture.debugElement.query(By.css('.x-page-header-subTitle'));
+      expect(pageHeaderSubTitle.nativeElement.innerText).toBe('sub title');
     });
     it('backClick.', () => {
-      expect(true).toBe(true);
+      const iconBtn = fixture.debugElement.query(By.css('.x-page-header-backIcon'));
+      iconBtn.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.backClickResult()).not.toBeNull();
     });
   });
 });
