@@ -10,7 +10,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { XPopoverDirective, XPopoverPrefix, XPopoverTrigger } from '@ng-nest/ui/popover';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { XPlacement, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { XComputedStyle, XPlacement, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
@@ -25,6 +25,7 @@ class XTestPopoverComponent {}
   imports: [XPopoverDirective],
   template: `
     <div
+      style="position: absolute; left: 0; top: 0; width: 30px"
       x-popover
       [title]="title()"
       [content]="content()"
@@ -43,6 +44,7 @@ class XTestPopoverComponent {}
     >
       text
     </div>
+    <div #connectToRef style="position: absolute; left: 0; top: 0; width: 50px">connect to</div>
 
     <ng-template #footerTemplate>footer tpl</ng-template>
   `
@@ -54,6 +56,7 @@ class XTestPopoverPropertyComponent {
   footerTemplate = viewChild.required<TemplateRef<any>>('footerTemplate');
   panelClass = signal<string | string[]>('');
   connectTo = signal<ElementRef<HTMLElement> | HTMLElement | null>(null);
+  connectToRef = viewChild.required<ElementRef<HTMLElement>>('connectToRef');
   placement = signal<XPlacement>('top');
   trigger = signal<XPopoverTrigger>('hover');
   width = signal('');
@@ -107,6 +110,9 @@ describe(XPopoverPrefix, () => {
       if (type === 'hover') {
         portal.nativeElement.dispatchEvent(new Event('mouseenter'));
         portal.nativeElement.dispatchEvent(new Event('mouseleave'));
+      } else if (type === 'click') {
+        const back = document.querySelector('.cdk-overlay-connected-position-bounding-box')! as HTMLDivElement;
+        back.click();
       }
       fixture.detectChanges();
       await XSleep(300);
@@ -139,39 +145,110 @@ describe(XPopoverPrefix, () => {
       component.panelClass.set('panel-class');
       fixture.detectChanges();
       await showPortal();
-      const panel = fixture.debugElement.query(By.css('.cdk-overlay-pane'));
-      expect(panel.nativeElement).toHaveClass('panel-class');
+      const panel = document.querySelector('.cdk-overlay-pane');
+      expect(panel).toHaveClass('panel-class');
       await closePortal();
     });
-    it('connectTo.', () => {
-      expect(true).toBe(true);
+    it('connectTo.', async () => {
+      component.connectTo.set(component.connectToRef());
+      fixture.detectChanges();
+      await showPortal();
+      const panel = document.querySelector('.cdk-overlay-pane')!;
+      expect(panel.getBoundingClientRect().left).toBe(50);
+      await closePortal();
     });
-    it('placement.', () => {
-      expect(true).toBe(true);
+    it('placement.', async () => {
+      component.placement.set('right');
+      fixture.detectChanges();
+      await showPortal();
+      const panel = document.querySelector('.cdk-overlay-pane')!;
+      expect(panel.getBoundingClientRect().left).toBe(30);
+      await closePortal();
     });
-    it('trigger.', () => {
-      expect(true).toBe(true);
+    it('trigger.', async () => {
+      component.trigger.set('click');
+      fixture.detectChanges();
+      await showPortal('click');
+      const popover = fixture.debugElement.query(By.css('.x-popover-portal'));
+      expect(popover).toBeTruthy();
+      await closePortal('click');
     });
-    it('width.', () => {
-      expect(true).toBe(true);
+    it('width.', async () => {
+      component.width.set('250px');
+      component.minWidth.set('250px');
+      fixture.detectChanges();
+      await showPortal();
+      const inner = fixture.debugElement.query(By.css('.x-popover-portal-inner')).nativeElement;
+      expect(inner.clientWidth).toBe(250);
+      await closePortal();
     });
-    it('maxWidth.', () => {
-      expect(true).toBe(true);
+    it('maxWidth.', async () => {
+      component.maxWidth.set('300px');
+      fixture.detectChanges();
+      await showPortal();
+      const inner = fixture.debugElement.query(By.css('.x-popover-portal-inner')).nativeElement;
+      const maxWidth = Number(XComputedStyle(inner, 'max-width'));
+      expect(maxWidth).toBe(300);
+      await closePortal();
     });
-    it('minWidth.', () => {
-      expect(true).toBe(true);
+    it('minWidth.', async () => {
+      component.minWidth.set('300px');
+      fixture.detectChanges();
+      await showPortal();
+      const inner = fixture.debugElement.query(By.css('.x-popover-portal-inner')).nativeElement;
+      const minWidth = Number(XComputedStyle(inner, 'min-width'));
+      expect(minWidth).toBe(300);
+      await closePortal();
     });
-    it('visible.', () => {
-      expect(true).toBe(true);
+    it('visible.', async () => {
+      component.visible.set(true);
+      fixture.detectChanges();
+      await XSleep(300);
+      let popover = fixture.debugElement.query(By.css('.x-popover-portal'));
+      expect(popover).toBeTruthy();
+
+      component.visible.set(false);
+      fixture.detectChanges();
+      await XSleep(300);
+      popover = fixture.debugElement.query(By.css('.x-popover-portal'));
+      expect(popover).toBeFalsy();
     });
-    it('condition.', () => {
-      expect(true).toBe(true);
+    it('condition.', async () => {
+      component.condition.set(true);
+      fixture.detectChanges();
+      await showPortal();
+      let popover = fixture.debugElement.query(By.css('.x-popover-portal'));
+      expect(popover).toBeFalsy();
+      component.condition.set(false);
+      fixture.detectChanges();
+      await showPortal();
+      popover = fixture.debugElement.query(By.css('.x-popover-portal'));
+      expect(popover).toBeTruthy();
+      await closePortal();
     });
-    it('mouseEnterDelay.', () => {
-      expect(true).toBe(true);
+    it('mouseEnterDelay.', async () => {
+      const com = fixture.debugElement.query(By.directive(XPopoverDirective));
+      com.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      let popover = fixture.debugElement.query(By.css('.x-popover-portal'));
+      expect(popover).toBeFalsy();
+      await XSleep(200);
+      popover = fixture.debugElement.query(By.css('.x-popover-portal'));
+      expect(popover).toBeTruthy();
+      await closePortal();
     });
-    it('mouseLeaveDelay.', () => {
-      expect(true).toBe(true);
+    it('mouseLeaveDelay.', async () => {
+      const com = fixture.debugElement.query(By.directive(XPopoverDirective));
+      com.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(200);
+      com.nativeElement.dispatchEvent(new Event('mouseleave'));
+      await XSleep(50);
+      let popover = fixture.debugElement.query(By.css('.x-popover-portal'));
+      expect(popover).toBeTruthy();
+      await XSleep(150);
+      popover = fixture.debugElement.query(By.css('.x-popover-portal'));
+      expect(popover).toBeFalsy();
     });
   });
 });

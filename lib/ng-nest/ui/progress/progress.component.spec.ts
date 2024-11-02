@@ -9,9 +9,9 @@ import {
   XProgressStatus,
   XProgressType
 } from '@ng-nest/ui/progress';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { XComputedStyle } from '../core';
 
 @Component({
   standalone: true,
@@ -70,12 +70,8 @@ describe(XProgressPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestProgressComponent, XTestProgressPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -91,62 +87,152 @@ describe(XProgressPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestProgressPropertyComponent>;
-    // let component: XTestProgressPropertyComponent;
+    let component: XTestProgressPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestProgressPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('type.', () => {
-      expect(true).toBe(true);
+      const progress = fixture.debugElement.query(By.css('.x-progress')).nativeElement;
+      expect(progress).toHaveClass('x-progress-line');
+      component.type.set('circle');
+      fixture.detectChanges();
+      expect(progress).toHaveClass('x-progress-circle');
+      component.type.set('dashboard');
+      fixture.detectChanges();
+      expect(progress).toHaveClass('x-progress-dashboard');
     });
     it('percent.', () => {
-      expect(true).toBe(true);
+      component.percent.set(80);
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-progress-text')).nativeElement;
+      const bg = fixture.debugElement.query(By.css('.x-progress-bg')).nativeElement;
+      const rail = fixture.debugElement.query(By.css('.x-progress-rail')).nativeElement;
+      expect(text.innerText).toBe('80%');
+      const diff = Math.floor((bg.clientWidth / rail.clientWidth) * 100) - 80;
+      expect(diff >= -1 && diff <= 1).toBe(true);
     });
     it('height.', () => {
-      expect(true).toBe(true);
+      component.height.set('100px');
+      fixture.detectChanges();
+      const bg = fixture.debugElement.query(By.css('.x-progress-bg')).nativeElement;
+      expect(bg.clientHeight).toBe(100);
     });
     it('status.', () => {
-      expect(true).toBe(true);
+      component.status.set('success');
+      fixture.detectChanges();
+      const progress = fixture.debugElement.query(By.css('.x-progress')).nativeElement;
+      expect(progress).toHaveClass('x-progress-success');
     });
     it('info.', () => {
-      expect(true).toBe(true);
+      component.info.set(false);
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-progress-text')).nativeElement;
+      expect(text).toBeFalsy();
     });
     it('infoWidth.', () => {
-      expect(true).toBe(true);
+      component.infoWidth.set('100px');
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-progress-text')).nativeElement;
+      expect(text.clientWidth).toBe(100);
     });
     it('inside.', () => {
-      expect(true).toBe(true);
+      component.inside.set(true);
+      component.height.set('50px');
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-progress-bg .x-progress-text'));
+      expect(text).toBeTruthy();
     });
     it('format.', () => {
-      expect(true).toBe(true);
+      component.format.set((percent: number) => {
+        return percent === 100 ? '已完成' : '加载中' + percent + '%';
+      });
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-progress-text')).nativeElement;
+      expect(text.innerText).toBe('加载中0%');
     });
     it('color.', () => {
-      expect(true).toBe(true);
+      component.color.set('rgb(0, 255, 0)');
+      fixture.detectChanges();
+      const bg = fixture.debugElement.query(By.css('.x-progress-bg')).nativeElement;
+      expect(XComputedStyle(bg, 'color')).toBe('rgb(0, 255, 0)');
     });
     it('gradient.', () => {
-      expect(true).toBe(true);
+      component.gradient.set({ from: '#3B82F6', to: '#f56c6c' });
+      component.percent.set(80);
+      fixture.detectChanges();
+      const bg = fixture.debugElement.query(By.css('.x-progress-bg')).nativeElement;
+      expect(XComputedStyle(bg, 'background-image')).toBe(`linear-gradient(to right, #3B82F6, #f56c6c)`);
     });
     it('steps.', () => {
-      expect(true).toBe(true);
+      component.percent.set(50);
+      component.steps.set(5);
+      fixture.detectChanges();
+      const progress = fixture.debugElement.query(By.css('.x-progress')).nativeElement;
+      expect(progress).toHaveClass('x-progress-steps');
+      const steps = fixture.debugElement.queryAll(By.css('.x-progress-step'));
+      expect(steps.length).toBe(5);
+      const actives = fixture.debugElement.queryAll(By.css('.x-progress-step.x-progress-step-active'));
+      expect(actives.length).toBe(3);
     });
     it('stepWidth.', () => {
-      expect(true).toBe(true);
+      component.percent.set(50);
+      component.steps.set(5);
+      component.stepWidth.set('100px');
+      fixture.detectChanges();
+      const step = fixture.debugElement.query(By.css('.x-progress-step'));
+      expect(step.nativeElement.clientWidth).toBe(100);
     });
     it('stepFlex.', () => {
-      expect(true).toBe(true);
+      component.stepFlex.set(true);
+      component.percent.set(50);
+      component.steps.set(5);
+      fixture.detectChanges();
+      const steps = fixture.debugElement.queryAll(By.css('.x-progress-step'));
+      for (let step of steps) {
+        expect(XComputedStyle(step.nativeElement, 'flex')).toBe('1');
+      }
     });
     it('thickness.', () => {
-      expect(true).toBe(true);
+      component.type.set('circle');
+      component.thickness.set('50px');
+      component.percent.set(50);
+      fixture.detectChanges();
+      const rail = fixture.debugElement.query(By.css('.x-progress-ring-rail')).nativeElement;
+      const bg = fixture.debugElement.query(By.css('.x-progress-ring-bg')).nativeElement;
+      expect(XComputedStyle(rail, 'border-width')).toBe('50px');
+      expect(XComputedStyle(bg, 'border-width')).toBe('50px');
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      component.size.set('200px');
+      component.type.set('circle');
+      component.percent.set(50);
+      fixture.detectChanges();
+      const ring = fixture.debugElement.query(By.css('.x-progress-ring')).nativeElement;
+      expect(ring.clientHeight).toBe(200);
+      expect(ring.clientWidth).toBe(200);
     });
     it('notchAngle.', () => {
-      expect(true).toBe(true);
+      component.type.set('dashboard');
+      component.notchAngle.set(40);
+      component.percent.set(50);
+      fixture.detectChanges();
+      const rail = fixture.debugElement.query(By.css('.x-progress-ring-rail')).nativeElement;
+      const bg = fixture.debugElement.query(By.css('.x-progress-ring-bg')).nativeElement;
+      console.log(rail, bg);
     });
     it('subsection.', () => {
-      expect(true).toBe(true);
+      component.subsection.set(true);
+      component.color.set([
+        { color: '#f56c6c', percent: 20 },
+        { color: '#e6a23c', percent: 40 },
+        { color: '#5cb87a', percent: 60 },
+        { color: '#1989fa', percent: 80 }
+      ]);
+      fixture.detectChanges();
+      const rail = fixture.debugElement.query(By.css('.x-progress-rail'));
+      expect(rail.nativeElement).toHaveClass('x-progress-mask');
     });
   });
 });
