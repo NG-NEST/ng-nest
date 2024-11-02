@@ -47,6 +47,11 @@ export class XTextareaProperty extends XFormControlFunction(X_TEXTAREA_CONFIG_NA
    */
   readonly height = input<string, XNumber>('6rem', { transform: XToCssPixelValue });
   /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  override readonly placeholder = input<string | string[]>('');
+  /**
    * @zh_CN 标签
    * @en_US Label
    */

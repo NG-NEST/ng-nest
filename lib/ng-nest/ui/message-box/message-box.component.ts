@@ -17,6 +17,7 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { NgTemplateOutlet } from '@angular/common';
+import { XTextareaComponent } from '@ng-nest/ui/textarea';
 
 @Component({
   selector: `${XMessageBoxPrefix}`,
@@ -26,6 +27,7 @@ import { NgTemplateOutlet } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     XInputComponent,
+    XTextareaComponent,
     XButtonComponent,
     XButtonsComponent,
     XIconComponent,
@@ -66,7 +68,7 @@ export class XMessageBoxComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.msgInput.showInput && this.createFormGroup();
+    (this.msgInput.showInput || this.msgInput.showTextarea) && this.createFormGroup();
   }
 
   onClose() {
@@ -98,6 +100,9 @@ export class XMessageBoxComponent implements OnInit {
   onConfirm() {
     const hide = () => {
       if (!this.msgInput.showInput || (this.msgInput.showInput && this.formGroup.valid)) {
+        this.action = 'confirm';
+        this.hideBox();
+      } else if (!this.msgInput.showTextarea || (this.msgInput.showTextarea && this.formGroup.valid)) {
         this.action = 'confirm';
         this.hideBox();
       }

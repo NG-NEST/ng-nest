@@ -32,6 +32,19 @@
                 [inputValidator]="msgInput.inputValidator!"
               ></x-input>
             </form>
+          } @else if (msgInput.showTextarea) {
+            <form [formGroup]="formGroup">
+              <x-textarea
+                formControlName="inputValue"
+                [placeholder]="msgInput.inputPlaceholder!"
+                [label]="getLabel"
+                [pattern]="getPattern"
+                [message]="msgInput.inputInvalidMessage!"
+                [inputValidator]="msgInput.inputValidator!"
+                [maxlength]="msgInput.textareaMaxlength!"
+                [height]="msgInput.textareaHeight!"
+              ></x-textarea>
+            </form>
           } @else {
             @if (msgInput.showIcon) {
               <ng-container *ngTemplateOutlet="iconTpl"></ng-container>

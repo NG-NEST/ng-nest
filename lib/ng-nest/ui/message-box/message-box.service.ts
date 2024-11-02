@@ -16,11 +16,13 @@ export class XMessageBoxService {
     duration: 3000,
     showIcon: false,
     showInput: false,
+    showTextarea: false,
     backdropClose: false,
     cancelText: '取消',
     confirmText: '确认',
     inputPlaceholder: '',
-    hide: false
+    hide: false,
+    textareaHeight: '6rem'
   };
 
   private portal = inject(XPortalService);
@@ -35,7 +37,12 @@ export class XMessageBoxService {
   }
 
   prompt(option: XTemplate | XMessageBoxOption): XMessageBoxRef {
-    return this.createMessageBox(option, { showIcon: false, showCancel: true, showInput: true });
+    const opt = option as XMessageBoxOption;
+    let def: XMessageBoxOption = { showIcon: false, showCancel: true, showInput: true };
+    if (!opt.showInput && opt.showTextarea) {
+      def = { showIcon: false, showCancel: true, showTextarea: true };
+    }
+    return this.createMessageBox(option, def);
   }
 
   create(option: XMessageBoxOption): XMessageBoxOverlayRef {

@@ -18,7 +18,11 @@
     display: inline-flex;
     > form {
       width: 100%;
+      margin-bottom: 1rem;
       > x-input {
+        width: 100%;
+      }
+      > x-textarea {
         width: 100%;
       }
     }

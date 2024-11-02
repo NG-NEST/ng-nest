@@ -3,13 +3,14 @@ import {
   ExDefaultComponent,
   ExConfirmComponent,
   ExCustomComponent,
-  ExPromptComponent
+  ExPromptComponent,
+  ExTextareaComponent
 } from '@ng-nest/ui/message-box/examples';
 
 @Component({
   selector: 'te-message-box',
   standalone: true,
-  imports: [ExDefaultComponent, ExConfirmComponent, ExCustomComponent, ExPromptComponent],
+  imports: [ExDefaultComponent, ExConfirmComponent, ExCustomComponent, ExPromptComponent, ExTextareaComponent],
   templateUrl: './message-box.component.html'
 })
 export class TeMessageBoxComponent {}

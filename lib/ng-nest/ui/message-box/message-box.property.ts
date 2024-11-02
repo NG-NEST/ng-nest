@@ -88,8 +88,8 @@ export interface XMessageBoxOption extends XAlertOption {
    */
   cancelText?: string;
   /**
-   * @zh_CN 是否显示输入框
-   * @en_US Whether to show the input box
+   * @zh_CN 是否显示输入框，显示单行文本框后，将不能显示多行文本框
+   * @en_US Do not display input box. After displaying a single line text box, multi line text boxes cannot be displayed
    */
   showInput?: boolean;
   /**
@@ -132,6 +132,21 @@ export interface XMessageBoxOption extends XAlertOption {
    * @en_US confirm Loading
    */
   confirmLoading?: XMessageBoxConfirmLoading;
+  /**
+   * @zh_CN 是否显示多行文本框
+   * @en_US Whether to show the input box
+   */
+  showTextarea?: boolean;
+  /**
+   * @zh_CN 输入最大长度
+   * @en_US Enter the maximum length
+   */
+  textareaMaxlength?: number;
+  /**
+   * @zh_CN 高度
+   * @en_US height
+   */
+  textareaHeight?: string;
 }
 
 /**
