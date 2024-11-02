@@ -1,3 +1,17 @@
+## [18.0.11](https://github.com/NG-NEST/ng-nest/compare/18.0.10...18.0.11) (2024-11-02)
+
+
+### Bug Fixes
+
+* **module:select:** fix clear error ([d1992e8](https://github.com/NG-NEST/ng-nest/commit/d1992e895c8519e628ad69c2553d64ef4774adda))
+
+
+### Features
+
+* **module:message-box:** add textarea component ([8f1f374](https://github.com/NG-NEST/ng-nest/commit/8f1f3747782a181061fa42bb84563759ab7a4670))
+
+
+
 ## [18.0.10](https://github.com/NG-NEST/ng-nest/compare/18.0.9...18.0.10) (2024-10-25)
 
 

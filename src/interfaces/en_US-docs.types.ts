@@ -26257,7 +26257,7 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "showInput",
         "type": "boolean",
-        "label": "Whether to show the input box",
+        "label": "Do not display input box. After displaying a single line text box, multi line text boxes cannot be displayed",
         "default": "",
         "withConfig": false,
         "description": "",
@@ -26399,6 +26399,57 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "confirmLoading",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "showTextarea",
+        "type": "boolean",
+        "label": "Whether to show the input box",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "showTextarea",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "textareaMaxlength",
+        "type": "number",
+        "label": "Enter the maximum length",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "textareaMaxlength",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "textareaHeight",
+        "type": "string",
+        "label": "height",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "textareaHeight",
         "propType": "",
         "example": [
           {
@@ -37905,6 +37956,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "placeholder",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "Enter prompt information",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "label",

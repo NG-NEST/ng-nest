@@ -26257,7 +26257,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "showInput",
         "type": "boolean",
-        "label": "是否显示输入框",
+        "label": "是否显示输入框，显示单行文本框后，将不能显示多行文本框",
         "default": "",
         "withConfig": false,
         "description": "",
@@ -26399,6 +26399,57 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "confirmLoading",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "showTextarea",
+        "type": "boolean",
+        "label": "是否显示多行文本框",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "showTextarea",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "textareaMaxlength",
+        "type": "number",
+        "label": "输入最大长度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "textareaMaxlength",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "textareaHeight",
+        "type": "string",
+        "label": "高度",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "textareaHeight",
         "propType": "",
         "example": [
           {
@@ -37905,6 +37956,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "placeholder",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "label",
