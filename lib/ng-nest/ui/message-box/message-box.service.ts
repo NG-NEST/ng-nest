@@ -67,7 +67,7 @@ export class XMessageBoxService {
       opt = option as XMessageBoxOption;
     }
     this.setLocal();
-    XFillDefault(opt, Object.assign(this.default, def));
+    XFillDefault(opt, Object.assign({ ...this.default }, def));
     return this.createMessageBoxPlacement(opt);
   }
 
