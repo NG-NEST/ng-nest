@@ -1,14 +1,14 @@
 import {
-  OnInit,
   Renderer2,
   ElementRef,
   Directive,
   OnDestroy,
   inject,
   HostBinding,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  effect
 } from '@angular/core';
-import { delay, fromEvent, of, Subject, takeUntil, tap } from 'rxjs';
+import { delay, fromEvent, of, Subject, Subscription, takeUntil, tap } from 'rxjs';
 import { XRipplePrefix, XRippleProperty } from './ripple.property';
 import { XComputed } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
@@ -17,7 +17,7 @@ import { DOCUMENT } from '@angular/common';
   selector: `[${XRipplePrefix}]`,
   standalone: true
 })
-export class XRippleDirective extends XRippleProperty implements OnInit, OnDestroy {
+export class XRippleDirective extends XRippleProperty implements OnDestroy {
   @HostBinding('class') get className() {
     return `${XRipplePrefix} ${XRipplePrefix}-${this.type()}`;
   }
@@ -27,11 +27,30 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
   private elementRef = inject(ElementRef);
   private cdr = inject(ChangeDetectorRef);
   private document = inject(DOCUMENT);
+  downEvent: Subscription | null = null;
+  upEvent: Subscription | null = null;
 
-  ngOnInit() {
-    if (this.disabled()) return;
+  constructor() {
+    super();
+    effect(() => {
+      if (this.disabled()) {
+        this.downEvent?.unsubscribe();
+        this.upEvent?.unsubscribe();
+      } else {
+        this.downEvent?.unsubscribe();
+        this.upEvent?.unsubscribe();
+        this.setEvent();
+      }
+    });
+  }
 
-    fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown')
+  ngOnDestroy(): void {
+    this.unsub.next();
+    this.unsub.complete();
+  }
+
+  setEvent() {
+    this.downEvent = fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown')
       .pipe(takeUntil(this.unsub))
       .subscribe((event) => {
         const eleRect = this.elementRef.nativeElement.getBoundingClientRect();
@@ -51,7 +70,7 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
         ripple.style.opacity = '0.3';
         const downTime = new Date().getTime();
 
-        const upEvent = fromEvent<MouseEvent>(this.document.documentElement, 'mouseup')
+        this.upEvent = fromEvent<MouseEvent>(this.document.documentElement, 'mouseup')
           .pipe(takeUntil(this.unsub))
           .subscribe(() => {
             const upTime = new Date().getTime();
@@ -64,18 +83,13 @@ export class XRippleDirective extends XRippleProperty implements OnInit, OnDestr
                   }
                   // TODO: use zoneless, renderer removeChild will not take effect immediately
                   this.cdr.markForCheck();
-                  upEvent.unsubscribe();
+                  this.upEvent?.unsubscribe();
                 }),
                 takeUntil(this.unsub)
               )
               .subscribe();
           });
       });
-  }
-
-  ngOnDestroy(): void {
-    this.unsub.next();
-    this.unsub.complete();
   }
 
   distanceToFurthestCorner(x: number, y: number, rect: DOMRect) {

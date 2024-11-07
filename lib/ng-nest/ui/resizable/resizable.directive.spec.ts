@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XResizableDirective, XResizableEvent, XResizablePosition, XResizablePrefix } from '@ng-nest/ui/resizable';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -17,6 +17,9 @@ class XTestResizableComponent {}
   imports: [XResizableDirective],
   template: `
     <div
+      #element
+      style="width:50px; height: 50px; background-color: red; position: absolute; top: 0; left: 0"
+      xResizable
       [xResizable]="resizable()"
       [position]="position()"
       [ghost]="ghost()"
@@ -29,6 +32,7 @@ class XTestResizableComponent {}
   `
 })
 class XTestResizablePropertyComponent {
+  element = viewChild.required<ElementRef<HTMLDivElement>>('element');
   resizable = signal(false);
   position = signal<XResizablePosition | XResizablePosition[]>('all');
   ghost = signal(false);
@@ -55,11 +59,8 @@ describe(XResizablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestResizableComponent, XTestResizablePropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -75,35 +76,83 @@ describe(XResizablePrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestResizablePropertyComponent>;
-    // let component: XTestResizablePropertyComponent;
+    let component: XTestResizablePropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestResizablePropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('resizable.', () => {
-      expect(true).toBe(true);
+    const moveTo = (screenX: number, screenY: number) => {
+      const bottom = fixture.debugElement.query(By.css('.x-resizable-bottom-end'))!.nativeElement;
+      bottom.dispatchEvent(new MouseEvent('mousedown', { view: window, bubbles: true, cancelable: true }));
+      fixture.detectChanges();
+      document.dispatchEvent(
+        new MouseEvent('mousemove', {
+          view: window,
+          bubbles: true,
+          cancelable: true,
+          screenX: screenX,
+          screenY: screenY
+        })
+      );
+      fixture.detectChanges();
+      document.dispatchEvent(new MouseEvent('mouseup', { view: window, bubbles: true, cancelable: true }));
+      fixture.detectChanges();
+    };
+    it('resizable.', async () => {
+      component.resizable.set(true);
+      fixture.detectChanges();
+      moveTo(50, 50);
+      expect(component.element().nativeElement.clientWidth).toBe(100);
+      expect(component.element().nativeElement.clientHeight).toBe(100);
     });
-    it('position.', () => {
-      expect(true).toBe(true);
+    it('position.', async () => {
+      component.position.set(['bottom', 'right']);
+      component.resizable.set(true);
+      fixture.detectChanges();
+      const bottom = fixture.debugElement.query(By.css('.x-resizable-bottom'));
+      const right = fixture.debugElement.query(By.css('.x-resizable-right'));
+      expect(bottom).toBeTruthy();
+      expect(right).toBeTruthy();
     });
     it('ghost.', () => {
-      expect(true).toBe(true);
+      component.ghost.set(true);
+      component.resizable.set(true);
+      fixture.detectChanges();
+      moveTo(50, 50);
+      expect(component.resizeEndResult()!.clientHeight).toBe(100);
+      expect(component.resizeEndResult()!.clientWidth).toBe(100);
+      expect(component.element().nativeElement.clientHeight).toBe(50);
+      expect(component.element().nativeElement.clientWidth).toBe(50);
     });
     it('offsetLeft.', () => {
+      // Internal offset pixels
       expect(true).toBe(true);
     });
     it('offsetTop.', () => {
+      // Internal offset pixels
       expect(true).toBe(true);
     });
     it('resizeBegin.', () => {
-      expect(true).toBe(true);
+      component.resizable.set(true);
+      fixture.detectChanges();
+      moveTo(50, 50);
+      expect(component.resizeBeginResult()!.clientHeight).toBe(50);
+      expect(component.resizeBeginResult()!.clientWidth).toBe(50);
     });
     it('resizing.', () => {
-      expect(true).toBe(true);
+      component.resizable.set(true);
+      fixture.detectChanges();
+      moveTo(50, 50);
+      expect(component.resizingResult()!.clientHeight).toBe(100);
+      expect(component.resizingResult()!.clientWidth).toBe(100);
     });
     it('resizeEnd.', () => {
-      expect(true).toBe(true);
+      component.resizable.set(true);
+      fixture.detectChanges();
+      moveTo(50, 50);
+      expect(component.resizeEndResult()!.clientHeight).toBe(100);
+      expect(component.resizeEndResult()!.clientWidth).toBe(100);
     });
   });
 });

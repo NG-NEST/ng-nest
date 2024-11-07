@@ -150,10 +150,29 @@ describe(XSelectPrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('data.', () => {
-      expect(true).toBe(true);
+    const showPortal = async () => {
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(300);
+      const list = fixture.debugElement.query(By.css('.x-list'));
+      return { list, input };
+    };
+    const closePortal = async () => {
+      const option = fixture.debugElement.query(By.css('x-list-option'));
+      option.nativeElement.click();
+      await XSleep(300);
+    };
+    it('data.', async () => {
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const { list } = await showPortal();
+      expect(list).toBeTruthy();
+      await closePortal();
     });
     it('width.', () => {
+      component.width.set('100px');
+      fixture.detectChanges();
       expect(true).toBe(true);
     });
     it('clearable.', () => {

@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRateColor, XRateComponent, XRatePrefix } from '@ng-nest/ui/rate';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { XAlign, XDirection, XJustify } from '@ng-nest/ui/core';
+import { XAlign, XComputedStyle, XDirection, XJustify, XSleep } from '@ng-nest/ui/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -16,9 +16,10 @@ class XTestRateComponent {}
 
 @Component({
   standalone: true,
-  imports: [XRateComponent],
+  imports: [XRateComponent, FormsModule],
   template: `
     <x-rate
+      [(ngModel)]="model"
       [count]="count()"
       [half]="half()"
       [color]="color()"
@@ -34,14 +35,16 @@ class XTestRateComponent {}
     >
     </x-rate>
 
-    <ng-template #customTemplate>custom</ng-template>
+    <ng-template #customTemplate>C</ng-template>
   `
 })
 class XTestRatePropertyComponent {
+  model = signal<number | null>(null);
   count = signal(5);
   half = signal(false);
   color = signal<XRateColor>('');
   customTemp = signal<TemplateRef<any> | null>(null);
+  customTemplate = viewChild.required<TemplateRef<any>>('customTemplate');
   label = signal('');
   labelWidth = signal('');
   labelAlign = signal<XAlign>('start');
@@ -56,12 +59,7 @@ describe(XRatePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestRateComponent, XTestRatePropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
@@ -85,16 +83,33 @@ describe(XRatePrefix, () => {
       fixture.detectChanges();
     });
     it('count.', () => {
-      expect(true).toBe(true);
+      component.count.set(10);
+      fixture.detectChanges();
+      const icons = fixture.debugElement.queryAll(By.css('.x-rate-icon'));
+      expect(icons.length).toBe(10);
     });
     it('half.', () => {
-      expect(true).toBe(true);
+      component.half.set(true);
+      component.model.set(3.5);
+      fixture.detectChanges();
+      const half = fixture.debugElement.query(By.css('.x-rate-half'));
+      expect(half).toBeTruthy();
     });
-    it('color.', () => {
-      expect(true).toBe(true);
+    it('color.', async () => {
+      component.color.set('rgb(0, 255, 0)');
+      component.model.set(1);
+      fixture.detectChanges();
+      await XSleep(100);
+      const icon = fixture.debugElement.query(By.css('.x-rate-icon'));
+      console.log(icon);
+      expect(XComputedStyle(icon.nativeElement, 'color')).toBe('rgb(0, 255, 0)');
     });
     it('customTemp.', () => {
-      expect(true).toBe(true);
+      component.customTemp.set(component.customTemplate());
+      component.model.set(1);
+      fixture.detectChanges();
+      const back = fixture.debugElement.query(By.css('.x-rate-back'));
+      expect(back.nativeElement.innerText).toBe('C');
     });
     it('label.', async () => {
       component.label.set('label');

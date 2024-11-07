@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRippleDirective, XRipplePrefix, XRippleType } from '@ng-nest/ui/ripple';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { XSleep } from '@ng-nest/ui/core';
 
 @Component({
   standalone: true,
@@ -15,9 +16,19 @@ class XTestRippleComponent {}
 @Component({
   standalone: true,
   imports: [XRippleDirective],
-  template: ` <div x-ripple [type]="type()" [duration]="duration()" [disabled]="disabled()"></div> `
+  template: `
+    <div
+      #rippleRef
+      style="width: 100px; height: 100px; background: #f00; position: absolute; left: 0; top: 0;"
+      x-ripple
+      [type]="type()"
+      [duration]="duration()"
+      [disabled]="disabled()"
+    ></div>
+  `
 })
 class XTestRipplePropertyComponent {
+  rippleRef = viewChild.required<ElementRef<HTMLDivElement>>('rippleRef');
   type = signal<XRippleType>('initial');
   duration = signal(500);
   disabled = signal(false);
@@ -27,11 +38,8 @@ describe(XRipplePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestRippleComponent, XTestRipplePropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -47,20 +55,43 @@ describe(XRipplePrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestRipplePropertyComponent>;
-    // let component: XTestRipplePropertyComponent;
+    let component: XTestRipplePropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestRipplePropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('type.', () => {
-      expect(true).toBe(true);
+      component.type.set('primary');
+      fixture.detectChanges();
+      expect(component.rippleRef().nativeElement).toHaveClass('x-ripple-primary');
     });
-    it('duration.', () => {
-      expect(true).toBe(true);
+    it('duration.', async () => {
+      component.type.set('primary');
+      fixture.detectChanges();
+      component.rippleRef().nativeElement.dispatchEvent(new MouseEvent('mousedown', { clientX: 50, clientY: 50 }));
+      fixture.detectChanges();
+      document.documentElement.dispatchEvent(
+        new MouseEvent('mouseup', { view: window, bubbles: true, cancelable: true })
+      );
+      fixture.detectChanges();
+      let rippleElement = fixture.debugElement.query(By.css('.x-ripple-element'));
+      expect(rippleElement).toBeTruthy();
+      await XSleep(600);
+      rippleElement = fixture.debugElement.query(By.css('.x-ripple-element'));
+      expect(rippleElement).toBeFalsy();
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
+      component.disabled.set(true);
+      fixture.detectChanges();
+      component.rippleRef().nativeElement.dispatchEvent(new MouseEvent('mousedown', { clientX: 50, clientY: 50 }));
+      fixture.detectChanges();
+      document.documentElement.dispatchEvent(
+        new MouseEvent('mouseup', { view: window, bubbles: true, cancelable: true })
+      );
+      fixture.detectChanges();
+      let rippleElement = fixture.debugElement.query(By.css('.x-ripple-element'));
+      expect(rippleElement).toBeFalsy();
     });
   });
 });

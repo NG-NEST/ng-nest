@@ -82,11 +82,11 @@ export class XResizableDirective extends XResizableProperty implements OnDestroy
     this.mouseUpSub = mouseup.subscribe((ev) => {
       this.mouseup(ev as MouseEvent | TouchEvent);
     });
-    const mouseMoveSub = fromEvent(document, moveEvent)
+    const mouseMoveSub = fromEvent(this.document, moveEvent)
       .pipe(takeUntil(mouseup))
-      .subscribe((ev) =>
-        this.move(ev as MouseEvent | TouchEvent, clientWidth, clientHeight, offsetTop, offsetLeft, screenX, screenY)
-      );
+      .subscribe((ev) => {
+        this.move(ev as MouseEvent | TouchEvent, clientWidth, clientHeight, offsetTop, offsetLeft, screenX, screenY);
+      });
 
     this.mouseUpSub.add(mouseMoveSub);
   }

@@ -2,10 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRadioComponent, XRadioNode, XRadioPrefix } from '@ng-nest/ui/radio';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XAlign, XData, XDirection, XJustify, XTemplate } from '@ng-nest/ui/core';
 import { XButtonType } from '@ng-nest/ui/button';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -73,11 +73,8 @@ describe(XRadioPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestRadioComponent, XTestRadioPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -100,31 +97,86 @@ describe(XRadioPrefix, () => {
       fixture.detectChanges();
     });
     it('data.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const items = fixture.debugElement.queryAll(By.css('.x-radio-row-item'));
+      expect(items.length).toBe(2);
     });
     it('button.', () => {
-      expect(true).toBe(true);
+      component.button.set(true);
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('.x-radio-row-list x-button'));
+      expect(buttons.length).toBe(2);
     });
     it('icon.', () => {
-      expect(true).toBe(true);
+      component.icon.set(true);
+      component.data.set([
+        { label: 'aa', icon: 'ado-qq' },
+        { label: 'bb', icon: 'ado-wechat' }
+      ]);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('.x-radio-row-list .x-button'));
+      for (let button of buttons) {
+        expect(button.nativeElement).toHaveClass('x-button-icon');
+      }
     });
     it('tag.', () => {
-      expect(true).toBe(true);
+      component.tag.set(true);
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const tags = fixture.debugElement.queryAll(By.css('.x-radio-row-list x-tag'));
+      expect(tags.length).toBe(2);
     });
     it('type.', () => {
-      expect(true).toBe(true);
+      component.button.set(true);
+      component.type.set('danger');
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('.x-radio-row-list .x-button'));
+      for (let button of buttons) {
+        expect(button.nativeElement).toHaveClass('x-button-danger-plain');
+      }
     });
     it('tagBordered.', () => {
-      expect(true).toBe(true);
+      component.tag.set(true);
+      component.tagBordered.set(false);
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const tags = fixture.debugElement.queryAll(By.css('.x-radio-row-list .x-tag'));
+      for (let tag of tags) {
+        expect(tag.nativeElement).not.toHaveClass('x-tag-bordered');
+      }
     });
     it('tagDark.', () => {
-      expect(true).toBe(true);
+      component.tag.set(true);
+      component.tagDark.set(true);
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const tags = fixture.debugElement.queryAll(By.css('.x-radio-row-list .x-tag'));
+      for (let tag of tags) {
+        expect(tag.nativeElement).toHaveClass('x-tag-dark');
+      }
     });
-    it('allowCancel.', () => {
-      expect(true).toBe(true);
+    it('allowCancel.', async () => {
+      component.tag.set(true);
+      component.allowCancel.set(true);
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-radio-row-list .x-tag')).nativeElement;
+      tag.click();
+      fixture.detectChanges();
+      expect(tag).toHaveClass('x-tag-selected');
+      tag.click();
+      fixture.detectChanges();
+      expect(tag).not.toHaveClass('x-tag-selected');
     });
     it('vertical.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb']);
+      component.vertical.set(true);
+      fixture.detectChanges();
+      const radio = fixture.debugElement.query(By.css('.x-radio')).nativeElement;
+      expect(radio).toHaveClass('x-radio-vertical');
     });
     it('label.', async () => {
       component.label.set('label');
