@@ -1,8 +1,10 @@
 <div
   #selectPortal
   class="x-select-portal"
+  [class.x-select-portal-virtualScroll]="virtualScroll()"
   (click)="inputCom()?.inputFocus(); stopPropagation($event)"
-  [style.maxHeight]="portalMaxHeight()"
+  [style.maxHeight]="portalHeight() ? portalHeight() : portalMaxHeight()"
+  [style.height]="portalHeight()"
 >
   <x-list
     #list

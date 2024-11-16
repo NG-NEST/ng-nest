@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XStatisticComponent, XStatisticPrefix } from '@ng-nest/ui/statistic';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XStyle, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XSleep, XStyle, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -39,11 +39,8 @@ describe(XStatisticPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestStatisticComponent, XTestStatisticPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -59,26 +56,46 @@ describe(XStatisticPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestStatisticPropertyComponent>;
-    // let component: XTestStatisticPropertyComponent;
+    let component: XTestStatisticPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestStatisticPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('value.', () => {
-      expect(true).toBe(true);
+    it('value.', async () => {
+      component.value.set('99.99');
+      fixture.detectChanges();
+      await XSleep(100);
+      const value = fixture.debugElement.query(By.css('.x-statistic-value'));
+      expect(value.nativeElement.innerText).toBe('99.99');
     });
     it('label.', () => {
-      expect(true).toBe(true);
+      component.label.set('Label');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('.x-statistic-label'));
+      expect(label.nativeElement.innerText).toBe('Label');
     });
     it('prefix.', () => {
-      expect(true).toBe(true);
+      component.value.set('99.99');
+      component.prefix.set('Time');
+      fixture.detectChanges();
+      const prefix = fixture.debugElement.query(By.css('.x-statistic-value-prefix'));
+      expect(prefix.nativeElement.innerText).toBe('Time');
     });
     it('suffix.', () => {
-      expect(true).toBe(true);
+      component.value.set('99.99');
+      component.suffix.set('*');
+      fixture.detectChanges();
+      const suffix = fixture.debugElement.query(By.css('.x-statistic-value-suffix'));
+      expect(suffix.nativeElement.innerText).toBe('*');
     });
-    it('valueStyle.', () => {
-      expect(true).toBe(true);
+    it('valueStyle.', async () => {
+      component.value.set('99.99');
+      component.valueStyle.set({ color: 'rgb(0, 255, 0)' });
+      fixture.detectChanges();
+      await XSleep(100);
+      const value = fixture.debugElement.query(By.css('.x-statistic-value'));
+      expect(value.nativeElement.style.color).toBe('rgb(0, 255, 0)');
     });
   });
 });

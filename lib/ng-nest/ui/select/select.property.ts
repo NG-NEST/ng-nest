@@ -85,6 +85,13 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
     transform: XToCssPixelValue
   });
   /**
+   * @zh_CN 下拉框的高度，启用虚拟滚动的时候必须设置一个高度
+   * @en_US The biggest height of the drop-down box
+   */
+  readonly portalHeight = input<string, XNumber>('', {
+    transform: XToCssPixelValue
+  });
+  /**
    * @zh_CN 下拉框的宽度
    * @en_US The width of the drop-down box
    */

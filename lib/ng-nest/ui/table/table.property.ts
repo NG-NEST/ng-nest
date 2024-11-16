@@ -231,7 +231,7 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    * @zh_CN 树形表格
    * @en_US Tree table
    */
-  readonly treeTable = input<boolean, XBoolean>(this.config?.treeTable ?? true, {
+  readonly treeTable = input<boolean, XBoolean>(this.config?.treeTable ?? false, {
     transform: XToBoolean
   });
   /**

@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSliderSelectComponent, XSliderSelectMark, XSliderSelectPrefix } from '@ng-nest/ui/slider-select';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XDirection, XJustify, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XAlign, XComputedStyle, XDirection, XJustify, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -16,9 +17,10 @@ class XTestSliderSelectComponent {}
 
 @Component({
   standalone: true,
-  imports: [XSliderSelectComponent],
+  imports: [XSliderSelectComponent, FormsModule],
   template: `
     <x-slider-select
+      [(ngModel)]="model"
       [min]="min()"
       [max]="max()"
       [step]="step()"
@@ -43,20 +45,27 @@ class XTestSliderSelectComponent {}
       (dragEndEmit)="dragEndEmit($event)"
     >
     </x-slider-select>
+
+    <ng-template #customButtonTemplate><></ng-template>
+
+    <ng-template #tooltipCustomTemplate let-value="$value">{{ value }}%</ng-template>
   `
 })
 class XTestSliderSelectPropertyComponent {
+  model = signal(0);
   min = signal(0);
   max = signal(100);
-  step = signal(100);
+  step = signal(1);
   precision = signal<number | null>(null);
   showTooltip = signal(true);
   reverse = signal(false);
   vertical = signal(false);
   range = signal(false);
   customButton = signal<XTemplate | null>(null);
+  customButtonTemplate = viewChild.required<TemplateRef<any>>('customButtonTemplate');
   marks = signal<XSliderSelectMark[]>([]);
   tooltipCustom = signal<XTemplate | null>(null);
+  tooltipCustomTemplate = viewChild.required<TemplateRef<any>>('tooltipCustomTemplate');
   label = signal('');
   labelWidth = signal('');
   labelAlign = signal<XAlign>('start');
@@ -87,11 +96,8 @@ describe(XSliderSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSliderSelectComponent, XTestSliderSelectPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -113,38 +119,124 @@ describe(XSliderSelectPrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('min.', () => {
-      expect(true).toBe(true);
+    it('min.', async () => {
+      component.model.set(0);
+      component.min.set(0);
+      fixture.detectChanges();
+      const process = fixture.debugElement.query(By.css('.x-slider-select-process'));
+      const drag = fixture.debugElement.query(By.css('.x-slider-select-drag'));
+      await XSleep(100);
+      expect(XComputedStyle(process.nativeElement, 'width')).toBe('0');
+      expect(XComputedStyle(drag.nativeElement, 'left')).toBe('0');
     });
-    it('max.', () => {
-      expect(true).toBe(true);
+    it('max.', async () => {
+      component.model.set(50);
+      component.max.set(50);
+      fixture.detectChanges();
+      const process = fixture.debugElement.query(By.css('.x-slider-select-process'));
+      const drag = fixture.debugElement.query(By.css('.x-slider-select-drag'));
+      await XSleep(100);
+      const rail = fixture.debugElement.query(By.css('.x-slider-select-rail'));
+      const width = rail.nativeElement.clientWidth;
+      expect(process.nativeElement.clientWidth).toBe(width);
+      expect(drag.nativeElement.offsetLeft).toBe(width);
     });
     it('step.', () => {
+      // cdk drag
       expect(true).toBe(true);
     });
-    it('precision.', () => {
-      expect(true).toBe(true);
+    it('precision.', async () => {
+      component.min.set(0);
+      component.max.set(1);
+      component.step.set(0.01);
+      fixture.detectChanges();
+      const button = fixture.debugElement.query(By.css('.x-slider-select-button'));
+      button.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(300);
+      const popoverInner = fixture.debugElement.query(By.css('.x-tooltip-portal-inner'));
+      expect(popoverInner.nativeElement.innerText).toBe('0.00');
+      button.nativeElement.dispatchEvent(new MouseEvent('mouseleave'));
+      await XSleep(200);
     });
-    it('showTooltip.', () => {
-      expect(true).toBe(true);
+    it('showTooltip.', async () => {
+      const button = fixture.debugElement.query(By.css('.x-slider-select-button'));
+      button.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(300);
+      let portal = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(portal).toBeTruthy();
+      button.nativeElement.dispatchEvent(new MouseEvent('mouseleave'));
+      await XSleep(200);
+
+      component.showTooltip.set(false);
+      fixture.detectChanges();
+      button.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(300);
+      portal = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(portal).toBeFalsy();
     });
-    it('reverse.', () => {
-      expect(true).toBe(true);
+    it('reverse.', async () => {
+      component.reverse.set(true);
+      fixture.detectChanges();
+      await XSleep(100);
+      const slider = fixture.debugElement.query(By.css('.x-slider-select')).nativeElement;
+      expect(slider).toHaveClass('x-slider-select-reverse');
+      const drag = fixture.debugElement.query(By.css('.x-slider-select-drag')).nativeElement;
+      expect(XComputedStyle(drag, 'right')).toBe('0');
     });
     it('vertical.', () => {
-      expect(true).toBe(true);
+      component.vertical.set(true);
+      fixture.detectChanges();
+      const slider = fixture.debugElement.query(By.css('x-slider-select')).nativeElement;
+      expect(slider).toHaveClass('x-slider-select-vertical');
     });
     it('range.', () => {
-      expect(true).toBe(true);
+      component.range.set(true);
+      fixture.detectChanges();
+      const slider = fixture.debugElement.query(By.css('.x-slider-select')).nativeElement;
+      expect(slider).toHaveClass('x-slider-select-range');
     });
     it('customButton.', () => {
-      expect(true).toBe(true);
+      component.customButton.set(component.customButtonTemplate());
+      fixture.detectChanges();
+      const button = fixture.debugElement.query(By.css('.x-slider-select-button'));
+      expect(button.nativeElement.innerText).toBe('<>');
     });
     it('marks.', () => {
-      expect(true).toBe(true);
+      component.marks.set([
+        {
+          value: 0,
+          label: '0¡ãC'
+        },
+        {
+          value: 37,
+          label: '37¡ãC'
+        },
+        {
+          value: 60,
+          label: '60¡ãC'
+        }
+      ]);
+      fixture.detectChanges();
+      const marks = fixture.debugElement.queryAll(By.css('.x-slider-select-mark'));
+      expect(marks.length).toBe(3);
+      expect(marks[0].nativeElement.innerText).toBe('0¡ãC');
+      expect(marks[1].nativeElement.innerText).toBe('37¡ãC');
+      expect(marks[2].nativeElement.innerText).toBe('60¡ãC');
     });
-    it('tooltipCustom.', () => {
-      expect(true).toBe(true);
+    it('tooltipCustom.', async () => {
+      component.tooltipCustom.set(component.tooltipCustomTemplate());
+      fixture.detectChanges();
+      const button = fixture.debugElement.query(By.css('.x-slider-select-button'));
+      button.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(300);
+      let portal = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(portal.nativeElement.innerText).toBe('0%');
+      button.nativeElement.dispatchEvent(new MouseEvent('mouseleave'));
+      await XSleep(200);
     });
     it('label.', async () => {
       component.label.set('label');

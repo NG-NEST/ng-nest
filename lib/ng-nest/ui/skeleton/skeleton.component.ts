@@ -18,6 +18,7 @@ export class XSkeletonComponent extends XSkeletonProperty {
   private fontSize = computed(() => parseFloat(XComputedStyle(this.document.documentElement, 'font-size')));
 
   toCssPx(value: string) {
+    if (!value) return NaN;
     return XToCssPx(value, this.fontSize());
   }
 }

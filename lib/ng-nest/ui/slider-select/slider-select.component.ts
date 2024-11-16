@@ -204,6 +204,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   }
 
   getOffset(val: number) {
+    console.log(val, this.min(), this.max());
     return Math.abs(
       Math.round(((val + (this.reverse() ? -this.min() : this.min())) * 100) / (this.max() - this.min()))
     );
@@ -355,8 +356,10 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
         this.renderer.setStyle(this.processRef().nativeElement, 'height', `${wd}%`);
       } else {
         if (this.reverse()) {
+          this.renderer.removeStyle(this.dragStartRef().nativeElement, 'bottom');
           this.renderer.setStyle(this.dragStartRef().nativeElement, 'top', `${this.startOffset()}%`);
         } else {
+          this.renderer.removeStyle(this.dragStartRef().nativeElement, 'top');
           this.renderer.setStyle(this.dragStartRef().nativeElement, 'bottom', `${this.startOffset()}%`);
         }
         this.renderer.setStyle(this.processRef().nativeElement, 'height', `${this.startOffset()}%`);
@@ -377,8 +380,10 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
         this.renderer.setStyle(this.processRef().nativeElement, 'width', `${wd}%`);
       } else {
         if (this.reverse()) {
+          this.renderer.removeStyle(this.dragStartRef().nativeElement, 'left');
           this.renderer.setStyle(this.dragStartRef().nativeElement, 'right', `${this.startOffset()}%`);
         } else {
+          this.renderer.removeStyle(this.dragStartRef().nativeElement, 'right');
           this.renderer.setStyle(this.dragStartRef().nativeElement, 'left', `${this.startOffset()}%`);
         }
         this.renderer.setStyle(this.processRef().nativeElement, 'width', `${this.startOffset()}%`);

@@ -72,6 +72,15 @@
   background-color: $--x-background-100;
   overflow: hidden auto;
   max-height: calc(calc(#{$--x-select-height} * 6) + calc(#{$--x-border-width} * 7));
+  &-virtualScroll {
+    overflow-y: hidden;
+    .x-list-portal {
+      padding: 0;
+      .cdk-virtual-scroll-content-wrapper {
+        padding: 0.125rem 0.25rem;
+      }
+    }
+  }
 }
 
 @mixin tag-size($size, $height, $padding) {

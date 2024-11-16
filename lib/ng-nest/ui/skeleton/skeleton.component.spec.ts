@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSkeletonComponent, XSkeletonData, XSkeletonPrefix, XSkeletonRow } from '@ng-nest/ui/skeleton';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -28,11 +28,8 @@ describe(XSkeletonPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSkeletonComponent, XTestSkeletonPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -48,23 +45,37 @@ describe(XSkeletonPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestSkeletonPropertyComponent>;
-    // let component: XTestSkeletonPropertyComponent;
+    let component: XTestSkeletonPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestSkeletonPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('data.', () => {
-      expect(true).toBe(true);
+      component.data.set([{ cols: [{ width: '10rem', type: 'title' }] }]);
+      fixture.detectChanges();
+      const rows = fixture.debugElement.queryAll(By.css('x-row'));
+      const cols = fixture.debugElement.queryAll(By.css('x-col'));
+      expect(rows.length).toBe(1);
+      expect(cols.length).toBe(1);
     });
     it('loading.', () => {
-      expect(true).toBe(true);
+      component.loading.set(false);
+      fixture.detectChanges();
+      const skeleton = fixture.debugElement.query(By.css('.x-skeleton'));
+      expect(skeleton).toBeFalsy();
     });
     it('active.', () => {
-      expect(true).toBe(true);
+      component.active.set(true);
+      fixture.detectChanges();
+      const skeleton = fixture.debugElement.query(By.css('.x-skeleton'));
+      expect(skeleton.nativeElement).toHaveClass('x-skeleton-active');
     });
     it('border.', () => {
-      expect(true).toBe(true);
+      component.border.set(true);
+      fixture.detectChanges();
+      const skeleton = fixture.debugElement.query(By.css('.x-skeleton'));
+      expect(skeleton.nativeElement).toHaveClass('x-skeleton-border');
     });
   });
 });

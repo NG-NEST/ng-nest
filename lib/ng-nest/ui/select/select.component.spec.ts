@@ -2,10 +2,23 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSelectComponent, XSelectNode, XSelectPrefix } from '@ng-nest/ui/select';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XData, XDirection, XIsNumber, XJustify, XPlacement, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  XAlign,
+  XComputedStyle,
+  XData,
+  XDirection,
+  XIsNumber,
+  XJustify,
+  XPlacement,
+  XSize,
+  XSleep,
+  XTemplate
+} from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -16,9 +29,10 @@ class XTestSelectComponent {}
 
 @Component({
   standalone: true,
-  imports: [XSelectComponent],
+  imports: [XSelectComponent, FormsModule, CommonModule],
   template: `
     <x-select
+      [(ngModel)]="model"
       [data]="data()"
       [width]="width()"
       [clearable]="clearable()"
@@ -30,6 +44,7 @@ class XTestSelectComponent {}
       [nodeTpl]="nodeTpl()"
       [bordered]="bordered()"
       [portalMaxHeight]="portalMaxHeight()"
+      [portalHeight]="portalHeight()"
       [portalWidth]="portalWidth()"
       [search]="search()"
       [caseSensitive]="caseSensitive()"
@@ -65,7 +80,7 @@ class XTestSelectComponent {}
     </ng-template>
 
     <ng-template #nodeTemplate let-node="$node">
-      <div>{{ node.label }}</div>
+      <div>{{ node?.label }} tpl</div>
     </ng-template>
 
     <ng-template #beforeTemplate>before</ng-template>
@@ -73,6 +88,7 @@ class XTestSelectComponent {}
   `
 })
 class XTestSelectPropertyComponent {
+  model = signal<string[] | string>('');
   data = signal<XData<XSelectNode>>([]);
   width = signal('');
   clearable = signal(true);
@@ -82,9 +98,10 @@ class XTestSelectPropertyComponent {
   selectAll = signal(false);
   selectAllText = signal('');
   nodeTpl = signal<TemplateRef<any> | null>(null);
-  nodeTemplate = viewChild<TemplateRef<any>>('nodeTemplate');
+  nodeTemplate = viewChild.required<TemplateRef<any>>('nodeTemplate');
   bordered = signal(true);
   portalMaxHeight = signal('12rem');
+  portalHeight = signal('');
   portalWidth = signal('');
   search = signal(false);
   caseSensitive = signal(true);
@@ -122,12 +139,7 @@ describe(XSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSelectComponent, XTestSelectPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
@@ -158,10 +170,15 @@ describe(XSelectPrefix, () => {
       const list = fixture.debugElement.query(By.css('.x-list'));
       return { list, input };
     };
-    const closePortal = async () => {
-      const option = fixture.debugElement.query(By.css('x-list-option'));
-      option.nativeElement.click();
-      await XSleep(300);
+    const closePortal = async (multiple = false) => {
+      if (!multiple) {
+        const option = fixture.debugElement.query(By.css('x-list-option'));
+        option.nativeElement.click();
+        await XSleep(300);
+      } else {
+        const input = fixture.debugElement.query(By.css('.x-input-frame'));
+        input.nativeElement.click();
+      }
     };
     it('data.', async () => {
       component.data.set(['aa', 'bb']);
@@ -173,58 +190,225 @@ describe(XSelectPrefix, () => {
     it('width.', () => {
       component.width.set('100px');
       fixture.detectChanges();
-      expect(true).toBe(true);
+      const select = fixture.debugElement.query(By.css('x-select'));
+      expect(select.nativeElement.clientWidth).toBe(100);
     });
-    it('clearable.', () => {
-      expect(true).toBe(true);
+    it('clearable.', async () => {
+      component.clearable.set(true);
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+      const { list } = await showPortal();
+      expect(list).toBeTruthy();
+      await closePortal();
+
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      const clear = fixture.debugElement.query(By.css('.x-input-clear'));
+      expect(clear).toBeTruthy();
     });
-    it('async.', () => {
-      expect(true).toBe(true);
+    it('async.', async () => {
+      component.async.set(true);
+      component.data.set(
+        new Observable<string[]>((x) => {
+          setTimeout(() => {
+            x.next(['aa', 'bb']);
+            x.complete();
+          }, 500);
+        })
+      );
+      fixture.detectChanges();
+      await showPortal();
+      const loading = fixture.debugElement.query(By.css('.fto-loader'));
+      expect(loading).toBeTruthy();
+      await XSleep(200);
+      await closePortal();
     });
     it('placement.', () => {
+      // cdk overlay. Restricted by browser window size
       expect(true).toBe(true);
     });
-    it('multiple.', () => {
-      expect(true).toBe(true);
+    it('multiple.', async () => {
+      component.multiple.set(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      component.model.set(['aa', 'bb']);
+      fixture.detectChanges();
+      await XSleep(100);
+      const tags = fixture.debugElement.queryAll(By.css('.x-input-value-template-value x-tag'));
+      expect(tags.length).toBe(2);
+      await showPortal();
+      const selectedOptions = fixture.debugElement.queryAll(By.css('.x-list-option.x-selected'));
+      expect(selectedOptions.length).toBe(2);
+      await closePortal(true);
     });
-    it('selectAll.', () => {
-      expect(true).toBe(true);
+    it('selectAll.', async () => {
+      component.multiple.set(true);
+      component.selectAll.set(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      await showPortal();
+      const selectAll = fixture.debugElement.query(By.css('.x-list-select-all x-list-option'));
+      expect(selectAll).toBeTruthy();
+      selectAll.nativeElement.click();
+      await closePortal(true);
+      await XSleep(100);
+      const tags = fixture.debugElement.queryAll(By.css('.x-input-value-template-value x-tag'));
+      expect(tags.length).toBe(3);
     });
-    it('selectAllText.', () => {
-      expect(true).toBe(true);
+    it('selectAllText.', async () => {
+      component.multiple.set(true);
+      component.selectAll.set(true);
+      component.selectAllText.set('select all');
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      await showPortal();
+      const selectAll = fixture.debugElement.query(By.css('.x-list-select-all x-list-option'));
+      expect(selectAll).toBeTruthy();
+      expect(selectAll.nativeElement.innerText).toBe('select all');
     });
-    it('nodeTpl.', () => {
-      expect(true).toBe(true);
+    it('nodeTpl.', async () => {
+      component.nodeTpl.set(component.nodeTemplate());
+      component.data.set(['aa']);
+      fixture.detectChanges();
+      const { list } = await showPortal();
+      expect(list.nativeElement.innerText).toBe('aa tpl');
+      await closePortal();
     });
     it('bordered.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-bordered');
+
+      component.bordered.set(false);
+      fixture.detectChanges();
+      expect(input.nativeElement).not.toHaveClass('x-input-bordered');
     });
-    it('portalMaxHeight.', () => {
-      expect(true).toBe(true);
+    it('portalMaxHeight.', async () => {
+      component.portalMaxHeight.set('300px');
+      component.data.set(['aa']);
+      fixture.detectChanges();
+      await showPortal();
+      const portal = document.querySelector('.x-select-portal') as HTMLDivElement;
+      expect(XComputedStyle(portal, 'max-height')).toBe('300');
+      await closePortal();
     });
-    it('portalWidth.', () => {
-      expect(true).toBe(true);
+    it('portalWidth.', async () => {
+      component.data.set(['aa']);
+      component.portalWidth.set('150px');
+      fixture.detectChanges();
+      await showPortal();
+      const portal = document.querySelector('.x-select-portal') as HTMLDivElement;
+      expect(portal.clientWidth).toBe(150);
+      await closePortal();
     });
-    it('search.', () => {
-      expect(true).toBe(true);
+    it('search.', async () => {
+      component.search.set(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.focus();
+      const autoComplete = fixture.debugElement.query(By.directive(XSelectComponent));
+      const instance = autoComplete.componentInstance as XSelectComponent;
+      instance.displayValue.set('a');
+      fixture.detectChanges();
+      await XSleep(50);
+      input.nativeElement.dispatchEvent(new Event('input', { bubbles: true }));
+      input.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+      fixture.detectChanges();
+      await XSleep(300);
+      const option = document.querySelector('.x-list-option')! as HTMLDivElement;
+      expect(option.innerText).toBe('aa');
+      await closePortal();
     });
-    it('caseSensitive.', () => {
-      expect(true).toBe(true);
+    it('caseSensitive.', async () => {
+      component.search.set(true);
+      component.caseSensitive.set(false);
+      component.data.set(['aa', 'bb', 'cc', 'AA']);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.focus();
+      const autoComplete = fixture.debugElement.query(By.directive(XSelectComponent));
+      const instance = autoComplete.componentInstance as XSelectComponent;
+      instance.displayValue.set('A');
+      fixture.detectChanges();
+      await XSleep(50);
+      input.nativeElement.dispatchEvent(new Event('input', { bubbles: true }));
+      input.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+      fixture.detectChanges();
+      await XSleep(300);
+      const option = document.querySelector('.x-list-option')! as HTMLDivElement;
+      expect(option.innerText).toBe('aa');
+      await closePortal();
     });
-    it('debounceTime.', () => {
-      expect(true).toBe(true);
+    it('debounceTime.', async () => {
+      component.search.set(true);
+      component.debounceTime.set(500);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.focus();
+      const autoComplete = fixture.debugElement.query(By.directive(XSelectComponent));
+      const instance = autoComplete.componentInstance as XSelectComponent;
+      instance.displayValue.set('a');
+      fixture.detectChanges();
+      await XSleep(500);
+      input.nativeElement.dispatchEvent(new Event('input', { bubbles: true }));
+      input.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+      fixture.detectChanges();
+      await XSleep(300);
+      const option = document.querySelector('.x-list-option')! as HTMLDivElement;
+      expect(option.innerText).toBe('aa');
+      await closePortal();
     });
-    it('maxTagCount.', () => {
-      expect(true).toBe(true);
+    it('maxTagCount.', async () => {
+      component.multiple.set(true);
+      component.maxTagCount.set(2);
+      component.data.set(['aa', 'bb', 'cc', 'dd']);
+      component.model.set(['aa', 'bb', 'cc', 'dd']);
+      fixture.detectChanges();
+      await XSleep(100);
+      const tags = fixture.debugElement.queryAll(By.css('.x-input-value-template-value x-tag'));
+      expect(tags.length).toBe(3);
     });
-    it('maxTagContent.', () => {
-      expect(true).toBe(true);
+    it('maxTagContent.', async () => {
+      component.multiple.set(true);
+      component.maxTagCount.set(2);
+      component.maxTagContent.set('more {{surplus}} selected');
+      component.data.set(['aa', 'bb', 'cc', 'dd']);
+      component.model.set(['aa', 'bb', 'cc', 'dd']);
+      fixture.detectChanges();
+      await XSleep(100);
+      const tag = fixture.debugElement.query(By.css('.x-input-value-template-value x-tag:nth-child(3)'));
+      expect(tag.nativeElement.innerText).toBe('more 2 selected');
     });
-    it('virtualScroll.', () => {
-      expect(true).toBe(true);
+    it('virtualScroll.', async () => {
+      component.data.set(Array.from({ length: 100 }).map((_, index) => `aa${index + 1}`));
+      component.virtualScroll.set(true);
+      component.portalHeight.set('15rem');
+      fixture.detectChanges();
+      await showPortal();
+      const options = document.querySelectorAll('x-list-option');
+      expect(options.length < 100).toBe(true);
+      await closePortal();
     });
-    it('allowInput.', () => {
-      expect(true).toBe(true);
+    it('allowInput.', async () => {
+      component.search.set(true);
+      component.allowInput.set(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.focus();
+      const autoComplete = fixture.debugElement.query(By.directive(XSelectComponent));
+      const instance = autoComplete.componentInstance as XSelectComponent;
+      instance.displayValue.set('aa');
+      fixture.detectChanges();
+      await XSleep(50);
+      input.nativeElement.dispatchEvent(new Event('input', { bubbles: true }));
+      input.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+      fixture.detectChanges();
+      await XSleep(300);
+      const option = document.querySelector('.x-list-option')! as HTMLDivElement;
+      expect(option.innerText).toBe('aa');
+      await closePortal();
     });
     it('size.', () => {
       const input = fixture.debugElement.query(By.css('.x-input'));

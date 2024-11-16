@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCountdownComponent, XCountdownPrefix } from '@ng-nest/ui/statistic';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XStyle, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XAddDays, XAddSeconds, XSleep, XStyle, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -36,18 +36,19 @@ class XTestCountdownPropertyComponent {
   suffix = signal<XTemplate | null>(null);
   valueStyle = signal<XStyle>({});
   format = signal('HH:mm:ss');
-  finish() {}
+
+  finishResult = signal(false);
+  finish() {
+    this.finishResult.set(true);
+  }
 }
 
 describe(XCountdownPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCountdownComponent, XTestCountdownPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -63,32 +64,60 @@ describe(XCountdownPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCountdownPropertyComponent>;
-    // let component: XTestCountdownPropertyComponent;
+    let component: XTestCountdownPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestCountdownPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('value.', () => {
-      expect(true).toBe(true);
+    it('value.', async () => {
+      const time = XAddDays(new Date(), 2).getTime();
+      component.value.set(time);
+      fixture.detectChanges();
+      await XSleep(100);
+      const value = fixture.debugElement.query(By.css('.x-statistic-value-int'));
+      expect(value.nativeElement.innerText).toBe('47:59:59');
     });
     it('label.', () => {
-      expect(true).toBe(true);
+      component.label.set('Label');
+      fixture.detectChanges();
+      const label = fixture.debugElement.query(By.css('.x-statistic-label'));
+      expect(label.nativeElement.innerText).toBe('Label');
     });
     it('prefix.', () => {
-      expect(true).toBe(true);
+      component.prefix.set('Time');
+      fixture.detectChanges();
+      const prefix = fixture.debugElement.query(By.css('.x-statistic-value-prefix'));
+      expect(prefix.nativeElement.innerText).toBe('Time');
     });
     it('suffix.', () => {
-      expect(true).toBe(true);
+      component.suffix.set('*');
+      fixture.detectChanges();
+      const suffix = fixture.debugElement.query(By.css('.x-statistic-value-suffix'));
+      expect(suffix.nativeElement.innerText).toBe('*');
     });
-    it('valueStyle.', () => {
-      expect(true).toBe(true);
+    it('valueStyle.', async () => {
+      component.valueStyle.set({ color: 'rgb(0, 255, 0)' });
+      fixture.detectChanges();
+      await XSleep(100);
+      const value = fixture.debugElement.query(By.css('.x-statistic-value'));
+      expect(value.nativeElement.style.color).toBe('rgb(0, 255, 0)');
     });
-    it('format.', () => {
-      expect(true).toBe(true);
+    it('format.', async () => {
+      component.format.set('D 天 H 时 m 分 s 秒');
+      component.value.set(XAddDays(new Date(), 2).getTime());
+      fixture.detectChanges();
+      await XSleep(100);
+      const value = fixture.debugElement.query(By.css('.x-statistic-value-int'));
+      expect(value.nativeElement.innerText).toBe('1 天 23 时 59 分 59 秒');
     });
-    it('finish.', () => {
-      expect(true).toBe(true);
+    it('finish.', async () => {
+      component.value.set(XAddSeconds(new Date(), 1).getTime());
+      fixture.detectChanges();
+      await XSleep(100);
+      expect(component.finishResult()).toBeFalse();
+      await XSleep(1000);
+      expect(component.finishResult()).toBeTrue();
     });
   });
 });

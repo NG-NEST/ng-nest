@@ -18,7 +18,8 @@ import {
   computed,
   signal,
   ComponentRef,
-  effect
+  effect,
+  HostBinding
 } from '@angular/core';
 import { XSelectNode, XSelectProperty, XSelectPrefix } from './select.property';
 import {
@@ -143,6 +144,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
 
+  @HostBinding('style.width') get getWidth() {
+    return this.width();
+  }
+
   valueTplComputed = computed(() => {
     if (this.nodeTpl()) {
       return this.nodeTpl();
@@ -195,6 +200,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     effect(() => this.portalComponent()?.setInput('nodeTpl', this.nodeTpl()));
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
     effect(() => this.portalComponent()?.setInput('portalMaxHeight', this.portalMaxHeight()));
+    effect(() => this.portalComponent()?.setInput('portalHeight', this.portalHeight()));
     effect(() => this.portalComponent()?.setInput('objectArray', this.objectArray()));
     effect(() => this.portalComponent()?.setInput('selectAll', this.selectAll()));
     effect(() => this.portalComponent()?.setInput('selectAllText', this.selectAllText()));
@@ -419,7 +425,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.nodes().length > 0) {
       if (this.multiple()) {
         if (XIsEmpty(this.value())) {
-          if (XIsUndefined(this.value()) || XIsNull(this.value())) {
+          if (XIsUndefined(this.value()) || XIsNull(this.value()) || this.value() === '') {
             this.value.set([]);
           } else {
             this.value.update((x) => {

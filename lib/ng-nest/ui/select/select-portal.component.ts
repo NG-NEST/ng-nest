@@ -62,6 +62,7 @@ export class XSelectPortalComponent implements OnInit {
   nodeTpl = input<TemplateRef<any>>();
   inputCom = input<XInputComponent>();
   portalMaxHeight = input<string>('');
+  portalHeight = input<string>('');
   objectArray = input<boolean>(false);
   selectAll = input(false);
   selectAllText = input<string>('');

@@ -2,9 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSwitchComponent, XSwitchPrefix } from '@ng-nest/ui/switch';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XAlign, XDirection, XJustify, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -15,9 +16,10 @@ class XTestSwitchComponent {}
 
 @Component({
   standalone: true,
-  imports: [XSwitchComponent],
+  imports: [XSwitchComponent, FormsModule],
   template: `
     <x-switch
+      [(ngModel)]="value"
       [loading]="loading()"
       [manual]="manual()"
       [checkedText]="checkedText()"
@@ -35,6 +37,7 @@ class XTestSwitchComponent {}
   `
 })
 class XTestSwitchPropertyComponent {
+  value = signal(false);
   loading = signal(false);
   manual = signal(false);
   checkedText = signal<XTemplate | null>(null);
@@ -54,11 +57,8 @@ describe(XSwitchPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSwitchComponent, XTestSwitchPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -80,17 +80,51 @@ describe(XSwitchPrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('loading.', () => {
-      expect(true).toBe(true);
+    it('loading.', async () => {
+      component.loading.set(true);
+      component.value.set(true);
+      fixture.detectChanges();
+      const st = fixture.debugElement.query(By.css('.x-switch'));
+      expect(st.nativeElement).toHaveClass('x-switch-loading');
+      await XSleep(300);
+      component.loading.set(false);
+      fixture.detectChanges();
+      expect(st.nativeElement).not.toHaveClass('x-switch-loading');
     });
-    it('manual.', () => {
-      expect(true).toBe(true);
+    it('manual.', async () => {
+      const st = fixture.debugElement.query(By.css('.x-switch')).nativeElement;
+      const slider = fixture.debugElement.query(By.css('.x-switch-slider')).nativeElement;
+      slider.click();
+      fixture.detectChanges();
+      expect(st).toHaveClass('x-checked');
+      slider.click();
+      fixture.detectChanges();
+      expect(st).not.toHaveClass('x-checked');
+
+      component.manual.set(true);
+      fixture.detectChanges();
+      slider.click();
+      fixture.detectChanges();
+      expect(st).not.toHaveClass('x-checked');
+
+      component.value.set(true);
+      fixture.detectChanges();
+      await XSleep(100);
+      expect(st).toHaveClass('x-checked');
     });
-    it('checkedText.', () => {
-      expect(true).toBe(true);
+    it('checkedText.', async () => {
+      component.value.set(true);
+      component.checkedText.set('yes');
+      fixture.detectChanges();
+      await XSleep(100);
+      const text = fixture.debugElement.query(By.css('.x-switch-text')).nativeElement;
+      expect(text.innerText).toBe('yes');
     });
     it('unCheckedText.', () => {
-      expect(true).toBe(true);
+      component.unCheckedText.set('no');
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-switch-text')).nativeElement;
+      expect(text.innerText).toBe('no');
     });
     it('size.', () => {
       const input = fixture.debugElement.query(By.css('.x-switch'));

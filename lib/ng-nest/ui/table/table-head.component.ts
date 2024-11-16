@@ -10,7 +10,7 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell, XTablePrefix } from './table.property';
-import { XRemoveNgTag, XIsEmpty, XSort, XNumber, XIsFunction } from '@ng-nest/ui/core';
+import { XIsEmpty, XSort, XNumber, XIsFunction, XRemoveNgTag } from '@ng-nest/ui/core';
 import { CdkDragDrop, CdkDragSortEvent, CdkDragStart, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { XDragDirective } from '@ng-nest/ui/drag';

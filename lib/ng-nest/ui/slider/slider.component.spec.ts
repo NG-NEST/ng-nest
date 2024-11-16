@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSliderComponent, XSliderLayout, XSliderNode, XSliderPrefix, XSliderTrigger } from '@ng-nest/ui/slider';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XDataArray, XJustify, XSize } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XDataArray, XJustify, XSize, XSleep } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -36,7 +36,7 @@ class XTestSliderComponent {}
     >
     </x-slider>
 
-    <ng-template #nodeTemplate let-node="$node">{{ node.label }}</ng-template>
+    <ng-template #nodeTemplate let-node="$node">{{ node.label }} tpl</ng-template>
   `
 })
 class XTestSliderPropertyComponent {
@@ -48,7 +48,7 @@ class XTestSliderPropertyComponent {
   justify = signal<XJustify>('start');
   nodeJustify = signal<XJustify>('center');
   nodeTpl = signal<TemplateRef<any> | null>(null);
-  nodeTemplate = viewChild<TemplateRef<any>>('nodeTemplate');
+  nodeTemplate = viewChild.required<TemplateRef<any>>('nodeTemplate');
   size = signal<XSize>('medium');
   showExpand = signal(false);
   autoShowArrow = signal(true);
@@ -70,11 +70,8 @@ describe(XSliderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSliderComponent, XTestSliderPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -90,56 +87,145 @@ describe(XSliderPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestSliderPropertyComponent>;
-    // let component: XTestSliderPropertyComponent;
+    let component: XTestSliderPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestSliderPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('data.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const slider = fixture.debugElement.query(By.css('.x-slider'));
+      expect(slider.nativeElement.innerText).toBe('aa\nbb\ncc');
     });
     it('animated.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const highlight = fixture.debugElement.query(By.css('.x-slider-highlight'));
+      expect(highlight.nativeElement).toHaveClass('x-slider-highlight-animated');
+
+      component.animated.set(false);
+      fixture.detectChanges();
+      expect(highlight.nativeElement).not.toHaveClass('x-slider-highlight-animated');
     });
     it('activatedIndex.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      let li = fixture.debugElement.query(By.css('.x-slider-scroll ul li:nth-child(1)')).nativeElement;
+      expect(li).toHaveClass('x-slider-activated');
+
+      component.activatedIndex.set(1);
+      fixture.detectChanges();
+      li = fixture.debugElement.query(By.css('.x-slider-scroll ul li:nth-child(2)')).nativeElement;
+      expect(li).toHaveClass('x-slider-activated');
     });
     it('trigger.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const link = fixture.debugElement.query(By.css('.x-slider-scroll ul li:nth-child(2) x-link')).nativeElement;
+      link.click();
+      fixture.detectChanges();
+      const li = fixture.debugElement.query(By.css('.x-slider-scroll ul li:nth-child(2)')).nativeElement;
+      expect(li).toHaveClass('x-slider-activated');
     });
     it('layout.', () => {
-      expect(true).toBe(true);
+      component.layout.set('column');
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const slider = fixture.debugElement.query(By.css('.x-slider'));
+      expect(slider.nativeElement).toHaveClass('x-slider-column');
     });
     it('justify.', () => {
-      expect(true).toBe(true);
+      component.justify.set('end');
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const scroll = fixture.debugElement.query(By.css('.x-slider-scroll'));
+      expect(scroll.nativeElement).toHaveClass('x-justify-end');
     });
     it('nodeJustify.', () => {
-      expect(true).toBe(true);
+      component.nodeJustify.set('end');
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const link = fixture.debugElement.query(By.css('.x-slider-scroll ul li x-link')).nativeElement;
+      expect(link).toHaveClass('x-justify-end');
     });
     it('nodeTpl.', () => {
-      expect(true).toBe(true);
+      component.nodeTpl.set(component.nodeTemplate());
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const slider = fixture.debugElement.query(By.css('.x-slider'));
+      expect(slider.nativeElement.innerText).toBe('aa tpl\nbb tpl\ncc tpl');
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      component.size.set('small');
+      fixture.detectChanges();
+      const link = fixture.debugElement.query(By.css('.x-slider-scroll ul li x-link')).nativeElement;
+      expect(link).toHaveClass('x-size-small');
     });
-    it('showExpand.', () => {
-      expect(true).toBe(true);
+    it('showExpand.', async () => {
+      component.showExpand.set(true);
+      component.data.set(Array.from({ length: 50 }).map((_, i) => `aa${i + 1}`));
+      fixture.detectChanges();
+      await XSleep(200);
+      const sliderAll = fixture.debugElement.query(By.css('.x-slider-all'));
+      expect(sliderAll).toBeTruthy();
     });
-    it('autoShowArrow.', () => {
-      expect(true).toBe(true);
+    it('autoShowArrow.', async () => {
+      component.data.set(Array.from({ length: 50 }).map((_, i) => `aa${i + 1}`));
+      fixture.detectChanges();
+      await XSleep(200);
+      let arrowLeft = fixture.debugElement.query(By.css('.x-slider-arrow-left'));
+      let arrowRight = fixture.debugElement.query(By.css('.x-slider-arrow-right'));
+      expect(arrowLeft).toBeTruthy();
+      expect(arrowRight).toBeTruthy();
+
+      component.autoShowArrow.set(false);
+      fixture.detectChanges();
+      arrowLeft = fixture.debugElement.query(By.css('.x-slider-arrow-left'));
+      arrowRight = fixture.debugElement.query(By.css('.x-slider-arrow-right'));
+      expect(arrowLeft).toBeFalsy();
+      expect(arrowRight).toBeFalsy();
     });
-    it('expandMaxHeight.', () => {
-      expect(true).toBe(true);
+    it('expandMaxHeight.', async () => {
+      component.data.set(Array.from({ length: 50 }).map((_, i) => `aa${i + 1}`));
+      component.expandMaxHeight.set('200px');
+      component.showExpand.set(true);
+      fixture.detectChanges();
+      await XSleep(200);
+      const dropdown = fixture.debugElement.query(By.css('.x-dropdown'));
+      dropdown.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(200);
+      const portal = fixture.debugElement.query(By.css('.x-dropdown-portal'));
+      expect(portal.nativeElement.style.maxHeight).toBe('200px');
+      const item = fixture.debugElement.query(By.css('.x-list x-list-option'));
+      item.nativeElement.click();
+      await XSleep(300);
     });
     it('showAnchor.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      component.showAnchor.set(true);
+      fixture.detectChanges();
+      const link = fixture.debugElement.query(By.css('.x-slider-scroll ul li .x-link'));
+      expect(link.nativeElement.getAttribute('href')).toBe('#aa');
     });
     it('indexChange.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const link = fixture.debugElement.query(By.css('.x-slider-scroll ul li:nth-child(2) x-link')).nativeElement;
+      link.click();
+      fixture.detectChanges();
+      expect(component.indexChangeResult()).toBe(1);
     });
     it('nodeChange.', () => {
-      expect(true).toBe(true);
+      component.data.set(['aa', 'bb', 'cc']);
+      fixture.detectChanges();
+      const link = fixture.debugElement.query(By.css('.x-slider-scroll ul li:nth-child(2) x-link')).nativeElement;
+      link.click();
+      fixture.detectChanges();
+      expect(component.nodeChangeResult()?.label).toBe('bb');
     });
   });
 });

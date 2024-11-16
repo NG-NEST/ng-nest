@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XStepsComponent, XStepsLayout, XStepsNode, XStepsPrefix, XStepsStatus } from '@ng-nest/ui/steps';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XDataArray } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -27,6 +27,8 @@ class XTestStepsComponent {}
       [nodeStatus]="nodeStatus()"
     >
     </x-steps>
+
+    <ng-template #customTemplate let-node="$node">{{ node.status }}</ng-template>
   `
 })
 class XTestStepsPropertyComponent {
@@ -36,6 +38,7 @@ class XTestStepsPropertyComponent {
   startIndex = signal(0);
   status = signal<XStepsStatus | null>(null);
   customTpl = signal<TemplateRef<any> | null>(null);
+  customTemplate = viewChild.required<TemplateRef<any>>('customTemplate');
   nodeStatus = signal(false);
 }
 
@@ -43,11 +46,8 @@ describe(XStepsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestStepsComponent, XTestStepsPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -63,32 +63,75 @@ describe(XStepsPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestStepsPropertyComponent>;
-    // let component: XTestStepsPropertyComponent;
+    let component: XTestStepsPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestStepsPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('data.', () => {
-      expect(true).toBe(true);
+    it('data.', async () => {
+      component.data.set(['step1', 'step2', 'step3']);
+      fixture.detectChanges();
+      const steps = fixture.debugElement.queryAll(By.css('.x-steps-node'));
+      expect(steps.length).toBe(3);
+      expect(steps[0].nativeElement).toHaveClass('x-steps-process');
     });
     it('layout.', () => {
-      expect(true).toBe(true);
+      component.data.set(['step1', 'step2', 'step3']);
+      component.layout.set('column');
+      fixture.detectChanges();
+      const steps = fixture.debugElement.query(By.css('.x-steps'));
+      expect(steps.nativeElement).toHaveClass('x-steps-column');
     });
     it('activatedIndex.', () => {
-      expect(true).toBe(true);
+      component.data.set(['step1', 'step2', 'step3']);
+      component.activatedIndex.set(1);
+      fixture.detectChanges();
+      const steps = fixture.debugElement.queryAll(By.css('.x-steps-node'));
+      expect(steps[1].nativeElement).toHaveClass('x-steps-process');
     });
     it('startIndex.', () => {
-      expect(true).toBe(true);
+      component.data.set(['step1', 'step2', 'step3']);
+      component.startIndex.set(5);
+      fixture.detectChanges();
+      const icon = fixture.debugElement.query(By.css('.x-steps-icon'));
+      expect(icon.nativeElement.innerText).toBe('6');
     });
     it('status.', () => {
-      expect(true).toBe(true);
+      component.data.set(['step1', 'step2', 'step3']);
+      component.status.set('error');
+      fixture.detectChanges();
+      const node = fixture.debugElement.query(By.css('.x-steps-node'));
+      expect(node.nativeElement).toHaveClass('x-steps-error');
     });
     it('customTpl.', () => {
-      expect(true).toBe(true);
+      component.data.set(['step1', 'step2', 'step3']);
+      component.customTpl.set(component.customTemplate());
+      fixture.detectChanges();
+      const headers = fixture.debugElement.queryAll(By.css('.x-steps-header'));
+      expect(headers.length).toBe(3);
+      expect(headers[0].nativeElement.innerText).toBe('process');
+      expect(headers[1].nativeElement.innerText).toBe('wait');
+      expect(headers[2].nativeElement.innerText).toBe('wait');
     });
     it('nodeStatus.', () => {
-      expect(true).toBe(true);
+      component.nodeStatus.set(true);
+      component.data.set([
+        { label: 'step1', status: 'process' },
+        { label: 'step2', status: 'finish' },
+        { label: 'step3', status: 'process' },
+        { label: 'step4', status: 'finish' },
+        { label: 'step5', status: 'error' },
+        { label: 'step6', status: 'process' }
+      ]);
+      fixture.detectChanges();
+      const nodes = fixture.debugElement.queryAll(By.css('.x-steps-node'));
+      expect(nodes[0].nativeElement).toHaveClass('x-steps-process');
+      expect(nodes[1].nativeElement).toHaveClass('x-steps-finish');
+      expect(nodes[2].nativeElement).toHaveClass('x-steps-process');
+      expect(nodes[3].nativeElement).toHaveClass('x-steps-finish');
+      expect(nodes[4].nativeElement).toHaveClass('x-steps-error');
+      expect(nodes[5].nativeElement).toHaveClass('x-steps-process');
     });
   });
 });
