@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {
   XPaginationPosition,
@@ -14,11 +14,13 @@ import {
   XTableTemplate
 } from '@ng-nest/ui/table';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { XData, XDataArray, XQuery, XSize, XSort, XTemplate } from '@ng-nest/ui/core';
+import { XData, XDataArray, XOrderBy, XQuery, XSize, XSleep, XSort, XTemplate } from '@ng-nest/ui/core';
 import { XPaginationInputIndexSizeSureType, XPaginationSizeData } from '@ng-nest/ui/pagination';
 import { XSelectNode } from '@ng-nest/ui/select';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   standalone: true,
@@ -29,7 +31,7 @@ class XTestTableComponent {}
 
 @Component({
   standalone: true,
-  imports: [XTableComponent],
+  imports: [XTableComponent, FormsModule, XInputComponent],
   template: `
     <x-table
       [data]="data()"
@@ -108,6 +110,45 @@ class XTestTableComponent {}
       (columnDragWidthEnded)="columnDragWidthEnded($event)"
     >
     </x-table>
+
+    <ng-template #headColumnTemplate let-column="$column">{{ column.id }} tpl</ng-template>
+
+    <ng-template #headThTemplate let-column="$column">{{ column.id }} tpl</ng-template>
+
+    <ng-template #bodyColumnTemplate let-column="$column" let-row="$row">{{ row[column.id] }} tpl</ng-template>
+
+    <ng-template #bodyTdTemplate let-column="$column" let-row="$row">{{ row[column.id] }} tpl</ng-template>
+
+    <ng-template #headSearchTemplate let-column="$column">
+      @switch (column.id) {
+        @case ('id') {
+          <x-input [style.width.%]="100" [(ngModel)]="search.id" (ngModelChange)="searchChange($event, 'id')"></x-input>
+        }
+        @case ('name') {
+          <x-input
+            [style.width.%]="100"
+            [(ngModel)]="search.name"
+            (ngModelChange)="searchChange($event, 'name')"
+          ></x-input>
+        }
+      }
+    </ng-template>
+  `,
+  styles: `
+    :host {
+      .even {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      .odd {
+        background-color: white;
+      }
+      .last {
+        color: blue;
+      }
+      .inspector {
+        color: red;
+      }
+    }
   `
 })
 class XTestTablePropertyComponent {
@@ -120,11 +161,23 @@ class XTestTablePropertyComponent {
   headerPosition = signal<XTableHeaderPosition>('top');
   activatedRow = signal<XTableRow | null>(null);
   headColumnTpl = signal<XTableTemplate>({});
+  headColumnTemplate = viewChild.required<TemplateRef<any>>('headColumnTemplate');
   headThTpl = signal<XTemplate | null>(null);
+  headThTemplate = viewChild.required<TemplateRef<any>>('headThTemplate');
   bodyColumnTpl = signal<XTableTemplate>({});
+  bodyColumnTemplate = viewChild.required<TemplateRef<any>>('bodyColumnTemplate');
   bodyTdTpl = signal<XTemplate | null>(null);
+  bodyTdTemplate = viewChild.required<TemplateRef<any>>('bodyTdTemplate');
   rowClass = signal<((row: XTableRow, index: number) => { [className: string]: boolean }) | null>(null);
   headSearchTpl = signal<XTemplate | null>(null);
+  headSearchTemplate = viewChild.required<TemplateRef<any>>('headSearchTemplate');
+  search = {
+    id: '',
+    name: ''
+  };
+  searchChange(value: string, field: string) {
+    console.log(value, field);
+  }
 
   sortChangeResult = signal<XSort[] | null>(null);
   sortChange(sort: XSort[]) {
@@ -250,9 +303,10 @@ describe(XTablePrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    const def = () => {
-      component.total.set(20);
-      component.data.set(Array.from({ length: 10 }).map((_, i) => ({ id: i + 1, name: 'name' + (i + 1) })));
+    const def = (size = 10, index = 1, total = 20) => {
+      component.total.set(total);
+      component.index.set(index);
+      component.data.set(Array.from({ length: size }).map((_, i) => ({ id: i + 1, name: 'name' + (i + 1) })));
       component.columns.set([
         { label: 'Id', id: 'id' },
         { label: 'Name', id: 'name' }
@@ -319,66 +373,277 @@ describe(XTablePrefix, () => {
       component.showHeader.set(false);
       def();
       fixture.detectChanges();
+      const thead = fixture.debugElement.query(By.css('.x-table thead'));
+      expect(thead).toBeFalsy();
     });
-    it('headerPosition.', () => {
-      expect(true).toBe(true);
+    it('headerPosition.', async () => {
+      component.headerPosition.set('bottom');
+      def();
+      fixture.detectChanges();
+      await XSleep(100);
+      const thead = fixture.debugElement.query(By.css('.x-table-head-bottom'));
+      expect(thead).toBeTruthy();
     });
     it('headColumnTpl.', () => {
-      expect(true).toBe(true);
+      component.headColumnTpl.set({ name: component.headColumnTemplate() });
+      def();
+      fixture.detectChanges();
+      const thname = fixture.debugElement.query(By.css('.x-table thead tr th:nth-child(2)'));
+      expect(thname.nativeElement.innerText).toBe('name tpl');
     });
     it('headThTpl.', () => {
-      expect(true).toBe(true);
+      component.headThTpl.set(component.headThTemplate());
+      def();
+      fixture.detectChanges();
+      const ths = fixture.debugElement.queryAll(By.css('.x-table thead tr th'));
+      expect(ths[0].nativeElement.innerText).toBe('id tpl');
+      expect(ths[1].nativeElement.innerText).toBe('name tpl');
     });
     it('bodyColumnTpl.', () => {
-      expect(true).toBe(true);
+      component.bodyColumnTpl.set({ name: component.bodyColumnTemplate() });
+      def();
+      fixture.detectChanges();
+      const thnames = fixture.debugElement.queryAll(By.css('.x-table tbody tr td:nth-child(2)'));
+      for (let i = 0; i < thnames.length; i++) {
+        expect(thnames[i].nativeElement.innerText).toBe(`name${i + 1} tpl`);
+      }
     });
     it('bodyTdTpl.', () => {
-      expect(true).toBe(true);
+      component.bodyTdTpl.set(component.bodyTdTemplate());
+      def();
+      fixture.detectChanges();
+      const thids = fixture.debugElement.queryAll(By.css('.x-table tbody tr td:nth-child(1)'));
+      for (let i = 0; i < thids.length; i++) {
+        expect(thids[i].nativeElement.innerText).toBe(`${i + 1} tpl`);
+      }
+      const thnames = fixture.debugElement.queryAll(By.css('.x-table tbody tr td:nth-child(2)'));
+      for (let i = 0; i < thnames.length; i++) {
+        expect(thnames[i].nativeElement.innerText).toBe(`name${i + 1} tpl`);
+      }
     });
     it('rowClass.', () => {
-      expect(true).toBe(true);
+      component.rowClass.set((row: XTableRow, index: number) => {
+        return {
+          odd: index % 2 === 0,
+          even: index % 2 === 1,
+          last: index === 9,
+          inspector: row['name'] === 'name1'
+        };
+      });
+      def();
+      fixture.detectChanges();
+      const tdfirst = fixture.debugElement.queryAll(By.css('.x-table tbody tr:first-child td'));
+      for (let td of tdfirst) {
+        expect(td.nativeElement).toHaveClass('inspector');
+      }
+      const tdlast = fixture.debugElement.queryAll(By.css('.x-table tbody tr:last-child td'));
+      for (let td of tdlast) {
+        expect(td.nativeElement).toHaveClass('last');
+      }
+      const tdeven = fixture.debugElement.queryAll(By.css('.x-table tbody tr:nth-child(even) td'));
+      for (let td of tdeven) {
+        expect(td.nativeElement).toHaveClass('even');
+      }
+      const tdodd = fixture.debugElement.queryAll(By.css('.x-table tbody tr:nth-child(odd) td'));
+      for (let td of tdodd) {
+        expect(td.nativeElement).toHaveClass('odd');
+      }
     });
     it('headSearchTpl.', () => {
-      expect(true).toBe(true);
+      component.headSearchTpl.set(component.headSearchTemplate());
+      def();
+      fixture.detectChanges();
+      const inputs = fixture.debugElement.queryAll(By.css('.x-table .x-table-search input'));
+      expect(inputs.length).toBe(2);
     });
     it('activatedRow.', () => {
-      expect(true).toBe(true);
+      component.activatedRow.set({ id: 1 });
+      def();
+      fixture.detectChanges();
+      const td = fixture.debugElement.query(By.css('.x-table tbody tr.x-table-activated td:first-child'));
+      expect(td.nativeElement.innerText).toBe('1');
     });
-    it('manual.', () => {
-      expect(true).toBe(true);
+    it('manual.', async () => {
+      component.manual.set(false);
+      component.columns.set([
+        { label: 'Id', id: 'id' },
+        { label: 'Name', id: 'name' }
+      ]);
+      component.data.set(
+        () =>
+          new Observable((x) => {
+            setTimeout(() => {
+              x.next({
+                total: 20,
+                list: Array.from({ length: 10 }).map((_, i) => ({ id: i + 1, name: 'name' + (i + 1) }))
+              });
+              x.complete();
+            }, 1000);
+          })
+      );
+      fixture.detectChanges();
+      let trs = fixture.debugElement.queryAll(By.css('.x-table tbody tr'));
+      expect(trs.length).toBe(0);
+
+      component.manual.set(true);
+      fixture.detectChanges();
+      await XSleep(1100);
+      trs = fixture.debugElement.queryAll(By.css('.x-table tbody tr'));
+      expect(trs.length).toBe(10);
     });
     it('index.', () => {
-      expect(true).toBe(true);
+      def(10, 2);
+      fixture.detectChanges();
+      const pageLink = fixture.debugElement.query(By.css('.x-pagination-link .x-button-activated'));
+      expect(pageLink.nativeElement.innerText).toBe('2');
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      component.size.set(5);
+      def(5);
+      fixture.detectChanges();
+      const pageLinks = fixture.debugElement.queryAll(By.css('.x-pagination-link'));
+      expect(pageLinks.length).toBe(4);
+      let trs = fixture.debugElement.queryAll(By.css('.x-table tbody tr'));
+      expect(trs.length).toBe(10);
     });
     it('total.', () => {
-      expect(true).toBe(true);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const total = fixture.debugElement.query(By.css('.x-pagination-total'));
+      expect(total.nativeElement.innerText.replace(/[^\d]/g, '')).toBe('100');
     });
-    it('query.', () => {
-      expect(true).toBe(true);
+    it('query.', async () => {
+      component.query.set({ filter: [{ field: 'name', value: 'name1' }] });
+      component.columns.set([
+        { label: 'Id', id: 'id' },
+        { label: 'Name', id: 'name' }
+      ]);
+      let data = Array.from({ length: 100 }).map((_, i) => ({ id: i + 1, name: 'name' + (i + 1) }));
+      component.data.set(
+        (_index: number, _size: number, query: XQuery) =>
+          new Observable((x) => {
+            let list = data.filter((y) => y.name === query.filter![0].value!);
+            x.next({
+              total: list.length,
+              list
+            });
+            x.complete();
+          })
+      );
+      fixture.detectChanges();
+      let trs = fixture.debugElement.queryAll(By.css('.x-table tbody tr'));
+      expect(trs.length).toBe(1);
+      expect(trs[0].nativeElement.innerText).toContain('1\nname1');
     });
     it('sortChange.', () => {
-      expect(true).toBe(true);
+      component.columns.set([
+        { label: 'Id', id: 'id', sort: true },
+        { label: 'Name', id: 'name' }
+      ]);
+      let data = Array.from({ length: 10 }).map((_, i) => ({ id: i + 1, name: 'name' + (i + 1) }));
+      component.data.set(
+        (_index: number, _size: number, query: XQuery) =>
+          new Observable((x) => {
+            let list = data;
+            if (query && query.sort) {
+              list = XOrderBy(
+                JSON.parse(JSON.stringify(data)),
+                query.sort.map((y) => y.field!),
+                query.sort.map((y) => y.value!) as ('asc' | 'desc')[]
+              );
+            }
+            x.next({
+              total: list.length,
+              list
+            });
+            x.complete();
+          })
+      );
+      fixture.detectChanges();
+      const th1a = fixture.debugElement.query(By.css('.x-table thead tr:first-child th:first-child a'));
+      th1a.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.sortChangeResult()).toBeTruthy();
+      expect(component.sortChangeResult()![0].field).toBe('id');
+      expect(component.sortChangeResult()![0].value).toBe('desc');
     });
     it('headCheckboxChange.', () => {
-      expect(true).toBe(true);
+      component.columns.set([
+        { label: '', id: 'checked', rowChecked: true, headChecked: true, type: 'checkbox', width: 60 },
+        { label: 'Id', id: 'id' },
+        { label: 'Name', id: 'name' }
+      ]);
+      component.data.set(Array.from({ length: 10 }).map((_, i) => ({ id: i + 1, name: 'name' + (i + 1) })));
+      fixture.detectChanges();
+
+      const checkbox = fixture.debugElement.query(By.css('.x-table thead tr th:first-child .x-checkbox-row-item'));
+      checkbox.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.headCheckboxChangeResult()).toBeTruthy();
+      expect(component.headCheckboxChangeResult()!.checkbox['checked']).toBeTrue();
     });
     it('bodyCheckboxChange.', () => {
-      expect(true).toBe(true);
+      component.columns.set([
+        { label: '', id: 'checked', rowChecked: true, headChecked: true, type: 'checkbox', width: 60 },
+        { label: 'Id', id: 'id' },
+        { label: 'Name', id: 'name' }
+      ]);
+      component.data.set(Array.from({ length: 10 }).map((_, i) => ({ id: i + 1, name: 'name' + (i + 1) })));
+      fixture.detectChanges();
+
+      const tr = fixture.debugElement.query(By.css('.x-table tbody tr:first-child'));
+      tr.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.bodyCheckboxChangeResult()).toBeTruthy();
+      expect(component.bodyCheckboxChangeResult()!.id).toBe(1);
     });
     it('allowSelectRow.', () => {
-      expect(true).toBe(true);
+      def();
+      fixture.detectChanges();
+      const tr = fixture.debugElement.query(By.css('.x-table tbody tr:first-child'));
+      tr.nativeElement.click();
+
+      fixture.detectChanges();
+      expect(tr.nativeElement).toHaveClass('x-table-activated');
+
+      component.allowSelectRow.set(false);
+      fixture.detectChanges();
+      expect(tr.nativeElement).not.toHaveClass('x-table-activated');
     });
     it('allowCheckRow.', () => {
-      expect(true).toBe(true);
+      component.allowCheckRow.set(false);
+      component.columns.set([
+        { label: '', id: 'checked', rowChecked: true, headChecked: true, type: 'checkbox', width: 60 },
+        { label: 'Id', id: 'id' },
+        { label: 'Name', id: 'name' }
+      ]);
+      component.data.set(Array.from({ length: 10 }).map((_, i) => ({ id: i + 1, name: 'name' + (i + 1) })));
+      fixture.detectChanges();
+
+      const tr = fixture.debugElement.query(By.css('.x-table tbody tr:first-child'));
+      tr.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.bodyCheckboxChangeResult()).toBeFalsy();
     });
     it('virtualScroll.', () => {
-      expect(true).toBe(true);
+      component.scroll.set({ x: 1500, y: 600 });
+      component.virtualScroll.set(true);
+      def(100, 1, 200);
+      fixture.detectChanges();
+      const trs = fixture.debugElement.queryAll(By.css('.x-table tbody tr'));
+      expect(trs.length < 100).toBeTrue();
     });
     it('bodyHeight.', () => {
-      expect(true).toBe(true);
+      component.scroll.set({ x: 1500, y: 600 });
+      component.virtualScroll.set(true);
+      component.bodyHeight.set(200);
+      def(100, 1, 200);
+      fixture.detectChanges();
+      const scroll = fixture.debugElement.query(By.css('.cdk-virtual-scrollable'));
+      expect(scroll.nativeElement.clientHeight).toBe(200);
     });
     it('itemSize.', () => {
       expect(true).toBe(true);
