@@ -39,14 +39,13 @@ import {
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { DOCUMENT, NgClass } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XAutoCompletePrefix}`,
-  standalone: true,
-  imports: [NgClass, FormsModule, ReactiveFormsModule, XInputComponent, XAutoCompletePortalComponent],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent],
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.scss'],
   encapsulation: ViewEncapsulation.None,

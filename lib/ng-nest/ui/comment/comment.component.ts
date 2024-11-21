@@ -12,7 +12,6 @@ import type { XCommentNode } from './comment.property';
 
 @Component({
   selector: `${XCommentPrefix}`,
-  standalone: true,
   imports: [
     XI18nPipe,
     XLinkComponent,

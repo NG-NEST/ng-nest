@@ -1,3 +1,4 @@
 // Icon style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-icon-prefix: $--x-prefix + '-icon';
+$x-icon-prefix: $x-prefix + '-icon';

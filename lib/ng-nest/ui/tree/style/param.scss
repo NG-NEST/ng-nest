@@ -1,5 +1,6 @@
 // Tree style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-tree-prefix: $--x-prefix + '-tree';
+$x-tree-prefix: $x-prefix + '-tree';
 
-$--x-tree-node-prefix: $--x-prefix + '-tree-node';
+$x-tree-node-prefix: $x-prefix + '-tree-node';

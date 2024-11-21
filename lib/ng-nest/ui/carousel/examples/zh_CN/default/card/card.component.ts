@@ -3,7 +3,6 @@ import { XCarouselComponent, XCarouselPanelComponent } from '@ng-nest/ui/carouse
 
 @Component({
   selector: 'ex-card',
-  standalone: true,
   imports: [XCarouselComponent, XCarouselPanelComponent],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']

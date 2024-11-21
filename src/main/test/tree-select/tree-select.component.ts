@@ -17,7 +17,6 @@ import {
 
 @Component({
   selector: 'te-tree-select',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExAsyncComponent,

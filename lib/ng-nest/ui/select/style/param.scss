@@ -1,38 +1,39 @@
 // Select style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-select-prefix: $--x-prefix + '-select';
+$x-select-prefix: $x-prefix + '-select';
 
 /* 字体大小 */
-$--x-select-font-size: $--x-font-size;
+$x-select-font-size: $x-font-size;
 
 /* 高度 */
-$--x-select-height: calc(#{$--x-font-size} + 0.875rem);
+$x-select-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 内边距 */
-$--x-select-padding: 0 $--x-control-padding-horizontal;
+$x-select-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-select-color: $--x-primary-900;
+$x-select-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-select-placeholder-color: $--x-placeholder-color;
+$x-select-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-select-background-color: $--x-background;
+$x-select-background-color: $x-background;
 
 /* 边框样式 */
-$--x-select-border: $--x-border-width $--x-border-style $--x-border;
+$x-select-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-select-border-radius: $--x-border-radius;
+$x-select-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-select-disabled-color: $--x-text-500;
+$x-select-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-select-icon-font-size: $--x-font-size-medium;
+$x-select-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-select-icon-padding: $--x-control-padding-horizontal;
+$x-select-icon-padding: $x-control-padding-horizontal;
 
-$--x-select-portal-prefix: $--x-prefix + '-select-portal';
+$x-select-portal-prefix: $x-prefix + '-select-portal';

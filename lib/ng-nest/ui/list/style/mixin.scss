@@ -1,8 +1,7 @@
 // List
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin list {
   & {
@@ -22,13 +21,13 @@
     cursor: pointer;
     &.cdk-drop-list-dragging {
       x-list-option.cdk-drag-placeholder .x-list-option {
-        border-color: $--x-primary;
-        color: $--x-primary;
-        background-color: $--x-background;
+        border-color: $x-primary;
+        color: $x-primary;
+        background-color: $x-background;
         opacity: 0.8;
       }
       x-list-option:not(.cdk-drag-placeholder) {
-        transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+        transition: transform $x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
       }
     }
   }
@@ -41,19 +40,22 @@
   &-portal {
     padding: 0.125rem 0.25rem;
     x-list-option .x-list-option {
-      padding: 0 calc(#{$--x-padding-medium} - 0.5rem);
+      padding: 0 calc(#{$x-padding-medium} - 0.5rem);
       margin: 0.125rem 0;
-      border-radius: $--x-border-small-radius;
+      border-radius: $x-border-small-radius;
+      transition:
+        background-color $x-animation-duration-base,
+        color $x-animation-duration-base;
     }
   }
   &-leaf,
   &-checked {
     right: 0;
     margin-left: 0.4rem;
-    color: $--x-text-400;
+    color: $x-text-400;
   }
   &-icon > span x-icon {
-    color: $--x-text-300;
+    color: $x-text-300;
     margin-right: 0.25rem;
   }
 
@@ -62,11 +64,11 @@
     display: block;
   }
 
-  @include size('big', $--x-height-big, 0 $--x-padding-big);
-  @include size('large', $--x-height-large, 0 $--x-padding-large);
-  @include size('medium', $--x-height-medium, 0 $--x-padding-medium);
-  @include size('small', $--x-height-small, 0 $--x-padding-small);
-  @include size('mini', $--x-height-mini, 0 $--x-padding-mini);
+  @include size('big', $x-height-big, 0 $x-padding-big);
+  @include size('large', $x-height-large, 0 $x-padding-large);
+  @include size('medium', $x-height-medium, 0 $x-padding-medium);
+  @include size('small', $x-height-small, 0 $x-padding-small);
+  @include size('mini', $x-height-mini, 0 $x-padding-mini);
 }
 
 @mixin size($size, $height, $padding) {
@@ -83,9 +85,9 @@
 @mixin list-option {
   @include option();
   transition:
-    border-color $--x-animation-duration-base,
-    background-color $--x-animation-duration-base,
-    color $--x-animation-duration-base;
+    border-color $x-animation-duration-base,
+    background-color $x-animation-duration-base,
+    color $x-animation-duration-base;
   &-content {
     overflow: hidden;
     white-space: nowrap;
@@ -95,11 +97,11 @@
     display: inline-block;
   }
   &:not(:first-child) {
-    margin-top: $--x-border-width;
+    margin-top: $x-border-width;
   }
   &:hover:not(.x-disabled),
   &.x-active:not(.x-disabled) {
-    background-color: $--x-background-a200;
+    background-color: $x-background-a200;
   }
   &.x-list-divided {
     margin-top: 0.8125rem;
@@ -110,14 +112,14 @@
       left: 0;
       width: 100%;
       margin-top: -0.5rem;
-      border-top: $--x-border-base;
+      border-top: $x-border-base;
     }
   }
   &.x-selected:not(.x-disabled) {
-    background-color: $--x-primary-900;
-    color: $--x-primary;
+    background-color: $x-primary-900;
+    color: $x-primary;
     > x-icon {
-      color: $--x-primary;
+      color: $x-primary;
     }
   }
   &.x-disabled {
@@ -130,11 +132,11 @@
       color: var(--x-text-500);
     }
   }
-  @include option-size('big', $--x-height-big, 0 $--x-padding-big);
-  @include option-size('large', $--x-height-large, 0 $--x-padding-large);
-  @include option-size('medium', $--x-height-medium, 0 $--x-padding-medium);
-  @include option-size('small', $--x-height-small, 0 $--x-padding-small);
-  @include option-size('mini', $--x-height-mini, 0 $--x-padding-mini);
+  @include option-size('big', $x-height-big, 0 $x-padding-big);
+  @include option-size('large', $x-height-large, 0 $x-padding-large);
+  @include option-size('medium', $x-height-medium, 0 $x-padding-medium);
+  @include option-size('small', $x-height-small, 0 $x-padding-small);
+  @include option-size('mini', $x-height-mini, 0 $x-padding-mini);
 }
 
 @mixin option-size($size, $height, $padding) {
@@ -146,7 +148,7 @@
 }
 
 @mixin option {
-  border-radius: $--x-border-radius;
+  border-radius: $x-border-radius;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -156,16 +158,16 @@
 @mixin body-list-option {
   display: block;
   &.cdk-drag-preview {
-    .#{$--x-list-option-prefix} {
+    .#{$x-list-option-prefix} {
       @include option();
-      border-color: $--x-border;
-      color: $--x-text-400;
-      background-color: $--x-background-a100;
+      border-color: $x-border;
+      color: $x-text-400;
+      background-color: $x-background-a100;
       opacity: 0.9;
     }
   }
   &.cdk-drag-animating {
-    transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+    transition: transform $x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
   }
 }
 

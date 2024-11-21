@@ -1,23 +1,23 @@
-// Button
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/size.scss' as *;
+@use './param.scss' as *;
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+// Button
 
 @mixin button {
   & {
     position: relative;
     border: none;
     outline: none;
-    border-radius: $--x-border-radius;
-    font-size: $--x-font-size-small;
+    border-radius: $x-border-radius;
+    font-size: $x-font-size-small;
     text-align: center;
     background-clip: border-box;
     cursor: pointer;
     user-select: none;
     white-space: nowrap;
     touch-action: manipulation;
-    box-shadow: $--x-box-shadow;
+    box-shadow: $x-box-shadow;
     width: 100%;
   }
   &:focus {
@@ -61,10 +61,10 @@
   &-transition {
     will-change: color, background-color, border, box-shadow;
     transition:
-      color $--x-animation-duration-base ease-in-out,
-      background-color $--x-animation-duration-base ease-in-out,
-      border $--x-animation-duration-base ease-in-out,
-      box-shadow $--x-animation-duration-base ease-in-out;
+      color $x-animation-duration-base ease-in-out,
+      background-color $x-animation-duration-base ease-in-out,
+      border $x-animation-duration-base ease-in-out,
+      box-shadow $x-animation-duration-base ease-in-out;
   }
   &-disabled {
     transform: none !important;
@@ -77,21 +77,21 @@
     border-radius: 50%;
     padding: 0 !important;
     &.x-size-big {
-      width: $--x-height-big;
+      width: $x-height-big;
     }
     &.x-size-large {
-      width: $--x-height-large;
+      width: $x-height-large;
     }
     &.x-size-medium {
-      width: $--x-height-medium;
+      width: $x-height-medium;
     }
     &.x-size-small {
-      width: $--x-height-small;
+      width: $x-height-small;
     }
     &.x-size-mini {
-      width: $--x-height-mini;
+      width: $x-height-mini;
     }
-    .#{$--x-button}-loading {
+    .#{$x-button}-loading {
       margin-right: 0;
       margin-left: 0;
     }
@@ -101,61 +101,61 @@
       margin-right: 0;
       margin-left: 0;
     }
-    .#{$--x-button}-loading {
+    .#{$x-button}-loading {
       margin-right: 0;
       margin-left: 0;
     }
   }
   &-only-icon,
-  &-only-icon.#{$--x-button}-initial,
+  &-only-icon.#{$x-button}-initial,
   &-text {
-    color: $--x-text;
+    color: $x-text;
     border: none;
     background-color: transparent;
     box-shadow: none;
     &:hover,
     &:active {
-      @include button-color($--x-button-hover, $--x-button-initial-hover-background, transparent);
+      @include button-color($x-button-hover, $x-button-initial-hover-background, transparent);
     }
   }
   &-closable {
-    color: $--x-text-400;
+    color: $x-text-400;
     box-shadow: none;
     background: none;
     &:hover {
       background: none;
-      color: $--x-text;
+      color: $x-text;
     }
   }
 
-  &-disabled.#{$--x-button}-activated.#{$--x-button}-initial {
-    @include disabled($--x-primary-700, $--x-background, $--x-primary-700);
+  &-disabled.#{$x-button}-activated.#{$x-button}-initial {
+    @include disabled($x-primary-700, $x-background, $x-primary-700);
     &:hover,
     &:active {
-      @include disabled($--x-primary-700, $--x-background, $--x-primary-700);
+      @include disabled($x-primary-700, $x-background, $x-primary-700);
     }
   }
-  &-disabled.#{$--x-button}-text,
-  &-disabled.#{$--x-button}-only-icon {
-    @include disabled($--x-button-disabled, transparent, transparent);
+  &-disabled.#{$x-button}-text,
+  &-disabled.#{$x-button}-only-icon {
+    @include disabled($x-button-disabled, transparent, transparent);
     &:hover,
     &:active {
-      @include disabled($--x-button-disabled, transparent, transparent);
+      @include disabled($x-button-disabled, transparent, transparent);
     }
   }
 
-  @include size(big, $--x-height-big, 0 $--x-padding-big);
-  @include size(large, $--x-height-large, 0 $--x-padding-large);
-  @include size(medium, $--x-height-medium, 0 $--x-padding-medium);
-  @include size(small, $--x-height-small, 0 $--x-padding-small);
-  @include size(mini, $--x-height-mini, 0 $--x-padding-mini);
+  @include size(big, $x-height-big, 0 $x-padding-big);
+  @include size(large, $x-height-large, 0 $x-padding-large);
+  @include size(medium, $x-height-medium, 0 $x-padding-medium);
+  @include size(small, $x-height-small, 0 $x-padding-small);
+  @include size(mini, $x-height-mini, 0 $x-padding-mini);
 }
 
 @mixin button-color($color, $background, $border) {
   color: #{$color};
   background-color: #{$background};
   border-color: #{$border};
-  .#{$--x-button}-path {
+  .#{$x-button}-path {
     stroke: #{$color};
   }
 }
@@ -186,7 +186,7 @@
   $plain-disabled,
   $plain-disabled-background,
   $plain-disabled-border,
-  $--box-shadow-color,
+  $box-shadow-color,
   $plain-box-shadow-color,
   $ripple-background
 ) {
@@ -197,13 +197,13 @@
     &.cdk-keyboard-focused:not(.x-button-disabled) {
       @include button-color($hover, $hover-background, $hover-border);
       & {
-        box-shadow: $--x-box-shadow-hover;
+        box-shadow: $x-box-shadow-hover;
       }
     }
     &:active:not(.x-button-disabled) {
       @include button-color($active, $active-background, $active-border);
     }
-    &.#{$--x-button}-disabled {
+    &.#{$x-button}-disabled {
       @include disabled($disabled, $disabled-background, $disabled-border);
     }
     &-plain {
@@ -216,10 +216,10 @@
       &:active:not(.x-button-disabled) {
         @include button-color($color, $plain-active-background, $plain-active-border);
       }
-      &.#{$--x-button}-disabled {
+      &.#{$x-button}-disabled {
         @include disabled($plain-disabled, $plain-disabled-background, $plain-disabled-border);
       }
-      &.#{$--x-button}-activated {
+      &.#{$x-button}-activated {
         z-index: 2;
         @include button-color($active, $active-background, $active-border);
       }
@@ -233,7 +233,7 @@
         box-shadow: none;
         @include button-color($plain-color, $plain-background, $plain-border);
       }
-      &.#{$--x-button}-disabled {
+      &.#{$x-button}-disabled {
         @include disabled($plain-disabled, transparent, $plain-disabled-border);
       }
     }
@@ -245,7 +245,7 @@
         box-shadow: none;
       }
     }
-    &.#{$--x-button}-activated {
+    &.#{$x-button}-activated {
       z-index: 2;
       @include button-color($active, $active-background, $active-border);
     }
@@ -255,12 +255,12 @@
   }
 }
 
-@mixin disabled($color, $bg-color, $--border-color) {
+@mixin disabled($color, $bg-color, $border-color) {
   color: $color;
   cursor: not-allowed;
   background-image: none;
   background-color: $bg-color;
-  border-color: $--border-color;
+  border-color: $border-color;
   box-shadow: none;
 }
 
@@ -270,9 +270,9 @@
     position: relative;
   }
 
-  &:not(.#{$--x-buttons}-space) {
-    > #{$--x-button} {
-      .#{$--x-button} {
+  &:not(.#{$x-buttons}-space) {
+    > #{$x-button} {
+      .#{$x-button} {
         border-radius: 0;
         position: relative;
         box-shadow: none !important;
@@ -291,21 +291,21 @@
         z-index: 2;
       }
       &:first-child {
-        .#{$--x-button} {
-          border-top-left-radius: $--x-border-radius;
-          border-bottom-left-radius: $--x-border-radius;
+        .#{$x-button} {
+          border-top-left-radius: $x-border-radius;
+          border-bottom-left-radius: $x-border-radius;
         }
-        .#{$--x-button}-round {
+        .#{$x-button}-round {
           border-top-left-radius: 5rem;
           border-bottom-left-radius: 5rem;
         }
       }
       &:last-child {
-        .#{$--x-button} {
-          border-top-right-radius: $--x-border-radius;
-          border-bottom-right-radius: $--x-border-radius;
+        .#{$x-button} {
+          border-top-right-radius: $x-border-radius;
+          border-bottom-right-radius: $x-border-radius;
         }
-        .#{$--x-button}-round {
+        .#{$x-button}-round {
           border-top-right-radius: 5rem;
           border-bottom-right-radius: 5rem;
         }
@@ -313,10 +313,10 @@
     }
   }
   &-hiddenBorder {
-    > #{$--x-button} {
-      .#{$--x-button} {
+    > #{$x-button} {
+      .#{$x-button} {
         border: none;
-        padding: 0 $--x-padding-small;
+        padding: 0 $x-padding-small;
         background-color: transparent;
         box-shadow: none !important;
         &-icon {
@@ -324,25 +324,25 @@
             font-size: 1.125rem;
           }
           &:hover {
-            color: $--x-button-primary;
+            color: $x-button-primary;
           }
         }
       }
     }
   }
-  &-box-shadow:not(.#{$--x-buttons}-space) {
-    border-radius: $--x-border-radius;
-    box-shadow: $--x-box-shadow;
+  &-box-shadow:not(.#{$x-buttons}-space) {
+    border-radius: $x-border-radius;
+    box-shadow: $x-box-shadow;
   }
-  &-round:not(.#{$--x-buttons}-space) {
+  &-round:not(.#{$x-buttons}-space) {
     border-radius: 5rem;
   }
 }
 
 @mixin buttons-type($type) {
-  > #{$--x-button} {
+  > #{$x-button} {
     &:not(:first-child) {
-      > .#{$--x-button}-#{$type} {
+      > .#{$x-button}-#{$type} {
         border-left-color: rgba(255, 255, 255, 0.2);
       }
     }

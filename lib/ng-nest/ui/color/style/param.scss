@@ -1,3 +1,4 @@
 // Color style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-color-prefix: $--x-prefix + '-color';
+$x-color-prefix: $x-prefix + '-color';

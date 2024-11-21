@@ -16,14 +16,12 @@ import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
-  standalone: true,
   imports: [XListComponent],
   template: ` <x-list></x-list> `
 })
 class XTestListComponent {}
 
 @Component({
-  standalone: true,
   imports: [XListComponent, FormsModule],
   template: `
     <div #scrollElementRef style="overflow: auto; height: 100px">

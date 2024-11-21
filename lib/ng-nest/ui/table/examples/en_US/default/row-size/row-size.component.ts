@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-row-size',
-  standalone: true,
   imports: [XTableComponent],
   templateUrl: './row-size.component.html',
   providers: [RowSizeService]

@@ -1,3 +1,4 @@
 // TimeAgo style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-time-ago: $--x-prefix + '-time-ago';
+$x-time-ago: $x-prefix + '-time-ago';

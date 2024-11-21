@@ -9,14 +9,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
   imports: [XSliderSelectComponent],
   template: ` <x-slider-select> </x-slider-select> `
 })
 class XTestSliderSelectComponent {}
 
 @Component({
-  standalone: true,
   imports: [XSliderSelectComponent, FormsModule],
   template: `
     <x-slider-select
@@ -208,23 +206,23 @@ describe(XSliderSelectPrefix, () => {
       component.marks.set([
         {
           value: 0,
-          label: '0¡ãC'
+          label: '0ï¿½ï¿½C'
         },
         {
           value: 37,
-          label: '37¡ãC'
+          label: '37ï¿½ï¿½C'
         },
         {
           value: 60,
-          label: '60¡ãC'
+          label: '60ï¿½ï¿½C'
         }
       ]);
       fixture.detectChanges();
       const marks = fixture.debugElement.queryAll(By.css('.x-slider-select-mark'));
       expect(marks.length).toBe(3);
-      expect(marks[0].nativeElement.innerText).toBe('0¡ãC');
-      expect(marks[1].nativeElement.innerText).toBe('37¡ãC');
-      expect(marks[2].nativeElement.innerText).toBe('60¡ãC');
+      expect(marks[0].nativeElement.innerText).toBe('0ï¿½ï¿½C');
+      expect(marks[1].nativeElement.innerText).toBe('37ï¿½ï¿½C');
+      expect(marks[2].nativeElement.innerText).toBe('60ï¿½ï¿½C');
     });
     it('tooltipCustom.', async () => {
       component.tooltipCustom.set(component.tooltipCustomTemplate());

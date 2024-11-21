@@ -7,7 +7,6 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XFormComponent, XButtonComponent, XDialogComponent, XIconComponent, XLinkComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']

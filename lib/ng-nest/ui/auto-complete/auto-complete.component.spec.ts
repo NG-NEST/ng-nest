@@ -18,16 +18,14 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
-  imports: [XAutoCompleteComponent],
-  template: ` <x-auto-complete></x-auto-complete> `
+    imports: [XAutoCompleteComponent],
+    template: ` <x-auto-complete></x-auto-complete> `
 })
 class XTestAutoCompleteComponent {}
 
 @Component({
-  standalone: true,
-  imports: [XAutoCompleteComponent],
-  template: `
+    imports: [XAutoCompleteComponent],
+    template: `
     <x-auto-complete
       [data]="data()"
       [debounceTime]="debounceTime()"

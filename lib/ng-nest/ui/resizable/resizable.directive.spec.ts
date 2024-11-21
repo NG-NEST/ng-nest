@@ -6,14 +6,12 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XResizableDirective],
   template: ` <div xResizable></div> `
 })
 class XTestResizableComponent {}
 
 @Component({
-  standalone: true,
   imports: [XResizableDirective],
   template: `
     <div

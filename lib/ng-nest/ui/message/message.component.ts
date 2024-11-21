@@ -7,7 +7,6 @@ import { XAlertComponent } from '@ng-nest/ui/alert';
 
 @Component({
   selector: `${XMessagePrefix}`,
-  standalone: true,
   imports: [XAlertComponent],
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],

@@ -1,6 +1,7 @@
 // Ripple
-@import './mixin';
+@use './mixin' as *;
+@use './param' as *;
 
-.#{$--x-ripple-prefix} {
+.#{$x-ripple-prefix} {
   @include ripple();
 }

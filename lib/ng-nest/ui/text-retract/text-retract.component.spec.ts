@@ -6,14 +6,12 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
-  standalone: true,
   imports: [XTextRetractComponent],
   template: ` <x-text-retract> </x-text-retract> `
 })
 class XTestTextRetractComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTextRetractComponent],
   template: ` <x-text-retract [content]="content()" [max]="max()"> </x-text-retract> `
 })

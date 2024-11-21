@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'te-message-box',
-  standalone: true,
   imports: [ExDefaultComponent, ExConfirmComponent, ExCustomComponent, ExPromptComponent, ExTextareaComponent],
   templateUrl: './message-box.component.html'
 })

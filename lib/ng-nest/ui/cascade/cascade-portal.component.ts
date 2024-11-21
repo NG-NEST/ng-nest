@@ -24,7 +24,6 @@ import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'x-cascade-portal',
-  standalone: true,
   imports: [FormsModule, XListComponent],
   templateUrl: './cascade-portal.component.html',
   styleUrls: ['./cascade-portal.component.scss'],

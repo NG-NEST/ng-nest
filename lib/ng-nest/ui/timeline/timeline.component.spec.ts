@@ -7,14 +7,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { XDataArray, XSize, XTemplate, XType } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XTimelineComponent],
   template: ` <x-timeline> </x-timeline> `
 })
 class XTestTimelineComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTimelineComponent],
   template: `
     <x-timeline [data]="data()" [type]="type()" [size]="size()" [wrapper]="wrapper()" [mode]="mode()"> </x-timeline>

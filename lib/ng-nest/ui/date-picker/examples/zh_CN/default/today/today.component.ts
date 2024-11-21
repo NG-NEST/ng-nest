@@ -5,7 +5,6 @@ import { XDatePickerComponent, XDateRangeComponent } from '@ng-nest/ui/date-pick
 
 @Component({
   selector: 'ex-today',
-  standalone: true,
   imports: [FormsModule, XDatePickerComponent, XDateRangeComponent],
   templateUrl: './today.component.html',
   styleUrls: ['./today.component.scss']

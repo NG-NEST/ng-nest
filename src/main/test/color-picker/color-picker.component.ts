@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: 'te-color-picker',
-  standalone: true,
   imports: [
     ExBorderedComponent,
     ExDefaultComponent,

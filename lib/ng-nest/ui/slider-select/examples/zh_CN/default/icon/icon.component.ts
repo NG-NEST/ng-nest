@@ -5,7 +5,6 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 
 @Component({
   selector: 'ex-icon',
-  standalone: true,
   imports: [FormsModule, XSliderSelectComponent, XButtonComponent],
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']

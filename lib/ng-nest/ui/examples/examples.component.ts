@@ -3,7 +3,6 @@ import { XExamplesPrefix } from './examples.property';
 
 @Component({
   selector: `${XExamplesPrefix}`,
-  standalone: true,
   templateUrl: './examples.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

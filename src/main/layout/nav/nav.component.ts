@@ -15,8 +15,7 @@ import { XDialogService } from '@ng-nest/ui/dialog';
 
 @Component({
   selector: 'ns-nav',
-  standalone: true,
-  imports: [CommonModule, FormsModule, XSliderComponent, XButtonComponent, XSelectComponent, XI18nPipe, ThemeComponent],
+  imports: [CommonModule, FormsModule, XSliderComponent, XButtonComponent, XSelectComponent, XI18nPipe],
   templateUrl: './nav.component.html',
   encapsulation: ViewEncapsulation.None
 })

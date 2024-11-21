@@ -1,4 +1,4 @@
-@import '../mixins/index';
-@import '../params/index';
+@use '../mixins/hidden' as *;
+@use '../params/index' as *;
 
-@include var-size-hidden($--x-size-range-only);
+@include var-size-hidden($x-size-range-only);

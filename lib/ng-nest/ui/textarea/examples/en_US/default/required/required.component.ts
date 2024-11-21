@@ -4,7 +4,6 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
 
 @Component({
   selector: 'ex-required',
-  standalone: true,
   imports: [FormsModule, XTextareaComponent],
   templateUrl: './required.component.html',
   styleUrls: ['./required.component.scss']

@@ -1,5 +1,6 @@
 // Card style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-card: $--x-prefix + '-card';
+$x-card: $x-prefix + '-card';
 
-$--x-card-box-shadow: $--x-box-shadow;
+$x-card-box-shadow: $x-box-shadow;

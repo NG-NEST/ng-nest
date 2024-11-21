@@ -3,7 +3,6 @@ import { XProgressComponent } from '@ng-nest/ui/progress';
 
 @Component({
   selector: 'ex-format',
-  standalone: true,
   imports: [XProgressComponent],
   templateUrl: './format.component.html',
   styleUrls: ['./format.component.scss']

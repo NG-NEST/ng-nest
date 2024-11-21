@@ -19,7 +19,6 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XLoadingPrefix}, [${XLoadingPrefix}]`,
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet, XIconComponent, XOutletDirective],
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],

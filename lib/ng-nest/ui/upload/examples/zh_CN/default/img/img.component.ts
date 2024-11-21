@@ -5,7 +5,6 @@ import { XUploadComponent } from '@ng-nest/ui/upload';
 
 @Component({
   selector: 'ex-img',
-  standalone: true,
   imports: [FormsModule, XUploadComponent, XIconComponent],
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss']

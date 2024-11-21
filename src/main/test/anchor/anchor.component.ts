@@ -3,7 +3,6 @@ import { ExDefaultComponent, ExLoadingComponent } from '@ng-nest/ui/anchor/examp
 
 @Component({
   selector: 'te-anchor',
-  standalone: true,
   imports: [ExDefaultComponent, ExLoadingComponent],
   templateUrl: './anchor.component.html'
 })

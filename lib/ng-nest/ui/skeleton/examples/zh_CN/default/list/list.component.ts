@@ -9,7 +9,6 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 
 @Component({
   selector: 'ex-list',
-  standalone: true,
   imports: [
     NgStyle,
     FormsModule,

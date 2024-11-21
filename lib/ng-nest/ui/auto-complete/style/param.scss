@@ -1,38 +1,39 @@
 // AutoComplete style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-auto-complete-prefix: $--x-prefix + '-auto-complete';
+$x-auto-complete-prefix: $x-prefix + '-auto-complete';
 
 /* 字体大小 */
-$--x-auto-complete-font-size: $--x-font-size;
+$x-auto-complete-font-size: $x-font-size;
 
 /* 高度 */
-$--x-auto-complete-height: calc(#{$--x-font-size} + 0.875rem);
+$x-auto-complete-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 内边距 */
-$--x-auto-complete-padding: 0 $--x-control-padding-horizontal;
+$x-auto-complete-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-auto-complete-color: $--x-primary-900;
+$x-auto-complete-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-auto-complete-placeholder-color: $--x-placeholder-color;
+$x-auto-complete-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-auto-complete-background-color: $--x-background;
+$x-auto-complete-background-color: $x-background;
 
 /* 边框样式 */
-$--x-auto-complete-border: $--x-border-width $--x-border-style $--x-border;
+$x-auto-complete-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-auto-complete-border-radius: $--x-border-radius;
+$x-auto-complete-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-auto-complete-disabled-color: $--x-text-500;
+$x-auto-complete-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-auto-complete-icon-font-size: $--x-font-size-medium;
+$x-auto-complete-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-auto-complete-icon-padding: $--x-control-padding-horizontal;
+$x-auto-complete-icon-padding: $x-control-padding-horizontal;
 
-$--x-auto-complete-portal-prefix: $--x-prefix + '-auto-complete-portal';
+$x-auto-complete-portal-prefix: $x-prefix + '-auto-complete-portal';

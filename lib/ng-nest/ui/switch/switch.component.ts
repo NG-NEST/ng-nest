@@ -8,7 +8,6 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XSwitchPrefix}`,
-  standalone: true,
   imports: [NgClass, FormsModule, ReactiveFormsModule, XLoadingComponent, XOutletDirective],
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.scss'],

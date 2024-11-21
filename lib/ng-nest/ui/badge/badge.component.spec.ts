@@ -7,7 +7,6 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XBadgeComponent],
   template: `
     <x-badge value="10">
@@ -18,7 +17,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 class XTestBadgeComponent {}
 
 @Component({
-  standalone: true,
   imports: [XBadgeComponent],
   template: `
     <x-badge

@@ -13,7 +13,6 @@ import {
 
 @Component({
   selector: 'te-steps',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExCustomComponent,

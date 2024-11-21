@@ -8,14 +8,12 @@ import { XSize, XType } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XTagComponent],
   template: ` <x-tag> </x-tag> `
 })
 class XTestTagComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTagComponent],
   template: `
     <x-tag

@@ -5,7 +5,6 @@ import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-feather',
-  standalone: true,
   imports: [XIconComponent, XTabsComponent, XTabComponent, XRowComponent, XColComponent],
   templateUrl: './feather.component.html',
   styleUrls: ['./feather.component.scss']

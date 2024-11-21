@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: 'te-drawer',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExContainerComponent,

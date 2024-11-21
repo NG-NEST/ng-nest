@@ -3,7 +3,6 @@ import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-scroll',
-  standalone: true,
   imports: [XSliderComponent],
   templateUrl: './scroll.component.html'
 })

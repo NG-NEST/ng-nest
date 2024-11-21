@@ -4,7 +4,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-label',
-  standalone: true,
   imports: [XAvatarComponent, XButtonComponent],
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']

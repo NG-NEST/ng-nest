@@ -1,3 +1,4 @@
 // Popconfirm style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-popconfirm: $--x-prefix + '-popconfirm';
+$x-popconfirm: $x-prefix + '-popconfirm';

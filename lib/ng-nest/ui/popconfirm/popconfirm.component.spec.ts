@@ -9,14 +9,12 @@ import { XPopoverTrigger } from '@ng-nest/ui/popover';
 import { Observable } from 'rxjs';
 
 @Component({
-  standalone: true,
   imports: [XPopconfirmComponent],
   template: ` <x-popconfirm></x-popconfirm> `
 })
 class XTestPopconfirmComponent {}
 
 @Component({
-  standalone: true,
   imports: [XPopconfirmComponent],
   template: `
     <x-popconfirm

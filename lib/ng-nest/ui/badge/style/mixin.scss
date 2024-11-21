@@ -1,12 +1,11 @@
 // Badge
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin badge {
   & {
-    font-size: $--x-font-size;
+    font-size: $x-font-size;
     display: inline-block;
     box-sizing: border-box;
     text-align: center;
@@ -20,14 +19,14 @@
     transform: translate(50%, -50%);
     transform-origin: 100% 0%;
     border-radius: 0.625rem;
-    color: $--x-white;
+    color: $x-white;
     display: inline-block;
     height: 1.125rem;
     line-height: 1.125rem;
     padding: 0 0.375rem;
     text-align: center;
     white-space: nowrap;
-    box-shadow: 0 0 0 0.0625rem $--x-white;
+    box-shadow: 0 0 0 0.0625rem $x-white;
     vertical-align: middle;
   }
   &-dot {
@@ -50,14 +49,14 @@
     position: relative;
     height: 1.125rem;
     display: inline-block;
-    transition: transform $--x-animation-duration-base ease-in-out;
+    transition: transform $x-animation-duration-base ease-in-out;
   }
-  @include badge-type('primary', $--x-primary);
-  @include badge-type('success', $--x-success);
-  @include badge-type('info', $--x-info);
-  @include badge-type('warning', $--x-warning);
-  @include badge-type('danger', $--x-danger);
-  @include badge-type('text', $--x-text);
+  @include badge-type('primary', $x-primary);
+  @include badge-type('success', $x-success);
+  @include badge-type('info', $x-info);
+  @include badge-type('warning', $x-warning);
+  @include badge-type('danger', $x-danger);
+  @include badge-type('text', $x-text);
 }
 
 @mixin badge-type($type, $color) {

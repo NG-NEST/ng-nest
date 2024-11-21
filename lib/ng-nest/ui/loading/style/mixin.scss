@@ -1,13 +1,12 @@
 // Loading
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin loading {
   & {
     position: absolute;
-    background-color: $--x-background;
+    background-color: $x-background;
     opacity: 0.85;
     margin: 0;
     top: 0;
@@ -19,7 +18,7 @@
     align-items: center;
   }
   &-spinner {
-    color: $--x-primary;
+    color: $x-primary;
     text-align: center;
   }
   &-circular {
@@ -34,23 +33,23 @@
     stroke-dasharray: 90, 150;
     stroke-dashoffset: 0;
     stroke-width: 2;
-    stroke: $--x-primary;
+    stroke: $x-primary;
     stroke-linecap: round;
   }
   &-radius {
-    border-radius: $--x-border-radius;
+    border-radius: $x-border-radius;
   }
   &-top-left-radius {
-    border-top-left-radius: $--x-border-radius;
+    border-top-left-radius: $x-border-radius;
   }
   &-top-right-radius {
-    border-top-right-radius: $--x-border-radius;
+    border-top-right-radius: $x-border-radius;
   }
   &-bottom-left-radius {
-    border-bottom-left-radius: $--x-border-radius;
+    border-bottom-left-radius: $x-border-radius;
   }
   &-bottom-right-radius {
-    border-bottom-right-radius: $--x-border-radius;
+    border-bottom-right-radius: $x-border-radius;
   }
   @include size('big', 2.175rem);
   @include size('large', 1.875rem);
@@ -61,11 +60,11 @@
 
 @mixin size($size, $width) {
   &-#{$size} {
-    .#{$--x-loading}-circular {
+    .#{$x-loading}-circular {
       height: $width;
       width: $width;
     }
-    .#{$--x-loading}-icon {
+    .#{$x-loading}-icon {
       font-size: $width;
     }
   }

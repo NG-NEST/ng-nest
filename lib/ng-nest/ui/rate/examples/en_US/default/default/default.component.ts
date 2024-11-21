@@ -4,7 +4,6 @@ import { XRateComponent } from '@ng-nest/ui/rate';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [FormsModule, XRateComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

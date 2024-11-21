@@ -20,7 +20,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'x-picker-quarter',
-  standalone: true,
   imports: [DatePipe, NgTemplateOutlet, XLinkComponent, XDateQuarterPipe],
   templateUrl: './picker-quarter.component.html',
   styleUrls: ['./picker-quarter.component.scss'],

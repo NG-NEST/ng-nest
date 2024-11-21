@@ -4,7 +4,6 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 
 @Component({
   selector: 'ex-limit',
-  standalone: true,
   imports: [FormsModule, XSliderSelectComponent],
   templateUrl: './limit.component.html',
   styleUrls: ['./limit.component.scss']

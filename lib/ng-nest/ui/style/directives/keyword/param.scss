@@ -1,3 +1,4 @@
 // Keyword style paramters
+@use '../../params/index' as *;
 
-$--x-keyword-prefix: $--x-prefix + '-keyword';
+$x-keyword-prefix: $x-prefix + '-keyword';

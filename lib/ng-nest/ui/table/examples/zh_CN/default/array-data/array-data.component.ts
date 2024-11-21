@@ -4,7 +4,6 @@ import { delay, of, tap } from 'rxjs';
 
 @Component({
   selector: 'ex-array-data',
-  standalone: true,
   imports: [XTableComponent],
   templateUrl: './array-data.component.html'
 })

@@ -4,7 +4,6 @@ import { XImageComponent } from '@ng-nest/ui/image';
 
 @Component({
   selector: 'ex-placeholder',
-  standalone: true,
   imports: [XButtonComponent, XImageComponent],
   templateUrl: './placeholder.component.html'
 })

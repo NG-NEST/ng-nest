@@ -5,7 +5,6 @@ import { XCardComponent } from '@ng-nest/ui/card';
 
 @Component({
   selector: 'ex-icon',
-  standalone: true,
   imports: [XTimelineComponent, XCardComponent],
   templateUrl: './icon.component.html'
 })

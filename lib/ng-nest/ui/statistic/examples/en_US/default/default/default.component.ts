@@ -5,7 +5,6 @@ import { XStatisticComponent } from '@ng-nest/ui/statistic';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [DecimalPipe, XCardComponent, XStatisticComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

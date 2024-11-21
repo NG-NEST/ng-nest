@@ -17,16 +17,14 @@ import { XResizableEvent } from '@ng-nest/ui/resizable';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
-  imports: [XAlertComponent],
-  template: ` <x-alert title="title"></x-alert> `
+    imports: [XAlertComponent],
+    template: ` <x-alert title="title"></x-alert> `
 })
 class XTestAlertComponent {}
 
 @Component({
-  standalone: true,
-  imports: [XAlertComponent],
-  template: `
+    imports: [XAlertComponent],
+    template: `
     <x-alert
       [hide]="hide()"
       [title]="title()"

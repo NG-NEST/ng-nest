@@ -4,7 +4,6 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
   selector: 'ns-sider',
-  standalone: true,
   imports: [XMenuComponent],
   templateUrl: './sider.component.html',
   encapsulation: ViewEncapsulation.None

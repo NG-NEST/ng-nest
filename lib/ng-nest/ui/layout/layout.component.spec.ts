@@ -10,7 +10,6 @@ import { XColComponent } from './col.component';
 import { XAlign, XJustify } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XLayoutModule],
   template: `
     <x-row>
@@ -23,7 +22,6 @@ import { XAlign, XJustify } from '@ng-nest/ui/core';
 class XTestLayoutComponent {}
 
 @Component({
-  standalone: true,
   imports: [XLayoutModule],
   template: `
     <x-row [space]="space()" [justify]="justify()" [align]="align()">

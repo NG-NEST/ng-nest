@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { XBackTopPrefix, XBackTopProperty } from './back-top.property';
 import { XRequestAnimationFrame, XIsNumber, XIsString } from '@ng-nest/ui/core';
-import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
+import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
 import { throttleTime, takeUntil, map, tap } from 'rxjs/operators';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
@@ -21,8 +21,7 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: `${XBackTopPrefix}`,
-  standalone: true,
-  imports: [NgClass, NgTemplateOutlet, XLinkComponent],
+  imports: [NgTemplateOutlet, XLinkComponent],
   templateUrl: './back-top.component.html',
   styleUrls: ['./back-top.component.scss'],
   encapsulation: ViewEncapsulation.None,

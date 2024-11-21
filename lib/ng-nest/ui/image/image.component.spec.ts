@@ -7,14 +7,12 @@ import { XSleep, XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XImageComponent],
   template: ` <x-image></x-image> `
 })
 class XTestImageComponent {}
 
 @Component({
-  standalone: true,
   imports: [XImageComponent],
   template: `
     <x-image

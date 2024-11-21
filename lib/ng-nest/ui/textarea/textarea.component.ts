@@ -16,7 +16,6 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XTextareaPrefix}`,
-  standalone: true,
   imports: [NgClass, FormsModule, ReactiveFormsModule, XIconComponent],
   templateUrl: './textarea.component.html',
   styleUrls: ['./style/index.scss'],

@@ -26,7 +26,6 @@ import { XTreeComponent } from './tree.component';
 
 @Component({
   selector: `${XTreeNodePrefix}, [${XTreeNodePrefix}]`,
-  standalone: true,
   imports: [
     NgStyle,
     FormsModule,

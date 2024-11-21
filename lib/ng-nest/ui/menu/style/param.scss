@@ -1,3 +1,4 @@
 // Menu style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-menu: $--x-prefix + '-menu';
+$x-menu: $x-prefix + '-menu';

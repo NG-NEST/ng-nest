@@ -11,7 +11,6 @@ import { XTabLinkDirective, XTabLinkTemplateDirective } from './tab-link.directi
 
 @Component({
   selector: `${XTabPrefix}`,
-  standalone: true,
   templateUrl: './tab.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

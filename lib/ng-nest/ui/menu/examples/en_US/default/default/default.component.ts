@@ -3,7 +3,6 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XMenuComponent],
   templateUrl: './default.component.html'
 })

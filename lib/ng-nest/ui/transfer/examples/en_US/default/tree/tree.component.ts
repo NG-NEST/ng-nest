@@ -4,7 +4,6 @@ import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 
 @Component({
   selector: 'ex-tree',
-  standalone: true,
   imports: [FormsModule, XTransferComponent],
   templateUrl: './tree.component.html'
 })

@@ -1,4 +1,5 @@
 // Form style paramters
+@use '../../style/params/index.scss' as *;
 
-$prefix: $--x-prefix + '-form';
-$prefix-control: $--x-prefix + '-control';
+$prefix: $x-prefix + '-form';
+$prefix-control: $x-prefix + '-control';

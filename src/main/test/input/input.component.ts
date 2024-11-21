@@ -16,7 +16,6 @@ import {
 
 @Component({
   selector: 'te-input',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExBorderedComponent,

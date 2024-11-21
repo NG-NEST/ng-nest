@@ -1,23 +1,22 @@
 // Card
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin card {
   & {
-    font-size: $--x-font-size;
+    font-size: $x-font-size;
     box-sizing: border-box;
     position: relative;
-    border-radius: $--x-border-radius;
+    border-radius: $x-border-radius;
     transition: box-shadow 0.3s;
   }
   &-always {
-    box-shadow: $--x-card-box-shadow;
+    box-shadow: $x-card-box-shadow;
   }
   &-hover {
     &:hover {
-      box-shadow: $--x-card-box-shadow;
+      box-shadow: $x-card-box-shadow;
     }
   }
   &-header {
@@ -25,13 +24,13 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.675rem;
-    border-bottom: $--x-border-base;
+    border-bottom: $x-border-base;
   }
   &-body {
-    padding: $--x-font-size;
+    padding: $x-font-size;
     width: 100%;
     > ul li:not(:last-child) {
-      margin-bottom: $--x-font-size;
+      margin-bottom: $x-font-size;
     }
   }
 }

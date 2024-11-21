@@ -4,7 +4,6 @@ import { XContainerComponent } from './container.component';
 
 @Component({
   selector: `${XHeaderPrefix}`,
-  standalone: true,
   template: '<ng-content></ng-content>',
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None,

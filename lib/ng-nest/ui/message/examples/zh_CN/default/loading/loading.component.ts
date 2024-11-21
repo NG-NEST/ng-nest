@@ -4,7 +4,6 @@ import { XMessageService } from '@ng-nest/ui/message';
 
 @Component({
   selector: 'ex-loading',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './loading.component.html'
 })

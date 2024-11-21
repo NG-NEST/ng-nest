@@ -22,7 +22,6 @@ import {
 
 @Component({
   selector: 'te-table',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExAdaptionComponent,

@@ -3,7 +3,6 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
   selector: 'ex-size',
-  standalone: true,
   imports: [XMenuComponent],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']

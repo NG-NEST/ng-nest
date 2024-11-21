@@ -4,7 +4,6 @@ import { XTooltipDirective } from '@ng-nest/ui/tooltip';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XTooltipDirective, XButtonComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

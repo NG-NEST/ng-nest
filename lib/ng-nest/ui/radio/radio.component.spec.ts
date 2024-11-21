@@ -8,14 +8,12 @@ import { XButtonType } from '@ng-nest/ui/button';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XRadioComponent],
   template: ` <x-radio> </x-radio> `
 })
 class XTestRadioComponent {}
 
 @Component({
-  standalone: true,
   imports: [XRadioComponent],
   template: `
     <x-radio

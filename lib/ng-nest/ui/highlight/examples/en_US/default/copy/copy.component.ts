@@ -3,7 +3,6 @@ import { XHighlightComponent } from '@ng-nest/ui/highlight';
 
 @Component({
   selector: 'ex-copy',
-  standalone: true,
   imports: [XHighlightComponent],
   templateUrl: './copy.component.html'
 })

@@ -5,7 +5,6 @@ import { XTableColumn, XTableComponent, XTableRow } from '@ng-nest/ui/table';
 
 @Component({
   selector: 'ex-expand',
-  standalone: true,
   imports: [XTableComponent, XButtonComponent, XDescriptionComponent, XDescriptionItemComponent],
   templateUrl: './expand.component.html',
   styleUrls: ['./expand.component.scss']

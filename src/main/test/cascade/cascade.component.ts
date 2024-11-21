@@ -11,7 +11,6 @@ import {
 
 @Component({
   selector: 'te-cascade',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExBorderedComponent,

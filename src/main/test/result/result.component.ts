@@ -13,7 +13,6 @@ import {
 
 @Component({
   selector: 'te-result',
-  standalone: true,
   imports: [
     ExErrorComponent,
     ExIconComponent,

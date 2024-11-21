@@ -5,7 +5,6 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XRowComponent, XColComponent, FormsModule, XCascadeComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

@@ -7,14 +7,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { XAlign, XDirection, XIsNumber, XJustify, XSleep } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XTextareaComponent],
   template: ` <x-textarea></x-textarea> `
 })
 class XTestTextareaComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTextareaComponent],
   template: `
     <x-textarea

@@ -1,8 +1,7 @@
 // Transfer
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin transfer {
   & {
@@ -14,11 +13,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: $--x-border-base;
-    border-top-left-radius: $--x-border-radius;
-    border-top-right-radius: $--x-border-radius;
-    background-color: $--x-background;
-    color: $--x-text-300;
+    border: $x-border-base;
+    border-top-left-radius: $x-border-radius;
+    border-top-right-radius: $x-border-radius;
+    background-color: $x-background;
+    color: $x-text-300;
     &-left {
       display: inline-flex;
       align-items: center;
@@ -38,10 +37,10 @@
     flex-direction: column;
     height: 18rem;
     width: 100%;
-    border: $--x-border-base;
+    border: $x-border-base;
     border-top: none;
-    border-bottom-left-radius: $--x-border-radius;
-    border-bottom-right-radius: $--x-border-radius;
+    border-bottom-left-radius: $x-border-radius;
+    border-bottom-right-radius: $x-border-radius;
     overflow: auto;
   }
   &-tree {
@@ -50,9 +49,9 @@
   &-item {
     @include transfer-li();
     transition:
-      border-color $--x-animation-duration-base,
-      background-color $--x-animation-duration-base,
-      color $--x-animation-duration-base;
+      border-color $x-animation-duration-base,
+      background-color $x-animation-duration-base,
+      color $x-animation-duration-base;
   }
   &-droplist {
     margin: 0;
@@ -60,18 +59,18 @@
     padding: 0.25rem;
     list-style: none;
     &.cdk-drop-list-dragging {
-      .#{$--x-transfer}-item {
+      .#{$x-transfer}-item {
         &:hover {
           background-color: transparent;
         }
         &.cdk-drag-placeholder {
-          border-color: $--x-primary;
-          color: $--x-primary;
-          background-color: $--x-background;
+          border-color: $x-primary;
+          color: $x-primary;
+          background-color: $x-background;
           opacity: 0.8;
         }
         &:not(.cdk-drag-placeholder) {
-          transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+          transition: transform $x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
         }
       }
     }
@@ -86,8 +85,8 @@
   }
   &-search {
     padding: 0.5rem;
-    border-left: $--x-border-base;
-    border-right: $--x-border-base;
+    border-left: $x-border-base;
+    border-right: $x-border-base;
     x-input {
       width: 100%;
     }
@@ -97,12 +96,12 @@
   }
   &-footer {
     padding: 0.25rem 0.5625rem;
-    border: $--x-border-base;
-    border-bottom-left-radius: $--x-border-radius;
-    border-bottom-right-radius: $--x-border-radius;
+    border: $x-border-base;
+    border-bottom-left-radius: $x-border-radius;
+    border-bottom-right-radius: $x-border-radius;
   }
   &-has-footer {
-    .#{$--x-transfer}-list {
+    .#{$x-transfer}-list {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       border-bottom: none;
@@ -113,7 +112,7 @@
 @mixin transfer-li {
   margin: 0;
   padding: 0.125rem 0.25rem;
-  border-radius: $--x-border-radius;
+  border-radius: $x-border-radius;
   display: flex;
   align-items: center;
   border: 0.0625rem dashed transparent;
@@ -122,12 +121,12 @@
 @mixin transfer-item {
   &.cdk-drag-preview {
     @include transfer-li();
-    border-color: $--x-border;
-    color: $--x-text-400;
-    background-color: $--x-background-a100;
+    border-color: $x-border;
+    color: $x-text-400;
+    background-color: $x-background-a100;
     opacity: 0.9;
   }
   &.cdk-drag-animating {
-    transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+    transition: transform $x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
   }
 }

@@ -4,7 +4,6 @@ import { XListComponent } from '@ng-nest/ui/list';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [FormsModule, XListComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

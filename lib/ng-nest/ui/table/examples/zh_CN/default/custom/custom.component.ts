@@ -7,7 +7,6 @@ import { XAvatarComponent } from '@ng-nest/ui/avatar';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XTableComponent, XAvatarComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss'],

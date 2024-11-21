@@ -3,7 +3,6 @@ import { ExDefaultComponent } from '@ng-nest/ui/theme/examples';
 
 @Component({
   selector: 'te-theme',
-  standalone: true,
   imports: [ExDefaultComponent],
   templateUrl: './theme.component.html'
 })

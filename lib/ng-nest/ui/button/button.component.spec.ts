@@ -8,14 +8,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { XDirection, XSize } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XButtonComponent],
   template: ` <x-button>Button</x-button>`
 })
 class XTestButtonComponent {}
 
 @Component({
-  standalone: true,
   imports: [XButtonComponent],
   template: `
     <x-button

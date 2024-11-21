@@ -7,7 +7,6 @@ import {
 
 @Component({
   selector: 'te-color',
-  standalone: true,
   imports: [ExDefaultComponent, ExAssistComponent, ExNeutralComponent],
   templateUrl: './color.component.html'
 })

@@ -5,7 +5,6 @@ import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-font-awesome',
-  standalone: true,
   imports: [XIconComponent, XTabsComponent, XTabComponent, XRowComponent, XColComponent],
   templateUrl: './font-awesome.component.html',
   styleUrls: ['./font-awesome.component.scss']

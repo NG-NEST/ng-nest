@@ -7,14 +7,12 @@ import { XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XResultComponent],
   template: ` <x-result> </x-result> `
 })
 class XTestResultComponent {}
 
 @Component({
-  standalone: true,
   imports: [XResultComponent],
   template: ` <x-result [status]="status()" [title]="title()" [icon]="icon()" [subTitle]="subTitle()"> </x-result> `
 })

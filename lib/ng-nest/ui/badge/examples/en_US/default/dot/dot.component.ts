@@ -5,7 +5,6 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: 'ex-dot',
-  standalone: true,
   imports: [XBadgeComponent, XButtonComponent, XIconComponent],
   templateUrl: './dot.component.html',
   styleUrls: ['./dot.component.scss']

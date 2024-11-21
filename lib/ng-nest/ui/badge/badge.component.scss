@@ -1,14 +1,14 @@
 // Badge
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-#{$--x-badge} {
+#{$x-badge} {
   display: inline-block;
 }
 
-.#{$--x-badge} {
+.#{$x-badge} {
   @include reset-component();
   @include badge();
 }

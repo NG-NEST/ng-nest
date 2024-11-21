@@ -4,7 +4,6 @@ import { XCardComponent } from '@ng-nest/ui/card';
 
 @Component({
   selector: 'ex-header',
-  standalone: true,
   imports: [XCardComponent, XButtonComponent],
   templateUrl: './header.component.html'
 })

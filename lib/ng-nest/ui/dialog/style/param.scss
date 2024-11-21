@@ -1,5 +1,6 @@
 // Dialog style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-dialog: $--x-prefix + '-dialog';
-$--x-dialog-portal: $--x-prefix + '-dialog-portal';
-$--x-dialog-container: $--x-prefix + '-dialog-container';
+$x-dialog: $x-prefix + '-dialog';
+$x-dialog-portal: $x-prefix + '-dialog-portal';
+$x-dialog-container: $x-prefix + '-dialog-container';

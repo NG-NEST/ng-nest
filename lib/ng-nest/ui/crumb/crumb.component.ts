@@ -6,7 +6,6 @@ import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XCrumbPrefix}`,
-  standalone: true,
   imports: [NgTemplateOutlet, XLinkComponent, XOutletDirective],
   templateUrl: './crumb.component.html',
   styleUrls: ['./style/index.scss'],

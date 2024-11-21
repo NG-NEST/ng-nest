@@ -8,14 +8,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
   imports: [XInputNumberComponent],
   template: ` <x-input-number> </x-input-number> `
 })
 class XTestInputNumberComponent {}
 
 @Component({
-  standalone: true,
   imports: [XInputNumberComponent, FormsModule],
   template: `
     <x-input-number

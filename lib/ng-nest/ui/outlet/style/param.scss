@@ -1,3 +1,4 @@
 // Outlet style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-outlet: $--x-prefix + '-outlet';
+$x-outlet: $x-prefix + '-outlet';

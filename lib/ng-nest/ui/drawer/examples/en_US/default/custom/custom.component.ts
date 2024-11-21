@@ -8,7 +8,6 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [
     FormsModule,
     XButtonComponent,

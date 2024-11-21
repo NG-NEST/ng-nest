@@ -8,14 +8,12 @@ import { XDataArray, XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XCrumbComponent],
   template: ` <x-crumb></x-crumb> `
 })
 class XTestCrumbComponent {}
 
 @Component({
-  standalone: true,
   imports: [XCrumbComponent],
   template: `
     <x-crumb [data]="data()" [nodeTpl]="nodeTpl()" [separator]="separator()" (nodeClick)="nodeClick($event)"> </x-crumb>

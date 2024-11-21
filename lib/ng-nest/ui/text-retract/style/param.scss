@@ -1,3 +1,4 @@
 // TextRetract style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-text-retract: $--x-prefix + '-text-retract';
+$x-text-retract: $x-prefix + '-text-retract';

@@ -1,37 +1,38 @@
 // List style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-list-prefix: $--x-prefix + '-list';
-$--x-list-option-prefix: $--x-prefix + '-list-option';
+$x-list-prefix: $x-prefix + '-list';
+$x-list-option-prefix: $x-prefix + '-list-option';
 
 /* 字体大小 */
-$--x-list-font-size: $--x-font-size;
+$x-list-font-size: $x-font-size;
 
 /* 高度 */
-$--x-list-height: calc(#{$--x-font-size} + 1rem);
+$x-list-height: calc(#{$x-font-size} + 1rem);
 
 /* 内边距 */
-$--x-list-padding: 0 $--x-control-padding-horizontal;
+$x-list-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-list-color: $--x-primary-900;
+$x-list-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-list-placeholder-color: $--x-placeholder-color;
+$x-list-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-list-background-color: $--x-background;
+$x-list-background-color: $x-background;
 
 /* 边框样式 */
-$--x-list-border: $--x-border-width $--x-border-style $--x-border;
+$x-list-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-list-border-radius: $--x-border-radius;
+$x-list-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-list-disabled-color: $--x-text-500;
+$x-list-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-list-icon-font-size: $--x-font-size-medium;
+$x-list-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-list-icon-padding: $--x-control-padding-horizontal;
+$x-list-icon-padding: $x-control-padding-horizontal;

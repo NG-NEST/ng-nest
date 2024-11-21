@@ -9,14 +9,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { XComputedStyle } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XFormComponent],
   template: ` <x-form></x-form> `
 })
 class XTestFormComponent {}
 
 @Component({
-  standalone: true,
   imports: [XFormComponent, FormsModule],
   template: `
     <x-form

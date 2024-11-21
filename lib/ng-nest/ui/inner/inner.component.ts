@@ -3,7 +3,6 @@ import { XInnerPrefix, XInnerProperty } from './inner.property';
 
 @Component({
   selector: `${XInnerPrefix}`,
-  standalone: true,
   templateUrl: './inner.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

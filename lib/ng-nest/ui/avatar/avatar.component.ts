@@ -22,7 +22,6 @@ import type { XClassMap, XResizeObserver, XResponseSize } from '@ng-nest/ui/core
 
 @Component({
   selector: `${XAvatarPrefix}`,
-  standalone: true,
   imports: [NgClass, NgStyle, XOutletDirective, XIconComponent],
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],

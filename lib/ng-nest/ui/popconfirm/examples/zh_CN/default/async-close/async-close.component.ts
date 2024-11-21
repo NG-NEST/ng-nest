@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-async-close',
-  standalone: true,
   imports: [XPopconfirmComponent, XButtonComponent],
   templateUrl: './async-close.component.html'
 })

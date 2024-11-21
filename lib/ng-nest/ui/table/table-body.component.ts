@@ -29,7 +29,6 @@ import { XTableComponent } from './table.component';
 
 @Component({
   selector: `${XTableBodyPrefix}`,
-  standalone: true,
   imports: [
     NgClass,
     NgTemplateOutlet,

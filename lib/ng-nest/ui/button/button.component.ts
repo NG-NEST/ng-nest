@@ -23,7 +23,6 @@ import { FocusMonitor } from '@angular/cdk/a11y';
 
 @Component({
   selector: `${XButtonPrefix}`,
-  standalone: true,
   imports: [NgClass, XIconComponent, XRippleDirective],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],

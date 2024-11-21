@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-button',
-  standalone: true,
   imports: [FormsModule, XRadioComponent],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']

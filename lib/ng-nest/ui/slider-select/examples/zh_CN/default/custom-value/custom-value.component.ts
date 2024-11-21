@@ -5,7 +5,6 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 
 @Component({
   selector: 'ex-custom-value',
-  standalone: true,
   imports: [FormsModule, XSliderSelectComponent, XIconComponent],
   templateUrl: './custom-value.component.html',
   styleUrls: ['./custom-value.component.scss']

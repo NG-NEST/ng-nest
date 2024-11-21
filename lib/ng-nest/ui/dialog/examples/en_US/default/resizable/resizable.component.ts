@@ -5,7 +5,6 @@ import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
 
 @Component({
   selector: 'ex-resizable',
-  standalone: true,
   imports: [XDialogComponent, XButtonComponent],
   templateUrl: './resizable.component.html',
   styleUrls: ['./resizable.component.scss']

@@ -5,7 +5,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-textarea',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './textarea.component.html'
 })

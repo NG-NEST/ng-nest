@@ -16,7 +16,6 @@ import { AnimationEvent } from '@angular/animations';
 
 @Component({
   selector: 'x-drawer-portal',
-  standalone: true,
   imports: [PortalModule],
   templateUrl: './drawer-portal.component.html',
   styleUrls: ['./drawer-portal.component.scss'],

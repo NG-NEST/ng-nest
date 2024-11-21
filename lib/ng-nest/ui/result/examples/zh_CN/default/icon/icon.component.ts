@@ -4,7 +4,6 @@ import { XResultComponent } from '@ng-nest/ui/result';
 
 @Component({
   selector: 'ex-icon',
-  standalone: true,
   imports: [XButtonComponent, XResultComponent],
   templateUrl: './icon.component.html'
 })

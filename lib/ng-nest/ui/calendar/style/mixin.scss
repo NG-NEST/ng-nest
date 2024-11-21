@@ -1,8 +1,7 @@
 // Calendar
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin calendar {
   & {
@@ -98,7 +97,7 @@
           }
           td {
             height: 6.75rem;
-            border-top: $--x-border-base;
+            border-top: $x-border-base;
             text-align: left;
             .x-calendar-date,
             .x-calendar-month {
@@ -110,18 +109,18 @@
                 height: 4.5rem;
               }
               &.x-activated {
-                background-color: $--x-primary-900;
+                background-color: $x-primary-900;
               }
             }
             &:hover {
-              background-color: $--x-background-a200;
+              background-color: $x-background-a200;
             }
             &.x-date-last-or-next {
-              color: $--x-text-400;
+              color: $x-text-400;
             }
             &.x-date-now {
-              color: $--x-primary;
-              border-top-color: $--x-primary;
+              color: $x-primary;
+              border-top-color: $x-primary;
             }
           }
         }
@@ -133,11 +132,11 @@
     }
   }
   &-card {
-    border: $--x-border-base;
-    border-radius: $--x-border-radius;
+    border: $x-border-base;
+    border-radius: $x-border-radius;
     .x-calendar-header {
       padding: 0.5rem;
-      border-bottom: $--x-border-base;
+      border-bottom: $x-border-base;
       justify-content: center;
     }
     .x-calendar-body {
@@ -150,29 +149,29 @@
             margin: 0.25rem;
             .x-calendar-date,
             .x-calendar-month {
-              border: $--x-border-base;
+              border: $x-border-base;
               border-color: transparent;
               > span {
                 padding: 0.125rem;
               }
               &.x-activated {
-                background-color: $--x-primary;
-                color: $--x-background-100;
+                background-color: $x-primary;
+                color: $x-background-100;
               }
             }
             &:hover {
-              background-color: $--x-background-a200;
-              color: $--x-primary;
+              background-color: $x-background-a200;
+              color: $x-primary;
             }
             &.x-date-last-or-next {
-              color: $--x-text-700;
+              color: $x-text-700;
             }
             &.x-date-now {
               .x-calendar-date:not(.x-activated),
               .x-calendar-month:not(.x-activated) {
-                color: $--x-primary;
+                color: $x-primary;
                 background-color: transparent;
-                border-color: $--x-primary;
+                border-color: $x-primary;
               }
             }
           }

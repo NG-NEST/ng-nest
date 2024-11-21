@@ -1,19 +1,19 @@
 // Tree Select
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-#{$--x-tree-select-prefix} {
+#{$x-tree-select-prefix} {
   display: inline-block;
   width: 12rem;
 }
 
-.#{$--x-tree-select-prefix} {
+.#{$x-tree-select-prefix} {
   @include reset-component();
   @include tree-select();
 }
 
-.#{$--x-tree-select-prefix}-portal {
+.#{$x-tree-select-prefix}-portal {
   @include tree-select-portal();
 }

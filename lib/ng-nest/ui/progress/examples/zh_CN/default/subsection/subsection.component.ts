@@ -4,7 +4,6 @@ import { XProgressComponent } from '@ng-nest/ui/progress';
 
 @Component({
   selector: 'ex-subsection',
-  standalone: true,
   imports: [XProgressComponent, XButtonComponent, XButtonsComponent],
   templateUrl: './subsection.component.html',
   styleUrls: ['./subsection.component.scss']

@@ -3,7 +3,6 @@ import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-open',
-  standalone: true,
   imports: [XTreeComponent],
   templateUrl: './open.component.html'
 })

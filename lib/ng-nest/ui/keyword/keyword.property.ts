@@ -13,7 +13,7 @@ const X_KEYWORD_CONFIG_NAME = 'keyword';
 /**
  * Keyword Property
  */
-@Directive({ selector: '[x-keyword]', standalone: true })
+@Directive({ selector: '[x-keyword]' })
 export class XKeywordProperty extends XPropertyFunction(X_KEYWORD_CONFIG_NAME) {
   /**
    * @zh_CN 类型

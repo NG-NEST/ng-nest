@@ -4,7 +4,6 @@ import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: 'ex-clear',
-  standalone: true,
   imports: [FormsModule, XInputComponent],
   templateUrl: './clear.component.html',
   styleUrls: ['./clear.component.scss']

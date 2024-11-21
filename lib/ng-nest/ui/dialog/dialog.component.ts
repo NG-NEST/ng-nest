@@ -40,7 +40,6 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XDialogPrefix}`,
-  standalone: true,
   imports: [NgStyle, NgTemplateOutlet, XAlertComponent, XButtonComponent, XButtonsComponent, XOutletDirective],
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],

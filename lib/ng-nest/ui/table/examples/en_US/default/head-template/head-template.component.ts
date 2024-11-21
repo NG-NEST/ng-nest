@@ -3,12 +3,10 @@ import { HeadTemplateService } from './head-template.service';
 import { XQuery } from '@ng-nest/ui/core';
 import { XTableColumn, XTableComponent } from '@ng-nest/ui/table';
 import { delay } from 'rxjs/operators';
-import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: 'ex-head-tempalte',
-  standalone: true,
-  imports: [XTableComponent, XIconComponent],
+  imports: [XTableComponent],
   templateUrl: './head-template.component.html',
   providers: [HeadTemplateService]
 })

@@ -48,7 +48,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XDatePickerPrefix}`,
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, XInputComponent],
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss'],

@@ -4,7 +4,6 @@ import type { XDirection } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XContainerPrefix}`,
-  standalone: true,
   template: '<ng-content></ng-content>',
   styleUrls: ['./container.component.scss'],
   encapsulation: ViewEncapsulation.None,

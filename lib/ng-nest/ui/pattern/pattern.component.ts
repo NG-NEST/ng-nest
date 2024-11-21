@@ -3,7 +3,6 @@ import { XPatternPrefix } from './pattern.property';
 
 @Component({
   selector: XPatternPrefix,
-  standalone: true,
   templateUrl: './pattern.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

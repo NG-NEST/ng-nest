@@ -1,8 +1,8 @@
 // Radio
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use './param.scss' as *;
 
 @mixin radio {
   & {
@@ -12,10 +12,10 @@
   > label {
     display: inline-block;
     white-space: nowrap;
-    height: $--x-radio-height;
-    line-height: $--x-radio-height;
+    height: $x-radio-height;
+    line-height: $x-radio-height;
     position: relative;
-    color: $--x-text-300;
+    color: $x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -24,15 +24,15 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    height: $--x-radio-height;
-    line-height: $--x-radio-height;
-    .#{$--x-radio-prefix}-row-before,
-    .#{$--x-radio-prefix}-row-after {
-      border-radius: $--x-radio-border-radius;
-      background-color: $--x-background-a200;
-      padding: 0 $--x-padding-medium;
-      height: $--x-height-medium;
-      line-height: $--x-height-medium;
+    height: $x-radio-height;
+    line-height: $x-radio-height;
+    .#{$x-radio-prefix}-row-before,
+    .#{$x-radio-prefix}-row-after {
+      border-radius: $x-radio-border-radius;
+      background-color: $x-background-a200;
+      padding: 0 $x-padding-medium;
+      height: $x-height-medium;
+      line-height: $x-height-medium;
     }
     &-list {
       position: relative;
@@ -40,7 +40,7 @@
       align-items: center;
       x-tag {
         &:not(:first-child) {
-          margin-left: $--x-font-size;
+          margin-left: $x-font-size;
         }
       }
     }
@@ -50,21 +50,21 @@
       align-items: center;
       white-space: nowrap;
       outline: none;
-      margin-right: $--x-font-size;
-      font-size: $--x-font-size;
+      margin-right: $x-font-size;
+      font-size: $x-font-size;
       cursor: pointer;
       transition: all 0.3s;
       &:hover {
-        color: $--x-primary;
-        .#{$--x-radio-prefix}-box {
-          border-color: $--x-primary;
+        color: $x-primary;
+        .#{$x-radio-prefix}-box {
+          border-color: $x-primary;
         }
       }
       &:last-child {
         margin-right: 0;
       }
       &.x-checked {
-        .#{$--x-radio-prefix}-box {
+        .#{$x-radio-prefix}-box {
           border-color: var(--x-primary);
           border-width: 0.375rem;
           // &::after {
@@ -81,16 +81,16 @@
 
   &-button,
   &-icon {
-    .#{$--x-radio-prefix}-row-before {
+    .#{$x-radio-prefix}-row-before {
       margin-right: 0;
     }
-    .#{$--x-radio-prefix}-row-after {
+    .#{$x-radio-prefix}-row-after {
       margin-left: 0;
     }
   }
 
   &-vertical {
-    .#{$--x-radio-prefix}-row-list {
+    .#{$x-radio-prefix}-row-list {
       flex-direction: column;
       align-items: flex-start;
       x-tag {
@@ -100,7 +100,7 @@
         }
       }
     }
-    .#{$--x-radio-prefix}-row-item {
+    .#{$x-radio-prefix}-row-item {
       margin-right: 0;
       &:not(:first-child) {
         margin-top: 0.25rem;
@@ -109,11 +109,11 @@
   }
 
   &-box {
-    border: $--x-border-width solid $--x-border;
+    border: $x-border-width solid $x-border;
     border-radius: 100%;
-    width: calc(#{$--x-radio-height} - 0.875rem);
-    height: calc(#{$--x-radio-height} - 0.875rem);
-    background-color: $--x-background-a100;
+    width: calc(#{$x-radio-height} - 0.875rem);
+    height: calc(#{$x-radio-height} - 0.875rem);
+    background-color: $x-background-a100;
     position: relative;
     box-sizing: border-box;
     transition: all 0.2s;
@@ -143,16 +143,16 @@
     &:before {
       display: inline-block;
       margin-right: 0.25rem;
-      color: $--x-danger;
+      color: $x-danger;
       line-height: 1;
-      font-size: $--x-font-size-small;
+      font-size: $x-font-size-small;
       content: '*';
     }
   }
   &-before {
     &:not(.x-radio-before-template, .x-radio-button, .x-radio-icon) {
-      .#{$--x-radio-prefix}-row-before {
-        margin-right: $--x-padding-medium;
+      .#{$x-radio-prefix}-row-before {
+        margin-right: $x-padding-medium;
       }
     }
     &.x-radio-button,
@@ -161,7 +161,7 @@
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
-      .#{$--x-radio-prefix}-row-before {
+      .#{$x-radio-prefix}-row-before {
         margin-right: 0;
         border-right: 0;
         border-top-right-radius: 0;
@@ -169,15 +169,15 @@
       }
     }
     &-template {
-      .#{$--x-radio-prefix}-row-before {
+      .#{$x-radio-prefix}-row-before {
         display: contents;
       }
-      .#{$--x-radio-prefix}-row-list {
-        margin-left: $--x-padding-medium;
+      .#{$x-radio-prefix}-row-list {
+        margin-left: $x-padding-medium;
       }
       &.x-radio-button,
       &.x-radio-icon {
-        .#{$--x-radio-prefix}-row-list {
+        .#{$x-radio-prefix}-row-list {
           margin-left: 0;
           .x-button {
             margin-left: 0;
@@ -187,7 +187,7 @@
             // }
           }
         }
-        .#{$--x-radio-prefix}-row-before {
+        .#{$x-radio-prefix}-row-before {
           // input:hover,
           // input:focus,
           // .x-button:hover,
@@ -205,8 +205,8 @@
   }
   &-after {
     &:not(.x-radio-before-template, .x-radio-button, .x-radio-icon) {
-      .#{$--x-radio-prefix}-row-after {
-        margin-left: $--x-padding-medium;
+      .#{$x-radio-prefix}-row-after {
+        margin-left: $x-padding-medium;
       }
     }
     &.x-radio-button,
@@ -215,7 +215,7 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
-      .#{$--x-radio-prefix}-row-after {
+      .#{$x-radio-prefix}-row-after {
         margin-left: 0;
         border-left: 0;
         border-top-left-radius: 0;
@@ -223,15 +223,15 @@
       }
     }
     &-template {
-      .#{$--x-radio-prefix}-row-after {
+      .#{$x-radio-prefix}-row-after {
         display: contents;
       }
-      .#{$--x-radio-prefix}-row-list {
-        margin-right: $--x-padding-medium;
+      .#{$x-radio-prefix}-row-list {
+        margin-right: $x-padding-medium;
       }
       &.x-radio-button,
       &.x-radio-icon {
-        .#{$--x-radio-prefix}-row-list {
+        .#{$x-radio-prefix}-row-list {
           margin-right: 0;
           .x-button {
             margin-right: 0;
@@ -241,7 +241,7 @@
             // }
           }
         }
-        .#{$--x-radio-prefix}-row-after {
+        .#{$x-radio-prefix}-row-after {
           // input:hover,
           // input:focus,
           // .x-button:hover,
@@ -258,14 +258,14 @@
     }
   }
   &.x-disabled {
-    .#{$--x-radio-prefix}-item {
+    .#{$x-radio-prefix}-item {
       @include disabled();
     }
   }
   &.x-invalid,
   &.x-required {
     > label {
-      color: $--x-danger;
+      color: $x-danger;
     }
   }
   &.x-direction {
@@ -289,13 +289,13 @@
 }
 
 @mixin disabled {
-  color: $--x-text-400;
+  color: $x-text-400;
   cursor: not-allowed;
-  .#{$--x-radio-prefix}-box {
-    border-color: $--x-border-a900;
-    background-color: $--x-border-300;
+  .#{$x-radio-prefix}-box {
+    border-color: $x-border-a900;
+    background-color: $x-border-300;
     &::after {
-      background-color: $--x-text-400;
+      background-color: $x-text-400;
     }
   }
 }

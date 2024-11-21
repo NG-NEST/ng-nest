@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-table',
-  standalone: true,
   imports: [FormsModule, XTransferComponent],
   templateUrl: './table.component.html',
   providers: [TableService]

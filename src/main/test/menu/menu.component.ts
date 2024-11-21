@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'te-menu',
-  standalone: true,
   imports: [ExDefaultComponent, ExIconComponent, ExLayoutComponent, ExLeafComponent, ExSizeComponent],
   templateUrl: './menu.component.html'
 })

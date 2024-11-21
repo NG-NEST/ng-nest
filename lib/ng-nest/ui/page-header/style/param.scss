@@ -1,3 +1,4 @@
 // PageHeader style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-page-header: $--x-prefix + '-page-header';
+$x-page-header: $x-prefix + '-page-header';

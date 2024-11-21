@@ -4,7 +4,6 @@ import { XSelectComponent } from '@ng-nest/ui/select';
 
 @Component({
   selector: 'ex-input',
-  standalone: true,
   imports: [FormsModule, XSelectComponent],
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']

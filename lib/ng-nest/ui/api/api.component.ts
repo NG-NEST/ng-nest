@@ -3,7 +3,6 @@ import { XApiPrefix } from './api.property';
 
 @Component({
   selector: `${XApiPrefix}`,
-  standalone: true,
   templateUrl: './api.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

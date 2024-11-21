@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-bordered',
-  standalone: true,
   imports: [XTableComponent],
   templateUrl: './bordered.component.html',
   providers: [BorderedService]

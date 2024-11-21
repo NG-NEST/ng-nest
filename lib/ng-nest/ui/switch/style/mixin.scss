@@ -1,8 +1,8 @@
 // Switch
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use './param.scss' as *;
 
 @mixin switch {
   & {
@@ -13,7 +13,7 @@
     display: inline-block;
     white-space: nowrap;
     position: relative;
-    color: $--x-text-300;
+    color: $x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -28,21 +28,21 @@
     display: inline-flex;
     align-items: center;
     position: relative;
-    border: $--x-border-width solid $--x-info;
-    background-color: $--x-info;
+    border: $x-border-width solid $x-info;
+    background-color: $x-info;
     cursor: pointer;
-    transition: $--x-animation-duration-slow;
+    transition: $x-animation-duration-slow;
   }
   &-handle {
     position: absolute;
-    transition: $--x-animation-duration-slow;
+    transition: $x-animation-duration-slow;
     left: 0;
     display: block;
     &::before {
       position: absolute;
       inset: 0;
       box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 35, 11, 0.2);
-      background-color: $--x-background-a100;
+      background-color: $x-background-a100;
       content: '';
     }
   }
@@ -56,44 +56,44 @@
     }
   }
   &-text {
-    color: $--x-white;
-    transition: $--x-animation-duration-slow;
+    color: $x-white;
+    transition: $x-animation-duration-slow;
     display: inline-flex;
     align-items: center;
   }
   &.x-checked {
-    .#{$--x-switch-prefix}-slider {
-      background-color: $--x-primary;
-      border-color: $--x-primary;
+    .#{$x-switch-prefix}-slider {
+      background-color: $x-primary;
+      border-color: $x-primary;
     }
   }
   &-label-required {
     &:before {
       display: inline-block;
       margin-right: 0.25rem;
-      color: $--x-danger;
+      color: $x-danger;
       line-height: 1;
-      font-size: $--x-font-size-small;
+      font-size: $x-font-size-small;
       content: '*';
     }
   }
   &.x-invalid,
   &.x-required {
     > label {
-      color: $--x-danger;
+      color: $x-danger;
     }
   }
   &.x-disabled,
   &-loading {
-    .#{$--x-switch-prefix}-slider {
+    .#{$x-switch-prefix}-slider {
       cursor: not-allowed;
-      background-color: $--x-info-500;
-      border-color: $--x-info-500;
+      background-color: $x-info-500;
+      border-color: $x-info-500;
     }
     &.x-checked {
-      .#{$--x-switch-prefix}-slider {
-        background-color: $--x-primary-500;
-        border-color: $--x-primary-500;
+      .#{$x-switch-prefix}-slider {
+        background-color: $x-primary-500;
+        border-color: $x-primary-500;
       }
     }
   }
@@ -116,11 +116,11 @@
     }
   }
 
-  @include size('big', $--x-height-big, 0.125rem);
-  @include size('large', $--x-height-large, 0.125rem);
-  @include size('medium', $--x-height-medium, 0.125rem);
-  @include size('small', $--x-height-small, 0.125rem);
-  @include size('mini', $--x-height-mini, 0.125rem);
+  @include size('big', $x-height-big, 0.125rem);
+  @include size('large', $x-height-large, 0.125rem);
+  @include size('medium', $x-height-medium, 0.125rem);
+  @include size('small', $x-height-small, 0.125rem);
+  @include size('mini', $x-height-mini, 0.125rem);
 }
 
 @mixin size($size, $height, $margin) {
@@ -129,7 +129,7 @@
       height: $height;
       line-height: $height;
     }
-    .#{$--x-switch-prefix} {
+    .#{$x-switch-prefix} {
       &-slider {
         height: calc($height - $margin * 2);
         min-width: calc(calc($height - $margin * 2) * 2);
@@ -150,7 +150,7 @@
       }
     }
     &.x-checked {
-      .#{$--x-switch-prefix} {
+      .#{$x-switch-prefix} {
         &-handle {
           left: calc(100% - calc($height - $margin * 4) - $margin * 2);
         }

@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'te-form',
-  standalone: true,
   imports: [ExDefaultComponent, ExFormVaildComponent, ExLabelRowComponent, ExTitleComponent],
   templateUrl: './form.component.html'
 })

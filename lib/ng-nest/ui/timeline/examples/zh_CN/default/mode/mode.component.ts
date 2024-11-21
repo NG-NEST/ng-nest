@@ -7,7 +7,6 @@ import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 
 @Component({
   selector: 'ex-mode',
-  standalone: true,
   imports: [FormsModule, XTimelineComponent, XRadioComponent, XTimeAgoPipe],
   templateUrl: './mode.component.html'
 })

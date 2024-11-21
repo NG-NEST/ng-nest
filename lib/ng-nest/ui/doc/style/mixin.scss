@@ -1,14 +1,13 @@
 // Doc
-
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use "sass:map";
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin doc {
   & {
     padding: 0 3rem;
     display: block;
-    font-size: $--x-font-size;
+    font-size: $x-font-size;
   }
   > x-anchor > .x-anchor {
     justify-content: center;
@@ -38,12 +37,12 @@
       h4 {
         font-size: 1rem;
         font-weight: 500;
-        margin: 1.125rem 0 $--x-font-size;
+        margin: 1.125rem 0 $x-font-size;
         clear: both;
       }
 
       h5 {
-        font-size: $--x-font-size;
+        font-size: $x-font-size;
         font-weight: 500;
         margin: 1rem 0 0.625rem;
         clear: both;
@@ -51,11 +50,11 @@
 
       > p {
         font-weight: 400;
-        margin: $--x-font-size 0 0;
+        margin: $x-font-size 0 0;
       }
 
       > ul {
-        margin: $--x-font-size 0;
+        margin: $x-font-size 0;
         > li {
           list-style-type: circle;
           margin-left: 1.25rem;
@@ -73,20 +72,20 @@
       }
 
       > blockquote {
-        margin-top: $--x-font-size;
-        background-color: $--x-background-a100;
-        border-radius: $--x-border-radius;
-        border: $--x-border-base;
-        color: $--x-text-400;
+        margin-top: $x-font-size;
+        background-color: $x-background-a100;
+        border-radius: $x-border-radius;
+        border: $x-border-base;
+        color: $x-text-400;
       }
 
       li > code,
       p > code {
         position: relative;
         padding: 0 0.5rem;
-        color: $--x-danger;
-        background: $--x-danger-900;
-        border-radius: $--x-border-small-radius;
+        color: $x-danger;
+        background: $x-danger-900;
+        border-radius: $x-border-small-radius;
         display: inline-block;
       }
 
@@ -104,14 +103,14 @@
         width: 100%;
         code {
           &.language- {
-            @include code(bash, $--x-background-100, $--x-text-300, $--x-text-300, $--x-text-300);
-            @each $state, $value in $--x-doc-states {
+            @include code(bash, $x-background-100, $x-text-300, $x-text-300, $x-text-300);
+            @each $state, $value in $x-doc-states {
               @include code(
                 $state,
-                map-get($value, color),
-                map-get($value, background-color),
-                map-get($value, border-color),
-                map-get($value, border-left-color)
+                map.get($value, color),
+                map.get($value, background-color),
+                map.get($value, border-color),
+                map.get($value, border-left-color)
               );
             }
           }
@@ -120,19 +119,19 @@
 
       > table {
         width: 100%;
-        background: $--x-background;
+        background: $x-background;
         border-collapse: collapse;
-        border-bottom: $--x-border-base;
+        border-bottom: $x-border-base;
         tr > th,
         tr > td {
-          border-bottom: $--x-border-base;
+          border-bottom: $x-border-base;
           text-align: left;
           padding: 0.5rem 0;
         }
         tr {
           th {
             white-space: nowrap;
-            color: $--x-text;
+            color: $x-text;
           }
         }
       }
@@ -149,31 +148,31 @@
   }
 }
 
-@mixin code($type, $color, $backgroundColor, $--border-color, $border-left-color) {
+@mixin code($type, $color, $backgroundColor, $border-color, $border-left-color) {
   &#{$type} {
     flex: 1;
     position: relative;
-    border-radius: $--x-border-radius;
-    padding: $--x-font-size 1rem;
+    border-radius: $x-border-radius;
+    padding: $x-font-size 1rem;
     background-color: $backgroundColor;
     color: $color;
-    border: $--x-border-base;
-    border-color: $--border-color;
+    border: $x-border-base;
+    border-color: $border-color;
     text-shadow: none;
-    @if map-has-key($--x-doc-states, $type) {
-      padding: 0.5rem 0.5rem 0.5rem $--x-font-size;
+    @if map.has-key($x-doc-states, $type) {
+      padding: 0.5rem 0.5rem 0.5rem $x-font-size;
       white-space: normal;
-      font-family: $--x-font-family;
+      font-family: $x-font-family;
     }
     &:before {
       content: ' ';
       position: absolute;
-      top: calc(#{$--x-border-width} * -1);
-      left: calc(#{$--x-border-width} * -1);
-      height: calc(100% + calc(#{$--x-border-width} * 2));
+      top: calc(#{$x-border-width} * -1);
+      left: calc(#{$x-border-width} * -1);
+      height: calc(100% + calc(#{$x-border-width} * 2));
       width: 0.25rem;
-      border-top-left-radius: $--x-border-radius;
-      border-bottom-left-radius: $--x-border-radius;
+      border-top-left-radius: $x-border-radius;
+      border-bottom-left-radius: $x-border-radius;
       background-color: $border-left-color;
     }
   }

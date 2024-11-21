@@ -1,5 +1,6 @@
 // TreeFile style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-tree-file: $--x-prefix + '-tree-file';
+$x-tree-file: $x-prefix + '-tree-file';
 
-$--x-tree-file-box-shadow: $--x-box-shadow;
+$x-tree-file-box-shadow: $x-box-shadow;

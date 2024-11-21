@@ -7,7 +7,6 @@ import { XDialogComponent } from '@ng-nest/ui/dialog';
 
 @Component({
   selector: 'ex-adaption',
-  standalone: true,
   imports: [XTableComponent, XButtonComponent, XDialogComponent],
   templateUrl: './adaption.component.html',
   providers: [AdaptionService]

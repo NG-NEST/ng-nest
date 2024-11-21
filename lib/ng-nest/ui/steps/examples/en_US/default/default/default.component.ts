@@ -4,7 +4,6 @@ import { XStepsComponent } from '@ng-nest/ui/steps';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XStepsComponent, XButtonComponent],
   templateUrl: './default.component.html'
 })

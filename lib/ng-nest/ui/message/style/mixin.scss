@@ -1,14 +1,13 @@
 // Message
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin message {
   > x-alert {
     padding: 0.25rem 0;
     > .x-alert {
-      box-shadow: $--x-box-shadow;
+      box-shadow: $x-box-shadow;
     }
   }
 }

@@ -5,7 +5,6 @@ import { XRateComponent } from '@ng-nest/ui/rate';
 
 @Component({
   selector: 'ex-color',
-  standalone: true,
   imports: [FormsModule, XRateComponent, XIconComponent],
   templateUrl: './color.component.html',
   styleUrls: ['./color.component.scss']

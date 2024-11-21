@@ -3,7 +3,6 @@ import { XCardComponent } from '@ng-nest/ui/card';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XCardComponent],
   templateUrl: './default.component.html'
 })

@@ -1,42 +1,43 @@
 // SliderSelect style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-slider-select-prefix: $--x-prefix + '-slider-select';
+$x-slider-select-prefix: $x-prefix + '-slider-select';
 
 /* 字体大小 */
-$--x-slider-select-font-size: $--x-font-size;
+$x-slider-select-font-size: $x-font-size;
 
 /* 高度 */
-$--x-slider-select-height: $--x-height-medium;
+$x-slider-select-height: $x-height-medium;
 
 /* 轨道高度 */
-$--x-slider-select-track-height: calc(#{$--x-slider-select-height} / 4);
+$x-slider-select-track-height: calc(#{$x-slider-select-height} / 4);
 
 /* 滑块尺寸 */
-$--x-slider-select-button-size: 1rem;
+$x-slider-select-button-size: 1rem;
 
 /* 内边距 */
-$--x-slider-select-padding: 0 $--x-control-padding-horizontal;
+$x-slider-select-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-slider-select-color: $--x-primary-900;
+$x-slider-select-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-slider-select-placeholder-color: $--x-placeholder-color;
+$x-slider-select-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-slider-select-background-color: $--x-background;
+$x-slider-select-background-color: $x-background;
 
 /* 边框样式 */
-$--x-slider-select-border: $--x-border-width $--x-border-style $--x-border;
+$x-slider-select-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-slider-select-border-radius: $--x-border-radius;
+$x-slider-select-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-slider-select-disabled-color: $--x-text-500;
+$x-slider-select-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-slider-select-icon-font-size: $--x-font-size-medium;
+$x-slider-select-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-slider-select-icon-padding: $--x-control-padding-horizontal;
+$x-slider-select-icon-padding: $x-control-padding-horizontal;

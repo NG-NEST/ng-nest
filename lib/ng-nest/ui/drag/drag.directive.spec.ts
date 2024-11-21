@@ -7,14 +7,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XDragDirective],
   template: ` <div x-drag>drag</div> `
 })
 class XTestDragComponent {}
 
 @Component({
-  standalone: true,
   imports: [XDragDirective],
   template: `
     <div x-drag (dragStarted)="dragStarted($event)" (dragMoved)="dragMoved($event)" (dragEnded)="dragEnded($event)">

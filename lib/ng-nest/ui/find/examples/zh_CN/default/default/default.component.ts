@@ -7,7 +7,6 @@ import { XFindComponent } from '@ng-nest/ui/find';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [FormsModule, XFindComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss'],

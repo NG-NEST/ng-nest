@@ -23,14 +23,12 @@ import { FormsModule } from '@angular/forms';
 import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
-  standalone: true,
   imports: [XTableComponent],
   template: ` <x-table> </x-table> `
 })
 class XTestTableComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTableComponent, FormsModule, XInputComponent],
   template: `
     <x-table

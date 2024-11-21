@@ -1,8 +1,7 @@
 // Image
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin image {
   & {
@@ -24,7 +23,7 @@
     background: rgba(0, 0, 0, 0.5);
     cursor: pointer;
     opacity: 0;
-    transition: opacity $--x-animation-duration-base;
+    transition: opacity $x-animation-duration-base;
     &:hover {
       opacity: 1;
     }
@@ -61,7 +60,7 @@
       font-size: 1.25rem;
       padding: 0.75rem;
       cursor: pointer;
-      transition: background-color $--x-animation-duration-base;
+      transition: background-color $x-animation-duration-base;
       &:hover:not(.x-image-preview-disabled) {
         background-color: rgba(0, 0, 0, 0.1);
       }
@@ -91,13 +90,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform $--x-animation-duration-base ease-out 0s;
+    transition: transform $x-animation-duration-base ease-out 0s;
     > img {
       max-width: 100%;
       max-height: 100%;
       vertical-align: middle;
       cursor: grab;
-      transition: transform $--x-animation-duration-base ease-out 0s;
+      transition: transform $x-animation-duration-base ease-out 0s;
     }
   }
   &-left,
@@ -114,7 +113,7 @@
     color: white;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 50%;
-    transition: background-color $--x-animation-duration-base;
+    transition: background-color $x-animation-duration-base;
     cursor: pointer;
     font-size: 1.25rem;
     &:hover:not(.x-image-preview-disabled) {

@@ -3,7 +3,6 @@ import { ExDefaultComponent, ExLoadMoreComponent, ExScrollComponent, ExSizeCompo
 
 @Component({
   selector: 'te-list',
-  standalone: true,
   imports: [ExDefaultComponent, ExLoadMoreComponent, ExScrollComponent, ExSizeComponent],
   templateUrl: './list.component.html'
 })

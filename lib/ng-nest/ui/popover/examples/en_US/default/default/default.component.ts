@@ -4,7 +4,6 @@ import { XPopoverDirective } from '@ng-nest/ui/popover';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XPopoverDirective, XButtonComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-required',
-  standalone: true,
   imports: [FormsModule, XRowComponent, XColComponent, XAutoCompleteComponent],
   templateUrl: './required.component.html',
   styleUrls: ['./required.component.scss']

@@ -15,14 +15,12 @@ import { XTableColumn } from '@ng-nest/ui/table';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XTransferComponent],
   template: ` <x-transfer> </x-transfer> `
 })
 class XTestTransferComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTransferComponent],
   template: `
     <x-transfer

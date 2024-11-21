@@ -1,8 +1,10 @@
 // Input
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use '../../style/mixins/form.scss' as *;
+@use '../../style/mixins/compatibility.scss' as *;
+@use './param.scss' as *;
 
 @mixin input {
   width: 100%;
@@ -11,7 +13,7 @@
     display: inline-block;
     white-space: nowrap;
     position: relative;
-    color: $--x-text-300;
+    color: $x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -19,21 +21,21 @@
     flex: 1;
     display: flex;
     align-items: center;
-    .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template),
-    .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template) {
-      border: $--x-input-border;
-      background-color: $--x-background-a100;
+    .#{$x-input-prefix}-row-before:not(.x-input-row-before-template),
+    .#{$x-input-prefix}-row-after:not(.x-input-row-after-template) {
+      border: $x-input-border;
+      background-color: $x-background-a100;
       border-width: 0;
     }
-    .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template) {
-      border-top-left-radius: $--x-border-radius;
-      border-bottom-left-radius: $--x-border-radius;
+    .#{$x-input-prefix}-row-before:not(.x-input-row-before-template) {
+      border-top-left-radius: $x-border-radius;
+      border-bottom-left-radius: $x-border-radius;
     }
-    .#{$--x-input-prefix}-row-after:not(.x-input-row-before-template) {
-      border-top-right-radius: $--x-border-radius;
-      border-bottom-right-radius: $--x-border-radius;
+    .#{$x-input-prefix}-row-after:not(.x-input-row-before-template) {
+      border-top-right-radius: $x-border-radius;
+      border-bottom-right-radius: $x-border-radius;
     }
-    .#{$--x-input-prefix}-row-before-template {
+    .#{$x-input-prefix}-row-before-template {
       display: contents;
       input,
       .x-button {
@@ -41,10 +43,10 @@
         border-bottom-right-radius: 0 !important;
       }
       input {
-        margin-right: calc(#{$--x-border-width} * -1);
+        margin-right: calc(#{$x-border-width} * -1);
       }
     }
-    .#{$--x-input-prefix}-row-after-template {
+    .#{$x-input-prefix}-row-after-template {
       display: contents;
       input,
       .x-button {
@@ -52,23 +54,23 @@
         border-bottom-left-radius: 0 !important;
       }
       input {
-        margin-left: calc(#{$--x-border-width} * -1);
+        margin-left: calc(#{$x-border-width} * -1);
       }
     }
-    .#{$--x-input-prefix}-row-before-template {
+    .#{$x-input-prefix}-row-before-template {
       &:hover,
       &:focus {
         z-index: 1;
       }
     }
-    .#{$--x-input-prefix}-row-before-template,
-    .#{$--x-input-prefix}-row-after-template {
+    .#{$x-input-prefix}-row-before-template,
+    .#{$x-input-prefix}-row-after-template {
       input:hover,
       input:focus {
         z-index: 1;
       }
     }
-    > .#{$--x-input-prefix}-input {
+    > .#{$x-input-prefix}-input {
       position: relative;
       width: 100%;
       display: inline-flex;
@@ -77,27 +79,27 @@
       > input {
         flex: 1;
         width: 100%;
-        font-size: $--x-input-font-size;
-        background-color: $--x-input-background-color-a200;
+        font-size: $x-input-font-size;
+        background-color: $x-input-background-color-a200;
         background-image: none;
-        border: $--x-input-border;
-        border-radius: $--x-input-border-radius;
+        border: $x-input-border;
+        border-radius: $x-input-border-radius;
         border-width: 0;
-        box-shadow: $--x-input-box-shadow;
+        box-shadow: $x-input-box-shadow;
         transition-property: background-color, border-color;
-        transition-duration: $--x-animation-duration-slow;
+        transition-duration: $x-animation-duration-slow;
         @include placeholder();
         &[disabled] {
-          color: $--x-input-disabled-color;
+          color: $x-input-disabled-color;
         }
         &:focus {
           @include focus();
           outline: 0;
         }
       }
-      > #{$--x-prefix}-icon {
-        color: $--x-text-400;
-        transition: all $--x-animation-duration-base;
+      > #{$x-prefix}-icon {
+        color: $x-text-400;
+        transition: all $x-animation-duration-base;
         z-index: 2;
       }
       &:hover {
@@ -118,15 +120,15 @@
     &:before {
       display: inline-block;
       margin-right: 0.25rem;
-      color: $--x-danger;
+      color: $x-danger;
       line-height: 1;
-      font-size: $--x-font-size-small;
+      font-size: $x-font-size-small;
       content: '*';
     }
   }
   &-value-template {
-    .#{$--x-input-prefix}-input {
-      > input.#{$--x-input-prefix}-has-value-template {
+    .#{$x-input-prefix}-input {
+      > input.#{$x-input-prefix}-has-value-template {
         color: transparent !important;
       }
     }
@@ -146,9 +148,9 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    font-size: $--x-input-font-size - 0.125rem;
-    color: $--x-danger;
-    margin-bottom: calc(calc(#{$--x-input-font-size}) * -2);
+    font-size: $x-input-font-size - 0.125rem;
+    color: $x-danger;
+    margin-bottom: calc(calc(#{$x-input-font-size}) * -2);
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -157,39 +159,39 @@
   &.x-invalid,
   &.x-required {
     > label {
-      color: $--x-danger;
+      color: $x-danger;
     }
-    .#{$--x-input-prefix}-input {
-      > #{$--x-prefix}-icon {
-        color: $--x-danger;
+    .#{$x-input-prefix}-input {
+      > #{$x-prefix}-icon {
+        color: $x-danger;
       }
       @include border-error();
     }
   }
   &.x-disabled {
-    > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
-      > #{$--x-prefix}-icon {
-        color: $--x-text-400;
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
+      > #{$x-prefix}-icon {
+        color: $x-text-400;
         cursor: not-allowed;
       }
       > input {
-        color: $--x-text-400;
+        color: $x-text-400;
         cursor: not-allowed;
-        border-color: $--x-border-100;
-        background-color: $--x-background-a100;
+        border-color: $x-border-100;
+        background-color: $x-background-a100;
       }
-      > .#{$--x-input-prefix}-value-template-value {
-        color: $--x-text-400;
+      > .#{$x-input-prefix}-value-template-value {
+        color: $x-text-400;
         cursor: not-allowed;
       }
     }
   }
   &.x-clearable {
-    > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
-      > .#{$--x-input-prefix}-clear {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
+      > .#{$x-input-prefix}-clear {
         position: absolute;
-        color: $--x-text-400;
-        font-size: $--x-input-icon-font-size;
+        color: $x-text-400;
+        font-size: $x-input-icon-font-size;
         right: 0;
         left: inherit;
         opacity: 0;
@@ -199,21 +201,21 @@
         align-items: center;
         justify-content: center;
         &:hover {
-          color: $--x-text-300;
+          color: $x-text-300;
         }
       }
       &:hover {
         > input,
-        > .#{$--x-input-prefix}-value-template-value {
-          .#{$--x-input-prefix}-clear {
+        > .#{$x-input-prefix}-value-template-value {
+          .#{$x-input-prefix}-clear {
             opacity: 1;
           }
         }
       }
     }
     &.x-clear-show {
-      > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
-        > .#{$--x-input-prefix}-clear {
+      > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
+        > .#{$x-input-prefix}-clear {
           opacity: 1;
         }
       }
@@ -221,9 +223,9 @@
   }
   &-max-length {
     position: absolute;
-    font-size: $--x-font-size-small;
-    color: $--x-text-400;
-    padding: 0 $--x-input-icon-padding;
+    font-size: $x-font-size-small;
+    color: $x-text-400;
+    padding: 0 $x-input-icon-padding;
     right: 0;
     width: 3rem;
     display: inline-flex;
@@ -249,73 +251,73 @@
     }
   }
   &-icon {
-    > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
-      > #{$--x-prefix}-icon {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
+      > #{$x-prefix}-icon {
         position: absolute;
-        font-size: $--x-input-icon-font-size;
+        font-size: $x-input-icon-font-size;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        // &.#{$--x-prefix}-icon-spin {
+        // &.#{$x-prefix}-icon-spin {
         //   padding: 0;
-        //   margin: $--x-input-icon-padding;
+        //   margin: $x-input-icon-padding;
         // }
       }
     }
   }
   &-icon-left {
-    > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
       > input,
-      > .#{$--x-input-prefix}-value-template-value {
-        padding-left: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2);
+      > .#{$x-input-prefix}-value-template-value {
+        padding-left: calc($x-input-icon-font-size + $x-input-icon-padding * 2);
       }
-      > #{$--x-prefix}-icon {
+      > #{$x-prefix}-icon {
         left: 0;
       }
     }
   }
   &-icon-right {
-    > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
       > input,
-      > .#{$--x-input-prefix}-value-template-value {
-        padding-right: calc($--x-input-icon-font-size + $--x-input-icon-padding * 2);
+      > .#{$x-input-prefix}-value-template-value {
+        padding-right: calc($x-input-icon-font-size + $x-input-icon-padding * 2);
       }
-      > #{$--x-prefix}-icon {
+      > #{$x-prefix}-icon {
         right: 0;
       }
-      > .#{$--x-input-prefix}-max-length {
+      > .#{$x-input-prefix}-max-length {
         right: inherit;
         left: 0;
       }
     }
   }
   &-bordered {
-    > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
       > input {
-        border-width: $--x-border-width;
-        background-color: $--x-input-background-color;
+        border-width: $x-border-width;
+        background-color: $x-input-background-color;
       }
     }
-    .#{$--x-input-prefix}-row {
-      .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template) {
-        border-width: $--x-border-width;
+    .#{$x-input-prefix}-row {
+      .#{$x-input-prefix}-row-before:not(.x-input-row-before-template) {
+        border-width: $x-border-width;
         border-right-width: 0;
       }
-      .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template) {
-        border-width: $--x-border-width;
+      .#{$x-input-prefix}-row-after:not(.x-input-row-after-template) {
+        border-width: $x-border-width;
         border-left-width: 0;
       }
     }
   }
   &-before {
-    > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
       > input {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
     }
     &-template {
-      .#{$--x-input-prefix}-input {
+      .#{$x-input-prefix}-input {
         > input {
           &:hover,
           &:focus {
@@ -326,14 +328,14 @@
     }
   }
   &-after {
-    > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
       > input {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
     }
     &-template {
-      > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
+      > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
         > input {
           &:hover,
           &:focus {
@@ -345,45 +347,45 @@
   }
   &-active {
     .x-input-row {
-      > .#{$--x-input-prefix}-input > input {
+      > .#{$x-input-prefix}-input > input {
         @include focus();
       }
     }
   }
   &-pointer {
     .x-input-row {
-      > .#{$--x-input-prefix}-input {
+      > .#{$x-input-prefix}-input {
         > input,
         > x-icon,
-        > .#{$--x-input-prefix}-value-template-value {
+        > .#{$x-input-prefix}-value-template-value {
           cursor: pointer;
         }
       }
     }
   }
-  @include size('big', $--x-height-big, 0 $--x-padding-big);
-  @include size('large', $--x-height-large, 0 $--x-padding-large);
-  @include size('medium', $--x-height-medium, 0 $--x-padding-medium);
-  @include size('small', $--x-height-small, 0 $--x-padding-small);
-  @include size('mini', $--x-height-mini, 0 $--x-padding-mini);
+  @include size('big', $x-height-big, 0 $x-padding-big);
+  @include size('large', $x-height-large, 0 $x-padding-large);
+  @include size('medium', $x-height-medium, 0 $x-padding-medium);
+  @include size('small', $x-height-small, 0 $x-padding-small);
+  @include size('mini', $x-height-mini, 0 $x-padding-mini);
 }
 
 @mixin size($size, $height, $padding) {
   &-#{$size} {
-    > .#{$--x-input-prefix}-row > .#{$--x-input-prefix}-input {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
       > input,
-      > .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template),
-      > .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template) {
+      > .#{$x-input-prefix}-row-before:not(.x-input-row-before-template),
+      > .#{$x-input-prefix}-row-after:not(.x-input-row-after-template) {
         height: $height;
         line-height: $height;
         padding: $padding;
       }
-      > .#{$--x-input-prefix}-value-template-value {
+      > .#{$x-input-prefix}-value-template-value {
         min-height: $height;
         line-height: $height;
         padding: $padding;
       }
-      > .#{$--x-input-prefix}-max-length {
+      > .#{$x-input-prefix}-max-length {
         height: $height;
         line-height: $height;
       }
@@ -393,9 +395,9 @@
       }
     }
 
-    > .#{$--x-input-prefix}-row {
-      > .#{$--x-input-prefix}-row-before:not(.x-input-row-before-template),
-      > .#{$--x-input-prefix}-row-after:not(.x-input-row-after-template) {
+    > .#{$x-input-prefix}-row {
+      > .#{$x-input-prefix}-row-before:not(.x-input-row-before-template),
+      > .#{$x-input-prefix}-row-after:not(.x-input-row-after-template) {
         height: $height;
         line-height: $height;
         padding: $padding;
@@ -427,7 +429,7 @@
       }
       .x-button {
         box-shadow: none !important;
-        border: $--x-input-border;
+        border: $x-input-border;
         &:hover {
           @include hover();
         }
@@ -436,19 +438,19 @@
     > *:first-child {
       input,
       .x-button {
-        border-top-left-radius: $--x-border-radius !important;
-        border-bottom-left-radius: $--x-border-radius !important;
+        border-top-left-radius: $x-border-radius !important;
+        border-bottom-left-radius: $x-border-radius !important;
       }
     }
     > *:last-child {
       input,
       .x-button {
-        border-top-right-radius: $--x-border-radius !important;
-        border-bottom-right-radius: $--x-border-radius !important;
+        border-top-right-radius: $x-border-radius !important;
+        border-bottom-right-radius: $x-border-radius !important;
       }
     }
     > *:not(:last-child) {
-      margin-right: calc(#{$--x-border-width} * -1);
+      margin-right: calc(#{$x-border-width} * -1);
     }
   }
 }

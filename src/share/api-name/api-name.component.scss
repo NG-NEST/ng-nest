@@ -1,28 +1,29 @@
-@import '../../styles/index.scss';
+@use '../../styles/default.scss' as *;
+@use '../../styles/mixin.scss' as *;
 
 :host {
   .ns-name-title {
-    background-color: $--x-background-a200;
-    border-top-left-radius: $--x-border-radius;
-    border-top-right-radius: $--x-border-radius;
+    background-color: $x-background-a200;
+    border-top-left-radius: $x-border-radius;
+    border-top-right-radius: $x-border-radius;
   }
   .ns-name-content {
     .property {
       &:not(:first-child) {
-        margin-top: $--x-padding-large;
+        margin-top: $x-padding-large;
       }
       > div:not(:first-child) {
-        margin-top: $--x-padding-mini;
+        margin-top: $x-padding-mini;
       }
       .value {
-        color: $--x-text-200;
-        padding: $--x-padding-small $--x-padding-medium;
-        border-radius: $--x-border-small-radius;
-        background-color: $--x-background-a100;
+        color: $x-text-200;
+        padding: $x-padding-small $x-padding-medium;
+        border-radius: $x-border-small-radius;
+        background-color: $x-background-a100;
         display: flex;
         align-items: center;
         > span {
-          border-radius: $--x-border-small-radius;
+          border-radius: $x-border-small-radius;
           &:not(:first-child) {
             margin-left: 1rem;
           }
@@ -32,13 +33,13 @@
           align-items: center;
           justify-content: center;
           background-color: rgba(250, 44, 5, 0.1);
-          border-radius: $--x-border-small-radius;
+          border-radius: $x-border-small-radius;
           > code {
             color: rgb(250, 44, 5);
-            border-radius: $--x-border-small-radius;
+            border-radius: $x-border-small-radius;
             background-color: rgba(250, 44, 5, 0.1);
             padding: 0.25rem 0.5rem;
-            transition: $--x-animation-duration-base background-color;
+            transition: $x-animation-duration-base background-color;
             will-change: background-color;
           }
           > span {
@@ -54,13 +55,13 @@
         }
       }
       .signal {
-        color: $--x-text-200;
-        padding: $--x-padding-small $--x-padding-medium;
-        border-radius: $--x-border-small-radius;
-        background-color: $--x-background-a100;
+        color: $x-text-200;
+        padding: $x-padding-small $x-padding-medium;
+        border-radius: $x-border-small-radius;
+        background-color: $x-background-a100;
         span {
           padding: 0.25rem 0.325rem;
-          border-radius: $--x-border-small-radius;
+          border-radius: $x-border-small-radius;
           white-space: nowrap;
           &:not(:first-child) {
             margin-left: 1rem;
@@ -78,8 +79,8 @@
           padding: 0.25rem 0.325rem;
           color: #f637e3;
           background: rgba(246, 55, 227, 0.1);
-          border-radius: $--x-border-small-radius;
-          transition: $--x-animation-duration-base background-color;
+          border-radius: $x-border-small-radius;
+          transition: $x-animation-duration-base background-color;
           will-change: background-color;
           &:hover {
             background-color: rgba(246, 55, 227, 0.2);
@@ -87,15 +88,15 @@
         }
       }
       .base {
-        color: $--x-text;
+        color: $x-text;
         display: flex;
         align-items: center;
         .name {
           color: #3b82f6;
           background-color: rgba(59, 130, 246, 0.1);
-          border-radius: $--x-border-small-radius;
+          border-radius: $x-border-small-radius;
           padding: 0.25rem 0.325rem 0.25rem 1.5rem;
-          transition: $--x-animation-duration-base background-color;
+          transition: $x-animation-duration-base background-color;
           will-change: background-color;
           &:hover {
             background-color: rgba(59, 130, 246, 0.2);
@@ -103,8 +104,8 @@
         }
         .signal-short {
           background: rgba(59, 130, 246, 0.1);
-          border-radius: $--x-border-small-radius;
-          color: $--x-success;
+          border-radius: $x-border-small-radius;
+          color: $x-success;
           margin-right: -1.325rem;
           height: 1.8125rem;
           width: 1.375rem;
@@ -118,8 +119,8 @@
           padding: 0.25rem 0.325rem;
           color: #f637e3;
           background: rgba(246, 55, 227, 0.1);
-          border-radius: $--x-border-small-radius;
-          transition: $--x-animation-duration-base background-color;
+          border-radius: $x-border-small-radius;
+          transition: $x-animation-duration-base background-color;
           will-change: background-color;
           &:hover {
             background-color: rgba(246, 55, 227, 0.2);
@@ -130,15 +131,15 @@
         }
       }
       .description {
-        color: $--x-text-200;
-        padding: $--x-padding-small $--x-padding-medium;
-        border-radius: $--x-border-small-radius;
-        background-color: $--x-background-a100;
+        color: $x-text-200;
+        padding: $x-padding-small $x-padding-medium;
+        border-radius: $x-border-small-radius;
+        background-color: $x-background-a100;
       }
       .example {
-        padding: $--x-padding-small $--x-padding-medium;
-        border-radius: $--x-border-small-radius;
-        border: $--x-border-base;
+        padding: $x-padding-small $x-padding-medium;
+        border-radius: $x-border-small-radius;
+        border: $x-border-base;
       }
     }
   }

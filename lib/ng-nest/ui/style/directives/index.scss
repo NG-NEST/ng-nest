@@ -1,4 +1,4 @@
 // Directives
-@import './ripple/index';
-@import './resizable/index';
-@import './keyword/index';
+@use './ripple/index' as *;
+@use './resizable/index' as *;
+@use './keyword/index' as *;

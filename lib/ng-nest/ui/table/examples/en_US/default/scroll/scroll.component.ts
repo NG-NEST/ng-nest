@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-scroll',
-  standalone: true,
   imports: [XTableComponent],
   templateUrl: './scroll.component.html',
   providers: [ScrollService]

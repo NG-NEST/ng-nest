@@ -11,7 +11,7 @@ export const timeUnits: Array<[string, number]> = [
   ['S', 1] // million seconds
 ];
 
-@Pipe({ name: `${XTimeRangePrefix}`, standalone: true })
+@Pipe({ name: `${XTimeRangePrefix}` })
 export class XTimeRangePipe implements PipeTransform {
   transform(value: string | number, format: string = 'HH:mm:ss'): string {
     let duration = Number(value || 0);

@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-edit',
-  standalone: true,
   imports: [
     FormsModule,
     XTableComponent,

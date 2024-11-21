@@ -1,40 +1,41 @@
 // TimePicker style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-time-picker-prefix: $--x-prefix + '-time-picker';
+$x-time-picker-prefix: $x-prefix + '-time-picker';
 
 /* 字体大小 */
-$--x-time-picker-font-size: $--x-font-size;
+$x-time-picker-font-size: $x-font-size;
 
 /* 高度 */
-$--x-time-picker-height: calc(#{$--x-font-size} + 0.875rem);
+$x-time-picker-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 内边距 */
-$--x-time-picker-padding: 0 $--x-control-padding-horizontal;
+$x-time-picker-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-time-picker-color: $--x-primary-900;
+$x-time-picker-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-time-picker-placeholder-color: $--x-placeholder-color;
+$x-time-picker-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-time-picker-background-color: $--x-background;
+$x-time-picker-background-color: $x-background;
 
 /* 边框样式 */
-$--x-time-picker-border: $--x-border-base;
+$x-time-picker-border: $x-border-base;
 
 /* 边框圆角 */
-$--x-time-picker-border-radius: $--x-border-radius;
+$x-time-picker-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-time-picker-disabled-color: $--x-text-500;
+$x-time-picker-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-time-picker-icon-font-size: $--x-font-size-medium;
+$x-time-picker-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-time-picker-icon-padding: $--x-control-padding-horizontal;
+$x-time-picker-icon-padding: $x-control-padding-horizontal;
 
-$--x-time-picker-portal-prefix: $--x-prefix + '-time-picker-portal';
+$x-time-picker-portal-prefix: $x-prefix + '-time-picker-portal';
 
-$--x-time-picker-frame-prefix: $--x-prefix + '-time-picker-frame';
+$x-time-picker-frame-prefix: $x-prefix + '-time-picker-frame';

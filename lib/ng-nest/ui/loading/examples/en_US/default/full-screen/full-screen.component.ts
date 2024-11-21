@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-full-screen',
-  standalone: true,
   imports: [XLoadingComponent, XButtonComponent],
   templateUrl: './full-screen.component.html'
 })

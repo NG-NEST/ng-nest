@@ -4,7 +4,6 @@ import { XContainerComponent } from './container.component';
 
 @Component({
   selector: `${XFooterPrefix}`,
-  standalone: true,
   template: '<ng-content></ng-content>',
   styleUrls: ['./footer.component.scss'],
   encapsulation: ViewEncapsulation.None,

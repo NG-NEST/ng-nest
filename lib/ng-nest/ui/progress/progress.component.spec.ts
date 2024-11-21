@@ -11,17 +11,15 @@ import {
 } from '@ng-nest/ui/progress';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { XComputedStyle } from '../core';
+import { XComputedStyle } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XProgressComponent],
   template: ` <x-progress></x-progress> `
 })
 class XTestProgressComponent {}
 
 @Component({
-  standalone: true,
   imports: [XProgressComponent],
   template: `
     <x-progress
@@ -146,11 +144,11 @@ describe(XProgressPrefix, () => {
     });
     it('format.', () => {
       component.format.set((percent: number) => {
-        return percent === 100 ? '已完成' : '加载中' + percent + '%';
+        return percent === 100 ? 'S' : 'P' + percent + '%';
       });
       fixture.detectChanges();
       const text = fixture.debugElement.query(By.css('.x-progress-text')).nativeElement;
-      expect(text.innerText).toBe('加载中0%');
+      expect(text.innerText).toBe('P0%');
     });
     it('color.', () => {
       component.color.set('rgb(0, 255, 0)');

@@ -10,7 +10,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { XIconComponent } from '../icon';
 
 @Component({
-  standalone: true,
   imports: [XCollapseComponent, XCollapsePanelComponent],
   template: `
     <x-collapse>
@@ -23,7 +22,6 @@ import { XIconComponent } from '../icon';
 class XTestCollapseComponent {}
 
 @Component({
-  standalone: true,
   imports: [XCollapseComponent, XCollapsePanelComponent, XIconComponent],
   template: `
     <x-collapse

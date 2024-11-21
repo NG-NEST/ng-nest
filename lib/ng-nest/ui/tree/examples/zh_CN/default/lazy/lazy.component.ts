@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-lazy',
-  standalone: true,
   imports: [XTreeComponent],
   templateUrl: './lazy.component.html'
 })

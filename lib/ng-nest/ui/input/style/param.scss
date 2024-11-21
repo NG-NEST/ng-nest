@@ -1,43 +1,44 @@
 // Input style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-input-prefix: $--x-prefix + '-input';
-$--x-input-group-prefix: $--x-prefix + '-input-group';
+$x-input-prefix: $x-prefix + '-input';
+$x-input-group-prefix: $x-prefix + '-input-group';
 
 /* 字体大小 */
-$--x-input-font-size: $--x-font-size;
+$x-input-font-size: $x-font-size;
 
 /* 高度 */
-$--x-input-height: calc(#{$--x-font-size} + 0.875rem);
+$x-input-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 内边距 */
-$--x-input-padding: 0 $--x-control-padding-horizontal;
+$x-input-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-input-color: $--x-text;
+$x-input-color: $x-text;
 
 /* 提示文字颜色 */
-$--x-input-placeholder-color: $--x-placeholder-color;
+$x-input-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-input-background-color: $--x-background;
+$x-input-background-color: $x-background;
 
 /* 背景颜色,没有边框 */
-$--x-input-background-color-a200: $--x-background-a200;
+$x-input-background-color-a200: $x-background-a200;
 
 /* 边框样式 */
-$--x-input-border: $--x-border-base;
+$x-input-border: $x-border-base;
 
 /* 边框圆角 */
-$--x-input-border-radius: $--x-border-radius;
+$x-input-border-radius: $x-border-radius;
 
 /* 阴影 */
-$--x-input-box-shadow: $--x-box-shadow transparent;
+$x-input-box-shadow: $x-box-shadow transparent;
 
 /* 禁用颜色 */
-$--x-input-disabled-color: $--x-text-500;
+$x-input-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-input-icon-font-size: $--x-font-size-medium;
+$x-input-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-input-icon-padding: 0.4rem;
+$x-input-icon-padding: 0.4rem;

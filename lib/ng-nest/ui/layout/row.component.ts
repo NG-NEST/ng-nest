@@ -5,7 +5,6 @@ import { XComputedStyle, XToCssPx } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XRowPrefix}`,
-  standalone: true,
   template: '<ng-content></ng-content>',
   styleUrls: ['./row.component.scss'],
   encapsulation: ViewEncapsulation.None,

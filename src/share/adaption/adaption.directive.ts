@@ -5,8 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 
 @Directive({
-  selector: '[ns-adaption]',
-  standalone: true
+  selector: '[ns-adaption]'
 })
 export class NsAdaptionDirective implements AfterViewInit, OnDestroy {
   outerHeight = input<number>(0);

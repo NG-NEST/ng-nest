@@ -1,3 +1,4 @@
 // Empty style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-empty: $--x-prefix + '-empty';
+$x-empty: $x-prefix + '-empty';

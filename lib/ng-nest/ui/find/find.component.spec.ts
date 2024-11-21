@@ -13,14 +13,12 @@ import { Observable } from 'rxjs';
 import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
-  standalone: true,
   imports: [XFindComponent],
   template: ` <x-find></x-find> `
 })
 class XTestFindComponent {}
 
 @Component({
-  standalone: true,
   imports: [FormsModule, XFindComponent],
   template: `
     <x-find

@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'te-highlight',
-  standalone: true,
   imports: [ExCopyComponent, ExHtmlComponent, ExScssComponent, ExTypescriptComponent],
   templateUrl: './highlight.component.html'
 })

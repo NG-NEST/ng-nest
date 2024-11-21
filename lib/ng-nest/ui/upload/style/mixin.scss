@@ -1,13 +1,12 @@
 // Upload
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin upload {
   & {
-    color: $--x-text;
-    font-size: $--x-font-size;
+    color: $x-text;
+    font-size: $x-font-size;
   }
   &-buttons {
     display: inline-flex;
@@ -25,22 +24,22 @@
     > li {
       margin: 0;
       padding: 0 0.2rem;
-      height: calc(#{$--x-font-size} + 0.6rem);
-      line-height: calc(#{$--x-font-size} + 0.6rem);
+      height: calc(#{$x-font-size} + 0.6rem);
+      line-height: calc(#{$x-font-size} + 0.6rem);
       display: flex;
       align-items: center;
       overflow: hidden;
       cursor: pointer;
-      border-radius: $--x-border-radius;
+      border-radius: $x-border-radius;
       .x-icon {
-        color: $--x-text-400;
+        color: $x-text-400;
         font-size: 1rem;
         &.x-upload-state {
           &.success {
-            color: $--x-success;
+            color: $x-success;
           }
           &.error {
-            color: $--x-danger;
+            color: $x-danger;
           }
         }
       }
@@ -48,8 +47,8 @@
         flex: 1;
         display: flex;
         align-items: center;
-        height: calc(#{$--x-font-size} + 0.6rem);
-        line-height: calc(#{$--x-font-size} + 0.6rem);
+        height: calc(#{$x-font-size} + 0.6rem);
+        line-height: calc(#{$x-font-size} + 0.6rem);
         color: inherit;
         text-decoration: none;
         overflow: hidden;
@@ -63,7 +62,7 @@
           overflow: hidden;
         }
         &.x-upload-percent {
-          color: $--x-text-400;
+          color: $x-text-400;
         }
       }
       > .x-button {
@@ -80,8 +79,8 @@
         }
       }
       &:hover:not(.x-upload-disabled) {
-        color: $--x-primary;
-        background-color: $--x-background;
+        color: $x-primary;
+        background-color: $x-background;
       }
       &:hover {
         > .x-button {
@@ -96,7 +95,7 @@
   &-img {
     display: flex;
     flex-wrap: wrap;
-    .#{$--x-upload-prefix} {
+    .#{$x-upload-prefix} {
       &-buttons {
         &-template {
           display: inline-flex;
@@ -107,12 +106,12 @@
           height: 6.25rem;
           margin-right: 0.5rem;
           margin-bottom: 0.5rem;
-          border: $--x-border-width dashed $--x-border;
-          background: $--x-background;
-          border-radius: $--x-border-radius;
-          transition: border-color $--x-animation-duration-base;
+          border: $x-border-width dashed $x-border;
+          background: $x-background;
+          border-radius: $x-border-radius;
+          transition: border-color $x-animation-duration-base;
           &:hover {
-            border-color: $--x-primary;
+            border-color: $x-primary;
           }
         }
       }
@@ -121,9 +120,9 @@
       height: 6.25rem;
       width: 6.25rem;
       padding: 0.325rem;
-      border: $--x-border-width $--x-border-style $--x-border;
-      border-radius: $--x-border-radius;
-      transition: border-color $--x-animation-duration-base;
+      border: $x-border-width $x-border-style $x-border;
+      border-radius: $x-border-radius;
+      transition: border-color $x-animation-duration-base;
       margin-right: 0.5rem;
       margin-bottom: 0.5rem;
       position: relative;
@@ -131,12 +130,12 @@
       align-items: center;
       justify-content: center;
       &-overlay {
-        border-radius: $--x-border-radius;
+        border-radius: $x-border-radius;
         x-icon {
           font-size: 1rem;
           color: rgba(255, 255, 255, 0.8);
           padding: 0.25rem;
-          transition: color $--x-animation-duration-base;
+          transition: color $x-animation-duration-base;
           &:hover {
             color: rgba(255, 255, 255, 1);
           }
@@ -146,9 +145,9 @@
     x-image {
       &.error {
         .x-image {
-          border-color: $--x-danger;
+          border-color: $x-danger;
           &-error-icon {
-            color: $--x-danger;
+            color: $x-danger;
           }
         }
       }
@@ -166,7 +165,7 @@
 @mixin disabled {
   color: var(--x-text-400);
   cursor: not-allowed;
-  .#{$--x-upload-prefix}-box {
+  .#{$x-upload-prefix}-box {
     border-color: var(--x-border-100);
     background-color: var(--x-border-300);
     &::after {
@@ -219,7 +218,7 @@
     font-size: 1.75rem;
     padding: 0 1rem;
     color: rgba(255, 255, 255, 0.8);
-    transition: color $--x-animation-duration-base;
+    transition: color $x-animation-duration-base;
     cursor: pointer;
     &:hover {
       color: rgba(255, 255, 255, 1);
@@ -245,7 +244,7 @@
     position: absolute;
   }
   &-ready {
-    .#{$--x-upload-portal-prefix} {
+    .#{$x-upload-portal-prefix} {
       &-full-img {
         max-width: inherit;
         max-height: inherit;
@@ -264,7 +263,7 @@
   &-cut {
     width: 0;
     height: 0;
-    border: 0.125rem $--x-border-style rgba(255, 255, 255, 0.8);
+    border: 0.125rem $x-border-style rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -282,8 +281,8 @@
       height: 0.825rem;
       background: rgba(255, 255, 255, 1);
       position: absolute;
-      border: $--x-border-width $--x-border-style $--x-border;
-      border-radius: $--x-border-radius;
+      border: $x-border-width $x-border-style $x-border;
+      border-radius: $x-border-radius;
     }
 
     &-top-start {

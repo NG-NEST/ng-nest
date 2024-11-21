@@ -4,7 +4,6 @@ import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 
 @Component({
   selector: 'ex-disabled',
-  standalone: true,
   imports: [FormsModule, XInputNumberComponent],
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss']

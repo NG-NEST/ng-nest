@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'te-link',
-  standalone: true,
   imports: [ExDefaultComponent, ExDisabledComponent, ExIconComponent, ExUnderlineComponent],
   templateUrl: './link.component.html'
 })

@@ -1,22 +1,20 @@
 // Keyword
-
-@import '../../themes/default';
-@import '../../mixins/index';
-@import './param';
+@use '../../params/index' as *;
+@use './param' as *;
 
 @mixin keyword {
-  @include keyword-type('initial', $--x-background);
-  @include keyword-type('primary', $--x-primary);
-  @include keyword-type('success', $--x-success);
-  @include keyword-type('warning', $--x-warning);
-  @include keyword-type('danger', $--x-danger);
-  @include keyword-type('info', $--x-info);
+  @include keyword-type('initial', $x-background);
+  @include keyword-type('primary', $x-primary);
+  @include keyword-type('success', $x-success);
+  @include keyword-type('warning', $x-warning);
+  @include keyword-type('danger', $x-danger);
+  @include keyword-type('info', $x-info);
   @include keyword-type('text', rgba(0, 0, 0, 0.1));
 }
 
 @mixin keyword-type($type, $color) {
   &-#{$type} {
-    > .#{$--x-keyword-prefix}-text {
+    > .#{$x-keyword-prefix}-text {
       color: $color;
       text-decoration: underline;
     }

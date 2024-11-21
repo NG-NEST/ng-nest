@@ -38,7 +38,6 @@ export const XViewBox = [
 
 @Component({
   selector: `${XIconPrefix}`,
-  standalone: true,
   templateUrl: './icon.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

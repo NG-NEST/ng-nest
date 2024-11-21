@@ -13,14 +13,12 @@ import { XComputedStyle, XDataArray, XQuery, XSleep, XTemplate } from '@ng-nest/
 import { XSelectNode } from '@ng-nest/ui/select';
 
 @Component({
-  standalone: true,
   imports: [XPaginationComponent],
   template: ` <x-pagination> </x-pagination> `
 })
 class XTestPaginationComponent {}
 
 @Component({
-  standalone: true,
   imports: [XPaginationComponent],
   template: `
     <x-pagination
@@ -303,7 +301,7 @@ describe(XPaginationPrefix, () => {
       fixture.detectChanges();
       await XSleep(300);
       let tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
-      expect(tooltip.innerText).toBe('Ê¹ÓÃ Enter ¼üÈ·ÈÏ');
+      expect(tooltip.innerText).toBe('Ê¹ï¿½ï¿½ Enter ï¿½ï¿½È·ï¿½ï¿½');
       input.nativeElement.dispatchEvent(new Event('mouseleave'));
       await XSleep(300);
 
@@ -313,7 +311,7 @@ describe(XPaginationPrefix, () => {
       fixture.detectChanges();
       await XSleep(300);
       tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
-      expect(tooltip.innerText).toBe('Ê§È¥½¹µãÈ·ÈÏ');
+      expect(tooltip.innerText).toBe('Ê§È¥ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½');
       input.nativeElement.dispatchEvent(new Event('mouseleave'));
       await XSleep(300);
     });

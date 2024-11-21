@@ -1,8 +1,9 @@
 // Slider
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use '../../style/mixins/size.scss' as *;
+@use './param.scss' as *;
 
 @mixin slider {
   & {
@@ -26,7 +27,7 @@
       display: inline-flex;
       align-items: center;
       position: relative;
-      transition: transform $--x-animation-duration-base;
+      transition: transform $x-animation-duration-base;
       > li {
         display: inline-flex;
         align-items: center;
@@ -37,53 +38,53 @@
         x-link {
           flex: 1;
           @include flex-justify();
-          @include size(big, $--x-height-big, 0 $--x-padding-big);
-          @include size(large, $--x-height-large, 0 $--x-padding-large);
-          @include size(medium, $--x-height-medium, 0 $--x-padding-medium);
-          @include size(small, $--x-height-small, 0 $--x-padding-small);
-          @include size(mini, $--x-height-mini, 0 $--x-padding-mini);
+          @include size(big, $x-height-big, 0 $x-padding-big);
+          @include size(large, $x-height-large, 0 $x-padding-large);
+          @include size(medium, $x-height-medium, 0 $x-padding-medium);
+          @include size(small, $x-height-small, 0 $x-padding-small);
+          @include size(mini, $x-height-mini, 0 $x-padding-mini);
         }
-        &.#{$--x-slider}-highlight {
+        &.#{$x-slider}-highlight {
           position: absolute;
           left: 0;
           top: 0;
           z-index: 1;
           width: 0;
           height: 0;
-          border-radius: $--x-border-small-radius;
-          background-color: $--x-background;
+          border-radius: $x-border-small-radius;
+          background-color: $x-background;
           box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.05);
           &-animated {
             transition:
-              width $--x-animation-duration-base,
-              left $--x-animation-duration-base,
-              height $--x-animation-duration-base,
-              top $--x-animation-duration-base;
+              width $x-animation-duration-base,
+              left $x-animation-duration-base,
+              height $x-animation-duration-base,
+              top $x-animation-duration-base;
           }
         }
       }
     }
   }
   &:not(.x-slider-show-arrow) {
-    > .#{$--x-slider}-scroll {
+    > .#{$x-slider}-scroll {
       > ul {
-        background-color: $--x-background-a200;
-        border-radius: $--x-border-radius;
+        background-color: $x-background-a200;
+        border-radius: $x-border-radius;
         padding: 0.25rem;
       }
     }
   }
 
   &-activated {
-    color: $--x-primary;
+    color: $x-primary;
   }
   &-disabled {
-    color: $--x-text-400 !important;
+    color: $x-text-400 !important;
     cursor: not-allowed !important;
     .x-link {
       cursor: not-allowed !important;
       &:hover {
-        color: $--x-text-400 !important;
+        color: $x-text-400 !important;
       }
     }
   }
@@ -99,23 +100,23 @@
     }
   }
   &-show-arrow {
-    background-color: $--x-background-a200;
-    border-radius: $--x-border-radius;
+    background-color: $x-background-a200;
+    border-radius: $x-border-radius;
     padding: 0 0.25rem;
-    > .#{$--x-slider}-scroll {
+    > .#{$x-slider}-scroll {
       justify-content: start !important;
       padding: 0.25rem 0;
     }
   }
   &-row {
-    > .#{$--x-slider}-scroll > ul {
+    > .#{$x-slider}-scroll > ul {
       flex-direction: row;
     }
   }
   &-column {
     display: inline-flex;
     flex-direction: column;
-    > .#{$--x-slider}-scroll {
+    > .#{$x-slider}-scroll {
       display: inline-block;
       > ul {
         flex-direction: column;
@@ -125,8 +126,8 @@
         }
       }
     }
-    > .#{$--x-slider}-arrow-left,
-    > .#{$--x-slider}-arrow-right {
+    > .#{$x-slider}-arrow-left,
+    > .#{$x-slider}-arrow-right {
       transform: rotate(90deg);
     }
   }

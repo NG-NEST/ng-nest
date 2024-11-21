@@ -5,7 +5,6 @@ import { XCardComponent } from '@ng-nest/ui/card';
 
 @Component({
   selector: 'ex-type',
-  standalone: true,
   imports: [XTimelineComponent, XCardComponent],
   templateUrl: './type.component.html'
 })

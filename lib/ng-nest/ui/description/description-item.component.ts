@@ -3,7 +3,6 @@ import { XDescriptionItemPrefix, XDescriptionItemProperty } from './description.
 
 @Component({
   selector: `${XDescriptionItemPrefix}`,
-  standalone: true,
   template: `
     <ng-template>
       <ng-content></ng-content>

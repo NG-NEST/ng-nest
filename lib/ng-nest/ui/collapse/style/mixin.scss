@@ -1,15 +1,14 @@
 // Collapse
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin collapse {
   & {
-    font-size: $--x-font-size;
+    font-size: $x-font-size;
     box-sizing: border-box;
-    border-top: $--x-border-base;
-    border-bottom: $--x-border-base;
+    border-top: $x-border-base;
+    border-bottom: $x-border-base;
   }
   x-collapse-panel:last-child {
     .x-collapse-panel {
@@ -22,18 +21,18 @@
     }
   }
   &-bordered {
-    border-left: $--x-border-base;
-    border-right: $--x-border-base;
-    border-radius: $--x-border-radius;
+    border-left: $x-border-base;
+    border-right: $x-border-base;
+    border-radius: $x-border-radius;
     x-collapse-panel {
       .x-collapse-panel {
         &-header {
-          padding-left: $--x-padding-medium;
-          padding-right: $--x-padding-medium;
+          padding-left: $x-padding-medium;
+          padding-right: $x-padding-medium;
         }
         &-body {
-          padding-left: $--x-padding-medium;
-          padding-right: $--x-padding-medium;
+          padding-left: $x-padding-medium;
+          padding-right: $x-padding-medium;
         }
       }
     }
@@ -62,8 +61,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: $--x-padding-small 0;
-    border-bottom: $--x-border-base;
+    padding: $x-padding-small 0;
+    border-bottom: $x-border-base;
     transition: border-color 0.3s;
     cursor: pointer;
     &-title {
@@ -71,13 +70,13 @@
     }
     > .x-icon {
       margin-right: 0.125rem;
-      color: $--x-text-300;
+      color: $x-text-300;
       transition: transform 0.3s;
     }
   }
   &-disabled {
     .x-collapse-panel-header-title {
-      color: $--x-text-400;
+      color: $x-text-400;
       cursor: not-allowed;
     }
   }
@@ -86,7 +85,7 @@
   }
   &-body {
     overflow: hidden;
-    border-bottom: $--x-border-width $--x-border-style transparent;
+    border-bottom: $x-border-width $x-border-style transparent;
     transition: border-color 0.3s;
   }
   &-content {
@@ -100,7 +99,7 @@
       }
     }
     .x-collapse-panel-body {
-      border-bottom-color: $--x-border-500;
+      border-bottom-color: $x-border-500;
     }
   }
 }

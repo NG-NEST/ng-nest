@@ -1,3 +1,5 @@
+@use '../params/index' as *;
+
 @mixin border-error() {
   .x-border-error {
     position: absolute;
@@ -13,16 +15,16 @@
 
 @mixin border-error-focus() {
   .x-border-error {
-    border-width: $--x-border-width !important;
+    border-width: $x-border-width !important;
   }
 }
 
 @mixin border-placement($first, $second) {
   &.x-#{$first}-#{$second} {
-    border-#{$first}-#{$second}-radius: $--x-border-radius;
+    border-#{$first}-#{$second}-radius: $x-border-radius;
     #{$first}: 0;
     #{$second}: 0;
-    border-#{$first}: $--x-border-width solid $--x-danger;
-    border-#{$second}: $--x-border-width solid $--x-danger;
+    border-#{$first}: $x-border-width solid $x-danger;
+    border-#{$second}: $x-border-width solid $x-danger;
   }
 }

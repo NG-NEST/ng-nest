@@ -1,3 +1,4 @@
 // Slider style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-slider: $--x-prefix + '-slider';
+$x-slider: $x-prefix + '-slider';

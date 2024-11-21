@@ -1,9 +1,11 @@
+@use './default.scss' as *;
+
 @mixin hover {
   background-color: rgba(0, 0, 0, 0.02);
 }
 
 @mixin activated {
-  color: $--x-primary;
+  color: $x-primary;
   background-color: rgba(0, 0, 0, 0.02);
 }
 

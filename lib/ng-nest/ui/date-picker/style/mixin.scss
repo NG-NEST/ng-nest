@@ -1,8 +1,10 @@
 // DatePicker
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use '../../style/mixins/form.scss' as *;
+@use '../../style/mixins/compatibility.scss' as *;
+@use './param.scss' as *;
 
 @mixin date-picker {
   & {
@@ -15,13 +17,13 @@
 
 @mixin date-picker-portal {
   & {
-    $prefix: $--x-date-picker-portal-prefix;
+    $prefix: $x-date-picker-portal-prefix;
     margin: 0.0625rem 0;
-    font-size: $--x-date-picker-font-size;
-    color: $--x-text;
-    border-radius: $--x-border-small-radius;
-    box-shadow: $--x-box-shadow;
-    background-color: $--x-background-100;
+    font-size: $x-date-picker-font-size;
+    color: $x-text;
+    border-radius: $x-border-small-radius;
+    box-shadow: $x-box-shadow;
+    background-color: $x-background-100;
     width: 16rem;
     display: flex;
     flex-direction: column;
@@ -32,14 +34,14 @@
       background-color: transparent;
     }
     .x-picker-date-body tbody tr:not(.x-date-week-active):hover .x-picker-date-item:not(.x-date-in-range) {
-      background-color: $--x-background-a200;
+      background-color: $x-background-a200;
       &:first-child {
-        border-top-left-radius: $--x-border-radius;
-        border-bottom-left-radius: $--x-border-radius;
+        border-top-left-radius: $x-border-radius;
+        border-bottom-left-radius: $x-border-radius;
       }
       &:last-child {
-        border-top-right-radius: $--x-border-radius;
-        border-bottom-right-radius: $--x-border-radius;
+        border-top-right-radius: $x-border-radius;
+        border-bottom-right-radius: $x-border-radius;
       }
     }
   }
@@ -58,7 +60,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    border-top: $--x-border-width solid $--x-border;
+    border-top: $x-border-width solid $x-border;
     > x-link {
       padding: 0.25rem;
       &:not(:first-child) {
@@ -76,7 +78,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: $--x-date-picker-border;
+    border-top: $x-date-picker-border;
     padding: 0.5rem;
     .x-date-picker-portal-preset {
       border-top: none;
@@ -88,7 +90,7 @@
   &-extra-footer {
     display: flex;
     align-items: center;
-    border-top: $--x-date-picker-border;
+    border-top: $x-date-picker-border;
     padding: 0.5rem;
   }
   &-date {
@@ -97,14 +99,14 @@
   &-time {
     display: flex;
     flex-direction: column;
-    border-left: $--x-date-picker-border;
+    border-left: $x-date-picker-border;
     &-label {
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 0 0.5rem;
       height: 2.5rem;
-      border-bottom: $--x-date-picker-border;
+      border-bottom: $x-date-picker-border;
     }
     .x-time-picker-frame {
       border-width: 0;
@@ -121,9 +123,9 @@
     justify-content: space-between;
     padding: 0 0.5rem;
     height: 2.5rem;
-    border-bottom: $--x-border-width solid $--x-border;
-    color: $--x-text-500;
-    font-size: $--x-font-size-medium;
+    border-bottom: $x-border-width solid $x-border;
+    color: $x-text-500;
+    font-size: $x-font-size-medium;
     x-link {
       height: 100%;
       user-select: none;
@@ -135,8 +137,8 @@
   &-year-month {
     flex: 1;
     text-align: center;
-    color: $--x-text;
-    font-size: $--x-font-size;
+    color: $x-text;
+    font-size: $x-font-size;
   }
   &-body {
     padding: 0.1375rem 0.5rem;
@@ -156,8 +158,8 @@
               .x-date-last-or-next
             )
             .x-date-text {
-            background-color: $--x-primary;
-            color: $--x-background-100;
+            background-color: $x-primary;
+            color: $x-background-100;
           }
         }
       }
@@ -169,7 +171,7 @@
         font-weight: 400;
         height: 2rem;
         line-height: 2rem;
-        color: $--x-text-400;
+        color: $x-text-400;
         user-select: none;
       }
       td {
@@ -177,21 +179,21 @@
         flex: 1;
         user-select: none;
         &:first-child {
-          border-top-left-radius: $--x-border-radius;
-          border-bottom-left-radius: $--x-border-radius;
+          border-top-left-radius: $x-border-radius;
+          border-bottom-left-radius: $x-border-radius;
         }
         &:last-child {
-          border-top-right-radius: $--x-border-radius;
-          border-bottom-right-radius: $--x-border-radius;
+          border-top-right-radius: $x-border-radius;
+          border-bottom-right-radius: $x-border-radius;
         }
       }
     }
     .x-picker-date-item {
       text-align: center;
       cursor: pointer;
-      color: $--x-text-300;
+      color: $x-text-300;
       position: relative;
-      transition: $--x-animation-duration-base;
+      transition: $x-animation-duration-base;
       .x-date-text {
         width: 1.75rem;
         height: 1.625rem;
@@ -199,9 +201,9 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
-        border: $--x-border-width $--x-border-style transparent;
-        border-radius: $--x-border-radius;
-        transition: $--x-animation-duration-base;
+        border: $x-border-width $x-border-style transparent;
+        border-radius: $x-border-radius;
+        transition: $x-animation-duration-base;
         position: relative;
       }
       &::after,
@@ -210,29 +212,29 @@
       }
       &:hover:not(.x-date-in-range) {
         .x-date-text {
-          background-color: $--x-background-a200;
+          background-color: $x-background-a200;
         }
       }
       &.x-date-active:not(.x-date-last-or-next) {
-        color: $--x-background-100;
+        color: $x-background-100;
         .x-date-text {
-          background-color: $--x-primary;
-          border-color: $--x-primary;
+          background-color: $x-primary;
+          border-color: $x-primary;
         }
         &:hover {
-          color: $--x-background-100;
+          color: $x-background-100;
           .x-date-text {
-            background-color: $--x-primary;
+            background-color: $x-primary;
           }
         }
       }
       &.x-date-last-or-next {
-        color: $--x-text-700;
+        color: $x-text-700;
       }
       &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
         .x-date-text {
-        color: $--x-primary;
-        border-color: $--x-primary;
+        color: $x-primary;
+        border-color: $x-primary;
       }
       &.x-date-range-hover {
         &:first-child:not(.x-date-last-or-next),
@@ -260,8 +262,8 @@
       }
       &.x-date-disabled {
         cursor: default;
-        background-color: $--x-background-a200;
-        color: $--x-text-700;
+        background-color: $x-background-a200;
+        color: $x-text-700;
       }
     }
   }
@@ -277,9 +279,9 @@
     justify-content: space-between;
     padding: 0 0.5rem;
     height: 2.5rem;
-    border-bottom: $--x-border-width solid $--x-border;
-    color: $--x-text-500;
-    font-size: $--x-font-size-medium;
+    border-bottom: $x-border-width solid $x-border;
+    color: $x-text-500;
+    font-size: $x-font-size-medium;
     x-link {
       height: 100%;
       user-select: none;
@@ -291,8 +293,8 @@
   &-year-month {
     flex: 1;
     text-align: center;
-    color: $--x-text;
-    font-size: $--x-font-size;
+    color: $x-text;
+    font-size: $x-font-size;
   }
   &-body {
     padding: 0.1375rem 0.5rem;
@@ -315,7 +317,7 @@
     .x-picker-date-item {
       text-align: center;
       cursor: pointer;
-      color: $--x-text-300;
+      color: $x-text-300;
       position: relative;
       .x-date-text {
         width: 3.5rem;
@@ -324,9 +326,9 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
-        border: $--x-border-width $--x-border-style transparent;
-        border-radius: $--x-border-radius;
-        transition: $--x-animation-duration-base;
+        border: $x-border-width $x-border-style transparent;
+        border-radius: $x-border-radius;
+        transition: $x-animation-duration-base;
         position: relative;
       }
       &::after,
@@ -335,29 +337,29 @@
       }
       &:hover:not(.x-date-in-range) {
         .x-date-text {
-          background-color: $--x-background-a200;
+          background-color: $x-background-a200;
         }
       }
       &.x-date-active:not(.x-date-last-or-next) {
-        color: $--x-background-100;
+        color: $x-background-100;
         .x-date-text {
-          background-color: $--x-primary;
-          border-color: $--x-primary;
+          background-color: $x-primary;
+          border-color: $x-primary;
         }
         &:hover {
-          color: $--x-background-100;
+          color: $x-background-100;
           .x-date-text {
-            background-color: $--x-primary;
+            background-color: $x-primary;
           }
         }
       }
       &.x-date-last-or-next {
-        color: $--x-text-700;
+        color: $x-text-700;
       }
       &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
         .x-date-text {
-        color: $--x-primary;
-        border-color: $--x-primary;
+        color: $x-primary;
+        border-color: $x-primary;
       }
       &.x-date-range-hover {
         &:first-child:not(.x-date-last-or-next),
@@ -385,8 +387,8 @@
       }
       &.x-date-disabled {
         cursor: default;
-        background-color: $--x-background-a200;
-        color: $--x-text-700;
+        background-color: $x-background-a200;
+        color: $x-text-700;
       }
     }
   }
@@ -402,9 +404,9 @@
     justify-content: space-between;
     padding: 0 0.5rem;
     height: 2.5rem;
-    border-bottom: $--x-border-width solid $--x-border;
-    color: $--x-text-500;
-    font-size: $--x-font-size-medium;
+    border-bottom: $x-border-width solid $x-border;
+    color: $x-text-500;
+    font-size: $x-font-size-medium;
     x-link {
       height: 100%;
       user-select: none;
@@ -416,8 +418,8 @@
   &-year-quarter {
     flex: 1;
     text-align: center;
-    color: $--x-text;
-    font-size: $--x-font-size;
+    color: $x-text;
+    font-size: $x-font-size;
   }
   &-body {
     padding: 0.1375rem 0.5rem;
@@ -440,7 +442,7 @@
     .x-picker-date-item {
       text-align: center;
       cursor: pointer;
-      color: $--x-text-300;
+      color: $x-text-300;
       position: relative;
       .x-date-text {
         width: 3.5rem;
@@ -449,9 +451,9 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
-        border: $--x-border-width $--x-border-style transparent;
-        border-radius: $--x-border-radius;
-        transition: $--x-animation-duration-base;
+        border: $x-border-width $x-border-style transparent;
+        border-radius: $x-border-radius;
+        transition: $x-animation-duration-base;
         position: relative;
       }
       &::after,
@@ -460,29 +462,29 @@
       }
       &:hover:not(.x-date-in-range) {
         .x-date-text {
-          background-color: $--x-background-a200;
+          background-color: $x-background-a200;
         }
       }
       &.x-date-active:not(.x-date-last-or-next) {
-        color: $--x-background-100;
+        color: $x-background-100;
         .x-date-text {
-          background-color: $--x-primary;
-          border-color: $--x-primary;
+          background-color: $x-primary;
+          border-color: $x-primary;
         }
         &:hover {
-          color: $--x-background-100;
+          color: $x-background-100;
           .x-date-text {
-            background-color: $--x-primary;
+            background-color: $x-primary;
           }
         }
       }
       &.x-date-last-or-next {
-        color: $--x-text-700;
+        color: $x-text-700;
       }
       &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
         .x-date-text {
-        color: $--x-primary;
-        border-color: $--x-primary;
+        color: $x-primary;
+        border-color: $x-primary;
       }
       &.x-date-range-hover {
         &:first-child:not(.x-date-last-or-next),
@@ -510,8 +512,8 @@
       }
       &.x-date-disabled {
         cursor: default;
-        background-color: $--x-background-a200;
-        color: $--x-text-700;
+        background-color: $x-background-a200;
+        color: $x-text-700;
       }
     }
   }
@@ -527,9 +529,9 @@
     justify-content: space-between;
     padding: 0 0.5rem;
     height: 2.5rem;
-    border-bottom: $--x-border-width solid $--x-border;
-    color: $--x-text-500;
-    font-size: $--x-font-size-medium;
+    border-bottom: $x-border-width solid $x-border;
+    color: $x-text-500;
+    font-size: $x-font-size-medium;
     x-link {
       height: 100%;
       user-select: none;
@@ -541,8 +543,8 @@
   &-year-month {
     flex: 1;
     text-align: center;
-    color: $--x-text;
-    font-size: $--x-font-size;
+    color: $x-text;
+    font-size: $x-font-size;
   }
   &-body {
     padding: 0.1375rem 0.5rem;
@@ -565,7 +567,7 @@
     .x-picker-date-item {
       text-align: center;
       cursor: pointer;
-      color: $--x-text-300;
+      color: $x-text-300;
       position: relative;
       .x-date-text {
         width: 3.5rem;
@@ -574,9 +576,9 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
-        border: $--x-border-width $--x-border-style transparent;
-        border-radius: $--x-border-radius;
-        transition: $--x-animation-duration-base;
+        border: $x-border-width $x-border-style transparent;
+        border-radius: $x-border-radius;
+        transition: $x-animation-duration-base;
         position: relative;
       }
       &::after,
@@ -585,29 +587,29 @@
       }
       &:hover:not(.x-date-in-range) {
         .x-date-text {
-          background-color: $--x-background-a200;
+          background-color: $x-background-a200;
         }
       }
       &.x-date-active:not(.x-date-last-or-next) {
-        color: $--x-background-100;
+        color: $x-background-100;
         .x-date-text {
-          background-color: $--x-primary;
-          border-color: $--x-primary;
+          background-color: $x-primary;
+          border-color: $x-primary;
         }
         &:hover {
-          color: $--x-background-100;
+          color: $x-background-100;
           .x-date-text {
-            background-color: $--x-primary;
+            background-color: $x-primary;
           }
         }
       }
       &.x-date-last-or-next {
-        color: $--x-text-700;
+        color: $x-text-700;
       }
       &.x-date-now:not(.x-date-active):not(.x-date-range-start):not(.x-date-range-end):not(.x-date-last-or-next)
         .x-date-text {
-        color: $--x-primary;
-        border-color: $--x-primary;
+        color: $x-primary;
+        border-color: $x-primary;
       }
       &.x-date-range-hover {
         &:first-child:not(.x-date-last-or-next),
@@ -635,8 +637,8 @@
       }
       &.x-date-disabled {
         cursor: default;
-        background-color: $--x-background-a200;
-        color: $--x-text-700;
+        background-color: $x-background-a200;
+        color: $x-text-700;
       }
     }
   }
@@ -654,7 +656,7 @@
     display: inline-block;
     white-space: nowrap;
     position: relative;
-    color: $--x-text-300;
+    color: $x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -680,9 +682,9 @@
     &:before {
       display: inline-block;
       margin-right: 0.25rem;
-      color: $--x-danger;
+      color: $x-danger;
       line-height: 1;
-      font-size: $--x-font-size-small;
+      font-size: $x-font-size-small;
       content: '*';
     }
   }
@@ -690,9 +692,9 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    font-size: $--x-font-size - 0.125rem;
-    color: $--x-danger;
-    margin-bottom: calc(calc(#{$--x-font-size}) * -2);
+    font-size: $x-font-size - 0.125rem;
+    color: $x-danger;
+    margin-bottom: calc(calc(#{$x-font-size}) * -2);
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -701,14 +703,14 @@
   &.x-invalid,
   &.x-required {
     > label {
-      color: $--x-danger;
+      color: $x-danger;
     }
-    .#{$--x-date-range-prefix}-input {
-      #{$--x-prefix}-icon {
-        color: $--x-danger;
+    .#{$x-date-range-prefix}-input {
+      #{$x-prefix}-icon {
+        color: $x-danger;
       }
     }
-    .#{$--x-date-range-prefix}-row {
+    .#{$x-date-range-prefix}-row {
       @include border-error();
     }
   }
@@ -720,11 +722,11 @@
   }
   &-group {
     width: 100%;
-    font-size: $--x-date-picker-font-size;
+    font-size: $x-date-picker-font-size;
     background-image: none;
-    box-shadow: $--x-date-picker-box-shadow;
-    transition: all $--x-animation-duration-slow;
-    border-radius: $--x-border-radius;
+    box-shadow: $x-date-picker-box-shadow;
+    transition: all $x-animation-duration-slow;
+    border-radius: $x-border-radius;
     .x-input-group {
       display: flex;
       align-items: center;
@@ -733,8 +735,8 @@
         flex: 1;
         width: 50%;
         input {
-          padding-left: $--x-padding-medium !important;
-          padding-right: $--x-padding-medium !important;
+          padding-left: $x-padding-medium !important;
+          padding-right: $x-padding-medium !important;
         }
         .x-input-row > .x-input-input > input {
           box-shadow: none;
@@ -744,8 +746,8 @@
   }
   &-bordered {
     .x-date-range-group {
-      border: $--x-date-picker-border;
-      border-radius: $--x-date-picker-border-radius;
+      border: $x-date-picker-border;
+      border-radius: $x-date-picker-border-radius;
       .x-input-group {
         > x-input input {
           background-color: transparent;
@@ -762,8 +764,8 @@
     margin-left: 0.4rem;
     bottom: -0.0625rem;
     width: calc(50% - 2.2rem);
-    background-color: $--x-primary;
-    transition: $--x-animation-duration-base;
+    background-color: $x-primary;
+    transition: $x-animation-duration-base;
   }
   &-active {
     .x-date-range-group {
@@ -771,14 +773,14 @@
     }
   }
   &-active-start {
-    .#{$--x-date-range-prefix} {
+    .#{$x-date-range-prefix} {
       &-active-bar {
         left: 0;
       }
     }
   }
   &-active-end {
-    .#{$--x-date-range-prefix} {
+    .#{$x-date-range-prefix} {
       &-active-bar {
         left: 50%;
       }
@@ -796,23 +798,23 @@
       border-bottom-left-radius: 0;
     }
   }
-  @include size('big', $--x-height-big, 0 $--x-padding-big);
-  @include size('large', $--x-height-large, 0 $--x-padding-large);
-  @include size('medium', $--x-height-medium, 0 $--x-padding-medium);
-  @include size('small', $--x-height-small, 0 $--x-padding-small);
-  @include size('mini', $--x-height-mini, 0 $--x-padding-mini);
+  @include size('big', $x-height-big, 0 $x-padding-big);
+  @include size('large', $x-height-large, 0 $x-padding-large);
+  @include size('medium', $x-height-medium, 0 $x-padding-medium);
+  @include size('small', $x-height-small, 0 $x-padding-small);
+  @include size('mini', $x-height-mini, 0 $x-padding-mini);
 }
 
 @mixin size($size, $height, $padding) {
   &-#{$size} {
-    > .#{$--x-date-range-prefix}-row .#{$--x-date-range-prefix}-input {
+    > .#{$x-date-range-prefix}-row .#{$x-date-range-prefix}-input {
       input {
         height: $height;
         line-height: $height;
       }
     }
 
-    > .#{$--x-date-range-prefix}-row {
+    > .#{$x-date-range-prefix}-row {
       height: $height;
       line-height: $height;
     }
@@ -826,13 +828,13 @@
 
 @mixin date-range-portal {
   & {
-    $prefix: $--x-date-range-portal-prefix;
+    $prefix: $x-date-range-portal-prefix;
     margin: 0.0625rem 0;
-    font-size: $--x-date-picker-font-size;
-    color: $--x-text;
-    border-radius: $--x-border-small-radius;
-    box-shadow: $--x-box-shadow;
-    background-color: $--x-background-100;
+    font-size: $x-date-picker-font-size;
+    color: $x-text;
+    border-radius: $x-border-small-radius;
+    box-shadow: $x-box-shadow;
+    background-color: $x-background-100;
     width: 34rem;
     display: flex;
     flex-direction: column;
@@ -844,21 +846,21 @@
     .x-picker-date-body tbody tr {
       &.x-date-week-in-range:not(.x-date-week-start-active):not(.x-date-week-end-active) {
         .x-picker-date-item {
-          background-color: $--x-primary-800;
+          background-color: $x-primary-800;
         }
       }
       &:not(.x-date-week-active):not(.x-date-week-start-active):not(.x-date-week-end-active):not(
           .x-date-week-in-range
         ):hover
         .x-picker-date-item {
-        background-color: $--x-background-a200;
+        background-color: $x-background-a200;
         &:first-child {
-          border-top-left-radius: $--x-border-radius;
-          border-bottom-left-radius: $--x-border-radius;
+          border-top-left-radius: $x-border-radius;
+          border-bottom-left-radius: $x-border-radius;
         }
         &:last-child {
-          border-top-right-radius: $--x-border-radius;
-          border-bottom-right-radius: $--x-border-radius;
+          border-top-right-radius: $x-border-radius;
+          border-bottom-right-radius: $x-border-radius;
         }
       }
     }
@@ -889,7 +891,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    border-top: $--x-border-width solid $--x-border;
+    border-top: $x-border-width solid $x-border;
     > x-link {
       padding: 0.25rem;
       &:not(:first-child) {
@@ -900,7 +902,7 @@
   &-extra-footer {
     display: flex;
     align-items: center;
-    border-top: $--x-date-picker-border;
+    border-top: $x-date-picker-border;
     padding: 0.5rem;
   }
   &-year-month {
@@ -917,22 +919,22 @@
         right: 0;
         left: 0;
         z-index: 1;
-        border: $--x-border-width dashed transparent;
+        border: $x-border-width dashed transparent;
         transform: translate(0, -50%);
-        transition: $--x-animation-duration-base;
+        transition: $x-animation-duration-base;
         content: '';
       }
       &.x-date-range-start:not(.x-date-last-or-next),
       &.x-date-range-end:not(.x-date-last-or-next) {
-        color: $--x-background-100;
+        color: $x-background-100;
         .x-date-text {
-          background-color: $--x-primary;
-          border-color: $--x-primary;
+          background-color: $x-primary;
+          border-color: $x-primary;
         }
         &:hover {
-          color: $--x-background-100;
+          color: $x-background-100;
           .x-date-text {
-            background-color: $--x-primary;
+            background-color: $x-primary;
           }
         }
       }
@@ -941,15 +943,15 @@
           z-index: 1;
         }
         &::after {
-          background-color: $--x-primary-800;
+          background-color: $x-primary-800;
           transform: translate(-0.25rem, -50%);
-          border-top-right-radius: $--x-border-radius;
-          border-bottom-right-radius: $--x-border-radius;
+          border-top-right-radius: $x-border-radius;
+          border-bottom-right-radius: $x-border-radius;
           z-index: 0;
         }
         &.x-date-in-range-hover {
           &::after {
-            background-color: $--x-primary-700;
+            background-color: $x-primary-700;
           }
         }
       }
@@ -958,15 +960,15 @@
           z-index: 1;
         }
         &::after {
-          background-color: $--x-primary-800;
+          background-color: $x-primary-800;
           transform: translate(0.25rem, -50%);
-          border-top-left-radius: $--x-border-radius;
-          border-bottom-left-radius: $--x-border-radius;
+          border-top-left-radius: $x-border-radius;
+          border-bottom-left-radius: $x-border-radius;
           z-index: 0;
         }
         &.x-date-in-range-hover {
           &::after {
-            background-color: $--x-primary-700;
+            background-color: $x-primary-700;
           }
         }
       }
@@ -983,7 +985,7 @@
           z-index: 1;
         }
         &::before {
-          background-color: $--x-primary-800;
+          background-color: $x-primary-800;
           z-index: 0;
         }
         &:first-child {
@@ -1004,13 +1006,13 @@
             transform: translate(0.25rem, -50%);
           }
           &::before {
-            background-color: $--x-primary-700;
+            background-color: $x-primary-700;
           }
         }
       }
       &.x-date-range-hover {
         &:not(.x-date-last-or-next)::before {
-          border-color: $--x-primary;
+          border-color: $x-primary;
           border-left-color: transparent;
           border-right-color: transparent;
           transform: translate(-0.25rem, -50%);
@@ -1018,7 +1020,7 @@
         &:first-child:not(.x-date-last-or-next),
         &.x-date-first-day {
           &::before {
-            border-left-color: $--x-primary;
+            border-left-color: $x-primary;
             transform: translate(0.25rem, -50%);
           }
           &.x-date-range-hover-end {
@@ -1035,7 +1037,7 @@
         &:last-child:not(.x-date-last-or-next),
         &.x-date-last-day {
           &::before {
-            border-right-color: $--x-primary;
+            border-right-color: $x-primary;
             transform: translate(-0.25rem, -50%);
           }
           &.x-date-range-hover-start {
@@ -1046,10 +1048,10 @@
         }
         &-start:not(.x-date-last-or-next) {
           &::before {
-            border-left-color: $--x-primary;
+            border-left-color: $x-primary;
             transform: translate(0.25rem, -50%);
-            border-top-left-radius: $--x-border-radius;
-            border-bottom-left-radius: $--x-border-radius;
+            border-top-left-radius: $x-border-radius;
+            border-bottom-left-radius: $x-border-radius;
           }
         }
         &.x-date-range-hover-start:not(.x-date-last-or-next) {
@@ -1059,30 +1061,30 @@
         }
         &-end:not(.x-date-last-or-next) {
           &::before {
-            border-right-color: $--x-primary;
+            border-right-color: $x-primary;
             transform: translate(-0.25rem, -50%);
-            border-top-right-radius: $--x-border-radius;
-            border-bottom-right-radius: $--x-border-radius;
+            border-top-right-radius: $x-border-radius;
+            border-bottom-right-radius: $x-border-radius;
           }
         }
         &-start-left:not(:first-child):not(.x-date-last-or-next):not(.x-date-first-day),
         &-end-left:not(:first-child):not(.x-date-last-or-next):not(.x-date-first-day) {
           &::before {
-            border-top-color: $--x-primary;
-            border-bottom-color: $--x-primary;
+            border-top-color: $x-primary;
+            border-bottom-color: $x-primary;
             transform: translate(-0.3125rem, -50%);
-            border-top-right-radius: $--x-border-radius;
-            border-bottom-right-radius: $--x-border-radius;
+            border-top-right-radius: $x-border-radius;
+            border-bottom-right-radius: $x-border-radius;
           }
         }
         &-start-right:not(:last-child):not(.x-date-last-or-next):not(.x-date-last-day),
         &-end-right:not(:last-child):not(.x-date-last-or-next):not(.x-date-last-day) {
           &::before {
-            border-top-color: $--x-primary;
-            border-bottom-color: $--x-primary;
+            border-top-color: $x-primary;
+            border-bottom-color: $x-primary;
             transform: translate(0.3125rem, -50%);
-            border-top-left-radius: $--x-border-radius;
-            border-bottom-left-radius: $--x-border-radius;
+            border-top-left-radius: $x-border-radius;
+            border-bottom-left-radius: $x-border-radius;
           }
         }
       }
@@ -1098,7 +1100,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: $--x-date-picker-border;
+    border-top: $x-date-picker-border;
     padding: 0.5rem;
     .x-date-range-portal-preset {
       border-top: none;
@@ -1113,14 +1115,14 @@
   &-time {
     display: flex;
     flex-direction: column;
-    border-left: $--x-date-picker-border;
+    border-left: $x-date-picker-border;
     &-label {
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 0 0.5rem;
       height: 2.5rem;
-      border-bottom: $--x-date-picker-border;
+      border-bottom: $x-date-picker-border;
     }
     .x-time-picker-frame {
       border-width: 0;

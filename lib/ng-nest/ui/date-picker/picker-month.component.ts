@@ -19,7 +19,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'x-picker-month',
-  standalone: true,
   imports: [DatePipe, NgTemplateOutlet, XLinkComponent],
   templateUrl: './picker-month.component.html',
   styleUrls: ['./picker-month.component.scss'],

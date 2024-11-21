@@ -51,7 +51,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XDateRangePrefix}`,
-  standalone: true,
   imports: [NgClass, FormsModule, XInputComponent, XInputGroupComponent],
   templateUrl: './date-range.component.html',
   styleUrls: ['./date-range.component.scss'],

@@ -8,14 +8,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { XSleep } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XBackTopComponent],
   template: ` <x-back-top></x-back-top> `
 })
 class XTestBackTopComponent {}
 
 @Component({
-  standalone: true,
   imports: [XBackTopComponent],
   template: `
     <x-back-top [right]="right()" [bottom]="bottom()" [visibilityHeight]="visibilityHeight()" [template]="template()">

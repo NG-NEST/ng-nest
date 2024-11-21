@@ -6,14 +6,12 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XPageHeaderComponent],
   template: `<x-page-header></x-page-header> `
 })
 class XTestPageHeaderComponent {}
 
 @Component({
-  standalone: true,
   imports: [XPageHeaderComponent],
   template: `
     <x-page-header

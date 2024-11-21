@@ -1,21 +1,20 @@
 // Drawer
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin drawer {
   & {
-    background-color: $--x-background;
+    background-color: $x-background;
     position: relative;
-    box-shadow: $--x-box-shadow;
+    box-shadow: $x-box-shadow;
   }
   &-header {
     padding: 1rem 1rem 0.5rem 1rem;
   }
   &-title {
     font-weight: 600;
-    color: $--x-text-300;
+    color: $x-text-300;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -34,7 +33,7 @@
     overflow: auto;
   }
   &-no-title {
-    .#{$--x-drawer}-content {
+    .#{$x-drawer}-content {
       padding: 0.5rem 1rem;
     }
   }
@@ -44,9 +43,9 @@
   & {
     height: 100%;
     width: 100%;
-    background-color: $--x-background-100;
+    background-color: $x-background-100;
     position: relative;
-    box-shadow: $--x-box-shadow;
+    box-shadow: $x-box-shadow;
     overflow: auto;
     padding: 1rem;
   }
@@ -54,7 +53,7 @@
     display: block;
     margin: 0 0 0.5rem 0;
     font-weight: 600;
-    color: $--x-text-300;
+    color: $x-text-300;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -75,7 +74,7 @@
     display: block;
     overflow: hidden;
   }
-  .#{$--x-drawer} {
+  .#{$x-drawer} {
     position: absolute;
     display: block;
     outline: 0;
@@ -107,7 +106,7 @@
     &-visible {
       transform: translate3d(0, 0, 0);
       visibility: inherit;
-      .#{$--x-drawer}-backdrop {
+      .#{$x-drawer}-backdrop {
         opacity: 1;
         z-index: 1;
       }

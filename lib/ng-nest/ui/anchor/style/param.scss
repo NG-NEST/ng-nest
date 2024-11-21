@@ -1,3 +1,4 @@
 // Anchor style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-anchor: $--x-prefix + '-anchor';
+$x-anchor: $x-prefix + '-anchor';

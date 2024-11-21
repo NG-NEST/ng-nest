@@ -20,7 +20,6 @@ import { XHighlightService } from './highlight.service';
 
 @Component({
   selector: `${XHighlightPrefix}`,
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './highlight.component.html',
   styleUrls: ['./style/index.scss'],

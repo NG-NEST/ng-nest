@@ -12,7 +12,7 @@ export const XResizablePrefix = 'x-resizable';
 /**
  * Resizable Property
  */
-@Directive({ selector: '[xResizable]', standalone: true })
+@Directive({ selector: '[xResizable]' })
 export class XResizableProperty extends XProperty {
   /**
    * @zh_CN 启用调整尺寸大小

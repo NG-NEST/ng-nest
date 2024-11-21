@@ -1,3 +1,4 @@
 // Resizable style paramters
+@use '../../params/index' as *;
 
-$--x-resizable-prefix: $--x-prefix + '-resizable';
+$x-resizable-prefix: $x-prefix + '-resizable';

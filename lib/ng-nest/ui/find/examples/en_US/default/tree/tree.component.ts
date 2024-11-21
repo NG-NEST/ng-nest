@@ -6,7 +6,6 @@ import { XTableRow } from '@ng-nest/ui/table';
 
 @Component({
   selector: 'ex-tree',
-  standalone: true,
   imports: [FormsModule, XFindComponent],
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],

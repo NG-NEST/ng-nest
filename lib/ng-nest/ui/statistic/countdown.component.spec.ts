@@ -7,14 +7,12 @@ import { XAddDays, XAddSeconds, XSleep, XStyle, XTemplate } from '@ng-nest/ui/co
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XCountdownComponent],
   template: ` <x-countdown> </x-countdown> `
 })
 class XTestCountdownComponent {}
 
 @Component({
-  standalone: true,
   imports: [XCountdownComponent],
   template: `
     <x-countdown
@@ -104,12 +102,12 @@ describe(XCountdownPrefix, () => {
       expect(value.nativeElement.style.color).toBe('rgb(0, 255, 0)');
     });
     it('format.', async () => {
-      component.format.set('D Ìì H Ê± m ·Ö s Ãë');
+      component.format.set('D ï¿½ï¿½ H Ê± m ï¿½ï¿½ s ï¿½ï¿½');
       component.value.set(XAddDays(new Date(), 2).getTime());
       fixture.detectChanges();
       await XSleep(100);
       const value = fixture.debugElement.query(By.css('.x-statistic-value-int'));
-      expect(value.nativeElement.innerText).toBe('1 Ìì 23 Ê± 59 ·Ö 59 Ãë');
+      expect(value.nativeElement.innerText).toBe('1 ï¿½ï¿½ 23 Ê± 59 ï¿½ï¿½ 59 ï¿½ï¿½');
     });
     it('finish.', async () => {
       component.value.set(XAddSeconds(new Date(), 1).getTime());

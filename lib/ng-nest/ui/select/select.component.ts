@@ -73,7 +73,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XSelectPrefix}`,
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, XTagComponent, XInputComponent, XOutletDirective],
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],

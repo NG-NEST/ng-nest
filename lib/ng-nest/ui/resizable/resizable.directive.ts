@@ -14,7 +14,7 @@ import { XComputed, XComputedStyle, XIsArray, XIsChange, XIsString, XToCssPx } f
 import { fromEvent, Subscription, takeUntil } from 'rxjs';
 import { XResizablePosition, XResizablePrefix, XResizableProperty } from './resizable.property';
 
-@Directive({ selector: '[xResizable]', standalone: true })
+@Directive({ selector: '[xResizable]' })
 export class XResizableDirective extends XResizableProperty implements OnDestroy {
   @HostBinding('class') className = XResizablePrefix;
   @HostBinding('class.x-resizable-disabled') get getDisabled() {

@@ -1,19 +1,18 @@
 // Avatar
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin avatar {
   & {
-    font-size: $--x-font-size;
+    font-size: $x-font-size;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     text-align: center;
     overflow: hidden;
-    color: $--x-background-100;
+    color: $x-background-100;
   }
   > img {
     display: block;
@@ -23,7 +22,7 @@
     border-radius: 50%;
   }
   &-square {
-    border-radius: $--x-border-radius;
+    border-radius: $x-border-radius;
   }
   &-error {
     > img {
@@ -32,13 +31,13 @@
   }
   > span {
     white-space: nowrap;
-    transition: transform $--x-animation-duration-base;
+    transition: transform $x-animation-duration-base;
   }
-  @include avatar-size('big', $--x-avatar-size-big);
-  @include avatar-size('large', $--x-avatar-size-large);
-  @include avatar-size('medium', $--x-avatar-size-medium);
-  @include avatar-size('small', $--x-avatar-size-small);
-  @include avatar-size('mini', $--x-avatar-size-mini);
+  @include avatar-size('big', $x-avatar-size-big);
+  @include avatar-size('large', $x-avatar-size-large);
+  @include avatar-size('medium', $x-avatar-size-medium);
+  @include avatar-size('small', $x-avatar-size-small);
+  @include avatar-size('mini', $x-avatar-size-mini);
 }
 
 @mixin avatar-size($type, $size) {
@@ -57,7 +56,7 @@
       margin-left: -0.5rem;
     }
     .x-avatar {
-      border: $--x-border-width $--x-border-style $--x-white;
+      border: $x-border-width $x-border-style $x-white;
     }
   }
 }

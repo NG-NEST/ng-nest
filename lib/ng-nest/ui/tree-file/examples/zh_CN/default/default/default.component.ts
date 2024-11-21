@@ -3,7 +3,6 @@ import { XTreeFileComponent, XTreeFileNode } from '@ng-nest/ui/tree-file';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XTreeFileComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

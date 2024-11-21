@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-drag-width',
-  standalone: true,
   imports: [XTableComponent],
   templateUrl: './drag-width.component.html',
   providers: [DragWidthService]

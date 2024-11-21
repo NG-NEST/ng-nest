@@ -5,7 +5,6 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 
 @Component({
   selector: 'ex-loading',
-  standalone: true,
   imports: [FormsModule, XSwitchComponent, XSkeletonComponent],
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']

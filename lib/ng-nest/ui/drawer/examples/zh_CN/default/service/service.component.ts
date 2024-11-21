@@ -5,7 +5,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-service',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.scss']

@@ -4,7 +4,6 @@ import { XMessageService } from '@ng-nest/ui/message';
 
 @Component({
   selector: 'ex-close',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './close.component.html',
   styleUrls: ['./close.component.scss']

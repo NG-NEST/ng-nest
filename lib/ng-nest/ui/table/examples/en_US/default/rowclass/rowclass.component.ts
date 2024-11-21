@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-rowclass',
-  standalone: true,
   imports: [XTableComponent],
   templateUrl: './rowclass.component.html',
   styleUrls: ['./rowclass.component.scss'],

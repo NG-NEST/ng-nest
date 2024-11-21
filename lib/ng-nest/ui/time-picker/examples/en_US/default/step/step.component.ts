@@ -4,7 +4,6 @@ import { XTimePickerComponent } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: 'ex-step',
-  standalone: true,
   imports: [FormsModule, XTimePickerComponent],
   templateUrl: './step.component.html'
 })

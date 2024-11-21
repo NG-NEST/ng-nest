@@ -21,7 +21,6 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XTooltipPortalPrefix}`,
-  standalone: true,
   imports: [NgClass, XOutletDirective],
   templateUrl: './tooltip-portal.component.html',
   styleUrls: ['./tooltip-portal.component.scss'],

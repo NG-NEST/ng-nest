@@ -8,14 +8,12 @@ import { XDataArray, XPlacement, XSize, XSleep } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XDropdownComponent],
   template: ` <x-dropdown></x-dropdown> `
 })
 class XTestDropdownComponent {}
 
 @Component({
-  standalone: true,
   imports: [XDropdownComponent],
   template: `
     <x-dropdown

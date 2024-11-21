@@ -23,23 +23,12 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { NgClass, NgStyle } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XDragDirective } from '@ng-nest/ui/drag';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import type { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XSliderSelectPrefix}`,
-  standalone: true,
-  imports: [
-    NgClass,
-    NgStyle,
-    FormsModule,
-    ReactiveFormsModule,
-    DragDropModule,
-    XTooltipDirective,
-    XDragDirective,
-    XOutletDirective
-  ],
+  imports: [NgClass, NgStyle, FormsModule, ReactiveFormsModule, DragDropModule, XTooltipDirective, XOutletDirective],
   templateUrl: './slider-select.component.html',
   styleUrls: ['./slider-select.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -4,7 +4,6 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XDropdownComponent, XLinkComponent],
   templateUrl: './default.component.html'
 })

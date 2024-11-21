@@ -3,7 +3,6 @@ import { XTimeRangePipe } from '@ng-nest/ui/time-range';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XTimeRangePipe],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

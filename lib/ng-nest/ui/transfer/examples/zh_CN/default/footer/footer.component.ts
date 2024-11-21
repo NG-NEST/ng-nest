@@ -5,7 +5,6 @@ import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 
 @Component({
   selector: 'ex-footer',
-  standalone: true,
   imports: [FormsModule, XTransferComponent, XButtonComponent],
   templateUrl: './footer.component.html'
 })

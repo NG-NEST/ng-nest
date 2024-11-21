@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, inject, computed
 import { XCalendarPrefix, XCalendarProperty } from './calendar.property';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { DatePipe, LowerCasePipe, NgClass, NgTemplateOutlet } from '@angular/common';
-import { XI18nService, XI18nDirective, zh_CN } from '@ng-nest/ui/i18n';
+import { XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XDatePickerComponent, XPickerDateComponent, XPickerMonthComponent } from '@ng-nest/ui/date-picker';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
@@ -16,7 +16,6 @@ import type { XI18nCalendar } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XCalendarPrefix}`,
-  standalone: true,
   imports: [
     NgClass,
     NgTemplateOutlet,
@@ -29,8 +28,7 @@ import type { XI18nCalendar } from '@ng-nest/ui/i18n';
     XPickerDateComponent,
     XPickerMonthComponent,
     XButtonComponent,
-    XButtonsComponent,
-    XI18nDirective
+    XButtonsComponent
   ],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],

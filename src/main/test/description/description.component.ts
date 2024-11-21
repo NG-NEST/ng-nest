@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'te-description',
-  standalone: true,
   imports: [ExDefaultComponent, ExBorderComponent, ExSizeComponent, ExSplitComponent, ExVerticalComponent],
   templateUrl: './description.component.html'
 })

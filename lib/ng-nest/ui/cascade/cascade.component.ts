@@ -31,13 +31,12 @@ import {
 } from '@angular/cdk/overlay';
 import { filter, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { DOCUMENT, NgClass } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-cascade',
-  standalone: true,
-  imports: [NgClass, FormsModule, ReactiveFormsModule, XInputComponent],
+  imports: [FormsModule, ReactiveFormsModule, XInputComponent],
   templateUrl: './cascade.component.html',
   styleUrls: ['./cascade.component.scss'],
   encapsulation: ViewEncapsulation.None,

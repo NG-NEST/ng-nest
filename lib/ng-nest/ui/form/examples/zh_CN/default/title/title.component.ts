@@ -3,7 +3,6 @@ import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
   selector: 'ex-title',
-  standalone: true,
   imports: [XFormComponent],
   templateUrl: './title.component.html'
 })

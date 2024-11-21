@@ -7,7 +7,6 @@ import {
 
 @Component({
   selector: 'te-calendar',
-  standalone: true,
   imports: [ExDefaultComponent, ExCardComponent, ExHeaderComponent],
   templateUrl: './calendar.component.html'
 })

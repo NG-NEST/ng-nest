@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-checkbox',
-  standalone: true,
   imports: [XTableComponent],
   templateUrl: './checkbox.component.html',
   providers: [CheckboxService]

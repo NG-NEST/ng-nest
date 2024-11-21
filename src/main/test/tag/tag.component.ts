@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: 'te-tag',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExBorderedComponent,

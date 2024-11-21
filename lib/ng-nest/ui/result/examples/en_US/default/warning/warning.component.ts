@@ -4,7 +4,6 @@ import { XResultComponent } from '@ng-nest/ui/result';
 
 @Component({
   selector: 'ex-warning',
-  standalone: true,
   imports: [XButtonComponent, XResultComponent],
   templateUrl: './warning.component.html'
 })

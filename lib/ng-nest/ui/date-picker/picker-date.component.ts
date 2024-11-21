@@ -19,7 +19,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XPickerDatePrefix}`,
-  standalone: true,
   imports: [DatePipe, NgTemplateOutlet, XLinkComponent, XI18nPipe],
   templateUrl: './picker-date.component.html',
   styleUrls: ['./picker-date.component.scss'],

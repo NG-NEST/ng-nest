@@ -4,7 +4,6 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
 
 @Component({
   selector: 'ex-length',
-  standalone: true,
   imports: [FormsModule, XTextareaComponent],
   templateUrl: './length.component.html',
   styleUrls: ['./length.component.scss']

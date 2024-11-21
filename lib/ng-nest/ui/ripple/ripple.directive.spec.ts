@@ -7,14 +7,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { XSleep } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XRippleDirective],
   template: ` <div x-ripple></div> `
 })
 class XTestRippleComponent {}
 
 @Component({
-  standalone: true,
   imports: [XRippleDirective],
   template: `
     <div

@@ -1,3 +1,4 @@
 // Statistic style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-statistic: $--x-prefix + '-statistic';
+$x-statistic: $x-prefix + '-statistic';

@@ -16,14 +16,12 @@ import { DatePipe } from '@angular/common';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 
 @Component({
-  standalone: true,
   imports: [XCalendarComponent],
   template: `<x-calendar></x-calendar>`
 })
 class XTestCalendarComponent {}
 
 @Component({
-  standalone: true,
   imports: [XCalendarComponent],
   template: `
     <x-calendar

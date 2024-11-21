@@ -5,7 +5,6 @@ import { XToHex, XMixColors, XComputed } from '@ng-nest/ui/core';
 
 @Component({
   selector: XColorPrefix,
-  standalone: true,
   templateUrl: './color.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

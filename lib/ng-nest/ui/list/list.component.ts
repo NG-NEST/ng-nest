@@ -36,7 +36,6 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XListPrefix}`,
-  standalone: true,
   imports: [
     NgClass,
     FormsModule,

@@ -1,4 +1,5 @@
 // Comment style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-comment: $--x-prefix + '-comment';
-$--x-comment-reply: $--x-prefix + '-comment-reply';
+$x-comment: $x-prefix + '-comment';
+$x-comment-reply: $x-prefix + '-comment-reply';

@@ -60,7 +60,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTreeSelectPrefix}`,
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, XInputComponent, XTagComponent, XOutletDirective],
   templateUrl: './tree-select.component.html',
   styleUrls: ['./tree-select.component.scss'],

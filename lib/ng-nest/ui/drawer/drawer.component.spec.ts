@@ -8,14 +8,12 @@ import { XPosition, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XDrawerComponent],
   template: ` <x-drawer></x-drawer> `
 })
 class XTestDrawerComponent {}
 
 @Component({
-  standalone: true,
   imports: [XDrawerComponent],
   template: `
     <x-drawer

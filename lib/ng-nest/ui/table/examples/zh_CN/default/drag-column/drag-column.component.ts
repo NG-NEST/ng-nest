@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-drag-column',
-  standalone: true,
   imports: [XTableComponent],
   templateUrl: './drag-column.component.html',
   providers: [DragColumnService]

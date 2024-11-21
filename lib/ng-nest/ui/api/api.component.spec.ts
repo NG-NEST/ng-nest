@@ -6,9 +6,8 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
-  standalone: true,
-  imports: [XApiComponent],
-  template: ` <x-api></x-api> `
+    imports: [XApiComponent],
+    template: ` <x-api></x-api> `
 })
 class XTestApiComponent {}
 

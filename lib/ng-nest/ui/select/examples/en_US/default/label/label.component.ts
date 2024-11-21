@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-label',
-  standalone: true,
   imports: [FormsModule, XSelectComponent],
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']

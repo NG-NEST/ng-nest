@@ -1,8 +1,7 @@
 // Typography
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin typography {
   & {
@@ -12,7 +11,7 @@
   h1,
   p {
     margin: 0;
-    font-size: $--x-font-size;
+    font-size: $x-font-size;
     line-height: 1.5rem;
   }
   > h4 {

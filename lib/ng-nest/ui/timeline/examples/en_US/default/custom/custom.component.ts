@@ -6,7 +6,6 @@ import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XTimelineComponent, XCardComponent, XTimeAgoPipe],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']

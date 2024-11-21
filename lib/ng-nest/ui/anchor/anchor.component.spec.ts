@@ -7,16 +7,14 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { XJustify } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
-  imports: [XAnchorComponent],
-  template: ` <x-anchor> </x-anchor> `
+    imports: [XAnchorComponent],
+    template: ` <x-anchor> </x-anchor> `
 })
 class XTestAnchorComponent {}
 
 @Component({
-  standalone: true,
-  imports: [XAnchorComponent],
-  template: `
+    imports: [XAnchorComponent],
+    template: `
     <div #scrollRef style="height: 60rem; width: 100%; overflow: auto;">
       <x-anchor
         [scroll]="scroll()"

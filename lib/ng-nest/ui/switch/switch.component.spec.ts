@@ -8,14 +8,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
   imports: [XSwitchComponent],
   template: ` <x-switch></x-switch> `
 })
 class XTestSwitchComponent {}
 
 @Component({
-  standalone: true,
   imports: [XSwitchComponent, FormsModule],
   template: `
     <x-switch

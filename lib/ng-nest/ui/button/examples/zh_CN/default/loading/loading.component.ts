@@ -3,7 +3,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-loading',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']

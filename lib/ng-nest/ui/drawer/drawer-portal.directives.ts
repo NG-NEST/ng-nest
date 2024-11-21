@@ -2,8 +2,7 @@ import { Directive, HostBinding, HostListener, inject } from '@angular/core';
 import { XDrawerRef } from './drawer-ref';
 
 @Directive({
-  selector: `[x-drawer-close]`,
-  standalone: true
+  selector: `[x-drawer-close]`
 })
 export class XDrawerCloseDirective {
   @HostListener('click', ['$event']) onCloseClick() {
@@ -13,16 +12,14 @@ export class XDrawerCloseDirective {
 }
 
 @Directive({
-  selector: `[x-drawer-title]`,
-  standalone: true
+  selector: `[x-drawer-title]`
 })
 export class XDrawerTitleDirective {
   @HostBinding('class.x-drawer-portal-title') _has = true;
 }
 
 @Directive({
-  selector: `[x-drawer-content], x-drawer-content`,
-  standalone: true
+  selector: `[x-drawer-content], x-drawer-content`
 })
 export class XDrawerContentDirective {
   @HostBinding('class.x-drawer-portal-content') _has = true;

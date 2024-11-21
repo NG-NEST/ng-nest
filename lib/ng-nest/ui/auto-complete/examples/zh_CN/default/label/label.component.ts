@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-label',
-  standalone: true,
   imports: [FormsModule, XRowComponent, XColComponent, XAutoCompleteComponent],
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']

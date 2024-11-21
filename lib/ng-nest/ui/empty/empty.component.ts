@@ -6,7 +6,6 @@ import { XI18nPipe } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: `${XEmptyPrefix}`,
-  standalone: true,
   imports: [XOutletDirective, XIconComponent, XI18nPipe],
   templateUrl: './empty.component.html',
   styleUrls: ['./empty.component.scss'],

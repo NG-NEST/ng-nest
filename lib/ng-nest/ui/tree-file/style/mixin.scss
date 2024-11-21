@@ -1,23 +1,22 @@
 // TreeFile
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin tree-file {
   & {
     display: flex;
-    background-color: $--x-background;
-    border-radius: $--x-border-radius;
-    border: $--x-border-base;
-    color: $--x-text;
+    background-color: $x-background;
+    border-radius: $x-border-radius;
+    border: $x-border-base;
+    color: $x-text;
   }
   &-catalog {
     width: 0;
     overflow: auto;
     opacity: 0;
     font-size: 0.8125rem;
-    transition: $--x-animation-duration-slow;
+    transition: $x-animation-duration-slow;
     .x-tree {
       padding: 0.5rem;
     }
@@ -30,14 +29,14 @@
     position: relative;
   }
   &-crumb {
-    background-color: $--x-background;
-    border-top-left-radius: $--x-border-radius;
-    border-top-right-radius: $--x-border-radius;
+    background-color: $x-background;
+    border-top-left-radius: $x-border-radius;
+    border-top-right-radius: $x-border-radius;
     display: flex;
     > x-link {
       line-height: 1.75rem;
       height: 1.75rem;
-      transition: $--x-animation-duration-base;
+      transition: $x-animation-duration-base;
       > a {
         padding: 0 0.5rem;
       }
@@ -46,7 +45,7 @@
       flex: 1;
       > .x-crumb {
         padding: 0 0.5rem;
-        color: $--x-text-300;
+        color: $x-text-300;
         .x-crumb-separator {
           margin: 0 0.125rem;
         }
@@ -56,7 +55,7 @@
   &-content {
     flex: 1;
     overflow: auto;
-    transition: $--x-animation-duration-slow;
+    transition: $x-animation-duration-slow;
     display: flex;
     min-height: 3rem;
     > x-highlight {
@@ -65,7 +64,7 @@
         overflow: inherit;
       }
     }
-    > .#{$--x-tree-file}-img {
+    > .#{$x-tree-file}-img {
       margin: auto;
       padding: 1.5rem;
       display: flex;
@@ -74,17 +73,17 @@
         max-width: 100%;
         height: auto;
         margin: auto;
-        box-shadow: $--x-box-shadow;
-        border-radius: $--x-border-radius;
-        background-color: $--x-background-a100;
+        box-shadow: $x-box-shadow;
+        border-radius: $x-border-radius;
+        background-color: $x-background-a100;
       }
     }
   }
   &-toggle {
-    > .#{$--x-tree-file}-catalog {
+    > .#{$x-tree-file}-catalog {
       width: 16rem;
       opacity: 1;
-      border-right: $--x-border-base;
+      border-right: $x-border-base;
     }
   }
 }

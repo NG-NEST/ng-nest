@@ -1,5 +1,5 @@
 export const environment = {
   layout: 'test',
-  defaultPage: 'message-box',
+  defaultPage: 'auto-complete',
   static: 'https://ngnest.com/static'
 };

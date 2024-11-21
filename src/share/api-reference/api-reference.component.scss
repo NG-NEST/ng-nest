@@ -1,21 +1,22 @@
-@import '../../styles/index.scss';
+@use '../../styles/default.scss' as *;
+@use '../../styles/mixin.scss' as *;
 
 :host {
   .ns-reference-title {
-    background-color: $--x-background-a200;
-    border-top-left-radius: $--x-border-radius;
-    border-top-right-radius: $--x-border-radius;
+    background-color: $x-background-a200;
+    border-top-left-radius: $x-border-radius;
+    border-top-right-radius: $x-border-radius;
   }
   .ns-reference-content {
     .property {
       &:not(:first-child) {
-        margin-top: $--x-padding-large;
+        margin-top: $x-padding-large;
       }
       > div:not(:first-child) {
-        margin-top: $--x-padding-mini;
+        margin-top: $x-padding-mini;
       }
       .base {
-        color: $--x-text;
+        color: $x-text;
         display: flex;
         align-items: center;
         > span {
@@ -25,8 +26,8 @@
           padding: 0.25rem 0.325rem;
           color: #f637e3;
           background: rgba(246, 55, 227, 0.1);
-          border-radius: $--x-border-small-radius;
-          transition: $--x-animation-duration-base background-color;
+          border-radius: $x-border-small-radius;
+          transition: $x-animation-duration-base background-color;
           will-change: background-color;
           &:hover {
             background-color: rgba(246, 55, 227, 0.2);
@@ -35,84 +36,84 @@
         .type {
           margin-left: 1rem;
           padding: 0 0.5rem;
-          color: $--x-danger;
-          background: $--x-danger-900;
-          border-radius: $--x-border-small-radius;
+          color: $x-danger;
+          background: $x-danger-900;
+          border-radius: $x-border-small-radius;
           line-height: 1.5rem;
         }
       }
       .value {
         color: #fa2c05;
-        padding: $--x-padding-small $--x-padding-medium;
-        border-radius: $--x-border-small-radius;
-        background-color: $--x-danger-900;
+        padding: $x-padding-small $x-padding-medium;
+        border-radius: $x-border-small-radius;
+        background-color: $x-danger-900;
       }
       .description {
-        color: $--x-text-200;
-        padding: $--x-padding-small $--x-padding-medium;
-        border-radius: $--x-border-small-radius;
-        background-color: $--x-background-a100;
+        color: $x-text-200;
+        padding: $x-padding-small $x-padding-medium;
+        border-radius: $x-border-small-radius;
+        background-color: $x-background-a100;
       }
       .example {
-        padding: $--x-padding-small $--x-padding-medium;
-        border-radius: $--x-border-small-radius;
-        border: $--x-border-base;
+        padding: $x-padding-small $x-padding-medium;
+        border-radius: $x-border-small-radius;
+        border: $x-border-base;
       }
       .extends {
-        color: $--x-text;
+        color: $x-text;
         display: flex;
         align-items: center;
-        padding: $--x-padding-small $--x-padding-medium;
-        border-radius: $--x-border-small-radius;
-        background-color: $--x-primary-900;
+        padding: $x-padding-small $x-padding-medium;
+        border-radius: $x-border-small-radius;
+        background-color: $x-primary-900;
         > span {
           color: #3b82f6;
         }
         > code {
           color: #f637e3;
-          margin-left: $--x-padding-medium;
+          margin-left: $x-padding-medium;
         }
       }
       .children {
-        padding-left: calc(#{$--x-padding-large} * 2);
+        padding-left: calc(#{$x-padding-large} * 2);
         position: relative;
         &::before {
           content: ' ';
           position: absolute;
-          left: $--x-padding-medium;
+          left: $x-padding-medium;
           height: 100%;
           width: 0.0625rem;
-          background-color: $--x-border;
+          background-color: $x-border;
         }
         .property {
-          padding-left: calc(#{$--x-padding-large} * 2);
+          padding-left: calc(#{$x-padding-large} * 2);
           position: relative;
           &::before {
             content: ' ';
             position: absolute;
-            left: $--x-padding-mini;
+            left: $x-padding-mini;
             height: 100%;
             width: 0.0625rem;
-            background-color: $--x-border;
+            background-color: $x-border;
           }
         }
         .base {
-          padding-left: $--x-padding-small;
+          padding-left: $x-padding-small;
         }
       }
       .properties {
-        padding: $--x-padding-mini $--x-padding-medium;
-        border-radius: $--x-border-small-radius;
-        background-color: $--x-background-a100;
+        padding: $x-padding-mini $x-padding-medium;
+        border-radius: $x-border-small-radius;
+        background-color: $x-background-a100;
         .row {
           &:not(:first-child) {
-            margin-top: $--x-padding-mini;
+            margin-top: $x-padding-mini;
           }
           code {
             text-align: left;
-            padding: $--x-padding-mini 0;
+            padding: $x-padding-mini 0;
             &:not(:first-child) {
-              margin-left: $--x-padding-medium;
+              margin-left: $x-padding-medium;
             }
             &:nth-child(1) {
               color: #3b82f6;
@@ -125,7 +126,7 @@
             }
           }
           span {
-            margin-left: $--x-padding-medium;
+            margin-left: $x-padding-medium;
           }
         }
       }

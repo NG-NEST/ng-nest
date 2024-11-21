@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'te-timeline',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExColorComponent,

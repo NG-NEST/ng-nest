@@ -1,40 +1,41 @@
 // ColorPicker style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-color-picker-prefix: $--x-prefix + '-color-picker';
+$x-color-picker-prefix: $x-prefix + '-color-picker';
 
 /* 字体大小 */
-$--x-color-picker-font-size: $--x-font-size;
+$x-color-picker-font-size: $x-font-size;
 
 /* 高度 */
-$--x-color-picker-height: calc(#{$--x-font-size} + 0.875rem);
+$x-color-picker-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 内边距 */
-$--x-color-picker-padding: 0 $--x-control-padding-horizontal;
+$x-color-picker-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-color-picker-color: $--x-primary-900;
+$x-color-picker-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-color-picker-placeholder-color: $--x-placeholder-color;
+$x-color-picker-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-color-picker-background-color: $--x-background;
+$x-color-picker-background-color: $x-background;
 
 /* 边框样式 */
-$--x-color-picker-border: $--x-border-width $--x-border-style $--x-border;
+$x-color-picker-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-color-picker-border-radius: $--x-border-radius;
+$x-color-picker-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-color-picker-disabled-color: $--x-text-500;
+$x-color-picker-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-color-picker-icon-font-size: $--x-font-size-medium;
+$x-color-picker-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-color-picker-icon-padding: $--x-control-padding-horizontal;
+$x-color-picker-icon-padding: $x-control-padding-horizontal;
 
-$--x-color-picker-transparent: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+$x-color-picker-transparent: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
 
-$--x-color-picker-portal-prefix: $--x-prefix + '-color-picker-portal';
+$x-color-picker-portal-prefix: $x-prefix + '-color-picker-portal';

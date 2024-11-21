@@ -1,4 +1,5 @@
-@import '../../styles/index.scss';
+@use '../../styles/default.scss' as *;
+@use '../../styles/mixin.scss' as *;
 
 ns-demo {
   > section {

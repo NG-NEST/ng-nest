@@ -19,7 +19,6 @@ import { XMenuNodeComponent } from './menu-node.component';
 
 @Component({
   selector: `${XMenuPrefix}`,
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet, XSliderComponent, XDropdownComponent, XMenuNodeComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],

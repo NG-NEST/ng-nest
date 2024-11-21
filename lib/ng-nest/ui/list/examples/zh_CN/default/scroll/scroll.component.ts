@@ -7,7 +7,6 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-scroll',
-  standalone: true,
   imports: [FormsModule, XListComponent, XRadioComponent, XInputNumberComponent],
   templateUrl: './scroll.component.html',
   styleUrls: ['./scroll.component.scss']

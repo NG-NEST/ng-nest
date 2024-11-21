@@ -1,14 +1,14 @@
 // Progress
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-#{$--x-progress} {
+#{$x-progress} {
   display: initial;
 }
 
-.#{$--x-progress} {
+.#{$x-progress} {
   @include reset-component();
   @include progress();
 }

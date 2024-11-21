@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'te-badge',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExAnimationComponent,

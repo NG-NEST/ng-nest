@@ -1,5 +1,6 @@
 // Calendar style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-calendar: $--x-prefix + '-calendar';
+$x-calendar: $x-prefix + '-calendar';
 
-$--x-calendar-box-shadow: $--x-box-shadow;
+$x-calendar-box-shadow: $x-box-shadow;

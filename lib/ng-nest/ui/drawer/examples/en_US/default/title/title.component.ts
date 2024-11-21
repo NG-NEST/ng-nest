@@ -4,7 +4,6 @@ import { XDrawerComponent } from '@ng-nest/ui/drawer';
 
 @Component({
   selector: 'ex-title',
-  standalone: true,
   imports: [XButtonComponent, XDrawerComponent],
   templateUrl: './title.component.html',
   styleUrls: ['./title.component.scss']

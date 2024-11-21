@@ -3,7 +3,6 @@ import { ExDefaultComponent, ExStyleComponent } from '@ng-nest/ui/pagination/exa
 
 @Component({
   selector: 'te-pagination',
-  standalone: true,
   imports: [ExDefaultComponent, ExStyleComponent],
   templateUrl: './pagination.component.html'
 })

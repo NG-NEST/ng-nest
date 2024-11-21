@@ -13,7 +13,6 @@ import {
 
 @Component({
   selector: 'te-progress',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExCircleComponent,

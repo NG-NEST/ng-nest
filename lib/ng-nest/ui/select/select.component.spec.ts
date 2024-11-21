@@ -21,14 +21,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
   imports: [XSelectComponent],
   template: ` <x-select></x-select> `
 })
 class XTestSelectComponent {}
 
 @Component({
-  standalone: true,
   imports: [XSelectComponent, FormsModule, CommonModule],
   template: `
     <x-select

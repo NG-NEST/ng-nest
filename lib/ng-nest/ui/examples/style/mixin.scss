@@ -1,8 +1,7 @@
 // Examples
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin examples {
   & {
@@ -10,9 +9,9 @@
   }
   .#{$prefix}-html {
     padding: 1.5rem 1.5rem 3.75rem;
-    border: $--x-border-base;
-    border-bottom-left-radius: $--x-border-radius;
-    border-bottom-right-radius: $--x-border-radius;
+    border: $x-border-base;
+    border-bottom-left-radius: $x-border-radius;
+    border-bottom-right-radius: $x-border-radius;
     position: relative;
   }
   .#{$prefix}-tools {
@@ -23,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 0.125rem dashed $--x-border-500;
+    border-top: 0.125rem dashed $x-border-500;
   }
   .#{$prefix}-code {
     margin-top: 0.25rem;
@@ -41,12 +40,12 @@
   }
   .#{$prefix}-info {
     padding: 1rem 1.5rem;
-    border-top-left-radius: $--x-border-radius;
-    border-top-right-radius: $--x-border-radius;
-    border-top: $--x-border-base;
-    border-left: $--x-border-base;
-    border-right: $--x-border-base;
-    background-color: $--x-background-a100;
+    border-top-left-radius: $x-border-radius;
+    border-top-right-radius: $x-border-radius;
+    border-top: $x-border-base;
+    border-left: $x-border-base;
+    border-right: $x-border-base;
+    background-color: $x-background-a100;
     > p {
       margin: 0.25rem 0 0;
       &:first-of-type {
@@ -60,25 +59,25 @@
         margin: 0.125rem 0.125rem 0.125rem 1.25rem;
         line-height: 1.75rem;
         &::marker {
-          color: $--x-text-500;
+          color: $x-text-500;
         }
       }
     }
     > table {
       width: 100%;
       border-collapse: collapse;
-      border: $--x-border-base;
+      border: $x-border-base;
       tr > th,
       tr > td {
-        border-bottom: $--x-border-base;
-        border-right: $--x-border-base;
+        border-bottom: $x-border-base;
+        border-right: $x-border-base;
         text-align: left;
-        padding: $--x-padding-mini $--x-padding-small;
+        padding: $x-padding-mini $x-padding-small;
       }
       tr {
         th {
           white-space: nowrap;
-          color: $--x-text;
+          color: $x-text;
         }
       }
     }

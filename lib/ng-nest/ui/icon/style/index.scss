@@ -1,10 +1,10 @@
 // Icon
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './mixin';
+@use '../../style/mixins/reset.scss' as *;
+@use './mixin.scss' as *;
+@use './param.scss' as *;
 
-.#{$--x-icon-prefix} {
+.#{$x-icon-prefix} {
   @include reset-component();
   @include icon();
 }

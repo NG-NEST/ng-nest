@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-async',
-  standalone: true,
   imports: [FormsModule, XButtonComponent, XRadioComponent],
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.scss']

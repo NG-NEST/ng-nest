@@ -1,3 +1,4 @@
 // Loading style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-loading: $--x-prefix + '-loading';
+$x-loading: $x-prefix + '-loading';

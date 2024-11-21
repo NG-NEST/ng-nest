@@ -12,13 +12,11 @@ import { XRatePrefix, XRateProperty } from './rate.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { XButtonComponent } from '@ng-nest/ui/button';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XRatePrefix}`,
-  standalone: true,
-  imports: [NgClass, NgTemplateOutlet, FormsModule, XButtonComponent, XIconComponent],
+  imports: [NgClass, NgTemplateOutlet, FormsModule, XIconComponent],
   templateUrl: './rate.component.html',
   styleUrls: ['./rate.component.scss'],
   encapsulation: ViewEncapsulation.None,

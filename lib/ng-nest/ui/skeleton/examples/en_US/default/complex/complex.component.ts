@@ -3,7 +3,6 @@ import { XSkeletonComponent, XSkeletonRow } from '@ng-nest/ui/skeleton';
 
 @Component({
   selector: 'ex-complex',
-  standalone: true,
   imports: [XSkeletonComponent],
   templateUrl: './complex.component.html'
 })

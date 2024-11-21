@@ -1,8 +1,7 @@
 // Tooltip
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin tooltip {
   display: inline-block;
@@ -16,20 +15,20 @@
     justify-content: center;
     align-items: center;
   }
-  .#{$--x-tooltip-portal-prefix}-arrow-hidden {
+  .#{$x-tooltip-portal-prefix}-arrow-hidden {
     visibility: hidden;
   }
-  > .#{$--x-tooltip-portal-prefix}-inner {
-    font-size: $--x-font-size;
-    background-color: $--x-text;
-    color: $--x-text-700;
+  > .#{$x-tooltip-portal-prefix}-inner {
+    font-size: $x-font-size;
+    background-color: $x-text;
+    color: $x-text-700;
     padding: 0.325rem 0.5rem;
     max-width: 10rem;
-    border-radius: $--x-border-radius;
-    box-shadow: $--x-box-shadow;
+    border-radius: $x-border-radius;
+    box-shadow: $x-box-shadow;
   }
-  .#{$--x-tooltip-portal-prefix}-arrow,
-  .#{$--x-tooltip-portal-prefix}-arrow-after {
+  .#{$x-tooltip-portal-prefix}-arrow,
+  .#{$x-tooltip-portal-prefix}-arrow-after {
     position: absolute;
     display: block;
     width: 0;
@@ -37,79 +36,79 @@
     border-color: transparent;
     border-style: solid;
   }
-  .#{$--x-tooltip-portal-prefix}-arrow {
+  .#{$x-tooltip-portal-prefix}-arrow {
     border-width: 0.375rem;
     filter: drop-shadow(0 0.125rem 0.75rem rgba(0, 0, 0, 0.03));
   }
-  .#{$--x-tooltip-portal-prefix}-arrow-after {
+  .#{$x-tooltip-portal-prefix}-arrow-after {
     border-width: 0.375rem;
   }
 
   &-top,
   &-top-start,
   &-top-end {
-    padding-bottom: $--x-tooltip-distance;
-    > .#{$--x-tooltip-portal-prefix}-arrow {
+    padding-bottom: $x-tooltip-distance;
+    > .#{$x-tooltip-portal-prefix}-arrow {
       bottom: 0.3rem;
       border-bottom-width: 0;
-      border-top-color: $--x-text;
+      border-top-color: $x-text;
     }
-    .#{$--x-tooltip-portal-prefix}-arrow-after {
+    .#{$x-tooltip-portal-prefix}-arrow-after {
       bottom: 0.1rem;
       margin-left: -0.375rem;
       border-bottom-width: 0;
-      border-top-color: $--x-text;
+      border-top-color: $x-text;
     }
   }
 
   &-left,
   &-left-start,
   &-left-end {
-    padding-right: $--x-tooltip-distance;
-    > .#{$--x-tooltip-portal-prefix}-arrow {
+    padding-right: $x-tooltip-distance;
+    > .#{$x-tooltip-portal-prefix}-arrow {
       right: 0.3rem;
       border-right-width: 0;
-      border-left-color: $--x-text;
+      border-left-color: $x-text;
     }
-    .#{$--x-tooltip-portal-prefix}-arrow-after {
+    .#{$x-tooltip-portal-prefix}-arrow-after {
       right: 0.1rem;
       margin-top: -0.375rem;
       border-right-width: 0;
-      border-left-color: $--x-text;
+      border-left-color: $x-text;
     }
   }
 
   &-right,
   &-right-start,
   &-right-end {
-    padding-left: $--x-tooltip-distance;
-    > .#{$--x-tooltip-portal-prefix}-arrow {
+    padding-left: $x-tooltip-distance;
+    > .#{$x-tooltip-portal-prefix}-arrow {
       left: 0.3rem;
       border-left-width: 0;
-      border-right-color: $--x-text;
+      border-right-color: $x-text;
     }
-    .#{$--x-tooltip-portal-prefix}-arrow-after {
+    .#{$x-tooltip-portal-prefix}-arrow-after {
       left: 0.1rem;
       margin-top: -0.375rem;
       border-left-width: 0;
-      border-right-color: $--x-text;
+      border-right-color: $x-text;
     }
   }
 
   &-bottom,
   &-bottom-start,
   &-bottom-end {
-    padding-top: $--x-tooltip-distance;
-    .#{$--x-tooltip-portal-prefix}-arrow {
+    padding-top: $x-tooltip-distance;
+    .#{$x-tooltip-portal-prefix}-arrow {
       top: 0.3rem;
       border-top-width: 0;
-      border-bottom-color: $--x-text;
+      border-bottom-color: $x-text;
     }
-    .#{$--x-tooltip-portal-prefix}-arrow-after {
+    .#{$x-tooltip-portal-prefix}-arrow-after {
       top: 0.1rem;
       margin-left: -0.375rem;
       border-top-width: 0;
-      border-bottom-color: $--x-text;
+      border-bottom-color: $x-text;
     }
   }
 }

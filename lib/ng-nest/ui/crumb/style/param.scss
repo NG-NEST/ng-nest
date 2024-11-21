@@ -1,3 +1,4 @@
 // Crumb style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-crumb-prefix: $--x-prefix + '-crumb';
+$x-crumb-prefix: $x-prefix + '-crumb';

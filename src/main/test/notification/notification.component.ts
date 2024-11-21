@@ -3,7 +3,6 @@ import { ExDefaultComponent, ExTypeComponent } from '@ng-nest/ui/notification/ex
 
 @Component({
   selector: 'te-notification',
-  standalone: true,
   imports: [ExDefaultComponent, ExTypeComponent],
   templateUrl: './notification.component.html'
 })

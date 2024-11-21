@@ -14,14 +14,12 @@ import { XAlign, XCorner, XData, XDirection, XIsNumber, XJustify, XSize, XSleep,
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XTimePickerComponent],
   template: ` <x-time-picker></x-time-picker> `
 })
 class XTestTimePickerComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTimePickerComponent],
   template: `
     <x-time-picker

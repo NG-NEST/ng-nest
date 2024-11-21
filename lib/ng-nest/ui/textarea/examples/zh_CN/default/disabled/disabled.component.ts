@@ -4,7 +4,6 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
 
 @Component({
   selector: 'ex-disabled',
-  standalone: true,
   imports: [FormsModule, XTextareaComponent],
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss']

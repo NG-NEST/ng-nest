@@ -7,7 +7,6 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XDescriptionPrefix}`,
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet, XOutletDirective],
   templateUrl: './description.component.html',
   styleUrls: ['./style/index.scss'],

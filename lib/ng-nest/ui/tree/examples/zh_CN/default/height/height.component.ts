@@ -3,7 +3,6 @@ import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-height',
-  standalone: true,
   imports: [XTreeComponent],
   templateUrl: './height.component.html',
   styleUrls: ['./height.component.scss']

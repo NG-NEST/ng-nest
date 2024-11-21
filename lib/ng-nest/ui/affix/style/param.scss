@@ -1,3 +1,4 @@
 // Affix style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-affix: $--x-prefix + '-affix';
+$x-affix: $x-prefix + '-affix';

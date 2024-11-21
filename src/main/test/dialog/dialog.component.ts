@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: 'te-dialog',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExContainerComponent,

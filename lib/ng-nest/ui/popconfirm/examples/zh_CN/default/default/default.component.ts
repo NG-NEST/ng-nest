@@ -4,7 +4,6 @@ import { XPopconfirmComponent } from '@ng-nest/ui/popconfirm';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XPopconfirmComponent, XButtonComponent],
   templateUrl: './default.component.html'
 })

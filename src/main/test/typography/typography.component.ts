@@ -3,7 +3,6 @@ import { ExDefaultComponent, ExLineHeightComponent, ExSizeComponent } from '@ng-
 
 @Component({
   selector: 'te-typography',
-  standalone: true,
   imports: [ExDefaultComponent, ExLineHeightComponent, ExSizeComponent],
   templateUrl: './typography.component.html'
 })

@@ -23,7 +23,6 @@ import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: `${XAutoCompletePortalPrefix}`,
-  standalone: true,
   imports: [XListComponent],
   templateUrl: './auto-complete-portal.component.html',
   styleUrls: ['./auto-complete-portal.component.scss'],

@@ -17,7 +17,6 @@ import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: `${XCarouselPanelPrefix}`,
-  standalone: true,
   templateUrl: './carousel-panel.component.html',
   styleUrls: ['./carousel-panel.component.scss'],
   animations: [XDropAnimation],

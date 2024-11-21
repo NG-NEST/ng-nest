@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'ns-test',
-  standalone: true,
   imports: [RouterOutlet],
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],

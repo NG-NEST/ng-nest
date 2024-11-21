@@ -3,7 +3,6 @@ import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 
 @Component({
   selector: 'ex-hidden-button',
-  standalone: true,
   imports: [XInputNumberComponent],
   templateUrl: './hidden-button.component.html',
   styleUrls: ['./hidden-button.component.scss']

@@ -25,7 +25,6 @@ import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XDrawerPrefix}`,
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet, XOutletDirective, XButtonComponent],
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss'],

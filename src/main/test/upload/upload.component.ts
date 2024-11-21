@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'te-upload',
-  standalone: true,
   imports: [ExDefaultComponent, ExCustomComponent, ExDisabledComponent, ExImgComponent],
   templateUrl: './upload.component.html'
 })

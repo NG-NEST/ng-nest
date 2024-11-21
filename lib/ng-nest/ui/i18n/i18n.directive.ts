@@ -3,8 +3,7 @@ import { XI18nService } from './i18n.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Directive({
-  selector: '[x-i18n]',
-  standalone: true
+  selector: '[x-i18n]'
 })
 export class XI18nDirective {
   path = input('', { alias: 'x-i18n' });

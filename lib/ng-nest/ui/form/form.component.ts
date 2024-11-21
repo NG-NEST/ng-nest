@@ -26,7 +26,6 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XFormPrefix}`,
-  standalone: true,
   imports: [
     NgClass,
     NgTemplateOutlet,

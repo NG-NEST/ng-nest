@@ -4,7 +4,6 @@ import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 
 @Component({
   selector: 'ex-check-all',
-  standalone: true,
   imports: [FormsModule, XCheckboxComponent],
   templateUrl: './check-all.component.html',
   styleUrls: ['./check-all.component.scss']

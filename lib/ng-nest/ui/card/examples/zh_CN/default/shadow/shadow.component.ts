@@ -4,7 +4,6 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'ex-shadow',
-  standalone: true,
   imports: [XRowComponent, XColComponent, XCardComponent],
   templateUrl: './shadow.component.html'
 })

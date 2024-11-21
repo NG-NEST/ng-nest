@@ -4,7 +4,6 @@ import { XTabComponent, XTabsComponent } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XTabsComponent, XTabComponent, XIconComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']

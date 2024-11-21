@@ -1,6 +1,6 @@
 @charset "UTF-8";
-@import './cdk';
-@import './var';
-@import './base';
-@import './portal';
-@import '../directives/index';
+@use './cdk' as *;
+@use './var' as *;
+@use './base' as *;
+@use './portal' as *;
+@use '../directives/index' as *;

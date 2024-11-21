@@ -8,14 +8,12 @@ import { XAlign, XComputedStyle, XDirection, XJustify, XSleep } from '@ng-nest/u
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
   imports: [XRateComponent],
   template: ` <x-rate> </x-rate> `
 })
 class XTestRateComponent {}
 
 @Component({
-  standalone: true,
   imports: [XRateComponent, FormsModule],
   template: `
     <x-rate

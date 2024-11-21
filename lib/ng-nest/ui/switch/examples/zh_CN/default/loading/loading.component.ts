@@ -5,7 +5,6 @@ import { of, delay } from 'rxjs';
 
 @Component({
   selector: 'ex-loading',
-  standalone: true,
   imports: [FormsModule, XSwitchComponent],
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']

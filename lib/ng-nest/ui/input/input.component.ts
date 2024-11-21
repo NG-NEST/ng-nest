@@ -17,15 +17,14 @@ import { XIsEmpty, XIsUndefined, XIsFunction, XSize } from '@ng-nest/ui/core';
 import { Subject, distinctUntilChanged, fromEvent, takeUntil } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
-import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XInputPrefix}`,
-  standalone: true,
-  imports: [NgClass, NgStyle, NgTemplateOutlet, FormsModule, ReactiveFormsModule, XIconComponent, XOutletDirective],
+  imports: [NgClass, NgStyle, FormsModule, ReactiveFormsModule, XIconComponent, XOutletDirective],
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   encapsulation: ViewEncapsulation.None,

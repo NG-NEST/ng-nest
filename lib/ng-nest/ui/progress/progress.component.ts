@@ -9,7 +9,6 @@ import type { XNumber } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XProgressPrefix}`,
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet, FormsModule, XIconComponent],
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.scss'],

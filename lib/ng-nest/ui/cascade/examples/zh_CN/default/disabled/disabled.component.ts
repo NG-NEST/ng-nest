@@ -5,7 +5,6 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'ex-disabled',
-  standalone: true,
   imports: [XRowComponent, XColComponent, FormsModule, XCascadeComponent],
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss']

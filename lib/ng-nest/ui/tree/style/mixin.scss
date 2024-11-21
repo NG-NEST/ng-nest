@@ -1,13 +1,12 @@
 // Tree
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin tree {
   &-only-leaf {
-    .#{$--x-tree-node-prefix}-sub {
-      color: $--x-text-300;
+    .#{$x-tree-node-prefix}-sub {
+      color: $x-text-300;
     }
   }
   &-content {
@@ -18,12 +17,12 @@
         }
       }
       x-tree-node.cdk-drag-placeholder .x-tree-node-content {
-        color: $--x-primary;
-        background-color: $--x-background-a200;
+        color: $x-primary;
+        background-color: $x-background-a200;
         opacity: 0.8;
       }
       x-tree-node:not(.cdk-drag-placeholder) {
-        transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+        transition: transform $x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
       }
     }
   }
@@ -33,17 +32,17 @@
   &-content {
     position: relative;
     display: flex;
-    border-radius: $--x-border-radius;
+    border-radius: $x-border-radius;
     margin: 0.125rem 0;
     padding-right: 0.5rem;
-    line-height: $--x-height-small;
+    line-height: $x-height-small;
     cursor: pointer;
     x-icon {
       padding: 0.25rem;
       font-size: 1.25rem;
-      transition: $--x-animation-duration-base;
+      transition: $x-animation-duration-base;
       &:hover {
-        color: $--x-text-200;
+        color: $x-text-200;
       }
     }
     x-checkbox {
@@ -56,24 +55,24 @@
     }
     &:not(.x-disabled) {
       &:hover {
-        background-color: $--x-background-a200;
-        .#{$--x-tree-node-prefix}-operations {
+        background-color: $x-background-a200;
+        .#{$x-tree-node-prefix}-operations {
           display: flex;
           align-items: center;
         }
       }
       &.x-activated {
-        background-color: $--x-primary-900;
-        color: $--x-primary;
+        background-color: $x-primary-900;
+        color: $x-primary;
       }
-      &.#{$--x-tree-node-prefix}-checked {
-        color: $--x-primary;
+      &.#{$x-tree-node-prefix}-checked {
+        color: $x-primary;
       }
     }
   }
   &-right,
   &-loading {
-    color: $--x-text-300;
+    color: $x-text-300;
     margin-right: 0.125rem;
   }
   &-right {
@@ -99,15 +98,15 @@
     &-vertical {
       position: absolute;
       height: 100%;
-      border-right: $--x-border-base;
+      border-right: $x-border-base;
     }
     &-horizontal {
       position: absolute;
-      border-bottom: $--x-border-base;
+      border-bottom: $x-border-base;
     }
   }
   &-last {
-    .#{$--x-tree-node-prefix}-line-vertical.is-last {
+    .#{$x-tree-node-prefix}-line-vertical.is-last {
       height: 50%;
       top: 0;
     }
@@ -130,8 +129,8 @@
   &-drag-indicator {
     position: absolute;
     height: 0.0625rem;
-    border-radius: $--x-border-radius;
-    background-color: $--x-primary;
+    border-radius: $x-border-radius;
+    background-color: $x-primary;
     right: 0;
     z-index: 1;
     &::before {
@@ -141,7 +140,7 @@
       width: 0.325rem;
       height: 0.325rem;
       background-color: transparent;
-      border-color: $--x-primary;
+      border-color: $x-primary;
       border-style: solid;
       border-width: 0.0625rem 0.0625rem 0 0;
       content: ' ';
@@ -153,17 +152,17 @@
 @mixin body-tree-node {
   display: block;
   &.cdk-drag-preview {
-    .#{$--x-tree-node-prefix} {
+    .#{$x-tree-node-prefix} {
       @include tree-node();
       &-content {
-        border-color: $--x-border;
-        color: $--x-text-400;
-        background-color: $--x-background-a100;
+        border-color: $x-border;
+        color: $x-text-400;
+        background-color: $x-background-a100;
         opacity: 0.5;
       }
     }
   }
   // &.cdk-drag-animating {
-  //   transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+  //   transition: transform $x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
   // }
 }

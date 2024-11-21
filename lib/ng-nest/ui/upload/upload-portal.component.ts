@@ -22,7 +22,6 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XUploadPortalPrefix}`,
-  standalone: true,
   imports: [XIconComponent],
   templateUrl: './upload-portal.component.html',
   styleUrls: ['./upload-portal.component.scss'],

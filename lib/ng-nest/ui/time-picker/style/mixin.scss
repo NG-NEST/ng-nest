@@ -1,8 +1,7 @@
 // TimePicker
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin time-picker {
   & {
@@ -17,16 +16,16 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-size: $--x-time-picker-font-size;
-  color: $--x-text;
-  border-radius: $--x-border-small-radius;
-  box-shadow: $--x-box-shadow;
-  background-color: $--x-background-100;
+  font-size: $x-time-picker-font-size;
+  color: $x-text;
+  border-radius: $x-border-small-radius;
+  box-shadow: $x-box-shadow;
+  background-color: $x-background-100;
   &-preset {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: $--x-border-width solid $--x-border;
+    border-top: $x-border-width solid $x-border;
     > x-button {
       flex: 1;
     }
@@ -35,7 +34,7 @@
 
 @mixin time-picker-frame {
   & {
-    $prefix: $--x-time-picker-frame-prefix;
+    $prefix: $x-time-picker-frame-prefix;
     display: block;
     height: 100%;
   }
@@ -48,7 +47,7 @@
       width: 4.125rem;
     }
     &:not(:first-child) {
-      border-left: $--x-time-picker-border;
+      border-left: $x-time-picker-border;
     }
   }
   &-hour,

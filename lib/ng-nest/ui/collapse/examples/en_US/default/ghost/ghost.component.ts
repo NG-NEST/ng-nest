@@ -3,7 +3,6 @@ import { XCollapseComponent, XCollapsePanelComponent } from '@ng-nest/ui/collaps
 
 @Component({
   selector: 'ex-ghost',
-  standalone: true,
   imports: [XCollapseComponent, XCollapsePanelComponent],
   templateUrl: './ghost.component.html'
 })

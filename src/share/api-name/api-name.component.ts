@@ -13,7 +13,6 @@ import { XHighlightComponent } from '@ng-nest/ui/highlight';
 
 @Component({
   selector: 'ns-api-name',
-  standalone: true,
   imports: [
     NgTemplateOutlet,
     XButtonComponent,

@@ -7,14 +7,12 @@ import { XBoolean, XComputedStyle, XCorner, XSize } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XLoadingComponent],
   template: ` <div x-loading></div> `
 })
 class XTestLoadingComponent {}
 
 @Component({
-  standalone: true,
   imports: [XLoadingComponent],
   template: `
     <div

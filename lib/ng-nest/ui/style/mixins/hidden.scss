@@ -1,8 +1,11 @@
+@use 'sass:meta';
+@use '../params/index' as *;
+
 // Hidden
 @mixin var-size-hidden($hidden) {
   @each $key, $value in $hidden {
-    [#{$--x-prefix}-hidden-#{$key}] {
-      @media only screen and #{inspect($value)} {
+    [#{$x-prefix}-hidden-#{$key}] {
+      @media only screen and #{meta.inspect($value)} {
         display: none !important;
       }
     }

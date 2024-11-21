@@ -5,7 +5,6 @@ import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-material-design',
-  standalone: true,
   imports: [XIconComponent, XTabsComponent, XTabComponent, XRowComponent, XColComponent],
   templateUrl: './material-design.component.html',
   styleUrls: ['./material-design.component.scss']

@@ -8,14 +8,12 @@ import { XComputedStyle, XEffect, XPlace, XSleep, XTemplate } from '@ng-nest/ui/
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XDialogComponent],
   template: ` <x-dialog></x-dialog> `
 })
 class XTestDialogComponent {}
 
 @Component({
-  standalone: true,
   imports: [XDialogComponent],
   template: `
     <x-dialog

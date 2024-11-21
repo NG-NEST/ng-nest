@@ -14,7 +14,6 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: `${XTagPrefix}`,
-  standalone: true,
   imports: [NgClass, XIconComponent],
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss'],

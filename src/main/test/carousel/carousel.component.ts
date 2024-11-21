@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'te-carousel',
-  standalone: true,
   imports: [ExDefaultComponent, ExArrowComponent, ExCardComponent, ExDirectionComponent],
   templateUrl: './carousel.component.html'
 })

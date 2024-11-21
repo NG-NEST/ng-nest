@@ -1,5 +1,6 @@
 // Drawer style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-drawer: $--x-prefix + '-drawer';
-$--x-drawer-portal: $--x-prefix + '-drawer-portal';
-$--x-drawer-container: $--x-prefix + '-drawer-container';
+$x-drawer: $x-prefix + '-drawer';
+$x-drawer-portal: $x-prefix + '-drawer-portal';
+$x-drawer-container: $x-prefix + '-drawer-container';

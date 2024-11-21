@@ -1,5 +1,6 @@
 // Tabs style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-tabs-prefix: $--x-prefix + '-tabs';
+$x-tabs-prefix: $x-prefix + '-tabs';
 
-$--x-tabs-border-base: $--x-border-base;
+$x-tabs-border-base: $x-border-base;

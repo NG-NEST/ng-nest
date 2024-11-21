@@ -24,13 +24,12 @@ import type { XSliderNode } from '@ng-nest/ui/slider';
 import type { XAnchorNode } from './anchor.property';
 
 @Component({
-  selector: `${XAnchorPrefix}`,
-  standalone: true,
-  imports: [NgClass, XAffixComponent, XSliderComponent],
-  templateUrl: './anchor.component.html',
-  styleUrls: ['./anchor.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: `${XAnchorPrefix}`,
+    imports: [NgClass, XAffixComponent, XSliderComponent],
+    templateUrl: './anchor.component.html',
+    styleUrls: ['./anchor.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterViewInit, OnDestroy, AfterContentChecked {
   anchor = viewChild.required('anchor', { read: ElementRef<HTMLElement> });

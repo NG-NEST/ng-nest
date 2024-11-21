@@ -1,4 +1,5 @@
 // Upload style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-upload-prefix: $--x-prefix + '-upload';
-$--x-upload-portal-prefix: $--x-prefix + '-upload-portal';
+$x-upload-prefix: $x-prefix + '-upload';
+$x-upload-portal-prefix: $x-prefix + '-upload-portal';

@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'te-rate',
-  standalone: true,
   imports: [ExDefaultComponent, ExColorComponent, ExCustomComponent, ExDisabledComponent, ExHalfComponent],
   templateUrl: './rate.component.html'
 })

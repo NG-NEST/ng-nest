@@ -1,10 +1,10 @@
 // Crumb
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './mixin';
+@use '../../style/mixins/reset.scss' as *;
+@use './mixin.scss' as *;
+@use './param.scss' as *;
 
-.#{$--x-crumb-prefix} {
+.#{$x-crumb-prefix} {
   @include reset-component();
   @include crumb();
 }

@@ -7,14 +7,12 @@ import { XDataArray } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XStepsComponent],
   template: ` <x-steps> </x-steps> `
 })
 class XTestStepsComponent {}
 
 @Component({
-  standalone: true,
   imports: [XStepsComponent],
   template: `
     <x-steps

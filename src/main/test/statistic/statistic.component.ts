@@ -3,7 +3,6 @@ import { ExDefaultComponent, ExDownComponent, ExPrefixComponent } from '@ng-nest
 
 @Component({
   selector: 'te-statistic',
-  standalone: true,
   imports: [ExDefaultComponent, ExDownComponent, ExPrefixComponent],
   templateUrl: './statistic.component.html'
 })

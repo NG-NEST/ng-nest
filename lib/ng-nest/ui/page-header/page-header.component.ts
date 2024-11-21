@@ -7,7 +7,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XPageHeaderPrefix}`,
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './page-header.component.html',
   styleUrls: ['./page-header.component.scss'],

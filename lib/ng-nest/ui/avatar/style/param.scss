@@ -1,11 +1,12 @@
 // Avatar style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-avatar: $--x-prefix + '-avatar';
-$--x-avatar-group: $--x-prefix + '-avatar-group';
+$x-avatar: $x-prefix + '-avatar';
+$x-avatar-group: $x-prefix + '-avatar-group';
 
-$--x-avatar-size: 2.5rem;
-$--x-avatar-size-big: $--x-avatar-size + 1rem;
-$--x-avatar-size-large: $--x-avatar-size + 0.5rem;
-$--x-avatar-size-medium: $--x-avatar-size;
-$--x-avatar-size-small: $--x-avatar-size - 0.5rem;
-$--x-avatar-size-mini: $--x-avatar-size - 1rem;
+$x-avatar-size: 2.5rem;
+$x-avatar-size-big: $x-avatar-size + 1rem;
+$x-avatar-size-large: $x-avatar-size + 0.5rem;
+$x-avatar-size-medium: $x-avatar-size;
+$x-avatar-size-small: $x-avatar-size - 0.5rem;
+$x-avatar-size-mini: $x-avatar-size - 1rem;

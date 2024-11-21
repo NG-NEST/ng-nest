@@ -25,7 +25,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTreeSelectPortalPrefix}`,
-  standalone: true,
   imports: [XTreeComponent, XEmptyComponent],
   templateUrl: './tree-select-portal.component.html',
   styleUrls: ['./tree-select-portal.component.scss'],

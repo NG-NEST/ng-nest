@@ -4,7 +4,7 @@ import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { XDragProperty } from './drag.property';
 
-@Directive({ selector: '[x-drag]', standalone: true })
+@Directive({ selector: '[x-drag]' })
 export class XDragDirective extends XDragProperty implements OnInit, OnDestroy {
   private unSubject = new Subject<void>();
   private doc = inject(DOCUMENT);

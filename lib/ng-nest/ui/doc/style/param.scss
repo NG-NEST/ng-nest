@@ -1,38 +1,39 @@
 // Doc style paramters
+@use '../../style/params/index.scss' as *;
 
-$prefix: $--x-prefix + '-doc';
+$prefix: $x-prefix + '-doc';
 
 $doc-span-red: #c7254e;
 
-$--x-doc-states: (
+$x-doc-states: (
   primary: (
-    color: $--x-primary,
-    background-color: $--x-primary-900,
-    border-color: $--x-primary-800,
-    border-left-color: $--x-primary
+    color: $x-primary,
+    background-color: $x-primary-900,
+    border-color: $x-primary-800,
+    border-left-color: $x-primary
   ),
   success: (
-    color: $--x-success,
-    background-color: $--x-success-900,
-    border-color: $--x-success-800,
-    border-left-color: $--x-success
+    color: $x-success,
+    background-color: $x-success-900,
+    border-color: $x-success-800,
+    border-left-color: $x-success
   ),
   danger: (
-    color: $--x-danger,
-    background-color: $--x-danger-900,
-    border-color: $--x-danger-800,
-    border-left-color: $--x-danger
+    color: $x-danger,
+    background-color: $x-danger-900,
+    border-color: $x-danger-800,
+    border-left-color: $x-danger
   ),
   warning: (
-    color: $--x-warning,
-    background-color: $--x-warning-900,
-    border-color: $--x-warning-800,
-    border-left-color: $--x-warning
+    color: $x-warning,
+    background-color: $x-warning-900,
+    border-color: $x-warning-800,
+    border-left-color: $x-warning
   ),
   info: (
-    color: $--x-info,
-    background-color: $--x-info-900,
-    border-color: $--x-info-800,
-    border-left-color: $--x-info
+    color: $x-info,
+    background-color: $x-info-900,
+    border-color: $x-info-800,
+    border-left-color: $x-info
   )
 );

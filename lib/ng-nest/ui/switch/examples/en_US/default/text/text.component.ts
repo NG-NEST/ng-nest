@@ -5,7 +5,6 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 
 @Component({
   selector: 'ex-text',
-  standalone: true,
   imports: [FormsModule, XSwitchComponent, XIconComponent],
   templateUrl: './text.component.html',
   styleUrls: ['./text.component.scss']

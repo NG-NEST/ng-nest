@@ -4,7 +4,6 @@ import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-icon',
-  standalone: true,
   imports: [XTreeComponent, XIconComponent],
   templateUrl: './icon.component.html'
 })

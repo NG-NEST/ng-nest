@@ -1,3 +1,4 @@
 // Description style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-description-prefix: $--x-prefix + '-description';
+$x-description-prefix: $x-prefix + '-description';

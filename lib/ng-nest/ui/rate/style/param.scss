@@ -1,5 +1,6 @@
 // Rate style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-rate-prefix: $--x-prefix + '-rate';
-$--x-rate-height: $--x-height-medium;
-$--x-rate-icon-font-size: calc(#{$--x-font-size-big} + 0.125rem);
+$x-rate-prefix: $x-prefix + '-rate';
+$x-rate-height: $x-height-medium;
+$x-rate-icon-font-size: calc(#{$x-font-size-big} + 0.125rem);

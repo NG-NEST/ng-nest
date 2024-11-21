@@ -5,7 +5,6 @@ import { XTimePickerComponent } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: 'ex-preset',
-  standalone: true,
   imports: [FormsModule, XTimePickerComponent],
   templateUrl: './preset.component.html'
 })

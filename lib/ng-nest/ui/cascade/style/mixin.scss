@@ -1,8 +1,7 @@
 // Cascade
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin cascade {
   & {
@@ -16,11 +15,11 @@
 @mixin cascade-portal {
   & {
     margin: 0.0625rem 0;
-    font-size: $--x-cascade-font-size;
-    color: $--x-text;
-    border-radius: $--x-border-small-radius;
-    box-shadow: $--x-box-shadow;
-    background-color: $--x-background-100;
+    font-size: $x-cascade-font-size;
+    color: $x-text;
+    border-radius: $x-border-small-radius;
+    box-shadow: $x-box-shadow;
+    background-color: $x-background-100;
     display: flex;
   }
   &:focus {
@@ -31,7 +30,7 @@
       min-width: 8rem;
     }
     &:not(:first-child) {
-      border-left: $--x-border-base;
+      border-left: $x-border-base;
     }
   }
 }

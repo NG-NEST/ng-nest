@@ -1,9 +1,9 @@
 // SliderSelect
 
 @use 'sass:math';
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use './param.scss' as *;
 
 @mixin slider-select {
   & {
@@ -13,9 +13,9 @@
   > label {
     display: inline-block;
     white-space: nowrap;
-    height: $--x-slider-select-height;
-    line-height: $--x-slider-select-height;
-    color: $--x-text-300;
+    height: $x-slider-select-height;
+    line-height: $x-slider-select-height;
+    color: $x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -23,9 +23,9 @@
     &:before {
       display: inline-block;
       margin-right: 0.25rem;
-      color: $--x-danger;
+      color: $x-danger;
       line-height: 1;
-      font-size: $--x-font-size-small;
+      font-size: $x-font-size-small;
       content: '*';
     }
   }
@@ -34,38 +34,38 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding-right: $--x-slider-select-button-size;
+    padding-right: $x-slider-select-button-size;
   }
   &-rail {
     position: absolute;
-    margin-left: math.div($--x-slider-select-button-size, 2);
-    width: calc(100% - #{$--x-slider-select-button-size});
-    background-color: $--x-border-100;
-    height: $--x-slider-select-track-height;
-    border-radius: $--x-slider-select-border-radius;
+    margin-left: math.div($x-slider-select-button-size, 2);
+    width: calc(100% - #{$x-slider-select-button-size});
+    background-color: $x-border-100;
+    height: $x-slider-select-track-height;
+    border-radius: $x-slider-select-border-radius;
     > div {
       width: 100%;
       height: 100%;
-      border-radius: $--x-slider-select-border-radius;
+      border-radius: $x-slider-select-border-radius;
     }
   }
   &-track {
-    margin-left: math.div($--x-slider-select-button-size, 2);
+    margin-left: math.div($x-slider-select-button-size, 2);
     width: 100%;
-    border-radius: $--x-slider-select-border-radius;
+    border-radius: $x-slider-select-border-radius;
     position: absolute;
   }
   &-process {
-    height: $--x-slider-select-track-height;
-    background-color: $--x-primary;
-    border-radius: $--x-slider-select-border-radius;
+    height: $x-slider-select-track-height;
+    background-color: $x-primary;
+    border-radius: $x-slider-select-border-radius;
     width: 0%;
     position: relative;
   }
   &-drags {
     position: relative;
     width: 100%;
-    height: $--x-slider-select-height;
+    height: $x-slider-select-height;
     display: flex;
     align-items: center;
   }
@@ -75,44 +75,44 @@
   }
   &-marks {
     position: absolute;
-    margin-left: math.div($--x-slider-select-button-size, 2);
+    margin-left: math.div($x-slider-select-button-size, 2);
     width: 100%;
-    height: $--x-slider-select-height;
+    height: $x-slider-select-height;
     display: flex;
     align-items: center;
   }
   &-mark {
     position: absolute;
     transform: translateX(-50%);
-    border-radius: $--x-slider-select-button-size;
+    border-radius: $x-slider-select-button-size;
     display: flex;
     align-items: center;
     justify-content: center;
     &::before {
       content: ' ';
       position: absolute;
-      width: math.div($--x-slider-select-button-size, math.div(4, 3));
-      height: math.div($--x-slider-select-button-size, math.div(4, 3));
-      border: calc(#{$--x-border-width} * 2) solid $--x-primary;
-      background-color: $--x-background-a100;
-      border-radius: $--x-slider-select-button-size;
+      width: math.div($x-slider-select-button-size, math.div(4, 3));
+      height: math.div($x-slider-select-button-size, math.div(4, 3));
+      border: calc(#{$x-border-width} * 2) solid $x-primary;
+      background-color: $x-background-a100;
+      border-radius: $x-slider-select-button-size;
     }
     &-label {
-      transform: translateY($--x-slider-select-button-size);
+      transform: translateY($x-slider-select-button-size);
     }
   }
   &-button:not(.x-slider-select-custom-button) {
-    border-radius: $--x-slider-select-button-size;
-    border: calc(#{$--x-border-width} * 2) solid $--x-primary;
-    background-color: $--x-background-a100;
+    border-radius: $x-slider-select-button-size;
+    border: calc(#{$x-border-width} * 2) solid $x-primary;
+    background-color: $x-background-a100;
   }
   &-button {
-    width: $--x-slider-select-button-size;
-    height: $--x-slider-select-button-size;
+    width: $x-slider-select-button-size;
+    height: $x-slider-select-button-size;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: $--x-animation-duration-base;
+    transition: $x-animation-duration-base;
     &:hover,
     &-actived {
       transform: scale(1.2);
@@ -125,38 +125,38 @@
   &.x-invalid,
   &.x-required {
     > label {
-      color: $--x-danger;
+      color: $x-danger;
     }
-    > .#{$--x-slider-select-prefix}-row {
-      > #{$--x-prefix}-icon {
-        color: $--x-danger;
+    > .#{$x-slider-select-prefix}-row {
+      > #{$x-prefix}-icon {
+        color: $x-danger;
       }
       &:before {
         content: ' ';
         z-index: 2;
         position: absolute;
-        height: $--x-slider-select-height;
-        line-height: $--x-slider-select-height;
-        border-top-left-radius: $--x-slider-select-border-radius;
-        border-bottom-left-radius: $--x-slider-select-border-radius;
+        height: $x-slider-select-height;
+        line-height: $x-slider-select-height;
+        border-top-left-radius: $x-slider-select-border-radius;
+        border-bottom-left-radius: $x-slider-select-border-radius;
         width: 0.125rem;
-        background-color: $--x-danger;
+        background-color: $x-danger;
       }
     }
   }
   &.x-disabled {
-    .#{$--x-slider-select-prefix} {
+    .#{$x-slider-select-prefix} {
       &-rail {
-        background-color: $--x-border-300;
+        background-color: $x-border-300;
       }
       &-process {
-        background-color: $--x-primary-400;
+        background-color: $x-primary-400;
       }
       &-drag {
         cursor: not-allowed;
       }
       &-button:not(.x-slider-select-custom-button) {
-        border-color: $--x-primary-400;
+        border-color: $x-primary-400;
       }
     }
   }
@@ -182,32 +182,32 @@
   }
   &-max-length {
     position: absolute;
-    font-size: $--x-font-size-small;
-    color: $--x-text-500;
-    padding: $--x-slider-select-padding;
+    font-size: $x-font-size-small;
+    color: $x-text-500;
+    padding: $x-slider-select-padding;
     right: 0;
   }
   &:hover:not(.x-disabled) {
-    .#{$--x-slider-select-prefix} {
+    .#{$x-slider-select-prefix} {
       &-process {
-        background-color: $--x-primary-100;
+        background-color: $x-primary-100;
       }
       &-button {
-        border-color: $--x-primary-100;
+        border-color: $x-primary-100;
       }
     }
   }
   &-reverse {
-    .#{$--x-slider-select-prefix} {
+    .#{$x-slider-select-prefix} {
       &-inner {
         padding-right: 0;
-        padding-left: $--x-slider-select-button-size;
+        padding-left: $x-slider-select-button-size;
       }
       &-rail {
-        margin-left: math.div(-$--x-slider-select-button-size, 2);
+        margin-left: math.div(-$x-slider-select-button-size, 2);
       }
       &-marks {
-        margin-right: math.div($--x-slider-select-button-size, 2);
+        margin-right: math.div($x-slider-select-button-size, 2);
       }
       &-mark {
         transform: translateX(50%);
@@ -215,7 +215,7 @@
       &-track {
         display: flex;
         justify-content: flex-end;
-        margin-right: math.div($--x-slider-select-button-size, 2);
+        margin-right: math.div($x-slider-select-button-size, 2);
       }
       &-drags {
         justify-content: flex-end;
@@ -226,27 +226,27 @@
   &-vertical {
     width: initial;
     height: 12rem;
-    .#{$--x-slider-select-prefix} {
+    .#{$x-slider-select-prefix} {
       height: 100%;
       &-inner {
         padding-right: initial;
-        padding-top: $--x-slider-select-button-size;
+        padding-top: $x-slider-select-button-size;
         align-items: initial;
         justify-content: center;
         height: 100%;
       }
       &-rail {
         margin-left: initial;
-        margin-top: math.div($--x-slider-select-button-size, -2);
-        height: calc(100% - #{$--x-slider-select-button-size});
-        width: $--x-slider-select-track-height;
+        margin-top: math.div($x-slider-select-button-size, -2);
+        height: calc(100% - #{$x-slider-select-button-size});
+        width: $x-slider-select-track-height;
       }
       &-track {
         display: flex;
         align-items: flex-end;
         margin-left: initial;
-        margin-bottom: math.div($--x-slider-select-button-size, 2);
-        width: $--x-slider-select-track-height;
+        margin-bottom: math.div($x-slider-select-button-size, 2);
+        width: $x-slider-select-track-height;
         height: 100%;
       }
       &-marks {
@@ -254,8 +254,8 @@
         align-items: flex-end;
         justify-content: center;
         margin-left: initial;
-        margin-bottom: math.div($--x-slider-select-button-size, 2);
-        width: $--x-slider-select-track-height;
+        margin-bottom: math.div($x-slider-select-button-size, 2);
+        width: $x-slider-select-track-height;
         height: 100%;
       }
       &-mark {
@@ -263,37 +263,37 @@
       }
       &-mark-label {
         transform: translateX(50%) translateY(0);
-        margin-left: $--x-slider-select-button-size;
+        margin-left: $x-slider-select-button-size;
       }
       &-process {
         height: 0%;
-        width: $--x-slider-select-track-height;
+        width: $x-slider-select-track-height;
       }
       &-drags {
         height: 100%;
-        width: $--x-slider-select-height;
+        width: $x-slider-select-height;
         align-items: flex-end;
         justify-content: center;
         right: auto;
       }
       &-reverse {
-        .#{$--x-slider-select-prefix} {
+        .#{$x-slider-select-prefix} {
           &-inner {
             padding-left: initial;
-            padding-bottom: $--x-slider-select-button-size;
+            padding-bottom: $x-slider-select-button-size;
             padding-top: initial;
           }
           &-rail {
-            margin-top: math.div($--x-slider-select-button-size, 2);
+            margin-top: math.div($x-slider-select-button-size, 2);
           }
           &-track {
             align-items: flex-start;
-            margin-bottom: math.div($--x-slider-select-button-size, -2);
+            margin-bottom: math.div($x-slider-select-button-size, -2);
             margin-right: initial;
           }
           &-marks {
             align-items: flex-start;
-            margin-bottom: math.div($--x-slider-select-button-size, -2);
+            margin-bottom: math.div($x-slider-select-button-size, -2);
             margin-right: initial;
           }
           &-mark {
@@ -304,7 +304,7 @@
     }
   }
   &-range {
-    .#{$--x-slider-select-prefix} {
+    .#{$x-slider-select-prefix} {
       &-process {
         cursor: pointer;
       }

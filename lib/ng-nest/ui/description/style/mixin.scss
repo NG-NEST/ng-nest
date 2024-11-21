@@ -1,8 +1,8 @@
 // Description
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use './param.scss' as *;
 
 @mixin description {
   &-header {
@@ -22,27 +22,27 @@
     @include flex();
   }
   &-item-heading {
-    background-color: $--x-background-a100;
+    background-color: $x-background-a100;
   }
   &-bordered {
-    .#{$--x-description-prefix} {
+    .#{$x-description-prefix} {
       &-item {
-        border: $--x-border-base;
-        margin-left: calc(#{$--x-border-width} * -1);
-        margin-top: calc(#{$--x-border-width} * -1);
+        border: $x-border-base;
+        margin-left: calc(#{$x-border-width} * -1);
+        margin-top: calc(#{$x-border-width} * -1);
       }
     }
   }
-  @include size(big, $--x-padding-big);
-  @include size(large, $--x-padding-large);
-  @include size(medium, $--x-padding-medium);
-  @include size(small, $--x-padding-small);
-  @include size(mini, $--x-padding-mini);
+  @include size(big, $x-padding-big);
+  @include size(large, $x-padding-large);
+  @include size(medium, $x-padding-medium);
+  @include size(small, $x-padding-small);
+  @include size(mini, $x-padding-mini);
 }
 
 @mixin size($size, $padding) {
   &-#{$size} {
-    .#{$--x-description-prefix} {
+    .#{$x-description-prefix} {
       &-header {
         padding: $padding 0;
       }
@@ -50,8 +50,8 @@
         padding: calc(#{$padding} / 2) 0;
       }
     }
-    &.#{$--x-description-prefix}-bordered {
-      .#{$--x-description-prefix}-item {
+    &.#{$x-description-prefix}-bordered {
+      .#{$x-description-prefix}-item {
         padding: $padding;
       }
     }

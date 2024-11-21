@@ -19,16 +19,16 @@ CREATE api/test/jest-e2e.json (183 bytes)
 ? Which package manager would you ❤️  to use? npm
 √ Installation in progress... ☕
 
-�🚀  Successfully created project api
-�👉  Get started with the following commands:
+🚀  Successfully created project api
+👉  Get started with the following commands:
 
 $ cd api
 $ npm run start
 
 
-                          Thanks for installing Nest �🙏
+                          Thanks for installing Nest 🙏
                  Please consider donating to our open collective
                         to help us maintain this package.
 
 
-               �🍷  Donate: https://opencollective.com/nest
+               🍷  Donate: https://opencollective.com/nest

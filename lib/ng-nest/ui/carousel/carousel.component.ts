@@ -21,7 +21,6 @@ import type { XResizeObserver } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCarouselPrefix}`,
-  standalone: true,
   imports: [NgClass, XButtonComponent, XProgressComponent],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],

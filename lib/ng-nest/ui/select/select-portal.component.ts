@@ -27,7 +27,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XSelectPortalPrefix}`,
-  standalone: true,
   imports: [FormsModule, XListComponent],
   templateUrl: './select-portal.component.html',
   styleUrls: ['./select-portal.component.scss'],

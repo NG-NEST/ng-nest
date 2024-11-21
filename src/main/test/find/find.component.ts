@@ -11,7 +11,6 @@ import {
 
 @Component({
   selector: 'te-find',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExBorderedComponent,

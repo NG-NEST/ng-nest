@@ -23,7 +23,6 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XRadioPrefix}`,
-  standalone: true,
   imports: [NgClass, FormsModule, XButtonComponent, XButtonsComponent, XTagComponent, XOutletDirective],
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.scss'],

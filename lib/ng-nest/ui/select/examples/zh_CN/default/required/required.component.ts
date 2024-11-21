@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-required',
-  standalone: true,
   imports: [FormsModule, XSelectComponent],
   templateUrl: './required.component.html',
   styleUrls: ['./required.component.scss']

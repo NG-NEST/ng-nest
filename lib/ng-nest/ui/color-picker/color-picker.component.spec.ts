@@ -8,14 +8,12 @@ import { XAlign, XCorner, XDirection, XIsNumber, XJustify, XSize, XSleep, XTempl
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XColorPickerComponent],
   template: ` <x-color-picker> </x-color-picker> `
 })
 class XTestColorPickerComponent {}
 
 @Component({
-  standalone: true,
   imports: [XColorPickerComponent],
   styles: `
     :host {

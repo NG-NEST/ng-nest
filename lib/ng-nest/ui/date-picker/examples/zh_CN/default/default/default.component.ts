@@ -4,7 +4,6 @@ import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [FormsModule, XDatePickerComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

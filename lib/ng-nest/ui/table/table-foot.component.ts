@@ -16,7 +16,6 @@ import { XTableComponent } from './table.component';
 
 @Component({
   selector: `${XTableFootPrefix}`,
-  standalone: true,
   imports: [XOutletDirective],
   templateUrl: './table-foot.component.html',
   encapsulation: ViewEncapsulation.None,

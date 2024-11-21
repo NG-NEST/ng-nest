@@ -1,10 +1,11 @@
 // Radio style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-radio-prefix: $--x-prefix + '-radio';
-$--x-radios-prefix: $--x-prefix + '-radios';
+$x-radio-prefix: $x-prefix + '-radio';
+$x-radios-prefix: $x-prefix + '-radios';
 
-$--x-radio-border: $--x-border-width $--x-border-style $--x-border;
+$x-radio-border: $x-border-width $x-border-style $x-border;
 
-$--x-radio-border-radius: $--x-border-radius;
+$x-radio-border-radius: $x-border-radius;
 
-$--x-radio-height: $--x-height-medium;
+$x-radio-height: $x-height-medium;

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import './styles/index.scss';
+@use './styles/default.scss' as *;
+@use './styles/mixin.scss' as *;
 
 @font-face {
   font-family: 'Inter';
@@ -31,7 +32,7 @@ html {
 }
 
 body {
-  background-color: $--x-background;
+  background-color: $x-background;
 }
 
 @include scrollbar();
@@ -60,13 +61,13 @@ ul {
 }
 
 a {
-  color: $--x-primary;
+  color: $x-primary;
   text-decoration: none;
   transition: all 0.4s;
   cursor: pointer;
 
   &:hover {
-    color: $--x-primary;
+    color: $x-primary;
   }
 }
 
@@ -191,12 +192,12 @@ input {
   h4 {
     font-size: 1rem;
     font-weight: 500;
-    margin: 1.125rem 0 $--x-font-size;
+    margin: 1.125rem 0 $x-font-size;
     clear: both;
   }
 
   h5 {
-    font-size: $--x-font-size;
+    font-size: $x-font-size;
     font-weight: 500;
     margin: 1rem 0 0.625rem;
     clear: both;
@@ -204,11 +205,11 @@ input {
 
   > p {
     font-weight: 400;
-    margin: $--x-font-size 0 0;
+    margin: $x-font-size 0 0;
   }
 
   > ul {
-    margin: $--x-font-size 0;
+    margin: $x-font-size 0;
     > li {
       list-style-type: circle;
       margin: 0.125rem 0.125rem 0.125rem 1.25rem;
@@ -219,45 +220,45 @@ input {
   blockquote {
     margin: 0;
     position: relative;
-    padding: 0.5rem 0.5rem 0.5rem $--x-font-size;
+    padding: 0.5rem 0.5rem 0.5rem $x-font-size;
     > p {
       margin: 0;
     }
   }
 
   > blockquote {
-    margin-top: $--x-font-size;
-    background-color: $--x-background-a100;
-    border-radius: $--x-border-radius;
-    border: $--x-border-base;
-    color: $--x-text-400;
+    margin-top: $x-font-size;
+    background-color: $x-background-a100;
+    border-radius: $x-border-radius;
+    border: $x-border-base;
+    color: $x-text-400;
   }
 
   li > code,
   p > code {
     position: relative;
     padding: 0 0.5rem;
-    color: $--x-danger;
-    background: $--x-danger-900;
-    border-radius: $--x-border-small-radius;
+    color: $x-danger;
+    background: $x-danger-900;
+    border-radius: $x-border-small-radius;
     display: inline-block;
   }
 
   > table {
     width: 100%;
-    background: $--x-background;
+    background: $x-background;
     border-collapse: collapse;
-    border-bottom: $--x-border-base;
+    border-bottom: $x-border-base;
     tr > th,
     tr > td {
-      border-bottom: $--x-border-base;
+      border-bottom: $x-border-base;
       text-align: left;
       padding: 0.5rem 0;
     }
     tr {
       th {
         white-space: nowrap;
-        color: $--x-text;
+        color: $x-text;
       }
     }
   }

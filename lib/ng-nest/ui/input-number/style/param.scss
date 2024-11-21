@@ -1,36 +1,37 @@
 // InputNumber style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-input-number-prefix: $--x-prefix + '-input-number';
+$x-input-number-prefix: $x-prefix + '-input-number';
 
 /* 字体大小 */
-$--x-input-number-font-size: $--x-font-size;
+$x-input-number-font-size: $x-font-size;
 
 /* 高度 */
-$--x-input-number-height: 1.75rem;
+$x-input-number-height: 1.75rem;
 
 /* 内边距 */
-$--x-input-number-padding: 0 $--x-control-padding-horizontal;
+$x-input-number-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-input-number-color: $--x-text;
+$x-input-number-color: $x-text;
 
 /* 提示文字颜色 */
-$--x-input-number-placeholder-color: $--x-placeholder-color;
+$x-input-number-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-input-number-background-color: $--x-background;
+$x-input-number-background-color: $x-background;
 
 /* 边框样式 */
-$--x-input-number-border: $--x-border-width $--x-border-style $--x-border;
+$x-input-number-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-input-number-border-radius: $--x-border-radius;
+$x-input-number-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-input-number-disabled-color: $--x-text-500;
+$x-input-number-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-input-number-icon-font-size: $--x-font-size-medium;
+$x-input-number-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-input-number-icon-padding: $--x-control-padding-horizontal;
+$x-input-number-icon-padding: $x-control-padding-horizontal;

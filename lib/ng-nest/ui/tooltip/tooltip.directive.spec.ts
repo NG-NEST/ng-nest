@@ -7,14 +7,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { XPlacement, XTemplate } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XTooltipDirective],
   template: ` <x-tooltip> </x-tooltip> `
 })
 class XTestTooltipComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTooltipDirective],
   template: `
     <x-tooltip

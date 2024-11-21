@@ -6,7 +6,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ns-affix',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './affix.component.html',
   encapsulation: ViewEncapsulation.None
@@ -23,11 +22,11 @@ export class AffixComponent {
     switch (type) {
       case 'dark':
         this.theme.set(type);
-        this.configService.setDarkTheme({ colors: X_THEME_DARK_COLORS });
+        this.configService.setDarkTheme();
         break;
       case 'light':
         this.theme.set(type);
-        this.configService.setLightTheme({ colors: X_THEME_COLORS });
+        this.configService.setLightTheme();
         break;
       case 'zh_CN':
         this.layout.setLocale(type);

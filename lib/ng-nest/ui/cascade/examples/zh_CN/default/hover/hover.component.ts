@@ -5,7 +5,6 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'ex-hover',
-  standalone: true,
   imports: [XRowComponent, XColComponent, FormsModule, XCascadeComponent],
   templateUrl: './hover.component.html',
   styleUrls: ['./hover.component.scss']

@@ -8,14 +8,12 @@ import { XAlign, XData, XDirection, XIsNumber, XJustify, XSize, XSleep, XTemplat
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XTreeSelectComponent],
   template: ` <x-tree-select></x-tree-select> `
 })
 class XTestTreeSelectComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTreeSelectComponent],
   template: `
     <x-tree-select

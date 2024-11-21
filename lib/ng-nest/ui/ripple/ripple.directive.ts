@@ -14,8 +14,7 @@ import { XComputed } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
 
 @Directive({
-  selector: `[${XRipplePrefix}]`,
-  standalone: true
+  selector: `[${XRipplePrefix}]`
 })
 export class XRippleDirective extends XRippleProperty implements OnDestroy {
   @HostBinding('class') get className() {

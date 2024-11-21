@@ -8,14 +8,12 @@ import { XAlign, XCorner, XData, XDirection, XIsNumber, XJustify, XSize, XSleep,
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XCascadeComponent],
   template: ` <x-cascade></x-cascade> `
 })
 class XTestCascadeComponent {}
 
 @Component({
-  standalone: true,
   imports: [XCascadeComponent],
   template: `
     <x-cascade

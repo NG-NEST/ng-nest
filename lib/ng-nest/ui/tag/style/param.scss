@@ -1,3 +1,4 @@
 // Tag style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-tag-prefix: $--x-prefix + '-tag';
+$x-tag-prefix: $x-prefix + '-tag';

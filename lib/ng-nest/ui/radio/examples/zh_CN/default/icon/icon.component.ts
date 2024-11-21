@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-icon',
-  standalone: true,
   imports: [FormsModule, XRadioComponent],
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']

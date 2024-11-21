@@ -1,10 +1,10 @@
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
+
 // Buttons
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
-
-.#{$--x-buttons} {
+.#{$x-buttons} {
   @include reset-component();
   @include buttons();
   @include buttons-type('primary');

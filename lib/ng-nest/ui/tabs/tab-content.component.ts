@@ -5,7 +5,6 @@ import { XBoolean, XToBoolean } from '@ng-nest/ui/core';
 @Component({
   selector: 'x-tab-content',
   preserveWhitespaces: false,
-  standalone: true,
   imports: [NgTemplateOutlet],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

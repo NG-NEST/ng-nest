@@ -1,8 +1,7 @@
 // Form
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin form {
   & {
@@ -12,7 +11,7 @@
   &-title {
     display: inline-flex;
     align-items: center;
-    font-size: $--x-font-size-medium;
+    font-size: $x-font-size-medium;
     > x-icon {
       margin-right: 0.25rem;
     }

@@ -13,14 +13,12 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
-  standalone: true,
   imports: [XCardComponent],
   template: `<x-card></x-card>`
 })
 class XTestCardComponent {}
 
 @Component({
-  standalone: true,
   imports: [XCardComponent],
   template: `
     <x-card [width]="width()" [bodyStyle]="bodyStyle()" [header]="header()" [shadow]="shadow()"></x-card>

@@ -1,4 +1,5 @@
 // Carousel style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-carousel: $--x-prefix + '-carousel';
-$--x-carousel-panel: $--x-prefix + '-carousel-panel';
+$x-carousel: $x-prefix + '-carousel';
+$x-carousel-panel: $x-prefix + '-carousel-panel';

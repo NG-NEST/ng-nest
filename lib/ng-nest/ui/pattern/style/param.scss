@@ -1,9 +1,11 @@
 // Pattern paramters
+@use 'sass:color';
+@use '../../style/params/index.scss' as *;
 
-$prefix: $--x-prefix + '-pattern';
+$prefix: $x-prefix + '-pattern';
 
 $Pattern-box-shadow: 0 0 0.375rem rgba(197, 197, 197, 0.7);
-$Pattern-component-border-color: lighten(black, 95%);
-$Pattern-component-divider-border-color: lighten(black, 90%);
-$Pattern-code-background-color: lighten(black, 97%);
+$Pattern-component-border-color: color.scale(black, $lightness: 95%);
+$Pattern-component-divider-border-color: color.scale(black, $lightness: 90%);
+$Pattern-code-background-color: color.scale(black, $lightness: 97%);
 $Pattern-span-red: #c7254e;

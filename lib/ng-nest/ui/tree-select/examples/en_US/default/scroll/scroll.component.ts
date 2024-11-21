@@ -3,7 +3,6 @@ import { XTreeSelectComponent } from '@ng-nest/ui/tree-select';
 
 @Component({
   selector: 'ex-scroll',
-  standalone: true,
   imports: [XTreeSelectComponent],
   templateUrl: './scroll.component.html'
 })

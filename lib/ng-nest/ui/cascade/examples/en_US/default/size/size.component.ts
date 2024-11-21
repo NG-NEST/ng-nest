@@ -7,7 +7,6 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-size',
-  standalone: true,
   imports: [XRowComponent, XColComponent, FormsModule, XCascadeComponent, XRadioComponent],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']

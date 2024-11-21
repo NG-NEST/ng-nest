@@ -5,7 +5,7 @@ import { XIsEmpty, XComputedStyle, XToCssPx } from '@ng-nest/ui/core';
 import { XCrumbComponent, XCrumbNode } from '@ng-nest/ui/crumb';
 import { delay, finalize } from 'rxjs/operators';
 import { XHighlightComponent, XHighlightLines } from '@ng-nest/ui/highlight';
-import { DOCUMENT, NgClass } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
@@ -13,16 +13,7 @@ import { XTreeComponent } from '@ng-nest/ui/tree';
 
 @Component({
   selector: `${XTreeFilePrefix}`,
-  standalone: true,
-  imports: [
-    NgClass,
-    XTreeComponent,
-    XLinkComponent,
-    XCrumbComponent,
-    XIconComponent,
-    XLoadingComponent,
-    XHighlightComponent
-  ],
+  imports: [XTreeComponent, XLinkComponent, XCrumbComponent, XIconComponent, XLoadingComponent, XHighlightComponent],
   templateUrl: './tree-file.component.html',
   styleUrls: ['./tree-file.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -6,14 +6,12 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
-  standalone: true,
   imports: [XAvatarComponent],
   template: `<x-avatar></x-avatar>`
 })
 class XTestAvatarComponent {}
 
 @Component({
-  standalone: true,
   imports: [XAvatarComponent],
   template: `
     <x-avatar

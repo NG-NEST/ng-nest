@@ -11,14 +11,13 @@ import {
 } from '@angular/core';
 import { XImageNode, XImagePreviewPrefix, XImagePreviewProperty } from './image.property';
 import { XDialogCloseDirective, X_DIALOG_DATA } from '@ng-nest/ui/dialog';
-import { DOCUMENT, NgClass } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: `${XImagePreviewPrefix}`,
-  standalone: true,
-  imports: [NgClass, XIconComponent, DragDropModule, XDialogCloseDirective],
+  imports: [XIconComponent, DragDropModule, XDialogCloseDirective],
   templateUrl: './image-preview.component.html',
   styleUrls: ['./image-preview.component.scss'],
   encapsulation: ViewEncapsulation.None,

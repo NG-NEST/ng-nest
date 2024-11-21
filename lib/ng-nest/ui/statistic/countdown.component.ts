@@ -19,7 +19,6 @@ import { XStatisticComponent } from './statistic.component';
 
 @Component({
   selector: `${XCountdownPrefix}`,
-  standalone: true,
   imports: [XStatisticComponent, XTimeRangePipe],
   templateUrl: './countdown.component.html',
   styleUrls: ['./countdown.component.scss'],

@@ -3,7 +3,6 @@ import { XAlertComponent } from '@ng-nest/ui/alert';
 
 @Component({
   selector: 'ex-description',
-  standalone: true,
   imports: [XAlertComponent],
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss']

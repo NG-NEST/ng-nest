@@ -4,7 +4,6 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XCalendarComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss'],

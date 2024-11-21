@@ -7,7 +7,6 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: 'ex-fix',
-  standalone: true,
   imports: [XTableComponent, XLinkComponent],
   templateUrl: './fix.component.html',
   providers: [FixService]

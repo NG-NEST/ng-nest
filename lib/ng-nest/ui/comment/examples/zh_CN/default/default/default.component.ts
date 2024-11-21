@@ -4,7 +4,6 @@ import { XAddHours, XAddMinutes } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XCommentComponent],
   templateUrl: './default.component.html'
 })

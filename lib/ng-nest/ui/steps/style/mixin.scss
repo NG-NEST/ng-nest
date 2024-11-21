@@ -1,8 +1,7 @@
 // Steps
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin steps {
   & {
@@ -14,7 +13,7 @@
     display: flex;
     &:last-child {
       flex: inherit;
-      .#{$--x-steps}-line {
+      .#{$x-steps}-line {
         display: none;
       }
     }
@@ -35,32 +34,32 @@
     display: flex;
     align-items: center;
     line-height: 2rem;
-    transition: $--x-animation-duration-base;
+    transition: $x-animation-duration-base;
   }
   &-label {
     padding-right: 0.5rem;
     white-space: nowrap;
-    transition: $--x-animation-duration-base;
+    transition: $x-animation-duration-base;
   }
   &-line {
     flex: 1;
-    border-bottom: $--x-border-base;
-    transition: $--x-animation-duration-base;
+    border-bottom: $x-border-base;
+    transition: $x-animation-duration-base;
   }
   &-icon {
     height: 2rem;
     width: 2rem;
-    border: $--x-border-base;
-    background-color: $--x-background;
+    border: $x-border-base;
+    background-color: $x-background;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: $--x-animation-duration-base;
+    transition: $x-animation-duration-base;
     > .x-icon {
       font-size: 1rem;
     }
-    &.#{$--x-steps}-only-icon {
+    &.#{$x-steps}-only-icon {
       border: none;
       .x-icon {
         font-size: 1.5rem;
@@ -68,8 +67,8 @@
     }
   }
   &-description {
-    font-size: $--x-font-size-small;
-    color: $--x-text-400;
+    font-size: $x-font-size-small;
+    color: $x-text-400;
     max-width: 8rem;
   }
   &-row {
@@ -77,13 +76,13 @@
   }
   &-column {
     flex-direction: column;
-    .#{$--x-steps} {
+    .#{$x-steps} {
       &-header {
         min-height: 5rem;
       }
       &-line {
         border-bottom: none;
-        border-right: $--x-border-base;
+        border-right: $x-border-base;
         margin: 0.5rem 0;
       }
       &-content {
@@ -95,15 +94,15 @@
     }
   }
 
-  @include status(wait, $--x-text-400, $--x-text-400, '', '', '', '');
-  @include status(process, $--x-text-300, $--x-white, $--x-primary, $--x-primary, '', bold);
-  @include status(finish, $--x-text-400, $--x-primary, '', '', $--x-primary, '');
-  @include status(error, $--x-danger, $--x-danger, '', $--x-danger, '', '');
+  @include status(wait, $x-text-400, $x-text-400, '', '', '', '');
+  @include status(process, $x-text-300, $x-white, $x-primary, $x-primary, '', bold);
+  @include status(finish, $x-text-400, $x-primary, '', '', $x-primary, '');
+  @include status(error, $x-danger, $x-danger, '', $x-danger, '', '');
 }
 
 @mixin status($status, $color, $iconColor, $icon-background-color, $icon-border-color, $line-color, $font-weight) {
   &-#{$status} {
-    .#{$--x-steps} {
+    .#{$x-steps} {
       &-label {
         color: $color;
         font-weight: $font-weight;
@@ -113,8 +112,8 @@
         background-color: $icon-background-color;
         border-color: $icon-border-color;
         @if $status == process {
-          &.#{$--x-steps}-only-icon {
-            color: $--x-primary;
+          &.#{$x-steps}-only-icon {
+            color: $x-primary;
             background-color: inherit;
           }
         }

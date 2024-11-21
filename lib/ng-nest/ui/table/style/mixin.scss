@@ -1,8 +1,7 @@
 // Table
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin table {
   & {
@@ -13,7 +12,7 @@
     position: relative;
   }
   &:not(.x-table-wrap-border-hidden) {
-    border: $--x-border-base;
+    border: $x-border-base;
   }
   > thead {
     position: relative;
@@ -30,21 +29,21 @@
         flex: 1;
         position: relative;
         font-weight: 600;
-        background-color: $--x-background;
-        border-bottom: $--x-border-base;
+        background-color: $x-background;
+        border-bottom: $x-border-base;
         > a {
           display: inline-flex;
           align-items: center;
-          color: $--x-text-300;
+          color: $x-text-300;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
         }
-        &.#{$--x-table}-sticky {
+        &.#{$x-table}-sticky {
           position: sticky;
           z-index: 5;
         }
-        .#{$--x-table}-drag-width {
+        .#{$x-table}-drag-width {
           position: absolute;
           height: 100%;
           width: 0.1875rem;
@@ -53,14 +52,14 @@
           transition: background-color var(--x-animation-duration-fast);
           z-index: 1;
           &:hover {
-            background-color: $--x-primary;
+            background-color: $x-primary;
           }
         }
       }
       &.cdk-drop-list-dragging {
         > th {
           &.cdk-drag-placeholder {
-            background-color: $--x-background-a200;
+            background-color: $x-background-a200;
             opacity: 0.9;
           }
         }
@@ -68,12 +67,12 @@
     }
     &.x-table-head-bottom {
       > tr > th {
-        border-top: $--x-border-base;
+        border-top: $x-border-base;
         border-bottom: none;
       }
       > tr.x-table-search {
         > th {
-          border-top: $--x-border-base;
+          border-top: $x-border-base;
         }
       }
     }
@@ -91,21 +90,21 @@
         position: relative;
         justify-content: space-between;
         overflow: hidden;
-        background-color: $--x-background;
-        border-bottom: $--x-border-base;
+        background-color: $x-background;
+        border-bottom: $x-border-base;
         > div {
           flex: 1;
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
         }
-        &.#{$--x-table}-sticky {
+        &.#{$x-table}-sticky {
           position: sticky;
           z-index: 5;
         }
         > x-button {
           .x-icon {
-            transition: $--x-animation-duration-base;
+            transition: $x-animation-duration-base;
           }
           &.is-leaf {
             visibility: hidden;
@@ -117,18 +116,18 @@
           }
         }
         &.x-table-dragging {
-          background-color: $--x-background-a200;
+          background-color: $x-background-a200;
           opacity: 0.9;
         }
       }
-      &.#{$--x-table}-activated {
+      &.#{$x-table}-activated {
         > td {
-          background-color: $--x-primary-900;
+          background-color: $x-primary-900;
         }
       }
       &:hover:not(.x-table-activated) {
         > td {
-          background-color: $--x-background-a100;
+          background-color: $x-background-a100;
         }
       }
       &:last-child {
@@ -141,14 +140,14 @@
       position: absolute;
       top: 0;
       width: 100%;
-      padding: calc(#{$--x-font-size} * 2);
+      padding: calc(#{$x-font-size} * 2);
     }
   }
   &-sort {
     cursor: pointer;
     transition: transform 0.2s;
     &:hover {
-      color: $--x-text-300;
+      color: $x-text-300;
     }
     &:active {
       transform: translate(1px, 1px);
@@ -160,24 +159,24 @@
     font-size: 1rem;
     transform: rotate(90deg) rotateY(180deg);
     transition: 0.3s;
-    &.#{$--x-table}-icon-up,
-    &.#{$--x-table}-icon-down {
+    &.#{$x-table}-icon-up,
+    &.#{$x-table}-icon-down {
       display: inherit;
     }
-    &.#{$--x-table}-icon-down {
+    &.#{$x-table}-icon-down {
       transform: rotate(90deg);
     }
   }
   &-scroll-top {
     > thead {
-      box-shadow: $--x-box-shadow-bottom;
+      box-shadow: $x-box-shadow-bottom;
       z-index: 1;
     }
   }
   &-scroll-left {
-    .#{$--x-table}-sticky-left-last {
-      box-shadow: $--x-box-shadow-right;
-      border-right: $--x-border-base;
+    .#{$x-table}-sticky-left-last {
+      box-shadow: $x-box-shadow-right;
+      border-right: $x-border-base;
     }
   }
   &-td-adaption-height {
@@ -197,8 +196,8 @@
   &-bordered {
     > thead > tr > th,
     > tbody tr > td {
-      border-right: $--x-border-base;
-      padding-left: calc(#{$--x-font-size} / 2);
+      border-right: $x-border-base;
+      padding-left: calc(#{$x-font-size} / 2);
       &:last-child {
         border-right: none;
       }
@@ -213,7 +212,7 @@
     }
     > thead > tr > th,
     > tbody tr > td {
-      border-right: $--x-border-base;
+      border-right: $x-border-base;
       &:last-child {
         border-right: none;
       }
@@ -229,7 +228,7 @@
     }
   }
   &-header {
-    border-bottom: $--x-border-base;
+    border-bottom: $x-border-base;
     text-align: left;
     display: flex;
     align-items: center;
@@ -237,68 +236,68 @@
   &-footer {
     display: flex;
     align-items: center;
-    border-top: $--x-border-base;
+    border-top: $x-border-base;
   }
   &-sticky-right-scroll {
     position: absolute;
     right: 0;
     min-height: 42px;
-    background-color: $--x-background;
+    background-color: $x-background;
     z-index: 1;
   }
   &-has-scroll-right {
     .x-table-footer {
-      border-top: $--x-border-base;
+      border-top: $x-border-base;
     }
   }
   &-has-scroll-bottom {
     &:not(.x-table-scroll-left-max) {
-      .#{$--x-table}-sticky-right-first {
-        box-shadow: $--x-box-shadow-left;
-        border-left: $--x-border-base;
+      .#{$x-table}-sticky-right-first {
+        box-shadow: $x-box-shadow-left;
+        border-left: $x-border-base;
       }
     }
   }
   &-border-bottom {
-    border-bottom: $--x-border-base;
+    border-bottom: $x-border-base;
   }
   &-border-top {
-    border-top: $--x-border-base;
+    border-top: $x-border-base;
   }
   &-last-tr-bordered {
     > tbody tr:last-child > td {
-      border-bottom: $--x-border-base;
+      border-bottom: $x-border-base;
     }
   }
   &-row-size {
     @include rowSize(
       big,
-      calc(#{$--x-font-size} / 5 * 4),
-      calc(#{$--x-font-size} * 5 / 4),
-      calc(#{$--x-font-size} / 5 * 4),
-      calc(#{$--x-font-size} * 5 / 4)
+      calc(#{$x-font-size} / 5 * 4),
+      calc(#{$x-font-size} * 5 / 4),
+      calc(#{$x-font-size} / 5 * 4),
+      calc(#{$x-font-size} * 5 / 4)
     );
     @include rowSize(
       large,
-      calc(#{$--x-font-size} / 4 * 3),
-      calc(#{$--x-font-size} * 4 / 3),
-      calc(#{$--x-font-size} / 4 * 3),
-      calc(#{$--x-font-size} * 4 / 3)
+      calc(#{$x-font-size} / 4 * 3),
+      calc(#{$x-font-size} * 4 / 3),
+      calc(#{$x-font-size} / 4 * 3),
+      calc(#{$x-font-size} * 4 / 3)
     );
-    @include rowSize(medium, calc(#{$--x-font-size} / 2), $--x-font-size, calc(#{$--x-font-size} / 2), $--x-font-size);
+    @include rowSize(medium, calc(#{$x-font-size} / 2), $x-font-size, calc(#{$x-font-size} / 2), $x-font-size);
     @include rowSize(
       small,
-      calc(#{$--x-font-size} / 3),
-      calc(#{$--x-font-size} * 2 / 3),
-      calc(#{$--x-font-size} / 3),
-      calc(#{$--x-font-size} * 2 / 3)
+      calc(#{$x-font-size} / 3),
+      calc(#{$x-font-size} * 2 / 3),
+      calc(#{$x-font-size} / 3),
+      calc(#{$x-font-size} * 2 / 3)
     );
     @include rowSize(
       mini,
-      calc(#{$--x-font-size} / 4),
-      calc(#{$--x-font-size} / 2),
-      calc(#{$--x-font-size} / 4),
-      calc(#{$--x-font-size} / 2)
+      calc(#{$x-font-size} / 4),
+      calc(#{$x-font-size} / 2),
+      calc(#{$x-font-size} / 4),
+      calc(#{$x-font-size} / 2)
     );
   }
 }
@@ -309,7 +308,7 @@
     > tbody tr > td {
       padding: $padding-top $padding-right $padding-bottom $padding-left;
     }
-    .#{$--x-table} {
+    .#{$x-table} {
       &-header,
       &-footer {
         padding: $padding-top $padding-right $padding-bottom $padding-left;
@@ -319,7 +318,7 @@
 }
 
 @mixin pagination {
-  padding-top: calc(#{$--x-font-size} / 2);
+  padding-top: calc(#{$x-font-size} / 2);
 }
 
 @mixin body-table-th-size($size, $padding-top, $padding-right, $padding-bottom, $padding-left) {
@@ -332,57 +331,57 @@
   display: block;
   @include body-table-th-size(
     big,
-    calc(#{$--x-font-size} / 5 * 4),
-    calc(#{$--x-font-size} * 5 / 4),
-    calc(#{$--x-font-size} / 5 * 4),
-    calc(#{$--x-font-size} * 5 / 4)
+    calc(#{$x-font-size} / 5 * 4),
+    calc(#{$x-font-size} * 5 / 4),
+    calc(#{$x-font-size} / 5 * 4),
+    calc(#{$x-font-size} * 5 / 4)
   );
   @include body-table-th-size(
     large,
-    calc(#{$--x-font-size} / 4 * 3),
-    calc(#{$--x-font-size} * 4 / 3),
-    calc(#{$--x-font-size} / 4 * 3),
-    calc(#{$--x-font-size} * 4 / 3)
+    calc(#{$x-font-size} / 4 * 3),
+    calc(#{$x-font-size} * 4 / 3),
+    calc(#{$x-font-size} / 4 * 3),
+    calc(#{$x-font-size} * 4 / 3)
   );
   @include body-table-th-size(
     medium,
-    calc(#{$--x-font-size} / 2),
-    $--x-font-size,
-    calc(#{$--x-font-size} / 2),
-    $--x-font-size
+    calc(#{$x-font-size} / 2),
+    $x-font-size,
+    calc(#{$x-font-size} / 2),
+    $x-font-size
   );
   @include body-table-th-size(
     small,
-    calc(#{$--x-font-size} / 3),
-    calc(#{$--x-font-size} * 2 / 3),
-    calc(#{$--x-font-size} / 3),
-    calc(#{$--x-font-size} * 2 / 3)
+    calc(#{$x-font-size} / 3),
+    calc(#{$x-font-size} * 2 / 3),
+    calc(#{$x-font-size} / 3),
+    calc(#{$x-font-size} * 2 / 3)
   );
   @include body-table-th-size(
     mini,
-    calc(#{$--x-font-size} / 4),
-    calc(#{$--x-font-size} / 2),
-    calc(#{$--x-font-size} / 4),
-    calc(#{$--x-font-size} / 2)
+    calc(#{$x-font-size} / 4),
+    calc(#{$x-font-size} / 2),
+    calc(#{$x-font-size} / 4),
+    calc(#{$x-font-size} / 2)
   );
   &.cdk-drag-preview {
     display: flex;
     align-items: center;
-    border: $--x-border-base;
+    border: $x-border-base;
     border-style: dashed;
-    background-color: $--x-background;
+    background-color: $x-background;
     opacity: 0.8;
-    box-shadow: $--x-box-shadow;
+    box-shadow: $x-box-shadow;
     > a {
       display: inline-flex;
       align-items: center;
-      color: $--x-text-300;
+      color: $x-text-300;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
   }
   &.cdk-drag-animating {
-    transition: transform $--x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
+    transition: transform $x-animation-duration-base cubic-bezier(0, 0, 0.2, 1);
   }
 }

@@ -15,14 +15,12 @@ import { XAlign, XCorner, XData, XDirection, XIsNumber, XJustify, XSize, XSleep,
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XDateRangeComponent],
   template: ` <x-date-range></x-date-range> `
 })
 class XTestDateRangeComponent {}
 
 @Component({
-  standalone: true,
   imports: [XDateRangeComponent],
   template: `
     <x-date-range

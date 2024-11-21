@@ -1,4 +1,5 @@
 // Layout style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-row-prefix: $--x-prefix + '-row';
-$--x-col-prefix: $--x-prefix + '-col';
+$x-row-prefix: $x-prefix + '-row';
+$x-col-prefix: $x-prefix + '-col';

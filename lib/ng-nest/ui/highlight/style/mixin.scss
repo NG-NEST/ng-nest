@@ -1,16 +1,15 @@
 // Highlight
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin highlight {
   & {
     display: block;
     line-height: 0;
     width: 100%;
-    border: $--x-border-base;
-    border-radius: $--x-border-radius;
+    border: $x-border-base;
+    border-radius: $x-border-radius;
     position: relative;
   }
   > pre {
@@ -18,8 +17,8 @@
     padding: 1.5rem 1.5rem 1.5rem 3.5rem;
     margin: 0;
     overflow: auto;
-    background-color: $--x-background;
-    border-radius: $--x-border-radius;
+    background-color: $x-background;
+    border-radius: $x-border-radius;
     counter-reset: line-number;
     > code {
       position: relative;
@@ -27,7 +26,7 @@
       text-shadow: none;
       white-space: inherit;
       min-width: 100%;
-      color: $--x-text-100;
+      color: $x-text-100;
       > span.line-numbers {
         position: absolute;
         pointer-events: none;
@@ -37,11 +36,11 @@
         width: 3.5rem;
         letter-spacing: -1px;
         user-select: none;
-        color: $--x-text-400;
+        color: $x-text-400;
         > span::before {
-          border-right: $--x-border-base;
+          border-right: $x-border-base;
           padding-right: 0.5rem;
-          margin-right: $--x-font-size;
+          margin-right: $x-font-size;
           text-align: right;
           pointer-events: none;
           display: block;
@@ -57,11 +56,11 @@
         white-space: pre;
         width: calc(100% + 5rem);
         left: -3.5rem;
-        @include line-highlight-type(primary, $--x-primary);
-        @include line-highlight-type(success, $--x-success);
-        @include line-highlight-type(warning, $--x-warning);
-        @include line-highlight-type(danger, $--x-danger);
-        @include line-highlight-type(info, $--x-info);
+        @include line-highlight-type(primary, $x-primary);
+        @include line-highlight-type(success, $x-success);
+        @include line-highlight-type(warning, $x-warning);
+        @include line-highlight-type(danger, $x-danger);
+        @include line-highlight-type(info, $x-info);
       }
     }
   }

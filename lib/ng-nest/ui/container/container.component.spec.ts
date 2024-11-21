@@ -13,7 +13,6 @@ import { XDirection } from '@ng-nest/ui/core';
 import { XContainerPrefix } from './container.property';
 
 @Component({
-  standalone: true,
   imports: [XContainerModule],
   template: `
     <x-container>
@@ -29,7 +28,6 @@ import { XContainerPrefix } from './container.property';
 class XTestContainerComponent {}
 
 @Component({
-  standalone: true,
   imports: [XContainerModule],
   template: `
     <x-container [direction]="direction()">

@@ -11,7 +11,6 @@ import {
 
 @Component({
   selector: 'te-layout',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExBlendComponent,

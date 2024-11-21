@@ -13,7 +13,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 
 @Component({
-  template: `
+    template: `
     <x-button>{{ 'comment.comments' | xI18n }}</x-button>
     <p x-i18n="comment.comments"></p>
   `

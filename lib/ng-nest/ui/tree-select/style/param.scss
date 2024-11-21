@@ -1,38 +1,39 @@
 // Select style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-tree-select-prefix: $--x-prefix + '-tree-select';
+$x-tree-select-prefix: $x-prefix + '-tree-select';
 
 /* 字体大小 */
-$--x-tree-select-font-size: $--x-font-size;
+$x-tree-select-font-size: $x-font-size;
 
 /* 高度 */
-$--x-tree-select-height: calc(#{$--x-font-size} + 0.875rem);
+$x-tree-select-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 内边距 */
-$--x-tree-select-padding: 0 $--x-control-padding-horizontal;
+$x-tree-select-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-tree-select-color: $--x-primary-900;
+$x-tree-select-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-tree-select-placeholder-color: $--x-placeholder-color;
+$x-tree-select-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-tree-select-background-color: $--x-background;
+$x-tree-select-background-color: $x-background;
 
 /* 边框样式 */
-$--x-tree-select-border: $--x-border-width $--x-border-style $--x-border;
+$x-tree-select-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-tree-select-border-radius: $--x-border-radius;
+$x-tree-select-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-tree-select-disabled-color: $--x-text-500;
+$x-tree-select-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-tree-select-icon-font-size: $--x-font-size-medium;
+$x-tree-select-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-tree-select-icon-padding: $--x-control-padding-horizontal;
+$x-tree-select-icon-padding: $x-control-padding-horizontal;
 
-$--x-tree-select-portal-prefix: $--x-prefix + '-tree-select-portal';
+$x-tree-select-portal-prefix: $x-prefix + '-tree-select-portal';

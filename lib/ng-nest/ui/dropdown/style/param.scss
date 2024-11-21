@@ -1,4 +1,5 @@
 // Dropdown style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-dropdown: $--x-prefix + '-dropdown';
-$--x-dropdown-portal: $--x-prefix + '-dropdown-portal';
+$x-dropdown: $x-prefix + '-dropdown';
+$x-dropdown-portal: $x-prefix + '-dropdown-portal';

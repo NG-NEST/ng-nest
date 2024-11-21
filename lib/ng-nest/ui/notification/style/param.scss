@@ -1,3 +1,4 @@
 // Notification style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-notification: $--x-prefix + '-notification';
+$x-notification: $x-prefix + '-notification';

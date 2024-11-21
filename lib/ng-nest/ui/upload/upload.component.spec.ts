@@ -7,14 +7,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { XTemplate } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XUploadComponent],
   template: ` <x-upload> </x-upload> `
 })
 class XTestUploadComponent {}
 
 @Component({
-  standalone: true,
   imports: [XUploadComponent],
   template: `
     <x-upload

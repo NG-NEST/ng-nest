@@ -1,3 +1,4 @@
 // Steps style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-steps: $--x-prefix + '-steps';
+$x-steps: $x-prefix + '-steps';

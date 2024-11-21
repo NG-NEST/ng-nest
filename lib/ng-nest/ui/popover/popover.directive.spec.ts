@@ -14,14 +14,12 @@ import { XComputedStyle, XPlacement, XSleep, XTemplate } from '@ng-nest/ui/core'
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XPopoverDirective],
   template: ` <div x-popover>popover</div> `
 })
 class XTestPopoverComponent {}
 
 @Component({
-  standalone: true,
   imports: [XPopoverDirective],
   template: `
     <div

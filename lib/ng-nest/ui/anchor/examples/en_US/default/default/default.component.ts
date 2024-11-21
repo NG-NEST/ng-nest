@@ -3,7 +3,6 @@ import { XAnchorComponent } from '@ng-nest/ui/anchor';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XAnchorComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

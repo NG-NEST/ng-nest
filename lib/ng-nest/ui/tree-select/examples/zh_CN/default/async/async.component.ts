@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-async',
-  standalone: true,
   imports: [FormsModule, XTreeSelectComponent],
   templateUrl: './async.component.html',
   styleUrls: ['./async.component.scss']

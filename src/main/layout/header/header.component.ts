@@ -10,7 +10,6 @@ import { SiderComponent } from '../sider/sider.component';
 
 @Component({
   selector: 'ns-header',
-  standalone: true,
   imports: [XButtonComponent, LogoComponent, SearchComponent, NavComponent, XDrawerComponent, SiderComponent],
   templateUrl: './header.component.html',
   encapsulation: ViewEncapsulation.None

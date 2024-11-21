@@ -3,7 +3,6 @@ import { XTagComponent } from '@ng-nest/ui/tag';
 
 @Component({
   selector: 'ex-close',
-  standalone: true,
   imports: [XTagComponent],
   templateUrl: './close.component.html',
   styleUrls: ['./close.component.scss']

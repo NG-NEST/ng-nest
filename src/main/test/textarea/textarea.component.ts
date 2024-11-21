@@ -11,7 +11,6 @@ import {
 
 @Component({
   selector: 'te-textarea',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExClearComponent,

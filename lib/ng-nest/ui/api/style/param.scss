@@ -1,3 +1,4 @@
 // Api style paramters
+@use '../../style/params/index.scss' as *;
 
-$prefix: $--x-prefix + '-api';
+$prefix: $x-prefix + '-api';

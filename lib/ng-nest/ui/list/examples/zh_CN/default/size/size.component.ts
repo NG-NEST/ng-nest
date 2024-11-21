@@ -6,7 +6,6 @@ import { XListComponent } from '@ng-nest/ui/list';
 
 @Component({
   selector: 'ex-size',
-  standalone: true,
   imports: [FormsModule, XListComponent, XRadioComponent],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']

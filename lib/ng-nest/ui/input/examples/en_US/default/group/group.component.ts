@@ -7,12 +7,10 @@ import { XDatePickerComponent } from '@ng-nest/ui/date-picker';
 import { XFindComponent } from '@ng-nest/ui/find';
 import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
 import { XSelectComponent } from '@ng-nest/ui/select';
-import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: 'ex-group',
-  standalone: true,
   imports: [
     XInputComponent,
     XInputGroupComponent,
@@ -23,8 +21,7 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
     XCascadeComponent,
     XColorPickerComponent,
     XFindComponent,
-    XTimePickerModule,
-    XTextareaComponent
+    XTimePickerModule
   ],
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.scss']

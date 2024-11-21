@@ -6,7 +6,6 @@ import { XThemeComponent } from '@ng-nest/ui/theme';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [FormsModule, XThemeComponent, XButtonComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

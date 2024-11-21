@@ -1,12 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
-import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
-  imports: [FormsModule, XCheckboxComponent, XInputComponent],
+  imports: [FormsModule, XCheckboxComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']
 })

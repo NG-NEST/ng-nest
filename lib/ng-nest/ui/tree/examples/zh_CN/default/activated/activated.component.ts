@@ -4,7 +4,6 @@ import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-activated',
-  standalone: true,
   imports: [JsonPipe, XTreeComponent],
   templateUrl: './activated.component.html'
 })

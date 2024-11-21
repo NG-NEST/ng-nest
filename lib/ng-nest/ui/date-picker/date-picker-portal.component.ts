@@ -45,7 +45,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XDatePickerPortalPrefix}`,
-  standalone: true,
   imports: [
     NgTemplateOutlet,
     DatePipe,

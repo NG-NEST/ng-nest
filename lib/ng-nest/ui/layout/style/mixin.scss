@@ -1,9 +1,10 @@
 // Layout
 
 @use 'sass:math';
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use 'sass:meta';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use './param.scss' as *;
 
 @mixin row {
   display: block;
@@ -19,10 +20,10 @@
 }
 
 @mixin media-screen($key, $value) {
-  $col-layout-initial: $--x-col-layout;
+  $col-layout-initial: $x-col-layout;
   @while $col-layout-initial>0 {
-    $col-percentage: math.div(100% * $col-layout-initial, $--x-col-layout);
-    @media only screen and #{inspect($value)} {
+    $col-percentage: math.div(100% * $col-layout-initial, $x-col-layout);
+    @media only screen and #{meta.inspect($value)} {
       &-#{$key}-#{$col-layout-initial} {
         width: $col-percentage;
       }
@@ -37,9 +38,9 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  $col-layout-initial: $--x-col-layout;
+  $col-layout-initial: $x-col-layout;
   @while $col-layout-initial>0 {
-    $col-percentage: math.div(100% * $col-layout-initial, $--x-col-layout);
+    $col-percentage: math.div(100% * $col-layout-initial, $x-col-layout);
     &-#{$col-layout-initial} {
       width: $col-percentage;
     }
@@ -48,7 +49,7 @@
     }
     $col-layout-initial: $col-layout-initial - 1;
   }
-  @each $key, $value in $--x-size-range {
+  @each $key, $value in $x-size-range {
     @include media-screen($key, $value);
   }
   &-inherit {

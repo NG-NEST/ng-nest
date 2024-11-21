@@ -5,8 +5,7 @@ import { markedHighlight } from 'marked-highlight';
 import { XIsEmpty } from '@ng-nest/ui/core';
 
 @Pipe({
-  name: 'mdToHtml',
-  standalone: true
+  name: 'mdToHtml'
 })
 export class MdToHtmlPipe implements PipeTransform {
   marked = new Marked(

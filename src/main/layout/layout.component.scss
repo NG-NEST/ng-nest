@@ -1,8 +1,9 @@
-@import '../../styles/index.scss';
+@use '../../styles/default.scss' as *;
+@use '../../styles/mixin.scss' as *;
 
 ns-header {
-  height: $--header-width;
-  background-color: $--x-background;
+  height: $header-width;
+  background-color: $x-background;
   width: 100%;
   z-index: 10;
   display: flex;
@@ -12,11 +13,11 @@ ns-header {
   box-sizing: border-box;
   opacity: 1;
   transition:
-    margin $--transition-duration-slow,
-    opacity $--transition-duration-slow;
-  border-block-end: $--layout-border;
+    margin $transition-duration-slow,
+    opacity $transition-duration-slow;
+  border-block-end: $layout-border;
   > x-button.menu {
-    margin: 0 $--x-font-size;
+    margin: 0 $x-font-size;
     .x-button .x-icon {
       font-size: 1.25rem;
     }
@@ -28,7 +29,7 @@ ns-header {
 }
 
 ns-logo {
-  width: $--sider-width;
+  width: $sider-width;
   > section {
     position: relative;
     padding: 0 1rem;
@@ -44,7 +45,7 @@ ns-logo {
       align-items: center;
     }
     h1 {
-      margin: $--x-font-size;
+      margin: $x-font-size;
       white-space: nowrap;
       span {
         font-size: var(--x-font-size);
@@ -65,7 +66,7 @@ ns-nav {
     justify-content: flex-end;
     > .item {
       .x-button {
-        font-size: $--x-font-size;
+        font-size: $x-font-size;
       }
       &:not(:first-child) {
         margin-left: 1rem;
@@ -80,7 +81,7 @@ ns-nav {
         margin-left: 0;
       }
       &.slider {
-        font-size: $--x-font-size;
+        font-size: $x-font-size;
 
         .x-slider-scroll > ul > li {
           min-width: 5rem;
@@ -92,7 +93,7 @@ ns-nav {
 
 ns-search {
   > section {
-    width: $--sider-width;
+    width: $sider-width;
     x-auto-complete {
       width: 100%;
       x-input {
@@ -104,22 +105,22 @@ ns-search {
 
 ns-sider {
   height: 100%;
-  width: $--sider-width + 0.0625rem;
-  background-color: $--x-background;
-  margin-left: -#{$--sider-width};
+  width: $sider-width + 0.0625rem;
+  background-color: $x-background;
+  margin-left: -#{$sider-width};
   opacity: 0;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 9;
-  border-inline-end: $--layout-border;
+  border-inline-end: $layout-border;
   transition:
-    margin $--transition-duration-slow,
-    opacity $--transition-duration-slow;
+    margin $transition-duration-slow,
+    opacity $transition-duration-slow;
   > section {
     position: relative;
     height: 100%;
-    width: $--sider-width;
+    width: $sider-width;
     padding: 2rem 0 4rem 0;
     float: left;
     overflow: hidden;
@@ -129,7 +130,7 @@ ns-sider {
   }
   x-menu {
     .x-menu.x-menu-column {
-      width: $--sider-width;
+      width: $sider-width;
     }
     .x-menu-nodes > .x-menu-node {
       border-right: none;
@@ -145,13 +146,13 @@ ns-content {
   width: 100%;
   display: block;
   transition:
-    padding-left $--transition-duration-slow,
-    padding-top $--transition-duration-slow;
-  padding-bottom: $--header-width;
+    padding-left $transition-duration-slow,
+    padding-top $transition-duration-slow;
+  padding-bottom: $header-width;
   > ns-footer {
     width: 100%;
     display: block;
-    background-color: $--x-background;
+    background-color: $x-background;
     > section {
       display: flex;
       flex-direction: column;
@@ -163,10 +164,10 @@ ns-content {
         text-align: center;
         font-size: 0.825rem;
         line-height: 1.75rem;
-        color: $--x-text;
+        color: $x-text;
       }
       > a:hover {
-        color: $--x-primary;
+        color: $x-primary;
       }
     }
   }

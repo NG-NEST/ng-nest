@@ -7,14 +7,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XHighlightComponent],
   template: ` <x-highlight></x-highlight> `
 })
 class XTestHighlightComponent {}
 
 @Component({
-  standalone: true,
   imports: [XHighlightComponent],
   template: `
     <x-highlight

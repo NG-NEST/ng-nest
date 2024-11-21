@@ -14,7 +14,6 @@ import {
 
 @Component({
   selector: 'te-time-picker',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExBorderedComponent,

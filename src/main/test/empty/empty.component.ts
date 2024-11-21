@@ -3,7 +3,6 @@ import { ExDefaultComponent, ExCustomComponent } from '@ng-nest/ui/empty/example
 
 @Component({
   selector: 'te-empty',
-  standalone: true,
   imports: [ExDefaultComponent, ExCustomComponent],
   templateUrl: './empty.component.html'
 })

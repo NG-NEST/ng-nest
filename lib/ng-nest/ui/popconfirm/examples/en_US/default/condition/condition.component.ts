@@ -7,7 +7,6 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 
 @Component({
   selector: 'ex-condition',
-  standalone: true,
   imports: [FormsModule, XPopconfirmComponent, XButtonComponent, XSwitchComponent],
   templateUrl: './condition.component.html'
 })

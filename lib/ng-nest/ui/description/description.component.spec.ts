@@ -8,7 +8,6 @@ import { XAlign, XDirection, XJustify, XSize, XTemplate } from '@ng-nest/ui/core
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XDescriptionModule],
   template: `
     <x-description>
@@ -21,7 +20,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 class XTestDescriptionComponent {}
 
 @Component({
-  standalone: true,
   imports: [XDescriptionModule],
   template: `
     <x-description

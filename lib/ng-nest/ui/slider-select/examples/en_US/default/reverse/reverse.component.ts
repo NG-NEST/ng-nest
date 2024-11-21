@@ -4,7 +4,6 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 
 @Component({
   selector: 'ex-reverse',
-  standalone: true,
   imports: [FormsModule, XSliderSelectComponent],
   templateUrl: './reverse.component.html',
   styleUrls: ['./reverse.component.scss']

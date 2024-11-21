@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XCommentReplyPrefix}`,
-  standalone: true,
   imports: [FormsModule, XInputComponent, XI18nPipe, XButtonComponent],
   templateUrl: './comment-reply.component.html',
   styleUrls: ['./comment-reply.component.scss'],

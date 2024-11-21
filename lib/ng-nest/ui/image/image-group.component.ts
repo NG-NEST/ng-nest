@@ -4,7 +4,6 @@ import { XImageGroupPrefix } from './image.property';
 
 @Component({
   selector: `${XImageGroupPrefix}`,
-  standalone: true,
   templateUrl: './image-group.component.html',
   styleUrls: ['./image-group.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -27,7 +27,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XTimePickerPortalPrefix}`,
-  standalone: true,
   imports: [XTimePickerFrameComponent, XButtonComponent],
   templateUrl: './time-picker-portal.component.html',
   styleUrls: ['./time-picker-portal.component.scss'],

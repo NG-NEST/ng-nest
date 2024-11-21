@@ -4,7 +4,6 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'ex-bordered',
-  standalone: true,
   imports: [XRowComponent, XColComponent, XAutoCompleteComponent],
   templateUrl: './bordered.component.html',
   styleUrls: ['./bordered.component.scss']

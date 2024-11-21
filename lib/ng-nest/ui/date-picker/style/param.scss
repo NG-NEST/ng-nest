@@ -1,53 +1,54 @@
 // DatePicker style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-date-picker-prefix: $--x-prefix + '-date-picker';
+$x-date-picker-prefix: $x-prefix + '-date-picker';
 
 /* 字体大小 */
-$--x-date-picker-font-size: $--x-font-size;
+$x-date-picker-font-size: $x-font-size;
 
 /* 高度 */
-$--x-date-picker-height: calc(#{$--x-font-size} + 0.875rem);
+$x-date-picker-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 内边距 */
-$--x-date-picker-padding: 0 $--x-control-padding-horizontal;
+$x-date-picker-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-date-picker-color: $--x-primary-900;
+$x-date-picker-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-date-picker-placeholder-color: $--x-placeholder-color;
+$x-date-picker-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-date-picker-background-color: $--x-background;
+$x-date-picker-background-color: $x-background;
 
 /* 边框样式 */
-$--x-date-picker-border: $--x-border-width $--x-border-style $--x-border;
+$x-date-picker-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-date-picker-border-radius: $--x-border-radius;
+$x-date-picker-border-radius: $x-border-radius;
 
 /* 阴影 */
-$--x-date-picker-box-shadow: $--x-box-shadow transparent;
+$x-date-picker-box-shadow: $x-box-shadow transparent;
 
 /* 禁用颜色 */
-$--x-date-picker-disabled-color: $--x-text-500;
+$x-date-picker-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-date-picker-icon-font-size: $--x-font-size-medium;
+$x-date-picker-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-date-picker-icon-padding: $--x-control-padding-horizontal;
+$x-date-picker-icon-padding: $x-control-padding-horizontal;
 
-$--x-date-picker-portal-prefix: $--x-prefix + '-date-picker-portal';
+$x-date-picker-portal-prefix: $x-prefix + '-date-picker-portal';
 
-$--x-picker-date-prefix: $--x-prefix + '-picker-date';
+$x-picker-date-prefix: $x-prefix + '-picker-date';
 
-$--x-picker-month-prefix: $--x-prefix + '-picker-month';
+$x-picker-month-prefix: $x-prefix + '-picker-month';
 
-$--x-picker-quarter-prefix: $--x-prefix + '-picker-quarter';
+$x-picker-quarter-prefix: $x-prefix + '-picker-quarter';
 
-$--x-picker-year-prefix: $--x-prefix + '-picker-year';
+$x-picker-year-prefix: $x-prefix + '-picker-year';
 
-$--x-date-range-prefix: $--x-prefix + '-date-range';
+$x-date-range-prefix: $x-prefix + '-date-range';
 
-$--x-date-range-portal-prefix: $--x-prefix + '-date-range-portal';
+$x-date-range-portal-prefix: $x-prefix + '-date-range-portal';

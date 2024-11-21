@@ -4,7 +4,6 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XCollapseComponent, XCollapsePanelComponent, XIconComponent],
   templateUrl: './custom.component.html'
 })

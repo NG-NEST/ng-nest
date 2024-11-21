@@ -3,7 +3,6 @@ import { XImageComponent } from '@ng-nest/ui/image';
 
 @Component({
   selector: 'ex-fallback',
-  standalone: true,
   imports: [XImageComponent],
   templateUrl: './fallback.component.html'
 })

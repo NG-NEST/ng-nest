@@ -13,12 +13,10 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { RouterModule } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 import { XMenuComponent } from './menu.component';
-import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XMenuNodePrefix}`,
-  standalone: true,
-  imports: [NgTemplateOutlet, XIconComponent, XOutletDirective, RouterModule],
+  imports: [NgTemplateOutlet, XIconComponent, RouterModule],
   templateUrl: './menu-node.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

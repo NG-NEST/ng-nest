@@ -3,7 +3,6 @@ import { XStepsComponent, XStepsNode } from '@ng-nest/ui/steps';
 
 @Component({
   selector: 'ex-icon',
-  standalone: true,
   imports: [XStepsComponent],
   templateUrl: './icon.component.html'
 })

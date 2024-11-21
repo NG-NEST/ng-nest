@@ -8,7 +8,6 @@ import { XFindComponent } from '@ng-nest/ui/find';
 
 @Component({
   selector: 'ex-tree-table',
-  standalone: true,
   imports: [FormsModule, XFindComponent],
   templateUrl: './tree-table.component.html',
   styleUrls: ['./tree-table.component.scss'],

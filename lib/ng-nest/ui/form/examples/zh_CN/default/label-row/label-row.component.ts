@@ -3,7 +3,6 @@ import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
   selector: 'ex-label-row',
-  standalone: true,
   imports: [XFormComponent],
   templateUrl: './label-row.component.html'
 })

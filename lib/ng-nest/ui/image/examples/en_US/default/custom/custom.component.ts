@@ -5,7 +5,6 @@ import { XImagePreviewComponent } from '@ng-nest/ui/image';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './custom.component.html'
 })

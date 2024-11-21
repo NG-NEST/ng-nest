@@ -22,7 +22,6 @@ import { XTabContentComponent } from './tab-content.component';
 
 @Component({
   selector: `${XTabsPrefix}`,
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet, XSliderComponent, XTabContentComponent],
   templateUrl: './tabs.component.html',
   styleUrls: ['./style/index.scss'],

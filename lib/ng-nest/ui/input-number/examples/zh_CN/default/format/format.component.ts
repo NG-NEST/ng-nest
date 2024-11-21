@@ -4,7 +4,6 @@ import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 
 @Component({
   selector: 'ex-format',
-  standalone: true,
   imports: [XInputNumberComponent],
   templateUrl: './format.component.html',
   styleUrls: ['./format.component.scss']

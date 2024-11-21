@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'ns-developing',
-  standalone: true,
   templateUrl: './developing.component.html',
   styleUrls: ['./developing.component.scss'],
   encapsulation: ViewEncapsulation.None

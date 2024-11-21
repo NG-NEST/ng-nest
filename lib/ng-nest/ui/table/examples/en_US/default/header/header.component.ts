@@ -8,7 +8,6 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: 'ex-header',
-  standalone: true,
   imports: [XTableComponent, XButtonComponent, XIconComponent],
   templateUrl: './header.component.html',
   providers: [HeaderService]

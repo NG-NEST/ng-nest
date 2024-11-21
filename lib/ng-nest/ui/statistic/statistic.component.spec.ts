@@ -7,14 +7,12 @@ import { XSleep, XStyle, XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XStatisticComponent],
   template: ` <x-statistic> </x-statistic> `
 })
 class XTestStatisticComponent {}
 
 @Component({
-  standalone: true,
   imports: [XStatisticComponent],
   template: `
     <x-statistic

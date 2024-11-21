@@ -22,7 +22,7 @@ import { FormsModule, ReactiveFormsModule, UntypedFormGroup } from '@angular/for
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
 import { debounceTime, takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { XI18nDirective, XI18nService, XI18nTheme, zh_CN } from '@ng-nest/ui/i18n';
+import { XI18nService, XI18nTheme, zh_CN } from '@ng-nest/ui/i18n';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -31,7 +31,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'x-theme',
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -39,8 +38,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     XButtonComponent,
     XRowComponent,
     XColComponent,
-    XFormComponent,
-    XI18nDirective
+    XFormComponent
   ],
   templateUrl: './theme.component.html',
   styleUrls: ['./style/index.scss'],

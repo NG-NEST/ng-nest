@@ -3,7 +3,6 @@ import { ExDefaultComponent, ExCustomComponent, ExFullScreenComponent } from '@n
 
 @Component({
   selector: 'te-loading',
-  standalone: true,
   imports: [ExDefaultComponent, ExCustomComponent, ExFullScreenComponent],
   templateUrl: './loading.component.html'
 })

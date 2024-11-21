@@ -3,7 +3,6 @@ import { XPaginationComponent } from '@ng-nest/ui/pagination';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XPaginationComponent],
   templateUrl: './default.component.html',
   styles: [

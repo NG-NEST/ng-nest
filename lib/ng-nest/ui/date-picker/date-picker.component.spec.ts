@@ -35,7 +35,6 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  standalone: true,
   imports: [XDatePickerComponent],
   template: ` <x-date-picker></x-date-picker> `
 })
@@ -43,7 +42,6 @@ class XTestDatePickerComponent {}
 
 @Component({
   providers: [DatePipe],
-  standalone: true,
   imports: [XDatePickerComponent, FormsModule],
   template: `
     <x-date-picker

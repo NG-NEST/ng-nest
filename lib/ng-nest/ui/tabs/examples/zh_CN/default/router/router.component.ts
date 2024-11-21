@@ -4,7 +4,6 @@ import { XTabComponent, XTabLinkDirective, XTabLinkTemplateDirective, XTabsCompo
 
 @Component({
   selector: 'ex-router',
-  standalone: true,
   imports: [RouterModule, XTabsComponent, XTabComponent, XTabLinkDirective, XTabLinkTemplateDirective],
   templateUrl: './router.component.html'
 })

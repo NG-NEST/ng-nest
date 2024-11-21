@@ -1,16 +1,16 @@
 // Image Preview
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-#{$--x-image-preview} {
+#{$x-image-preview} {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.#{$--x-image-preview} {
+.#{$x-image-preview} {
   @include reset-component();
   @include image-preview();
   &-portal {

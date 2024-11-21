@@ -1,8 +1,7 @@
 // Tree Select
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin tree-select {
   & {
@@ -26,10 +25,10 @@
         margin-left: 0.0625rem;
         margin-top: 0.125rem;
         .x-tag {
-          @include tag-size('big', $--x-height-large, $--x-padding-large);
-          @include tag-size('large', $--x-height-medium, $--x-padding-medium);
-          @include tag-size('medium', $--x-height-small, $--x-padding-small);
-          @include tag-size('small', $--x-height-mini, $--x-padding-mini);
+          @include tag-size('big', $x-height-large, $x-padding-large);
+          @include tag-size('large', $x-height-medium, $x-padding-medium);
+          @include tag-size('medium', $x-height-small, $x-padding-small);
+          @include tag-size('small', $x-height-mini, $x-padding-mini);
           @include tag-size('mini', 1.125rem, 0.125rem);
         }
       }
@@ -37,10 +36,10 @@
         margin-top: 0.125rem;
         width: 5rem;
         .x-input {
-          @include input-size('big', $--x-height-large, 0 $--x-padding-large);
-          @include input-size('large', $--x-height-medium, 0 $--x-padding-medium);
-          @include input-size('medium', $--x-height-small, 0 $--x-padding-small);
-          @include input-size('small', $--x-height-mini, 0 $--x-padding-mini);
+          @include input-size('big', $x-height-large, 0 $x-padding-large);
+          @include input-size('large', $x-height-medium, 0 $x-padding-medium);
+          @include input-size('medium', $x-height-small, 0 $x-padding-small);
+          @include input-size('small', $x-height-mini, 0 $x-padding-mini);
           @include input-size('mini', 1.125rem, 0 0.125rem);
         }
         .x-input-row > .x-input-input > input {
@@ -53,16 +52,16 @@
 
 @mixin tree-select-portal {
   padding: 0.25rem;
-  color: $--x-text;
+  color: $x-text;
   width: 100%;
-  border-radius: $--x-border-small-radius;
-  box-shadow: $--x-box-shadow;
+  border-radius: $x-border-small-radius;
+  box-shadow: $x-box-shadow;
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: $--x-background-100;
+  background-color: $x-background-100;
   overflow: hidden auto;
-  max-height: calc(calc(#{$--x-tree-select-height} * 6) + calc(#{$--x-border-width} * 7));
+  max-height: calc(calc(#{$x-tree-select-height} * 6) + calc(#{$x-border-width} * 7));
   x-tree {
     width: 100%;
   }

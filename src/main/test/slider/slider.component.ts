@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: 'te-slider',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExActivatedComponent,

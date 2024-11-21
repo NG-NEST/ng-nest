@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'te-message',
-  standalone: true,
   imports: [ExDefaultComponent, ExCloseComponent, ExLoadingComponent, ExSingleComponent, ExTypeComponent],
   templateUrl: './message.component.html'
 })

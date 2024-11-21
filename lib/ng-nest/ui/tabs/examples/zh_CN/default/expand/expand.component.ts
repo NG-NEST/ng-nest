@@ -3,7 +3,6 @@ import { XTabComponent, XTabsComponent } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-expand',
-  standalone: true,
   imports: [XTabsComponent, XTabComponent],
   templateUrl: './expand.component.html'
 })

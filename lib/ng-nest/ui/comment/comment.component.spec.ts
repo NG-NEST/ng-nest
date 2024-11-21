@@ -7,14 +7,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { XDataArray } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XCommentComponent],
   template: ` <x-comment></x-comment> `
 })
 class XTestCommentComponent {}
 
 @Component({
-  standalone: true,
   imports: [XCommentComponent],
   template: `
     <x-comment

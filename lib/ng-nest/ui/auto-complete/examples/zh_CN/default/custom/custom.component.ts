@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [FormsModule, XIconComponent, XRowComponent, XColComponent, XAutoCompleteComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']

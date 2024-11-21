@@ -7,14 +7,12 @@ import { XDataArray, XJustify, XSize, XSleep } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XSliderComponent],
   template: ` <x-slider> </x-slider> `
 })
 class XTestSliderComponent {}
 
 @Component({
-  standalone: true,
   imports: [XSliderComponent],
   template: `
     <x-slider

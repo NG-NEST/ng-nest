@@ -1,9 +1,8 @@
 // Timeline
 
 @use 'sass:math';
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin timeline {
   & {
@@ -16,17 +15,17 @@
     list-style: none;
   }
   > ul {
-    padding-left: math.div($--x-timeline-icon-width, 2) - math.div($--x-timeline-line-width, 2);
+    padding-left: math.div($x-timeline-icon-width, 2) - math.div($x-timeline-line-width, 2);
     > li {
       padding-bottom: 1rem;
       position: relative;
       &:last-child {
-        .#{$--x-timeline-prefix}-tail {
+        .#{$x-timeline-prefix}-tail {
           border-left-color: transparent;
         }
       }
       &:first-child {
-        .#{$--x-timeline-prefix}-tail {
+        .#{$x-timeline-prefix}-tail {
           top: 1.25rem;
         }
       }
@@ -35,22 +34,22 @@
   &-tail {
     position: absolute;
     height: 100%;
-    border-left: $--x-timeline-line-width solid $--x-border;
+    border-left: $x-timeline-line-width solid $x-border;
     &-dashed {
       border-left-style: dashed;
     }
   }
   &-icon {
     position: absolute;
-    background-color: $--x-border;
+    background-color: $x-border;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $--x-white;
-    width: $--x-timeline-icon-width;
-    height: $--x-timeline-icon-width;
-    border: 0.0625rem solid $--x-background-100;
+    color: $x-white;
+    width: $x-timeline-icon-width;
+    height: $x-timeline-icon-width;
+    border: 0.0625rem solid $x-background-100;
   }
   &-wrapper {
     position: relative;
@@ -64,36 +63,36 @@
     }
   }
   &-content {
-    color: $--x-text-300;
+    color: $x-text-300;
   }
   &-time {
-    font-size: $--x-font-size;
-    color: $--x-text-400;
+    font-size: $x-font-size;
+    color: $x-text-400;
   }
   &-loading {
-    .#{$--x-timeline-prefix}-icon {
-      color: $--x-text-400;
+    .#{$x-timeline-prefix}-icon {
+      color: $x-text-400;
       font-size: 1.25rem;
       background-color: transparent !important;
     }
   }
   &-left {
-    .#{$--x-timeline-prefix} {
+    .#{$x-timeline-prefix} {
       &-icon {
-        left: math.div($--x-timeline-line-width, 2) - math.div($--x-timeline-icon-width, 2);
+        left: math.div($x-timeline-line-width, 2) - math.div($x-timeline-icon-width, 2);
       }
       &-wrapper {
-        padding-left: 1rem + math.div($--x-timeline-icon-width, 2) - math.div($--x-timeline-line-width, 2);
+        padding-left: 1rem + math.div($x-timeline-icon-width, 2) - math.div($x-timeline-line-width, 2);
       }
     }
   }
   &-right {
-    .#{$--x-timeline-prefix} {
+    .#{$x-timeline-prefix} {
       &-icon {
-        right: math.div($--x-timeline-line-width, 2) - math.div($--x-timeline-icon-width, 2);
+        right: math.div($x-timeline-line-width, 2) - math.div($x-timeline-icon-width, 2);
       }
       &-wrapper {
-        padding-right: 1rem + math.div($--x-timeline-icon-width, 2) - math.div($--x-timeline-line-width, 2);
+        padding-right: 1rem + math.div($x-timeline-icon-width, 2) - math.div($x-timeline-line-width, 2);
         text-align: right;
       }
       &-tail {
@@ -108,22 +107,22 @@
     }
   }
   &-alternate {
-    .#{$--x-timeline-prefix} {
+    .#{$x-timeline-prefix} {
       &-icon {
         left: 50%;
-        margin-left: 0 - math.div($--x-timeline-icon-width, 2);
+        margin-left: 0 - math.div($x-timeline-icon-width, 2);
       }
       &-tail {
         left: 50%;
-        margin-left: 0 - math.div($--x-timeline-line-width, 2);
+        margin-left: 0 - math.div($x-timeline-line-width, 2);
       }
     }
     > ul > li {
       &:nth-child(odd) {
-        .#{$--x-timeline-prefix} {
+        .#{$x-timeline-prefix} {
           &-wrapper {
             width: 50%;
-            padding-right: 1rem + math.div($--x-timeline-icon-width, 2) - math.div($--x-timeline-line-width, 2);
+            padding-right: 1rem + math.div($x-timeline-icon-width, 2) - math.div($x-timeline-line-width, 2);
             text-align: right;
           }
           &-label {
@@ -135,21 +134,21 @@
         }
       }
       &:nth-child(even) {
-        .#{$--x-timeline-prefix} {
+        .#{$x-timeline-prefix} {
           &-wrapper {
             left: 50%;
             width: 50%;
-            padding-left: 1rem + math.div($--x-timeline-icon-width, 2) - math.div($--x-timeline-line-width, 2);
+            padding-left: 1rem + math.div($x-timeline-icon-width, 2) - math.div($x-timeline-line-width, 2);
           }
         }
       }
     }
   }
-  @include type('primary', $--x-primary);
-  @include type('success', $--x-success);
-  @include type('warning', $--x-warning);
-  @include type('danger', $--x-danger);
-  @include type('info', $--x-info);
+  @include type('primary', $x-primary);
+  @include type('success', $x-success);
+  @include type('warning', $x-warning);
+  @include type('danger', $x-danger);
+  @include type('info', $x-info);
 
   @include size('big', 2.175rem);
   @include size('large', 1.875rem);
@@ -168,7 +167,7 @@
   &-#{$size} {
     width: $width;
     height: $width;
-    left: math.div($--x-timeline-line-width, 2) - math.div($width, 2);
+    left: math.div($x-timeline-line-width, 2) - math.div($width, 2);
     font-size: $width - 0.625rem;
   }
 }

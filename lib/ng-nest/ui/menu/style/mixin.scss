@@ -1,31 +1,30 @@
 // Menu
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin menu {
   &-icon.x-icon {
     width: 1rem;
     height: 1rem;
     font-size: 1rem;
-    transition: opacity $--x-animation-duration-base;
+    transition: opacity $x-animation-duration-base;
   }
   &-arrow.x-icon {
     width: 1rem;
     height: 1rem;
-    transition: opacity $--x-animation-duration-base;
+    transition: opacity $x-animation-duration-base;
     &.is-open {
       transform: rotate(180deg);
     }
   }
   &-node {
     &.x-size {
-      @include size(big, $--x-height-big, $--x-padding-big);
-      @include size(large, $--x-height-large, $--x-padding-large);
-      @include size(medium, $--x-height-medium, $--x-padding-medium);
-      @include size(small, $--x-height-small, $--x-padding-small);
-      @include size(mini, $--x-height-mini, $--x-padding-mini);
+      @include size(big, $x-height-big, $x-padding-big);
+      @include size(large, $x-height-large, $x-padding-large);
+      @include size(medium, $x-height-medium, $x-padding-medium);
+      @include size(small, $x-height-small, $x-padding-small);
+      @include size(mini, $x-height-mini, $x-padding-mini);
     }
   }
   x-slider {
@@ -38,42 +37,42 @@
   }
   &-column {
     width: 16rem;
-    transition: $--x-animation-duration-base;
+    transition: $x-animation-duration-base;
   }
   &-row {
-    .#{$--x-menu}-text {
+    .#{$x-menu}-text {
       margin-left: 0.25rem;
     }
   }
   &-nodes {
-    .#{$--x-menu}-node {
+    .#{$x-menu}-node {
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
       transition:
-        width $--x-animation-duration-base,
-        background-color $--x-animation-duration-base;
+        width $x-animation-duration-base,
+        background-color $x-animation-duration-base;
       position: relative;
       user-select: none;
-      padding-right: $--x-font-size;
-      border-radius: $--x-border-radius;
+      padding-right: $x-font-size;
+      border-radius: $x-border-radius;
       margin: 0.125rem 0;
-      .#{$--x-menu}-text {
+      .#{$x-menu}-text {
         flex: 1;
         margin: 0 0.25rem;
         transition:
-          background-color $--x-animation-duration-base,
-          opacity $--x-animation-duration-base;
+          background-color $x-animation-duration-base,
+          opacity $x-animation-duration-base;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
       }
       &:hover {
-        color: $--x-primary;
-        background-color: $--x-background-a200;
+        color: $x-primary;
+        background-color: $x-background-a200;
       }
-      #{$--x-menu}-node {
+      #{$x-menu}-node {
         flex: 1;
         display: flex;
         align-items: center;
@@ -85,12 +84,12 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           text-decoration: none;
-          color: $--x-text;
+          color: $x-text;
         }
       }
       &.x-activated {
-        color: $--x-primary;
-        background-color: $--x-primary-900;
+        color: $x-primary;
+        background-color: $x-primary-900;
         &::after {
           content: '';
           position: absolute;
@@ -98,50 +97,50 @@
           right: -0.125rem;
           top: 0;
         }
-        #{$--x-menu}-node {
+        #{$x-menu}-node {
           > a {
-            color: $--x-primary;
+            color: $x-primary;
           }
         }
       }
-      &.#{$--x-menu}-category {
+      &.#{$x-menu}-category {
         cursor: inherit;
-        color: $--x-text-400;
+        color: $x-text-400;
         &:hover {
           background-color: transparent;
         }
-        > #{$--x-menu}-node {
-          border-bottom: $--x-border-base;
+        > #{$x-menu}-node {
+          border-bottom: $x-border-base;
         }
       }
     }
   }
   &-collapsed {
-    &.#{$--x-menu}-column {
+    &.#{$x-menu}-column {
       width: 3rem !important;
     }
-    .#{$--x-menu}-nodes {
+    .#{$x-menu}-nodes {
       x-dropdown,
       .x-dropdown {
         display: flex;
         flex: 1;
       }
-      .#{$--x-menu}-node {
+      .#{$x-menu}-node {
         padding-left: 0 !important;
         padding-right: 0;
-        #{$--x-menu}-node {
-          padding-left: $--x-font-size;
+        #{$x-menu}-node {
+          padding-left: $x-font-size;
         }
-        .#{$--x-menu}-text {
+        .#{$x-menu}-text {
           opacity: 0;
           width: 0;
         }
       }
-      .#{$--x-menu}-nodes {
+      .#{$x-menu}-nodes {
         display: none;
       }
     }
-    .#{$--x-menu}-arrow.x-icon {
+    .#{$x-menu}-arrow.x-icon {
       opacity: 0;
       width: 0;
     }
@@ -159,7 +158,7 @@
     padding: 0 $padding;
     height: $height;
     line-height: $height;
-    &.#{$--x-menu}-category {
+    &.#{$x-menu}-category {
       height: calc(#{$height} * 1.5);
     }
   }

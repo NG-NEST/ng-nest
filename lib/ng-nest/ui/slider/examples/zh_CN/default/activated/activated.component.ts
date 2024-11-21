@@ -3,7 +3,6 @@ import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-activated',
-  standalone: true,
   imports: [XSliderComponent],
   templateUrl: './activated.component.html'
 })

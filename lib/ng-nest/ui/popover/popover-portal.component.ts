@@ -15,7 +15,6 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XPopoverPortalPrefix}`,
-  standalone: true,
   imports: [NgClass, XOutletDirective],
   templateUrl: './popover-portal.component.html',
   styleUrls: ['./popover-portal.component.scss'],

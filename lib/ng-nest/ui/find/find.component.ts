@@ -38,7 +38,6 @@ import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XFindPrefix}`,
-  standalone: true,
   imports: [
     NgClass,
     FormsModule,

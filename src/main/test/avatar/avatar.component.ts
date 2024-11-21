@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'te-avatar',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExBadgeComponent,

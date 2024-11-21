@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'te-image',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExCustomComponent,

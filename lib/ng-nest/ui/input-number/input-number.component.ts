@@ -19,7 +19,6 @@ import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XInputNumberPrefix}`,
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, XInputComponent, XButtonComponent],
   templateUrl: './input-number.component.html',
   styleUrls: ['./style/index.scss'],

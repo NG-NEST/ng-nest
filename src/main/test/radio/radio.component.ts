@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'te-radio',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExIconComponent,

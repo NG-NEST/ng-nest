@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: 'te-switch',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExLoadingComponent,

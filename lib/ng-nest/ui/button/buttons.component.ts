@@ -3,7 +3,6 @@ import { XButtonsPrefix, XButtonsProperty } from './button.property';
 
 @Component({
   selector: `${XButtonsPrefix}`,
-  standalone: true,
   template: '<ng-content></ng-content>',
   styleUrls: ['./buttons.component.scss'],
   encapsulation: ViewEncapsulation.None,

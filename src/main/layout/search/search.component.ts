@@ -11,7 +11,6 @@ import { XI18nPipe } from '@ng-nest/ui/i18n';
 
 @Component({
   selector: 'ns-search',
-  standalone: true,
   imports: [XAutoCompleteComponent, XI18nPipe],
   templateUrl: './search.component.html',
   encapsulation: ViewEncapsulation.None

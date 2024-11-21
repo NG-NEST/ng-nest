@@ -4,7 +4,6 @@ import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 
 @Component({
   selector: 'ex-label',
-  standalone: true,
   imports: [FormsModule, XColorPickerComponent],
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']

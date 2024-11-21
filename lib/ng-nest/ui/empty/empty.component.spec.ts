@@ -8,14 +8,12 @@ import { XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XEmptyComponent],
   template: ` <x-empty> </x-empty> `
 })
 class XTestEmptyComponent {}
 
 @Component({
-  standalone: true,
   imports: [XEmptyComponent],
   template: `
     <x-empty [img]="img()" [content]="content()"> </x-empty>

@@ -50,7 +50,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XDateRangePortalPrefix}`,
-  standalone: true,
   imports: [
     NgTemplateOutlet,
     DatePipe,

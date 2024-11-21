@@ -6,9 +6,8 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
-  standalone: true,
-  imports: [XAffixComponent],
-  template: `
+    imports: [XAffixComponent],
+    template: `
     <x-affix>
       <div>affix</div>
     </x-affix>
@@ -17,9 +16,8 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 class XTestAffixComponent {}
 
 @Component({
-  standalone: true,
-  imports: [XAffixComponent],
-  template: `
+    imports: [XAffixComponent],
+    template: `
     <x-affix [top]="top()" [left]="left()">
       <div>float info</div>
     </x-affix>

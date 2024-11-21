@@ -9,7 +9,6 @@ import { XInputComponent } from '@ng-nest/ui/input';
 
 @Component({
   selector: 'ex-search',
-  standalone: true,
   imports: [FormsModule, XTransferComponent, XInputComponent, XSelectComponent],
   templateUrl: './search.component.html',
   providers: [SearchService]

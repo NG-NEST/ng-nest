@@ -6,14 +6,12 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XSkeletonComponent],
   template: ` <x-skeleton> </x-skeleton> `
 })
 class XTestSkeletonComponent {}
 
 @Component({
-  standalone: true,
   imports: [XSkeletonComponent],
   template: ` <x-skeleton [data]="data()" [loading]="loading()" [active]="active()" [border]="border()"> </x-skeleton> `
 })

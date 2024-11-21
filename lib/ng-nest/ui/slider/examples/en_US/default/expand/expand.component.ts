@@ -3,7 +3,6 @@ import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-expand',
-  standalone: true,
   imports: [XSliderComponent],
   templateUrl: './expand.component.html'
 })

@@ -3,7 +3,6 @@ import { XDialogContainerProperty, X_DIALOG_CONTAINER } from './dialog.property'
 
 @Component({
   selector: 'x-dialog-container',
-  standalone: true,
   templateUrl: './dialog-container.component.html',
   styleUrls: ['./dialog-container.component.scss'],
   encapsulation: ViewEncapsulation.None,

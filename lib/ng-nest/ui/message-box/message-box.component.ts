@@ -13,7 +13,6 @@ import { UntypedFormGroup, UntypedFormControl, Validators, FormsModule, Reactive
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
 import { XAlertComponent } from '@ng-nest/ui/alert';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
-import { XIconComponent } from '@ng-nest/ui/icon';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { NgTemplateOutlet } from '@angular/common';
@@ -21,7 +20,6 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
 
 @Component({
   selector: `${XMessageBoxPrefix}`,
-  standalone: true,
   imports: [
     NgTemplateOutlet,
     FormsModule,
@@ -30,7 +28,6 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
     XTextareaComponent,
     XButtonComponent,
     XButtonsComponent,
-    XIconComponent,
     XAlertComponent,
     XOutletDirective
   ],

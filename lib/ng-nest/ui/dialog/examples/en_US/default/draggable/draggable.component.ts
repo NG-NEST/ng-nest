@@ -4,7 +4,6 @@ import { XDialogComponent } from '@ng-nest/ui/dialog';
 
 @Component({
   selector: 'ex-draggable',
-  standalone: true,
   imports: [XButtonComponent, XDialogComponent],
   templateUrl: './draggable.component.html',
   styleUrls: ['./draggable.component.scss']

@@ -16,7 +16,6 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XListOptionPrefix}`,
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet, XIconComponent, XKeywordDirective],
   templateUrl: './list-option.component.html',
   styleUrls: ['./list-option.component.scss'],

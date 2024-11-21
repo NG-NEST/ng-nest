@@ -25,7 +25,7 @@ import {
 import { takeUntil } from 'rxjs/operators';
 import { XIsChange, type XPlacement } from '@ng-nest/ui/core';
 
-@Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}`, standalone: true })
+@Directive({ selector: `[${XPopoverPrefix}], ${XPopoverPrefix}` })
 export class XPopoverDirective extends XPopoverProperty implements OnDestroy, OnChanges {
   portal!: XPortalOverlayRef<XPopoverPortalComponent>;
   timeoutHide: any;

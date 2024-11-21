@@ -5,7 +5,6 @@ import { XCountdownComponent } from '@ng-nest/ui/statistic';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XAlertComponent, XCountdownComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']

@@ -4,7 +4,6 @@ import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 
 @Component({
   selector: 'ex-prop',
-  standalone: true,
   imports: [XDropdownComponent, XButtonComponent],
   templateUrl: './prop.component.html'
 })

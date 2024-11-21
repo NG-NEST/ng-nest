@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'te-collapse',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExAccordionComponent,

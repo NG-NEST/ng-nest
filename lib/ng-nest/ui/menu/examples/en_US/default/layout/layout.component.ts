@@ -3,7 +3,6 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
   selector: 'ex-layout',
-  standalone: true,
   imports: [XMenuComponent],
   templateUrl: './layout.component.html'
 })

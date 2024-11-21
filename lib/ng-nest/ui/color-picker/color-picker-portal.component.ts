@@ -28,7 +28,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XColorPickerPortalPrefix}`,
-  standalone: true,
   imports: [FormsModule, DragDropModule, XSliderSelectComponent, XTabsComponent, XTabComponent, XInputComponent],
   templateUrl: './color-picker-portal.component.html',
   styleUrls: ['./color-picker-portal.component.scss'],

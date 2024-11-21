@@ -5,7 +5,6 @@ import type { XTableRow } from '@ng-nest/ui/table';
 
 @Component({
   selector: 'ex-label',
-  standalone: true,
   imports: [FormsModule, XFindComponent],
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']

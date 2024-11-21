@@ -25,7 +25,6 @@ import { map } from 'rxjs';
 
 @Component({
   selector: `${XPaginationPrefix}`,
-  standalone: true,
   imports: [
     FormsModule,
     XButtonComponent,

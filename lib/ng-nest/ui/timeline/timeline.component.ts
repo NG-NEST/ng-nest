@@ -9,7 +9,6 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XTimelinePrefix}`,
-  standalone: true,
   imports: [NgClass, DatePipe, XIconComponent, XTimeAgoPipe, XLinkComponent, XOutletDirective],
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],

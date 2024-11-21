@@ -1,8 +1,7 @@
 // BackTop
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin back-top {
   & {
@@ -14,8 +13,8 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    background-color: $--x-background-a100;
+    background-color: $x-background-a100;
     font-size: 1.25rem;
-    border: $--x-border-base;
+    border: $x-border-base;
   }
 }

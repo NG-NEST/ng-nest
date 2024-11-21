@@ -1,3 +1,4 @@
 // MessageBox style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-message-box: $--x-prefix + '-message-box';
+$x-message-box: $x-prefix + '-message-box';

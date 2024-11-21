@@ -4,7 +4,6 @@ import { XNotificationService } from '@ng-nest/ui/notification';
 
 @Component({
   selector: 'ex-type',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './type.component.html',
   styleUrls: ['./type.component.scss']

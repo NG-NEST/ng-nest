@@ -1,21 +1,20 @@
 // Empty
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin empty {
   & {
     display: flex;
     align-items: center;
     flex-direction: column;
-    color: $--x-text-800;
+    color: $x-text-800;
   }
   > .x-icon {
-    font-size: calc(#{$--x-font-size} + 1.125rem);
+    font-size: calc(#{$x-font-size} + 1.125rem);
   }
   > span {
-    line-height: calc(#{$--x-font-size} + 1rem);
+    line-height: calc(#{$x-font-size} + 1rem);
   }
   &-img {
     height: 5rem;

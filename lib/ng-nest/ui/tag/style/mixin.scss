@@ -1,21 +1,20 @@
 // Tag
 
 @use 'sass:math';
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin tag {
   & {
     display: inline-flex;
     align-items: center;
-    font-size: $--x-font-size-small;
-    border-radius: $--x-border-radius;
+    font-size: $x-font-size-small;
+    border-radius: $x-border-radius;
     height: 1.625rem;
     line-height: 1.625rem;
     padding: 0 0.65rem;
     white-space: nowrap;
-    border: $--x-border-width $--x-border-style;
+    border: $x-border-width $x-border-style;
     border-width: 0;
   }
   > .x-icon {
@@ -24,7 +23,7 @@
     border-radius: 50%;
     cursor: pointer;
     padding: 0.0625rem;
-    font-size: calc(#{$--x-font-size-small} + 0.0625rem);
+    font-size: calc(#{$x-font-size-small} + 0.0625rem);
     transition: 0.3s;
     &:hover {
       background-color: var(--x-text-500);
@@ -32,157 +31,157 @@
     }
   }
   &-dark {
-    background-color: $--x-text;
-    color: $--x-background-100;
+    background-color: $x-text;
+    color: $x-background-100;
     > .x-icon:hover {
       background-color: rgba(255, 255, 255, 0.3);
     }
   }
   &-bordered {
-    border-width: $--x-border-width;
+    border-width: $x-border-width;
   }
   &-checked {
     cursor: pointer;
     transition: 0.3s;
   }
-  @include size('big', $--x-height-big, $--x-padding-big);
-  @include size('large', $--x-height-large, $--x-padding-large);
-  @include size('medium', $--x-height-medium, $--x-padding-medium);
-  @include size('small', $--x-height-small, $--x-padding-small);
-  @include size('mini', $--x-height-mini, $--x-padding-mini);
+  @include size('big', $x-height-big, $x-padding-big);
+  @include size('large', $x-height-large, $x-padding-large);
+  @include size('medium', $x-height-medium, $x-padding-medium);
+  @include size('small', $x-height-small, $x-padding-small);
+  @include size('mini', $x-height-mini, $x-padding-mini);
 
   @include type(
     'initial',
-    $--x-text,
-    $--x-border,
-    $--x-background-200,
-    $--x-text-400,
-    $--x-background-200,
-    $--x-border,
-    $--x-text-400,
-    $--x-background-200,
-    $--x-border,
-    $--x-primary,
-    $--x-primary,
+    $x-text,
+    $x-border,
+    $x-background-200,
+    $x-text-400,
+    $x-background-200,
+    $x-border,
+    $x-text-400,
+    $x-background-200,
+    $x-border,
+    $x-primary,
+    $x-primary,
     'transparent',
-    $--x-white,
-    $--x-primary,
-    $--x-primary
+    $x-white,
+    $x-primary,
+    $x-primary
   );
   @include type(
     'primary',
-    $--x-primary,
-    $--x-primary-600,
-    $--x-primary-900,
-    $--x-primary-400,
-    $--x-primary-900,
-    $--x-primary-800,
-    $--x-primary-800,
-    $--x-primary-500,
-    $--x-primary-500,
-    $--x-primary,
-    $--x-primary,
+    $x-primary,
+    $x-primary-600,
+    $x-primary-900,
+    $x-primary-400,
+    $x-primary-900,
+    $x-primary-800,
+    $x-primary-800,
+    $x-primary-500,
+    $x-primary-500,
+    $x-primary,
+    $x-primary,
     'transparent',
-    $--x-white,
-    $--x-primary,
-    $--x-primary
+    $x-white,
+    $x-primary,
+    $x-primary
   );
   @include type(
     'success',
-    $--x-success,
-    $--x-success-600,
-    $--x-success-900,
-    $--x-success-400,
-    $--x-success-900,
-    $--x-success-800,
-    $--x-success-800,
-    $--x-success-500,
-    $--x-success-500,
-    $--x-success,
-    $--x-success,
+    $x-success,
+    $x-success-600,
+    $x-success-900,
+    $x-success-400,
+    $x-success-900,
+    $x-success-800,
+    $x-success-800,
+    $x-success-500,
+    $x-success-500,
+    $x-success,
+    $x-success,
     'transparent',
-    $--x-white,
-    $--x-success,
-    $--x-success
+    $x-white,
+    $x-success,
+    $x-success
   );
   @include type(
     'warning',
-    $--x-warning,
-    $--x-warning-600,
-    $--x-warning-900,
-    $--x-warning-400,
-    $--x-warning-900,
-    $--x-warning-800,
-    $--x-warning-800,
-    $--x-warning-500,
-    $--x-warning-500,
-    $--x-warning,
-    $--x-warning,
+    $x-warning,
+    $x-warning-600,
+    $x-warning-900,
+    $x-warning-400,
+    $x-warning-900,
+    $x-warning-800,
+    $x-warning-800,
+    $x-warning-500,
+    $x-warning-500,
+    $x-warning,
+    $x-warning,
     'transparent',
-    $--x-white,
-    $--x-warning,
-    $--x-warning
+    $x-white,
+    $x-warning,
+    $x-warning
   );
   @include type(
     'danger',
-    $--x-danger,
-    $--x-danger-600,
-    $--x-danger-900,
-    $--x-danger-400,
-    $--x-danger-900,
-    $--x-danger-800,
-    $--x-danger-800,
-    $--x-danger-500,
-    $--x-danger-500,
-    $--x-danger,
-    $--x-danger,
+    $x-danger,
+    $x-danger-600,
+    $x-danger-900,
+    $x-danger-400,
+    $x-danger-900,
+    $x-danger-800,
+    $x-danger-800,
+    $x-danger-500,
+    $x-danger-500,
+    $x-danger,
+    $x-danger,
     'transparent',
-    $--x-white,
-    $--x-danger,
-    $--x-danger
+    $x-white,
+    $x-danger,
+    $x-danger
   );
   @include type(
     'info',
-    $--x-info,
-    $--x-info-600,
-    $--x-info-900,
-    $--x-info-400,
-    $--x-info-900,
-    $--x-info-800,
-    $--x-info-800,
-    $--x-info-500,
-    $--x-info-500,
-    $--x-info,
-    $--x-info,
+    $x-info,
+    $x-info-600,
+    $x-info-900,
+    $x-info-400,
+    $x-info-900,
+    $x-info-800,
+    $x-info-800,
+    $x-info-500,
+    $x-info-500,
+    $x-info,
+    $x-info,
     'transparent',
-    $--x-white,
-    $--x-info,
-    $--x-info
+    $x-white,
+    $x-info,
+    $x-info
   );
   @include type(
     'text',
-    $--x-text,
+    $x-text,
     'transparent',
-    $--x-background-200,
-    $--x-text-400,
-    $--x-background-200,
+    $x-background-200,
+    $x-text-400,
+    $x-background-200,
     'transparent',
-    $--x-text-400,
-    $--x-background-200,
+    $x-text-400,
+    $x-background-200,
     'transparent',
-    $--x-primary,
-    $--x-primary,
+    $x-primary,
+    $x-primary,
     'transparent',
-    $--x-white,
-    $--x-primary,
-    $--x-primary
+    $x-white,
+    $x-primary,
+    $x-primary
   );
 }
 
 @mixin type(
   $type,
   $color,
-  $--border-color,
+  $border-color,
   $background-color,
   $disabled-color,
   $disabled-background,
@@ -198,7 +197,7 @@
   $checked-selected-background
 ) {
   &-#{$type} {
-    border-color: $--border-color;
+    border-color: $border-color;
     color: $color;
     background-color: $background-color;
     > .x-icon:hover {
@@ -211,7 +210,7 @@
         @include disabled($disabled-color, $disabled-background, $disabled-border);
       }
     }
-    &.#{$--x-tag-prefix}-checked:not(.x-tag-selected) {
+    &.#{$x-tag-prefix}-checked:not(.x-tag-selected) {
       &:hover,
       &:active {
         border-color: $checked-hover-border;
@@ -219,20 +218,20 @@
         background-color: $checked-hover-background;
       }
     }
-    &.#{$--x-tag-prefix}-selected {
+    &.#{$x-tag-prefix}-selected {
       border-color: $checked-selected-border;
       color: $checked-selected-color;
       background-color: $checked-selected-background;
     }
-    &.#{$--x-tag-prefix}-dark {
+    &.#{$x-tag-prefix}-dark {
       border-color: $color;
-      color: $--x-white;
+      color: $x-white;
       background-color: $color;
       > .x-icon:hover {
         background-color: rgba(255, 255, 255, 0.3);
       }
     }
-    &.#{$--x-tag-prefix}-dark.x-disabled {
+    &.#{$x-tag-prefix}-dark.x-disabled {
       @include disabled($dark-disabled-color, $dark-disabled-background, $dark-disabled-border);
       &:hover,
       &:active {
@@ -250,18 +249,18 @@
   }
 }
 
-@mixin disabled($color, $bg-color, $--border-color) {
+@mixin disabled($color, $bg-color, $border-color) {
   color: $color;
   cursor: not-allowed;
   background-image: none;
   background-color: $bg-color;
-  border-color: $--border-color;
+  border-color: $border-color;
   &:hover,
   &:active,
   &:focus {
     color: $color;
     background-color: $bg-color;
-    border-color: $--border-color;
+    border-color: $border-color;
   }
   > .x-icon:hover {
     cursor: inherit;

@@ -1,41 +1,42 @@
 // Find style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-find-prefix: $--x-prefix + '-find';
+$x-find-prefix: $x-prefix + '-find';
 
 /* 字体大小 */
-$--x-find-font-size: $--x-font-size;
+$x-find-font-size: $x-font-size;
 
 /* 高度 */
-$--x-find-height: calc(#{$--x-font-size} + 0.875rem);
+$x-find-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 滑块高度 */
-$--x-find-slider-height: 1.25rem;
+$x-find-slider-height: 1.25rem;
 
 /* 内边距 */
-$--x-find-padding: 0 $--x-control-padding-horizontal;
+$x-find-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-find-color: $--x-primary-900;
+$x-find-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-find-placeholder-color: $--x-placeholder-color;
+$x-find-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-find-background-color: $--x-background;
+$x-find-background-color: $x-background;
 
 /* 边框样式 */
-$--x-find-border: $--x-border-width $--x-border-style $--x-border;
+$x-find-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-find-border-radius: $--x-border-radius;
+$x-find-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-find-disabled-color: $--x-text-500;
+$x-find-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-find-icon-font-size: $--x-font-size-medium;
+$x-find-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-find-icon-padding: $--x-control-padding-horizontal;
+$x-find-icon-padding: $x-control-padding-horizontal;
 
-$--x-find-portal-prefix: $--x-prefix + '-find-portal';
+$x-find-portal-prefix: $x-prefix + '-find-portal';

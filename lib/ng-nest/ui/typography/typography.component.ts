@@ -12,7 +12,6 @@ import { XTypographyPrefix, XTypographyProperty } from './typography.property';
 
 @Component({
   selector: 'x-typography',
-  standalone: true,
   templateUrl: './typography.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

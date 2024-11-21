@@ -1,8 +1,8 @@
 // Rate
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use './param.scss' as *;
 
 @mixin rate {
   & {
@@ -12,17 +12,17 @@
   > label {
     display: inline-block;
     white-space: nowrap;
-    height: $--x-rate-height;
-    line-height: $--x-rate-height;
+    height: $x-rate-height;
+    line-height: $x-rate-height;
     position: relative;
-    color: $--x-text-300;
+    color: $x-text-300;
     font-weight: 600;
     @include text-align();
   }
   &-icons {
     display: inline-flex;
     align-items: center;
-    height: $--x-rate-height;
+    height: $x-rate-height;
     cursor: pointer;
   }
   &-icon {
@@ -30,11 +30,11 @@
     display: flex;
     align-items: center;
     position: relative;
-    color: $--x-info;
+    color: $x-info;
     transition:
-      transform $--x-animation-duration-base,
-      color $--x-animation-duration-base;
-    font-size: $--x-rate-icon-font-size;
+      transform $x-animation-duration-base,
+      color $x-animation-duration-base;
+    font-size: $x-rate-icon-font-size;
     .x-icon {
       vertical-align: 0;
     }
@@ -42,11 +42,11 @@
       transform: scale(1.1);
     }
     &.activated {
-      color: $--x-warning;
+      color: $x-warning;
     }
     &.half-activated {
       .x-rate-half {
-        color: $--x-warning;
+        color: $x-warning;
       }
     }
   }
@@ -71,20 +71,20 @@
     &:before {
       display: inline-block;
       margin-right: 0.25rem;
-      color: $--x-danger;
+      color: $x-danger;
       line-height: 1;
-      font-size: $--x-font-size-small;
+      font-size: $x-font-size-small;
       content: '*';
     }
   }
   &.x-invalid,
   &.x-required {
     > label {
-      color: $--x-danger;
+      color: $x-danger;
     }
   }
   &.x-disabled {
-    .#{$--x-rate-prefix} {
+    .#{$x-rate-prefix} {
       &-icons {
         cursor: not-allowed;
         opacity: 0.8;

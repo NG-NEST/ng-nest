@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-layout',
-  standalone: true,
   imports: [FormsModule, XTabsComponent, XTabComponent, XRadioComponent],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']

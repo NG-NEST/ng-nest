@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'te-alert',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExCustomComponent,

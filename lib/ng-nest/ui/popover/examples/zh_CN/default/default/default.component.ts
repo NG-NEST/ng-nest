@@ -5,7 +5,6 @@ import { interval } from 'rxjs';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XPopoverDirective, XButtonComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

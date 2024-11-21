@@ -6,7 +6,6 @@ import { NgStyle } from '@angular/common';
 
 @Component({
   selector: `${XStatisticPrefix}`,
-  standalone: true,
   imports: [NgStyle, XOutletDirective],
   templateUrl: './statistic.component.html',
   styleUrls: ['./statistic.component.scss'],

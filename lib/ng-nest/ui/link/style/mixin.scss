@@ -1,8 +1,7 @@
 // Link
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin link {
   & {
@@ -16,7 +15,7 @@
     outline: none;
     cursor: pointer;
     padding: 0;
-    transition: all $--x-animation-duration-base ease-in-out;
+    transition: all $x-animation-duration-base ease-in-out;
   }
   > x-icon {
     margin-right: 0.125rem;
@@ -29,7 +28,7 @@
       right: 0;
       height: 0;
       bottom: 0;
-      border-bottom: 0.0625rem solid $--x-primary;
+      border-bottom: 0.0625rem solid $x-primary;
     }
   }
   &-icon-right {
@@ -45,12 +44,12 @@
       margin-left: 0;
     }
   }
-  @include link-type('initial', $--x-text, $--x-primary, $--x-primary-a100, $--x-text-400);
-  @include link-type('primary', $--x-primary, $--x-primary-100, $--x-primary-300, $--x-primary-400);
-  @include link-type('success', $--x-success, $--x-success-100, $--x-success-300, $--x-success-400);
-  @include link-type('warning', $--x-warning, $--x-warning-100, $--x-warning-300, $--x-warning-400);
-  @include link-type('danger', $--x-danger, $--x-danger-100, $--x-danger-300, $--x-danger-400);
-  @include link-type('info', $--x-info, $--x-info-100, $--x-info-300, $--x-info-400);
+  @include link-type('initial', $x-text, $x-primary, $x-primary-a100, $x-text-400);
+  @include link-type('primary', $x-primary, $x-primary-100, $x-primary-300, $x-primary-400);
+  @include link-type('success', $x-success, $x-success-100, $x-success-300, $x-success-400);
+  @include link-type('warning', $x-warning, $x-warning-100, $x-warning-300, $x-warning-400);
+  @include link-type('danger', $x-danger, $x-danger-100, $x-danger-300, $x-danger-400);
+  @include link-type('info', $x-info, $x-info-100, $x-info-300, $x-info-400);
 }
 
 @mixin link-type($type, $color, $hover-color, $active-color, $disabled-color) {
@@ -65,7 +64,7 @@
     &:active {
       color: $active-color;
     }
-    &.#{$--x-link}-disabled {
+    &.#{$x-link}-disabled {
       color: $disabled-color;
       cursor: not-allowed;
       &:active {

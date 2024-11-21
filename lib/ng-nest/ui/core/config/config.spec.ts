@@ -16,7 +16,6 @@ const config: XConfig = {
 };
 
 @Component({
-  standalone: true,
   imports: [XButtonModule],
   template: `<x-button>全局配置</x-button>`
 })

@@ -22,7 +22,6 @@ import { XResizableDirective, XResizableEvent } from '@ng-nest/ui/resizable';
 
 @Component({
   selector: 'x-dialog-portal',
-  standalone: true,
   imports: [DragDropModule, PortalModule, XResizableDirective],
   templateUrl: './dialog-portal.component.html',
   styleUrls: ['./dialog-portal.component.scss'],

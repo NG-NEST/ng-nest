@@ -1,6 +1,7 @@
 // Table style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-table: $--x-prefix + '-table';
-$--x-table-head: $--x-prefix + '-table-head';
-$--x-table-body: $--x-prefix + '-table-body';
-$--x-table-foot: $--x-prefix + '-table-foot';
+$x-table: $x-prefix + '-table';
+$x-table-head: $x-prefix + '-table-head';
+$x-table-body: $x-prefix + '-table-body';
+$x-table-foot: $x-prefix + '-table-foot';

@@ -5,7 +5,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-prompt',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './prompt.component.html'
 })

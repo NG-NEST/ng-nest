@@ -3,8 +3,7 @@ import { XIsArray, XIsString, XIsUndefined } from '@ng-nest/ui/core';
 import { XKeywordPrefix, XKeywordProperty } from './keyword.property';
 
 @Directive({
-  selector: `[${XKeywordPrefix}]`,
-  standalone: true
+  selector: `[${XKeywordPrefix}]`
 })
 export class XKeywordDirective extends XKeywordProperty {
   private elementRef = inject(ElementRef);

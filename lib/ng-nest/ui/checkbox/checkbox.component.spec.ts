@@ -10,14 +10,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
   imports: [XCheckboxComponent],
   template: ` <x-checkbox></x-checkbox> `
 })
 class XTestCheckboxComponent {}
 
 @Component({
-  standalone: true,
   imports: [FormsModule, XCheckboxComponent],
   template: `
     <x-checkbox

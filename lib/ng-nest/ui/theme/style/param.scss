@@ -1,3 +1,4 @@
 // Theme style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-theme-prefix: $--x-prefix + '-theme';
+$x-theme-prefix: $x-prefix + '-theme';

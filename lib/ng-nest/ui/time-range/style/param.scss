@@ -1,3 +1,4 @@
 // TimeRange style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-time-range: $--x-prefix + '-time-range';
+$x-time-range: $x-prefix + '-time-range';

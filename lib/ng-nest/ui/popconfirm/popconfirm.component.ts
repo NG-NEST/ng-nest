@@ -19,7 +19,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XPopconfirmPrefix}`,
-  standalone: true,
   imports: [XPopoverDirective, XButtonComponent, XIconComponent, XOutletDirective],
   templateUrl: './popconfirm.component.html',
   styleUrls: ['./popconfirm.component.scss'],

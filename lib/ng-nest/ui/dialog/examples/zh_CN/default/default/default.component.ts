@@ -6,7 +6,6 @@ import { XMessageBoxService, XMessageBoxAction } from '@ng-nest/ui/message-box';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XButtonModule, XDialogComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

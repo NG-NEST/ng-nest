@@ -1,8 +1,8 @@
 // Find
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use './param.scss' as *;
 
 @mixin find {
   & {
@@ -13,7 +13,7 @@
     display: inline-block;
     white-space: nowrap;
     position: relative;
-    color: $--x-text-300;
+    color: $x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -21,9 +21,9 @@
     &:before {
       display: inline-block;
       margin-right: 0.25rem;
-      color: $--x-danger;
+      color: $x-danger;
       line-height: 1;
-      font-size: $--x-font-size-small;
+      font-size: $x-font-size-small;
       content: '*';
     }
   }
@@ -41,7 +41,7 @@
   }
   &.x-required {
     > label {
-      color: $--x-danger;
+      color: $x-danger;
     }
   }
   &.x-direction {
@@ -62,11 +62,11 @@
       align-items: inherit;
     }
   }
-  @include size('big', $--x-height-big, 0 $--x-padding-big);
-  @include size('large', $--x-height-large, 0 $--x-padding-large);
-  @include size('medium', $--x-height-medium, 0 $--x-padding-medium);
-  @include size('small', $--x-height-small, 0 $--x-padding-small);
-  @include size('mini', $--x-height-mini, 0 $--x-padding-mini);
+  @include size('big', $x-height-big, 0 $x-padding-big);
+  @include size('large', $x-height-large, 0 $x-padding-large);
+  @include size('medium', $x-height-medium, 0 $x-padding-medium);
+  @include size('small', $x-height-small, 0 $x-padding-small);
+  @include size('mini', $x-height-mini, 0 $x-padding-mini);
 }
 
 @mixin size($size, $height, $padding) {
@@ -75,7 +75,7 @@
       height: $height;
       line-height: $height;
     }
-    .#{$--x-find-prefix}-tags {
+    .#{$x-find-prefix}-tags {
       @if $size == small {
         margin-top: -0.1875rem;
         > x-tag {
@@ -106,7 +106,7 @@
     max-height: 25rem;
     overflow-y: auto;
     .x-tree-node-content.x-activated {
-      color: $--x-primary;
+      color: $x-primary;
     }
   }
   &-tree-node {
@@ -123,19 +123,19 @@
     }
   }
   &-tree-table {
-    .#{$--x-find-prefix}-dialog-tree {
+    .#{$x-find-prefix}-dialog-tree {
       flex: initial;
       min-height: initial;
       max-height: initial;
       width: 14rem;
       margin-right: 1rem;
       padding-right: 1rem;
-      border-right: $--x-border-base;
+      border-right: $x-border-base;
     }
   }
   &-checked {
     margin-left: 1rem;
-    border-left: $--x-border-base;
+    border-left: $x-border-base;
     padding-left: 1rem;
     width: 10rem;
     overflow-y: auto;

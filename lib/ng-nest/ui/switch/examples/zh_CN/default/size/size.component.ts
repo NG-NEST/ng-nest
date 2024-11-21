@@ -6,7 +6,6 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 
 @Component({
   selector: 'ex-size',
-  standalone: true,
   imports: [FormsModule, XSwitchComponent, XRadioComponent],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']

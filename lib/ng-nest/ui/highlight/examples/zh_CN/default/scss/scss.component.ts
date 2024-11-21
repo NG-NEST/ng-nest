@@ -3,7 +3,6 @@ import { XHighlightComponent } from '@ng-nest/ui/highlight';
 
 @Component({
   selector: 'ex-scss',
-  standalone: true,
   imports: [XHighlightComponent],
   templateUrl: './scss.component.html'
 })

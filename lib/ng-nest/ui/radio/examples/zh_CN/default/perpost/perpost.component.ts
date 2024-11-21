@@ -12,7 +12,6 @@ import { XTimePickerModule } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: 'ex-perpost',
-  standalone: true,
   imports: [
     FormsModule,
     XRadioComponent,

@@ -1,13 +1,12 @@
 // Statistic
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin statistic {
   &-label {
     margin-bottom: 0.25rem;
-    color: $--x-text-400;
+    color: $x-text-400;
   }
   &-value {
     font-size: 1.5rem;

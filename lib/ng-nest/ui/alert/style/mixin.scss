@@ -1,14 +1,13 @@
 // Alert
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin alert {
   & {
-    background-color: $--x-background;
-    border: 0.0625rem solid $--x-border-300;
-    border-radius: $--x-border-radius;
+    background-color: $x-background;
+    border: 0.0625rem solid $x-border-300;
+    border-radius: $x-border-radius;
     padding: 0.5rem 1rem;
     position: relative;
     display: flex;
@@ -31,7 +30,7 @@
     }
   }
   &-content {
-    font-size: $--x-alert-content-font-size;
+    font-size: $x-alert-content-font-size;
     line-height: 1.325rem;
     margin: 0.25rem 0 0 0;
   }
@@ -39,7 +38,7 @@
     align-items: flex-start;
   }
   &-icon.x-icon {
-    font-size: $--x-alert-icon-font-size;
+    font-size: $x-alert-icon-font-size;
     margin-right: 0.5rem;
   }
   &-icon-medium {
@@ -52,21 +51,21 @@
       cursor: move;
     }
   }
-  @include type('success', $--x-success, $--x-success-900, $--x-success-600, $--x-success-400);
-  @include type('info', $--x-info, $--x-info-900, $--x-info-600, $--x-info-400);
-  @include type('warning', $--x-warning, $--x-warning-900, $--x-warning-600, $--x-warning-400);
-  @include type('error', $--x-danger, $--x-danger-900, $--x-danger-600, $--x-danger-400);
-  @include type('loading', $--x-primary, $--x-info-900, $--x-info-600, $--x-info-400);
+  @include type('success', $x-success, $x-success-900, $x-success-600, $x-success-400);
+  @include type('info', $x-info, $x-info-900, $x-info-600, $x-info-400);
+  @include type('warning', $x-warning, $x-warning-900, $x-warning-600, $x-warning-400);
+  @include type('error', $x-danger, $x-danger-900, $x-danger-600, $x-danger-400);
+  @include type('loading', $x-primary, $x-info-900, $x-info-600, $x-info-400);
 }
 
-@mixin type($type, $color, $background, $--border-color, $close-color) {
+@mixin type($type, $color, $background, $border-color, $close-color) {
   &-#{$type} {
     &.x-light {
       color: $color;
       background-color: $background;
       border-color: transparent;
-      box-shadow: $--x-box-shadow;
-      x-button.#{$--x-alert}-close .x-button {
+      box-shadow: $x-box-shadow;
+      x-button.#{$x-alert}-close .x-button {
         color: $close-color;
         &:hover {
           color: $color;
@@ -77,26 +76,26 @@
       color: $background;
       background-color: $color;
       border-color: transparent;
-      box-shadow: $--x-box-shadow;
-      x-button.#{$--x-alert}-close .x-button {
+      box-shadow: $x-box-shadow;
+      x-button.#{$x-alert}-close .x-button {
         color: $background;
         &:hover {
-          color: $--x-background-100;
+          color: $x-background-100;
         }
       }
     }
     &.x-white {
-      color: $--x-text-300;
-      background-color: $--x-background;
+      color: $x-text-300;
+      background-color: $x-background;
       border-color: transparent;
-      box-shadow: $--x-box-shadow;
-      .#{$--x-alert}-icon.x-icon {
+      box-shadow: $x-box-shadow;
+      .#{$x-alert}-icon.x-icon {
         color: $color;
       }
-      x-button.#{$--x-alert}-close .x-button {
-        color: $--x-text-400;
+      x-button.#{$x-alert}-close .x-button {
+        color: $x-text-400;
         &:hover {
-          color: $--x-text-300;
+          color: $x-text-300;
         }
       }
     }

@@ -4,7 +4,6 @@ import { XRateComponent } from '@ng-nest/ui/rate';
 
 @Component({
   selector: 'ex-disabled',
-  standalone: true,
   imports: [FormsModule, XRateComponent],
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss']

@@ -32,7 +32,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: `${XDropdownPortalPrefix}`,
-  standalone: true,
   imports: [FormsModule, XListComponent],
   templateUrl: './dropdown-portal.component.html',
   styleUrls: ['./dropdown-portal.component.scss'],

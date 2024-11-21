@@ -3,7 +3,6 @@ import { ExDefaultComponent, ExContentComponent } from '@ng-nest/ui/tree-file/ex
 
 @Component({
   selector: 'te-tree-file',
-  standalone: true,
   imports: [ExDefaultComponent, ExContentComponent],
   templateUrl: './tree-file.component.html'
 })

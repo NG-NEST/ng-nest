@@ -34,7 +34,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'x-color-picker',
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, XInputComponent],
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],

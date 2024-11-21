@@ -4,7 +4,6 @@ import { XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCollapsePrefix}`,
-  standalone: true,
   templateUrl: './collapse.component.html',
   styleUrls: ['./collapse.component.scss'],
   encapsulation: ViewEncapsulation.None,

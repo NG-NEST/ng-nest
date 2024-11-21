@@ -4,7 +4,6 @@ import { XProgressComponent } from '@ng-nest/ui/progress';
 
 @Component({
   selector: 'ex-color',
-  standalone: true,
   imports: [XProgressComponent, XButtonComponent, XButtonsComponent],
   templateUrl: './color.component.html',
   styleUrls: ['./color.component.scss']

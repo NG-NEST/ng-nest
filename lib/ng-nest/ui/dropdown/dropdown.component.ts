@@ -26,12 +26,10 @@ import {
   OverlayConfig,
   OverlayRef
 } from '@angular/cdk/overlay';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XDropdownPrefix}`,
-  standalone: true,
-  imports: [NgClass],
+  imports: [],
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
   encapsulation: ViewEncapsulation.None,

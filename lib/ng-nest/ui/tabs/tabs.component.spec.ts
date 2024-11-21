@@ -15,14 +15,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { XDataArray, XJustify, XSize } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XTabsComponent],
   template: ` <x-tabs> </x-tabs> `
 })
 class XTestTabsComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTabsComponent],
   template: `
     <x-tabs

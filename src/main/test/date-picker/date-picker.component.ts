@@ -16,7 +16,6 @@ import {
 
 @Component({
   selector: 'te-date-picker',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExBorderedComponent,

@@ -5,7 +5,6 @@ import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-ant-design',
-  standalone: true,
   imports: [XIconComponent, XTabsComponent, XTabComponent, XRowComponent, XColComponent],
   templateUrl: './ant-design.component.html',
   styleUrls: ['./ant-design.component.scss']

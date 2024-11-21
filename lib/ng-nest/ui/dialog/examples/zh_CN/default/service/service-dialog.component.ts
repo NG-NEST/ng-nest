@@ -13,7 +13,6 @@ import { XDialogRef } from '@ng-nest/ui/dialog';
 
 @Component({
   selector: 'ex-service-dialog',
-  standalone: true,
   imports: [
     XButtonComponent,
     XDialogTitleDirective,

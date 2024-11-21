@@ -4,7 +4,6 @@ import { XDatePickerComponent, XDateRangeComponent } from '@ng-nest/ui/date-pick
 
 @Component({
   selector: 'ex-footer',
-  standalone: true,
   imports: [FormsModule, XDatePickerComponent, XDateRangeComponent],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']

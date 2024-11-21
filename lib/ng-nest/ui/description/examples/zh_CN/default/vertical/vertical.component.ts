@@ -3,7 +3,6 @@ import { XDescriptionComponent, XDescriptionItemComponent } from '@ng-nest/ui/de
 
 @Component({
   selector: 'ex-vertical',
-  standalone: true,
   imports: [XDescriptionComponent, XDescriptionItemComponent],
   templateUrl: './vertical.component.html'
 })

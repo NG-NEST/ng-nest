@@ -1,3 +1,4 @@
 // Message style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-message: $--x-prefix + '-message';
+$x-message: $x-prefix + '-message';

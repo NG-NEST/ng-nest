@@ -1,6 +1,7 @@
 // Resizable
-@import './mixin';
+@use './mixin' as *;
+@use './param' as *;
 
-.#{$--x-resizable-prefix} {
+.#{$x-resizable-prefix} {
   @include resizable();
 }

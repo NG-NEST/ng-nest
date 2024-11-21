@@ -3,7 +3,6 @@ import { XDrawerContainerPrefix, XDrawerContainerProperty, X_DRAWER_CONTAINER } 
 
 @Component({
   selector: XDrawerContainerPrefix,
-  standalone: true,
   templateUrl: './drawer-container.component.html',
   styleUrls: ['./drawer-container.component.scss'],
   encapsulation: ViewEncapsulation.None,

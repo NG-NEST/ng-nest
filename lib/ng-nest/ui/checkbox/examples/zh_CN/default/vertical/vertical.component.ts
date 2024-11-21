@@ -3,7 +3,6 @@ import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 
 @Component({
   selector: 'ex-vertical',
-  standalone: true,
   imports: [XCheckboxComponent],
   templateUrl: './vertical.component.html',
   styleUrls: ['./vertical.component.scss']

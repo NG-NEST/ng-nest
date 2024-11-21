@@ -1,14 +1,14 @@
 // Loading
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-.#{$--x-loading}-parent {
+.#{$x-loading}-parent {
   position: relative;
 }
 
-.#{$--x-loading} {
+.#{$x-loading} {
   @include reset-component();
   @include loading();
 }

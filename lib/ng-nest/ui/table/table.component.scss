@@ -1,15 +1,16 @@
 // Table
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/params/index.scss' as *;
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-.#{$--x-table} {
+.#{$x-table} {
   @include reset-component();
   @include table();
 }
 
-#{$--x-table} {
+#{$x-table} {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,7 +22,7 @@
       flex-direction: column-reverse;
       .x-pagination {
         padding-top: 0;
-        padding-bottom: calc(#{$--x-font-size} / 2);
+        padding-bottom: calc(#{$x-font-size} / 2);
       }
     }
     &-top-center {
@@ -29,7 +30,7 @@
       align-items: center;
       .x-pagination {
         padding-top: 0;
-        padding-bottom: calc(#{$--x-font-size} / 2);
+        padding-bottom: calc(#{$x-font-size} / 2);
       }
     }
     &-top-right {
@@ -37,7 +38,7 @@
       align-items: flex-end;
       .x-pagination {
         padding-top: 0;
-        padding-bottom: calc(#{$--x-font-size} / 2);
+        padding-bottom: calc(#{$x-font-size} / 2);
       }
     }
     &-bottom-center {
@@ -49,6 +50,6 @@
   }
 }
 
-body > .#{$--x-table}-th {
+body > .#{$x-table}-th {
   @include body-table-th();
 }

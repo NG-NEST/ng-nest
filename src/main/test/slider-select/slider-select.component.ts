@@ -15,7 +15,6 @@ import {
 
 @Component({
   selector: 'te-slider-select',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExCustomValueComponent,

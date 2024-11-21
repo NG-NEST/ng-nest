@@ -6,7 +6,6 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: `${XTextRetractPrefix}`,
-  standalone: true,
   imports: [FormsModule, XLinkComponent, XI18nPipe],
   templateUrl: './text-retract.component.html',
   styleUrls: ['./text-retract.component.scss'],

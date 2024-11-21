@@ -1,26 +1,28 @@
 // Placeholder text
+@use '../params/index' as *;
+
 @mixin placeholder() {
   // Firefox
   &::-moz-placeholder {
-    color: $--x-placeholder-color;
+    color: $x-placeholder-color;
     opacity: 1;
   }
   // Internet Explorer 10+
   &:-ms-input-placeholder {
-    color: $--x-placeholder-color;
+    color: $x-placeholder-color;
   }
   // Safari and Chrome
   &::-webkit-input-placeholder {
-    color: $--x-placeholder-color;
+    color: $x-placeholder-color;
   }
 }
 
 // Element hover
 @mixin hover() {
-  border-color: $--x-primary-300;
+  border-color: $x-primary-300;
 }
 
 // Element focus
 @mixin focus() {
-  border-color: $--x-primary;
+  border-color: $x-primary;
 }

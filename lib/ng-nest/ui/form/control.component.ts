@@ -44,32 +44,11 @@ import { XSelectComponent } from '@ng-nest/ui/select';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
-import { XTimePickerComponent, XTimePickerModule } from '@ng-nest/ui/time-picker';
+import { XTimePickerComponent } from '@ng-nest/ui/time-picker';
 
 @Component({
   selector: 'x-control',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    PortalModule,
-
-    XInputComponent,
-    XSelectComponent,
-    XCascadeComponent,
-    XCheckboxComponent,
-    XColorPickerComponent,
-    XDatePickerComponent,
-    XInputNumberComponent,
-    XRadioComponent,
-    XRateComponent,
-    XSliderSelectComponent,
-    XSwitchComponent,
-    XTimePickerModule,
-    XTextareaComponent,
-    XFindComponent,
-    XAutoCompleteComponent
-  ],
+  imports: [FormsModule, ReactiveFormsModule, PortalModule],
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.scss'],
   encapsulation: ViewEncapsulation.None,

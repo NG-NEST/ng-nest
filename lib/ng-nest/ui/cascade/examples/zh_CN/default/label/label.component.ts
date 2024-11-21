@@ -5,7 +5,6 @@ import { XColComponent, XRowComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'ex-label',
-  standalone: true,
   imports: [XRowComponent, XColComponent, FormsModule, XCascadeComponent],
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']

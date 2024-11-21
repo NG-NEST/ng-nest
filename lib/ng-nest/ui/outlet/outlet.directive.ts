@@ -10,7 +10,7 @@ import {
   input
 } from '@angular/core';
 
-@Directive({ selector: '[xOutlet]', standalone: true })
+@Directive({ selector: '[xOutlet]' })
 export class XOutletDirective implements OnChanges {
   xOutletContext = input<any>();
   xOutlet = input<TemplateRef<any> | any>();

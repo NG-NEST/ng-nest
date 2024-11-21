@@ -1,10 +1,11 @@
-@import '../../../styles/index.scss';
+@use '../../../styles/default.scss' as *;
+@use '../../../styles/mixin.scss' as *;
 
 :host {
   .ns-theme-title {
-    background-color: $--x-background-a200;
-    border-top-left-radius: $--x-border-radius;
-    border-top-right-radius: $--x-border-radius;
+    background-color: $x-background-a200;
+    border-top-left-radius: $x-border-radius;
+    border-top-right-radius: $x-border-radius;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,12 +16,12 @@
     gap: 1rem;
   }
   .ns-theme-category {
-    border: $--x-border-base;
+    border: $x-border-base;
     .category,
     .item {
       padding: 0 1rem;
       &:not(:first-child) {
-        border-top: $--x-border-base;
+        border-top: $x-border-base;
       }
     }
 
@@ -30,7 +31,7 @@
         flex: 1;
         padding-bottom: 0.5rem;
         &:not(:first-child) {
-          border-left: $--x-border-base;
+          border-left: $x-border-base;
           padding-left: 1rem;
         }
         &:not(:last-child) {
@@ -40,12 +41,12 @@
     }
 
     .border-bottom {
-      border-bottom: $--x-border-base;
+      border-bottom: $x-border-base;
     }
 
     .category {
       padding: 0.5rem 1rem;
-      background-color: $--x-background-a100;
+      background-color: $x-background-a100;
     }
   }
   .ns-theme-close {
@@ -55,7 +56,7 @@
   }
 
   .ns-theme-style-icon {
-    font-size: calc(#{$--x-font-size} + 0.25rem);
+    font-size: calc(#{$x-font-size} + 0.25rem);
   }
 }
 

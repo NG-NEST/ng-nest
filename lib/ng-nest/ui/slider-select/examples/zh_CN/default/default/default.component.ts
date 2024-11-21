@@ -4,7 +4,6 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [FormsModule, XSliderSelectComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

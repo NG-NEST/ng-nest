@@ -7,14 +7,12 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XComputedStyle, XSleep } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XIconComponent],
   template: ` <x-icon></x-icon> `
 })
 class XTestIconComponent {}
 
 @Component({
-  standalone: true,
   imports: [XIconComponent],
   template: ` <x-icon [href]="href()" [type]="type()" [color]="color()" [spin]="spin()"> </x-icon> `
 })

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-search',
-  standalone: true,
   imports: [FormsModule, XSelectComponent],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']

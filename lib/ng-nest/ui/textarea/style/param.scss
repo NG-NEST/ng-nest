@@ -1,42 +1,43 @@
 // Textarea style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-textarea-prefix: $--x-prefix + '-textarea';
+$x-textarea-prefix: $x-prefix + '-textarea';
 
 /* 字体大小 */
-$--x-textarea-font-size: $--x-font-size;
+$x-textarea-font-size: $x-font-size;
 
 /* 高度 */
-$--x-textarea-height: calc(#{$--x-font-size} + 0.875rem);
+$x-textarea-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 行高 */
-$--x-textarea-line-height: calc(#{$--x-font-size} + 0.5rem);
+$x-textarea-line-height: calc(#{$x-font-size} + 0.5rem);
 
 /* 内边距 */
-$--x-textarea-padding: 0.5rem;
+$x-textarea-padding: 0.5rem;
 
 /* 文字颜色 */
-$--x-textarea-color: $--x-text;
+$x-textarea-color: $x-text;
 
 /* 提示文字颜色 */
-$--x-textarea-placeholder-color: $--x-placeholder-color;
+$x-textarea-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-textarea-background-color: $--x-background;
+$x-textarea-background-color: $x-background;
 
 /* 边框样式 */
-$--x-textarea-border: $--x-border-width $--x-border-style $--x-border;
+$x-textarea-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-textarea-border-radius: $--x-border-radius;
+$x-textarea-border-radius: $x-border-radius;
 
 /* 阴影 */
-$--x-textarea-box-shadow: $--x-box-shadow transparent;
+$x-textarea-box-shadow: $x-box-shadow transparent;
 
 /* 禁用颜色 */
-$--x-textarea-disabled-color: $--x-text-500;
+$x-textarea-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-textarea-icon-font-size: $--x-font-size-medium;
+$x-textarea-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-textarea-icon-padding: 0.75rem;
+$x-textarea-icon-padding: 0.75rem;

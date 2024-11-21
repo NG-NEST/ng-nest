@@ -16,15 +16,13 @@ import { XImagePreviewComponent } from './image-preview.component';
 import { XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { map } from 'rxjs';
 import { XImageGroupComponent } from './image-group.component';
-import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XImagePrefix}`,
-  standalone: true,
-  imports: [NgClass, XIconComponent, XOutletDirective],
+  imports: [XIconComponent, XOutletDirective],
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
   encapsulation: ViewEncapsulation.None,

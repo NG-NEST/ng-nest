@@ -1,3 +1,4 @@
 // Link style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-link: $--x-prefix + '-link';
+$x-link: $x-prefix + '-link';

@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: 'te-skeleton',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExActiveComponent,

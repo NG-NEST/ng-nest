@@ -3,7 +3,6 @@ import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 
 @Component({
   selector: 'ex-blend',
-  standalone: true,
   imports: [XRowComponent, XColComponent],
   templateUrl: './blend.component.html',
   styleUrls: ['./blend.component.scss']

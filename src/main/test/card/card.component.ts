@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'te-card',
-  standalone: true,
   imports: [ExDefaultComponent, ExHeaderComponent, ExImgComponent, ExShadowComponent],
   templateUrl: './card.component.html'
 })

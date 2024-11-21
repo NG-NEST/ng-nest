@@ -17,7 +17,6 @@ import {
 
 @Component({
   selector: 'te-tree',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExActivatedComponent,

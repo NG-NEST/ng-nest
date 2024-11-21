@@ -11,7 +11,6 @@ import {
 
 @Component({
   selector: 'ex-disabled-date',
-  standalone: true,
   imports: [FormsModule, XDatePickerComponent, XDateRangeComponent],
   templateUrl: './disabled-date.component.html',
   styleUrls: ['./disabled-date.component.scss'],

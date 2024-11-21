@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-disabled',
-  standalone: true,
   imports: [FormsModule, XRowComponent, XColComponent, XAutoCompleteComponent],
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss']

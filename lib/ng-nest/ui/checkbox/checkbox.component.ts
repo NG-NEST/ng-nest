@@ -24,7 +24,6 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XCheckboxPrefix}`,
-  standalone: true,
   imports: [NgClass, FormsModule, XButtonComponent, XButtonsComponent, XTagComponent, XOutletDirective],
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],

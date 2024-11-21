@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'te-crumb',
-  standalone: true,
   imports: [ExCustomComponent, ExDefaultComponent, ExIconComponent, ExSeparatorComponent],
   templateUrl: './crumb.component.html'
 })

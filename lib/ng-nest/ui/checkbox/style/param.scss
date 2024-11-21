@@ -1,10 +1,11 @@
 // Checkbox style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-checkbox-prefix: $--x-prefix + '-checkbox';
-$--x-checkboxs-prefix: $--x-prefix + '-checkboxs';
+$x-checkbox-prefix: $x-prefix + '-checkbox';
+$x-checkboxs-prefix: $x-prefix + '-checkboxs';
 
-$--x-checkbox-border: $--x-border-width $--x-border-style $--x-border;
+$x-checkbox-border: $x-border-width $x-border-style $x-border;
 
-$--x-checkbox-border-radius: $--x-border-radius;
+$x-checkbox-border-radius: $x-border-radius;
 
-$--x-checkbox-height: $--x-height-medium;
+$x-checkbox-height: $x-height-medium;

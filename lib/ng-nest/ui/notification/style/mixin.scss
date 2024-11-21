@@ -1,14 +1,13 @@
 // Notification
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin notification {
   > x-alert {
     padding: 0.25rem;
     > .x-alert {
-      box-shadow: $--x-box-shadow;
+      box-shadow: $x-box-shadow;
     }
     .x-alert-icon.x-icon {
       margin-top: 0.125rem;

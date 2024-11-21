@@ -3,7 +3,6 @@ import { XMainPrefix } from './container.property';
 
 @Component({
   selector: `${XMainPrefix}`,
-  standalone: true,
   template: '<ng-content></ng-content>',
   styleUrls: ['./main.component.scss'],
   encapsulation: ViewEncapsulation.None,

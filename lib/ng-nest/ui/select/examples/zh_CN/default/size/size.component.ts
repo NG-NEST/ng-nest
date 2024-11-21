@@ -6,7 +6,6 @@ import { XSelectComponent } from '@ng-nest/ui/select';
 
 @Component({
   selector: 'ex-size',
-  standalone: true,
   imports: [FormsModule, XSelectComponent, XRadioComponent],
   templateUrl: './size.component.html',
   styleUrls: ['./size.component.scss']

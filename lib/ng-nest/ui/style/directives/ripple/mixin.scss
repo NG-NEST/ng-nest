@@ -1,8 +1,6 @@
 // Ripple
-
-@import '../../themes/default';
-@import '../../mixins/index';
-@import './param';
+@use '../../params/index' as *;
+@use './param' as *;
 
 @mixin ripple {
   overflow: hidden;
@@ -16,21 +14,23 @@
     pointer-events: none;
     z-index: -1;
     background-color: rgba(0, 0, 0, 0.1);
-    transition: opacity, transform 0ms cubic-bezier(0, 0, 0.2, 1);
+    transition:
+      opacity,
+      transform 0ms cubic-bezier(0, 0, 0.2, 1);
     transform: scale(0);
   }
-  @include ripple-type('initial', $--x-background-a500);
-  @include ripple-type('primary', $--x-primary-200);
-  @include ripple-type('success', $--x-success-200);
-  @include ripple-type('warning', $--x-warning-200);
-  @include ripple-type('danger', $--x-danger-200);
-  @include ripple-type('info', $--x-info-200);
+  @include ripple-type('initial', $x-background-a500);
+  @include ripple-type('primary', $x-primary-200);
+  @include ripple-type('success', $x-success-200);
+  @include ripple-type('warning', $x-warning-200);
+  @include ripple-type('danger', $x-danger-200);
+  @include ripple-type('info', $x-info-200);
   @include ripple-type('text', rgba(0, 0, 0, 0.1));
 }
 
 @mixin ripple-type($type, $background) {
   &-#{$type} {
-    .#{$--x-ripple-prefix}-element {
+    .#{$x-ripple-prefix}-element {
       background-color: $background;
     }
   }

@@ -4,7 +4,6 @@ import { XTreeSelectComponent, XTreeSelectNode } from '@ng-nest/ui/tree-select';
 
 @Component({
   selector: 'ex-multiple',
-  standalone: true,
   imports: [FormsModule, XTreeSelectComponent],
   templateUrl: './multiple.component.html',
   styleUrls: ['./multiple.component.scss']

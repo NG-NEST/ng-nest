@@ -10,7 +10,6 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
 
 @Component({
   selector: 'ns-docs',
-  standalone: true,
   imports: [RouterOutlet, NsAdaptionDirective, XMenuComponent],
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss'],

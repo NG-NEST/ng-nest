@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ex-virtual-scroll',
-  standalone: true,
   imports: [FormsModule, XTreeComponent, XButtonComponent, XInputNumberComponent],
   templateUrl: './virtual-scroll.component.html'
 })

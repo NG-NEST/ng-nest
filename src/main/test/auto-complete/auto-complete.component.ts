@@ -11,7 +11,6 @@ import {
 
 @Component({
   selector: 'te-auto-complete',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExBorderedComponent,

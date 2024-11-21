@@ -14,7 +14,6 @@ import {
 
 @Component({
   selector: 'te-checkbox',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExAsyncComponent,

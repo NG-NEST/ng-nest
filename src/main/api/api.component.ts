@@ -3,7 +3,6 @@ import { TypesService } from '@services';
 
 @Component({
   selector: 'ns-api',
-  standalone: true,
   imports: [],
   templateUrl: './api.component.html',
   styleUrl: './api.component.scss'

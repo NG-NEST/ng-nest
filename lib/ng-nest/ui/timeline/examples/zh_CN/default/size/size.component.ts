@@ -4,7 +4,6 @@ import { XAddDays, XAddHours } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'ex-size',
-  standalone: true,
   imports: [XTimelineComponent],
   templateUrl: './size.component.html'
 })

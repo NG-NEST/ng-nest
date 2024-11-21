@@ -14,14 +14,12 @@ import { XDataArray, XSize, XSleep } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-  standalone: true,
   imports: [XMenuComponent],
   template: ` <x-menu> </x-menu> `
 })
 class XTestMenuComponent {}
 
 @Component({
-  standalone: true,
   imports: [XMenuComponent],
   template: `
     <div #targetRef style="overflow: auto; height: 100px">

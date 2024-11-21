@@ -64,7 +64,6 @@ const DATA_SELECT: XData<XSelectNode> = [
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XFormComponent],
   templateUrl: './default.component.html',
   providers: [DefaultService, TreeService]

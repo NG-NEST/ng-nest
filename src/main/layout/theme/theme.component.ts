@@ -14,7 +14,6 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 
 @Component({
   selector: 'ns-theme',
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,

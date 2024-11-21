@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'te-tabs',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExActionComponent,

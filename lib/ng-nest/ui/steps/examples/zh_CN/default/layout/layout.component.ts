@@ -3,7 +3,6 @@ import { XStepsComponent, XStepsNode } from '@ng-nest/ui/steps';
 
 @Component({
   selector: 'ex-layout',
-  standalone: true,
   imports: [XStepsComponent],
   templateUrl: './layout.component.html'
 })

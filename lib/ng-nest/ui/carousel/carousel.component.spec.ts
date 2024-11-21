@@ -15,7 +15,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { XSleep } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XCarouselModule],
   template: `
     <x-carousel>
@@ -28,7 +27,6 @@ import { XSleep } from '@ng-nest/ui/core';
 class XTestCarouselComponent {}
 
 @Component({
-  standalone: true,
   imports: [XCarouselModule],
   template: `
     <x-carousel

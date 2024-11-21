@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: 'te-button',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExDisabledComponent,

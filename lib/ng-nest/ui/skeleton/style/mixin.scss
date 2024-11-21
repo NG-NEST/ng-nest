@@ -1,8 +1,7 @@
 // Skeleton
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin skeleton {
   x-row,
@@ -10,7 +9,7 @@
     min-height: 1rem;
   }
   x-row {
-    background-color: $--x-background;
+    background-color: $x-background;
   }
   x-row:not(:first-child) {
     margin-top: 1rem;
@@ -19,8 +18,8 @@
     > div {
       width: 100%;
       height: 1rem;
-      background-color: $--x-info-800;
-      border-radius: $--x-border-radius;
+      background-color: $x-info-800;
+      border-radius: $x-border-radius;
       position: relative;
     }
     &.has-child {
@@ -37,7 +36,7 @@
     &.title > div,
     &.avatar > div,
     &.img > div {
-      background-color: $--x-info-700;
+      background-color: $x-info-700;
     }
     &.transparent {
       padding: 0 !important;
@@ -50,14 +49,14 @@
     x-row {
       margin: 0 !important;
       x-col {
-        border-left: $--x-border-base;
-        border-bottom: $--x-border-base;
+        border-left: $x-border-base;
+        border-bottom: $x-border-base;
       }
       x-col:last-child {
-        border-right: $--x-border-base;
+        border-right: $x-border-base;
       }
       &:first-child x-col {
-        border-top: $--x-border-base;
+        border-top: $x-border-base;
       }
     }
   }
@@ -70,8 +69,8 @@
           right: 0;
           bottom: 0;
           left: 0;
-          background: $--x-background-100;
-          border-radius: $--x-border-radius;
+          background: $x-background-100;
+          border-radius: $x-border-radius;
           opacity: 0;
           animation: skeleton-active 1.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
           content: '';

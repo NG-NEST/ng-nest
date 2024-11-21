@@ -3,7 +3,6 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-vertical',
-  standalone: true,
   imports: [XRadioComponent],
   templateUrl: './vertical.component.html',
   styleUrls: ['./vertical.component.scss']

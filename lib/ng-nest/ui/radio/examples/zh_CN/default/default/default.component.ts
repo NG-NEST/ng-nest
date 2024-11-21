@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [FormsModule, XRadioComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

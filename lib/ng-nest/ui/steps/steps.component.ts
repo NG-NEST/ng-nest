@@ -7,7 +7,6 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XStepsPrefix}`,
-  standalone: true,
   imports: [NgClass, XIconComponent, XOutletDirective],
   templateUrl: './steps.component.html',
   styleUrls: ['./steps.component.scss'],

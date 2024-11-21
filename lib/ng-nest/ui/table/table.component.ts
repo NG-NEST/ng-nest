@@ -37,7 +37,6 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XTablePrefix}`,
-  standalone: true,
   imports: [
     NgClass,
     XOutletDirective,

@@ -3,7 +3,6 @@ import { ExDefaultComponent } from '@ng-nest/ui/outlet/examples';
 
 @Component({
   selector: 'te-outlet',
-  standalone: true,
   imports: [ExDefaultComponent],
   templateUrl: './outlet.component.html'
 })

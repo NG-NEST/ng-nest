@@ -16,7 +16,6 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: 'x-picker-year',
-  standalone: true,
   imports: [DatePipe, NgTemplateOutlet, XLinkComponent],
   templateUrl: './picker-year.component.html',
   styleUrls: ['./picker-year.component.scss'],

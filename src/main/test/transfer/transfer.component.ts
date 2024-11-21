@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'te-transfer',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExCustomComponent,

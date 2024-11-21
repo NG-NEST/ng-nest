@@ -4,7 +4,6 @@ import { XInputNumberComponent } from '@ng-nest/ui/input-number';
 
 @Component({
   selector: 'ex-required',
-  standalone: true,
   imports: [FormsModule, XInputNumberComponent],
   templateUrl: './required.component.html',
   styleUrls: ['./required.component.scss']

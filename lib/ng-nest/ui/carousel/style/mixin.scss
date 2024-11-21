@@ -1,12 +1,11 @@
 // Carousel
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin carousel {
   & {
-    font-size: $--x-font-size;
+    font-size: $x-font-size;
     box-sizing: border-box;
     position: relative;
   }
@@ -20,7 +19,7 @@
       z-index: 10;
       transform: translateY(-50%);
       position: absolute;
-      transition: $--x-animation-duration-base ease-out;
+      transition: $x-animation-duration-base ease-out;
       .x-button {
         border: none;
         outline: none;
@@ -30,10 +29,10 @@
         width: 2.25rem;
         border-radius: 50%;
         background-color: rgba(31, 45, 61, 0.15);
-        color: $--x-background-100;
+        color: $x-background-100;
         text-align: center;
         &:hover {
-          color: $--x-background-100;
+          color: $x-background-100;
           background-color: rgba(31, 45, 61, 0.25);
         }
       }
@@ -54,7 +53,7 @@
       height: 100%;
       display: inline-block;
       overflow: hidden;
-      background-color: $--x-background-a100;
+      background-color: $x-background-a100;
       z-index: 0;
       &.x-carousel-animating {
         transition: 0.4s ease-in-out;
@@ -71,7 +70,7 @@
           height: 100%;
           top: 0;
           left: 0;
-          background-color: $--x-background;
+          background-color: $x-background;
           opacity: 0.24;
           transition: 0.2s;
         }
@@ -125,7 +124,7 @@
         justify-content: center;
         > li {
           > x-button .x-button {
-            background-color: $--x-text-700;
+            background-color: $x-text-700;
           }
           &.x-activated {
             > x-button .x-button {
@@ -209,15 +208,15 @@
     right: 0;
     z-index: 11;
     padding: 0.5rem 0.75rem;
-    font-size: $--x-font-size-big;
+    font-size: $x-font-size-big;
   }
   &-active {
-    color: $--x-primary;
+    color: $x-primary;
     font-weight: 600;
     font-size: 1.5rem;
   }
   &-count {
-    color: $--x-text;
+    color: $x-text;
     font-weight: 600;
   }
   &-has-current {

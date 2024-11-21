@@ -4,7 +4,6 @@ import { XTreeComponent, XTreeNode } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XTreeComponent, XLinkComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']

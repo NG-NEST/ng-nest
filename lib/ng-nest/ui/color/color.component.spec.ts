@@ -6,14 +6,12 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
-  standalone: true,
   imports: [XColorComponent],
   template: `<x-color></x-color>`
 })
 class XTestColorComponent {}
 
 @Component({
-  standalone: true,
   imports: [XColorComponent],
   template: `<x-color [label]="label()" [hex]="hex()" [amounts]="amounts()"> </x-color>`
 })

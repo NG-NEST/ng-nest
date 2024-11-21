@@ -27,7 +27,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XUploadPrefix}`,
-  standalone: true,
   imports: [
     NgTemplateOutlet,
     XIconComponent,

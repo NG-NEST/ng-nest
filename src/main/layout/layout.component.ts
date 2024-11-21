@@ -6,7 +6,6 @@ import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'ns-layout',
-  standalone: true,
   imports: [HeaderComponent, ContentComponent],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],

@@ -4,7 +4,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-offset',
-  standalone: true,
   imports: [XBadgeComponent, XButtonComponent],
   templateUrl: './offset.component.html',
   styleUrls: ['./offset.component.scss']

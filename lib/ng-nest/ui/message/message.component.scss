@@ -1,16 +1,16 @@
 // Message
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-.#{$--x-message} {
+.#{$x-message} {
   @include reset-component();
   @include message();
 }
 
-.#{$--x-message}-portal {
-  #{$--x-message} {
+.#{$x-message}-portal {
+  #{$x-message} {
     width: 100%;
   }
 }

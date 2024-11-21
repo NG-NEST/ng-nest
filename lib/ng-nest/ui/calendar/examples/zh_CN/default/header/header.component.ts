@@ -4,7 +4,6 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ex-header',
-  standalone: true,
   imports: [XCalendarComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],

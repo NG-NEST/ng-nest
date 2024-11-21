@@ -1,3 +1,4 @@
 // BackTop style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-back-top: $--x-prefix + '-back-top';
+$x-back-top: $x-prefix + '-back-top';

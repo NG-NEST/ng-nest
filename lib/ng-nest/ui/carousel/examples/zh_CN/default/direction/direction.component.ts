@@ -3,7 +3,6 @@ import { XCarouselComponent, XCarouselPanelComponent } from '@ng-nest/ui/carouse
 
 @Component({
   selector: 'ex-direction',
-  standalone: true,
   imports: [XCarouselComponent, XCarouselPanelComponent],
   templateUrl: './direction.component.html',
   styleUrls: ['./direction.component.scss']

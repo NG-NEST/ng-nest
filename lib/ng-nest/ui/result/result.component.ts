@@ -7,7 +7,6 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XResultPrefix}`,
-  standalone: true,
   imports: [NgClass, XIconComponent, XOutletDirective],
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss'],

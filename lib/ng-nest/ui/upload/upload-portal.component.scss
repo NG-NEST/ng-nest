@@ -1,15 +1,15 @@
 // Upload-Portal
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-#{$--x-upload-portal-prefix} {
+#{$x-upload-portal-prefix} {
   width: 100%;
   height: 100%;
 }
 
-.#{$--x-upload-portal-prefix} {
+.#{$x-upload-portal-prefix} {
   @include reset-component();
   @include upload-portal();
 }

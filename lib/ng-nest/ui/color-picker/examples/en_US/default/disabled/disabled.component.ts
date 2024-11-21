@@ -4,7 +4,6 @@ import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 
 @Component({
   selector: 'ex-disabled',
-  standalone: true,
   imports: [FormsModule, XColorPickerComponent],
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss']

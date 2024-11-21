@@ -3,7 +3,6 @@ import { XTabComponent, XTabsComponent } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XTabsComponent, XTabComponent],
   templateUrl: './default.component.html'
 })

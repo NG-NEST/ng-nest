@@ -5,7 +5,6 @@ import { XTreeNode, XTreeComponent } from '@ng-nest/ui/tree';
 
 @Component({
   selector: 'ex-control',
-  standalone: true,
   imports: [JsonPipe, XTreeComponent, XButtonComponent],
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.scss']

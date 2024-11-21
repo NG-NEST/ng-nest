@@ -5,7 +5,6 @@ import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
   selector: 'ex-form-vaild',
-  standalone: true,
   imports: [XButtonComponent, XFormComponent],
   templateUrl: './form-vaild.component.html'
 })

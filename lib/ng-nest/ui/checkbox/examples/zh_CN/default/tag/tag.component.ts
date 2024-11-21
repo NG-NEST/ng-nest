@@ -5,7 +5,6 @@ import { XTagComponent } from '@ng-nest/ui/tag';
 
 @Component({
   selector: 'ex-tag',
-  standalone: true,
   imports: [FormsModule, XCheckboxComponent, XTagComponent],
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss']

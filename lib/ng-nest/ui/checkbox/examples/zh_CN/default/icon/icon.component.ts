@@ -4,7 +4,6 @@ import { XCheckboxComponent, XCheckboxNode } from '@ng-nest/ui/checkbox';
 
 @Component({
   selector: 'ex-icon',
-  standalone: true,
   imports: [FormsModule, XCheckboxComponent],
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']

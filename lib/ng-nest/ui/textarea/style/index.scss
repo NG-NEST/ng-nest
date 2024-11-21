@@ -1,14 +1,14 @@
 // Textarea
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './mixin';
+@use '../../style/mixins/reset.scss' as *;
+@use './mixin.scss' as *;
+@use './param.scss' as *;
 
-#{$--x-textarea-prefix} {
+#{$x-textarea-prefix} {
   display: inline-block;
   width: 16rem;
 }
-.#{$--x-textarea-prefix} {
+.#{$x-textarea-prefix} {
   @include textarea();
   @include reset-component();
 }

@@ -3,7 +3,6 @@ import { XStepsComponent } from '@ng-nest/ui/steps';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XStepsComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.html']

@@ -1,38 +1,39 @@
 // Cascade style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-cascade-prefix: $--x-prefix + '-cascade';
+$x-cascade-prefix: $x-prefix + '-cascade';
 
 /* 字体大小 */
-$--x-cascade-font-size: $--x-font-size;
+$x-cascade-font-size: $x-font-size;
 
 /* 高度 */
-$--x-cascade-height: calc(#{$--x-font-size} + 0.875rem);
+$x-cascade-height: calc(#{$x-font-size} + 0.875rem);
 
 /* 内边距 */
-$--x-cascade-padding: 0 $--x-control-padding-horizontal;
+$x-cascade-padding: 0 $x-control-padding-horizontal;
 
 /* 文字颜色 */
-$--x-cascade-color: $--x-primary-900;
+$x-cascade-color: $x-primary-900;
 
 /* 提示文字颜色 */
-$--x-cascade-placeholder-color: $--x-placeholder-color;
+$x-cascade-placeholder-color: $x-placeholder-color;
 
 /* 背景颜色 */
-$--x-cascade-background-color: $--x-background;
+$x-cascade-background-color: $x-background;
 
 /* 边框样式 */
-$--x-cascade-border: $--x-border-width $--x-border-style $--x-border;
+$x-cascade-border: $x-border-width $x-border-style $x-border;
 
 /* 边框圆角 */
-$--x-cascade-border-radius: $--x-border-radius;
+$x-cascade-border-radius: $x-border-radius;
 
 /* 禁用颜色 */
-$--x-cascade-disabled-color: $--x-text-500;
+$x-cascade-disabled-color: $x-text-500;
 
 /* 输入框中的图标大小 */
-$--x-cascade-icon-font-size: $--x-font-size-medium;
+$x-cascade-icon-font-size: $x-font-size-medium;
 
 /* 输入框中图标的内边距 */
-$--x-cascade-icon-padding: $--x-control-padding-horizontal;
+$x-cascade-icon-padding: $x-control-padding-horizontal;
 
-$--x-cascade-portal-prefix: $--x-prefix + '-cascade-portal';
+$x-cascade-portal-prefix: $x-prefix + '-cascade-portal';

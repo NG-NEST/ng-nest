@@ -3,7 +3,6 @@ import { ExAsyncCloseComponent, ExConditionComponent, ExDefaultComponent } from 
 
 @Component({
   selector: 'te-popconfirm',
-  standalone: true,
   imports: [ExAsyncCloseComponent, ExConditionComponent, ExDefaultComponent],
   templateUrl: './popconfirm.component.html'
 })

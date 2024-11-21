@@ -1,3 +1,4 @@
 // Transfer style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-transfer: $--x-prefix + '-transfer';
+$x-transfer: $x-prefix + '-transfer';

@@ -1,22 +1,23 @@
-@import '../../styles/index.scss';
+@use '../../styles/default.scss' as *;
+@use '../../styles/mixin.scss' as *;
 
 ns-docs {
   position: relative;
   .docs-left {
     height: 100%;
-    width: $--sider-width + 0.0625rem;
-    background-color: $--x-background;
+    width: $sider-width + 0.0625rem;
+    background-color: $x-background;
     position: fixed;
     left: 0;
-    top: $--header-width;
+    top: $header-width;
     transition:
-      margin $--transition-duration-slow,
-      opacity $--transition-duration-slow;
-    border-inline-end: $--layout-border;
+      margin $transition-duration-slow,
+      opacity $transition-duration-slow;
+    border-inline-end: $layout-border;
     > section {
       position: relative;
       height: 100%;
-      width: $--sider-width;
+      width: $sider-width;
       padding: 2rem 0;
       float: left;
       overflow: hidden;
@@ -26,7 +27,7 @@ ns-docs {
     }
     x-menu {
       .x-menu.x-menu-column {
-        width: $--sider-width;
+        width: $sider-width;
       }
       .x-menu-nodes > .x-menu-node {
         margin-left: 0.5rem;
@@ -42,8 +43,8 @@ ns-docs {
     }
   }
   .docs-right {
-    padding-left: $--sider-width;
-    transition: padding $--transition-duration-slow;
+    padding-left: $sider-width;
+    transition: padding $transition-duration-slow;
   }
 }
 
@@ -51,7 +52,7 @@ ns-docs {
 .xsmall ns-docs {
   .docs-left {
     opacity: 0;
-    margin-left: -($--sider-width + 0.0625rem);
+    margin-left: -($sider-width + 0.0625rem);
   }
   .docs-right {
     padding-left: 0;

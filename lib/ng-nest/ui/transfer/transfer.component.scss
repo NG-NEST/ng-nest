@@ -1,14 +1,14 @@
 // Transfer
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-.#{$--x-transfer} {
+.#{$x-transfer} {
   @include reset-component();
   @include transfer();
 }
 
-body > li.#{$--x-transfer}-item {
+body > li.#{$x-transfer}-item {
   @include transfer-item();
 }

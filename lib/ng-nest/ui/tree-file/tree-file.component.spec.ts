@@ -7,14 +7,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { XData } from '@ng-nest/ui/core';
 
 @Component({
-  standalone: true,
   imports: [XTreeFileComponent],
   template: ` <x-tree-file> </x-tree-file> `
 })
 class XTestTreeFileComponent {}
 
 @Component({
-  standalone: true,
   imports: [XTreeFileComponent],
   template: `
     <x-tree-file

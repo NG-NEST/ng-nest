@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-disabled',
-  standalone: true,
   imports: [FormsModule, XSelectComponent],
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss']

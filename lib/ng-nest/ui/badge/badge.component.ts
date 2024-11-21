@@ -5,7 +5,6 @@ import { XIsNumber, XIsEmpty, XBadgeAnimation, XBadgeStandaloneAnimation, XIsStr
 
 @Component({
   selector: `${XBadgePrefix}`,
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet],
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],

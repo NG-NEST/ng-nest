@@ -1,3 +1,4 @@
 // Typography style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-typography-prefix: $--x-prefix + '-typography';
+$x-typography-prefix: $x-prefix + '-typography';

@@ -6,7 +6,6 @@ import { XMessageBoxAction, XMessageBoxService } from '@ng-nest/ui/message-box';
 
 @Component({
   selector: 'ex-container',
-  standalone: true,
   imports: [XDialogContainerComponent, XDialogComponent, XButtonComponent],
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.scss']

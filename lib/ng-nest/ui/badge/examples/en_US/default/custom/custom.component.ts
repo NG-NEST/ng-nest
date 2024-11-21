@@ -4,7 +4,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XBadgeComponent, XButtonComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']

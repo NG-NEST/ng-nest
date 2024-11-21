@@ -3,7 +3,6 @@ import { XCollapseComponent, XCollapsePanelComponent } from '@ng-nest/ui/collaps
 
 @Component({
   selector: 'ex-disabled',
-  standalone: true,
   imports: [XCollapseComponent, XCollapsePanelComponent],
   templateUrl: './disabled.component.html'
 })

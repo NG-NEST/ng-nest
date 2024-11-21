@@ -22,7 +22,6 @@ import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 
 @Component({
   selector: `${XSliderPrefix}`,
-  standalone: true,
   imports: [NgClass, NgStyle, NgTemplateOutlet, XLinkComponent, XButtonComponent, XOutletDirective, XDropdownComponent],
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],

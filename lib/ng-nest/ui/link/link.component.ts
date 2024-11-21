@@ -16,7 +16,6 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: `${XLinkPrefix}`,
-  standalone: true,
   imports: [NgClass, XIconComponent],
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],

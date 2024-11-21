@@ -5,7 +5,6 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 
 @Component({
   selector: 'ex-confirm',
-  standalone: true,
   imports: [XButtonComponent],
   templateUrl: './confirm.component.html'
 })

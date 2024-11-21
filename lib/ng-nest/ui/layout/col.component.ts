@@ -6,7 +6,6 @@ import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XColPrefix}`,
-  standalone: true,
   template: '<ng-content></ng-content>',
   styleUrls: ['./col.component.scss'],
   encapsulation: ViewEncapsulation.None,

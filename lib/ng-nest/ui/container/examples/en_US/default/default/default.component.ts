@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XAsideComponent, XContainerComponent, XFooterComponent, XHeaderComponent, XMainComponent],
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.scss']

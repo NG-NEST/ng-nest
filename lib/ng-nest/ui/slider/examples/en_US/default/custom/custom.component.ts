@@ -4,7 +4,6 @@ import { XSliderComponent } from '@ng-nest/ui/slider';
 
 @Component({
   selector: 'ex-custom',
-  standalone: true,
   imports: [XSliderComponent, XIconComponent],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']

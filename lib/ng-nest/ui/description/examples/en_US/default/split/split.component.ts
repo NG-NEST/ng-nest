@@ -3,7 +3,6 @@ import { XDescriptionComponent, XDescriptionItemComponent } from '@ng-nest/ui/de
 
 @Component({
   selector: 'ex-split',
-  standalone: true,
   imports: [XDescriptionComponent, XDescriptionItemComponent],
   templateUrl: './split.component.html'
 })

@@ -4,7 +4,6 @@ import { XFindComponent } from '@ng-nest/ui/find';
 
 @Component({
   selector: 'ex-disabled',
-  standalone: true,
   imports: [FormsModule, XFindComponent],
   templateUrl: './disabled.component.html',
   styleUrls: ['./disabled.component.scss']

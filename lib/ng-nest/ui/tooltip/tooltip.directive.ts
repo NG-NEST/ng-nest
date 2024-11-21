@@ -24,7 +24,7 @@ import {
 import type { XPlacement } from '@ng-nest/ui/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 
-@Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}`, standalone: true })
+@Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}` })
 export class XTooltipDirective extends XTooltipProperty implements OnDestroy {
   portal!: XPortalOverlayRef<XTooltipPortalComponent>;
   box = signal<DOMRect | null>(null);

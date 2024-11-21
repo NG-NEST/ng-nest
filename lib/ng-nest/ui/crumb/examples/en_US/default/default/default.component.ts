@@ -3,7 +3,6 @@ import { XCrumbComponent } from '@ng-nest/ui/crumb';
 
 @Component({
   selector: 'ex-default',
-  standalone: true,
   imports: [XCrumbComponent],
   templateUrl: './default.component.html'
 })

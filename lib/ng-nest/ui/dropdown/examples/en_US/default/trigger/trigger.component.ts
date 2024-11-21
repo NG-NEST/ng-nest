@@ -5,7 +5,6 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 
 @Component({
   selector: 'ex-trigger',
-  standalone: true,
   imports: [XDropdownComponent, XButtonComponent, XLinkComponent],
   templateUrl: './trigger.component.html',
   styleUrls: ['./trigger.component.scss']

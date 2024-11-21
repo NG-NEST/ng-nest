@@ -4,7 +4,6 @@ import { XDropdownComponent, XDropdownNode } from '@ng-nest/ui/dropdown';
 
 @Component({
   selector: 'ex-multistage',
-  standalone: true,
   imports: [XDropdownComponent, XButtonComponent],
   templateUrl: './multistage.component.html'
 })

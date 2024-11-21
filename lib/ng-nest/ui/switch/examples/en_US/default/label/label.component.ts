@@ -4,7 +4,6 @@ import { XSwitchComponent } from '@ng-nest/ui/switch';
 
 @Component({
   selector: 'ex-label',
-  standalone: true,
   imports: [FormsModule, XSwitchComponent],
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']

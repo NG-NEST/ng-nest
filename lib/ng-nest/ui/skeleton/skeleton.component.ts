@@ -6,7 +6,6 @@ import { XComputedStyle, XToCssPx } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XSkeletonPrefix}`,
-  standalone: true,
   imports: [NgClass, NgTemplateOutlet, NgStyle, XRowComponent, XColComponent],
   templateUrl: './skeleton.component.html',
   styleUrls: ['./skeleton.component.scss'],

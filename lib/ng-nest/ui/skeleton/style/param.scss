@@ -1,3 +1,4 @@
 // Skeleton style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-skeleton: $--x-prefix + '-skeleton';
+$x-skeleton: $x-prefix + '-skeleton';

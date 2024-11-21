@@ -8,7 +8,6 @@ import type { AnimationEvent } from '@angular/animations';
 
 @Component({
   selector: `${XCollapsePanelPrefix}`,
-  standalone: true,
   imports: [XIconComponent, XOutletDirective],
   templateUrl: './collapse-panel.component.html',
   styleUrls: ['./collapse-panel.component.scss'],

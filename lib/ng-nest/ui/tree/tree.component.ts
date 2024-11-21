@@ -37,7 +37,6 @@ import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: `${XTreePrefix}`,
-  standalone: true,
   imports: [DragDropModule, ScrollingModule, XTreeNodeComponent, XIconComponent],
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],

@@ -13,9 +13,9 @@ export default {
     experimentalDecorators: true,
     moduleResolution: 'node',
     importHelpers: true,
-    target: 'es2017',
-    module: 'es2020',
-    lib: ['es2018', 'dom']
+    target: 'es2022',
+    module: 'es2022',
+    lib: ['es2022', 'dom']
   },
   angularCompilerOptions: {
     enableI18nLegacyMessageIdFormat: false,

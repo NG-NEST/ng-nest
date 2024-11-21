@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'te-dropdown',
-  standalone: true,
   imports: [ExDefaultComponent, ExMultistageComponent, ExPropComponent, ExTriggerComponent],
   templateUrl: './dropdown.component.html'
 })

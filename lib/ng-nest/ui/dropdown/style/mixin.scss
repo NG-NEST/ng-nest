@@ -1,32 +1,31 @@
 // Dropdown
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @mixin dropdown {
   & {
     display: inline-block;
   }
   &.x-visible {
-    color: $--x-primary;
+    color: $x-primary;
   }
 }
 
 @mixin dropdown-portal {
   & {
     margin: 0.0625rem 0;
-    color: $--x-text;
+    color: $x-text;
     width: 100%;
-    background-color: $--x-background-100;
-    border-radius: $--x-border-small-radius;
-    box-shadow: $--x-box-shadow;
+    background-color: $x-background-100;
+    border-radius: $x-border-small-radius;
+    box-shadow: $x-box-shadow;
     position: relative;
     display: flex;
     overflow: auto;
   }
   .x-open-portal {
-    background-color: $--x-background-a200;
+    background-color: $x-background-a200;
   }
 }
 

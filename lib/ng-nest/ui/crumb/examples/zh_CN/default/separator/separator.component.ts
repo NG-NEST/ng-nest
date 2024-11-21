@@ -4,7 +4,6 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: 'ex-separator',
-  standalone: true,
   imports: [XCrumbComponent, XIconComponent],
   templateUrl: './separator.component.html'
 })

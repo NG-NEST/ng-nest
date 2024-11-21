@@ -1,8 +1,8 @@
 // Checkbox
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/flex.scss' as *;
+@use './param.scss' as *;
 
 @mixin checkbox {
   & {
@@ -12,10 +12,10 @@
   > label {
     display: inline-block;
     white-space: nowrap;
-    height: $--x-checkbox-height;
-    line-height: $--x-checkbox-height;
+    height: $x-checkbox-height;
+    line-height: $x-checkbox-height;
     position: relative;
-    color: $--x-text-300;
+    color: $x-text-300;
     font-weight: 600;
     @include text-align();
   }
@@ -24,14 +24,14 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    .#{$--x-checkbox-prefix}-row-before,
-    .#{$--x-checkbox-prefix}-row-after {
-      border: $--x-checkbox-border;
-      border-radius: $--x-checkbox-border-radius;
-      background-color: $--x-background-a100;
-      padding: 0 $--x-padding-medium;
-      height: $--x-height-medium;
-      line-height: $--x-height-medium;
+    .#{$x-checkbox-prefix}-row-before,
+    .#{$x-checkbox-prefix}-row-after {
+      border: $x-checkbox-border;
+      border-radius: $x-checkbox-border-radius;
+      background-color: $x-background-a100;
+      padding: 0 $x-padding-medium;
+      height: $x-height-medium;
+      line-height: $x-height-medium;
     }
     &-list {
       position: relative;
@@ -39,7 +39,7 @@
       align-items: center;
       x-tag {
         &:not(:first-child) {
-          margin-left: $--x-font-size;
+          margin-left: $x-font-size;
         }
       }
     }
@@ -49,28 +49,28 @@
       align-items: center;
       white-space: nowrap;
       outline: none;
-      margin-right: $--x-font-size;
-      font-size: $--x-font-size;
+      margin-right: $x-font-size;
+      font-size: $x-font-size;
       cursor: pointer;
       transition: all 0.3s;
       &:hover {
-        color: $--x-primary;
-        .#{$--x-checkbox-prefix}-box {
-          border-color: $--x-primary;
+        color: $x-primary;
+        .#{$x-checkbox-prefix}-box {
+          border-color: $x-primary;
         }
       }
       &:last-child {
         margin-right: 0;
       }
       &.x-indeterminate {
-        .#{$--x-checkbox-prefix}-box {
-          border-color: $--x-primary;
+        .#{$x-checkbox-prefix}-box {
+          border-color: $x-primary;
           &::after {
             top: 50%;
             left: 50%;
             width: 0.75rem;
             height: 0.75rem;
-            background-color: $--x-primary;
+            background-color: $x-primary;
             border: 0;
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
@@ -81,9 +81,9 @@
         }
       }
       &.x-checked {
-        .#{$--x-checkbox-prefix}-box {
-          border-color: $--x-primary;
-          background-color: $--x-primary;
+        .#{$x-checkbox-prefix}-box {
+          border-color: $x-primary;
+          background-color: $x-primary;
           &::after {
             border: 0.125rem solid white;
             border-top: 0;
@@ -107,16 +107,16 @@
 
   &-button,
   &-icon {
-    .#{$--x-checkbox-prefix}-row-before {
+    .#{$x-checkbox-prefix}-row-before {
       margin-right: 0;
     }
-    .#{$--x-checkbox-prefix}-row-after {
+    .#{$x-checkbox-prefix}-row-after {
       margin-left: 0;
     }
   }
 
   &-vertical {
-    .#{$--x-checkbox-prefix}-row-list {
+    .#{$x-checkbox-prefix}-row-list {
       flex-direction: column;
       align-items: flex-start;
       x-tag {
@@ -126,7 +126,7 @@
         }
       }
     }
-    .#{$--x-checkbox-prefix}-row-item {
+    .#{$x-checkbox-prefix}-row-item {
       margin-right: 0;
       &:not(:first-child) {
         margin-top: 0.25rem;
@@ -135,17 +135,17 @@
   }
 
   &-box {
-    border: $--x-border-width solid $--x-border;
-    width: calc(#{$--x-checkbox-height} - 0.875rem);
-    height: calc(#{$--x-checkbox-height} - 0.875rem);
+    border: $x-border-width solid $x-border;
+    width: calc(#{$x-checkbox-height} - 0.875rem);
+    height: calc(#{$x-checkbox-height} - 0.875rem);
     border-radius: 0.425rem;
-    background-color: $--x-background-a100;
+    background-color: $x-background-a100;
     position: relative;
     display: inline-block;
     box-sizing: border-box;
     transition: all 0.3s;
     &:hover {
-      border-color: $--x-primary;
+      border-color: $x-primary;
     }
     &::after {
       position: absolute;
@@ -154,7 +154,7 @@
       display: inline-block;
       width: 0.3rem;
       height: 0.6rem;
-      border: $--x-border-base;
+      border: $x-border-base;
       border-top: 0;
       border-left: 0;
       transform: rotate(40deg) scale(0) translate(-50%, -50%);
@@ -172,17 +172,17 @@
     &:before {
       display: inline-block;
       margin-right: 0.25rem;
-      color: $--x-danger;
+      color: $x-danger;
       line-height: 1;
-      font-size: $--x-font-size-small;
+      font-size: $x-font-size-small;
       content: '*';
     }
   }
 
   &-before {
     &:not(.x-checkbox-before-template, .x-checkbox-button, .x-checkbox-icon) {
-      .#{$--x-checkbox-prefix}-row-before {
-        margin-right: $--x-padding-medium;
+      .#{$x-checkbox-prefix}-row-before {
+        margin-right: $x-padding-medium;
       }
     }
     &.x-checkbox-button,
@@ -191,7 +191,7 @@
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
-      .#{$--x-checkbox-prefix}-row-before {
+      .#{$x-checkbox-prefix}-row-before {
         margin-right: 0;
         border-right: 0;
         border-top-right-radius: 0;
@@ -199,25 +199,25 @@
       }
     }
     &-template {
-      .#{$--x-checkbox-prefix}-row-before {
+      .#{$x-checkbox-prefix}-row-before {
         display: contents;
       }
-      .#{$--x-checkbox-prefix}-row-list {
-        margin-left: $--x-padding-medium;
+      .#{$x-checkbox-prefix}-row-list {
+        margin-left: $x-padding-medium;
       }
       &.x-checkbox-button,
       &.x-checkbox-icon {
-        .#{$--x-checkbox-prefix}-row-list {
+        .#{$x-checkbox-prefix}-row-list {
           margin-left: 0;
           .x-button {
-            margin-left: calc(#{$--x-border-width} * -1);
+            margin-left: calc(#{$x-border-width} * -1);
             &:hover,
             &:focus {
               z-index: 1;
             }
           }
         }
-        .#{$--x-checkbox-prefix}-row-before {
+        .#{$x-checkbox-prefix}-row-before {
           input:hover,
           input:focus,
           .x-button:hover,
@@ -235,8 +235,8 @@
   }
   &-after {
     &:not(.x-checkbox-before-template, .x-checkbox-button, .x-checkbox-icon) {
-      .#{$--x-checkbox-prefix}-row-after {
-        margin-left: $--x-padding-medium;
+      .#{$x-checkbox-prefix}-row-after {
+        margin-left: $x-padding-medium;
       }
     }
     &.x-checkbox-button,
@@ -245,7 +245,7 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
-      .#{$--x-checkbox-prefix}-row-after {
+      .#{$x-checkbox-prefix}-row-after {
         margin-left: 0;
         border-left: 0;
         border-top-left-radius: 0;
@@ -253,25 +253,25 @@
       }
     }
     &-template {
-      .#{$--x-checkbox-prefix}-row-after {
+      .#{$x-checkbox-prefix}-row-after {
         display: contents;
       }
-      .#{$--x-checkbox-prefix}-row-list {
-        margin-right: $--x-padding-medium;
+      .#{$x-checkbox-prefix}-row-list {
+        margin-right: $x-padding-medium;
       }
       &.x-checkbox-button,
       &.x-checkbox-icon {
-        .#{$--x-checkbox-prefix}-row-list {
+        .#{$x-checkbox-prefix}-row-list {
           margin-right: 0;
           .x-button {
-            margin-right: calc(#{$--x-border-width} * -1);
+            margin-right: calc(#{$x-border-width} * -1);
             &:hover,
             &:focus {
               z-index: 1;
             }
           }
         }
-        .#{$--x-checkbox-prefix}-row-after {
+        .#{$x-checkbox-prefix}-row-after {
           input:hover,
           input:focus,
           .x-button:hover,
@@ -289,14 +289,14 @@
   }
 
   &.x-disabled {
-    .#{$--x-checkbox-prefix}-item {
+    .#{$x-checkbox-prefix}-item {
       &.x-indeterminate {
-        .#{$--x-checkbox-prefix}-box::after {
-          background-color: $--x-text-400;
+        .#{$x-checkbox-prefix}-box::after {
+          background-color: $x-text-400;
         }
       }
       &.x-checked {
-        .#{$--x-checkbox-prefix}-box::after {
+        .#{$x-checkbox-prefix}-box::after {
           background-color: transparent;
         }
       }
@@ -306,7 +306,7 @@
   &.x-invalid,
   &.x-required {
     > label {
-      color: $--x-danger;
+      color: $x-danger;
     }
   }
   &.x-direction {
@@ -331,14 +331,14 @@
 
 @mixin disabled {
   & {
-    color: $--x-text-400;
+    color: $x-text-400;
     cursor: not-allowed;
   }
-  .#{$--x-checkbox-prefix}-box {
-    border-color: $--x-border-a900;
-    background-color: $--x-border-300;
+  .#{$x-checkbox-prefix}-box {
+    border-color: $x-border-a900;
+    background-color: $x-border-300;
     &::after {
-      border-color: $--x-text-400;
+      border-color: $x-text-400;
       background-color: transparent;
     }
   }

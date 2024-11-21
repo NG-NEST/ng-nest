@@ -7,7 +7,6 @@ import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-container',
-  standalone: true,
   imports: [FormsModule, XDrawerComponent, XDrawerContainerComponent, XRadioComponent, XButtonComponent],
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.scss']

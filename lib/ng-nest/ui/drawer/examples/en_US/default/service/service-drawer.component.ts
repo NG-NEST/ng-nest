@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: 'ex-service-drawer',
-  standalone: true,
   imports: [XButtonComponent, XDrawerTitleDirective, XDrawerContentDirective, XDrawerCloseDirective],
   templateUrl: './service-drawer.component.html'
 })

@@ -6,7 +6,6 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-config',
-  standalone: true,
   imports: [XTableComponent],
   templateUrl: './config.component.html',
   providers: [ConfigService]

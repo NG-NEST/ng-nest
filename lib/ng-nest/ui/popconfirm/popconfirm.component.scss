@@ -1,15 +1,15 @@
 // Popconfirm
 
-@import '../style/themes/default';
-@import '../style/mixins/index';
-@import './style/mixin';
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
 
-.#{$--x-popconfirm} {
+.#{$x-popconfirm} {
   @include reset-component();
   @include popconfirm();
 }
 
-.#{$--x-popconfirm}-buttons {
+.#{$x-popconfirm}-buttons {
   display: flex;
   justify-content: flex-end;
   > x-button:not(:first-child) {
@@ -17,7 +17,7 @@
   }
 }
 
-.#{$--x-popconfirm}-title {
+.#{$x-popconfirm}-title {
   display: flex;
   align-items: center;
   > .x-icon {

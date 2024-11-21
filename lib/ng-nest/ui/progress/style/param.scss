@@ -1,3 +1,4 @@
 // Progress style paramters
+@use '../../style/params/index.scss' as *;
 
-$--x-progress: $--x-prefix + '-progress';
+$x-progress: $x-prefix + '-progress';

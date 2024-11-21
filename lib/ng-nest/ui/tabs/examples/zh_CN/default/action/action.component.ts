@@ -5,7 +5,6 @@ import { XTabComponent, XTabsComponent, XTabsNode } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-action',
-  standalone: true,
   imports: [XTabComponent, XTabsComponent, XIconComponent, XButtonComponent],
   templateUrl: './action.component.html',
   styleUrls: ['./action.component.scss']

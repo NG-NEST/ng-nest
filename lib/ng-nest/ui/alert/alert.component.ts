@@ -21,22 +21,21 @@ import { XResizableDirective } from '@ng-nest/ui/resizable';
 import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: `${XAlertPrefix}`,
-  standalone: true,
-  imports: [
-    NgClass,
-    NgTemplateOutlet,
-    DragDropModule,
-    XIconComponent,
-    XButtonComponent,
-    XOutletDirective,
-    XResizableDirective
-  ],
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XFadeAnimation]
+    selector: `${XAlertPrefix}`,
+    imports: [
+        NgClass,
+        NgTemplateOutlet,
+        DragDropModule,
+        XIconComponent,
+        XButtonComponent,
+        XOutletDirective,
+        XResizableDirective
+    ],
+    templateUrl: './alert.component.html',
+    styleUrls: ['./alert.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [XFadeAnimation]
 })
 export class XAlertComponent extends XAlertProperty {
   styleHide = signal(false);

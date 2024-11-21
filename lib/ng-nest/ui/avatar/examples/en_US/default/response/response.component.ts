@@ -3,7 +3,6 @@ import { XAvatarComponent } from '@ng-nest/ui/avatar';
 
 @Component({
   selector: 'ex-response',
-  standalone: true,
   imports: [XAvatarComponent],
   templateUrl: './response.component.html',
   styleUrls: ['./response.component.scss']

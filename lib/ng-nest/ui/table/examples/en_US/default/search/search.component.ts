@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-search',
-  standalone: true,
   imports: [FormsModule, XTableComponent, XInputComponent, XSelectComponent],
   templateUrl: './search.component.html',
   providers: [SearchService]

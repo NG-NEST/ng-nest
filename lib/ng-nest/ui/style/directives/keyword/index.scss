@@ -1,6 +1,7 @@
 // Keyword
-@import './mixin';
+@use './mixin' as *;
+@use './param' as *;
 
-.#{$--x-keyword-prefix} {
+.#{$x-keyword-prefix} {
   @include keyword();
 }

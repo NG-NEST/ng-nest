@@ -1,8 +1,7 @@
 // Icon
 
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
-@import './param';
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
 
 @keyframes x-icon-spin {
   100% {

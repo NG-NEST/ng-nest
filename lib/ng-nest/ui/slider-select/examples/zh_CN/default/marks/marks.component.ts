@@ -4,7 +4,6 @@ import { XSliderSelectComponent, XSliderSelectMark } from '@ng-nest/ui/slider-se
 
 @Component({
   selector: 'ex-marks',
-  standalone: true,
   imports: [FormsModule, XSliderSelectComponent],
   templateUrl: './marks.component.html',
   styleUrls: ['./marks.component.scss']

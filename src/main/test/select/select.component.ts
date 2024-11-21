@@ -14,7 +14,6 @@ import {
 
 @Component({
   selector: 'te-select',
-  standalone: true,
   imports: [
     ExDefaultComponent,
     ExAsyncComponent,
