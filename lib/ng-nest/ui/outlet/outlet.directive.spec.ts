@@ -8,8 +8,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XOutletPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXOutletComponent],
-      imports: [XOutletDirective],
+      imports: [TestXOutletComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -30,6 +29,7 @@ describe(XOutletPrefix, () => {
 });
 
 @Component({
+  imports: [XOutletDirective],
   template: `
     <div class="row">
       <ng-container *xOutlet="temp1"></ng-container>

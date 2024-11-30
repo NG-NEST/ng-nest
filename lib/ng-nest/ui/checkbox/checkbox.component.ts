@@ -62,13 +62,10 @@ export class XCheckboxComponent extends XCheckboxProperty implements OnChanges, 
 
   constructor() {
     super();
-    effect(
-      () => {
-        this.value();
-        this.setChecked();
-      },
-      { allowSignalWrites: true }
-    );
+    effect(() => {
+      this.value();
+      this.setChecked();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

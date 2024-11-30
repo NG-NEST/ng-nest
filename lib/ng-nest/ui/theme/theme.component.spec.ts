@@ -2,35 +2,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XThemePrefix } from './theme.property';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { XFormComponent } from '@ng-nest/ui/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XThemeComponent } from './theme.component';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XThemeComponent } from '@ng-nest/ui/theme';
 
 describe(XThemePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXThemeComponent],
-      imports: [
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        XButtonComponent,
-        XButtonsComponent,
-        XThemeComponent,
-        XSwitchComponent,
-        XFormComponent
-      ],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      imports: [TestXThemeComponent],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -49,6 +35,15 @@ describe(XThemePrefix, () => {
 
 @Component({
   selector: 'test-x-theme',
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    XButtonComponent,
+    XButtonsComponent,
+    XThemeComponent,
+    XSwitchComponent,
+    XFormComponent
+  ],
   template: `
     <x-button (click)="english()">切换为英文</x-button>
     <x-button (click)="chinese()">切换为中文</x-button>

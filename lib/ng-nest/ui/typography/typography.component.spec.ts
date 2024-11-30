@@ -11,8 +11,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XTypographyPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXTypographyComponent],
-      imports: [XTypographyComponent, XRowComponent, XColComponent, XDocComponent],
+      imports: [TestXTypographyComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -36,6 +35,7 @@ describe(XTypographyPrefix, () => {
 
 @Component({
   selector: 'test-x-typography',
+  imports: [XTypographyComponent, XRowComponent, XColComponent, XDocComponent],
   template: `
     <x-doc>
       <x-row space="1">

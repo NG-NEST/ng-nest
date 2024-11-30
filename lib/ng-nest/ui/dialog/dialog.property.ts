@@ -56,18 +56,21 @@ export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
    */
   readonly closeText = input<string>();
   /**
-   * @zh_CN 调整弹框的大小
-   * @en_US Adjust the size of the box
+   * @zh_CN 调整弹框的大小(弃用)
+   * @en_US Adjust the size of the box, Abandoned
+   * @deprecated abandoned
    */
   readonly resizable = input<boolean, XBoolean>(this.config?.resizable ?? false, { transform: XToBoolean });
   /**
-   * @zh_CN 开启 resizable 调整大小，偏移屏幕左边
-   * @en_US Open the resizable resize, offset screen left
+   * @zh_CN 开启 resizable 调整大小，偏移屏幕左边(弃用)
+   * @en_US Open the resizable resize, offset screen left, Abandoned
+   * @deprecated abandoned
    */
   readonly offsetLeft = input<number, XNumber>(0, { transform: XToNumber });
   /**
-   * @zh_CN 开启 resizable 调整大小，偏移屏幕顶部
-   * @en_US Open the resizable resize, offset screen top
+   * @zh_CN 开启 resizable 调整大小，偏移屏幕顶部(弃用)
+   * @en_US Open the resizable resize, offset screen top, Abandoned
+   * @deprecated abandoned
    */
   readonly offsetTop = input<number, XNumber>(0, { transform: XToNumber });
   /**
@@ -255,10 +258,11 @@ export interface XDialogRefOption {
    */
   draggable?: boolean;
   /**
-   * @zh_CN 调整弹框的大小
-   * @en_US Adjust the size of the box
+   * @zh_CN 调整弹框的大小(弃用)
+   * @en_US Adjust the size of the box, Abandoned
    * @default false
    * @withConfig true
+   * @deprecated abandoned
    */
   resizable?: boolean;
   /**

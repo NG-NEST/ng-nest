@@ -6,6 +6,7 @@ import { Meta } from '@angular/platform-browser';
 import { XStorageService, XThemeService } from '@ng-nest/ui/core';
 import { Platform } from '@angular/cdk/platform';
 import { PrismService } from './prism.service';
+import { environment } from '@environments';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
@@ -15,7 +16,7 @@ export class ConfigService {
   langs = signal(['zh_CN', 'en_US']);
   cacheLangs = signal<{ [lang: string]: XI18nProperty }>({});
   versions = signal<string[]>([]);
-  version = signal('19.0.0');
+  version = signal(environment.version);
   navName = signal('NG-NEST');
   renderer2: Renderer2;
   light = signal({

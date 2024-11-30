@@ -16,8 +16,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XPortalPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXPortalComponent],
-      imports: [],
+      imports: [TestXPortalComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),

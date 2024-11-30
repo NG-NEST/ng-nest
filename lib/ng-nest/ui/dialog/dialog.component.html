@@ -7,16 +7,12 @@
     [@x-move-box-animation]="placement()"
     (@x-move-box-animation.done)="moveDone($event)"
     [class.x-dialog-maximize]="isMaximize()"
-    [class.x-dialog-resizable]="resizableSignal()"
     [class.x-dialog-default-maximize]="isDefaultMaximize()"
     [ngStyle]="getStyle()"
   >
     <x-alert
       [draggable]="draggableSignal() && dialogBox['draggable']"
-      [resizable]="resizableSignal() && dialogBox['resizable']"
       [dragFreeDragPosition]="dialogBox['distance']"
-      [offsetLeft]="styleOffsetLeft()"
-      [offsetTop]="styleOffsetTop()"
       [minWidth]="dialogBox['minWidth']"
       [minHeight]="dialogBox['minHeight']"
       [dragBoundary]="'.cdk-overlay-container'"
@@ -29,7 +25,6 @@
       [operationTpl]="operationTpl"
       (close)="onClose('close')"
       (dragEnded)="onDragEnded($event)"
-      (resizing)="onResizing($event)"
       [showIcon]="false"
       [duration]="0"
       manual
@@ -63,7 +58,7 @@
 </ng-template>
 
 <ng-template #operationTpl>
-  @if (maximizeSignal() || resizableSignal()) {
+  @if (maximizeSignal()) {
     <x-button
       size="small"
       flat

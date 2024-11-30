@@ -81,12 +81,9 @@ export class XCalendarComponent extends XCalendarProperty {
 
   constructor() {
     super();
-    effect(
-      () => {
-        this.modelSignal.set(this.model());
-      },
-      { allowSignalWrites: true }
-    );
+    effect(() => {
+      this.modelSignal.set(this.model());
+    });
   }
 
   action(next: number) {

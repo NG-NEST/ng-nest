@@ -8,8 +8,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XTimeRangePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXTimeRangeComponent],
-      imports: [XTimeRangePipe],
+      imports: [TestXTimeRangeComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -30,6 +29,7 @@ describe(XTimeRangePrefix, () => {
 });
 
 @Component({
+  imports: [XTimeRangePipe],
   template: `
     <div class="row">
       <p>{{ diff | xTimeRange }}</p>

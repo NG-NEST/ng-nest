@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { XI18nPipe, XI18nDirective } from '@ng-nest/ui/i18n';
 import { XI18nPrefix } from './i18n.property';
-import { XCommentComponent } from '@ng-nest/ui/comment';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XI18nService } from './i18n.service';
 import en_US from './languages/en_US';
@@ -13,7 +12,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 
 @Component({
-    template: `
+  imports: [XI18nPipe, XI18nDirective, XButtonComponent],
+  template: `
     <x-button>{{ 'comment.comments' | xI18n }}</x-button>
     <p x-i18n="comment.comments"></p>
   `
@@ -45,8 +45,8 @@ class TestXI18nComponent {
 describe(XI18nPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXI18nComponent],
-      imports: [XI18nPipe, XI18nDirective, XButtonComponent, XCommentComponent],
+      declarations: [],
+      imports: [TestXI18nComponent],
       providers: [
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),

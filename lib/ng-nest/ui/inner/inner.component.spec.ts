@@ -10,8 +10,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XInnerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXInnerComponent],
-      imports: [XInnerComponent],
+      imports: [TestXInnerComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -35,6 +34,7 @@ describe(XInnerPrefix, () => {
 
 @Component({
   selector: 'test-x-inner',
+  imports: [XInnerComponent],
   template: ` <x-inner [padding]="padding">x-inner</x-inner> `
 })
 class TestXInnerComponent {

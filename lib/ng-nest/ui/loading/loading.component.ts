@@ -55,18 +55,15 @@ export class XLoadingComponent extends XLoadingProperty {
 
   constructor() {
     super();
-    effect(
-      () => {
-        if (this.fullScreen()) {
-          if (this.loading()) {
-            this.createFullScreen();
-          } else {
-            this.closeFullScreen();
-          }
+    effect(() => {
+      if (this.fullScreen()) {
+        if (this.loading()) {
+          this.createFullScreen();
+        } else {
+          this.closeFullScreen();
         }
-      },
-      { allowSignalWrites: true }
-    );
+      }
+    });
   }
 
   includeRadius(cover: XCorner) {

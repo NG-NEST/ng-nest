@@ -26,7 +26,8 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
           name: x,
           order: readme.meta.order,
           label: readme.meta.label,
-          path: catePath
+          path: catePath,
+          dynamic: readme.meta.dynamic
         };
         handlerCodeBoxes(cate, readme, component, page);
         cates.list.push(cate);
@@ -68,11 +69,15 @@ export function handlerCodeBoxes(cate: NcCate, readme, component: NcTemplate, pa
           .slice(cate.path.lastIndexOf('examples'), cate.path.length)
           .replace(/\\/g, '/')}/${x.slice(0, x.lastIndexOf(code.type) - 1)}`;
         if (cate.className) {
-          component.syswords.declarations += `, ${cate.className}`;
-          component.syswords.imports += `import { ${cate.className} } from '${cate.rootPath.replace(
-            `/${page.lang}/`,
-            '/'
-          )}';\n`;
+          if (cate.dynamic && cate.dynamic.includes(cate.className)) {
+            // Dynamic components are generally created using services and do not need to be imported into the component
+          } else {
+            component.syswords.declarations += `, ${cate.className}`;
+            component.syswords.imports += `import { ${cate.className} } from '${cate.rootPath.replace(
+              `/${page.lang}/`,
+              '/'
+            )}';\n`;
+          }
         }
       }
       box.codes.push(code);

@@ -6,10 +6,10 @@ import { randomString, replaceKey, parseMdDoc, orderBy } from '.';
 
 const tplDir = path.resolve(__dirname, '../../main/templates');
 
-export function handlerDemo(page: NcPage, docDir: string, router: string) {
+export function handlerDemo(page: NcPage, docDir: string, router: string, version: string) {
   const demoPath = path.join(docDir, 'demo');
   const children = fs.readdirSync(path.join(docDir, 'demo'));
-  router = router.replace(`/${page.lang}/`, '/');
+  router = router.replace(`/${page.lang}/`, `/${version}/`);
   let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
   if (temp !== null) {
     temp.syswords.imports += `import { environment } from '@environments';\n`;

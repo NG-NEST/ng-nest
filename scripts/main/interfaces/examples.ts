@@ -116,6 +116,13 @@ export interface NcCate {
    * @memberof NcCate
    */
   codeBoxes?: NcCodeBox;
+  /**
+   * 动态创建的组件
+   *
+   * @type {string[]}
+   * @memberof NcCate
+   */
+  dynamic?: string[];
 }
 
 /**

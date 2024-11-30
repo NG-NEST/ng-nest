@@ -3,7 +3,6 @@ import { Component, DebugElement, provideExperimentalZonelessChangeDetection } f
 import { By } from '@angular/platform-browser';
 import { XDocComponent } from '@ng-nest/ui/doc';
 import { XDocPrefix } from './doc.property';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
 import { XBadgeComponent } from '@ng-nest/ui/badge';
@@ -13,40 +12,15 @@ import { XApiComponent } from '@ng-nest/ui/api';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { XHighlightComponent } from '@ng-nest/ui/highlight';
 import { XPatternComponent } from '@ng-nest/ui/pattern';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe(XDocPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestXDocComponent,
-        ExColorComponent,
-        ExCustomComponent,
-        ExDefaultComponent,
-        ExDotComponent,
-        ExMaxComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        XDocComponent,
-        XIconComponent,
-        XRowComponent,
-        XColComponent,
-        XBadgeComponent,
-        XButtonComponent,
-        XExamplesComponent,
-        XApiComponent,
-        XTabsComponent,
-        XTabComponent,
-        XHighlightComponent,
-        XPatternComponent
-      ],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      imports: [TestXDocComponent],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -64,9 +38,179 @@ describe(XDocPrefix, () => {
 });
 
 @Component({
+  selector: 'ex-color',
+  imports: [XBadgeComponent, XButtonComponent],
+  template: `<div class="row">
+    <x-badge value="12" type="primary">
+      <x-button>评论</x-button>
+    </x-badge>
+    <x-badge value="12" type="success">
+      <x-button>评论</x-button>
+    </x-badge>
+    <x-badge value="12" type="info">
+      <x-button>评论</x-button>
+    </x-badge>
+    <x-badge value="12" type="warning">
+      <x-button>评论</x-button>
+    </x-badge>
+    <x-badge value="12" type="danger">
+      <x-button>评论</x-button>
+    </x-badge>
+    <x-badge value="12" type="text">
+      <x-button>评论</x-button>
+    </x-badge>
+  </div>`,
+  styles: [
+    `
+      .row {
+        display: flex;
+        align-items: center;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .row x-badge:not(:first-child) {
+        margin-left: 2rem;
+      }
+    `
+  ]
+})
+class ExColorComponent {}
+
+@Component({
+  selector: 'ex-custom',
+  imports: [XBadgeComponent, XButtonComponent],
+  template: `<div class="row">
+    <x-badge value="new">
+      <x-button>评论</x-button>
+    </x-badge>
+    <x-badge value="hot">
+      <x-button>回复</x-button>
+    </x-badge>
+  </div>`,
+  styles: [
+    `
+      .row {
+        display: flex;
+        align-items: center;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .row x-badge:not(:first-child) {
+        margin-left: 2rem;
+      }
+    `
+  ]
+})
+class ExCustomComponent {}
+
+@Component({
+  selector: 'ex-default',
+  imports: [XBadgeComponent, XButtonComponent],
+  template: `<div class="row">
+    <x-badge value="12">
+      <x-button>评论</x-button>
+    </x-badge>
+    <x-badge value="3">
+      <x-button>回复</x-button>
+    </x-badge>
+  </div>`,
+  styles: [
+    `
+      .row {
+        display: flex;
+        align-items: center;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .row x-badge:not(:first-child) {
+        margin-left: 2rem;
+      }
+    `
+  ]
+})
+class ExDefaultComponent {}
+
+@Component({
+  selector: 'ex-dot',
+  imports: [XIconComponent, XBadgeComponent, XButtonComponent],
+  template: `<div class="row">
+    <x-badge dot>
+      <x-button type="primary">评论</x-button>
+    </x-badge>
+    <x-badge dot>
+      <x-icon type="fto-user"></x-icon>
+    </x-badge>
+  </div> `,
+  styles: [
+    `
+      .row {
+        display: flex;
+        align-items: center;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .row x-badge:not(:first-child) {
+        margin-left: 2rem;
+      }
+    `
+  ]
+})
+class ExDotComponent {}
+
+@Component({
+  selector: 'ex-max',
+  imports: [XBadgeComponent, XButtonComponent],
+  template: `<div class="row">
+    <x-badge value="200" max="99">
+      <x-button>评论</x-button>
+    </x-badge>
+    <x-badge value="300" max="200">
+      <x-button>回复</x-button>
+    </x-badge>
+  </div> `,
+  styles: [
+    `
+      .row {
+        display: flex;
+        align-items: center;
+      }
+      .row:not(:first-child) {
+        margin-top: 1rem;
+      }
+      .row x-badge:not(:first-child) {
+        margin-left: 2rem;
+      }
+    `
+  ]
+})
+class ExMaxComponent {}
+
+@Component({
   selector: 'test-x-doc',
+  imports: [
+    ExColorComponent,
+    ExCustomComponent,
+    ExDefaultComponent,
+    ExDotComponent,
+    ExMaxComponent,
+    XDocComponent,
+    XIconComponent,
+    XRowComponent,
+    XColComponent,
+    XBadgeComponent,
+    XButtonComponent,
+    XExamplesComponent,
+    XApiComponent,
+    XTabsComponent,
+    XTabComponent,
+    XHighlightComponent,
+    XPatternComponent
+  ],
   template: `
-    
     <x-doc>
       <h1 id="badge-标记">Badge 标记</h1>
       <p>出现在按钮、图标旁的数字或状态标记。</p>
@@ -451,150 +595,3 @@ export class ExColorComponent {}
 `;
   vcwurln = `import { XBadgeComponent } from '@ng-nest/ui/badge';`;
 }
-
-@Component({
-  selector: 'ex-color',
-  template: `<div class="row">
-    <x-badge value="12" type="primary">
-      <x-button>评论</x-button>
-    </x-badge>
-    <x-badge value="12" type="success">
-      <x-button>评论</x-button>
-    </x-badge>
-    <x-badge value="12" type="info">
-      <x-button>评论</x-button>
-    </x-badge>
-    <x-badge value="12" type="warning">
-      <x-button>评论</x-button>
-    </x-badge>
-    <x-badge value="12" type="danger">
-      <x-button>评论</x-button>
-    </x-badge>
-    <x-badge value="12" type="text">
-      <x-button>评论</x-button>
-    </x-badge>
-  </div>`,
-  styles: [
-    `
-      .row {
-        display: flex;
-        align-items: center;
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-badge:not(:first-child) {
-        margin-left: 2rem;
-      }
-    `
-  ]
-})
-class ExColorComponent {}
-
-@Component({
-  selector: 'ex-custom',
-  template: `<div class="row">
-    <x-badge value="new">
-      <x-button>评论</x-button>
-    </x-badge>
-    <x-badge value="hot">
-      <x-button>回复</x-button>
-    </x-badge>
-  </div>`,
-  styles: [
-    `
-      .row {
-        display: flex;
-        align-items: center;
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-badge:not(:first-child) {
-        margin-left: 2rem;
-      }
-    `
-  ]
-})
-class ExCustomComponent {}
-
-@Component({
-  selector: 'ex-default',
-  template: `<div class="row">
-    <x-badge value="12">
-      <x-button>评论</x-button>
-    </x-badge>
-    <x-badge value="3">
-      <x-button>回复</x-button>
-    </x-badge>
-  </div>`,
-  styles: [
-    `
-      .row {
-        display: flex;
-        align-items: center;
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-badge:not(:first-child) {
-        margin-left: 2rem;
-      }
-    `
-  ]
-})
-class ExDefaultComponent {}
-
-@Component({
-  selector: 'ex-dot',
-  template: `<div class="row">
-    <x-badge dot>
-      <x-button type="primary">评论</x-button>
-    </x-badge>
-    <x-badge dot>
-      <x-icon type="fto-user"></x-icon>
-    </x-badge>
-  </div> `,
-  styles: [
-    `
-      .row {
-        display: flex;
-        align-items: center;
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-badge:not(:first-child) {
-        margin-left: 2rem;
-      }
-    `
-  ]
-})
-class ExDotComponent {}
-
-@Component({
-  selector: 'ex-max',
-  template: `<div class="row">
-    <x-badge value="200" max="99">
-      <x-button>评论</x-button>
-    </x-badge>
-    <x-badge value="300" max="200">
-      <x-button>回复</x-button>
-    </x-badge>
-  </div> `,
-  styles: [
-    `
-      .row {
-        display: flex;
-        align-items: center;
-      }
-      .row:not(:first-child) {
-        margin-top: 1rem;
-      }
-      .row x-badge:not(:first-child) {
-        margin-left: 2rem;
-      }
-    `
-  ]
-})
-class ExMaxComponent {}

@@ -24,7 +24,7 @@ npm 19.0.0
 
 ## 支持 Angular 版本
 
-`@ng-nest/ui` 目前最新支持 Angular ^18.0.0
+`@ng-nest/ui` 目前最新支持 Angular ^19.0.0
 ## 支持环境
 
 - Modern browsers

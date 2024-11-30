@@ -159,7 +159,7 @@ describe(XCarouselPrefix, () => {
     it('interval.', async () => {
       component.interval.set(4000);
       fixture.detectChanges();
-      await XSleep(3000);
+      await XSleep(3100);
       const ul = fixture.debugElement.query(By.css('.x-carousel-indicator'));
       const lis = ul.nativeElement.querySelectorAll('li');
       expect(lis[0]).toHaveClass('x-activated');

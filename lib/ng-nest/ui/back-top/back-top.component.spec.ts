@@ -2,8 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XBackTopComponent, XBackTopPrefix } from '@ng-nest/ui/back-top';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { XSleep } from '@ng-nest/ui/core';
 
@@ -40,12 +39,8 @@ describe(XBackTopPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestBackTopComponent, XTestBackTopPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -71,7 +66,7 @@ describe(XBackTopPrefix, () => {
       component.right.set('4rem');
       document.documentElement.scrollTop = 300;
       fixture.detectChanges();
-      await XSleep(100);
+      await XSleep(200);
       const panel = document.querySelector('.cdk-overlay-pane')! as HTMLDivElement;
       expect(panel.style.marginRight).toBe('4rem');
     });
@@ -79,7 +74,7 @@ describe(XBackTopPrefix, () => {
       component.bottom.set('4rem');
       document.documentElement.scrollTop = 300;
       fixture.detectChanges();
-      await XSleep(100);
+      await XSleep(200);
       const panel = document.querySelector('.cdk-overlay-pane')! as HTMLDivElement;
       expect(panel.style.marginBottom).toBe('4rem');
     });

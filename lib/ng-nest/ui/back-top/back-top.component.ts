@@ -82,6 +82,7 @@ export class XBackTopComponent extends XBackTopProperty implements OnDestroy {
 
   private setVisible(scrollTop: number) {
     const visible = scrollTop >= (this.visibilityHeight() as number);
+    console.log(this.visibilityHeight(), scrollTop, visible);
     if (this.visiable() !== visible) {
       this.visiable.set(visible);
       if (this.visiable()) {

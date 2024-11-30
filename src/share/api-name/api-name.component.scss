@@ -2,6 +2,9 @@
 @use '../../styles/mixin.scss' as *;
 
 :host {
+  & {
+    position: relative;
+  }
   .ns-name-title {
     background-color: $x-background-a200;
     border-top-left-radius: $x-border-radius;
@@ -145,7 +148,7 @@
   }
   .ns-name-close {
     position: absolute;
-    right: -3rem;
+    right: -4rem;
     top: 1rem;
   }
 }

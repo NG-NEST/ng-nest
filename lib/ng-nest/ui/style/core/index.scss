@@ -1,6 +1,33 @@
 @charset "UTF-8";
-@use './cdk' as *;
-@use './var' as *;
-@use './base' as *;
-@use './portal' as *;
+@use '../mixins/hidden' as *;
+@use '../params/index' as *;
 @use '../directives/index' as *;
+
+@include var-size-hidden($x-size-range-only);
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+input,
+textarea {
+  font-family: $x-font-family;
+  font-size: $x-font-size;
+  color: $x-text;
+  line-height: $x-line-height;
+}
+
+code,
+pre,
+tt {
+  font-family: $x-font-code-family;
+}
+
+// .x-portal {
+//   &-resizable {
+//     display: inline-block !important;
+//   }
+// }

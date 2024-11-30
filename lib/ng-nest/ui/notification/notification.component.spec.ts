@@ -5,23 +5,18 @@ import { By } from '@angular/platform-browser';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XNotificationPrefix } from './notification.property';
 import { XNotificationService } from './notification.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { XCorner } from '@ng-nest/ui/core';
 
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { XNotificationComponent } from '@ng-nest/ui/notification';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 describe(XNotificationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXNotificationComponent, TestXNotificationTypeComponent],
-      imports: [BrowserAnimationsModule,  XButtonComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      imports: [TestXNotificationComponent, TestXNotificationTypeComponent],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -51,8 +46,8 @@ describe(XNotificationPrefix, () => {
 });
 
 @Component({
+  imports: [XButtonComponent],
   template: `
-    
     <div class="row">
       <x-button (click)="open('top-start', '上左')">上左</x-button>
       <x-button (click)="open('top-end', '上右')">上右(默认)</x-button>
@@ -104,8 +99,8 @@ class TestXNotificationComponent {
 }
 
 @Component({
+  imports: [XButtonComponent],
   template: `
-    
     <div class="row">
       <x-button (click)="notification.success({ title: '成功提示', content: content })">成功提示</x-button>
       <x-button (click)="notification.info({ title: '消息提示', content: content })">消息提示</x-button>

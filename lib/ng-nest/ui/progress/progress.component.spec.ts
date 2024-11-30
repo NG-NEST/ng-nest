@@ -126,14 +126,14 @@ describe(XProgressPrefix, () => {
     it('info.', () => {
       component.info.set(false);
       fixture.detectChanges();
-      const text = fixture.debugElement.query(By.css('.x-progress-text')).nativeElement;
+      const text = fixture.debugElement.query(By.css('.x-progress-text'));
       expect(text).toBeFalsy();
     });
     it('infoWidth.', () => {
       component.infoWidth.set('100px');
       fixture.detectChanges();
       const text = fixture.debugElement.query(By.css('.x-progress-text')).nativeElement;
-      expect(text.clientWidth).toBe(100);
+      expect(XComputedStyle(text, 'width')).toBe('100');
     });
     it('inside.', () => {
       component.inside.set(true);
@@ -154,14 +154,16 @@ describe(XProgressPrefix, () => {
       component.color.set('rgb(0, 255, 0)');
       fixture.detectChanges();
       const bg = fixture.debugElement.query(By.css('.x-progress-bg')).nativeElement;
-      expect(XComputedStyle(bg, 'color')).toBe('rgb(0, 255, 0)');
+      expect(XComputedStyle(bg, 'background-color')).toBe('rgb(0, 255, 0)');
     });
     it('gradient.', () => {
-      component.gradient.set({ from: '#3B82F6', to: '#f56c6c' });
+      component.gradient.set({ from: 'rgb(59, 130, 246)', to: 'rgb(245, 108, 108)' });
       component.percent.set(80);
       fixture.detectChanges();
       const bg = fixture.debugElement.query(By.css('.x-progress-bg')).nativeElement;
-      expect(XComputedStyle(bg, 'background-image')).toBe(`linear-gradient(to right, #3B82F6, #f56c6c)`);
+      expect(XComputedStyle(bg, 'background-image')).toBe(
+        `linear-gradient(to right, rgb(59, 130, 246), rgb(245, 108, 108))`
+      );
     });
     it('steps.', () => {
       component.percent.set(50);
@@ -189,7 +191,7 @@ describe(XProgressPrefix, () => {
       fixture.detectChanges();
       const steps = fixture.debugElement.queryAll(By.css('.x-progress-step'));
       for (let step of steps) {
-        expect(XComputedStyle(step.nativeElement, 'flex')).toBe('1');
+        expect(XComputedStyle(step.nativeElement, 'flex')).toBe('1 1 0%');
       }
     });
     it('thickness.', () => {
@@ -199,8 +201,8 @@ describe(XProgressPrefix, () => {
       fixture.detectChanges();
       const rail = fixture.debugElement.query(By.css('.x-progress-ring-rail')).nativeElement;
       const bg = fixture.debugElement.query(By.css('.x-progress-ring-bg')).nativeElement;
-      expect(XComputedStyle(rail, 'border-width')).toBe('50px');
-      expect(XComputedStyle(bg, 'border-width')).toBe('50px');
+      expect(XComputedStyle(rail, 'border-width')).toBe('50');
+      expect(XComputedStyle(bg, 'border-width')).toBe('50');
     });
     it('size.', () => {
       component.size.set('200px');

@@ -2,7 +2,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
 import { Injectable, RendererFactory2, TemplateRef, inject } from '@angular/core';
 import { XFillDefault, XConfigService, XDialogConfig } from '@ng-nest/ui/core';
-import { XPortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
+import { XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRef } from './dialog-ref';
 import { XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
@@ -17,8 +17,7 @@ export class XDialogService {
     minHeight: '8rem',
     backdropClose: true,
     hasBackdrop: true,
-    draggable: false,
-    resizable: false
+    draggable: false
   };
   configDefault?: XDialogConfig;
 
@@ -55,8 +54,7 @@ export class XDialogService {
     const { hostElement, overlayElement } = overlayRef || {};
     const dialogRef = new XDialogRef<T>(overlayRef!, instance, this.renderer, this.portalService);
     let dialogBox = {
-      draggable: option.draggable,
-      resizable: option.resizable
+      draggable: option.draggable
     };
     let defaultMaximize = this.setMaximize(option);
     Object.assign(dialogBox, {
@@ -74,19 +72,6 @@ export class XDialogService {
     instance.overlayElement = overlayElement;
     dialogRef.option = option;
     dialogRef.fullscreen = defaultMaximize;
-    if (option.resizable && !defaultMaximize) {
-      this.renderer.addClass(hostElement, XPortalResizablePrefix);
-      setTimeout(() => {
-        Object.assign(dialogBox, this.portalService.setResizable(overlayElement!, option.placement));
-        instance.offsetLeft = overlayElement!.offsetLeft;
-        instance.offsetTop = overlayElement!.offsetTop;
-        const dialogDraggable = overlayElement?.querySelector('.x-dialog-portal')!;
-        instance.initHeight = dialogDraggable.clientHeight;
-        instance.dialogContent = overlayElement?.querySelector('.x-dialog-portal-content')!;
-        instance.initContentHeight = instance.dialogContent?.clientHeight;
-        instance.dialogBox = dialogBox;
-      });
-    }
     if (defaultMaximize) {
       this.renderer.addClass(overlayElement, 'x-dialog-portal-fullscreen');
     }

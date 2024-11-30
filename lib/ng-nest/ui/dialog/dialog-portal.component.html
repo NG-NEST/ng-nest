@@ -3,13 +3,9 @@
   #dragRef
   cdkDrag
   [cdkDragDisabled]="!option.draggable && !dialogBox['draggable']"
-  [cdkDragBoundary]="'.cdk-overlay-container'"
+  [cdkDragRootElement]="'.cdk-overlay-pane'"
   [cdkDragFreeDragPosition]="dialogBox['distance']"
-  [xResizable]="option.resizable && dialogBox['resizable']!"
-  (resizing)="resizing($event)"
   (cdkDragEnded)="onDragEnded($event)"
-  [offsetLeft]="offsetLeft"
-  [offsetTop]="offsetTop"
   [style.minWidth]="dialogBox['minWidth']"
   [style.minHeight]="dialogBox['minHeight']"
   [style.maxWidth]="dialogBox['maxWidth']"

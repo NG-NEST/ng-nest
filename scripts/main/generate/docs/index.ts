@@ -23,6 +23,7 @@ export const genDir = resolve(__dirname, '../../../../src/main/docs');
 export const genMenusDir = resolve(__dirname, '../../../../src/app');
 export const genCoreDir = resolve(__dirname, '../../../../src/interfaces');
 export const docsPrefix = 'docs';
+export const version = '19.0.0';
 export const languages = ['zh_CN', 'en_US'];
 
 export class NcDocs {
@@ -65,7 +66,7 @@ export class NcDocs {
     for (let i = 0; i < children.length; i++) {
       const x = children[i];
       if (x === 'demo') {
-        handlerDemo(page, docDir, router);
+        handlerDemo(page, docDir, router, version);
       } else {
         const dir = join(docDir, x);
         const stat = statSync(dir);

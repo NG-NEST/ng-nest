@@ -2,6 +2,9 @@
 @use '../../../styles/mixin.scss' as *;
 
 :host {
+  & {
+    position: relative;
+  }
   .ns-theme-title {
     background-color: $x-background-a200;
     border-top-left-radius: $x-border-radius;
@@ -51,7 +54,7 @@
   }
   .ns-theme-close {
     position: absolute;
-    right: -3rem;
+    right: -4rem;
     top: 1rem;
   }
 

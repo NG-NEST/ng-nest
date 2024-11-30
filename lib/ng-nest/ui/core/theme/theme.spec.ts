@@ -2,15 +2,15 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XThemeService } from './theme.service';
 import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XConfig, X_CONFIG } from '../config';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 
 @Component({
+  imports: [XButtonComponent, XColorPickerComponent, FormsModule, ReactiveFormsModule],
   template: `<div class="row">
       <x-button>默认按钮</x-button>
       <x-button type="primary">主要按钮</x-button>
@@ -71,17 +71,17 @@ describe('x-theme service', () => {
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [XGlobalThemeTestBasicComponent],
-      imports: [XButtonComponent, BrowserAnimationsModule, XColorPickerComponent, FormsModule, ReactiveFormsModule],
+      imports: [XGlobalThemeTestBasicComponent],
       providers: [
         {
           provide: X_CONFIG,
           useValue: config
         },
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
+        provideAnimations(),
+        provideHttpClient(withFetch()),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
 

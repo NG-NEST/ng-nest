@@ -193,7 +193,6 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   }
 
   getOffset(val: number) {
-    console.log(val, this.min(), this.max());
     return Math.abs(
       Math.round(((val + (this.reverse() ? -this.min() : this.min())) * 100) / (this.max() - this.min()))
     );

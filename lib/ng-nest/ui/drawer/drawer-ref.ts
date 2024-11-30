@@ -5,7 +5,10 @@ import { XDrawerPortalComponent } from './drawer-portal.component';
 // TODO: add more function
 export class XDrawerRef<C> {
   componentInstance!: C;
-  constructor(public overlayRef: OverlayRef, public containerInstance: XDrawerPortalComponent) {}
+  constructor(
+    public overlayRef: OverlayRef,
+    public containerInstance: XDrawerPortalComponent
+  ) {}
   close() {
     this.containerInstance.animationChanged
       .pipe(
@@ -13,7 +16,7 @@ export class XDrawerRef<C> {
         take(1)
       )
       .subscribe(() => {
-        this.overlayRef.detach();
+        this.overlayRef.dispose();
       });
     this.containerInstance.placement = 'void';
   }

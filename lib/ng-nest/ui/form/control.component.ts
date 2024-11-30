@@ -73,12 +73,9 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   constructor() {
     super();
 
-    effect(
-      () => {
-        this.formControl()!.patchValue(this.value());
-      },
-      { allowSignalWrites: true }
-    );
+    effect(() => {
+      this.formControl()!.patchValue(this.value());
+    });
   }
 
   ngOnInit() {
@@ -98,7 +95,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     this.formControl()!
       .valueChanges.pipe(takeUntil(this._unSubject))
       .subscribe((x) => {
-        this.componentRef.instance.writeValue(x);
+        this.componentRef?.instance?.writeValue(x);
       });
     this.option().setValidators = () => this.setValidators();
     this.form.formGroup().addControl(this.option().id, this.formControl());

@@ -301,7 +301,7 @@ describe(XPaginationPrefix, () => {
       fixture.detectChanges();
       await XSleep(300);
       let tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
-      expect(tooltip.innerText).toBe('ʹ�� Enter ��ȷ��');
+      expect(tooltip.innerText).toBe('使用 Enter 键确认');
       input.nativeElement.dispatchEvent(new Event('mouseleave'));
       await XSleep(300);
 
@@ -311,7 +311,7 @@ describe(XPaginationPrefix, () => {
       fixture.detectChanges();
       await XSleep(300);
       tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
-      expect(tooltip.innerText).toBe('ʧȥ����ȷ��');
+      expect(tooltip.innerText).toBe('失去焦点确认');
       input.nativeElement.dispatchEvent(new Event('mouseleave'));
       await XSleep(300);
     });

@@ -1,16 +1,18 @@
 import { OverlayRef } from '@angular/cdk/overlay';
-import { ElementRef, Renderer2 } from '@angular/core';
+import { Renderer2 } from '@angular/core';
 import { Subject, filter, take } from 'rxjs';
 import { XPortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRefOption } from './dialog.property';
+import { CdkDragHandle } from '@angular/cdk/drag-drop';
+import { XDialogDragHandleDirective } from './dialog-portal.directives';
 
 // TODO: add more function
 export class XDialogRef<C> {
   componentInstance!: C;
   option!: XDialogRefOption;
   fullscreen = false;
-  dragHandleRefs: ElementRef<HTMLElement>[] = [];
+  dragHandleRefs: (XDialogDragHandleDirective | CdkDragHandle)[] = [];
   afterClose = new Subject<any>();
   private _isFristFullscreen = true;
 
@@ -28,7 +30,7 @@ export class XDialogRef<C> {
         take(1)
       )
       .subscribe(() => {
-        this.overlayRef.detach();
+        this.overlayRef.dispose();
         this.afterClose.next(result);
       });
     this.containerInstance.placement = 'void';

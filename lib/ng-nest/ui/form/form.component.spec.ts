@@ -2,8 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormComponent, XFormControlOption, XFormPrefix, XFormRow, XFormTemplate } from '@ng-nest/ui/form';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FormBuilder, FormsModule, UntypedFormGroup } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { XComputedStyle } from '@ng-nest/ui/core';
@@ -58,13 +57,8 @@ class XTestFormPropertyComponent {
 describe(XFormPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, XTestFormComponent, XTestFormPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
+      imports: [XTestFormComponent, XTestFormPropertyComponent],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

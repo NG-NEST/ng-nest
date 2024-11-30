@@ -44,13 +44,10 @@ export class XImageComponent extends XImageProperty implements OnInit, OnDestroy
 
   constructor() {
     super();
-    effect(
-      () => {
-        this.src();
-        this.isLoaded.set(false);
-      },
-      { allowSignalWrites: true }
-    );
+    effect(() => {
+      this.src();
+      this.isLoaded.set(false);
+    });
   }
 
   ngOnInit(): void {

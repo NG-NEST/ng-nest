@@ -25,7 +25,7 @@
     width: 100%;
   }
   &-track {
-    width: 100%;
+    flex: 1;
     display: inline-flex;
     align-items: center;
   }
@@ -104,7 +104,7 @@
     background-color: $x-primary;
   }
   &-text {
-    margin-left: 0.5rem;
+    padding-left: 0.5rem;
     display: inline-flex;
     align-items: center;
     white-space: nowrap;

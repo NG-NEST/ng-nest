@@ -3,14 +3,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { XMessageComponent } from './message.component';
 import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessagePrefix } from './message.property';
 import { XMessageService } from './message.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { XConfig, XPlace, X_CONFIG } from '@ng-nest/ui/core';
 
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 describe(XMessagePrefix, () => {
   let config: XConfig = {
@@ -22,17 +21,17 @@ describe(XMessagePrefix, () => {
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
-      imports: [BrowserAnimationsModule,  XButtonComponent],
+      imports: [TestXMessageComponent, TestXMessageTypeComponent, TestXMessageDisplayTypeComponent],
       providers: [
         {
           provide: X_CONFIG,
           useValue: config
         },
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
+        provideAnimations(),
+        provideHttpClient(withFetch()),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -74,8 +73,8 @@ describe(XMessagePrefix, () => {
 });
 
 @Component({
+  imports: [XButtonComponent],
   template: `
-    
     <div class="box">
       <div class="row">
         <x-button (click)="open('top-start', '上左')">上左</x-button>
@@ -130,8 +129,8 @@ class TestXMessageComponent {
 }
 
 @Component({
+  imports: [XButtonComponent],
   template: `
-    
     <div class="row">
       <x-button (click)="message.success('成功提示')">成功提示</x-button>
       <x-button (click)="message.info('消息提示')">消息提示</x-button>
@@ -199,8 +198,8 @@ class TestXMessageTypeComponent {
 }
 
 @Component({
+  imports: [XButtonComponent],
   template: `
-    
     <div class="box">
       <div class="row">
         <x-button (click)="open('top-start', '上左')">上左</x-button>

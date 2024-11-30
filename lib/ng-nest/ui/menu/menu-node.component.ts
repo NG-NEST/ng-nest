@@ -36,13 +36,10 @@ export class XMenuNodeComponent extends XMenuNodeProperty {
 
   constructor() {
     super();
-    effect(
-      () => {
-        if (this.menu.activatedId() === this.id()) {
-          this.menu.activatedElementRef.set(this.elementRef);
-        }
-      },
-      { allowSignalWrites: true }
-    );
+    effect(() => {
+      if (this.menu.activatedId() === this.id()) {
+        this.menu.activatedElementRef.set(this.elementRef);
+      }
+    });
   }
 }

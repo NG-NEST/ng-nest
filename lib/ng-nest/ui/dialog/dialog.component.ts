@@ -1,7 +1,6 @@
 import {
   Component,
   ViewEncapsulation,
-  Renderer2,
   ChangeDetectionStrategy,
   TemplateRef,
   ViewContainerRef,
@@ -24,13 +23,12 @@ import {
   XDialogAction,
   X_DIALOG_CONTAINER
 } from './dialog.property';
-import { XPortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
+import { XPortalService } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import { XI18nDialog, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
-import { XResizableEvent } from '@ng-nest/ui/resizable';
 import { XDialogContainerComponent } from './dialog-container.component';
 import { XAlertComponent } from '@ng-nest/ui/alert';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
@@ -48,7 +46,6 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
   animations: [XMoveBoxAnimation, XOpacityAnimation]
 })
 export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit {
-  private renderer = inject(Renderer2);
   private viewContainerRef = inject(ViewContainerRef);
   private protalService = inject(XPortalService);
   private overlay = inject(Overlay);
@@ -73,12 +70,10 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   isMaximize = signal(false);
   isDefaultMaximize = signal(false);
   dialogBox: { [key: string]: any } = {};
-  contentBox: XResizableEvent = {};
   distance = { x: 0, y: 0 };
   viewInit = signal(false);
   action: XDialogAction | null = null;
   containerInit = false;
-  resizableSignal = signal(false);
   draggableSignal = signal(false);
   maximizeSignal = signal(false);
 
@@ -119,16 +114,11 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     this.visibleChanged.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.setVisible();
     });
-    effect(
-      () => {
-        this.draggableSignal.set(this.draggable());
-        this.resizableSignal.set(this.resizable());
-        this.maximizeSignal.set(this.maximize());
-        this.dialogBox['draggable'] = this.draggableSignal();
-        this.dialogBox['resizable'] = this.resizableSignal();
-      },
-      { allowSignalWrites: true }
-    );
+    effect(() => {
+      this.draggableSignal.set(this.draggable());
+      this.maximizeSignal.set(this.maximize());
+      this.dialogBox['draggable'] = this.draggableSignal();
+    });
   }
 
   ngOnInit() {
@@ -173,7 +163,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
         positionStrategy: this.protalService.setPlace(this.placement(), this.offset())
       }
     });
-    const { hostElement, overlayElement } = this.dialogRef.overlayRef!;
+    const { overlayElement } = this.dialogRef.overlayRef!;
     this.overlayElement.set(overlayElement);
     this.setWidthHeight();
     Object.assign(this.dialogBox, {
@@ -182,18 +172,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
       minWidth: this.minWidth(),
       minHeight: this.minHeight()
     });
-    if (this.resizableSignal() && !this.isDefaultMaximize()) {
-      this.renderer.addClass(hostElement, XPortalResizablePrefix);
-      setTimeout(() => {
-        Object.assign(this.dialogBox, this.protalService.setResizable(this.overlayElement()!, this.placement()));
-        this.styleOffsetLeft.set(this.overlayElement()?.offsetLeft!);
-        this.styleOffsetTop.set(this.overlayElement()?.offsetTop!);
-        const dialog = this.overlayElement()?.querySelector('.x-alert')!;
-        this.initHeight = dialog.clientHeight;
-        this.dialogContent = this.overlayElement()?.querySelector('.x-dialog-content')!;
-        this.initContentHeight = this.dialogContent.clientHeight;
-      });
-    }
     if (this.hasBackdrop() && this.backdropClose() && this.dialogRef?.overlayRef) {
       this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => this.onClose('close'));
     }
@@ -204,7 +182,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     const hs = ['100%', '100vh'];
     if (ws.includes(this.width()) && hs.includes(this.height())) {
       this.isDefaultMaximize.set(true);
-      this.resizableSignal.set(false);
       this.draggableSignal.set(false);
       this.maximizeSignal.set(false);
     }
@@ -263,9 +240,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     this.dialogBox['minHeight'] = '100%';
     this.dialogBox['draggable'] = false;
     this.dialogBox['resizable'] = false;
-    if (this.resizableSignal()) {
-      this.renderer.setStyle(this.overlayElement(), 'margin', '0 0 0 0');
-    }
     if (this.draggableSignal()) {
       this.dialogBox['distance'] = { x: 0, y: 0 };
     }
@@ -275,7 +249,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     this.dialogBox['minWidth'] = this.minWidth();
     this.dialogBox['minHeight'] = this.minHeight();
     this.dialogBox['draggable'] = this.draggableSignal();
-    this.dialogBox['resizable'] = this.resizableSignal();
     this.dialogRef.overlayRef?.updateSize({
       width: this.dialogBox['width'],
       height: this.dialogBox['height'],
@@ -285,20 +258,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     if (this.draggableSignal()) {
       this.dialogBox['distance'] = { ...this.distance };
     }
-    if (this.resizableSignal()) {
-      if (this.dialogBox['marginTop']) {
-        this.renderer.setStyle(this.overlayElement(), 'margin-top', `${this.dialogBox['marginTop']}`);
-      }
-      if (this.dialogBox['marginLeft']) {
-        this.renderer.setStyle(this.overlayElement(), 'margin-left', `${this.dialogBox['marginLeft']}`);
-      }
-      if (this.dialogBox['marginRight']) {
-        this.renderer.setStyle(this.overlayElement(), 'margin-right', `${this.dialogBox['marginRight']}`);
-      }
-      if (this.dialogBox['marginBottom']) {
-        this.renderer.setStyle(this.overlayElement(), 'margin-bottom', `${this.dialogBox['marginBottom']}`);
-      }
-    }
   }
 
   moveDone($event: { toState: string }) {
@@ -306,22 +265,12 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
       !this.destroy() && this.closeDone.emit($event);
       this.isMaximize.set(false);
       this.dialogBox = {
-        draggable: this.draggableSignal(),
-        resizable: this.resizableSignal()
+        draggable: this.draggableSignal()
       };
       this.distance = { x: 0, y: 0 };
       this.dialogRef?.overlayRef?.dispose();
     } else {
       !this.destroy() && this.showDone.emit($event);
-    }
-  }
-
-  onResizing(event: XResizableEvent) {
-    const contentHeight = Number(this.initContentHeight) + Number(event.clientHeight) - Number(this.initHeight);
-    this.renderer.setStyle(this.dialogContent, 'max-height', 'initial');
-    this.renderer.setStyle(this.dialogContent, 'flex', 'initial');
-    if (['top-start', 'top-end', 'bottom', 'top', 'bottom-start', 'bottom-end'].includes(event.direction as string)) {
-      this.renderer.setStyle(this.dialogContent, 'height', `${contentHeight}px`);
     }
   }
 }

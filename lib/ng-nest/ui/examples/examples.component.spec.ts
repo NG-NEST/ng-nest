@@ -10,8 +10,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe(XExamplesPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXExamplesComponent],
-      imports: [XExamplesComponent, XTabsComponent, XTabComponent],
+      imports: [TestXExamplesComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
@@ -35,6 +34,7 @@ describe(XExamplesPrefix, () => {
 
 @Component({
   selector: 'test-x-examples',
+  imports: [XExamplesComponent, XTabsComponent, XTabComponent],
   template: `
     <x-examples>
       <x-tabs nodeJustify="start">

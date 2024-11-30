@@ -65,7 +65,8 @@ export class XCarouselComponent extends XCarouselProperty {
   }
 
   ngOnChanges(simples: SimpleChanges): void {
-    const { active } = simples;
+    const { active, interval } = simples;
+    XIsChange(interval) && this.autoplay() && this.resetInterval();
     XIsChange(active) && this.setActiveItem(this.active());
   }
 

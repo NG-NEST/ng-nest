@@ -7,17 +7,18 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 describe(XTimeAgoPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXTimeAgoComponent],
-      imports: [XTimeAgoPipe, XButtonComponent],
+      imports: [TestXTimeAgoComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideExperimentalZonelessChangeDetection()
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -33,6 +34,7 @@ describe(XTimeAgoPrefix, () => {
 });
 
 @Component({
+  imports: [DatePipe, XTimeAgoPipe, XButtonComponent],
   template: `
     <x-button (click)="english()">切换为英文</x-button>
     <x-button (click)="chinese()">切换为中文</x-button>

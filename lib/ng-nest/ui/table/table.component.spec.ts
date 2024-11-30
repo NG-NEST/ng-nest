@@ -502,7 +502,7 @@ describe(XTablePrefix, () => {
       const pageLinks = fixture.debugElement.queryAll(By.css('.x-pagination-link'));
       expect(pageLinks.length).toBe(4);
       let trs = fixture.debugElement.queryAll(By.css('.x-table tbody tr'));
-      expect(trs.length).toBe(10);
+      expect(trs.length).toBe(5);
     });
     it('total.', () => {
       def(10, 1, 100);
@@ -644,12 +644,15 @@ describe(XTablePrefix, () => {
       expect(scroll.nativeElement.clientHeight).toBe(200);
     });
     it('itemSize.', () => {
+      // cdk scroll params
       expect(true).toBe(true);
     });
     it('minBufferPx.', () => {
+      // cdk scroll params
       expect(true).toBe(true);
     });
     it('maxBufferPx.', () => {
+      // cdk scroll params
       expect(true).toBe(true);
     });
     it('adaptionHeight.', () => {

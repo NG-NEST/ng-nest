@@ -17,6 +17,7 @@ import { XComputedStyle } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'test-x-keyword',
+  imports: [XKeywordDirective],
   template: `
     <span #contentRef x-keyword [type]="type()" [caseSensitive]="caseSensitive()" [color]="color()" [text]="text()"
       >Key key more More
@@ -34,8 +35,7 @@ class TestXKeywordComponent {
 describe(XKeywordPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXKeywordComponent],
-      imports: [XKeywordDirective],
+      imports: [TestXKeywordComponent],
       providers: [
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),

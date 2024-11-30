@@ -9,27 +9,22 @@ import {
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageBoxComponent } from '@ng-nest/ui/message-box';
-import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessageBoxPrefix, XMessageBoxAction } from './message-box.property';
 import { XMessageBoxService } from './message-box.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { XPlace } from '@ng-nest/ui/core';
 import { XMessageService } from '@ng-nest/ui/message';
 
 import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XButtonComponent } from '@ng-nest/ui/button';
 
 describe(XMessageBoxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestXMessageBoxComponent],
-      imports: [BrowserAnimationsModule,  XMessageBoxComponent, XButtonComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      imports: [TestXMessageBoxComponent],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe(`default.`, () => {
@@ -47,10 +42,11 @@ describe(XMessageBoxPrefix, () => {
 });
 
 @Component({
+  imports: [XButtonComponent],
   template: `
     <x-button (click)="english()">切换为英文</x-button>
     <x-button (click)="chinese()">切换为中文</x-button>
-    
+
     <div class="box">
       <div class="row">
         <x-button (click)="alert('top-start', '上左')">上左</x-button>
