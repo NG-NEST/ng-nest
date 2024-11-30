@@ -5,7 +5,7 @@ label: '快速上手'
 
 # 快速上手
 
-> 开始前请搭建好环境，如何搭建环境请查看 [angular](https://angular.io/guide/setup-local) 官方教程。
+> 开始前请搭建好环境，如何搭建环境请查看 [angular](https://angular.dev/installation) 官方教程。
 
 运行 `ng --version` 来检查当前版本，请不要低于以下版本号。
 
@@ -37,19 +37,24 @@ Angular CLI 会安装必要的依赖包。这可能要花几分钟的时间，CL
 
 ## 3. 添加组件使用
 
-打开 `src/app/app.module.ts` 文件引入 `x-button` 组件模块。
+打开 `src/app/app.config.ts` 文件，添加 `provideHttpClient` http请求和 `provideAnimations` 动画模块。
 
-{{ __3.1\__my-app:src/app/app.module.ts:false }}
+{{ __3.1\__my-app:src/app/app.config.ts:false }}
+
+打开 `src/app/app.component.ts` 文件引入 `x-button` 组件。
+
+{{ __3.2\__my-app:src/app/app.component.ts:false }}
 
 ```primary
 所有的组件只支持单独引入，一次性引入所有组件会导致打包体积比较大。
+支持 `Zoneless` , 可以在 `app.config.ts` 中添加 `provideExperimentalZonelessChangeDetection()` 模块。`Zoneless` 相关配置可以查看 [官方文档](https://angular.dev/guide/experimental/zoneless)。
 ```
 
 打开 src/app/app.component.html 替换成以下的代码，并修改对应的 scss 样式。
 
-{{ __3.2\__my-app:src/app/app.component.html }}
+{{ __3.3\__my-app:src/app/app.component.html }}
 
-然后在 my-app 项目根目录下打开命令行工具使用 ng serve -o 来运行项目。
+然后在 `my-app` 项目根目录下打开命令行工具使用 `ng serve -o` 来运行项目。
 
 {{ __3\__bash:1.bash:false:false }}
 

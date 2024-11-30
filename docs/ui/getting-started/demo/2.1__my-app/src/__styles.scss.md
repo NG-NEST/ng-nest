@@ -1,3 +1,3 @@
 ---
-primary: 2,4-6
+primary: 2
 ---

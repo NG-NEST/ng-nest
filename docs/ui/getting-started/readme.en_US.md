@@ -5,7 +5,7 @@ label: 'Getting Started'
 
 # Getting Started
 
-> Please set up the environment before starting, how to set up the environment please check [angular](https://angular.io/guide/setup-local) official tutorial。
+> Please set up the environment before starting, how to set up the environment please check [angular](https://angular.dev/installation) official tutorial。
 
 Run `ng --version` to check the current version, please do not go below the version number.
 
@@ -37,17 +37,22 @@ Or in `angular.json` in `projects/my-app/architect/build/options/styles` attribu
 
 ## 3. Add component use
 
+Open the `src/app/app.config.ts` file and add the `provideHttpClient` HTTP request and the `provideAnimations` animation module.
+
+{{ __3.1\__my-app:src/app/app.config.ts:false }}
+
 Open the `src/app/app.module.ts` file to introduce the `x-button` component module.
 
-{{ __3.1\__my-app:src/app/app.module.ts:false }}
+{{ __3.2\__my-app:src/app/app.module.ts:false }}
 
 ```primary
 All components are supported separately, and introducing all components at once can result in a large package size.
+All components now support `Zoneless`, and you can add the ` provideExperimentalZonelessChangeDetection()` module in `app.config.ts`, `Zoneless` related configurations can be viewed in the [official documentation](https://angular.dev/guide/experimental/zoneless).
 ```
 
 Open src/app/app.component.html replaced with the following code, and modify the corresponding SCSS style.
 
-{{ __3.2\__my-app:src/app/app.component.html }}
+{{ __3.3\__my-app:src/app/app.component.html }}
 
 Then open the command line tool in the my-app project root and use `ng serve -o` to run the project.
 
