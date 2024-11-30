@@ -30391,6 +30391,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
+        "name": "portalHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "下拉框的高度，启用虚拟滚动的时候必须设置一个高度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
         "name": "portalWidth",
         "type": "XNumber",
         "toType": "string",
@@ -34884,7 +34902,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "树形表格",
-        "default": "true",
+        "default": "false",
         "withConfig": true,
         "description": "",
         "example": [

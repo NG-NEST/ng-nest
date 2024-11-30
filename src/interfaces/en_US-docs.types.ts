@@ -30391,6 +30391,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
+        "name": "portalHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The biggest height of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
         "name": "portalWidth",
         "type": "XNumber",
         "toType": "string",
@@ -34884,7 +34902,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "Tree table",
-        "default": "true",
+        "default": "false",
         "withConfig": true,
         "description": "",
         "example": [

@@ -1,3 +1,12 @@
+## [18.0.12](https://github.com/NG-NEST/ng-nest/compare/18.0.11...18.0.12) (2024-11-30)
+
+
+### Bug Fixes
+
+* **module:message-box:** fix message-box default param ([afffd32](https://github.com/NG-NEST/ng-nest/commit/afffd32aa2a471c5d90835df2fd57a19a6538e6d))
+
+
+
 ## [18.0.11](https://github.com/NG-NEST/ng-nest/compare/18.0.10...18.0.11) (2024-11-02)
 
 
