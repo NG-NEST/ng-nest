@@ -141,7 +141,7 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
    * @zh_CN 输入框点击样式
    * @en_US Input pointer
    */
-  override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  override readonly pointer = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 标签
    * @en_US Label

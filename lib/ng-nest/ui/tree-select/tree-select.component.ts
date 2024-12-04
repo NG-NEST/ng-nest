@@ -1,4 +1,4 @@
-import { Subject, fromEvent } from 'rxjs';
+import { Subject, fromEvent, of } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -36,7 +36,9 @@ import {
   XComputed,
   XResizeObserver,
   XParents,
-  XPlacement
+  XPlacement,
+  XIsUndefined,
+  XIsNull
 } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -48,8 +50,18 @@ import {
   OverlayConfig,
   OverlayRef
 } from '@angular/cdk/overlay';
-import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
-import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, LEFT_ARROW, RIGHT_ARROW, TAB, BACKSPACE } from '@angular/cdk/keycodes';
+import { takeUntil, throttleTime, debounceTime, distinctUntilChanged, map, filter, delay } from 'rxjs/operators';
+import {
+  DOWN_ARROW,
+  UP_ARROW,
+  ENTER,
+  MAC_ENTER,
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  TAB,
+  BACKSPACE,
+  ESCAPE
+} from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XI18nTreeSelect, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { DOCUMENT } from '@angular/common';
@@ -87,10 +99,13 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   treeSelect = viewChild.required<ElementRef<HTMLElement>>('treeSelect');
   multipleValueTpl = viewChild.required<TemplateRef<void>>('multipleValueTpl');
   multipleInput = viewChild<XInputComponent>('multipleInput');
+  searchInput = viewChild<XInputComponent>('searchInput');
+  valueTemplate = viewChild.required<TemplateRef<void>>('valueTemplate');
+  searchTemplate = viewChild.required<TemplateRef<void>>('searchTemplate');
 
   getReadonly = computed(() => (this.readonly() && !this.search()) || (this.search() && Boolean(this.multiple())));
   getMaxTagContent = computed(() => this.maxTagContent() || this.locale().maxTagContent);
-  objectArray = computed(() => XIsObjectArray(this.value()));
+  objectArray = signal(false);
 
   override writeValue(value: any) {
     if (this.multiple()) {
@@ -127,23 +142,33 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   inputChange: Subject<any> = new Subject();
   composition = signal(false);
-  multipleInputSizeChange = new Subject<number>();
-  valueTemplate = viewChild.required<TemplateRef<void>>('valueTemplate');
+  multipleInputSizeChange = new Subject<{
+    inputHeight: number;
+    searchInputWidth: number;
+    searchInputLeft: number;
+    searchInputTop: number;
+  }>();
 
   valueTplComputed = computed(() => {
-    if (this.nodeTpl()) {
-      return this.nodeTpl();
-    }
     if (this.valueTpl()) {
       return this.valueTpl();
+    }
+    if (this.nodeTpl()) {
+      return this.nodeTpl();
     }
     if (this.multiple()) {
       return this.multipleValueTpl();
     }
+    if (this.search()) {
+      return this.searchTemplate();
+    }
     return this.valueTemplate();
   });
 
-  valueTplContextSignal = signal<{ $node: any; $isValue: boolean }>({ $node: null, $isValue: true });
+  valueTplContextSignal = signal<{ $node: null | XTreeSelectNode; $nodes: null | XTreeSelectNode[] }>({
+    $node: null,
+    $nodes: null
+  });
   valueTplContextComputed = computed(() => {
     return this.valueTplContext() ? this.valueTplContext() : this.valueTplContextSignal();
   });
@@ -164,6 +189,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     if (XIsEmpty(this.inputChanged())) return nodes;
     return this.searchNodes();
   });
+  allowAgian = signal(true);
 
   constructor() {
     super();
@@ -200,8 +226,10 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     this.setPortal();
     if (this.multiple() && this.inputCom().inputValueRef()) {
       XResize(this.inputCom().inputValueRef()?.nativeElement)
-        .pipe(debounceTime(30), takeUntil(this.unSubject))
+        .pipe(debounceTime(20), takeUntil(this.unSubject))
         .subscribe((x) => {
+          const rect = this.inputCom().inputValueRef()?.nativeElement.getBoundingClientRect();
+          console.log(rect.width, rect.height);
           this.resizeObserver = x.resizeObserver;
           this.setMutipleInputSize();
         });
@@ -238,13 +266,20 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
         !this.portalAttached() &&
         [DOWN_ARROW, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, ENTER, MAC_ENTER, BACKSPACE].includes(keyCode)
       ) {
-        this.inputChange.next(this.displayValue());
+        this.modelChange(this.displayValue());
+      }
+      if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
+        this.closeSubject.next();
       }
     });
     this.multipleInputSizeChange.pipe(distinctUntilChanged(), takeUntil(this.unSubject)).subscribe((x) => {
       if (this.multipleInput()) {
+        const { inputHeight, searchInputWidth, searchInputLeft, searchInputTop } = x;
         const input = this.multipleInput()!.elementRef.nativeElement;
-        this.renderer.setStyle(input, 'width', `${x}px`);
+        this.renderer.setStyle(input, 'width', `${searchInputWidth}px`);
+        this.renderer.setStyle(input, 'left', `${searchInputLeft}px`);
+        this.renderer.setStyle(input, 'top', `${searchInputTop}px`);
+        this.renderer.setStyle(this.inputCom().inputRef().nativeElement, 'height', `${inputHeight}px`);
       }
     });
   }
@@ -308,9 +343,13 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       }
     }
     const height = scrollHeight + (lines > 1 ? marginTop : 0);
-    this.renderer.setStyle(this.inputCom().inputRef().nativeElement, 'height', `${height}px`);
     if (this.multipleInput()) {
-      this.multipleInputSizeChange.next(clientWidth - lastRowTagsWidth - marginLeft);
+      this.multipleInputSizeChange.next({
+        inputHeight: height,
+        searchInputWidth: clientWidth - lastRowTagsWidth - marginLeft,
+        searchInputLeft: lastRowTagsWidth - marginLeft,
+        searchInputTop: lines > 1 ? lastRowTagTop - marginTop : 1
+      });
     }
     this.portal?.overlayRef?.updatePosition();
   }
@@ -318,7 +357,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   menter() {
     this.enter.set(true);
     if (this.disabledComputed() || !this.clearable() || this.iconSpin()) return;
-    if (!XIsEmpty(this.displayValue())) {
+    if ((!this.multiple() && !XIsEmpty(this.displayValue())) || (this.multiple() && !XIsEmpty(this.displayNodes()))) {
       this.icon.set('');
       this.showClearable.set(true);
     }
@@ -404,13 +443,20 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   }
 
   clearEmit() {
-    this.value.set(this.multiple() ? [] : '');
+    this.value.update(() => {
+      if (this.multiple()) {
+        return [];
+      } else {
+        return '';
+      }
+    });
     this.displayValue.set('');
     this.multipleSearchValue.set('');
     this.selectedNodes.set([]);
     this.setDisplayNodes();
     this.valueTplContextSignal.update((x) => {
       x.$node = null;
+      x.$nodes = null;
       return { ...x };
     });
     this.mleave();
@@ -422,22 +468,32 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     if (this.nodes().length > 0) {
       if (this.multiple()) {
         if (XIsEmpty(this.value())) {
-          this.value.set([]);
+          if (XIsUndefined(this.value()) || XIsNull(this.value()) || this.value() === '') {
+            this.value.set([]);
+          } else {
+            this.value.update((x) => {
+              x.splice(0, x.length);
+              return x;
+            });
+          }
           this.displayValue.set('');
           this.selectedNodes.set([]);
           this.displayNodes.set([]);
           this.displayMore.set('');
           this.valueTplContextSignal.update((x) => {
             x.$node = null;
+            x.$nodes = null;
             return { ...x };
           });
           this.setDisplayNodes();
         } else {
           let ids = [];
           let selected = [];
-          if (this.objectArray()) {
+          if (XIsObjectArray(this.value())) {
+            this.objectArray.set(true);
             ids = this.value().map((x: XTreeSelectNode) => x.id);
           } else {
+            this.objectArray.set(false);
             ids = this.value();
           }
           if (clickNode) {
@@ -473,7 +529,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
               .join(this.separator())
           );
           this.valueTplContextSignal.update((x) => {
-            x.$node = [...this.selectedNodes()];
+            x.$nodes = [...this.selectedNodes()];
             return { ...x };
           });
         }
@@ -568,6 +624,10 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       this.portal?.overlayRef?.detach();
       this.active.set(false);
       this.multipleSearchValue.set('');
+      this.allowAgian.set(false);
+      of(true)
+        .pipe(delay(200))
+        .subscribe(() => this.allowAgian.set(true));
       return true;
     }
     return false;
@@ -578,7 +638,7 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   }
 
   showPortal(click = false) {
-    if (this.disabledComputed() || this.iconSpin() || this.animating()) return;
+    if (this.disabledComputed() || !this.allowAgian() || this.iconSpin() || this.animating()) return;
     this.active.set(true);
     if ((this.async() && XIsObservable(this.data()) && this.nodes().length === 0) || XIsFunction(this.data())) {
       this.icon.set('fto-loader');
@@ -596,14 +656,20 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     } else {
       this.createPortal();
     }
-    if (this.search() && this.multiple() && this.multipleInput()) {
-      this.multipleInput()!.inputFocus('focus');
+    if (this.search() && this.multiple()) {
+      this.multipleInput()?.inputFocus();
+    } else if (this.search() && !this.multiple()) {
+      this.searchInput()?.inputFocus();
     } else {
       this.inputCom().inputFocus('focus');
     }
   }
 
   createPortal() {
+    this.nodes.update((nodes) => {
+      nodes.filter((x) => x.selected).map((x) => (x.selected = false));
+      return [...nodes];
+    });
     const box = this.inputCom().inputRef().nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
@@ -674,6 +740,9 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
         return { ...x };
       });
       this.value.set(node.id);
+      if (this.search()) {
+        this.inputChange.next('');
+      }
       this.closeSubject.next();
     }
     if (this.search() && this.multiple() && this.multipleInput()) {

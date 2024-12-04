@@ -1,4 +1,9 @@
-<div #treeSelect class="x-tree-select" [class.x-tree-select-multiple]="multiple()">
+<div
+  #treeSelect
+  class="x-tree-select"
+  [class.x-tree-select-multiple]="multiple()"
+  [class.x-tree-select-search-single]="search() && !multiple()"
+>
   <div class="x-tree-select-row">
     <x-input
       #inputCom
@@ -26,7 +31,7 @@
       [after]="after()"
       [pattern]="patternComputed()"
       [message]="messageComputed()"
-      [pointer]="true"
+      [pointer]="pointer()"
       [(active)]="active"
       (clearEmit)="clearEmit()"
       (xKeydown)="onKeydown($event)"
@@ -41,6 +46,17 @@
 </div>
 
 <ng-template #valueTemplate>{{ displayValue() }}</ng-template>
+
+<ng-template #searchTemplate>
+  <x-input
+    #searchInput
+    [bordered]="false"
+    [size]="size()"
+    [(ngModel)]="displayValue"
+    (xInput)="onInput($event)"
+    (xKeydown)="onKeydown($event)"
+  ></x-input>
+</ng-template>
 
 <ng-template #multipleValueTpl>
   @for (node of displayNodes(); track node.id; let i = $index) {
