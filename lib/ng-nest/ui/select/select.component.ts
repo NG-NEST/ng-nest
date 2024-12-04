@@ -148,11 +148,11 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   valueTplComputed = computed(() => {
-    if (this.nodeTpl()) {
-      return this.nodeTpl();
-    }
     if (this.valueTpl()) {
       return this.valueTpl();
+    }
+    if (this.nodeTpl()) {
+      return this.nodeTpl();
     }
     if (this.multiple()) {
       return this.multipleValueTpl();
