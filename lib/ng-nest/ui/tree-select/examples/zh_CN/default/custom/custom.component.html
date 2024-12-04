@@ -2,7 +2,13 @@
   <x-tree-select [data]="data1()" [(ngModel)]="model1" [nodeTpl]="nodeTpl"></x-tree-select>
 </div>
 <div class="row">
-  <x-tree-select [data]="data2()" [(ngModel)]="model2" [nodeTpl]="multipleNodeTpl" multiple></x-tree-select>
+  <x-tree-select
+    [data]="data2()"
+    [(ngModel)]="model2"
+    [nodeTpl]="multipleNodeTpl"
+    [valueTpl]="multipleValueTpl"
+    multiple
+  ></x-tree-select>
 </div>
 
 <ng-template #nodeTpl let-node="$node">
@@ -14,5 +20,15 @@
 <ng-template #multipleNodeTpl let-node="$node">
   @if (node) {
     <span [style.flex]="1"> {{ node.label }}[{{ node.id }}] </span>
+  }
+</ng-template>
+
+<ng-template #multipleValueTpl let-nodes="$nodes">
+  @if (nodes) {
+    <div class="nodes">
+      @for (node of nodes; track node) {
+        <span> {{ node.label }}[{{ node.id }}] </span>
+      }
+    </div>
   }
 </ng-template>

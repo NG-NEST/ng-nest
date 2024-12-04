@@ -1,3 +1,3 @@
 ---
-primary: 2
+primary: '2'
 ---

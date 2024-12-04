@@ -3,6 +3,14 @@
     margin-top: 1rem;
   }
   .node {
-    padding: 0 var(--x-padding-medium);
+    padding: 0;
+  }
+  .nodes {
+    padding: 0 0.75rem;
+    span:not(:first-child) {
+      &::before {
+        content: ',';
+      }
+    }
   }
 }
