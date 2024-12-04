@@ -40,10 +40,12 @@
       [style.width.px]="verticalWidth() * 2"
       (click)="!tree.nodeOpen() && onToggle($event, node())"
     >
-      @if (tree.expandedIcon()) {
-        <ng-container *xOutlet="tree.expandedIcon(); context: { $node: node() }"></ng-container>
-      } @else {
-        <x-icon type="fto-chevron-right"></x-icon>
+      @if (!leaf()) {
+        @if (tree.expandedIcon()) {
+          <ng-container *xOutlet="tree.expandedIcon(); context: { $node: node() }"></ng-container>
+        } @else {
+          <x-icon type="fto-chevron-right"></x-icon>
+        }
       }
     </div>
   }
