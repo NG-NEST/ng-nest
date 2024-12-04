@@ -656,22 +656,51 @@ describe(XTablePrefix, () => {
       expect(true).toBe(true);
     });
     it('adaptionHeight.', () => {
+      // see example adaption
       expect(true).toBe(true);
     });
     it('docPercent.', () => {
+      // see example adaption
       expect(true).toBe(true);
     });
-    it('checkedRow.', () => {
-      expect(true).toBe(true);
+    it('checkedRow.', async () => {
+      component.columns.set([{ label: 'Id', id: 'id', type: 'checkbox', width: 60 }]);
+      component.data.set(Array.from({ length: 10 }).map((_, i) => ({ id: i + 1 })));
+      component.checkedRow.set({ id: [1, 3, 5, 7, 9] });
+      fixture.detectChanges();
+      await XSleep(100);
+      const checkbox = fixture.debugElement.queryAll(By.css('.x-table .x-checkbox-row-item'));
+      let i = 1;
+      for (let cb of checkbox) {
+        if (i % 2 === 1) {
+          expect(cb.nativeElement).toHaveClass('x-checked');
+        }
+        i++;
+      }
     });
-    it('scroll.', () => {
-      expect(true).toBe(true);
+    it('scroll.', async () => {
+      component.scroll.set({ x: 1500, y: 500 });
+      component.virtualScroll.set(true);
+      def(100, 1, 200);
+      fixture.detectChanges();
+      await XSleep(100);
+      const scroll = fixture.debugElement.query(By.css('.cdk-virtual-scroll-viewport'));
+      const { clientHeight, scrollHeight } = scroll.nativeElement;
+      expect(scrollHeight > clientHeight).toBeTrue();
     });
     it('header.', () => {
-      expect(true).toBe(true);
+      component.header.set('title');
+      def(100, 1, 200);
+      fixture.detectChanges();
+      const header = fixture.debugElement.query(By.css('.x-table-header'));
+      expect(header.nativeElement.innerText).toBe('title');
     });
     it('footer.', () => {
-      expect(true).toBe(true);
+      component.footer.set('title');
+      def(100, 1, 200);
+      fixture.detectChanges();
+      const footer = fixture.debugElement.query(By.css('.x-table-footer'));
+      expect(footer.nativeElement.innerText).toBe('title');
     });
     it('cellConfig.', () => {
       expect(true).toBe(true);
