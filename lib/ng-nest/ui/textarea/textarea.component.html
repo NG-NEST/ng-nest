@@ -13,9 +13,12 @@
   [ngClass]="classMap()"
 >
   @if (label()) {
-    <label [class.x-textarea-label-required]="requiredComputed()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
-      label()
-    }}</label>
+    <label
+      [class.x-textarea-label-required]="requiredComputed()"
+      [style.width]="labelWidth()"
+      [ngClass]="labelMapSignal()"
+      >{{ label() }}</label
+    >
   }
   <div class="x-textarea-row">
     <textarea
@@ -36,7 +39,7 @@
       <x-icon class="x-textarea-clear" type="fto-x" (click)="onClear()"></x-icon>
     }
     @if (icon() && ((!clearShow() && getIconLayoutRight()) || getIconLayoutLeft())) {
-      <x-icon [type]="icon()" [spin]="iconSpin()"></x-icon>
+      <x-icon class="x-textarea-icon-in" [type]="icon()" [spin]="iconSpin()"></x-icon>
     }
     @if (maxlength()) {
       <span class="x-textarea-max-length">{{ lengthTotal() }}</span>

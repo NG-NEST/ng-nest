@@ -2,9 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTextareaComponent, XTextareaIconLayoutType, XTextareaPrefix } from '@ng-nest/ui/textarea';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XDirection, XIsNumber, XJustify, XSleep } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XAlign, XComputedStyle, XDirection, XIsNumber, XJustify, XSleep } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   imports: [XTextareaComponent],
@@ -13,9 +14,10 @@ import { XAlign, XDirection, XIsNumber, XJustify, XSleep } from '@ng-nest/ui/cor
 class XTestTextareaComponent {}
 
 @Component({
-  imports: [XTextareaComponent],
+  imports: [XTextareaComponent, FormsModule],
   template: `
     <x-textarea
+      [(ngModel)]="model"
       [clearable]="clearable()"
       [icon]="icon()"
       [iconLayout]="iconLayout()"
@@ -42,6 +44,7 @@ class XTestTextareaComponent {}
   `
 })
 class XTestTextareaPropertyComponent {
+  model = signal('');
   clearable = signal(false);
   icon = signal('');
   iconLayout = signal<XTextareaIconLayoutType>('right');
@@ -72,11 +75,8 @@ describe(XTextareaPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTextareaComponent, XTestTextareaPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -98,23 +98,53 @@ describe(XTextareaPrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('clearable.', () => {
-      expect(true).toBe(true);
+    it('clearable.', async () => {
+      component.clearable.set(true);
+      component.model.set('input text');
+      fixture.detectChanges();
+      await XSleep(100);
+      const clear = fixture.debugElement.query(By.css('.x-textarea-clear'));
+      expect(clear).toBeTruthy();
     });
     it('icon.', () => {
-      expect(true).toBe(true);
+      component.icon.set('ado-user');
+      fixture.detectChanges();
+      const icon = fixture.debugElement.query(By.css('.x-textarea-icon-in'));
+      expect(icon).toBeTruthy();
     });
     it('iconLayout.', () => {
-      expect(true).toBe(true);
+      component.icon.set('ado-user');
+      component.iconLayout.set('left');
+      fixture.detectChanges();
+      const textarea = fixture.debugElement.query(By.css('.x-textarea'));
+      expect(textarea.nativeElement).toHaveClass('x-textarea-icon-left');
+      const icon = fixture.debugElement.query(By.css('.x-textarea-icon-in'));
+      expect(icon).toBeTruthy();
     });
     it('iconSpin.', () => {
-      expect(true).toBe(true);
+      component.icon.set('ado-user');
+      component.iconSpin.set(true);
+      fixture.detectChanges();
+      const icon = fixture.debugElement.query(By.css('.x-textarea-icon-in'));
+      expect(icon.nativeElement).toHaveClass('x-icon-spin');
     });
-    it('maxlength.', () => {
-      expect(true).toBe(true);
+    it('maxlength.', async () => {
+      component.maxlength.set(100);
+      fixture.detectChanges();
+      const maxlength = fixture.debugElement.query(By.css('.x-textarea-max-length'));
+      expect(maxlength).toBeTruthy();
+      expect(maxlength.nativeElement.innerText).toBe('0/100');
+
+      component.model.set('hello world!');
+      fixture.detectChanges();
+      await XSleep(100);
+      expect(maxlength.nativeElement.innerText).toBe('12/100');
     });
     it('height.', () => {
-      expect(true).toBe(true);
+      component.height.set('100px');
+      fixture.detectChanges();
+      const textarea = fixture.debugElement.query(By.css('.x-textarea textarea'));
+      expect(XComputedStyle(textarea.nativeElement, 'height')).toBe('100');
     });
     it('label.', async () => {
       component.label.set('label');

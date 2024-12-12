@@ -2,9 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTagComponent, XTagPrefix } from '@ng-nest/ui/tag';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XSize, XType } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XComputedStyle, XSize, XType } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
@@ -54,12 +53,7 @@ describe(XTagPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTagComponent, XTestTagPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
@@ -76,44 +70,88 @@ describe(XTagPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTagPropertyComponent>;
-    // let component: XTestTagPropertyComponent;
+    let component: XTestTagPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestTagPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('type.', () => {
-      expect(true).toBe(true);
+      component.type.set('success');
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      expect(tag.nativeElement).toHaveClass('x-tag-success');
     });
     it('size.', () => {
-      expect(true).toBe(true);
+      component.size.set('large');
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      expect(tag.nativeElement).toHaveClass('x-tag-large');
     });
     it('bordered.', () => {
-      expect(true).toBe(true);
+      component.bordered.set(false);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      expect(tag.nativeElement).not.toHaveClass('x-tag-bordered');
     });
     it('closable.', () => {
-      expect(true).toBe(true);
+      component.closable.set(true);
+      fixture.detectChanges();
+      const close = fixture.debugElement.query(By.css('.x-tag .fto-x'));
+      expect(close).toBeTruthy();
     });
     it('dark.', () => {
-      expect(true).toBe(true);
+      component.dark.set(true);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      expect(tag.nativeElement).toHaveClass('x-tag-dark');
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
+      component.disabled.set(true);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      expect(tag.nativeElement).toHaveClass('x-disabled');
     });
     it('checked.', () => {
-      expect(true).toBe(true);
+      component.checked.set(true);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      tag.nativeElement.click();
+      fixture.detectChanges();
+      expect(tag.nativeElement).toHaveClass('x-tag-selected');
     });
     it('manual.', () => {
-      expect(true).toBe(true);
+      component.manual.set(true);
+      component.checked.set(true);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      tag.nativeElement.click();
+      fixture.detectChanges();
+      expect(tag.nativeElement).not.toHaveClass('x-tag-selected');
+
+      component.selected.set(true);
+      fixture.detectChanges();
+      expect(tag.nativeElement).toHaveClass('x-tag-selected');
     });
     it('selected.', () => {
-      expect(true).toBe(true);
+      component.selected.set(true);
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      expect(tag.nativeElement).toHaveClass('x-tag-selected');
     });
     it('style.', () => {
-      expect(true).toBe(true);
+      component.style.set({ color: 'rgb(0, 0, 0)' });
+      fixture.detectChanges();
+      const tag = fixture.debugElement.query(By.css('.x-tag'));
+      expect(XComputedStyle(tag.nativeElement, 'color')).toBe('rgb(0, 0, 0)');
     });
     it('close.', () => {
-      expect(true).toBe(true);
+      component.closable.set(true);
+      fixture.detectChanges();
+      const close = fixture.debugElement.query(By.css('.x-tag x-icon'));
+      close.nativeElement.click();
+      fixture.detectChanges();
+      expect(component.closeResult()).not.toBeNull();
     });
   });
 });

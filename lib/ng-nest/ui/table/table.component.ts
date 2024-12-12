@@ -13,7 +13,8 @@ import {
   viewChild,
   inject,
   viewChildren,
-  AfterViewChecked
+  AfterViewChecked,
+  SimpleChange
 } from '@angular/core';
 import {
   XTablePrefix,
@@ -167,11 +168,11 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   ngOnInit() {
     this.setRowChecked();
     this.setRowExpand();
-    this.setPaginationPosition();
   }
 
   ngOnChanges(simples: SimpleChanges) {
-    const { data, checkedRow, columns, activatedRow, manual, showPagination, expandedAll } = simples;
+    const { data, checkedRow, columns, activatedRow, manual, showPagination, expandedAll, paginationPosition } =
+      simples;
     XIsChange(expandedAll) && this.setExpandedAll();
     XIsChange(data, checkedRow) && this.setData();
     if (XIsChange(columns)) {
@@ -180,6 +181,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     }
     XIsChange(columns, activatedRow, showPagination) && this.cdr.detectChanges();
     XIsChange(manual) && this.setManual();
+    XIsChange(paginationPosition) && this.setPaginationPosition(paginationPosition);
   }
 
   ngAfterViewChecked(): void {
@@ -202,8 +204,14 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.unSubject.complete();
   }
 
-  setPaginationPosition() {
-    this.renderer.addClass(this.elementRef.nativeElement, `x-table-${this.paginationPosition()}`);
+  setPaginationPosition(position: SimpleChange) {
+    const { currentValue, previousValue } = position;
+    if (previousValue) {
+      this.renderer.removeClass(this.elementRef.nativeElement, `x-table-${previousValue}`);
+    }
+    if (currentValue) {
+      this.renderer.addClass(this.elementRef.nativeElement, `x-table-${currentValue}`);
+    }
   }
 
   getSticky(column: XTableColumn | XTableCell) {

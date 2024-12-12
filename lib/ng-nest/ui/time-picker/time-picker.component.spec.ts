@@ -8,8 +8,7 @@ import {
   XTimePickerPreset,
   XTimePickerType
 } from '@ng-nest/ui/time-picker';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XAlign, XCorner, XData, XDirection, XIsNumber, XJustify, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -109,12 +108,7 @@ describe(XTimePickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTimePickerComponent, XTestTimePickerPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
@@ -138,7 +132,9 @@ describe(XTimePickerPrefix, () => {
       fixture.detectChanges();
     });
     it('type.', () => {
-      expect(true).toBe(true);
+      component.type.set('hour');
+      fixture.detectChanges();
+      
     });
     it('format.', () => {
       expect(true).toBe(true);

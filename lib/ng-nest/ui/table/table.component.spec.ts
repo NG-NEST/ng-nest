@@ -14,13 +14,15 @@ import {
   XTableTemplate
 } from '@ng-nest/ui/table';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { XData, XDataArray, XOrderBy, XQuery, XSize, XSleep, XSort, XTemplate } from '@ng-nest/ui/core';
+import { XComputedStyle, XData, XDataArray, XOrderBy, XQuery, XSize, XSleep, XSort, XTemplate } from '@ng-nest/ui/core';
 import { XPaginationInputIndexSizeSureType, XPaginationSizeData } from '@ng-nest/ui/pagination';
 import { XSelectNode } from '@ng-nest/ui/select';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { XButtonComponent } from '@ng-nest/ui/button';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   imports: [XTableComponent],
@@ -29,7 +31,7 @@ import { XInputComponent } from '@ng-nest/ui/input';
 class XTestTableComponent {}
 
 @Component({
-  imports: [XTableComponent, FormsModule, XInputComponent],
+  imports: [XTableComponent, FormsModule, XInputComponent, XButtonComponent, XIconComponent],
   template: `
     <x-table
       [data]="data()"
@@ -71,7 +73,6 @@ class XTestTableComponent {}
       [rowSize]="rowSize()"
       [paginationPosition]="paginationPosition()"
       [hiddenWrapBorder]="hiddenWrapBorder()"
-      [hiddenPaginationBorder]="hiddenPaginationBorder()"
       [showPagination]="showPagination()"
       [treeTable]="treeTable()"
       [expandedAll]="expandedAll()"
@@ -109,6 +110,23 @@ class XTestTableComponent {}
     >
     </x-table>
 
+    <ng-template #expandTemplate let-row="$row" let-index="$index" let-level="$level">
+      <x-button
+        [style.padding-left.rem]="level"
+        class="leaf"
+        [class.has-leaf]="row.leaf"
+        (click)="row.leaf ? (row.expanded = !row.expanded) : null"
+        [icon]="row.expanded ? 'fto-minus' : 'fto-plus'"
+        size="mini"
+        onlyIcon
+      ></x-button>
+      {{ row.menu }}
+    </ng-template>
+
+    <ng-template #totalTemplate let-total="$total">{{ total }}</ng-template>
+
+    <ng-template #emptyImgTemplate> ... </ng-template>
+
     <ng-template #headColumnTemplate let-column="$column">{{ column.id }} tpl</ng-template>
 
     <ng-template #headThTemplate let-column="$column">{{ column.id }} tpl</ng-template>
@@ -145,6 +163,13 @@ class XTestTableComponent {}
       }
       .inspector {
         color: red;
+      }
+      .leaf {
+        visibility: hidden;
+        margin-right: 0.5rem;
+      }
+      .has-leaf {
+        visibility: visible;
       }
     }
   `
@@ -210,15 +235,16 @@ class XTestTablePropertyComponent {
   rowSize = signal<XSize>('medium');
   paginationPosition = signal<XPaginationPosition>('bottom-left');
   hiddenWrapBorder = signal(false);
-  hiddenPaginationBorder = signal(false);
   showPagination = signal(true);
   treeTable = signal(false);
   expandedAll = signal(false);
   expandedLevel = signal(-1);
   expanded = signal<any[]>([]);
   expandTpl = signal<XTemplate | null>(null);
+  expandTemplate = viewChild.required<TemplateRef<any>>('expandTemplate');
   showEmpty = signal(true);
   emptyImg = signal<XTemplate | null>(null);
+  emptyImgTemplate = viewChild.required<TemplateRef<any>>('emptyImgTemplate');
   emptyContent = signal<XTemplate | null>(null);
   index = signal(1);
   size = signal(10);
@@ -240,6 +266,7 @@ class XTestTablePropertyComponent {
   jumpTooltipText = signal('');
   jumpWidth = signal('3.125rem');
   totalTpl = signal<XTemplate | null>(null);
+  totalTemplate = viewChild.required<TemplateRef<any>>('totalTemplate');
   simple = signal(false);
   simpleIndexWidth = signal('8.125rem');
   inputIndexSizeSureType = signal<XPaginationInputIndexSizeSureType>('enter');
@@ -690,133 +717,404 @@ describe(XTablePrefix, () => {
     });
     it('header.', () => {
       component.header.set('title');
-      def(100, 1, 200);
+      def(10, 1, 200);
       fixture.detectChanges();
       const header = fixture.debugElement.query(By.css('.x-table-header'));
       expect(header.nativeElement.innerText).toBe('title');
     });
     it('footer.', () => {
       component.footer.set('title');
-      def(100, 1, 200);
+      def(10, 1, 200);
       fixture.detectChanges();
       const footer = fixture.debugElement.query(By.css('.x-table-footer'));
       expect(footer.nativeElement.innerText).toBe('title');
     });
     it('cellConfig.', () => {
-      expect(true).toBe(true);
+      component.columns.set([
+        { label: 'Id', id: 'id', width: 60 },
+        { label: 'Name', id: 'name', width: 120 }
+      ]);
+      component.data.set(Array.from({ length: 10 }).map((_, i) => ({ id: i + 1, name: `name${i + 1}` })));
+      component.cellConfig.set({
+        thead: {
+          cells: [{ gridArea: '1 / 1 / 1 / 3', label: 'cell' }]
+        },
+        tbody: {
+          cells: [
+            { gridArea: '1 / 2', id: 'name' },
+            { gridArea: '1 / 1', id: 'id' }
+          ]
+        }
+      });
+      fixture.detectChanges();
+
+      const th = fixture.debugElement.query(By.css('.x-table thead tr th'));
+      expect(th.nativeElement.innerText).toBe('cell');
     });
     it('rowSize.', () => {
-      expect(true).toBe(true);
+      component.rowSize.set('big');
+      component.rowHeight.set(58);
+      def(10, 1, 200);
+      fixture.detectChanges();
+      const ths = fixture.debugElement.queryAll(By.css('.x-table thead tr th'));
+      const tds = fixture.debugElement.queryAll(By.css('.x-table tbody tr td'));
+      for (let th of ths) {
+        expect(th.nativeElement.clientHeight).toBe(57);
+      }
+      for (let td of tds) {
+        expect(td.nativeElement.clientHeight).toBe(57);
+      }
     });
     it('paginationPosition.', () => {
-      expect(true).toBe(true);
+      component.paginationPosition.set('top-left');
+      def(10, 1, 200);
+      fixture.detectChanges();
+      const table = fixture.debugElement.query(By.css('x-table'));
+      expect(table.nativeElement).toHaveClass('x-table-top-left');
     });
     it('hiddenWrapBorder.', () => {
-      expect(true).toBe(true);
-    });
-    it('hiddenPaginationBorder.', () => {
-      expect(true).toBe(true);
+      component.hiddenWrapBorder.set(true);
+      def(10, 1, 200);
+      fixture.detectChanges();
+      const table = fixture.debugElement.query(By.css('.x-table'));
+      expect(table.nativeElement).toHaveClass('x-table-wrap-border-hidden');
     });
     it('showPagination.', () => {
-      expect(true).toBe(true);
+      component.showPagination.set(false);
+      def(10, 1, 200);
+      fixture.detectChanges();
+      const pagination = fixture.debugElement.query(By.css('x-pagination'));
+      expect(pagination).toBeFalsy();
     });
     it('treeTable.', () => {
-      expect(true).toBe(true);
+      component.treeTable.set(true);
+      component.columns.set([
+        { label: 'Menu', id: 'menu', type: 'expand', width: 300 },
+        { label: 'Desc', id: 'desc', flex: 1 }
+      ]);
+      component.data.set([
+        { id: 1, menu: 'node1', desc: 'desc1' },
+        { id: 2, menu: 'node2', desc: 'desc2' },
+        { id: 3, menu: 'node3', desc: 'desc3' },
+        { id: 4, pid: 2, menu: 'node2-1', desc: 'desc4' },
+        { id: 5, pid: 2, menu: 'node2-2', desc: 'desc5' },
+        { id: 6, pid: 2, menu: 'node2-3', desc: 'desc6' }
+      ]);
+      fixture.detectChanges();
+      const expand = fixture.debugElement.query(By.css('.x-table-expand:not(.is-leaf)'));
+      expect(expand.nativeElement).toBeTruthy();
+
+      expand.nativeElement.click();
+      fixture.detectChanges();
+
+      const children = fixture.debugElement.queryAll(By.css('.x-table-children tr'));
+      expect(children.length).toBe(3);
     });
     it('expandedAll.', () => {
-      expect(true).toBe(true);
+      component.treeTable.set(true);
+      component.expandedAll.set(true);
+      component.columns.set([
+        { label: 'Menu', id: 'menu', type: 'expand', width: 300 },
+        { label: 'Desc', id: 'desc', flex: 1 }
+      ]);
+      component.data.set([
+        { id: 1, menu: 'node1', desc: 'desc1' },
+        { id: 2, menu: 'node2', desc: 'desc2' },
+        { id: 3, menu: 'node3', desc: 'desc3' },
+        { id: 4, pid: 2, menu: 'node2-1', desc: 'desc4' },
+        { id: 5, pid: 2, menu: 'node2-2', desc: 'desc5' },
+        { id: 6, pid: 2, menu: 'node2-3', desc: 'desc6' }
+      ]);
+      fixture.detectChanges();
+
+      const children = fixture.debugElement.queryAll(By.css('.x-table-children tr'));
+      expect(children.length).toBe(3);
     });
     it('expandedLevel.', () => {
-      expect(true).toBe(true);
+      component.treeTable.set(true);
+      component.expandedLevel.set(0);
+      component.columns.set([
+        { label: 'Menu', id: 'menu', type: 'expand', width: 300 },
+        { label: 'Desc', id: 'desc', flex: 1 }
+      ]);
+      component.data.set([
+        { id: 1, menu: 'node1', desc: 'desc1' },
+        { id: 2, menu: 'node2', desc: 'desc2' },
+        { id: 3, menu: 'node3', desc: 'desc3' },
+        { id: 4, pid: 2, menu: 'node4', desc: 'desc4' },
+        { id: 5, pid: 4, menu: 'node5', desc: 'desc5' },
+        { id: 6, pid: 5, menu: 'node6', desc: 'desc6' },
+        { id: 7, pid: 6, menu: 'node7', desc: 'desc7' },
+        { id: 8, pid: 7, menu: 'node8', desc: 'desc8' }
+      ]);
+      fixture.detectChanges();
+      const children = fixture.debugElement.queryAll(By.css('.x-table-children tr'));
+      expect(children.length).toBe(1);
     });
     it('expanded.', () => {
-      expect(true).toBe(true);
+      component.treeTable.set(true);
+      component.expanded.set([2]);
+      component.columns.set([
+        { label: 'Menu', id: 'menu', type: 'expand', width: 300 },
+        { label: 'Desc', id: 'desc', flex: 1 }
+      ]);
+      component.data.set([
+        { id: 1, menu: 'node1', desc: 'desc1' },
+        { id: 2, menu: 'node2', desc: 'desc2' },
+        { id: 3, menu: 'node3', desc: 'desc3' },
+        { id: 4, pid: 2, menu: 'node4', desc: 'desc4' },
+        { id: 5, pid: 4, menu: 'node5', desc: 'desc5' },
+        { id: 6, pid: 5, menu: 'node6', desc: 'desc6' },
+        { id: 7, pid: 6, menu: 'node7', desc: 'desc7' },
+        { id: 8, pid: 7, menu: 'node8', desc: 'desc8' }
+      ]);
+      fixture.detectChanges();
+      const children = fixture.debugElement.queryAll(By.css('.x-table-children tr'));
+      expect(children.length).toBe(1);
     });
     it('expandTpl.', () => {
-      expect(true).toBe(true);
+      component.treeTable.set(true);
+      component.expandTpl.set(component.expandTemplate());
+      component.columns.set([
+        { label: 'Menu', id: 'menu', type: 'expand', width: 300 },
+        { label: 'Desc', id: 'desc', flex: 1 }
+      ]);
+      component.data.set([
+        { id: 1, menu: 'node1', desc: 'desc1' },
+        { id: 2, menu: 'node2', desc: 'desc2' },
+        { id: 3, menu: 'node3', desc: 'desc3' },
+        { id: 4, pid: 2, menu: 'node4', desc: 'desc4' },
+        { id: 5, pid: 4, menu: 'node5', desc: 'desc5' }
+      ]);
+      fixture.detectChanges();
+      const expand = fixture.debugElement.query(By.css('.x-table-expand:not(.is-leaf)'));
+      expect(expand.nativeElement).toBeTruthy();
+
+      expand.nativeElement.click();
+      fixture.detectChanges();
+
+      const expandTpl = fixture.debugElement.query(By.css('.x-table-expandTpl'));
+      expect(expandTpl.nativeElement.innerText.trim()).toBe('node4');
     });
     it('showEmpty.', () => {
-      expect(true).toBe(true);
+      let empty = fixture.debugElement.query(By.css('x-empty'));
+      expect(empty).toBeTruthy();
+
+      component.showEmpty.set(false);
+      fixture.detectChanges();
+
+      empty = fixture.debugElement.query(By.css('x-empty'));
+      expect(empty).toBeFalsy();
     });
     it('emptyImg.', () => {
-      expect(true).toBe(true);
+      component.emptyImg.set(component.emptyImgTemplate());
+      fixture.detectChanges();
+
+      const empty = fixture.debugElement.query(By.css('.x-empty'));
+      expect(empty.nativeElement.innerText).toBe('...\nÔÝÎÞÊý¾Ý');
     });
     it('emptyContent.', () => {
-      expect(true).toBe(true);
+      component.emptyContent.set('empty');
+      fixture.detectChanges();
+      const empty = fixture.debugElement.query(By.css('.x-empty'));
+      expect(empty.nativeElement.innerText).toBe('empty');
     });
     it('pageLinkSize.', () => {
-      expect(true).toBe(true);
+      component.pageLinkSize.set(10);
+      def(10, 1, 1000);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('x-button.x-pagination-link'));
+      expect(buttons.length).toBe(10);
     });
     it('showEllipsis.', () => {
-      expect(true).toBe(true);
+      component.showEllipsis.set(false);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const first = fixture.debugElement.query(By.css('x-button.x-pagination-first'));
+      const last = fixture.debugElement.query(By.css('x-button.x-pagination-last'));
+      expect(first).toBeFalsy();
+      expect(last).toBeFalsy();
     });
     it('showTotal.', () => {
-      expect(true).toBe(true);
+      component.showTotal.set(false);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const total = fixture.debugElement.query(By.css('.x-pagination-total'));
+      expect(total).toBeFalsy();
     });
     it('space.', () => {
-      expect(true).toBe(true);
+      component.space.set('10px');
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('x-button.x-pagination-link'));
+      for (let button of buttons) {
+        const marginLeft = Number(XComputedStyle(button.nativeElement, 'margin-left'));
+        const marginRight = Number(XComputedStyle(button.nativeElement, 'margin-right'));
+        expect(marginLeft).toBe(10);
+        expect(marginRight).toBe(10);
+      }
     });
     it('showBackground.', () => {
-      expect(true).toBe(true);
+      component.showBackground.set(true);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const group = fixture.debugElement.query(By.css('.x-pagination-group'));
+      expect(group.nativeElement).not.toHaveClass('x-buttons-hiddenBorder');
     });
     it('showSize.', () => {
-      expect(true).toBe(true);
+      component.showSize.set(true);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const size = fixture.debugElement.query(By.css('.x-pagination-size'));
+      expect(size).toBeTruthy();
     });
     it('sizeWidth.', () => {
-      expect(true).toBe(true);
+      component.showSize.set(true);
+      component.sizeWidth.set('100px');
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const size = fixture.debugElement.query(By.css('.x-pagination-size'));
+      expect(size.nativeElement.clientWidth).toBe(100);
     });
     it('showInputSize.', () => {
-      expect(true).toBe(true);
+      component.showInputSize.set(true);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const size = fixture.debugElement.query(By.css('.x-pagination-input-size'));
+      expect(size).toBeTruthy();
     });
-    it('inputSizeTooltipText.', () => {
-      expect(true).toBe(true);
+    it('inputSizeTooltipText.', async () => {
+      component.showInputSize.set(true);
+      component.inputSizeTooltipText.set('Enter sure');
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-pagination-input-size x-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(500);
+      const tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
+      expect(tooltip.innerText).toBe('Enter sure');
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      await XSleep(300);
     });
     it('inputSizeWidth.', () => {
-      expect(true).toBe(true);
+      component.showInputSize.set(true);
+      component.inputSizeWidth.set('100px');
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const size = fixture.debugElement.query(By.css('.x-pagination-input-size x-input'));
+      expect(size.nativeElement.clientWidth).toBe(100);
     });
-    it('sizeData.', () => {
-      expect(true).toBe(true);
+    it('sizeData.', async () => {
+      component.showSize.set(true);
+      component.sizeData.set([10, 50, 100]);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const select = fixture.debugElement.query(By.css('.x-pagination-size .x-input-frame'));
+      select.nativeElement.click();
+      await XSleep(500);
+      const selectPortal = document.querySelector('.x-select-portal') as HTMLElement;
+      expect(selectPortal.innerText.replace(/[^\d]/g, '')).toBe('1050100');
+      const option = document.querySelector('x-list-option:nth-child(2)') as HTMLElement;
+      option.click();
+      fixture.detectChanges();
+      await XSleep(300);
     });
     it('disabled.', () => {
-      expect(true).toBe(true);
+      component.disabled.set(true);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('x-pagination x-button button'));
+      for (let button of buttons) {
+        expect(button.nativeElement).toHaveClass('x-button-disabled');
+      }
     });
     it('showJump.', () => {
-      expect(true).toBe(true);
+      component.showJump.set(true);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const jump = fixture.debugElement.query(By.css('.x-pagination-jump'));
+      expect(jump).toBeTruthy();
     });
-    it('jumpTooltipText.', () => {
-      expect(true).toBe(true);
+    it('jumpTooltipText.', async () => {
+      component.showJump.set(true);
+      component.jumpTooltipText.set('Enter sure');
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-pagination-jump x-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(500);
+      const tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
+      expect(tooltip.innerText).toBe('Enter sure');
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      await XSleep(300);
     });
     it('jumpWidth.', () => {
-      expect(true).toBe(true);
+      component.showJump.set(true);
+      component.jumpWidth.set('100px');
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const jump = fixture.debugElement.query(By.css('.x-pagination-jump x-input'));
+      expect(jump.nativeElement.clientWidth).toBe(100);
     });
     it('totalTpl.', () => {
-      expect(true).toBe(true);
+      component.total.set(100);
+      component.totalTpl.set(component.totalTemplate());
+      fixture.detectChanges();
+      const total = fixture.debugElement.query(By.css('.x-pagination-total'));
+      expect(total.nativeElement.innerText).toBe('100');
     });
     it('simple.', () => {
-      expect(true).toBe(true);
+      component.simple.set(true);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const simple = fixture.debugElement.query(By.css('.x-pagination-simple'));
+      expect(simple).toBeTruthy();
     });
     it('simpleIndexWidth.', () => {
-      expect(true).toBe(true);
+      component.simple.set(true);
+      component.simpleIndexWidth.set('200px');
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const simpleInput = fixture.debugElement.query(By.css('.x-pagination-simple x-input'));
+      expect(simpleInput.nativeElement.clientWidth).toBe(200);
     });
-    it('inputIndexSizeSureType.', () => {
-      expect(true).toBe(true);
+    it('inputIndexSizeSureType.', async () => {
+      component.showInputSize.set(true);
+      def(10, 1, 100);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-pagination-input-size x-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(300);
+      let tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
+      expect(tooltip.innerText).toBe('Ê¹ÓÃ Enter ¼üÈ·ÈÏ');
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      await XSleep(300);
     });
     it('columnDragStarted.', () => {
+      // cdk drag
       expect(true).toBe(true);
     });
     it('columnDragEnded.', () => {
+      // cdk drag
       expect(true).toBe(true);
     });
     it('columnDropListDropped.', () => {
+      // cdk drag
       expect(true).toBe(true);
     });
     it('columnDragWidthStarted.', () => {
+      // cdk drag
       expect(true).toBe(true);
     });
     it('columnDragWidthMoved.', () => {
+      // cdk drag
       expect(true).toBe(true);
     });
     it('columnDragWidthEnded.', () => {
+      // cdk drag
       expect(true).toBe(true);
     });
   });

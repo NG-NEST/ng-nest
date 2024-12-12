@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTextRetractComponent, XTextRetractPrefix } from '@ng-nest/ui/text-retract';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   imports: [XTextRetractComponent],
@@ -24,11 +24,8 @@ describe(XTextRetractPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTextRetractComponent, XTestTextRetractPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -44,17 +41,34 @@ describe(XTextRetractPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTextRetractPropertyComponent>;
-    // let component: XTestTextRetractPropertyComponent;
+    let component: XTestTextRetractPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestTextRetractPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it('content.', () => {
-      expect(true).toBe(true);
+      const content = Array.from({ length: 30 })
+        .map((_, _i) => 'hello world!')
+        .join('');
+      component.content.set(content);
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-text-retract'));
+      expect(text.nativeElement.innerText).not.toBe(content);
     });
     it('max.', () => {
-      expect(true).toBe(true);
+      const content = Array.from({ length: 5 })
+        .map((_, _i) => 'hello world!')
+        .join('');
+      component.content.set(content);
+      component.max.set(100);
+      fixture.detectChanges();
+      const text = fixture.debugElement.query(By.css('.x-text-retract'));
+      expect(text.nativeElement.innerText).toBe(content);
+
+      component.max.set(50);
+      fixture.detectChanges();
+      expect(text.nativeElement.innerText).not.toBe(content);
     });
   });
 });

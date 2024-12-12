@@ -214,6 +214,7 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
     transform: XToBoolean
   });
   /**
+   * @deprecated useless
    * @zh_CN 隐藏分页器按钮边框
    * @en_US Hidden pagination button border
    */
