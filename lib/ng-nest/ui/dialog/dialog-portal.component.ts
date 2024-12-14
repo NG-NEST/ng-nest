@@ -1,6 +1,7 @@
 import { BasePortalOutlet, CdkPortalOutlet, ComponentPortal, PortalModule, TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ComponentRef,
   EmbeddedViewRef,
@@ -11,6 +12,7 @@ import {
   ViewEncapsulation,
   contentChildren,
   inject,
+  model,
   viewChild
 } from '@angular/core';
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
@@ -30,7 +32,10 @@ import { XDialogRef } from './dialog-ref';
 })
 export class XDialogPortalComponent extends BasePortalOutlet {
   // @HostBinding('class.x-dialog-portal') _has = true;
-  @HostBinding('@x-move-box-animation') public placement?: XDialogAnimationState;
+  placement = model.required<XDialogAnimationState>();
+  @HostBinding('@x-move-box-animation') public get getPlacement() {
+    return this.placement();
+  }
   @HostListener('@x-move-box-animation.done', ['$event']) done({ toState, totalTime }: AnimationEvent) {
     this.animationChanged.next({
       action: 'done',
@@ -46,6 +51,7 @@ export class XDialogPortalComponent extends BasePortalOutlet {
     });
   }
   renderer = inject(Renderer2);
+  changeDetectorRef = inject(ChangeDetectorRef);
   portalOutlet = viewChild.required(CdkPortalOutlet);
   dragRef = viewChild.required(CdkDrag);
   handles = contentChildren(CdkDragHandle, { descendants: true });

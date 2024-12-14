@@ -33,7 +33,8 @@ export class XDialogRef<C> {
         this.overlayRef.dispose();
         this.afterClose.next(result);
       });
-    this.containerInstance.placement = 'void';
+
+    this.containerInstance.placement.set('void');
   }
 
   onFullscreen() {

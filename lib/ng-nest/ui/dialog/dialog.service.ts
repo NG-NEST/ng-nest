@@ -63,7 +63,7 @@ export class XDialogService {
       minWidth: option.minWidth,
       minHeight: option.minHeight
     });
-    instance.placement = option.placement;
+    componentRef?.setInput('placement', option.placement);
     instance.option = option;
     instance.dialogRef = dialogRef;
     instance.defaultMaximize = defaultMaximize;
