@@ -309,6 +309,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     }
     const height = scrollHeight + (lines > 1 ? marginTop : 0);
     this.renderer.setStyle(this.inputCom().inputRef().nativeElement, 'height', `${height}px`);
+    console.log(height);
     if (this.multipleInput()) {
       this.multipleInputSizeChange.next(clientWidth - lastRowTagsWidth - marginLeft);
     }

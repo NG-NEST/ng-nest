@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTreeFileComponent, XTreeFileNode, XTreeFilePrefix } from '@ng-nest/ui/tree-file';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XData } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   imports: [XTreeFileComponent],
@@ -51,11 +51,8 @@ describe(XTreeFilePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTreeFileComponent, XTestTreeFilePropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -71,13 +68,21 @@ describe(XTreeFilePrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTreeFilePropertyComponent>;
-    // let component: XTestTreeFilePropertyComponent;
+    let component: XTestTreeFilePropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestTreeFilePropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
+    const data = [
+      { id: '1', label: '111', content: 'content1 content1 content1' },
+      { id: '2', label: '222', content: 'content2 content2 content2' },
+      { id: '3', label: '333', content: 'content3 content3 content3' },
+      { id: '4', pid: '1', label: '444', content: 'content4 content4 content4' }
+    ];
     it('data.', () => {
+      component.data.set(data);
+      fixture.detectChanges();
       expect(true).toBe(true);
     });
     it('domain.', () => {

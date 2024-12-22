@@ -134,7 +134,7 @@ export class XUploadComponent extends XUploadProperty {
   }
 
   onUploading() {
-    if (!this.action) return;
+    if (!this.action()) return;
     let readyFiles = this.files().filter((x) => x.state === 'ready');
     readyFiles.forEach((x) => {
       this.uploadFile(x);

@@ -41,7 +41,7 @@
             >
               <span class="x-checkbox-box"></span>
               <span class="x-checkbox-label">
-                <ng-container *xOutlet="item.label; context: { $node: item }">{{ item.label }}</ng-container>
+                <ng-container *xOutlet="item.label; context: { $node: item.node }">{{ item.label }}</ng-container>
               </span>
             </div>
           }

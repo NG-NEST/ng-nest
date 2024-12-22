@@ -53,16 +53,6 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
    */
   readonly multiple = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
-   * @zh_CN 多选添加全选功能
-   * @en_US Multi choice to add full selection function
-   */
-  readonly selectAll = input<boolean, XBoolean>(false, { transform: XToBoolean });
-  /**
-   * @zh_CN 全选的文字
-   * @en_US Selected all text
-   */
-  readonly selectAllText = input<string>(this.config?.selectAllText ?? '');
-  /**
    * @zh_CN 节点模板
    * @en_US Node template
    */

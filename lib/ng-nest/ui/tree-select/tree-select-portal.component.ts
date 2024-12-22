@@ -56,8 +56,6 @@ export class XTreeSelectPortalComponent {
   inputCom = input<XInputComponent>();
   portalMaxHeight = input<string>('');
   objectArray = input<boolean>(false);
-  selectAll = input(false);
-  selectAllText = input<string>('');
   caseSensitive = input<boolean>(true);
   search = input<boolean>(false);
   virtualScroll = input<boolean>(false);
@@ -77,8 +75,6 @@ export class XTreeSelectPortalComponent {
   locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.treeSelect as XI18nTreeSelect)), {
     initialValue: zh_CN.treeSelect
   });
-
-  getSelectAllText = computed(() => this.selectAllText() || this.locale().selectAllText);
 
   ngOnInit(): void {
     this.destroyRef.onDestroy(() => {

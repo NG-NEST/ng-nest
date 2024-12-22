@@ -911,7 +911,7 @@ describe(XTablePrefix, () => {
       fixture.detectChanges();
 
       const empty = fixture.debugElement.query(By.css('.x-empty'));
-      expect(empty.nativeElement.innerText).toBe('...\nÔÝÎÞÊý¾Ý');
+      expect(empty.nativeElement.innerText).toBe('...\n暂无数据');
     });
     it('emptyContent.', () => {
       component.emptyContent.set('empty');
@@ -1089,7 +1089,7 @@ describe(XTablePrefix, () => {
       fixture.detectChanges();
       await XSleep(300);
       let tooltip = document.querySelector('.x-tooltip-portal') as HTMLElement;
-      expect(tooltip.innerText).toBe('Ê¹ÓÃ Enter ¼üÈ·ÈÏ');
+      expect(tooltip.innerText).toBe('使用 Enter 键确认');
       input.nativeElement.dispatchEvent(new Event('mouseleave'));
       await XSleep(300);
     });

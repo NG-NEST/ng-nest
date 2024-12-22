@@ -21,16 +21,6 @@ export class XTimelineProperty extends XPropertyFunction(X_TIMELINE_CONFIG_NAME)
    */
   readonly data = input<XTimelineNode[], XDataArray<XTimelineNode>>([], { transform: XToDataArray });
   /**
-   * @zh_CN 类型
-   * @en_US Type
-   */
-  readonly type = input<XType>();
-  /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  readonly size = input<XSize>(this.config?.size ?? 'medium');
-  /**
    * @zh_CN 内容模板
    * @en_US Content template
    */

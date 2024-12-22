@@ -132,6 +132,7 @@
     <div class="x-transfer-title-left">
       @if (source.title && !source.hiddenCheckAll) {
         <x-checkbox
+          class="x-transfer-check-all"
           [data]="[titleTpl() ? '' : source.title]"
           [(ngModel)]="source.checkedAll"
           (ngModelChange)="checkedAllChange($event, source)"
@@ -149,7 +150,7 @@
       }
     </div>
     <ng-container
-      *xOutlet="titleTpl; context: { $title: source.title, $checkedCount: source.checkedCount, $count: source.count }"
+      *xOutlet="titleTpl(); context: { $title: source.title, $checkedCount: source.checkedCount, $count: source.count }"
       ><span class="x-transfer-total">{{ source.checkedCount }} / {{ source.count }}</span></ng-container
     >
   </div>

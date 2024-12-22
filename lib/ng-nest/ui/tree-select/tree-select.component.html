@@ -63,7 +63,7 @@
     <x-tag
       [@.disabled]="true"
       [bordered]="false"
-      [closable]="!disabled()"
+      [closable]="!disabledComputed()"
       [type]="'info'"
       (close)="closeNode($event, node, i)"
       [size]="size()"

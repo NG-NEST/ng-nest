@@ -274,4 +274,9 @@ export interface XCheckboxNode extends XIdentityProperty {
    * @en_US Label text
    */
   label?: XTemplate;
+  /**
+   * @zh_CN label 为模板参数的时候
+   * @en_US Label when setting template parameters
+   */
+  node?: XCheckboxNode;
 }

@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTooltipDirective, XTooltipPrefix } from '@ng-nest/ui/tooltip';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XPlacement, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XComputedStyle, XPlacement, XSleep, XTemplate } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   imports: [XTooltipDirective],
@@ -15,7 +15,9 @@ class XTestTooltipComponent {}
 @Component({
   imports: [XTooltipDirective],
   template: `
-    <x-tooltip
+    <div
+      style="position: absolute; left: 0; top: 0; width: 30px"
+      x-tooltip
       [content]="content()"
       [placement]="placement()"
       [(visible)]="visible"
@@ -28,7 +30,10 @@ class XTestTooltipComponent {}
       [mouseLeaveDelay]="mouseLeaveDelay()"
       [disabled]="disabled()"
     >
-    </x-tooltip>
+      text
+    </div>
+
+    <div #connectToRef style="position: absolute; left: 0; top: 0; width: 50px">connect to</div>
   `
 })
 class XTestTooltipPropertyComponent {
@@ -37,6 +42,7 @@ class XTestTooltipPropertyComponent {
   visible = signal(false);
   panelClass = signal<string | string[]>('');
   connectTo = signal<ElementRef<HTMLElement> | HTMLElement | null>(null);
+  connectToRef = viewChild.required<ElementRef<HTMLElement>>('connectToRef');
   backgroundColor = signal('');
   color = signal('');
   manual = signal(false);
@@ -49,11 +55,8 @@ describe(XTooltipPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTooltipComponent, XTestTooltipPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -69,44 +72,129 @@ describe(XTooltipPrefix, () => {
   });
   describe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTooltipPropertyComponent>;
-    // let component: XTestTooltipPropertyComponent;
+    let component: XTestTooltipPropertyComponent;
     beforeEach(async () => {
       fixture = TestBed.createComponent(XTestTooltipPropertyComponent);
-      // component = fixture.componentInstance;
+      component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('content.', () => {
-      expect(true).toBe(true);
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XTooltipDirective));
+      com.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(300);
+    };
+    const closePortal = async () => {
+      const portal = fixture.debugElement.query(By.css('x-tooltip-portal'));
+      portal.nativeElement.dispatchEvent(new Event('mouseenter'));
+      portal.nativeElement.dispatchEvent(new Event('mouseleave'));
+      fixture.detectChanges();
+      await XSleep(300);
+    };
+    it('content.', async () => {
+      component.content.set('content');
+      fixture.detectChanges();
+      await showPortal();
+      const content = fixture.debugElement.query(By.css('.x-tooltip-portal-inner'));
+      expect(content.nativeElement.innerText).toBe('content');
+      await closePortal();
     });
-    it('placement.', () => {
-      expect(true).toBe(true);
+    it('placement.', async () => {
+      component.placement.set('right');
+      fixture.detectChanges();
+      await showPortal();
+      const panel = document.querySelector('.cdk-overlay-pane')!;
+      expect(panel.getBoundingClientRect().left).toBe(30);
+      await closePortal();
     });
-    it('visible.', () => {
-      expect(true).toBe(true);
+    it('visible.', async () => {
+      component.visible.set(true);
+      fixture.detectChanges();
+      await XSleep(300);
+      let tooltip = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(tooltip).toBeTruthy();
+
+      component.visible.set(false);
+      fixture.detectChanges();
+      await XSleep(300);
+      tooltip = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(tooltip).toBeFalsy();
     });
-    it('panelClass.', () => {
-      expect(true).toBe(true);
+    it('panelClass.', async () => {
+      component.panelClass.set('panel-class');
+      fixture.detectChanges();
+      await showPortal();
+      const panel = document.querySelector('.cdk-overlay-pane');
+      expect(panel).toHaveClass('panel-class');
+      await closePortal();
     });
-    it('connectTo.', () => {
-      expect(true).toBe(true);
+    it('connectTo.', async () => {
+      component.connectTo.set(component.connectToRef());
+      fixture.detectChanges();
+      await showPortal();
+      const panel = document.querySelector('.cdk-overlay-pane')!;
+      expect(panel.getBoundingClientRect().left).toBe(50);
+      await closePortal();
     });
-    it('backgroundColor.', () => {
-      expect(true).toBe(true);
+    it('backgroundColor.', async () => {
+      component.backgroundColor.set('rgb(255, 0, 0');
+      fixture.detectChanges();
+      await showPortal();
+      const inner = fixture.debugElement.query(By.css('.x-tooltip-portal-inner'));
+      expect(XComputedStyle(inner.nativeElement, 'background-color')).toBe('rgb(255, 0, 0)');
+      await closePortal();
     });
-    it('color.', () => {
-      expect(true).toBe(true);
+    it('color.', async () => {
+      component.color.set('rgb(255, 0, 0');
+      fixture.detectChanges();
+      await showPortal();
+      const inner = fixture.debugElement.query(By.css('.x-tooltip-portal-inner'));
+      expect(XComputedStyle(inner.nativeElement, 'color')).toBe('rgb(255, 0, 0)');
+      await closePortal();
     });
-    it('manual.', () => {
-      expect(true).toBe(true);
+    it('manual.', async () => {
+      component.manual.set(true);
+      fixture.detectChanges();
+      await showPortal();
+      let tooltip = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(tooltip).toBeFalsy();
+
+      component.visible.set(true);
+      fixture.detectChanges();
+      await XSleep(300);
+      tooltip = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(tooltip).toBeTruthy();
     });
-    it('mouseEnterDelay.', () => {
-      expect(true).toBe(true);
+    it('mouseEnterDelay.', async () => {
+      const com = fixture.debugElement.query(By.directive(XTooltipDirective));
+      com.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      let tooltip = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(tooltip).toBeFalsy();
+      await XSleep(200);
+      tooltip = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(tooltip).toBeTruthy();
+      await closePortal();
     });
-    it('mouseLeaveDelay.', () => {
-      expect(true).toBe(true);
+    it('mouseLeaveDelay.', async () => {
+      const com = fixture.debugElement.query(By.directive(XTooltipDirective));
+      com.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      await XSleep(200);
+      com.nativeElement.dispatchEvent(new Event('mouseleave'));
+      await XSleep(50);
+      let tooltip = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(tooltip).toBeTruthy();
+      await XSleep(150);
+      tooltip = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(tooltip).toBeFalsy();
     });
-    it('disabled.', () => {
-      expect(true).toBe(true);
+    it('disabled.', async () => {
+      component.disabled.set(true);
+      fixture.detectChanges();
+      await showPortal();
+      let tooltip = fixture.debugElement.query(By.css('.x-tooltip-portal'));
+      expect(tooltip).toBeFalsy();
     });
   });
 });

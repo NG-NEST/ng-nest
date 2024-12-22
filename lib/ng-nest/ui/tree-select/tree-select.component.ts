@@ -143,7 +143,6 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   inputChange: Subject<any> = new Subject();
   composition = signal(false);
   multipleInputSizeChange = new Subject<{
-    inputHeight: number;
     searchInputWidth: number;
     searchInputLeft: number;
     searchInputTop: number;
@@ -201,8 +200,6 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
     effect(() => this.portalComponent()?.setInput('portalMaxHeight', this.portalMaxHeight()));
     effect(() => this.portalComponent()?.setInput('objectArray', this.objectArray()));
-    effect(() => this.portalComponent()?.setInput('selectAll', this.selectAll()));
-    effect(() => this.portalComponent()?.setInput('selectAllText', this.selectAllText()));
     effect(() => this.portalComponent()?.setInput('caseSensitive', this.caseSensitive()));
     effect(() => this.portalComponent()?.setInput('search', this.search()));
     effect(() => this.portalComponent()?.setInput('virtualScroll', this.virtualScroll()));
@@ -218,22 +215,14 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { data } = changes;
+    const { data, multiple } = changes;
     XIsChange(data) && this.setData();
+    XIsChange(multiple) && this.resizeChange();
   }
 
   ngAfterViewInit() {
     this.setPortal();
-    if (this.multiple() && this.inputCom().inputValueRef()) {
-      XResize(this.inputCom().inputValueRef()?.nativeElement)
-        .pipe(debounceTime(20), takeUntil(this.unSubject))
-        .subscribe((x) => {
-          const rect = this.inputCom().inputValueRef()?.nativeElement.getBoundingClientRect();
-          console.log(rect.width, rect.height);
-          this.resizeObserver = x.resizeObserver;
-          this.setMutipleInputSize();
-        });
-    }
+    this.resizeChange();
   }
 
   ngOnDestroy(): void {
@@ -274,14 +263,25 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     });
     this.multipleInputSizeChange.pipe(distinctUntilChanged(), takeUntil(this.unSubject)).subscribe((x) => {
       if (this.multipleInput()) {
-        const { inputHeight, searchInputWidth, searchInputLeft, searchInputTop } = x;
+        const { searchInputWidth, searchInputLeft, searchInputTop } = x;
         const input = this.multipleInput()!.elementRef.nativeElement;
         this.renderer.setStyle(input, 'width', `${searchInputWidth}px`);
         this.renderer.setStyle(input, 'left', `${searchInputLeft}px`);
         this.renderer.setStyle(input, 'top', `${searchInputTop}px`);
-        this.renderer.setStyle(this.inputCom().inputRef().nativeElement, 'height', `${inputHeight}px`);
       }
     });
+  }
+
+  resizeChange() {
+    if (!!this.resizeObserver) return;
+    if (this.multiple() && this.inputCom().inputValueRef()) {
+      XResize(this.inputCom().inputValueRef()?.nativeElement)
+        .pipe(debounceTime(20), takeUntil(this.unSubject))
+        .subscribe((x) => {
+          this.resizeObserver = x.resizeObserver;
+          this.setMutipleInputSize();
+        });
+    }
   }
 
   setParantScroll() {
@@ -343,9 +343,9 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
       }
     }
     const height = scrollHeight + (lines > 1 ? marginTop : 0);
+    this.renderer.setStyle(this.inputCom().inputRef().nativeElement, 'height', `${height}px`);
     if (this.multipleInput()) {
       this.multipleInputSizeChange.next({
-        inputHeight: height,
         searchInputWidth: clientWidth - lastRowTagsWidth - marginLeft,
         searchInputLeft: lastRowTagsWidth - marginLeft,
         searchInputTop: lines > 1 ? lastRowTagTop - marginTop : 1

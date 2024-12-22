@@ -147,8 +147,13 @@ export class XTransferComponent extends XTransferProperty implements OnInit, OnC
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const { data } = changes;
+    const { data, titles, listStyle, hiddenCheckAll, tableHeadSearchTpl, footerTpl } = changes;
     XIsChange(data) && this.setData();
+    XIsChange(titles) && this.setTitles();
+    XIsChange(listStyle) && this.setListStyle();
+    XIsChange(hiddenCheckAll) && this.setHiddenCheckAll();
+    XIsChange(footerTpl) && this.setFooterTpl();
+    XIsChange(tableHeadSearchTpl) && this.setTableHeadSearchTpl();
   }
 
   ngOnDestroy() {

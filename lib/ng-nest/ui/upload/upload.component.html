@@ -1,5 +1,6 @@
 <div #upload class="x-upload x-upload-{{ type() }}" [class.x-disabled]="disabledComputed()">
   <input
+    class="x-upload-input"
     type="file"
     #file
     (change)="change($event)"
@@ -42,7 +43,7 @@
                 }
               }
               @if (file.state !== 'uploading') {
-                <x-button icon="fto-x" (click)="remove(file, i)" onlyIcon closable size="mini"></x-button>
+                <x-button icon="fto-x" (click)="remove(file, i)" closable onlyIcon flat size="mini"></x-button>
               }
             </li>
           }
@@ -94,7 +95,9 @@
 <ng-template #uploadBtnTpl>
   <div class="x-upload-buttons" [class.x-upload-buttons-template]="isTemplateText()" (click)="uploadClick()">
     <ng-container *xOutlet="getText()">
-      <x-button icon="fto-upload" [disabled]="disabledComputed()" type="primary">{{ getText() }}</x-button>
+      <x-button icon="fto-upload" class="x-upload-text" [disabled]="disabledComputed()" type="primary">{{
+        getText()
+      }}</x-button>
     </ng-container>
   </div>
 </ng-template>

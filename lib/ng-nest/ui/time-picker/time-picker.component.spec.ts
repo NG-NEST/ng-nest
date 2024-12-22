@@ -1,5 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import {
+  Component,
+  inject,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+  TemplateRef,
+  viewChild
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {
   XTimePickerComponent,
@@ -9,8 +16,21 @@ import {
   XTimePickerType
 } from '@ng-nest/ui/time-picker';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { XAlign, XCorner, XData, XDirection, XIsNumber, XJustify, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
+import {
+  XAddHours,
+  XAlign,
+  XCorner,
+  XData,
+  XDirection,
+  XIsNumber,
+  XJustify,
+  XSize,
+  XSleep,
+  XTemplate
+} from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   imports: [XTimePickerComponent],
@@ -19,9 +39,11 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 class XTestTimePickerComponent {}
 
 @Component({
-  imports: [XTimePickerComponent],
+  imports: [XTimePickerComponent, FormsModule, DatePipe],
+  providers: [DatePipe],
   template: `
     <x-time-picker
+      [(ngModel)]="model"
       [type]="type()"
       [format]="format()"
       [placement]="placement()"
@@ -64,6 +86,7 @@ class XTestTimePickerComponent {}
   `
 })
 class XTestTimePickerPropertyComponent {
+  model = signal<Date | null>(null);
   type = signal<XTimePickerType>('time');
   format = signal('HH:mm:ss');
   placement = signal<XCorner>('bottom-start');
@@ -102,6 +125,8 @@ class XTestTimePickerPropertyComponent {
   nodeEmit(value: number) {
     this.nodeEmitResult.set(value);
   }
+
+  datePipe = inject(DatePipe);
 }
 
 describe(XTimePickerPrefix, () => {
@@ -131,37 +156,154 @@ describe(XTimePickerPrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('type.', () => {
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XTimePickerComponent));
+      const instance = com.componentInstance as XTimePickerComponent;
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+
+      await XSleep(300);
+
+      return { com, input, instance };
+    };
+    const closePortal = async () => {
+      const body = document.querySelector('body');
+      body?.click();
+      // const option = fixture.debugElement.query(By.css('x-list-option'));
+      // option?.nativeElement.click();
+      await XSleep(300);
+    };
+
+    it('type.', async () => {
       component.type.set('hour');
       fixture.detectChanges();
-      
+      await showPortal();
+      const hour = fixture.debugElement.query(By.css('.x-time-picker-frame-hour'));
+      expect(hour).toBeTruthy();
+      await closePortal();
     });
-    it('format.', () => {
-      expect(true).toBe(true);
+    it('format.', async () => {
+      const now = new Date();
+      component.model.set(now);
+      component.format.set('HH时mm分ss秒');
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(input.nativeElement.innerText).toBe(component.datePipe.transform(now, 'HH时mm分ss秒'));
     });
-    it('placement.', () => {
-      expect(true).toBe(true);
+    it('placement.', async () => {
+      // cdk overlay. Restricted by browser window size
     });
-    it('use12Hours.', () => {
-      expect(true).toBe(true);
+    it('use12Hours.', async () => {
+      const dt = new Date('2025/01/01 15:00:00');
+      component.model.set(dt);
+      component.use12Hours.set(true);
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(input.nativeElement.innerText).toBe('03:00:00 下午');
     });
     it('bordered.', () => {
-      expect(true).toBe(true);
+      const input = fixture.debugElement.query(By.css('.x-input'));
+      expect(input.nativeElement).toHaveClass('x-input-bordered');
+
+      component.bordered.set(false);
+      fixture.detectChanges();
+      expect(input.nativeElement).not.toHaveClass('x-input-bordered');
     });
-    it('hourStep.', () => {
-      expect(true).toBe(true);
+    it('hourStep.', async () => {
+      component.hourStep.set(2);
+      fixture.detectChanges();
+      await showPortal();
+      const hour = fixture.debugElement.query(By.css('.x-time-picker-frame-hour'));
+      expect(hour).toBeTruthy();
+      const hourList = hour.nativeElement.querySelectorAll('x-list-option');
+      expect(hourList.length).toBe(12);
+      await closePortal();
     });
-    it('minuteStep.', () => {
-      expect(true).toBe(true);
+    it('minuteStep.', async () => {
+      component.minuteStep.set(5);
+      fixture.detectChanges();
+      await showPortal();
+      const minute = fixture.debugElement.query(By.css('.x-time-picker-frame-minute'));
+      expect(minute).toBeTruthy();
+      const minuteList = minute.nativeElement.querySelectorAll('x-list-option');
+      expect(minuteList.length).toBe(12);
+      await closePortal();
     });
-    it('secondStep.', () => {
-      expect(true).toBe(true);
+    it('secondStep.', async () => {
+      component.secondStep.set(5);
+      fixture.detectChanges();
+      await showPortal();
+      const second = fixture.debugElement.query(By.css('.x-time-picker-frame-second'));
+      expect(second).toBeTruthy();
+      const secondList = second.nativeElement.querySelectorAll('x-list-option');
+      expect(secondList.length).toBe(12);
+      await closePortal();
     });
-    it('preset.', () => {
-      expect(true).toBe(true);
+    it('preset.', async () => {
+      const now = new Date();
+      component.preset.set([
+        'now',
+        {
+          label: '1 hours before',
+          func: () => {
+            return XAddHours(now, -1);
+          }
+        },
+        {
+          label: '2 hours after',
+          func: () => {
+            return XAddHours(now, 2);
+          }
+        }
+      ]);
+      fixture.detectChanges();
+      await showPortal();
+
+      const preset = document.querySelector('.x-time-picker-portal-preset') as HTMLElement;
+      expect(preset).toBeTruthy();
+      const btns = preset.querySelectorAll<HTMLElement>('x-button');
+      if (btns.length > 1) {
+        btns.item(0).click();
+        fixture.detectChanges();
+        await XSleep(100);
+        const input = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+        expect((input.nativeElement.innerText as string).split(':')[0]).toBe(
+          component.datePipe.transform(XAddHours(now, -1), 'HH')!
+        );
+
+        btns.item(1).click();
+        fixture.detectChanges();
+        await XSleep(100);
+        expect((input.nativeElement.innerText as string).split(':')[0]).toBe(
+          component.datePipe.transform(XAddHours(now, 2), 'HH')!
+        );
+      }
+      await closePortal();
     });
-    it('disabledTime.', () => {
-      expect(true).toBe(true);
+    it('disabledTime.', async () => {
+      component.disabledTime.set(() => ({
+        disabledHours: () => Array.from({ length: 12 }).map((_, i) => i),
+        disabledMinutes: () => Array.from({ length: 30 }).map((_, i) => i),
+        disabledSeconds: () => Array.from({ length: 40 }).map((_, i) => i)
+      }));
+      fixture.detectChanges();
+
+      await showPortal();
+
+      const hours = fixture.debugElement.queryAll(By.css('.x-time-picker-frame-hour .x-disabled'));
+      expect(hours.length).toBe(12);
+
+      const minutes = fixture.debugElement.queryAll(By.css('.x-time-picker-frame-minute .x-disabled'));
+      expect(minutes.length).toBe(30);
+
+      const seconds = fixture.debugElement.queryAll(By.css('.x-time-picker-frame-second .x-disabled'));
+      expect(seconds.length).toBe(40);
+
+      await closePortal();
     });
     it('size.', () => {
       const input = fixture.debugElement.query(By.css('.x-input'));
