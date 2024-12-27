@@ -8,7 +8,8 @@ import {
   inject,
   signal,
   ComponentRef,
-  effect
+  effect,
+  SimpleChanges
 } from '@angular/core';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
 import { XTooltipPortalComponent } from './tooltip-portal.component';
@@ -21,7 +22,7 @@ import {
   ConnectedOverlayPositionChange,
   Overlay
 } from '@angular/cdk/overlay';
-import type { XPlacement } from '@ng-nest/ui/core';
+import { XIsChange, type XPlacement } from '@ng-nest/ui/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 
 @Directive({ selector: `[${XTooltipPrefix}], ${XTooltipPrefix}` })
@@ -62,10 +63,6 @@ export class XTooltipDirective extends XTooltipProperty implements OnDestroy {
     effect(() => this.portalComponent()?.setInput('color', this.color()));
     effect(() => this.portalComponent()?.setInput('backgroundColor', this.backgroundColor()));
     effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
-    this.visibleChanged.subscribe((x) => {
-      if (x) this.show();
-      else this.hide();
-    });
   }
 
   ngOnDestroy(): void {
@@ -73,29 +70,48 @@ export class XTooltipDirective extends XTooltipProperty implements OnDestroy {
     this.unSubject.complete();
   }
 
-  show() {
-    if (this.timeoutHide) clearTimeout(this.timeoutHide);
-    if (this.timeoutShow) clearTimeout(this.timeoutShow);
-    if ((!this.portal || (this.portal && !this.portal.overlayRef?.hasAttached())) && this.mouseover()) {
-      this.timeoutShow = setTimeout(() => {
-        this.createPortal();
-        this.visible.set(true);
-      }, this.mouseEnterDelay());
+  ngOnChanges(changes: SimpleChanges) {
+    const { visible } = changes;
+    XIsChange(visible) && this.setVisible();
+  }
+
+  setVisible() {
+    if (this.visible()) {
+      this.show(false);
+    } else {
+      this.hide(false);
     }
   }
 
-  hide() {
+  show(event = true) {
+    if (this.timeoutHide) clearTimeout(this.timeoutHide);
+    if (this.timeoutShow) clearTimeout(this.timeoutShow);
+    if (!this.portal || (this.portal && !this.portal.overlayRef?.hasAttached())) {
+      if ((event && this.mouseover()) || !event) {
+        this.timeoutShow = setTimeout(() => {
+          console.log(111);
+          this.createPortal();
+          this.visible.set(true);
+        }, this.mouseEnterDelay());
+      }
+    }
+  }
+
+  hide(event = true) {
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
     if (this.timeoutShow) clearTimeout(this.timeoutShow);
     if (this.portal?.overlayRef?.hasAttached() && !this.mouseover()) {
-      this.timeoutHide = setTimeout(() => {
-        this.portal.overlayRef?.dispose();
-        this.visible.set(false);
-      }, this.mouseLeaveDelay());
+      if ((event && !this.mouseover()) || !event) {
+        this.timeoutHide = setTimeout(() => {
+          this.portal.overlayRef?.dispose();
+          this.visible.set(false);
+        }, this.mouseLeaveDelay());
+      }
     }
   }
 
   createPortal() {
+    debugger;
     const connectTo = this.connectTo();
     const config: OverlayConfig = {
       panelClass: this.panelClass(),

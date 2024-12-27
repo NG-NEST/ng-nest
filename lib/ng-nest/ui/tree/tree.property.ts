@@ -428,4 +428,9 @@ export class XTreeNodeProperty extends XProperty {
    * @en_US Node expansion pack up
    */
   readonly toggle = output<XTreeNode>();
+  /**
+   * @zh_CN 树节点操作按钮
+   * @en_US Tree node operation buttons
+   */
+  readonly actions = input<XTreeAction[]>([]);
 }

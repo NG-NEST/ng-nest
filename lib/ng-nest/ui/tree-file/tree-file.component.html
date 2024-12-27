@@ -17,7 +17,7 @@
     @if (showCrumb()) {
       <div class="x-tree-file-crumb">
         @if (showToggle() && showTree()) {
-          <x-link icon="fto-menu" (click)="menuToggle()"></x-link>
+          <x-link class="x-tree-file-menu" icon="fto-menu" (click)="menuToggle()"></x-link>
         }
         <x-crumb [data]="crumbData()" [separator]="separatorTpl"></x-crumb>
         <ng-template #separatorTpl>

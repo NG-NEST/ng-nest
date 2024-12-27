@@ -13,7 +13,7 @@
     <img class="x-image-img" [src]="placeholder()" [style.width]="width()" [style.height]="height()" />
   }
   @if (isError() && fallback()) {
-    <img class="x-image-img" [src]="fallback()" [style.width]="width()" [style.height]="height()" />
+    <img class="x-image-img x-image-fallback" [src]="fallback()" [style.width]="width()" [style.height]="height()" />
   }
   @if (isError() && !fallback()) {
     <div class="x-image-error-icon" [style.width]="width()" [style.height]="height()">

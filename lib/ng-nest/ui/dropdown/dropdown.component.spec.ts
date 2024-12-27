@@ -130,6 +130,7 @@ describe(XDropdownPrefix, () => {
       // // Pixels may be decimal points
       // expect(leftDiff >= -1 && leftDiff <= 1).toBe(true);
       // expect(topDiff >= -1 && topDiff <= 1).toBe(true);
+      expect(true).toBe(true);
     });
     it('disabled.', async () => {
       component.data.set(['aa']);

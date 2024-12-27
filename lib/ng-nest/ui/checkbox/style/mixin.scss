@@ -62,7 +62,7 @@
       &:last-child {
         margin-right: 0;
       }
-      &.x-indeterminate {
+      &.x-indeterminate:not(.x-checked) {
         .#{$x-checkbox-prefix}-box {
           border-color: $x-primary;
           &::after {

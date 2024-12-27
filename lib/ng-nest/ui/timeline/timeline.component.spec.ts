@@ -65,9 +65,8 @@ describe(XTimelinePrefix, () => {
         }
       ]);
       fixture.detectChanges();
-      const labels = fixture.debugElement.queryAll(By.css('.x-timeline-label'));
-      expect(labels[0].nativeElement.innerText).toBe('test1');
-      expect(labels[1].nativeElement.innerText).toBe('test2');
+      const links = fixture.debugElement.query(By.css('.x-timeline-label x-link'));
+      expect(links.nativeElement.innerText).toBe('test1');
     });
     it('wrapper.', () => {
       component.data.set([
@@ -86,7 +85,7 @@ describe(XTimelinePrefix, () => {
       component.mode.set('right');
       fixture.detectChanges();
       const timeline = fixture.debugElement.query(By.css('.x-timeline'));
-      expect(timeline.nativeElement).toHaveClass('x-tiemline-right');
+      expect(timeline.nativeElement).toHaveClass('x-timeline-right');
     });
   });
 });

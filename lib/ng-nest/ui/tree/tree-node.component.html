@@ -74,8 +74,10 @@
     <ng-container *xOutlet="tree.labelTpl(); context: { $node: node() }"></ng-container>
   }
   <span class="x-tree-node-operations">
-    @for (action of tree.actions(); track action.id) {
-      <x-link [icon]="action.icon" [title]="action.label" (click)="onAction($event, action, node())"></x-link>
+    @for (action of actions(); track action.id) {
+      <x-link [icon]="action.icon" [title]="action.label" (click)="onAction($event, action, node())">{{
+        action.label
+      }}</x-link>
     }
   </span>
   @if (tree.multiple() && activated()) {

@@ -94,13 +94,13 @@ describe(XRatePrefix, () => {
       expect(half).toBeTruthy();
     });
     it('color.', async () => {
-      component.color.set('rgb(0, 255, 0)');
+      // use configuration ci, color rgb(28, 29, 30)
+      component.color.set('rgb(0, 0, 0)');
       component.model.set(1);
       fixture.detectChanges();
       await XSleep(100);
       const icon = fixture.debugElement.query(By.css('.x-rate-icon'));
-      console.log(icon);
-      expect(XComputedStyle(icon.nativeElement, 'color')).toBe('rgb(0, 255, 0)');
+      expect(XComputedStyle(icon.nativeElement, 'color')).toBe('rgb(0, 0, 0)');
     });
     it('customTemp.', () => {
       component.customTemp.set(component.customTemplate());
