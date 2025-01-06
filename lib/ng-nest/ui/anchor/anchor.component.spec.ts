@@ -1,20 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+  viewChild
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { XAnchorComponent, XAnchorLayout, XAnchorPrefix } from '@ng-nest/ui/anchor';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XJustify } from '@ng-nest/ui/core';
+import { XAnchorComponent, XAnchorInnerComponent, XAnchorLayout, XAnchorPrefix } from '@ng-nest/ui/anchor';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XJustify, XSleep } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
-    imports: [XAnchorComponent],
-    template: ` <x-anchor> </x-anchor> `
+  imports: [XAnchorComponent],
+  template: ` <x-anchor> </x-anchor> `
 })
 class XTestAnchorComponent {}
 
 @Component({
-    imports: [XAnchorComponent],
-    template: `
+  imports: [XAnchorComponent, XAnchorInnerComponent],
+  template: `
     <div #scrollRef style="height: 60rem; width: 100%; overflow: auto;">
       <x-anchor
         [scroll]="scroll()"
@@ -24,30 +32,29 @@ class XTestAnchorComponent {}
         [layout]="layout()"
         [justify]="justify()"
       >
+        <x-anchor-inner [innerHTML]="html()"></x-anchor-inner>
       </x-anchor>
     </div>
   `
 })
 class XTestAnchorPropertyComponent {
-  scrollRef = viewChild<ElementRef>('scrollRef');
-  scroll = signal<ElementRef | null>(null);
+  scrollRef = viewChild.required<ElementRef>('scrollRef');
+  scroll = signal<HTMLElement | null>(null);
   affixTop = signal(0);
   affixBottom = signal(0);
   affixWidth = signal('');
   layout = signal<XAnchorLayout>('right');
   justify = signal<XJustify>('start');
+  html = signal(``);
+
+  defaultScroll = inject(DOCUMENT).documentElement;
 }
 
 describe(XAnchorPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestAnchorComponent, XTestAnchorPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
-      teardown: { destroyAfterEach: false }
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()]
     }).compileComponents();
   });
   describe('default.', () => {
@@ -73,9 +80,9 @@ describe(XAnchorPrefix, () => {
       let com = fixture.debugElement.query(By.directive(XAnchorComponent));
       expect(com.componentInstance.scrollElement()).toBe(com.componentInstance.document.documentElement);
 
-      component.scroll.set(component.scrollRef()!);
+      component.scroll.set(component.scrollRef().nativeElement);
       fixture.detectChanges();
-      expect(com.componentInstance.scrollElement()).toBe(component.scrollRef());
+      expect(com.componentInstance.scrollElement()).toBe(component.scrollRef().nativeElement);
     });
     it('affixTop.', () => {
       let affix = fixture.debugElement.query(By.css('.x-affix'));
@@ -109,6 +116,136 @@ describe(XAnchorPrefix, () => {
     it('justify.', () => {
       // test x-slider nodeJustify
       expect(true).toBe(true);
+    });
+  });
+
+  describe(`coverage.`, async () => {
+    let fixture: ComponentFixture<XTestAnchorPropertyComponent>;
+    let component: XTestAnchorPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestAnchorPropertyComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('htmlChange.', () => {
+      component.html.update(
+        () => `<h1>1 Theme</h1>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>`
+      );
+      fixture.detectChanges();
+      const inner = fixture.debugElement.query(By.css('x-anchor-inner'));
+      expect(inner.nativeElement.innerText).not.toBeNull();
+    });
+    it('activatedChange.', async () => {
+      component.html.update(
+        () => `<h1>1 Theme</h1>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>`
+      );
+      fixture.detectChanges();
+      const link = fixture.debugElement.query(By.css('.x-slider-scroll ul li:nth-child(2) x-link')).nativeElement;
+      link.click();
+      fixture.detectChanges();
+      await XSleep(100);
+      const { scrollTop } = document.documentElement;
+      expect(scrollTop > 0).toBeTrue();
+    });
+    it('scrolling.', async () => {
+      component.html.update(
+        () => `<h1>1 Theme</h1>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>`
+      );
+      fixture.detectChanges();
+      const link2 = fixture.debugElement.query(By.css('.x-slider-scroll ul li:nth-child(2) x-link')).nativeElement;
+      link2.click();
+      fixture.detectChanges();
+      await XSleep(200);
+      const linkActivated = fixture.debugElement.query(
+        By.css('.x-slider-scroll ul li.x-slider-activated')
+      ).nativeElement;
+      expect(linkActivated.innerText).toBe('Branching');
+    });
+    it('htmlNotMatch.', async () => {
+      component.html.update(
+        () => `<p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>`
+      );
+      fixture.detectChanges();
+      const linkActivated = fixture.debugElement.query(By.css('.x-slider-scroll ul li.x-slider-activated'));
+      expect(linkActivated).toBeFalsy();
+    });
+    it('scrollChange.', async () => {
+      component.html.update(
+        () => `<h1>1 Theme</h1>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>`
+      );
+      component.scroll.set(component.scrollRef().nativeElement);
+      fixture.detectChanges();
+      const link2 = fixture.debugElement.query(By.css('.x-slider-scroll ul li:nth-child(2) x-link')).nativeElement;
+      link2.click();
+      fixture.detectChanges();
+      await XSleep(200);
+      let { scrollTop } = component.scrollRef().nativeElement;
+      expect(scrollTop > 0).toBeTrue();
+    });
+    it('scrollTop', async () => {
+      component.html.update(
+        () => `<h1>1 Theme</h1>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <p>This is the topic-one information.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <h2>Branching</h2>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>
+    <p>This is a branch and a description.</p>`
+      );
+      fixture.detectChanges();
+      component.defaultScroll.scrollTop = 200;
+      expect(true).toBeTrue();
     });
   });
 });

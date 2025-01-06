@@ -11,25 +11,26 @@ import {
   inject,
   computed,
   signal,
-  viewChild
+  viewChild,
+  SimpleChanges
 } from '@angular/core';
 import { XAnchorPrefix, XAnchorProperty } from './anchor.property';
-import { XComputedStyle, XIsEmpty, XRequestAnimationFrame, XIsNumber, XIsUndefined, XToCssPx } from '@ng-nest/ui/core';
+import { XComputedStyle, XIsEmpty, XRequestAnimationFrame, XIsNumber, XToCssPx, XIsChange } from '@ng-nest/ui/core';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XAffixComponent } from '@ng-nest/ui/affix';
 import { DOCUMENT, NgClass } from '@angular/common';
-import { fromEvent, Subject } from 'rxjs';
+import { fromEvent, Subject, Subscription } from 'rxjs';
 import { throttleTime, takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import type { XSliderNode } from '@ng-nest/ui/slider';
 import type { XAnchorNode } from './anchor.property';
 
 @Component({
-    selector: `${XAnchorPrefix}`,
-    imports: [NgClass, XAffixComponent, XSliderComponent],
-    templateUrl: './anchor.component.html',
-    styleUrls: ['./anchor.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: `${XAnchorPrefix}`,
+  imports: [NgClass, XAffixComponent, XSliderComponent],
+  templateUrl: './anchor.component.html',
+  styleUrls: ['./anchor.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterViewInit, OnDestroy, AfterContentChecked {
   anchor = viewChild.required('anchor', { read: ElementRef<HTMLElement> });
@@ -75,6 +76,7 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   private unSubject = new Subject<void>();
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
+  private scrollChanged = signal<Subscription | null>(null);
 
   ngAfterContentChecked(): void {
     this.contentChange.next(this.elementRef.nativeElement.innerText);
@@ -85,7 +87,6 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   }
 
   ngAfterViewInit() {
-    this.setScroll();
     this.contentChange.pipe(distinctUntilChanged(), takeUntil(this.unSubject)).subscribe(() => {
       this.setSliderData();
     });
@@ -96,9 +97,13 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
     this.unSubject.complete();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    const { scroll } = changes;
+    XIsChange(scroll) && this.setScroll();
+  }
+
   activatedChange(index: number) {
     const hElements = this.hElements();
-    if (XIsEmpty(hElements) || XIsUndefined(this.scrollElement())) return;
 
     this.scrolling.set(true);
     const hElement = hElements![index];
@@ -112,12 +117,15 @@ export class XAnchorComponent extends XAnchorProperty implements OnInit, AfterVi
   private setScroll() {
     const elementScroll = this.scrollElement();
     const listenScroll = elementScroll.tagName === 'HTML' ? this.document.defaultView : elementScroll;
-    fromEvent(listenScroll!, 'scroll')
-      .pipe(throttleTime(10), takeUntil(this.unSubject))
-      .subscribe(() => {
-        if (this.scrolling()) return;
-        this.setActivatedByScroll();
-      });
+    if (this.scrollChanged()) this.scrollChanged()!.unsubscribe();
+    this.scrollChanged.set(
+      fromEvent(listenScroll!, 'scroll')
+        .pipe(throttleTime(10), takeUntil(this.unSubject))
+        .subscribe(() => {
+          if (this.scrolling()) return;
+          this.setActivatedByScroll();
+        })
+    );
   }
 
   private setActivatedByScroll() {
