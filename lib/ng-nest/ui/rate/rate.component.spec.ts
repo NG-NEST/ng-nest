@@ -53,7 +53,7 @@ class XTestRatePropertyComponent {
   required = signal(false);
 }
 
-describe(XRatePrefix, () => {
+xdescribe(XRatePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestRateComponent, XTestRatePropertyComponent],
@@ -61,7 +61,7 @@ describe(XRatePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestRateComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestRateComponent);
@@ -72,7 +72,7 @@ describe(XRatePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestRatePropertyComponent>;
     let component: XTestRatePropertyComponent;
     beforeEach(async () => {

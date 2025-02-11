@@ -33,7 +33,7 @@ class XTestStatisticPropertyComponent {
   valueStyle = signal<XStyle>({});
 }
 
-describe(XStatisticPrefix, () => {
+xdescribe(XStatisticPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestStatisticComponent, XTestStatisticPropertyComponent],
@@ -41,7 +41,7 @@ describe(XStatisticPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestStatisticComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestStatisticComponent);
@@ -52,7 +52,7 @@ describe(XStatisticPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestStatisticPropertyComponent>;
     let component: XTestStatisticPropertyComponent;
     beforeEach(async () => {

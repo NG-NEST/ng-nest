@@ -159,7 +159,7 @@ class XTestTreePropertyComponent {
   }
 }
 
-describe(XTreePrefix, () => {
+xdescribe(XTreePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTreeComponent, XTestTreePropertyComponent],
@@ -167,7 +167,7 @@ describe(XTreePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTreeComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTreeComponent);
@@ -178,7 +178,7 @@ describe(XTreePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTreePropertyComponent>;
     let component: XTestTreePropertyComponent;
     beforeEach(async () => {

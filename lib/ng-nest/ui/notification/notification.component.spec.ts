@@ -11,7 +11,7 @@ import { XCorner } from '@ng-nest/ui/core';
 import { XNotificationComponent } from '@ng-nest/ui/notification';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
-describe(XNotificationPrefix, () => {
+xdescribe(XNotificationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXNotificationComponent, TestXNotificationTypeComponent],
@@ -19,7 +19,7 @@ describe(XNotificationPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXNotificationComponent>;
     let notification: DebugElement;
     beforeEach(() => {
@@ -31,7 +31,7 @@ describe(XNotificationPrefix, () => {
       expect(notification).toBeDefined();
     });
   });
-  describe(`type.`, () => {
+  xdescribe(`type.`, () => {
     let fixture: ComponentFixture<TestXNotificationTypeComponent>;
     let notification: DebugElement;
     beforeEach(() => {

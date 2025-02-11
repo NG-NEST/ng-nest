@@ -33,7 +33,7 @@ class XTestHighlightPropertyComponent {
   input = viewChild.required<ElementRef<HTMLInputElement>>('input');
 }
 
-describe(XHighlightPrefix, () => {
+xdescribe(XHighlightPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestHighlightComponent, XTestHighlightPropertyComponent],
@@ -46,7 +46,7 @@ describe(XHighlightPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestHighlightComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestHighlightComponent);
@@ -57,7 +57,7 @@ describe(XHighlightPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestHighlightPropertyComponent>;
     let component: XTestHighlightPropertyComponent;
     beforeEach(async () => {

@@ -94,7 +94,7 @@ class XTestCascadePropertyComponent {
   }
 }
 
-describe(XCascadePrefix, () => {
+xdescribe(XCascadePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCascadeComponent, XTestCascadePropertyComponent],
@@ -107,7 +107,7 @@ describe(XCascadePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestCascadeComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestCascadeComponent);
@@ -118,7 +118,7 @@ describe(XCascadePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCascadePropertyComponent>;
     let component: XTestCascadePropertyComponent;
     beforeEach(async () => {

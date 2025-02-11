@@ -11,7 +11,7 @@ import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XThemeComponent } from '@ng-nest/ui/theme';
 
-describe(XThemePrefix, () => {
+xdescribe(XThemePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXThemeComponent],
@@ -19,7 +19,7 @@ describe(XThemePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXThemeComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

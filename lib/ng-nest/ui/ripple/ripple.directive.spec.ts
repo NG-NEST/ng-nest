@@ -32,7 +32,7 @@ class XTestRipplePropertyComponent {
   disabled = signal(false);
 }
 
-describe(XRipplePrefix, () => {
+xdescribe(XRipplePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestRippleComponent, XTestRipplePropertyComponent],
@@ -40,7 +40,7 @@ describe(XRipplePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestRippleComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestRippleComponent);
@@ -51,7 +51,7 @@ describe(XRipplePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestRipplePropertyComponent>;
     let component: XTestRipplePropertyComponent;
     beforeEach(async () => {

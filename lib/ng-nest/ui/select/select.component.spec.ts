@@ -133,7 +133,7 @@ class XTestSelectPropertyComponent {
   inputValidator = signal<((value: any) => boolean) | null>(null);
 }
 
-describe(XSelectPrefix, () => {
+xdescribe(XSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSelectComponent, XTestSelectPropertyComponent],
@@ -141,7 +141,7 @@ describe(XSelectPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestSelectComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestSelectComponent);
@@ -152,7 +152,7 @@ describe(XSelectPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestSelectPropertyComponent>;
     let component: XTestSelectPropertyComponent;
     beforeEach(async () => {

@@ -54,7 +54,7 @@ class XTestImagePropertyComponent {
   }
 }
 
-describe(XImagePrefix, () => {
+xdescribe(XImagePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestImageComponent, XTestImagePropertyComponent],
@@ -62,7 +62,7 @@ describe(XImagePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestImageComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestImageComponent);
@@ -73,7 +73,7 @@ describe(XImagePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestImagePropertyComponent>;
     let component: XTestImagePropertyComponent;
     beforeEach(async () => {

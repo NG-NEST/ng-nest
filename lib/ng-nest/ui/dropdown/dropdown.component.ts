@@ -139,10 +139,6 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     return false;
   }
 
-  destroyPortal() {
-    this.portalOverlayRef()?.dispose();
-  }
-
   createPortal() {
     let box = this.dropdown().nativeElement.getBoundingClientRect();
     this.minWidth.set(this.portalMinWidth() ? this.portalMinWidth() : `${box.width}px`);

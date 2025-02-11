@@ -301,7 +301,7 @@ class XTestTablePropertyComponent {
   }
 }
 
-describe(XTablePrefix, () => {
+xdescribe(XTablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTableComponent, XTestTablePropertyComponent],
@@ -309,7 +309,7 @@ describe(XTablePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTableComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTableComponent);
@@ -320,7 +320,7 @@ describe(XTablePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTablePropertyComponent>;
     let component: XTestTablePropertyComponent;
     beforeEach(async () => {

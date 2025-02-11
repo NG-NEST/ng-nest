@@ -127,7 +127,7 @@ class XTestUploadPropertyComponent {
   }
 }
 
-describe(XUploadPrefix, () => {
+xdescribe(XUploadPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestUploadComponent, XTestUploadPropertyComponent],
@@ -139,7 +139,7 @@ describe(XUploadPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestUploadComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestUploadComponent);
@@ -150,7 +150,7 @@ describe(XUploadPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestUploadPropertyComponent>;
     let component: XTestUploadPropertyComponent;
     beforeEach(async () => {

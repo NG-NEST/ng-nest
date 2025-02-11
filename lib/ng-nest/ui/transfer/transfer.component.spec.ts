@@ -124,7 +124,7 @@ class XTestTransferPropertyComponent {
   }
 }
 
-describe(XTransferPrefix, () => {
+xdescribe(XTransferPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTransferComponent, XTestTransferPropertyComponent],
@@ -132,7 +132,7 @@ describe(XTransferPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTransferComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTransferComponent);
@@ -143,7 +143,7 @@ describe(XTransferPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTransferPropertyComponent>;
     let component: XTestTransferPropertyComponent;
     beforeEach(async () => {

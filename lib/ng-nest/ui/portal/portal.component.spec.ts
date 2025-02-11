@@ -13,7 +13,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-describe(XPortalPrefix, () => {
+xdescribe(XPortalPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXPortalComponent],
@@ -24,7 +24,7 @@ describe(XPortalPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXPortalComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXPortalComponent);

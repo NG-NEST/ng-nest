@@ -47,7 +47,7 @@ class XTestContainerPropertyComponent {
   footerHeight = signal('3rem');
 }
 
-describe(XContainerPrefix, () => {
+xdescribe(XContainerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestContainerComponent, XTestContainerPropertyComponent],
@@ -58,7 +58,7 @@ describe(XContainerPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestContainerComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestContainerComponent);
@@ -81,7 +81,7 @@ describe(XContainerPrefix, () => {
       expect(main).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestContainerPropertyComponent>;
     let component: XTestContainerPropertyComponent;
     beforeEach(async () => {

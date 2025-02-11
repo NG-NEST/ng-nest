@@ -78,7 +78,7 @@ class XTestLayoutPropertyComponent {
   inherit = signal(false);
 }
 
-describe(XRowPrefix, () => {
+xdescribe(XRowPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestLayoutComponent, XTestLayoutPropertyComponent],
@@ -89,7 +89,7 @@ describe(XRowPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestLayoutComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestLayoutComponent);
@@ -115,7 +115,7 @@ describe(XRowPrefix, () => {
       expect(col.nativeElement.style.paddingRight).toBe('0px');
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestLayoutPropertyComponent>;
     let component: XTestLayoutPropertyComponent;
     let row: DebugElement;

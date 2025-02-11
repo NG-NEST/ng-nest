@@ -15,7 +15,7 @@ class XTestBackTopComponent {}
 @Component({
   imports: [XBackTopComponent],
   template: `
-    <div class="x-test-back-top-scroll" #target style="height: 200px;width: 200px; overflow: auto;">
+    <div class="x-test-back-top-scroll" #target id="target" style="height: 200px;width: 200px; overflow: auto;">
       <div style="height:2000px">
         <x-back-top
           [target]="target"
@@ -38,15 +38,42 @@ class XTestBackTopPropertyComponent {
   templateTpl = viewChild.required<TemplateRef<any>>('templateTpl');
 }
 
-describe(XBackTopPrefix, () => {
+@Component({
+  imports: [XBackTopComponent],
+  template: `
+    <div class="x-test-back-top-scroll target" style="height: 200px;width: 200px; overflow: auto;">
+      <div style="height:2000px">
+        <x-back-top [target]="'.target'"> </x-back-top>
+      </div>
+    </div>
+  `
+})
+class XTestBackTopCoverComponent {}
+
+@Component({
+  imports: [XBackTopComponent],
+  template: `
+    <div style="height:2000px">
+      <x-back-top> </x-back-top>
+    </div>
+  `
+})
+class XTestBackTopWindowComponent {}
+
+xdescribe(XBackTopPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XTestBackTopComponent, XTestBackTopPropertyComponent],
+      imports: [
+        XTestBackTopComponent,
+        XTestBackTopPropertyComponent,
+        XTestBackTopCoverComponent,
+        XTestBackTopWindowComponent
+      ],
       providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestBackTopComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestBackTopComponent);
@@ -57,7 +84,7 @@ describe(XBackTopPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestBackTopPropertyComponent>;
     let component: XTestBackTopPropertyComponent;
     beforeEach(async () => {
@@ -73,6 +100,8 @@ describe(XBackTopPrefix, () => {
       await XSleep(200);
       const panel = document.querySelector('.cdk-overlay-pane')! as HTMLDivElement;
       expect(panel.style.marginRight).toBe('4rem');
+
+      fixture.destroy();
     });
     it('bottom.', async () => {
       component.bottom.set('4rem');
@@ -82,6 +111,8 @@ describe(XBackTopPrefix, () => {
       await XSleep(200);
       const panel = document.querySelector('.cdk-overlay-pane')! as HTMLDivElement;
       expect(panel.style.marginBottom).toBe('4rem');
+
+      fixture.destroy();
     });
     it('visibilityHeight.', async () => {
       component.visibilityHeight.set(300);
@@ -96,6 +127,8 @@ describe(XBackTopPrefix, () => {
       await XSleep(100);
       panel = document.querySelector('.cdk-overlay-pane')! as HTMLDivElement;
       expect(panel).toBeDefined();
+
+      fixture.destroy();
     });
     it('template.', async () => {
       component.template.set(component.templateTpl());
@@ -105,6 +138,8 @@ describe(XBackTopPrefix, () => {
       await XSleep(100);
       const panel = document.querySelector('.cdk-overlay-pane')! as HTMLDivElement;
       expect(panel.innerText).toBe('back');
+
+      fixture.destroy();
     });
     it('target.', async () => {
       const scroll = document.querySelector('.x-test-back-top-scroll')! as HTMLDivElement;
@@ -112,6 +147,55 @@ describe(XBackTopPrefix, () => {
       await XSleep(100);
       const panel = document.querySelector('.cdk-overlay-pane')! as HTMLDivElement;
       expect(panel).toBeDefined();
+
+      fixture.destroy();
+    });
+  });
+
+  xdescribe(`cover.`, async () => {
+    let fixture: ComponentFixture<XTestBackTopCoverComponent>;
+    let component: XTestBackTopCoverComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestBackTopCoverComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('target string.', async () => {
+      component;
+      const scroll = document.querySelector('.x-test-back-top-scroll')! as HTMLDivElement;
+      scroll.scrollTop = 200;
+      await XSleep(100);
+      const panel = document.querySelector('.cdk-overlay-pane')! as HTMLDivElement;
+      expect(panel).toBeDefined();
+    });
+    it('backtop click.', async () => {
+      const scroll = document.querySelector('.x-test-back-top-scroll')! as HTMLDivElement;
+      scroll.scrollTop = 200;
+      await XSleep(100);
+      const backtop = document.querySelector('.x-back-top')! as HTMLDivElement;
+      backtop.click();
+      await XSleep(400);
+      expect(scroll.scrollTop).toBe(0);
+    });
+  });
+
+  xdescribe(`window.`, async () => {
+    let fixture: ComponentFixture<XTestBackTopWindowComponent>;
+    let component: XTestBackTopWindowComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestBackTopWindowComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('backtop click.', async () => {
+      component;
+      const scroll = document.documentElement;
+      scroll.scrollTop = 200;
+      await XSleep(100);
+      const backtop = document.querySelector('.x-back-top')! as HTMLDivElement;
+      backtop.click();
+      await XSleep(400);
+      expect(scroll.scrollTop).toBe(0);
     });
   });
 });

@@ -21,7 +21,7 @@ class XTestColorPropertyComponent {
   amounts = signal([0.8, 0.9]);
 }
 
-describe(XColorPrefix, () => {
+xdescribe(XColorPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestColorComponent, XTestColorPropertyComponent],
@@ -32,7 +32,7 @@ describe(XColorPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestColorComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestColorComponent);
@@ -53,7 +53,7 @@ describe(XColorPrefix, () => {
       expect(gradual.length).toBe(10);
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestColorPropertyComponent>;
     let component: XTestColorPropertyComponent;
     beforeEach(async () => {

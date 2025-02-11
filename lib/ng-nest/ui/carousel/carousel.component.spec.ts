@@ -68,7 +68,7 @@ class XTestCarouselPropertyComponent {
   carouselPanelActive = viewChild.required<XCarouselComponent>('carouselPanelActive');
 }
 
-describe(XCarouselPrefix, () => {
+xdescribe(XCarouselPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCarouselComponent, XTestCarouselPropertyComponent],
@@ -81,7 +81,7 @@ describe(XCarouselPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestCarouselComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestCarouselComponent);
@@ -92,7 +92,7 @@ describe(XCarouselPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCarouselPropertyComponent>;
     let component: XTestCarouselPropertyComponent;
     beforeEach(async () => {

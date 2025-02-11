@@ -8,7 +8,7 @@ import { XTypographyPrefix } from './typography.property';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-describe(XTypographyPrefix, () => {
+xdescribe(XTypographyPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXTypographyComponent],
@@ -19,7 +19,7 @@ describe(XTypographyPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXTypographyComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

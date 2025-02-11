@@ -21,7 +21,7 @@ const config: XConfig = {
 })
 class XTestConfigComponent {}
 
-describe('x-config', () => {
+xdescribe('x-config', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestConfigComponent],

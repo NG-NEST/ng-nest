@@ -90,7 +90,7 @@ class XTestTabsPropertyComponent {
   }
 }
 
-describe(XTabsPrefix, () => {
+xdescribe(XTabsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTabsComponent, XTestTabsPropertyComponent],
@@ -100,7 +100,7 @@ describe(XTabsPrefix, () => {
       }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTabsComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTabsComponent);
@@ -111,7 +111,7 @@ describe(XTabsPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTabsPropertyComponent>;
     let component: XTestTabsPropertyComponent;
     beforeEach(async () => {

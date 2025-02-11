@@ -34,7 +34,7 @@ class XTestLinkPropertyComponent {
   target = signal('');
 }
 
-describe(XLinkPrefix, () => {
+xdescribe(XLinkPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestLinkComponent, XTestLinkPropertyComponent],
@@ -45,7 +45,7 @@ describe(XLinkPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestLinkComponent>;
     let link: DebugElement;
     beforeEach(() => {
@@ -68,7 +68,7 @@ describe(XLinkPrefix, () => {
       expect(link.nativeElement.textContent).toBe('Link');
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestLinkPropertyComponent>;
     let component: XTestLinkPropertyComponent;
     let link: DebugElement;

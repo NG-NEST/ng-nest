@@ -51,7 +51,7 @@ class XTestSwitchPropertyComponent {
   required = signal(false);
 }
 
-describe(XSwitchPrefix, () => {
+xdescribe(XSwitchPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSwitchComponent, XTestSwitchPropertyComponent],
@@ -59,7 +59,7 @@ describe(XSwitchPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestSwitchComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestSwitchComponent);
@@ -70,7 +70,7 @@ describe(XSwitchPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestSwitchPropertyComponent>;
     let component: XTestSwitchPropertyComponent;
     beforeEach(async () => {

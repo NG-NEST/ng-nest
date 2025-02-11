@@ -206,10 +206,6 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
     return false;
   }
 
-  destroyPortal() {
-    this.portal?.overlayRef?.dispose();
-  }
-
   showPortal() {
     if (this.disabledComputed() || this.animating()) return;
     this.active.set(true);

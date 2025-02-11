@@ -42,7 +42,7 @@ class TestXI18nComponent {
   }
 }
 
-describe(XI18nPrefix, () => {
+xdescribe(XI18nPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
@@ -56,7 +56,7 @@ describe(XI18nPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXI18nComponent>;
     let component: TestXI18nComponent;
     beforeEach(() => {

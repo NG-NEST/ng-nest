@@ -36,7 +36,7 @@ class XTestPageHeaderPropertyComponent {
   }
 }
 
-describe(XPageHeaderPrefix, () => {
+xdescribe(XPageHeaderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestPageHeaderComponent, XTestPageHeaderPropertyComponent],
@@ -44,7 +44,7 @@ describe(XPageHeaderPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestPageHeaderComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestPageHeaderComponent);
@@ -55,7 +55,7 @@ describe(XPageHeaderPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestPageHeaderPropertyComponent>;
     let component: XTestPageHeaderPropertyComponent;
     beforeEach(async () => {

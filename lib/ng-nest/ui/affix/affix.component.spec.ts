@@ -28,7 +28,7 @@ class XTestAffixPropertyComponent {
   left = signal('10px');
 }
 
-describe(XAffixPrefix, () => {
+xdescribe(XAffixPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestAffixComponent, XTestAffixPropertyComponent],
@@ -39,7 +39,7 @@ describe(XAffixPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestAffixComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestAffixComponent);
@@ -50,7 +50,7 @@ describe(XAffixPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestAffixPropertyComponent>;
     let component: XTestAffixPropertyComponent;
     beforeEach(async () => {

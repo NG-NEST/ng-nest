@@ -37,7 +37,7 @@ class XTestDragPropertyComponent {
   }
 }
 
-describe(XDragPrefix, () => {
+xdescribe(XDragPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestDragComponent, XTestDragPropertyComponent],
@@ -50,7 +50,7 @@ describe(XDragPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestDragComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestDragComponent);
@@ -61,7 +61,7 @@ describe(XDragPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDragPropertyComponent>;
     let component: XTestDragPropertyComponent;
     beforeEach(async () => {

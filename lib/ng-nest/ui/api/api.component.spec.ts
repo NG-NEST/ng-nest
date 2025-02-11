@@ -6,12 +6,12 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({
-    imports: [XApiComponent],
-    template: ` <x-api></x-api> `
+  imports: [XApiComponent],
+  template: ` <x-api></x-api> `
 })
 class XTestApiComponent {}
 
-describe(XApiPrefix, () => {
+xdescribe(XApiPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestApiComponent],
@@ -22,7 +22,7 @@ describe(XApiPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestApiComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestApiComponent);

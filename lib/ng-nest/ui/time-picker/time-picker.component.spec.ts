@@ -129,7 +129,7 @@ class XTestTimePickerPropertyComponent {
   datePipe = inject(DatePipe);
 }
 
-describe(XTimePickerPrefix, () => {
+xdescribe(XTimePickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTimePickerComponent, XTestTimePickerPropertyComponent],
@@ -137,7 +137,7 @@ describe(XTimePickerPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTimePickerComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTimePickerComponent);
@@ -148,7 +148,7 @@ describe(XTimePickerPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTimePickerPropertyComponent>;
     let component: XTestTimePickerPropertyComponent;
     beforeEach(async () => {

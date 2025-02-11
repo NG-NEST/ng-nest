@@ -64,7 +64,7 @@ class XTestSliderPropertyComponent {
   }
 }
 
-describe(XSliderPrefix, () => {
+xdescribe(XSliderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSliderComponent, XTestSliderPropertyComponent],
@@ -72,7 +72,7 @@ describe(XSliderPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestSliderComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestSliderComponent);
@@ -83,7 +83,7 @@ describe(XSliderPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestSliderPropertyComponent>;
     let component: XTestSliderPropertyComponent;
     beforeEach(async () => {

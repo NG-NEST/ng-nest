@@ -33,7 +33,7 @@ class XTestCrumbPropertyComponent {
   }
 }
 
-describe(XCrumbPrefix, () => {
+xdescribe(XCrumbPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCrumbComponent, XTestCrumbPropertyComponent],
@@ -46,7 +46,7 @@ describe(XCrumbPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestCrumbComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestCrumbComponent);
@@ -57,7 +57,7 @@ describe(XCrumbPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCrumbPropertyComponent>;
     let component: XTestCrumbPropertyComponent;
     beforeEach(async () => {

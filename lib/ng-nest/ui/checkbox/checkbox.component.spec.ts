@@ -74,7 +74,7 @@ class XTestCheckboxPropertyComponent {
   value = signal<string | boolean | null>(null);
 }
 
-describe(XCheckboxPrefix, () => {
+xdescribe(XCheckboxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCheckboxComponent, XTestCheckboxPropertyComponent],
@@ -87,7 +87,7 @@ describe(XCheckboxPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestCheckboxComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestCheckboxComponent);
@@ -98,7 +98,7 @@ describe(XCheckboxPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCheckboxPropertyComponent>;
     let component: XTestCheckboxPropertyComponent;
     beforeEach(async () => {

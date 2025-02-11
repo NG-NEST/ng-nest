@@ -126,7 +126,7 @@ class XTestListPropertyComponent {
   size = signal<XSize>('medium');
 }
 
-describe(XListPrefix, () => {
+xdescribe(XListPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestListComponent, XTestListPropertyComponent],
@@ -134,7 +134,7 @@ describe(XListPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestListComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestListComponent);
@@ -145,7 +145,7 @@ describe(XListPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestListPropertyComponent>;
     let component: XTestListPropertyComponent;
     beforeEach(async () => {

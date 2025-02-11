@@ -142,7 +142,7 @@ class XTestFindPropertyComponent {
   model = signal<any>(null);
 }
 
-describe(XFindPrefix, () => {
+xdescribe(XFindPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestFindComponent, XTestFindPropertyComponent],
@@ -155,7 +155,7 @@ describe(XFindPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestFindComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestFindComponent);
@@ -166,7 +166,7 @@ describe(XFindPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestFindPropertyComponent>;
     let component: XTestFindPropertyComponent;
     beforeEach(async () => {

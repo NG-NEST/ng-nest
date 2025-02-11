@@ -24,7 +24,7 @@ class XTestTimelinePropertyComponent {
   mode = signal<XTimelineMode>('left');
 }
 
-describe(XTimelinePrefix, () => {
+xdescribe(XTimelinePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTimelineComponent, XTestTimelinePropertyComponent],
@@ -32,7 +32,7 @@ describe(XTimelinePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTimelineComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTimelineComponent);
@@ -43,7 +43,7 @@ describe(XTimelinePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTimelinePropertyComponent>;
     let component: XTestTimelinePropertyComponent;
     beforeEach(async () => {

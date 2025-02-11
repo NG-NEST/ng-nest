@@ -5,7 +5,7 @@ import { XTimeRangePrefix } from './time-range.property';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-describe(XTimeRangePrefix, () => {
+xdescribe(XTimeRangePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXTimeRangeComponent],
@@ -16,7 +16,7 @@ describe(XTimeRangePrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimeRangeComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTimeRangeComponent);

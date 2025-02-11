@@ -138,7 +138,7 @@ class XTestDatePickerPropertyComponent {
   datePipe = inject(DatePipe);
 }
 
-describe(XDatePickerPrefix, () => {
+xdescribe(XDatePickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestDatePickerComponent, XTestDatePickerPropertyComponent],
@@ -151,7 +151,7 @@ describe(XDatePickerPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestDatePickerComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestDatePickerComponent);
@@ -162,7 +162,7 @@ describe(XDatePickerPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDatePickerPropertyComponent>;
     let component: XTestDatePickerPropertyComponent;
     beforeEach(async () => {

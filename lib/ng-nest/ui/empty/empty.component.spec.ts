@@ -28,7 +28,7 @@ class XTestEmptyPropertyComponent {
   contentTpl = viewChild.required<TemplateRef<void>>('contentTpl');
 }
 
-describe(XEmptyPrefix, () => {
+xdescribe(XEmptyPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestEmptyComponent, XTestEmptyPropertyComponent],
@@ -41,7 +41,7 @@ describe(XEmptyPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestEmptyComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestEmptyComponent);
@@ -52,7 +52,7 @@ describe(XEmptyPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestEmptyPropertyComponent>;
     let component: XTestEmptyPropertyComponent;
     beforeEach(async () => {

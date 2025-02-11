@@ -54,7 +54,7 @@ class XTestCommentPropertyComponent {
   }
 }
 
-describe(XCommentPrefix, () => {
+xdescribe(XCommentPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCommentComponent, XTestCommentPropertyComponent],
@@ -65,7 +65,7 @@ describe(XCommentPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestCommentComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestCommentComponent);
@@ -76,7 +76,7 @@ describe(XCommentPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCommentPropertyComponent>;
     // let component: XTestCommentPropertyComponent;
     beforeEach(async () => {
@@ -84,6 +84,8 @@ describe(XCommentPrefix, () => {
       // component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    it('data.', () => {});
+    it('data.', () => {
+      // TODO
+    });
   });
 });

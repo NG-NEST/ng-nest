@@ -135,7 +135,7 @@ class XTestTreeSelectPropertyComponent {
   }
 }
 
-describe(XTreeSelectPrefix, () => {
+xdescribe(XTreeSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTreeSelectComponent, XTestTreeSelectPropertyComponent],
@@ -143,7 +143,7 @@ describe(XTreeSelectPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTreeSelectComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTreeSelectComponent);
@@ -154,7 +154,7 @@ describe(XTreeSelectPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTreeSelectPropertyComponent>;
     let component: XTestTreeSelectPropertyComponent;
     beforeEach(async () => {

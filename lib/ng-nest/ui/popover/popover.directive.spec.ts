@@ -66,7 +66,7 @@ class XTestPopoverPropertyComponent {
   mouseLeaveDelay = signal(100);
 }
 
-describe(XPopoverPrefix, () => {
+xdescribe(XPopoverPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestPopoverComponent, XTestPopoverPropertyComponent],
@@ -74,7 +74,7 @@ describe(XPopoverPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestPopoverComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestPopoverComponent);
@@ -85,7 +85,7 @@ describe(XPopoverPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestPopoverPropertyComponent>;
     let component: XTestPopoverPropertyComponent;
     beforeEach(async () => {

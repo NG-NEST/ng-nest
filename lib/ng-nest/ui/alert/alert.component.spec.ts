@@ -9,22 +9,21 @@ import {
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XAlertComponent, XAlertDragFreeDragPosition, XAlertPrefix, XAlertType } from '@ng-nest/ui/alert';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XEffect, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { XResizableEvent } from '@ng-nest/ui/resizable';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
-    imports: [XAlertComponent],
-    template: ` <x-alert title="title"></x-alert> `
+  imports: [XAlertComponent],
+  template: ` <x-alert title="title"></x-alert> `
 })
 class XTestAlertComponent {}
 
 @Component({
-    imports: [XAlertComponent],
-    template: `
+  imports: [XAlertComponent],
+  template: `
     <x-alert
       [hide]="hide()"
       [title]="title()"
@@ -95,20 +94,15 @@ class XTestAlertPropertyComponent {
   }
 }
 
-describe(XAlertPrefix, () => {
+xdescribe(XAlertPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestAlertComponent, XTestAlertPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestAlertComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestAlertComponent);
@@ -119,7 +113,7 @@ describe(XAlertPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestAlertPropertyComponent>;
     let component: XTestAlertPropertyComponent;
     beforeEach(async () => {

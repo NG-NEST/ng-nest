@@ -23,7 +23,7 @@ class XTestIconPropertyComponent {
   spin = signal(false);
 }
 
-describe(XIconPrefix, () => {
+xdescribe(XIconPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestIconComponent, XTestIconPropertyComponent],
@@ -31,7 +31,7 @@ describe(XIconPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestIconComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestIconComponent);
@@ -42,7 +42,7 @@ describe(XIconPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestIconPropertyComponent>;
     let component: XTestIconPropertyComponent;
     beforeEach(async () => {

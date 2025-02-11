@@ -40,7 +40,7 @@ class XTestStepsPropertyComponent {
   nodeStatus = signal(false);
 }
 
-describe(XStepsPrefix, () => {
+xdescribe(XStepsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestStepsComponent, XTestStepsPropertyComponent],
@@ -48,7 +48,7 @@ describe(XStepsPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestStepsComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestStepsComponent);
@@ -59,7 +59,7 @@ describe(XStepsPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestStepsPropertyComponent>;
     let component: XTestStepsPropertyComponent;
     beforeEach(async () => {

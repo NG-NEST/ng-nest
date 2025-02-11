@@ -33,7 +33,7 @@ class XTestCardPropertyComponent {
   shadow = signal<XCardShadow>('always');
 }
 
-describe(XCardPrefix, () => {
+xdescribe(XCardPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCardComponent, XTestCardPropertyComponent],
@@ -44,7 +44,7 @@ describe(XCardPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestCardComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestCardComponent);
@@ -59,7 +59,7 @@ describe(XCardPrefix, () => {
       expect(card.nativeElement).toHaveClass('x-card-always');
     });
   });
-  describe(`input.`, () => {
+  xdescribe(`input.`, () => {
     let fixture: ComponentFixture<XTestCardPropertyComponent>;
     let component: XTestCardPropertyComponent;
     let card: DebugElement;

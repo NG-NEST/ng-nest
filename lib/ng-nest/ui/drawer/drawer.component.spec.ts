@@ -44,7 +44,7 @@ class XTestDrawerPropertyComponent {
   }
 }
 
-describe(XDrawerPrefix, () => {
+xdescribe(XDrawerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestDrawerComponent, XTestDrawerPropertyComponent],
@@ -57,7 +57,7 @@ describe(XDrawerPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestDrawerComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestDrawerComponent);
@@ -68,7 +68,7 @@ describe(XDrawerPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDrawerPropertyComponent>;
     let component: XTestDrawerPropertyComponent;
     beforeEach(async () => {

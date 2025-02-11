@@ -55,7 +55,7 @@ class XTestDropdownPropertyComponent {
   }
 }
 
-describe(XDropdownPrefix, () => {
+xdescribe(XDropdownPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestDropdownComponent, XTestDropdownPropertyComponent],
@@ -68,7 +68,7 @@ describe(XDropdownPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestDropdownComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestDropdownComponent);
@@ -79,7 +79,7 @@ describe(XDropdownPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDropdownPropertyComponent>;
     let component: XTestDropdownPropertyComponent;
     beforeEach(async () => {

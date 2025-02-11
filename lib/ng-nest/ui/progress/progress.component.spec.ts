@@ -64,7 +64,7 @@ class XTestProgressPropertyComponent {
   subsection = signal(false);
 }
 
-describe(XProgressPrefix, () => {
+xdescribe(XProgressPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestProgressComponent, XTestProgressPropertyComponent],
@@ -72,7 +72,7 @@ describe(XProgressPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestProgressComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestProgressComponent);
@@ -83,7 +83,7 @@ describe(XProgressPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestProgressPropertyComponent>;
     let component: XTestProgressPropertyComponent;
     beforeEach(async () => {

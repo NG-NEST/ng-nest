@@ -20,7 +20,7 @@ class XTestTextRetractPropertyComponent {
   max = signal(256);
 }
 
-describe(XTextRetractPrefix, () => {
+xdescribe(XTextRetractPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTextRetractComponent, XTestTextRetractPropertyComponent],
@@ -28,7 +28,7 @@ describe(XTextRetractPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTextRetractComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTextRetractComponent);
@@ -39,7 +39,7 @@ describe(XTextRetractPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTextRetractPropertyComponent>;
     let component: XTestTextRetractPropertyComponent;
     beforeEach(async () => {

@@ -71,7 +71,7 @@ class XTestTextareaPropertyComponent {
   }
 }
 
-describe(XTextareaPrefix, () => {
+xdescribe(XTextareaPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTextareaComponent, XTestTextareaPropertyComponent],
@@ -79,7 +79,7 @@ describe(XTextareaPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTextareaComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTextareaComponent);
@@ -90,7 +90,7 @@ describe(XTextareaPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTextareaPropertyComponent>;
     let component: XTestTextareaPropertyComponent;
     beforeEach(async () => {

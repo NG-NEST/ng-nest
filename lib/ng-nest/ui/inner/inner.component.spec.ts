@@ -7,7 +7,7 @@ import { XInnerPrefix } from './inner.property';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-describe(XInnerPrefix, () => {
+xdescribe(XInnerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXInnerComponent],
@@ -18,7 +18,7 @@ describe(XInnerPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXInnerComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

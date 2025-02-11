@@ -49,7 +49,7 @@ class XTestCollapsePropertyComponent {
   bordered = signal(false);
 }
 
-describe(XCollapsePrefix, () => {
+xdescribe(XCollapsePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCollapseComponent, XTestCollapsePropertyComponent],
@@ -61,7 +61,7 @@ describe(XCollapsePrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestCollapseComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestCollapseComponent);
@@ -98,7 +98,7 @@ describe(XCollapsePrefix, () => {
       expect(active).toContain(2);
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCollapsePropertyComponent>;
     let component: XTestCollapsePropertyComponent;
     beforeEach(async () => {

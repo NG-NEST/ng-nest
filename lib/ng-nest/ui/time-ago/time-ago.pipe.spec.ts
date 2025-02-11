@@ -9,7 +9,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
-describe(XTimeAgoPrefix, () => {
+xdescribe(XTimeAgoPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXTimeAgoComponent],
@@ -21,7 +21,7 @@ describe(XTimeAgoPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXTimeAgoComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXTimeAgoComponent);

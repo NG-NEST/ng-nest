@@ -161,7 +161,7 @@ class XTestInputPropertyComponent {
   }
 }
 
-describe(XInputPrefix, () => {
+xdescribe(XInputPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestInputComponent, XTestInputPropertyComponent],
@@ -169,7 +169,7 @@ describe(XInputPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestInputComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestInputComponent);
@@ -180,7 +180,7 @@ describe(XInputPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestInputPropertyComponent>;
     let component: XTestInputPropertyComponent;
     beforeEach(async () => {

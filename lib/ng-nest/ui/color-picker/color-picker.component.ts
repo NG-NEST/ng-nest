@@ -134,10 +134,6 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     return false;
   }
 
-  destroyPortal() {
-    this.portalOverlayRef()?.dispose();
-  }
-
   showPortal() {
     if (this.disabledComputed() || this.animating()) return;
     this.active.set(true);

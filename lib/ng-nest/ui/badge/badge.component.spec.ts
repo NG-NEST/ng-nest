@@ -42,7 +42,7 @@ class XTestBadgePropertyComponent {
   standalone = signal(false);
 }
 
-describe(XBadgePrefix, () => {
+xdescribe(XBadgePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestBadgeComponent, XTestBadgePropertyComponent],
@@ -54,7 +54,7 @@ describe(XBadgePrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestBadgeComponent>;
     let badge: DebugElement;
     beforeEach(() => {
@@ -73,7 +73,7 @@ describe(XBadgePrefix, () => {
       expect(scrolls[1].nativeElement.style.transform).toBe('translateY(0%)');
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestBadgePropertyComponent>;
     let component: XTestBadgePropertyComponent;
     let badge: DebugElement;

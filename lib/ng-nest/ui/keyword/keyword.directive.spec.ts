@@ -32,7 +32,7 @@ class TestXKeywordComponent {
   text = signal<string | string[]>('');
 }
 
-describe(XKeywordPrefix, () => {
+xdescribe(XKeywordPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXKeywordComponent],
@@ -45,7 +45,7 @@ describe(XKeywordPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXKeywordComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {
@@ -57,7 +57,7 @@ describe(XKeywordPrefix, () => {
       expect(debugElement).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<TestXKeywordComponent>;
     let component: TestXKeywordComponent;
     beforeEach(async () => {

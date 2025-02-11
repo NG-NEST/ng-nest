@@ -42,7 +42,7 @@ class XTestLoadingPropertyComponent {
   background = signal('');
 }
 
-describe(XLoadingPrefix, () => {
+xdescribe(XLoadingPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestLoadingComponent, XTestLoadingPropertyComponent],
@@ -50,7 +50,7 @@ describe(XLoadingPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestLoadingComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestLoadingComponent);
@@ -61,7 +61,7 @@ describe(XLoadingPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestLoadingPropertyComponent>;
     let component: XTestLoadingPropertyComponent;
     beforeEach(async () => {

@@ -226,10 +226,6 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
     return false;
   }
 
-  destroyPortal() {
-    this.portalOverlayRef()?.dispose();
-  }
-
   showPortal() {
     if (this.disabledComputed() || this.animating()) return;
     this.active.set(true);

@@ -248,9 +248,6 @@ export class XUploadComponent extends XUploadProperty {
     return false;
   }
 
-  destroyPortal() {
-    this.portal?.overlayRef?.dispose();
-  }
   imgError(_event: ErrorEvent, file: XUploadNode) {
     file.state = 'error';
   }

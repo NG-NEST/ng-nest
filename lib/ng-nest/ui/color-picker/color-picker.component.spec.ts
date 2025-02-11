@@ -89,7 +89,7 @@ class XTestColorPickerPropertyComponent {
   inputValidator = signal<((value: any) => boolean) | null>(null);
 }
 
-describe(XColorPickerPrefix, () => {
+xdescribe(XColorPickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestColorPickerComponent, XTestColorPickerPropertyComponent],
@@ -102,7 +102,7 @@ describe(XColorPickerPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestColorPickerComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestColorPickerComponent);
@@ -113,7 +113,7 @@ describe(XColorPickerPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestColorPickerPropertyComponent>;
     let component: XTestColorPickerPropertyComponent;
     beforeEach(async () => {

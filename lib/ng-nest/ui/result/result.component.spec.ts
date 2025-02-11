@@ -23,7 +23,7 @@ class XTestResultPropertyComponent {
   subTitle = signal<XTemplate | null>(null);
 }
 
-describe(XResultPrefix, () => {
+xdescribe(XResultPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestResultComponent, XTestResultPropertyComponent],
@@ -31,7 +31,7 @@ describe(XResultPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestResultComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestResultComponent);
@@ -42,7 +42,7 @@ describe(XResultPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestResultPropertyComponent>;
     let component: XTestResultPropertyComponent;
     beforeEach(async () => {

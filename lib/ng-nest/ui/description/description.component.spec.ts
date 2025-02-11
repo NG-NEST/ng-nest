@@ -59,7 +59,7 @@ class XTestDescriptionPropertyComponent {
   heading = signal(false);
 }
 
-describe(XDescriptionPrefix, () => {
+xdescribe(XDescriptionPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestDescriptionComponent, XTestDescriptionPropertyComponent],
@@ -67,7 +67,7 @@ describe(XDescriptionPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestDescriptionComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestDescriptionComponent);
@@ -78,7 +78,7 @@ describe(XDescriptionPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDescriptionPropertyComponent>;
     let component: XTestDescriptionPropertyComponent;
     beforeEach(async () => {

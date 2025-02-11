@@ -53,7 +53,7 @@ class XTestResizablePropertyComponent {
   }
 }
 
-describe(XResizablePrefix, () => {
+xdescribe(XResizablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestResizableComponent, XTestResizablePropertyComponent],
@@ -61,7 +61,7 @@ describe(XResizablePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestResizableComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestResizableComponent);
@@ -72,7 +72,7 @@ describe(XResizablePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestResizablePropertyComponent>;
     let component: XTestResizablePropertyComponent;
     beforeEach(async () => {

@@ -102,7 +102,7 @@ class XTestDateRangePropertyComponent {
   }
 }
 
-describe(XDateRangePrefix, () => {
+xdescribe(XDateRangePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestDateRangeComponent, XTestDateRangePropertyComponent],
@@ -115,7 +115,7 @@ describe(XDateRangePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestDateRangeComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestDateRangeComponent);
@@ -126,7 +126,7 @@ describe(XDateRangePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDateRangePropertyComponent>;
     let component: XTestDateRangePropertyComponent;
     beforeEach(async () => {

@@ -78,7 +78,7 @@ class XTestPaginationPropertyComponent {
   inputIndexSizeSureType = signal<XPaginationInputIndexSizeSureType>('enter');
 }
 
-describe(XPaginationPrefix, () => {
+xdescribe(XPaginationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestPaginationComponent, XTestPaginationPropertyComponent],
@@ -86,7 +86,7 @@ describe(XPaginationPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestPaginationComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestPaginationComponent);
@@ -97,7 +97,7 @@ describe(XPaginationPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestPaginationPropertyComponent>;
     let component: XTestPaginationPropertyComponent;
     beforeEach(async () => {

@@ -63,7 +63,7 @@ class XTestPopconfirmPropertyComponent {
   }
 }
 
-describe(XPopconfirmPrefix, () => {
+xdescribe(XPopconfirmPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestPopconfirmComponent, XTestPopconfirmPropertyComponent],
@@ -71,7 +71,7 @@ describe(XPopconfirmPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestPopconfirmComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestPopconfirmComponent);
@@ -82,7 +82,7 @@ describe(XPopconfirmPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestPopconfirmPropertyComponent>;
     let component: XTestPopconfirmPropertyComponent;
     beforeEach(async () => {

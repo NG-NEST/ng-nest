@@ -39,7 +39,6 @@ import {
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
-import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -70,7 +69,6 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   closeSubject: Subject<void> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   private unSubject = new Subject<void>();
-  private document = inject(DOCUMENT);
   private portalService = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
   private overlay = inject(Overlay);
@@ -146,7 +144,6 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   setParantScroll() {
-    if (!this.document) return;
     const parents = XParents(this.elementRef.nativeElement);
     let firstScroll: HTMLElement | null = null;
     for (let item of parents) {
@@ -177,27 +174,19 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   }
 
   closePortal() {
-    if (this.portalAttached()) {
-      this.portalOverlayRef()?.detach();
-      this.active.set(false);
-      if (this.onlySelect()) {
-        if (
-          !this.nodes()
-            .map((x) => x.label)
-            .includes(this.value())
-        ) {
-          this.value.set('');
-          if (this.onChange) this.onChange(this.value());
-          this.inputChange.next(this.value());
-        }
-      }
-      return true;
+    if (!this.portalAttached()) return;
+    this.portalOverlayRef()?.detach();
+    this.active.set(false);
+    if (!this.onlySelect()) return;
+    if (
+      !this.nodes()
+        .map((x) => x.label)
+        .includes(this.value())
+    ) {
+      this.value.set('');
+      if (this.onChange) this.onChange(this.value());
+      this.inputChange.next(this.value());
     }
-    return false;
-  }
-
-  destroyPortal() {
-    this.portalOverlayRef()?.dispose();
   }
 
   showPortal() {
@@ -343,7 +332,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         }
       }
     }
-    if (!this.onlySelect) {
+    if (!this.onlySelect()) {
       this.onChange && this.onChange(value);
     }
   }

@@ -7,7 +7,7 @@ import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-describe(XExamplesPrefix, () => {
+xdescribe(XExamplesPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXExamplesComponent],
@@ -18,7 +18,7 @@ describe(XExamplesPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXExamplesComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

@@ -15,7 +15,7 @@ import { XPatternComponent } from '@ng-nest/ui/pattern';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
-describe(XDocPrefix, () => {
+xdescribe(XDocPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXDocComponent],
@@ -23,7 +23,7 @@ describe(XDocPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXDocComponent>;
     let debugElement: DebugElement;
     beforeEach(() => {

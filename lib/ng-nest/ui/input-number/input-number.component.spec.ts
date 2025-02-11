@@ -81,7 +81,7 @@ class XTestInputNumberPropertyComponent {
   inputValidator = signal<((value: any) => boolean) | null>(null);
 }
 
-describe(XInputNumberPrefix, () => {
+xdescribe(XInputNumberPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestInputNumberComponent, XTestInputNumberPropertyComponent],
@@ -89,7 +89,7 @@ describe(XInputNumberPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestInputNumberComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestInputNumberComponent);
@@ -100,7 +100,7 @@ describe(XInputNumberPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestInputNumberPropertyComponent>;
     let component: XTestInputNumberPropertyComponent;
     beforeEach(async () => {

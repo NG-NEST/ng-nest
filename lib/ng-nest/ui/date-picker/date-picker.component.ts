@@ -258,10 +258,6 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
     return false;
   }
 
-  destroyPortal() {
-    this.portal?.overlayRef?.dispose();
-  }
-
   showPortal() {
     if (this.disabledComputed() || this.animating()) return;
     this.active.set(true);

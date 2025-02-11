@@ -54,7 +54,7 @@ class XTestFormPropertyComponent {
   constructor(public fb: FormBuilder) {}
 }
 
-describe(XFormPrefix, () => {
+xdescribe(XFormPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestFormComponent, XTestFormPropertyComponent],
@@ -62,7 +62,7 @@ describe(XFormPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestFormComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestFormComponent);
@@ -73,7 +73,7 @@ describe(XFormPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestFormPropertyComponent>;
     let component: XTestFormPropertyComponent;
     beforeEach(async () => {

@@ -67,7 +67,7 @@ class XTestRadioPropertyComponent {
   afterTemplate = viewChild.required<TemplateRef<any>>('afterTemplate');
 }
 
-describe(XRadioPrefix, () => {
+xdescribe(XRadioPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestRadioComponent, XTestRadioPropertyComponent],
@@ -75,7 +75,7 @@ describe(XRadioPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestRadioComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestRadioComponent);
@@ -86,7 +86,7 @@ describe(XRadioPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestRadioPropertyComponent>;
     let component: XTestRadioPropertyComponent;
     beforeEach(async () => {

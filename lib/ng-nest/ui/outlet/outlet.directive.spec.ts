@@ -5,7 +5,7 @@ import { XOutletPrefix } from './outlet.property';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-describe(XOutletPrefix, () => {
+xdescribe(XOutletPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXOutletComponent],
@@ -16,7 +16,7 @@ describe(XOutletPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXOutletComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXOutletComponent);

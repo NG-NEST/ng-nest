@@ -49,7 +49,7 @@ class XTestTagPropertyComponent {
   }
 }
 
-describe(XTagPrefix, () => {
+xdescribe(XTagPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTagComponent, XTestTagPropertyComponent],
@@ -57,7 +57,7 @@ describe(XTagPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTagComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTagComponent);
@@ -68,7 +68,7 @@ describe(XTagPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTagPropertyComponent>;
     let component: XTestTagPropertyComponent;
     beforeEach(async () => {

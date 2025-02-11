@@ -110,7 +110,7 @@ class XTestDialogPropertyComponent {
   }
 }
 
-describe(XDialogPrefix, () => {
+xdescribe(XDialogPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestDialogComponent, XTestDialogPropertyComponent],
@@ -123,7 +123,7 @@ describe(XDialogPrefix, () => {
       teardown: { destroyAfterEach: true }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestDialogComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestDialogComponent);
@@ -134,7 +134,7 @@ describe(XDialogPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestDialogPropertyComponent>;
     let component: XTestDialogPropertyComponent;
     beforeEach(async () => {

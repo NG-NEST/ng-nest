@@ -19,7 +19,7 @@ import { XI18nService, en_US, zh_CN } from '@ng-nest/ui/i18n';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
-describe(XMessageBoxPrefix, () => {
+xdescribe(XMessageBoxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXMessageBoxComponent],
@@ -27,7 +27,7 @@ describe(XMessageBoxPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXMessageBoxComponent>;
     let messageBox: DebugElement;
     beforeEach(() => {

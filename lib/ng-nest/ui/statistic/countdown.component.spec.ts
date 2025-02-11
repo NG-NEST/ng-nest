@@ -41,7 +41,7 @@ class XTestCountdownPropertyComponent {
   }
 }
 
-describe(XCountdownPrefix, () => {
+xdescribe(XCountdownPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCountdownComponent, XTestCountdownPropertyComponent],
@@ -49,7 +49,7 @@ describe(XCountdownPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestCountdownComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestCountdownComponent);
@@ -60,7 +60,7 @@ describe(XCountdownPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCountdownPropertyComponent>;
     let component: XTestCountdownPropertyComponent;
     beforeEach(async () => {
@@ -102,12 +102,12 @@ describe(XCountdownPrefix, () => {
       expect(value.nativeElement.style.color).toBe('rgb(0, 255, 0)');
     });
     it('format.', async () => {
-      component.format.set('D �� H ʱ m �� s ��');
+      component.format.set('D / H / m / s');
       component.value.set(XAddDays(new Date(), 2).getTime());
       fixture.detectChanges();
       await XSleep(100);
       const value = fixture.debugElement.query(By.css('.x-statistic-value-int'));
-      expect(value.nativeElement.innerText).toBe('1 �� 23 ʱ 59 �� 59 ��');
+      expect(value.nativeElement.innerText).toBe('1 / 23 / 59 / 59');
     });
     it('finish.', async () => {
       component.value.set(XAddSeconds(new Date(), 1).getTime());

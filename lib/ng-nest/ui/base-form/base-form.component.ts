@@ -6,7 +6,7 @@ import {
   ValidatorFn
 } from '@angular/forms';
 import { ChangeDetectorRef, computed, forwardRef, inject, signal, Type } from '@angular/core';
-import { XIsEmpty, XIsUndefined, XIsFunction, XComponentConfigKey, XConfigService, XIsNull } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsUndefined, XComponentConfigKey, XConfigService, XIsNull } from '@ng-nest/ui/core';
 import { XFormControlProp } from './base-form.property';
 
 export function XValueAccessor<T>(component: Type<T>) {
@@ -15,7 +15,6 @@ export function XValueAccessor<T>(component: Type<T>) {
 
 export function XFormInputValidator(func: (value: any) => boolean): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    if (!XIsFunction(func)) return null;
     const invalid = !func(control.value);
     return invalid ? { inputValidator: true } : null;
   };
@@ -40,7 +39,6 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
         for (const pt of pattern) {
           result = !new RegExp(pt).test(this.value() as any);
           if (result) {
-            this.invalidIndex.set(index);
             break;
           }
           index++;
@@ -62,7 +60,25 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
         return message as string;
       }
     });
-    invalidIndex = signal(0);
+    invalidIndex = computed(() => {
+      let res = 0;
+      let index = 0;
+      const pattern = this.patternComputed();
+      if (!this.validatorComputed() || XIsUndefined(pattern) || XIsNull(pattern)) return 0;
+      if (Array.isArray(pattern)) {
+        for (const pt of pattern) {
+          const result = !new RegExp(pt).test(this.value() as any);
+          if (result) {
+            res = index;
+            break;
+          }
+          index++;
+        }
+        return res;
+      } else {
+        return 0;
+      }
+    });
     value = signal<any | undefined>(undefined);
     validatorSignal = signal(false);
     disabledSignal = signal(false);

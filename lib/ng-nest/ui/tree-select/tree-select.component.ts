@@ -633,10 +633,6 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     return false;
   }
 
-  destroyPortal() {
-    this.portal?.overlayRef?.dispose();
-  }
-
   showPortal(click = false) {
     if (this.disabledComputed() || !this.allowAgian() || this.iconSpin() || this.animating()) return;
     this.active.set(true);

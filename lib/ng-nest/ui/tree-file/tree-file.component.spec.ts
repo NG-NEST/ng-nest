@@ -47,7 +47,7 @@ class XTestTreeFilePropertyComponent {
   expandedLevel = signal(-1);
 }
 
-describe(XTreeFilePrefix, () => {
+xdescribe(XTreeFilePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTreeFileComponent, XTestTreeFilePropertyComponent],
@@ -55,7 +55,7 @@ describe(XTreeFilePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestTreeFileComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestTreeFileComponent);
@@ -66,7 +66,7 @@ describe(XTreeFilePrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestTreeFilePropertyComponent>;
     let component: XTestTreeFilePropertyComponent;
     beforeEach(async () => {

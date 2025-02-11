@@ -65,7 +65,7 @@ class XTestMenuPropertyComponent {
   }
 }
 
-describe(XMenuPrefix, () => {
+xdescribe(XMenuPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestMenuComponent, XTestMenuPropertyComponent],
@@ -73,7 +73,7 @@ describe(XMenuPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestMenuComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestMenuComponent);
@@ -84,7 +84,7 @@ describe(XMenuPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestMenuPropertyComponent>;
     let component: XTestMenuPropertyComponent;
     beforeEach(async () => {

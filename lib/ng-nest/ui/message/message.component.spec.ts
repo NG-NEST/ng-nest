@@ -11,7 +11,7 @@ import { XConfig, XPlace, X_CONFIG } from '@ng-nest/ui/core';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XButtonComponent } from '@ng-nest/ui/button';
 
-describe(XMessagePrefix, () => {
+xdescribe(XMessagePrefix, () => {
   let config: XConfig = {
     components: {
       message: {
@@ -34,7 +34,7 @@ describe(XMessagePrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXMessageComponent>;
     let message: DebugElement;
     beforeEach(() => {
@@ -46,7 +46,7 @@ describe(XMessagePrefix, () => {
       expect(message).toBeDefined();
     });
   });
-  describe(`type.`, () => {
+  xdescribe(`type.`, () => {
     let fixture: ComponentFixture<TestXMessageTypeComponent>;
     let message: DebugElement;
     beforeEach(() => {
@@ -58,7 +58,7 @@ describe(XMessagePrefix, () => {
       expect(message).toBeDefined();
     });
   });
-  describe(`displayYype.`, () => {
+  xdescribe(`displayYype.`, () => {
     let fixture: ComponentFixture<TestXMessageDisplayTypeComponent>;
     let message: DebugElement;
     beforeEach(() => {

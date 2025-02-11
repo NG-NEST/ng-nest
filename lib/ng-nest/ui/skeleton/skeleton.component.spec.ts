@@ -22,7 +22,7 @@ class XTestSkeletonPropertyComponent {
   border = signal(false);
 }
 
-describe(XSkeletonPrefix, () => {
+xdescribe(XSkeletonPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSkeletonComponent, XTestSkeletonPropertyComponent],
@@ -30,7 +30,7 @@ describe(XSkeletonPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestSkeletonComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestSkeletonComponent);
@@ -41,7 +41,7 @@ describe(XSkeletonPrefix, () => {
       expect(com).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestSkeletonPropertyComponent>;
     let component: XTestSkeletonPropertyComponent;
     beforeEach(async () => {

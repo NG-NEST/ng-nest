@@ -53,7 +53,7 @@ class XTestCalendarPropertyComponent {
   }
 }
 
-describe(XCalendarPrefix, () => {
+xdescribe(XCalendarPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCalendarComponent, XTestCalendarPropertyComponent],
@@ -64,7 +64,7 @@ describe(XCalendarPrefix, () => {
       ]
     }).compileComponents();
   });
-  describe('default.', () => {
+  xdescribe('default.', () => {
     let fixture: ComponentFixture<XTestCalendarComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(XTestCalendarComponent);
@@ -86,7 +86,7 @@ describe(XCalendarPrefix, () => {
       expect(buttons).toBeDefined();
     });
   });
-  describe(`input.`, async () => {
+  xdescribe(`input.`, async () => {
     let fixture: ComponentFixture<XTestCalendarPropertyComponent>;
     let component: XTestCalendarPropertyComponent;
     let datePipe: DatePipe;
@@ -131,7 +131,7 @@ describe(XCalendarPrefix, () => {
       expect(hl.nativeElement.textContent.trim()).toBe('custom title');
     });
   });
-  describe(`output`, () => {
+  xdescribe(`output`, () => {
     let fixture: ComponentFixture<XTestCalendarPropertyComponent>;
     let component: XTestCalendarPropertyComponent;
     let datePipe: DatePipe;

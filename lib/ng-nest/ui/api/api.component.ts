@@ -9,5 +9,5 @@ import { XApiPrefix } from './api.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XApiComponent {
-  @HostBinding(`class`) className = XApiPrefix;
+  @HostBinding(`class.x-api`) _has = true;
 }

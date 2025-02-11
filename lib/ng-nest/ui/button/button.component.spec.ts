@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, signal, provideExperimentalZonelessChangeDetection } from '@angular/core';
-import { XButtonComponent } from '@ng-nest/ui/button';
+import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XButtonPrefix, XButtonType } from './button.property';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XDirection, XSize } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XComputedStyle, XDirection, XSize } from '@ng-nest/ui/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   imports: [XButtonComponent],
@@ -44,15 +44,30 @@ class XTestButtonPropertyComponent {
   disabled = signal(false);
 }
 
+@Component({
+  imports: [XButtonComponent, XButtonsComponent],
+  template: `
+    <x-buttons [space]="space()" [hiddenBorder]="hiddenBorder()" [boxShadow]="boxShadow()" [round]="round()">
+      <x-button> 1 </x-button>
+      <x-button> 2 </x-button>
+      <x-button> 3 </x-button>
+      <x-button> 4 </x-button>
+    </x-buttons>
+  `
+})
+class XTestButtonsPropertyComponent {
+  space = signal('');
+  hiddenBorder = signal(false);
+  boxShadow = signal(true);
+  round = signal(false);
+}
+
 describe(XButtonPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XTestButtonComponent, XTestButtonPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      imports: [XTestButtonComponent, XTestButtonPropertyComponent, XTestButtonsPropertyComponent],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   describe('default.', () => {
@@ -89,7 +104,7 @@ describe(XButtonPrefix, () => {
       expect(debugButton.getAttribute('type')).toBe('button');
     });
   });
-  describe(`input.`, async () => {
+  describe(`input button.`, async () => {
     let fixture: ComponentFixture<XTestButtonPropertyComponent>;
     let component: XTestButtonPropertyComponent;
     let debugButton: HTMLButtonElement;
@@ -171,5 +186,28 @@ describe(XButtonPrefix, () => {
       expect(debugButton).toHaveClass(`${XButtonPrefix}-disabled`);
       expect(debugButton.hasAttribute('disabled')).toBe(true);
     });
+  });
+  describe(`input buttons`, async () => {
+    let fixture: ComponentFixture<XTestButtonsPropertyComponent>;
+    let component: XTestButtonsPropertyComponent;
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(XTestButtonsPropertyComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    it('space.', () => {
+      component.space.set('10px');
+      fixture.detectChanges();
+      const buttons = fixture.debugElement.queryAll(By.css('.x-button'));
+      for (let button of buttons) {
+        const marginLeft = XComputedStyle(button.nativeElement, 'margin-left');
+        const marginRight = XComputedStyle(button.nativeElement, 'margin-right');
+        expect(marginLeft).toBe('10px');
+        expect(marginRight).toBe('10px');
+      }
+    });
+    it('hiddenBorder.', () => {});
+    it('boxShadow.', () => {});
+    it('round.', () => {});
   });
 });

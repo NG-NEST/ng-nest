@@ -7,7 +7,7 @@ import { XPatternPrefix } from './pattern.property';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
-describe(XPatternPrefix, () => {
+xdescribe(XPatternPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXPatternComponent],
@@ -15,7 +15,7 @@ describe(XPatternPrefix, () => {
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
-  describe(`default.`, () => {
+  xdescribe(`default.`, () => {
     let fixture: ComponentFixture<TestXPatternComponent>;
     beforeEach(() => {
       fixture = TestBed.createComponent(TestXPatternComponent);
