@@ -8,20 +8,22 @@ import {
   XCalendarPrefix,
   XCalendarType
 } from '@ng-nest/ui/calendar';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XDatePickerComponent, XPickerDateComponent, XPickerMonthComponent } from '@ng-nest/ui/date-picker';
 import { DatePipe } from '@angular/common';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
+  selector: 'x-test-calendar',
   imports: [XCalendarComponent],
   template: `<x-calendar></x-calendar>`
 })
 class XTestCalendarComponent {}
 
 @Component({
+  selector: 'x-test-calendar-property',
   imports: [XCalendarComponent],
   template: `
     <x-calendar
@@ -37,7 +39,7 @@ class XTestCalendarComponent {}
 })
 class XTestCalendarPropertyComponent {
   hlt = viewChild.required<TemplateRef<any>>('hlt');
-  data = signal<XCalendarData>({});
+  data = signal<XCalendarData | null>({});
   model = signal<XCalendarModel>('month');
   displayType = signal<XCalendarType>('calendar');
   headerLeftTemp = signal<TemplateRef<any> | null>(null);
@@ -57,11 +59,8 @@ xdescribe(XCalendarPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCalendarComponent, XTestCalendarPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   xdescribe('default.', () => {
@@ -111,6 +110,16 @@ xdescribe(XCalendarPrefix, () => {
     });
     it('model.', () => {
       component.model.set('year');
+      component.data.set({
+        [`${datePipe.transform(new Date(), 'yyyy-MM')}`]: Array.from({ length: 10 }).map((_item, index) => ({
+          id: `${index + 10}:`,
+          label: index + 10
+        })),
+        [`${datePipe.transform(new Date(), 'yyyy-MM-dd')}`]: Array.from({ length: 10 }).map((_item, index) => ({
+          id: `${index + 1}:`,
+          label: index
+        }))
+      });
       fixture.detectChanges();
 
       const pickerMonth = fixture.debugElement.query(By.directive(XPickerMonthComponent));
@@ -153,7 +162,17 @@ xdescribe(XCalendarPrefix, () => {
         datePipe.transform(new Date(), 'yyyy-MM-dd')
       );
     });
-    it('range change.', () => {
+    it('month range change.', () => {
+      const buttons = fixture.debugElement.query(By.directive(XButtonsComponent));
+      const button = buttons.query(By.directive(XButtonComponent));
+      button.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.rangeDate().length).toBe(2);
+    });
+    it('year range change.', () => {
+      component.model.set('year');
+      fixture.detectChanges();
       const buttons = fixture.debugElement.query(By.directive(XButtonsComponent));
       const button = buttons.query(By.directive(XButtonComponent));
       button.nativeElement.click();

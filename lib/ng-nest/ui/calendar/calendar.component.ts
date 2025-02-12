@@ -112,11 +112,7 @@ export class XCalendarComponent extends XCalendarProperty {
   }
 
   getDate(date: Date): XCalendarNode[] {
-    if (this.data) {
-      return this.data()?.[this.datePipe.transform(date, 'yyyy-MM-dd') as string];
-    } else {
-      return [];
-    }
+    return this.data()?.[this.datePipe.transform(date, 'yyyy-MM-dd') as string];
   }
 
   getMonth(date: Date): XCalendarNode[] {

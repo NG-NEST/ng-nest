@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XCollapseComponent } from './collapse.component';
 import { XCollapsePanelComponent } from './collapse-panel.component';
 import { XCollapseIconPosition, XCollapsePrefix } from './collapse.property';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { XIconComponent } from '../icon';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
+  selector: 'x-test-collapse',
   imports: [XCollapseComponent, XCollapsePanelComponent],
   template: `
     <x-collapse>
@@ -22,6 +22,7 @@ import { XIconComponent } from '../icon';
 class XTestCollapseComponent {}
 
 @Component({
+  selector: 'x-test-collapse-property',
   imports: [XCollapseComponent, XCollapsePanelComponent, XIconComponent],
   template: `
     <x-collapse
@@ -49,16 +50,25 @@ class XTestCollapsePropertyComponent {
   bordered = signal(false);
 }
 
+@Component({
+  selector: 'x-test-collapse-panel-active',
+  imports: [XCollapseComponent, XCollapsePanelComponent],
+  template: `
+    <x-collapse>
+      <x-collapse-panel label="one">one panel</x-collapse-panel>
+      <x-collapse-panel label="two" active>two panel</x-collapse-panel>
+      <x-collapse-panel label="three">three panel</x-collapse-panel>
+    </x-collapse>
+  `
+})
+class XTestCollapsePanelActive {}
+
 xdescribe(XCollapsePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XTestCollapseComponent, XTestCollapsePropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      imports: [XTestCollapseComponent, XTestCollapsePropertyComponent, XTestCollapsePanelActive],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   xdescribe('default.', () => {
@@ -156,6 +166,20 @@ xdescribe(XCollapsePrefix, () => {
       component.bordered.set(true);
       fixture.detectChanges();
       expect(collapse.nativeElement).toHaveClass('x-collapse-bordered');
+    });
+  });
+  xdescribe('panel active.', () => {
+    let fixture: ComponentFixture<XTestCollapsePanelActive>;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(XTestCollapsePanelActive);
+      fixture.detectChanges();
+    });
+    it('define.', () => {
+      const com = fixture.debugElement.query(By.directive(XCollapseComponent));
+      expect(com).toBeDefined();
+
+      const panels = fixture.debugElement.queryAll(By.directive(XCollapsePanelComponent));
+      expect(panels).toBeDefined();
     });
   });
 });

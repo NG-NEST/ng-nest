@@ -1,6 +1,5 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, signal, SimpleChanges } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, signal } from '@angular/core';
 import { XCollapsePrefix, XCollapseProperty } from './collapse.property';
-import { XIsChange } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XCollapsePrefix}`,
@@ -12,18 +11,7 @@ import { XIsChange } from '@ng-nest/ui/core';
 export class XCollapseComponent extends XCollapseProperty {
   start = signal(0);
   panelChanges = signal<(() => void)[]>([]);
-
-  ngOnChanges(changes: SimpleChanges) {
-    const { active } = changes;
-    XIsChange(active) && this.setActives();
-  }
-
-  setActives() {
-    for (let active of this.active()) {
-      const panel = this.panelChanges()[active];
-      panel && panel();
-    }
-  }
+  active = signal<number[]>([]);
 
   change(num: number, add = true) {
     const i = this.active().indexOf(num);

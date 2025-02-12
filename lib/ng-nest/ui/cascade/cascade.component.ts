@@ -172,6 +172,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
   menter() {
     if (this.disabledComputed()) return;
     this.enter.set(true);
+    console.log(this.value());
     if (!XIsEmpty(this.value())) {
       this.icon.set('');
       this.clearable.set(true);
@@ -201,9 +202,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
     if (this.portalAttached()) {
       this.portal?.overlayRef?.detach();
       this.active.set(false);
-      return true;
     }
-    return false;
   }
 
   showPortal() {
@@ -242,12 +241,11 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
 
   setInstance() {
     let { componentRef, overlayRef } = this.portal;
-    if (!componentRef || !overlayRef) return;
-    this.portalComponent.set(componentRef);
-    this.portalOverlayRef.set(overlayRef);
+    this.portalComponent.set(componentRef!);
+    this.portalOverlayRef.set(overlayRef!);
     this.realPlacement.set(this.placement());
 
-    const { nodeClick, animating } = componentRef.instance;
+    const { nodeClick, animating } = componentRef!.instance;
     nodeClick.subscribe((node: { node: XCascadeNode; nodes: XCascadeNode[]; label: string }) => this.onNodeClick(node));
     animating.subscribe((ing: boolean) => this.animating.set(ing));
   }

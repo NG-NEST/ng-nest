@@ -111,7 +111,6 @@ export class XTooltipDirective extends XTooltipProperty implements OnDestroy {
   }
 
   createPortal() {
-    debugger;
     const connectTo = this.connectTo();
     const config: OverlayConfig = {
       panelClass: this.panelClass(),

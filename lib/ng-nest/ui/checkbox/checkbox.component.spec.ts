@@ -2,20 +2,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCheckboxComponent, XCheckboxNode, XCheckboxPrefix } from '@ng-nest/ui/checkbox';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { XAlign, XData, XDirection, XJustify, XTemplate } from '@ng-nest/ui/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { XAlign, XData, XDirection, XJustify, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { XButtonType } from '@ng-nest/ui/button';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 @Component({
+  selector: 'x-test-checkbox',
   imports: [XCheckboxComponent],
   template: ` <x-checkbox></x-checkbox> `
 })
 class XTestCheckboxComponent {}
 
 @Component({
+  selector: 'x-test-checkbox-property',
   imports: [FormsModule, XCheckboxComponent],
   template: `
     <x-checkbox
@@ -78,12 +79,7 @@ xdescribe(XCheckboxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCheckboxComponent, XTestCheckboxPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
@@ -227,6 +223,31 @@ xdescribe(XCheckboxPrefix, () => {
       fixture.detectChanges();
       const checkbox = fixture.debugElement.query(By.css('.x-checkbox'));
       expect(checkbox.nativeElement).toHaveClass('x-disabled');
+    });
+    it('disabled click.', () => {
+      component.data.set(['aa', 'bb']);
+      component.disabled.set(true);
+      fixture.detectChanges();
+
+      const item = fixture.debugElement.query(By.css('.x-checkbox-row-item'));
+      item.nativeElement.click();
+
+      const checkbox = fixture.debugElement.query(By.css('.x-checkbox'));
+      expect(checkbox.nativeElement).toHaveClass('x-disabled');
+    });
+    it('checkbox click.', async () => {
+      component.data.set(['aa', 'bb']);
+      fixture.detectChanges();
+
+      const items = fixture.debugElement.queryAll(By.css('.x-checkbox-row-item'));
+      for (let item of items) {
+        item.nativeElement.click();
+      }
+      fixture.detectChanges();
+      await XSleep(100);
+      items[1].nativeElement.click();
+
+      expect(component.value()?.toString()).toBe('aa');
     });
     it('before.', () => {
       component.before.set(component.beforeTemplate());

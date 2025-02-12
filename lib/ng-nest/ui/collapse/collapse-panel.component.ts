@@ -36,6 +36,7 @@ export class XCollapsePanelComponent extends XCollapsePanelProperty implements O
       });
       return [...x];
     });
+    console.log(this.active(), this.activeSignal());
     if (this.activeSignal()) {
       this.show.set(true);
       this.collapseComponent.change(this.index());

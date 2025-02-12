@@ -79,25 +79,23 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   }
 
   setActive() {
-    if (!this.carousel) return;
-    const isActive: boolean = this.carousel.active() === this.index();
+    const isActive: boolean = this.carousel!.active() === this.index();
     if (this.activeSignal() !== isActive) {
       this.activeSignal.set(isActive);
     }
   }
 
   setStyles() {
-    if (!this.carousel) return;
     const width = this.elementRef.nativeElement.offsetWidth;
     const height = this.elementRef.nativeElement.offsetHeight;
-    let offset = this.carousel.active() - this.index();
+    let offset = this.carousel!.active() - this.index();
     let distance = width;
-    if (this.carousel.card()) {
-      if (this.carousel.direction() === 'vertical') {
+    if (this.carousel!.card()) {
+      if (this.carousel!.direction() === 'vertical') {
         console.warn('[x-carousel] vertical direction is not supported in card mode');
       }
       this.inStage.set(Math.round(Math.abs(offset)) <= 1);
-      this.translate.set(this.calcCardTranslate(this.index(), this.carousel.active())!);
+      this.translate.set(this.calcCardTranslate(this.index(), this.carousel!.active())!);
       this.scale.set(offset === 0 ? 1 : this.cardScale());
     } else {
       if (this.carousel?.direction() === 'vertical') {
@@ -115,18 +113,17 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
       this.translate.set(map[offset]);
     }
     this.animating.set(
-      this.carousel.active() === this.index() ||
-        this.carousel.before() === this.index() ||
-        this.carousel.start() === Math.abs(offset) ||
-        this.carousel.card()
+      this.carousel!.active() === this.index() ||
+        this.carousel!.before() === this.index() ||
+        this.carousel!.start() === Math.abs(offset) ||
+        this.carousel!.card()
     );
   }
 
   calcCardTranslate(index: number, activeIndex: number) {
-    if (!this.carousel) return;
-    const parentWidth = this.carousel.carousel().nativeElement.offsetWidth;
+    const parentWidth = this.carousel!.carousel().nativeElement.offsetWidth;
     let offset: number = index - activeIndex;
-    let activeFirstOrLast = this.carousel.start() > 1 && this.carousel.start() === Math.abs(offset);
+    let activeFirstOrLast = this.carousel!.start() > 1 && this.carousel!.start() === Math.abs(offset);
     if (this.inStage() || activeFirstOrLast) {
       if (activeFirstOrLast) offset = offset < 0 ? 1 : -1;
       return (parentWidth * ((2 - this.cardScale()) * offset + 1)) / 4;
@@ -143,10 +140,9 @@ export class XCarouselPanelComponent extends XCarouselPanelProperty implements O
   }
 
   panelClick() {
-    if (!this.carousel) return;
-    if (this.carousel.card() && this.carousel.active() !== this.index()) {
-      this.carousel.autoplay() && this.carousel.resetInterval();
-      this.carousel.setActiveItem(this.index());
+    if (this.carousel?.card() && this.carousel?.active() !== this.index()) {
+      this.carousel?.autoplay() && this.carousel?.resetInterval();
+      this.carousel?.setActiveItem(this.index());
     }
   }
 }

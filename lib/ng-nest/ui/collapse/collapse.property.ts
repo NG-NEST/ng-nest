@@ -1,5 +1,5 @@
 import { XProperty, XPropertyFunction, XToBoolean } from '@ng-nest/ui/core';
-import { Component, input, model } from '@angular/core';
+import { Component, input } from '@angular/core';
 import type { XTemplate, XBoolean } from '@ng-nest/ui/core';
 
 /**
@@ -102,20 +102,6 @@ export class XCollapseProperty extends XPropertyFunction(X_COLLAPSE_CONFIG_NAME)
    *
    */
   readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? false, { transform: XToBoolean });
-  /**
-   * @zh_CN 当前激活的面板序号
-   * @en_US The serial number of the currently active panel
-   * @example
-   *
-   * ```html
-   * <x-collapse [active]="[0, 1]">
-   *   <x-collapse-panel label="Title 1"></x-collapse-panel>
-   *   <x-collapse-panel label="Title 2"></x-collapse-panel>
-   * </x-collapse>
-   * ```
-   *
-   */
-  readonly active = model<number[]>([]);
 }
 
 /**

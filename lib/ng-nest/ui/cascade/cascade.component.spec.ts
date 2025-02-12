@@ -1,22 +1,32 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+  TemplateRef,
+  viewChild
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCascadeComponent, XCascadeNode, XCascadeNodeTrigger, XCascadePrefix } from '@ng-nest/ui/cascade';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XAlign, XCorner, XData, XDirection, XIsNumber, XJustify, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  selector: 'x-test-cascade',
   imports: [XCascadeComponent],
   template: ` <x-cascade></x-cascade> `
 })
 class XTestCascadeComponent {}
 
 @Component({
-  imports: [XCascadeComponent],
+  selector: 'x-test-cascade-property',
+  imports: [XCascadeComponent, FormsModule],
   template: `
     <x-cascade
+      [(ngModel)]="model"
       [data]="data()"
       [placement]="placement()"
       [bordered]="bordered()"
@@ -57,6 +67,7 @@ class XTestCascadeComponent {}
   `
 })
 class XTestCascadePropertyComponent {
+  model = signal<any>('');
   data = signal<XData<XCascadeNode>>([]);
   placement = signal<XCorner>('bottom-start');
   bordered = signal(true);
@@ -94,16 +105,39 @@ class XTestCascadePropertyComponent {
   }
 }
 
+@Component({
+  selector: 'x-test-cascade-parant-scroll',
+  imports: [XCascadeComponent],
+  template: `
+    <div #scrollRef style="height: 100px; padding-top: 150px; width: 200px; overflow: auto;">
+      <x-cascade [data]="data()"></x-cascade>
+      <div style="height: 300px;">1</div>
+    </div>
+  `
+})
+class XTestCascadeParantScroll {
+  data = signal<XData<XCascadeNode>>([]);
+  scrollRef = viewChild.required<ElementRef<HTMLElement>>('scrollRef');
+}
+
+@Component({
+  selector: 'x-test-cascade-position',
+  imports: [XCascadeComponent],
+  template: `
+    <div #scrollRef style="position: absolute; bottom: 0">
+      <x-cascade [data]="data()"></x-cascade>
+    </div>
+  `
+})
+class XTestCascadePosition {
+  data = signal<XData<XCascadeNode>>([]);
+}
+
 xdescribe(XCascadePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [XTestCascadeComponent, XTestCascadePropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
+      imports: [XTestCascadeComponent, XTestCascadePropertyComponent, XTestCascadeParantScroll, XTestCascadePosition],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
@@ -378,6 +412,172 @@ xdescribe(XCascadePrefix, () => {
       fixture.detectChanges();
       await XSleep(100);
       expect(component.nodeEmitResult()!.label).toBe('11');
+    });
+    it('model.', async () => {
+      component.data.set([
+        { id: '11', label: '11' },
+        { id: 'aa', label: 'aa' },
+        { id: 'bb', label: 'bb', pid: 'aa' },
+        { id: 'cc', label: 'cc', pid: 'aa' },
+        { id: 'dd', label: 'dd', pid: 'aa' },
+        { id: 'ee', label: 'ee', pid: 'aa' }
+      ]);
+      component.model.set('ee');
+      fixture.detectChanges();
+      await XSleep(200);
+      const value = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(value.nativeElement.innerText.trim()).toBe('aa / ee');
+    });
+    it('menter', async () => {
+      component.data.set(['1']);
+      component.model.set('1');
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      const value = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(value.nativeElement.innerText.trim()).toBe('1');
+
+      const clear = fixture.debugElement.query(By.css('.x-input-clear'));
+      clear.nativeElement.click();
+      await XSleep(100);
+      expect(component.model()).toBe('');
+    });
+    it('mleave', async () => {
+      component.data.set(['1']);
+      component.model.set('1');
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      fixture.detectChanges();
+      const value = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(value.nativeElement.innerText.trim()).toBe('1');
+    });
+    it('menter disabled.', async () => {
+      component.data.set(['1']);
+      component.model.set('1');
+      component.disabled.set(true);
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      const value = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(value.nativeElement.innerText.trim()).toBe('1');
+    });
+    it('mleave disabled.', async () => {
+      component.data.set(['1']);
+      component.model.set('1');
+      component.disabled.set(true);
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      fixture.detectChanges();
+      const value = fixture.debugElement.query(By.css('.x-input-value-template-value'));
+      expect(value.nativeElement.innerText.trim()).toBe('1');
+    });
+    it('outside pointer', async () => {
+      component.model.set('bb');
+      component.nodeTrigger.set('hover');
+      await showPortal();
+      const option = fixture.debugElement.query(By.css('.x-list-content x-list-option'));
+      option.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      option.nativeElement.dispatchEvent(new Event('mouseleave'));
+      fixture.detectChanges();
+      const body = document.querySelector('body');
+      body?.click();
+      await XSleep(300);
+      const portal = fixture.debugElement.query(By.css('x-cascade-portal'));
+      expect(portal).toBeFalsy();
+    });
+    it('disabled show portal', async () => {
+      component.disabled.set(true);
+      fixture.detectChanges();
+      await showPortal();
+      const portal = fixture.debugElement.query(By.css('x-cascade-portal'));
+      expect(portal).toBeFalsy();
+    });
+  });
+  xdescribe('parant scroll.', () => {
+    let fixture: ComponentFixture<XTestCascadeParantScroll>;
+    let component: XTestCascadeParantScroll;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(XTestCascadeParantScroll);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XCascadeComponent));
+      const instance = com.componentInstance as XCascadeComponent;
+      component.data.set([
+        { id: 'aa', label: 'aa' },
+        { id: 'bb', label: 'bb', pid: 'aa' }
+      ]);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(100);
+      const list = fixture.debugElement.query(By.css('.x-list'));
+
+      return { input, list, instance, com };
+    };
+    it('scroll top.', async () => {
+      component.scrollRef().nativeElement.scrollTop = 100;
+      const com = fixture.debugElement.query(By.directive(XCascadeComponent));
+      expect(com).toBeDefined();
+      await showPortal();
+
+      component.scrollRef().nativeElement.scrollTop = 200;
+      await XSleep(400);
+      const portal = fixture.debugElement.query(By.css('x-cascade-portal'));
+      expect(portal).toBeFalsy();
+    });
+    it('scroll bottom.', async () => {
+      component.scrollRef().nativeElement.scrollTop = 100;
+      const com = fixture.debugElement.query(By.directive(XCascadeComponent));
+      expect(com).toBeDefined();
+      await showPortal();
+      component.scrollRef().nativeElement.scrollTop = 0;
+      await XSleep(400);
+      const portal = fixture.debugElement.query(By.css('x-cascade-portal'));
+      expect(portal).toBeFalsy();
+    });
+  });
+  xdescribe('position.', () => {
+    let fixture: ComponentFixture<XTestCascadePosition>;
+    let component: XTestCascadePosition;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(XTestCascadePosition);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XCascadeComponent));
+      const instance = com.componentInstance as XCascadeComponent;
+      component.data.set([
+        { id: 'aa', label: 'aa' },
+        { id: 'bb', label: 'bb', pid: 'aa' }
+      ]);
+      fixture.detectChanges();
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(100);
+      const list = fixture.debugElement.query(By.css('.x-list'));
+
+      return { input, list, instance, com };
+    };
+    it('show portal.', async () => {
+      await showPortal();
     });
   });
 });
