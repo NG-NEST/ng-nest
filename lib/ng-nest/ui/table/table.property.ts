@@ -72,6 +72,11 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    */
   readonly headerPosition = input<XTableHeaderPosition>(this.config?.headerPosition ?? 'top');
   /**
+   * @zh_CN 列内容支持 innerHTML 渲染 html 标签
+   * @en_US Column content supports innerHTML rendering of HTML tags
+   */
+  readonly bodyInnerHTML = input<boolean, XBoolean>(this.config?.bodyInnerHTML ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 当前选中行数据
    * @en_US Currently selected row data
    */
@@ -556,6 +561,11 @@ export interface XTableColumn extends XIdentityProperty {
    * @en_US Head shows expand
    */
   headExpand?: boolean;
+  /**
+   * @zh_CN 列内容支持 innerHTML 渲染 html 标签
+   * @en_US Column content supports innerHTML rendering of HTML tags
+   */
+  innerHTML?: boolean;
   /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes

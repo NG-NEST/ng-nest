@@ -570,6 +570,7 @@ export interface XTableConfig {
   loading?: boolean;
   showHeader?: boolean;
   headerPosition?: 'top' | 'bottom' | 'top-bottom';
+  bodyInnerHTML?: boolean;
   virtualScroll?: boolean;
   rowHeight?: number;
   itemSize?: number;

@@ -26,6 +26,7 @@ import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTableComponent } from './table.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: `${XTableBodyPrefix}`,
@@ -53,6 +54,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
   private doc = inject(DOCUMENT);
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
+  private domSanitizer = inject(DomSanitizer);
   tbodyStyle = signal<{ [property: string]: any }>({});
 
   isEmpty = computed(() => this.data().length === 0);
@@ -228,6 +230,10 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
     this.tbodyStyle.set({
       height: `${height}px`
     });
+  }
+
+  setDomSanitizer(str: string) {
+    return this.domSanitizer.bypassSecurityTrustHtml(str);
   }
 
   getIndex(index: number, item: XTableRow) {

@@ -137,7 +137,11 @@
         *xOutlet="columnTpl()[column.id]; context: { $column: column, $row: row, $index: table.getIndex(i) }"
       >
         <ng-container *xOutlet="table.bodyTdTpl(); context: { $column: column, $row: row, $index: table.getIndex(i) }">
-          <div [innerHTML]="row[column.id]" [style.text-align]="column.textAlign"></div>
+          @if ((table.bodyInnerHTML() && column.innerHTML !== false) || column.innerHTML) {
+            <div [innerHTML]="setDomSanitizer(row[column.id])" [style.text-align]="column.textAlign"></div>
+          } @else {
+            <div [style.text-align]="column.textAlign">{{ row[column.id] }}</div>
+          }
           {{ table.rowExpand() && table.rowExpand()!.id === column.id ? 'x-table-body-level-' + row.level : '' }}
         </ng-container>
       </ng-container>
