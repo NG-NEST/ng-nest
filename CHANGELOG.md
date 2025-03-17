@@ -1,3 +1,7 @@
+## [18.0.13](https://github.com/NG-NEST/ng-nest/compare/18.0.12...18.0.13) (2025-03-17)
+
+
+
 ## [18.0.12](https://github.com/NG-NEST/ng-nest/compare/18.0.11...18.0.12) (2024-11-30)
 
 
