@@ -8027,6 +8027,23 @@ export const zh_CN: {[key: string]: AppProp} = {
             "content": ""
           }
         ]
+      },
+      {
+        "name": "node",
+        "type": "XCheckboxNode",
+        "label": "label 为模板参数的时候",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "node",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XCheckboxNode",
@@ -8222,33 +8239,6 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
-      },
-      {
-        "name": "active",
-        "type": "number[]",
-        "toType": "number[]",
-        "inputType": "ModelSignal<number[]>",
-        "signal": "model",
-        "label": "当前激活的面板序号",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          },
-          {
-            "type": "code",
-            "language": "html",
-            "content": "<x-collapse [active]=\"[0, 1]\">\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\"></x-collapse-panel>\n</x-collapse>"
-          },
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
       }
     ],
     "name": "XCollapseProperty",
@@ -33428,6 +33418,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "bodyInnerHTML",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "列内容支持 innerHTML 渲染 html 标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "activatedRow",
         "type": "XTableRow",
         "toType": "XTableRow",
@@ -35051,6 +35059,23 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "headExpand",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "innerHTML",
+        "type": "boolean",
+        "label": "列内容支持 innerHTML 渲染 html 标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "innerHTML",
         "propType": "",
         "example": [
           {
@@ -39258,42 +39283,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToDataArray"
       },
       {
-        "name": "type",
-        "type": "XType",
-        "toType": "XType",
-        "inputType": "InputSignal<XType>",
-        "signal": "input",
-        "label": "类型",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "toType": "XSize",
-        "inputType": "InputSignal<XSize>",
-        "signal": "input",
-        "label": "尺寸",
-        "default": "'medium'",
-        "withConfig": true,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "wrapper",
         "type": "XTemplate",
         "toType": "XTemplate",
@@ -41907,6 +41896,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "actions",
+        "type": "XTreeAction[]",
+        "toType": "XTreeAction[]",
+        "inputType": "InputSignal<XTreeAction[]>",
+        "signal": "input",
+        "label": "树节点操作按钮",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XTreeNodeProperty",
@@ -42462,42 +42469,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "selectAll",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "多选添加全选功能",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "selectAllText",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
-        "signal": "input",
-        "label": "全选的文字",
-        "default": "''",
-        "withConfig": true,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "nodeTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
@@ -42756,7 +42727,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "输入框点击样式",
-        "default": "false",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "example": [

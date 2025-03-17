@@ -8027,6 +8027,23 @@ export const en_US: {[key: string]: AppProp} = {
             "content": ""
           }
         ]
+      },
+      {
+        "name": "node",
+        "type": "XCheckboxNode",
+        "label": "Label when setting template parameters",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "node",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XCheckboxNode",
@@ -8222,33 +8239,6 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
-      },
-      {
-        "name": "active",
-        "type": "number[]",
-        "toType": "number[]",
-        "inputType": "ModelSignal<number[]>",
-        "signal": "model",
-        "label": "The serial number of the currently active panel",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          },
-          {
-            "type": "code",
-            "language": "html",
-            "content": "<x-collapse [active]=\"[0, 1]\">\n  <x-collapse-panel label=\"Title 1\"></x-collapse-panel>\n  <x-collapse-panel label=\"Title 2\"></x-collapse-panel>\n</x-collapse>"
-          },
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
       }
     ],
     "name": "XCollapseProperty",
@@ -33428,6 +33418,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "bodyInnerHTML",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Column content supports innerHTML rendering of HTML tags",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "activatedRow",
         "type": "XTableRow",
         "toType": "XTableRow",
@@ -35051,6 +35059,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "headExpand",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "innerHTML",
+        "type": "boolean",
+        "label": "Column content supports innerHTML rendering of HTML tags",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "innerHTML",
         "propType": "",
         "example": [
           {
@@ -39258,42 +39283,6 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToDataArray"
       },
       {
-        "name": "type",
-        "type": "XType",
-        "toType": "XType",
-        "inputType": "InputSignal<XType>",
-        "signal": "input",
-        "label": "Type",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "toType": "XSize",
-        "inputType": "InputSignal<XSize>",
-        "signal": "input",
-        "label": "Size",
-        "default": "'medium'",
-        "withConfig": true,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "wrapper",
         "type": "XTemplate",
         "toType": "XTemplate",
@@ -41907,6 +41896,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "actions",
+        "type": "XTreeAction[]",
+        "toType": "XTreeAction[]",
+        "inputType": "InputSignal<XTreeAction[]>",
+        "signal": "input",
+        "label": "Tree node operation buttons",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XTreeNodeProperty",
@@ -42462,42 +42469,6 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
-        "name": "selectAll",
-        "type": "XBoolean",
-        "toType": "boolean",
-        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
-        "signal": "input",
-        "label": "Multi choice to add full selection function",
-        "default": "false",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": "XToBoolean"
-      },
-      {
-        "name": "selectAllText",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
-        "signal": "input",
-        "label": "Selected all text",
-        "default": "''",
-        "withConfig": true,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
         "name": "nodeTpl",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
@@ -42756,7 +42727,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "Input pointer",
-        "default": "false",
+        "default": "true",
         "withConfig": false,
         "description": "",
         "example": [

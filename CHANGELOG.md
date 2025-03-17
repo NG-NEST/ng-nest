@@ -1,3 +1,20 @@
+## [19.0.1](https://github.com/NG-NEST/ng-nest/compare/19.0.0...19.0.1) (2025-03-17)
+
+
+### Bug Fixes
+
+* **module:dialog:** fix dialog service  backdrop click close ([9dd8311](https://github.com/NG-NEST/ng-nest/commit/9dd831133f1992a340860b205286c86a4e198d12))
+* **module:select:** fix value template ([cbe754f](https://github.com/NG-NEST/ng-nest/commit/cbe754f6c280f858670f4119addee479f439d243))
+* **module:tree-select:** fix search single ([d39fb99](https://github.com/NG-NEST/ng-nest/commit/d39fb997fdb5c2e2079c6db33f7962bf5302d329))
+* **module:tree:** fix leaf node style ([8f9f780](https://github.com/NG-NEST/ng-nest/commit/8f9f780b5f5740219e353dbae3228d6d3eee3318))
+
+
+### Features
+
+* **module:table:** add bodyInnerHTML property ([946e8b0](https://github.com/NG-NEST/ng-nest/commit/946e8b04cc3d01df6f33cd16fea50c7861a6c051)), closes [#233](https://github.com/NG-NEST/ng-nest/issues/233)
+
+
+
 # [19.0.0](https://github.com/NG-NEST/ng-nest/compare/18.0.11...19.0.0) (2024-11-30)
 
 
