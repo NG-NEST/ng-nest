@@ -17,3 +17,4 @@ export * from './zh_CN/default/scroll/scroll.component';
 export * from './zh_CN/default/search/search.component';
 export * from './zh_CN/default/head-template/head-template.component';
 export * from './zh_CN/default/array-data/array-data.component';
+export * from './zh_CN/default/innerHTML/innerHTML.component';
