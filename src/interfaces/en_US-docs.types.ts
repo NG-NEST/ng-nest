@@ -34356,6 +34356,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "bodyInnerHTML",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Column content supports innerHTML rendering of HTML tags",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "activatedRow",
         "type": "XTableRow",
         "toType": "XTableRow",
@@ -35979,6 +35997,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "headExpand",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "innerHTML",
+        "type": "boolean",
+        "label": "Column content supports innerHTML rendering of HTML tags",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "innerHTML",
         "propType": "",
         "example": [
           {

@@ -6,6 +6,7 @@ import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-innerHTML',
+  standalone: true,
   imports: [XTableComponent],
   templateUrl: './innerHTML.component.html',
   providers: [InnerHTMLService]
