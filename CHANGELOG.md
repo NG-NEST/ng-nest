@@ -1,3 +1,12 @@
+## [18.0.14](https://github.com/NG-NEST/ng-nest/compare/18.0.13...18.0.14) (2025-03-30)
+
+
+### Bug Fixes
+
+* **module:table:** fix table sort error ([ed4c4f3](https://github.com/NG-NEST/ng-nest/commit/ed4c4f3981c668ccd969a67dfd32b313cc0aef68))
+
+
+
 ## [18.0.13](https://github.com/NG-NEST/ng-nest/compare/18.0.12...18.0.13) (2025-03-17)
 
 
