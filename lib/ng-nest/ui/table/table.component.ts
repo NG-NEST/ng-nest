@@ -258,7 +258,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   getDataByFunc() {
-    if (!this.manual()) return;
+    if (!this.manual() || !this.dataIsFunc()) return;
     this.getting.set(true);
     this.unSubject.next();
     (this.data() as Function)(this.index(), this.size(), this.query())
@@ -279,7 +279,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   setManual() {
-    if (this.dataIsFunc()) this.getDataByFunc();
+    this.getDataByFunc();
   }
 
   setRowChecked() {
@@ -300,13 +300,13 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
   }
 
   pageChange(_type: 'index' | 'size') {
-    this.dataIsFunc() && this.getDataByFunc();
+    this.getDataByFunc();
     this.resetScroll();
   }
 
   change(index: number) {
     this.index.set(index);
-    this.dataIsFunc() && this.getDataByFunc();
+    this.getDataByFunc();
     this.resetScroll();
   }
 
