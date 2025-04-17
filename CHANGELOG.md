@@ -1,3 +1,12 @@
+## [19.0.3](https://github.com/NG-NEST/ng-nest/compare/19.0.2...19.0.3) (2025-04-17)
+
+
+### Bug Fixes
+
+* **module:tree:** fix the expanded parameter issue ([5cba8bb](https://github.com/NG-NEST/ng-nest/commit/5cba8bb26a4e8580d69952a95922a4a8b4a0f386)), closes [#235](https://github.com/NG-NEST/ng-nest/issues/235)
+
+
+
 ## [19.0.2](https://github.com/NG-NEST/ng-nest/compare/19.0.1...19.0.2) (2025-03-30)
 
 
