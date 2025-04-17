@@ -117,9 +117,10 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
   });
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { expandedAll, data, checked, manual } = changes;
+    const { expandedAll, data, checked, manual, expanded } = changes;
     XIsChange(data) && this.setData();
     XIsChange(expandedAll) && this.setExpandedAll();
+    XIsChange(expanded) && this.setChangeExpanded();
     XIsChange(checked) && this.setCheckedKeys(this.checked());
     XIsChange(manual) && this.setManual();
   }
@@ -236,14 +237,15 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     regetChildren = false,
     init = true,
     parentOpen = true,
-    lazyParant?: XTreeNode
+    lazyParant?: XTreeNode,
+    out = false
   ) {
     if (XIsEmpty(this.checked())) this.checked.set([]);
     const getChildren = (node: XTreeNode, level: number) => {
       if (init) {
+        const open = this.expandedAll() || level <= this.expandedLevel() || this.expanded().includes(node.id);
         node.level = level;
-        node.open =
-          this.expandedAll() || level <= this.expandedLevel() || this.expanded().includes(node.id) || node.open;
+        node.open = out ? open : open || node.open;
         node.checked = this.checked().includes(node.id) || node.checked;
         node.childrenLoaded = node.open;
       }
@@ -391,6 +393,10 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       }
       item.change && item.change();
     }
+  }
+
+  setChangeExpanded() {
+    this.setDataChange(this.treeData(), true, true, false, undefined, true);
   }
 
   setVirtualExpandedAll(item: XTreeNode, expandedAll: boolean) {
