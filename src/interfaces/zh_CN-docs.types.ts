@@ -1588,6 +1588,23 @@ export const zh_CN: {[key: string]: AppProp} = {
             "content": ""
           }
         ]
+      },
+      {
+        "name": "sort",
+        "type": "number",
+        "label": "排序",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "sort",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XParentIdentityProperty<T>",
@@ -40472,6 +40489,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-tree'"
   },
+  "X_TREE_ORDER_DEFAULT": {
+    "type": "const",
+    "label": "Tree 节点排序默认值",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "X_TREE_ORDER_DEFAULT",
+    "value": "[{ property: 'sort', order: 'asc' },{ property: 'label', order: 'asc' }]"
+  },
   "XTreeProperty": {
     "type": "class",
     "label": "Tree Property",
@@ -41112,6 +41143,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "order",
+        "type": "XTreeOrder[]",
+        "toType": "XTreeOrder[]",
+        "inputType": "InputSignal<XTreeOrder[]>",
+        "signal": "input",
+        "label": "排序属性",
+        "default": "X_TREE_ORDER_DEFAULT",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "nodeClick",
@@ -41920,6 +41969,54 @@ export const zh_CN: {[key: string]: AppProp} = {
     "extends": [
       "XProperty"
     ]
+  },
+  "XTreeOrder": {
+    "type": "interface",
+    "label": "Tree 节点排序属性",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "property",
+        "type": "string",
+        "label": "treenode 排序属性",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "property",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "order",
+        "type": "XTreeOrderType",
+        "label": "排序方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "order",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XTreeOrder"
   },
   "XTreeFilePrefix": {
     "type": "const",

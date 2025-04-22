@@ -1,3 +1,18 @@
+## [19.0.4](https://github.com/NG-NEST/ng-nest/compare/19.0.3...19.0.4) (2025-04-22)
+
+
+### Bug Fixes
+
+* **stackblitz:** fix online example error issue ([fd07028](https://github.com/NG-NEST/ng-nest/commit/fd070288a6a9dcd79ce84ce45f3372dada900955))
+
+
+### Features
+
+* **module:icon:** add custom svg icon ([3cd7c5b](https://github.com/NG-NEST/ng-nest/commit/3cd7c5b7911a43e46dc536000732d7caadfd7cf4))
+* **module:tree:** add sort property ([09dabe4](https://github.com/NG-NEST/ng-nest/commit/09dabe49ca4bfdc2ecd637ad3f83460e19f5bd8b))
+
+
+
 ## [19.0.3](https://github.com/NG-NEST/ng-nest/compare/19.0.2...19.0.3) (2025-04-17)
 
 

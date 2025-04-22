@@ -1588,6 +1588,23 @@ export const en_US: {[key: string]: AppProp} = {
             "content": ""
           }
         ]
+      },
+      {
+        "name": "sort",
+        "type": "number",
+        "label": "sort",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "sort",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
       }
     ],
     "name": "XParentIdentityProperty<T>",
@@ -40472,6 +40489,20 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-tree'"
   },
+  "X_TREE_ORDER_DEFAULT": {
+    "type": "const",
+    "label": "Tree node order default value",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "X_TREE_ORDER_DEFAULT",
+    "value": "[{ property: 'sort', order: 'asc' },{ property: 'label', order: 'asc' }]"
+  },
   "XTreeProperty": {
     "type": "class",
     "label": "Tree Property",
@@ -41112,6 +41143,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "order",
+        "type": "XTreeOrder[]",
+        "toType": "XTreeOrder[]",
+        "inputType": "InputSignal<XTreeOrder[]>",
+        "signal": "input",
+        "label": "Order property",
+        "default": "X_TREE_ORDER_DEFAULT",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "nodeClick",
@@ -41920,6 +41969,54 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": [
       "XProperty"
     ]
+  },
+  "XTreeOrder": {
+    "type": "interface",
+    "label": "Tree node order property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "property",
+        "type": "string",
+        "label": "treenode order property",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "property",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "order",
+        "type": "XTreeOrderType",
+        "label": "order type",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "order",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XTreeOrder"
   },
   "XTreeFilePrefix": {
     "type": "const",
