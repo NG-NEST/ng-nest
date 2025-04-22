@@ -37,7 +37,8 @@
     padding-right: 0.5rem;
     line-height: $x-height-small;
     cursor: pointer;
-    x-icon {
+    .#{$x-tree-node-prefix}-icon,
+    .#{$x-tree-node-prefix}-right x-icon {
       padding: 0.25rem;
       font-size: 1.25rem;
       transition: $x-animation-duration-base;
@@ -45,7 +46,7 @@
         color: $x-text-200;
       }
     }
-    x-checkbox {
+    .#{$x-tree-node-prefix}-checkbox {
       margin-right: 0.325rem;
       padding: 0.25rem 0;
     }
@@ -70,15 +71,16 @@
       }
     }
   }
-  &-right,
-  &-loading {
+  x-icon.x-tree-node-loading {
+    padding: 0.2rem;
+    font-size: 1.25rem;
     color: $x-text-300;
-    margin-right: 0.125rem;
   }
   &-right {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 0.125rem;
     &.is-leaf {
       visibility: hidden;
     }

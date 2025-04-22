@@ -44,13 +44,14 @@
         @if (tree.expandedIcon()) {
           <ng-container *xOutlet="tree.expandedIcon(); context: { $node: node() }"></ng-container>
         } @else {
-          <x-icon type="fto-chevron-right"></x-icon>
+          <x-icon class="x-tree-node-icon" type="fto-chevron-right"></x-icon>
         }
       }
     </div>
   }
   @if (tree.checkbox()) {
     <x-checkbox
+      class="x-tree-node-checkbox"
       [data]="[{ label: '', id: id() }]"
       [(ngModel)]="checked"
       (ngModelChange)="onCheckboxChange()"

@@ -25,7 +25,8 @@ import {
   XRemove,
   XResizeObserver,
   XComputedStyle,
-  XToCssPx
+  XToCssPx,
+  XOrderBy
 } from '@ng-nest/ui/core';
 import { debounceTime, map, Observable, Subject } from 'rxjs';
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
@@ -250,7 +251,11 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         node.childrenLoaded = node.open;
       }
       if (XIsUndefined(node.children) || regetChildren) {
-        node.children = value.filter((y) => y.pid === node.id);
+        node.children = XOrderBy(
+          value.filter((y) => y.pid === node.id),
+          this.order().map((x) => x.property),
+          this.order().map((x) => x.order)
+        );
         if (this.levelCheck() && node.children && node.checked) {
           for (let nd of node.children) {
             nd.checked = true;
@@ -268,7 +273,13 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
       return node;
     };
     this.treeData.set(value);
-    this.nodes.set(value.filter((x) => XIsEmpty(x.pid)).map((x) => getChildren(x, 0)));
+    this.nodes.set(
+      XOrderBy(
+        value.filter((x) => XIsEmpty(x.pid)),
+        this.order().map((x) => x.property),
+        this.order().map((x) => x.order)
+      ).map((x) => getChildren(x, 0))
+    );
     if (parentOpen) {
       for (let item of value) {
         if (!item.leaf && item.open) {
@@ -368,7 +379,13 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
     setChildren(this.nodes());
 
     if (this.expandedAll() === false) {
-      this.nodes.set(this.treeData().filter((x) => XIsEmpty(x.pid)));
+      this.nodes.set(
+        XOrderBy(
+          this.treeData().filter((x) => XIsEmpty(x.pid)),
+          this.order().map((x) => x.property),
+          this.order().map((x) => x.order)
+        )
+      );
     } else {
       if (this.virtualNodes().length === 0) {
         this.virtualNodes.set([...this.nodes()]);
@@ -577,7 +594,8 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         node.level = 0;
         node.leaf = true;
         this.treeData.set([...this.treeData(), node]);
-        this.nodes.set([...this.nodes(), node]);
+        this.setParentOpen(this.treeData(), node);
+        this.setDataChange(this.treeData(), true, false, false);
         this.setActivatedId(node);
         this.setActivatedNode(this.nodes(), true, false);
         node.change && node.change();
@@ -629,6 +647,10 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
 
   updateNode(node: XTreeNode, nowNode: XTreeNode) {
     Object.assign(node, nowNode);
+    this.setDataChange(this.treeData(), true, false, false);
+    this.setActivatedId(node);
+    this.setActivatedNode(this.nodes(), true, false);
+
     node.change && node.change();
   }
 

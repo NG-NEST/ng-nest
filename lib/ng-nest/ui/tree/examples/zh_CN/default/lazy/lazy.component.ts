@@ -41,7 +41,7 @@ export class ExLazyComponent {
       setTimeout(() => {
         x.next(result);
         x.complete();
-      }, 500);
+      }, 10000);
     });
   });
 }

@@ -13,7 +13,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { XPreloadingStrategyService } from '@ng-nest/ui/core';
 import type { ApplicationConfig } from '@angular/core';
 import { of } from 'rxjs';
-import { ConfigService } from '@services';
+import { ConfigService, IconService } from '@services';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,7 +34,9 @@ export const appConfig: ApplicationConfig = {
     }),
     provideAppInitializer(() => {
       const config = inject(ConfigService);
+      const icon = inject(IconService);
       config.init();
+      icon.init();
       return of(true);
     })
   ]

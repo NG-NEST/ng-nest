@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { XIconComponent } from '@ng-nest/ui/icon';
+import { ExCustomComponent } from '@ng-nest/ui/icon/examples';
 
 @Component({
   selector: 'te-icon',
-  imports: [XIconComponent],
+  imports: [ExCustomComponent],
   templateUrl: './icon.component.html'
 })
 export class TeIconComponent {}

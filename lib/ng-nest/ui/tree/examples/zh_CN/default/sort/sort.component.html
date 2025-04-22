@@ -1,0 +1,8 @@
+<h2>基本使用</h2>
+<x-button (click)="add()">新增根节点</x-button>
+<x-button (click)="addChild()" [disabled]="!selected()">新增子节点</x-button>
+<x-button (click)="update()" [disabled]="!selected()">修改节点</x-button>
+<x-button (click)="remove()" [disabled]="!selected()">删除节点</x-button>
+<x-tree #treeCom [data]="data()" (activatedChange)="info($event)" expandedAll [labelTpl]="labelTpl"> </x-tree>
+
+<ng-template #labelTpl let-node="$node"> {{ node.label }}[{{ node.sort }}] </ng-template>

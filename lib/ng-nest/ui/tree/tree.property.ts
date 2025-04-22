@@ -12,6 +12,15 @@ export const XTreePrefix = 'x-tree';
 const X_TREE_CONFIG_NAME = 'tree';
 
 /**
+ * @zh_CN Tree 节点排序默认值
+ * @en_US Tree node order default value
+ */
+export const X_TREE_ORDER_DEFAULT: XTreeOrder[] = [
+  { property: 'sort', order: 'asc' },
+  { property: 'label', order: 'asc' }
+];
+
+/**
  * Tree Property
  */
 @Component({ selector: `${XTreePrefix}-property`, template: '' })
@@ -193,6 +202,11 @@ export class XTreeProperty extends XPropertyFunction(X_TREE_CONFIG_NAME) {
    * @en_US Show line
    */
   readonly showLine = input<boolean, XBoolean>(this.config?.showLine ?? false, { transform: XToBoolean });
+  /**
+   * @zh_CN 排序属性
+   * @en_US Order property
+   */
+  readonly order = input<XTreeOrder[]>(X_TREE_ORDER_DEFAULT);
   /**
    * @zh_CN 节点点击事件
    * @en_US Node click event
@@ -434,3 +448,22 @@ export class XTreeNodeProperty extends XProperty {
    */
   readonly actions = input<XTreeAction[]>([]);
 }
+
+/**
+ * @zh_CN Tree 节点排序属性
+ * @en_US Tree node order property
+ */
+export interface XTreeOrder {
+  /**
+   * @zh_CN treenode 排序属性
+   * @en_US treenode order property
+   */
+  property: string;
+  /**
+   * @zh_CN 排序方式
+   * @en_US order type
+   */
+  order: XTreeOrderType;
+}
+
+export type XTreeOrderType = 'asc' | 'desc';

@@ -12,7 +12,8 @@ import {
   ExLineComponent,
   ExOpenComponent,
   ExStatusComponent,
-  ExVirtualScrollComponent
+  ExVirtualScrollComponent,
+  ExSortComponent
 } from '@ng-nest/ui/tree/examples';
 
 @Component({
@@ -30,7 +31,8 @@ import {
     ExLineComponent,
     ExOpenComponent,
     ExStatusComponent,
-    ExVirtualScrollComponent
+    ExVirtualScrollComponent,
+    ExSortComponent
   ],
   templateUrl: './tree.component.html'
 })

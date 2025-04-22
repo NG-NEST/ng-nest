@@ -11,3 +11,4 @@ export * from './zh_CN/default/line/line.component';
 export * from './zh_CN/default/open/open.component';
 export * from './zh_CN/default/status/status.component';
 export * from './zh_CN/default/virtual-scroll/virtual-scroll.component';
+export * from './zh_CN/default/sort/sort.component';
