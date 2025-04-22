@@ -60,6 +60,11 @@ export interface XParentIdentityProperty<T> extends XIdentityProperty {
    * @en_US open
    */
   open?: boolean;
+  /**
+   * @zh_CN 排序
+   * @en_US sort
+   */
+  sort?: number;
 }
 
 /**

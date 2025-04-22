@@ -20,6 +20,7 @@ export class XIconService {
   limit: number = 10;
   sanitizer = inject(DomSanitizer);
   http = inject(HttpClient, { optional: true })!;
+  customIcon: { [property: string]: string } = {};
 
   constructor() {
     if (!this.http) {
@@ -69,7 +70,7 @@ export class XIconService {
     }
   }
 
-  getSvg(root: string, icon: string): Observable<string> {
+  getSvg(root: string, icon: string, isCustom = false): Observable<string> {
     return new Observable((subscriber: Subscriber<string>) => {
       if (XIsEmpty(icon)) {
         subscriber.next('');
@@ -78,7 +79,7 @@ export class XIconService {
       }
       this.addTask({
         name: icon,
-        observable: this.getSvgElement(root, icon),
+        observable: this.getSvgElement(root, icon, isCustom),
         callback: (svg: string) => {
           subscriber.next(svg);
           subscriber.complete();
@@ -87,9 +88,13 @@ export class XIconService {
     });
   }
 
-  getSvgElement(root: string, icon: string): Observable<string> {
-    const url = `${root}${icon}.svg`;
+  getSvgElement(root: string, icon: string, isCustom = false): Observable<string> {
+    const url = isCustom ? `${root}${icon}` : `${root}${icon}.svg`;
     const safeUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
     return this.http.get(safeUrl as string, { responseType: 'text' });
+  }
+
+  register(icon: string, url: string) {
+    this.customIcon[icon] = url;
   }
 }
