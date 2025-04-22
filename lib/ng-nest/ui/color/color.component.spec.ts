@@ -2,16 +2,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XColorComponent, XColorPrefix } from '@ng-nest/ui/color';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
+  selector: 'x-test-color',
   imports: [XColorComponent],
   template: `<x-color></x-color>`
 })
 class XTestColorComponent {}
 
 @Component({
+  selector: 'x-test-color-property',
   imports: [XColorComponent],
   template: `<x-color [label]="label()" [hex]="hex()" [amounts]="amounts()"> </x-color>`
 })
@@ -25,11 +27,8 @@ xdescribe(XColorPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestColorComponent, XTestColorPropertyComponent],
-      providers: [
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
   xdescribe('default.', () => {

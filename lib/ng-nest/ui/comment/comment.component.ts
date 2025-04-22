@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed } from '@angular/core';
 import { XCommentPrefix, XCommentProperty } from './comment.property';
-import { XIsEmpty, XGetChildren } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { XI18nPipe } from '@ng-nest/ui/i18n';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
@@ -28,11 +28,7 @@ import type { XCommentNode } from './comment.property';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCommentComponent extends XCommentProperty {
-  nodes = computed(() =>
-    this.data()
-      .filter((dt) => XIsEmpty(dt.pid))
-      .map((dt) => XGetChildren<XCommentNode>(this.data(), dt, 0))
-  );
+  nodes = computed(() => this.data().filter((dt) => XIsEmpty(dt.pid)));
 
   likeOnClick(node: XCommentNode) {
     this.likeClick.emit(node);
@@ -50,6 +46,7 @@ export class XCommentComponent extends XCommentProperty {
 
   sureOnClick(content: string, node: XCommentNode) {
     node.replyContent = content;
+    this.sureClick.emit(node);
   }
 
   moreOnClick(node: XCommentNode) {

@@ -6,6 +6,8 @@
     [(ngModel)]="inputValue"
   ></x-input>
   <div class="x-comment-reply-buttons">
-    <x-button type="primary" flat (click)="sureOnClick()">{{ 'comment.sure' | xI18n }}</x-button>
+    <x-button class="x-comment-sure-button" type="primary" flat (click)="sureOnClick()">{{
+      'comment.sure' | xI18n
+    }}</x-button>
   </div>
 </div>

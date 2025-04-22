@@ -15,10 +15,16 @@
           </div>
           <div class="x-comment-action">
             <x-buttons boxShadow="false">
-              <x-button icon="fto-message-square" [activated]="node.commentShow!" (click)="commentOnClick(node)" text>
+              <x-button
+                class="x-comment-button"
+                icon="fto-message-square"
+                [activated]="node.commentShow!"
+                (click)="commentOnClick(node)"
+                text
+              >
                 {{ 'comment.comments' | xI18n }} {{ node.count ? node.count : '' }}
               </x-button>
-              <x-button icon="fto-thumbs-up" (click)="likeOnClick(node)" text>
+              <x-button class="x-comment-like" icon="fto-thumbs-up" (click)="likeOnClick(node)" text>
                 {{ 'comment.giveALike' | xI18n }} {{ node.likes ? node.likes : '' }}
               </x-button>
             </x-buttons>
@@ -45,13 +51,14 @@
                     <span class="x-comment-time">{{ child.datetime | xTimeAgo }}</span>
                     <x-buttons boxShadow="false">
                       <x-button
+                        class="x-comment-reply-button"
                         icon="fto-message-square"
                         [activated]="child.commentShow!"
                         (click)="replyOnClick(child)"
                         text
                         >{{ 'comment.reply' | xI18n }}</x-button
                       >
-                      <x-button icon="fto-thumbs-up" (click)="likeOnClick(child)" text>
+                      <x-button class="x-comment-like" icon="fto-thumbs-up" (click)="likeOnClick(child)" text>
                         {{ 'comment.giveALike' | xI18n }} {{ child.likes ? child.likes : '' }}</x-button
                       >
                     </x-buttons>
@@ -67,7 +74,12 @@
             }
             @if (hasMore(node)) {
               <li class="x-comment-more">
-                <x-link icon="fto-chevron-right" type="primary" (click)="moreOnClick(node)" iconRight
+                <x-link
+                  class="x-comment-more-button"
+                  icon="fto-chevron-right"
+                  type="primary"
+                  (click)="moreOnClick(node)"
+                  iconRight
                   >{{ 'comment.more' | xI18n }}
                 </x-link>
               </li>

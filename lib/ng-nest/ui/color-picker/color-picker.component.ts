@@ -55,7 +55,6 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   clearable = signal(false);
   enter = signal(false);
   animating = signal(false);
-  displayValue = computed(() => this.value());
   portal!: XPortalOverlayRef<XColorPickerPortalComponent>;
   icon = signal('fto-chevron-down');
   closeSubject: Subject<void> = new Subject();
@@ -129,9 +128,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     if (this.portalAttached()) {
       this.portalOverlayRef()?.detach();
       this.active.set(false);
-      return true;
     }
-    return false;
   }
 
   showPortal() {
@@ -197,11 +194,10 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   setInstance() {
     let { componentRef, overlayRef } = this.portal;
-    if (!componentRef || !overlayRef) return;
-    this.portalComponent.set(componentRef);
-    this.portalOverlayRef.set(overlayRef);
+    this.portalComponent.set(componentRef!);
+    this.portalOverlayRef.set(overlayRef!);
     this.realPlacement.set(this.placement());
-    const { nodeClick, animating } = componentRef.instance;
+    const { nodeClick, animating } = componentRef!.instance;
     nodeClick.subscribe((color: string) => this.onNodeClick(color));
     animating.subscribe((ing: boolean) => this.animating.set(ing));
   }

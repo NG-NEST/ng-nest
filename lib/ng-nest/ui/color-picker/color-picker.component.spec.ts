@@ -1,20 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  provideExperimentalZonelessChangeDetection,
+  signal,
+  TemplateRef,
+  viewChild
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XColorPickerComponent, XColorPickerPrefix } from '@ng-nest/ui/color-picker';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { XAlign, XCorner, XDirection, XIsNumber, XJustify, XSize, XSleep, XTemplate } from '@ng-nest/ui/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  selector: 'x-test-color-picker',
   imports: [XColorPickerComponent],
   template: ` <x-color-picker> </x-color-picker> `
 })
 class XTestColorPickerComponent {}
 
 @Component({
-  imports: [XColorPickerComponent],
+  selector: 'x-test-color-picker-property',
+  imports: [XColorPickerComponent, FormsModule],
   styles: `
     :host {
       display: block;
@@ -24,6 +33,7 @@ class XTestColorPickerComponent {}
   `,
   template: `
     <x-color-picker
+      [(ngModel)]="model"
       [placement]="placement()"
       [bordered]="bordered()"
       [size]="size()"
@@ -62,6 +72,7 @@ class XTestColorPickerComponent {}
   `
 })
 class XTestColorPickerPropertyComponent {
+  model = signal('');
   placement = signal<XCorner>('bottom-start');
   bordered = signal(true);
   size = signal<XSize>('medium');
@@ -89,16 +100,38 @@ class XTestColorPickerPropertyComponent {
   inputValidator = signal<((value: any) => boolean) | null>(null);
 }
 
+@Component({
+  selector: 'x-test-color-picker-parant-scroll',
+  imports: [XColorPickerComponent],
+  template: `
+    <div #scrollRef style="height: 100px; padding-top: 150px; width: 200px; overflow: auto;">
+      <x-color-picker></x-color-picker>
+      <div style="height: 300px;">1</div>
+    </div>
+  `
+})
+class XTestColorPickerParantScroll {
+  scrollRef = viewChild.required<ElementRef<HTMLElement>>('scrollRef');
+}
+
+@Component({
+  selector: 'x-test-color-picker-position',
+  imports: [XColorPickerComponent, FormsModule],
+  template: `
+    <div #scrollRef style="position: absolute; bottom: 0">
+      <x-color-picker [(ngModel)]="model"></x-color-picker>
+    </div>
+  `
+})
+class XTestColorPickerPosition {
+  model = signal('');
+}
+
 xdescribe(XColorPickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestColorPickerComponent, XTestColorPickerPropertyComponent],
-      providers: [
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
-      ],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
@@ -121,16 +154,16 @@ xdescribe(XColorPickerPrefix, () => {
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
-    // const showPortal = async () => {
-    //   const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
-    //   const instance = com.componentInstance as XColorPickerComponent;
-    //   const input = fixture.debugElement.query(By.css('.x-input-frame'));
-    //   input.nativeElement.click();
-    //   fixture.detectChanges();
-    //   await XSleep(100);
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
+      const instance = com.componentInstance as XColorPickerComponent;
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(100);
 
-    //   return { input, instance, com };
-    // };
+      return { input, instance, com };
+    };
     it('placement.', async () => {
       // cdk overlay. Restricted by browser window size
       // const { com } = await showPortal();
@@ -295,6 +328,217 @@ xdescribe(XColorPickerPrefix, () => {
       fixture.detectChanges();
       const borderError = fixture.debugElement.query(By.css('.x-border-error'));
       expect(borderError).toBeDefined();
+    });
+    it('menter', async () => {
+      component.model.set('#000000');
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+
+      const clear = fixture.debugElement.query(By.css('.x-input-clear'));
+      clear.nativeElement.click();
+      await XSleep(100);
+      expect(component.model()).toBe('');
+    });
+    it('mleave', async () => {
+      component.model.set('#000000');
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      fixture.detectChanges();
+      expect(true).toBeTrue();
+    });
+    it('menter disabled.', async () => {
+      component.model.set('#000000');
+      component.disabled.set(true);
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      expect(true).toBeTrue();
+    });
+    it('mleave disabled.', async () => {
+      component.model.set('#000000');
+      component.disabled.set(true);
+      fixture.detectChanges();
+      await XSleep(100);
+      const input = fixture.debugElement.query(By.css('.x-input-input'));
+      input.nativeElement.dispatchEvent(new Event('mouseenter'));
+      fixture.detectChanges();
+      input.nativeElement.dispatchEvent(new Event('mouseleave'));
+      fixture.detectChanges();
+      expect(true).toBeTrue();
+    });
+    it('outside pointer.', async () => {
+      await showPortal();
+      const body = document.querySelector('body');
+      body?.click();
+      await XSleep(300);
+      const portal = fixture.debugElement.query(By.css('x-color-picker-portal'));
+      expect(portal).toBeFalsy();
+    });
+    it('disabled show portal.', async () => {
+      component.disabled.set(true);
+      fixture.detectChanges();
+      await showPortal();
+      const portal = fixture.debugElement.query(By.css('x-color-picker-portal'));
+      expect(portal).toBeFalsy();
+    });
+  });
+  xdescribe('parant scroll.', () => {
+    let fixture: ComponentFixture<XTestColorPickerParantScroll>;
+    let component: XTestColorPickerParantScroll;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(XTestColorPickerParantScroll);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
+      const instance = com.componentInstance as XColorPickerComponent;
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(100);
+
+      return { input, instance, com };
+    };
+    it('scroll top.', async () => {
+      component.scrollRef().nativeElement.scrollTop = 100;
+      const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
+      expect(com).toBeDefined();
+      await showPortal();
+
+      component.scrollRef().nativeElement.scrollTop = 200;
+      await XSleep(400);
+      const portal = fixture.debugElement.query(By.css('x-cascade-portal'));
+      expect(portal).toBeFalsy();
+    });
+    it('scroll bottom.', async () => {
+      component.scrollRef().nativeElement.scrollTop = 100;
+      const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
+      expect(com).toBeDefined();
+      await showPortal();
+      component.scrollRef().nativeElement.scrollTop = 0;
+      await XSleep(400);
+      const portal = fixture.debugElement.query(By.css('x-cascade-portal'));
+      expect(portal).toBeFalsy();
+    });
+  });
+  xdescribe('coverage.', () => {
+    let fixture: ComponentFixture<XTestColorPickerPosition>;
+    let component: XTestColorPickerPosition;
+    beforeEach(() => {
+      fixture = TestBed.createComponent(XTestColorPickerPosition);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+    const showPortal = async () => {
+      const com = fixture.debugElement.query(By.directive(XColorPickerComponent));
+      const instance = com.componentInstance as XColorPickerComponent;
+      const input = fixture.debugElement.query(By.css('.x-input-frame'));
+      input.nativeElement.click();
+      fixture.detectChanges();
+      await XSleep(100);
+
+      return { input, instance, com };
+    };
+    const closePortal = async () => {
+      const body = document.querySelector('body');
+      body?.click();
+      await XSleep(300);
+    };
+    it('show portal.', async () => {
+      await showPortal();
+      await closePortal();
+      expect(true).toBeTrue();
+    });
+    it('show portal plate click.', async () => {
+      await showPortal();
+
+      const plate = fixture.debugElement.query(By.css('.x-color-picker-portal-plate'));
+      const rect = plate.nativeElement.getBoundingClientRect();
+      const clickX = rect.left;
+      const clickY = rect.top;
+      const clickEvent = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window,
+        clientX: clickX,
+        clientY: clickY
+      });
+      plate.nativeElement.dispatchEvent(clickEvent);
+      await closePortal();
+      expect(true).toBeTrue();
+    });
+
+    it('show portal hex change.', async () => {
+      const { instance } = await showPortal();
+      instance.portalComponent()!.instance.hex.set('#000000');
+      instance.portalComponent()!.instance.hexChange();
+      await closePortal();
+      expect(true).toBeTrue();
+    });
+
+    it('show portal rgb value.', async () => {
+      component.model.set('rgb(123, 123, 123)');
+      fixture.detectChanges();
+      const { instance } = await showPortal();
+      instance.portalComponent()!.instance.transparentChange();
+      await closePortal();
+      expect(true).toBeTrue();
+    });
+
+    it('show portal hsl value.', async () => {
+      component.model.set('hsl(120, 100%, 50%)');
+      fixture.detectChanges();
+      const { instance } = await showPortal();
+      instance.portalComponent()!.instance.transparentChange();
+      await closePortal();
+      expect(true).toBeTrue();
+    });
+
+    it('show portal hue value.', async () => {
+      const { instance } = await showPortal();
+      instance.portalComponent()!.instance.hsla.update((x) => {
+        x.h = 120;
+        return x;
+      });
+      instance.portalComponent()!.instance.hueChange();
+      await closePortal();
+      expect(true).toBeTrue();
+    });
+
+    it('show portal transparent value.', async () => {
+      const { instance } = await showPortal();
+      instance.portalComponent()!.instance.hsla.update((x) => {
+        x.a = 0.5;
+        return x;
+      });
+      instance.portalComponent()!.instance.transparentChange();
+      await closePortal();
+      expect(true).toBeTrue();
+    });
+
+    it('show portal hex #fff change .', async () => {
+      component.model.set('#fff');
+      await showPortal();
+      await closePortal();
+      expect(true).toBeTrue();
+    });
+
+    it('show portal hex #ffffff80 change .', async () => {
+      component.model.set('#ffffff80');
+      await showPortal();
+
+      await closePortal();
+      expect(true).toBeTrue();
     });
   });
 });

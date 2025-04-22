@@ -13,10 +13,13 @@ import {
   model,
   viewChild,
   signal,
-  DestroyRef
+  DestroyRef,
+  SimpleChanges,
+  OnChanges,
+  AfterViewInit
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
-import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XConnectBaseAnimation, XIsChange, XPositionTopBottom } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
@@ -36,7 +39,7 @@ import { FormsModule } from '@angular/forms';
   providers: [DecimalPipe, PercentPipe],
   animations: [XConnectBaseAnimation]
 })
-export class XColorPickerPortalComponent implements OnInit {
+export class XColorPickerPortalComponent implements OnInit, OnChanges, AfterViewInit {
   @HostBinding('@x-connect-base-animation') public get getPlacement() {
     return this.placement();
   }
@@ -87,7 +90,6 @@ export class XColorPickerPortalComponent implements OnInit {
   private percent = inject(PercentPipe);
 
   ngOnInit(): void {
-    this.colorConvert();
     this.destroyRef.onDestroy(() => {
       this.destroy.set(true);
       this.unSubject.next();
@@ -105,6 +107,11 @@ export class XColorPickerPortalComponent implements OnInit {
     this.setTransform();
     this.setPlateBackground();
     this.setRailBackground();
+  }
+
+  ngOnChanges(simples: SimpleChanges) {
+    const { value } = simples;
+    if (XIsChange(value)) this.colorConvert();
   }
 
   hexChange() {
