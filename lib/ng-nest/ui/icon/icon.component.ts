@@ -12,7 +12,8 @@ import {
 } from '@angular/core';
 import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
-import { XWarnIconTypeNotFound, XIsEmpty, XHasIn } from '@ng-nest/ui/core';
+import { XWarnIconTypeNotFound, XIsEmpty, XHasIn, XWarnSVGTagNotFound } from '@ng-nest/ui/core';
+import { DOCUMENT } from '@angular/common';
 
 // 来源路径对应
 export const XSouceUrl: { [property: string]: string } = {
@@ -47,6 +48,7 @@ export class XIconComponent extends XIconProperty {
     return `${XIconPrefix} ${this.type()}`;
   }
   private svgElement!: HTMLElement;
+  private document = inject(DOCUMENT);
   private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
   private cdr = inject(ChangeDetectorRef);
@@ -99,18 +101,57 @@ export class XIconComponent extends XIconProperty {
 
   setSvgs(svg: string) {
     if (XIsEmpty(svg)) return;
-    const parser = new DOMParser();
-    const svgDoc = parser.parseFromString(svg, 'image/svg+xml');
-
-    let firstChild = this.elementRef.nativeElement.firstChild;
-    if (firstChild) {
-      this.renderer.removeChild(this.elementRef.nativeElement, firstChild);
+    if (this.isCustom()) {
+      const parser = new DOMParser();
+      const svgDoc = parser.parseFromString(svg, 'image/svg+xml');
+      let firstChild = this.elementRef.nativeElement.firstChild;
+      if (firstChild) {
+        this.renderer.removeChild(this.elementRef.nativeElement, firstChild);
+      }
+      this.svgElement = svgDoc.documentElement;
+    } else if (this.inSource()) {
+      this.svgElement = this.buildSvg(svg)!;
     }
-    this.svgElement = svgDoc.documentElement;
+    if (!this.svgElement) return;
     this.setAttributes(this.svgElement);
     this.renderer.appendChild(this.elementRef.nativeElement, this.svgElement);
     // TODO: use zoneless, renderer removeChild will not take effect immediately
     this.cdr.markForCheck();
+  }
+
+  buildSvg(svgStr: string): HTMLElement | undefined {
+    const result = this.document.createElementNS('http://www.w3.org/2000/svg', 'svg') as any;
+    const svg = this.createSvg(svgStr);
+    if (!svg) return;
+    svg.children.forEach((x) => {
+      x.removeAttribute('class');
+      if (x.tagName === 'rect') {
+        x.setAttribute('fill', 'none');
+      }
+      result.appendChild(x);
+    });
+    this.setAttribute(result, svg.ele, 'viewBox');
+    this.setAttribute(result, svg.ele, 'fill', 'currentColor');
+    this.setAttribute(result, svg.ele, 'stroke');
+    this.setAttribute(result, svg.ele, 'stroke-width');
+    this.setAttribute(result, svg.ele, 'stroke-linecap');
+    this.setAttribute(result, svg.ele, 'stroke-linejoin');
+    if (!result) {
+      XWarnSVGTagNotFound();
+    }
+
+    return result;
+  }
+
+  createSvg(svgStr: string) {
+    const div = this.document.createElement('div');
+    div.innerHTML = svgStr;
+    let svgEle = div.querySelector('svg') as SVGElement;
+    if (!svgEle) return null;
+    return {
+      ele: svgEle,
+      children: svgEle.querySelectorAll('path, polyline, polygon, circle, line, rect')
+    };
   }
 
   setAttributes(svgEle: HTMLElement) {
