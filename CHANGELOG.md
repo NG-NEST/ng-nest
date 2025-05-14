@@ -1,3 +1,12 @@
+## [18.0.16](https://github.com/NG-NEST/ng-nest/compare/18.0.15...18.0.16) (2025-05-14)
+
+
+### Features
+
+* **module:color-picker:** add custom panel ([9a6cf07](https://github.com/NG-NEST/ng-nest/commit/9a6cf07f67544c3434879d3e9e016f21520f8230))
+
+
+
 ## [18.0.15](https://github.com/NG-NEST/ng-nest/compare/18.0.14...18.0.15) (2025-04-17)
 
 
