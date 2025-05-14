@@ -1,0 +1,29 @@
+:host {
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.my-panel {
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem;
+  .item {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 0.25rem;
+
+    &:not(:first-child) {
+      margin-left: 0.25rem;
+    }
+    &.color-1 {
+      background-color: red;
+    }
+    &.color-2 {
+      background-color: blue;
+    }
+    &.color-3 {
+      background-color: rgb(0, 128, 0);
+    }
+  }
+}

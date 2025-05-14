@@ -13,14 +13,18 @@ import {
   model,
   viewChild,
   signal,
-  DestroyRef
+  DestroyRef,
+  SimpleChanges,
+  OnChanges,
+  AfterViewInit,
+  TemplateRef
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
-import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XConnectBaseAnimation, XIsChange, XPositionTopBottom } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
-import { DecimalPipe, PercentPipe } from '@angular/common';
+import { DecimalPipe, NgTemplateOutlet, PercentPipe } from '@angular/common';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
@@ -29,7 +33,15 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: `${XColorPickerPortalPrefix}`,
   standalone: true,
-  imports: [FormsModule, DragDropModule, XSliderSelectComponent, XTabsComponent, XTabComponent, XInputComponent],
+  imports: [
+    FormsModule,
+    DragDropModule,
+    NgTemplateOutlet,
+    XSliderSelectComponent,
+    XTabsComponent,
+    XTabComponent,
+    XInputComponent
+  ],
   templateUrl: './color-picker-portal.component.html',
   styleUrls: ['./color-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -37,7 +49,7 @@ import { FormsModule } from '@angular/forms';
   providers: [DecimalPipe, PercentPipe],
   animations: [XConnectBaseAnimation]
 })
-export class XColorPickerPortalComponent implements OnInit {
+export class XColorPickerPortalComponent implements OnInit, OnChanges, AfterViewInit {
   @HostBinding('@x-connect-base-animation') public get getPlacement() {
     return this.placement();
   }
@@ -56,6 +68,7 @@ export class XColorPickerPortalComponent implements OnInit {
   value = model<string>('');
   inputCom = input<XInputComponent>();
   placement = input<XPositionTopBottom>();
+  panelTemplate = input<TemplateRef<any>>();
 
   animating = output<boolean>();
   nodeClick = output<string>();
@@ -88,7 +101,6 @@ export class XColorPickerPortalComponent implements OnInit {
   private percent = inject(PercentPipe);
 
   ngOnInit(): void {
-    this.colorConvert();
     this.destroyRef.onDestroy(() => {
       this.destroy.set(true);
       this.unSubject.next();
@@ -103,6 +115,15 @@ export class XColorPickerPortalComponent implements OnInit {
     this.transparentRail.set(
       this.transparentCom().elementRef.nativeElement.querySelector('.x-slider-select-rail div')!
     );
+    this.setPanelValue();
+  }
+
+  ngOnChanges(simples: SimpleChanges) {
+    const { value } = simples;
+    if (XIsChange(value)) this.colorConvert();
+  }
+
+  setPanelValue() {
     this.setTransform();
     this.setPlateBackground();
     this.setRailBackground();
@@ -142,6 +163,7 @@ export class XColorPickerPortalComponent implements OnInit {
       this.hex.set(this.rgbaToHex(this.rgba()));
       this.type.set('hsla');
     }
+    this.setPanelValue();
   }
 
   rgbaConvert(str: string) {
@@ -192,6 +214,7 @@ export class XColorPickerPortalComponent implements OnInit {
   }
 
   setTransform() {
+    if (!this.plate()) return;
     let hsv = this.hslToHsv(this.hsla().h!, this.hsla().s!, this.hsla().l!);
     this.transformX.set(hsv.s * this.plate()!.width - this.offset());
     this.transformY.set((1 - hsv.v) * this.plate()!.height - this.offset());
@@ -265,10 +288,12 @@ export class XColorPickerPortalComponent implements OnInit {
   }
 
   setPlateBackground() {
+    if (!this.plateRef()) return;
     this.renderer.setStyle(this.plateRef().nativeElement, 'background-color', `hsl(${this.hsla().h}, 100%, 50%)`);
   }
 
   setRailBackground() {
+    if (!this.transparentRail()) return;
     this.renderer.setStyle(
       this.transparentRail(),
       'background',

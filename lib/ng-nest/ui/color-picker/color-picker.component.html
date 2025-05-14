@@ -39,5 +39,9 @@
         <div class="x-color-picker-template-color" [style]="inputStyle()"></div>
       </div>
     </ng-template>
+
+    <ng-template #panelTemplate>
+      <ng-content select="[xColorPickerPanel]"></ng-content>
+    </ng-template>
   </div>
 </div>

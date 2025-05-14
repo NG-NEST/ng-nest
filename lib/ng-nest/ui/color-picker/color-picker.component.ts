@@ -15,7 +15,8 @@ import {
   signal,
   computed,
   ComponentRef,
-  effect
+  effect,
+  TemplateRef
 } from '@angular/core';
 import { XColorPickerProperty } from './color-picker.property';
 import { XIsEmpty, XCorner, XParents, XPlacement, XComputed } from '@ng-nest/ui/core';
@@ -31,6 +32,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { XColorPickerColorMap } from './color-map.data';
 
 @Component({
   selector: 'x-color-picker',
@@ -45,6 +47,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class XColorPickerComponent extends XColorPickerProperty implements OnInit, AfterViewInit, OnDestroy {
   colorPicker = viewChild.required('colorPicker', { read: ElementRef<HTMLElement> });
   inputCom = viewChild.required('inputCom', { read: XInputComponent });
+  panelTemplate = viewChild.required<TemplateRef<any>>('panelTemplate');
   private doc = inject(DOCUMENT);
   primaryColor = XComputed(this.doc.documentElement).getPropertyValue('--x-primary').trim();
 
@@ -73,9 +76,12 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   constructor() {
     super();
-    effect(() => this.portalComponent()?.setInput('value', this.value() || this.primaryColor));
+    effect(() =>
+      this.portalComponent()?.setInput('value', XColorPickerColorMap[this.value()] || this.value() || this.primaryColor)
+    );
     effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
+    effect(() => this.portalComponent()?.setInput('panelTemplate', this.panelTemplate()));
   }
 
   ngOnInit() {
