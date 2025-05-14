@@ -89,7 +89,6 @@ export class XTooltipDirective extends XTooltipProperty implements OnDestroy {
     if (!this.portal || (this.portal && !this.portal.overlayRef?.hasAttached())) {
       if ((event && this.mouseover()) || !event) {
         this.timeoutShow = setTimeout(() => {
-          console.log(111);
           this.createPortal();
           this.visible.set(true);
         }, this.mouseEnterDelay());
