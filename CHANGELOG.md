@@ -1,3 +1,18 @@
+## [19.0.5](https://github.com/NG-NEST/ng-nest/compare/19.0.4...19.0.5) (2025-05-14)
+
+
+### Bug Fixes
+
+* **module:icon:** fix icon souce display error ([5e4c199](https://github.com/NG-NEST/ng-nest/commit/5e4c1992b7b45597a74c1c099693f2c69114ee74))
+
+
+### Features
+
+* **module:color-picker:** add custom panel ([9d23673](https://github.com/NG-NEST/ng-nest/commit/9d236733675c0dc7ca4c9c1afcfcbbaa5c4d7515))
+* **module:color-picker:** add option directive in module ([8c8dcc3](https://github.com/NG-NEST/ng-nest/commit/8c8dcc378a701ccf436b2a1dfb7532f35b9d9c11))
+
+
+
 ## [19.0.4](https://github.com/NG-NEST/ng-nest/compare/19.0.3...19.0.4) (2025-04-22)
 
 
