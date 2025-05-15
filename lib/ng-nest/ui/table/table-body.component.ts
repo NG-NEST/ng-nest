@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTableComponent } from './table.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { XInnerHTMLComponent } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XTableBodyPrefix}`,
@@ -38,7 +39,8 @@ import { DomSanitizer } from '@angular/platform-browser';
     ScrollingModule,
     XOutletDirective,
     XCheckboxComponent,
-    XButtonComponent
+    XButtonComponent,
+    XInnerHTMLComponent
   ],
   templateUrl: './table-body.component.html',
   encapsulation: ViewEncapsulation.None,

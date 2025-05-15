@@ -138,7 +138,7 @@
       >
         <ng-container *xOutlet="table.bodyTdTpl(); context: { $column: column, $row: row, $index: table.getIndex(i) }">
           @if ((table.bodyInnerHTML() && column.innerHTML !== false) || column.innerHTML) {
-            <div [innerHTML]="setDomSanitizer(row[column.id])" [style.text-align]="column.textAlign"></div>
+            <div x-inner-html [html]="row[column.id]" [style]="{ textAlign: column.textAlign }"></div>
           } @else {
             <div [style.text-align]="column.textAlign">{{ row[column.id] }}</div>
           }
