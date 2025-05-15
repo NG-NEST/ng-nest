@@ -1,3 +1,12 @@
+## [19.0.6](https://github.com/NG-NEST/ng-nest/compare/19.0.5...19.0.6) (2025-05-15)
+
+
+### Bug Fixes
+
+* **module:table:** fix innerHTML content ([8897dde](https://github.com/NG-NEST/ng-nest/commit/8897ddef7d8805cdc1dc59b5b22fb8a1fbc1c157))
+
+
+
 ## [19.0.5](https://github.com/NG-NEST/ng-nest/compare/19.0.4...19.0.5) (2025-05-14)
 
 
