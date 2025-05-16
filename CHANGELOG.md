@@ -1,3 +1,12 @@
+## [18.0.18](https://github.com/NG-NEST/ng-nest/compare/18.0.17...18.0.18) (2025-05-16)
+
+
+### Bug Fixes
+
+* **module:color-picker:** fix panel model change ([7779899](https://github.com/NG-NEST/ng-nest/commit/7779899c536b670ebbaab6fd9f03eb8a4622b7ce))
+
+
+
 ## [18.0.17](https://github.com/NG-NEST/ng-nest/compare/18.0.16...18.0.17) (2025-05-15)
 
 
