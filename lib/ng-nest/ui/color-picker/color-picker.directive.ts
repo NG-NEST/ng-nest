@@ -12,6 +12,7 @@ export class XColorPickerOptionDirective {
   @HostListener('click', ['$event']) onSelectClick() {
     if (!this.colorPicker) return;
     this.colorPicker.value.set(XColorPickerColorMap[this.color()] || this.color());
+    if (this.colorPicker.onChange) this.colorPicker.onChange(this.colorPicker.value());
   }
   colorPicker = inject(XColorPickerComponent, { optional: true });
 }
