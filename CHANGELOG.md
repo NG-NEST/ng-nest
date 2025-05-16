@@ -1,9 +1,18 @@
+## [19.0.7](https://github.com/NG-NEST/ng-nest/compare/19.0.6...19.0.7) (2025-05-16)
+
+
+### Bug Fixes
+
+* **module:color-picker:** fix panel color model change ([b29fefb](https://github.com/NG-NEST/ng-nest/commit/b29fefbfdeb586c5da20e91c972c64fe77f0e4f5))
+
+
+
 ## [19.0.6](https://github.com/NG-NEST/ng-nest/compare/19.0.5...19.0.6) (2025-05-15)
 
 
 ### Bug Fixes
 
-* **module:table:** fix innerHTML content ([8897dde](https://github.com/NG-NEST/ng-nest/commit/8897ddef7d8805cdc1dc59b5b22fb8a1fbc1c157))
+* **module:table:** fix innerHTML content ([c4b26ec](https://github.com/NG-NEST/ng-nest/commit/c4b26ecd221b99fee04dc2aca2a40b3a1a47a88d))
 
 
 
