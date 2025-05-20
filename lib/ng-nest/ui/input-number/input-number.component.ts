@@ -1,4 +1,4 @@
-import { Subject, Subscription, distinctUntilChanged, fromEvent, interval, takeUntil } from 'rxjs';
+import { Subject, Subscription, debounceTime, distinctUntilChanged, fromEvent, interval, takeUntil } from 'rxjs';
 import {
   Component,
   ViewEncapsulation,
@@ -6,8 +6,7 @@ import {
   ElementRef,
   inject,
   viewChild,
-  signal,
-  computed
+  signal
 } from '@angular/core';
 import { XIsEmpty, XNumber, XIsNotNil, XIsFunction, XIsString } from '@ng-nest/ui/core';
 import { XInputNumberPrefix, XInputNumberProperty } from './input-number.property';
@@ -31,22 +30,7 @@ export class XInputNumberComponent extends XInputNumberProperty {
   inputNumber = viewChild.required<ElementRef<HTMLElement>>('inputNumber');
   inputEleRef = viewChild.required<XInputComponent>('inputEleRef');
 
-  displayValue = computed(() => {
-    const value = this.value();
-    const formatter = this.formatter();
-    if (!XIsEmpty(value) && !formatter) {
-      return Number(value).toFixed(this.precision());
-    } else if (formatter) {
-      const valueFormatter = formatter(Number(this.value()));
-      const displayValue = XIsNotNil(valueFormatter) ? valueFormatter : '';
-      if (XIsNotNil(displayValue)) {
-        return displayValue;
-      } else {
-        return '';
-      }
-    }
-    return '';
-  });
+  displayValue = signal<string>('');
   minDisabled = signal(false);
   maxDisabled = signal(false);
   mousedown$!: Subscription;
@@ -61,10 +45,25 @@ export class XInputNumberComponent extends XInputNumberProperty {
   document = inject(DOCUMENT);
   private unSubject = new Subject<void>();
 
+  inputValue = new Subject<string>();
+
   constructor() {
     super();
     this.valueChange.pipe(distinctUntilChanged(), takeUntil(this.unSubject)).subscribe((x) => {
       this.onChange && this.onChange(x);
+    });
+
+    this.inputValue.pipe(debounceTime(500), takeUntil(this.unSubject)).subscribe((value) => {
+      if (XIsFunction(this.formatter())) {
+        value = value.replace(/[^0-9]/g, '');
+      }
+      if (value === '') {
+        this.value.set(null);
+      } else {
+        this.verify(Number(value));
+        this.setDisplayValue(this.value());
+      }
+      this.valueChange.next(this.value());
     });
   }
 
@@ -111,6 +110,7 @@ export class XInputNumberComponent extends XInputNumberProperty {
     if (Number.isNaN(+this.value())) this.value.set(0);
     let value = Number(this.value()) + limit;
     this.verify(value);
+    this.setDisplayValue(value);
     this.valueChange.next(this.value());
   }
 
@@ -133,11 +133,21 @@ export class XInputNumberComponent extends XInputNumberProperty {
   onInput(x: Event) {
     const input = x.target as HTMLInputElement;
     let value = input.value;
-    if (XIsFunction(this.formatter)) {
-      value = value.replace(/[^0-9]/g, '');
+    this.inputValue.next(value);
+  }
+
+  setDisplayValue(value: string | number) {
+    let displayValue = '';
+    const formatter = this.formatter();
+    if (!XIsEmpty(value) && !formatter) {
+      displayValue = Number(value).toFixed(this.precision());
+    } else if (formatter) {
+      const valueFormatter = formatter(Number(this.value()));
+      const val = XIsNotNil(valueFormatter) ? valueFormatter : '';
+      if (XIsNotNil(val)) {
+        displayValue = val.toString();
+      }
     }
-    this.verify(value);
-    this.inputEleRef().inputRef().nativeElement.value = this.displayValue();
-    this.valueChange.next(this.value());
+    this.displayValue.set(displayValue);
   }
 }

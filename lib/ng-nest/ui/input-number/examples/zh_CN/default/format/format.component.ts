@@ -10,6 +10,6 @@ import { XInputNumberComponent } from '@ng-nest/ui/input-number';
   styleUrls: ['./format.component.scss']
 })
 export class ExFormatComponent {
-  formatterDollar = signal((value: number): XNumber => `$ ${value}`);
-  formatterPercent = signal((value: number): XNumber => `${value} %`);
+  formatterDollar = signal((value: number): XNumber => (value ? `$ ${value}` : ''));
+  formatterPercent = signal((value: number): XNumber => (value ? `${value} %` : ''));
 }

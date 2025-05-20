@@ -33,6 +33,7 @@
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [clearable]="clearable()"
+      [attr.value]="displayValue()"
       [ngModel]="displayValue()"
       (ngModelChange)="change($event)"
       [valueTpl]="valueTpl()"
