@@ -1,3 +1,13 @@
+## [18.0.19](https://github.com/NG-NEST/ng-nest/compare/18.0.18...18.0.19) (2025-05-20)
+
+
+### Bug Fixes
+
+* **module:color-picker:** fix drag color panel error ([d8104c0](https://github.com/NG-NEST/ng-nest/commit/d8104c06b459db22a0b9c17ab50d3484f7742a97))
+* **module:input-number:** fix input precision value ([66dce85](https://github.com/NG-NEST/ng-nest/commit/66dce854c2ee04fab615ae42e36e6494a4ecb45d))
+
+
+
 ## [18.0.18](https://github.com/NG-NEST/ng-nest/compare/18.0.17...18.0.18) (2025-05-16)
 
 
