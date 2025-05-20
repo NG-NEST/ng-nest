@@ -101,6 +101,7 @@ export class XColorPickerPortalComponent implements OnInit, OnChanges, AfterView
   private percent = inject(PercentPipe);
 
   ngOnInit(): void {
+    this.colorConvert();
     this.destroyRef.onDestroy(() => {
       this.destroy.set(true);
       this.unSubject.next();
@@ -120,7 +121,7 @@ export class XColorPickerPortalComponent implements OnInit, OnChanges, AfterView
 
   ngOnChanges(simples: SimpleChanges) {
     const { value } = simples;
-    if (XIsChange(value)) this.colorConvert();
+    if (XIsChange(value)) !this.drag() && this.colorConvert();
   }
 
   setPanelValue() {
