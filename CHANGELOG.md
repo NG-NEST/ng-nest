@@ -1,3 +1,12 @@
+## [18.0.20](https://github.com/NG-NEST/ng-nest/compare/18.0.19...18.0.20) (2025-05-21)
+
+
+### Bug Fixes
+
+* **module:input-number:** fix format error ([377254a](https://github.com/NG-NEST/ng-nest/commit/377254a65f6d5439e8051a080d50e60a7179955f))
+
+
+
 ## [18.0.19](https://github.com/NG-NEST/ng-nest/compare/18.0.18...18.0.19) (2025-05-20)
 
 
