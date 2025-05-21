@@ -66,9 +66,14 @@ export class XInputNumberComponent extends XInputNumberProperty {
     });
   }
 
-  change(value: any) {
-    this.verify(value);
-    this.valueChange.next(this.value());
+  override writeValue(value: any): void {
+    this.value.set(value);
+    this.verify(Number(value));
+    this.setDisplayValue(this.value());
+  }
+
+  ngOnInit() {
+    this.setDisplayValue(this.value());
   }
 
   down(event: Event, limit: XNumber, increase: boolean = true): void {
@@ -136,6 +141,10 @@ export class XInputNumberComponent extends XInputNumberProperty {
   }
 
   setDisplayValue(value: string | number) {
+    if (XIsEmpty(value)) {
+      this.displayValue.set('');
+      return;
+    }
     let displayValue = '';
     const formatter = this.formatter();
     if (!XIsEmpty(value) && !formatter) {
