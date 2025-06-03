@@ -64,7 +64,7 @@ export class XIconComponent extends XIconProperty {
 
   inSource = computed(() => {
     const type = this.type();
-    if (typeof type === 'undefined' || type === '') return false;
+    if (typeof type === 'undefined' || type === '' || type === null) return false;
     const split = type.split('-');
     const souce = split.shift();
     if (typeof souce === 'undefined') return false;
@@ -101,6 +101,9 @@ export class XIconComponent extends XIconProperty {
 
   setSvgs(svg: string) {
     if (XIsEmpty(svg)) return;
+    if (this.svgElement) {
+      this.renderer.removeChild(this.elementRef.nativeElement, this.svgElement);
+    }
     if (this.isCustom()) {
       const parser = new DOMParser();
       const svgDoc = parser.parseFromString(svg, 'image/svg+xml');
