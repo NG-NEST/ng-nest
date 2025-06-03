@@ -12,20 +12,20 @@ import tsconfigAppTS from './files/tsconfig.app.json';
 @Injectable({ providedIn: 'root' })
 export class OnlineIdeService {
   dependencies = {
-    '@angular/animations': '^19.0.0',
-    '@angular/cdk': '^19.0.0',
-    '@angular/common': '^19.0.0',
-    '@angular/compiler': '^19.0.0',
-    '@angular/core': '^19.0.0',
-    '@angular/forms': '^19.0.0',
-    '@angular/platform-browser': '^19.0.0',
-    '@angular/platform-browser-dynamic': '^19.0.0',
-    '@angular/router': '^19.0.0',
+    '@angular/animations': '^20.0.0',
+    '@angular/cdk': '^20.0.0',
+    '@angular/common': '^20.0.0',
+    '@angular/compiler': '^20.0.0',
+    '@angular/core': '^20.0.0',
+    '@angular/forms': '^20.0.0',
+    '@angular/platform-browser': '^20.0.0',
+    '@angular/platform-browser-dynamic': '^20.0.0',
+    '@angular/router': '^20.0.0',
     rxjs: '~7.8.0',
     'core-js': '^3.37.1',
     tslib: '^2.3.0',
     'zone.js': '~0.15.0',
-    '@ng-nest/ui': `^19.0.0`
+    '@ng-nest/ui': `^20.0.0`
   };
   openStackBlitz(
     selector: string,

@@ -1,4 +1,4 @@
-import { TemplateRef, ViewContainerRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef } from '@angular/core';
+import { TemplateRef, ViewContainerRef, ComponentRef, EmbeddedViewRef } from '@angular/core';
 import { ComponentType, TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
 import { OverlayRef, OverlayConfig, ConnectedPosition } from '@angular/cdk/overlay';
 import { XInvertKeyValues } from '@ng-nest/ui/core';
@@ -52,11 +52,6 @@ export interface XPortalProperty<T> {
    * @en_US Injector
    */
   injector?: any;
-  /**
-   * @zh_CN 组件解析器
-   * @en_US Component parser
-   */
-  componentFactoryResolver?: ComponentFactoryResolver;
   /**
    * @zh_CN 覆盖视图层配置
    * @en_US Overlay view layer configuration

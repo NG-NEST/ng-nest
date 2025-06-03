@@ -1,4 +1,4 @@
-import { provideExperimentalZonelessChangeDetection, isDevMode, provideAppInitializer, inject } from '@angular/core';
+import { provideZonelessChangeDetection, isDevMode, provideAppInitializer, inject } from '@angular/core';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
@@ -17,7 +17,7 @@ import { ConfigService, IconService } from '@services';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     // provideAnimationsAsync(),
     provideAnimations(),
     provideHttpClient(withFetch()),

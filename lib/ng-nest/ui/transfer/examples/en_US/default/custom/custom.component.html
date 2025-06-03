@@ -8,8 +8,8 @@
   drag
 >
 </x-transfer>
-<ng-template #nodeTpl let-item="$node">
-  <x-icon [type]="item.node.icon" class="custom-icon"></x-icon>{{ item.node?.label }}
+<ng-template #nodeTpl let-node="$node">
+  <x-icon [type]="node?.icon" class="custom-icon"></x-icon>{{ node?.label }}
 </ng-template>
 <ng-template #titleTpl let-title="$title" let-count="$count" let-checkedCount="$checkedCount">
   <div class="custom-title">

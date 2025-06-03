@@ -11,7 +11,7 @@ import {
   HostListener,
   ViewChildren,
   inject,
-  afterRender,
+  afterEveryRender,
   viewChild,
   signal,
   computed
@@ -103,9 +103,9 @@ export class XListComponent extends XListProperty implements OnChanges {
 
   itemSize = computed(() => this.itemSizeMap[this.size()]);
   isEmpty = computed(() => XIsEmpty(this.nodes()));
-  getSelectAllText = computed(() => this.selectAllText() || this.locale().selectAllText);
-  getLoadMoreText = computed(() => this.loadMoreText() || this.locale().loadMoreText);
-  getLoadingMoreText = computed(() => this.loadingMoreText() || this.locale().loadingMoreText);
+  getSelectAllText = computed(() => this.selectAllText() || this.locale()?.selectAllText);
+  getLoadMoreText = computed(() => this.loadMoreText() || this.locale()?.loadMoreText);
+  getLoadingMoreText = computed(() => this.loadingMoreText() || this.locale()?.loadingMoreText);
 
   getVirtualScrollHeight() {
     let headerH = 0,
@@ -128,7 +128,7 @@ export class XListComponent extends XListProperty implements OnChanges {
 
   constructor() {
     super();
-    afterRender({
+    afterEveryRender({
       mixedReadWrite: () => {
         if (this.virtualScroll() && this.scrollHeight()) {
           this.virtualBody()?.checkViewportSize();

@@ -1,6 +1,6 @@
 # NG-NEST
 
-UI 库支持最新版本 [Angular ^19.0.0](https://angular.io/docs)
+UI 库支持最新版本 [Angular ^20.0.0](https://angular.io/docs)
 
 # 文档
 

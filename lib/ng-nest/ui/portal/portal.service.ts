@@ -34,8 +34,7 @@ export class XPortalService {
       portal.componentPortal = new ComponentPortal(
         option.content as ComponentType<T>,
         option.viewContainerRef,
-        option.injector,
-        option.componentFactoryResolver
+        option.injector
       );
       portal.componentRef = portal.overlayRef.attach(portal.componentPortal);
     }

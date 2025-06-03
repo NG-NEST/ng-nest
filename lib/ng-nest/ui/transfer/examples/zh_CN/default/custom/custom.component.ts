@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
@@ -5,7 +6,7 @@ import { XTransferComponent, XTransferNode } from '@ng-nest/ui/transfer';
 
 @Component({
   selector: 'ex-custom',
-  imports: [FormsModule, XTransferComponent, XIconComponent],
+  imports: [FormsModule, XTransferComponent, XIconComponent, JsonPipe],
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']
 })

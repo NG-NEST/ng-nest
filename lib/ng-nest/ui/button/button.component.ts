@@ -9,9 +9,9 @@ import {
   computed,
   HostBinding,
   signal,
-  afterRender,
   viewChild,
-  AfterContentChecked
+  AfterContentChecked,
+  afterEveryRender
 } from '@angular/core';
 import { XIsEmpty } from '@ng-nest/ui/core';
 import { XButtonPrefix, XButtonProperty } from './button.property';
@@ -49,7 +49,7 @@ export class XButtonComponent extends XButtonProperty implements AfterViewInit, 
 
   constructor() {
     super();
-    afterRender(() => {
+    afterEveryRender(() => {
       this.transition.set(true);
     });
   }

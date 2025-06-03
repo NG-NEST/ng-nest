@@ -1,6 +1,6 @@
 {
   "name": "@ng-nest/ui",
-  "version": "19.0.9",
+  "version": "20.0.0",
   "license": "MIT",
   "homepage": "https://www.ngnest.com",
   "author": "ng-nest",
@@ -15,12 +15,12 @@
   },
   "dependencies": {
     "tslib": "^2.3.0",
-    "@angular/cdk": "^19.0.0"
+    "@angular/cdk": "^20.0.0"
   },
   "peerDependencies": {
-    "@angular/animations": "^19.0.0",
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "@angular/forms": "^19.0.0"
+    "@angular/animations": "^20.0.0",
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@angular/forms": "^20.0.0"
   }
 }

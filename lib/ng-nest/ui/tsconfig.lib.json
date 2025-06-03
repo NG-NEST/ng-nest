@@ -10,7 +10,7 @@
     "importHelpers": true,
     "inlineSources": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "sourceMap": true,
     "strictFunctionTypes": true,
     "stripInternal": true
