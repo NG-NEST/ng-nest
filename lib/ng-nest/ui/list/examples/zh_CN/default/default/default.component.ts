@@ -9,7 +9,7 @@ import { XListComponent } from '@ng-nest/ui/list';
   styleUrls: ['./default.component.scss']
 })
 export class ExDefaultComponent {
-  data = signal(['AAAA', 'BBBB', { label: 'CCCC', leaf: true }, 'DDDD']);
+  data = signal(['AAAA', 'BBBB', { label: 'DDD', leaf: true, icon: 'fto-settings', divided: true }, 'DDDD']);
   data1 = signal(JSON.parse(JSON.stringify(this.data())));
   data2 = signal(JSON.parse(JSON.stringify(this.data())));
   data3 = signal(JSON.parse(JSON.stringify(this.data())));

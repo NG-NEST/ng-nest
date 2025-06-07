@@ -13,7 +13,7 @@
       <ng-template *ngTemplateOutlet="nodeTpl()!; context: { $node: node() }"></ng-template>
     } @else {
       @if (icon()) {
-        <x-icon [type]="icon()"></x-icon>
+        <x-icon class="x-list-option-icon" [type]="icon()"></x-icon>
       }
       <span x-keyword [text]="keywordText()" [caseSensitive]="caseSensitive()">{{ label() }}</span>
     }

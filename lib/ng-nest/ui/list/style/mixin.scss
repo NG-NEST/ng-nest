@@ -96,6 +96,10 @@
     user-select: none;
     display: inline-block;
   }
+  &-icon {
+    margin-right: 0.25rem;
+  }
+
   &:not(:first-child) {
     margin-top: $x-border-width;
   }
@@ -103,7 +107,9 @@
   &.x-active:not(.x-disabled) {
     background-color: $x-background-a200;
   }
+
   &.x-list-divided {
+    position: relative;
     margin-top: 0.8125rem;
     &::before {
       content: ' ';
