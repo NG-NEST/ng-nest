@@ -8,7 +8,8 @@ import {
   inject,
   effect,
   computed,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  signal
 } from '@angular/core';
 import { XIconPrefix, XIconProperty } from './icon.property';
 import { XIconService } from './icon.service';
@@ -44,15 +45,15 @@ export const XViewBox = [
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XIconComponent extends XIconProperty {
-  @HostBinding('class') get className() {
-    return `${XIconPrefix} ${this.type()}`;
-  }
   private svgElement!: HTMLElement;
   private document = inject(DOCUMENT);
   private elementRef = inject(ElementRef);
   private renderer = inject(Renderer2);
   private cdr = inject(ChangeDetectorRef);
   private iconService = inject(XIconService);
+  private beforeClass = signal('');
+
+  @HostBinding('class.x-icon') hostClass = true;
 
   @HostBinding('class.x-icon-spin') get getSpin() {
     return this.spin();
@@ -95,6 +96,15 @@ export class XIconComponent extends XIconProperty {
         this.iconService.getSvg('', this.iconService.customIcon[this.type()!], true).subscribe((x) => this.setSvgs(x));
       } else if (this.inSource()) {
         this.iconService.getSvg(this.href(), this.sourceUrl()).subscribe((x) => this.setSvgs(x));
+      }
+    });
+    effect(() => {
+      if (this.elementRef.nativeElement && this.type()) {
+        if (this.beforeClass()) {
+          this.renderer.removeClass(this.elementRef.nativeElement, this.beforeClass());
+        }
+        this.renderer.addClass(this.elementRef.nativeElement, this.type()!);
+        this.beforeClass.set(this.type()!);
       }
     });
   }
