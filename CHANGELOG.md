@@ -1,3 +1,19 @@
+## [20.0.1](https://github.com/NG-NEST/ng-nest/compare/20.0.0...20.0.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* **module:dialog:** fix service draggable ([00fdc1d](https://github.com/NG-NEST/ng-nest/commit/00fdc1d358da5a573eb3bffd6968360532795f2b))
+* **module:icon:** fix icon style ([d46ceb4](https://github.com/NG-NEST/ng-nest/commit/d46ceb4aaaa64204bb28a91e2d7c70551db15815))
+* **module:list:** fix list option icon and divided ([557f3f9](https://github.com/NG-NEST/ng-nest/commit/557f3f90421d6f4585eabe281d9abaae23177820))
+
+
+### Features
+
+* **module:select:** add input select ([e1f7387](https://github.com/NG-NEST/ng-nest/commit/e1f7387bef72171234cb84a0d20fe9e8d4d3c866))
+
+
+
 # [20.0.0](https://github.com/NG-NEST/ng-nest/compare/19.0.9...20.0.0) (2025-06-03)
 
 

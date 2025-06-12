@@ -29619,7 +29619,7 @@ export const en_US: {[key: string]: AppProp} = {
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
-        "label": "Allow the value of the input when searching for",
+        "label": "Allow the use of input values as selector values during search",
         "default": "false",
         "withConfig": false,
         "description": "",

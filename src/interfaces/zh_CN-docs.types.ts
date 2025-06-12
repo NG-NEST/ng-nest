@@ -29619,7 +29619,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "toType": "boolean",
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
-        "label": "搜索时允许选择输入的值",
+        "label": "搜索时允许使用输入的值，作为选择器的值",
         "default": "false",
         "withConfig": false,
         "description": "",
