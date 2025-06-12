@@ -18,8 +18,9 @@ import {
 import { XMoveBoxAnimation } from '@ng-nest/ui/core';
 import { XDialogAnimationEvent, XDialogAnimationState, XDialogRefOption } from './dialog.property';
 import { AnimationEvent } from '@angular/animations';
-import { CdkDrag, CdkDragEnd, CdkDragHandle, DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragEnd, DragDropModule } from '@angular/cdk/drag-drop';
 import { XDialogRef } from './dialog-ref';
+import { XDialogDragHandleDirective } from './dialog-portal.directives';
 
 @Component({
   selector: 'x-dialog-portal',
@@ -54,7 +55,7 @@ export class XDialogPortalComponent extends BasePortalOutlet {
   changeDetectorRef = inject(ChangeDetectorRef);
   portalOutlet = viewChild.required(CdkPortalOutlet);
   dragRef = viewChild.required(CdkDrag);
-  handles = contentChildren(CdkDragHandle, { descendants: true });
+  handles = contentChildren(XDialogDragHandleDirective, { descendants: true });
   animationChanged = new EventEmitter<XDialogAnimationEvent>();
   option!: XDialogRefOption;
   dialogRef!: XDialogRef<any>;
@@ -75,14 +76,6 @@ export class XDialogPortalComponent extends BasePortalOutlet {
 
   ngOnInit() {
     this.dialogBox['draggable'] = this.defaultMaximize ? this.dialogBox['draggable'] : this.option.draggable;
-  }
-
-  ngAfterViewInit() {
-    if (this.dialogRef.dragHandleRefs.length === 0) {
-      this.dialogBox['draggable'] = false;
-      this.option.draggable = false;
-      return;
-    }
   }
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {

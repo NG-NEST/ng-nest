@@ -2,6 +2,7 @@
   class="x-dialog-portal"
   #dragRef
   cdkDrag
+  [cdkDragBoundary]="'.cdk-overlay-container'"
   [cdkDragDisabled]="!option.draggable && !dialogBox['draggable']"
   [cdkDragRootElement]="'.cdk-overlay-pane'"
   [cdkDragFreeDragPosition]="dialogBox['distance']"
