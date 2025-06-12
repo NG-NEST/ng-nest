@@ -1,6 +1,6 @@
 <div class="row">
   <x-select
-    label="单选"
+    label="single"
     [data]="data1()"
     [(ngModel)]="model1"
     (ngModelChange)="change($event)"
@@ -11,7 +11,7 @@
 
 <div class="row">
   <x-select
-    label="多选（按 enter 键添加）"
+    label="multiple selections (press enter to add)"
     [style.width.px]="300"
     [data]="data2()"
     [(ngModel)]="model2"
