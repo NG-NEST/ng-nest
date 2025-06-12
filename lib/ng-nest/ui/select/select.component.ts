@@ -264,7 +264,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.inputChange
       .pipe(debounceTime(this.debounceTime() as number), distinctUntilChanged(), takeUntil(this.unSubject))
       .subscribe((x) => {
-        console.log(x);
         this.keywordText.set(x);
         this.modelChange(x);
         if (this.allowInput() && !this.multiple()) {
@@ -397,7 +396,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         this.nodes().filter((x) => String(x.label).toLowerCase().indexOf(String(value).toLowerCase()) >= 0)
       );
     }
-    console.log(this.searchNodes());
   }
 
   setParantScroll() {
@@ -690,8 +688,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   nodeClick(node: XSelectNode, value?: XSelectNode[] | (string | number)[]) {
-    console.log('node', node);
-    console.log('value', value);
     if (this.multiple()) {
       if (node) {
         if (XIsObjectArray(value)) {
