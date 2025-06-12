@@ -78,14 +78,14 @@ export class XSelectPortalComponent implements OnInit {
   keydownSubject!: Subject<KeyboardEvent>;
   active = signal(-1);
   locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.select as XI18nSelect)), { initialValue: zh_CN.select });
-  getSelectAllText = computed(() => this.selectAllText() || this.locale().selectAllText);
+  getSelectAllText = computed(() => this.selectAllText() || this.locale()!.selectAllText);
 
   ngOnInit(): void {
     this.closeSubject.pipe(takeUntil(this.unSubject)).subscribe(() => {
-      this.list().setUnActive(this.active());
+      this.data() && this.data()!.length > 0 && this.list().setUnActive(this.active());
     });
     this.keydownSubject.pipe(takeUntil(this.unSubject)).subscribe((x) => {
-      this.list().keydown(x);
+      this.data() && this.data()!.length > 0 && this.list().keydown(x);
     });
     this.destroyRef.onDestroy(() => {
       this.destroy.set(true);

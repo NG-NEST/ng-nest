@@ -98,8 +98,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   valueTemplate = viewChild.required<TemplateRef<void>>('valueTemplate');
   searchTemplate = viewChild.required<TemplateRef<void>>('searchTemplate');
 
-  getReadonly = computed(() => this.readonly() || !this.search());
-  getMaxTagContent = computed(() => this.maxTagContent() || this.locale().maxTagContent);
+  getReadonly = computed(() => this.readonly() || !this.search() || !this.allowInput());
+  getMaxTagContent = computed(() => this.maxTagContent() || this.locale()!.maxTagContent);
 
   noPortalWidthPlacements: XPlacement[] = ['bottom', 'top'];
   hasPortalWidthPlacements: XPlacement[] = ['bottom-start', 'bottom-end', 'top-start', 'top-end'];
@@ -185,10 +185,20 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   inputChanged = toSignal(this.inputChange);
   portalData = computed(() => {
     const nodes = this.nodes();
-    if (XIsFunction(this.data()) || XIsEmpty(this.inputChanged())) return nodes;
+    if (
+      XIsFunction(this.data()) ||
+      XIsEmpty(this.inputChanged()) ||
+      (!this.multiple() && this.displayValue() === '') ||
+      (this.multiple() && this.multipleSearchValue() === '') ||
+      this.portalAllData()
+    ) {
+      return nodes;
+    }
     return this.searchNodes();
   });
+  portalAllData = signal(true);
   allowAgian = signal(true);
+  keywordText = signal('');
 
   constructor() {
     super();
@@ -207,7 +217,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     effect(() => this.portalComponent()?.setInput('search', this.search()));
     effect(() => this.portalComponent()?.setInput('virtualScroll', this.virtualScroll()));
     effect(() => this.portalComponent()?.setInput('size', this.size()));
-    effect(() => this.portalComponent()?.setInput('keywordText', this.inputChanged()));
+    effect(() => this.portalComponent()?.setInput('keywordText', this.keywordText()));
   }
 
   ngOnInit() {
@@ -254,7 +264,13 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     this.inputChange
       .pipe(debounceTime(this.debounceTime() as number), distinctUntilChanged(), takeUntil(this.unSubject))
       .subscribe((x) => {
+        console.log(x);
+        this.keywordText.set(x);
         this.modelChange(x);
+        if (this.allowInput() && !this.multiple()) {
+          this.value.set(x);
+          this.onChange && this.onChange(this.value());
+        }
       });
     this.keydownSubject.pipe(throttleTime(10), takeUntil(this.unSubject)).subscribe((x) => {
       const keyCode = x.keyCode;
@@ -266,6 +282,16 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       }
       if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
         this.closeSubject.next();
+      }
+      if (this.portalAttached() && [ENTER].includes(keyCode)) {
+        if (this.allowInput() && this.multiple()) {
+          const val = this.multipleSearchValue();
+          if (XIsEmpty(val)) return;
+          if (!this.displayNodes().find((x) => x.id === val)) {
+            this.nodeClick({ id: val, label: val, selected: true }, [...this.displayNodes().map((x) => x.id), val]);
+          }
+          this.multipleSearchValue.set('');
+        }
       }
     });
     this.multipleInputSizeChange.pipe(distinctUntilChanged(), takeUntil(this.unSubject)).subscribe((x) => {
@@ -309,7 +335,6 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     }
     const height = scrollHeight + (lines > 1 ? marginTop : 0);
     this.renderer.setStyle(this.inputCom().inputRef().nativeElement, 'height', `${height}px`);
-    console.log(height);
     if (this.multipleInput()) {
       this.multipleInputSizeChange.next(clientWidth - lastRowTagsWidth - marginLeft);
     }
@@ -320,7 +345,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (this.disabledComputed() || !this.clearable() || this.iconSpin()) return;
     this.enter.set(true);
     if ((!this.multiple() && !XIsEmpty(this.displayValue())) || (this.multiple() && !XIsEmpty(this.displayNodes()))) {
-      this.icon.set('');
+      this.icon.set('fto-x');
       this.showClearable.set(true);
     }
   }
@@ -352,6 +377,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       return;
     }
     if (this.nodes()) {
+      this.portalAllData.set(false);
       if (!this.portalAttached()) {
         this.showPortal();
       }
@@ -371,6 +397,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         this.nodes().filter((x) => String(x.label).toLowerCase().indexOf(String(value).toLowerCase()) >= 0)
       );
     }
+    console.log(this.searchNodes());
   }
 
   setParantScroll() {
@@ -418,6 +445,13 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     });
     this.mleave();
     this.inputChange.next('');
+    if (this.search()) {
+      if (!this.multiple()) {
+        this.searchInput()?.inputFocus();
+      } else {
+        this.multipleInput()?.inputFocus();
+      }
+    }
     if (this.onChange) this.onChange(this.value());
   }
 
@@ -468,6 +502,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
             for (let id of ids) {
               let node = this.nodes().find((x) => x.id === id);
               if (node) selected.push(node);
+              else if (this.allowInput()) {
+                selected.push({ id: id, label: id });
+              }
             }
             this.selectedNodes.set(selected);
           }
@@ -483,19 +520,23 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           });
         }
       } else {
-        let node = this.nodes().find((x) => x.id === this.value());
-        if (node) {
-          this.displayValue.set(node.label);
-          this.valueTplContextSignal.update((x) => {
-            x.$node = node;
-            return { ...x };
-          });
+        if (this.allowInput()) {
+          this.displayValue.set(this.value());
         } else {
-          this.displayValue.set('');
-          this.valueTplContextSignal.update((x) => {
-            x.$node = null;
-            return { ...x };
-          });
+          let node = this.nodes().find((x) => x.id === this.value());
+          if (node) {
+            this.displayValue.set(node.label);
+            this.valueTplContextSignal.update((x) => {
+              x.$node = node;
+              return { ...x };
+            });
+          } else {
+            this.displayValue.set('');
+            this.valueTplContextSignal.update((x) => {
+              x.$node = null;
+              return { ...x };
+            });
+          }
         }
       }
     }
@@ -554,6 +595,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       this.portal?.overlayRef?.detach();
       this.active.set(false);
       this.multipleSearchValue.set('');
+      this.portalAllData.set(true);
       this.allowAgian.set(false);
       of(true)
         .pipe(delay(200))
@@ -613,7 +655,9 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
       ?.outsidePointerEvents()
       .pipe(takeUntil(this.unSubject))
       .subscribe(() => {
-        this.setDisplayValue();
+        if (!this.allowInput()) {
+          this.setDisplayValue();
+        }
         this.closeSubject.next();
       });
     this.setInstance();
@@ -646,6 +690,8 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   }
 
   nodeClick(node: XSelectNode, value?: XSelectNode[] | (string | number)[]) {
+    console.log('node', node);
+    console.log('value', value);
     if (this.multiple()) {
       if (node) {
         if (XIsObjectArray(value)) {
@@ -685,7 +731,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         const input = this.multipleInput()!.elementRef.nativeElement;
         this.renderer.setStyle(input, 'width', '2rem');
       }
-      if (this.search() && this.multipleSearchValue() !== '') {
+      if (this.search() && !this.allowInput() && this.multipleSearchValue() !== '') {
         this.multipleSearchValue.set('');
         this.inputChange.next('');
       }
@@ -698,7 +744,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         return { ...x };
       });
       this.value.set(node.id);
-      if (this.search()) {
+      if (this.search() && !this.allowInput()) {
         this.inputChange.next('');
       }
       this.closeSubject.next();
@@ -708,6 +754,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     } else {
       this.inputCom().inputFocus('focus');
     }
+    this.keywordText.set('');
     if (this.onChange) this.onChange(this.value());
     this.formControlValidator();
   }
@@ -730,7 +777,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   onKeydown($event: KeyboardEvent) {
     this.keydownSubject.next($event);
-    if ($event.keyCode !== TAB && !this.search) {
+    if ($event.keyCode !== TAB && !this.search()) {
       $event.preventDefault();
     }
   }

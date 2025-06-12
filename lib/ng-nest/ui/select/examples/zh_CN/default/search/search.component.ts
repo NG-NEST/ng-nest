@@ -53,7 +53,7 @@ export class ExSearchComponent {
   modelMultiple = signal([]);
 
   dataMultipleMore = signal([...this.default()]);
-  modelMultipleMore = signal([]);
+  modelMultipleMore = signal([{ id: 'AAAA', label: 'AAAA' }]);
 
   dataMultipleMoreTpl = signal([...this.default()]);
   modelMultipleMoreTpl = signal(['AAAA', 'BBBB', 'CCCC']);
