@@ -126,12 +126,13 @@ export class XControlComponent extends XControlProperty implements OnInit, After
       }
     }
 
-    // value
     if (this.option().value !== undefined) {
       this.componentRef.instance.writeValue(this.option().value);
     }
 
-    this.value = this.componentRef.instance.value;
+    this.componentRef.instance.valueObservable.subscribe((x) => {
+      this.value.set(x);
+    });
 
     this.form.controlTypes[this.option().id] = this.option();
     this.form.controlComponents[this.option().id] = this.componentRef.instance;
@@ -210,7 +211,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
       for (const key in control.errors) {
         const label = this.option().label || this.option().id;
         if (key === 'required') {
-          messages = [...messages, `${label} ${this.locale().required || 'required'}`];
+          messages = [...messages, `${label} ${this.locale()?.required || 'required'}`];
         } else if (key === 'pattern') {
           messages = [...messages, `${label} ${this.getPatternMsg(control.errors[key].requiredPattern)}`];
         } else if (key === 'inputValidator') {

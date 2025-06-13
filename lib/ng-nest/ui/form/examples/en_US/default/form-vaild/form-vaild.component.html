@@ -1,5 +1,5 @@
 <x-form #form direction="row" labelWidth="5rem" labelAlign="end" [controls]="controls()" (xSubmit)="submit($event)">
-  <x-button [style.margin-left.rem]="5" type="primary">submit 验证 </x-button>
+  <x-button [style.margin-left.rem]="5" attrType="submit" type="primary">submit 验证 </x-button>
   <p [style.margin-left.rem]="5" [style.color]="'gray'">表单验证 {{ form.formGroup().valid ? '通过' : '失败' }}</p>
 </x-form>
 <x-button [style.margin-left.rem]="5" type="primary" (click)="resetValidator()">初始验证效果</x-button>
