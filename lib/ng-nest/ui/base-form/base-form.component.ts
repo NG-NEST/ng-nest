@@ -8,6 +8,7 @@ import {
 import { ChangeDetectorRef, computed, forwardRef, inject, signal, Type } from '@angular/core';
 import { XIsEmpty, XIsUndefined, XComponentConfigKey, XConfigService, XIsNull } from '@ng-nest/ui/core';
 import { XFormControlProp } from './base-form.property';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 export function XValueAccessor<T>(component: Type<T>) {
   return { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => component), multi: true };
@@ -80,6 +81,7 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
       }
     });
     value = signal<any | undefined>(undefined);
+    valueObservable = toObservable(this.value);
     validatorSignal = signal(false);
     disabledSignal = signal(false);
     requiredSignal = signal(false);

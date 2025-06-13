@@ -172,7 +172,6 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
   menter() {
     if (this.disabledComputed()) return;
     this.enter.set(true);
-    console.log(this.value());
     if (!XIsEmpty(this.value())) {
       this.icon.set('');
       this.clearable.set(true);
