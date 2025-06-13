@@ -1,3 +1,20 @@
+## [19.0.12](https://github.com/NG-NEST/ng-nest/compare/19.0.11...19.0.12) (2025-06-13)
+
+
+### Bug Fixes
+
+* **module:form:** fix form validator ([99f6ea9](https://github.com/NG-NEST/ng-nest/commit/99f6ea95d3924e3da54c6c0f530f143be85e642f))
+
+
+
+## [19.0.11](https://github.com/NG-NEST/ng-nest/compare/19.0.10...19.0.11) (2025-06-12)
+
+
+
+## [19.0.10](https://github.com/NG-NEST/ng-nest/compare/19.0.9...19.0.10) (2025-06-03)
+
+
+
 ## [19.0.9](https://github.com/NG-NEST/ng-nest/compare/19.0.8...19.0.9) (2025-05-21)
 
 
