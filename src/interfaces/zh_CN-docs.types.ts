@@ -26257,6 +26257,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "showInputSizeTooltipText",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "显示输入分页框的 tooltip 提示信息，默认显示",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "inputSizeTooltipText",
         "type": "string",
         "toType": "string",
@@ -26337,6 +26355,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "label": "显示跳转输入框，默认使用回车确认改变",
         "default": "false",
         "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "showJumpTooltipText",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "显示跳转输入框的 tooltip 提示信息，默认显示",
+        "default": "true",
+        "withConfig": true,
         "description": "",
         "example": [
           {
@@ -34353,6 +34389,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "showInputSizeTooltipText",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "显示输入分页框的 tooltip 提示信息，默认显示",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "inputSizeTooltipText",
         "type": "string",
         "toType": "string",
@@ -34433,6 +34487,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "label": "显示跳转输入框",
         "default": "false",
         "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "showJumpTooltipText",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "显示跳转输入框的 tooltip 提示信息，默认显示",
+        "default": "true",
+        "withConfig": true,
         "description": "",
         "example": [
           {
