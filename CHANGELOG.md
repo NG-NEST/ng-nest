@@ -1,3 +1,12 @@
+## [20.0.3](https://github.com/NG-NEST/ng-nest/compare/20.0.2...20.0.3) (2025-06-24)
+
+
+### Features
+
+* **module:pagination:** add show input size tooltip text ([34a97ca](https://github.com/NG-NEST/ng-nest/commit/34a97cae806310c0d9ba504ac33b70e9bf6335da))
+
+
+
 ## [20.0.2](https://github.com/NG-NEST/ng-nest/compare/20.0.0...20.0.2) (2025-06-13)
 
 

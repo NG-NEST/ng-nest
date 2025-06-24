@@ -26257,6 +26257,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "showInputSizeTooltipText",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "show enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "inputSizeTooltipText",
         "type": "string",
         "toType": "string",
@@ -26337,6 +26355,24 @@ export const en_US: {[key: string]: AppProp} = {
         "label": "Show size. default to using Enter to confirm changes",
         "default": "false",
         "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "showJumpTooltipText",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Show the tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes",
+        "default": "true",
+        "withConfig": true,
         "description": "",
         "example": [
           {
@@ -34353,6 +34389,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "showInputSizeTooltipText",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "show enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "inputSizeTooltipText",
         "type": "string",
         "toType": "string",
@@ -34433,6 +34487,24 @@ export const en_US: {[key: string]: AppProp} = {
         "label": "Show size",
         "default": "false",
         "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "showJumpTooltipText",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Show the tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes",
+        "default": "true",
+        "withConfig": true,
         "description": "",
         "example": [
           {
