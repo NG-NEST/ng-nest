@@ -475,10 +475,12 @@ export interface XPaginationConfig {
   sizeWidth?: string;
   sizeData?: number[];
   showInputSize?: boolean;
+  showInputSizeTooltipText?: boolean;
   inputSizeTooltipText?: string;
   inputSizeWidth?: number;
   showJump?: boolean;
   jumpWidth?: string;
+  showJumpTooltipText?: boolean;
   jumpTooltipText?: string;
   simple?: boolean;
   simpleIndexWidth?: string;
@@ -598,10 +600,12 @@ export interface XTableConfig {
   sizeWidth?: string;
   sizeData?: number[];
   showInputSize?: boolean;
+  showInputSizeTooltipText?: boolean;
   inputSizeTooltipText?: string;
   inputSizeWidth?: number;
   showJump?: boolean;
   jumpWidth?: string;
+  showJumpTooltipText?: boolean;
   jumpTooltipText?: string;
   simple?: boolean;
   simpleIndexWidth?: string;

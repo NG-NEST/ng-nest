@@ -83,10 +83,16 @@ export class XPaginationProperty extends XPropertyFunction(X_PAGINATION_CONFIG_N
    */
   readonly showInputSize = input<boolean, XBoolean>(this.config?.showInputSize ?? false, { transform: XToBoolean });
   /**
+   * @zh_CN 显示输入分页框的 tooltip 提示信息，默认显示
+   * @en_US show enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input
+   */
+  readonly showInputSizeTooltipText = input<boolean, XBoolean>(this.config?.showInputSizeTooltipText ?? true, { transform: XToBoolean });
+  /**
    * @zh_CN 输入分页框的 tooltip 提示信息，默认根据输入确认改变的方式来显示
    * @en_US Enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input
    */
   readonly inputSizeTooltipText = input<string>(this.config?.inputSizeTooltipText ?? '');
+
   /**
    * @zh_CN 分页条数输入框的宽度
    * @en_US size with input
@@ -109,6 +115,11 @@ export class XPaginationProperty extends XPropertyFunction(X_PAGINATION_CONFIG_N
    * @en_US Show size. default to using Enter to confirm changes
    */
   readonly showJump = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 显示跳转输入框的 tooltip 提示信息，默认显示
+   * @en_US Show the tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes
+   */
+  readonly showJumpTooltipText = input<boolean, XBoolean>(this.config?.showJumpTooltipText ?? true, { transform: XToBoolean });
   /**
    * @zh_CN 跳转输入框的 tooltip 提示信息，默认根据输入确认改变的方式来显示
    * @en_US The tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes
