@@ -225,6 +225,7 @@ export interface XCarouselConfig {
 export interface XCascadeConfig {
   placement?: XCorner;
   size?: XSize;
+  clearable?: boolean;
   bordered?: boolean;
   nodeTrigger?: XTrigger;
   nodeHoverDelay?: number;

@@ -47,7 +47,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
   cascade = viewChild.required('cascade', { read: ElementRef<HTMLElement> });
   inputCom = viewChild.required('inputCom', { read: XInputComponent });
 
-  clearable = signal(false);
+  showClearable = signal(false);
   enter = signal(false);
   animating = signal(false);
   datas = signal<XCascadeNode[]>([]);
@@ -170,20 +170,20 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
   }
 
   menter() {
-    if (this.disabledComputed()) return;
+    if (this.disabledComputed() || !this.clearable()) return;
     this.enter.set(true);
     if (!XIsEmpty(this.value())) {
-      this.icon.set('');
-      this.clearable.set(true);
+      this.icon.set('fto-x');
+      this.showClearable.set(true);
     }
   }
 
   mleave() {
-    if (this.disabledComputed()) return;
+    if (this.disabledComputed() || !this.clearable()) return;
     this.enter.set(false);
     if (this.clearable()) {
       this.icon.set('fto-chevron-down');
-      this.clearable.set(false);
+      this.showClearable.set(false);
     }
   }
 

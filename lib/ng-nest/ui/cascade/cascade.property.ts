@@ -39,6 +39,11 @@ export class XCascadeProperty extends XFormControlFunction(X_CASCADE_CONFIG_NAME
    */
   readonly placement = input<XCorner>(this.config?.placement ?? 'bottom-start');
   /**
+   * @zh_CN 清除按钮
+   * @en_US Clear button
+   */
+  readonly clearable = input<boolean, XBoolean>(this.config?.clearable ?? true, { transform: XToBoolean });
+  /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
