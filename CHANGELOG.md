@@ -1,3 +1,12 @@
+## [19.0.14](https://github.com/NG-NEST/ng-nest/compare/19.0.13...19.0.14) (2025-07-05)
+
+
+### Bug Fixes
+
+* fix drag event conflict ([fa7cf93](https://github.com/NG-NEST/ng-nest/commit/fa7cf9333bdc82ed249c2e4dafd6d09c6eb74750))
+
+
+
 ## [19.0.13](https://github.com/NG-NEST/ng-nest/compare/19.0.12...19.0.13) (2025-06-24)
 
 
