@@ -1,3 +1,19 @@
+## [20.0.4](https://github.com/NG-NEST/ng-nest/compare/20.0.3...20.0.4) (2025-07-05)
+
+
+### Bug Fixes
+
+* **module:table:** fix conflicts between dragging columns and dragging widths in the header ([e0f5a8d](https://github.com/NG-NEST/ng-nest/commit/e0f5a8dddf0a892e62482209bb7e043feea6d9a7))
+
+
+### Features
+
+* **module:cascade:** add clearable param ([7cd943e](https://github.com/NG-NEST/ng-nest/commit/7cd943e7ad8108df66b7cb5db5f64658222df0c8))
+* **module:cascade:** add portal class ([95df560](https://github.com/NG-NEST/ng-nest/commit/95df560fe2e07276c2d34540e805a95e2333b9c4))
+* **module:select:** add portal class ([2e6459a](https://github.com/NG-NEST/ng-nest/commit/2e6459ab19e07ce32e25a62823aa150c21d8243b))
+
+
+
 ## [20.0.3](https://github.com/NG-NEST/ng-nest/compare/20.0.2...20.0.3) (2025-06-24)
 
 

@@ -6186,6 +6186,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "clearable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Clear button",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "bordered",
         "type": "XBoolean",
         "toType": "boolean",
@@ -6202,6 +6220,96 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "separator",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Path separator",
+        "default": "' / '",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "portalMaxHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The biggest height of the drop-down box",
+        "default": "'12rem'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The biggest height of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The width of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalClass",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "The style class name of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "nodeTrigger",
@@ -29540,6 +29648,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalClass",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "The style class name of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "search",

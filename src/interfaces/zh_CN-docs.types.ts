@@ -6186,6 +6186,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "clearable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "清除按钮",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "bordered",
         "type": "XBoolean",
         "toType": "boolean",
@@ -6202,6 +6220,96 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "separator",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "路径分隔符",
+        "default": "' / '",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "portalMaxHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "下拉框的最大高度",
+        "default": "'12rem'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "下拉框的高度，启用虚拟滚动的时候必须设置一个高度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "下拉框的宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalClass",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "下拉框设置样式名",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "nodeTrigger",
@@ -29540,6 +29648,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalClass",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "下拉框设置样式名",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "search",
