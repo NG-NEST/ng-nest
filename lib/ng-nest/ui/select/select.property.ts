@@ -97,6 +97,11 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    */
   readonly portalWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
+   * @zh_CN 下拉框设置样式名
+   * @en_US The style class name of the drop-down box
+   */
+  readonly portalClass = input<string | string[]>('');
+  /**
    * @zh_CN 输入搜索
    * @en_US Input search
    */

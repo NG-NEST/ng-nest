@@ -639,6 +639,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     const box = this.inputCom().inputRef().nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
+      panelClass: this.portalClass(),
       width: this.portalWidth() || box.width,
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
