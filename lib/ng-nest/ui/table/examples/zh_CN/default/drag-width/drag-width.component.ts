@@ -32,8 +32,8 @@ export class ExDragWidthComponent {
       }
     },
     { id: 'position', label: '职位', width: 300, sort: true, dragWidth: true },
-    { id: 'email', label: '邮箱', width: 300, dragWidth: true },
-    { id: 'phone', label: '电话', width: 300, dragWidth: true },
+    { id: 'email', label: '邮箱', width: 300, dragWidth: true, dragColumn: true },
+    { id: 'phone', label: '电话', width: 300, dragWidth: true, dragColumn: true },
     { id: 'organization', label: '组织机构', flex: 1, sort: true }
   ];
 
