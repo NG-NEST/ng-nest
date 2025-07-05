@@ -329,6 +329,7 @@
 
 @mixin body-table-th {
   display: block;
+  overflow: hidden;
   @include body-table-th-size(
     big,
     calc(#{$x-font-size} / 5 * 4),

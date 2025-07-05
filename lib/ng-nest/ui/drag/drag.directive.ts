@@ -14,6 +14,7 @@ export class XDragDirective extends XDragProperty implements OnInit, OnDestroy {
   ngOnInit() {
     const mouseDown = fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown').pipe(takeUntil(this.unSubject));
     mouseDown.subscribe((downMe: MouseEvent) => {
+      downMe.stopPropagation();
       let x = downMe.pageX;
       let y = downMe.pageY;
       let offsetX = 0;
@@ -25,6 +26,7 @@ export class XDragDirective extends XDragProperty implements OnInit, OnDestroy {
       fromEvent<MouseEvent>(this.doc.documentElement, 'mousemove')
         .pipe(takeUntil(_unSub))
         .subscribe((moveMe: MouseEvent) => {
+          moveMe.stopPropagation();
           offsetX = moveMe.pageX - x;
           offsetY = moveMe.pageY - y;
           x = moveMe.pageX;
