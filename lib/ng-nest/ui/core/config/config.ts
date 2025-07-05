@@ -227,8 +227,10 @@ export interface XCascadeConfig {
   size?: XSize;
   clearable?: boolean;
   bordered?: boolean;
+  portalMaxHeight?: string;
   nodeTrigger?: XTrigger;
   nodeHoverDelay?: number;
+  separator?: string;
 }
 
 export interface XCheckboxConfig {

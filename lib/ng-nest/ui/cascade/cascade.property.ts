@@ -49,6 +49,35 @@ export class XCascadeProperty extends XFormControlFunction(X_CASCADE_CONFIG_NAME
    */
   readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
   /**
+   * @zh_CN 路径分隔符
+   * @en_US Path separator
+   */
+  readonly separator = input<string>(this.config?.separator ?? ' / ');
+  /**
+   * @zh_CN 下拉框的最大高度
+   * @en_US The biggest height of the drop-down box
+   */
+  readonly portalMaxHeight = input<string, XNumber>(this.config?.portalMaxHeight ?? '12rem', {
+    transform: XToCssPixelValue
+  });
+  /**
+   * @zh_CN 下拉框的高度，启用虚拟滚动的时候必须设置一个高度
+   * @en_US The biggest height of the drop-down box
+   */
+  readonly portalHeight = input<string, XNumber>('', {
+    transform: XToCssPixelValue
+  });
+  /**
+   * @zh_CN 下拉框的宽度
+   * @en_US The width of the drop-down box
+   */
+  readonly portalWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
+  /**
+   * @zh_CN 下拉框设置样式名
+   * @en_US The style class name of the drop-down box
+   */
+  readonly portalClass = input<string | string[]>('');
+  /**
    * @zh_CN 子节点触发方式
    * @en_US Sub node triggering method
    */

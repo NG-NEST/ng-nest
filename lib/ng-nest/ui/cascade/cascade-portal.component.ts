@@ -50,6 +50,9 @@ export class XCascadePortalComponent implements OnInit {
   inputCom = input<XInputComponent>();
   nodeTrigger = input<XCascadeNodeTrigger>();
   nodeHoverDelay = input<number>(200);
+  portalMaxHeight = input<string>('');
+  portalHeight = input<string>('');
+  portalWidth = input<string>('');
   nodes = model<XCascadeNode[][]>([]);
   datas = input<XCascadeNode[]>([]);
 

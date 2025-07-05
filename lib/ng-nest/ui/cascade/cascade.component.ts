@@ -64,7 +64,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
         node = this.datas().find((x) => x.id === node.pid) as XCascadeNode;
         selecteds = [node, ...selecteds];
       }
-      return selecteds.map((x) => x.label).join(` / `);
+      return selecteds.map((x) => x.label).join(this.separator());
     }
   });
   valueTplContextSignal = computed(() => {
@@ -103,6 +103,9 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
     effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
     effect(() => this.portalComponent()?.setInput('nodeTpl', this.nodeTpl()));
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
+    effect(() => this.portalComponent()?.setInput('portalMaxHeight', this.portalMaxHeight()));
+    effect(() => this.portalComponent()?.setInput('portalHeight', this.portalHeight()));
+    effect(() => this.portalComponent()?.setInput('portalWidth', this.portalWidth()));
     effect(() => this.portalComponent()?.setInput('datas', this.datas()));
     effect(() => this.portalComponent()?.setInput('nodes', [this.nodes()]));
     effect(() => this.portalComponent()?.setInput('nodeTrigger', this.nodeTrigger()));
@@ -209,6 +212,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
     this.active.set(true);
     const config: OverlayConfig = {
       backdropClass: '',
+      width: this.portalWidth(),
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };

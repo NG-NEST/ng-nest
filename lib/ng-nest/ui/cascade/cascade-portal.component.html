@@ -1,6 +1,13 @@
-<div class="x-cascade-portal" tabindex="-1" (click)="inputCom()?.inputFocus('focus'); stopPropagation($event)">
+<div
+  class="x-cascade-portal"
+  tabindex="-1"
+  (click)="inputCom()?.inputFocus('focus'); stopPropagation($event)"
+  [style.maxHeight]="portalHeight() ? portalHeight() : portalMaxHeight()"
+  [style.height]="portalHeight()"
+>
   @for (list of nodes(); track list) {
     <x-list
+      [style.width]="portalWidth()"
       [data]="list"
       [nodeTpl]="nodeTpl()"
       [(ngModel)]="values"
