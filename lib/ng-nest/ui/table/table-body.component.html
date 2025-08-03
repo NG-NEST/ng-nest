@@ -46,6 +46,7 @@
           [style.height.px]="getRowHeight()"
           [style.min-height.px]="getRowHeight()"
           (click)="onRowClick($event, row)"
+          [attr.data-row-key]="row.id"
         >
           <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
         </tr>
@@ -108,6 +109,10 @@
   @switch (column.type) {
     @case ('checkbox') {
       <x-checkbox
+        xTableCheckboxDragSelect
+        [dragRows]="data()"
+        [dragRow]="row"
+        [dragKey]="column.id"
         [data]="[{ id: true, label: '' }]"
         [(ngModel)]="row[column.id]"
         [disabled]="row.disabled"

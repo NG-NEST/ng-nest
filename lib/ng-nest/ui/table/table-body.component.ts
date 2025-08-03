@@ -28,6 +28,7 @@ import { XButtonComponent } from '@ng-nest/ui/button';
 import { XTableComponent } from './table.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { XInnerHTMLComponent } from '@ng-nest/ui/core';
+import { XTableCheckboxDragSelectDirective } from './checkbox-drag-select.directive';
 
 @Component({
   selector: `${XTableBodyPrefix}`,
@@ -40,7 +41,8 @@ import { XInnerHTMLComponent } from '@ng-nest/ui/core';
     XOutletDirective,
     XCheckboxComponent,
     XButtonComponent,
-    XInnerHTMLComponent
+    XInnerHTMLComponent,
+    XTableCheckboxDragSelectDirective
   ],
   templateUrl: './table-body.component.html',
   encapsulation: ViewEncapsulation.None,
