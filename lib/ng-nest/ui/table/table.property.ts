@@ -177,6 +177,11 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    */
   readonly checkedRow = input<{ [property: string]: any[] }>({});
   /**
+   * @zh_CN 禁用拖动 checkbox 批量选中/取消
+   * @en_US Disable dragging checkboxes for batch selection/cancellation
+   */
+  readonly checkboxDragDisabled = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
    * @zh_CN 如果 data 是函数类型，可以通过此参数控制请求，常用于弹框中的表格，弹出后再请求
    * @en_US If data is a function type, you can use this parameter to control the request, which is often used in the form in the pop-up box, and then request it after it pops up
    */
@@ -345,7 +350,9 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    * @zh_CN 显示输入分页框的 tooltip 提示信息，默认显示
    * @en_US show enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input
    */
-  readonly showInputSizeTooltipText = input<boolean, XBoolean>(this.config?.showInputSizeTooltipText ?? true, { transform: XToBoolean });
+  readonly showInputSizeTooltipText = input<boolean, XBoolean>(this.config?.showInputSizeTooltipText ?? true, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 输入分页框的 tooltip 提示信息，默认根据输入确认改变的方式来显示
    * @en_US Enter the tooltip prompt information for the pagination box, which will be displayed by default based on the confirmation of the input
@@ -377,7 +384,9 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    * @zh_CN 显示跳转输入框的 tooltip 提示信息，默认显示
    * @en_US Show the tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes
    */
-  readonly showJumpTooltipText = input<boolean, XBoolean>(this.config?.showJumpTooltipText ?? true, { transform: XToBoolean });
+  readonly showJumpTooltipText = input<boolean, XBoolean>(this.config?.showJumpTooltipText ?? true, {
+    transform: XToBoolean
+  });
   /**
    * @zh_CN 跳转输入框的 tooltip 提示信息，默认根据输入确认改变的方式来显示
    * @en_US The tooltip prompt information for jumping to the input box is displayed by default based on the confirmation of input changes
@@ -576,6 +585,11 @@ export interface XTableColumn extends XIdentityProperty {
    * @en_US Column content supports innerHTML rendering of HTML tags
    */
   innerHTML?: boolean;
+  /**
+   * @zh_CN 禁用拖动 checkbox 选中/取消
+   * @en_US Disable dragging checkboxes for selection/cancellation
+   */
+  checkboxDragDisabled?: boolean;
   /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes

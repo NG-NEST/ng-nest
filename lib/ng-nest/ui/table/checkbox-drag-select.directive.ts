@@ -1,6 +1,6 @@
-import { Directive, HostListener, inject, input, signal } from '@angular/core';
+import { Directive, DOCUMENT, HostListener, inject, input, output } from '@angular/core';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
-import { XTableRow } from './table.property';
+import { XTableColumn, XTableRow } from './table.property';
 import { XTableCheckboxDragSelectService } from './checkbox-drag-select.service';
 
 @Directive({
@@ -8,61 +8,83 @@ import { XTableCheckboxDragSelectService } from './checkbox-drag-select.service'
 })
 export class XTableCheckboxDragSelectDirective {
   private dragSelectService = inject(XTableCheckboxDragSelectService);
+  private document = inject(DOCUMENT);
 
   checkbox = inject(XCheckboxComponent, { host: true });
 
-  // 新增：所有行数据
   dragRows = input.required<XTableRow[]>();
   dragRow = input.required<XTableRow>();
-  dragKey = input.required<string>();
+  dragColumn = input.required<XTableColumn>();
+  dragDisabled = input<boolean>(false);
 
-  downValue = signal(false);
+  dragStart = output();
+  dragMove = output();
+  dragEnd = output<XTableRow[]>();
 
   @HostListener('mousedown', ['$event'])
   onMouseDown(event: MouseEvent) {
+    if (this.dragDisabled()) return;
     const target = event.target as HTMLElement;
 
     if (this.isCheckboxLike(target)) {
-      this.dragSelectService.isDragging = true;
-      this.downValue.set(!!this.checkbox.value());
-      // 记录起始行信息
+      this.dragSelectService.downValue = !!this.checkbox.value();
       this.dragSelectService.startIndex = this.dragRows().findIndex((row) => row.id === this.dragRow().id);
+      this.dragSelectService.isMouseDown = true;
       event.preventDefault();
     }
   }
 
   @HostListener('document:mouseup')
   onMouseUp() {
+    if (this.dragDisabled()) return;
+    if (this.dragSelectService.isDragging) {
+      this.dragEnd.emit(this.dragSelectService.changeRows);
+    }
     this.dragSelectService.isDragging = false;
     this.dragSelectService.startIndex = -1;
+    this.dragSelectService.downValue = false;
+    this.dragSelectService.isMouseDown = false;
+    this.dragSelectService.changeRows = [];
+    this.document.body.style.cursor = '';
   }
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
-    if (!this.dragSelectService.isDragging || this.dragSelectService.startIndex === -1) return;
+    if (this.dragDisabled()) return;
+    if (!this.dragSelectService.isMouseDown) return;
+    if (!this.dragSelectService.isDragging) {
+      this.dragSelectService.isDragging = true;
+      this.document.body.style.cursor = 'pointer';
+      this.dragStart.emit();
+    }
 
-    // 获取当前鼠标所在行元素
+    if (this.dragSelectService.startIndex === -1) return;
+
     const rowEl = (event.target as HTMLElement).closest('tr');
 
     if (!rowEl) return;
 
-    // 获取当前行key
     const currentKey = rowEl.getAttribute('data-row-key');
     const currentIndex = this.dragRows().findIndex((row) => `${row.id}` === currentKey);
 
     if (currentIndex === -1) return;
 
-    // 计算选择范围
     const minIndex = Math.min(this.dragSelectService.startIndex, currentIndex);
     const maxIndex = Math.max(this.dragSelectService.startIndex, currentIndex);
-    const checked = !this.downValue();
+    const checked = !this.dragSelectService.downValue;
 
-    // 更新范围内所有行的选中状态
     this.dragRows().forEach((row, index) => {
       if (index >= minIndex && index <= maxIndex) {
-        row[this.dragKey()] = checked;
+        if (!row.disabled) {
+          row[this.dragColumn().id] = checked;
+          if (!this.dragSelectService.changeRows.some((x) => x.id === row.id)) {
+            this.dragSelectService.changeRows.push(row);
+          }
+        }
       }
     });
+
+    this.dragMove.emit();
 
     event.preventDefault();
   }

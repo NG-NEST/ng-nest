@@ -1,7 +1,7 @@
-<tbody #tbody>
+<tbody #tbody [class.x-table-body-checkbox-dragging]="checkboxDragging()">
   @if (cellConfig()) {
     @for (row of data(); track row.id; let i = $index) {
-      <tr [style.gridTemplateColumns]="cellConfig()!.gridTemplateColumns">
+      <tr [style.gridTemplateColumns]="cellConfig()!.gridTemplateColumns" [attr.data-row-key]="row.id">
         @for (column of cellConfig()!.cells; track column; let j = $index) {
           <td
             [title]="getTitle(row, column)"
@@ -34,6 +34,7 @@
           [style.height.px]="getRowHeight()"
           [style.min-height.px]="getRowHeight()"
           (click)="onRowClick($event, row)"
+          [attr.data-row-key]="row.id"
         >
           <!-- rowHeight 为 0 的时候，index 下标获取不到 -->
           <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: getIndex(index, row) }"></ng-container>
@@ -112,11 +113,14 @@
         xTableCheckboxDragSelect
         [dragRows]="data()"
         [dragRow]="row"
-        [dragKey]="column.id"
+        [dragColumn]="column"
+        (dragStart)="checkboxDragging.set(true)"
+        (dragEnd)="checkboxDragging.set(false); table.setCheckbox($event, column)"
+        [dragDisabled]="row.disabled || column.checkboxDragDisabled || table.checkboxDragDisabled()"
         [data]="[{ id: true, label: '' }]"
         [(ngModel)]="row[column.id]"
         [disabled]="row.disabled"
-        (ngModelChange)="table.bodyChecked($event, column, row)"
+        (ngModelChange)="table.bodyChecked(column, row)"
         single
       ></x-checkbox>
     }

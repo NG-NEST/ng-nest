@@ -392,10 +392,17 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     this.detectChanges();
   }
 
-  bodyChecked(_checked: boolean, column: XTableColumn, row: XTableRow) {
+  setCheckbox(rows: XTableRow[], column: XTableColumn) {
+    this.setCheckedValues(column);
+
+    for (let row of rows) {
+      this.bodyCheckboxChange.emit(row);
+    }
+  }
+
+  bodyChecked(column: XTableColumn, row: XTableRow) {
     this.setCheckedValues(column);
     this.bodyCheckboxChange.emit(row);
-    // this.detectChanges();
   }
 
   setCheckedValues(column: XTableColumn) {

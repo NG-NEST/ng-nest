@@ -82,6 +82,9 @@
     border-top: none;
     position: relative;
     min-height: 7rem;
+    &.x-table-body-checkbox-dragging {
+      
+    }
     tr {
       display: flex;
       > td {

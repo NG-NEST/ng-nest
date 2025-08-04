@@ -14,6 +14,7 @@ export class CheckboxService extends XRepositoryAbstract {
       position: this.positions[Math.floor(Math.random() * 10 + 1) % 5],
       email: '邮箱' + i,
       phone: '手机' + i,
+      disabled: Math.floor(Math.random() * 10 + 1) % 5 === 0,
       organization: this.organizations[Math.floor(Math.random() * 10 + 1) % 5]
     };
   });

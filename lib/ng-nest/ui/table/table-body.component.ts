@@ -71,6 +71,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
   captionHeight = signal(0);
   footHeight = signal(0);
   paginationHeight = signal(0);
+  checkboxDragging = signal(false);
 
   bodyHeightSignal = computed(() => {
     const adaptionHeight = this.adaptionHeight();
@@ -261,7 +262,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
     if (this.table.allowCheckRow() && this.table.rowChecked()) {
       if (!XParentPath(event.target as HTMLElement).includes('x-checkbox')) {
         row[this.table.rowChecked()!.id] = !row[this.table.rowChecked()!.id];
-        this.table.bodyChecked(row[this.table.rowChecked()!.id], this.table.rowChecked()!, row);
+        this.table.bodyChecked(this.table.rowChecked()!, row);
       }
     }
     this.activatedRow.set(row);
