@@ -33975,6 +33975,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "checkboxDragDisabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Disable dragging checkboxes for batch selection/cancellation",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "manual",
         "type": "boolean",
         "toType": "boolean",
@@ -35291,6 +35309,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "innerHTML",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "checkboxDragDisabled",
+        "type": "boolean",
+        "label": "Disable dragging checkboxes for selection/cancellation",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "checkboxDragDisabled",
         "propType": "",
         "example": [
           {

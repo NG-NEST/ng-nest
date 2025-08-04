@@ -1,3 +1,13 @@
+## [20.0.5](https://github.com/NG-NEST/ng-nest/compare/20.0.4...20.0.5) (2025-08-04)
+
+
+### Features
+
+* **module:table:** add drag checkbox select ([231e1bb](https://github.com/NG-NEST/ng-nest/commit/231e1bbe32920228cd78708f314b5bdad59ac16e))
+* **module:table:** add table checkbox drag select ([0f2ba90](https://github.com/NG-NEST/ng-nest/commit/0f2ba90b114a11e66ec7285620101285036acba3))
+
+
+
 ## [20.0.4](https://github.com/NG-NEST/ng-nest/compare/20.0.3...20.0.4) (2025-07-05)
 
 

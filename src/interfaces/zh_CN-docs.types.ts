@@ -33975,6 +33975,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "checkboxDragDisabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "禁用拖动 checkbox 批量选中/取消",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "manual",
         "type": "boolean",
         "toType": "boolean",
@@ -35291,6 +35309,23 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "innerHTML",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "checkboxDragDisabled",
+        "type": "boolean",
+        "label": "禁用拖动 checkbox 选中/取消",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "checkboxDragDisabled",
         "propType": "",
         "example": [
           {

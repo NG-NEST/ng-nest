@@ -1,5 +1,16 @@
 import { Injectable } from '@angular/core';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XGroupBy, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
+import {
+  XRepositoryAbstract,
+  XQuery,
+  XResultList,
+  XGroupItem,
+  XFilter,
+  XChunk,
+  XGroupBy,
+  XSort,
+  XId,
+  XOrderBy
+} from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -14,7 +25,6 @@ export class CheckboxService extends XRepositoryAbstract {
       position: this.positions[Math.floor(Math.random() * 10 + 1) % 5],
       email: '邮箱' + i,
       phone: '手机' + i,
-      disabled: Math.floor(Math.random() * 10 + 1) % 5 === 0,
       organization: this.organizations[Math.floor(Math.random() * 10 + 1) % 5]
     };
   });
