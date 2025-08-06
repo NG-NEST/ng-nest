@@ -23,6 +23,15 @@ export const XTreeSelectPrefix = 'x-tree-select';
 const X_TREE_SELECT_CONFIG_NAME = 'treeSelect';
 
 /**
+ * @zh_CN Tree Select 节点排序默认值
+ * @en_US Tree node order default value
+ */
+export const X_TREE_SELECT_ORDER_DEFAULT: XTreeSelectOrder[] = [
+  { property: 'sort', order: 'asc' },
+  { property: 'label', order: 'asc' }
+];
+
+/**
  * Tree Select Property
  */
 @Component({ selector: `${XTreeSelectPrefix}-property`, template: '' })
@@ -122,6 +131,16 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
    * @en_US Only leaf nodes can be selected
    */
   readonly onlyLeaf = input<boolean, XBoolean>(this.config?.onlyLeaf ?? false, { transform: XToBoolean });
+  /**
+   * @zh_CN 排序属性
+   * @en_US Order property
+   */
+  readonly order = input<XTreeSelectOrder[]>(this.config?.order ?? X_TREE_SELECT_ORDER_DEFAULT);
+  /**
+   * @zh_CN 当开启多选的时候，点击父节点，包含子节点
+   * @en_US When selecting multiple options, click on the parent node to include the child nodes
+   */
+  readonly includeChildren = input<boolean, XBoolean>(this.config?.includeChildren ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 尺寸
    * @en_US Size
@@ -454,3 +473,22 @@ export interface XTreeSelectNode extends XParentIdentityProperty<XTreeSelectNode
  * @decorator component
  */
 export const XTreeSelectPortalPrefix = 'x-tree-select-portal';
+
+/**
+ * @zh_CN Tree Select 节点排序属性
+ * @en_US Tree node order property
+ */
+export interface XTreeSelectOrder {
+  /**
+   * @zh_CN treenode 排序属性
+   * @en_US treenode order property
+   */
+  property: string;
+  /**
+   * @zh_CN 排序方式
+   * @en_US order type
+   */
+  order: XTreeSelectOrderType;
+}
+
+export type XTreeSelectOrderType = 'asc' | 'desc';

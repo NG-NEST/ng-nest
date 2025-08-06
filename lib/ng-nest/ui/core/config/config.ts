@@ -679,6 +679,11 @@ export interface XTreeConfig {
   virtualScrollHeight?: string;
   itemSize?: number;
   caseSensitive?: boolean;
+  order?: {
+    property: string;
+    order: 'asc' | 'desc';
+  }[];
+  includeChildren?: boolean;
 }
 
 export interface XTextareaConfig {
@@ -707,6 +712,11 @@ export interface XTreeSelectConfig {
   showPath?: boolean;
   separator?: string;
   onlyLeaf?: boolean;
+  order?: {
+    property: string;
+    order: 'asc' | 'desc';
+  }[];
+  includeChildren?: boolean;
 }
 
 export interface XUploadConfig {

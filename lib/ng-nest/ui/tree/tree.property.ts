@@ -178,6 +178,11 @@ export class XTreeProperty extends XPropertyFunction(X_TREE_CONFIG_NAME) {
    */
   readonly objectArray = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
+   * @zh_CN 当开启多选的时候，点击父节点，包含子节点
+   * @en_US When selecting multiple options, click on the parent node to include the child nodes
+   */
+  readonly includeChildren = input<boolean, XBoolean>(this.config?.includeChildren ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 关键字高亮，针对下拉树搜索
    * @en_US Keyword highlighting
    */
@@ -206,7 +211,7 @@ export class XTreeProperty extends XPropertyFunction(X_TREE_CONFIG_NAME) {
    * @zh_CN 排序属性
    * @en_US Order property
    */
-  readonly order = input<XTreeOrder[]>(X_TREE_ORDER_DEFAULT);
+  readonly order = input<XTreeOrder[]>(this.config?.order ?? X_TREE_ORDER_DEFAULT);
   /**
    * @zh_CN 节点点击事件
    * @en_US Node click event

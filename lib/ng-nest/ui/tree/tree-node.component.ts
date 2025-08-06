@@ -169,28 +169,44 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     }
     if (this.tree.multiple()) {
       if (!this.tree.activatedId()) this.tree.activatedId.set([]);
+      const nodes = [node];
+      if (this.tree.includeChildren()) {
+        nodes.push(...this.getChildren());
+      }
       if (this.tree.objectArray()) {
         const ids = this.tree.activatedId().map((x: XTreeNode) => x.id);
         if (ids.includes(node.id)) {
           this.tree.activatedId.update((x) => {
-            x.splice(ids.indexOf(node.id), 1);
+            for (let it of nodes) {
+              x.splice(ids.indexOf(it.id), 1);
+            }
             return [...x];
           });
         } else {
           this.tree.activatedId.update((x) => {
-            x.push(node);
+            for (let it of nodes) {
+              if (!x.includes(it)) {
+                x.push(it);
+              }
+            }
             return [...x];
           });
         }
       } else {
         if (this.tree.activatedId().includes(node.id)) {
           this.tree.activatedId.update((x) => {
-            x.splice(this.tree.activatedId().indexOf(node.id), 1);
+            for (let it of nodes) {
+              x.splice(this.tree.activatedId().indexOf(it.id), 1);
+            }
             return [...x];
           });
         } else {
           this.tree.activatedId.update((x) => {
-            x.push(node.id);
+            for (let it of nodes) {
+              if (!x.includes(it.id)) {
+                x.push(it.id);
+              }
+            }
             return [...x];
           });
         }
@@ -234,6 +250,21 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     };
     setParent(this.node());
     this.cdr.detectChanges();
+  }
+
+  getChildren() {
+    const res: XTreeNode[] = [];
+    const getChildren = (children: XTreeNode[]) => {
+      if (XIsEmpty(children)) return;
+      for (let x of children) {
+        if (x.disabled) continue;
+        res.push(x);
+        getChildren(x.children as XTreeNode[]);
+      }
+    };
+    getChildren(this.node().children as XTreeNode[]);
+
+    return res;
   }
 
   setChildrenCheckbox(checked: boolean) {

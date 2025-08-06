@@ -18,11 +18,13 @@
     (nodeClick)="onNodeClick($event)"
     [multiple]="multiple()"
     [allowManyActivated]="multiple()"
+    [includeChildren]="includeChildren()"
     [objectArray]="objectArray()"
     [keywordText]="keywordText()"
     [caseSensitive]="caseSensitive()"
     [onlyLeaf]="onlyLeaf()"
     [nodeOpen]="onlyLeaf()"
+    [order]="order()!"
   ></x-tree>
   @if (isEmpty()) {
     <x-empty></x-empty>

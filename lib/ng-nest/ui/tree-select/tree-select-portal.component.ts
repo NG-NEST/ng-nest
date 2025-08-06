@@ -14,7 +14,7 @@ import {
   signal,
   DestroyRef
 } from '@angular/core';
-import { XTreeSelectNode, XTreeSelectPortalPrefix } from './tree-select.property';
+import { XTreeSelectNode, XTreeSelectOrder, XTreeSelectPortalPrefix } from './tree-select.property';
 import { XConnectBaseAnimation, XIsEmpty, XPlacement, XSize } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -63,6 +63,8 @@ export class XTreeSelectPortalComponent {
   size = input<XSize>();
   onlyLeaf = input<boolean>(false);
   expandedLevel = input<number>();
+  order = input<XTreeSelectOrder[]>();
+  includeChildren = input<boolean>(false);
 
   animating = output<boolean>();
   nodeClick = output<{ node: XTreeSelectNode; value?: XTreeSelectNode[] | (string | number)[] }>();

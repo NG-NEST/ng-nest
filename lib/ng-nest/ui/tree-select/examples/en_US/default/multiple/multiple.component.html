@@ -65,3 +65,14 @@
     >More {{ surplus }} . Total {{ total }}
   </ng-template>
 </div>
+<div class="row">
+  <x-tree-select
+    label="Multiple, include children"
+    [style.width.rem]="24"
+    [data]="data7()"
+    [(ngModel)]="model7"
+    (ngModelChange)="change($event)"
+    multiple
+    includeChildren
+  ></x-tree-select>
+</div>

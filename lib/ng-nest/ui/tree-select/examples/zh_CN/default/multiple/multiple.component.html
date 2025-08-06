@@ -65,3 +65,14 @@
     >更多 {{ surplus }} 个，共选中 {{ total }} 个
   </ng-template>
 </div>
+<div class="row">
+  <x-tree-select
+    label="多选，点击父节点包含子节点"
+    [style.width.rem]="24"
+    [data]="data7()"
+    [(ngModel)]="model7"
+    (ngModelChange)="change($event)"
+    multiple
+    includeChildren
+  ></x-tree-select>
+</div>

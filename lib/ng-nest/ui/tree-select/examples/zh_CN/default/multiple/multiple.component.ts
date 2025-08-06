@@ -31,6 +31,7 @@ export class ExMultipleComponent {
   data4 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
   data5 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
   data6 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
+  data7 = signal<XTreeSelectNode[]>(JSON.parse(JSON.stringify(this.data1())));
   model1 = signal<number | null>(null);
   model2 = signal([4, 13]);
   model3 = signal([
@@ -40,6 +41,7 @@ export class ExMultipleComponent {
   model4 = signal([4, 13]);
   model5 = signal([4, 9, 10, 13]);
   model6 = signal([4, 9, 10, 13]);
+  model7 = signal<number | null>(null);
 
   change(event: any) {
     console.log(event);

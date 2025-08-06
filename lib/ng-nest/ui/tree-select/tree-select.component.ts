@@ -207,6 +207,8 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     effect(() => this.portalComponent()?.setInput('keywordText', this.inputChanged()));
     effect(() => this.portalComponent()?.setInput('onlyLeaf', this.onlyLeaf()));
     effect(() => this.portalComponent()?.setInput('expandedLevel', this.expandedLevel()));
+    effect(() => this.portalComponent()?.setInput('order', this.order()));
+    effect(() => this.portalComponent()?.setInput('includeChildren', this.includeChildren()));
   }
 
   ngOnInit() {
@@ -722,7 +724,11 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
         this.multipleSearchValue.set('');
         this.inputChange.next('');
       }
-      this.setDisplayValue(node);
+      if (this.includeChildren()) {
+        this.setDisplayValue();
+      } else {
+        this.setDisplayValue(node);
+      }
     } else {
       node = node as XTreeSelectNode;
       if (this.showPath()) {
