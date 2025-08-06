@@ -1,3 +1,12 @@
+## [20.0.6](https://github.com/NG-NEST/ng-nest/compare/20.0.5...20.0.6) (2025-08-06)
+
+
+### Features
+
+* **module:tree-select:** when you select multiple nodes, you can click the parent node to contain child nodes ([851479d](https://github.com/NG-NEST/ng-nest/commit/851479d21ce5046f15e99988bfe8378e228baeaa))
+
+
+
 ## [20.0.5](https://github.com/NG-NEST/ng-nest/compare/20.0.4...20.0.5) (2025-08-04)
 
 

@@ -41288,6 +41288,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "includeChildren",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "When selecting multiple options, click on the parent node to include the child nodes",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "keywordText",
         "type": "string | string[]",
         "toType": "string | string[]",
@@ -41385,7 +41403,7 @@ export const en_US: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "Order property",
         "default": "X_TREE_ORDER_DEFAULT",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
         "example": [
           {
@@ -42697,6 +42715,20 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-tree-select'"
   },
+  "X_TREE_SELECT_ORDER_DEFAULT": {
+    "type": "const",
+    "label": "Tree node order default value",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "X_TREE_SELECT_ORDER_DEFAULT",
+    "value": "[{ property: 'sort', order: 'asc' },{ property: 'label', order: 'asc' }]"
+  },
   "XTreeSelectProperty": {
     "type": "class",
     "label": "Tree Select Property",
@@ -43021,6 +43053,42 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "Only leaf nodes can be selected",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "order",
+        "type": "XTreeSelectOrder[]",
+        "toType": "XTreeSelectOrder[]",
+        "inputType": "InputSignal<XTreeSelectOrder[]>",
+        "signal": "input",
+        "label": "Order property",
+        "default": "X_TREE_SELECT_ORDER_DEFAULT",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "includeChildren",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "When selecting multiple options, click on the parent node to include the child nodes",
         "default": "false",
         "withConfig": true,
         "description": "",
@@ -44161,6 +44229,54 @@ export const en_US: {[key: string]: AppProp} = {
     "selector": "x-tree-select-portal",
     "decorator": "component",
     "value": "'x-tree-select-portal'"
+  },
+  "XTreeSelectOrder": {
+    "type": "interface",
+    "label": "Tree node order property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "property",
+        "type": "string",
+        "label": "treenode order property",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "property",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "order",
+        "type": "XTreeSelectOrderType",
+        "label": "order type",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "order",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XTreeSelectOrder"
   },
   "XTypographyPrefix": {
     "type": "const",
