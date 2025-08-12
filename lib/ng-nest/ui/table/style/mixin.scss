@@ -83,7 +83,6 @@
     position: relative;
     min-height: 7rem;
     &.x-table-body-checkbox-dragging {
-      
     }
     tr {
       display: flex;
@@ -171,15 +170,35 @@
     }
   }
   &-scroll-top {
-    > thead {
-      box-shadow: $x-box-shadow-bottom;
-      z-index: 1;
+    > tbody {
+      &::before {
+        position: absolute;
+        box-shadow: inset 0 10px 8px -8px rgba(0, 0, 0, 0.15);
+        top: -1px;
+        right: 0;
+        height: 30px;
+        width: 100%;
+        transition: box-shadow 0.3s;
+        content: '';
+        pointer-events: none;
+        z-index: 10;
+      }
     }
   }
   &-scroll-left {
     .#{$x-table}-sticky-left-last {
-      box-shadow: $x-box-shadow-right;
-      border-right: $x-border-base;
+      &::after {
+        position: absolute;
+        box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.15);
+        top: 0;
+        right: 0;
+        bottom: -1px;
+        width: 30px;
+        transform: translate(100%);
+        transition: box-shadow 0.3s;
+        content: '';
+        pointer-events: none;
+      }
     }
   }
   &-td-adaption-height {
@@ -256,8 +275,18 @@
   &-has-scroll-bottom {
     &:not(.x-table-scroll-left-max) {
       .#{$x-table}-sticky-right-first {
-        box-shadow: $x-box-shadow-left;
-        border-left: $x-border-base;
+        &::after {
+          box-shadow: inset -10px 0 8px -8px #00000026;
+          position: absolute;
+          top: 0;
+          bottom: -1px;
+          left: 0;
+          width: 30px;
+          transform: translate(-100%);
+          transition: box-shadow 0.3s;
+          content: '';
+          pointer-events: none;
+        }
       }
     }
   }
