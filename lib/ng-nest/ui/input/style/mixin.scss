@@ -80,13 +80,12 @@
         flex: 1;
         width: 100%;
         font-size: $x-input-font-size;
-        background-color: $x-input-background-color-a200;
         background-image: none;
         border: $x-input-border;
         border-radius: $x-input-border-radius;
         border-width: 0;
         box-shadow: $x-input-box-shadow;
-        transition-property: background-color, border-color;
+        transition-property: background-color, border-color, border-width, border-radius;
         transition-duration: $x-animation-duration-slow;
         @include placeholder();
         &[disabled] {
@@ -178,7 +177,7 @@
         color: $x-text-400;
         cursor: not-allowed;
         border-color: $x-border-100;
-        background-color: $x-background-a100;
+        background-color: $x-background-a300;
       }
       > .#{$x-input-prefix}-value-template-value {
         color: $x-text-400;
@@ -306,6 +305,37 @@
       .#{$x-input-prefix}-row-after:not(.x-input-row-after-template) {
         border-width: $x-border-width;
         border-left-width: 0;
+      }
+    }
+  }
+  &-filled {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
+      > input {
+        border-color: transparent;
+        background-color: $x-background-a200;
+        &:hover {
+          background-color: $x-background-a300;
+        }
+        &:focus {
+          @include focus();
+          background-color: $x-input-background-color;
+        }
+      }
+    }
+  }
+  &-borderless {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
+      > input {
+        border: none;
+      }
+    }
+  }
+  &-underlined {
+    > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
+      > input {
+        background-color: transparent;
+        border-width: 0 0 $x-border-width;
+        border-radius: 0;
       }
     }
   }

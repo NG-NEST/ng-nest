@@ -9,7 +9,8 @@ import type {
   XTemplate,
   XAlign,
   XJustify,
-  XDirection
+  XDirection,
+  XVariant
 } from '@ng-nest/ui/core';
 
 /**
@@ -30,6 +31,11 @@ export class XInputProperty extends XFormControlFunction(X_INPUT_CONFIG_NAME) {
    * @en_US Input type
    */
   readonly type = input<XInputType>('text');
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XInputVariant>(this.config?.variant ?? 'outlined');
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
@@ -256,6 +262,11 @@ export interface XInputOption extends XFormOption {
    */
   type?: XInputType;
   /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XInputVariant;
+  /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
@@ -475,6 +486,12 @@ export interface XInputOption extends XFormOption {
  * @value "number" 数字
  */
 export type XInputType = 'text' | 'password' | 'number';
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XInputVariant = XVariant;
 
 /**
  * @zh_CN 图标布局方式，指在输入框中的位置
