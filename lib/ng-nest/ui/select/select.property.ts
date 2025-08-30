@@ -11,7 +11,8 @@ import type {
   XPlacement,
   XDirection,
   XAlign,
-  XJustify
+  XJustify,
+  XVariant
 } from '@ng-nest/ui/core';
 
 /**
@@ -32,6 +33,11 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    * @en_US Node data
    */
   readonly data = input<XData<XSelectNode>, XData<XSelectNode>>([], { transform: XToDataConvert });
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XSelectVariant>(this.config?.variant ?? 'outlined');
   /**
    * @zh_CN 宽度
    * @en_US width
@@ -250,6 +256,11 @@ export interface XSelectOption extends XFormOption {
    */
   data?: XData<XSelectNode>;
   /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XSelectVariant;
+  /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
@@ -438,6 +449,12 @@ export interface XSelectOption extends XFormOption {
  * @en_US Select data object
  */
 export interface XSelectNode extends XParentIdentityProperty<XSelectNode> {}
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XSelectVariant = XVariant;
 
 /**
  * Select Portal

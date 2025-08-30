@@ -539,6 +539,7 @@ export interface XRateConfig {
 export interface XResultConfig {}
 
 export interface XSelectConfig {
+  variant?: XVariant;
   placement?: XPositionTopBottom;
   clearable?: boolean;
   size?: XSize;
