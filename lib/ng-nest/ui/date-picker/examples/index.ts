@@ -10,3 +10,4 @@ export * from './zh_CN/default/size/size.component';
 export * from './zh_CN/default/today/today.component';
 export * from './zh_CN/default/time/time.component';
 export * from './zh_CN/default/year-month/year-month.component';
+export * from './zh_CN/default/variant/variant.component';

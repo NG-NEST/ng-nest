@@ -11,7 +11,8 @@ import type {
   XDirection,
   XAlign,
   XJustify,
-  XNumber
+  XNumber,
+  XVariant
 } from '@ng-nest/ui/core';
 
 /**
@@ -32,6 +33,11 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
    * @en_US Select type
    */
   readonly type = input<XDatePickerType>('date');
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XDatePickerVariant>(this.config?.variant ?? 'outlined');
   /**
    * @zh_CN 格式化类型
    * @en_US Format type
@@ -188,6 +194,11 @@ export interface XDatePickerOption extends XFormOption {
    * @en_US Select type
    */
   type?: XDatePickerType;
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XDatePickerVariant;
   /**
    * @zh_CN 格式化类型
    * @en_US Format type
@@ -354,6 +365,11 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    */
   readonly type = input<XDatePickerType>('date');
   /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XDatePickerVariant>(this.config?.variant ?? 'outlined');
+  /**
    * @zh_CN 格式化类型
    * @en_US Format type
    */
@@ -494,6 +510,11 @@ export interface XDateRangeOption extends XFormOption {
    * @en_US Select type
    */
   type?: XDatePickerType;
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XDatePickerVariant;
   /**
    * @zh_CN 格式化类型
    * @en_US Format type
@@ -703,6 +724,12 @@ export type XDatePickerType =
  * @en_US Date data type
  */
 export type XDatePickerModelType = 'date' | 'number' | 'string';
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XDatePickerVariant = XVariant;
 
 /**
  * DatePicker Portal

@@ -262,7 +262,7 @@
       }
       &.x-date-disabled {
         cursor: default;
-        background-color: $x-background-a200;
+        background-color: $x-background-a300;
         color: $x-text-700;
       }
     }
@@ -387,7 +387,7 @@
       }
       &.x-date-disabled {
         cursor: default;
-        background-color: $x-background-a200;
+        background-color: $x-background-a300;
         color: $x-text-700;
       }
     }
@@ -512,7 +512,7 @@
       }
       &.x-date-disabled {
         cursor: default;
-        background-color: $x-background-a200;
+        background-color: $x-background-a300;
         color: $x-text-700;
       }
     }
@@ -637,7 +637,7 @@
       }
       &.x-date-disabled {
         cursor: default;
-        background-color: $x-background-a200;
+        background-color: $x-background-a300;
         color: $x-text-700;
       }
     }
@@ -758,6 +758,33 @@
       @include hover();
     }
   }
+  &-filled {
+    .x-date-range-group {
+      border-color: transparent;
+      background-color: $x-background-a200;
+    }
+    &:not(.x-disabled) .x-date-range-group:hover {
+      background-color: $x-background-a300;
+    }
+    &:not(.x-disabled).x-date-range-active {
+      .x-date-range-group {
+        @include focus();
+        background-color: $x-date-picker-background-color;
+      }
+    }
+  }
+  &-borderless {
+    .x-date-range-group {
+      border: none;
+    }
+  }
+  &-underlined {
+    .x-date-range-group {
+      border-width: 0 0 $x-border-width;
+      border-radius: 0;
+    }
+  }
+
   &-active-bar {
     position: absolute;
     height: 0.125rem;

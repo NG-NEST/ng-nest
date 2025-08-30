@@ -37,6 +37,22 @@ export type XPosition = XPositionTopBottom | XPositionLeftRight;
 export type XType = 'initial' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text';
 
 /**
+ * @zh_CN 输入框形态变体
+ * - `'outlined'` : 默认
+ * - `'filled'` : 填充
+ * - `'borderless'` : 无边框
+ * - `'underlined'` : 下划线
+ * - `'fixed-filled'` : 固定填充
+ * @en_US Input box variant
+ * - `'outlined'` : Outlined
+ * - `'filled'` : Filled
+ * - `'borderless'` : Borderless
+ * - `'underlined'` : Underlined
+ * - `'fixed-filled'` : Fixed filled
+ */
+export type XVariant = 'outlined' | 'filled' | 'borderless' | 'underlined' | 'fixed-filled';
+
+/**
  * @zh_CN 状态类型
  * @en_US Status type
  */

@@ -20,6 +20,7 @@ import type {
   XPositionTopBottom,
   XStatus,
   XAlign,
+  XVariant,
   XTemplate,
   XStyleMap
 } from '../interfaces';
@@ -120,6 +121,7 @@ export interface XComponentConfig {
   steps?: XStepsConfig;
   switch?: XSwitchConfig;
   table?: XTableConfig;
+  tableView?: XTableViewConfig;
   tabs?: XTabsConfig;
   tag?: XTagConfig;
   textRetract?: XTextRetractConfig;
@@ -173,10 +175,12 @@ export interface XAvatarConfig {
 }
 
 export interface XAutoCompleteConfig {
+  variant?: XVariant;
   placement?: XPositionTopBottom;
   debounceTime?: number;
   size?: XSize;
   bordered?: boolean;
+  portalMaxHeight?: string;
   caseSensitive?: boolean;
   onlySelect?: boolean;
 }
@@ -223,6 +227,7 @@ export interface XCarouselConfig {
 }
 
 export interface XCascadeConfig {
+  variant?: XVariant;
   placement?: XCorner;
   size?: XSize;
   clearable?: boolean;
@@ -250,6 +255,7 @@ export interface XColorConfig {
 }
 
 export interface XColorPickerConfig {
+  variant?: XVariant;
   placement?: XCorner;
   size?: XSize;
   bordered?: boolean;
@@ -281,6 +287,7 @@ export interface XCrumbComfig {
 }
 
 export interface XDatePickerConfig {
+  variant?: XVariant;
   format?: string;
   clearable?: boolean;
   placement?: XCorner;
@@ -289,6 +296,7 @@ export interface XDatePickerConfig {
 }
 
 export interface XDateRangeConfig {
+  variant?: XVariant;
   format?: string;
   clearable?: boolean;
   placement?: XCorner;
@@ -376,6 +384,7 @@ export interface XInnerConfig {
 }
 
 export interface XInputConfig {
+  variant?: XVariant;
   clearable?: boolean;
   iconLayout?: XPositionLeftRight;
   size?: XSize;
@@ -614,6 +623,8 @@ export interface XTableConfig {
   simpleIndexWidth?: string;
   inputIndexSizeSureType?: 'enter' | 'blur' | 'both';
 }
+
+export interface XTableViewConfig {}
 
 export interface XTabsConfig {
   size?: XSize;
