@@ -6,7 +6,8 @@ import {
   ExHoverComponent,
   ExLabelComponent,
   ExRequiredComponent,
-  ExSizeComponent
+  ExSizeComponent,
+  ExVariantComponent
 } from '@ng-nest/ui/cascade/examples';
 
 @Component({
@@ -18,7 +19,8 @@ import {
     ExHoverComponent,
     ExLabelComponent,
     ExRequiredComponent,
-    ExSizeComponent
+    ExSizeComponent,
+    ExVariantComponent
   ],
   templateUrl: './cascade.component.html'
 })

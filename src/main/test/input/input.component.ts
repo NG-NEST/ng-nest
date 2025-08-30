@@ -11,7 +11,8 @@ import {
   ExLengthComponent,
   ExPerpostComponent,
   ExRequiredComponent,
-  ExSizeComponent
+  ExSizeComponent,
+  ExVariantComponent
 } from '@ng-nest/ui/input/examples';
 
 @Component({
@@ -28,7 +29,8 @@ import {
     ExLengthComponent,
     ExPerpostComponent,
     ExRequiredComponent,
-    ExSizeComponent
+    ExSizeComponent,
+    ExVariantComponent
   ],
   templateUrl: './input.component.html'
 })

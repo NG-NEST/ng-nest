@@ -11,7 +11,8 @@ import {
   ExRangeComponent,
   ExTimeComponent,
   ExTodayComponent,
-  ExYearMonthComponent
+  ExYearMonthComponent,
+  ExVariantComponent
 } from '@ng-nest/ui/date-picker/examples';
 
 @Component({
@@ -28,7 +29,8 @@ import {
     ExRangeComponent,
     ExTimeComponent,
     ExTodayComponent,
-    ExYearMonthComponent
+    ExYearMonthComponent,
+    ExVariantComponent
   ],
   templateUrl: './date-picker.component.html'
 })

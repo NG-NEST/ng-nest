@@ -233,8 +233,16 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./switch/switch.component').then((x) => x.TeSwitchComponent)
       },
       {
+        path: 'scrollable',
+        loadComponent: () => import('./scrollable/scrollable.component').then((x) => x.TeScrollableComponent)
+      },
+      {
         path: 'table',
         loadComponent: () => import('./table/table.component').then((x) => x.TeTableComponent)
+      },
+      {
+        path: 'table-view',
+        loadComponent: () => import('./table-view/table-view.component').then((x) => x.TeTableViewComponent)
       },
       {
         path: 'tabs',

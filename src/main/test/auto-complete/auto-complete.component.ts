@@ -6,7 +6,8 @@ import {
   ExDisabledComponent,
   ExLabelComponent,
   ExRequiredComponent,
-  ExSizeComponent
+  ExSizeComponent,
+  ExVariantComponent
 } from '@ng-nest/ui/auto-complete/examples';
 
 @Component({
@@ -18,7 +19,8 @@ import {
     ExDisabledComponent,
     ExLabelComponent,
     ExRequiredComponent,
-    ExSizeComponent
+    ExSizeComponent,
+    ExVariantComponent
   ],
   templateUrl: './auto-complete.component.html'
 })
