@@ -51,12 +51,16 @@ export class XAutoCompletePortalComponent implements OnInit {
   inputCom = input<XInputComponent>();
   keywordText = model<string>('');
   caseSensitive = input<boolean>(false);
+  portalMaxHeight = input<string>('');
+  portalHeight = input<string>('');
+  portalWidth = input<string>('');
   animating = output<boolean>();
   nodeClick = output<XAutoCompleteNode>();
   closeSubject!: Subject<void>;
   keydownSubject!: Subject<KeyboardEvent>;
   active = signal(-1);
   destroy = signal(false);
+
   private unSubject = new Subject<void>();
   private destroyRef = inject(DestroyRef);
 

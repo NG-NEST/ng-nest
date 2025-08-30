@@ -11,7 +11,8 @@ import {
   XToNumber,
   XNumber,
   XToBoolean,
-  XToCssPixelValue
+  XToCssPixelValue,
+  XVariant
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, model, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
@@ -35,6 +36,11 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    */
   readonly data = input<XData<XAutoCompleteNode>>([]);
   /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XAutoCompleteVariant>(this.config?.variant ?? 'outlined');
+  /**
    * @zh_CN 输入延迟执行时间，ms
    * @en_US Enter a delay execution time, ms
    */
@@ -54,6 +60,30 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    * @en_US Display Border
    */
   readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
+  /**
+   * @zh_CN 下拉框的最大高度
+   * @en_US The biggest height of the drop-down box
+   */
+  readonly portalMaxHeight = input<string, XNumber>(this.config?.portalMaxHeight ?? '12rem', {
+    transform: XToCssPixelValue
+  });
+  /**
+   * @zh_CN 下拉框的高度，启用虚拟滚动的时候必须设置一个高度
+   * @en_US The biggest height of the drop-down box
+   */
+  readonly portalHeight = input<string, XNumber>('', {
+    transform: XToCssPixelValue
+  });
+  /**
+   * @zh_CN 下拉框的宽度
+   * @en_US The width of the drop-down box
+   */
+  readonly portalWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
+  /**
+   * @zh_CN 下拉框设置样式名
+   * @en_US The style class name of the drop-down box
+   */
+  readonly portalClass = input<string | string[]>('');
   /**
    * @zh_CN 匹配区分大小写
    * @en_US Case-sensitive
@@ -180,6 +210,11 @@ export interface XAutoCompleteOption extends XFormOption {
    * @en_US Node data
    */
   data?: XData<XAutoCompleteNode>;
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XAutoCompleteVariant;
   /**
    * @zh_CN 输入延迟执行时间，ms
    * @en_US Enter a delay execution time, ms
@@ -316,6 +351,12 @@ export interface XAutoCompleteOption extends XFormOption {
    */
   nodeEmit?: (node: XAutoCompleteNode) => void;
 }
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XAutoCompleteVariant = XVariant;
 
 /**
  * @zh_CN AutoComplete 数据对象

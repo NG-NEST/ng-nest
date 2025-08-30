@@ -85,6 +85,9 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
     effect(() => this.portalComponent()?.setInput('data', this.searchNodes()));
     effect(() => this.portalComponent()?.setInput('nodeTpl', this.nodeTpl()));
+    effect(() => this.portalComponent()?.setInput('portalMaxHeight', this.portalMaxHeight()));
+    effect(() => this.portalComponent()?.setInput('portalHeight', this.portalHeight()));
+    effect(() => this.portalComponent()?.setInput('portalWidth', this.portalWidth()));
     effect(() => this.portalComponent()?.setInput('caseSensitive', this.caseSensitive()));
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
     effect(() => this.portalComponent()?.setInput('keywordText', this.inputChanged()));
@@ -218,7 +221,8 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     const box = this.inputCom().inputRef().nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
-      width: box.width,
+      panelClass: this.portalClass(),
+      width: this.portalWidth() || box.width,
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };

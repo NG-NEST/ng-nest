@@ -3,6 +3,8 @@
   class="x-auto-complete-portal"
   tabindex="-1"
   (click)="inputCom()?.inputFocus('focus'); stopPropagation($event)"
+  [style.maxHeight]="portalHeight() ? portalHeight() : portalMaxHeight()"
+  [style.height]="portalHeight()"
 >
   <x-list
     #list
