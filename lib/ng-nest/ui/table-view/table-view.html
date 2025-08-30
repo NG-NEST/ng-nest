@@ -1,0 +1,18 @@
+<thead>
+  <tr *xHeaderRowDef>
+    @for (columnName of columns(); track columnName) {
+      <ng-container *ngTemplateOutlet="columnMap[columnName]?.header?.template"></ng-container>
+    }
+  </tr>
+</thead>
+<tbody>
+  @for (row of data(); track row) {
+    <tr x-row *xRowDef="row">
+      @for (columnName of columns(); track columnName) {
+        <ng-container
+          *ngTemplateOutlet="columnMap[columnName]?.cell?.template; context: { $implicit: row }"
+        ></ng-container>
+      }
+    </tr>
+  }
+</tbody>

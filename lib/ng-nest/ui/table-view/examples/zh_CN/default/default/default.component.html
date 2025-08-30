@@ -1,0 +1,8 @@
+<table x-table-view [data]="data" [columns]="columns">
+  @for (key of columns; track key) {
+    <ng-container [xColumnDef]="key">
+      <th x-header-cell *xHeaderCellDef>{{ key }}</th>
+      <td x-cell *xCellDef="let row">{{ row[key] }}</td>
+    </ng-container>
+  }
+</table>

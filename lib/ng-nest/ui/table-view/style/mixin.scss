@@ -1,0 +1,51 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin table-view {
+  & {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  thead {
+    position: sticky;
+    top: 0;
+    th {
+      padding: 0 0.5rem;
+      text-align: left;
+      font-weight: 600;
+      color: $x-text;
+      border-top: $x-border-base;
+      border-bottom: $x-border-base;
+      border-right: $x-border-base;
+      cursor: default;
+      background-color: $x-background;
+      &:first-child {
+        border-left: $x-border-base;
+      }
+      &.x-header-cell-actived {
+        background-color: $x-background-a100;
+      }
+    }
+  }
+
+  tbody tr.x-row-actived {
+    background-color: $x-background-a100;
+  }
+
+  tbody td {
+    padding: 0 0.5rem;
+    text-align: left;
+    font-weight: 500;
+    color: $x-text;
+    border-bottom: $x-border-base;
+    border-right: $x-border-base;
+    cursor: default;
+    &:first-child {
+      border-left: $x-border-base;
+    }
+    &.x-cell-selected {
+      border-color: $x-border-a200;
+      background-color: $x-primary-900;
+    }
+  }
+}
