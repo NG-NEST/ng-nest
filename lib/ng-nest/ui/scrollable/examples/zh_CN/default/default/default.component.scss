@@ -1,0 +1,10 @@
+:host {
+  .box {
+    width: 200px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    p {
+      white-space: nowrap;
+    }
+  }
+}

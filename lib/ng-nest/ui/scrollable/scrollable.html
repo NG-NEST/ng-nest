@@ -1,0 +1,13 @@
+<div class="x-scrollable" [class.active]="isActive()" (mouseenter)="onHostEnter()" (mouseleave)="onHostLeave()">
+  <div #content class="x-scrollable-content" (scroll)="updateScrollbars()">
+    <ng-content></ng-content>
+  </div>
+
+  <div #trackY class="x-scrollable-track x-scrollable-track-y">
+    <div #thumbY class="x-scrollable-thumb x-scrollable-thumb-y" (mousedown)="startDrag($event, 'y')"></div>
+  </div>
+
+  <div #trackX class="x-scrollable-track x-scrollable-track-x">
+    <div #thumbX class="x-scrollable-thumb x-scrollable-thumb-x" (mousedown)="startDrag($event, 'x')"></div>
+  </div>
+</div>
