@@ -14,13 +14,15 @@
 
 @mixin cascade-portal {
   & {
-    margin: 0.0625rem 0;
-    font-size: $x-cascade-font-size;
     color: $x-text;
+    width: 100%;
     border-radius: $x-border-small-radius;
     box-shadow: $x-box-shadow;
-    background-color: $x-background-100;
+    position: relative;
     display: flex;
+    background-color: $x-background-100;
+    overflow: hidden auto;
+    max-height: calc(calc(#{$x-cascade-height} * 6) + calc(#{$x-border-width} * 7));
   }
   &:focus {
     outline: none;

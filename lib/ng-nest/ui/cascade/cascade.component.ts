@@ -213,6 +213,7 @@ export class XCascadeComponent extends XCascadeProperty implements OnInit, After
     const config: OverlayConfig = {
       backdropClass: '',
       width: this.portalWidth(),
+      panelClass: this.portalClass(),
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };

@@ -12,7 +12,8 @@ import type {
   XAlign,
   XTemplate,
   XDirection,
-  XJustify
+  XJustify,
+  XVariant
 } from '@ng-nest/ui/core';
 
 /**
@@ -33,6 +34,11 @@ export class XCascadeProperty extends XFormControlFunction(X_CASCADE_CONFIG_NAME
    * @en_US Node data
    */
   readonly data = input<XData<XCascadeNode>>([]);
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XCascadeVariant>(this.config?.variant ?? 'outlined');
   /**
    * @zh_CN 展示方位
    * @en_US Display position
@@ -209,6 +215,11 @@ export interface XCascadeOption extends XFormOption {
    */
   data?: XData<XCascadeNode>;
   /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XCascadeVariant;
+  /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
@@ -351,6 +362,12 @@ export interface XCascadeNode extends XParentIdentityProperty<XCascadeNode> {}
  * @en_US Sub node triggering method
  */
 export type XCascadeNodeTrigger = XTrigger;
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XCascadeVariant = XVariant;
 
 /**
  * Cascade-Portal
