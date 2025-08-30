@@ -1,7 +1,17 @@
 import { XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, model } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
-import type { XAlign, XBoolean, XCorner, XDirection, XJustify, XNumber, XSize, XTemplate } from '@ng-nest/ui/core';
+import type {
+  XAlign,
+  XBoolean,
+  XCorner,
+  XDirection,
+  XJustify,
+  XNumber,
+  XSize,
+  XTemplate,
+  XVariant
+} from '@ng-nest/ui/core';
 
 /**
  * ColorPicker
@@ -16,6 +26,11 @@ const X_COLOR_CONFIG_NAME = 'colorPicker';
  */
 @Component({ selector: `${XColorPickerPrefix}-property`, template: '' })
 export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NAME) {
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XColorPickerVariant>(this.config?.variant ?? 'outlined');
   /**
    * @zh_CN 展示方位
    * @en_US Display position
@@ -133,6 +148,11 @@ export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NA
  */
 export interface XColorPickerOption extends XFormOption {
   /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XColorPickerVariant;
+  /**
    * @zh_CN 展示方位
    * @en_US Display position
    */
@@ -249,6 +269,12 @@ export interface XColorPickerOption extends XFormOption {
  * @en_US Color type
  */
 export type XColorType = 'hex' | 'rgba' | 'hsla';
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XColorPickerVariant = XVariant;
 
 /**
  * ColorPicker-Portal
