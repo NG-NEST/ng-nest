@@ -1,4 +1,4 @@
-export * from './table-view';
+export * from './table-view.component';
 export * from './cell';
 export * from './column';
-export * from './module';
+export * from './table-view.module';

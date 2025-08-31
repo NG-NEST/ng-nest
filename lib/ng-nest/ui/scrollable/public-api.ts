@@ -1,2 +1,2 @@
-export * from './scrollable';
-export * from './module';
+export * from './scrollable.component';
+export * from './scrollable.module';

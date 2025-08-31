@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostBinding, HostListener, inject, Input, TemplateRef } from '@angular/core';
 import { XTableViewService } from './table-view.service';
-import { XTableViewComponent } from './table-view';
+import { XTableViewComponent } from './table-view.component';
 
 @Directive({
   selector: '[xCellDef]'

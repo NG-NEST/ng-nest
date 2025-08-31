@@ -1,3 +1,29 @@
+## [20.0.7](https://github.com/NG-NEST/ng-nest/compare/20.0.6...20.0.7) (2025-08-31)
+
+
+### Bug Fixes
+
+* **module:table:** fix table scroll style ([f707e7c](https://github.com/NG-NEST/ng-nest/commit/f707e7c063dba6f9ca34d165c01844761906b91f))
+
+
+### Features
+
+* add variant examples ([d5b8443](https://github.com/NG-NEST/ng-nest/commit/d5b84436e7c844fcb2571a0effc5b43404c35707))
+* **module:auto-complete:** add variant property ([c9add93](https://github.com/NG-NEST/ng-nest/commit/c9add93db66013e3672da1b274c4271bb48e81ca))
+* **module:cascade:** add variant property ([d5f0d79](https://github.com/NG-NEST/ng-nest/commit/d5f0d796f964e476ddbdea3e9427203c5ac690dc))
+* **module:color-picker:** add variant property ([93e4d4f](https://github.com/NG-NEST/ng-nest/commit/93e4d4fc5ea6b8e0fe345ed8fbafa2f7629b611e))
+* **module:date-picker:** add variant property ([4c4bb1b](https://github.com/NG-NEST/ng-nest/commit/4c4bb1bc86d20c0329999c7f97621122a9aed806))
+* **module:input-number:** add variant property ([13022d9](https://github.com/NG-NEST/ng-nest/commit/13022d94762b187d1d2597f4355b9aad98a99c18))
+* **module:input-number:** add variant property ([bb24075](https://github.com/NG-NEST/ng-nest/commit/bb240752024f9a62a8eb566ebf284862ce6d47c0))
+* **module:input:** add variant property ([ea1a580](https://github.com/NG-NEST/ng-nest/commit/ea1a5801773c7aa18135bf1d822a1d5159f37a6a))
+* **module:scrollable:** add scrollable component ([0c35037](https://github.com/NG-NEST/ng-nest/commit/0c35037839096555d26b1764a04cbba02964243d))
+* **module:select:** add variant property ([7dd0859](https://github.com/NG-NEST/ng-nest/commit/7dd0859ce5aae717177b1c0b9f4eba4c7525873b))
+* **module:table-view:** add table view component ([ae2dba3](https://github.com/NG-NEST/ng-nest/commit/ae2dba31cfbb60e400fc22f1881be9bccc559241))
+* **module:time-picker:** add variant property ([6166e37](https://github.com/NG-NEST/ng-nest/commit/6166e372cd4d5f61ed5f59a6c123bf6ececc97f5))
+* **module:tree-select:** add variant property ([a6c3df3](https://github.com/NG-NEST/ng-nest/commit/a6c3df3577707882bd24b8393e008589245b7799))
+
+
+
 ## [20.0.6](https://github.com/NG-NEST/ng-nest/compare/20.0.5...20.0.6) (2025-08-06)
 
 

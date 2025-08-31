@@ -1,6 +1,6 @@
 import { Directive, Input, OnInit, ViewContainerRef, TemplateRef, HostBinding, inject } from '@angular/core';
 import { XTableViewService } from './table-view.service';
-import { XTableViewComponent } from './table-view';
+import { XTableViewComponent } from './table-view.component';
 
 @Directive({
   selector: '[xRowDef]'

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { XTableViewComponent } from './table-view';
+import { XTableViewComponent } from './table-view.component';
 import { XCell, XCellDef, XHeaderCell, XHeaderCellDef } from './cell';
 import { XColumnDef } from './column';
 

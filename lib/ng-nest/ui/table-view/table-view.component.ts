@@ -18,8 +18,8 @@ import { XCell, XHeaderCell } from './cell';
 
 @Component({
   selector: 'table[x-table-view]',
-  templateUrl: './table-view.html',
-  styleUrls: ['./table-view.scss'],
+  templateUrl: './table-view.component.html',
+  styleUrls: ['./table-view.component.scss'],
   imports: [NgTemplateOutlet, XRow, XRowDef, XHeaderRowDef],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

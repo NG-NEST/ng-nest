@@ -8,14 +8,6 @@ hidden: true
 
 Scrollable
 
-## Used alone
-
-{{ __component }}
-
-## Sample code
-
-{{ __examples }}
-
 ## API
 
 {{ __api }}

@@ -14,8 +14,8 @@ type DragAxis = 'x' | 'y';
 
 @Component({
   selector: 'x-scrollable',
-  templateUrl: './scrollable.html',
-  styleUrls: ['./scrollable.scss'],
+  templateUrl: './scrollable.component.html',
+  styleUrls: ['./scrollable.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

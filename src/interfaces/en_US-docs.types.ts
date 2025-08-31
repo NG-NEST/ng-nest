@@ -1716,6 +1716,20 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XType",
     "value": "'initial' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'"
   },
+  "XVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "- `'outlined'` : Outlined\n- `'filled'` : Filled\n- `'borderless'` : Borderless\n- `'underlined'` : Underlined\n- `'fixed-filled'` : Fixed filled",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XVariant",
+    "value": "'outlined' | 'filled' | 'borderless' | 'underlined' | 'fixed-filled'"
+  },
   "XStatus": {
     "type": "type",
     "label": "Status type",
@@ -2811,6 +2825,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "variant",
+        "type": "XAutoCompleteVariant",
+        "toType": "XAutoCompleteVariant",
+        "inputType": "InputSignal<XAutoCompleteVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "debounceTime",
         "type": "XNumber",
         "toType": "number",
@@ -2881,6 +2913,78 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "portalMaxHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The biggest height of the drop-down box",
+        "default": "'12rem'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The biggest height of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The width of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalClass",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "The style class name of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "caseSensitive",
@@ -3322,6 +3426,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "data",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "variant",
+        "type": "XAutoCompleteVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
         "propType": "",
         "example": [
           {
@@ -3794,6 +3915,20 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": [
       "XFormOption"
     ]
+  },
+  "XAutoCompleteVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAutoCompleteVariant",
+    "value": "XVariant"
   },
   "XAutoCompleteNode": {
     "type": "interface",
@@ -6168,6 +6303,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "variant",
+        "type": "XCascadeVariant",
+        "toType": "XCascadeVariant",
+        "inputType": "InputSignal<XCascadeVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "placement",
         "type": "XCorner",
         "toType": "XCorner",
@@ -6778,6 +6931,23 @@ export const en_US: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "variant",
+        "type": "XCascadeVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "placement",
         "type": "XCorner",
         "label": "Display position",
@@ -7254,6 +7424,20 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCascadeNodeTrigger",
     "value": "XTrigger"
+  },
+  "XCascadeVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XCascadeVariant",
+    "value": "XVariant"
   },
   "XCascadePortalPrefix": {
     "type": "const",
@@ -8668,6 +8852,24 @@ export const en_US: {[key: string]: AppProp} = {
     ],
     "properties": [
       {
+        "name": "variant",
+        "type": "XColorPickerVariant",
+        "toType": "XColorPickerVariant",
+        "inputType": "InputSignal<XColorPickerVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "placement",
         "type": "XCorner",
         "toType": "XCorner",
@@ -9081,6 +9283,23 @@ export const en_US: {[key: string]: AppProp} = {
     ],
     "properties": [
       {
+        "name": "variant",
+        "type": "XColorPickerVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "placement",
         "type": "XCorner",
         "label": "Display position",
@@ -9473,6 +9692,20 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XColorType",
     "value": "'hex' | 'rgba' | 'hsla'"
+  },
+  "XColorPickerVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XColorPickerVariant",
+    "value": "XVariant"
   },
   "XColorPickerPortalPrefix": {
     "type": "const",
@@ -10375,6 +10608,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "variant",
+        "type": "XDatePickerVariant",
+        "toType": "XDatePickerVariant",
+        "inputType": "InputSignal<XDatePickerVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "format",
         "type": "string",
         "toType": "string",
@@ -10931,6 +11182,23 @@ export const en_US: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "variant",
+        "type": "XDatePickerVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "format",
         "type": "string",
         "label": "Format type",
@@ -11475,6 +11743,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "variant",
+        "type": "XDatePickerVariant",
+        "toType": "XDatePickerVariant",
+        "inputType": "InputSignal<XDatePickerVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "format",
         "type": "string",
         "toType": "string",
@@ -11968,6 +12254,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "type",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "variant",
+        "type": "XDatePickerVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
         "propType": "",
         "example": [
           {
@@ -12561,6 +12864,20 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDatePickerModelType",
     "value": "'date' | 'number' | 'string'"
+  },
+  "XDatePickerVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDatePickerVariant",
+    "value": "XVariant"
   },
   "XDatePickerPortalPrefix": {
     "type": "const",
@@ -20116,6 +20433,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "variant",
+        "type": "XInputVariant",
+        "toType": "XInputVariant",
+        "inputType": "InputSignal<XInputVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "clearable",
         "type": "XBoolean",
         "toType": "boolean",
@@ -20906,6 +21241,23 @@ export const en_US: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "variant",
+        "type": "XInputVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "clearable",
         "type": "boolean",
         "label": "Clear button",
@@ -21639,6 +21991,20 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XInputType",
     "value": "'text' | 'password' | 'number'"
   },
+  "XInputVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XInputVariant",
+    "value": "XVariant"
+  },
   "XInputIconLayoutType": {
     "type": "type",
     "label": "Icon layout, refers to the position in the input box",
@@ -21767,6 +22133,24 @@ export const en_US: {[key: string]: AppProp} = {
       }
     ],
     "properties": [
+      {
+        "name": "variant",
+        "type": "XInputNumberVariant",
+        "toType": "XInputNumberVariant",
+        "inputType": "InputSignal<XInputNumberVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
       {
         "name": "min",
         "type": "XNumber",
@@ -22217,6 +22601,23 @@ export const en_US: {[key: string]: AppProp} = {
     ],
     "properties": [
       {
+        "name": "variant",
+        "type": "XInputNumberVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "min",
         "type": "number",
         "label": "Minimum",
@@ -22629,6 +23030,20 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": [
       "XFormOption"
     ]
+  },
+  "XInputNumberVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XInputNumberVariant",
+    "value": "XVariant"
   },
   "XRowPrefix": {
     "type": "const",
@@ -29434,6 +29849,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToDataConvert"
       },
       {
+        "name": "variant",
+        "type": "XSelectVariant",
+        "toType": "XSelectVariant",
+        "inputType": "InputSignal<XSelectVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "width",
         "type": "XNumber",
         "toType": "string",
@@ -30188,6 +30621,23 @@ export const en_US: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "variant",
+        "type": "XSelectVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "clearable",
         "type": "boolean",
         "label": "Clear button",
@@ -30820,6 +31270,20 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": [
       "XParentIdentityProperty<XSelectNode>"
     ]
+  },
+  "XSelectVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSelectVariant",
+    "value": "XVariant"
   },
   "XSelectPortalPrefix": {
     "type": "const",
@@ -36376,6 +36840,75 @@ export const en_US: {[key: string]: AppProp} = {
       "XProperty"
     ]
   },
+  "XTableViewPrefix": {
+    "type": "const",
+    "label": "Table view",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XTableViewPrefix",
+    "selector": "x-table-view",
+    "decorator": "component",
+    "value": "'x-table-view'"
+  },
+  "XTableViewProperty": {
+    "type": "class",
+    "label": "Table view Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "data",
+        "type": "any[]",
+        "toType": "any[]",
+        "inputType": "InputSignal<any[]>",
+        "signal": "input",
+        "label": "Row data",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "columns",
+        "type": "string[]",
+        "toType": "string[]",
+        "inputType": "InputSignal<string[]>",
+        "signal": "input",
+        "label": "Columns data",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XTableViewProperty",
+    "extends": [
+      "XPropertyFunction(X_TABLE_VIEW_CONFIG_NAME)"
+    ]
+  },
   "XTabsPrefix": {
     "type": "const",
     "label": "Tabs",
@@ -37215,6 +37748,24 @@ export const en_US: {[key: string]: AppProp} = {
     ],
     "properties": [
       {
+        "name": "variant",
+        "type": "XTextareaVariant",
+        "toType": "XTextareaVariant",
+        "inputType": "InputSignal<XTextareaVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "clearable",
         "type": "XBoolean",
         "toType": "boolean",
@@ -37591,6 +38142,23 @@ export const en_US: {[key: string]: AppProp} = {
       }
     ],
     "properties": [
+      {
+        "name": "variant",
+        "type": "XTextareaVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
       {
         "name": "clearable",
         "type": "boolean",
@@ -38053,6 +38621,20 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XTextareaIconLayoutType",
     "value": "XPositionLeftRight"
   },
+  "XTextareaVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XTextareaVariant",
+    "value": "XVariant"
+  },
   "XThemePrefix": {
     "type": "const",
     "label": "Theme",
@@ -38270,6 +38852,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "variant",
+        "type": "XTimePickerVariant",
+        "toType": "XTimePickerVariant",
+        "inputType": "InputSignal<XTimePickerVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "format",
         "type": "string",
         "toType": "string",
@@ -38421,6 +39021,24 @@ export const en_US: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "Disabled time",
         "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "portalClass",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "The style class name of the drop-down box",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -38853,6 +39471,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "type",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "variant",
+        "type": "XTimePickerVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
         "propType": "",
         "example": [
           {
@@ -39390,6 +40025,20 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTimePickerType",
     "value": "'time' | 'hour' | 'minute'"
+  },
+  "XTimePickerVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XTimePickerVariant",
+    "value": "XVariant"
   },
   "XTimePickerPreset": {
     "type": "interface",
@@ -42759,6 +43408,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToDataConvert"
       },
       {
+        "name": "variant",
+        "type": "XTreeSelectVariant",
+        "toType": "XTreeSelectVariant",
+        "inputType": "InputSignal<XTreeSelectVariant>",
+        "signal": "input",
+        "label": "Input variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "clearable",
         "type": "XBoolean",
         "toType": "boolean",
@@ -42901,6 +43568,60 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The biggest height of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The width of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalClass",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "The style class name of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "search",
@@ -43486,6 +44207,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "data",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "variant",
+        "type": "XTreeSelectVariant",
+        "label": "Input variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "variant",
         "propType": "",
         "example": [
           {
@@ -44277,6 +45015,34 @@ export const en_US: {[key: string]: AppProp} = {
       }
     ],
     "name": "XTreeSelectOrder"
+  },
+  "XTreeSelectOrderType": {
+    "type": "type",
+    "label": "order type",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XTreeSelectOrderType",
+    "value": "'asc' | 'desc'"
+  },
+  "XTreeSelectVariant": {
+    "type": "type",
+    "label": "Input box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XTreeSelectVariant",
+    "value": "XVariant"
   },
   "XTypographyPrefix": {
     "type": "const",

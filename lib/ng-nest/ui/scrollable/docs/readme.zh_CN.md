@@ -8,14 +8,4 @@ hidden: true
 
 Table view
 
-## Used alone
 
-{{ __component }}
-
-## Sample code
-
-{{ __examples }}
-
-## API
-
-{{ __api }}
