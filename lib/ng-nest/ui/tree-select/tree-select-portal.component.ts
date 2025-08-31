@@ -55,6 +55,8 @@ export class XTreeSelectPortalComponent {
   nodeTpl = input<TemplateRef<any>>();
   inputCom = input<XInputComponent>();
   portalMaxHeight = input<string>('');
+  portalHeight = input<string>('');
+  portalWidth = input<string>('');
   objectArray = input<boolean>(false);
   caseSensitive = input<boolean>(true);
   search = input<boolean>(false);

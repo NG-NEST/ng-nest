@@ -12,7 +12,8 @@ import {
   ExRequiredComponent,
   ExScrollComponent,
   ExSearchComponent,
-  ExSizeComponent
+  ExSizeComponent,
+  ExVariantComponent
 } from '@ng-nest/ui/tree-select/examples';
 
 @Component({
@@ -30,7 +31,8 @@ import {
     ExRequiredComponent,
     ExScrollComponent,
     ExSearchComponent,
-    ExSizeComponent
+    ExSizeComponent,
+    ExVariantComponent
   ],
   templateUrl: './tree-select.component.html'
 })

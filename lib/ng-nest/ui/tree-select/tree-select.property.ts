@@ -11,7 +11,8 @@ import type {
   XTemplate,
   XDirection,
   XAlign,
-  XJustify
+  XJustify,
+  XVariant
 } from '@ng-nest/ui/core';
 
 /**
@@ -41,6 +42,11 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
    * @en_US Node data
    */
   readonly data = input<XData<XTreeSelectNode>, XData<XTreeSelectNode>>([], { transform: XToDataConvert });
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XTreeSelectVariant>(this.config?.variant ?? 'outlined');
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
@@ -83,6 +89,23 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
   readonly portalMaxHeight = input<string, XNumber>(this.config?.portalMaxHeight ?? '12rem', {
     transform: XToCssPixelValue
   });
+  /**
+   * @zh_CN 下拉框的高度，启用虚拟滚动的时候必须设置一个高度
+   * @en_US The biggest height of the drop-down box
+   */
+  readonly portalHeight = input<string, XNumber>('', {
+    transform: XToCssPixelValue
+  });
+  /**
+   * @zh_CN 下拉框的宽度
+   * @en_US The width of the drop-down box
+   */
+  readonly portalWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
+  /**
+   * @zh_CN 下拉框设置样式名
+   * @en_US The style class name of the drop-down box
+   */
+  readonly portalClass = input<string | string[]>('');
   /**
    * @zh_CN 输入搜索
    * @en_US Input search
@@ -252,6 +275,11 @@ export interface XTreeSelectOption extends XFormOption {
    * @en_US Node data
    */
   data?: XData<XTreeSelectNode>;
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XTreeSelectVariant;
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
@@ -491,4 +519,14 @@ export interface XTreeSelectOrder {
   order: XTreeSelectOrderType;
 }
 
+/**
+ * @zh_CN 排序方式
+ * @en_US order type
+ */
 export type XTreeSelectOrderType = 'asc' | 'desc';
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XTreeSelectVariant = XVariant;

@@ -11,3 +11,4 @@ export * from './zh_CN/default/required/required.component';
 export * from './zh_CN/default/scroll/scroll.component';
 export * from './zh_CN/default/search/search.component';
 export * from './zh_CN/default/size/size.component';
+export * from './zh_CN/default/variant/variant.component';

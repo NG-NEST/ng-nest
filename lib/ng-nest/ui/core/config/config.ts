@@ -712,6 +712,7 @@ export interface XTreeFileConfig {
 }
 
 export interface XTreeSelectConfig {
+  variant?: XVariant;
   placement?: XPositionTopBottom;
   clearable?: boolean;
   size?: XSize;

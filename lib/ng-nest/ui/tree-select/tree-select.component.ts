@@ -199,6 +199,8 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     effect(() => this.portalComponent()?.setInput('nodeTpl', this.nodeTpl()));
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
     effect(() => this.portalComponent()?.setInput('portalMaxHeight', this.portalMaxHeight()));
+    effect(() => this.portalComponent()?.setInput('portalHeight', this.portalHeight()));
+    effect(() => this.portalComponent()?.setInput('portalWidth', this.portalWidth()));
     effect(() => this.portalComponent()?.setInput('objectArray', this.objectArray()));
     effect(() => this.portalComponent()?.setInput('caseSensitive', this.caseSensitive()));
     effect(() => this.portalComponent()?.setInput('search', this.search()));
@@ -671,7 +673,8 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
     const box = this.inputCom().inputRef().nativeElement.getBoundingClientRect();
     const config: OverlayConfig = {
       backdropClass: '',
-      width: box.width,
+      panelClass: this.portalClass(),
+      width: this.portalWidth() || box.width,
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };

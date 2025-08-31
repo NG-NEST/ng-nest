@@ -3,7 +3,7 @@
   class="x-tree-select-portal"
   [class.x-tree-select-portal-virtual-scroll]="virtualScroll()"
   (click)="inputCom()?.inputFocus('focus'); stopPropagation($event)"
-  [style.maxHeight]="portalMaxHeight()"
+  [style.maxHeight]="portalHeight() ? portalHeight() : portalMaxHeight()"
   [style.height]="virtualScroll() ? portalMaxHeight() : ''"
 >
   <x-tree
