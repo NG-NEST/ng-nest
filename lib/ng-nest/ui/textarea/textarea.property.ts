@@ -1,7 +1,16 @@
 import { XToBoolean, XToNumber, XToCssPixelValue } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
-import type { XNumber, XBoolean, XPositionLeftRight, XDirection, XAlign, XJustify, XTemplate } from '@ng-nest/ui/core';
+import type {
+  XNumber,
+  XBoolean,
+  XPositionLeftRight,
+  XDirection,
+  XAlign,
+  XJustify,
+  XTemplate,
+  XVariant
+} from '@ng-nest/ui/core';
 
 /**
  * Textarea
@@ -16,6 +25,11 @@ const X_TEXTAREA_CONFIG_NAME = 'textarea';
  */
 @Component({ selector: `${XTextareaPrefix}-property`, template: '' })
 export class XTextareaProperty extends XFormControlFunction(X_TEXTAREA_CONFIG_NAME) {
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XTextareaVariant>(this.config?.variant ?? 'outlined');
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
@@ -122,6 +136,11 @@ export class XTextareaProperty extends XFormControlFunction(X_TEXTAREA_CONFIG_NA
  * Textarea Option
  */
 export interface XTextareaOption extends XFormOption {
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XTextareaVariant;
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
@@ -261,3 +280,9 @@ export interface XTextareaOption extends XFormOption {
  * @value "right" 靠右
  */
 export type XTextareaIconLayoutType = XPositionLeftRight;
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XTextareaVariant = XVariant;

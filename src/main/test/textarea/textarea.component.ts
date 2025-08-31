@@ -6,7 +6,8 @@ import {
   ExIconComponent,
   ExLabelComponent,
   ExLengthComponent,
-  ExRequiredComponent
+  ExRequiredComponent,
+  ExVariantComponent
 } from '@ng-nest/ui/textarea/examples';
 
 @Component({
@@ -18,7 +19,8 @@ import {
     ExIconComponent,
     ExLabelComponent,
     ExLengthComponent,
-    ExRequiredComponent
+    ExRequiredComponent,
+    ExVariantComponent
   ],
   templateUrl: './textarea.component.html'
 })

@@ -196,4 +196,35 @@
       }
     }
   }
+  &-filled {
+    > .#{$x-textarea-prefix}-row {
+      > textarea {
+        border-color: transparent;
+        background-color: $x-background-a200;
+        &:hover {
+          background-color: $x-background-a300;
+        }
+        &:focus {
+          @include focus();
+          background-color: $x-textarea-background-color;
+        }
+      }
+    }
+  }
+  &-borderless {
+    > .#{$x-textarea-prefix}-row {
+      > textarea {
+        border: none;
+      }
+    }
+  }
+  &-underlined {
+    > .#{$x-textarea-prefix}-row {
+      > textarea {
+        background-color: transparent;
+        border-width: 0 0 $x-border-width;
+        border-radius: 0;
+      }
+    }
+  }
 }

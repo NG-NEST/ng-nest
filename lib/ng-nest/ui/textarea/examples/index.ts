@@ -5,3 +5,4 @@ export * from './zh_CN/default/icon/icon.component';
 export * from './zh_CN/default/label/label.component';
 export * from './zh_CN/default/length/length.component';
 export * from './zh_CN/default/required/required.component';
+export * from './zh_CN/default/variant/variant.component';

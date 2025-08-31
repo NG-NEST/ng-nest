@@ -700,6 +700,7 @@ export interface XTreeConfig {
 }
 
 export interface XTextareaConfig {
+  variant?: XVariant;
   clearable?: boolean;
   iconLayout?: XPositionLeftRight;
 }
