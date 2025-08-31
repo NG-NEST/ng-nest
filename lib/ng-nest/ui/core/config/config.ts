@@ -400,6 +400,7 @@ export interface XInputGroupConfig {
 }
 
 export interface XInputNumberConfig {
+  variant?: XVariant;
   size?: XSize;
   bordered?: boolean;
   hiddenButton?: boolean;

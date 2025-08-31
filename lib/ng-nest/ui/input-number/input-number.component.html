@@ -13,6 +13,7 @@
         (mouseup)="up($event)"
         plain
         flat
+        [text]="['borderless', 'underlined'].includes(variant())"
       ></x-button>
     </ng-template>
     <x-input
@@ -44,6 +45,7 @@
       [after]="hiddenButton() ? '' : afterButtonTpl"
       [pattern]="patternComputed()"
       [message]="messageComputed()"
+      [variant]="variant()"
       (xInput)="onInput($event); formControlValidator()"
     ></x-input>
     <ng-template #afterButtonTpl>
@@ -59,6 +61,7 @@
         (mouseup)="up($event)"
         plain
         flat
+        [text]="['borderless', 'underlined'].includes(variant())"
       ></x-button>
     </ng-template>
     @if (invalid()) {

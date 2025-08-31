@@ -7,7 +7,8 @@ import {
   XSize,
   XToBoolean,
   XToCssPixelValue,
-  XToNumber
+  XToNumber,
+  XVariant
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
@@ -25,6 +26,11 @@ const X_INPUT_NUMBER_CONFIG_NAME = 'inputNumber';
  */
 @Component({ selector: `${XInputNumberPrefix}-property`, template: '' })
 export class XInputNumberProperty extends XFormControlFunction(X_INPUT_NUMBER_CONFIG_NAME) {
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XInputNumberVariant>(this.config?.variant ?? 'outlined');
   /**
    * @zh_CN 最小值
    * @en_US Minimum
@@ -152,6 +158,11 @@ export class XInputNumberProperty extends XFormControlFunction(X_INPUT_NUMBER_CO
  */
 export interface XInputNumberOption extends XFormOption {
   /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XInputNumberVariant;
+  /**
    * @zh_CN 最小值
    * @en_US Minimum
    */
@@ -272,3 +283,9 @@ export interface XInputNumberOption extends XFormOption {
    */
   inputValidator?: (value: any) => boolean;
 }
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XInputNumberVariant = XVariant;

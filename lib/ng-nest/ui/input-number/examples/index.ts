@@ -8,3 +8,4 @@ export * from './zh_CN/default/precision/precision.component';
 export * from './zh_CN/default/required/required.component';
 export * from './zh_CN/default/size/size.component';
 export * from './zh_CN/default/hidden-button/hidden-button.component';
+export * from './zh_CN/default/variant/variant.component';

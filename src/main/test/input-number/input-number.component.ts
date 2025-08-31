@@ -9,7 +9,8 @@ import {
   ExLimitComponent,
   ExPrecisionComponent,
   ExRequiredComponent,
-  ExSizeComponent
+  ExSizeComponent,
+  ExVariantComponent
 } from '@ng-nest/ui/input-number/examples';
 
 @Component({
@@ -24,7 +25,8 @@ import {
     ExPrecisionComponent,
     ExRequiredComponent,
     ExSizeComponent,
-    ExHiddenButtonComponent
+    ExHiddenButtonComponent,
+    ExVariantComponent
   ],
   templateUrl: './input-number.component.html'
 })
