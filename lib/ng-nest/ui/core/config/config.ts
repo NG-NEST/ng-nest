@@ -652,6 +652,7 @@ export interface XThemeConfig {
 export interface XTimeAgoConfig {}
 
 export interface XTimePickerConfig {
+  variant?: XVariant;
   format?: string;
   placement?: XCorner;
   size?: XSize;

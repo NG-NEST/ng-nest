@@ -11,7 +11,8 @@ import type {
   XJustify,
   XNumber,
   XSize,
-  XTemplate
+  XTemplate,
+  XVariant
 } from '@ng-nest/ui/core';
 
 /**
@@ -32,6 +33,11 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    * @en_US Time type
    */
   readonly type = input<XTimePickerType>('time');
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  readonly variant = input<XTimePickerVariant>(this.config?.variant ?? 'outlined');
   /**
    * @zh_CN 格式化
    * @en_US Format
@@ -77,6 +83,11 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    * @en_US Disabled time
    */
   readonly disabledTime = input<XTimePickerDisabledTime>();
+  /**
+   * @zh_CN 下拉框设置样式名
+   * @en_US The style class name of the drop-down box
+   */
+  readonly portalClass = input<string | string[]>('');
   /**
    * @zh_CN 尺寸
    * @en_US Size
@@ -198,6 +209,11 @@ export interface XTimePickerOption extends XFormOption {
    * @en_US Time type
    */
   type?: XTimePickerType;
+  /**
+   * @zh_CN 形态变体
+   * @en_US Input variant
+   */
+  variant?: XTimePickerVariant;
   /**
    * @zh_CN 格式化
    * @en_US Format
@@ -355,6 +371,12 @@ export interface XTimePickerOption extends XFormOption {
  * @en_US Time selection
  */
 export type XTimePickerType = 'time' | 'hour' | 'minute';
+
+/**
+ * @zh_CN 输入框形态变体
+ * @en_US Input box variant
+ */
+export type XTimePickerVariant = XVariant;
 
 /**
  * @zh_CN 快捷选择按钮

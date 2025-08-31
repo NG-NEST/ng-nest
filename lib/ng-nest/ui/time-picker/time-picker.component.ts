@@ -231,6 +231,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
     this.active.set(true);
     const config: OverlayConfig = {
       backdropClass: '',
+      panelClass: this.portalClass(),
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition()
     };

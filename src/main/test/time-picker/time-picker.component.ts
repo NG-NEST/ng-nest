@@ -9,7 +9,8 @@ import {
   ExRequiredComponent,
   ExSizeComponent,
   ExStepComponent,
-  ExUse12hoursComponent
+  ExUse12hoursComponent,
+  ExVariantComponent
 } from '@ng-nest/ui/time-picker/examples';
 
 @Component({
@@ -24,7 +25,8 @@ import {
     ExRequiredComponent,
     ExSizeComponent,
     ExStepComponent,
-    ExUse12hoursComponent
+    ExUse12hoursComponent,
+    ExVariantComponent
   ],
   templateUrl: './time-picker.component.html'
 })
