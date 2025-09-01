@@ -1,10 +1,10 @@
 @if (simple()) {
   <div class="x-pagination-simple">
     <x-input
-      [bordered]="showBackground()"
       [before]="previousTpl"
       [after]="nextTpl"
       [style.width]="simpleIndexWidth()"
+      [variant]="showBackground() ? 'filled' : 'outlined'"
       [(ngModel)]="index"
       (xKeydown)="onSimpleKeydown($event)"
     ></x-input>
@@ -57,8 +57,8 @@
     [data]="sizeDataSignal()"
     [clearable]="false"
     [disabled]="disabled()"
-    [bordered]="showBackground()"
     [nodeTpl]="nodeTpl"
+    [variant]="showBackground() ? 'filled' : 'outlined'"
     [(ngModel)]="size"
     (ngModelChange)="sizeChanged()"
   ></x-select>
@@ -71,7 +71,7 @@
         [content]="inputSizeTooltip()"
         [style.width]="inputSizeWidth()"
         [disabled]="disabled()"
-        [bordered]="showBackground()"
+        [variant]="showBackground() ? 'filled' : 'outlined'"
         [(ngModel)]="inputSize"
         (xBlur)="onInputSizeBlur($event)"
         (xKeydown)="onInputSizeKeydown($event)"
@@ -80,7 +80,7 @@
       <x-input
         [style.width]="inputSizeWidth()"
         [disabled]="disabled()"
-        [bordered]="showBackground()"
+        [variant]="showBackground() ? 'filled' : 'outlined'"
         [(ngModel)]="inputSize"
         (xBlur)="onInputSizeBlur($event)"
         (xKeydown)="onInputSizeKeydown($event)"
@@ -96,7 +96,7 @@
       <x-input
         x-tooltip
         [content]="jumpTooltip()"
-        [bordered]="showBackground()"
+        [variant]="showBackground() ? 'filled' : 'outlined'"
         [style.width]="jumpWidth()"
         [(ngModel)]="jumpPage"
         (xBlur)="onJumpBlur($event)"
@@ -104,7 +104,7 @@
       ></x-input>
     } @else {
       <x-input
-        [bordered]="showBackground()"
+        [variant]="showBackground() ? 'filled' : 'outlined'"
         [style.width]="jumpWidth()"
         [(ngModel)]="jumpPage"
         (xBlur)="onJumpBlur($event)"
