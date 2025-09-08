@@ -3,36 +3,47 @@
 
 @mixin table-view {
   & {
+    position: relative;
     border-collapse: separate;
     border-spacing: 0;
   }
-  thead {
-    position: sticky;
-    top: 0;
-    th {
-      padding: 0 0.5rem;
-      text-align: left;
-      font-weight: 600;
-      color: $x-text;
-      border-top: $x-border-base;
-      border-bottom: $x-border-base;
-      border-right: $x-border-base;
-      cursor: default;
-      background-color: $x-background;
-      &:first-child {
-        border-left: $x-border-base;
-      }
-      &.x-header-cell-actived {
-        background-color: $x-background-a100;
-      }
+  .x-table-header-cell,
+  .x-table-footer-cell {
+    padding: 0 0.5rem;
+    text-align: left;
+    font-weight: 500;
+    color: $x-text;
+    border-top: $x-border-base;
+    border-bottom: $x-border-base;
+    border-right: $x-border-base;
+    cursor: default;
+    background-color: $x-background;
+    white-space: nowrap;
+    &:first-child {
+      border-left: $x-border-base;
+    }
+    &.x-table-header-cell-actived {
+      background-color: $x-background-a100;
     }
   }
 
-  tbody tr.x-row-actived {
-    background-color: $x-background-a100;
+  .x-table-sticky {
+    position: sticky;
+    background-color: $x-background-a200;
+  }
+  .x-table-sentinel-top {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
   }
 
-  tbody td {
+  .x-table-row-actived {
+    .x-table-cell:not(.x-table-cell-selected) {
+      background-color: $x-background-a100;
+    }
+  }
+
+  .x-table-cell {
     padding: 0 0.5rem;
     text-align: left;
     font-weight: 500;
@@ -40,12 +51,40 @@
     border-bottom: $x-border-base;
     border-right: $x-border-base;
     cursor: default;
+    white-space: nowrap;
+    background-color: $x-background;
     &:first-child {
       border-left: $x-border-base;
     }
-    &.x-cell-selected {
+    &.x-table-cell-selected {
       border-color: $x-border-a200;
       background-color: $x-primary-900;
     }
+    &.x-table-sticky:not(.x-table-cell-selected) {
+      background-color: $x-background-a200;
+    }
+  }
+
+  .x-table-sticky-border-elem-top {
+    border-bottom-style: solid;
+    border-bottom-width: calc(2 * $x-border-width);
+    border-bottom-color: $x-border-a900;
+  }
+  .x-table-sticky-border-elem-bottom {
+    border-top-style: solid;
+    border-top-width: calc(2 * $x-border-width);
+    border-top-color: $x-border-a900;
+  }
+
+  .x-table-sticky-border-elem-left {
+    border-right-style: solid;
+    border-right-width: calc(2 * $x-border-width);
+    border-right-color: $x-border-a900;
+  }
+
+  .x-table-sticky-border-elem-right {
+    border-left-style: solid;
+    border-left-width: calc(2 * $x-border-width);
+    border-left-color: $x-border-a900;
   }
 }

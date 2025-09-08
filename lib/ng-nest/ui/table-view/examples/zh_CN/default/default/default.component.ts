@@ -1,37 +1,45 @@
 import { Component } from '@angular/core';
+import { XScrollableModule } from '@ng-nest/ui/scrollable';
 import { XTableViewModule } from '@ng-nest/ui/table-view';
 
 @Component({
   selector: 'ex-default',
-  imports: [XTableViewModule],
+  imports: [XTableViewModule, XScrollableModule],
   templateUrl: './default.component.html',
   styleUrl: './default.component.scss'
 })
 export class ExDefaultComponent {
-  data = [
-    { $index: 1, name: '张三', age: 18, address: '北京' },
-    { $index: 2, name: '李四', age: 19, address: '上海' },
-    { $index: 3, name: '王五', age: 20, address: '广州' },
-    { $index: 4, name: '赵六1', age: 21, address: 'one' },
-    { $index: 5, name: '赵六2', age: 21, address: 'one' },
-    { $index: 6, name: '赵六3', age: 21, address: 'one' },
-    { $index: 7, name: '赵六4', age: 21, address: 'one' },
-    { $index: 8, name: '赵六5', age: 21, address: 'one' },
-    { $index: 9, name: '赵六6', age: 21, address: 'one' },
-    { $index: 10, name: '赵六7', age: 21, address: 'one' },
-    { $index: 11, name: '赵六8', age: 21, address: 'one' },
-    { $index: 12, name: '赵六9', age: 21, address: 'one' },
-    { $index: 13, name: '赵六10', age: 21, address: 'one' },
-    { $index: 14, name: '赵六11', age: 21, address: 'one' },
-    { $index: 15, name: '赵六12', age: 21, address: 'one' },
-    { $index: 16, name: '赵六13', age: 21, address: 'one' },
-    { $index: 17, name: '赵六14', age: 21, address: 'one' },
-    { $index: 18, name: '赵六15', age: 21, address: 'one' },
-    { $index: 19, name: '赵六16', age: 21, address: 'one' },
-    { $index: 20, name: '赵六17', age: 21, address: 'one' },
-    { $index: 21, name: '赵六18', age: 21, address: 'one' },
-    { $index: 22, name: '赵六19', age: 21, address: 'one' }
+  data = Array.from({ length: 100 }).map((_, i) => ({
+    name: `Edward ${i}`,
+    money1: i,
+    money2: i,
+    money3: i,
+    money4: i,
+    money5: i,
+    money6: i,
+    money7: i,
+    money8: i,
+    money9: i,
+    money10: i,
+    money11: i
+  }));
+
+  columns = [
+    'name',
+    'money1',
+    'money2',
+    'money3',
+    'money4',
+    'money5',
+    'money6',
+    'money7',
+    'money8',
+    'money9',
+    'money10',
+    'money11'
   ];
 
-  columns = ['$index', 'name', 'age', 'address'];
+  getTotal(column: string) {
+    return this.data.map((t: any) => t[column]).reduce((acc, value) => acc + value, 0);
+  }
 }

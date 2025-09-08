@@ -1,18 +1,28 @@
-<thead>
-  <tr *xHeaderRowDef>
-    @for (columnName of columns(); track columnName) {
-      <ng-container *ngTemplateOutlet="columnMap[columnName]?.header?.template"></ng-container>
-    }
-  </tr>
-</thead>
-<tbody>
-  @for (row of data(); track row) {
-    <tr x-row *xRowDef="row">
-      @for (columnName of columns(); track columnName) {
-        <ng-container
-          *ngTemplateOutlet="columnMap[columnName]?.cell?.template; context: { $implicit: row }"
-        ></ng-container>
-      }
-    </tr>
-  }
-</tbody>
+<ng-content select="caption" />
+<ng-content select="colgroup, col" />
+
+<!--
+      Unprojected content throws a hydration error so we need this to capture it.
+      It gets removed on the client so it doesn't affect the layout.
+    -->
+@if (_isServer) {
+  <ng-content />
+}
+<div class="x-table-sentinel-top" #sentinelTop></div>
+@if (_isNativeHtmlTable) {
+  <thead>
+    <ng-container headerRowOutlet />
+  </thead>
+  <tbody>
+    <ng-container rowOutlet />
+    <ng-container noDataRowOutlet />
+  </tbody>
+  <tfoot>
+    <ng-container footerRowOutlet />
+  </tfoot>
+} @else {
+  <ng-container headerRowOutlet />
+  <ng-container rowOutlet />
+  <ng-container noDataRowOutlet />
+  <ng-container footerRowOutlet />
+}

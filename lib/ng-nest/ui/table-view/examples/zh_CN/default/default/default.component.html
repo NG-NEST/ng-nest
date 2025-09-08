@@ -1,8 +1,27 @@
-<table x-table-view [data]="data" [columns]="columns">
-  @for (key of columns; track key) {
-    <ng-container [xColumnDef]="key">
-      <th x-header-cell *xHeaderCellDef>{{ key }}</th>
-      <td x-cell *xCellDef="let row">{{ row[key] }}</td>
-    </ng-container>
-  }
-</table>
+<div class="box">
+  <x-scrollable [yOffsetBottom]="31" [yOffsetTop]="31" [xOffsetBottom]="31">
+    <table x-table-view [dataSource]="data">
+      @for (item of columns; track item) {
+        <ng-container
+          xTableColumnDef="{{ item }}"
+          [sticky]="[0, 1].includes($index)"
+          [stickyEnd]="[11, 12].includes($index)"
+        >
+          <th x-table-header-cell *xTableHeaderCellDef>{{ item }}</th>
+          <td x-table-cell *xTableCellDef="let row">
+            {{ row[item] }}
+          </td>
+          @if (item === 'name') {
+            <td x-table-footer-cell *xTableFooterCellDef>Total</td>
+          } @else {
+            <td x-table-footer-cell *xTableFooterCellDef>{{ getTotal(item) }}</td>
+          }
+        </ng-container>
+      }
+
+      <tr x-table-header-row *xTableHeaderRowDef="columns; sticky: true"></tr>
+      <tr x-table-row *xTableRowDef="let row; columns: columns"></tr>
+      <tr x-table-footer-row *xTableFooterRowDef="columns; sticky: true"></tr>
+    </table>
+  </x-scrollable>
+</div>
