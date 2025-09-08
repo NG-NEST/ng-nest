@@ -107,7 +107,7 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

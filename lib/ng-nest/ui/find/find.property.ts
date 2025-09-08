@@ -13,7 +13,8 @@ import type {
   XSize,
   XAlign,
   XJustify,
-  XDirection
+  XDirection,
+  XTemplate
 } from '@ng-nest/ui/core';
 
 /**
@@ -235,7 +236,7 @@ export class XFindProperty extends XFormControlFunction(X_FIND_CONFIG_NAME) {
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

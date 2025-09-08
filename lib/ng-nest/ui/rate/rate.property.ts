@@ -1,7 +1,7 @@
 import { XToNumber, XToBoolean, XToCssPixelValue } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
-import type { XNumber, XBoolean, XDirection, XAlign, XJustify } from '@ng-nest/ui/core';
+import type { XNumber, XBoolean, XDirection, XAlign, XJustify, XTemplate } from '@ng-nest/ui/core';
 
 /**
  * Rate
@@ -40,7 +40,7 @@ export class XRateProperty extends XFormControlFunction(X_RATE_CONFIG_NAME) {
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

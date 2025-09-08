@@ -42,7 +42,7 @@ export class XTestBaseFormInputComponent extends XFormControlFunction('input') {
   override readonly validator = input<boolean, XBoolean>(false, { transform: XToBoolean });
   override readonly size = input<XSize>(this.config?.size ?? 'medium');
   override readonly pointer = input<boolean, XBoolean>(false, { transform: XToBoolean });
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   override readonly labelWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   override readonly labelAlign = input<XAlign>('start');
   override readonly justify = input<XJustify>('start');

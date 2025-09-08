@@ -69,7 +69,7 @@ export class XTextareaProperty extends XFormControlFunction(X_TEXTAREA_CONFIG_NA
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

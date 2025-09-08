@@ -178,7 +178,7 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

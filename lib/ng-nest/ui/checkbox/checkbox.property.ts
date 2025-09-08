@@ -80,7 +80,7 @@ export class XCheckboxProperty extends XFormControlFunction(X_CHECKBOX_CONFIG_NA
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

@@ -35,6 +35,7 @@ import { XInputComponent } from '@ng-nest/ui/input';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { XOutletDirective } from "../outlet";
 
 @Component({
   selector: `${XFindPrefix}`,
@@ -49,8 +50,9 @@ import { toObservable } from '@angular/core/rxjs-interop';
     XTreeComponent,
     XIconComponent,
     XEmptyComponent,
-    XInputComponent
-  ],
+    XInputComponent,
+    XOutletDirective
+],
   templateUrl: './find.component.html',
   styleUrls: ['./find.component.scss'],
   encapsulation: ViewEncapsulation.None,

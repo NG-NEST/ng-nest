@@ -92,7 +92,7 @@ export class XFormControlProp extends XProperty {
    * @zh_CN 标签
    * @en_US Label
    */
-  readonly label = input<string>('');
+  readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

@@ -13,8 +13,10 @@
       [class.x-find-label-required]="requiredComputed()"
       [style.width]="labelWidth()"
       [ngClass]="labelMapSignal()"
-      >{{ label() }}</label
+      *xOutlet="label()"
     >
+      {{ label() }}
+    </label>
   }
   <div class="x-find-row">
     <x-button

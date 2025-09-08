@@ -14,8 +14,10 @@
       [class.x-switch-label-required]="requiredComputed()"
       [style.width]="labelWidth()"
       [ngClass]="labelMapSignal()"
-      >{{ label() }}</label
+      *xOutlet="label()"
     >
+      {{ label() }}
+    </label>
   }
   <div class="x-switch-row">
     <div class="x-switch-slider" (click)="switchClick()">

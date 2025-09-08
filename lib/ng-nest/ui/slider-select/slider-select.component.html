@@ -14,8 +14,10 @@
       [class.x-slider-select-label-required]="requiredComputed()"
       [style.width]="labelWidth()"
       [ngClass]="labelMapSignal()"
-      >{{ label() }}</label
+      *xOutlet="label()"
     >
+      {{ label() }}
+    </label>
   }
   <div class="x-slider-select-inner" #innerRef>
     <div class="x-slider-select-rail" #railRef>

@@ -92,7 +92,7 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width
@@ -423,7 +423,7 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

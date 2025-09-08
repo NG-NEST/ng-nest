@@ -75,7 +75,7 @@ export class XRadioProperty extends XFormControlFunction(X_RADIO_CONFIG_NAME) {
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

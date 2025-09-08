@@ -45,7 +45,7 @@ export class XSwitchProperty extends XFormControlFunction(X_SWITCH_CONFIG_NAME) 
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

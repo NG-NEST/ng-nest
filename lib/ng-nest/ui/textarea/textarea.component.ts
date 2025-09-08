@@ -13,10 +13,11 @@ import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
+import { XColorPickerModule } from '../color-picker';
 
 @Component({
   selector: `${XTextareaPrefix}`,
-  imports: [NgClass, FormsModule, ReactiveFormsModule, XIconComponent],
+  imports: [NgClass, FormsModule, ReactiveFormsModule, XIconComponent, XColorPickerModule],
   templateUrl: './textarea.component.html',
   styleUrls: ['./style/index.scss'],
   encapsulation: ViewEncapsulation.None,

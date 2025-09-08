@@ -5,6 +5,7 @@ import {
   XJustify,
   XNumber,
   XSize,
+  XTemplate,
   XToBoolean,
   XToCssPixelValue,
   XToNumber,
@@ -80,7 +81,7 @@ export class XInputNumberProperty extends XFormControlFunction(X_INPUT_NUMBER_CO
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

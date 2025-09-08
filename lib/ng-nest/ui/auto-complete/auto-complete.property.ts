@@ -108,7 +108,7 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width

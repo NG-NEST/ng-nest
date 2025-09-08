@@ -42,15 +42,25 @@ export type XType = 'initial' | 'primary' | 'success' | 'info' | 'warning' | 'da
  * - `'filled'` : 填充
  * - `'borderless'` : 无边框
  * - `'underlined'` : 下划线
- * - `'fixed-filled'` : 固定填充
  * @en_US Input box variant
  * - `'outlined'` : Outlined
  * - `'filled'` : Filled
  * - `'borderless'` : Borderless
  * - `'underlined'` : Underlined
- * - `'fixed-filled'` : Fixed filled
  */
 export type XVariant = 'outlined' | 'filled' | 'borderless' | 'underlined' | 'fixed-filled';
+
+/**
+ * @zh_CN 浮动标签
+ * - `'over'` : 默认
+ * - `'in'` : 填充
+ * - `'on'` : 无边框
+ * @en_US Float label
+ * - `'over'` : Over
+ * - `'in'` : In
+ * - `'on'` : On
+ */
+export type XFloatLabel = 'over' | 'in' | 'on';
 
 /**
  * @zh_CN 状态类型

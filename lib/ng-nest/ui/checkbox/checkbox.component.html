@@ -19,8 +19,10 @@
       [class.x-checkbox-label-required]="requiredComputed()"
       [style.width]="labelWidth()"
       [ngClass]="labelMapSignal()"
-      >{{ label() }}</label
+      *xOutlet="label()"
     >
+      {{ label() }}
+    </label>
   }
   <div class="x-checkbox-row">
     @if (before()) {
