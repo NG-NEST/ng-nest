@@ -12,7 +12,8 @@ import type {
   XDirection,
   XAlign,
   XJustify,
-  XVariant
+  XVariant,
+  XFloatLabel
 } from '@ng-nest/ui/core';
 
 /**
@@ -145,6 +146,11 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    */
   readonly allowInput = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XSelectFloatLabel | null>(this.config?.floatLabel ?? null);
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -158,7 +164,7 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width
@@ -343,6 +349,16 @@ export interface XSelectOption extends XFormOption {
    */
   virtualScroll?: boolean;
   /**
+   * @zh_CN 搜索时允许使用输入的值，作为选择器的值
+   * @en_US Allow the use of input values as selector values during search
+   */
+  allowInput?: boolean;
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XSelectFloatLabel;
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -449,6 +465,12 @@ export interface XSelectOption extends XFormOption {
  * @en_US Select data object
  */
 export interface XSelectNode extends XParentIdentityProperty<XSelectNode> {}
+
+/**
+ * @zh_CN 浮动标签类型
+ * @en_US Float label type
+ */
+export type XSelectFloatLabel = XFloatLabel;
 
 /**
  * @zh_CN 输入框形态变体

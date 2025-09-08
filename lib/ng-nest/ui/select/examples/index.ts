@@ -10,3 +10,4 @@ export * from './zh_CN/default/search/search.component';
 export * from './zh_CN/default/size/size.component';
 export * from './zh_CN/default/input/input.component';
 export * from './zh_CN/default/variant/variant.component';
+export * from './zh_CN/default/float-label/float-label.component';
