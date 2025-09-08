@@ -7,7 +7,8 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   viewChild,
-  signal
+  signal,
+  input
 } from '@angular/core';
 
 type DragAxis = 'x' | 'y';
@@ -20,6 +21,16 @@ type DragAxis = 'x' | 'y';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XScrollableComponent implements AfterViewInit, OnDestroy {
+  yOffsetTop = input(0);
+  yOffsetBottom = input(0);
+  yOffsetLeft = input(0);
+  yOffsetRight = input(0);
+
+  xOffsetTop = input(0);
+  xOffsetBottom = input(0);
+  xOffsetLeft = input(0);
+  xOffsetRight = input(0);
+
   private contentRef = viewChild.required<ElementRef<HTMLElement>>('content');
 
   private trackXRef = viewChild.required<ElementRef<HTMLElement>>('trackX');
@@ -61,19 +72,42 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateVerticalScrollbar(): void {
-    const content = this.contentRef().nativeElement;
     const thumbY = this.thumbYRef().nativeElement;
     const trackY = this.trackYRef().nativeElement;
-    const visibleRatioY = content.clientHeight / content.scrollHeight;
+    const content = this.contentRef().nativeElement;
+    let { clientHeight, scrollHeight, scrollTop } = content;
+    if (this.yOffsetTop() !== 0 && this.yOffsetBottom() === 0) {
+      this.renderer.setStyle(trackY, 'top', `${this.yOffsetTop()}px`);
+      this.renderer.setStyle(trackY, 'height', `calc(100% - ${this.yOffsetTop()}px)`);
+      clientHeight -= this.yOffsetTop();
+      scrollHeight -= this.yOffsetTop();
+    } else if (this.yOffsetTop() === 0 && this.yOffsetBottom() !== 0) {
+      this.renderer.setStyle(trackY, 'height', `calc(100% - ${this.yOffsetBottom()}px)`);
+      clientHeight -= this.yOffsetBottom();
+      scrollHeight -= this.yOffsetBottom();
+    } else if (this.yOffsetTop() !== 0 && this.yOffsetBottom() !== 0) {
+      this.renderer.setStyle(trackY, 'top', `${this.yOffsetTop()}px`);
+      this.renderer.setStyle(trackY, 'height', `calc(100% - ${this.yOffsetTop() + this.yOffsetBottom()}px)`);
+      clientHeight -= this.yOffsetTop() + this.yOffsetBottom();
+      scrollHeight -= this.yOffsetTop() + this.yOffsetBottom();
+    }
+    if (this.yOffsetLeft() !== 0) {
+      this.renderer.setStyle(trackY, 'left', `${this.yOffsetLeft()}px`);
+    }
+    if (this.yOffsetRight() !== 0) {
+      this.renderer.setStyle(trackY, 'right', `${this.yOffsetRight()}px`);
+    }
+
+    let visibleRatioY = clientHeight / scrollHeight;
 
     if (visibleRatioY >= 1) {
       this.renderer.setStyle(trackY, 'display', 'none');
     } else {
       this.renderer.setStyle(trackY, 'display', 'block');
-      const thumbHeight = Math.max(visibleRatioY * content.clientHeight, 20);
+      const thumbHeight = Math.max(visibleRatioY * clientHeight, 20);
       this.renderer.setStyle(thumbY, 'height', `${thumbHeight}px`);
-
-      const thumbTop = (content.scrollTop / content.scrollHeight) * content.clientHeight;
+      const maxThumbTop = clientHeight - thumbHeight;
+      const thumbTop = Math.min((scrollTop / (scrollHeight - clientHeight)) * maxThumbTop, maxThumbTop);
       this.renderer.setStyle(thumbY, 'transform', `translateY(${thumbTop}px)`);
     }
   }
@@ -82,16 +116,39 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
     const content = this.contentRef().nativeElement;
     const thumbX = this.thumbXRef().nativeElement;
     const trackX = this.trackXRef().nativeElement;
-    const visibleRatioX = content.clientWidth / content.scrollWidth;
+    let { clientWidth, scrollWidth, scrollLeft } = content;
+    if (this.xOffsetLeft() !== 0 && this.xOffsetRight() === 0) {
+      this.renderer.setStyle(trackX, 'left', `${this.xOffsetLeft()}px`);
+      this.renderer.setStyle(trackX, 'width', `calc(100% - ${this.xOffsetLeft()}px)`);
+      clientWidth -= this.xOffsetLeft();
+      scrollWidth -= this.xOffsetLeft();
+    } else if (this.xOffsetLeft() === 0 && this.xOffsetRight() !== 0) {
+      this.renderer.setStyle(trackX, 'width', `calc(100% - ${this.xOffsetRight()}px)`);
+      clientWidth -= this.xOffsetRight();
+      scrollWidth -= this.xOffsetRight();
+    } else if (this.xOffsetLeft() !== 0 && this.xOffsetRight() !== 0) {
+      this.renderer.setStyle(trackX, 'left', `${this.xOffsetLeft()}px`);
+      this.renderer.setStyle(trackX, 'height', `calc(100% - ${this.xOffsetLeft() + this.xOffsetRight()}px)`);
+      clientWidth -= this.xOffsetLeft() + this.xOffsetRight();
+      scrollWidth -= this.xOffsetLeft() + this.xOffsetRight();
+    }
+    if (this.xOffsetTop() !== 0) {
+      this.renderer.setStyle(trackX, 'top', `${this.xOffsetTop()}px`);
+    }
+    if (this.xOffsetBottom() !== 0) {
+      this.renderer.setStyle(trackX, 'bottom', `${this.xOffsetBottom()}px`);
+    }
+
+    const visibleRatioX = clientWidth / scrollWidth;
 
     if (visibleRatioX >= 1) {
       this.renderer.setStyle(trackX, 'display', 'none');
     } else {
       this.renderer.setStyle(trackX, 'display', 'block');
-      const thumbWidth = Math.max(visibleRatioX * content.clientWidth, 20);
+      const thumbWidth = Math.max(visibleRatioX * clientWidth, 20);
       this.renderer.setStyle(thumbX, 'width', `${thumbWidth}px`);
-
-      const thumbLeft = (content.scrollLeft / content.scrollWidth) * content.clientWidth;
+      const maxThumbLeft = clientWidth - thumbWidth;
+      const thumbLeft = Math.min((scrollLeft / (scrollWidth - clientWidth)) * maxThumbLeft, maxThumbLeft);
       this.renderer.setStyle(thumbX, 'transform', `translateX(${thumbLeft}px)`);
     }
   }
@@ -115,14 +172,36 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
     if (!this.isDragging) return;
 
     const content = this.contentRef().nativeElement;
-
+    let { scrollHeight, clientHeight, scrollWidth, clientWidth } = content;
     if (this.dragAxis === 'y') {
+      if (this.yOffsetTop() !== 0 && this.yOffsetBottom() === 0) {
+        clientHeight -= this.yOffsetTop();
+        scrollHeight -= this.yOffsetTop();
+      } else if (this.yOffsetTop() === 0 && this.yOffsetBottom() !== 0) {
+        clientHeight -= this.yOffsetBottom();
+        scrollHeight -= this.yOffsetBottom();
+      } else if (this.yOffsetTop() !== 0 && this.yOffsetBottom() !== 0) {
+        clientHeight -= this.yOffsetTop() + this.yOffsetBottom();
+        scrollHeight -= this.yOffsetTop() + this.yOffsetBottom();
+      }
+
       const mouseDeltaY = event.pageY - this.dragStart.y;
-      const scrollRatio = content.scrollHeight / content.clientHeight;
+      const scrollRatio = scrollHeight / clientHeight;
       content.scrollTop = this.initialScroll.top + mouseDeltaY * scrollRatio;
     } else if (this.dragAxis === 'x') {
+      if (this.xOffsetLeft() !== 0 && this.xOffsetRight() === 0) {
+        clientWidth -= this.xOffsetLeft();
+        scrollWidth -= this.xOffsetLeft();
+      } else if (this.xOffsetLeft() === 0 && this.xOffsetRight() !== 0) {
+        clientWidth -= this.xOffsetRight();
+        scrollWidth -= this.xOffsetRight();
+      } else if (this.xOffsetLeft() !== 0 && this.xOffsetRight() !== 0) {
+        clientWidth -= this.xOffsetLeft() + this.xOffsetRight();
+        scrollWidth -= this.xOffsetLeft() + this.xOffsetRight();
+      }
+
       const mouseDeltaX = event.pageX - this.dragStart.x;
-      const scrollRatio = content.scrollWidth / content.clientWidth;
+      const scrollRatio = scrollWidth / clientWidth;
       content.scrollLeft = this.initialScroll.left + mouseDeltaX * scrollRatio;
     }
   }
