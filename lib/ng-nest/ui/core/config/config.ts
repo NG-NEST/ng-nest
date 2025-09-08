@@ -22,7 +22,8 @@ import type {
   XAlign,
   XVariant,
   XTemplate,
-  XStyleMap
+  XStyleMap,
+  XFloatLabel
 } from '../interfaces';
 
 /**
@@ -384,6 +385,7 @@ export interface XInnerConfig {
 }
 
 export interface XInputConfig {
+  floatLabel?: XFloatLabel;
   variant?: XVariant;
   clearable?: boolean;
   iconLayout?: XPositionLeftRight;
@@ -540,6 +542,7 @@ export interface XRateConfig {
 export interface XResultConfig {}
 
 export interface XSelectConfig {
+  floatLabel?: XFloatLabel;
   variant?: XVariant;
   placement?: XPositionTopBottom;
   clearable?: boolean;

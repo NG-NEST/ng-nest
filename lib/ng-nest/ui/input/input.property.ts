@@ -10,7 +10,8 @@ import type {
   XAlign,
   XJustify,
   XDirection,
-  XVariant
+  XVariant,
+  XFloatLabel
 } from '@ng-nest/ui/core';
 
 /**
@@ -101,6 +102,11 @@ export class XInputProperty extends XFormControlFunction(X_INPUT_CONFIG_NAME) {
     transform: XToCssPixelValue
   });
   /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XInputFloatLabel | null>(this.config?.floatLabel ?? null);
+  /**
    * @zh_CN 初始启用验证，在输入值都自动开启
    * @en_US Initial enable validation, which is automatically enabled when the input value is
    */
@@ -119,7 +125,7 @@ export class XInputProperty extends XFormControlFunction(X_INPUT_CONFIG_NAME) {
    * @zh_CN 标签
    * @en_US Label
    */
-  override readonly label = input<string>('');
+  override readonly label = input<XTemplate>('');
   /**
    * @zh_CN 标签宽度
    * @en_US Label width
@@ -486,6 +492,12 @@ export interface XInputOption extends XFormOption {
  * @value "number" 数字
  */
 export type XInputType = 'text' | 'password' | 'number';
+
+/**
+ * @zh_CN 浮动标签类型
+ * @en_US Float label type
+ */
+export type XInputFloatLabel = XFloatLabel;
 
 /**
  * @zh_CN 输入框形态变体

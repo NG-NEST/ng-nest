@@ -7,8 +7,11 @@
 @use './param.scss' as *;
 
 @mixin input {
-  width: 100%;
-  @include flex();
+  & {
+    width: 100%;
+    @include flex();
+  }
+
   > label {
     display: inline-block;
     white-space: nowrap;
@@ -393,11 +396,30 @@
       }
     }
   }
-  @include size('big', $x-height-big, 0 $x-padding-big);
-  @include size('large', $x-height-large, 0 $x-padding-large);
-  @include size('medium', $x-height-medium, 0 $x-padding-medium);
-  @include size('small', $x-height-small, 0 $x-padding-small);
-  @include size('mini', $x-height-mini, 0 $x-padding-mini);
+  &-float-label {
+    position: relative;
+    > label {
+      position: absolute;
+      pointer-events: none;
+      transition: all $x-animation-duration-base ease;
+      line-height: 1 !important;
+      height: initial !important;
+      z-index: 1;
+    }
+    &-over,
+    &-on,
+    &-in {
+      > label {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  @include size('big', $x-height-big, $x-padding-big);
+  @include size('large', $x-height-large, $x-padding-large);
+  @include size('medium', $x-height-medium, $x-padding-medium);
+  @include size('small', $x-height-small, $x-padding-small);
+  @include size('mini', $x-height-mini, $x-padding-mini);
 }
 
 @mixin size($size, $height, $padding) {
@@ -408,12 +430,12 @@
       > .#{$x-input-prefix}-row-after:not(.x-input-row-after-template) {
         height: $height;
         line-height: $height;
-        padding: $padding;
+        padding: 0 $padding;
       }
       > .#{$x-input-prefix}-value-template-value {
         min-height: $height;
         line-height: $height;
-        padding: $padding;
+        padding: 0 $padding;
       }
       > .#{$x-input-prefix}-max-length {
         height: $height;
@@ -430,13 +452,82 @@
       > .#{$x-input-prefix}-row-after:not(.x-input-row-after-template) {
         height: $height;
         line-height: $height;
-        padding: $padding;
+        padding: 0 $padding;
       }
     }
 
     > label {
       height: $height;
       line-height: $height;
+    }
+
+    &.#{$x-input-prefix}-float-label-over {
+      &.#{$x-input-prefix}-focus,
+      &.#{$x-input-prefix}-has-value,
+      &.#{$x-input-prefix}-active {
+        > label {
+          margin-left: 0 !important;
+          transform: translateY(calc(-50% - $height));
+        }
+      }
+    }
+    &.#{$x-input-prefix}-float-label-on {
+      &.#{$x-input-prefix}-focus,
+      &.#{$x-input-prefix}-has-value,
+      &.#{$x-input-prefix}-active {
+        > label {
+          font-size: $x-font-size-mini;
+          background-color: $x-background;
+          transform: translateY(calc(-50% - calc($height * 0.5)));
+        }
+      }
+    }
+    &.#{$x-input-prefix}-float-label-in {
+      > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
+        > input,
+        > .#{$x-input-prefix}-row-before:not(.x-input-row-before-template),
+        > .#{$x-input-prefix}-row-after:not(.x-input-row-after-template) {
+          height: initial;
+          line-height: 1;
+          padding: $height $padding calc($height * 0.25) $padding;
+        }
+        > .#{$x-input-prefix}-value-template-value {
+          height: initial;
+          line-height: 1;
+          padding: $height $padding calc($height * 0.25) $padding;
+        }
+        > .#{$x-input-prefix}-max-length {
+          height: initial;
+          line-height: 1;
+        }
+        > x-icon {
+          height: 1;
+          width: calc($height * 1.5);
+        }
+      }
+
+      > .#{$x-input-prefix}-row {
+        > .#{$x-input-prefix}-row-before:not(.x-input-row-before-template),
+        > .#{$x-input-prefix}-row-after:not(.x-input-row-after-template) {
+          height: $height;
+          line-height: $height;
+          padding: 0 $padding;
+        }
+      }
+
+      > label {
+        height: $height;
+        line-height: $height;
+      }
+
+      &.#{$x-input-prefix}-focus,
+      &.#{$x-input-prefix}-has-value,
+      &.#{$x-input-prefix}-active {
+        > label {
+          font-size: $x-font-size-mini;
+          transform: translateY(calc(-100% - calc($padding * 0.25)));
+        }
+      }
     }
   }
 }
