@@ -176,6 +176,7 @@ export interface XAvatarConfig {
 }
 
 export interface XAutoCompleteConfig {
+  floatLabel?: XFloatLabel;
   variant?: XVariant;
   placement?: XPositionTopBottom;
   debounceTime?: number;
@@ -228,6 +229,7 @@ export interface XCarouselConfig {
 }
 
 export interface XCascadeConfig {
+  floatLabel?: XFloatLabel;
   variant?: XVariant;
   placement?: XCorner;
   size?: XSize;
@@ -256,6 +258,7 @@ export interface XColorConfig {
 }
 
 export interface XColorPickerConfig {
+  floatLabel?: XFloatLabel;
   variant?: XVariant;
   placement?: XCorner;
   size?: XSize;
@@ -288,6 +291,7 @@ export interface XCrumbComfig {
 }
 
 export interface XDatePickerConfig {
+  floatLabel?: XFloatLabel;
   variant?: XVariant;
   format?: string;
   clearable?: boolean;
@@ -297,6 +301,7 @@ export interface XDatePickerConfig {
 }
 
 export interface XDateRangeConfig {
+  floatLabel?: XFloatLabel;
   variant?: XVariant;
   format?: string;
   clearable?: boolean;
@@ -655,6 +660,7 @@ export interface XThemeConfig {
 export interface XTimeAgoConfig {}
 
 export interface XTimePickerConfig {
+  floatLabel?: XFloatLabel;
   variant?: XVariant;
   format?: string;
   placement?: XCorner;
@@ -715,6 +721,7 @@ export interface XTreeFileConfig {
 }
 
 export interface XTreeSelectConfig {
+  floatLabel?: XFloatLabel;
   variant?: XVariant;
   placement?: XPositionTopBottom;
   clearable?: boolean;

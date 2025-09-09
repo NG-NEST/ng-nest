@@ -48,10 +48,11 @@ import { XDateRangePortalComponent } from './date-range-portal.component';
 import { XI18nDatePicker, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { XOutletDirective } from "../outlet";
 
 @Component({
   selector: `${XDateRangePrefix}`,
-  imports: [NgClass, FormsModule, XInputComponent, XInputGroupComponent],
+  imports: [NgClass, FormsModule, XInputComponent, XInputGroupComponent, XOutletDirective],
   templateUrl: './date-range.component.html',
   styleUrls: ['./date-range.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -12,7 +12,8 @@ import type {
   XAlign,
   XJustify,
   XNumber,
-  XVariant
+  XVariant,
+  XFloatLabel
 } from '@ng-nest/ui/core';
 
 /**
@@ -78,6 +79,11 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
    * @en_US Disabled time
    */
   readonly disabledTime = input<XDatePickerDisabledTime>();
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XDatePickerFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
    * @zh_CN 尺寸
    * @en_US Size
@@ -199,6 +205,11 @@ export interface XDatePickerOption extends XFormOption {
    * @en_US Input variant
    */
   variant?: XDatePickerVariant;
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XDatePickerFloatLabel;
   /**
    * @zh_CN 格式化类型
    * @en_US Format type
@@ -410,6 +421,11 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    */
   readonly disabledTime = input<XDatePickerDisabledTime>();
   /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XDatePickerFloatLabel | null>(this.config?.floatLabel ?? null);
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -515,6 +531,11 @@ export interface XDateRangeOption extends XFormOption {
    * @en_US Input variant
    */
   variant?: XDatePickerVariant;
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XDatePickerFloatLabel;
   /**
    * @zh_CN 格式化类型
    * @en_US Format type
@@ -730,6 +751,12 @@ export type XDatePickerModelType = 'date' | 'number' | 'string';
  * @en_US Input box variant
  */
 export type XDatePickerVariant = XVariant;
+
+/**
+ * @zh_CN 浮动标签类型
+ * @en_US Float label type
+ */
+export type XDatePickerFloatLabel = XFloatLabel;
 
 /**
  * DatePicker Portal

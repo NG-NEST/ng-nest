@@ -11,3 +11,4 @@ export * from './zh_CN/default/today/today.component';
 export * from './zh_CN/default/time/time.component';
 export * from './zh_CN/default/year-month/year-month.component';
 export * from './zh_CN/default/variant/variant.component';
+export * from './zh_CN/default/float-label/float-label.component';

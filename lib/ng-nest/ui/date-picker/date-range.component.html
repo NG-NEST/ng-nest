@@ -16,9 +16,13 @@
   [class.x-date-range-active-end]="activeType() === 'end'"
 >
   @if (label()) {
-    <label [class.x-date-range-label-required]="required()" [style.width]="labelWidth()" [ngClass]="labelMapSignal()">{{
-      label()
-    }}</label>
+    <label
+      [class.x-date-range-label-required]="required()"
+      [style.width]="labelWidth()"
+      [ngClass]="labelMapSignal()"
+      *xOutlet="label()"
+      >{{ label() }}</label
+    >
   }
   <div class="x-date-range-row">
     <x-input-group
@@ -34,12 +38,14 @@
         type="text"
         bordered="false"
         [before]="before()"
+        [label]="!!floatLabel() ? startPlaceholder()! : ''"
         [size]="size()"
         [disabled]="disabledComputed()"
         [placeholder]="startPlaceholder()!"
         [pointer]="pointer()"
         [required]="required()"
         [readonly]="readonly()"
+        [floatLabel]="floatLabel()"
         (xFocus)="onFocus('start')"
         (xClick)="showPortal($event, 'start')"
         [(ngModel)]="startDisplay"
@@ -50,12 +56,14 @@
         class="x-date-range-input x-date-range-input-end"
         type="text"
         bordered="false"
+        [label]="!!floatLabel() ? endPlaceholder()! : ''"
         [size]="size()"
         [disabled]="disabledComputed()"
         [placeholder]="endPlaceholder()!"
         [pointer]="pointer()"
         [required]="required()"
         [readonly]="readonly()"
+        [floatLabel]="floatLabel()"
         (xFocus)="onFocus('end')"
         (xClick)="showPortal($event, 'end')"
         [(ngModel)]="endDisplay"
