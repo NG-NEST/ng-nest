@@ -12,7 +12,8 @@ import {
   XNumber,
   XToBoolean,
   XToCssPixelValue,
-  XVariant
+  XVariant,
+  XFloatLabel
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, model, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
@@ -94,6 +95,11 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    * @en_US Can only be the value of choice
    */
   readonly onlySelect = input<boolean, XBoolean>(this.config?.onlySelect ?? false, { transform: XToBoolean });
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XAutoCompleteFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
    * @zh_CN 尺寸
    * @en_US Size
@@ -246,6 +252,11 @@ export interface XAutoCompleteOption extends XFormOption {
    */
   onlySelect?: boolean;
   /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XAutoCompleteFloatLabel;
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -351,6 +362,12 @@ export interface XAutoCompleteOption extends XFormOption {
    */
   nodeEmit?: (node: XAutoCompleteNode) => void;
 }
+
+/**
+ * @zh_CN 浮动标签类型
+ * @en_US Float label type
+ */
+export type XAutoCompleteFloatLabel = XFloatLabel;
 
 /**
  * @zh_CN 输入框形态变体
