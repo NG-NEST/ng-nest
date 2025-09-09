@@ -13,7 +13,8 @@ import type {
   XTemplate,
   XDirection,
   XJustify,
-  XVariant
+  XVariant,
+  XFloatLabel
 } from '@ng-nest/ui/core';
 
 /**
@@ -98,6 +99,11 @@ export class XCascadeProperty extends XFormControlFunction(X_CASCADE_CONFIG_NAME
    * @en_US Node template
    */
   readonly nodeTpl = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XCascadeFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
    * @zh_CN 尺寸
    * @en_US Size
@@ -219,6 +225,11 @@ export interface XCascadeOption extends XFormOption {
    * @en_US Input variant
    */
   variant?: XCascadeVariant;
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XCascadeFloatLabel;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
@@ -362,6 +373,12 @@ export interface XCascadeNode extends XParentIdentityProperty<XCascadeNode> {}
  * @en_US Sub node triggering method
  */
 export type XCascadeNodeTrigger = XTrigger;
+
+/**
+ * @zh_CN 浮动标签类型
+ * @en_US Float label type
+ */
+export type XCascadeFloatLabel = XFloatLabel;
 
 /**
  * @zh_CN 输入框形态变体

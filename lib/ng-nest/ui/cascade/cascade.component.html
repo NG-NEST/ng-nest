@@ -27,6 +27,7 @@
       [pattern]="patternComputed()"
       [message]="messageComputed()"
       [pointer]="true"
+      [floatLabel]="floatLabel()"
       [(active)]="active"
       [variant]="variant()"
       (clearEmit)="clearEmit()"
@@ -38,5 +39,5 @@
 </div>
 
 <ng-template #valueTemplate>
-  {{ displayValue() }}
+  <span [attr.title]="displayValue()">{{ displayValue() }}</span>
 </ng-template>

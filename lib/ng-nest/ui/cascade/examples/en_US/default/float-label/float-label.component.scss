@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  .box {
+    border: 1px solid var(--x-background-a200);
+    padding: 1rem;
+    h4 {
+      background: var(--x-background-a200);
+      margin: 0;
+      padding: 0.25rem 1rem;
+    }
+  }
+  .row {
+    padding: 3rem 0 0 0;
+  }
+}
