@@ -13,7 +13,7 @@ import {
   computed
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XIsUndefined, XIsFunction, XSize } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsUndefined, XIsFunction, XSize, XIsArray } from '@ng-nest/ui/core';
 import { Subject, distinctUntilChanged, fromEvent, takeUntil } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
@@ -82,6 +82,13 @@ export class XInputComponent extends XInputProperty implements OnInit {
       return !XIsEmpty(this.value());
     } else {
       return false;
+    }
+  });
+  hasValue = computed(() => {
+    if (XIsArray(this.value())) {
+      return this.value().length > 0;
+    } else {
+      return !XIsEmpty(this.value());
     }
   });
   valueChange = new Subject<any>();
@@ -246,4 +253,8 @@ export class XInputComponent extends XInputProperty implements OnInit {
   }
 
   formControlChanges() {}
+
+  onClick($event: MouseEvent) {
+    this.xClick.emit($event);
+  }
 }

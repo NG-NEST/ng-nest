@@ -26,7 +26,7 @@
   [class.x-input-float-label-over]="floatLabel() === 'over'"
   [class.x-input-float-label-in]="floatLabel() === 'in'"
   [class.x-input-float-label-on]="floatLabel() === 'on'"
-  [class.x-input-has-value]="!!value()"
+  [class.x-input-has-value]="hasValue()"
   [ngClass]="classMap()"
 >
   @if (label()) {
@@ -36,9 +36,8 @@
       [style.margin-left]="!!floatLabel() ? paddingLeft() : null"
       [ngClass]="labelMapSignal()"
       *xOutlet="label()"
+      >{{ label() }}</label
     >
-      {{ label() }}
-    </label>
   }
   <div class="x-input-row">
     @if (before()) {
@@ -55,7 +54,7 @@
           [style.padding-left]="0"
           [style.padding-right]="0"
           [style.width]="getTemplateWidth()"
-          (click)="xClick.emit($event)"
+          (click)="onClick($event)"
         >
           <ng-container
             *xOutlet="valueTpl()!; context: valueTplContext() ? valueTplContext() : { $value: value() }"
@@ -83,7 +82,7 @@
         (focus)="xFocus.emit($event)"
         (blur)="xBlur.emit($event)"
         (keydown)="formControlValidator(); xKeydown.emit($event)"
-        (click)="xClick.emit($event)"
+        (click)="onClick($event)"
         (compositionstart)="xComposition.emit($event)"
         (compositionend)="xComposition.emit($event)"
       />
@@ -91,7 +90,7 @@
         <x-icon class="x-input-clear" type="fto-x" (click)="onClear()"></x-icon>
       }
       @if (icon() && ((!clearShow() && getIconLayoutRight()) || getIconLayoutLeft() || iconSpin())) {
-        <x-icon [type]="icon()" [spin]="iconSpin()" (click)="xClick.emit($event)"></x-icon>
+        <x-icon [type]="icon()" [spin]="iconSpin()" (click)="onClick($event)"></x-icon>
       }
       @if (maxlength() && lengthTotal()) {
         <span class="x-input-max-length" [style.width]="getMaxLengthWidth()">{{ lengthTotal() }}</span>

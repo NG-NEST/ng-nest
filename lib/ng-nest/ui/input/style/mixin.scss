@@ -119,12 +119,16 @@
     }
   }
   &-label-required {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: $x-font-size-mini;
     &:before {
-      display: inline-block;
-      margin-right: 0.25rem;
+      position: absolute;
+      left: 0;
+      top: 0.125rem;
       color: $x-danger;
       line-height: 1;
-      font-size: $x-font-size-small;
       content: '*';
     }
   }
@@ -260,10 +264,6 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        // &.#{$x-prefix}-icon-spin {
-        //   padding: 0;
-        //   margin: $x-input-icon-padding;
-        // }
       }
     }
   }
@@ -398,6 +398,9 @@
   }
   &-float-label {
     position: relative;
+    display: flex !important;
+    align-items: center !important;
+    flex-direction: row !important;
     > label {
       position: absolute;
       pointer-events: none;
@@ -410,8 +413,7 @@
     &-on,
     &-in {
       > label {
-        top: 50%;
-        transform: translateY(-50%);
+        top: calc(50% - calc($x-font-size-small * 0.5));
       }
     }
   }
@@ -467,7 +469,7 @@
       &.#{$x-input-prefix}-active {
         > label {
           margin-left: 0 !important;
-          transform: translateY(calc(-50% - $height));
+          top: calc(0% - calc($x-font-size + calc($padding * 0.5)));
         }
       }
     }
@@ -478,7 +480,7 @@
         > label {
           font-size: $x-font-size-mini;
           background-color: $x-background;
-          transform: translateY(calc(-50% - calc($height * 0.5)));
+          top: calc(0% - calc($x-font-size-small * 0.5));
         }
       }
     }
@@ -501,8 +503,7 @@
           line-height: 1;
         }
         > x-icon {
-          height: 1;
-          width: calc($height * 1.5);
+          width: $height;
         }
       }
 
@@ -525,7 +526,7 @@
       &.#{$x-input-prefix}-active {
         > label {
           font-size: $x-font-size-mini;
-          transform: translateY(calc(-100% - calc($padding * 0.25)));
+          top: calc(0% + calc($padding * 0.75));
         }
       }
     }
