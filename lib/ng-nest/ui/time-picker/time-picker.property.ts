@@ -7,6 +7,7 @@ import type {
   XCorner,
   XData,
   XDirection,
+  XFloatLabel,
   XIdentityProperty,
   XJustify,
   XNumber,
@@ -88,6 +89,11 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    * @en_US The style class name of the drop-down box
    */
   readonly portalClass = input<string | string[]>('');
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XTimePickerFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
    * @zh_CN 尺寸
    * @en_US Size
@@ -214,6 +220,11 @@ export interface XTimePickerOption extends XFormOption {
    * @en_US Input variant
    */
   variant?: XTimePickerVariant;
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XTimePickerFloatLabel;
   /**
    * @zh_CN 格式化
    * @en_US Format
@@ -371,6 +382,12 @@ export interface XTimePickerOption extends XFormOption {
  * @en_US Time selection
  */
 export type XTimePickerType = 'time' | 'hour' | 'minute';
+
+/**
+ * @zh_CN 浮动标签类型
+ * @en_US Float label type
+ */
+export type XTimePickerFloatLabel = XFloatLabel;
 
 /**
  * @zh_CN 输入框形态变体
