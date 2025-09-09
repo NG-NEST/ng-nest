@@ -49,7 +49,9 @@
   </div>
 </div>
 
-<ng-template #valueTemplate>{{ displayValue() }}</ng-template>
+<ng-template #valueTemplate>
+  <span [attr.title]="displayValue()">{{ displayValue() }}</span>
+</ng-template>
 
 <ng-template #searchTemplate>
   <x-input

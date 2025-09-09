@@ -25,20 +25,10 @@ import { NgClass, NgStyle } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import type { CdkDragMove, CdkDragStart, CdkDragEnd } from '@angular/cdk/drag-drop';
-import { XColorPickerModule } from '../color-picker';
 
 @Component({
   selector: `${XSliderSelectPrefix}`,
-  imports: [
-    NgClass,
-    NgStyle,
-    FormsModule,
-    ReactiveFormsModule,
-    DragDropModule,
-    XTooltipDirective,
-    XOutletDirective,
-    XColorPickerModule
-  ],
+  imports: [NgClass, NgStyle, FormsModule, ReactiveFormsModule, DragDropModule, XTooltipDirective, XOutletDirective],
   templateUrl: './slider-select.component.html',
   styleUrls: ['./slider-select.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -47,6 +47,15 @@
         }
       }
     }
+    .x-input-mini,
+    .x-input-small,
+    .x-input-medium,
+    .x-input-large,
+    .x-input-big {
+      &.x-input-float-label-in > .x-input-row > .x-input-input > .x-input-value-template-value {
+        padding-bottom: 0.125rem;
+      }
+    }
   }
   &-search-single {
     .x-input-value-template-value {
