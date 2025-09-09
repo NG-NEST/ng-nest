@@ -7,7 +7,8 @@ import {
   ExPanelComponent,
   ExRequiredComponent,
   ExSizeComponent,
-  ExVariantComponent
+  ExVariantComponent,
+  ExFloatLabelComponent
 } from '@ng-nest/ui/color-picker/examples';
 
 @Component({
@@ -20,7 +21,8 @@ import {
     ExRequiredComponent,
     ExSizeComponent,
     ExPanelComponent,
-    ExVariantComponent
+    ExVariantComponent,
+    ExFloatLabelComponent
   ],
   templateUrl: './color-picker.component.html'
 })

@@ -33,6 +33,7 @@
       [message]="messageComputed()"
       [pointer]="pointer()"
       [variant]="variant()"
+      [floatLabel]="floatLabel()"
       [(active)]="active"
       (clearEmit)="clearEmit()"
       (xKeydown)="onKeydown($event)"
@@ -46,7 +47,9 @@
   </div>
 </div>
 
-<ng-template #valueTemplate>{{ displayValue() }}</ng-template>
+<ng-template #valueTemplate>
+  <span [attr.title]="displayValue()">{{ displayValue() }}</span>
+</ng-template>
 
 <ng-template #searchTemplate>
   <x-input

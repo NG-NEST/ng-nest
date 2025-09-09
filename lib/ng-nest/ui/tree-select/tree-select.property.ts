@@ -12,7 +12,8 @@ import type {
   XDirection,
   XAlign,
   XJustify,
-  XVariant
+  XVariant,
+  XFloatLabel
 } from '@ng-nest/ui/core';
 
 /**
@@ -165,6 +166,11 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
    */
   readonly includeChildren = input<boolean, XBoolean>(this.config?.includeChildren ?? false, { transform: XToBoolean });
   /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XTreeSelectFloatLabel | null>(this.config?.floatLabel ?? null);
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -280,6 +286,11 @@ export interface XTreeSelectOption extends XFormOption {
    * @en_US Input variant
    */
   variant?: XTreeSelectVariant;
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XTreeSelectFloatLabel;
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
@@ -524,6 +535,12 @@ export interface XTreeSelectOrder {
  * @en_US order type
  */
 export type XTreeSelectOrderType = 'asc' | 'desc';
+
+/**
+ * @zh_CN 浮动标签类型
+ * @en_US Float label type
+ */
+export type XTreeSelectFloatLabel = XFloatLabel;
 
 /**
  * @zh_CN 输入框形态变体
