@@ -28,6 +28,7 @@
       [message]="messageComputed()"
       [pointer]="pointer()"
       [variant]="variant()"
+      [floatLabel]="floatLabel()"
       [(active)]="active"
       (clearEmit)="clearEmit()"
       (xClick)="showPortal()"
@@ -37,7 +38,11 @@
 
     <ng-template #valueTemplate>
       <div class="x-color-picker-template-value">
-        <div class="x-color-picker-template-color" [style]="inputStyle()"></div>
+        <div
+          class="x-color-picker-template-color"
+          [style]="inputStyle()"
+          [attr.title]="inputStyle().backgroundColor"
+        ></div>
       </div>
     </ng-template>
 

@@ -11,7 +11,6 @@
     width: 100%;
     .x-input-value-template-value {
       left: 0.25rem !important;
-      width: calc(100% - 2.4rem) !important;
     }
   }
   &-template-value {
@@ -28,6 +27,51 @@
     width: 100%;
     height: 100%;
     border-radius: $x-border-small-radius;
+  }
+  .x-input-mini {
+    &.x-input-float-label-in > .x-input-row > .x-input-input > .x-input-value-template-value {
+      padding: 0 !important;
+      margin-top: calc($x-height-mini - calc($x-padding-mini * 0.5));
+    }
+    .x-input-value-template-value {
+      width: calc(100% - $x-height-mini) !important;
+    }
+  }
+  .x-input-small {
+    &.x-input-float-label-in > .x-input-row > .x-input-input > .x-input-value-template-value {
+      padding: 0 !important;
+      margin-top: calc($x-height-small - calc($x-padding-small * 0.5));
+    }
+    .x-input-value-template-value {
+      width: calc(100% - $x-height-small) !important;
+    }
+  }
+  .x-input-medium {
+    &.x-input-float-label-in > .x-input-row > .x-input-input > .x-input-value-template-value {
+      padding: 0 !important;
+      margin-top: calc($x-height-medium - calc($x-padding-medium * 0.5));
+    }
+    .x-input-value-template-value {
+      width: calc(100% - $x-height-medium) !important;
+    }
+  }
+  .x-input-large {
+    &.x-input-float-label-in > .x-input-row > .x-input-input > .x-input-value-template-value {
+      padding: 0 !important;
+      margin-top: calc($x-height-large - calc($x-padding-large * 0.5));
+    }
+    .x-input-value-template-value {
+      width: calc(100% - $x-height-large) !important;
+    }
+  }
+  .x-input-big {
+    &.x-input-float-label-in > .x-input-row > .x-input-input > .x-input-value-template-value {
+      padding: 0 !important;
+      margin-top: calc($x-height-big - calc($x-padding-big * 0.5));
+    }
+    .x-input-value-template-value {
+      width: calc(100% - $x-height-big) !important;
+    }
   }
 }
 

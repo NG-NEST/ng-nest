@@ -6,6 +6,7 @@ import type {
   XBoolean,
   XCorner,
   XDirection,
+  XFloatLabel,
   XJustify,
   XNumber,
   XSize,
@@ -41,6 +42,12 @@ export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NA
    * @en_US Display Border
    */
   readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XColorPickerFloatLabel | null>(this.config?.floatLabel ?? null);
+  /**
   /**
    * @zh_CN 尺寸
    * @en_US Size
@@ -152,6 +159,11 @@ export interface XColorPickerOption extends XFormOption {
    * @en_US Input variant
    */
   variant?: XColorPickerVariant;
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XColorPickerFloatLabel;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
@@ -269,6 +281,12 @@ export interface XColorPickerOption extends XFormOption {
  * @en_US Color type
  */
 export type XColorType = 'hex' | 'rgba' | 'hsla';
+
+/**
+ * @zh_CN 浮动标签类型
+ * @en_US Float label type
+ */
+export type XColorPickerFloatLabel = XFloatLabel;
 
 /**
  * @zh_CN 输入框形态变体

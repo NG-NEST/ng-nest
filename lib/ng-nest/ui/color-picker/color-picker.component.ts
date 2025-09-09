@@ -74,12 +74,21 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
 
   constructor() {
     super();
-    effect(() =>
-      this.portalComponent()?.setInput('value', XColorPickerColorMap[this.value()] || this.value() || this.primaryColor)
-    );
-    effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
-    effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
-    effect(() => this.portalComponent()?.setInput('panelTemplate', this.panelTemplate()));
+    effect(() => {
+      this.portalComponent()?.setInput(
+        'value',
+        XColorPickerColorMap[this.value()] || this.value() || this.primaryColor
+      );
+    });
+    effect(() => {
+      this.portalComponent()?.setInput('placement', this.realPlacement());
+    });
+    effect(() => {
+      this.portalComponent()?.setInput('inputCom', this.inputCom());
+    });
+    effect(() => {
+      this.portalComponent()?.setInput('panelTemplate', this.panelTemplate());
+    });
   }
 
   ngOnInit() {
@@ -204,6 +213,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     this.portalOverlayRef.set(overlayRef!);
     this.realPlacement.set(this.placement());
     const { nodeClick, animating } = componentRef!.instance;
+
     nodeClick.subscribe((color: string) => this.onNodeClick(color));
     animating.subscribe((ing: boolean) => this.animating.set(ing));
   }
