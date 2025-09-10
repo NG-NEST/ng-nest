@@ -48,6 +48,11 @@ export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NA
    */
   readonly floatLabel = input<XColorPickerFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  readonly floatFixed = input<boolean, XBoolean>(this.config?.floatFixed ?? false, { transform: XToBoolean });
+  /**
   /**
    * @zh_CN 尺寸
    * @en_US Size
@@ -164,6 +169,11 @@ export interface XColorPickerOption extends XFormOption {
    * @en_US Float label
    */
   floatLabel?: XColorPickerFloatLabel;
+  /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  floatFixed?: boolean;
   /**
    * @zh_CN 展示方位
    * @en_US Display position
