@@ -85,6 +85,11 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
    */
   readonly floatLabel = input<XDatePickerFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  readonly floatFixed = input<boolean, XBoolean>(this.config?.floatFixed ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -210,6 +215,11 @@ export interface XDatePickerOption extends XFormOption {
    * @en_US Float label
    */
   floatLabel?: XDatePickerFloatLabel;
+  /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  floatFixed?: boolean;
   /**
    * @zh_CN 格式化类型
    * @en_US Format type
@@ -426,6 +436,11 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    */
   readonly floatLabel = input<XDatePickerFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  readonly floatFixed = input<boolean, XBoolean>(this.config?.floatFixed ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -536,6 +551,11 @@ export interface XDateRangeOption extends XFormOption {
    * @en_US Float label
    */
   floatLabel?: XDatePickerFloatLabel;
+  /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  floatFixed?: boolean;
   /**
    * @zh_CN 格式化类型
    * @en_US Format type

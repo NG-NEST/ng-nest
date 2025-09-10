@@ -177,6 +177,7 @@ export interface XAvatarConfig {
 
 export interface XAutoCompleteConfig {
   floatLabel?: XFloatLabel;
+  floatFixed?: boolean;
   variant?: XVariant;
   placement?: XPositionTopBottom;
   debounceTime?: number;
@@ -230,6 +231,7 @@ export interface XCarouselConfig {
 
 export interface XCascadeConfig {
   floatLabel?: XFloatLabel;
+  floatFixed?: boolean;
   variant?: XVariant;
   placement?: XCorner;
   size?: XSize;
@@ -259,6 +261,7 @@ export interface XColorConfig {
 
 export interface XColorPickerConfig {
   floatLabel?: XFloatLabel;
+  floatFixed?: boolean;
   variant?: XVariant;
   placement?: XCorner;
   size?: XSize;
@@ -292,6 +295,7 @@ export interface XCrumbComfig {
 
 export interface XDatePickerConfig {
   floatLabel?: XFloatLabel;
+  floatFixed?: boolean;
   variant?: XVariant;
   format?: string;
   clearable?: boolean;
@@ -302,6 +306,7 @@ export interface XDatePickerConfig {
 
 export interface XDateRangeConfig {
   floatLabel?: XFloatLabel;
+  floatFixed?: boolean;
   variant?: XVariant;
   format?: string;
   clearable?: boolean;
@@ -549,6 +554,7 @@ export interface XResultConfig {}
 
 export interface XSelectConfig {
   floatLabel?: XFloatLabel;
+  floatFixed?: boolean;
   variant?: XVariant;
   placement?: XPositionTopBottom;
   clearable?: boolean;
@@ -662,6 +668,7 @@ export interface XTimeAgoConfig {}
 
 export interface XTimePickerConfig {
   floatLabel?: XFloatLabel;
+  floatFixed?: boolean;
   variant?: XVariant;
   format?: string;
   placement?: XCorner;
@@ -723,6 +730,7 @@ export interface XTreeFileConfig {
 
 export interface XTreeSelectConfig {
   floatLabel?: XFloatLabel;
+  floatFixed?: boolean;
   variant?: XVariant;
   placement?: XPositionTopBottom;
   clearable?: boolean;

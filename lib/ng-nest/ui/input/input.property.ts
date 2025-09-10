@@ -278,6 +278,16 @@ export interface XInputOption extends XFormOption {
    */
   variant?: XInputVariant;
   /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XInputFloatLabel;
+  /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  floatFixed?: boolean;
+  /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */

@@ -735,8 +735,8 @@
         flex: 1;
         width: 50%;
         input {
-          padding-left: $x-padding-medium !important;
-          padding-right: $x-padding-medium !important;
+          padding-left: 0.75rem !important;
+          padding-right: 0.75rem !important;
         }
         .x-input-row > .x-input-input > input {
           box-shadow: none;
@@ -844,7 +844,7 @@
     &.x-input-has-value,
     &.x-input-active {
       > label {
-        margin-left: $x-padding-medium !important;
+        margin-left: 0.75rem !important;
       }
     }
   }
