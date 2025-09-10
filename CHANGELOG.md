@@ -1,3 +1,38 @@
+# [20.1.0](https://github.com/NG-NEST/ng-nest/compare/20.0.7...20.1.0) (2025-09-10)
+
+
+### Bug Fixes
+
+* **module:pagination:** fix variant style ([7d61694](https://github.com/NG-NEST/ng-nest/commit/7d61694e3280b41d759700d8a9d9997319b6896c))
+
+
+### Features
+
+* **core:** export cssrem ([b3d4df9](https://github.com/NG-NEST/ng-nest/commit/b3d4df9c35a08df2a3db8c8de6663d141a108c66))
+* **form:** add label template ([89d0ded](https://github.com/NG-NEST/ng-nest/commit/89d0ded6697043c4c11ae0be0a24fff695f0f435))
+* **module:auto-complete:** add float label ([8d769f5](https://github.com/NG-NEST/ng-nest/commit/8d769f50c5082a4ffd2e186a1c3aa1cb832c2840))
+* **module:auto-complete:** add float label fixed ([fd78315](https://github.com/NG-NEST/ng-nest/commit/fd78315137fdaeb4d68b0de566a5b49a40ee2b66))
+* **module:cascade:** add float label ([34e2df2](https://github.com/NG-NEST/ng-nest/commit/34e2df2e55a0548a7afcb2cfcdd3ba17e5672420))
+* **module:cascade:** add float label fixed ([8d292db](https://github.com/NG-NEST/ng-nest/commit/8d292db60b8b67f328b45ad3799ec7a9a7e67f6a))
+* **module:color-picker:** add float label ([cb8b590](https://github.com/NG-NEST/ng-nest/commit/cb8b59077f544f8cbf3692a12640d5c4b5270ccc))
+* **module:color-picker:** add float label fixed ([f29a6ae](https://github.com/NG-NEST/ng-nest/commit/f29a6ae295f140290bbbd66850cacfef7b347a55))
+* **module:date-picker:** add float label ([21b19b1](https://github.com/NG-NEST/ng-nest/commit/21b19b1c1e2ffe9da638a5a1034d459fef3d6c76))
+* **module:date-picker:** add float label fixed ([941fcbf](https://github.com/NG-NEST/ng-nest/commit/941fcbf4c4731ea243c60b869e828a7f6406baab))
+* **module:input:** add float label ([b12b7c8](https://github.com/NG-NEST/ng-nest/commit/b12b7c88dcf86b93e7893c264d69dc780188cfd2))
+* **module:input:** add float label fixed ([3738643](https://github.com/NG-NEST/ng-nest/commit/37386434db832023d41f06bd318ea04d1d92e119))
+* **module:input:** update float label ([ccd534b](https://github.com/NG-NEST/ng-nest/commit/ccd534b64fbad1e201f6f630edd0a13335970d6c))
+* **module:scrollable:** add x anf y offset ([ce17b7c](https://github.com/NG-NEST/ng-nest/commit/ce17b7c7c87474078a9692225f522a0e001f967d))
+* **module:select:** add float label ([6d838e5](https://github.com/NG-NEST/ng-nest/commit/6d838e5125caecd906233abdd056245b38f4e64e))
+* **module:select:** add float label ([af5eaab](https://github.com/NG-NEST/ng-nest/commit/af5eaaba5cabe99292e01c9a0c0b038e5925e57b))
+* **module:select:** add float label fixed ([9776b03](https://github.com/NG-NEST/ng-nest/commit/9776b03f1976c5cbdc378ac65654141de6ab4476))
+* **module:table:** use cdk table ([0d1c046](https://github.com/NG-NEST/ng-nest/commit/0d1c046f7117f6852b0cc80c5a062b24abd411f6))
+* **module:time-picker:** add float label ([fec3e64](https://github.com/NG-NEST/ng-nest/commit/fec3e642755f137adfc40469548206f33e8971f7))
+* **module:time-picker:** add float label fixed ([8fd182a](https://github.com/NG-NEST/ng-nest/commit/8fd182a44378f65b471f03f4b458364e5dffef26))
+* **module:tree-select:** add float label ([a6cc302](https://github.com/NG-NEST/ng-nest/commit/a6cc3026b68789a334637cec145c1225477463f9))
+* **module:tree-select:** add float label fixed ([22566e8](https://github.com/NG-NEST/ng-nest/commit/22566e89195ed721d89a8bff9699b2520e914abc))
+
+
+
 ## [20.0.7](https://github.com/NG-NEST/ng-nest/compare/20.0.6...20.0.7) (2025-08-31)
 
 

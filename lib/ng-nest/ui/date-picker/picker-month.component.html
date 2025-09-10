@@ -1,7 +1,7 @@
 <div class="x-picker-month" [class.x-date-picker-monthtemp]="monthTemp()">
   @if (showHeader()) {
     <div class="x-picker-month-header">
-      <x-link [class.x-visibility]="!lastYearBtn" icon="fto-chevrons-left" (click)="nextYear(-1)"></x-link>
+      <x-link [class.x-visibility]="!lastYearBtn()" icon="fto-chevrons-left" (click)="nextYear(-1)"></x-link>
       <div class="x-picker-month-year-month">
         <x-link (click)="typeOnChange('year')">{{ display() | date: 'yyyy' }}{{ locale().year }}</x-link>
       </div>

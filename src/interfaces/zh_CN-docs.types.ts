@@ -1719,7 +1719,7 @@ export const zh_CN: {[key: string]: AppProp} = {
   "XVariant": {
     "type": "type",
     "label": "输入框形态变体",
-    "description": "- `'outlined'` : 默认\n- `'filled'` : 填充\n- `'borderless'` : 无边框\n- `'underlined'` : 下划线\n- `'fixed-filled'` : 固定填充",
+    "description": "- `'outlined'` : 默认\n- `'filled'` : 填充\n- `'borderless'` : 无边框\n- `'underlined'` : 下划线",
     "example": [
       {
         "type": "text",
@@ -1729,6 +1729,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XVariant",
     "value": "'outlined' | 'filled' | 'borderless' | 'underlined' | 'fixed-filled'"
+  },
+  "XFloatLabel": {
+    "type": "type",
+    "label": "浮动标签",
+    "description": "- `'over'` : 默认\n- `'in'` : 填充\n- `'on'` : 无边框",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XFloatLabel",
+    "value": "'over' | 'in' | 'on'"
   },
   "XStatus": {
     "type": "type",
@@ -3023,6 +3037,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "floatLabel",
+        "type": "XAutoCompleteFloatLabel | null",
+        "toType": "XAutoCompleteFloatLabel | null",
+        "inputType": "InputSignal<XAutoCompleteFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "size",
         "type": "XSize",
         "toType": "XSize",
@@ -3060,9 +3110,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -3554,6 +3604,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "floatLabel",
+        "type": "XAutoCompleteFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "size",
         "type": "XSize",
         "label": "尺寸",
@@ -3915,6 +3999,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "extends": [
       "XFormOption"
     ]
+  },
+  "XAutoCompleteFloatLabel": {
+    "type": "type",
+    "label": "浮动标签类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAutoCompleteFloatLabel",
+    "value": "XFloatLabel"
   },
   "XAutoCompleteVariant": {
     "type": "type",
@@ -6519,6 +6617,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "floatLabel",
+        "type": "XCascadeFloatLabel | null",
+        "toType": "XCascadeFloatLabel | null",
+        "inputType": "InputSignal<XCascadeFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "size",
         "type": "XSize",
         "toType": "XSize",
@@ -6556,9 +6690,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -6939,6 +7073,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatLabel",
+        "type": "XCascadeFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
         "propType": "",
         "example": [
           {
@@ -7425,6 +7593,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XCascadeNodeTrigger",
     "value": "XTrigger"
   },
+  "XCascadeFloatLabel": {
+    "type": "type",
+    "label": "浮动标签类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XCascadeFloatLabel",
+    "value": "XFloatLabel"
+  },
   "XCascadeVariant": {
     "type": "type",
     "label": "输入框形态变体",
@@ -7664,9 +7846,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -8906,6 +9088,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "floatLabel",
+        "type": "XColorPickerFloatLabel | null",
+        "toType": "XColorPickerFloatLabel | null",
+        "inputType": "InputSignal<XColorPickerFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "size",
         "type": "XSize",
         "toType": "XSize",
@@ -8943,9 +9161,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -9291,6 +9509,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatLabel",
+        "type": "XColorPickerFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
         "propType": "",
         "example": [
           {
@@ -9692,6 +9944,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XColorType",
     "value": "'hex' | 'rgba' | 'hsla'"
+  },
+  "XColorPickerFloatLabel": {
+    "type": "type",
+    "label": "浮动标签类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XColorPickerFloatLabel",
+    "value": "XFloatLabel"
   },
   "XColorPickerVariant": {
     "type": "type",
@@ -10770,6 +11036,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "floatLabel",
+        "type": "XDatePickerFloatLabel | null",
+        "toType": "XDatePickerFloatLabel | null",
+        "inputType": "InputSignal<XDatePickerFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "size",
         "type": "XSize",
         "toType": "XSize",
@@ -10807,9 +11109,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -11190,6 +11492,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatLabel",
+        "type": "XDatePickerFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
         "propType": "",
         "example": [
           {
@@ -11905,6 +12241,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "floatLabel",
+        "type": "XDatePickerFloatLabel | null",
+        "toType": "XDatePickerFloatLabel | null",
+        "inputType": "InputSignal<XDatePickerFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "size",
         "type": "XSize",
         "toType": "XSize",
@@ -11942,9 +12314,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -12271,6 +12643,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatLabel",
+        "type": "XDatePickerFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
         "propType": "",
         "example": [
           {
@@ -12878,6 +13284,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDatePickerVariant",
     "value": "XVariant"
+  },
+  "XDatePickerFloatLabel": {
+    "type": "type",
+    "label": "浮动标签类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDatePickerFloatLabel",
+    "value": "XFloatLabel"
   },
   "XDatePickerPortalPrefix": {
     "type": "const",
@@ -17345,9 +17765,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -20667,6 +21087,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
+        "name": "floatLabel",
+        "type": "XInputFloatLabel | null",
+        "toType": "XInputFloatLabel | null",
+        "inputType": "InputSignal<XInputFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "validator",
         "type": "XBoolean",
         "toType": "boolean",
@@ -20722,9 +21178,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -21249,6 +21705,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatLabel",
+        "type": "XInputFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
         "propType": "",
         "example": [
           {
@@ -21991,6 +22481,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XInputType",
     "value": "'text' | 'password' | 'number'"
   },
+  "XInputFloatLabel": {
+    "type": "type",
+    "label": "浮动标签类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XInputFloatLabel",
+    "value": "XFloatLabel"
+  },
   "XInputVariant": {
     "type": "type",
     "label": "输入框形态变体",
@@ -22315,9 +22819,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -28301,9 +28805,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -28994,9 +29498,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -30227,6 +30731,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "floatLabel",
+        "type": "XSelectFloatLabel | null",
+        "toType": "XSelectFloatLabel | null",
+        "inputType": "InputSignal<XSelectFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "size",
         "type": "XSize",
         "toType": "XSize",
@@ -30264,9 +30804,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -30910,6 +31450,57 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "allowInput",
+        "type": "boolean",
+        "label": "搜索时允许使用输入的值，作为选择器的值",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "allowInput",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatLabel",
+        "type": "XSelectFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "size",
         "type": "XSize",
         "label": "尺寸",
@@ -31270,6 +31861,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "extends": [
       "XParentIdentityProperty<XSelectNode>"
     ]
+  },
+  "XSelectFloatLabel": {
+    "type": "type",
+    "label": "浮动标签类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSelectFloatLabel",
+    "value": "XFloatLabel"
   },
   "XSelectVariant": {
     "type": "type",
@@ -32258,9 +32863,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -33521,9 +34126,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -36856,7 +37461,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-table-view'"
   },
-  "XTableViewProperty": {
+  "XTableViewProperty<T>": {
     "type": "class",
     "label": "Table view Property",
     "description": "",
@@ -36866,47 +37471,10 @@ export const zh_CN: {[key: string]: AppProp} = {
         "content": ""
       }
     ],
-    "properties": [
-      {
-        "name": "data",
-        "type": "any[]",
-        "toType": "any[]",
-        "inputType": "InputSignal<any[]>",
-        "signal": "input",
-        "label": "数据",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      },
-      {
-        "name": "columns",
-        "type": "string[]",
-        "toType": "string[]",
-        "inputType": "InputSignal<string[]>",
-        "signal": "input",
-        "label": "列数据",
-        "default": "[]",
-        "withConfig": false,
-        "description": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ],
-        "transform": ""
-      }
-    ],
-    "name": "XTableViewProperty",
+    "properties": [],
+    "name": "XTableViewProperty<T>",
     "extends": [
-      "XPropertyFunction(X_TABLE_VIEW_CONFIG_NAME)"
+      "CdkTable<T>"
     ]
   },
   "XTabsPrefix": {
@@ -37893,9 +38461,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -39050,6 +39618,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "floatLabel",
+        "type": "XTimePickerFloatLabel | null",
+        "toType": "XTimePickerFloatLabel | null",
+        "inputType": "InputSignal<XTimePickerFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "size",
         "type": "XSize",
         "toType": "XSize",
@@ -39105,9 +39709,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -39488,6 +40092,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatLabel",
+        "type": "XTimePickerFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
         "propType": "",
         "example": [
           {
@@ -40025,6 +40663,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTimePickerType",
     "value": "'time' | 'hour' | 'minute'"
+  },
+  "XTimePickerFloatLabel": {
+    "type": "type",
+    "label": "浮动标签类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XTimePickerFloatLabel",
+    "value": "XFloatLabel"
   },
   "XTimePickerVariant": {
     "type": "type",
@@ -43822,6 +44474,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "floatLabel",
+        "type": "XTreeSelectFloatLabel | null",
+        "toType": "XTreeSelectFloatLabel | null",
+        "inputType": "InputSignal<XTreeSelectFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "size",
         "type": "XSize",
         "toType": "XSize",
@@ -43859,9 +44547,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "label",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "标签",
         "default": "''",
@@ -44224,6 +44912,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "variant",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatLabel",
+        "type": "XTreeSelectFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
         "propType": "",
         "example": [
           {
@@ -45029,6 +45751,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTreeSelectOrderType",
     "value": "'asc' | 'desc'"
+  },
+  "XTreeSelectFloatLabel": {
+    "type": "type",
+    "label": "浮动标签类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XTreeSelectFloatLabel",
+    "value": "XFloatLabel"
   },
   "XTreeSelectVariant": {
     "type": "type",

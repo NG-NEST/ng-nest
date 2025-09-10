@@ -1,6 +1,6 @@
 import { CdkTextColumn } from '@angular/cdk/table';
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { XTableColumnDef, XTableHeaderCellDef, XTableHeaderCell, XTableCellDef, XTableCell } from './cell';
+import { XTableColumnDef, XTableHeaderCellDef, XTableHeaderCell, XTableViewCellDef, XTableViewCell } from './cell';
 
 @Component({
   selector: 'x-table-text-column',
@@ -16,6 +16,6 @@ import { XTableColumnDef, XTableHeaderCellDef, XTableHeaderCell, XTableCellDef, 
   `,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
-  imports: [XTableColumnDef, XTableHeaderCellDef, XTableHeaderCell, XTableCellDef, XTableCell]
+  imports: [XTableColumnDef, XTableHeaderCellDef, XTableHeaderCell, XTableViewCellDef, XTableViewCell]
 })
 export class XTableTextColumn<T> extends CdkTextColumn<T> {}

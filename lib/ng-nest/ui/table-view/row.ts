@@ -45,13 +45,13 @@ export class XTableFooterRowDef extends CdkFooterRowDef {}
 
 @Directive({
   selector: '[xTableRowDef]',
-  providers: [{ provide: CdkRowDef, useExisting: XTableRowDef }],
+  providers: [{ provide: CdkRowDef, useExisting: XTableViewRowDef }],
   inputs: [
     { name: 'columns', alias: 'xTableRowDefColumns' },
     { name: 'when', alias: 'xTableRowDefWhen' }
   ]
 })
-export class XTableRowDef<T> extends CdkRowDef<T> {}
+export class XTableViewRowDef<T> extends CdkRowDef<T> {}
 
 @Component({
   selector: 'x-table-header-row, tr[x-table-header-row]',
@@ -135,10 +135,10 @@ export class XTableFooterRow extends CdkFooterRow {}
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'xTableRow',
-  providers: [{ provide: CdkRow, useExisting: XTableRow }],
+  providers: [{ provide: CdkRow, useExisting: XTableViewRow }],
   imports: [CdkCellOutlet]
 })
-export class XTableRow extends CdkRow {
+export class XTableViewRow extends CdkRow {
   tableViewService = inject(XTableViewService, { optional: true })!;
 
   @HostBinding('class.x-table-row-actived') get isActived() {

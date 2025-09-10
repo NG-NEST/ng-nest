@@ -24,8 +24,8 @@ import {
 } from '@angular/cdk/collections';
 import { XTableViewProperty } from './table-view.property';
 import { XTableViewService } from './table-view.service';
-import { XTableCell, XTableColumnDef, XTableHeaderCell } from './cell';
-import { XTableHeaderRow, XTableHeaderRowDef, XTableRow } from './row';
+import { XTableViewCell, XTableColumnDef, XTableHeaderCell } from './cell';
+import { XTableHeaderRow, XTableHeaderRowDef, XTableViewRow } from './row';
 
 @Component({
   selector: 'x-table-view, table[x-table-view]',
@@ -57,8 +57,8 @@ export class XTableView<T> extends XTableViewProperty<T> {
   columnDefs = contentChildren(XTableColumnDef);
   headerCells = contentChildren(XTableHeaderCell);
 
-  cells = contentChildren(XTableCell);
-  rows = contentChildren(XTableRow);
+  cells = contentChildren(XTableViewCell);
+  rows = contentChildren(XTableViewRow);
 
   /** Overrides the sticky CSS class set by the `CdkTable`. */
   protected override stickyCssClass = 'x-table-sticky';

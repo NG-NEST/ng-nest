@@ -35,7 +35,7 @@ import { XInputComponent } from '@ng-nest/ui/input';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { XOutletDirective } from "../outlet";
+import { XOutletDirective } from "@ng-nest/ui/outlet";
 
 @Component({
   selector: `${XFindPrefix}`,

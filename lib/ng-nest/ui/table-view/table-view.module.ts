@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
-  XTableCell,
-  XTableCellDef,
+  XTableViewCell,
+  XTableViewCellDef,
   XTableColumnDef,
   XTableFooterCell,
   XTableFooterCellDef,
@@ -14,8 +14,8 @@ import {
   XTableHeaderRow,
   XTableHeaderRowDef,
   XTableNoDataRow,
-  XTableRow,
-  XTableRowDef
+  XTableViewRow,
+  XTableViewRowDef
 } from './row';
 import { XTableView } from './table-view.component';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -29,19 +29,19 @@ const EXPORTED_DECLARATIONS = [
   XTableHeaderCellDef,
   XTableHeaderRowDef,
   XTableColumnDef,
-  XTableCellDef,
-  XTableRowDef,
+  XTableViewCellDef,
+  XTableViewRowDef,
   XTableFooterCellDef,
   XTableFooterRowDef,
 
   // Cell directives
   XTableHeaderCell,
-  XTableCell,
+  XTableViewCell,
   XTableFooterCell,
 
   // Row directives
   XTableHeaderRow,
-  XTableRow,
+  XTableViewRow,
   XTableFooterRow,
   XTableNoDataRow,
 

@@ -13,9 +13,9 @@ import { XTableView } from './table-view.component';
 
 @Directive({
   selector: '[xTableCellDef]',
-  providers: [{ provide: CdkCellDef, useExisting: XTableCellDef }]
+  providers: [{ provide: CdkCellDef, useExisting: XTableViewCellDef }]
 })
-export class XTableCellDef extends CdkCellDef {}
+export class XTableViewCellDef extends CdkCellDef {}
 
 @Directive({
   selector: '[xTableHeaderCellDef]',
@@ -77,7 +77,7 @@ export class XTableHeaderCell extends CdkHeaderCell {
       return;
     }
 
-    const columnCells: XTableCell[] = [];
+    const columnCells: XTableViewCell[] = [];
     for (let i = 0; i < rowsCount; i++) {
       const cellIndex = index * rowsCount + i;
       if (cellIndex < cells.length) {
@@ -108,7 +108,7 @@ export class XTableFooterCell extends CdkFooterCell {}
     class: 'x-table-cell'
   }
 })
-export class XTableCell extends CdkCell {
+export class XTableViewCell extends CdkCell {
   tableViewService = inject(XTableViewService, { optional: true })!;
   tableView = inject(XTableView, { optional: true });
   elementRef = inject(ElementRef);
@@ -123,7 +123,7 @@ export class XTableCell extends CdkCell {
     this.setActivedColumn(this);
   }
 
-  setActivedRow(cell: XTableCell) {
+  setActivedRow(cell: XTableViewCell) {
     const rows = this.tableView?.rows() ?? [];
     if (rows.length > 0) {
       const rowIndex = this.getRowIndex(cell);
@@ -134,7 +134,7 @@ export class XTableCell extends CdkCell {
     }
   }
 
-  setActivedColumn(cell: XTableCell) {
+  setActivedColumn(cell: XTableViewCell) {
     const headerCells = (this.tableView?.headerCells() ?? []) as XTableHeaderCell[];
     const headerRowRefs = this.tableView?.headerRowRefs() ?? [];
     const headerCellsArray = this.convertToColumnBasedArray(headerCells, headerRowRefs.length);
@@ -165,7 +165,7 @@ export class XTableCell extends CdkCell {
     return result;
   }
 
-  private getColumnIndex(cell: XTableCell): number {
+  private getColumnIndex(cell: XTableViewCell): number {
     if (!this.tableView || !this.tableView.cells()) return -1;
     const cellsArray = this.tableView.cells();
     const selectedIndex = cellsArray.indexOf(cell);
@@ -177,7 +177,7 @@ export class XTableCell extends CdkCell {
     return Math.floor(selectedIndex / rowsCount);
   }
 
-  private getRowIndex(cell: XTableCell): number {
+  private getRowIndex(cell: XTableViewCell): number {
     if (!this.tableView || !this.tableView.cells()) return -1;
     const cellsArray = this.tableView.cells();
     const selectedIndex = cellsArray.indexOf(cell);
