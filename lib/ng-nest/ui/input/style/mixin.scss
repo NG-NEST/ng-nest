@@ -17,7 +17,7 @@
     white-space: nowrap;
     position: relative;
     color: $x-text-300;
-    font-weight: 600;
+    font-weight: 500;
     @include text-align();
   }
   &-row {
@@ -119,16 +119,12 @@
     }
   }
   &-label-required {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding-left: $x-font-size-mini;
     &:before {
-      position: absolute;
-      left: 0;
-      top: 0.125rem;
+      display: inline-block;
+      margin-right: 0.25rem;
       color: $x-danger;
       line-height: 1;
+      font-size: $x-font-size-small;
       content: '*';
     }
   }
@@ -408,6 +404,17 @@
       line-height: 1 !important;
       height: initial !important;
       z-index: 1;
+
+      &.#{$x-input-prefix}-label-required {
+        display: flex;
+        align-items: center;
+        padding-left: $x-font-size-mini;
+        &:before {
+          position: absolute;
+          left: 0;
+          top: 0.125rem;
+        }
+      }
     }
     &-over,
     &-on,
@@ -466,9 +473,9 @@
     &.#{$x-input-prefix}-float-label-over {
       &.#{$x-input-prefix}-focus,
       &.#{$x-input-prefix}-has-value,
-      &.#{$x-input-prefix}-active {
+      &.#{$x-input-prefix}-active,
+      &.#{$x-input-prefix}-float-fixed {
         > label {
-          margin-left: 0 !important;
           top: calc(0% - calc($x-font-size + calc($padding * 0.5)));
         }
       }
@@ -476,7 +483,8 @@
     &.#{$x-input-prefix}-float-label-on {
       &.#{$x-input-prefix}-focus,
       &.#{$x-input-prefix}-has-value,
-      &.#{$x-input-prefix}-active {
+      &.#{$x-input-prefix}-active,
+      &.#{$x-input-prefix}-float-fixed {
         > label {
           font-size: $x-font-size-mini;
           background-color: $x-background;
@@ -523,7 +531,8 @@
 
       &.#{$x-input-prefix}-focus,
       &.#{$x-input-prefix}-has-value,
-      &.#{$x-input-prefix}-active {
+      &.#{$x-input-prefix}-active,
+      &.#{$x-input-prefix}-float-fixed {
         > label {
           font-size: $x-font-size-mini;
           top: calc(0% + calc($padding * 0.75));

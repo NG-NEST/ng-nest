@@ -390,6 +390,7 @@ export interface XInnerConfig {
 }
 
 export interface XInputConfig {
+  floatFixed?: boolean;
   floatLabel?: XFloatLabel;
   variant?: XVariant;
   clearable?: boolean;

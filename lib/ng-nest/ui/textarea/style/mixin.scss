@@ -16,7 +16,7 @@
     line-height: $x-textarea-height;
     position: relative;
     color: $x-text-300;
-    font-weight: 600;
+    font-weight: 500;
     @include text-align();
   }
   > .#{$x-textarea-prefix}-row {

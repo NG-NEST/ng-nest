@@ -107,6 +107,11 @@ export class XInputProperty extends XFormControlFunction(X_INPUT_CONFIG_NAME) {
    */
   readonly floatLabel = input<XInputFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  readonly floatFixed = input<boolean, XBoolean>(this.config?.floatFixed ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 初始启用验证，在输入值都自动开启
    * @en_US Initial enable validation, which is automatically enabled when the input value is
    */
