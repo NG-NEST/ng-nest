@@ -95,6 +95,11 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    */
   readonly floatLabel = input<XTimePickerFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  readonly floatFixed = input<boolean, XBoolean>(this.config?.floatFixed ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -225,6 +230,11 @@ export interface XTimePickerOption extends XFormOption {
    * @en_US Float label
    */
   floatLabel?: XTimePickerFloatLabel;
+  /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  floatFixed?: boolean;
   /**
    * @zh_CN 格式化
    * @en_US Format
