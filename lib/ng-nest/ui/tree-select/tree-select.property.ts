@@ -171,6 +171,11 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
    */
   readonly floatLabel = input<XTreeSelectFloatLabel | null>(this.config?.floatLabel ?? null);
   /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  readonly floatFixed = input<boolean, XBoolean>(this.config?.floatFixed ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -291,6 +296,11 @@ export interface XTreeSelectOption extends XFormOption {
    * @en_US Float label
    */
   floatLabel?: XTreeSelectFloatLabel;
+  /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  floatFixed?: boolean;
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
