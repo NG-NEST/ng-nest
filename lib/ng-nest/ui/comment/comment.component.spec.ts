@@ -87,19 +87,12 @@ describe(XCommentPrefix, () => {
     });
     const now = new Date();
     const src = 'https://ngnest.com/img/logo/logo-144x144.png';
-    const content = `天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。
-    天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为也，所以动心忍性，增益其所不能。`;
+    const content = ``;
     const data = [
       {
         id: '1',
         src: src,
-        author: '张琪峰',
+        author: '      ',
         datetime: XAddMinutes(now, -40),
         content: content,
         count: 23,
@@ -109,7 +102,7 @@ describe(XCommentPrefix, () => {
             id: '1-1',
             pid: '1',
             src: src,
-            author: '刘三',
+            author: '',
             datetime: XAddMinutes(now, -30),
             content: content,
             likes: 2
@@ -118,7 +111,7 @@ describe(XCommentPrefix, () => {
             id: '1-2',
             pid: '1',
             src: src,
-            author: '刘四',
+            author: '',
             datetime: XAddMinutes(now, -35),
             content: content,
             likes: 0
@@ -127,7 +120,7 @@ describe(XCommentPrefix, () => {
             id: '1-3',
             pid: '1',
             src: src,
-            author: '刘五',
+            author: '',
             datetime: XAddMinutes(now, -38),
             content: content,
             likes: 0
@@ -137,7 +130,7 @@ describe(XCommentPrefix, () => {
       {
         id: '2',
         src: src,
-        author: '李牧云',
+        author: '      ',
         datetime: XAddMinutes(now, -50),
         content: content,
         count: 2,
@@ -147,7 +140,7 @@ describe(XCommentPrefix, () => {
             id: '2-1',
             pid: '2',
             src: src,
-            author: '刘三',
+            author: '',
             datetime: XAddMinutes(now, -30),
             content: content,
             likes: 2
@@ -156,7 +149,7 @@ describe(XCommentPrefix, () => {
             id: '2-2',
             pid: '2',
             src: src,
-            author: '刘四',
+            author: '',
             datetime: XAddMinutes(now, -35),
             content: content,
             likes: 0
@@ -166,7 +159,7 @@ describe(XCommentPrefix, () => {
       {
         id: '3',
         src: src,
-        author: '刘芸',
+        author: '  芸',
         datetime: XAddHours(now, -5),
         content: content,
         count: 0,
