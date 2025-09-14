@@ -1,0 +1,10 @@
+:host {
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .row:not(:last-child) {
+    margin-top: 1rem;
+  }
+}

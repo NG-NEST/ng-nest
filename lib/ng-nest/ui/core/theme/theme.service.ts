@@ -44,6 +44,9 @@ export class XThemeService {
     if (theme?.vars) Object.assign(X_THEME_VARS, theme.vars);
     this.setColors(theme?.colors);
     if (theme?.colors) Object.assign(X_THEME_COLORS, theme.colors);
+    if (theme?.dark) {
+      this.setDark(true);
+    }
   }
 
   setTheme(theme?: XTheme) {

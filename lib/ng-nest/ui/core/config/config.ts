@@ -61,6 +61,7 @@ export interface XComponentConfig {
   badge?: XBadgeConfgig;
   button?: XButtonConfig;
   buttons?: XButtonsConfig;
+  bubble?: XBubbleConfig;
   calendar?: XCalendarConfig;
   card?: XCardConfig;
   carousel?: XCarouselConfig;
@@ -173,6 +174,7 @@ export interface XAvatarConfig {
   fit?: XFit;
   gap?: string;
   backgroundColor?: string;
+  color?: string;
 }
 
 export interface XAutoCompleteConfig {
@@ -214,6 +216,11 @@ export interface XButtonsConfig {
   hiddenBorder?: boolean;
   boxShadow?: boolean;
   round?: boolean;
+}
+
+export interface XBubbleConfig {
+  variant?: 'outlined' | 'filled' | 'shadow' | 'borderless';
+  size?: XSize;
 }
 
 export interface XCalendarConfig {}

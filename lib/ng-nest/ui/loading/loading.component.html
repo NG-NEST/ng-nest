@@ -17,6 +17,7 @@
       [class.x-loading-top-right-radius]="includeRadius('top-end')"
       [class.x-loading-bottom-left-radius]="includeRadius('bottom-start')"
       [class.x-loading-bottom-left-radius]="includeRadius('bottom-end')"
+      [class.x-loading-inline]="inline()"
     >
       <div class="x-loading-spinner" [style.color]="color()">
         @if (icon()) {

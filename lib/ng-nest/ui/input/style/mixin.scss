@@ -83,7 +83,7 @@
         flex: 1;
         width: 100%;
         font-size: $x-input-font-size;
-        background-image: none;
+        background-color: $x-input-background-color;
         border: $x-input-border;
         border-radius: $x-input-border-radius;
         border-width: 0;
@@ -141,6 +141,7 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       width: 100%;
+      z-index: 2;
       &:hover + input {
         @include hover();
       }
@@ -293,7 +294,6 @@
     > .#{$x-input-prefix}-row > .#{$x-input-prefix}-input {
       > input {
         border-width: $x-border-width;
-        background-color: $x-input-background-color;
       }
     }
     .#{$x-input-prefix}-row {
@@ -557,6 +557,15 @@
       .x-button:hover,
       .x-button:focus {
         z-index: 1;
+      }
+      .x-input-value-template {
+        &.x-input-active,
+        &.x-input-focus,
+        &:hover {
+          .x-input-value-template-value {
+            z-index: 2;
+          }
+        }
       }
       .x-button {
         box-shadow: none !important;

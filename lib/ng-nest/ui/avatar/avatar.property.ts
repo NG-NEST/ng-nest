@@ -125,6 +125,69 @@ export class XAvatarProperty extends XPropertyFunction(X_AVATAR_CONFIG_NAME) {
    *
    */
   readonly backgroundColor = input<string>(this.config?.backgroundColor ?? '#999999');
+  /**
+   * @zh_CN 文字颜色
+   * @en_US color
+   * @example
+   *
+   * ```html
+   * <x-avatar label="ng-nest" color="#FFFFFF"></x-avatar>
+   * <x-avatar label="ng-nest" color="#333333"></x-avatar>
+   * ```
+   *
+   */
+  readonly color = input<string>(this.config?.color ?? '#FFFFFF');
+}
+
+/**
+ * Avatar Option
+ */
+export interface XAvatarOption {
+  /**
+   * @zh_CN 显示字符
+   * @en_US Display characters
+   */
+  label?: XTemplate;
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  size?: XAvatarSize;
+  /**
+   * @zh_CN 显示图标
+   * @en_US Show icon
+   */
+  icon?: string;
+  /**
+   * @zh_CN 形状
+   * @en_US Shape
+   */
+  shape?: XAvatarShape;
+  /**
+   * @zh_CN 图片地址
+   * @en_US The map's address
+   */
+  src?: string;
+  /**
+   * @zh_CN 图片适应方式
+   * @en_US Image adaptation method
+   */
+  fit?: XAvatarFit;
+  /**
+   * @zh_CN 字符类型的时候左右边距
+   * @en_US When the character type is the left and right distance
+   */
+  gap?: string;
+  /**
+   * @zh_CN 背景颜色
+   * @en_US Background color
+   */
+  backgroundColor?: string;
+  /**
+   * @zh_CN 文字颜色
+   * @en_US color
+   */
+  color?: string;
 }
 
 /**

@@ -1,0 +1,47 @@
+<div class="x-bubble" [ngClass]="classMap()">
+  @if (!!avatar()) {
+    <div class="x-bubble-avatar">
+      <x-avatar
+        [icon]="avatar()?.icon!"
+        [label]="avatar()?.label!"
+        [src]="avatar()?.src!"
+        [size]="avatar()?.size ?? size()"
+        [gap]="avatar()?.gap ?? '0.25rem'"
+        [fit]="avatar()?.fit ?? 'cover'"
+        [backgroundColor]="avatar()?.backgroundColor ?? '#999999'"
+        [color]="avatar()?.color ?? '#FFFFFF'"
+        [shape]="avatar()?.shape ?? 'circle'"
+      ></x-avatar>
+    </div>
+  }
+  <div class="x-bubble-warp">
+    @if (loading()) {
+      <div class="x-bubble-content" [x-loading]="true" [size]="'small'" inline></div>
+    } @else {
+      @if (header()) {
+        <div class="x-bubble-header">
+          <ng-container *xOutlet="header()">{{ header() }}</ng-container>
+        </div>
+      }
+      <div class="x-bubble-content">
+        @if (!typing()) {
+          <ng-container *ngTemplateOutlet="typingContentTpl"></ng-container>
+        } @else {
+          <div class="x-bubble-typing-content" #typingOutput></div>
+          @if (this.outputing()) {
+            <span class="x-bubble-caret"></span>
+          }
+        }
+      </div>
+      @if (footer()) {
+        <div class="x-bubble-footer">
+          <ng-container *xOutlet="footer()">{{ footer() }}</ng-container>
+        </div>
+      }
+    }
+  </div>
+</div>
+
+<ng-template #typingContentTpl>
+  <ng-content></ng-content>
+</ng-template>

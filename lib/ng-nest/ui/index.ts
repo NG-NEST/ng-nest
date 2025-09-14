@@ -101,6 +101,11 @@ export * from '@ng-nest/ui/steps';
 export * from '@ng-nest/ui/tabs';
 
 /**
+ * AI
+ */
+export * from '@ng-nest/ui/bubble';
+
+/**
  * Others
  */
 export * from '@ng-nest/ui/doc';

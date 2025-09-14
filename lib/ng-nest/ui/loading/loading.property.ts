@@ -60,4 +60,9 @@ export class XLoadingProperty extends XPropertyFunction(X_LOADING_CONFIG_NAME) {
    * @en_US Background style
    */
   readonly background = input<string | null>(this.config?.background ?? null);
+  /**
+   * @zh_CN 行内显示
+   * @en_US Inline display
+   */
+  readonly inline = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }

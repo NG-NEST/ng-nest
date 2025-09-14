@@ -1,0 +1,85 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin bubble {
+  & {
+    display: flex;
+  }
+  &-content {
+    position: relative;
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+    color: $x-text;
+    font-size: $x-font-size;
+    border-radius: $x-border-radius;
+    word-break: break-word;
+  }
+
+  &-typing-content {
+    display: inline-block;
+  }
+
+  &-outlined {
+    .#{$x-bubble}-content {
+      border: $x-border-base;
+    }
+  }
+
+  &-filled {
+    .#{$x-bubble}-content {
+      background-color: $x-background-a200;
+    }
+  }
+  &-shadow {
+    .#{$x-bubble}-content {
+      box-shadow: $x-box-shadow;
+    }
+  }
+  &-end {
+    flex-direction: row-reverse;
+  }
+
+  &-header {
+    margin-bottom: 0.25rem;
+  }
+
+  &-footer {
+    margin-top: 0.5rem;
+  }
+
+  &-caret {
+    display: inline-block;
+    width: 0.0625rem;
+    height: $x-font-size;
+    background-color: currentColor;
+    margin-left: 0.125rem;
+    animation: blink 1s step-start infinite;
+  }
+
+  @include size(big, $x-height-big, $x-padding-big);
+  @include size(large, $x-height-large, $x-padding-large);
+  @include size(medium, $x-height-medium, $x-padding-medium);
+  @include size(small, $x-height-small, $x-padding-small);
+  @include size(mini, $x-height-mini, $x-padding-mini);
+}
+
+@mixin size($size, $height, $padding) {
+  &.x-size-#{$size} {
+    column-gap: $padding;
+    .#{$x-bubble}-content {
+      padding: calc($padding - 0.25rem) $padding;
+      line-height: calc($height - 1rem);
+      min-height: calc($padding * 2 + $height - 1.5rem);
+    }
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

@@ -41,6 +41,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./button/button.component').then((x) => x.TeButtonComponent)
       },
       {
+        path: 'bubble',
+        loadComponent: () => import('./bubble/bubble.component').then((x) => x.TeBubbleComponent)
+      },
+      {
         path: 'calendar',
         loadComponent: () => import('./calendar/calendar.component').then((x) => x.TeCalendarComponent)
       },

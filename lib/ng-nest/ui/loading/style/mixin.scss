@@ -17,9 +17,13 @@
     justify-content: center;
     align-items: center;
   }
+  &-inline {
+    position: initial;
+  }
   &-spinner {
     color: $x-primary;
     text-align: center;
+    line-height: 1;
   }
   &-circular {
     animation: loading-rotate 2s linear infinite;

@@ -1,0 +1,10 @@
+<x-bubble [avatar]="{ icon: 'fto-user' }" [header]="'think about it'" [footer]="footerTpl">hello world !</x-bubble>
+
+<ng-template #footerTpl>
+  <x-buttons [space]="'0.125rem'">
+    <x-button icon="fto-repeat" [size]="'small'" text></x-button>
+    <x-button icon="fto-copy" [size]="'small'" text></x-button>
+    <x-button icon="fto-thumbs-down" [size]="'small'" text></x-button>
+    <x-button icon="fto-thumbs-up" [size]="'small'" text></x-button>
+  </x-buttons>
+</ng-template>
