@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { XBubbleComponent, XBubblesComponent } from '@ng-nest/ui/bubble';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
+import { XTabsModule } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-list',
-  imports: [XBubbleComponent, XBubblesComponent, XButtonComponent, XButtonsComponent],
+  imports: [XBubbleComponent, XBubblesComponent, XButtonComponent, XButtonsComponent, XTabsModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })

@@ -4302,12 +4302,206 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "文字颜色",
+        "default": "'#FFFFFF'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar label=\"ng-nest\" color=\"#FFFFFF\"></x-avatar>\n<x-avatar label=\"ng-nest\" color=\"#333333\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XAvatarProperty",
     "extends": [
       "XPropertyFunction(X_AVATAR_CONFIG_NAME)"
     ]
+  },
+  "XAvatarOption": {
+    "type": "interface",
+    "label": "Avatar Option",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "label",
+        "type": "XTemplate",
+        "label": "显示字符",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "size",
+        "type": "XAvatarSize",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "label": "显示图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "shape",
+        "type": "XAvatarShape",
+        "label": "形状",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "shape",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "src",
+        "type": "string",
+        "label": "图片地址",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "src",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "fit",
+        "type": "XAvatarFit",
+        "label": "图片适应方式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "fit",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "gap",
+        "type": "string",
+        "label": "字符类型的时候左右边距",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "gap",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "backgroundColor",
+        "type": "string",
+        "label": "背景颜色",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "backgroundColor",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "label": "文字颜色",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "color",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XAvatarOption"
   },
   "XAvatarShape": {
     "type": "type",
@@ -4741,6 +4935,366 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XBadgeType",
     "value": "XType"
+  },
+  "XBubblePrefix": {
+    "type": "const",
+    "label": "Bubble",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubblePrefix",
+    "selector": "x-bubble",
+    "decorator": "component",
+    "value": "'x-bubble'"
+  },
+  "XBubbleProperty": {
+    "type": "class",
+    "label": "Bubble Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "content",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "气泡内容",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "avatar",
+        "type": "XAvatarOption",
+        "toType": "XAvatarOption",
+        "inputType": "InputSignal<XAvatarOption>",
+        "signal": "input",
+        "label": "头像",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XBubbleVariant",
+        "toType": "XBubbleVariant",
+        "inputType": "InputSignal<XBubbleVariant>",
+        "signal": "input",
+        "label": "形态变体",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "placement",
+        "type": "XBubblePlacement",
+        "toType": "XBubblePlacement",
+        "inputType": "InputSignal<XBubblePlacement>",
+        "signal": "input",
+        "label": "位置",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "header",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "气泡头部内容",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "footer",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "气泡底部内容",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "loading",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "加载中",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "typing",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "内容输出打字机效果",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "speed",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "打字机输出速度",
+        "default": "30",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "renderer",
+        "type": "XBubbleContentRenderer",
+        "toType": "XBubbleContentRenderer",
+        "inputType": "InputSignal<XBubbleContentRenderer>",
+        "signal": "input",
+        "label": "内容渲染器，可自定义内容的渲染方式，如 HTML、Markdown",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showCursor",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "是否显示打字机光标",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      }
+    ],
+    "name": "XBubbleProperty",
+    "extends": [
+      "XPropertyFunction(X_BUBBLE_CONFIG_NAME)"
+    ]
+  },
+  "XBubblesPrefix": {
+    "type": "const",
+    "label": "Bubbles",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubblesPrefix",
+    "selector": "x-bubbles",
+    "decorator": "component",
+    "value": "'x-bubbles'"
+  },
+  "XBubblesProperty": {
+    "type": "class",
+    "label": "Bubbles Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "尺寸",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XBubbleVariant",
+        "toType": "XBubbleVariant",
+        "inputType": "InputSignal<XBubbleVariant>",
+        "signal": "input",
+        "label": "形态变体",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XBubblesProperty",
+    "extends": [
+      "XPropertyFunction(X_BUBBLES_CONFIG_NAME)"
+    ]
+  },
+  "XBubbleVariant": {
+    "type": "type",
+    "label": "形态变体",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubbleVariant",
+    "value": "'outlined' | 'filled' | 'shadow' | 'borderless'"
+  },
+  "XBubblePlacement": {
+    "type": "type",
+    "label": "位置",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubblePlacement",
+    "value": "'start' | 'end'"
+  },
+  "XBubbleContentRenderer": {
+    "type": "type",
+    "label": "内容渲染函数",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubbleContentRenderer",
+    "value": "(content: string) => string | undefined"
   },
   "XButtonPrefix": {
     "type": "const",
@@ -25300,6 +25854,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "inline",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "行内显示",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       }
     ],
     "name": "XLoadingProperty",

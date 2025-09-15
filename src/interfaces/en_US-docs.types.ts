@@ -4302,12 +4302,206 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "color",
+        "default": "'#FFFFFF'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-avatar label=\"ng-nest\" color=\"#FFFFFF\"></x-avatar>\n<x-avatar label=\"ng-nest\" color=\"#333333\"></x-avatar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XAvatarProperty",
     "extends": [
       "XPropertyFunction(X_AVATAR_CONFIG_NAME)"
     ]
+  },
+  "XAvatarOption": {
+    "type": "interface",
+    "label": "Avatar Option",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "label",
+        "type": "XTemplate",
+        "label": "Display characters",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "label",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "size",
+        "type": "XAvatarSize",
+        "label": "Size",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "size",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "label": "Show icon",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "shape",
+        "type": "XAvatarShape",
+        "label": "Shape",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "shape",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "src",
+        "type": "string",
+        "label": "The map's address",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "src",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "fit",
+        "type": "XAvatarFit",
+        "label": "Image adaptation method",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "fit",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "gap",
+        "type": "string",
+        "label": "When the character type is the left and right distance",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "gap",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "backgroundColor",
+        "type": "string",
+        "label": "Background color",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "backgroundColor",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "label": "color",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "color",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XAvatarOption"
   },
   "XAvatarShape": {
     "type": "type",
@@ -25300,6 +25494,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "inline",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Inline display",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       }
     ],
     "name": "XLoadingProperty",

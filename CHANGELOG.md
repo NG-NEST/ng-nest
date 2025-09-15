@@ -1,3 +1,18 @@
+## [20.1.1](https://github.com/NG-NEST/ng-nest/compare/20.1.0...20.1.1) (2025-09-15)
+
+
+### Bug Fixes
+
+* **tsconfig:** fix moduleResolution error ([fa29564](https://github.com/NG-NEST/ng-nest/commit/fa29564413cb54351232c27e68ea6390e0e51345))
+
+
+### Features
+
+* **module:bubble:** add bubble component ([c98f45b](https://github.com/NG-NEST/ng-nest/commit/c98f45b0848a53106c5b93788f426e68de6c3e2a))
+* **module:bubble:** add bubble component ([c2cadf8](https://github.com/NG-NEST/ng-nest/commit/c2cadf8e43141e85e11792fc135f9d64c580f54f))
+
+
+
 # [20.1.0](https://github.com/NG-NEST/ng-nest/compare/20.0.7...20.1.0) (2025-09-10)
 
 
