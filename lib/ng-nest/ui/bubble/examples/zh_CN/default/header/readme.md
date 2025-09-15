@@ -1,6 +1,6 @@
 ---
-order: 1
-label: '基础用法'
+order: 3
+label: '头尾'
 ---
 
-XXX。
+使用 `header` 和 `footer` 指定气泡框头部和尾部的内容。

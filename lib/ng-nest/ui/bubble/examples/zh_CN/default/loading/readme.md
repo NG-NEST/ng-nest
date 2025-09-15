@@ -1,6 +1,6 @@
 ---
-order: 1
-label: '基础用法'
+order: 5
+label: '加载中'
 ---
 
-XXX。
+使用 `loading` 来启用加载中。

@@ -62,6 +62,7 @@ export interface XComponentConfig {
   button?: XButtonConfig;
   buttons?: XButtonsConfig;
   bubble?: XBubbleConfig;
+  bubbles?: XBubblesConfig;
   calendar?: XCalendarConfig;
   card?: XCardConfig;
   carousel?: XCarouselConfig;
@@ -219,6 +220,11 @@ export interface XButtonsConfig {
 }
 
 export interface XBubbleConfig {
+  variant?: 'outlined' | 'filled' | 'shadow' | 'borderless';
+  size?: XSize;
+}
+
+export interface XBubblesConfig {
   variant?: 'outlined' | 'filled' | 'shadow' | 'borderless';
   size?: XSize;
 }

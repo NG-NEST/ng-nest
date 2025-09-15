@@ -4,3 +4,5 @@ export * from './zh_CN/default/variant/variant.component';
 export * from './zh_CN/default/header/header.component';
 export * from './zh_CN/default/loading/loading.component';
 export * from './zh_CN/default/typing/typing.component';
+export * from './zh_CN/default/renderer/renderer.component';
+export * from './zh_CN/default/list/list.component';

@@ -5,7 +5,9 @@ import {
   ExHeaderComponent,
   ExVariantComponent,
   ExLoadingComponent,
-  ExTypingComponent
+  ExTypingComponent,
+  ExRendererComponent,
+  ExListComponent
 } from '@ng-nest/ui/bubble/examples';
 
 @Component({
@@ -16,7 +18,9 @@ import {
     ExVariantComponent,
     ExHeaderComponent,
     ExLoadingComponent,
-    ExTypingComponent
+    ExTypingComponent,
+    ExRendererComponent,
+    ExListComponent
   ],
   templateUrl: './bubble.component.html'
 })

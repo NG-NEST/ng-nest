@@ -5,6 +5,7 @@
   & {
     display: flex;
   }
+
   &-content {
     position: relative;
     box-sizing: border-box;
@@ -14,10 +15,6 @@
     font-size: $x-font-size;
     border-radius: $x-border-radius;
     word-break: break-word;
-  }
-
-  &-typing-content {
-    display: inline-block;
   }
 
   &-outlined {
@@ -48,13 +45,36 @@
     margin-top: 0.5rem;
   }
 
-  &-caret {
-    display: inline-block;
-    width: 0.0625rem;
-    height: $x-font-size;
-    background-color: currentColor;
-    margin-left: 0.125rem;
-    animation: blink 1s step-start infinite;
+  &-cursor {
+    &.#{$x-bubble}-typing {
+      .#{$x-bubble}-content:after {
+        content: '';
+        display: inline-block;
+        width: 0.0625rem;
+        height: 1.1em;
+        margin-left: 0.0625rem;
+        background-color: currentColor;
+        vertical-align: middle;
+        animation: x-bubble-blink 1s infinite;
+      }
+    }
+    &:not(.x-bubble-typing) {
+      .#{$x-bubble}-content:after {
+        display: none;
+      }
+    }
+  }
+
+  @keyframes x-bubble-blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   @include size(big, $x-height-big, $x-padding-big);
@@ -75,11 +95,10 @@
   }
 }
 
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
+@mixin bubbles {
+  & {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 }

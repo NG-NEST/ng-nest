@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-XXX。
+Use `content` to specify the bubble content.

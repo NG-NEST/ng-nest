@@ -1,6 +1,6 @@
 ---
-order: 1
-label: '基础用法'
+order: 6
+label: '打字机'
 ---
 
-XXX。
+使用 `typing` 来启用打字机效果。

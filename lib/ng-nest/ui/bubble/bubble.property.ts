@@ -16,6 +16,11 @@ const X_BUBBLE_CONFIG_NAME = 'bubble';
 @Component({ selector: `${XBubblePrefix}-property`, template: '' })
 export class XBubbleProperty extends XPropertyFunction(X_BUBBLE_CONFIG_NAME) {
   /**
+   * @zh_CN 气泡内容
+   * @en_US Bubble content
+   */
+  readonly content = input<string>();
+  /**
    * @zh_CN 头像
    * @en_US Avatar
    */
@@ -60,6 +65,41 @@ export class XBubbleProperty extends XPropertyFunction(X_BUBBLE_CONFIG_NAME) {
    * @en_US Typing speed
    */
   readonly speed = input<number, XNumber>(30, { transform: XToNumber });
+  /**
+   * @zh_CN 内容渲染器，可自定义内容的渲染方式，如 HTML、Markdown
+   * @en_US Content renderer, can customize content rendering, such as HTML, Markdown
+   */
+  readonly renderer = input<XBubbleContentRenderer>();
+  /**
+   * @zh_CN 是否显示打字机光标
+   * @en_US Whether to show the typing cursor
+   */
+  readonly showCursor = input<boolean, XBoolean>(false, { transform: XToBoolean });
+}
+
+/**
+ * Bubbles
+ * @selector x-bubbles
+ * @decorator component
+ */
+export const XBubblesPrefix = 'x-bubbles';
+const X_BUBBLES_CONFIG_NAME = 'bubbles';
+
+/**
+ * Bubbles Property
+ */
+@Component({ selector: `${XBubblesPrefix}-property`, template: '' })
+export class XBubblesProperty extends XPropertyFunction(X_BUBBLES_CONFIG_NAME) {
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  readonly size = input<XSize>();
+  /**
+   * @zh_CN 形态变体
+   * @en_US Bubble variant
+   */
+  readonly variant = input<XBubbleVariant>();
 }
 
 /**
@@ -75,12 +115,7 @@ export type XBubbleVariant = 'outlined' | 'filled' | 'shadow' | 'borderless';
 export type XBubblePlacement = 'start' | 'end';
 
 /**
- * @zh_CN 打字机输出步骤
- * @en_US Typing steps
+ * @zh_CN 内容渲染函数
+ * @en_US Bubble content renderer
  */
-export type XBUbbleTypingStep = {
-  type: 'open' | 'char' | 'close';
-  tag?: string;
-  char?: string;
-  attrs?: Record<string, string>;
-};
+export type XBubbleContentRenderer = (content: string) => string | undefined;

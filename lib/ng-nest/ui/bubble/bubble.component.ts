@@ -4,21 +4,22 @@ import {
   ChangeDetectionStrategy,
   computed,
   viewChild,
-  TemplateRef,
-  ViewContainerRef,
-  ChangeDetectorRef,
-  inject,
   ElementRef,
-  Renderer2,
   signal,
-  AfterContentChecked
+  effect,
+  SimpleChanges,
+  inject,
+  Renderer2
 } from '@angular/core';
-import { XBubblePrefix, XBubbleProperty, XBUbbleTypingStep } from './bubble.property';
+import { XBubblePrefix, XBubbleProperty } from './bubble.property';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XIsEmpty } from '@ng-nest/ui/core';
-import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
+import { DomSanitizer } from '@angular/platform-browser';
+import { XBubblesComponent } from './bubbles.component';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'x-bubble',
@@ -26,160 +27,110 @@ import { XLoadingComponent } from '@ng-nest/ui/loading';
   styleUrls: ['./bubble.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgClass, NgTemplateOutlet, XOutletDirective, XAvatarComponent, XLoadingComponent]
+  imports: [NgClass, XOutletDirective, XAvatarComponent, XLoadingComponent]
 })
-export class XBubbleComponent extends XBubbleProperty implements AfterContentChecked {
-  vcr = inject(ViewContainerRef);
-  cdr = inject(ChangeDetectorRef);
-  host = inject(ElementRef<HTMLElement>);
-  renderer = inject(Renderer2);
+export class XBubbleComponent extends XBubbleProperty {
+  sanitizer = inject(DomSanitizer);
+  renderer2 = inject(Renderer2);
+  private bubbles = inject(XBubblesComponent, { optional: true, host: true });
+
+  contentRef = viewChild<ElementRef<HTMLElement>>('contentRef');
 
   classMap = computed(() => ({
-    [`${XBubblePrefix}-${this.variant()}`]: !XIsEmpty(this.variant()),
+    [`${XBubblePrefix}-${this.variantSignal()}`]: !XIsEmpty(this.variantSignal()),
     [`${XBubblePrefix}-${this.placement()}`]: !XIsEmpty(this.placement()),
-    [`x-size-${this.size()}`]: !XIsEmpty(this.size()),
-    [`${XBubblePrefix}-typing`]: this.typing()
+    [`${XBubblePrefix}-cursor`]: this.showCursor() && this.typing(),
+    [`${XBubblePrefix}-typing`]: this.typing() && this.pendingContent().length > 0,
+    [`x-size-${this.sizeSignal()}`]: !XIsEmpty(this.sizeSignal())
   }));
 
-  typingContentTpl = viewChild<TemplateRef<any>>('typingContentTpl');
-  typingOutput = viewChild<ElementRef>('typingOutput');
+  typedContent = signal('');
+  pendingContent = signal('');
+  pendingContentObserver = toObservable(this.pendingContent);
+  private typingInterval: any = null;
 
-  outputing = signal(false);
-  initing = signal(true);
+  sizeSignal = computed(() => {
+    return this.bubbles?.size() || this.size();
+  });
 
-  private steps: XBUbbleTypingStep[] = [];
-  private idx = 0;
-  private timer: any;
+  variantSignal = computed(() => {
+    return this.bubbles?.variant() || this.variant();
+  });
 
-  ngAfterViewInit(): void {
-    if (!this.typing()) return;
-    this.initTypingFromContent();
-  }
-
-  ngAfterContentChecked() {
-    if (!this.typing() || this.initing()) return;
-    this.handleContentChange(this.getContentElement().innerHTML);
-  }
-
-  private initTypingFromContent() {
-    this.steps = [];
-    this.idx = 0;
-    this.walkCollectAttrs(this.getContentElement(), this.steps);
-    this.startTypingWithDom();
-  }
-
-  getContentElement() {
-    const tmp = this.renderer.createElement('span');
-    const view = this.vcr.createEmbeddedView(this.typingContentTpl()!);
-    view.detectChanges();
-    view.rootNodes.forEach((node) => tmp.appendChild(node.cloneNode(true)));
-    view.destroy();
-
-    return tmp;
-  }
-
-  handleContentChange(newContent: string) {
-    if (!this.typing()) return;
-
-    // 已输出的文本（纯字符，不含标签）
-    const oldText = this.steps
-      .slice(0, this.idx)
-      .filter((s) => s.type === 'char')
-      .map((s) => s.char)
-      .join('');
-
-    // 新内容的纯文本
-    const tmp = this.renderer.createElement('span');
-    tmp.innerHTML = newContent;
-    const newText = tmp.innerText; // 只取纯文本
-
-    if (newText.startsWith(oldText)) {
-      // 只追加新增的部分
-      const appendText = newText.slice(oldText.length);
-      this.addStepsFromHtml(appendText);
-    } else {
-      // 前缀不同 → 重置
-      this.resetTyping();
-      this.addStepsFromHtml(newText);
-    }
-  }
-
-  /** 将 HTML 字符串解析为 steps */
-  private addStepsFromHtml(text: string) {
-    if (!text) return;
-    const tmp = this.renderer.createElement('span');
-    tmp.textContent = text; // 纯文本
-    this.walkCollectAttrs(tmp, this.steps);
-    if (!this.timer) this.startTypingWithDom();
-  }
-
-  private walkCollectAttrs(node: Node, steps: XBUbbleTypingStep[]) {
-    if (node.nodeType === Node.TEXT_NODE) {
-      const chars = (node.textContent || '').split('');
-      chars.forEach((c) => steps.push({ type: 'char', char: c }));
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      const el = node as HTMLElement;
-      const attrs: Record<string, string> = {};
-      for (let i = 0; i < el.attributes.length; i++) {
-        const a = el.attributes[i];
-        attrs[a.name] = a.value;
+  constructor() {
+    super();
+    effect(() => {
+      if (!this.typing()) {
+        this.stopTyping();
+        this.typedContent.set(this.typedContent() + this.pendingContent());
+        this.pendingContent.set('');
       }
-      steps.push({ type: 'open', tag: el.tagName.toLowerCase(), attrs });
-      Array.from(el.childNodes).forEach((child) => this.walkCollectAttrs(child, steps));
-      steps.push({ type: 'close', tag: el.tagName.toLowerCase() });
-    }
+    });
   }
 
-  private startTypingWithDom() {
-    this.clearTimer();
-    const outEl = this.typingOutput()?.nativeElement;
-    if (!outEl) return;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['content']) {
+      const newFullContent = changes['content'].currentValue || '';
+      const currentTypedContent = this.typedContent();
 
-    const stack: HTMLElement[] = [outEl];
-    const interval = Math.max(1, this.speed());
-    this.outputing.set(true);
-
-    this.timer = setInterval(() => {
-      if (this.idx >= this.steps.length) {
-        this.clearTimer();
-        this.outputing.set(false);
-        this.initing.set(false);
+      if (!this.typing()) {
+        this.typedContent.set(newFullContent);
         return;
       }
 
-      const step = this.steps[this.idx++];
-      const currentParent = stack[stack.length - 1];
-
-      if (step.type === 'open') {
-        const el = this.renderer.createElement(step.tag!);
-        if (step.attrs) Object.entries(step.attrs).forEach(([k, v]) => el.setAttribute(k, v));
-        currentParent.appendChild(el);
-        stack.push(el);
-      } else if (step.type === 'char') {
-        const tn = this.renderer.createText(step.char!);
-        currentParent.appendChild(tn);
-      } else if (step.type === 'close') {
-        stack.pop();
+      if (newFullContent.startsWith(currentTypedContent)) {
+        this.pendingContent.set(newFullContent.substring(currentTypedContent.length));
+        this.startTyping();
+      } else {
+        this.stopTyping();
+        this.typedContent.set('');
+        this.pendingContent.set(newFullContent);
+        this.startTyping();
       }
-    }, interval);
-  }
-
-  private resetTyping() {
-    this.clearTimer();
-    this.idx = 0;
-    this.steps = [];
-    const outEl = this.typingOutput()?.nativeElement;
-    if (outEl) outEl.innerHTML = '';
-  }
-
-  private clearTimer() {
-    if (this.timer) {
-      clearInterval(this.timer);
-      this.timer = null;
     }
   }
 
-  ngOnDestroy() {
-    this.clearTimer();
+  get renderedContent() {
+    const finalContent = this.typing() ? this.typedContent() : this.content() || '';
+    let renderedString: string;
+
+    if (this.renderer()) {
+      renderedString = this.renderer()!(finalContent) || '';
+    } else {
+      renderedString = finalContent;
+    }
+
+    return this.sanitizer.bypassSecurityTrustHtml(renderedString);
+  }
+
+  private startTyping(): void {
+    if (this.typingInterval) {
+      return;
+    }
+
+    if (this.pendingContent().length === 0) {
+      return;
+    }
+
+    this.typingInterval = setInterval(() => {
+      if (this.pendingContent().length > 0) {
+        const nextChar = this.pendingContent().charAt(0);
+        this.typedContent.update((current) => current + nextChar);
+        this.pendingContent.update((current) => current.substring(1));
+      } else {
+        this.stopTyping();
+      }
+    }, this.speed());
+  }
+
+  private stopTyping(): void {
+    if (this.typingInterval) {
+      clearInterval(this.typingInterval);
+      this.typingInterval = null;
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopTyping();
   }
 }
