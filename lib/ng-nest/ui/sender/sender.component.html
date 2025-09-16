@@ -1,0 +1,54 @@
+<div
+  class="x-sender"
+  [class.x-disabled]="disabledComputed()"
+  [class.x-required]="requiredIsEmpty()"
+  [class.x-invalid]="invalid()"
+  [class.x-focused]="focused()"
+>
+  <div class="x-sender-content" (click)="inputFocus('after')">
+    @if (prefix()) {
+      <div class="x-sender-prefix">
+        <ng-container *ngTemplateOutlet="prefix()"></ng-container>
+      </div>
+    }
+    <textarea
+      #textarea
+      [disabled]="disabledComputed()"
+      [required]="requiredComputed()"
+      [readOnly]="readonly()"
+      [placeholder]="placeholderComputed()"
+      [(ngModel)]="value"
+      (ngModelChange)="change($event)"
+      cdkTextareaAutosize
+      [cdkAutosizeMinRows]="minRows()"
+      [cdkAutosizeMaxRows]="maxRowsComputed()"
+      (keydown)="onKeydown($event)"
+      (focus)="focused.set(true)"
+      (blur)="focused.set(false)"
+      (input)="formControlValidator()"
+      (click)="$event.stopPropagation()"
+      class="x-sender-textarea"
+    ></textarea>
+    <div class="x-sender-suffix">
+      @if (suffix()) {
+        <ng-container *ngTemplateOutlet="suffix()"></ng-container>
+      } @else {
+        <x-button
+          type="primary"
+          circle
+          flat
+          icon="fto-send"
+          [loading]="loading()"
+          [disabled]="disabledComputed()"
+          (click)="onEnterPressed($event)"
+        ></x-button>
+      }
+    </div>
+  </div>
+  @if (requiredIsEmpty() || invalid()) {
+    <div class="x-border-error x-top-left"></div>
+    <div class="x-border-error x-top-right"></div>
+    <div class="x-border-error x-bottom-left"></div>
+    <div class="x-border-error x-bottom-right"></div>
+  }
+</div>

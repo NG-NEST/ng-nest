@@ -1,0 +1,17 @@
+<div class="row">
+  <x-sender
+    [(ngModel)]="model1"
+    maxRows="5"
+    [placeholder]="'Press Enter to send message'"
+    (submit)="onSubmit(model1())"
+  ></x-sender>
+</div>
+<div class="row">
+  <x-sender
+    [(ngModel)]="model2"
+    maxRows="5"
+    [submitType]="'shiftEnter'"
+    [placeholder]="'Press Shift + Enter to send message'"
+    (submit)="onSubmit(model2())"
+  ></x-sender>
+</div>

@@ -213,6 +213,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./select/select.component').then((x) => x.TeSelectComponent)
       },
       {
+        path: 'sender',
+        loadComponent: () => import('./sender/sender.component').then((x) => x.TeSenderComponent)
+      },
+      {
         path: 'skeleton',
         loadComponent: () => import('./skeleton/skeleton.component').then((x) => x.TeSkeletonComponent)
       },

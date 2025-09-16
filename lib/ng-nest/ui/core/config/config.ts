@@ -116,6 +116,7 @@ export interface XComponentConfig {
   rate?: XRateConfig;
   result?: XResultConfig;
   select?: XSelectConfig;
+  sender?: XSenderConfig;
   skeleton?: XSkeletonConfig;
   slider?: XSliderConfig;
   sliderSelect?: XSliderSelectConfig;
@@ -151,6 +152,7 @@ export interface XAffixConfig {
 export interface XAlertConfig {
   effect?: XEffect;
   hideClose?: boolean;
+  variant?: 'outlined' | 'filled' | 'shadow' | 'borderless';
   showIcon?: boolean;
   disabledAnimation?: boolean;
   draggable?: boolean;
@@ -581,6 +583,10 @@ export interface XSelectConfig {
   maxTagCount?: number;
   maxTagContent?: XTemplate;
   virtualScroll?: boolean;
+}
+
+export interface XSenderConfig {
+  submitType?: 'enter' | 'shiftEnter';
 }
 
 export interface XSkeletonConfig {}

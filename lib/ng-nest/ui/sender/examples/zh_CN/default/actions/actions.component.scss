@@ -1,0 +1,10 @@
+:host {
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}

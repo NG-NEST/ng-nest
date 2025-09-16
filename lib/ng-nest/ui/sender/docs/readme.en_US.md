@@ -1,11 +1,11 @@
 ---
-label: 'Bubble'
+label: 'Sender'
 category: 'AI'
 ---
 
-# Bubble
+# Sender
 
-Bubble component for chatting.
+Sender
 
 ## Used alone
 

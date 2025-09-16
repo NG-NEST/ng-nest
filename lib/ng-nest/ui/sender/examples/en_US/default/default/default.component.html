@@ -1,0 +1,9 @@
+<div class="row">
+  <x-sender [(ngModel)]="model1" maxRows="5" [loading]="loading()" (submit)="onSubmit()"></x-sender>
+</div>
+<div class="row">
+  <x-sender [ngModel]="'readonly value'" readonly loading></x-sender>
+</div>
+<div class="row">
+  <x-sender [ngModel]="'disabled value'" disabled></x-sender>
+</div>

@@ -1,0 +1,52 @@
+@use '../../style/params/index.scss' as *;
+@use '../../style/mixins/compatibility.scss' as *;
+@use '../../style/mixins/form.scss' as *;
+@use './param.scss' as *;
+
+@mixin sender {
+  & {
+    position: relative;
+  }
+  &-content {
+    display: flex;
+    align-items: flex-end;
+    gap: $x-padding-medium;
+    width: 100%;
+    border: $x-border-base;
+    border-radius: $x-border-radius;
+    padding: $x-padding-small $x-padding-medium;
+    background-color: $x-background;
+    transition: all $x-animation-duration-slow;
+    cursor: text;
+    &:hover {
+      @include hover();
+    }
+  }
+  &-textarea {
+    padding: 0;
+    flex: auto;
+    align-self: center;
+    min-height: auto;
+    line-height: 1.5;
+    vertical-align: bottom;
+    background-color: transparent;
+    resize: none;
+    border: none;
+  }
+  &.x-disabled {
+    .#{$x-sender}-content {
+      color: $x-text-400;
+      cursor: not-allowed;
+      border-color: $x-border-100;
+      background-color: $x-background-a300;
+    }
+    .#{$x-sender}-textarea {
+      color: $x-text-400;
+      cursor: not-allowed;
+    }
+  }
+  &.x-invalid,
+  &.x-required {
+    @include border-error();
+  }
+}

@@ -1,17 +1,17 @@
 ---
-label: 'Bubble'
+label: 'Sender 输入框'
 category: 'AI'
 ---
 
-# Bubble
+# Sender
 
-Bubble component for chatting.
+Sender
 
-## Used alone
+## 单独引入此组件
 
 {{ __component }}
 
-## Examples
+## 示例代码
 
 {{ __examples }}
 

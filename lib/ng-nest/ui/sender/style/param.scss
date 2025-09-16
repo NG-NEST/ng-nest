@@ -1,0 +1,4 @@
+// Sender style paramters
+@use '../../style/params/index.scss' as *;
+
+$x-sender: $x-prefix + '-sender';

@@ -1,0 +1,12 @@
+<div class="row">
+  <x-sender [(ngModel)]="model1" maxRows="5" [prefix]="prefixTpl" [suffix]="suffixTpl"></x-sender>
+  <ng-template #prefixTpl>
+    <x-button icon="fto-paperclip" text size="small"></x-button>
+  </ng-template>
+  <ng-template #suffixTpl>
+    <div class="buttons">
+      <x-button type="primary" icon="fto-mic" text size="small"></x-button>
+      <x-button type="primary" [loading]="loading()" icon="fto-aperture" (click)="onSubmit()"></x-button>
+    </div>
+  </ng-template>
+</div>
