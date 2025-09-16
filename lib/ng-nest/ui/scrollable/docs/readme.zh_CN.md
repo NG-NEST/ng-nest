@@ -1,11 +1,9 @@
 ---
-label: 'TableView 表格'
+label: 'Scrollable 滚动条'
 category: 'Data'
 hidden: true
 ---
 
-# TableView
+# Scrollable
 
-Table view
-
-
+scrollable

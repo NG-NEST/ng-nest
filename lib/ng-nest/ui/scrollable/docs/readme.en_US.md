@@ -1,9 +1,9 @@
 ---
-label: 'TableView'
+label: 'Scrollable'
 category: 'Data'
 hidden: true
 ---
 
-# TableView
+# Scrollable
 
-Table view
+scrollable

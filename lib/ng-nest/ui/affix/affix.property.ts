@@ -12,9 +12,7 @@ export const X_AFFIX_CONFIG_NAME = 'affix';
 /**
  * Affix Property
  */
-@Component({
-    selector: `${XAffixPrefix}-property`, template: ''
-})
+@Component({ selector: `${XAffixPrefix}-property`, template: '' })
 export class XAffixProperty extends XPropertyFunction(X_AFFIX_CONFIG_NAME) {
   /**
    * @zh_CN 顶部距离
