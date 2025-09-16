@@ -4,7 +4,8 @@ import {
   ExDefaultComponent,
   ExDescriptionComponent,
   ExEffectComponent,
-  ExIconComponent
+  ExIconComponent,
+  ExVariantComponent
 } from '@ng-nest/ui/alert/examples';
 
 @Component({
@@ -14,7 +15,8 @@ import {
     ExCustomComponent,
     ExDescriptionComponent,
     ExEffectComponent,
-    ExIconComponent
+    ExIconComponent,
+    ExVariantComponent
   ],
   templateUrl: './alert.component.html'
 })

@@ -15,9 +15,7 @@ export const X_ALERT_CONFIG_NAME = 'alert';
 /**
  * Alert Property
  */
-@Component({
-    selector: `${XAlertPrefix}-property`, template: ''
-})
+@Component({ selector: `${XAlertPrefix}-property`, template: '' })
 export class XAlertProperty extends XPropertyFunction(X_ALERT_CONFIG_NAME) {
   /**
    * @zh_CN 隐藏
@@ -80,6 +78,20 @@ export class XAlertProperty extends XPropertyFunction(X_ALERT_CONFIG_NAME) {
    *
    */
   readonly effect = input<XEffect>(this.config?.effect ?? 'light');
+  /**
+   * @zh_CN 形态变体
+   * @en_US Variant
+   * @example
+   *
+   * ```html
+   * <x-alert variant="outlined" > </x-alert>
+   * <x-alert variant="filled" > </x-alert>
+   * <x-alert variant="shadow" > </x-alert>
+   * <x-alert variant="borderless" > </x-alert>
+   * ```
+   *
+   */
+  readonly variant = input<XAlertVariant>(this.config?.variant ?? 'shadow');
   /**
    * @zh_CN 隐藏关闭按钮
    * @en_US Hide close button
@@ -389,6 +401,12 @@ export interface XAlertOption {
  * @en_US Type
  */
 export type XAlertType = XStatus;
+
+/**
+ * @zh_CN 形态变体
+ * @en_US Variant
+ */
+export type XAlertVariant = 'outlined' | 'filled' | 'shadow' | 'borderless';
 
 /**
  * @zh_CN 设置投放容器外部的 CdkDrag 的位置。可用于为返回的用户恢复元素的位置

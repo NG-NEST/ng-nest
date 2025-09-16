@@ -21,21 +21,21 @@ import { XResizableDirective } from '@ng-nest/ui/resizable';
 import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
 
 @Component({
-    selector: `${XAlertPrefix}`,
-    imports: [
-        NgClass,
-        NgTemplateOutlet,
-        DragDropModule,
-        XIconComponent,
-        XButtonComponent,
-        XOutletDirective,
-        XResizableDirective
-    ],
-    templateUrl: './alert.component.html',
-    styleUrls: ['./alert.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [XFadeAnimation]
+  selector: `${XAlertPrefix}`,
+  imports: [
+    NgClass,
+    NgTemplateOutlet,
+    DragDropModule,
+    XIconComponent,
+    XButtonComponent,
+    XOutletDirective,
+    XResizableDirective
+  ],
+  templateUrl: './alert.component.html',
+  styleUrls: ['./alert.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [XFadeAnimation]
 })
 export class XAlertComponent extends XAlertProperty {
   styleHide = signal(false);
@@ -43,7 +43,8 @@ export class XAlertComponent extends XAlertProperty {
     [`${XAlertPrefix}-${this.type()}`]: !XIsEmpty(this.type()),
     [`x-${this.effect()}`]: !XIsEmpty(this.effect()),
     [`${XAlertPrefix}-icon-medium`]: !XIsEmpty(this.title()) && !XIsEmpty(this.content()) && !XIsEmpty(this.showIcon()),
-    [`${XAlertPrefix}-draggable`]: this.draggable()
+    [`${XAlertPrefix}-draggable`]: this.draggable(),
+    [`${XAlertPrefix}-${this.variant()}`]: !XIsEmpty(this.variant())
   }));
 
   private unSubject = new Subject<void>();
