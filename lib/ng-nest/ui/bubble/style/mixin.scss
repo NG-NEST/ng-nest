@@ -6,6 +6,15 @@
     display: flex;
   }
 
+  &-wrap {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    max-width: 100%;
+  }
+
   &-content {
     position: relative;
     box-sizing: border-box;
@@ -35,6 +44,9 @@
   }
   &-end {
     flex-direction: row-reverse;
+    .#{$x-bubble}-wrap {
+      align-items: flex-end;
+    }
   }
 
   &-header {
@@ -63,6 +75,10 @@
         display: none;
       }
     }
+  }
+
+  &-avatar-hidden {
+    visibility: hidden;
   }
 
   @keyframes x-bubble-blink {

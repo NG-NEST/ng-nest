@@ -1,31 +1,26 @@
-<x-tabs>
-  <x-tab label="'123'">Tab 1</x-tab>
-  <x-tab label="'456'">
-    <x-buttons [space]="'0.5rem'">
-      <x-button (click)="addItem()" flat plain>Add Item</x-button>
-      <x-button (click)="bubbles.scrollToBottom()" flat plain>Scroll to bottom</x-button>
-      <x-button (click)="bubbles.scrollToTop()" flat plain>Scroll to top</x-button>
-    </x-buttons>
-    <div class="scroll">
-      <x-bubbles #bubbles>
-        @for (item of data(); track item) {
-          @if (item.role === 'ai') {
-            <x-bubble
-              placement="start"
-              [avatar]="{ icon: 'fto-aperture', backgroundColor: 'rgba(59, 130, 246, 0.5)' }"
-              [typing]="item.typing"
-              [content]="item.content"
-            ></x-bubble>
-          } @else if (item.role === 'user') {
-            <x-bubble
-              placement="end"
-              variant="filled"
-              [avatar]="{ icon: 'fto-user', backgroundColor: 'rgba(248, 113, 113, 0.5)' }"
-              [content]="item.content"
-            ></x-bubble>
-          }
-        }
-      </x-bubbles>
-    </div>
-  </x-tab>
-</x-tabs>
+<x-buttons [space]="'0.5rem'">
+  <x-button (click)="addItem()" flat plain>Add Item</x-button>
+  <x-button (click)="bubbles.scrollToBottom()" flat plain>Scroll to bottom</x-button>
+  <x-button (click)="bubbles.scrollToTop()" flat plain>Scroll to top</x-button>
+</x-buttons>
+<div class="scroll">
+  <x-bubbles #bubbles>
+    @for (item of data(); track item) {
+      @if (item.role === 'ai') {
+        <x-bubble
+          placement="start"
+          [avatar]="{ icon: 'fto-aperture', backgroundColor: 'rgba(59, 130, 246, 0.5)' }"
+          [typing]="item.typing"
+          [content]="item.content"
+        ></x-bubble>
+      } @else if (item.role === 'user') {
+        <x-bubble
+          placement="end"
+          variant="filled"
+          [avatar]="{ icon: 'fto-user', backgroundColor: 'rgba(248, 113, 113, 0.5)' }"
+          [content]="item.content"
+        ></x-bubble>
+      }
+    }
+  </x-bubbles>
+</div>

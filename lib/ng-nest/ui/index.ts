@@ -104,6 +104,7 @@ export * from '@ng-nest/ui/tabs';
  * AI
  */
 export * from '@ng-nest/ui/bubble';
+export * from '@ng-nest/ui/sender';
 
 /**
  * Others

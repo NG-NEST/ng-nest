@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { XBubblePrefix, XBubbleProperty } from './bubble.property';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsString, XIsTemplateRef } from '@ng-nest/ui/core';
 import { NgClass } from '@angular/common';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
@@ -57,10 +57,18 @@ export class XBubbleComponent extends XBubbleProperty {
     return this.bubbles?.variant() || this.variant();
   });
 
+  isTemplate = computed(() => {
+    return XIsTemplateRef(this.content());
+  });
+
+  isString = computed(() => {
+    return XIsString(this.content());
+  });
+
   constructor() {
     super();
     effect(() => {
-      if (!this.typing()) {
+      if (this.isString() && !this.typing()) {
         this.stopTyping();
         this.typedContent.set(this.typedContent() + this.pendingContent());
         this.pendingContent.set('');
@@ -69,7 +77,8 @@ export class XBubbleComponent extends XBubbleProperty {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['content']) {
+    const { content } = changes;
+    if (content && this.isString()) {
       const newFullContent = changes['content'].currentValue || '';
       const currentTypedContent = this.typedContent();
 
@@ -91,7 +100,7 @@ export class XBubbleComponent extends XBubbleProperty {
   }
 
   get renderedContent() {
-    const finalContent = this.typing() ? this.typedContent() : this.content() || '';
+    const finalContent = this.typing() ? this.typedContent() : (this.content() as string) || '';
     let renderedString: string;
 
     if (this.renderer()) {

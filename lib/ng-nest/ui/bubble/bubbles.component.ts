@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { XBubblesProperty } from './bubble.property';
 import { XBubbleComponent } from './bubble.component';
+import { fromEvent, Subject, Subscription, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'x-bubbles',
@@ -24,28 +25,16 @@ export class XBubblesComponent extends XBubblesProperty {
 
   private parentScrollElement: HTMLElement | null = null;
   private isFollowing = true;
-  private removeScrollListener: (() => void) | null = null;
+  private removeScrollListener: Subscription | null = null;
   private contentMutationObserver: MutationObserver | null = null;
   private typingObserver: MutationObserver | null = null;
+  private $destroy = new Subject<void>();
 
   bubbles = contentChildren(XBubbleComponent);
 
   ngAfterViewInit(): void {
-    this.parentScrollElement = this.getParentScrollElement(this.elementRef.nativeElement);
-
-    if (this.parentScrollElement) {
-      this.removeScrollListener = this.renderer.listen(this.parentScrollElement, 'scroll', () => {
-        const atBottom =
-          this.parentScrollElement!.scrollHeight - this.parentScrollElement!.scrollTop ===
-          this.parentScrollElement!.clientHeight;
-        if (!atBottom) {
-          this.isFollowing = false;
-        } else {
-          this.isFollowing = true;
-        }
-      });
-      this.observeContentChanges();
-    }
+    this.stepScroll();
+    this.observeContentChanges();
   }
 
   ngDoCheck(): void {
@@ -64,13 +53,33 @@ export class XBubblesComponent extends XBubblesProperty {
   }
 
   ngOnDestroy(): void {
-    if (this.removeScrollListener) {
-      this.removeScrollListener();
-    }
-    if (this.contentMutationObserver) {
-      this.contentMutationObserver.disconnect();
-    }
+    this.removeScrollListener?.unsubscribe();
+    this.contentMutationObserver?.disconnect();
     this.stopTypingObserver();
+    this.$destroy.next();
+    this.$destroy.complete();
+  }
+
+  private stepScroll() {
+    const newScroll = this.getParentScrollElement(this.elementRef.nativeElement);
+    if (this.parentScrollElement && newScroll === this.parentScrollElement) return;
+    this.parentScrollElement = newScroll;
+    if (this.parentScrollElement) {
+      this.removeScrollListener?.unsubscribe();
+      this.removeScrollListener = fromEvent(this.parentScrollElement, 'scroll')
+        .pipe(takeUntil(this.$destroy))
+        .subscribe((event: Event) => {
+          const atBottom =
+            this.parentScrollElement!.scrollHeight - this.parentScrollElement!.scrollTop ===
+            this.parentScrollElement!.clientHeight;
+          if (!atBottom) {
+            this.isFollowing = false;
+          } else {
+            this.isFollowing = true;
+          }
+          this.scrollChange.emit(event);
+        });
+    }
   }
 
   private getParentScrollElement(element: HTMLElement): HTMLElement | null {
@@ -118,12 +127,14 @@ export class XBubblesComponent extends XBubblesProperty {
   }
 
   scrollToBottom(): void {
+    this.stepScroll();
     if (this.parentScrollElement) {
       this.parentScrollElement.scrollTop = this.parentScrollElement.scrollHeight;
     }
   }
 
   scrollToTop(): void {
+    this.stepScroll();
     if (this.parentScrollElement) {
       this.parentScrollElement.scrollTop = 0;
     }

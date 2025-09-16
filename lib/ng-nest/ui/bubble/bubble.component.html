@@ -1,6 +1,6 @@
 <div class="x-bubble" [ngClass]="classMap()">
   @if (!!avatar()) {
-    <div class="x-bubble-avatar">
+    <div class="x-bubble-avatar" [class.x-bubble-avatar-hidden]="avatar()?.hidden">
       <x-avatar
         [icon]="avatar()?.icon!"
         [label]="avatar()?.label!"
@@ -14,7 +14,7 @@
       ></x-avatar>
     </div>
   }
-  <div class="x-bubble-warp">
+  <div class="x-bubble-wrap">
     @if (loading()) {
       <div class="x-bubble-content" [x-loading]="true" [size]="'small'" inline></div>
     } @else {
@@ -23,7 +23,13 @@
           <ng-container *xOutlet="header()">{{ header() }}</ng-container>
         </div>
       }
-      <div class="x-bubble-content" #contentRef [innerHTML]="renderedContent"></div>
+      @if (isString()) {
+        <div class="x-bubble-content" #contentRef [innerHTML]="renderedContent"></div>
+      } @else if (isTemplate()) {
+        <div class="x-bubble-content" #contentRef>
+          <ng-container *xOutlet="content()"></ng-container>
+        </div>
+      }
       @if (footer()) {
         <div class="x-bubble-footer">
           <ng-container *xOutlet="footer()">{{ footer() }}</ng-container>

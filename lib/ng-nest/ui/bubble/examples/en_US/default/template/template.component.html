@@ -1,0 +1,31 @@
+<div class="row">
+  <x-bubble [content]="tpl1" [avatar]="{ icon: 'fto-user' }">
+    <ng-template #tpl1> NG-NEST, hello world ! </ng-template>
+  </x-bubble>
+
+  <x-bubble [content]="tpl2" variant="filled" [avatar]="{ hidden: true }" [footer]="tpl3">
+    <ng-template #tpl2>
+      <x-image
+        width="8rem"
+        height="8rem"
+        src="https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+      ></x-image>
+    </ng-template>
+    <ng-template #tpl3>
+      <div class="message">
+        <x-alert [title]="'This is a warning message.'" type="warning" variant="filled"></x-alert>
+        <x-alert [title]="'This is a error message.'" type="error" variant="filled"></x-alert>
+        <x-alert [title]="'This is a success message.'" type="success" variant="filled"></x-alert>
+        <x-alert [title]="'This is a info message.'" type="info" variant="filled"></x-alert>
+      </div>
+    </ng-template>
+  </x-bubble>
+
+  <x-bubble [content]="tpl4" variant="filled" [avatar]="{ hidden: true }">
+    <ng-template #tpl4>
+      <x-result status="500" title="500" subTitle="Sorry, there was an error on the server side.">
+        <x-button type="primary" text>Back</x-button>
+      </x-result>
+    </ng-template>
+  </x-bubble>
+</div>

@@ -6,3 +6,4 @@ export * from './zh_CN/default/loading/loading.component';
 export * from './zh_CN/default/typing/typing.component';
 export * from './zh_CN/default/renderer/renderer.component';
 export * from './zh_CN/default/list/list.component';
+export * from './zh_CN/default/template/template.component';

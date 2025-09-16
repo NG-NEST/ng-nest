@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { XBoolean, XNumber, XPropertyFunction, XSize, XTemplate, XToBoolean, XToNumber } from '@ng-nest/ui/core';
 import { XAvatarOption } from '@ng-nest/ui/avatar';
 
@@ -19,12 +19,12 @@ export class XBubbleProperty extends XPropertyFunction(X_BUBBLE_CONFIG_NAME) {
    * @zh_CN 气泡内容
    * @en_US Bubble content
    */
-  readonly content = input<string>();
+  readonly content = input<XTemplate>();
   /**
    * @zh_CN 头像
    * @en_US Avatar
    */
-  readonly avatar = input<XAvatarOption>();
+  readonly avatar = input<XBubbleAvatarOption>();
   /**
    * @zh_CN 尺寸
    * @en_US Size
@@ -78,6 +78,18 @@ export class XBubbleProperty extends XPropertyFunction(X_BUBBLE_CONFIG_NAME) {
 }
 
 /**
+ * @zh_CN 头像配置，继承了组件 Avatar 相关属性
+ * @en_US Avatar settings
+ */
+export interface XBubbleAvatarOption extends XAvatarOption {
+  /**
+   * @zh_CN 是否显示头像
+   * @en_US Whether to show the avatar
+   */
+  hidden?: boolean;
+}
+
+/**
  * Bubbles
  * @selector x-bubbles
  * @decorator component
@@ -100,6 +112,11 @@ export class XBubblesProperty extends XPropertyFunction(X_BUBBLES_CONFIG_NAME) {
    * @en_US Bubble variant
    */
   readonly variant = input<XBubbleVariant>();
+  /**
+   * @zh_CN 滚动条滚动事件，自动获取父级可滚动的元素
+   * @en_US Scroll event of the scroll bar, automatically obtaining the scrollable element of the parent
+   */
+  readonly scrollChange = output<Event>();
 }
 
 /**
