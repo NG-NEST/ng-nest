@@ -2703,6 +2703,77 @@ export const zh_CN: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-affix'"
   },
+  "XAffixProperty": {
+    "type": "class",
+    "label": "Affix Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "top",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "顶部距离",
+        "default": "this.config?.top!",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-affix top=\"5rem\">\n  <div>有垂直滚动条，我与顶部距离5rem</div>\n</x-affix>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "left",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "左边距离",
+        "default": "this.config?.left!",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-affix left=\"5rem\">\n  <div>有横向滚动条，我与左边距离5rem</div>\n</x-affix>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      }
+    ],
+    "name": "XAffixProperty",
+    "extends": [
+      "XPropertyFunction(X_AFFIX_CONFIG_NAME)"
+    ]
+  },
   "XAlertPrefix": {
     "type": "const",
     "label": "Alert",
@@ -2719,6 +2790,698 @@ export const zh_CN: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-alert'"
   },
+  "XAlertProperty": {
+    "type": "class",
+    "label": "Alert Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "hide",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "隐藏",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"隐藏，看不见\" hide> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "title",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "标题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"Title\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "content",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "内容",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert content=\"Content\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "type",
+        "type": "XAlertType",
+        "toType": "XAlertType",
+        "inputType": "InputSignal<XAlertType>",
+        "signal": "input",
+        "label": "类型",
+        "default": "'info'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert type=\"success\" > </x-alert>\n<x-alert type=\"info\" > </x-alert>\n<x-alert type=\"warning\" > </x-alert>\n<x-alert type=\"error\" > </x-alert>\n<x-alert type=\"loading\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "effect",
+        "type": "XEffect",
+        "toType": "XEffect",
+        "inputType": "InputSignal<XEffect>",
+        "signal": "input",
+        "label": "主题",
+        "default": "'light'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert effect=\"light\" > </x-alert>\n<x-alert effect=\"dark\" > </x-alert>\n<x-alert effect=\"white\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XAlertVariant",
+        "toType": "XAlertVariant",
+        "inputType": "InputSignal<XAlertVariant>",
+        "signal": "input",
+        "label": "形态变体",
+        "default": "'shadow'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert variant=\"outlined\" > </x-alert>\n<x-alert variant=\"filled\" > </x-alert>\n<x-alert variant=\"shadow\" > </x-alert>\n<x-alert variant=\"borderless\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "hideClose",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "隐藏关闭按钮",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"no close button\" hideClose> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "closeText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "使用文本关闭按钮",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"close button is text\" closeText=\"close\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showIcon",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "显示图标",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert type=\"success\" showIcon> </x-alert>\n<x-alert type=\"info\" showIcon> </x-alert>\n<x-alert type=\"warning\" showIcon> </x-alert>\n<x-alert type=\"error\" showIcon> </x-alert>\n<x-alert type=\"loading\" showIcon> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "disabledAnimation",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "禁用动画",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"disabled animation\" disabledAnimation> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "duration",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "延迟关闭，默认 0 表示不关闭，ms",
+        "default": "0",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"duration close\" duration=\"1000\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "manual",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "手动处理关闭事件",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"manual close\" manual> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "draggable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "拖动提示框",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"draggable alert\" draggable> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "resizable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "调整提示框大小",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable alert\" resizable> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "offsetLeft",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "开启 resizable 调整大小，偏移屏幕左边",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable alert\" resizable offsetLeft=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "offsetTop",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "开启 resizable 调整大小，偏移屏幕顶部",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable alert\" resizable offsetTop=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "minWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "最小宽度",
+        "default": "'0'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"alert min-width\" minWidth=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "minHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "最小高度",
+        "default": "'0'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"alert min-height\" minHeight=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "dragBoundary",
+        "type": "string | ElementRef<HTMLElement> | HTMLElement",
+        "toType": "string | ElementRef<HTMLElement> | HTMLElement",
+        "inputType": "InputSignal<string | ElementRef<HTMLElement> | HTMLElement>",
+        "signal": "input",
+        "label": "拖动范围限制，父节点选择器或者对象",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<div #element style=\"width:300px; height: 300px\">\n  <x-alert title=\"draggable boundary\" draggable [dragBoundary]=\"element\"> </x-alert>\n</div>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dragFreeDragPosition",
+        "type": "XAlertDragFreeDragPosition",
+        "toType": "XAlertDragFreeDragPosition",
+        "inputType": "InputSignal<XAlertDragFreeDragPosition>",
+        "signal": "input",
+        "label": "设置投放容器外部的 CdkDrag 的位置。可用于为返回的用户恢复元素的位置",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"draggable boundary\" draggable [dragFreeDragPosition]=\"{ x: 100, y: 100 }\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "operationTpl",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "自定义操作",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"operation template\" [operationTpl]=\"operationTpl\"> </x-alert>\n<ng-template #operationTpl>\n  <x-button>Button</x-button>\n</ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "close",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "signal": "output",
+        "label": "关闭的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"operation template\" (close)=\"close()\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "close() {\n  console.log(\"close\")\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dragEnded",
+        "type": "CdkDragEnd",
+        "toType": "",
+        "inputType": "OutputEmitterRef<CdkDragEnd>",
+        "signal": "output",
+        "label": "拖动结束的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"draggable event\" draggable (dragEnded)=\"dragEnded($event)\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "dragEnded(event: CdkDragEnd) {\n  console.log(event)\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "resizing",
+        "type": "XResizableEvent",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XResizableEvent>",
+        "signal": "output",
+        "label": "改变尺寸事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable event\" resizable (resizing)=\"resizing($event)\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "resizing(event: XResizableEvent) {\n  console.log(event)\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XAlertProperty",
+    "extends": [
+      "XPropertyFunction(X_ALERT_CONFIG_NAME)"
+    ]
+  },
   "XAlertType": {
     "type": "type",
     "label": "类型",
@@ -2732,6 +3495,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAlertType",
     "value": "XStatus"
+  },
+  "XAlertVariant": {
+    "type": "type",
+    "label": "形态变体",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAlertVariant",
+    "value": "'outlined' | 'filled' | 'shadow' | 'borderless'"
   },
   "XAlertDragFreeDragPosition": {
     "type": "type",
@@ -2763,6 +3540,185 @@ export const zh_CN: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-anchor'"
   },
+  "XAnchorProperty": {
+    "type": "class",
+    "label": "Anchor Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "scroll",
+        "type": "HTMLElement",
+        "toType": "HTMLElement",
+        "inputType": "InputSignal<HTMLElement>",
+        "signal": "input",
+        "label": "滚动区域对象",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<div #scroll style=\"height: 60rem; width: 100%; overflow: auto;\">\n  <x-anchor [scroll]=\"scroll\">\n    ...\n  </x-anchor>\n</div>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "affixTop",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "顶部距离",
+        "default": "'0'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor affixTop=\"100\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "affixBottom",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "底部距离",
+        "default": "'0'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor affixBottom=\"100\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "affixWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "导航宽度",
+        "default": "this.config?.affixWidth!",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor affixWidth=\"150\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "layout",
+        "type": "XAnchorLayout",
+        "toType": "XAnchorLayout",
+        "inputType": "InputSignal<XAnchorLayout>",
+        "signal": "input",
+        "label": "导航相对内容位置",
+        "default": "'right'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor layout=\"left\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "toType": "XJustify",
+        "inputType": "InputSignal<XJustify>",
+        "signal": "input",
+        "label": "对齐方式",
+        "default": "'start'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor justify=\"end\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XAnchorProperty",
+    "extends": [
+      "XPropertyFunction(X_ANCHOR_CONFIG_NAME)"
+    ]
+  },
   "XAnchorInnerPrefix": {
     "type": "const",
     "label": "Anchor inner",
@@ -2778,6 +3734,19 @@ export const zh_CN: {[key: string]: AppProp} = {
     "selector": "x-anchor-inner",
     "decorator": "component",
     "value": "'x-anchor-inner'"
+  },
+  "XAnchorInnerProperty": {
+    "type": "class",
+    "label": "Anchor inner Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAnchorInnerProperty"
   },
   "XAnchorLayout": {
     "type": "type",
@@ -4965,9 +5934,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "content",
-        "type": "string",
-        "toType": "string",
-        "inputType": "InputSignal<string>",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
         "signal": "input",
         "label": "气泡内容",
         "default": "",
@@ -4983,9 +5952,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "avatar",
-        "type": "XAvatarOption",
-        "toType": "XAvatarOption",
-        "inputType": "InputSignal<XAvatarOption>",
+        "type": "XBubbleAvatarOption",
+        "toType": "XBubbleAvatarOption",
+        "inputType": "InputSignal<XBubbleAvatarOption>",
         "signal": "input",
         "label": "头像",
         "default": "",
@@ -5185,6 +6154,40 @@ export const zh_CN: {[key: string]: AppProp} = {
       "XPropertyFunction(X_BUBBLE_CONFIG_NAME)"
     ]
   },
+  "XBubbleAvatarOption": {
+    "type": "interface",
+    "label": "头像配置，继承了组件 Avatar 相关属性",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "hidden",
+        "type": "boolean",
+        "label": "是否显示头像",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "hidden",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XBubbleAvatarOption",
+    "extends": [
+      "XAvatarOption"
+    ]
+  },
   "XBubblesPrefix": {
     "type": "const",
     "label": "Bubbles",
@@ -5237,6 +6240,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XBubbleVariant>",
         "signal": "input",
         "label": "形态变体",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "scrollChange",
+        "type": "Event",
+        "toType": "",
+        "inputType": "OutputEmitterRef<Event>",
+        "signal": "output",
+        "label": "滚动条滚动事件，自动获取父级可滚动的元素",
         "default": "",
         "withConfig": false,
         "description": "",
@@ -32477,6 +33498,630 @@ export const zh_CN: {[key: string]: AppProp} = {
     "selector": "x-select-portal",
     "decorator": "component",
     "value": "'x-select-portal'"
+  },
+  "XSenderPrefix": {
+    "type": "const",
+    "label": "Sender",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSenderPrefix",
+    "selector": "x-sender",
+    "decorator": "component",
+    "value": "'x-sender'"
+  },
+  "XSenderProperty": {
+    "type": "class",
+    "label": "Sender Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "minRows",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "最小的行数",
+        "default": "1",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "maxRows",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "最大的行数",
+        "default": "Number.MAX_SAFE_INTEGER",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "loading",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "提交加载中",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "submitType",
+        "type": "XSenderSubmitType",
+        "toType": "XSenderSubmitType",
+        "inputType": "InputSignal<XSenderSubmitType>",
+        "signal": "input",
+        "label": "提交类型",
+        "default": "'enter'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "submit",
+        "type": "Event",
+        "toType": "",
+        "inputType": "OutputEmitterRef<Event>",
+        "signal": "output",
+        "label": "提交",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "suffix",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "自定义后缀",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "prefix",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "自定义前缀",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "header",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "自定义头部",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "footer",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "自定义底部",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "输入提示信息",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "必填",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "只读",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[] | any",
+        "toType": "RegExp | RegExp[] | any",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "signal": "input",
+        "label": "正则验证规则",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "验证不通过提示文字",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
+        "signal": "input",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XSenderProperty",
+    "extends": [
+      "XFormControlFunction(X_SENDER_CONFIG_NAME)"
+    ]
+  },
+  "XSenderOption": {
+    "type": "interface",
+    "label": "Sender Option",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "minRows",
+        "type": "number",
+        "label": "最小的行数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "minRows",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "maxRows",
+        "type": "number",
+        "label": "最大的行数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxRows",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "label": "提交加载中",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "loading",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "submitType",
+        "type": "XSenderSubmitType",
+        "label": "提交类型",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "submitType",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "submit",
+        "type": "(event: Event) => void",
+        "label": "提交",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "submit",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "suffix",
+        "type": "TemplateRef<any>",
+        "label": "自定义后缀",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "suffix",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "prefix",
+        "type": "TemplateRef<any>",
+        "label": "自定义前缀",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "prefix",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "header",
+        "type": "TemplateRef<any>",
+        "label": "自定义头部",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "header",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "footer",
+        "type": "TemplateRef<any>",
+        "label": "自定义底部",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "footer",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "输入提示信息",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "必填",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "只读",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[] | any",
+        "label": "正则验证规则",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "验证不通过提示文字",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "输入验证函数",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XSenderOption",
+    "extends": [
+      "XFormOption"
+    ]
+  },
+  "XSenderSubmitType": {
+    "type": "type",
+    "label": "提交类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSenderSubmitType",
+    "value": "'enter' | 'shiftEnter'"
   },
   "XSkeletonPrefix": {
     "type": "const",

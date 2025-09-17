@@ -106,10 +106,7 @@ export const XAnchorInnerPrefix = 'x-anchor-inner';
 /**
  * Anchor inner Property
  */
-@Component({
-  selector: `${XAnchorInnerPrefix}-property`,
-  template: ''
-})
+@Component({ selector: `${XAnchorInnerPrefix}-property`, template: '' })
 export class XAnchorInnerProperty {}
 
 /**

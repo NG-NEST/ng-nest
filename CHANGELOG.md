@@ -1,3 +1,20 @@
+## [20.1.2](https://github.com/NG-NEST/ng-nest/compare/20.1.1...20.1.2) (2025-09-17)
+
+
+### Bug Fixes
+
+* **docs:** fix doc api ([7610ad4](https://github.com/NG-NEST/ng-nest/commit/7610ad4ecbf12eadb0af769ca61c4e460e1b6303))
+
+
+### Features
+
+* **module:alert:** add variant ([3babd55](https://github.com/NG-NEST/ng-nest/commit/3babd55cd1cd794247845d55a07906368236cf3e))
+* **module:bubble:** add template ([4a91ed8](https://github.com/NG-NEST/ng-nest/commit/4a91ed8d7fdaa6be368587427a8814ea1accb13f))
+* **module:sender:** add header and footer template ([bdc33d0](https://github.com/NG-NEST/ng-nest/commit/bdc33d0ccee27a67949233948794a6527ab2b6eb))
+* **module:sender:** add sender component ([a8300aa](https://github.com/NG-NEST/ng-nest/commit/a8300aa7d201ef3289b05a2455a2d86297e20752))
+
+
+
 ## [20.1.1](https://github.com/NG-NEST/ng-nest/compare/20.1.0...20.1.1) (2025-09-15)
 
 

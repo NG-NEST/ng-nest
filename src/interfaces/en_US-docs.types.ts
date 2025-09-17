@@ -2703,6 +2703,77 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-affix'"
   },
+  "XAffixProperty": {
+    "type": "class",
+    "label": "Affix Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "top",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Distance from top",
+        "default": "this.config?.top!",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-affix top=\"5rem\">\n  <div>有垂直滚动条，我与顶部距离5rem</div>\n</x-affix>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "left",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Distance from left",
+        "default": "this.config?.left!",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-affix left=\"5rem\">\n  <div>有横向滚动条，我与左边距离5rem</div>\n</x-affix>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      }
+    ],
+    "name": "XAffixProperty",
+    "extends": [
+      "XPropertyFunction(X_AFFIX_CONFIG_NAME)"
+    ]
+  },
   "XAlertPrefix": {
     "type": "const",
     "label": "Alert",
@@ -2719,6 +2790,698 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-alert'"
   },
+  "XAlertProperty": {
+    "type": "class",
+    "label": "Alert Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "hide",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Hide",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"隐藏，看不见\" hide> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "title",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Title",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"Title\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "content",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Content",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert content=\"Content\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "type",
+        "type": "XAlertType",
+        "toType": "XAlertType",
+        "inputType": "InputSignal<XAlertType>",
+        "signal": "input",
+        "label": "Alert type",
+        "default": "'info'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert type=\"success\" > </x-alert>\n<x-alert type=\"info\" > </x-alert>\n<x-alert type=\"warning\" > </x-alert>\n<x-alert type=\"error\" > </x-alert>\n<x-alert type=\"loading\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "effect",
+        "type": "XEffect",
+        "toType": "XEffect",
+        "inputType": "InputSignal<XEffect>",
+        "signal": "input",
+        "label": "Theme",
+        "default": "'light'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert effect=\"light\" > </x-alert>\n<x-alert effect=\"dark\" > </x-alert>\n<x-alert effect=\"white\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XAlertVariant",
+        "toType": "XAlertVariant",
+        "inputType": "InputSignal<XAlertVariant>",
+        "signal": "input",
+        "label": "Variant",
+        "default": "'shadow'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert variant=\"outlined\" > </x-alert>\n<x-alert variant=\"filled\" > </x-alert>\n<x-alert variant=\"shadow\" > </x-alert>\n<x-alert variant=\"borderless\" > </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "hideClose",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Hide close button",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"no close button\" hideClose> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "closeText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Use the text to close button",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"close button is text\" closeText=\"close\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showIcon",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Show icon",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert type=\"success\" showIcon> </x-alert>\n<x-alert type=\"info\" showIcon> </x-alert>\n<x-alert type=\"warning\" showIcon> </x-alert>\n<x-alert type=\"error\" showIcon> </x-alert>\n<x-alert type=\"loading\" showIcon> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "disabledAnimation",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Disable animation",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"disabled animation\" disabledAnimation> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "duration",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Delay close, the default value of 0 means do not close. ms",
+        "default": "0",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"duration close\" duration=\"1000\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "manual",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Manually handle close events",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"manual close\" manual> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "draggable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Drag dialog",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"draggable alert\" draggable> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "resizable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Adjust the size of the box",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable alert\" resizable> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "offsetLeft",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Open the resizable resize, offset screen left",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable alert\" resizable offsetLeft=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "offsetTop",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Open the resizable resize, offset screen top",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable alert\" resizable offsetTop=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "minWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Min width",
+        "default": "'0'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"alert min-width\" minWidth=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "minHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Min height",
+        "default": "'0'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"alert min-height\" minHeight=\"100\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "dragBoundary",
+        "type": "string | ElementRef<HTMLElement> | HTMLElement",
+        "toType": "string | ElementRef<HTMLElement> | HTMLElement",
+        "inputType": "InputSignal<string | ElementRef<HTMLElement> | HTMLElement>",
+        "signal": "input",
+        "label": "Drag dialog",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<div #element style=\"width:300px; height: 300px\">\n  <x-alert title=\"draggable boundary\" draggable [dragBoundary]=\"element\"> </x-alert>\n</div>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dragFreeDragPosition",
+        "type": "XAlertDragFreeDragPosition",
+        "toType": "XAlertDragFreeDragPosition",
+        "inputType": "InputSignal<XAlertDragFreeDragPosition>",
+        "signal": "input",
+        "label": "Set the location of the CDKDRAG outside the container. Can be used to recover elements for returned users",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"draggable boundary\" draggable [dragFreeDragPosition]=\"{ x: 100, y: 100 }\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "operationTpl",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Custom operation",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"operation template\" [operationTpl]=\"operationTpl\"> </x-alert>\n<ng-template #operationTpl>\n  <x-button>Button</x-button>\n</ng-template>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "close",
+        "type": "",
+        "toType": "",
+        "inputType": "",
+        "signal": "output",
+        "label": "Closed event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"operation template\" (close)=\"close()\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "close() {\n  console.log(\"close\")\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dragEnded",
+        "type": "CdkDragEnd",
+        "toType": "",
+        "inputType": "OutputEmitterRef<CdkDragEnd>",
+        "signal": "output",
+        "label": "Drag end event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"draggable event\" draggable (dragEnded)=\"dragEnded($event)\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "dragEnded(event: CdkDragEnd) {\n  console.log(event)\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "resizing",
+        "type": "XResizableEvent",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XResizableEvent>",
+        "signal": "output",
+        "label": "Change the size event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-alert title=\"resizable event\" resizable (resizing)=\"resizing($event)\"> </x-alert>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "typescript",
+            "content": "resizing(event: XResizableEvent) {\n  console.log(event)\n}"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XAlertProperty",
+    "extends": [
+      "XPropertyFunction(X_ALERT_CONFIG_NAME)"
+    ]
+  },
   "XAlertType": {
     "type": "type",
     "label": "Type",
@@ -2732,6 +3495,20 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAlertType",
     "value": "XStatus"
+  },
+  "XAlertVariant": {
+    "type": "type",
+    "label": "Variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAlertVariant",
+    "value": "'outlined' | 'filled' | 'shadow' | 'borderless'"
   },
   "XAlertDragFreeDragPosition": {
     "type": "type",
@@ -2763,6 +3540,185 @@ export const en_US: {[key: string]: AppProp} = {
     "decorator": "component",
     "value": "'x-anchor'"
   },
+  "XAnchorProperty": {
+    "type": "class",
+    "label": "Anchor Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "scroll",
+        "type": "HTMLElement",
+        "toType": "HTMLElement",
+        "inputType": "InputSignal<HTMLElement>",
+        "signal": "input",
+        "label": "Scroll area object",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<div #scroll style=\"height: 60rem; width: 100%; overflow: auto;\">\n  <x-anchor [scroll]=\"scroll\">\n    ...\n  </x-anchor>\n</div>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "affixTop",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Top distance",
+        "default": "'0'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor affixTop=\"100\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "affixBottom",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Bottom distance",
+        "default": "'0'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor affixBottom=\"100\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "affixWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Navigation Width",
+        "default": "this.config?.affixWidth!",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor affixWidth=\"150\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "layout",
+        "type": "XAnchorLayout",
+        "toType": "XAnchorLayout",
+        "inputType": "InputSignal<XAnchorLayout>",
+        "signal": "input",
+        "label": "Navigation relative content position",
+        "default": "'right'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor layout=\"left\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "justify",
+        "type": "XJustify",
+        "toType": "XJustify",
+        "inputType": "InputSignal<XJustify>",
+        "signal": "input",
+        "label": "Alignment",
+        "default": "'start'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-anchor justify=\"end\">\n  ...\n</x-anchor>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XAnchorProperty",
+    "extends": [
+      "XPropertyFunction(X_ANCHOR_CONFIG_NAME)"
+    ]
+  },
   "XAnchorInnerPrefix": {
     "type": "const",
     "label": "Anchor inner",
@@ -2778,6 +3734,19 @@ export const en_US: {[key: string]: AppProp} = {
     "selector": "x-anchor-inner",
     "decorator": "component",
     "value": "'x-anchor-inner'"
+  },
+  "XAnchorInnerProperty": {
+    "type": "class",
+    "label": "Anchor inner Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAnchorInnerProperty"
   },
   "XAnchorLayout": {
     "type": "type",
@@ -4935,6 +5904,418 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XBadgeType",
     "value": "XType"
+  },
+  "XBubblePrefix": {
+    "type": "const",
+    "label": "Bubble",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubblePrefix",
+    "selector": "x-bubble",
+    "decorator": "component",
+    "value": "'x-bubble'"
+  },
+  "XBubbleProperty": {
+    "type": "class",
+    "label": "Bubble Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "content",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Bubble content",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "avatar",
+        "type": "XBubbleAvatarOption",
+        "toType": "XBubbleAvatarOption",
+        "inputType": "InputSignal<XBubbleAvatarOption>",
+        "signal": "input",
+        "label": "Avatar",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "Size",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XBubbleVariant",
+        "toType": "XBubbleVariant",
+        "inputType": "InputSignal<XBubbleVariant>",
+        "signal": "input",
+        "label": "Bubble variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "placement",
+        "type": "XBubblePlacement",
+        "toType": "XBubblePlacement",
+        "inputType": "InputSignal<XBubblePlacement>",
+        "signal": "input",
+        "label": "Bubble placement",
+        "default": "'start'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "header",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Bubble header content",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "footer",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Bubble header content",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "loading",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Loading",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "typing",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Typing effect",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "speed",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Typing speed",
+        "default": "30",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "renderer",
+        "type": "XBubbleContentRenderer",
+        "toType": "XBubbleContentRenderer",
+        "inputType": "InputSignal<XBubbleContentRenderer>",
+        "signal": "input",
+        "label": "Content renderer, can customize content rendering, such as HTML, Markdown",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showCursor",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Whether to show the typing cursor",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      }
+    ],
+    "name": "XBubbleProperty",
+    "extends": [
+      "XPropertyFunction(X_BUBBLE_CONFIG_NAME)"
+    ]
+  },
+  "XBubbleAvatarOption": {
+    "type": "interface",
+    "label": "Avatar settings",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "hidden",
+        "type": "boolean",
+        "label": "Whether to show the avatar",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "hidden",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XBubbleAvatarOption",
+    "extends": [
+      "XAvatarOption"
+    ]
+  },
+  "XBubblesPrefix": {
+    "type": "const",
+    "label": "Bubbles",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubblesPrefix",
+    "selector": "x-bubbles",
+    "decorator": "component",
+    "value": "'x-bubbles'"
+  },
+  "XBubblesProperty": {
+    "type": "class",
+    "label": "Bubbles Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "Size",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XBubbleVariant",
+        "toType": "XBubbleVariant",
+        "inputType": "InputSignal<XBubbleVariant>",
+        "signal": "input",
+        "label": "Bubble variant",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "scrollChange",
+        "type": "Event",
+        "toType": "",
+        "inputType": "OutputEmitterRef<Event>",
+        "signal": "output",
+        "label": "Scroll event of the scroll bar, automatically obtaining the scrollable element of the parent",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XBubblesProperty",
+    "extends": [
+      "XPropertyFunction(X_BUBBLES_CONFIG_NAME)"
+    ]
+  },
+  "XBubbleVariant": {
+    "type": "type",
+    "label": "Bubble variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubbleVariant",
+    "value": "'outlined' | 'filled' | 'shadow' | 'borderless'"
+  },
+  "XBubblePlacement": {
+    "type": "type",
+    "label": "Bubble placement",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubblePlacement",
+    "value": "'start' | 'end'"
+  },
+  "XBubbleContentRenderer": {
+    "type": "type",
+    "label": "Bubble content renderer",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XBubbleContentRenderer",
+    "value": "(content: string) => string | undefined"
   },
   "XButtonPrefix": {
     "type": "const",
@@ -32117,6 +33498,630 @@ export const en_US: {[key: string]: AppProp} = {
     "selector": "x-select-portal",
     "decorator": "component",
     "value": "'x-select-portal'"
+  },
+  "XSenderPrefix": {
+    "type": "const",
+    "label": "Sender",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSenderPrefix",
+    "selector": "x-sender",
+    "decorator": "component",
+    "value": "'x-sender'"
+  },
+  "XSenderProperty": {
+    "type": "class",
+    "label": "Sender Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "minRows",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "min number of rows",
+        "default": "1",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "maxRows",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "max number of rows",
+        "default": "Number.MAX_SAFE_INTEGER",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "loading",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Loading",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "submitType",
+        "type": "XSenderSubmitType",
+        "toType": "XSenderSubmitType",
+        "inputType": "InputSignal<XSenderSubmitType>",
+        "signal": "input",
+        "label": "Submit type",
+        "default": "'enter'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "submit",
+        "type": "Event",
+        "toType": "",
+        "inputType": "OutputEmitterRef<Event>",
+        "signal": "output",
+        "label": "Submit",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "suffix",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Custom suffix",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "prefix",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Custom prefix",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "header",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Custom header",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "footer",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Custom footer",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "Enter prompt information",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Disabled",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "required",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Required",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "readonly",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Readonly",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[] | any",
+        "toType": "RegExp | RegExp[] | any",
+        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "signal": "input",
+        "label": "Regular verification rules",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "Verify not pass the prompt text",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "toType": "(value: any) => boolean",
+        "inputType": "InputSignal<(value: any) => boolean>",
+        "signal": "input",
+        "label": "Enter the verification function",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XSenderProperty",
+    "extends": [
+      "XFormControlFunction(X_SENDER_CONFIG_NAME)"
+    ]
+  },
+  "XSenderOption": {
+    "type": "interface",
+    "label": "Sender Option",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "minRows",
+        "type": "number",
+        "label": "min number of rows",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "minRows",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "maxRows",
+        "type": "number",
+        "label": "max number of rows",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "maxRows",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "label": "Loading",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "loading",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "submitType",
+        "type": "XSenderSubmitType",
+        "label": "Submit type",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "submitType",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "submit",
+        "type": "(event: Event) => void",
+        "label": "Submit",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "submit",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "suffix",
+        "type": "TemplateRef<any>",
+        "label": "Custom suffix",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "suffix",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "prefix",
+        "type": "TemplateRef<any>",
+        "label": "Custom prefix",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "prefix",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "header",
+        "type": "TemplateRef<any>",
+        "label": "Custom header",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "header",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "footer",
+        "type": "TemplateRef<any>",
+        "label": "Custom footer",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "footer",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "label": "Enter prompt information",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "placeholder",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "Disabled",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "label": "Required",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "required",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "label": "Readonly",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "readonly",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp | RegExp[] | any",
+        "label": "Regular verification rules",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "pattern",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "message",
+        "type": "string | string[]",
+        "label": "Verify not pass the prompt text",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "message",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "inputValidator",
+        "type": "(value: any) => boolean",
+        "label": "Enter the verification function",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "inputValidator",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XSenderOption",
+    "extends": [
+      "XFormOption"
+    ]
+  },
+  "XSenderSubmitType": {
+    "type": "type",
+    "label": "Submit type",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSenderSubmitType",
+    "value": "'enter' | 'shiftEnter'"
   },
   "XSkeletonPrefix": {
     "type": "const",
