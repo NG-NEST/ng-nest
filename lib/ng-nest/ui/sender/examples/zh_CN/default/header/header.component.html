@@ -1,0 +1,20 @@
+<div class="row">
+  <x-sender [(ngModel)]="model1" maxRows="5" [header]="headerTpl" [footer]="footerTpl" (submit)="onSubmit()"></x-sender>
+  <ng-template #headerTpl>
+    <div class="header">
+      <span>Press Enter to send message</span>
+    </div>
+  </ng-template>
+  <ng-template #footerTpl>
+    <div class="footer">
+      <div class="left">
+        <x-button icon="fto-paperclip" text size="small"></x-button>
+        <x-switch [checkedText]="'Thinking'" [unCheckedText]="'No Thinking'" size="mini"></x-switch>
+      </div>
+      <div class="right">
+        <x-button type="primary" icon="fto-mic" text size="small"></x-button>
+        <x-button type="primary" [loading]="loading()" icon="fto-aperture" circle (click)="onSubmit()"></x-button>
+      </div>
+    </div>
+  </ng-template>
+</div>

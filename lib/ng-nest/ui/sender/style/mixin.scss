@@ -5,22 +5,24 @@
 
 @mixin sender {
   & {
+  }
+  &-wrap {
     position: relative;
+    border: $x-border-base;
+    border-radius: $x-border-radius;
+    background-color: $x-background;
+    transition: all $x-animation-duration-slow;
+    &:hover {
+      @include hover();
+    }
   }
   &-content {
     display: flex;
     align-items: flex-end;
-    gap: $x-padding-medium;
-    width: 100%;
-    border: $x-border-base;
-    border-radius: $x-border-radius;
     padding: $x-padding-small $x-padding-medium;
-    background-color: $x-background;
-    transition: all $x-animation-duration-slow;
+    gap: $x-padding-small;
+    width: 100%;
     cursor: text;
-    &:hover {
-      @include hover();
-    }
   }
   &-textarea {
     padding: 0;
@@ -33,16 +35,26 @@
     resize: none;
     border: none;
   }
+  &-header {
+    border-top-left-radius: $x-border-radius;
+    border-top-right-radius: $x-border-radius;
+    color: $x-text-400;
+    background-color: $x-background-a200;
+    padding: $x-padding-small $x-padding-medium $x-padding-mini $x-padding-medium;
+  }
+  &-footer {
+    padding: $x-padding-mini $x-padding-medium $x-padding-small $x-padding-medium;
+  }
   &.x-disabled {
-    .#{$x-sender}-content {
+    .#{$x-sender}-wrap {
       color: $x-text-400;
-      cursor: not-allowed;
+      cursor: default;
       border-color: $x-border-100;
       background-color: $x-background-a300;
     }
     .#{$x-sender}-textarea {
       color: $x-text-400;
-      cursor: not-allowed;
+      cursor: default;
     }
   }
   &.x-invalid,

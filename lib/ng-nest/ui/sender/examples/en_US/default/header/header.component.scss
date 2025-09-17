@@ -1,0 +1,22 @@
+:host {
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
+  .header {
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+}

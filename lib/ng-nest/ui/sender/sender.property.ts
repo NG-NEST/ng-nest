@@ -42,7 +42,7 @@ export class XSenderProperty extends XFormControlFunction(X_SENDER_CONFIG_NAME) 
   readonly submit = output<Event>();
   /**
    * @zh_CN 自定义后缀
-   * @en_US Custom actions buttons
+   * @en_US Custom suffix
    */
   readonly suffix = input<TemplateRef<any>>();
   /**
@@ -50,6 +50,16 @@ export class XSenderProperty extends XFormControlFunction(X_SENDER_CONFIG_NAME) 
    * @en_US Custom prefix
    */
   readonly prefix = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 自定义头部
+   * @en_US Custom header
+   */
+  readonly header = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 自定义底部
+   * @en_US Custom footer
+   */
+  readonly footer = input<TemplateRef<any>>();
   /**
    * @zh_CN 输入提示信息
    * @en_US Enter prompt information
@@ -90,7 +100,88 @@ export class XSenderProperty extends XFormControlFunction(X_SENDER_CONFIG_NAME) 
 /**
  * Sender Option
  */
-export interface XSenderOption extends XFormOption {}
+export interface XSenderOption extends XFormOption {
+  /**
+   * @zh_CN 最小的行数
+   * @en_US min number of rows
+   */
+  minRows?: number;
+  /**
+   * @zh_CN 最大的行数
+   * @en_US max number of rows
+   */
+  maxRows?: number;
+  /**
+   * @zh_CN 提交加载中
+   * @en_US Loading
+   */
+  loading?: boolean;
+  /**
+   * @zh_CN 提交类型
+   * @en_US Submit type
+   */
+  submitType?: XSenderSubmitType;
+  /**
+   * @zh_CN 提交
+   * @en_US Submit
+   */
+  submit?: (event: Event) => void;
+  /**
+   * @zh_CN 自定义后缀
+   * @en_US Custom suffix
+   */
+  suffix?: TemplateRef<any>;
+  /**
+   * @zh_CN 自定义前缀
+   * @en_US Custom prefix
+   */
+  prefix?: TemplateRef<any>;
+  /**
+   * @zh_CN 自定义头部
+   * @en_US Custom header
+   */
+  header?: TemplateRef<any>;
+  /**
+   * @zh_CN 自定义底部
+   * @en_US Custom footer
+   */
+  footer?: TemplateRef<any>;
+  /**
+   * @zh_CN 输入提示信息
+   * @en_US Enter prompt information
+   */
+  placeholder?: string;
+  /**
+   * @zh_CN 禁用
+   * @en_US Disabled
+   */
+  disabled?: boolean;
+  /**
+   * @zh_CN 必填
+   * @en_US Required
+   */
+  required?: boolean;
+  /**
+   * @zh_CN 只读
+   * @en_US Readonly
+   */
+  readonly?: boolean;
+  /**
+   * @zh_CN 正则验证规则
+   * @en_US Regular verification rules
+   */
+  pattern?: RegExp | RegExp[] | any;
+  /**
+   * @zh_CN 验证不通过提示文字
+   * @en_US Verify not pass the prompt text
+   */
+  message?: string | string[];
+  /**
+   * @zh_CN 输入验证函数
+   * @en_US Enter the verification function
+   */
+  inputValidator: (value: any) => boolean;
+}
 
 /**
  * @zh_CN 提交类型
