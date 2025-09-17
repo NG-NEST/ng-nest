@@ -1,7 +1,7 @@
 <x-buttons [space]="'0.5rem'">
-  <x-button (click)="addItem()" flat plain>Add Item</x-button>
-  <x-button (click)="bubbles.scrollToBottom()" flat plain>Scroll to bottom</x-button>
-  <x-button (click)="bubbles.scrollToTop()" flat plain>Scroll to top</x-button>
+  <x-button type="primary" (click)="addItem()" flat plain>Add Item</x-button>
+  <x-button type="primary" (click)="bubbles.scrollToBottom()" flat plain>Scroll to bottom</x-button>
+  <x-button type="primary" (click)="bubbles.scrollToTop()" flat plain>Scroll to top</x-button>
 </x-buttons>
 <div class="scroll">
   <x-bubbles #bubbles>
