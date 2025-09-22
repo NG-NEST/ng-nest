@@ -1,0 +1,9 @@
+@use '../style/params/index.scss' as *;
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
+
+.#{$x-sender-stop} {
+  @include reset-component();
+  @include sender-stop();
+}

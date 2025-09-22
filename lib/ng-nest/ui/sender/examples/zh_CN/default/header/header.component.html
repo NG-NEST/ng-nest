@@ -13,7 +13,11 @@
       </div>
       <div class="right">
         <x-button type="primary" icon="fto-mic" text size="small"></x-button>
-        <x-button type="primary" [loading]="loading()" icon="fto-aperture" circle (click)="onSubmit()"></x-button>
+        @if (loading()) {
+          <x-sender-stop (click)="loading.set(false)"></x-sender-stop>
+        } @else {
+          <x-button type="primary" icon="fto-aperture" circle (click)="onSubmit()"></x-button>
+        }
       </div>
     </div>
   </ng-template>

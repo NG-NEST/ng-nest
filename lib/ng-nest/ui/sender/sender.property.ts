@@ -41,6 +41,11 @@ export class XSenderProperty extends XFormControlFunction(X_SENDER_CONFIG_NAME) 
    */
   readonly submit = output<Event>();
   /**
+   * @zh_CN 暂停提交
+   * @en_US Stop
+   */
+  readonly stop = output<Event>();
+  /**
    * @zh_CN 自定义后缀
    * @en_US Custom suffix
    */

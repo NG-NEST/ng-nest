@@ -13,6 +13,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { FormsModule } from '@angular/forms';
 import { NgTemplateOutlet } from '@angular/common';
+import { XSenderStopComponent } from './stop.component';
 
 @Component({
   selector: 'x-sender',
@@ -21,7 +22,7 @@ import { NgTemplateOutlet } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [XValueAccessor(XSenderComponent)],
-  imports: [TextFieldModule, FormsModule, NgTemplateOutlet, XButtonComponent]
+  imports: [TextFieldModule, FormsModule, NgTemplateOutlet, XButtonComponent, XSenderStopComponent]
 })
 export class XSenderComponent extends XSenderProperty {
   textarea = viewChild.required<ElementRef<HTMLTextAreaElement>>('textarea');
@@ -51,6 +52,10 @@ export class XSenderComponent extends XSenderProperty {
 
   onEnterPressed(event: Event) {
     this.submit.emit(event);
+  }
+
+  onStop(event: Event) {
+    this.stop.emit(event);
   }
 
   inputFocus(type: 'focus' | 'select' | 'before' | 'after' = 'after') {

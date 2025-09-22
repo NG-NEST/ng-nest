@@ -43,15 +43,19 @@
       } @else {
         @if (!footer()) {
           <div class="x-sender-suffix">
-            <x-button
-              type="primary"
-              circle
-              flat
-              icon="fto-send"
-              [loading]="loading()"
-              [disabled]="disabledComputed()"
-              (click)="onEnterPressed($event)"
-            ></x-button>
+            @if (!loading()) {
+              <x-button
+                type="primary"
+                circle
+                flat
+                icon="fto-send"
+                [loading]="loading()"
+                [disabled]="disabledComputed()"
+                (click)="onEnterPressed($event)"
+              ></x-button>
+            } @else {
+              <x-sender-stop (click)="onStop($event)"></x-sender-stop>
+            }
           </div>
         }
       }

@@ -4,8 +4,6 @@
 @use './param.scss' as *;
 
 @mixin sender {
-  & {
-  }
   &-wrap {
     position: relative;
     border: $x-border-base;
@@ -61,5 +59,29 @@
   &.x-invalid,
   &.x-required {
     @include border-error();
+  }
+}
+
+@mixin sender-stop {
+  & {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: color, background-color, border, box-shadow;
+    transition:
+      color $x-animation-duration-base ease-in-out,
+      background-color $x-animation-duration-base ease-in-out,
+      border $x-animation-duration-base ease-in-out,
+      box-shadow $x-animation-duration-base ease-in-out;
+    cursor: pointer;
+    border-radius: 50%;
+    &:hover {
+      background-color: $x-primary-900;
+    }
+    svg {
+      color: $x-primary;
+      width: $x-height-medium;
+      height: $x-height-medium;
+    }
   }
 }

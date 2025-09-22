@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { XSenderComponent } from '@ng-nest/ui/sender';
+import { XSenderComponent, XSenderStopComponent } from '@ng-nest/ui/sender';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XMessageService } from '@ng-nest/ui/message';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ex-actions',
-  imports: [FormsModule, XSenderComponent, XButtonComponent],
+  imports: [FormsModule, XSenderComponent, XButtonComponent, XSenderStopComponent],
   templateUrl: './actions.component.html',
   styleUrl: './actions.component.scss'
 })
