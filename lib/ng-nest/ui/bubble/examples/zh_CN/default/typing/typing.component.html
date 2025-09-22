@@ -1,4 +1,10 @@
-<x-bubble [content]="content()" typing></x-bubble>
+<x-bubble
+  [content]="content()"
+  typing
+  (typingStart)="typingStart()"
+  (typingEnd)="typingEnd()"
+  (typingOuput)="typingOutput($event)"
+></x-bubble>
 
 <br />
 <x-button type="primary" (click)="addContent()" flat plain>add content</x-button>

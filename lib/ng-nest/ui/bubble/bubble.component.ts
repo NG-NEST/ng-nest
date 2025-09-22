@@ -121,12 +121,15 @@ export class XBubbleComponent extends XBubbleProperty {
       return;
     }
 
+    this.typingStart.emit();
     this.typingInterval = setInterval(() => {
       if (this.pendingContent().length > 0) {
         const nextChar = this.pendingContent().charAt(0);
         this.typedContent.update((current) => current + nextChar);
         this.pendingContent.update((current) => current.substring(1));
+        this.typingOuput.emit(nextChar);
       } else {
+        this.typingEnd.emit();
         this.stopTyping();
       }
     }, this.speed());

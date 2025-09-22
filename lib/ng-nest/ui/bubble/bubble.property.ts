@@ -75,6 +75,21 @@ export class XBubbleProperty extends XPropertyFunction(X_BUBBLE_CONFIG_NAME) {
    * @en_US Whether to show the typing cursor
    */
   readonly showCursor = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 打字开始
+   * @en_US Typing start
+   */
+  readonly typingStart = output<void>();
+  /**
+   * @zh_CN 打字正在输出的字符
+   * @en_US Typing output character
+   */
+  readonly typingOuput = output<string>();
+  /**
+   * @zh_CN 打字结束
+   * @en_US Typing end
+   */
+  readonly typingEnd = output<void>();
 }
 
 /**

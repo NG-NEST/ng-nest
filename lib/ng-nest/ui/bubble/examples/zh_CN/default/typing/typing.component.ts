@@ -17,4 +17,16 @@ export class ExTypingComponent {
       return x;
     });
   }
+
+  typingStart() {
+    console.log('start');
+  }
+
+  typingEnd() {
+    console.log('end');
+  }
+
+  typingOutput(value: string) {
+    console.log(value);
+  }
 }
