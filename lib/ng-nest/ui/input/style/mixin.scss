@@ -140,6 +140,7 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      color: $x-text;
       width: 100%;
       z-index: 2;
       &:hover + input {
