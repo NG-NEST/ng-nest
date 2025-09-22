@@ -6147,6 +6147,60 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "typingStart",
+        "type": "void",
+        "toType": "",
+        "inputType": "OutputEmitterRef<void>",
+        "signal": "output",
+        "label": "Typing start",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "typingOuput",
+        "type": "string",
+        "toType": "",
+        "inputType": "OutputEmitterRef<string>",
+        "signal": "output",
+        "label": "Typing output character",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "typingEnd",
+        "type": "void",
+        "toType": "",
+        "inputType": "OutputEmitterRef<void>",
+        "signal": "output",
+        "label": "Typing end",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XBubbleProperty",
@@ -33605,6 +33659,24 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "OutputEmitterRef<Event>",
         "signal": "output",
         "label": "Submit",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "stop",
+        "type": "Event",
+        "toType": "",
+        "inputType": "OutputEmitterRef<Event>",
+        "signal": "output",
+        "label": "Stop",
         "default": "",
         "withConfig": false,
         "description": "",

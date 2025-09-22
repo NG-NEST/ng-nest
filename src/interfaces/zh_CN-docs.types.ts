@@ -6147,6 +6147,60 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "typingStart",
+        "type": "void",
+        "toType": "",
+        "inputType": "OutputEmitterRef<void>",
+        "signal": "output",
+        "label": "打字开始",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "typingOuput",
+        "type": "string",
+        "toType": "",
+        "inputType": "OutputEmitterRef<string>",
+        "signal": "output",
+        "label": "打字正在输出的字符",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "typingEnd",
+        "type": "void",
+        "toType": "",
+        "inputType": "OutputEmitterRef<void>",
+        "signal": "output",
+        "label": "打字结束",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XBubbleProperty",
@@ -33605,6 +33659,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "OutputEmitterRef<Event>",
         "signal": "output",
         "label": "提交",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "stop",
+        "type": "Event",
+        "toType": "",
+        "inputType": "OutputEmitterRef<Event>",
+        "signal": "output",
+        "label": "暂停提交",
         "default": "",
         "withConfig": false,
         "description": "",

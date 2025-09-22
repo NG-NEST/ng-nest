@@ -1,3 +1,20 @@
+## [20.1.3](https://github.com/NG-NEST/ng-nest/compare/20.1.2...20.1.3) (2025-09-22)
+
+
+### Bug Fixes
+
+* **module:sender:** fix textarea outline style ([75fc508](https://github.com/NG-NEST/ng-nest/commit/75fc50826946d51d68293a033ae1632405df4082))
+* **module:textarea:** fix xOutlet directive ([06c8c04](https://github.com/NG-NEST/ng-nest/commit/06c8c04b2cbada25d065b93f9c1f8516c0a0c431))
+
+
+### Features
+
+* **module:bubble:** add typing event ([34abc91](https://github.com/NG-NEST/ng-nest/commit/34abc912d37bc547c576cb2b4722d8077eaa6fc7))
+* **module:list:** add a title to the option ([dd78ade](https://github.com/NG-NEST/ng-nest/commit/dd78ade90006f754e9631019e06141889e3cbded))
+* **module:sender:** add stop button ([61b4574](https://github.com/NG-NEST/ng-nest/commit/61b4574ac4e5e179caa2d670456383c82e009e27))
+
+
+
 ## [20.1.2](https://github.com/NG-NEST/ng-nest/compare/20.1.1...20.1.2) (2025-09-17)
 
 
