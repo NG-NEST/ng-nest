@@ -15,7 +15,7 @@
       @if (icon()) {
         <x-icon class="x-list-option-icon" [type]="icon()"></x-icon>
       }
-      <span x-keyword [text]="keywordText()" [caseSensitive]="caseSensitive()">{{ label() }}</span>
+      <span x-keyword [text]="keywordText()" [caseSensitive]="caseSensitive()" [title]="label()">{{ label() }}</span>
     }
   </div>
   @if (leaf()) {
