@@ -1,10 +1,12 @@
 <div
   class="x-list-option"
   [ngClass]="classMap()"
+  [style]="nodeStyleComputed()"
   [class.x-selected]="selected()"
   [class.x-disabled]="forbidden()"
   [class.x-open-portal]="openPortal()"
   [class.x-active]="active()"
+  [class.x-list-group]="groupable()"
   [class.x-list-icon]="icon()"
   [class.x-list-divided]="divided()"
 >
@@ -15,7 +17,9 @@
       @if (icon()) {
         <x-icon class="x-list-option-icon" [type]="icon()"></x-icon>
       }
-      <span x-keyword [text]="keywordText()" [caseSensitive]="caseSensitive()" [title]="label()">{{ label() }}</span>
+      <span x-keyword [text]="keywordText()" [caseSensitive]="caseSensitive()" [attr.title]="label()">{{
+        label()
+      }}</span>
     }
   </div>
   @if (leaf()) {

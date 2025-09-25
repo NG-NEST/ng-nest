@@ -17,7 +17,8 @@ export class XListDropGroup implements OnDestroy {
   setConnectedTo() {
     this.dropLists.forEach((x) => {
       this.dropLists.forEach((y) => {
-        if (!y.connectedTo) {
+        const { connectedTo } = y;
+        if (Array.isArray(connectedTo) && connectedTo.length === 0) {
           y.connectedTo = [x];
         } else {
           if (!coerceArray(y.connectedTo).includes(x)) {

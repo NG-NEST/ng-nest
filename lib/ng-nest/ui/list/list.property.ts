@@ -6,7 +6,8 @@ import {
   XTemplate,
   XSize,
   XToNumber,
-  XToBoolean
+  XToBoolean,
+  XStyle
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, ElementRef, input, output, model } from '@angular/core';
 import { XFormControlFunction } from '@ng-nest/ui/base-form';
@@ -66,6 +67,11 @@ export class XListProperty extends XFormControlFunction(X_LIST_CONFIG_NAME) {
    * @en_US Node template
    */
   readonly nodeTpl = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 节点样式
+   * @en_US Node style
+   */
+  readonly nodeStyle = input<XStyle>();
   /**
    * @zh_CN 列表头部
    * @en_US List header
@@ -206,6 +212,11 @@ export interface XListNode extends XParentIdentityProperty<XListNode> {
    */
   hover?: boolean;
   /**
+   * @zh_CN 节点样式
+   * @en_US Node style
+   */
+  style?: XStyle;
+  /**
    * @zh_CN 打开弹框
    * @en_US open portal
    */
@@ -220,6 +231,16 @@ export interface XListNode extends XParentIdentityProperty<XListNode> {
    * @en_US Check for updates
    */
   change?: Function;
+  /**
+   * @zh_CN 分组名称
+   * @en_US Group name
+   */
+  group?: boolean;
+  /**
+   * @zh_CN 是否是分组节点
+   * @en_US Group node
+   */
+  groupable?: boolean;
 }
 
 /**
@@ -250,10 +271,20 @@ export class XListOptionProperty {
    */
   readonly nodeTpl = input<TemplateRef<any>>();
   /**
+   * @zh_CN 节点样式
+   * @en_US Node style
+   */
+  readonly nodeStyle = input<XStyle>();
+  /**
    * @zh_CN 选中
    * @en_US selected
    */
   readonly selected = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 分组节点
+   * @en_US Group node
+   */
+  readonly groupable = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 禁用
    * @en_US forbidden

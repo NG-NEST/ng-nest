@@ -7,6 +7,7 @@
       <x-list-option
         [size]="size()"
         [label]="getSelectAllText()"
+        [nodeStyle]="nodeStyle()"
         [checked]="true"
         [selected]="isSelectAll()"
         (click)="onSelectAllNodes()"
@@ -28,7 +29,9 @@
         [node]="node"
         [checked]="checked()"
         [nodeTpl]="nodeTpl()"
+        [nodeStyle]="nodeStyle()"
         [selected]="node.selected!"
+        [groupable]="node.groupable!"
         [forbidden]="node.disabled!"
         [active]="node.active!"
         (activeChange)="node.active = $event"
@@ -46,44 +49,17 @@
       ></x-list-option>
     </cdk-virtual-scroll-viewport>
   } @else {
-    <div
-      class="x-list-content"
-      cdkDropList
-      (cdkDropListDropped)="dropCdk($event)"
-      [cdkDropListDisabled]="!drag()"
-      [hidden]="isEmpty()"
-      [cdkDropListData]="nodes()"
-      [cdkDropListEnterPredicate]="predicate"
-    >
-      @for (node of nodes(); track node.id) {
-        <x-list-option
-          cdkDrag
-          [cdkDragDisabled]="node.disabled"
-          [node]="node"
-          [checked]="checked()"
-          [nodeTpl]="nodeTpl()"
-          [selected]="node.selected!"
-          [forbidden]="node.disabled!"
-          [active]="node.active!"
-          (activeChange)="node.active = $event"
-          [openPortal]="node.openPortal!"
-          [icon]="node.icon"
-          [label]="node.label"
-          [leaf]="node.leaf!"
-          [divided]="node.divided!"
-          [size]="size()"
-          [keywordText]="keywordText()"
-          [caseSensitive]="caseSensitive()"
-          (click)="onNodeClick($event, node)"
-          (mouseenter)="onMouseenter($event, node)"
-          (mouseleave)="onMouseleave($event, node)"
-        ></x-list-option>
-      }
-    </div>
+    <ng-container *ngTemplateOutlet="listTpl; context: { $list: nodes() }"></ng-container>
   }
+
   @if (loadMore() && !isEmpty()) {
     <div #loadMoreRef class="x-list-load-more">
-      <x-list-option [size]="size()" [nodeTpl]="loadMoreTpl" (click)="onLoadMore()"></x-list-option>
+      <x-list-option
+        [size]="size()"
+        [nodeTpl]="loadMoreTpl"
+        [nodeStyle]="nodeStyle()"
+        (click)="onLoadMore()"
+      ></x-list-option>
     </div>
     <ng-template #loadMoreTpl>
       @if (icon() && iconSpin()) {
@@ -99,3 +75,42 @@
     <div #footerRef class="x-list-footer" *xOutlet="footer()">{{ footer() }}</div>
   }
 </div>
+
+<ng-template #listTpl let-list="$list">
+  <div
+    class="x-list-content"
+    cdkDropList
+    (cdkDropListDropped)="dropCdk($event)"
+    [cdkDropListDisabled]="!drag()"
+    [hidden]="isEmpty()"
+    [cdkDropListData]="list"
+    [cdkDropListEnterPredicate]="predicate"
+  >
+    @for (node of list; track node.id) {
+      <x-list-option
+        cdkDrag
+        [cdkDragDisabled]="node.disabled || node.groupable"
+        [node]="node"
+        [checked]="checked()"
+        [nodeTpl]="nodeTpl()"
+        [nodeStyle]="nodeStyle()"
+        [selected]="node.selected!"
+        [groupable]="node.groupable!"
+        [forbidden]="node.disabled!"
+        [active]="node.active!"
+        (activeChange)="node.active = $event"
+        [openPortal]="node.openPortal!"
+        [icon]="node.icon"
+        [label]="node.label"
+        [leaf]="node.leaf!"
+        [divided]="node.divided!"
+        [size]="size()"
+        [keywordText]="keywordText()"
+        [caseSensitive]="caseSensitive()"
+        (click)="onNodeClick($event, node)"
+        (mouseenter)="onMouseenter($event, node)"
+        (mouseleave)="onMouseleave($event, node)"
+      ></x-list-option>
+    }
+  </div>
+</ng-template>

@@ -149,7 +149,8 @@ export class XMenuComponent extends XMenuProperty implements OnChanges {
 
   setCategory(nodes: XMenuNode[]) {
     const group = XGroupBy(nodes as XMenuNode[], 'category');
-    for (let list of group) {
+    for (let key in group) {
+      const list = group[key];
       const first = list[0];
       if (first.category) {
         list.unshift({
@@ -162,9 +163,13 @@ export class XMenuComponent extends XMenuProperty implements OnChanges {
       }
     }
     let con: XMenuNode[] = [];
-    group.map((x) => {
-      con = con.concat(x);
-    });
+    for (let key in group) {
+      const list = group[key];
+      list.map((x) => {
+        con = con.concat(x);
+      });
+    }
+
     return con;
   }
 

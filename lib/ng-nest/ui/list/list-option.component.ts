@@ -30,6 +30,13 @@ export class XListOptionComponent extends XListOptionProperty implements Highlig
   }));
   disabled = false;
 
+  nodeStyleComputed = computed(() => {
+    return {
+      ...(this.nodeStyle() ?? {}),
+      ...(this.node()?.style ?? {})
+    };
+  });
+
   constructor() {
     super();
     effect(() => (this.disabled = this.forbidden()));

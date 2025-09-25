@@ -18,7 +18,6 @@
     cursor: pointer;
   }
   &-content {
-    cursor: pointer;
     &.cdk-drop-list-dragging {
       x-list-option.cdk-drag-placeholder .x-list-option {
         border-color: $x-primary;
@@ -46,6 +45,9 @@
       transition:
         background-color $x-animation-duration-base,
         color $x-animation-duration-base;
+      &.x-list-divided {
+        margin-top: 0.8125rem;
+      }
     }
   }
   &-leaf,
@@ -84,28 +86,35 @@
 
 @mixin list-option {
   @include option();
+  cursor: pointer;
   transition:
     border-color $x-animation-duration-base,
     background-color $x-animation-duration-base,
     color $x-animation-duration-base;
   &-content {
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    pointer-events: none;
     user-select: none;
     display: inline-block;
   }
   &-icon {
     margin-right: 0.25rem;
   }
-
   &:not(:first-child) {
     margin-top: $x-border-width;
   }
-  &:hover:not(.x-disabled),
-  &.x-active:not(.x-disabled) {
+  &:hover:not(.x-disabled, .x-list-group),
+  &.x-active:not(.x-disabled, .x-list-group) {
     background-color: $x-background-a200;
+  }
+
+  &.x-list-group {
+    cursor: default;
+    &:hover {
+      background-color: transparent;
+    }
   }
 
   &.x-list-divided {
@@ -138,18 +147,21 @@
       color: var(--x-text-500);
     }
   }
-  @include option-size('big', $x-height-big, 0 $x-padding-big);
-  @include option-size('large', $x-height-large, 0 $x-padding-large);
-  @include option-size('medium', $x-height-medium, 0 $x-padding-medium);
-  @include option-size('small', $x-height-small, 0 $x-padding-small);
-  @include option-size('mini', $x-height-mini, 0 $x-padding-mini);
+  @include option-size('big', $x-height-big, $x-padding-big);
+  @include option-size('large', $x-height-large, $x-padding-large);
+  @include option-size('medium', $x-height-medium, $x-padding-medium);
+  @include option-size('small', $x-height-small, $x-padding-small);
+  @include option-size('mini', $x-height-mini, $x-padding-mini);
 }
 
 @mixin option-size($size, $height, $padding) {
   &-#{$size} {
-    padding: $padding;
+    padding: 0 $padding;
     height: $height;
     line-height: $height;
+    &.x-list-group {
+      padding: 0 calc($padding * 0.3);
+    }
   }
 }
 

@@ -17,8 +17,17 @@ import {
   computed
 } from '@angular/core';
 import { XListPrefix, XListNode, XListProperty } from './list.property';
-import { XIsChange, XSetData, XIsEmpty, XIsUndefined, XIsNull, XResize, XResizeObserver } from '@ng-nest/ui/core';
-import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  XIsChange,
+  XSetData,
+  XIsEmpty,
+  XIsUndefined,
+  XIsNull,
+  XResize,
+  XResizeObserver,
+  XGroupBy
+} from '@ng-nest/ui/core';
+import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { XListOptionComponent } from './list-option.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
@@ -32,12 +41,13 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { XEmptyComponent } from '@ng-nest/ui/empty';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NgClass } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XListPrefix}`,
   imports: [
     NgClass,
+    NgTemplateOutlet,
     FormsModule,
     ReactiveFormsModule,
     CdkDropList,
@@ -52,12 +62,12 @@ import { NgClass } from '@angular/common';
   styleUrls: ['./list.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [XValueAccessor(XListComponent)]
+  providers: [XValueAccessor(XListComponent), { provide: X_LIST_DROP_GROUP, useValue: undefined }]
 })
 export class XListComponent extends XListProperty implements OnChanges {
   private unSubject = new Subject<void>();
   private i18n = inject(XI18nService);
-  private group = inject<XListDropGroup>(X_LIST_DROP_GROUP, { optional: true, skipSelf: true });
+  private listDropGroup = inject<XListDropGroup>(X_LIST_DROP_GROUP, { optional: true, skipSelf: true });
   nodes = signal<XListNode[]>([]);
   selectedNodes = signal<XListNode[]>([]);
   headerRef = viewChild<ElementRef<HTMLElement>>('headerRef');
@@ -154,9 +164,9 @@ export class XListComponent extends XListProperty implements OnChanges {
     } else {
       this.scrollHeightSignal.set(this.scrollHeight());
     }
-    if (this.group && this.dropList()) {
-      this.group.dropLists.add(this.dropList()!);
-      this.group.setConnectedTo();
+    if (this.listDropGroup && this.dropList()) {
+      this.listDropGroup.dropLists.add(this.dropList()!);
+      this.listDropGroup.setConnectedTo();
     }
   }
 
@@ -190,7 +200,7 @@ export class XListComponent extends XListProperty implements OnChanges {
     this.unSubject.next();
     this.unSubject.complete();
     this.resizeObserver?.disconnect();
-    this.group?.dropLists.delete(this.dropList()!);
+    this.listDropGroup?.dropLists.delete(this.dropList()!);
   }
 
   private setVirtualScrollHeight() {
@@ -213,6 +223,7 @@ export class XListComponent extends XListProperty implements OnChanges {
       } else {
         this.nodes.set(x);
       }
+      this.setGroup();
       this.setSelected();
       this.setKeyManager();
     });
@@ -228,6 +239,18 @@ export class XListComponent extends XListProperty implements OnChanges {
       this.setScorllTop(num);
       this.keyManagerChange.emit(num);
     });
+  }
+
+  private setGroup() {
+    const nodes = this.nodes();
+    if (!nodes.some((x) => !!x.group)) return;
+    const groups = XGroupBy(nodes, 'group');
+    const groupNodes: XListNode[] = [];
+    for (let key in groups) {
+      groupNodes.push({ id: `$group-${key}`, label: key, groupable: true });
+      groupNodes.push(...groups[key]);
+    }
+    this.nodes.set(groupNodes);
   }
 
   setScorllTop(_num: number) {
@@ -309,7 +332,7 @@ export class XListComponent extends XListProperty implements OnChanges {
   }
 
   onNodeClick(event: Event, node: XListNode) {
-    if (XIsUndefined(node) || node.disabled) {
+    if (XIsUndefined(node) || node.disabled || node.groupable) {
       event.stopPropagation();
       return;
     }
@@ -378,16 +401,23 @@ export class XListComponent extends XListProperty implements OnChanges {
   }
 
   dropCdk(event: CdkDragDrop<XListNode[]>) {
-    this.nodes.update((x) => {
-      moveItemInArray(x, event.previousIndex, event.currentIndex);
-      return [...x];
-    });
-    this.dropListDropped.emit({
-      data: this.nodes(),
-      current: this.nodes()[event.currentIndex],
-      currentIndex: event.currentIndex,
-      event: event
-    });
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      this.dropListDropped.emit({
+        data: this.nodes(),
+        current: this.nodes()[event.currentIndex],
+        currentIndex: event.currentIndex,
+        event: event
+      });
+    } else {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      this.dropListDropped.emit({
+        data: event.container.data,
+        current: event.container.data[event.currentIndex],
+        currentIndex: event.currentIndex,
+        event: event
+      });
+    }
   }
 
   predicate(_drag: CdkDrag<XListNode>, _drop: CdkDropList<XListNode>) {
