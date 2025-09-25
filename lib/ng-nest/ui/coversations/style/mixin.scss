@@ -1,0 +1,9 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin coversations {
+  & {
+    width: 100%;
+    display: block;
+  }
+}

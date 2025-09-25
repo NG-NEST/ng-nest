@@ -752,7 +752,7 @@ export const en_US: {[key: string]: AppProp} = {
   },
   "XGroupBy<T>": {
     "type": "function",
-    "label": "Based on the array according to the attribute name",
+    "label": "Groups the elements of an array based on a property name or iteratee function",
     "description": "",
     "example": [
       {
@@ -764,9 +764,10 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XGroupBy<T>",
     "params": {
       "array": "T[]",
-      "name": "string"
+      "key": "string",
+      "item": "T"
     },
-    "returnType": "Array<Array<T>>"
+    "returnType": "Record<string, T[]>"
   },
   "XGuid": {
     "type": "function",
@@ -12234,6 +12235,145 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XFooterProperty",
     "extends": [
       "XPropertyFunction(X_FOOTER_CONFIG_NAME)"
+    ]
+  },
+  "XCoversationsPrefix": {
+    "type": "const",
+    "label": "Coversations",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XCoversationsPrefix",
+    "selector": "x-coversations",
+    "decorator": "component",
+    "value": "'x-coversations'"
+  },
+  "XCoversationsProperty": {
+    "type": "class",
+    "label": "Coversations Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XCoversationNode>",
+        "toType": "XData<XCoversationNode>",
+        "inputType": "InputSignal<XData<XCoversationNode>>",
+        "signal": "input",
+        "label": "List data",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeTpl",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Node style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeStyle",
+        "type": "XStyle",
+        "toType": "XStyle",
+        "inputType": "InputSignal<XStyle>",
+        "signal": "input",
+        "label": "Node style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "Size",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeClick",
+        "type": "XCoversationNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XCoversationNode>",
+        "signal": "output",
+        "label": "Node click event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XCoversationsProperty",
+    "extends": [
+      "XFormControlFunction(X_COVERSATIONS_CONFIG_NAME)"
+    ]
+  },
+  "XCoversationNode": {
+    "type": "interface",
+    "label": "List data object",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XCoversationNode",
+    "extends": [
+      "XListNode"
     ]
   },
   "XCrumbPrefix": {
@@ -25904,6 +26044,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "nodeStyle",
+        "type": "XStyle",
+        "toType": "XStyle",
+        "inputType": "InputSignal<XStyle>",
+        "signal": "input",
+        "label": "Node style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "header",
         "type": "XTemplate",
         "toType": "XTemplate",
@@ -26385,6 +26543,23 @@ export const en_US: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "style",
+        "type": "XStyle",
+        "label": "Node style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "style",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "openPortal",
         "type": "boolean",
         "label": "open portal",
@@ -26427,6 +26602,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "change",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "group",
+        "type": "boolean",
+        "label": "Group display",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "group",
         "propType": "",
         "example": [
           {
@@ -26511,6 +26703,24 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<TemplateRef<any>>",
         "signal": "input",
         "label": "Node template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeStyle",
+        "type": "XStyle",
+        "toType": "XStyle",
+        "inputType": "InputSignal<XStyle>",
+        "signal": "input",
+        "label": "Node style",
         "default": "",
         "withConfig": false,
         "description": "",

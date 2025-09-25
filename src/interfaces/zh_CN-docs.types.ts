@@ -752,7 +752,7 @@ export const zh_CN: {[key: string]: AppProp} = {
   },
   "XGroupBy<T>": {
     "type": "function",
-    "label": "根据属性 name 来对数组分组",
+    "label": "根据属性 name 或迭代函数来对数组分组",
     "description": "",
     "example": [
       {
@@ -764,9 +764,10 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XGroupBy<T>",
     "params": {
       "array": "T[]",
-      "name": "string"
+      "key": "string",
+      "item": "T"
     },
-    "returnType": "Array<Array<T>>"
+    "returnType": "Record<string, T[]>"
   },
   "XGuid": {
     "type": "function",
@@ -12234,6 +12235,145 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XFooterProperty",
     "extends": [
       "XPropertyFunction(X_FOOTER_CONFIG_NAME)"
+    ]
+  },
+  "XCoversationsPrefix": {
+    "type": "const",
+    "label": "Coversations",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XCoversationsPrefix",
+    "selector": "x-coversations",
+    "decorator": "component",
+    "value": "'x-coversations'"
+  },
+  "XCoversationsProperty": {
+    "type": "class",
+    "label": "Coversations Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "data",
+        "type": "XData<XCoversationNode>",
+        "toType": "XData<XCoversationNode>",
+        "inputType": "InputSignal<XData<XCoversationNode>>",
+        "signal": "input",
+        "label": "列表数据",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeTpl",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "节点模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeStyle",
+        "type": "XStyle",
+        "toType": "XStyle",
+        "inputType": "InputSignal<XStyle>",
+        "signal": "input",
+        "label": "节点样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeClick",
+        "type": "XCoversationNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XCoversationNode>",
+        "signal": "output",
+        "label": "节点点击事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XCoversationsProperty",
+    "extends": [
+      "XFormControlFunction(X_COVERSATIONS_CONFIG_NAME)"
+    ]
+  },
+  "XCoversationNode": {
+    "type": "interface",
+    "label": "List 数据对象",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XCoversationNode",
+    "extends": [
+      "XListNode"
     ]
   },
   "XCrumbPrefix": {
@@ -25904,6 +26044,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "nodeStyle",
+        "type": "XStyle",
+        "toType": "XStyle",
+        "inputType": "InputSignal<XStyle>",
+        "signal": "input",
+        "label": "节点样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "header",
         "type": "XTemplate",
         "toType": "XTemplate",
@@ -26385,6 +26543,23 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "style",
+        "type": "XStyle",
+        "label": "节点样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "style",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "openPortal",
         "type": "boolean",
         "label": "打开弹框",
@@ -26427,6 +26602,23 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "change",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "group",
+        "type": "boolean",
+        "label": "分组展示",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "group",
         "propType": "",
         "example": [
           {
@@ -26511,6 +26703,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<TemplateRef<any>>",
         "signal": "input",
         "label": "节点模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeStyle",
+        "type": "XStyle",
+        "toType": "XStyle",
+        "inputType": "InputSignal<XStyle>",
+        "signal": "input",
+        "label": "节点样式",
         "default": "",
         "withConfig": false,
         "description": "",

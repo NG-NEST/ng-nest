@@ -85,6 +85,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./container/container.component').then((x) => x.TeContainerComponent)
       },
       {
+        path: 'coversations',
+        loadComponent: () => import('./coversations/coversations.component').then((x) => x.TeCoversationsComponent)
+      },
+      {
         path: 'crumb',
         loadComponent: () => import('./crumb/crumb.component').then((x) => x.TeCrumbComponent)
       },

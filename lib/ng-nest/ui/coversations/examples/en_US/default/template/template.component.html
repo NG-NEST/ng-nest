@@ -1,0 +1,21 @@
+<div class="box">
+  <x-coversations [data]="data()" [nodeTpl]="nodeTpl" [nodeStyle]="{ paddingRight: 0 }"></x-coversations>
+
+  <ng-template #nodeTpl let-node="$node">
+    <div class="node">
+      <span class="label" [attr.title]="node.label">{{ node.label }}</span>
+
+      <x-dropdown
+        (nodeClick)="operation($event)"
+        [disabled]="node.disabled"
+        [data]="[
+          { label: 'operation 1', icon: 'fto-edit' },
+          { label: 'operation 2', icon: 'fto-settings' },
+          { label: 'delete', icon: 'fto-trash-2', divided: true, style: { color: '#f56c6c' } }
+        ]"
+      >
+        <x-icon class="operation" type="fto-more-vertical"></x-icon>
+      </x-dropdown>
+    </div>
+  </ng-template>
+</div>

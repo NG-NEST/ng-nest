@@ -1,0 +1,11 @@
+<div class="x-coversations">
+  <x-list
+    [(ngModel)]="value"
+    (ngModelChange)="valueChange($event)"
+    [data]="data()"
+    [nodeStyle]="nodeStyle()"
+    [size]="size()"
+    [nodeTpl]="nodeTpl()"
+    inPortal
+  ></x-list>
+</div>

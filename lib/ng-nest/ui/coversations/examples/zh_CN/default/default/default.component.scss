@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  background-color: var(--x-background-a200);
+  padding: 2rem;
+  .box {
+    background-color: var(--x-white);
+    border-radius: var(--x-border-radius);
+    width: 18rem;
+    padding: 0.25rem;
+  }
+}

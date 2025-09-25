@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XGroupBy, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
+import { XRepositoryAbstract, XQuery, XResultList, XGroupItem, XFilter, XChunk, XSort, XId, XOrderBy } from '@ng-nest/ui/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -22,9 +22,6 @@ export class ConfigService extends XRepositoryAbstract {
     return new Observable((x) => {
       let data: User[] | XGroupItem[] = [];
       data = this.setFilter(this.users, query?.filter as XFilter[]);
-      if (query?.group) {
-        data = this.setGroup(data, query.group);
-      }
       if (query?.sort) {
         data = this.setSort(data, query.sort);
       }
@@ -58,14 +55,6 @@ export class ConfigService extends XRepositoryAbstract {
       });
     }
     return result;
-  }
-
-  private setGroup(data: User[], group: string): XGroupItem[] {
-    return XGroupBy(data, group).map((value, key) => {
-      let groupItem: XGroupItem = { id: key, count: value.length };
-      groupItem[group] = key;
-      return groupItem;
-    });
   }
 
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {

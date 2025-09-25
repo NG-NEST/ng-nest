@@ -48,6 +48,9 @@
       &.x-list-divided {
         margin-top: 0.8125rem;
       }
+      &.x-list-group {
+        padding: 0;
+      }
     }
   }
   &-leaf,
@@ -112,6 +115,7 @@
 
   &.x-list-group {
     cursor: default;
+    color: $x-text-400;
     &:hover {
       background-color: transparent;
     }

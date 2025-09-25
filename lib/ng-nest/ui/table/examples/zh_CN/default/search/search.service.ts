@@ -6,7 +6,6 @@ import {
   XGroupItem,
   XFilter,
   XChunk,
-  XGroupBy,
   XSort,
   XId,
   XIsEmpty,
@@ -34,9 +33,6 @@ export class SearchService extends XRepositoryAbstract {
     return new Observable((x) => {
       let data: User[] | XGroupItem[] = [];
       data = this.setFilter(this.users, query?.filter as XFilter[]);
-      if (query?.group) {
-        data = this.setGroup(data, query.group);
-      }
       if (query?.sort) {
         data = this.setSort(data, query.sort);
       }
@@ -72,14 +68,6 @@ export class SearchService extends XRepositoryAbstract {
       });
     }
     return result;
-  }
-
-  private setGroup(data: User[], group: string): XGroupItem[] {
-    return XGroupBy(data, group).map((value, key) => {
-      let groupItem: XGroupItem = { id: key, count: value.length };
-      groupItem[group] = key;
-      return groupItem;
-    });
   }
 
   private setSort(data: User[] | XGroupItem[], sort: XSort[]): User[] | XGroupItem[] {
