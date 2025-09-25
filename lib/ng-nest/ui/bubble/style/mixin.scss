@@ -101,7 +101,7 @@
 }
 
 @mixin size($size, $height, $padding) {
-  &.x-size-#{$size} {
+  &.x-#{$size} {
     column-gap: $padding;
     .#{$x-bubble}-content {
       padding: calc($padding - 0.25rem) $padding;

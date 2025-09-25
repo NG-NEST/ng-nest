@@ -73,6 +73,7 @@ export interface XComponentConfig {
   colorPicker?: XColorPickerConfig;
   comment?: XCommentConfig;
   container?: XContainerConfig;
+  coversations?: XCoversationsConfig;
   header?: XHeaderConfig;
   aside?: XAsideConfig;
   footer?: XFooterConfig;
@@ -290,6 +291,10 @@ export interface XCommentConfig {
 
 export interface XContainerConfig {
   direction?: XDirection;
+}
+
+export interface XCoversationsConfig {
+  size?: XSize;
 }
 
 export interface XHeaderConfig {

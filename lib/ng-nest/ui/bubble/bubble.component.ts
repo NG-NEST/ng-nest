@@ -41,7 +41,7 @@ export class XBubbleComponent extends XBubbleProperty {
     [`${XBubblePrefix}-${this.placement()}`]: !XIsEmpty(this.placement()),
     [`${XBubblePrefix}-cursor`]: this.showCursor() && this.typing(),
     [`${XBubblePrefix}-typing`]: this.typing() && this.pendingContent().length > 0,
-    [`x-size-${this.sizeSignal()}`]: !XIsEmpty(this.sizeSignal())
+    [`x-${this.sizeSignal()}`]: !XIsEmpty(this.sizeSignal())
   }));
 
   typedContent = signal('');
