@@ -550,7 +550,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     if (inx >= 0) {
       this.value.update((x) => {
         x.splice(inx, 1);
-        return x;
+        return [...x];
       });
       if (this.onChange) this.onChange(this.value());
       this.selectedNodes.update((x) => {
@@ -695,25 +695,25 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
           if (node.selected) {
             this.value.update((x) => {
               x.push(node);
-              return x;
+              return [...x];
             });
           } else {
             let inx = this.value().findIndex((x: XSelectNode) => x.id === node.id);
             this.value.update((x) => {
               x.splice(inx, 1);
-              return x;
+              return [...x];
             });
           }
         } else if (XIsArray(value)) {
           if (node.selected) {
             this.value.update((x) => {
               x.push(node.id);
-              return x;
+              return [...x];
             });
           } else {
             this.value.update((x) => {
               x.splice(x.indexOf(node.id), 1);
-              return x;
+              return [...x];
             });
           }
         }
@@ -721,7 +721,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
         this.value.update((x) => {
           x.splice(0, x.length);
           x.push(...(value as any[]));
-          return x;
+          return [...x];
         });
       }
       if (this.multipleInput()) {
