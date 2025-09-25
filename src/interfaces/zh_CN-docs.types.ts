@@ -26613,12 +26613,29 @@ export const zh_CN: {[key: string]: AppProp} = {
       {
         "name": "group",
         "type": "boolean",
-        "label": "分组展示",
+        "label": "分组名称",
         "default": "",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "group",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "groupable",
+        "type": "boolean",
+        "label": "是否是分组节点",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "groupable",
         "propType": "",
         "example": [
           {
@@ -26739,6 +26756,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "选中",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "groupable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "分组节点",
         "default": "false",
         "withConfig": false,
         "description": "",

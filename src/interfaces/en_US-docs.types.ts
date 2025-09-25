@@ -26613,12 +26613,29 @@ export const en_US: {[key: string]: AppProp} = {
       {
         "name": "group",
         "type": "boolean",
-        "label": "Group display",
+        "label": "Group name",
         "default": "",
         "withConfig": false,
         "description": "",
         "decorator": [],
         "attr": "group",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "groupable",
+        "type": "boolean",
+        "label": "Group node",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "groupable",
         "propType": "",
         "example": [
           {
@@ -26739,6 +26756,24 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "selected",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "groupable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Group node",
         "default": "false",
         "withConfig": false,
         "description": "",

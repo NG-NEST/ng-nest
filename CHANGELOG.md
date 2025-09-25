@@ -1,3 +1,20 @@
+## [20.1.4](https://github.com/NG-NEST/ng-nest/compare/20.1.3...20.1.4) (2025-09-25)
+
+
+### Bug Fixes
+
+* **module:bubble:** fix size style ([c7b0513](https://github.com/NG-NEST/ng-nest/commit/c7b051320905d9fd397b79a0d1fefdf628e49302))
+* **module:input:** fix value template text color ([7b669fa](https://github.com/NG-NEST/ng-nest/commit/7b669fa50c9dc91c51603e33dc40701da5f11e36))
+* **module:select:** fix multiple required ([a4aab8c](https://github.com/NG-NEST/ng-nest/commit/a4aab8c1aed3a4bc15e6b0aea8f38a4e536c2f28))
+
+
+### Features
+
+* **module:coversations:** add coversations component ([8b19dec](https://github.com/NG-NEST/ng-nest/commit/8b19dec87f9463dae801321cda01237e818bfa09))
+* **module:list:** add group property ([792e2d8](https://github.com/NG-NEST/ng-nest/commit/792e2d8b90f37263ec641e68fd10669aec058d5d))
+
+
+
 ## [20.1.3](https://github.com/NG-NEST/ng-nest/compare/20.1.2...20.1.3) (2025-09-22)
 
 
