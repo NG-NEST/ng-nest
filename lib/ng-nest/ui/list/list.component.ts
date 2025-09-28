@@ -86,7 +86,8 @@ export class XListComponent extends XListProperty implements OnChanges {
   iconSpin = signal(false);
   scrollHeightSignal = signal(0);
   classMap = computed(() => ({
-    [`${XListPrefix}-${this.size()}`]: this.size() ? true : false
+    [`${XListPrefix}-${this.size()}`]: this.size() ? true : false,
+    [`${XListPrefix}-group`]: this.groupable() ? true : false
   }));
   sizeChange: Subscription | null = null;
   private resizeObserver!: XResizeObserver;
@@ -102,6 +103,8 @@ export class XListComponent extends XListProperty implements OnChanges {
       this.onNodeClick($event, this.nodes()[activeIndex]);
     }
   }
+
+  groupable = computed(() => this.nodes().some((x) => !!x.group));
 
   itemSizeMap: { [key: string]: number } = {
     mini: 22,

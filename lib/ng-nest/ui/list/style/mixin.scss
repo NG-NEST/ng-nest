@@ -69,20 +69,39 @@
     display: block;
   }
 
-  @include size('big', $x-height-big, 0 $x-padding-big);
-  @include size('large', $x-height-large, 0 $x-padding-large);
-  @include size('medium', $x-height-medium, 0 $x-padding-medium);
-  @include size('small', $x-height-small, 0 $x-padding-small);
-  @include size('mini', $x-height-mini, 0 $x-padding-mini);
+  &-group {
+    @include group-size('big', $x-padding-big);
+    @include group-size('large', $x-padding-large);
+    @include group-size('medium', $x-padding-medium);
+    @include group-size('small', $x-padding-small);
+    @include group-size('mini', $x-padding-mini);
+  }
+
+  @include size('big', $x-height-big, $x-padding-big);
+  @include size('large', $x-height-large, $x-padding-large);
+  @include size('medium', $x-height-medium, $x-padding-medium);
+  @include size('small', $x-height-small, $x-padding-small);
+  @include size('mini', $x-height-mini, $x-padding-mini);
 }
 
 @mixin size($size, $height, $padding) {
   &-#{$size} {
     .x-list-header,
-    .x-list-footer {
-      padding: $padding;
+    .x-list-footer,
+    .x-list-option {
+      padding: 0 $padding;
       height: $height;
       line-height: $height;
+    }
+  }
+}
+
+@mixin group-size($size, $padding) {
+  &.x-list-#{$size} {
+    .x-list-option {
+      &:not(.x-group) {
+        padding: 0 $padding 0 calc(#{$padding} * 2.5);
+      }
     }
   }
 }
@@ -108,12 +127,12 @@
   &:not(:first-child) {
     margin-top: $x-border-width;
   }
-  &:hover:not(.x-disabled, .x-list-group),
-  &.x-active:not(.x-disabled, .x-list-group) {
+  &:hover:not(.x-disabled, .x-group),
+  &.x-active:not(.x-disabled, .x-group) {
     background-color: $x-background-a200;
   }
 
-  &.x-list-group {
+  &.x-group {
     cursor: default;
     color: $x-text-400;
     &:hover {
@@ -149,22 +168,6 @@
     }
     > span x-icon {
       color: var(--x-text-500);
-    }
-  }
-  @include option-size('big', $x-height-big, $x-padding-big);
-  @include option-size('large', $x-height-large, $x-padding-large);
-  @include option-size('medium', $x-height-medium, $x-padding-medium);
-  @include option-size('small', $x-height-small, $x-padding-small);
-  @include option-size('mini', $x-height-mini, $x-padding-mini);
-}
-
-@mixin option-size($size, $height, $padding) {
-  &-#{$size} {
-    padding: 0 $padding;
-    height: $height;
-    line-height: $height;
-    &.x-list-group {
-      padding: 0 calc($padding * 0.3);
     }
   }
 }

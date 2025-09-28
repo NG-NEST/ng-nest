@@ -73,6 +73,11 @@ export class XListProperty extends XFormControlFunction(X_LIST_CONFIG_NAME) {
    */
   readonly nodeStyle = input<XStyle>();
   /**
+   * @zh_CN 分组模板
+   * @en_US Group template
+   */
+  readonly groupTpl = input<TemplateRef<any>>();
+  /**
    * @zh_CN 列表头部
    * @en_US List header
    */
@@ -275,6 +280,11 @@ export class XListOptionProperty {
    * @en_US Node style
    */
   readonly nodeStyle = input<XStyle>();
+  /**
+   * @zh_CN 分组模板
+   * @en_US Group template
+   */
+  readonly groupTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 选中
    * @en_US selected

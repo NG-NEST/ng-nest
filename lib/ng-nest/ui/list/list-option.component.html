@@ -6,20 +6,24 @@
   [class.x-disabled]="forbidden()"
   [class.x-open-portal]="openPortal()"
   [class.x-active]="active()"
-  [class.x-list-group]="groupable()"
+  [class.x-group]="groupable()"
   [class.x-list-icon]="icon()"
   [class.x-list-divided]="divided()"
 >
   <div class="x-list-option-content">
-    @if (nodeTpl()) {
-      <ng-template *ngTemplateOutlet="nodeTpl()!; context: { $node: node() }"></ng-template>
+    @if (groupable() && groupTpl()) {
+      <ng-template *ngTemplateOutlet="groupTpl()!; context: { $group: label() }"></ng-template>
     } @else {
-      @if (icon()) {
-        <x-icon class="x-list-option-icon" [type]="icon()"></x-icon>
+      @if (nodeTpl()) {
+        <ng-template *ngTemplateOutlet="nodeTpl()!; context: { $node: node() }"></ng-template>
+      } @else {
+        @if (icon()) {
+          <x-icon class="x-list-option-icon" [type]="icon()"></x-icon>
+        }
+        <span x-keyword [text]="keywordText()" [caseSensitive]="caseSensitive()" [attr.title]="label()">{{
+          label()
+        }}</span>
       }
-      <span x-keyword [text]="keywordText()" [caseSensitive]="caseSensitive()" [attr.title]="label()">{{
-        label()
-      }}</span>
     }
   </div>
   @if (leaf()) {

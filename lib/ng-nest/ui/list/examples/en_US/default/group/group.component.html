@@ -1,3 +1,13 @@
 <div class="row">
-  <x-list [data]="data()" [(ngModel)]="model"></x-list>
+  <x-list [data]="data1()" [(ngModel)]="model1"></x-list>
+</div>
+<div class="row">
+  <x-list [data]="data2()" [groupTpl]="groupTpl" [(ngModel)]="model2"></x-list>
+
+  <ng-template #groupTpl let-group="$group">
+    <div class="group">
+      <x-icon type="fto-menu"></x-icon>
+      <span>{{ group }}</span>
+    </div>
+  </ng-template>
 </div>

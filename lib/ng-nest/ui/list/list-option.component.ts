@@ -25,9 +25,7 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 export class XListOptionComponent extends XListOptionProperty implements Highlightable {
   @HostBinding('attr.role') role = 'option';
   elementRef = inject(ElementRef);
-  classMap = computed(() => ({
-    [`${XListOptionPrefix}-${this.size()}`]: this.size() ? true : false
-  }));
+  classMap = computed(() => ({}));
   disabled = false;
 
   nodeStyleComputed = computed(() => {
