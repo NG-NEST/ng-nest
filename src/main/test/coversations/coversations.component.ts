@@ -3,12 +3,13 @@ import {
   ExDefaultComponent,
   ExModelComponent,
   ExTemplateComponent,
-  ExGroupComponent
+  ExGroupComponent,
+  ExLoadMoreComponent
 } from '@ng-nest/ui/coversations/examples';
 
 @Component({
   selector: 'te-coversations',
-  imports: [ExDefaultComponent, ExTemplateComponent, ExModelComponent, ExGroupComponent],
+  imports: [ExDefaultComponent, ExTemplateComponent, ExModelComponent, ExGroupComponent, ExLoadMoreComponent],
   templateUrl: './coversations.component.html'
 })
 export class TeCoversationsComponent {}

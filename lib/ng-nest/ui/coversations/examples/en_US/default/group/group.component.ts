@@ -1,27 +1,30 @@
 import { Component, signal } from '@angular/core';
 import { XData } from '@ng-nest/ui/core';
 import { XCoversationsComponent, XCoversationNode } from '@ng-nest/ui/coversations';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: 'ex-group',
-  imports: [XCoversationsComponent],
+  imports: [XCoversationsComponent, XIconComponent],
   templateUrl: './group.component.html',
   styleUrl: './group.component.scss'
 })
 export class ExGroupComponent {
-  data = signal<XData<XCoversationNode>>([
-    { id: 1, label: 'Coversation1', group: 'group1' },
-    { id: 2, label: 'Coversation2', group: 'group1' },
-    { id: 3, label: 'Coversation3', group: 'group1' },
-    { id: 4, label: 'Coversation4', group: 'group2' },
-    { id: 5, label: 'Coversation5', group: 'group2' },
-    { id: 6, label: 'Coversation6', group: 'group2' },
-    {
-      id: 7,
-      label: 'Coversation7 Coversation7 Coversation7 Coversation7 Coversation7',
-      divided: true,
-      disabled: true,
-      group: 'group2'
-    }
+  data1 = signal<XData<XCoversationNode>>([
+    { id: 1, label: 'Coversation 1', group: '2025-01-02' },
+    { id: 2, label: 'Coversation 2', group: '2025-01-02' },
+    { id: 3, label: 'Coversation 3', group: '2025-01-02' },
+    { id: 4, label: 'Coversation 4', group: '2025-01-01' },
+    { id: 5, label: 'Coversation 5', group: '2025-01-01' },
+    { id: 6, label: 'Coversation 6', group: '2025-01-01' }
+  ]);
+
+  data2 = signal<XData<XCoversationNode>>([
+    { id: 1, label: 'Coversation 1', group: '2025-01-02' },
+    { id: 2, label: 'Coversation 2', group: '2025-01-02' },
+    { id: 3, label: 'Coversation 3', group: '2025-01-02' },
+    { id: 4, label: 'Coversation 4', group: '2025-01-01' },
+    { id: 5, label: 'Coversation 5', group: '2025-01-01' },
+    { id: 6, label: 'Coversation 6', group: '2025-01-01' }
   ]);
 }

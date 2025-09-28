@@ -1,5 +1,5 @@
 import { Component, input, output, TemplateRef } from '@angular/core';
-import { XData, XSize, XStyle } from '@ng-nest/ui/core';
+import { XData, XSize, XStyle, XBoolean, XToBoolean } from '@ng-nest/ui/core';
 import { XListNode } from '@ng-nest/ui/list';
 import { XFormControlFunction } from '@ng-nest/ui/base-form';
 
@@ -32,6 +32,11 @@ export class XCoversationsProperty extends XFormControlFunction(X_COVERSATIONS_C
    */
   readonly nodeStyle = input<XStyle>();
   /**
+   * @zh_CN 分组模板
+   * @en_US Group style
+   */
+  readonly groupTpl = input<TemplateRef<any>>();
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -41,6 +46,23 @@ export class XCoversationsProperty extends XFormControlFunction(X_COVERSATIONS_C
    * @en_US Node click event
    */
   readonly nodeClick = output<XCoversationNode>();
+  /**
+   * @zh_CN 加载更多
+   * @en_US load more
+   */
+  readonly loadMore = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 加载更多的文字
+   * @en_US Load more text
+   * @default '加载更多'
+   */
+  readonly loadMoreText = input<string>(this.config?.loadMoreText ?? '');
+  /**
+   * @zh_CN 正在加载中的文字
+   * @en_US Loading
+   * @default '正在加载中'
+   */
+  readonly loadingMoreText = input<string>(this.config?.loadingMoreText ?? '');
 }
 
 /**

@@ -295,6 +295,8 @@ export interface XContainerConfig {
 
 export interface XCoversationsConfig {
   size?: XSize;
+  loadMoreText?: string;
+  loadingMoreText?: string;
 }
 
 export interface XHeaderConfig {
@@ -472,6 +474,7 @@ export interface XListOptionConfig {
 }
 
 export interface XLoadingConfig {
+  type?: any;
   size?: XSize | number;
   text?: string;
   icon?: string;
