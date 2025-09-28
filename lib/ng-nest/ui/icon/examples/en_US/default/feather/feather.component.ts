@@ -1,15 +1,26 @@
-import { Component, signal } from '@angular/core';
-import { XIconComponent } from '@ng-nest/ui/icon';
+import { ChangeDetectorRef, Component, inject, signal, TemplateRef, viewChild } from '@angular/core';
 import { XRowComponent, XColComponent } from '@ng-nest/ui/layout';
+import { XMessageService } from '@ng-nest/ui/message';
 import { XTabsComponent, XTabComponent } from '@ng-nest/ui/tabs';
 
 @Component({
   selector: 'ex-feather',
-  imports: [XIconComponent, XTabsComponent, XTabComponent, XRowComponent, XColComponent],
+  imports: [XTabsComponent, XTabComponent, XRowComponent, XColComponent],
   templateUrl: './feather.component.html',
   styleUrls: ['./feather.component.scss']
 })
 export class ExFeatherComponent {
+  message = inject(XMessageService);
+  messageTpl = viewChild.required<TemplateRef<void>>('messageTpl');
+  cdr = inject(ChangeDetectorRef);
+  iconMsg = signal(``);
+  async copyIcon(type: string, icon: string) {
+    this.iconMsg.set(`<x-icon type="${type}-${icon}"><x-icon>`);
+    this.cdr.markForCheck();
+    await navigator.clipboard.writeText(this.iconMsg());
+    this.message.success({ title: this.messageTpl(), displayType: 'single' });
+  }
+
   tabs = signal([
     {
       type: 'fto',
