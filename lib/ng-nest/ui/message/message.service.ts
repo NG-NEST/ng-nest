@@ -49,39 +49,26 @@ export class XMessageService {
   }
 
   info(option: XTemplate | XMessageOption): XMessageRef {
-    return this.createMessage(option, 'info');
+    return this.create(option, 'info');
   }
 
   success(option: XTemplate | XMessageOption): XMessageRef {
-    return this.createMessage(option, 'success');
+    return this.create(option, 'success');
   }
 
   warning(option: XTemplate | XMessageOption): XMessageRef {
-    return this.createMessage(option, 'warning');
+    return this.create(option, 'warning');
   }
 
   error(option: XTemplate | XMessageOption): XMessageRef {
-    return this.createMessage(option, 'error');
+    return this.create(option, 'error');
   }
 
   loading(option: XTemplate | XMessageOption): XMessageRef {
-    return this.createMessage(option, 'loading');
+    return this.create(option, 'loading');
   }
 
-  create(option: XMessageOption): XMessageOverlayRef {
-    const offset = XIsString(option.offset) ? [option.offset as string] : (option.offset as string[]);
-    return this.portal.attach({
-      content: XMessageComponent,
-      overlayConfig: {
-        panelClass: XMessagePortal,
-        width: option.width,
-        height: option.height,
-        positionStrategy: this.portal.setPlace(option.placement, ...offset)
-      }
-    });
-  }
-
-  private createMessage(option: XTemplate | XMessageOption, type: XMessageType): XMessageRef {
+  create(option: XTemplate | XMessageOption, type: XMessageType): XMessageRef {
     let opt: XMessageOption;
     if (XIsXTemplate(option)) {
       opt = { title: option as XTemplate, type: type };
@@ -112,6 +99,19 @@ export class XMessageService {
     return ref;
   }
 
+  private createMessage(option: XMessageOption): XMessageOverlayRef {
+    const offset = XIsString(option.offset) ? [option.offset as string] : (option.offset as string[]);
+    return this.portal.attach({
+      content: XMessageComponent,
+      overlayConfig: {
+        panelClass: XMessagePortal,
+        width: option.width,
+        height: option.height,
+        positionStrategy: this.portal.setPlace(option.placement, ...offset)
+      }
+    });
+  }
+
   private closeAll(excludeOption?: XMessageOption) {
     for (let key in this.messages) {
       for (let option of this.messages[key].list) {
@@ -124,7 +124,7 @@ export class XMessageService {
     let msgPlacement = this.messages[option.placement!];
     if (XIsEmpty(msgPlacement) || !msgPlacement.ref?.overlayRef?.hasAttached()) {
       this.messages[option.placement!] = {
-        ref: this.create(option),
+        ref: this.createMessage(option),
         list: [option],
         closeAll: () => {
           this.closeAll();

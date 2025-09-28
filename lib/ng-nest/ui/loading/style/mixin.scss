@@ -20,7 +20,7 @@
   &-inline {
     position: initial;
   }
-  &-spinner {
+  &-inner {
     color: $x-primary;
     text-align: center;
     line-height: 1;
@@ -28,6 +28,7 @@
   &-circular {
     animation: loading-rotate 2s linear infinite;
   }
+
   &-icon {
     animation: loading-rotate 2s linear infinite;
     display: inline-flex;
@@ -36,7 +37,7 @@
     animation: loading-dash 1.5s ease-in-out infinite;
     stroke-dasharray: 90, 150;
     stroke-dashoffset: 0;
-    stroke-width: 2;
+    stroke-width: 4;
     stroke: $x-primary;
     stroke-linecap: round;
   }
@@ -64,9 +65,22 @@
 
 @mixin size($size, $width) {
   &-#{$size} {
-    .#{$x-loading}-circular {
+    .#{$x-loading}-circular,
+    .#{$x-loading}-spinner {
       height: $width;
       width: $width;
+    }
+
+    .#{$x-loading}-dual-ring,
+    .#{$x-loading}-dual-ball,
+    .#{$x-loading}-bars {
+      height: calc($width * 1.2);
+      width: calc($width * 1.2);
+    }
+
+    .#{$x-loading}-ripple {
+      height: calc($width * 1.5);
+      width: calc($width * 1.5);
     }
     .#{$x-loading}-icon {
       font-size: $width;

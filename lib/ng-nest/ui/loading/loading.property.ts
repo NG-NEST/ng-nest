@@ -21,6 +21,11 @@ export class XLoadingProperty extends XPropertyFunction(X_LOADING_CONFIG_NAME) {
    */
   readonly loading = input<boolean, XBoolean>(false, { transform: XToBoolean, alias: 'x-loading' });
   /**
+   * @zh_CN Loading 类型
+   * @en_US Loading type
+   */
+  readonly type = input<XLoadingType>(this.config?.type ?? 'circular');
+  /**
    * @zh_CN 层级
    * @en_US z-index
    */
@@ -66,3 +71,9 @@ export class XLoadingProperty extends XPropertyFunction(X_LOADING_CONFIG_NAME) {
    */
   readonly inline = input<boolean, XBoolean>(false, { transform: XToBoolean });
 }
+
+/**
+ * @zh_CN Loading 类型
+ * @en_US Loading type
+ */
+export type XLoadingType = 'circular' | 'spinner' | 'ripple' | 'dual-ring' | 'dual-ball' | 'bars';

@@ -32,6 +32,8 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         border: 0;
+        max-height: 37.5rem;
+        overflow: auto;
         > pre {
           background-color: transparent;
         }
