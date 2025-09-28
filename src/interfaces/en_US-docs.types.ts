@@ -12319,6 +12319,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "groupTpl",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Group style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "size",
         "type": "XSize",
         "toType": "XSize",
@@ -12345,6 +12363,60 @@ export const en_US: {[key: string]: AppProp} = {
         "label": "Node click event",
         "default": "",
         "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "loadMore",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "load more",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "loadMoreText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Load more text",
+        "default": "'加载更多'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "loadingMoreText",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Loading",
+        "default": "'正在加载中'",
+        "withConfig": true,
         "description": "",
         "example": [
           {
@@ -26062,6 +26134,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "groupTpl",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Group template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "header",
         "type": "XTemplate",
         "toType": "XTemplate",
@@ -26750,6 +26840,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "groupTpl",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Group template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "selected",
         "type": "XBoolean",
         "toType": "boolean",
@@ -27032,6 +27140,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolea"
       },
       {
+        "name": "type",
+        "type": "XLoadingType",
+        "toType": "XLoadingType",
+        "inputType": "InputSignal<XLoadingType>",
+        "signal": "input",
+        "label": "Loading type",
+        "default": "'circular'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "zIndex",
         "type": "XNumber",
         "toType": "number",
@@ -27198,6 +27324,20 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": [
       "XPropertyFunction(X_LOADING_CONFIG_NAME)"
     ]
+  },
+  "XLoadingType": {
+    "type": "type",
+    "label": "Loading type",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XLoadingType",
+    "value": "'circular' | 'spinner' | 'ripple' | 'dual-ring' | 'dual-ball' | 'bars'"
   },
   "XMenuPrefix": {
     "type": "const",

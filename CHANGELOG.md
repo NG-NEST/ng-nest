@@ -1,3 +1,14 @@
+## [20.1.5](https://github.com/NG-NEST/ng-nest/compare/20.1.4...20.1.5) (2025-09-28)
+
+
+### Features
+
+* **module:coversations:** add load more ([fae09fe](https://github.com/NG-NEST/ng-nest/commit/fae09fed604b2a65c39112cc49edff4dd8d311c8))
+* **module:list:** update group style ([fb61ec5](https://github.com/NG-NEST/ng-nest/commit/fb61ec5dd061d23cfc84646d01626fbbc27a895c))
+* **module:loading:** add loading type ([68c3189](https://github.com/NG-NEST/ng-nest/commit/68c318928293f9ddb0153ab2b5835d08bdee4df9))
+
+
+
 ## [20.1.4](https://github.com/NG-NEST/ng-nest/compare/20.1.3...20.1.4) (2025-09-25)
 
 
@@ -493,7 +504,7 @@
 
 
 
-## [17.0.7](https://github.com/NG-NEST/ng-nest/compare/17.0.5...17.0.7) (2024-04-10)
+## [17.0.7](https://github.com/NG-NEST/ng-nest/compare/17.0.4...17.0.7) (2024-04-10)
 
 
 ### Bug Fixes
@@ -503,7 +514,7 @@
 
 
 
-## [17.0.5](https://github.com/NG-NEST/ng-nest/compare/17.0.4...17.0.5) (2024-01-23)
+## 17.0.5 (2024-01-23)
 
 
 ### Bug Fixes
