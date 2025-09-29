@@ -4,7 +4,7 @@
 @use './param.scss' as *;
 
 @mixin sender {
-  &-wrap {
+  &-wrapper {
     position: relative;
     border: $x-border-base;
     border-radius: $x-border-radius;
@@ -45,7 +45,7 @@
     padding: $x-padding-mini $x-padding-medium $x-padding-small $x-padding-medium;
   }
   &.x-disabled {
-    .#{$x-sender}-wrap {
+    .#{$x-sender}-wrapper {
       color: $x-text-400;
       cursor: default;
       border-color: $x-border-100;

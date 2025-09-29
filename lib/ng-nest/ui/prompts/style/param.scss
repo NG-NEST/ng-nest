@@ -1,0 +1,4 @@
+// Prompts style paramters
+@use '../../style/params/index.scss' as *;
+
+$x-prompts: $x-prefix + '-prompts';

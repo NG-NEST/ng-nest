@@ -201,6 +201,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./progress/progress.component').then((x) => x.TeProgressComponent)
       },
       {
+        path: 'prompts',
+        loadComponent: () => import('./prompts/prompts.component').then((x) => x.TePromptsComponent)
+      },
+      {
         path: 'radio',
         loadComponent: () => import('./radio/radio.component').then((x) => x.TeRadioComponent)
       },
@@ -319,6 +323,10 @@ export const TestRoutes: Routes = [
       {
         path: 'upload',
         loadComponent: () => import('./upload/upload.component').then((x) => x.TeUploadComponent)
+      },
+      {
+        path: 'welcome',
+        loadComponent: () => import('./welcome/welcome.component').then((x) => x.TeWelcomeComponent)
       }
     ]
   }

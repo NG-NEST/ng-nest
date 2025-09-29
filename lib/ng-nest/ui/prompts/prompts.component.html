@@ -1,0 +1,24 @@
+<div class="x-prompts" [class.x-prompts-vertical]="vertical()">
+  <div class="x-prompts-title">
+    <ng-container *xOutlet="title()">{{ title() }}</ng-container>
+  </div>
+  <div class="x-prompts-list">
+    @for (item of nodes(); track item.id) {
+      <div class="x-prompts-item" [class.x-disabled]="item.disabled" (click)="onItemClick(item)">
+        @if (item.icon) {
+          <div class="x-prompts-item-icon">
+            <x-icon [type]="item.icon" [style]="item.iconStyle"></x-icon>
+          </div>
+        }
+        <div class="x-prompts-item-content">
+          @if (item.label) {
+            <div class="x-prompts-item-label">{{ item.label }}</div>
+          }
+          @if (item.description) {
+            <div class="x-prompts-item-description">{{ item.description }}</div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

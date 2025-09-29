@@ -11,7 +11,7 @@
     width: 100%;
     position: relative;
   }
-  &:not(.x-table-wrap-border-hidden) {
+  &:not(.x-table-wrapper-border-hidden) {
     border: $x-border-base;
   }
   > thead {

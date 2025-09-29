@@ -1,0 +1,63 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin prompts {
+  & {
+    width: 100%;
+  }
+
+  &-title {
+    color: $x-text-400;
+    margin-bottom: 0.5rem;
+  }
+
+  &-list {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    list-style: none;
+    padding-inline-start: 0;
+    margin-block: 0;
+    align-items: stretch;
+  }
+
+  &-vertical {
+    .#{$x-prompts}-list {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &-item {
+    flex: none;
+    min-width: 10rem;
+    display: inline-flex;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: $x-border-base;
+    border-radius: $x-border-radius;
+    transition: all $x-animation-duration-base;
+    cursor: pointer;
+    &:hover:not(.x-disabled) {
+      background-color: $x-background-a200;
+    }
+    &.x-disabled {
+      cursor: default;
+      background-color: $x-background-a300;
+    }
+    &-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    &-label {
+      margin: 0;
+      font-weight: 600;
+    }
+    &-description {
+      color: $x-text-400;
+    }
+  }
+}

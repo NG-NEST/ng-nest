@@ -113,6 +113,7 @@ export interface XComponentConfig {
   popover?: XPopoverConfig;
   portal?: XPortalConfig;
   progress?: XProgressConfing;
+  prompts?: XPromptsConfig;
   radio?: XRadioConfig;
   rate?: XRateConfig;
   result?: XResultConfig;
@@ -143,6 +144,7 @@ export interface XComponentConfig {
   textarea?: XTextareaConfig;
   upload?: XUploadConfig;
   keyword?: XKeywordConfig;
+  welcome?: XWelcomeConfig;
 }
 
 export interface XAffixConfig {
@@ -565,6 +567,10 @@ export interface XProgressConfing {
   stepWidth?: string;
 }
 
+export interface XPromptsConfig {
+  vertical?: boolean;
+}
+
 export interface XRadioConfig {
   size?: XSize;
 }
@@ -790,4 +796,8 @@ export interface XKeywordConfig {
   type?: XType;
   color?: string;
   caseSensitive?: boolean;
+}
+
+export interface XWelcomeConfig {
+  variant?: 'outlined' | 'filled' | 'borderless';
 }

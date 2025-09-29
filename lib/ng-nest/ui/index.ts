@@ -106,6 +106,7 @@ export * from '@ng-nest/ui/tabs';
 export * from '@ng-nest/ui/bubble';
 export * from '@ng-nest/ui/sender';
 export * from '@ng-nest/ui/coversations';
+export * from '@ng-nest/ui/welcome';
 
 /**
  * Others

@@ -263,3 +263,39 @@ input {
     }
   }
 }
+
+@keyframes dynamic-white-bg {
+  0% {
+    background-image: linear-gradient(97deg, #f5feff 0%, #eff7ff 100%);
+  }
+  25% {
+    background-image: linear-gradient(97deg, #f4faff 0%, #f8f1ff 100%);
+  }
+  50% {
+    background-image: linear-gradient(97deg, #f2f9fe 0%, #f7f3ff 100%);
+  }
+  75% {
+    background-image: linear-gradient(97deg, #eaf6ff 0%, #f3ebff 100%);
+  }
+  100% {
+    background-image: linear-gradient(97deg, #f5feff 0%, #eff7ff 100%);
+  }
+}
+
+@keyframes dynamic-black-bg {
+  0% {
+    background-image: linear-gradient(97deg, rgba(30, 30, 30, 0.12) 0%, rgba(50, 50, 50, 0.12) 100%);
+  }
+  25% {
+    background-image: linear-gradient(97deg, rgba(40, 40, 40, 0.12) 0%, rgba(60, 60, 60, 0.12) 100%);
+  }
+  50% {
+    background-image: linear-gradient(97deg, rgba(50, 50, 50, 0.12) 0%, rgba(70, 70, 70, 0.12) 100%);
+  }
+  75% {
+    background-image: linear-gradient(97deg, rgba(40, 40, 40, 0.12) 0%, rgba(60, 60, 60, 0.12) 100%);
+  }
+  100% {
+    background-image: linear-gradient(97deg, rgba(30, 30, 30, 0.12) 0%, rgba(50, 50, 50, 0.12) 100%);
+  }
+}

@@ -6,7 +6,7 @@
     display: flex;
   }
 
-  &-wrap {
+  &-wrapper {
     flex: auto;
     display: flex;
     flex-direction: column;
@@ -44,7 +44,7 @@
   }
   &-end {
     flex-direction: row-reverse;
-    .#{$x-bubble}-wrap {
+    .#{$x-bubble}-wrapper {
       align-items: flex-end;
     }
   }
