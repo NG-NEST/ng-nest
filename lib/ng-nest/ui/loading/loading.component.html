@@ -20,35 +20,40 @@
       [class.x-loading-inline]="inline()"
     >
       <div class="x-loading-inner" [style.color]="color()">
-        @if (icon()) {
-          <div class="x-loading-icon" [style.font-size.px]="sizeNumber()">
-            <x-icon [type]="icon()!"></x-icon>
-          </div>
+        @if (customTpl()) {
+          <ng-template *ngTemplateOutlet="customTpl()!"></ng-template>
         } @else {
-          @switch (type()) {
-            @case ('circular') {
-              <ng-container *ngTemplateOutlet="circularTpl"></ng-container>
-            }
-            @case ('spinner') {
-              <ng-container *ngTemplateOutlet="spinnerTpl"></ng-container>
-            }
-            @case ('ripple') {
-              <ng-container *ngTemplateOutlet="rippleTpl"></ng-container>
-            }
-            @case ('dual-ring') {
-              <ng-container *ngTemplateOutlet="dualRingTpl"></ng-container>
-            }
-            @case ('dual-ball') {
-              <ng-container *ngTemplateOutlet="dualBallTpl"></ng-container>
-            }
-            @case ('bars') {
-              <ng-container *ngTemplateOutlet="barsTpl"></ng-container>
-            }
-            @default {
-              <ng-container *ngTemplateOutlet="circularTpl"></ng-container>
+          @if (icon()) {
+            <div class="x-loading-icon" [style.font-size.px]="sizeNumber()">
+              <x-icon [type]="icon()!"></x-icon>
+            </div>
+          } @else {
+            @switch (type()) {
+              @case ('circular') {
+                <ng-container *ngTemplateOutlet="circularTpl"></ng-container>
+              }
+              @case ('spinner') {
+                <ng-container *ngTemplateOutlet="spinnerTpl"></ng-container>
+              }
+              @case ('ripple') {
+                <ng-container *ngTemplateOutlet="rippleTpl"></ng-container>
+              }
+              @case ('dual-ring') {
+                <ng-container *ngTemplateOutlet="dualRingTpl"></ng-container>
+              }
+              @case ('dual-ball') {
+                <ng-container *ngTemplateOutlet="dualBallTpl"></ng-container>
+              }
+              @case ('bars') {
+                <ng-container *ngTemplateOutlet="barsTpl"></ng-container>
+              }
+              @default {
+                <ng-container *ngTemplateOutlet="circularTpl"></ng-container>
+              }
             }
           }
         }
+
         <div class="x-loading-text">
           <ng-container *xOutlet="text()">{{ text() }}</ng-container>
         </div>

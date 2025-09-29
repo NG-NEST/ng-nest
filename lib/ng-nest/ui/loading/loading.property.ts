@@ -1,5 +1,5 @@
 import { XPropertyFunction, XToBoolean, XToNumber } from '@ng-nest/ui/core';
-import { Component, input } from '@angular/core';
+import { Component, input, TemplateRef } from '@angular/core';
 import type { XSize, XTemplate, XBoolean, XNumber, XCorner } from '@ng-nest/ui/core';
 
 /**
@@ -45,6 +45,11 @@ export class XLoadingProperty extends XPropertyFunction(X_LOADING_CONFIG_NAME) {
    * @en_US Icon displayed
    */
   readonly icon = input<string | null>(this.config?.icon ?? null);
+  /**
+   * @zh_CN 自定义 loading 模板
+   * @en_US Svg tpl
+   */
+  readonly customTpl = input<TemplateRef<void>>();
   /**
    * @zh_CN 颜色
    * @en_US Color
