@@ -19,6 +19,8 @@ export class ExColorComponent {
     { color: '#6f7ad3', percent: 100 }
   ]);
 
+  railColor = signal('#ffdfdf');
+
   colorFunc = signal((percent: number) => {
     if (percent < 30) {
       return '#909399';
@@ -29,7 +31,10 @@ export class ExColorComponent {
     }
   });
   plus(num: number) {
-    if ((this.percent() === 0 && num === -10) || (this.percent() === 100 && num === 10)) return;
-    this.percent.update((x) => x + num);
+    if ((this.percent() === 0 && num === -5) || (this.percent() === 100 && num === 5)) return;
+    this.percent.update((x) => {
+      const p = x + num;
+      return Math.round(p * 100) / 100;
+    });
   }
 }

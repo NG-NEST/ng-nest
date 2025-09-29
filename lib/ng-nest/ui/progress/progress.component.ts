@@ -47,6 +47,19 @@ export class XProgressComponent extends XProgressProperty {
     }
   });
 
+  currentRailColor = computed(() => {
+    if (this.subsection()) return '';
+    const color = this.railColor();
+    if (XIsEmpty(color)) return '';
+    if (XIsString(color)) {
+      return color;
+    } else if (XIsObjectArray(color)) {
+      return this.getLevelColor(this.percent(), color as XProgressColorNode[]);
+    } else if (XIsFunction(color)) {
+      return (color as Function)(this.percent());
+    }
+  });
+
   linearGradient = computed(() => {
     if (this.subsection()) return '';
     if (XIsEmpty(this.gradient())) {

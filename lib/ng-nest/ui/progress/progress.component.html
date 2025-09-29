@@ -31,11 +31,15 @@
 
 <ng-template #circleTpl>
   <div class="x-progress-ring" [style.width]="size()" [style.height]="size()">
-    <div class="x-progress-ring-rail" [style.border-width]="thickness()"></div>
+    <div
+      class="x-progress-ring-rail"
+      [style.border-width]="thickness()"
+      [style.border-color]="currentRailColor()"
+    ></div>
     <div
       class="x-progress-ring-bg"
       [style.clip-path]="circleClipPath()"
-      [style.background-color]="currentColor()"
+      [style.border-color]="currentColor()"
       [style.border-width]="thickness()"
     ></div>
     <ng-container *ngTemplateOutlet="textTpl"></ng-container>
@@ -47,12 +51,13 @@
     <div
       class="x-progress-ring-rail"
       [style.clip-path]="dashboardRailClipPath()"
+      [style.border-color]="currentRailColor()"
       [style.border-width]="thickness()"
     ></div>
     <div
       class="x-progress-ring-bg"
       [style.clip-path]="dashboardClipPath()"
-      [style.background-color]="currentColor()"
+      [style.border-color]="currentColor()"
       [style.border-width]="thickness()"
     ></div>
     <ng-container *ngTemplateOutlet="textTpl"></ng-container>
@@ -64,6 +69,7 @@
     <div
       class="x-progress-rail"
       [class.x-progress-mask]="subsection()"
+      [style.background-color]="currentRailColor()"
       [style.background-image]="subsection() ? subLinearGradient() : 'none'"
     >
       <div
@@ -95,7 +101,7 @@
     <div
       class="x-progress-step"
       [class.x-progress-step-active]="step"
-      [style.background-color]="currentColor()"
+      [style.background-color]="step ? currentColor() : currentRailColor()"
       [style.width]="stepWidth()"
       [style.flex]="stepFlex() ? 1 : 'none'"
       [style.height]="height()"

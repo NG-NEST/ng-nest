@@ -2,8 +2,28 @@
   <x-progress [percent]="percent()" [color]="color()"></x-progress>
   <x-progress [percent]="percent()" [color]="colors()"></x-progress>
   <x-progress [percent]="percent()" [color]="colorFunc()"></x-progress>
-  <x-buttons>
-    <x-button icon="fto-minus" (click)="plus(-10)"></x-button>
-    <x-button icon="fto-plus" (click)="plus(10)"></x-button>
-  </x-buttons>
+  <x-progress [percent]="percent()" [color]="color()" [railColor]="railColor()"></x-progress>
 </div>
+<div class="row">
+  <x-progress [percent]="percent()" type="circle" [color]="color()"></x-progress>
+  <x-progress [percent]="percent()" type="circle" [color]="colors()"></x-progress>
+  <x-progress [percent]="percent()" type="circle" [color]="colorFunc()"></x-progress>
+  <x-progress [percent]="percent()" type="circle" [color]="colorFunc()" [railColor]="railColor()"></x-progress>
+</div>
+<div class="row">
+  <x-progress [percent]="percent()" type="dashboard" [color]="color()"></x-progress>
+  <x-progress [percent]="percent()" type="dashboard" [color]="colors()"></x-progress>
+  <x-progress [percent]="percent()" type="dashboard" [color]="colorFunc()"></x-progress>
+  <x-progress [percent]="percent()" type="dashboard" [color]="colorFunc()" [railColor]="railColor()"></x-progress>
+</div>
+<div class="row">
+  <x-progress [percent]="percent()" [steps]="10" [color]="color()"></x-progress>
+  <x-progress [percent]="percent()" [steps]="10" [color]="colors()"></x-progress>
+  <x-progress [percent]="percent()" [steps]="10" [color]="colorFunc()"></x-progress>
+  <x-progress [percent]="percent()" [steps]="10" [color]="colorFunc()" [railColor]="railColor()"></x-progress>
+</div>
+
+<x-buttons>
+  <x-button icon="fto-minus" (click)="plus(-5)"></x-button>
+  <x-button icon="fto-plus" (click)="plus(5)"></x-button>
+</x-buttons>

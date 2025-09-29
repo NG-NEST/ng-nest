@@ -61,6 +61,11 @@ export class XProgressProperty extends XPropertyFunction(X_PROGRESS_CONFIG_NAME)
    */
   readonly color = input<XProgressColor>();
   /**
+   * @zh_CN 自定义轨道颜色
+   * @en_US Custom rail color
+   */
+  readonly railColor = input<XProgressColor>();
+  /**
    * @zh_CN 渐变颜色
    * @en_US Gradient color
    */
