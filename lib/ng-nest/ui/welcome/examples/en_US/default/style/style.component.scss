@@ -1,0 +1,8 @@
+:host {
+  .row {
+    padding: 2rem;
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+}

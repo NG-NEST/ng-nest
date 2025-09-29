@@ -1,0 +1,23 @@
+<div
+  class="x-welcome"
+  [class.x-welcome-outlined]="variant() === 'outlined'"
+  [class.x-welcome-filled]="variant() === 'filled'"
+  [class.x-welcome-borderless]="variant() === 'borderless'"
+  [style]="style()"
+>
+  <div class="x-welcome-icon">
+    @if (isStringIcon()) {
+      <img alt="icon" [src]="icon()" />
+    } @else {
+      <ng-container *xOutlet="icon()!"></ng-container>
+    }
+  </div>
+  <div class="x-welcome-wrapper">
+    <h4 class="x-welcome-title">
+      <ng-container *xOutlet="title()">{{ title() }}</ng-container>
+    </h4>
+    <p class="x-welcome-description">
+      <ng-container *xOutlet="description()">{{ description() }}</ng-container>
+    </p>
+  </div>
+</div>

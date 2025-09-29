@@ -1,0 +1,39 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin welcome {
+  & {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: $x-border-width solid transparent;
+    border-radius: $x-border-radius;
+  }
+  &-icon {
+    img {
+      max-width: 6rem;
+    }
+  }
+  &-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  &-title {
+    margin: 0;
+    font-size: $x-font-size-large;
+  }
+
+  &-outlined {
+    border-color: $x-border;
+  }
+  &-filled {
+    background-color: $x-background-a200;
+    border-color: $x-background-a200;
+  }
+  &-borderless {
+    border-color: transparent;
+  }
+}
