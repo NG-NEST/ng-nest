@@ -1,3 +1,19 @@
+## [20.1.6](https://github.com/NG-NEST/ng-nest/compare/20.1.5...20.1.6) (2025-09-29)
+
+
+### Bug Fixes
+
+* **module:progress:** fix color style ([cf2b6ad](https://github.com/NG-NEST/ng-nest/commit/cf2b6ad8f94162ad91791626a7c772c8f9453b2a))
+
+
+### Features
+
+* **module:loading:** add custom svg icon ([44810a6](https://github.com/NG-NEST/ng-nest/commit/44810a61479d0098628acef98a1c64c8bc1e7199))
+* **module:prompts:** add prompts component ([e027b11](https://github.com/NG-NEST/ng-nest/commit/e027b11f36c87c850a14dd2ddb2df7d52737f4fe))
+* **module:welcome:** add welcome component ([e13a397](https://github.com/NG-NEST/ng-nest/commit/e13a397265985238b8ac030b316cf60bbcfedac0))
+
+
+
 ## [20.1.5](https://github.com/NG-NEST/ng-nest/compare/20.1.4...20.1.5) (2025-09-28)
 
 
@@ -504,7 +520,7 @@
 
 
 
-## [17.0.7](https://github.com/NG-NEST/ng-nest/compare/17.0.4...17.0.7) (2024-04-10)
+## [17.0.7](https://github.com/NG-NEST/ng-nest/compare/17.0.5...17.0.7) (2024-04-10)
 
 
 ### Bug Fixes
@@ -514,7 +530,7 @@
 
 
 
-## 17.0.5 (2024-01-23)
+## [17.0.5](https://github.com/NG-NEST/ng-nest/compare/17.0.4...17.0.5) (2024-01-23)
 
 
 ### Bug Fixes

@@ -27230,6 +27230,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "customTpl",
+        "type": "TemplateRef<void>",
+        "toType": "TemplateRef<void>",
+        "inputType": "InputSignal<TemplateRef<void>>",
+        "signal": "input",
+        "label": "自定义 loading 模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "color",
         "type": "string | null",
         "toType": "string | null",
@@ -30393,6 +30411,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "railColor",
+        "type": "XProgressColor",
+        "toType": "XProgressColor",
+        "inputType": "InputSignal<XProgressColor>",
+        "signal": "input",
+        "label": "自定义轨道颜色",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "gradient",
         "type": "XProgressGradient",
         "toType": "XProgressGradient",
@@ -30645,6 +30681,196 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XProgressGradient",
     "value": "{ direction?: string } & ({ from: string; to: string } | { [percent: string]: string })"
+  },
+  "XPromptsPrefix": {
+    "type": "const",
+    "label": "Prompts",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XPromptsPrefix",
+    "selector": "x-prompts",
+    "decorator": "component",
+    "value": "'x-prompts'"
+  },
+  "XPromptsProperty": {
+    "type": "class",
+    "label": "Prompts Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "title",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "显示标题，支持自定义模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "data",
+        "type": "XData<XPromptsNode>",
+        "toType": "XData<XPromptsNode>",
+        "inputType": "InputSignal<XData<XPromptsNode>>",
+        "signal": "input",
+        "label": "列表数据",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "vertical",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "纵向展示",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "itemClick",
+        "type": "XPromptsNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XPromptsNode>",
+        "signal": "output",
+        "label": "Item 点击事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XPromptsProperty",
+    "extends": [
+      "XPropertyFunction(X_PROPMTS_CONFIG_NAME)"
+    ]
+  },
+  "XPromptsNode": {
+    "type": "interface",
+    "label": "提示词",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "description",
+        "type": "string",
+        "label": "描述",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "description",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "label": "图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "iconStyle",
+        "type": "XStyle",
+        "label": "图标样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconStyle",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "是否禁用",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XPromptsNode",
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XRadioPrefix": {
     "type": "const",
@@ -49018,5 +49244,142 @@ export const zh_CN: {[key: string]: AppProp} = {
     "selector": "x-upload-portal",
     "decorator": "component",
     "value": "'x-upload-portal'"
+  },
+  "XWelcomePrefix": {
+    "type": "const",
+    "label": "Welcome",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XWelcomePrefix",
+    "selector": "x-welcome",
+    "decorator": "component",
+    "value": "'x-welcome'"
+  },
+  "XWelcomeProperty": {
+    "type": "class",
+    "label": "Welcome Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "icon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "显示图标，支持自定义模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "title",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "显示标题，支持自定义模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "description",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "描述文字，支持自定义模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XWelcomeVariant",
+        "toType": "XWelcomeVariant",
+        "inputType": "InputSignal<XWelcomeVariant>",
+        "signal": "input",
+        "label": "形态变体",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "style",
+        "type": "XStyle",
+        "toType": "XStyle",
+        "inputType": "InputSignal<XStyle>",
+        "signal": "input",
+        "label": "自定义样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XWelcomeProperty",
+    "extends": [
+      "XPropertyFunction(X_WELCOME_CONFIG_NAME)"
+    ]
+  },
+  "XWelcomeVariant": {
+    "type": "type",
+    "label": "形态变体",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XWelcomeVariant",
+    "value": "'outlined' | 'filled' | 'borderless'"
   }
 }

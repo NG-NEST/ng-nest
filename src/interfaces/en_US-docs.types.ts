@@ -27230,6 +27230,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "customTpl",
+        "type": "TemplateRef<void>",
+        "toType": "TemplateRef<void>",
+        "inputType": "InputSignal<TemplateRef<void>>",
+        "signal": "input",
+        "label": "Svg tpl",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "color",
         "type": "string | null",
         "toType": "string | null",
@@ -30393,6 +30411,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "railColor",
+        "type": "XProgressColor",
+        "toType": "XProgressColor",
+        "inputType": "InputSignal<XProgressColor>",
+        "signal": "input",
+        "label": "Custom rail color",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "gradient",
         "type": "XProgressGradient",
         "toType": "XProgressGradient",
@@ -30645,6 +30681,196 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XProgressGradient",
     "value": "{ direction?: string } & ({ from: string; to: string } | { [percent: string]: string })"
+  },
+  "XPromptsPrefix": {
+    "type": "const",
+    "label": "Prompts",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XPromptsPrefix",
+    "selector": "x-prompts",
+    "decorator": "component",
+    "value": "'x-prompts'"
+  },
+  "XPromptsProperty": {
+    "type": "class",
+    "label": "Prompts Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "title",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Display title, support custom template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "data",
+        "type": "XData<XPromptsNode>",
+        "toType": "XData<XPromptsNode>",
+        "inputType": "InputSignal<XData<XPromptsNode>>",
+        "signal": "input",
+        "label": "List data",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "vertical",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "List vertical display",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "itemClick",
+        "type": "XPromptsNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XPromptsNode>",
+        "signal": "output",
+        "label": "Item click event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XPromptsProperty",
+    "extends": [
+      "XPropertyFunction(X_PROPMTS_CONFIG_NAME)"
+    ]
+  },
+  "XPromptsNode": {
+    "type": "interface",
+    "label": "Promtp",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "description",
+        "type": "string",
+        "label": "Description",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "description",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "icon",
+        "type": "string",
+        "label": "Icon",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "icon",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "iconStyle",
+        "type": "XStyle",
+        "label": "Icon style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "iconStyle",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "label": "Whether to disable",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "disabled",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XPromptsNode",
+    "extends": [
+      "XIdentityProperty"
+    ]
   },
   "XRadioPrefix": {
     "type": "const",
@@ -49018,5 +49244,142 @@ export const en_US: {[key: string]: AppProp} = {
     "selector": "x-upload-portal",
     "decorator": "component",
     "value": "'x-upload-portal'"
+  },
+  "XWelcomePrefix": {
+    "type": "const",
+    "label": "Welcome",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XWelcomePrefix",
+    "selector": "x-welcome",
+    "decorator": "component",
+    "value": "'x-welcome'"
+  },
+  "XWelcomeProperty": {
+    "type": "class",
+    "label": "Welcome Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "icon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Display icon, support custom template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "title",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Display title, support custom template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "description",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Display text",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XWelcomeVariant",
+        "toType": "XWelcomeVariant",
+        "inputType": "InputSignal<XWelcomeVariant>",
+        "signal": "input",
+        "label": "Variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "style",
+        "type": "XStyle",
+        "toType": "XStyle",
+        "inputType": "InputSignal<XStyle>",
+        "signal": "input",
+        "label": "Custom style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XWelcomeProperty",
+    "extends": [
+      "XPropertyFunction(X_WELCOME_CONFIG_NAME)"
+    ]
+  },
+  "XWelcomeVariant": {
+    "type": "type",
+    "label": "Box variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XWelcomeVariant",
+    "value": "'outlined' | 'filled' | 'borderless'"
   }
 }
