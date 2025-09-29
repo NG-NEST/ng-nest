@@ -1,6 +1,6 @@
 ---
 order: 1
-label: '基础用法'
+label: 'Base'
 ---
 
-基础用法。
+Base.
