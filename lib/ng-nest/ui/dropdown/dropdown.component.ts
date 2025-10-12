@@ -11,14 +11,23 @@ import {
   computed,
   viewChild,
   ComponentRef,
-  effect
+  effect,
+  SimpleChanges
 } from '@angular/core';
 import { XDropdownPrefix, XDropdownNode, XDropdownProperty } from './dropdown.property';
-import { XIsEmpty, XHasChildren, XGetChildren, XPositionTopBottom, XPlacement } from '@ng-nest/ui/core';
+import {
+  XIsEmpty,
+  XHasChildren,
+  XGetChildren,
+  XPositionTopBottom,
+  XPlacement,
+  XIsChange,
+  XIsNull
+} from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XDropdownPortalComponent } from './dropdown-portal.component';
-import { debounceTime, delay, takeUntil } from 'rxjs/operators';
+import { debounceTime, delay, takeUntil, throttleTime } from 'rxjs/operators';
 import {
   ConnectedOverlayPositionChange,
   FlexibleConnectedPositionStrategy,
@@ -26,6 +35,7 @@ import {
   OverlayConfig,
   OverlayRef
 } from '@angular/cdk/overlay';
+import { ESCAPE } from '@angular/cdk/keycodes';
 
 @Component({
   selector: `${XDropdownPrefix}`,
@@ -50,12 +60,14 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   });
   portal!: XPortalOverlayRef<XDropdownPortalComponent>;
   timeoutHide: any;
-  visible = signal(false);
   animating = signal(false);
+  visibleClass = signal(false);
   outsideClick = signal(false);
   minWidth = signal<string>('0px');
   hoverDelayUnsub = new Subject<void>();
   closeSubject: Subject<void> = new Subject();
+  keydownSubject: Subject<KeyboardEvent> = new Subject();
+  isNullVisible = signal(false);
 
   private realPlacement = signal<XPlacement | null>(null);
   portalComponent = signal<ComponentRef<XDropdownPortalComponent> | null>(null);
@@ -75,6 +87,12 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
 
   ngOnInit() {
     this.setSubject();
+    this.isNullVisible.set(XIsNull(this.visible()));
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const { visible } = changes;
+    XIsChange(visible) && this.setVisible();
   }
 
   ngOnDestroy(): void {
@@ -84,13 +102,33 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     this.hoverDelayUnsub.complete();
   }
 
+  setVisible() {
+    if (this.disabled() || this.animating()) return;
+    if (this.visible()) {
+      if (this.portalAttached()) {
+        this.closeSubject.next();
+        return;
+      }
+      this.createPortal();
+    } else {
+      this.closePortal();
+    }
+  }
+
   setSubject() {
     this.closeSubject.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.closePortal();
     });
+    this.keydownSubject.pipe(throttleTime(10), takeUntil(this.unSubject)).subscribe((x) => {
+      const keyCode = x.keyCode;
+      if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
+        this.closeSubject.next();
+      }
+    });
   }
 
   onEnter() {
+    if (!this.isNullVisible()) return;
     of(true)
       .pipe(delay(this.hoverDelay()), takeUntil(this.hoverDelayUnsub))
       .subscribe(() => {
@@ -100,24 +138,25 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
           this.timeoutHide = null;
         }
         if (!this.portal || (this.portal && !this.portalOverlayRef()?.hasAttached())) {
-          this.visible.set(true);
+          this.visibleClass.set(true);
           this.createPortal();
         }
       });
   }
 
   onLeave() {
+    if (!this.isNullVisible()) return;
     this.hoverDelayUnsub.next();
     if (this.disabled() || this.trigger() === 'click') return;
     if (this.portalOverlayRef()?.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
         this.portalOverlayRef()?.dispose();
-        this.visible.set(false);
+        this.visibleClass.set(false);
       });
     }
   }
 
-  showPortal() {
+  onClickShow() {
     if (this.disabled() || this.trigger() === 'hover' || this.animating()) return;
     if (this.trigger() === 'click' && this.portalAttached()) {
       this.closeSubject.next();
@@ -133,7 +172,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   closePortal() {
     if (this.portalAttached()) {
       this.portalOverlayRef()?.dispose();
-      this.visible.set(false);
+      this.visibleClass.set(false);
       return true;
     }
     return false;
@@ -184,6 +223,10 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     this.portalComponent.set(componentRef);
     this.portalOverlayRef.set(overlayRef);
     this.realPlacement.set(this.placement());
+    Object.assign(componentRef.instance, {
+      closeSubject: this.closeSubject,
+      keydownSubject: this.keydownSubject
+    });
     const { closed, animating, nodeClick, portalHover, activatedId } = componentRef.instance;
     closed.subscribe(() => this.closeSubject.next());
     animating.subscribe((ing) => this.animating.set(ing));
@@ -198,6 +241,10 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     } else {
       this.onLeave();
     }
+  }
+
+  onKeydown($event: KeyboardEvent) {
+    this.keydownSubject.next($event);
   }
 
   setPlacement() {

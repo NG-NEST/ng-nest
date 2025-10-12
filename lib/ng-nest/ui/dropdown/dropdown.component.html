@@ -1,10 +1,12 @@
 <div
   #dropdown
   class="x-dropdown"
-  [class.x-visible]="visible()"
+  [class.x-visible]="visibleClass()"
   (mouseenter)="onEnter()"
   (mouseleave)="onLeave()"
-  (click)="showPortal()"
+  (click)="onClickShow()"
+  (keydown)="onKeydown($event)"
+  tabindex="0"
 >
   <ng-content></ng-content>
 </div>

@@ -11,4 +11,9 @@ import { XLinkComponent } from '@ng-nest/ui/link';
 })
 export class ExTriggerComponent {
   data = signal(['User manage', 'Role manage', 'Organization manage', 'Module manage', 'Log manage']);
+  visible = signal(false);
+
+  onVisible() {
+    this.visible.update((x) => !x);
+  }
 }

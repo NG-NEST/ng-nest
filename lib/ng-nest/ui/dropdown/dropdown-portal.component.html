@@ -7,9 +7,12 @@
   [style.maxHeight]="maxHeight()"
 >
   <x-list
+    #list
     [data]="data()"
     (nodeClick)="onNodeClick($event)"
     [(ngModel)]="activatedId"
+    (keyManagerChange)="onActive($event)"
+    (keyManagerTabOut)="onTabOut()"
     (nodeMouseenter)="onEnter($event)"
     (nodeMouseleave)="onLeave()"
     [inPortal]="true"

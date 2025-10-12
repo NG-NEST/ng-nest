@@ -8,3 +8,10 @@
     <x-link type="primary" icon="fto-chevron-down" iconRight> Click me </x-link>
   </x-dropdown>
 </div>
+<div class="row">
+  <x-dropdown [data]="data()" [(visible)]="visible">
+    <x-link type="primary" icon="fto-chevron-down" iconRight> Visible control </x-link>
+  </x-dropdown>
+
+  <x-button plain flat (click)="onVisible()">show/hidden</x-button>
+</div>

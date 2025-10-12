@@ -1,7 +1,6 @@
 import {
   XBoolean,
   XPlacement,
-  XTrigger,
   XSize,
   XPropertyFunction,
   XToDataArray,
@@ -9,7 +8,8 @@ import {
   XToBoolean,
   XToCssPixelValue,
   XNumber,
-  XToNumber
+  XToNumber,
+  XTrigger
 } from '@ng-nest/ui/core';
 import { XListNode } from '@ng-nest/ui/list';
 import { Component, input, model, output } from '@angular/core';
@@ -77,6 +77,11 @@ export class XDropdownProperty extends XPropertyFunction(X_DROPDOWN_CONFIG_NAME)
    * @en_US Hover delay trigger time, only trigger is the 'hover'
    */
   readonly hoverDelay = input<number, XNumber>(200, { transform: XToNumber });
+  /**
+   * @zh_CN visible 参数控制显示/隐藏
+   * @en_US visible parameter controls display/hide
+   */
+  readonly visible = model<boolean | null>(null);
   /**
    * @zh_CN 当前激活的菜单
    * @en_US The currently activated menu
