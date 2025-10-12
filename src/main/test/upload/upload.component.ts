@@ -3,12 +3,13 @@ import {
   ExDefaultComponent,
   ExCustomComponent,
   ExDisabledComponent,
-  ExImgComponent
+  ExImgComponent,
+  ExDropComponent
 } from '@ng-nest/ui/upload/examples';
 
 @Component({
   selector: 'te-upload',
-  imports: [ExDefaultComponent, ExCustomComponent, ExDisabledComponent, ExImgComponent],
+  imports: [ExDefaultComponent, ExCustomComponent, ExDisabledComponent, ExImgComponent, ExDropComponent],
   templateUrl: './upload.component.html'
 })
 export class TeUploadComponent {}

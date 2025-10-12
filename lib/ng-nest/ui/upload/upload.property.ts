@@ -1,5 +1,5 @@
 import { XBoolean, XTemplate, XPosition, XCorner, XNumber, XToBoolean, XToNumber } from '@ng-nest/ui/core';
-import { Component, input, output } from '@angular/core';
+import { Component, ElementRef, input, output } from '@angular/core';
 import { XFormControlFunction } from '@ng-nest/ui/base-form';
 
 /**
@@ -25,6 +25,31 @@ export class XUploadProperty extends XFormControlFunction(X_UPLOAD_CONFIG_NAME) 
    * @en_US Request address
    */
   readonly action = input<string>();
+  /**
+   * @zh_CN 可拖拽上传的区域
+   * @en_US Drag and drop upload area
+   */
+  readonly dropContainer = input<ElementRef | HTMLElement>();
+  /**
+   * @zh_CN 可拖拽上传的区域的图标
+   * @en_US Drag and drop upload area icon
+   */
+  readonly dropIcon = input<XTemplate>();
+  /**
+   * @zh_CN 可拖拽上传的区域的标题
+   * @en_US Drag and drop upload area title
+   */
+  readonly dropTitle = input<XTemplate>();
+  /**
+   * @zh_CN 可拖拽上传的区域的描述
+   * @en_US Drag and drop upload area description
+   */
+  readonly dropDescription = input<XTemplate>();
+  /**
+   * @zh_CN 直接显示可拖拽上传的区域
+   * @en_US Show the drag and drop upload area directly
+   */
+  readonly showDrop = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
    * @zh_CN 上传文件类型，与原生的 input file 组件一致
    * @en_US Upload file type, consistent with native input file component

@@ -1,0 +1,41 @@
+<div class="row">
+  <div #dropContainer1 class="drop-container1">
+    <x-upload
+      multiple
+      [dropContainer]="dropContainer1"
+      [text]="textTpl"
+      [dropIcon]="'fto-cloud'"
+      [dropTitle]="'Drag & Drop files here'"
+      [dropDescription]="'Support file type: image, word, excel, etc.'"
+      [(ngModel)]="filesValue1"
+      (ngModelChange)="change($event)"
+      [filesTpl]="filesTpl"
+    >
+    </x-upload>
+
+    <ng-template #textTpl>
+      <x-button plain flat>拖放的区域</x-button>
+    </ng-template>
+    <ng-template #filesTpl></ng-template>
+
+    @for (file of filesValue1(); track file) {
+      {{ file.name }}
+    }
+  </div>
+</div>
+<div class="row">
+  <div #dropContainer2 class="drop-container2">
+    <x-upload
+      multiple
+      [showDrop]="true"
+      [dropContainer]="dropContainer2"
+      [dropIcon]="'fto-cloud'"
+      [dropTitle]="'Drag & Drop files here'"
+      [dropDescription]="'Support file type: image, word, excel, etc.'"
+      [(ngModel)]="filesValue2"
+      (ngModelChange)="change($event)"
+      [filesTpl]="filesTpl"
+    >
+    </x-upload>
+  </div>
+</div>

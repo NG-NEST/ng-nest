@@ -160,6 +160,27 @@
   }
   &.x-disabled {
   }
+  &-show-drop {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  &-drag-overlay {
+    .x-drag-overlay {
+      border: $x-border-width dashed $x-border;
+      cursor: pointer;
+      transition: all $x-animation-duration-base;
+      &:hover {
+        border-color: $x-primary;
+      }
+    }
+  }
+  &-drag-over {
+    .x-drag-overlay {
+      border-color: $x-primary;
+    }
+  }
 }
 
 @mixin disabled {
@@ -345,5 +366,31 @@
   }
   &-bottom-end {
     cursor: se-resize;
+  }
+}
+
+@mixin drag-overlay {
+  & {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(0.25rem);
+    border: $x-border-width dashed $x-primary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  &-icon {
+    font-size: 2rem;
+  }
+  &-title {
+    font-size: 1rem;
+  }
+  &-description {
+    color: $x-text-400;
   }
 }

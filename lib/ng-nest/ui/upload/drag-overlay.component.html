@@ -1,0 +1,23 @@
+<div class="x-drag-overlay">
+  @if (icon()) {
+    <div class="x-drag-overlay-icon">
+      <ng-container *xOutlet="icon()">
+        <x-icon [type]="iconString()"></x-icon>
+      </ng-container>
+    </div>
+  }
+  @if (title()) {
+    <div class="x-drag-overlay-title">
+      <ng-container *xOutlet="title()">
+        {{ title() }}
+      </ng-container>
+    </div>
+  }
+  @if (description()) {
+    <div class="x-drag-overlay-description">
+      <ng-container *xOutlet="description()">
+        {{ description() }}
+      </ng-container>
+    </div>
+  }
+</div>

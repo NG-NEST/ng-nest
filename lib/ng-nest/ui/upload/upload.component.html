@@ -13,41 +13,43 @@
     @case ('list') {
       <ng-container *ngTemplateOutlet="uploadBtnTpl"></ng-container>
       <ng-container *xOutlet="filesTpl(); context: { $files: files() }">
-        <ul class="x-upload-files">
-          @for (file of files(); track file; let i = $index) {
-            <li [class.x-upload-disabled]="!download()">
-              @if (download()) {
-                <a [href]="file.url" target="_blank" [title]="file.name">
-                  <x-icon type="fto-file-text"></x-icon>
-                  <span class="x-upload-filename">{{ file.name }}</span>
-                </a>
-              } @else {
-                <a>
-                  <x-icon type="fto-file-text"></x-icon>
-                  <span class="x-upload-filename">{{ file.name }}</span>
-                </a>
-              }
+        @if (files() && files().length > 0) {
+          <ul class="x-upload-files">
+            @for (file of files(); track file; let i = $index) {
+              <li [class.x-upload-disabled]="!download()">
+                @if (download()) {
+                  <a [href]="file.url" target="_blank" [title]="file.name">
+                    <x-icon type="fto-file-text"></x-icon>
+                    <span class="x-upload-filename">{{ file.name }}</span>
+                  </a>
+                } @else {
+                  <a>
+                    <x-icon type="fto-file-text"></x-icon>
+                    <span class="x-upload-filename">{{ file.name }}</span>
+                  </a>
+                }
 
-              @switch (file.state) {
-                @case ('ready') {
-                  <x-icon class="x-upload-state" type="fto-clock"></x-icon>
+                @switch (file.state) {
+                  @case ('ready') {
+                    <x-icon class="x-upload-state" type="fto-clock"></x-icon>
+                  }
+                  @case ('uploading') {
+                    <span class="x-upload-percent">{{ file.percent }}%</span>
+                  }
+                  @case ('success') {
+                    <x-icon class="x-upload-state success" type="fto-check"></x-icon>
+                  }
+                  @case ('error') {
+                    <x-icon class="x-upload-state error" type="fto-info"></x-icon>
+                  }
                 }
-                @case ('uploading') {
-                  <span class="x-upload-percent">{{ file.percent }}%</span>
+                @if (file.state !== 'uploading') {
+                  <x-button icon="fto-x" (click)="remove(file, i)" closable onlyIcon flat size="mini"></x-button>
                 }
-                @case ('success') {
-                  <x-icon class="x-upload-state success" type="fto-check"></x-icon>
-                }
-                @case ('error') {
-                  <x-icon class="x-upload-state error" type="fto-info"></x-icon>
-                }
-              }
-              @if (file.state !== 'uploading') {
-                <x-button icon="fto-x" (click)="remove(file, i)" closable onlyIcon flat size="mini"></x-button>
-              }
-            </li>
-          }
-        </ul>
+              </li>
+            }
+          </ul>
+        }
       </ng-container>
     }
     @case ('img') {
@@ -93,11 +95,21 @@
 </div>
 
 <ng-template #uploadBtnTpl>
-  <div class="x-upload-buttons" [class.x-upload-buttons-template]="isTemplateText()" (click)="uploadClick()">
-    <ng-container *xOutlet="getText()">
-      <x-button icon="fto-upload" class="x-upload-text" [disabled]="disabledComputed()" type="primary">{{
-        getText()
-      }}</x-button>
-    </ng-container>
-  </div>
+  @if (showDrop()) {
+    <x-drag-overlay
+      class="x-upload-drag-overlay"
+      (click)="uploadClick()"
+      [icon]="dropIcon()"
+      [title]="dropTitle()"
+      [description]="dropDescription()"
+    ></x-drag-overlay>
+  } @else {
+    <div class="x-upload-buttons" [class.x-upload-buttons-template]="isTemplateText()" (click)="uploadClick()">
+      <ng-container *xOutlet="getText()">
+        <x-button icon="fto-upload" class="x-upload-text" [disabled]="disabledComputed()" type="primary">{{
+          getText()
+        }}</x-button>
+      </ng-container>
+    </div>
+  }
 </ng-template>

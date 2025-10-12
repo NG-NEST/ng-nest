@@ -8,7 +8,11 @@ import {
   inject,
   viewChild,
   signal,
-  computed
+  computed,
+  effect,
+  untracked,
+  HostBinding,
+  Renderer2
 } from '@angular/core';
 import { XUploadPrefix, XUploadNode, XUploadProperty, XUploadPortalPrefix } from './upload.property';
 import { XIsArray, XIsEmpty, XIsTemplateRef } from '@ng-nest/ui/core';
@@ -24,6 +28,9 @@ import { XImageComponent, XImageGroupComponent } from '@ng-nest/ui/image';
 import { XProgressComponent } from '@ng-nest/ui/progress';
 import { NgTemplateOutlet } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { fromEvent, Subscription } from 'rxjs';
+import { XDragOverlayService } from './drag-overlay.service';
+import { XDragOverlayComponent } from './drag-overlay.component';
 
 @Component({
   selector: `${XUploadPrefix}`,
@@ -34,19 +41,29 @@ import { toSignal } from '@angular/core/rxjs-interop';
     XButtonComponent,
     XImageGroupComponent,
     XImageComponent,
-    XProgressComponent
+    XProgressComponent,
+    XDragOverlayComponent
   ],
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [XValueAccessor(XUploadComponent)]
+  providers: [XValueAccessor(XUploadComponent), XDragOverlayService]
 })
 export class XUploadComponent extends XUploadProperty {
   private http = inject(HttpClient, { optional: true });
   private portalService = inject(XPortalService);
   private viewContainerRef = inject(ViewContainerRef);
   private i18n = inject(XI18nService);
+  private renderer = inject(Renderer2);
+  private dragOverlayService = inject(XDragOverlayService);
+  private dropSubscription?: Subscription;
+  private dragCounter = 0;
+  elementRef = inject(ElementRef);
+
+  @HostBinding('class.x-upload-show-drop') get getShowDrop() {
+    return this.showDrop();
+  }
 
   file = viewChild.required<ElementRef<HTMLInputElement>>('file');
   files = signal<XUploadNode[]>([]);
@@ -56,7 +73,6 @@ export class XUploadComponent extends XUploadProperty {
   portal!: XPortalOverlayRef<XUploadPortalComponent>;
 
   getText = computed(() => this.text() || this.locale().uploadText);
-
   isTemplateText = computed(() => XIsTemplateRef(this.getText()));
 
   override writeValue(value: XUploadNode[]) {
@@ -76,6 +92,103 @@ export class XUploadComponent extends XUploadProperty {
         `${XUploadPrefix}: Not found 'HttpClient', You can import 'HttpClientModule' in your root module.`
       );
     }
+
+    effect(() => {
+      const container = this.dropContainer();
+      untracked(() => {
+        this.setupDropContainer(container);
+      });
+    });
+  }
+
+  ngAfterViewInit() {
+    if (this.showDrop() && this.dropContainer()) {
+      this.setupDropContainer(this.dropContainer());
+    }
+  }
+
+  ngOnDestory() {
+    if (this.dropSubscription) {
+      this.dropSubscription.unsubscribe();
+    }
+  }
+
+  private setupDropContainer(container: ElementRef | HTMLElement | undefined) {
+    if (this.dropSubscription) {
+      this.dropSubscription.unsubscribe();
+    }
+
+    if (!container) return;
+
+    const element = container instanceof ElementRef ? container.nativeElement : container;
+
+    const dragEnter$ = fromEvent<DragEvent>(element, 'dragenter');
+    const dragOver$ = fromEvent<DragEvent>(element, 'dragover');
+    const dragLeave$ = fromEvent<DragEvent>(element, 'dragleave');
+    const drop$ = fromEvent<DragEvent>(element, 'drop');
+
+    this.dropSubscription = new Subscription();
+
+    this.dropSubscription.add(
+      dragEnter$.subscribe((event) => {
+        event.preventDefault();
+        this.dragCounter++;
+        if (this.dragCounter === 1) {
+          this.addDragOverStyle(element);
+        }
+      })
+    );
+
+    this.dropSubscription.add(
+      dragOver$.subscribe((event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      })
+    );
+
+    this.dropSubscription.add(
+      dragLeave$.subscribe((event) => {
+        event.preventDefault();
+        this.dragCounter--;
+        if (this.dragCounter === 0) {
+          this.removeDragOverStyle(element);
+        }
+      })
+    );
+
+    this.dropSubscription.add(
+      drop$.subscribe((event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        this.dragCounter = 0;
+        this.removeDragOverStyle(element);
+
+        const files = event.dataTransfer?.files;
+        if (files && files.length > 0) {
+          this.handleFiles(files);
+        }
+      })
+    );
+  }
+
+  private addDragOverStyle(element: HTMLElement) {
+    if (this.showDrop()) {
+      this.renderer.addClass(this.elementRef.nativeElement, 'x-upload-drag-over');
+    } else {
+      const icon = this.dropIcon()!;
+      const title = this.dropTitle()!;
+      const description = this.dropDescription()!;
+      this.dragOverlayService.createOverlay(element, { icon, title, description });
+    }
+  }
+
+  private removeDragOverStyle(element: HTMLElement) {
+    if (this.showDrop()) {
+      this.renderer.removeClass(this.elementRef.nativeElement, 'x-upload-drag-over');
+    } else {
+      this.dragOverlayService.removeOverlay(element);
+    }
   }
 
   setFiles() {
@@ -91,10 +204,15 @@ export class XUploadComponent extends XUploadProperty {
   change(event: Event) {
     let input = event.target as HTMLInputElement;
     if (typeof input === 'undefined' || input.files?.length === 0) return;
+    this.handleFiles(input.files!);
+    input.value = '';
+  }
+
+  handleFiles(fileList: FileList) {
     let files: XUploadNode[] = [];
-    let max = this.maxLimit() > -1 ? this.maxLimit() : (input.files as FileList).length;
+    let max = this.maxLimit() > -1 ? this.maxLimit() : fileList.length;
     for (let i = 0; i < max; i++) {
-      let file: XUploadNode = (input.files as FileList).item(i) as XUploadNode;
+      let file: XUploadNode = fileList.item(i) as XUploadNode;
       file.state = 'ready';
       files = [...files, file];
     }
@@ -107,7 +225,6 @@ export class XUploadComponent extends XUploadProperty {
     this.value.set(this.files());
     this.onChange && this.onChange(this.value());
     this.onUploading();
-    input.value = '';
   }
 
   remove(file: XUploadNode, index: number) {

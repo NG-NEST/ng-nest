@@ -21,6 +21,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./anchor/anchor.component').then((x) => x.TeAnchorComponent)
       },
       {
+        path: 'attachments',
+        loadComponent: () => import('./attachments/attachments.component').then((x) => x.TeAttachmentsComponent)
+      },
+      {
         path: 'auto-complete',
         loadComponent: () => import('./auto-complete/auto-complete.component').then((x) => x.TeAutoCompleteComponent)
       },
@@ -251,6 +255,10 @@ export const TestRoutes: Routes = [
       {
         path: 'scrollable',
         loadComponent: () => import('./scrollable/scrollable.component').then((x) => x.TeScrollableComponent)
+      },
+      {
+        path: 'suggestion',
+        loadComponent: () => import('./suggestion/suggestion.component').then((x) => x.TeSuggestionComponent)
       },
       {
         path: 'table',
