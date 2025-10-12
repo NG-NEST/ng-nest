@@ -56,6 +56,7 @@ export interface XComponentConfig {
   alert?: XAlertConfig;
   anchor?: XAnchorConfig;
   avatar?: XAvatarConfig;
+  attachments?: XAttachmentsConfig;
   autoComplete?: XAutoCompleteConfig;
   backTop?: XBackTopConfig;
   badge?: XBadgeConfgig;
@@ -77,6 +78,7 @@ export interface XComponentConfig {
   header?: XHeaderConfig;
   aside?: XAsideConfig;
   footer?: XFooterConfig;
+  fileCard?: XFileCardConfig;
   crumb?: XCrumbComfig;
   datePicker?: XDatePickerConfig;
   dateRange?: XDateRangeConfig;
@@ -126,6 +128,7 @@ export interface XComponentConfig {
   countdown?: XCountdownConfig;
   steps?: XStepsConfig;
   switch?: XSwitchConfig;
+  suggestion?: XSuggestionConfig;
   table?: XTableConfig;
   tableView?: XTableViewConfig;
   tabs?: XTabsConfig;
@@ -194,6 +197,11 @@ export interface XAutoCompleteConfig {
   portalMaxHeight?: string;
   caseSensitive?: boolean;
   onlySelect?: boolean;
+}
+
+export interface XAttachmentsConfig {
+  download?: boolean;
+  multipleModel?: 'cover' | 'add';
 }
 
 export interface XBackTopConfig {
@@ -311,6 +319,10 @@ export interface XAsideConfig {
 
 export interface XFooterConfig {
   height?: string;
+}
+
+export interface XFileCardConfig {
+  variant?: 'outlined' | 'filled' | 'shadow' | 'borderless';
 }
 
 export interface XCrumbComfig {
@@ -569,6 +581,7 @@ export interface XProgressConfing {
 
 export interface XPromptsConfig {
   vertical?: boolean;
+  wrap?: boolean;
 }
 
 export interface XRadioConfig {
@@ -627,6 +640,8 @@ export interface XStepsConfig {}
 export interface XSwitchConfig {
   size?: XSize;
 }
+
+export interface XSuggestionConfig {}
 
 export interface XTableConfig {
   index?: number;

@@ -1,0 +1,32 @@
+<div class="x-attachments">
+  <x-upload
+    [(ngModel)]="value"
+    (ngModelChange)="valueChange($event)"
+    [action]="action()"
+    [dropContainer]="dropContainer()"
+    [dropIcon]="dropIcon()"
+    [dropTitle]="dropTitle()"
+    [dropDescription]="dropDescription()"
+    [showDrop]="showDrop()"
+    [text]="textTpl"
+    [accept]="accept()"
+    [type]="type()"
+    [imgFallback]="imgFallback()"
+    [imgCut]="imgCut()"
+    [multiple]="multiple()"
+    [download]="download()"
+    [multipleModel]="multipleModel()"
+    [filesTpl]="filesTpl() ?? innerfilesTpl"
+    [maxLimit]="maxLimit()"
+    [headers]="headers()"
+    (removeClick)="removeClick.emit($event)"
+    (uploadReady)="uploadReady.emit($event)"
+    (uploading)="uploading.emit($event)"
+    (uploadSuccess)="uploadSuccess.emit($event)"
+    (uploadError)="uploadError.emit($event)"
+  ></x-upload>
+  <ng-template #textTpl>
+    <ng-content></ng-content>
+  </ng-template>
+  <ng-template #innerfilesTpl></ng-template>
+</div>

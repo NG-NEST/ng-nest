@@ -1,0 +1,5 @@
+// Attachments style paramters
+@use '../../style/params/index.scss' as *;
+
+$x-attachments: $x-prefix + '-attachments';
+$x-file-card-prefix: $x-prefix + '-file-card';

@@ -1,0 +1,27 @@
+<div class="row">
+  <x-sender
+    #sender
+    [prefix]="prefixTpl"
+    [header]="filesValue() && filesValue().length > 0 ? headerTpl : undefined"
+  ></x-sender>
+
+  <ng-template #prefixTpl>
+    <x-attachments
+      [dropContainer]="fullScreen() ? document.documentElement : sender.elementRef"
+      [dropTitle]="'Drag & Drop files here'"
+      [dropDescription]="'Support file type: image, word, excel, etc.'"
+      [(ngModel)]="filesValue"
+      (ngModelChange)="change($event)"
+    >
+      <x-button icon="fto-paperclip" text></x-button>
+    </x-attachments>
+  </ng-template>
+
+  <ng-template #headerTpl>
+    @for (file of filesValue(); track file) {
+      {{ file.name }}
+    }
+  </ng-template>
+
+  <x-switch [(ngModel)]="fullScreen" [checkedText]="'Full screen drop'" [unCheckedText]="'Full screen drop'"></x-switch>
+</div>

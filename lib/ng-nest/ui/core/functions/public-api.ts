@@ -14,3 +14,4 @@ export * from './parent-path';
 export * from './property';
 export * from './csspx';
 export * from './cssrem';
+export * from './file-size';

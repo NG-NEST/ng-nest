@@ -1,0 +1,25 @@
+<x-sender
+  [(ngModel)]="model"
+  [prefix]="prefixTpl"
+  maxRows="5"
+  [header]="showHeader() ? headerTpl : undefined"
+></x-sender>
+<ng-template #prefixTpl>
+  <x-button text icon="fto-paperclip" size="small" (click)="onShowHeader()"></x-button>
+</ng-template>
+<ng-template #headerTpl>
+  <div class="header">
+    <div class="title">Attachments</div>
+    <div class="files" #files>
+      <x-attachments
+        [(ngModel)]="filesValue"
+        (ngModelChange)="change($event)"
+        [dropContainer]="files"
+        [showDrop]="true"
+        [dropIcon]="'fto-cloud'"
+        [dropTitle]="'Drag & Drop files here'"
+        [dropDescription]="'Support file type: image, word, excel, etc.'"
+      ></x-attachments>
+    </div>
+  </div>
+</ng-template>

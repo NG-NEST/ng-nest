@@ -1,0 +1,113 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin attachments {
+  & {
+    width: 100%;
+    height: 100%;
+  }
+
+  &-title {
+    color: $x-text-400;
+    margin-bottom: 0.5rem;
+  }
+
+  &-list {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    list-style: none;
+    padding-inline-start: 0;
+    margin-block: 0;
+    align-items: stretch;
+  }
+
+  &-vertical {
+    .#{$x-attachments}-list {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &-wrap {
+    .#{$x-attachments}-list {
+      flex-wrap: wrap;
+    }
+  }
+
+  &-item {
+    flex: none;
+    min-width: 10rem;
+    display: inline-flex;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: $x-border-base;
+    border-radius: $x-border-radius;
+    transition: all $x-animation-duration-base;
+    cursor: pointer;
+    &:hover:not(.x-disabled) {
+      background-color: $x-background-a200;
+    }
+    &.x-disabled {
+      cursor: default;
+      background-color: $x-background-a300;
+    }
+    &-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    &-label {
+      margin: 0;
+      font-weight: 600;
+    }
+    &-description {
+      color: $x-text-400;
+    }
+    &-only-label {
+      font-weight: 500;
+    }
+    &-only-description {
+      color: currentColor;
+    }
+  }
+}
+
+@mixin file-card {
+  & {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: $x-padding-small;
+    padding: $x-padding-mini $x-padding-medium;
+    align-items: center;
+    border-radius: $x-border-radius;
+    word-break: break-word;
+    min-width: 14rem;
+  }
+  &-image {
+    padding: 0;
+    min-width: initial;
+  }
+  &-icon {
+    x-icon {
+      font-size: 2.5rem;
+    }
+  }
+  &-outlined {
+    border: $x-border-base;
+  }
+  &-filled {
+    background-color: $x-background-a200;
+  }
+  &-shadow {
+    box-shadow: $x-box-shadow;
+  }
+  &-size,
+  &-description {
+    color: $x-text-400;
+  }
+}

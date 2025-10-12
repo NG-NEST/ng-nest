@@ -1,0 +1,24 @@
+@for (file of files; track file) {
+  <div class="row">
+    <x-file-card [name]="file.name" [size]="file.size!" [description]="file.description" [url]="file.url"></x-file-card>
+  </div>
+}
+<br />
+<div class="row">
+  <x-file-card [name]="'excel-file.xlsx'" [description]="'filled'" variant="filled"></x-file-card>
+</div>
+<div class="row">
+  <x-file-card [name]="'excel-file.xlsx'" [description]="'shadow'" variant="shadow"></x-file-card>
+</div>
+<div class="row">
+  <x-file-card [name]="'excel-file.xlsx'" [description]="'borderless'" variant="borderless"></x-file-card>
+</div>
+
+<div class="row">
+  <x-file-card
+    [icon]="'ado-file-excel'"
+    [iconColor]="'#22b35e'"
+    [name]="'excel-file.xlsx'"
+    [description]="'Custom icon and color'"
+  ></x-file-card>
+</div>

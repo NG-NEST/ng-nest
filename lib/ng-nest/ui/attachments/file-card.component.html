@@ -1,0 +1,34 @@
+<div class="x-file-card" [ngClass]="classMap()" [class.x-file-card-image]="isImage() && !!url()">
+  @if (isImage() && !!url()) {
+    <x-image width="100px" height="100px" [src]="url()" [alt]="descriptionString()"></x-image>
+  } @else {
+    @if (icon()) {
+      <div class="x-file-card-icon">
+        <ng-container *xOutlet="icon()">
+          <x-icon [type]="iconString()" [style.color]="iconColor()"></x-icon>
+        </ng-container>
+      </div>
+    } @else {
+      <div class="x-file-card-icon">
+        <x-icon [type]="defaultIcon()" [style.color]="iconColor() ?? defaultColor()"></x-icon>
+      </div>
+    }
+    <div class="x-file-card-content">
+      @if (name()) {
+        <div class="x-file-card-name">
+          <ng-container *xOutlet="name()">{{ name() }}</ng-container>
+        </div>
+      }
+      @if (size()) {
+        <div class="x-file-card-size">
+          {{ sizeTransform() }}
+        </div>
+      }
+      @if (description()) {
+        <div class="x-file-card-description">
+          <ng-container *xOutlet="description()">{{ description() }}</ng-container>
+        </div>
+      }
+    </div>
+  }
+</div>

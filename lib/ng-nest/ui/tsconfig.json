@@ -20,5 +20,5 @@
     "strictInputAccessModifiers": true,
     "enableResourceInlining": true
   },
-  "include": ["./**/*.ts", "bubble/examples/zh_CN/default/header/.component.ts"]
+  "include": ["./**/*.ts"]
 }
