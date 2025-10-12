@@ -1,11 +1,17 @@
 <div class="row">
-  <x-sender [(ngModel)]="model1" maxRows="5" [header]="headerTpl" [footer]="footerTpl" (submit)="onSubmit()"></x-sender>
-  <ng-template #headerTpl>
+  <x-sender
+    [(ngModel)]="model1"
+    maxRows="5"
+    [header]="headerTpl1"
+    [footer]="footerTpl1"
+    (submit)="onSubmit()"
+  ></x-sender>
+  <ng-template #headerTpl1>
     <div class="header">
-      <span>Press Enter to send message</span>
+      <div class="title">Press Enter to send message</div>
     </div>
   </ng-template>
-  <ng-template #footerTpl>
+  <ng-template #footerTpl1>
     <div class="footer">
       <div class="left">
         <x-button icon="fto-paperclip" text size="small"></x-button>
@@ -13,7 +19,37 @@
       </div>
       <div class="right">
         <x-button type="primary" icon="fto-mic" text size="small"></x-button>
-        <x-button type="primary" [loading]="loading()" icon="fto-aperture" circle (click)="onSubmit()"></x-button>
+        @if (loading()) {
+          <x-sender-stop (click)="loading.set(false)"></x-sender-stop>
+        } @else {
+          <x-button type="primary" icon="fto-aperture" circle (click)="onSubmit()"></x-button>
+        }
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<div class="row">
+  <x-sender
+    [(ngModel)]="model2"
+    [prefix]="prefixTpl"
+    maxRows="5"
+    [header]="showHeader() ? headerTpl2 : undefined"
+  ></x-sender>
+  <ng-template #prefixTpl>
+    <x-button text icon="fto-paperclip" size="small" (click)="onShowHeader()"></x-button>
+  </ng-template>
+  <ng-template #headerTpl2>
+    <div class="header">
+      <div class="title">Attachments</div>
+      <div class="files" #files>
+        <x-attachments
+          [dropContainer]="files"
+          [showDrop]="true"
+          [dropIcon]="'fto-cloud'"
+          [dropTitle]="'Drag & Drop files here'"
+          [dropDescription]="'Support file type: image, word, excel, etc.'"
+        ></x-attachments>
       </div>
     </div>
   </ng-template>

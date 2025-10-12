@@ -3,11 +3,22 @@
     margin-top: 1rem;
   }
   .header {
+    .title {
+      border-top-left-radius: var(--x-border-radius);
+      border-top-right-radius: var(--x-border-radius);
+      color: var(--x-text-400);
+      background-color: var(--x-background-a200);
+      padding: var(--x-padding-small) var(--x-padding-medium) var(--x-padding-mini) var(--x-padding-medium);
+    }
+    .files {
+      height: 8rem;
+    }
   }
   .footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: var(--x-padding-small) var(--x-padding-medium) var(--x-padding-mini) var(--x-padding-medium);
     .left {
       display: flex;
       align-items: center;

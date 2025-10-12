@@ -5,7 +5,8 @@ import {
   viewChild,
   ElementRef,
   computed,
-  signal
+  signal,
+  inject
 } from '@angular/core';
 import { XSenderProperty } from './sender.property';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
@@ -25,7 +26,9 @@ import { XSenderStopComponent } from './stop.component';
   imports: [TextFieldModule, FormsModule, NgTemplateOutlet, XButtonComponent, XSenderStopComponent]
 })
 export class XSenderComponent extends XSenderProperty {
+  elementRef = inject(ElementRef);
   textarea = viewChild.required<ElementRef<HTMLTextAreaElement>>('textarea');
+
   focused = signal(false);
   maxRowsComputed = computed(() => {
     const rows = this.maxRows();

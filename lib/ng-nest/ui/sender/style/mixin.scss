@@ -34,16 +34,6 @@
     border: none;
     outline: none;
   }
-  &-header {
-    border-top-left-radius: $x-border-radius;
-    border-top-right-radius: $x-border-radius;
-    color: $x-text-400;
-    background-color: $x-background-a200;
-    padding: $x-padding-small $x-padding-medium $x-padding-mini $x-padding-medium;
-  }
-  &-footer {
-    padding: $x-padding-mini $x-padding-medium $x-padding-small $x-padding-medium;
-  }
   &.x-disabled {
     .#{$x-sender}-wrapper {
       color: $x-text-400;
