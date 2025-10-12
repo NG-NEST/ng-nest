@@ -12,6 +12,7 @@
     max-width: 100%;
     max-height: 100%;
     vertical-align: middle;
+    border-radius: $x-border-radius;
   }
   &-overlay {
     position: absolute;
@@ -24,6 +25,7 @@
     cursor: pointer;
     opacity: 0;
     transition: opacity $x-animation-duration-base;
+    border-radius: $x-border-radius;
     &:hover {
       opacity: 1;
     }

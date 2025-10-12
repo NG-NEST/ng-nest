@@ -30,6 +30,11 @@ export class XPromptsProperty extends XPropertyFunction(X_PROPMTS_CONFIG_NAME) {
    */
   readonly vertical = input<boolean, XBoolean>(this.config?.vertical ?? false, { transform: XToBoolean });
   /**
+   * @zh_CN wrap
+   * @en_US List wrap display
+   */
+  readonly wrap = input<boolean, XBoolean>(this.config?.wrap ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN Item 点击事件
    * @en_US Item click event
    */
@@ -45,12 +50,17 @@ export interface XPromptsNode extends XIdentityProperty {
    * @zh_CN 描述
    * @en_US Description
    */
-  description: string;
+  description?: string;
   /**
    * @zh_CN 图标
    * @en_US Icon
    */
   icon?: string;
+  /**
+   * @zh_CN 节点样式
+   * @en_US Icon style
+   */
+  style?: XStyle;
   /**
    * @zh_CN 图标样式
    * @en_US Icon style
@@ -61,4 +71,9 @@ export interface XPromptsNode extends XIdentityProperty {
    * @en_US Whether to disable
    */
   disabled?: boolean;
+  /**
+   * @zh_CN 自定义属性
+   * @en_US Custom attributes
+   */
+  [property: string]: any;
 }

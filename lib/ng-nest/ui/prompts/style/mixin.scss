@@ -29,6 +29,12 @@
     }
   }
 
+  &-wrap {
+    .#{$x-prompts}-list {
+      flex-wrap: wrap;
+    }
+  }
+
   &-item {
     flex: none;
     min-width: 10rem;
@@ -58,6 +64,12 @@
     }
     &-description {
       color: $x-text-400;
+    }
+    &-only-label {
+      font-weight: 500;
+    }
+    &-only-description {
+      color: currentColor;
     }
   }
 }

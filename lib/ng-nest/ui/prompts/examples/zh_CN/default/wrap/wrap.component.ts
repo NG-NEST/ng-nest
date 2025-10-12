@@ -2,34 +2,30 @@ import { Component, signal } from '@angular/core';
 import { XPromptsComponent, XPromptsNode } from '@ng-nest/ui/prompts';
 
 @Component({
-  selector: 'ex-default',
+  selector: 'ex-wrap',
   imports: [XPromptsComponent],
-  templateUrl: './default.component.html',
-  styleUrl: './default.component.scss'
+  templateUrl: './wrap.component.html',
+  styleUrl: './wrap.component.scss'
 })
-export class ExDefaultComponent {
+export class ExWrapComponent {
   data = signal<XPromptsNode[]>([
     {
       label: '高效时间管理的核心方法',
-      description: '哪些习惯能真正帮我节省每天两小时？',
       icon: 'fto-headphones',
       iconStyle: { color: '#3B82F6' }
     },
     {
       label: '10分钟健康早餐推荐',
-      description: '有哪些既快又营养的早餐搭配可以选？',
       icon: 'fto-meh',
       iconStyle: { color: '#67c23a' }
     },
     {
-      label: '提升专注力的实用技巧',
-      description: '总是容易分心，有什么方法能快速集中注意力？',
+      description: '提升专注力的实用技巧',
       icon: 'fto-package',
       iconStyle: { color: '#e6a23c' }
     },
     {
-      label: '首次独自旅行必备清单',
-      description: '第一次一个人出门，哪些物品绝对不能漏带？',
+      description: '首次独自旅行必备清单',
       icon: 'fto-trello',
       iconStyle: { color: '#f56c6c' }
     }

@@ -1,10 +1,10 @@
-<div class="x-prompts" [class.x-prompts-vertical]="vertical()">
+<div class="x-prompts" [class.x-prompts-vertical]="vertical()" [class.x-prompts-wrap]="wrap()">
   <div class="x-prompts-title">
     <ng-container *xOutlet="title()">{{ title() }}</ng-container>
   </div>
   <div class="x-prompts-list">
     @for (item of nodes(); track item.id) {
-      <div class="x-prompts-item" [class.x-disabled]="item.disabled" (click)="onItemClick(item)">
+      <div class="x-prompts-item" [class.x-disabled]="item.disabled" [style]="item.style" (click)="onItemClick(item)">
         @if (item.icon) {
           <div class="x-prompts-item-icon">
             <x-icon [type]="item.icon" [style]="item.iconStyle"></x-icon>
@@ -12,10 +12,17 @@
         }
         <div class="x-prompts-item-content">
           @if (item.label) {
-            <div class="x-prompts-item-label">{{ item.label }}</div>
+            <div class="x-prompts-item-label" [class.x-prompts-item-only-label]="item.label && !item.description">
+              {{ item.label }}
+            </div>
           }
           @if (item.description) {
-            <div class="x-prompts-item-description">{{ item.description }}</div>
+            <div
+              class="x-prompts-item-description"
+              [class.x-prompts-item-only-description]="!item.label && item.description"
+            >
+              {{ item.description }}
+            </div>
           }
         </div>
       </div>

@@ -315,7 +315,7 @@ export class XListComponent extends XListProperty implements OnChanges {
     let value = this.value();
     let objectArray = this.objectArray();
     if (XIsEmpty(value)) {
-      this.keyManager.updateActiveItem(activeIndex);
+      this.keyManager.setActiveItem(activeIndex);
       return;
     }
     let valArry: any[] = [];
@@ -457,6 +457,8 @@ export class XListComponent extends XListProperty implements OnChanges {
   }
 
   setUnActive(num: number) {
-    if (num > -1) this.nodes()[num].active = false;
+    if (num > -1) {
+      this.nodes()[num].active = false;
+    }
   }
 }
