@@ -14,7 +14,8 @@ import {
   ComponentRef,
   effect,
   DestroyRef,
-  viewChild
+  viewChild,
+  computed
 } from '@angular/core';
 import { XDropdownPortalPrefix, XDropdownNode, XDropdownTrigger } from './dropdown.property';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
@@ -30,7 +31,7 @@ import {
 } from '@angular/cdk/overlay';
 import { XListComponent } from '@ng-nest/ui/list';
 import { FormsModule } from '@angular/forms';
-import { RIGHT_ARROW } from '@angular/cdk/keycodes';
+import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
 
 @Component({
   selector: `${XDropdownPortalPrefix}`,
@@ -62,13 +63,15 @@ export class XDropdownPortalComponent {
   maxWidth = input<string>();
   minHeight = input<string>();
   maxHeight = input<string>();
+  level = input(0);
+  parentPortalComponent = input<XDropdownPortalComponent>();
+  isKeyboardControlled = model(true);
   closed = output();
   animating = output<boolean>();
   nodeClick = output<XDropdownNode>();
   portalHover = output<boolean>();
   portal!: XPortalOverlayRef<XDropdownPortalComponent>;
   node = signal<XDropdownNode | null>(null);
-  openNode = signal<XDropdownNode | null>(null);
   timeoutHide: any;
 
   list = viewChild.required<XListComponent>('list');
@@ -79,9 +82,19 @@ export class XDropdownPortalComponent {
   closeSubject!: Subject<void>;
   keydownSubject!: Subject<KeyboardEvent>;
   active = signal(0);
-  isRightArrow = signal(false);
   private unSubject = new Subject<void>();
   private destroyRef = inject(DestroyRef);
+
+  activatedIdComputed = computed(() => {
+    const path = this.findPathById(this.data(), this.activatedId());
+    if (path) {
+      for (let node of path) {
+        const nd = this.data().find((x) => x.id === node.id);
+        if (nd) return nd.id;
+      }
+    }
+    return null;
+  });
 
   @HostListener('mouseenter') mouseenter() {
     this.portalHover.emit(true);
@@ -100,6 +113,7 @@ export class XDropdownPortalComponent {
   constructor() {
     effect(() => this.portalComponent()?.setInput('data', this.node()?.children));
     effect(() => this.portalComponent()?.setInput('trigger', this.trigger()));
+    effect(() => this.portalComponent()?.setInput('level', this.level() + 1));
     effect(() => this.portalComponent()?.setInput('minWidth', this.minWidth()));
     effect(() => this.portalComponent()?.setInput('maxWidth', this.maxWidth()));
     effect(() => this.portalComponent()?.setInput('minHeight', this.minHeight()));
@@ -107,6 +121,7 @@ export class XDropdownPortalComponent {
     effect(() => this.portalComponent()?.setInput('size', this.size()));
     effect(() => this.portalComponent()?.setInput('placement', this.portalPlacement()));
     effect(() => this.portalComponent()?.setInput('activatedId', this.activatedId()));
+    effect(() => this.portalComponent()?.setInput('parentPortalComponent', this));
   }
 
   ngOnInit() {
@@ -114,8 +129,24 @@ export class XDropdownPortalComponent {
       this.data() && this.data()!.length > 0 && this.list().setUnActive(this.active());
     });
     this.keydownSubject.pipe(takeUntil(this.unSubject)).subscribe((x) => {
+      if (!this.isKeyboardControlled()) return;
       const keyCode = x.keyCode;
-      this.isRightArrow.set([RIGHT_ARROW].includes(keyCode));
+      const isRightArrow = [RIGHT_ARROW].includes(keyCode);
+      const isLeftArrow = [LEFT_ARROW].includes(keyCode);
+      if (isRightArrow) {
+        const item = this.list().keyManager.activeItem!;
+        if (item?.leaf()) {
+          const node = item.node()!;
+          node.event = x;
+          node.component = item;
+          this.isKeyboardControlled.set(false);
+          this.onNodeClick(node);
+        }
+      }
+      if (isLeftArrow && this.level() > 0) {
+        this.parentPortalComponent()?.isKeyboardControlled.set(true);
+        this.parentPortalComponent()?.closePortal();
+      }
       this.data() && this.data()!.length > 0 && this.list().keydown(x);
     });
     this.destroyRef.onDestroy(() => {
@@ -125,13 +156,18 @@ export class XDropdownPortalComponent {
     });
   }
 
+  ngAfterViewInit() {
+    this.list().keyManager.setFirstItemActive();
+  }
+
   onNodeClick(node: XDropdownNode) {
     this.nodeClick.emit(node);
     if (!node.leaf) {
       this.activatedId.set(node.id);
-      this.closed.emit();
+      this.closeSubject.next();
     } else {
-      this.onEnter(node);
+      if (node.disabled || this.childAnimating()) return;
+      this.showPortal(node);
     }
   }
 
@@ -182,7 +218,8 @@ export class XDropdownPortalComponent {
     this.portalOverlayRef.set(overlayRef);
     Object.assign(componentRef.instance, {
       closeSubject: this.closeSubject,
-      keydownSubject: this.keydownSubject
+      keydownSubject: this.keydownSubject,
+      parantPortal: this
     });
     const { closed, animating, nodeClick, portalHover, activatedId } = componentRef.instance;
     closed.subscribe(() => this.closePortal());
@@ -203,7 +240,7 @@ export class XDropdownPortalComponent {
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: new ElementRef(this.node()?.event?.target),
+      elementRef: new ElementRef(this.node()?.component?.elementRef?.nativeElement),
       placement: ['right-start', 'right-end', 'left-start', 'left-end'],
       transformOriginOn: 'x-dropdown-portal'
     });
@@ -211,40 +248,25 @@ export class XDropdownPortalComponent {
 
   showPortal(node: XDropdownNode) {
     if (this.portalAttached() && this.node()?.id !== node.id) {
-      this.changeOpenNode(false);
       this.portalOverlayRef()?.dispose();
     }
     this.node.set(node);
     if (!this.portalAttached()) {
-      this.openNode.set(node);
-      this.changeOpenNode(true);
       this.createPortal();
     }
   }
 
   onEnter(node: XDropdownNode) {
-    if (!node.leaf || node.disabled || this.childAnimating()) return;
+    if (!node.leaf || node.disabled || this.trigger() === 'click' || this.childAnimating()) return;
     if (this.timeoutHide) clearTimeout(this.timeoutHide);
     this.showPortal(node);
   }
 
   onLeave() {
+    if (this.trigger() !== 'hover') return;
     if (this.portalAttached()) {
       this.timeoutHide = setTimeout(() => {
-        this.changeOpenNode(false);
-        this.portal?.overlayRef?.dispose();
-      });
-    } else {
-      this.changeOpenNode(false);
-    }
-  }
-
-  changeOpenNode(open: boolean) {
-    if (this.openNode()) {
-      this.openNode.update((x) => {
-        x!.openPortal = open;
-        x!.change && x!.change();
-        return x;
+        this.closePortal();
       });
     }
   }
@@ -255,5 +277,21 @@ export class XDropdownPortalComponent {
 
   onTabOut() {
     this.closeSubject.next();
+  }
+
+  findPathById(nodes: XDropdownNode[], id: number, currentPath: XDropdownNode[] = []): XDropdownNode[] | null {
+    for (const node of nodes) {
+      const newPath = [...currentPath, node];
+      if (node.id === id) {
+        return newPath;
+      }
+      if (node.children && node.children.length > 0) {
+        const result = this.findPathById(node.children, id, newPath);
+        if (result) {
+          return result;
+        }
+      }
+    }
+    return null;
   }
 }

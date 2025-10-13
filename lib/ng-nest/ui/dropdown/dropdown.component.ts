@@ -35,7 +35,7 @@ import {
   OverlayConfig,
   OverlayRef
 } from '@angular/cdk/overlay';
-import { ESCAPE } from '@angular/cdk/keycodes';
+import { DOWN_ARROW, ESCAPE } from '@angular/cdk/keycodes';
 
 @Component({
   selector: `${XDropdownPrefix}`,
@@ -63,6 +63,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   animating = signal(false);
   visibleClass = signal(false);
   outsideClick = signal(false);
+  isClickNodeLeaf = signal(false);
   minWidth = signal<string>('0px');
   hoverDelayUnsub = new Subject<void>();
   closeSubject: Subject<void> = new Subject();
@@ -123,6 +124,11 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
       const keyCode = x.keyCode;
       if (this.portalAttached() && [ESCAPE].includes(keyCode)) {
         this.closeSubject.next();
+      }
+      if (!this.portalAttached() && [DOWN_ARROW].includes(keyCode)) {
+        if (this.disabled()) return;
+        this.visibleClass.set(true);
+        this.createPortal();
       }
     });
   }
@@ -199,7 +205,9 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
         ?.outsidePointerEvents()
         .pipe(debounceTime(30), takeUntil(this.unSubject))
         .subscribe(() => {
-          this.closeSubject.next();
+          if (!this.isClickNodeLeaf()) {
+            this.closeSubject.next();
+          }
         });
     }
 
@@ -230,7 +238,10 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     const { closed, animating, nodeClick, portalHover, activatedId } = componentRef.instance;
     closed.subscribe(() => this.closeSubject.next());
     animating.subscribe((ing) => this.animating.set(ing));
-    nodeClick.subscribe((node) => this.nodeClick.emit(node));
+    nodeClick.subscribe((node) => {
+      this.isClickNodeLeaf.set(node.leaf!);
+      this.nodeClick.emit(node);
+    });
     activatedId.subscribe((id) => this.activatedId.set(id));
     portalHover.subscribe((hover) => this.portalHover(hover));
   }

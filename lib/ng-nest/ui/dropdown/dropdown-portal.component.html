@@ -9,12 +9,13 @@
   <x-list
     #list
     [data]="data()"
+    [ngModel]="activatedIdComputed()"
     (nodeClick)="onNodeClick($event)"
-    [(ngModel)]="activatedId"
     (keyManagerChange)="onActive($event)"
     (keyManagerTabOut)="onTabOut()"
     (nodeMouseenter)="onEnter($event)"
     (nodeMouseleave)="onLeave()"
+    [isKeyboardControlled]="isKeyboardControlled()"
     [inPortal]="true"
     [size]="size()"
   ></x-list>

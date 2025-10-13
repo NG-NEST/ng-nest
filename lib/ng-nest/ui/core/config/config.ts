@@ -145,6 +145,7 @@ export interface XComponentConfig {
   treeFile?: XTreeFileConfig;
   treeSelect?: XTreeSelectConfig;
   textarea?: XTextareaConfig;
+  thoughtChain?: XThoughtChainConfig;
   upload?: XUploadConfig;
   keyword?: XKeywordConfig;
   welcome?: XWelcomeConfig;
@@ -246,6 +247,7 @@ export interface XCalendarConfig {}
 
 export interface XCardConfig {
   shadow?: XShadow;
+  variant?: 'outlined' | 'filled' | 'shadow' | 'borderless';
 }
 
 export interface XCarouselConfig {
@@ -488,7 +490,7 @@ export interface XListOptionConfig {
 }
 
 export interface XLoadingConfig {
-  type?: any;
+  type?: 'circular' | 'spinner' | 'ripple' | 'dual-ring' | 'dual-ball' | 'bars';
   size?: XSize | number;
   text?: string;
   icon?: string;
@@ -641,7 +643,10 @@ export interface XSwitchConfig {
   size?: XSize;
 }
 
-export interface XSuggestionConfig {}
+export interface XSuggestionConfig {
+  placement?: XPlacement;
+  size?: XSize;
+}
 
 export interface XTableConfig {
   index?: number;
@@ -734,6 +739,7 @@ export interface XTimeRangeConfig {}
 export interface XTimelineConfig {
   size?: XSize;
   mode?: 'left' | 'right' | 'alternate';
+  loadingType?: 'circular' | 'spinner' | 'ripple' | 'dual-ring' | 'dual-ball' | 'bars';
 }
 
 export interface XTooltipConfig {
@@ -770,6 +776,8 @@ export interface XTextareaConfig {
   clearable?: boolean;
   iconLayout?: XPositionLeftRight;
 }
+
+export interface XThoughtChainConfig {}
 
 export interface XTreeFileConfig {
   maxHeight?: string;
