@@ -1,0 +1,18 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin thought-chain {
+  & {
+  }
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  &-label {
+    font-weight: 600;
+  }
+  &-content {
+    color: $x-text-400;
+  }
+}

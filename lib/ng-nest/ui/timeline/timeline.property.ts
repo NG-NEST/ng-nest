@@ -1,6 +1,7 @@
-import { XPropertyFunction, XToDataArray } from '@ng-nest/ui/core';
+import { XPropertyFunction, XToBoolean, XToDataArray } from '@ng-nest/ui/core';
 import { Component, input } from '@angular/core';
-import type { XType, XSize, XTemplate, XIdentityProperty, XDate, XDataArray } from '@ng-nest/ui/core';
+import type { XType, XSize, XTemplate, XIdentityProperty, XDate, XDataArray, XBoolean } from '@ng-nest/ui/core';
+import type { XLoadingType } from '@ng-nest/ui/loading';
 
 /**
  * Timeline
@@ -26,10 +27,25 @@ export class XTimelineProperty extends XPropertyFunction(X_TIMELINE_CONFIG_NAME)
    */
   readonly wrapper = input<XTemplate>();
   /**
+   * @zh_CN 显示序号
+   * @en_US Show number
+   */
+  readonly showNumber = input<boolean, XBoolean>(this.config?.showNumber ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 时间轴的相对位置
    * @en_US Content and timeline relative position
    */
   readonly mode = input<XTimelineMode>(this.config?.mode ?? 'left');
+  /**
+   * @zh_CN 时间轴的相对位置
+   * @en_US Content and timeline relative position
+   */
+  readonly loadingType = input<XLoadingType>(this.config?.loadingType ?? 'circular');
+  /**
+   * @zh_CN 尺寸
+   * @en_US Size
+   */
+  readonly size = input<XSize>(this.config?.size ?? 'medium');
 }
 
 /**
@@ -47,11 +63,6 @@ export interface XTimelineNode extends XIdentityProperty {
    * @en_US Content
    */
   content?: string;
-  /**
-   * @zh_CN 尺寸
-   * @en_US Size
-   */
-  size?: XSize;
   /**
    * @zh_CN 类型
    * @en_US Type

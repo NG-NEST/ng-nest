@@ -76,6 +76,11 @@
       background-color: transparent !important;
     }
   }
+  &-number {
+    .#{$x-timeline-prefix}-icon {
+      background-color: $x-background-a900;
+    }
+  }
   &-left {
     .#{$x-timeline-prefix} {
       &-icon {
@@ -165,9 +170,11 @@
 
 @mixin size($size, $width) {
   &-#{$size} {
-    width: $width;
-    height: $width;
-    left: math.div($x-timeline-line-width, 2) - math.div($width, 2);
-    font-size: $width - 0.625rem;
+    .#{$x-timeline-prefix}-icon {
+      width: $width;
+      height: $width;
+      left: math.div($x-timeline-line-width, 2) - math.div($width, 2);
+      font-size: $width - 0.625rem;
+    }
   }
 }

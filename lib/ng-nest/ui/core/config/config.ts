@@ -738,6 +738,7 @@ export interface XTimeRangeConfig {}
 
 export interface XTimelineConfig {
   size?: XSize;
+  showNumber?: boolean;
   mode?: 'left' | 'right' | 'alternate';
   loadingType?: 'circular' | 'spinner' | 'ripple' | 'dual-ring' | 'dual-ball' | 'bars';
 }
@@ -777,7 +778,9 @@ export interface XTextareaConfig {
   iconLayout?: XPositionLeftRight;
 }
 
-export interface XThoughtChainConfig {}
+export interface XThoughtChainConfig {
+  showNumber?: boolean;
+}
 
 export interface XTreeFileConfig {
   maxHeight?: string;

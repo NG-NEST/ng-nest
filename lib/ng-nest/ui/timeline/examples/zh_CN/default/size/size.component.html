@@ -1,1 +1,3 @@
-<x-timeline [data]="data()"></x-timeline>
+<x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
+<br />
+<x-timeline [data]="data()" [size]="size()"></x-timeline>

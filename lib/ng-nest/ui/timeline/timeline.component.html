@@ -1,19 +1,20 @@
-<div #timeline class="x-timeline" [ngClass]="classMap()">
+<div #timeline class="x-timeline" [class.x-timeline-number]="showNumber()" [ngClass]="classMap()">
   <ul>
     @for (node of nodes(); track node.id) {
       <li [class.x-timeline-loading]="node.loading">
         <div class="x-timeline-tail" [class.x-timeline-tail-dashed]="node.dashed"></div>
         <div
-          class="x-timeline-icon {{ node.type ? 'x-timeline-' + node.type : '' }} {{
-            node.size ? 'x-timeline-' + node.size : ''
-          }}"
+          class="x-timeline-icon {{ node.type ? 'x-timeline-' + node.type : '' }}"
           [style.background-color]="node.color"
         >
+          @if (showNumber() && !node.icon && !node.loading) {
+            {{ $index + 1 }}
+          }
           @if (node.icon && !node.loading) {
             <x-icon [type]="node.icon"></x-icon>
           }
           @if (node.loading) {
-            <x-icon type="fto-loader" [spin]="true"></x-icon>
+            <x-loading inline [x-loading]="true" [type]="loadingType()"></x-loading>
           }
         </div>
         <div class="x-timeline-wrapper">

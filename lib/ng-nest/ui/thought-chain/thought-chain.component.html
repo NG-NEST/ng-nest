@@ -1,0 +1,10 @@
+<div class="x-thought-chain">
+  <x-timeline [data]="data()" [showNumber]="showNumber()" [wrapper]="wrapperTpl"></x-timeline>
+
+  <ng-template #wrapperTpl let-node="$node">
+    <div class="x-thought-chain-wrapper">
+      <div class="x-thought-chain-label">{{ node.label }}</div>
+      <div class="x-thought-chain-content">{{ node.content }}</div>
+    </div>
+  </ng-template>
+</div>

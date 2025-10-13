@@ -289,6 +289,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./theme/theme.component').then((x) => x.TeThemeComponent)
       },
       {
+        path: 'thought-chain',
+        loadComponent: () => import('./thought-chain/thought-chain.component').then((x) => x.TeThoughtChainComponent)
+      },
+      {
         path: 'time-ago',
         loadComponent: () => import('./time-ago/time-ago.component').then((x) => x.TeTimeAgoComponent)
       },

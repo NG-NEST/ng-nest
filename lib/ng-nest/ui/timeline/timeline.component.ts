@@ -6,10 +6,11 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 import { XTimeAgoPipe } from '@ng-nest/ui/time-ago';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { XLoadingComponent } from '@ng-nest/ui/loading';
 
 @Component({
   selector: `${XTimelinePrefix}`,
-  imports: [NgClass, DatePipe, XIconComponent, XTimeAgoPipe, XLinkComponent, XOutletDirective],
+  imports: [NgClass, DatePipe, XIconComponent, XTimeAgoPipe, XLinkComponent, XLoadingComponent, XOutletDirective],
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -17,7 +18,8 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 })
 export class XTimelineComponent extends XTimelineProperty {
   classMap = computed(() => ({
-    [`${XTimelinePrefix}-${this.mode()}`]: !XIsEmpty(this.mode())
+    [`${XTimelinePrefix}-${this.mode()}`]: !XIsEmpty(this.mode()),
+    [`${XTimelinePrefix}-${this.size()}`]: !XIsEmpty(this.size())
   }));
 
   nodes = computed(() => {

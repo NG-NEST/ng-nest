@@ -1,21 +1,24 @@
 import { Component, signal } from '@angular/core';
 import { XTimelineComponent, XTimelineNode } from '@ng-nest/ui/timeline';
-import { XAddDays, XAddHours } from '@ng-nest/ui/core';
+import { XAddDays, XAddHours, XSize } from '@ng-nest/ui/core';
+import { FormsModule } from '@angular/forms';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'ex-size',
-  imports: [XTimelineComponent],
+  imports: [FormsModule, XTimelineComponent, XRadioComponent],
   templateUrl: './size.component.html'
 })
 export class ExSizeComponent {
   now = signal(new Date());
+  radioData = signal(['big', 'large', 'medium', 'small', 'mini']);
+  size = signal<XSize>('medium');
   data = signal<XTimelineNode[]>([
     {
       label: '新增请假',
       content: '李三 请假时间 2020-2-23 至 2020-3-1',
       type: 'primary',
       icon: 'fto-user',
-      size: 'large',
       time: XAddDays(this.now(), -3)
     },
     {
@@ -23,7 +26,6 @@ export class ExSizeComponent {
       content: '王斯 已批准',
       type: 'success',
       icon: 'fto-user',
-      size: 'medium',
       time: XAddDays(this.now(), -2)
     },
     {
@@ -31,7 +33,6 @@ export class ExSizeComponent {
       content: '李三 销假',
       type: 'warning',
       icon: 'fto-user',
-      size: 'small',
       time: XAddDays(this.now(), -1)
     },
     {
@@ -39,7 +40,6 @@ export class ExSizeComponent {
       content: '汪清 复核通过',
       type: 'danger',
       icon: 'fto-user',
-      size: 'mini',
       time: XAddHours(this.now(), -12)
     },
     {
