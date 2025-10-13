@@ -94,6 +94,10 @@ export class XSelectPortalComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    this.list().keyManager.setFirstItemActive();
+  }
+
   stopPropagation(event: Event): void {
     event.stopPropagation();
   }
