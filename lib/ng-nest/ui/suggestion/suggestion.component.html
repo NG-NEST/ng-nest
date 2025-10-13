@@ -1,0 +1,18 @@
+<div class="x-suggestion">
+  <x-dropdown
+    [data]="data()"
+    (nodeClick)="nodeClick.emit($event)"
+    [trigger]="'click'"
+    [(visible)]="visible"
+    [placement]="placement()"
+    [disabled]="disabled()"
+    [children]="children()"
+    [portalMinWidth]="portalMinWidth()"
+    [portalMaxWidth]="portalMaxWidth()"
+    [portalMinHeight]="portalMinHeight()"
+    [portalMaxHeight]="portalMaxHeight()"
+    [size]="size()"
+  >
+    <ng-content></ng-content>
+  </x-dropdown>
+</div>

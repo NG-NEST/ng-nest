@@ -1,0 +1,4 @@
+// Suggestion style paramters
+@use '../../style/params/index.scss' as *;
+
+$x-suggestion: $x-prefix + '-suggestion';

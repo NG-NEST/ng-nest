@@ -1,0 +1,13 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin suggestion {
+  & {
+    > x-dropdown {
+      display: block;
+      > .x-dropdown {
+        display: block;
+      }
+    }
+  }
+}

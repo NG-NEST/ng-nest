@@ -1,0 +1,5 @@
+<div class="row">
+  <x-suggestion [(visible)]="visible" (nodeClick)="onNodeClick($event)" [data]="data()">
+    <x-sender [(ngModel)]="value" (ngModelChange)="change($event)" [placeholder]="'输入  /  获取提示'"></x-sender>
+  </x-suggestion>
+</div>
