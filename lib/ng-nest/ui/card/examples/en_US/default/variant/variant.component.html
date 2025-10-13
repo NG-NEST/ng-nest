@@ -1,0 +1,36 @@
+<div class="row">
+  <x-card width="20rem" [variant]="'outlined'">
+    <ul>
+      @for (item of list(); track item) {
+        <li>{{ 'list content ' + item }}</li>
+      }
+    </ul>
+  </x-card>
+</div>
+<div class="row">
+  <x-card width="20rem" [variant]="'filled'">
+    <ul>
+      @for (item of list(); track item) {
+        <li>{{ 'list content ' + item }}</li>
+      }
+    </ul>
+  </x-card>
+</div>
+<div class="row">
+  <x-card width="20rem" [variant]="'shadow'">
+    <ul>
+      @for (item of list(); track item) {
+        <li>{{ 'list content ' + item }}</li>
+      }
+    </ul>
+  </x-card>
+</div>
+<div class="row">
+  <x-card width="20rem" [variant]="'borderless'">
+    <ul>
+      @for (item of list(); track item) {
+        <li>{{ 'list content ' + item }}</li>
+      }
+    </ul>
+  </x-card>
+</div>

@@ -33,4 +33,15 @@
       margin-bottom: $x-font-size;
     }
   }
+
+  &-outlined {
+    border: $x-border-base;
+  }
+
+  &-filled {
+    background-color: $x-background-a200;
+  }
+  &-shadow {
+    box-shadow: $x-box-shadow;
+  }
 }

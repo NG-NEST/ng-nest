@@ -66,7 +66,12 @@ export class XCardProperty extends XPropertyFunction(X_CARD_CONFIG_NAME) {
    * ```
    *
    */
-  readonly shadow = input<XCardShadow>(this.config?.shadow ?? 'always');
+  readonly shadow = input<XCardShadow>(this.config?.shadow ?? 'never');
+  /**
+   * @zh_CN 形态变体
+   * @en_US Card variant
+   */
+  readonly variant = input<XCardVariant>(this.config?.variant ?? 'outlined');
 }
 
 /**
@@ -74,6 +79,12 @@ export class XCardProperty extends XPropertyFunction(X_CARD_CONFIG_NAME) {
  * @en_US Shadow display configuration
  */
 export type XCardShadow = XShadow;
+
+/**
+ * @zh_CN 形态变体
+ * @en_US Card variant
+ */
+export type XCardVariant = 'outlined' | 'filled' | 'shadow' | 'borderless';
 
 /**
  * @zh_CN 卡片内容样式类型

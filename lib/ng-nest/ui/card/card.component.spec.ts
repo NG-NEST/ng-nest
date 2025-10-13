@@ -1,12 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  Component,
-  DebugElement,
-  TemplateRef,
-  provideExperimentalZonelessChangeDetection,
-  signal,
-  viewChild
-} from '@angular/core';
+import { Component, DebugElement, TemplateRef, provideZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XCardComponent, XCardPrefix, XCardShadow } from '@ng-nest/ui/card';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -42,7 +35,7 @@ xdescribe(XCardPrefix, () => {
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ]
     }).compileComponents();
   });
