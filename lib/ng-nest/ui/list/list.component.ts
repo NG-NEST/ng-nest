@@ -90,12 +90,14 @@ export class XListComponent extends XListProperty implements OnChanges {
     [`${XListPrefix}-group`]: this.groupable() ? true : false
   }));
   sizeChange: Subscription | null = null;
+  activeNode = signal<XListNode | null>(null);
   private resizeObserver!: XResizeObserver;
 
   @HostBinding('attr.role') role = 'listbox';
   @HostBinding('attr.tabindex') tabindex = -1;
 
   @HostListener('keydown', ['$event']) keydown($event: KeyboardEvent) {
+    if (!this.isKeyboardControlled()) return;
     this.keyManager.onKeydown($event);
     const activeIndex = this.keyManager.activeItemIndex as number;
     if ($event.keyCode === ENTER && !XIsUndefined(activeIndex)) {
@@ -233,7 +235,10 @@ export class XListComponent extends XListProperty implements OnChanges {
   }
 
   private initKeyManager() {
-    this.keyManager = new ActiveDescendantKeyManager<XListOptionComponent>(this.options).withWrap();
+    this.keyManager = new ActiveDescendantKeyManager<XListOptionComponent>(this.options)
+      .withWrap()
+      .withVerticalOrientation()
+      .withHomeAndEnd();
     this.keyManager.tabOut.pipe(takeUntil(this.unSubject)).subscribe(() => {
       this.setUnActive(this.keyManager.activeItemIndex as number);
       this.keyManagerTabOut.emit();
@@ -315,7 +320,6 @@ export class XListComponent extends XListProperty implements OnChanges {
     let value = this.value();
     let objectArray = this.objectArray();
     if (XIsEmpty(value)) {
-      this.keyManager.setActiveItem(activeIndex);
       return;
     }
     let valArry: any[] = [];
@@ -330,7 +334,8 @@ export class XListComponent extends XListProperty implements OnChanges {
     } else {
       activeIndex = this.nodes().findIndex((x) => x.id === first);
     }
-    this.keyManager.updateActiveItem(activeIndex);
+
+    this.keyManager.setActiveItem(activeIndex);
     this.setScorllTop(activeIndex);
   }
 
@@ -339,9 +344,12 @@ export class XListComponent extends XListProperty implements OnChanges {
       event.stopPropagation();
       return;
     }
+    const index = this.nodes().findIndex((x) => x.id === node.id);
+    const component = this.options.get(index)!;
     if (node.disabled) return;
     if (node.selected && this.multiple() === 1) {
       node.event = event;
+      node.component = component;
       this.nodeClick.emit(node);
       return;
     }
@@ -382,6 +390,7 @@ export class XListComponent extends XListProperty implements OnChanges {
     }
     if (this.onChange) this.onChange(this.value());
     node.event = event;
+    node.component = component;
     this.nodeClick.emit(node);
   }
 
@@ -390,7 +399,10 @@ export class XListComponent extends XListProperty implements OnChanges {
       event.stopPropagation();
       return;
     }
+    const index = this.nodes().findIndex((x) => x.id === node.id);
+    const component = this.options.get(index)!;
     node.event = event;
+    node.component = component;
     this.nodeMouseenter.emit(node);
   }
 
@@ -399,7 +411,10 @@ export class XListComponent extends XListProperty implements OnChanges {
       event.stopPropagation();
       return;
     }
+    const index = this.nodes().findIndex((x) => x.id === node.id);
+    const component = this.options.get(index)!;
     node.event = event;
+    node.component = component;
     this.nodeMouseleave.emit(node);
   }
 

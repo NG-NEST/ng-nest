@@ -40,6 +40,10 @@ export class XListOptionComponent extends XListOptionProperty implements Highlig
     effect(() => (this.disabled = this.forbidden()));
   }
 
+  ngOnDestroy(): void {
+    this.active.set(false);
+  }
+
   setActiveStyles(): void {
     this.active.set(true);
   }

@@ -12,6 +12,7 @@ import {
 import { Component, TemplateRef, ElementRef, input, output, model } from '@angular/core';
 import { XFormControlFunction } from '@ng-nest/ui/base-form';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { XListOptionComponent } from './list-option.component';
 
 /**
  * List
@@ -92,6 +93,11 @@ export class XListProperty extends XFormControlFunction(X_LIST_CONFIG_NAME) {
    * @en_US Rolling area element
    */
   readonly scrollElement = input<HTMLElement>();
+  /**
+   * @zh_CN 是否使用键盘控制
+   * @en_US Whether to use keyboard control
+   */
+  readonly isKeyboardControlled = input<boolean, XBoolean>(true, { transform: XToBoolean });
   /**
    * @zh_CN 加载更多
    * @en_US load more
@@ -246,6 +252,11 @@ export interface XListNode extends XParentIdentityProperty<XListNode> {
    * @en_US Group node
    */
   groupable?: boolean;
+  /**
+   * @zh_CN 对应的节点组件
+   * @en_US List option component
+   */
+  component?: XListOptionComponent;
 }
 
 /**

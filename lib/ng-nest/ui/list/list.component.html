@@ -47,6 +47,7 @@
         (click)="onNodeClick($event, node)"
         (mouseenter)="onMouseenter($event, node)"
         (mouseleave)="onMouseleave($event, node)"
+        tabindex="-1"
       ></x-list-option>
     </cdk-virtual-scroll-viewport>
   } @else {
@@ -112,6 +113,7 @@
         (click)="onNodeClick($event, node)"
         (mouseenter)="onMouseenter($event, node)"
         (mouseleave)="onMouseleave($event, node)"
+        tabindex="-1"
       ></x-list-option>
     }
   </div>
