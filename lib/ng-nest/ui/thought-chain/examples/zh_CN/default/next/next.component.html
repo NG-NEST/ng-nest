@@ -1,0 +1,8 @@
+<div class="row">
+  <x-button type="primary" flat plain (click)="addChain()">add chain</x-button>
+</div>
+<div class="row">
+  <x-card [style.width.rem]="28">
+    <x-thought-chain #thoughtChain [data]="data()"> </x-thought-chain>
+  </x-card>
+</div>

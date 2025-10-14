@@ -110,6 +110,7 @@ export * from '@ng-nest/ui/welcome';
 export * from '@ng-nest/ui/prompts';
 export * from '@ng-nest/ui/attachments';
 export * from '@ng-nest/ui/suggestion';
+export * from '@ng-nest/ui/thought-chain';
 
 /**
  * Others

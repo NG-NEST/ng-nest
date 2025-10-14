@@ -27,6 +27,11 @@ export class XTimelineProperty extends XPropertyFunction(X_TIMELINE_CONFIG_NAME)
    */
   readonly wrapper = input<XTemplate>();
   /**
+   * @zh_CN 图标模板
+   * @en_US Icon template
+   */
+  readonly icon = input<XTemplate>();
+  /**
    * @zh_CN 显示序号
    * @en_US Show number
    */
@@ -37,8 +42,8 @@ export class XTimelineProperty extends XPropertyFunction(X_TIMELINE_CONFIG_NAME)
    */
   readonly mode = input<XTimelineMode>(this.config?.mode ?? 'left');
   /**
-   * @zh_CN 时间轴的相对位置
-   * @en_US Content and timeline relative position
+   * @zh_CN loading 的类型样式
+   * @en_US Loading type style
    */
   readonly loadingType = input<XLoadingType>(this.config?.loadingType ?? 'circular');
   /**

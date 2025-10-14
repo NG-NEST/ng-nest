@@ -1,15 +1,20 @@
 import { Component, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { XCardComponent } from '@ng-nest/ui/card';
+import { XSize } from '@ng-nest/ui/core';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 import { XThoughtChainComponent } from '@ng-nest/ui/thought-chain';
 import { XThoughtChainNode } from '@ng-nest/ui/thought-chain';
 
 @Component({
-  selector: 'ex-default',
-  imports: [XThoughtChainComponent, XCardComponent],
-  templateUrl: './default.component.html',
-  styleUrl: './default.component.scss'
+  selector: 'ex-size',
+  imports: [FormsModule, XThoughtChainComponent, XRadioComponent, XCardComponent],
+  templateUrl: './size.component.html',
+  styleUrl: './size.component.scss'
 })
-export class ExDefaultComponent {
+export class ExSizeComponent {
+  radioData = signal(['big', 'large', 'medium', 'small', 'mini']);
+  size = signal<XSize>('medium');
   data = signal<XThoughtChainNode[]>([
     { id: '111', label: 'Thought chain title - 1', description: 'Thought chain description - 1' },
     { id: '222', label: 'Thought chain title - 2', description: 'Thought chain description - 2' },

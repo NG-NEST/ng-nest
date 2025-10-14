@@ -780,6 +780,9 @@ export interface XTextareaConfig {
 
 export interface XThoughtChainConfig {
   showNumber?: boolean;
+  collapsible?: boolean;
+  size?: XSize;
+  loadingType?: 'circular' | 'spinner' | 'ripple' | 'dual-ring' | 'dual-ball' | 'bars';
 }
 
 export interface XTreeFileConfig {

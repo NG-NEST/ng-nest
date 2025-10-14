@@ -1,0 +1,8 @@
+<div class="row">
+  <x-radio [data]="radioData()" [(ngModel)]="size"></x-radio>
+</div>
+<div class="row">
+  <x-card [style.width.rem]="30">
+    <x-thought-chain [data]="data()" [size]="size()"> </x-thought-chain>
+  </x-card>
+</div>

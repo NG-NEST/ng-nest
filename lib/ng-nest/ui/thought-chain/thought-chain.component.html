@@ -1,10 +1,65 @@
 <div class="x-thought-chain">
-  <x-timeline [data]="data()" [showNumber]="showNumber()" [wrapper]="wrapperTpl"></x-timeline>
+  <x-timeline
+    [data]="data()"
+    [showNumber]="showNumber()"
+    [icon]="iconTpl"
+    [wrapper]="wrapper() ?? wrapperTpl"
+    [size]="size()"
+  ></x-timeline>
 
-  <ng-template #wrapperTpl let-node="$node">
-    <div class="x-thought-chain-wrapper">
-      <div class="x-thought-chain-label">{{ node.label }}</div>
-      <div class="x-thought-chain-content">{{ node.content }}</div>
+  <ng-template #iconTpl let-node="$node" let-index="$index">
+    <div
+      class="x-thought-chain-icon"
+      [class.x-thought-chain-success]="node.status === 'success'"
+      [class.x-thought-chain-error]="node.status === 'error'"
+      [class.x-thought-chain-pending]="node.status === 'pending'"
+      [style.backgroundColor]="node.color"
+    >
+      @if (showNumber() && !node.icon && !node.loading && node.status !== 'pending') {
+        {{ index + 1 }}
+      }
+      @if (node.icon && !node.loading && node.status !== 'pending') {
+        <x-icon [type]="node.icon"></x-icon>
+      }
+      @if (node.loading || node.status === 'pending') {
+        <x-loading inline [x-loading]="true" [size]="size()" [type]="loadingType()"></x-loading>
+      }
     </div>
+  </ng-template>
+
+  <ng-template #wrapperTpl let-node="$node" let-index="$index">
+    @if (collapsible()) {
+      <x-collapse class="x-thought-chain-collapse" ghost iconPosition="left">
+        <x-collapse-panel [label]="labelTpl">
+          <ng-container *xOutlet="contentTpl"></ng-container>
+        </x-collapse-panel>
+      </x-collapse>
+    } @else {
+      <ng-container *xOutlet="labelTpl"></ng-container>
+      <ng-container *xOutlet="contentTpl"></ng-container>
+    }
+    <ng-template #labelTpl>
+      <div class="x-thought-chain-wrapper">
+        <div class="x-thought-chain-inner">
+          <div class="x-thought-chain-label">{{ node.label }}</div>
+          <div class="x-thought-chain-description">{{ node.description }}</div>
+        </div>
+        <div class="x-thought-chain-extra">
+          <ng-container *xOutlet="extra(); context: { $node: node, $index: index }"></ng-container>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #contentTpl>
+      @if (node.content || content()) {
+        @if (content()) {
+          <div class="x-thought-chain-content">
+            <ng-container *xOutlet="content(); context: { $node: node, $index: index }"></ng-container>
+          </div>
+        } @else {
+          <div class="x-thought-chain-content" [innerHTML]="node.content"></div>
+        }
+      }
+    </ng-template>
   </ng-template>
 </div>

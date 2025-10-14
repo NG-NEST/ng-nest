@@ -4,6 +4,10 @@
 @use './style/mixin.scss' as *;
 @use './style/param.scss' as *;
 
+#{$x-card} {
+  display: block;
+}
+
 .#{$x-card} {
   @include reset-component();
   @include card();

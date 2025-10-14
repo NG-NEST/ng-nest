@@ -6,13 +6,76 @@
   }
   &-wrapper {
     display: flex;
+  }
+  &-inner {
+    flex: 1;
+    display: flex;
     flex-direction: column;
-    gap: 0.125rem;
   }
   &-label {
     font-weight: 600;
   }
-  &-content {
+  &-description {
     color: $x-text-400;
+  }
+  &-content {
+    position: relative;
+    border: $x-border-base;
+    border-radius: $x-border-radius;
+    background-color: $x-white;
+  }
+  &-collapse {
+    .x-collapse-panel-header {
+      padding: 0;
+      align-items: flex-start;
+    }
+    .x-collapse-panel-content {
+    }
+  }
+  &-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-success {
+    background-color: $x-success;
+  }
+  &-error {
+    background-color: $x-danger;
+  }
+
+  @include size('big', $x-height-big, $x-padding-big);
+  @include size('large', $x-height-large, $x-padding-large);
+  @include size('medium', $x-height-medium, $x-padding-medium);
+  @include size('small', $x-height-small, $x-padding-small);
+  @include size('mini', $x-height-mini, $x-padding-mini);
+}
+
+@mixin size($size, $iconSize, $padding) {
+  .x-timeline-#{$size} {
+    .#{$x-thought-chain} {
+      &-label {
+        line-height: calc(#{$iconSize} - 0.5rem);
+      }
+      &-content {
+        line-height: calc(#{$iconSize} - 0.75rem);
+        padding: $padding;
+      }
+      &-collapse {
+        .x-collapse-panel-header {
+          > .x-icon {
+            height: calc(#{$iconSize} - 0.5rem);
+            display: flex;
+            align-items: center;
+          }
+        }
+        .x-collapse-panel-content {
+          padding: calc(#{$padding} * 0.5) 0;
+        }
+      }
+    }
   }
 }

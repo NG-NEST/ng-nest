@@ -1,9 +1,23 @@
 import { Component } from '@angular/core';
-import { ExDefaultComponent } from '@ng-nest/ui/thought-chain/examples';
+import {
+  ExDefaultComponent,
+  ExSizeComponent,
+  ExExtraComponent,
+  ExNextComponent,
+  ExContentComponent,
+  ExCollapsibleComponent
+} from '@ng-nest/ui/thought-chain/examples';
 
 @Component({
   selector: 'te-thought-chain',
-  imports: [ExDefaultComponent],
+  imports: [
+    ExDefaultComponent,
+    ExSizeComponent,
+    ExExtraComponent,
+    ExNextComponent,
+    ExContentComponent,
+    ExCollapsibleComponent
+  ],
   templateUrl: './thought-chain.component.html'
 })
 export class TeThoughtChainComponent {}

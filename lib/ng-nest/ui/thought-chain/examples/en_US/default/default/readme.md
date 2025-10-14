@@ -3,4 +3,4 @@ order: 1
 label: 'Base'
 ---
 
-Base.
+Base usage。

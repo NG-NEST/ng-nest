@@ -1,0 +1,18 @@
+<div class="row">
+  <x-card [style.width.rem]="28">
+    <x-thought-chain [data]="data()" [extra]="extraTpl"> </x-thought-chain>
+  </x-card>
+  <ng-template #extraTpl let-node="$node">
+    <x-dropdown
+      (nodeClick)="operation($event)"
+      [disabled]="node.disabled"
+      [data]="[
+        { label: 'operation 1', icon: 'fto-repeat' },
+        { label: 'operation 2', icon: 'fto-terminal' },
+        { label: 'delete', icon: 'fto-trash-2', divided: true, style: { color: '#f56c6c' } }
+      ]"
+    >
+      <x-button icon="fto-more-vertical" text></x-button>
+    </x-dropdown>
+  </ng-template>
+</div>
