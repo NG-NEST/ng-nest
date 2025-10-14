@@ -732,6 +732,23 @@ export const en_US: {[key: string]: AppProp} = {
     },
     "returnType": "Array<T>"
   },
+  "XFileSize": {
+    "type": "function",
+    "label": "Convert byte size to a human-readable file size format",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XFileSize",
+    "params": {
+      "bytes": "number"
+    },
+    "returnType": "tions:"
+  },
   "XSetFlex": {
     "type": "function",
     "label": "Flex style for setting elements",
@@ -3762,6 +3779,622 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAnchorLayout",
     "value": "XPositionLeftRight"
+  },
+  "XAttachmentsPrefix": {
+    "type": "const",
+    "label": "Attachments",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAttachmentsPrefix",
+    "selector": "x-attachments",
+    "decorator": "component",
+    "value": "'x-attachments'"
+  },
+  "XAttachmentsProperty": {
+    "type": "class",
+    "label": "Attachments Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "action",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Request address",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropContainer",
+        "type": "ElementRef | HTMLElement",
+        "toType": "ElementRef | HTMLElement",
+        "inputType": "InputSignal<ElementRef | HTMLElement>",
+        "signal": "input",
+        "label": "Drag and drop upload area",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropIcon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Drag and drop upload area icon",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropTitle",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Drag and drop upload area title",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropDescription",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Drag and drop upload area description",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showDrop",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Show the drag and drop upload area directly",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "accept",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Upload file type, consistent with native input file component",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "type",
+        "type": "XUploadType",
+        "toType": "XUploadType",
+        "inputType": "InputSignal<XUploadType>",
+        "signal": "input",
+        "label": "File display type",
+        "default": "'list'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "imgFallback",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Photo type below loading failed display",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "imgCut",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Picture cropping",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "multiple",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Multiple file upload",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "download",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "click download",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "multipleModel",
+        "type": "XUploadMultipleModel",
+        "toType": "XUploadMultipleModel",
+        "inputType": "InputSignal<XUploadMultipleModel>",
+        "signal": "input",
+        "label": "For many upload mode, 'cover' covers the existing, 'add' continue to add",
+        "default": "'cover'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "filesTpl",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "File list custom display template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "maxLimit",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Limit the number of files uploaded files. Do not restrict the default",
+        "default": "-1",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "headers",
+        "type": "{ [key: string]: any }",
+        "toType": "{ [key: string]: any }",
+        "inputType": "InputSignal<{ [key: string]: any }>",
+        "signal": "input",
+        "label": "Set the upload request header",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "removeClick",
+        "type": "{ file: XUploadNode; index: number }",
+        "toType": "",
+        "inputType": "OutputEmitterRef<{ file: XUploadNode; index: number }>",
+        "signal": "output",
+        "label": "Delete button event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "uploadReady",
+        "type": "XUploadNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XUploadNode>",
+        "signal": "output",
+        "label": "Start upload event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "uploading",
+        "type": "XUploadNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XUploadNode>",
+        "signal": "output",
+        "label": "Start upload event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "uploadSuccess",
+        "type": "XUploadNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XUploadNode>",
+        "signal": "output",
+        "label": "Start upload event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "uploadError",
+        "type": "XUploadNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XUploadNode>",
+        "signal": "output",
+        "label": "Start upload event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XAttachmentsProperty",
+    "extends": [
+      "XFormControlFunction(X_ATTACHMENTS_CONFIG_NAME)"
+    ]
+  },
+  "XFileCardPrefix": {
+    "type": "const",
+    "label": "FileCard",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XFileCardPrefix",
+    "selector": "x-file-card",
+    "decorator": "component",
+    "value": "'x-file-card'"
+  },
+  "XFileCardProperty": {
+    "type": "class",
+    "label": "FileCard Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "icon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Icon",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "iconColor",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Icon color",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "name",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "File name",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "File size",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "description",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "File description",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "type",
+        "type": "XFileCard",
+        "toType": "XFileCard",
+        "inputType": "InputSignal<XFileCard>",
+        "signal": "input",
+        "label": "File type",
+        "default": "'file'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "url",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "File/image url",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XFileCardVariant",
+        "toType": "XFileCardVariant",
+        "inputType": "InputSignal<XFileCardVariant>",
+        "signal": "input",
+        "label": "Bubble variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XFileCardProperty",
+    "extends": [
+      "XPropertyFunction(X_FILE_CARD_CONFIG_NAME)"
+    ]
+  },
+  "XFileCard": {
+    "type": "type",
+    "label": "File card type",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XFileCard",
+    "value": "'file' | 'img'"
+  },
+  "XFileCardVariant": {
+    "type": "type",
+    "label": "Bubble variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XFileCardVariant",
+    "value": "'outlined' | 'filled' | 'shadow' | 'borderless'"
   },
   "XAutoCompletePrefix": {
     "type": "const",
@@ -7436,7 +8069,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XCardShadow>",
         "signal": "input",
         "label": "Shadow display method",
-        "default": "'always'",
+        "default": "'never'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -7449,6 +8082,24 @@ export const en_US: {[key: string]: AppProp} = {
             "language": "html",
             "content": "<x-card shadow=\"always\">Always</x-card>\n<x-card shadow=\"hover\">Hover</x-card>\n<x-card shadow=\"never\">Never</x-card>"
           },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XCardVariant",
+        "toType": "XCardVariant",
+        "inputType": "InputSignal<XCardVariant>",
+        "signal": "input",
+        "label": "Card variant",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
           {
             "type": "text",
             "content": ""
@@ -7475,6 +8126,20 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCardShadow",
     "value": "XShadow"
+  },
+  "XCardVariant": {
+    "type": "type",
+    "label": "Card variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XCardVariant",
+    "value": "'outlined' | 'filled' | 'shadow' | 'borderless'"
   },
   "XCardBodyStyle": {
     "type": "type",
@@ -18685,6 +19350,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToNumber"
       },
       {
+        "name": "visible",
+        "type": "boolean | null",
+        "toType": "boolean | null",
+        "inputType": "ModelSignal<boolean | null>",
+        "signal": "model",
+        "label": "visible parameter controls display/hide",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "activatedId",
         "type": "string | number",
         "toType": "string | number",
@@ -26206,6 +26889,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "isKeyboardControlled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Whether to use keyboard control",
+        "default": "true",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "loadMore",
         "type": "XBoolean",
         "toType": "boolean",
@@ -26726,6 +27427,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "groupable",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "component",
+        "type": "XListOptionComponent",
+        "label": "List option component",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "component",
         "propType": "",
         "example": [
           {
@@ -30764,6 +31482,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "wrap",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "List wrap display",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "itemClick",
         "type": "XPromptsNode",
         "toType": "",
@@ -30833,6 +31569,23 @@ export const en_US: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "style",
+        "type": "XStyle",
+        "label": "Icon style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "style",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "iconStyle",
         "type": "XStyle",
         "label": "Icon style",
@@ -30858,6 +31611,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "[property: string]",
+        "type": "any",
+        "label": "Custom attributes",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "[property: string]",
         "propType": "",
         "example": [
           {
@@ -36907,6 +37677,253 @@ export const en_US: {[key: string]: AppProp} = {
     "name": "XStepsStatus",
     "value": "'wait' | 'process' | 'finish' | 'error'"
   },
+  "XSuggestionPrefix": {
+    "type": "const",
+    "label": "Suggestion",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSuggestionPrefix",
+    "selector": "x-suggestion",
+    "decorator": "component",
+    "value": "'x-suggestion'"
+  },
+  "XSuggestionProperty": {
+    "type": "class",
+    "label": "Suggestion Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "data",
+        "type": "XDataArray<XSuggestionNode>",
+        "toType": "XSuggestionNode[]",
+        "inputType": "InputSignalWithTransform<XSuggestionNode[], XDataArray<XSuggestionNode>>",
+        "signal": "input",
+        "label": "Suggestion items",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToDataArray"
+      },
+      {
+        "name": "visible",
+        "type": "boolean",
+        "toType": "boolean",
+        "inputType": "ModelSignal<boolean>",
+        "signal": "model",
+        "label": "Show Suggestion items",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "placement",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
+        "signal": "input",
+        "label": "Placement",
+        "default": "'top-start'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Disabled",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "children",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "The node already contains child node data",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "portalMinWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Portal min-width",
+        "default": "'10rem'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalMaxWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Portal max-width",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalMinHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Portal min-height",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalMaxHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "Portal max-height",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "Size",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeClick",
+        "type": "XSuggestionNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XSuggestionNode>",
+        "signal": "output",
+        "label": "Suggestion item click event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XSuggestionProperty",
+    "extends": [
+      "XPropertyFunction(X_SUGGESTION_CONFIG_NAME)"
+    ]
+  },
+  "XSuggestionNode": {
+    "type": "interface",
+    "label": "Suggestion",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSuggestionNode",
+    "extends": [
+      "XDropdownNode"
+    ]
+  },
   "XSwitchPrefix": {
     "type": "const",
     "label": "Switch",
@@ -42258,6 +43275,266 @@ export const en_US: {[key: string]: AppProp} = {
       "XFormControlFunction(X_THEME_CONFIG_NAME)"
     ]
   },
+  "XThoughtChainPrefix": {
+    "type": "const",
+    "label": "ThoughtChain",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XThoughtChainPrefix",
+    "selector": "x-thought-chain",
+    "decorator": "component",
+    "value": "'x-thought-chain'"
+  },
+  "XThoughtChainProperty": {
+    "type": "class",
+    "label": "ThoughtChain Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "data",
+        "type": "XThoughtChainNode[]",
+        "toType": "XThoughtChainNode[]",
+        "inputType": "ModelSignal<XThoughtChainNode[]>",
+        "signal": "model",
+        "label": "ThoughtChain items",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showNumber",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Show number",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "Size",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "wrapper",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Content template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "icon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Icon template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "extra",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Node extra content",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "content",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Node detail content",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "collapsible",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Collapsible detail content",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "loadingType",
+        "type": "XLoadingType",
+        "toType": "XLoadingType",
+        "inputType": "InputSignal<XLoadingType>",
+        "signal": "input",
+        "label": "Loading type style",
+        "default": "'circular'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XThoughtChainProperty",
+    "extends": [
+      "XPropertyFunction(X_THOUGHT_CHAIN_CONFIG_NAME)"
+    ]
+  },
+  "XThoughtChainNode": {
+    "type": "interface",
+    "label": "Thought chain node",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "description",
+        "type": "string",
+        "label": "Node description",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "description",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "status",
+        "type": "XThoughtChainNodeStatus",
+        "label": "Node status",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "status",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XThoughtChainNode",
+    "extends": [
+      "XTimelineNode"
+    ]
+  },
+  "XThoughtChainNodeStatus": {
+    "type": "type",
+    "label": "Node status",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XThoughtChainNodeStatus",
+    "value": "'success' | 'error' | 'pending'"
+  },
   "XTimeAgoPrefix": {
     "type": "const",
     "label": "TimeAgo",
@@ -43752,6 +45029,42 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "icon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Icon template",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showNumber",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Show number",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "mode",
         "type": "XTimelineMode",
         "toType": "XTimelineMode",
@@ -43759,6 +45072,42 @@ export const en_US: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "Content and timeline relative position",
         "default": "'left'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "loadingType",
+        "type": "XLoadingType",
+        "toType": "XLoadingType",
+        "inputType": "InputSignal<XLoadingType>",
+        "signal": "input",
+        "label": "Loading type style",
+        "default": "'circular'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "Size",
+        "default": "'medium'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -43812,23 +45161,6 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "content",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "Size",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
         "propType": "",
         "example": [
           {
@@ -48811,6 +50143,96 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "dropContainer",
+        "type": "ElementRef | HTMLElement",
+        "toType": "ElementRef | HTMLElement",
+        "inputType": "InputSignal<ElementRef | HTMLElement>",
+        "signal": "input",
+        "label": "Drag and drop upload area",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropIcon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Drag and drop upload area icon",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropTitle",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Drag and drop upload area title",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropDescription",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "Drag and drop upload area description",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showDrop",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Show the drag and drop upload area directly",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "accept",

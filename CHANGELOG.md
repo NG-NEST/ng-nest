@@ -1,3 +1,24 @@
+## [20.1.7](https://github.com/NG-NEST/ng-nest/compare/20.1.6...20.1.7) (2025-10-14)
+
+
+### Features
+
+* **module:attachments:** add attachments component ([ed06906](https://github.com/NG-NEST/ng-nest/commit/ed06906b15bda1b12a6ab0d14e03dd7cf9bd454e))
+* **module:auto-complete:** add keyManager first item active ([a76b9be](https://github.com/NG-NEST/ng-nest/commit/a76b9be4fa54bc11d51c5926ce68297313ec6feb))
+* **module:card:** add variant property ([33360c6](https://github.com/NG-NEST/ng-nest/commit/33360c66a5212261674286158d4b1d35ace2d65a))
+* **module:dropdown:** add keyManger ([654e348](https://github.com/NG-NEST/ng-nest/commit/654e348287e768c20c52efce56b375df547cada5))
+* **module:dropdown:** add visible property ([03c551a](https://github.com/NG-NEST/ng-nest/commit/03c551aeeaa5776e51224e59b7d67da984af21f5))
+* **module:list:** add isKeyboardControlled property ([1c0edfe](https://github.com/NG-NEST/ng-nest/commit/1c0edfe1fecf87f865ed48c88089757e5934b2c3))
+* **module:prompts:** add wrap and style ([9490d6d](https://github.com/NG-NEST/ng-nest/commit/9490d6d14449282119b21c96c0369f73c146e570))
+* **module:select:** add keyManager first item active ([f9bf4f9](https://github.com/NG-NEST/ng-nest/commit/f9bf4f9e491ebe2b56a68a548f379414c642b6e6))
+* **module:sender:** update header and footer style ([62e1b0b](https://github.com/NG-NEST/ng-nest/commit/62e1b0b6ccd0470cbf4df75d9036ab17cc8d2861))
+* **module:suggestion:** add suggestion component ([20d69d2](https://github.com/NG-NEST/ng-nest/commit/20d69d286d6fd31106b4f4739f23c1e2c7b7797c))
+* **module:thought-chain:** add more property ([70a2d5d](https://github.com/NG-NEST/ng-nest/commit/70a2d5da4e05996732492384b7d7a283497eab0f))
+* **module:thought-chain:** add thought component ([90002a8](https://github.com/NG-NEST/ng-nest/commit/90002a835be8d25564efe4feaa48e30003fcdaba))
+* **module:upload:** add drag upload ([cb99817](https://github.com/NG-NEST/ng-nest/commit/cb9981789a84cd4487a5303aec6815e85e24ee3f))
+
+
+
 ## [20.1.6](https://github.com/NG-NEST/ng-nest/compare/20.1.5...20.1.6) (2025-09-29)
 
 

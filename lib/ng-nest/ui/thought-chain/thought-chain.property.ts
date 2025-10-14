@@ -77,5 +77,11 @@ export interface XThoughtChainNode extends XTimelineNode {
    * @zh_CN 节点状态
    * @en_US Node status
    */
-  status?: 'success' | 'error' | 'pending';
+  status?: XThoughtChainNodeStatus;
 }
+
+/**
+ * @zh_CN 节点状态
+ * @en_US Node status
+ */
+export type XThoughtChainNodeStatus = 'success' | 'error' | 'pending';

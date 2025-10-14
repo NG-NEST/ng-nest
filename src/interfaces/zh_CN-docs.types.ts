@@ -732,6 +732,23 @@ export const zh_CN: {[key: string]: AppProp} = {
     },
     "returnType": "Array<T>"
   },
+  "XFileSize": {
+    "type": "function",
+    "label": "将字节大小转换为人类可读的文件大小格式",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XFileSize",
+    "params": {
+      "bytes": "number"
+    },
+    "returnType": "tions:"
+  },
   "XSetFlex": {
     "type": "function",
     "label": "用于设置元素的 flex 样式",
@@ -3762,6 +3779,622 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XAnchorLayout",
     "value": "XPositionLeftRight"
+  },
+  "XAttachmentsPrefix": {
+    "type": "const",
+    "label": "Attachments",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAttachmentsPrefix",
+    "selector": "x-attachments",
+    "decorator": "component",
+    "value": "'x-attachments'"
+  },
+  "XAttachmentsProperty": {
+    "type": "class",
+    "label": "Attachments Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "action",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "请求地址",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropContainer",
+        "type": "ElementRef | HTMLElement",
+        "toType": "ElementRef | HTMLElement",
+        "inputType": "InputSignal<ElementRef | HTMLElement>",
+        "signal": "input",
+        "label": "可拖拽上传的区域",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropIcon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "可拖拽上传的区域的图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropTitle",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "可拖拽上传的区域的标题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropDescription",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "可拖拽上传的区域的描述",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showDrop",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "直接显示可拖拽上传的区域",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "accept",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "上传文件类型，与原生的 input file 组件一致",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "type",
+        "type": "XUploadType",
+        "toType": "XUploadType",
+        "inputType": "InputSignal<XUploadType>",
+        "signal": "input",
+        "label": "文件显示类型",
+        "default": "'list'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "imgFallback",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "图片类型下面加载失败显示",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "imgCut",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "图片剪裁",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "multiple",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "多文件上传",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "download",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "点击下载",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "multipleModel",
+        "type": "XUploadMultipleModel",
+        "toType": "XUploadMultipleModel",
+        "inputType": "InputSignal<XUploadMultipleModel>",
+        "signal": "input",
+        "label": "多次上传的模式，cover 覆盖现有, add 继续添加",
+        "default": "'cover'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "filesTpl",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "文件列表自定义显示模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "maxLimit",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "限制单次上传文件个数，只有开启多文件上传 multiple 时生效，默认不做限制",
+        "default": "-1",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "headers",
+        "type": "{ [key: string]: any }",
+        "toType": "{ [key: string]: any }",
+        "inputType": "InputSignal<{ [key: string]: any }>",
+        "signal": "input",
+        "label": "设置上传的请求头部",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "removeClick",
+        "type": "{ file: XUploadNode; index: number }",
+        "toType": "",
+        "inputType": "OutputEmitterRef<{ file: XUploadNode; index: number }>",
+        "signal": "output",
+        "label": "删除按钮的事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "uploadReady",
+        "type": "XUploadNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XUploadNode>",
+        "signal": "output",
+        "label": "开始上传事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "uploading",
+        "type": "XUploadNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XUploadNode>",
+        "signal": "output",
+        "label": "正在上传事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "uploadSuccess",
+        "type": "XUploadNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XUploadNode>",
+        "signal": "output",
+        "label": "上传成功事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "uploadError",
+        "type": "XUploadNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XUploadNode>",
+        "signal": "output",
+        "label": "上传失败事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XAttachmentsProperty",
+    "extends": [
+      "XFormControlFunction(X_ATTACHMENTS_CONFIG_NAME)"
+    ]
+  },
+  "XFileCardPrefix": {
+    "type": "const",
+    "label": "FileCard",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XFileCardPrefix",
+    "selector": "x-file-card",
+    "decorator": "component",
+    "value": "'x-file-card'"
+  },
+  "XFileCardProperty": {
+    "type": "class",
+    "label": "FileCard Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "icon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "iconColor",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "图标颜色",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "name",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "文件名",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "文件大小",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "description",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "文件描述",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "type",
+        "type": "XFileCard",
+        "toType": "XFileCard",
+        "inputType": "InputSignal<XFileCard>",
+        "signal": "input",
+        "label": "文件类型",
+        "default": "'file'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "url",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "文件/图片链接地址",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XFileCardVariant",
+        "toType": "XFileCardVariant",
+        "inputType": "InputSignal<XFileCardVariant>",
+        "signal": "input",
+        "label": "形态变体",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XFileCardProperty",
+    "extends": [
+      "XPropertyFunction(X_FILE_CARD_CONFIG_NAME)"
+    ]
+  },
+  "XFileCard": {
+    "type": "type",
+    "label": "文件卡片类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XFileCard",
+    "value": "'file' | 'img'"
+  },
+  "XFileCardVariant": {
+    "type": "type",
+    "label": "形态变体",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XFileCardVariant",
+    "value": "'outlined' | 'filled' | 'shadow' | 'borderless'"
   },
   "XAutoCompletePrefix": {
     "type": "const",
@@ -7436,7 +8069,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XCardShadow>",
         "signal": "input",
         "label": "阴影显示方式",
-        "default": "'always'",
+        "default": "'never'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -7449,6 +8082,24 @@ export const zh_CN: {[key: string]: AppProp} = {
             "language": "html",
             "content": "<x-card shadow=\"always\">Always</x-card>\n<x-card shadow=\"hover\">Hover</x-card>\n<x-card shadow=\"never\">Never</x-card>"
           },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XCardVariant",
+        "toType": "XCardVariant",
+        "inputType": "InputSignal<XCardVariant>",
+        "signal": "input",
+        "label": "形态变体",
+        "default": "'outlined'",
+        "withConfig": true,
+        "description": "",
+        "example": [
           {
             "type": "text",
             "content": ""
@@ -7475,6 +8126,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XCardShadow",
     "value": "XShadow"
+  },
+  "XCardVariant": {
+    "type": "type",
+    "label": "形态变体",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XCardVariant",
+    "value": "'outlined' | 'filled' | 'shadow' | 'borderless'"
   },
   "XCardBodyStyle": {
     "type": "type",
@@ -18685,6 +19350,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToNumber"
       },
       {
+        "name": "visible",
+        "type": "boolean | null",
+        "toType": "boolean | null",
+        "inputType": "ModelSignal<boolean | null>",
+        "signal": "model",
+        "label": "visible 参数控制显示/隐藏",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "activatedId",
         "type": "string | number",
         "toType": "string | number",
@@ -26206,6 +26889,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "isKeyboardControlled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "是否使用键盘控制",
+        "default": "true",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "loadMore",
         "type": "XBoolean",
         "toType": "boolean",
@@ -26726,6 +27427,23 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "groupable",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "component",
+        "type": "XListOptionComponent",
+        "label": "对应的节点组件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "component",
         "propType": "",
         "example": [
           {
@@ -30764,6 +31482,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "wrap",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "wrap",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "itemClick",
         "type": "XPromptsNode",
         "toType": "",
@@ -30833,6 +31569,23 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "style",
+        "type": "XStyle",
+        "label": "节点样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "style",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "iconStyle",
         "type": "XStyle",
         "label": "图标样式",
@@ -30858,6 +31611,23 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "disabled",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "[property: string]",
+        "type": "any",
+        "label": "自定义属性",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "[property: string]",
         "propType": "",
         "example": [
           {
@@ -36907,6 +37677,253 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XStepsStatus",
     "value": "'wait' | 'process' | 'finish' | 'error'"
   },
+  "XSuggestionPrefix": {
+    "type": "const",
+    "label": "Suggestion",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSuggestionPrefix",
+    "selector": "x-suggestion",
+    "decorator": "component",
+    "value": "'x-suggestion'"
+  },
+  "XSuggestionProperty": {
+    "type": "class",
+    "label": "Suggestion Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "data",
+        "type": "XDataArray<XSuggestionNode>",
+        "toType": "XSuggestionNode[]",
+        "inputType": "InputSignalWithTransform<XSuggestionNode[], XDataArray<XSuggestionNode>>",
+        "signal": "input",
+        "label": "建议项列表",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToDataArray"
+      },
+      {
+        "name": "visible",
+        "type": "boolean",
+        "toType": "boolean",
+        "inputType": "ModelSignal<boolean>",
+        "signal": "model",
+        "label": "显示建议项",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "placement",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
+        "signal": "input",
+        "label": "展示位置",
+        "default": "'top-start'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "禁用",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "children",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "节点中已经包含子节点数据",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "portalMinWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "弹框的最小宽度",
+        "default": "'10rem'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalMaxWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "弹框的最大宽度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalMinHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "弹框的最小高度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalMaxHeight",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "弹框的最大高度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "nodeClick",
+        "type": "XSuggestionNode",
+        "toType": "",
+        "inputType": "OutputEmitterRef<XSuggestionNode>",
+        "signal": "output",
+        "label": "建议项点击事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XSuggestionProperty",
+    "extends": [
+      "XPropertyFunction(X_SUGGESTION_CONFIG_NAME)"
+    ]
+  },
+  "XSuggestionNode": {
+    "type": "interface",
+    "label": "建议项",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSuggestionNode",
+    "extends": [
+      "XDropdownNode"
+    ]
+  },
   "XSwitchPrefix": {
     "type": "const",
     "label": "Switch",
@@ -42258,6 +43275,266 @@ export const zh_CN: {[key: string]: AppProp} = {
       "XFormControlFunction(X_THEME_CONFIG_NAME)"
     ]
   },
+  "XThoughtChainPrefix": {
+    "type": "const",
+    "label": "ThoughtChain",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XThoughtChainPrefix",
+    "selector": "x-thought-chain",
+    "decorator": "component",
+    "value": "'x-thought-chain'"
+  },
+  "XThoughtChainProperty": {
+    "type": "class",
+    "label": "ThoughtChain Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "data",
+        "type": "XThoughtChainNode[]",
+        "toType": "XThoughtChainNode[]",
+        "inputType": "ModelSignal<XThoughtChainNode[]>",
+        "signal": "model",
+        "label": "思维链节点数据",
+        "default": "[]",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showNumber",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "显示序号",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "尺寸",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "wrapper",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "自定义内容模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "icon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "自定义图标模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "extra",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "节点标题右侧额外的内容模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "content",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "节点详细内容模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "collapsible",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "详细内容是否可折叠",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "loadingType",
+        "type": "XLoadingType",
+        "toType": "XLoadingType",
+        "inputType": "InputSignal<XLoadingType>",
+        "signal": "input",
+        "label": "loading 的类型样式",
+        "default": "'circular'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XThoughtChainProperty",
+    "extends": [
+      "XPropertyFunction(X_THOUGHT_CHAIN_CONFIG_NAME)"
+    ]
+  },
+  "XThoughtChainNode": {
+    "type": "interface",
+    "label": "思维链节点",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "description",
+        "type": "string",
+        "label": "节点描述",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "description",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "status",
+        "type": "XThoughtChainNodeStatus",
+        "label": "节点状态",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "status",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XThoughtChainNode",
+    "extends": [
+      "XTimelineNode"
+    ]
+  },
+  "XThoughtChainNodeStatus": {
+    "type": "type",
+    "label": "节点状态",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XThoughtChainNodeStatus",
+    "value": "'success' | 'error' | 'pending'"
+  },
   "XTimeAgoPrefix": {
     "type": "const",
     "label": "TimeAgo",
@@ -43752,6 +45029,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "icon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "图标模板",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showNumber",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "显示序号",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "mode",
         "type": "XTimelineMode",
         "toType": "XTimelineMode",
@@ -43759,6 +45072,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "时间轴的相对位置",
         "default": "'left'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "loadingType",
+        "type": "XLoadingType",
+        "toType": "XLoadingType",
+        "inputType": "InputSignal<XLoadingType>",
+        "signal": "input",
+        "label": "loading 的类型样式",
+        "default": "'circular'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "尺寸",
+        "default": "'medium'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -43812,23 +45161,6 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "content",
-        "propType": "",
-        "example": [
-          {
-            "type": "text",
-            "content": ""
-          }
-        ]
-      },
-      {
-        "name": "size",
-        "type": "XSize",
-        "label": "尺寸",
-        "default": "",
-        "withConfig": false,
-        "description": "",
-        "decorator": [],
-        "attr": "size",
         "propType": "",
         "example": [
           {
@@ -48811,6 +50143,96 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "dropContainer",
+        "type": "ElementRef | HTMLElement",
+        "toType": "ElementRef | HTMLElement",
+        "inputType": "InputSignal<ElementRef | HTMLElement>",
+        "signal": "input",
+        "label": "可拖拽上传的区域",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropIcon",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "可拖拽上传的区域的图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropTitle",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "可拖拽上传的区域的标题",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "dropDescription",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "可拖拽上传的区域的描述",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "showDrop",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "直接显示可拖拽上传的区域",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "accept",
