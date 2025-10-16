@@ -11,7 +11,6 @@ import {
   computed
 } from '@angular/core';
 import { XCarouselPanelPrefix, XCarouselPanelProperty } from './carousel.property';
-import { XDropAnimation } from '@ng-nest/ui/core';
 import { XCarouselComponent } from './carousel.component';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -19,7 +18,6 @@ import { Subject, takeUntil } from 'rxjs';
   selector: `${XCarouselPanelPrefix}`,
   templateUrl: './carousel-panel.component.html',
   styleUrls: ['./carousel-panel.component.scss'],
-  animations: [XDropAnimation],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

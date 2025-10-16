@@ -151,5 +151,5 @@ export class XTableViewRow extends CdkRow {
   providers: [{ provide: CdkNoDataRow, useExisting: XTableNoDataRow }]
 })
 export class XTableNoDataRow extends CdkNoDataRow {
-  override _contentClassName = 'x-table-no-data-row';
+  override _contentClassNames = ['x-table-no-data-row'];
 }

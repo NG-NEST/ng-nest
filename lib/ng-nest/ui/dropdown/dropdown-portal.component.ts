@@ -19,7 +19,7 @@ import {
 } from '@angular/core';
 import { XDropdownPortalPrefix, XDropdownNode, XDropdownTrigger } from './dropdown.property';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
-import { XConnectBaseAnimation, XPositionTopBottom, XSize } from '@ng-nest/ui/core';
+import { XPositionTopBottom, XSize } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {
@@ -39,18 +39,17 @@ import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
   templateUrl: './dropdown-portal.component.html',
   styleUrls: ['./dropdown-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectBaseAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDropdownPortalComponent {
-  @HostBinding('@x-connect-base-animation') public get getPlacement() {
-    return this.placement();
-  }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+  @HostBinding('animate.enter') animateEnter = 'x-connect-enter';
+  @HostBinding('animate.leave') animateLeave = 'x-connect-leave';
+
+  @HostListener('animationend', ['$event']) done() {
     if (this.destroy()) return;
     this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+  @HostListener('animationstart', ['$event']) start() {
     if (this.destroy()) return;
     this.animating.emit(true);
   }

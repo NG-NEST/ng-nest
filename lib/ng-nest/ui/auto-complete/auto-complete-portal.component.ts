@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompletePortalPrefix } from './auto-complete.property';
 import { Subject } from 'rxjs';
-import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XPositionTopBottom } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -27,21 +27,21 @@ import { XInputComponent } from '@ng-nest/ui/input';
   templateUrl: './auto-complete-portal.component.html',
   styleUrls: ['./auto-complete-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectBaseAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAutoCompletePortalComponent implements OnInit {
-  @HostBinding('@x-connect-base-animation') public get getPlacement() {
-    return this.placement();
-  }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+  @HostBinding('animate.enter') animateEnter = 'x-connect-enter';
+  @HostBinding('animate.leave') animateLeave = 'x-connect-leave';
+
+  @HostListener('animationend', ['$event']) done() {
     if (this.destroy()) return;
     this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+  @HostListener('animationstart', ['$event']) start() {
     if (this.destroy()) return;
     this.animating.emit(true);
   }
+
   list = viewChild.required('list', { read: XListComponent });
 
   data = input<XAutoCompleteNode[]>();

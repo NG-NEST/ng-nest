@@ -21,14 +21,7 @@ import {
   XDatePickerPreset,
   XDatePickerType
 } from './date-picker.property';
-import {
-  XIsEmpty,
-  XConnectBaseAnimation,
-  XPositionTopBottom,
-  XAddDays,
-  XTemplate,
-  XIsUndefined
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XPositionTopBottom, XAddDays, XTemplate, XIsUndefined } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { XI18nService, XI18nDatePicker, zh_CN } from '@ng-nest/ui/i18n';
@@ -61,18 +54,17 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrls: ['./date-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectBaseAnimation],
   providers: [DatePipe, LowerCasePipe]
 })
 export class XDatePickerPortalComponent implements AfterViewInit {
-  @HostBinding('@x-connect-base-animation') public get getPlacement() {
-    return this.placement();
-  }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+  @HostBinding('animate.enter') animateEnter = 'x-connect-enter';
+  @HostBinding('animate.leave') animateLeave = 'x-connect-leave';
+
+  @HostListener('animationend', ['$event']) done() {
     if (this.destroy()) return;
     this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+  @HostListener('animationstart', ['$event']) start() {
     if (this.destroy()) return;
     this.animating.emit(true);
   }

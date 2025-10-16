@@ -113,7 +113,7 @@ export class XPopoverDirective extends XPopoverProperty implements OnDestroy, On
     if (this.timeoutShow) clearTimeout(this.timeoutShow);
     if (this.portal?.overlayRef?.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
-        this.portal.overlayRef?.dispose();
+        this.portal.overlayRef?.detach();
         this.visible.set(false);
       }, this.mouseLeaveDelay());
     }

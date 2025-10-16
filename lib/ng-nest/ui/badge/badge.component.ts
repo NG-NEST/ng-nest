@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, computed, signal } from '@angular/core';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { XBadgePrefix, XBadgeProperty } from './badge.property';
-import { XIsNumber, XIsEmpty, XBadgeAnimation, XBadgeStandaloneAnimation, XIsString } from '@ng-nest/ui/core';
+import { XIsNumber, XIsEmpty, XIsString } from '@ng-nest/ui/core';
 
 @Component({
   selector: `${XBadgePrefix}`,
@@ -9,8 +9,7 @@ import { XIsNumber, XIsEmpty, XBadgeAnimation, XBadgeStandaloneAnimation, XIsStr
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XBadgeAnimation, XBadgeStandaloneAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XBadgeComponent extends XBadgeProperty {
   range = signal([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '+']);

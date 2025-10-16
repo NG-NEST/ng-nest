@@ -14,7 +14,7 @@ import {
   OnInit
 } from '@angular/core';
 import { XCascadeNode, XCascadeNodeTrigger } from './cascade.property';
-import { XIsEmpty, XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XIsEmpty, XPositionTopBottom } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil, tap } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -28,18 +28,17 @@ import { toObservable } from '@angular/core/rxjs-interop';
   templateUrl: './cascade-portal.component.html',
   styleUrls: ['./cascade-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectBaseAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XCascadePortalComponent implements OnInit {
-  @HostBinding('@x-connect-base-animation') public get getPlacement() {
-    return this.placement();
-  }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+  @HostBinding('animate.enter') animateEnter = 'x-connect-enter';
+  @HostBinding('animate.leave') animateLeave = 'x-connect-leave';
+
+  @HostListener('animationend', ['$event']) done() {
     if (this.destroy()) return;
     this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+  @HostListener('animationstart', ['$event']) start() {
     if (this.destroy()) return;
     this.animating.emit(true);
   }

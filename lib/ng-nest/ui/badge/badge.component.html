@@ -8,11 +8,21 @@
   <ng-content></ng-content>
   @if (valueNumber() > 0 || dot()) {
     @if (standalone()) {
-      <sup [@x-badge-standalone-animation] [style.marginRight]="offsetLeft()" [style.marginTop]="offsetTop()">
+      <sup
+        animate.enter="x-badge-standalone-enter"
+        animate.leave="x-badge-standalone-leave"
+        [style.marginRight]="offsetLeft()"
+        [style.marginTop]="offsetTop()"
+      >
         <ng-container *ngTemplateOutlet="dotTpl"></ng-container>
       </sup>
     } @else {
-      <sup [@x-badge-animation] [style.marginRight]="offsetLeft()" [style.marginTop]="offsetTop()">
+      <sup
+        animate.enter="x-badge-enter"
+        animate.leave="x-badge-leave"
+        [style.marginRight]="offsetLeft()"
+        [style.marginTop]="offsetTop()"
+      >
         <ng-container *ngTemplateOutlet="dotTpl"></ng-container>
       </sup>
     }

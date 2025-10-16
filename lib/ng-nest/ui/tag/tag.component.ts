@@ -8,7 +8,7 @@ import {
   signal
 } from '@angular/core';
 import { XTagPrefix, XTagProperty } from './tag.property';
-import { XIsEmpty, XBaseAnimation } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { NgClass } from '@angular/common';
 import { XIconComponent } from '@ng-nest/ui/icon';
 
@@ -18,16 +18,18 @@ import { XIconComponent } from '@ng-nest/ui/icon';
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XBaseAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTagComponent extends XTagProperty {
-  @HostBinding('@x-base-animation') public animation = true;
   animating = signal(false);
-  @HostListener('@x-base-animation.done', ['$event']) done() {
+
+  @HostBinding('animate.enter') animateEnter = 'x-base-enter';
+  @HostBinding('animate.leave') animateLeave = 'x-base-leave';
+
+  @HostListener('animationend', ['$event']) done() {
     this.animating.set(false);
   }
-  @HostListener('@x-base-animation.start', ['$event']) start() {
+  @HostListener('animationstart', ['$event']) start() {
     this.animating.set(true);
   }
 

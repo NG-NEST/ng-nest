@@ -3,8 +3,6 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   OnInit,
-  HostBinding,
-  HostListener,
   TemplateRef,
   input,
   viewChild,
@@ -13,11 +11,13 @@ import {
   signal,
   computed,
   inject,
-  DestroyRef
+  DestroyRef,
+  HostBinding,
+  HostListener
 } from '@angular/core';
 import { XSelectNode, XSelectPortalPrefix } from './select.property';
 import { Subject } from 'rxjs';
-import { XConnectBaseAnimation, XPlacement, XSize } from '@ng-nest/ui/core';
+import { XPlacement, XSize } from '@ng-nest/ui/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -31,18 +31,17 @@ import { toSignal } from '@angular/core/rxjs-interop';
   templateUrl: './select-portal.component.html',
   styleUrls: ['./select-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectBaseAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XSelectPortalComponent implements OnInit {
-  @HostBinding('@x-connect-base-animation') public get getPlacement() {
-    return this.placement();
-  }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+  @HostBinding('animate.enter') animateEnter = 'x-connect-enter';
+  @HostBinding('animate.leave') animateLeave = 'x-connect-leave';
+
+  @HostListener('animationend', ['$event']) done() {
     if (this.destroy()) return;
     this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+  @HostListener('animationstart', ['$event']) start() {
     if (this.destroy()) return;
     this.animating.emit(true);
   }
@@ -70,6 +69,7 @@ export class XSelectPortalComponent implements OnInit {
   virtualScroll = input<boolean>(false);
   keywordText = input<any>('');
   size = input<XSize>();
+  showPortal = signal(false);
 
   animating = output<boolean>();
   nodeClick = output<{ node: XSelectNode | null; value?: XSelectNode[] | (string | number)[] }>();

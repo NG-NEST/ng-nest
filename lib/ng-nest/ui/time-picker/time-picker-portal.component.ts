@@ -17,7 +17,7 @@ import {
   XTimePickerPreset,
   XTimePickerType
 } from './time-picker.property';
-import { XConnectBaseAnimation, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XPositionTopBottom } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nService, XI18nTimePicker, zh_CN } from '@ng-nest/ui/i18n';
@@ -31,19 +31,18 @@ import { toSignal } from '@angular/core/rxjs-interop';
   templateUrl: './time-picker-portal.component.html',
   styleUrls: ['./time-picker-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectBaseAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTimePickerPortalComponent {
   private i18n = inject(XI18nService);
-  @HostBinding('@x-connect-base-animation') public get getPlacement() {
-    return this.placement();
-  }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+  @HostBinding('animate.enter') animateEnter = 'x-connect-enter';
+  @HostBinding('animate.leave') animateLeave = 'x-connect-leave';
+
+  @HostListener('animationend', ['$event']) done() {
     if (this.destroy()) return;
     this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+  @HostListener('animationstart', ['$event']) start() {
     if (this.destroy()) return;
     this.animating.emit(true);
   }

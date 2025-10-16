@@ -1,0 +1,32 @@
+@use '../params/index.scss' as *;
+
+.x-connect-enter {
+  animation: connect-enter $x-animation-duration-fast;
+  animation-timing-function: ease-in;
+}
+.x-connect-leave {
+  animation: connect-leave $x-animation-duration-fast;
+  animation-timing-function: ease-out;
+}
+
+@keyframes connect-enter {
+  from {
+    opacity: 0;
+    transform: scaleY(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes connect-leave {
+  from {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  to {
+    opacity: 0;
+    transform: scaleY(0.8);
+  }
+}

@@ -1,0 +1,129 @@
+@use '../params/index.scss' as *;
+
+.x-move-top-start-enter,
+.x-move-top-enter,
+.x-move-top-end-enter,
+.x-move-center-enter {
+  animation: move-top-enter $x-animation-duration-base ease-in;
+}
+
+.x-move-top-start-leave,
+.x-move-top-leave,
+.x-move-top-end-leave,
+.x-move-center-leave {
+  animation: move-top-leave $x-animation-duration-base ease-out;
+}
+
+@keyframes move-top-enter {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes move-top-leave {
+  from {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+}
+
+.x-move-left-enter {
+  animation: move-left-enter $x-animation-duration-base ease-in;
+}
+.x-move-left-leave {
+  animation: move-left-leave $x-animation-duration-base ease-out;
+}
+
+@keyframes move-left-enter {
+  from {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes move-left-leave {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
+}
+
+.x-move-right-enter {
+  animation: move-right-enter $x-animation-duration-base ease-in;
+}
+.x-move-right-leave {
+  animation: move-right-leave $x-animation-duration-base ease-out;
+}
+
+@keyframes move-right-enter {
+  from {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes move-right-leave {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+}
+
+.x-move-bottom-start-enter,
+.x-move-bottom-enter,
+.x-move-bottom-end-enter {
+  animation: move-bottom-enter $x-animation-duration-base ease-in;
+}
+
+.x-move-bottom-start-leave,
+.x-move-bottom-leave,
+.x-move-bottom-end-leave {
+  animation: move-bottom-leave $x-animation-duration-base ease-out;
+}
+
+@keyframes move-bottom-enter {
+  from {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes move-bottom-leave {
+  from {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,97 @@
+@use '../params/index.scss' as *;
+
+.x-slide-right-enter {
+  animation: right-enter $x-animation-duration-base ease-in;
+}
+.x-slide-right-leave {
+  animation: right-leave $x-animation-duration-base ease-out;
+}
+
+@keyframes right-enter {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes right-leave {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.x-slide-left-enter {
+  animation: left-enter $x-animation-duration-base ease-in;
+}
+.x-slide-left-leave {
+  animation: left-leave $x-animation-duration-base ease-out;
+}
+
+@keyframes left-enter {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes left-leave {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.x-slide-top-enter {
+  animation: top-enter $x-animation-duration-base ease-in;
+}
+.x-slide-top-leave {
+  animation: top-leave $x-animation-duration-base ease-out;
+}
+
+@keyframes top-enter {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes top-leave {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.x-slide-bottom-enter {
+  animation: bottom-enter $x-animation-duration-base ease-in;
+}
+.x-slide-bottom-leave {
+  animation: bottom-leave $x-animation-duration-base ease-out;
+}
+
+@keyframes bottom-enter {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes bottom-leave {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}

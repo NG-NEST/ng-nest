@@ -84,12 +84,34 @@
     flex-direction: row-reverse;
   }
   &-body {
+    display: grid;
+    grid-template-rows: 0fr;
     overflow: hidden;
     border-bottom: $x-border-width $x-border-style transparent;
-    transition: border-color 0.3s;
+    transition:
+      border-color $x-animation-duration-base,
+      grid-template-rows $x-animation-duration-base;
+    transition-timing-function: ease-in-out;
+  }
+  &-active {
+    grid-template-rows: 1fr;
+    .x-collapse-panel-content {
+      padding-bottom: 0.625rem;
+      visibility: visible;
+      opacity: 1;
+    }
   }
   &-content {
-    padding-bottom: 0.625rem;
+    padding-bottom: 0;
+    min-height: 0;
+    transition:
+      visibility $x-animation-duration-base,
+      opacity $x-animation-duration-base,
+      padding-bottom $x-animation-duration-base;
+    transition-timing-function: ease-in-out;
+    visibility: hidden;
+    overflow: hidden;
+    opacity: 0;
   }
   &.x-activated {
     .x-collapse-panel-header {

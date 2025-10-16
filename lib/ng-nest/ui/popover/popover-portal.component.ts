@@ -9,7 +9,7 @@ import {
   output
 } from '@angular/core';
 import { XPopoverPortalPrefix, XPopoverTrigger } from './popover.property';
-import { XTemplate, XPlacement, XFadeAnimation, XIsEmpty } from '@ng-nest/ui/core';
+import { XTemplate, XPlacement, XIsEmpty } from '@ng-nest/ui/core';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { NgClass } from '@angular/common';
 
@@ -19,8 +19,7 @@ import { NgClass } from '@angular/common';
   templateUrl: './popover-portal.component.html',
   styleUrls: ['./popover-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XFadeAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XPopoverPortalComponent {
   title = input<XTemplate>();
@@ -45,7 +44,8 @@ export class XPopoverPortalComponent {
     }
   }
 
-  @HostBinding('@x-fade-animation') animation = true;
+  @HostBinding('animate.enter') animateEnter = 'x-fade-enter';
+  @HostBinding('animate.leave') animateLeave = 'x-fade-leave';
 
   classMap = computed(() => ({
     [`${XPopoverPortalPrefix}-${this.placement()}`]: !XIsEmpty(this.placement())

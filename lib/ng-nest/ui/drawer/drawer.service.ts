@@ -41,7 +41,7 @@ export class XDrawerService {
     });
     const { overlayRef, componentRef } = portal || {};
     const { instance } = componentRef! || {};
-    instance.placement = option.placement;
+    componentRef?.setInput('placement', option.placement);
     const drawerRef = new XDrawerRef<T>(overlayRef!, instance);
     if (content instanceof TemplateRef) {
       instance.attachTemplatePortal(

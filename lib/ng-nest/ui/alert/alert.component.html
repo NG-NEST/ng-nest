@@ -9,9 +9,10 @@
     [cdkDragDisabled]="!draggable()"
     [cdkDragBoundary]="dragBoundary()!"
     [ngClass]="classMap()"
-    @x-fade-animation
-    [@.disabled]="disabledAnimation()"
-    (@x-fade-animation.done)="onCloseAnimationDone()"
+    animate.enter="x-connect-enter"
+    animate.leave="x-connect-leave"
+    [class.x-animate-disabled]="disabledAnimation()"
+    (animationend)="onCloseAnimationDone()"
     [xResizable]="resizable()!"
     (resizing)="resizing.emit($event)"
     [offsetLeft]="offsetLeft()"
@@ -53,7 +54,14 @@
       <div class="x-alert-close">
         <div class="x-alert-operation" *xOutlet="operationTpl()">{{ operationTpl() }}</div>
         @if (!hideClose()) {
-          <x-button class="x-alert-operation-close" size="small" [icon]="!closeText() ? 'fto-x' : ''" [type]="'text'" (click)="onClose()" closable>
+          <x-button
+            class="x-alert-operation-close"
+            size="small"
+            [icon]="!closeText() ? 'fto-x' : ''"
+            [type]="'text'"
+            (click)="onClose()"
+            closable
+          >
             {{ closeText() }}
           </x-button>
         }

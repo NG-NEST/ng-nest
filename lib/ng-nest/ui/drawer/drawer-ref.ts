@@ -1,5 +1,4 @@
 import { OverlayRef } from '@angular/cdk/overlay';
-import { filter, take } from 'rxjs';
 import { XDrawerPortalComponent } from './drawer-portal.component';
 
 // TODO: add more function
@@ -10,14 +9,6 @@ export class XDrawerRef<C> {
     public containerInstance: XDrawerPortalComponent
   ) {}
   close() {
-    this.containerInstance.animationChanged
-      .pipe(
-        filter((event) => event.state === 'void' && event.action === 'done'),
-        take(1)
-      )
-      .subscribe(() => {
-        this.overlayRef.dispose();
-      });
-    this.containerInstance.placement = 'void';
+    this.overlayRef.detach();
   }
 }

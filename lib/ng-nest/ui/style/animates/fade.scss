@@ -1,0 +1,32 @@
+@use '../params/index.scss' as *;
+
+.x-fade-enter {
+  animation: fade-enter $x-animation-duration-fast;
+  animation-timing-function: ease-in;
+}
+.x-fade-leave {
+  animation: fade-leave $x-animation-duration-fast;
+  animation-timing-function: ease-out;
+}
+
+@keyframes fade-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-leave {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}

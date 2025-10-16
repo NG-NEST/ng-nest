@@ -13,7 +13,7 @@ import {
   viewChild
 } from '@angular/core';
 import { XDrawerPrefix, XDrawerProperty, X_DRAWER_CONTAINER } from './drawer.property';
-import { XIsEmpty, XOpacityAnimation, XSlideAnimation } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { XPortalService, XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { Overlay } from '@angular/cdk/overlay';
@@ -29,8 +29,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XSlideAnimation, XOpacityAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDrawerComponent extends XDrawerProperty implements AfterViewInit, OnDestroy {
   @HostBinding('class.x-drawer-visible') get getVisible() {

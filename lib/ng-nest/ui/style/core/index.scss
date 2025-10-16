@@ -2,6 +2,7 @@
 @use '../mixins/hidden' as *;
 @use '../params/index' as *;
 @use '../directives/index' as *;
+@use '../animates/index' as *;
 
 @include var-size-hidden($x-size-range-only);
 
@@ -25,9 +26,3 @@ pre,
 tt {
   font-family: $x-font-code-family;
 }
-
-// .x-portal {
-//   &-resizable {
-//     display: inline-block !important;
-//   }
-// }

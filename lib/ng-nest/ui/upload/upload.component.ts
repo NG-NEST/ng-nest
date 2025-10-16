@@ -179,7 +179,7 @@ export class XUploadComponent extends XUploadProperty {
       const icon = this.dropIcon()!;
       const title = this.dropTitle()!;
       const description = this.dropDescription()!;
-      this.dragOverlayService.createOverlay(element, { icon, title, description });
+      this.dragOverlayService.createOverlay(element, this.viewContainerRef, { icon, title, description });
     }
   }
 

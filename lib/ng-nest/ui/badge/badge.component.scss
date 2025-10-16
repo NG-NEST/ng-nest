@@ -11,4 +11,5 @@
 .#{$x-badge} {
   @include reset-component();
   @include badge();
+  @include badge-animate();
 }

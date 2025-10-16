@@ -2,13 +2,15 @@
   @if (hasContainer() && hasBackdrop()) {
     <div class="x-drawer-backdrop" (click)="closePortal()"></div>
   }
+
   <div
     class="x-drawer"
     [ngClass]="classMap()"
     [style.width]="hasContainer() ? width() : '100%'"
     [style.height]="hasContainer() ? height() : '100%'"
     [class.x-drawer-visible]="visible()"
-    [@x-slide-animation]="placement()"
+    [animate.enter]="`x-slide-${placement()}-enter`"
+    [animate.leave]="`x-slide-${placement()}-leave`"
   >
     @if (title()) {
       <div class="x-drawer-header">

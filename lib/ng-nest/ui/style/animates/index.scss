@@ -1,0 +1,10 @@
+@use './base' as *;
+@use './conect' as *;
+@use './fade' as *;
+@use './slide' as *;
+@use './move' as *;
+
+.x-animate-disabled {
+  animation: none !important;
+  transition: none !important;
+}

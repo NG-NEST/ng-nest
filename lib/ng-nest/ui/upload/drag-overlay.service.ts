@@ -3,6 +3,7 @@ import { ComponentRef, DOCUMENT, inject, Injectable, Renderer2, RendererFactory2
 import { XDragOverlayComponent } from './drag-overlay.component';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { XComputedStyle, XTemplate } from '@ng-nest/ui/core';
+import { ViewContainerRef } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,14 @@ export class XDragOverlayService {
     this.renderer = this.factory.createRenderer(null, null);
   }
 
-  createOverlay(container: HTMLElement, params: { icon: XTemplate; title: XTemplate; description: XTemplate }): void {
+  createOverlay(
+    container: HTMLElement,
+    viewContainerRef: ViewContainerRef,
+    params: { icon: XTemplate; title: XTemplate; description: XTemplate }
+  ): void {
     this.removeOverlay(container);
+
+    const isBodyOrWindow = container === this.document.body || container === this.document.documentElement;
 
     this.containerPosition = container.style.position;
     this.renderer.setStyle(container, 'position', 'relative');
@@ -29,7 +36,7 @@ export class XDragOverlayService {
     const overlayConfig = new OverlayConfig({
       positionStrategy: this.overlay.position().global(),
       hasBackdrop: false,
-      scrollStrategy: this.overlay.scrollStrategies.reposition()
+      scrollStrategy: this.overlay.scrollStrategies.block()
     });
 
     this.overlayRef = this.overlay.create(overlayConfig);
@@ -42,19 +49,22 @@ export class XDragOverlayService {
         'border-radius',
         XComputedStyle(container, 'border-radius')
       );
+
       this.renderer.setStyle(this.overlayRef.overlayElement, 'position', 'absolute');
       this.renderer.setStyle(this.overlayRef.overlayElement, 'pointer-events', 'none');
       this.renderer.setStyle(this.overlayRef.overlayElement, 'z-index', 'none');
     }
 
-    const portal = new ComponentPortal(XDragOverlayComponent);
+    const portal = new ComponentPortal(XDragOverlayComponent, viewContainerRef);
     this.componentRef = this.overlayRef.attach(portal);
     this.componentRef.setInput('icon', params.icon);
     this.componentRef.setInput('title', params.title);
     this.componentRef.setInput('description', params.description);
 
     if (this.overlayRef && this.overlayRef.overlayElement) {
-      container.appendChild(this.overlayRef.overlayElement);
+      if (!isBodyOrWindow) {
+        container.appendChild(this.overlayRef.overlayElement);
+      }
     }
   }
 
@@ -64,13 +74,10 @@ export class XDragOverlayService {
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
-
       if (this.overlayRef.overlayElement && this.overlayRef.overlayElement.parentNode) {
         this.overlayRef.overlayElement.parentNode.removeChild(this.overlayRef.overlayElement);
       }
-
       this.renderer.setStyle(container, 'position', this.containerPosition);
-
       this.overlayRef.dispose();
       this.overlayRef = null;
       this.componentRef = null;

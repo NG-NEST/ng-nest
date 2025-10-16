@@ -4,15 +4,12 @@ import {
   Component,
   ComponentRef,
   EmbeddedViewRef,
-  EventEmitter,
   HostBinding,
-  HostListener,
   ViewEncapsulation,
+  input,
   viewChild
 } from '@angular/core';
-import { XSlideAnimation } from '@ng-nest/ui/core';
-import { XDrawerAnimationEvent, XDrawerAnimationState } from './drawer.property';
-import { AnimationEvent } from '@angular/animations';
+import { XPosition } from '@ng-nest/ui/core';
 
 @Component({
   selector: 'x-drawer-portal',
@@ -20,21 +17,21 @@ import { AnimationEvent } from '@angular/animations';
   templateUrl: './drawer-portal.component.html',
   styleUrls: ['./drawer-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XSlideAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDrawerPortalComponent extends BasePortalOutlet {
   @HostBinding('class.x-drawer-portal') _has = true;
-  @HostBinding('@x-slide-animation') public placement?: XDrawerAnimationState;
-  @HostListener('@x-slide-animation.done', ['$event']) done({ toState, totalTime }: AnimationEvent) {
-    this.animationChanged.next({ action: 'done', state: toState as XDrawerAnimationState, totalTime });
-  }
-  @HostListener('@x-slide-animation.start', ['$event']) start({ toState, totalTime }: AnimationEvent) {
-    this.animationChanged.next({ action: 'start', state: toState as XDrawerAnimationState, totalTime });
-  }
-  portalOutlet = viewChild.required(CdkPortalOutlet);
 
-  animationChanged = new EventEmitter<XDrawerAnimationEvent>();
+  placement = input<XPosition>();
+
+  @HostBinding('animate.enter') get animateEnter() {
+    return `x-slide-${this.placement()}-enter`;
+  }
+  @HostBinding('animate.leave') get animateLeave() {
+    return `x-slide-${this.placement()}-leave`;
+  }
+
+  portalOutlet = viewChild.required(CdkPortalOutlet);
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
     if (this.portalOutlet().hasAttached()) {

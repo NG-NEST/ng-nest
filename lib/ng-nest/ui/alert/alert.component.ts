@@ -10,7 +10,7 @@ import {
   DestroyRef
 } from '@angular/core';
 import { XAlertPrefix, XAlertProperty } from './alert.property';
-import { XFadeAnimation, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { of, Subject, Subscription } from 'rxjs';
 import { delay, takeUntil } from 'rxjs/operators';
 import { XIconComponent } from '@ng-nest/ui/icon';
@@ -34,8 +34,7 @@ import { NgClass, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XFadeAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAlertComponent extends XAlertProperty {
   styleHide = signal(false);

@@ -24,7 +24,6 @@ import {
 } from './date-picker.property';
 import {
   XIsEmpty,
-  XConnectBaseAnimation,
   XPositionTopBottom,
   XAddMonths,
   XAddYears,
@@ -66,18 +65,17 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrls: ['./date-range-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XConnectBaseAnimation],
   providers: [DatePipe, LowerCasePipe]
 })
 export class XDateRangePortalComponent implements AfterViewInit {
-  @HostBinding('@x-connect-base-animation') public get getPlacement() {
-    return this.placement();
-  }
-  @HostListener('@x-connect-base-animation.done', ['$event']) done() {
+  @HostBinding('animate.enter') animateEnter = 'x-connect-enter';
+  @HostBinding('animate.leave') animateLeave = 'x-connect-leave';
+
+  @HostListener('animationend', ['$event']) done() {
     if (this.destroy()) return;
     this.animating.emit(false);
   }
-  @HostListener('@x-connect-base-animation.start', ['$event']) start() {
+  @HostListener('animationstart', ['$event']) start() {
     if (this.destroy()) return;
     this.animating.emit(true);
   }
