@@ -78,52 +78,36 @@
     position: absolute;
     display: block;
     outline: 0;
-    z-index: 2;
-    transition:
-      transform 0.2s ease-in,
-      visibility 0.2s ease-in;
-    visibility: hidden;
+    z-index: 1001;
+    width: initial;
+    height: initial;
+
     &-left {
-      transform: translate3d(-100%, 0, 0);
       left: 0;
       top: 0;
     }
     &-right {
-      transform: translate3d(100%, 0, 0);
       right: 0;
       top: 0;
     }
     &-top {
-      transform: translate3d(0, -100%, 0);
       top: 0;
       left: 0;
     }
     &-bottom {
-      transform: translate3d(0, 100%, 0);
       bottom: 0;
       left: 0;
     }
-    &-visible {
-      transform: translate3d(0, 0, 0);
-      visibility: inherit;
-      .#{$x-drawer}-backdrop {
-        opacity: 1;
-        z-index: 1;
-      }
-    }
+
     &-backdrop {
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: -1;
+      z-index: 1000;
       pointer-events: auto;
       background: rgba(0, 0, 0, 0.32);
-      transition:
-        opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-        z-index 0 ease-in 0.4s;
-      opacity: 0;
     }
   }
 }
