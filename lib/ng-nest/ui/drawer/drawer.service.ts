@@ -44,16 +44,17 @@ export class XDrawerService {
     componentRef?.setInput('placement', option.placement);
     const drawerRef = new XDrawerRef<T>(overlayRef!, instance);
     if (content instanceof TemplateRef) {
-      instance.attachTemplatePortal(
-        new TemplatePortal(content, option.viewContainerRef!, { $implicit: option.data, drawerRef: drawerRef })
-      );
+      instance.portal = new TemplatePortal(content, option.viewContainerRef!, {
+        $implicit: option.data,
+        drawerRef: drawerRef
+      });
     } else {
       const injector = this.portalService.createInjector([
         { provide: X_DRAWER_DATA, useValue: option.data },
         { provide: XDrawerRef, useValue: drawerRef }
       ]);
 
-      instance.attachComponentPortal(new ComponentPortal(content, option.viewContainerRef, injector));
+      instance.portal = new ComponentPortal(content, option.viewContainerRef, injector);
     }
     if (option.hasBackdrop && option.backdropClose && overlayRef)
       overlayRef.backdropClick().subscribe(() => {

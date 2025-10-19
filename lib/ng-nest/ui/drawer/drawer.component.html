@@ -1,36 +1,43 @@
 <ng-template #drawerTpl>
-  @if (hasContainer() && hasBackdrop()) {
-    <div class="x-drawer-backdrop" (click)="closePortal()"></div>
-  }
-
-  <div
-    class="x-drawer"
-    [ngClass]="classMap()"
-    [style.width]="hasContainer() ? width() : '100%'"
-    [style.height]="hasContainer() ? height() : '100%'"
-    [class.x-drawer-visible]="visible()"
-    [animate.enter]="`x-slide-${placement()}-enter`"
-    [animate.leave]="`x-slide-${placement()}-leave`"
-  >
-    @if (title()) {
-      <div class="x-drawer-header">
-        <div class="x-drawer-title">
-          <ng-container *xOutlet="title()">{{ title() }}</ng-container>
-        </div>
-        <x-button
-          size="small"
-          class="x-drawer-close"
-          icon="fto-x"
-          type="text"
-          (click)="closePortal()"
-          closable
-        ></x-button>
-      </div>
+  @if (visible()) {
+    @if (hasContainer() && hasBackdrop()) {
+      <div
+        class="x-drawer-backdrop"
+        [animate.enter]="`x-opacity-enter`"
+        [animate.leave]="`x-opacity-leave`"
+        (click)="closePortal()"
+      ></div>
     }
-    <div class="x-drawer-content">
-      <ng-content></ng-content>
+
+    <div
+      class="x-drawer"
+      [ngClass]="classMap()"
+      [style.width]="hasContainer() ? width() : '100%'"
+      [style.height]="hasContainer() ? height() : '100%'"
+      [animate.enter]="`x-slide-${placement()}-enter`"
+      [animate.leave]="`x-slide-${placement()}-leave`"
+    >
+      @if (title()) {
+        {{ hasContainer() }} {{ hasBackdrop() }}
+        <div class="x-drawer-header">
+          <div class="x-drawer-title">
+            <ng-container *xOutlet="title()">{{ title() }}</ng-container>
+          </div>
+          <x-button
+            size="small"
+            class="x-drawer-close"
+            icon="fto-x"
+            type="text"
+            (click)="closePortal()"
+            closable
+          ></x-button>
+        </div>
+      }
+      <div class="x-drawer-content">
+        <ng-content></ng-content>
+      </div>
     </div>
-  </div>
+  }
 </ng-template>
 @if (hasContainer()) {
   <ng-container *ngTemplateOutlet="drawerTpl"></ng-container>

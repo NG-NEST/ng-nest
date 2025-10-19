@@ -100,14 +100,12 @@ export class XDrawerComponent extends XDrawerProperty implements AfterViewInit, 
   }
 
   closePortal() {
-    if (this.container) {
+    if (this.portalAttached()) {
+      this.portal?.overlayRef?.detach();
+      this.back$?.unsubscribe();
       this.close.emit();
-    } else {
-      if (this.portalAttached()) {
-        this.portal?.overlayRef?.detach();
-        this.back$?.unsubscribe();
-        this.close.emit();
-      }
+    } else if (this.container && this.visible()) {
+      this.visible.set(false);
     }
   }
 }

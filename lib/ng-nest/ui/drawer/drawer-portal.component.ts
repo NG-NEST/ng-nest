@@ -1,14 +1,5 @@
-import { BasePortalOutlet, PortalModule, CdkPortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ComponentRef,
-  EmbeddedViewRef,
-  HostBinding,
-  ViewEncapsulation,
-  input,
-  viewChild
-} from '@angular/core';
+import { PortalModule, CdkPortalOutlet, Portal } from '@angular/cdk/portal';
+import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation, input, viewChild } from '@angular/core';
 import { XPosition } from '@ng-nest/ui/core';
 
 @Component({
@@ -19,10 +10,11 @@ import { XPosition } from '@ng-nest/ui/core';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDrawerPortalComponent extends BasePortalOutlet {
+export class XDrawerPortalComponent {
   @HostBinding('class.x-drawer-portal') _has = true;
 
   placement = input<XPosition>();
+  portal!: Portal<any>;
 
   @HostBinding('animate.enter') get animateEnter() {
     return `x-slide-${this.placement()}-enter`;
@@ -33,16 +25,7 @@ export class XDrawerPortalComponent extends BasePortalOutlet {
 
   portalOutlet = viewChild.required(CdkPortalOutlet);
 
-  attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
-    if (this.portalOutlet().hasAttached()) {
-      throw Error('drawer portal has attached');
-    }
-    return this.portalOutlet().attachComponentPortal(portal);
-  }
-  attachTemplatePortal<C>(portal: TemplatePortal<C>): EmbeddedViewRef<C> {
-    if (this.portalOutlet().hasAttached()) {
-      throw Error('drawer portal has attached');
-    }
-    return this.portalOutlet().attachTemplatePortal(portal);
+  ngAfterViewInit() {
+    this.portalOutlet().setDisposeFn(() => {});
   }
 }
