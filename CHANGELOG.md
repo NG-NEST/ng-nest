@@ -1,3 +1,19 @@
+# [20.2.0](https://github.com/NG-NEST/ng-nest/compare/20.1.7...20.2.0) (2025-10-19)
+
+
+### Features
+
+* **animate:** update angular 20.3.5 animate ([6a04e82](https://github.com/NG-NEST/ng-nest/commit/6a04e82bcc6179cd975df101314f13a3a7b747b5))
+* **module:auto-complete:** add input style ([7797290](https://github.com/NG-NEST/ng-nest/commit/77972908f17ecb3858618a1767ef8b1db0759152))
+* **module:date-picker:** add input style ([f7d8415](https://github.com/NG-NEST/ng-nest/commit/f7d8415c1c0d02ae22bef468acb7ad11c05cefc4))
+* **module:dialog:** update animate ([db776a0](https://github.com/NG-NEST/ng-nest/commit/db776a0bfad7ba0240cf308540ae96f3347a85a0))
+* **module:drawer:** update animate ([c61db8a](https://github.com/NG-NEST/ng-nest/commit/c61db8a38779fe755ce4f6aa3f2775059bfa658e))
+* **module:drawer:** update style ([0e50124](https://github.com/NG-NEST/ng-nest/commit/0e50124f15ac0c90fb4205f04857ba865674063c))
+* **module:select:** add input style ([fd723f1](https://github.com/NG-NEST/ng-nest/commit/fd723f196867b60e6da4b8bc23a90f633fa30772))
+* **module:table:** add header height ([3d7761a](https://github.com/NG-NEST/ng-nest/commit/3d7761aefd49ac30a785a314ed16179b75975b59))
+
+
+
 ## [20.1.7](https://github.com/NG-NEST/ng-nest/compare/20.1.6...20.1.7) (2025-10-14)
 
 

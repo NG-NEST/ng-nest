@@ -2,34 +2,6 @@
 import { AppProp } from "./core.interface";
 
 export const en_US: {[key: string]: AppProp} = {
-  "XBadgeAnimation": {
-    "type": "const",
-    "label": "Badge animation",
-    "description": "",
-    "example": [
-      {
-        "type": "text",
-        "content": ""
-      }
-    ],
-    "properties": [],
-    "name": "XBadgeAnimation",
-    "value": "trigger('x-badge-animation', [transition(':enter', [style({ opacity: 0, transform: 'scale(0) translate(50%, -50%)' }),animate(XDURATION_SLOW_EASE_IN,style({opacity: 1,transform: 'scale(1) translate(50%, -50%)'}))]),transition(':leave', [style({ opacity: 1, transform: 'scale(1) translate(50%, -50%)' }),animate(XDURATION_SLOW_EASE_OUT,style({opacity: 0,transform: 'scale(0) translate(50%, -50%)'}))])])"
-  },
-  "XConnectBaseAnimation": {
-    "type": "const",
-    "label": "The animation when the bomb frame is connected, only the y-axis",
-    "description": "",
-    "example": [
-      {
-        "type": "text",
-        "content": ""
-      }
-    ],
-    "properties": [],
-    "name": "XConnectBaseAnimation",
-    "value": "trigger('x-connect-base-animation', [transition(':enter', [style({ opacity: 0, transform: 'scaleY(0.8)' }), animate(XDURATION_FAST_EASE_IN)]),transition(':leave', [animate(XDURATION_FAST_EASE_OUT, style({ opacity: 0 }))])])"
-  },
   "XDuration": {
     "type": "enum",
     "label": "Animation execution time",
@@ -4530,6 +4502,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "inputStyle",
+        "type": "{ [style: string]: any }",
+        "toType": "{ [style: string]: any }",
+        "inputType": "InputSignal<{ [style: string]: any }>",
+        "signal": "input",
+        "label": "Input Style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "portalMaxHeight",
@@ -13470,6 +13460,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "inputStyle",
+        "type": "{ [style: string]: any }",
+        "toType": "{ [style: string]: any }",
+        "inputType": "InputSignal<{ [style: string]: any }>",
+        "signal": "input",
+        "label": "Input Style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "preset",
         "type": "XData<XDatePickerPreset>",
         "toType": "XData<XDatePickerPreset>",
@@ -14673,6 +14681,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "inputStyle",
+        "type": "{ [style: string]: any }",
+        "toType": "{ [style: string]: any }",
+        "inputType": "InputSignal<{ [style: string]: any }>",
+        "signal": "input",
+        "label": "Input Style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "preset",
@@ -33561,6 +33587,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "inputStyle",
+        "type": "{ [style: string]: any }",
+        "toType": "{ [style: string]: any }",
+        "inputType": "InputSignal<{ [style: string]: any }>",
+        "signal": "input",
+        "label": "Input Style",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "portalMaxHeight",
         "type": "XNumber",
         "toType": "string",
@@ -38493,12 +38537,30 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "headerHeight",
+        "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
+        "signal": "input",
+        "label": "Header height, unit px",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
         "name": "rowHeight",
         "type": "XNumber",
         "toType": "number",
         "inputType": "InputSignalWithTransform<number, XNumber>",
         "signal": "input",
-        "label": "Header and row height, unit px",
+        "label": "Row height, unit px",
         "default": "42",
         "withConfig": true,
         "description": "",
@@ -40785,6 +40847,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "headerHeight",
+        "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
+        "signal": "input",
+        "label": "Header height, unit px",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
       },
       {
         "name": "rowHeight",
