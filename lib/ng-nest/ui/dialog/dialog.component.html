@@ -1,36 +1,44 @@
 <ng-template #dialogTpl>
-  @if (container && hasBackdrop()) {
-    <div class="x-dialog-backdrop" [@x-opacity-animation]="visible()" (click)="onClose('close')"></div>
+  @if (visible()) {
+    @if (container && hasBackdrop()) {
+      <div
+        class="x-dialog-backdrop"
+        animate.enter="x-opacity-enter"
+        animate.leave="x-opacity-leave"
+        (click)="onClose('close')"
+      ></div>
+    }
+    <div
+      class="x-dialog"
+      [animate.enter]="`x-move-${placement()}-enter`"
+      [animate.leave]="`x-move-${placement()}-leave`"
+      (animationend)="moveDone($event)"
+      [class.x-dialog-maximize]="isMaximize()"
+      [class.x-dialog-default-maximize]="isDefaultMaximize()"
+      [ngStyle]="getStyle()"
+    >
+      <x-alert
+        [draggable]="draggableSignal() && dialogBox['draggable']"
+        [dragFreeDragPosition]="dialogBox['distance']"
+        [minWidth]="dialogBox['minWidth']"
+        [minHeight]="dialogBox['minHeight']"
+        [dragBoundary]="'.cdk-overlay-container'"
+        [title]="title()"
+        [content]="contentTpl"
+        [type]="type()"
+        [effect]="effect()"
+        [hideClose]="hideClose()"
+        [closeText]="closeText()"
+        [operationTpl]="operationTpl"
+        (close)="onClose('close')"
+        (dragEnded)="onDragEnded($event)"
+        [showIcon]="false"
+        [duration]="0"
+        manual
+        disabledAnimation
+      ></x-alert>
+    </div>
   }
-  <div
-    class="x-dialog"
-    [@x-move-box-animation]="placement()"
-    (@x-move-box-animation.done)="moveDone($event)"
-    [class.x-dialog-maximize]="isMaximize()"
-    [class.x-dialog-default-maximize]="isDefaultMaximize()"
-    [ngStyle]="getStyle()"
-  >
-    <x-alert
-      [draggable]="draggableSignal() && dialogBox['draggable']"
-      [dragFreeDragPosition]="dialogBox['distance']"
-      [minWidth]="dialogBox['minWidth']"
-      [minHeight]="dialogBox['minHeight']"
-      [dragBoundary]="'.cdk-overlay-container'"
-      [title]="title()"
-      [content]="contentTpl"
-      [type]="type()"
-      [effect]="effect()"
-      [hideClose]="hideClose()"
-      [closeText]="closeText()"
-      [operationTpl]="operationTpl"
-      (close)="onClose('close')"
-      (dragEnded)="onDragEnded($event)"
-      [showIcon]="false"
-      [duration]="0"
-      manual
-      disabledAnimation
-    ></x-alert>
-  </div>
 </ng-template>
 
 <ng-template #contentTpl>
@@ -70,6 +78,6 @@
   }
 </ng-template>
 
-@if (container && visible()) {
+@if (container) {
   <ng-container *ngTemplateOutlet="dialogTpl"></ng-container>
 }

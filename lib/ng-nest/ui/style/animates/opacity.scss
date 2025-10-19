@@ -1,0 +1,26 @@
+@use '../params/index.scss' as *;
+
+.x-opacity-enter {
+  animation: x-opacity-enter $x-animation-duration-slow ease-in;
+}
+.x-opacity-leave {
+  animation: x-opacity-leave $x-animation-duration-slow ease-out;
+}
+
+@keyframes x-opacity-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes x-opacity-leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

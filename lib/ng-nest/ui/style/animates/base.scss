@@ -1,15 +1,15 @@
 @use '../params/index.scss' as *;
 
 .x-base-enter {
-  animation: base-enter $x-animation-duration-base;
+  animation: x-base-enter $x-animation-duration-base;
   animation-timing-function: ease-in;
 }
 .x-base-leave {
-  animation: base-leave $x-animation-duration-base;
+  animation: x-base-leave $x-animation-duration-base;
   animation-timing-function: ease-out;
 }
 
-@keyframes base-enter {
+@keyframes x-base-enter {
   from {
     opacity: 0;
     transform: scale(0.2);
@@ -20,7 +20,7 @@
   }
 }
 
-@keyframes base-leave {
+@keyframes x-base-leave {
   from {
     opacity: 1;
     transform: scale(1);

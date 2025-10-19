@@ -302,9 +302,8 @@ export type XDialogAnimationState = XPlace | 'void';
  * @en_US Dialog animation Event
  */
 export interface XDialogAnimationEvent {
-  state: XDialogAnimationState;
-  action: 'start' | 'done';
-  totalTime: number;
+  animationName: string;
+  action: 'start' | 'end';
 }
 
 /**

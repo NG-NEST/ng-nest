@@ -15,9 +15,7 @@ import {
   model,
   viewChild
 } from '@angular/core';
-import { XMoveBoxAnimation } from '@ng-nest/ui/core';
 import { XDialogAnimationEvent, XDialogAnimationState, XDialogRefOption } from './dialog.property';
-import { AnimationEvent } from '@angular/animations';
 import { CdkDrag, CdkDragEnd, DragDropModule } from '@angular/cdk/drag-drop';
 import { XDialogRef } from './dialog-ref';
 import { XDialogDragHandleDirective } from './dialog-portal.directives';
@@ -28,28 +26,21 @@ import { XDialogDragHandleDirective } from './dialog-portal.directives';
   templateUrl: './dialog-portal.component.html',
   styleUrls: ['./dialog-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XMoveBoxAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDialogPortalComponent extends BasePortalOutlet {
-  // @HostBinding('class.x-dialog-portal') _has = true;
   placement = model.required<XDialogAnimationState>();
-  @HostBinding('@x-move-box-animation') public get getPlacement() {
-    return this.placement();
+  @HostBinding('animate.enter') public get enimateEnter() {
+    return `x-move-${this.placement()}-enter`;
   }
-  @HostListener('@x-move-box-animation.done', ['$event']) done({ toState, totalTime }: AnimationEvent) {
-    this.animationChanged.next({
-      action: 'done',
-      state: toState as XDialogAnimationState,
-      totalTime
-    });
+  @HostBinding('animate.leave') public get enimateLeave() {
+    return `x-move-${this.placement()}-leave`;
   }
-  @HostListener('@x-move-box-animation.start', ['$event']) start({ toState, totalTime }: AnimationEvent) {
-    this.animationChanged.next({
-      action: 'start',
-      state: toState as XDialogAnimationState,
-      totalTime
-    });
+  @HostListener('animationend', ['$event']) done(event: AnimationEvent) {
+    this.animationChanged.next({ action: 'end', animationName: event.animationName });
+  }
+  @HostListener('animationstart', ['$event']) start(event: AnimationEvent) {
+    this.animationChanged.next({ action: 'start', animationName: event.animationName });
   }
   renderer = inject(Renderer2);
   changeDetectorRef = inject(ChangeDetectorRef);
@@ -76,6 +67,10 @@ export class XDialogPortalComponent extends BasePortalOutlet {
 
   ngOnInit() {
     this.dialogBox['draggable'] = this.defaultMaximize ? this.dialogBox['draggable'] : this.option.draggable;
+  }
+
+  ngAfterViewInit() {
+    this.portalOutlet().setDisposeFn(() => {});
   }
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {

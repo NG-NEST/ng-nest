@@ -26,7 +26,7 @@ export class XDialogRef<C> {
   close(result?: any) {
     this.containerInstance.animationChanged
       .pipe(
-        filter((event) => event.state === 'void' && event.action === 'done'),
+        filter((event) => event.animationName.endsWith('-leave') && event.action === 'end'),
         take(1)
       )
       .subscribe(() => {
@@ -34,7 +34,7 @@ export class XDialogRef<C> {
         this.afterClose.next(result);
       });
 
-    this.containerInstance.placement.set('void');
+    this.overlayRef.detach();
   }
 
   onFullscreen() {

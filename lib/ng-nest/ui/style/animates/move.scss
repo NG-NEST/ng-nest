@@ -4,19 +4,19 @@
 .x-move-top-enter,
 .x-move-top-end-enter,
 .x-move-center-enter {
-  animation: move-top-enter $x-animation-duration-base ease-in;
+  animation: x-move-top-enter $x-animation-duration-base ease-in;
 }
 
 .x-move-top-start-leave,
 .x-move-top-leave,
 .x-move-top-end-leave,
 .x-move-center-leave {
-  animation: move-top-leave $x-animation-duration-base ease-out;
+  animation: x-move-top-leave $x-animation-duration-base ease-out;
 }
 
-@keyframes move-top-enter {
+@keyframes x-move-top-enter {
   from {
-    transform: translateY(-20%);
+    transform: translateY(-2rem);
     opacity: 0;
   }
   to {
@@ -25,27 +25,27 @@
   }
 }
 
-@keyframes move-top-leave {
+@keyframes x-move-top-leave {
   from {
     transform: translateY(0%);
     opacity: 1;
   }
   to {
-    transform: translateY(-20%);
+    transform: translateY(-2rem);
     opacity: 0;
   }
 }
 
 .x-move-left-enter {
-  animation: move-left-enter $x-animation-duration-base ease-in;
+  animation: x-move-left-enter $x-animation-duration-base ease-in;
 }
 .x-move-left-leave {
-  animation: move-left-leave $x-animation-duration-base ease-out;
+  animation: x-move-left-leave $x-animation-duration-base ease-out;
 }
 
-@keyframes move-left-enter {
+@keyframes x-move-left-enter {
   from {
-    transform: translateX(-20%);
+    transform: translateX(-2rem);
     opacity: 0;
   }
   to {
@@ -54,27 +54,27 @@
   }
 }
 
-@keyframes move-left-leave {
+@keyframes x-move-left-leave {
   from {
     transform: translateX(0%);
     opacity: 1;
   }
   to {
-    transform: translateX(-20%);
+    transform: translateX(-2rem);
     opacity: 0;
   }
 }
 
 .x-move-right-enter {
-  animation: move-right-enter $x-animation-duration-base ease-in;
+  animation: x-move-right-enter $x-animation-duration-base ease-in;
 }
 .x-move-right-leave {
-  animation: move-right-leave $x-animation-duration-base ease-out;
+  animation: x-move-right-leave $x-animation-duration-base ease-out;
 }
 
-@keyframes move-right-enter {
+@keyframes x-move-right-enter {
   from {
-    transform: translateX(20%);
+    transform: translateX(2rem);
     opacity: 0;
   }
   to {
@@ -83,13 +83,13 @@
   }
 }
 
-@keyframes move-right-leave {
+@keyframes x-move-right-leave {
   from {
     transform: translateX(0%);
     opacity: 1;
   }
   to {
-    transform: translateX(20%);
+    transform: translateX(2rem);
     opacity: 0;
   }
 }
@@ -97,18 +97,18 @@
 .x-move-bottom-start-enter,
 .x-move-bottom-enter,
 .x-move-bottom-end-enter {
-  animation: move-bottom-enter $x-animation-duration-base ease-in;
+  animation: x-move-bottom-enter $x-animation-duration-base ease-in;
 }
 
 .x-move-bottom-start-leave,
 .x-move-bottom-leave,
 .x-move-bottom-end-leave {
-  animation: move-bottom-leave $x-animation-duration-base ease-out;
+  animation: x-move-bottom-leave $x-animation-duration-base ease-out;
 }
 
-@keyframes move-bottom-enter {
+@keyframes x-move-bottom-enter {
   from {
-    transform: translateY(20%);
+    transform: translateY(2rem);
     opacity: 0;
   }
   to {
@@ -117,13 +117,13 @@
   }
 }
 
-@keyframes move-bottom-leave {
+@keyframes x-move-bottom-leave {
   from {
     transform: translateY(0%);
     opacity: 1;
   }
   to {
-    transform: translateY(20%);
+    transform: translateY(2rem);
     opacity: 0;
   }
 }

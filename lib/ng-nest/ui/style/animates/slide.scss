@@ -1,97 +1,113 @@
 @use '../params/index.scss' as *;
 
 .x-slide-right-enter {
-  animation: right-enter $x-animation-duration-base ease-in;
+  animation: x-right-enter $x-animation-duration-base ease-in;
 }
 .x-slide-right-leave {
-  animation: right-leave $x-animation-duration-base ease-out;
+  animation: x-right-leave $x-animation-duration-base ease-out;
 }
 
-@keyframes right-enter {
+@keyframes x-right-enter {
   from {
     transform: translateX(100%);
+    opacity: 0.8;
   }
   to {
     transform: translateX(0);
+    opacity: 1;
   }
 }
-@keyframes right-leave {
+@keyframes x-right-leave {
   from {
     transform: translateX(0);
+    opacity: 1;
   }
   to {
     transform: translateX(100%);
+    opacity: 0.8;
   }
 }
 
 .x-slide-left-enter {
-  animation: left-enter $x-animation-duration-base ease-in;
+  animation: x-left-enter $x-animation-duration-base ease-in;
 }
 .x-slide-left-leave {
-  animation: left-leave $x-animation-duration-base ease-out;
+  animation: x-left-leave $x-animation-duration-base ease-out;
 }
 
-@keyframes left-enter {
+@keyframes x-left-enter {
   from {
     transform: translateX(-100%);
+    opacity: 0.8;
   }
   to {
     transform: translateX(0);
+    opacity: 1;
   }
 }
-@keyframes left-leave {
+@keyframes x-left-leave {
   from {
     transform: translateX(0);
+    opacity: 1;
   }
   to {
     transform: translateX(-100%);
+    opacity: 0.8;
   }
 }
 
 .x-slide-top-enter {
-  animation: top-enter $x-animation-duration-base ease-in;
+  animation: x-top-enter $x-animation-duration-base ease-in;
 }
 .x-slide-top-leave {
-  animation: top-leave $x-animation-duration-base ease-out;
+  animation: x-top-leave $x-animation-duration-base ease-out;
 }
 
-@keyframes top-enter {
+@keyframes x-top-enter {
   from {
     transform: translateY(-100%);
+    opacity: 0.8;
   }
   to {
     transform: translateY(0);
+    opacity: 1;
   }
 }
-@keyframes top-leave {
+@keyframes x-top-leave {
   from {
     transform: translateY(0);
+    opacity: 1;
   }
   to {
     transform: translateY(-100%);
+    opacity: 0.8;
   }
 }
 
 .x-slide-bottom-enter {
-  animation: bottom-enter $x-animation-duration-base ease-in;
+  animation: x-bottom-enter $x-animation-duration-base ease-in;
 }
 .x-slide-bottom-leave {
-  animation: bottom-leave $x-animation-duration-base ease-out;
+  animation: x-bottom-leave $x-animation-duration-base ease-out;
 }
 
-@keyframes bottom-enter {
+@keyframes x-bottom-enter {
   from {
     transform: translateY(100%);
+    opacity: 0.8;
   }
   to {
     transform: translateY(0);
+    opacity: 1;
   }
 }
-@keyframes bottom-leave {
+@keyframes x-bottom-leave {
   from {
     transform: translateY(0);
+    opacity: 1;
   }
   to {
     transform: translateY(100%);
+    opacity: 0.8;
   }
 }

@@ -86,6 +86,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   });
 
   getStyle = computed(() => {
+    console.log(this.protalService.setContainerStyle(this.placement(), this.offset()));
     return this.container
       ? {
           ...this.protalService.setContainerStyle(this.placement(), this.offset()),
@@ -260,8 +261,8 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     }
   }
 
-  moveDone($event: { toState: string }) {
-    if ($event.toState === 'void') {
+  moveDone($event: AnimationEvent) {
+    if ($event.animationName.endsWith('-leave')) {
       !this.destroy() && this.closeDone.emit($event);
       this.isMaximize.set(false);
       this.dialogBox = {

@@ -3,6 +3,7 @@
 @use './fade' as *;
 @use './slide' as *;
 @use './move' as *;
+@use './opacity' as *;
 
 .x-animate-disabled {
   animation: none !important;
