@@ -60,6 +60,11 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
    */
   readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
   /**
+   * @zh_CN 输入框样式
+   * @en_US Input Style
+   */
+  readonly inputStyle = input<{ [style: string]: any }>();
+  /**
    * @zh_CN 快捷选择按钮，自定义或直接设置今天（today）,昨天（yesterday）,明天（tomorrow）
    * @en_US Quick selection button, support today, yesterday, tomorrow
    */
@@ -410,6 +415,11 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    * @en_US Display Border
    */
   readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
+  /**
+   * @zh_CN 输入框样式
+   * @en_US Input Style
+   */
+  readonly inputStyle = input<{ [style: string]: any }>();
   /**
    * @zh_CN 快捷选择按钮，自定义或直接设置本周（thisWeek）、上周（lastWeek）、下周（nextWeek）、本月（thisMonth）、上一月（lastMonth）、下一月（nextMonth）、本年（thisYear）、去年（lastYear）、明年（nextYear）
    * @en_US Quick selection button, support thisWeek, lastWeek, nextWeek, thisMonth, lastMonth, nextMonth, thisYear, lastYear, nextYear
