@@ -47,8 +47,13 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    */
   readonly columns = input<XTableColumn[]>([]);
   /**
-   * @zh_CN 表头和行高，单位 px
-   * @en_US Header and row height, unit px
+   * @zh_CN 表头高度，单位 px
+   * @en_US Header height, unit px
+   */
+  readonly headerHeight = input<number | null, XNumber>(this.config?.headerHeight ?? null, { transform: XToNumber });
+  /**
+   * @zh_CN 行高，单位 px
+   * @en_US Row height, unit px
    */
   readonly rowHeight = input<number, XNumber>(this.config?.rowHeight ?? 42, { transform: XToNumber });
   /**
@@ -759,6 +764,11 @@ export class XTableHeadProperty extends XProperty {
    * @en_US Column set
    */
   readonly columns = input<XTableColumn[]>([]);
+  /**
+   * @zh_CN 表头高度，单位 px
+   * @en_US Header height, unit px
+   */
+  readonly headerHeight = input<number | null, XNumber>(null, { transform: XToNumber });
   /**
    * @zh_CN 高度，单位 px
    * @en_US Height in px

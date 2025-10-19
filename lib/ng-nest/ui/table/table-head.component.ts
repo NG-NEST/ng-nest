@@ -62,6 +62,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
 
   initColumns = computed(() => [...this.columns()]);
   getRowHeight = computed(() => (this.rowHeight() == 0 ? '' : this.rowHeight()));
+  getHeaderHeight = computed(() => this.headerHeight() ?? this.getRowHeight());
 
   private elementRef = inject(ElementRef);
 

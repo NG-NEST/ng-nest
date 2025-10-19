@@ -17,7 +17,7 @@
           [style.grid-area]="column.gridArea"
           [style.left.px]="column.left"
           [style.right.px]="column.right"
-          [style.min-height.px]="getRowHeight()"
+          [style.min-height.px]="getHeaderHeight()"
           [title]="column?.label"
         >
           <ng-container *ngTemplateOutlet="columnBaseTpl; context: { column: column }"></ng-container>
@@ -47,8 +47,8 @@
     cdkDropListOrientation="horizontal"
     (cdkDropListSorted)="dropListSorted($event)"
     (cdkDropListDropped)="dropListDropped($event)"
-    [style.height.px]="getRowHeight()"
-    [style.min-height.px]="getRowHeight()"
+    [style.height.px]="getHeaderHeight()"
+    [style.min-height.px]="getHeaderHeight()"
     [style.padding-right.px]="scrollYWidth()"
     [style.min-width.px]="scrollXWidth()"
     [class.x-table-search]="case === 'search'"
@@ -66,7 +66,7 @@
         [class.x-table-sticky-right]="table.getStickyRight(column)"
         [class.x-table-sticky-left-last]="table.getStickyLeftLast(column)"
         [class.x-table-sticky-right-first]="table.getStickyRightFirst(column)"
-        [style.min-height.px]="getRowHeight()"
+        [style.min-height.px]="getHeaderHeight()"
         [style.width.px]="getColumnWidth(column)"
         [style.left.px]="column.left"
         [style.right.px]="getColumnRight(column.right)"
