@@ -62,6 +62,11 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    */
   readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
   /**
+   * @zh_CN 输入框样式
+   * @en_US Input Style
+   */
+  readonly inputStyle = input<{ [style: string]: any }>();
+  /**
    * @zh_CN 下拉框的最大高度
    * @en_US The biggest height of the drop-down box
    */
