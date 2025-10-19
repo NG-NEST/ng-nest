@@ -15,7 +15,7 @@
   @if (node && !isValue) {
     <span class="select-item"> {{ node?.label }} <sup>2</sup> </span>
   } @else if (node && isValue) {
-    <span>
+    <span class="select-list">
       @for (item of node; track item.id) {
         <span class="select-item"> {{ item.label }} <sup>2</sup> </span>
       }
