@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
-import { XMoveAnimation, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { XNotificationPrefix, XNotificationOption, XNotificationRef } from './notification.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -11,8 +11,7 @@ import { XAlertComponent } from '@ng-nest/ui/alert';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XMoveAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XNotificationComponent {
   notification: XNotificationRef = { list: [] };
@@ -25,8 +24,8 @@ export class XNotificationComponent {
     this.cdr.detectChanges();
   }
 
-  moveDone($event: { toState: string }) {
-    if ($event.toState === 'void' && XIsEmpty(this.notification.list)) {
+  moveDone($event: AnimationEvent) {
+    if ($event.animationName.endsWith('-leave') && XIsEmpty(this.notification.list)) {
       this.notification.ref?.overlayRef?.detach();
     }
   }
