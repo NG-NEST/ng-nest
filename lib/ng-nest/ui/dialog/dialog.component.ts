@@ -14,7 +14,7 @@ import {
   effect,
   DestroyRef
 } from '@angular/core';
-import { XMoveBoxAnimation, XIsFunction, XConfigService, XOpacityAnimation } from '@ng-nest/ui/core';
+import { XIsFunction, XConfigService } from '@ng-nest/ui/core';
 import {
   XDialogPrefix,
   XDialogOverlayRef,
@@ -42,8 +42,7 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XMoveBoxAnimation, XOpacityAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit {
   private viewContainerRef = inject(ViewContainerRef);
