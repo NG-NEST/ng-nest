@@ -1,8 +1,11 @@
 <div class="x-message">
+  <!-- TODO The style of x-alert will be cleared when the leave animation starts. This ensures that the style will definitely be loaded -->
+  <x-alert [style.display]="'none'"></x-alert>
   @for (item of message.list; track item.id) {
     <x-alert
-      [@x-move-animation]="item.placement"
-      (@x-move-animation.done)="moveDone($event)"
+      [animate.enter]="`x-move-${item.placement}-enter`"
+      [animate.leave]="`x-move-${item.placement}-leave`"
+      (animationend)="moveDone($event)"
       (mouseenter)="onEnter(item)"
       (mouseleave)="onLeave(item)"
       (close)="onClose(item)"

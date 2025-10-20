@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
-import { XMoveAnimation, XIsEmpty } from '@ng-nest/ui/core';
+import { XIsEmpty } from '@ng-nest/ui/core';
 import { XMessagePrefix, XMessageOption, XMessagePlacementRef } from './message.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -11,8 +11,7 @@ import { XAlertComponent } from '@ng-nest/ui/alert';
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XMoveAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XMessageComponent {
   message: XMessagePlacementRef = { ref: {}, list: [], closeAll: () => {} };
@@ -23,9 +22,8 @@ export class XMessageComponent {
     item.durationSubscription?.unsubscribe();
     this.cdr.detectChanges();
   }
-
-  moveDone($event: { toState: string }) {
-    if ($event.toState === 'void' && XIsEmpty(this.message.list)) {
+  moveDone($event: AnimationEvent) {
+    if ($event.animationName.endsWith('-leave') && XIsEmpty(this.message.list)) {
       this.message.ref?.overlayRef?.detach();
     }
   }
