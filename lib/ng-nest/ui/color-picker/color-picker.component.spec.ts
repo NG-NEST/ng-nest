@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   Component,
   ElementRef,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
   signal,
   TemplateRef,
   viewChild
@@ -131,7 +131,7 @@ xdescribe(XColorPickerPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestColorPickerComponent, XTestColorPickerPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

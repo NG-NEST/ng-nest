@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {
   XProgressColor,
@@ -68,7 +68,7 @@ xdescribe(XProgressPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestProgressComponent, XTestProgressPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

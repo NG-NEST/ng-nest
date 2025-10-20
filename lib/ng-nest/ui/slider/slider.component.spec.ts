@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSliderComponent, XSliderLayout, XSliderNode, XSliderPrefix, XSliderTrigger } from '@ng-nest/ui/slider';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -68,7 +68,7 @@ xdescribe(XSliderPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSliderComponent, XTestSliderPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

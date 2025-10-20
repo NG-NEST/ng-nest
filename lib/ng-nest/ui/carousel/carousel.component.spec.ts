@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {
   XCarouselArrow,
@@ -80,7 +80,7 @@ xdescribe(XCarouselPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestCarouselComponent, XTestCarouselPropertyComponent, XTestCarouselPanelComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

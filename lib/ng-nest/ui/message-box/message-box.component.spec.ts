@@ -5,7 +5,7 @@ import {
   TemplateRef,
   ChangeDetectorRef,
   viewChild,
-  provideExperimentalZonelessChangeDetection
+  provideZonelessChangeDetection
 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessageBoxComponent } from '@ng-nest/ui/message-box';
@@ -23,7 +23,7 @@ xdescribe(XMessageBoxPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXMessageBoxComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

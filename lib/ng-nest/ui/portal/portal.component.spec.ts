@@ -4,7 +4,7 @@ import {
   Component,
   TemplateRef,
   ViewContainerRef,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
   viewChild
 } from '@angular/core';
 import { XPortalPrefix } from './portal.property';
@@ -20,7 +20,7 @@ xdescribe(XPortalPrefix, () => {
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ]
     }).compileComponents();
   });

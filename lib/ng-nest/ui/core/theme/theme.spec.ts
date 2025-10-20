@@ -1,7 +1,7 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XThemeService } from './theme.service';
-import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideZonelessChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { XColorPickerComponent } from '@ng-nest/ui/color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -79,7 +79,7 @@ xdescribe('x-theme service', () => {
         },
         provideAnimations(),
         provideHttpClient(withFetch()),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ],
       teardown: { destroyAfterEach: false }
     }).compileComponents();

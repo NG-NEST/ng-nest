@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSkeletonComponent, XSkeletonData, XSkeletonPrefix, XSkeletonRow } from '@ng-nest/ui/skeleton';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -26,7 +26,7 @@ xdescribe(XSkeletonPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSkeletonComponent, XTestSkeletonPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

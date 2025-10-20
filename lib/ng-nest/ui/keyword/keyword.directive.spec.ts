@@ -3,7 +3,7 @@ import {
   Component,
   DebugElement,
   ElementRef,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
   signal,
   viewChild
 } from '@angular/core';
@@ -40,7 +40,7 @@ xdescribe(XKeywordPrefix, () => {
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ],
       teardown: { destroyAfterEach: false }
     }).compileComponents();

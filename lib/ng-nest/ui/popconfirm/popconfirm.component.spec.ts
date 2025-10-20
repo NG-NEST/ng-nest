@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPopconfirmComponent, XPopconfirmPrefix } from '@ng-nest/ui/popconfirm';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -67,7 +67,7 @@ xdescribe(XPopconfirmPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestPopconfirmComponent, XTestPopconfirmPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

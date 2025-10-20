@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideZonelessChangeDetection } from '@angular/core';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XOutletPrefix } from './outlet.property';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -12,7 +12,7 @@ xdescribe(XOutletPrefix, () => {
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ]
     }).compileComponents();
   });

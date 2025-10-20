@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, DebugElement, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XBadgeComponent, XBadgePrefix, XBadgeType } from '@ng-nest/ui/badge';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -50,7 +50,7 @@ xdescribe(XBadgePrefix, () => {
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ]
     }).compileComponents();
   });

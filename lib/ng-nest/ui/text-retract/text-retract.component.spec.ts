@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTextRetractComponent, XTextRetractPrefix } from '@ng-nest/ui/text-retract';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -24,7 +24,7 @@ xdescribe(XTextRetractPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTextRetractComponent, XTestTextRetractPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

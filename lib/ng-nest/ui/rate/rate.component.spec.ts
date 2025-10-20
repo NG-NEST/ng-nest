@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRateColor, XRateComponent, XRatePrefix } from '@ng-nest/ui/rate';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -57,7 +57,7 @@ xdescribe(XRatePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestRateComponent, XTestRatePropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

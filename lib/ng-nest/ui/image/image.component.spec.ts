@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XImageComponent, XImagePrefix } from '@ng-nest/ui/image';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -58,7 +58,7 @@ xdescribe(XImagePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestImageComponent, XTestImagePropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

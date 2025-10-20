@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, provideZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XHighlightComponent, XHighlightLines, XHighlightPrefix } from '@ng-nest/ui/highlight';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -41,7 +41,7 @@ xdescribe(XHighlightPrefix, () => {
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ],
       teardown: { destroyAfterEach: false }
     }).compileComponents();

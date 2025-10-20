@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   Component,
   ElementRef,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
   signal,
   TemplateRef,
   viewChild
@@ -163,7 +163,7 @@ xdescribe(XTreePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTreeComponent, XTestTreePropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

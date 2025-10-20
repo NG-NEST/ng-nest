@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRadioComponent, XRadioNode, XRadioPrefix } from '@ng-nest/ui/radio';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -71,7 +71,7 @@ xdescribe(XRadioPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestRadioComponent, XTestRadioPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XIconComponent, XIconPrefix } from '@ng-nest/ui/icon';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -27,7 +27,7 @@ xdescribe(XIconPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestIconComponent, XTestIconPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

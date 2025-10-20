@@ -2,7 +2,7 @@ import {
   Component,
   input,
   model,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
   signal,
   TemplateRef
 } from '@angular/core';
@@ -91,7 +91,7 @@ xdescribe('x-base-form', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestBaseFormComponent, XTestBaseFormInputComponent],
-      providers: [provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

@@ -3,7 +3,7 @@ import {
   Component,
   inject,
   Injectable,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
   signal,
   TemplateRef,
   viewChild
@@ -134,7 +134,7 @@ xdescribe(XUploadPrefix, () => {
       providers: [
         provideAnimations(),
         provideHttpClient(withFetch(), withInterceptors([AppNoopInterceptor])),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ],
       teardown: { destroyAfterEach: false }
     }).compileComponents();

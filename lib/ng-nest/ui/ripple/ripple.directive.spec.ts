@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, provideZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XRippleDirective, XRipplePrefix, XRippleType } from '@ng-nest/ui/ripple';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -36,7 +36,7 @@ xdescribe(XRipplePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestRippleComponent, XTestRipplePropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTagComponent, XTagPrefix } from '@ng-nest/ui/tag';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -53,7 +53,7 @@ xdescribe(XTagPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTagComponent, XTestTagPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

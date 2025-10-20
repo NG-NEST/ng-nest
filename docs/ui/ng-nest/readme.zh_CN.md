@@ -17,7 +17,7 @@ NG-NEST 是一个开源的 Web 应用程序框架，基于 Angular 和 Nest ，�
 - 开箱即用的高质量 `Angular` 组件，与 `Angular` 保持同步升级。
 - 支持独立组件 `standalone`，`angular 19` 开始默认为 `true`。
 - 支持 `InputSignal` 参数，已用 `Signal` 信号重写内部逻辑。
-- 支持 `Zoneless`，添加 `provideExperimentalZonelessChangeDetection`。
+- 支持 `Zoneless`，添加 `provideZonelessChangeDetection`。
 - 模板已切换到新的控制流语法。
 - 使用 CSS3 中的 var 来定义主题样式。
 

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   Component,
   computed,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
   signal,
   TemplateRef,
   viewChild
@@ -94,7 +94,7 @@ xdescribe(XTabsPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTabsComponent, XTestTabsPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: {
         destroyAfterEach: false
       }

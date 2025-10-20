@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XLoadingComponent, XLoadingPrefix } from '@ng-nest/ui/loading';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -46,7 +46,7 @@ xdescribe(XLoadingPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestLoadingComponent, XTestLoadingPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

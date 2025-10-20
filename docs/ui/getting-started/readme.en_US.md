@@ -47,7 +47,7 @@ Open the `src/app/app.module.ts` file to introduce the `x-button` component modu
 
 ```primary
 All components are supported separately, and introducing all components at once can result in a large package size.
-All components now support `Zoneless`, and you can add the ` provideExperimentalZonelessChangeDetection()` module in `app.config.ts`, `Zoneless` related configurations can be viewed in the [official documentation](https://angular.dev/guide/experimental/zoneless).
+All components now support `Zoneless`, and you can add the ` provideZonelessChangeDetection()` module in `app.config.ts`, `Zoneless` related configurations can be viewed in the [official documentation](https://angular.dev/guide/experimental/zoneless).
 ```
 
 Open src/app/app.component.html replaced with the following code, and modify the corresponding SCSS style.

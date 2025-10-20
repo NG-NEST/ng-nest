@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XSelectComponent, XSelectNode, XSelectPrefix } from '@ng-nest/ui/select';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -137,7 +137,7 @@ xdescribe(XSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestSelectComponent, XTestSelectPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

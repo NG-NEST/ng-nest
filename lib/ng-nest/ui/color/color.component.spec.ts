@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XColorComponent, XColorPrefix } from '@ng-nest/ui/color';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -27,7 +27,7 @@ xdescribe(XColorPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestColorComponent, XTestColorPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTreeSelectComponent, XTreeSelectNode, XTreeSelectPrefix } from '@ng-nest/ui/tree-select';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -139,7 +139,7 @@ xdescribe(XTreeSelectPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTreeSelectComponent, XTestTreeSelectPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

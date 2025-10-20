@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, DebugElement, provideZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XNotificationPrefix } from './notification.property';
@@ -15,7 +15,7 @@ xdescribe(XNotificationPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXNotificationComponent, TestXNotificationTypeComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

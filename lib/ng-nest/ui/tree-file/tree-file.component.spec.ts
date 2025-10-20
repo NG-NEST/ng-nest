@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XTreeFileComponent, XTreeFileNode, XTreeFilePrefix } from '@ng-nest/ui/tree-file';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -51,7 +51,7 @@ xdescribe(XTreeFilePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestTreeFileComponent, XTestTreeFilePropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

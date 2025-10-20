@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XPatternComponent } from '@ng-nest/ui/pattern';
 import { XPatternPrefix } from './pattern.property';
@@ -11,7 +11,7 @@ xdescribe(XPatternPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestXPatternComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

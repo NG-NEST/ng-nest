@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   inject,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
   signal,
   viewChild
 } from '@angular/core';
@@ -56,7 +56,7 @@ xdescribe(XAnchorPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestAnchorComponent, XTestAnchorPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()]
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()]
     }).compileComponents();
   });
   xdescribe('default.', () => {

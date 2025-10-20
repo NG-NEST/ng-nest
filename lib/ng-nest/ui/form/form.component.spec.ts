@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, provideExperimentalZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, provideZonelessChangeDetection, signal, TemplateRef, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XFormComponent, XFormControlOption, XFormPrefix, XFormRow, XFormTemplate } from '@ng-nest/ui/form';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -58,7 +58,7 @@ xdescribe(XFormPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestFormComponent, XTestFormPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

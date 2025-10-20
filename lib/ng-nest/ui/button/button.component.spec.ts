@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, signal, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, DebugElement, signal, provideZonelessChangeDetection } from '@angular/core';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XButtonPrefix, XButtonType } from './button.property';
 import { By } from '@angular/platform-browser';
@@ -69,7 +69,7 @@ xdescribe(XButtonPrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestButtonComponent, XTestButtonPropertyComponent, XTestButtonsPropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });

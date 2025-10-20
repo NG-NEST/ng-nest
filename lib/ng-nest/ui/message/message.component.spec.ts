@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XMessageComponent } from './message.component';
-import { Component, DebugElement, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, DebugElement, provideZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XMessagePrefix } from './message.property';
 import { XMessageService } from './message.service';
@@ -29,7 +29,7 @@ xdescribe(XMessagePrefix, () => {
         },
         provideAnimations(),
         provideHttpClient(withFetch()),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ],
       teardown: { destroyAfterEach: false }
     }).compileComponents();

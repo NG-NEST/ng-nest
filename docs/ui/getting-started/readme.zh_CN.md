@@ -47,7 +47,7 @@ Angular CLI 会安装必要的依赖包。这可能要花几分钟的时间，CL
 
 ```primary
 所有的组件只支持单独引入，一次性引入所有组件会导致打包体积比较大。
-支持 `Zoneless` , 可以在 `app.config.ts` 中添加 `provideExperimentalZonelessChangeDetection()` 模块。`Zoneless` 相关配置可以查看 [官方文档](https://angular.dev/guide/experimental/zoneless)。
+支持 `Zoneless` , 可以在 `app.config.ts` 中添加 `provideZonelessChangeDetection()` 模块。`Zoneless` 相关配置可以查看 [官方文档](https://angular.dev/guide/experimental/zoneless)。
 ```
 
 打开 src/app/app.component.html 替换成以下的代码，并修改对应的 scss 样式。

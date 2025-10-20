@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ChangeDetectorRef, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, ChangeDetectorRef, provideZonelessChangeDetection } from '@angular/core';
 import { XI18nPipe, XI18nDirective } from '@ng-nest/ui/i18n';
 import { XI18nPrefix } from './i18n.property';
 import { XButtonComponent } from '@ng-nest/ui/button';
@@ -51,7 +51,7 @@ xdescribe(XI18nPrefix, () => {
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-        provideExperimentalZonelessChangeDetection()
+        provideZonelessChangeDetection()
       ],
       teardown: { destroyAfterEach: false }
     }).compileComponents();

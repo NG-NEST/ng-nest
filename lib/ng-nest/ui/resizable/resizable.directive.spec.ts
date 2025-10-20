@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, provideExperimentalZonelessChangeDetection, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, provideZonelessChangeDetection, signal, viewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { XResizableDirective, XResizableEvent, XResizablePosition, XResizablePrefix } from '@ng-nest/ui/resizable';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -57,7 +57,7 @@ xdescribe(XResizablePrefix, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [XTestResizableComponent, XTestResizablePropertyComponent],
-      providers: [provideAnimations(), provideHttpClient(withFetch()), provideExperimentalZonelessChangeDetection()],
+      providers: [provideAnimations(), provideHttpClient(withFetch()), provideZonelessChangeDetection()],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
