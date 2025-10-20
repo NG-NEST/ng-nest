@@ -21,7 +21,6 @@ export class XMessageBoxService {
     cancelText: '取消',
     confirmText: '确认',
     inputPlaceholder: '',
-    hide: false,
     textareaHeight: '6rem'
   };
 

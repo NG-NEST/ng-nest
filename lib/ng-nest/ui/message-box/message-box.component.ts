@@ -5,9 +5,11 @@ import {
   ElementRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  OnInit
+  OnInit,
+  HostListener,
+  HostBinding
 } from '@angular/core';
-import { XIsFunction, XMoveBoxAnimation } from '@ng-nest/ui/core';
+import { XIsFunction } from '@ng-nest/ui/core';
 import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction } from './message-box.property';
 import { UntypedFormGroup, UntypedFormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
@@ -34,14 +36,25 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
   templateUrl: './message-box.component.html',
   styleUrls: ['./message-box.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [XMoveBoxAnimation]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XMessageBoxComponent implements OnInit {
   messageBox!: XMessageBoxRef;
   action: XMessageBoxAction = 'close';
   formGroup: UntypedFormGroup = new UntypedFormGroup({});
   loading = false;
+
+  @HostBinding('animate.enter') get animateEnter() {
+    return `x-move-${this.msgInput.placement}-enter`;
+  }
+  @HostBinding('animate.leave') get animateLeave() {
+    return `x-move-${this.msgInput.placement}-leave`;
+  }
+
+  @HostListener('animationend', ['$event']) animationend($event: AnimationEvent) {
+    this.moveDone($event);
+  }
+
   constructor(
     public renderer: Renderer2,
     public elementRef: ElementRef<HTMLElement>,
@@ -87,11 +100,7 @@ export class XMessageBoxComponent implements OnInit {
   }
 
   close() {
-    if (this.msgInput.hide && this.msgInput.hide !== true) {
-      this.msgInput.hide = true;
-    }
     this.msgOverlayRef?.overlayRef?.detach();
-    this.cdr.detectChanges();
   }
 
   onConfirm() {
@@ -118,8 +127,8 @@ export class XMessageBoxComponent implements OnInit {
     }
   }
 
-  moveDone($event: { toState: string }) {
-    if ($event.toState === 'void') {
+  moveDone($event: AnimationEvent) {
+    if ($event.animationName.endsWith('-leave')) {
       XIsFunction(this.msgInput.callback) && this.msgInput.callback!(this.action, this.getInputValue());
       this.msgOverlayRef.overlayRef?.dispose();
     }

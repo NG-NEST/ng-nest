@@ -1,68 +1,62 @@
-@if (!msgInput.hide) {
-  <div
-    class="x-message-box"
-    [@x-move-box-animation]="msgInput.placement"
-    (@x-move-box-animation.done)="moveDone($event)"
-  >
-    <x-alert
-      (close)="onClose()"
-      [title]="msgInput.title"
-      [content]="contentTpl"
-      [type]="msgInput.type!"
-      [effect]="msgInput.effect!"
-      [hideClose]="msgInput.hideClose!"
-      [closeText]="msgInput.closeText"
-      [showIcon]="false"
-      [duration]="0"
-      manual
-      disabledAnimation
-    ></x-alert>
-    <ng-template #contentTpl let-iconTpl="$iconTpl">
-      <div class="x-message-box-inner">
-        <div class="x-message-box-content">
-          @if (msgInput.showInput) {
-            <form [formGroup]="formGroup">
-              <x-input
-                formControlName="inputValue"
-                [type]="msgInput.inputType!"
-                [label]="getLabel"
-                [placeholder]="msgInput.inputPlaceholder!"
-                [pattern]="getPattern"
-                [message]="msgInput.inputInvalidMessage!"
-                [inputValidator]="msgInput.inputValidator!"
-              ></x-input>
-            </form>
-          } @else if (msgInput.showTextarea) {
-            <form [formGroup]="formGroup">
-              <x-textarea
-                formControlName="inputValue"
-                [placeholder]="msgInput.inputPlaceholder!"
-                [label]="getLabel"
-                [pattern]="getPattern"
-                [message]="msgInput.inputInvalidMessage!"
-                [inputValidator]="msgInput.inputValidator!"
-                [maxlength]="msgInput.textareaMaxlength!"
-                [height]="msgInput.textareaHeight!"
-              ></x-textarea>
-            </form>
-          } @else {
-            @if (msgInput.showIcon) {
-              <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
-            }
-            <ng-container *xOutlet="msgInput.content">
-              {{ msgInput.content }}
-            </ng-container>
+<div class="x-message-box">
+  <x-alert
+    (close)="onClose()"
+    [title]="msgInput.title"
+    [content]="contentTpl"
+    [type]="msgInput.type!"
+    [effect]="msgInput.effect!"
+    [hideClose]="msgInput.hideClose!"
+    [closeText]="msgInput.closeText"
+    [showIcon]="false"
+    [duration]="0"
+    manual
+    disabledAnimation
+  ></x-alert>
+  <ng-template #contentTpl let-iconTpl="$iconTpl">
+    <div class="x-message-box-inner">
+      <div class="x-message-box-content">
+        @if (msgInput.showInput) {
+          <form [formGroup]="formGroup">
+            <x-input
+              formControlName="inputValue"
+              [type]="msgInput.inputType!"
+              [label]="getLabel"
+              [placeholder]="msgInput.inputPlaceholder!"
+              [pattern]="getPattern"
+              [message]="msgInput.inputInvalidMessage!"
+              [inputValidator]="msgInput.inputValidator!"
+            ></x-input>
+          </form>
+        } @else if (msgInput.showTextarea) {
+          <form [formGroup]="formGroup">
+            <x-textarea
+              formControlName="inputValue"
+              [placeholder]="msgInput.inputPlaceholder!"
+              [label]="getLabel"
+              [pattern]="getPattern"
+              [message]="msgInput.inputInvalidMessage!"
+              [inputValidator]="msgInput.inputValidator!"
+              [maxlength]="msgInput.textareaMaxlength!"
+              [height]="msgInput.textareaHeight!"
+            ></x-textarea>
+          </form>
+        } @else {
+          @if (msgInput.showIcon) {
+            <ng-container *ngTemplateOutlet="iconTpl"></ng-container>
           }
-        </div>
-        <x-buttons space="0.5rem">
-          @if (msgInput.showCancel) {
-            <x-button (click)="onCancel()" flat plain>{{ msgInput.cancelText }}</x-button>
-          }
-          <x-button type="primary" flat (click)="onConfirm()" [disabled]="formGroup!.invalid" [loading]="loading">{{
-            msgInput.confirmText
-          }}</x-button>
-        </x-buttons>
+          <ng-container *xOutlet="msgInput.content">
+            {{ msgInput.content }}
+          </ng-container>
+        }
       </div>
-    </ng-template>
-  </div>
-}
+      <x-buttons space="0.5rem">
+        @if (msgInput.showCancel) {
+          <x-button (click)="onCancel()" flat plain>{{ msgInput.cancelText }}</x-button>
+        }
+        <x-button type="primary" flat (click)="onConfirm()" [disabled]="formGroup!.invalid" [loading]="loading">{{
+          msgInput.confirmText
+        }}</x-button>
+      </x-buttons>
+    </div>
+  </ng-template>
+</div>
