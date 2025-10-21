@@ -44,7 +44,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
   sort = signal<XSort[]>([]);
   sortStr = signal('');
   theadStyle = computed(() => {
-    let height = this.rowHeight() === 0 ? '' : this.rowHeight();
+    let height = this.getHeaderHeight();
     if (this.cellConfig() && this.cellConfig()!.cells) {
       const spt = this.cellConfig()!.cells?.map((x) => {
         const gridAreaSpt = x.gridArea?.split('/');
@@ -53,7 +53,7 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
       height = ((Math.max(...spt!) - 1) * (height as number)) as XNumber;
     }
     return {
-      ['min-height']: `${this.getRowHeight()}px`
+      ['min-height']: `${height}px`
     };
   });
   thClassMap = computed(() => ({

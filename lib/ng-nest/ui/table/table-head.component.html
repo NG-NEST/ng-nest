@@ -5,7 +5,7 @@
   [class.x-table-head-bottom]="position() === 'bottom'"
 >
   @if (cellConfig()) {
-    <tr [style.gridTemplateColumns]="cellConfig()!.gridTemplateColumns" [style.min-height.px]="getRowHeight()">
+    <tr [style.gridTemplateColumns]="cellConfig()!.gridTemplateColumns" [style.min-height.px]="getHeaderHeight()">
       @for (column of cellConfig()!.cells; track column.id) {
         <th
           [class.x-table-sticky]="table.getStickyLeft(column) || table.getStickyRight(column)"
