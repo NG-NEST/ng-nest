@@ -6,6 +6,7 @@
   [class.x-disabled]="disabled()"
   [class.x-tag-bordered]="bordered()"
   [class.x-tag-selected]="selected()"
+  [class.x-tag-content-empty]="!hasContent()"
   (click)="onClick()"
 >
   <ng-content></ng-content>

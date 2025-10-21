@@ -37,6 +37,9 @@
       background-color: rgba(255, 255, 255, 0.3);
     }
   }
+  &-content-empty {
+    display: none;
+  }
   &-bordered {
     border-width: $x-border-width;
   }

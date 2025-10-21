@@ -5,7 +5,9 @@ import {
   HostBinding,
   HostListener,
   computed,
-  signal
+  signal,
+  viewChild,
+  ElementRef
 } from '@angular/core';
 import { XTagPrefix, XTagProperty } from './tag.property';
 import { XIsEmpty } from '@ng-nest/ui/core';
@@ -22,6 +24,8 @@ import { XIconComponent } from '@ng-nest/ui/icon';
 })
 export class XTagComponent extends XTagProperty {
   animating = signal(false);
+  hasContent = signal(true);
+  tag = viewChild.required<ElementRef<HTMLElement>>('tag');
 
   @HostBinding('animate.enter') animateEnter = 'x-base-enter';
   @HostBinding('animate.leave') animateLeave = 'x-base-leave';
@@ -48,5 +52,10 @@ export class XTagComponent extends XTagProperty {
   onClose(event: Event) {
     if (this.disabled()) return;
     this.close.emit(event);
+  }
+
+  ngAfterContentChecked() {
+    const el = this.tag().nativeElement;
+    this.hasContent.set(el.children.length > 0 || el.textContent!.trim().length > 0);
   }
 }
