@@ -12,7 +12,8 @@ import {
   AfterViewInit,
   viewChild,
   effect,
-  DestroyRef
+  DestroyRef,
+  DOCUMENT
 } from '@angular/core';
 import { XIsFunction, XConfigService } from '@ng-nest/ui/core';
 import {
@@ -24,7 +25,7 @@ import {
   X_DIALOG_CONTAINER
 } from './dialog.property';
 import { XPortalService } from '@ng-nest/ui/portal';
-import { Subscription, Subject } from 'rxjs';
+import { Subscription, Subject, fromEvent } from 'rxjs';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import { XI18nDialog, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { map, takeUntil } from 'rxjs/operators';
@@ -45,12 +46,14 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit {
+  private static dialogOverlayRefs: XDialogOverlayRef[] = [];
+
   private viewContainerRef = inject(ViewContainerRef);
   private protalService = inject(XPortalService);
   private overlay = inject(Overlay);
   private i18n = inject(XI18nService);
   private unSubject = new Subject<void>();
-
+  private document = inject(DOCUMENT);
   @HostBinding('class.x-dialog-visible') get getVisible() {
     return this.visible();
   }
@@ -60,6 +63,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   dialogTpl = viewChild.required<TemplateRef<void>>('dialogTpl');
   dialogRef!: XDialogOverlayRef;
   backdropClick$!: Subscription;
+  keyboard$!: Subscription;
   scrollStrategy!: BlockScrollStrategy;
   locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.dialog as XI18nDialog)), { initialValue: zh_CN.dialog });
   overlayElement = signal<HTMLElement | null>(null);
@@ -126,6 +130,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
     this.destroyRef.onDestroy(() => {
       this.destroy.set(true);
       this.backdropClick$?.unsubscribe();
+      this.keyboard$?.unsubscribe();
       this.unSubject.next();
       this.unSubject.complete();
     });
@@ -172,8 +177,22 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
       minWidth: this.minWidth(),
       minHeight: this.minHeight()
     });
+    XDialogComponent.dialogOverlayRefs.push(this.dialogRef);
     if (this.hasBackdrop() && this.backdropClose() && this.dialogRef?.overlayRef) {
-      this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => this.onClose('close'));
+      this.backdropClick$ = this.dialogRef.overlayRef.backdropClick().subscribe(() => {
+        this.onClose('close');
+        this.keyboard$?.unsubscribe();
+      });
+    }
+    if (this.keyboard()) {
+      this.keyboard$ = fromEvent<KeyboardEvent>(this.document, 'keydown').subscribe((event: KeyboardEvent) => {
+        if (event.key === 'Escape' || event.keyCode === 27) {
+          if (XDialogComponent.dialogOverlayRefs[XDialogComponent.dialogOverlayRefs.length - 1] === this.dialogRef) {
+            this.onClose('close');
+            this.keyboard$?.unsubscribe();
+          }
+        }
+      });
     }
   }
 

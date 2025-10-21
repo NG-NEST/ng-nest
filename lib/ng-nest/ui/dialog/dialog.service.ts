@@ -1,11 +1,12 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
-import { Injectable, RendererFactory2, TemplateRef, inject } from '@angular/core';
+import { DOCUMENT, Injectable, RendererFactory2, TemplateRef, inject } from '@angular/core';
 import { XFillDefault, XConfigService, XDialogConfig } from '@ng-nest/ui/core';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRef } from './dialog-ref';
 import { XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
+import { fromEvent, Subject, takeUntil } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class XDialogService {
@@ -17,6 +18,7 @@ export class XDialogService {
     minHeight: '8rem',
     backdropClose: true,
     hasBackdrop: true,
+    keyboard: true,
     draggable: false
   };
   configDefault?: XDialogConfig;
@@ -25,7 +27,9 @@ export class XDialogService {
   private configService = inject(XConfigService);
   private overlay = inject(Overlay);
   private rendererFactory = inject(RendererFactory2);
+  private document = inject(DOCUMENT);
   private renderer = this.rendererFactory.createRenderer(null, null);
+  private dialogRefs: XDialogRef<any>[] = [];
 
   constructor() {
     this.configDefault = this.configService.getConfigForComponent(X_DIALOG_CONFIG_NAME);
@@ -72,6 +76,7 @@ export class XDialogService {
     instance.overlayElement = overlayElement;
     dialogRef.option = option;
     dialogRef.fullscreen = defaultMaximize;
+    dialogRef.unsubject = new Subject<void>();
     if (defaultMaximize) {
       this.renderer.addClass(overlayElement, 'x-dialog-portal-fullscreen');
     }
@@ -88,10 +93,32 @@ export class XDialogService {
       dialogRef.componentInstance = comRef.instance;
     }
 
+    this.dialogRefs.push(dialogRef);
+
+    const close = () => {
+      dialogRef.close();
+      this.dialogRefs.splice(this.dialogRefs.indexOf(dialogRef), 1);
+    };
+
     if (option.hasBackdrop && option.backdropClose && overlayRef) {
-      overlayRef.backdropClick().subscribe(() => {
-        dialogRef.close();
-      });
+      overlayRef
+        .backdropClick()
+        .pipe(takeUntil(dialogRef.unsubject))
+        .subscribe(() => {
+          close();
+        });
+    }
+
+    if (option.keyboard) {
+      fromEvent<KeyboardEvent>(this.document, 'keydown')
+        .pipe(takeUntil(dialogRef.unsubject))
+        .subscribe((event: KeyboardEvent) => {
+          if (event.key === 'Escape' || event.keyCode === 27) {
+            if (this.dialogRefs[this.dialogRefs.length - 1] === dialogRef) {
+              close();
+            }
+          }
+        });
     }
 
     return dialogRef;

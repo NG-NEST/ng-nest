@@ -371,6 +371,7 @@ export interface XDialogConfig {
   resizable?: boolean;
   maximize?: boolean;
   hasBackdrop?: boolean;
+  keyboard?: boolean;
   className?: string;
   buttonsCenter?: boolean;
 }

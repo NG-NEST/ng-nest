@@ -136,6 +136,11 @@ export class XDialogProperty extends XPropertyFunction(X_DIALOG_CONFIG_NAME) {
    */
   readonly hasBackdrop = input<boolean, XBoolean>(this.config?.hasBackdrop ?? true, { transform: XToBoolean });
   /**
+   * @zh_CN 是否支持键盘 esc 关闭
+   * @en_US Whether to support keyboard esc to close
+   */
+  readonly keyboard = input<boolean, XBoolean>(this.config?.keyboard ?? true, { transform: XToBoolean });
+  /**
    * @zh_CN 自定义样式名
    * @en_US Custom style name
    */
@@ -279,6 +284,13 @@ export interface XDialogRefOption {
    * @withConfig true
    */
   minHeight?: string;
+  /**
+   * @zh_CN 是否支持键盘 esc 关闭
+   * @en_US Whether to support keyboard esc to close
+   * @default true
+   * @withConfig true
+   */
+  keyboard?: boolean;
   /**
    * @zh_CN 数据，通过 "@Inject(X_DIALOG_DATA)" 来接收数据
    * @en_US Data. Receive data by "@Inject(X_DIALOG_DATA)"

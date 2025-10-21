@@ -14,6 +14,7 @@ export class XDialogRef<C> {
   fullscreen = false;
   dragHandleRefs: (XDialogDragHandleDirective | CdkDragHandle)[] = [];
   afterClose = new Subject<any>();
+  unsubject = new Subject<void>();
   private _isFristFullscreen = true;
 
   constructor(
@@ -35,6 +36,9 @@ export class XDialogRef<C> {
       });
 
     this.overlayRef.detach();
+
+    this.unsubject.next();
+    this.unsubject.complete();
   }
 
   onFullscreen() {
