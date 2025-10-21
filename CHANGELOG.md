@@ -1,3 +1,22 @@
+## [20.2.1](https://github.com/NG-NEST/ng-nest/compare/20.2.0...20.2.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* **module:table:** fix height style ([8ff005f](https://github.com/NG-NEST/ng-nest/commit/8ff005f294b1609fa76cdb25e27243feddbc41dc))
+* **module:tag:** fix content empty ([e0bf7f4](https://github.com/NG-NEST/ng-nest/commit/e0bf7f47022fcc9f1632a1a4e88609a140d3bdbc))
+
+
+### Features
+
+* **module:dialog:** add keyborad close ([05ee047](https://github.com/NG-NEST/ng-nest/commit/05ee0474404fef6f6400bffe4e5bf696455172a7))
+* **module:dialog:** replace animate ([af1944f](https://github.com/NG-NEST/ng-nest/commit/af1944ff70f2eeb225262664ec293edbd378ef58))
+* **module:message-box:** replace animate ([58b1f6c](https://github.com/NG-NEST/ng-nest/commit/58b1f6c497cf14218fc18cc2c43a8e4f5e9471e0))
+* **module:message:** replace animate ([7eda9c7](https://github.com/NG-NEST/ng-nest/commit/7eda9c7719641efb5432101a33f5a91427f8c893))
+* **module:notification:** replace animate ([b331986](https://github.com/NG-NEST/ng-nest/commit/b331986c091d21be0d8e661329336b5cdd20bd9a))
+
+
+
 # [20.2.0](https://github.com/NG-NEST/ng-nest/compare/20.1.7...20.2.0) (2025-10-19)
 
 

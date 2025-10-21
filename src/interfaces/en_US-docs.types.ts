@@ -2,34 +2,6 @@
 import { AppProp } from "./core.interface";
 
 export const en_US: {[key: string]: AppProp} = {
-  "XDuration": {
-    "type": "enum",
-    "label": "Animation execution time",
-    "description": "",
-    "example": [
-      {
-        "type": "text",
-        "content": ""
-      }
-    ],
-    "properties": [],
-    "name": "XDuration",
-    "value": "{Slow = '0.3s',Base = '0.2s',Fast = '0.1s'}"
-  },
-  "XMoveAnimation": {
-    "type": "const",
-    "label": "Move in the animation",
-    "description": "",
-    "example": [
-      {
-        "type": "text",
-        "content": ""
-      }
-    ],
-    "properties": [],
-    "name": "XMoveAnimation",
-    "value": "trigger('x-move-animation', [transition('void => top-start, void => top, void => top-end, void => center', [style({transform: 'translateY(-200%)',opacity: 0}),animate(`${XDuration.Base}`,style({transform: 'translateY(0%)',opacity: 1}))]),transition('top-start => void, top => void, top-end => void, center => void', [style({transform: 'translateY(0%)',opacity: 1,height: '*'}),animate(`${XDuration.Base}`,style({transform: 'translateY(-200%)',opacity: 0,height: 0}))]),transition('void => left', [style({transform: 'translateX(-30%)',opacity: 0}),animate(`${XDuration.Base}`,style({transform: 'translateX(0%)',opacity: 1}))]),transition('left => void', [style({transform: 'translateX(0%)',opacity: 1,height: '*'}),animate(`${XDuration.Base}`,style({transform: 'translateX(-30%)',opacity: 0,height: 0}))]),transition('void => right', [style({transform: 'translateX(30%)',opacity: 0}),animate(`${XDuration.Base}`,style({transform: 'translateX(0%)',opacity: 1}))]),transition('right => void', [style({transform: 'translateX(0%)',opacity: 1,height: '*'}),animate(`${XDuration.Base}`,style({transform: 'translateX(30%)',opacity: 0,height: 0}))]),transition('void => bottom-start, void => bottom, void => bottom-end', [style({transform: 'translateY(200%)',opacity: 0,height: 0}),animate(`${XDuration.Base}`,style({transform: 'translateY(0%)',opacity: 1,height: '*'}))]),transition('bottom-start => void, bottom => void, bottom-end => void', [style({transform: 'translateY(0%)',opacity: 1}),animate(`${XDuration.Base}`,style({transform: 'translateY(200%)',opacity: 0}))])])"
-  },
   "XConfig": {
     "type": "interface",
     "label": "Component and theme global configuration information",
@@ -18470,6 +18442,24 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<boolean, XBoolean>",
         "signal": "input",
         "label": "Whether to display the background mask",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "keyboard",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Whether to support keyboard esc to close",
         "default": "true",
         "withConfig": true,
         "description": "",
