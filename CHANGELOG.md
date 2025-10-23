@@ -1,3 +1,12 @@
+## [20.2.2](https://github.com/NG-NEST/ng-nest/compare/20.2.1...20.2.2) (2025-10-23)
+
+
+### Bug Fixes
+
+* **module:table:** fix table expand scroll ([1e6a5c9](https://github.com/NG-NEST/ng-nest/commit/1e6a5c9c2fe4142e49584ab40cb90d62621b1aeb))
+
+
+
 ## [20.2.1](https://github.com/NG-NEST/ng-nest/compare/20.2.0...20.2.1) (2025-10-21)
 
 
@@ -1764,7 +1773,7 @@
 
 
 
-## [11.2.10](https://github.com/NG-NEST/ng-nest/compare/11.2.9...11.2.10) (2021-05-28)
+## [11.2.10](https://github.com/NG-NEST/ng-nest/compare/11.2.8...11.2.10) (2021-05-28)
 
 
 ### Bug Fixes
@@ -1778,7 +1787,7 @@
 
 
 
-## [11.2.9](https://github.com/NG-NEST/ng-nest/compare/11.2.8...11.2.9) (2021-05-26)
+## 11.2.9 (2021-05-26)
 
 
 

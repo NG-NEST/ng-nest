@@ -127,7 +127,6 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
 
   rows = computed<XTableRow[]>(() => {
     if (!this.table.treeTable()) return this.data();
-    console.log(this.treeData());
     return this.treeData();
   });
 
