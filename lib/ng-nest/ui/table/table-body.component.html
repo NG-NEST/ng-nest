@@ -29,7 +29,7 @@
         [style.height.px]="bodyHeightSignal()"
       >
         <tr
-          *cdkVirtualFor="let row of data(); let index = index; trackBy: trackByItem"
+          *cdkVirtualFor="let row of rows(); let index = index; trackBy: trackByItem"
           [class.x-table-activated]="allowSelectRow() && activatedRow()?.id === row.id"
           [style.height.px]="getRowHeight()"
           [style.min-height.px]="getRowHeight()"
@@ -41,7 +41,7 @@
         </tr>
       </cdk-virtual-scroll-viewport>
     } @else {
-      @for (row of data(); track row.id; let i = $index) {
+      @for (row of rows(); track row.id; let i = $index) {
         <tr
           [class.x-table-activated]="allowSelectRow() && activatedRow()?.id === row.id"
           [style.height.px]="getRowHeight()"
@@ -51,24 +51,6 @@
         >
           <ng-container *ngTemplateOutlet="rowTpl; context: { row: row, i: i }"></ng-container>
         </tr>
-        @if (table.treeTable() && row.children && row.expanded) {
-          <div class="x-table-children" [class.x-table-expandTpl]="expandTpl()">
-            <x-table-body
-              [data]="row.children"
-              [columns]="table.columns()"
-              [itemSize]="table.itemSize()"
-              [rowHeight]="table.rowHeight()"
-              [columnTpl]="table.bodyColumnTpl()"
-              [allowSelectRow]="table.allowSelectRow()"
-              [rowClass]="table.rowClass()"
-              [cellConfig]="table.cellConfig()?.tbody"
-              [(activatedRow)]="table.activatedRow"
-              [expandedAll]="expandedAll()"
-              [expandTpl]="expandTpl()"
-              [level]="row.level! + 1"
-            ></x-table-body>
-          </div>
-        }
       }
     }
   }
@@ -78,11 +60,7 @@
 </tbody>
 
 <ng-template #rowTpl let-row="row" let-i="i">
-  @if (level() > 0 && expandTpl()) {
-    <ng-container *xOutlet="expandTpl(); context: { $row: row, $index: i, $level: level() }"></ng-container>
-  } @else if (level() === 0 || !expandTpl()) {
-    <ng-container *xOutlet="rowDefault; context: { row: row, i: i, level: level() }"></ng-container>
-  }
+  <ng-container *xOutlet="rowDefault; context: { row: row, i: i, level: row.level }"></ng-container>
 </ng-template>
 
 <ng-template #rowDefault let-row="row" let-i="i">

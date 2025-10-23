@@ -359,7 +359,7 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
     const setChildren = (nodes: XTableRow[]) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
-        x.expanded = Boolean(this.expandedAll);
+        x.expanded = Boolean(this.expandedAll());
         setChildren(x.children as XTableRow[]);
       });
     };

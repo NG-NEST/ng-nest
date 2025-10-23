@@ -11,24 +11,3 @@
 >
 </x-table>
 
-<h3>Expand custom template</h3>
-<x-table [columns]="columns" [data]="dataTpl" [showPagination]="false" loading treeTable [expandTpl]="expandTpl" [expandedLevel]="0">
-</x-table>
-<ng-template #expandTpl let-row="$row" let-index="$index" let-level="$level">
-  <x-description bordered class="row">
-    <x-description-item [label]="expandIconTpl" gridArea="1/1/1/2" align="center">
-      <span class="title">{{ row.name }}：</span>{{ row.description }}
-    </x-description-item>
-    <ng-template #expandIconTpl>
-      <x-button
-        [style.padding-left.rem]="level"
-        class="leaf"
-        [class.has-leaf]="row.leaf"
-        (click)="expandIconClick(row)"
-        [icon]="row.expanded ? 'fto-minus' : 'fto-plus'"
-        size="mini"
-        onlyIcon
-      ></x-button>
-    </ng-template>
-  </x-description>
-</ng-template>

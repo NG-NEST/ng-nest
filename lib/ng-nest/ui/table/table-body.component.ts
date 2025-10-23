@@ -72,6 +72,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
   footHeight = signal(0);
   paginationHeight = signal(0);
   checkboxDragging = signal(false);
+  expandChanged = signal<boolean>(false);
 
   bodyHeightSignal = computed(() => {
     const adaptionHeight = this.adaptionHeight();
@@ -106,6 +107,28 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
       return this.bodyHeightSignal()! * 1.2;
     }
     return this.maxBufferPx();
+  });
+
+  treeData = computed<XTableRow[]>(() => {
+    if (!this.table.treeTable()) return [];
+    this.expandChanged();
+    const treeData: XTableRow[] = [];
+    const addItems = (data: XTableRow[]) => {
+      for (let item of data) {
+        treeData.push(item);
+        if (item.children && item.children.length > 0 && item.expanded) {
+          addItems(item.children);
+        }
+      }
+    };
+    addItems(this.data());
+    return treeData;
+  });
+
+  rows = computed<XTableRow[]>(() => {
+    if (!this.table.treeTable()) return this.data();
+    console.log(this.treeData());
+    return this.treeData();
   });
 
   constructor() {
@@ -219,8 +242,6 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
     }
 
     this.virtualBody()!.checkViewportSize();
-
-    // this.table.cdr.detectChanges();
   }
 
   setStyle() {
@@ -269,9 +290,10 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
     this.rowClick.emit(row);
   }
 
-  onExpanded(_event: Event, node: XTableRow) {
+  onExpanded(event: Event, node: XTableRow) {
     node.expanded = !node.expanded;
-    // this.cdr.detectChanges();
+    this.expandChanged.update((x) => !x);
+    event?.stopPropagation();
   }
 
   trackByItem(_index: number, item: XTableRow | XTableColumn) {
