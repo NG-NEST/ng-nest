@@ -292,6 +292,7 @@ export interface XColorPickerConfig {
   floatFixed?: boolean;
   variant?: XVariant;
   placement?: XCorner;
+  clearable?: boolean;
   size?: XSize;
   bordered?: boolean;
 }

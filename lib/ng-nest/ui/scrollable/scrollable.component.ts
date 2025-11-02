@@ -31,6 +31,9 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
   xOffsetLeft = input(0);
   xOffsetRight = input(0);
 
+  maxHeight = input('100%');
+  maxWidth = input('100%');
+
   private contentRef = viewChild.required<ElementRef<HTMLElement>>('content');
 
   private trackXRef = viewChild.required<ElementRef<HTMLElement>>('trackX');
