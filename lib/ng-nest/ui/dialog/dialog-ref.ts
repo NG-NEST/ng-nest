@@ -35,10 +35,11 @@ export class XDialogRef<C> {
         this.afterClose.next(result);
       });
 
-    this.overlayRef.detach();
-
-    this.unsubject.next();
-    this.unsubject.complete();
+    setTimeout(() => {
+      this.overlayRef.detach();
+      this.unsubject.next();
+      this.unsubject.complete();
+    });
   }
 
   onFullscreen() {
