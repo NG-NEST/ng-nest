@@ -16,7 +16,7 @@
       [icon]="icon()"
       [placeholder]="placeholder()"
       [readonly]="readonly()"
-      [clearable]="clearable()"
+      [clearable]="clearable() && inputClearable()"
       [(ngModel)]="value"
       [valueTpl]="valueTpl() ? valueTpl() : valueTemplate"
       [valueTplContext]="valueTplContext()"
@@ -41,8 +41,8 @@
       <div class="x-color-picker-template-value">
         <div
           class="x-color-picker-template-color"
-          [style]="inputStyle()"
-          [attr.title]="inputStyle().backgroundColor"
+          [style]="inputStyleComputed()"
+          [attr.title]="inputStyleComputed().backgroundColor"
         ></div>
       </div>
     </ng-template>

@@ -38,10 +38,20 @@ export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NA
    */
   readonly placement = input<XCorner>(this.config?.placement ?? 'bottom-start');
   /**
+   * @zh_CN 清除按钮
+   * @en_US Clear button
+   */
+  readonly clearable = input<boolean, XBoolean>(this.config?.clearable ?? true, { transform: XToBoolean });
+  /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
   readonly bordered = input<boolean, XBoolean>(this.config?.bordered ?? true, { transform: XToBoolean });
+  /**
+   * @zh_CN 输入框样式
+   * @en_US Input Style
+   */
+  readonly inputStyle = input<{ [style: string]: any }>();
   /**
    * @zh_CN 浮动标签
    * @en_US Float label

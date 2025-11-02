@@ -1,6 +1,6 @@
 import { XColorPickerPortalComponent } from './color-picker-portal.component';
 import { XPortalService, XPortalOverlayRef, XPortalConnectedPosition } from '@ng-nest/ui/portal';
-import { Subject, fromEvent } from 'rxjs';
+import { Subject, fromEvent, of } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -28,7 +28,7 @@ import {
   ConnectedOverlayPositionChange,
   OverlayRef
 } from '@angular/cdk/overlay';
-import { filter, takeUntil } from 'rxjs/operators';
+import { delay, filter, takeUntil } from 'rxjs/operators';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -50,14 +50,16 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   private doc = inject(DOCUMENT);
   primaryColor = XComputed(this.doc.documentElement).getPropertyValue('--x-primary').trim();
 
-  inputStyle = computed(() => ({
+  inputStyleComputed = computed(() => ({
     backgroundColor: this.value(),
-    color: 'transparent'
+    color: 'transparent',
+    ...this.inputStyle()
   }));
 
-  clearable = signal(false);
+  inputClearable = signal(false);
   enter = signal(false);
   animating = signal(false);
+  allowAgian = signal(true);
   portal!: XPortalOverlayRef<XColorPickerPortalComponent>;
   icon = signal('fto-chevron-down');
   closeSubject: Subject<void> = new Subject();
@@ -114,18 +116,20 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   menter() {
     if (this.disabledComputed()) return;
     this.enter.set(true);
+    if (!this.clearable()) return;
     if (!XIsEmpty(this.value())) {
       this.icon.set('');
-      this.clearable.set(true);
+      this.inputClearable.set(true);
     }
   }
 
   mleave() {
     if (this.disabledComputed()) return;
     this.enter.set(false);
-    if (this.clearable()) {
+    if (!this.clearable()) return;
+    if (this.inputClearable()) {
       this.icon.set('fto-chevron-down');
-      this.clearable.set(false);
+      this.inputClearable.set(false);
     }
   }
 
@@ -143,11 +147,15 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
     if (this.portalAttached()) {
       this.portalOverlayRef()?.detach();
       this.active.set(false);
+      this.allowAgian.set(false);
+      of(true)
+        .pipe(delay(200))
+        .subscribe(() => this.allowAgian.set(true));
     }
   }
 
   showPortal() {
-    if (this.disabledComputed() || this.animating()) return;
+    if (this.disabledComputed() || !this.allowAgian() || this.animating()) return;
     this.active.set(true);
     const config: OverlayConfig = {
       backdropClass: '',
