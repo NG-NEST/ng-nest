@@ -70,7 +70,6 @@
 <ng-template #multipleValueTpl>
   @for (node of displayNodes(); track node.id; let i = $index) {
     <x-tag
-      [@.disabled]="true"
       [bordered]="false"
       [closable]="!disabledComputed()"
       [type]="'info'"
