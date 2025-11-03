@@ -1,9 +1,18 @@
-## [20.2.2](https://github.com/NG-NEST/ng-nest/compare/20.2.1...20.2.2) (2025-10-23)
+## [20.2.3](https://github.com/NG-NEST/ng-nest/compare/20.2.1...20.2.3) (2025-11-03)
 
 
 ### Bug Fixes
 
+* **module:color-picker:** fixed the issue of frequent clicking popping up ([53935cb](https://github.com/NG-NEST/ng-nest/commit/53935cb0a6aa3d222ef049b7b9e4727f20bb83a6))
+* **module:dialog:** fix other pop-up components in the dialog box ([1d79b64](https://github.com/NG-NEST/ng-nest/commit/1d79b6488d3399678c707deffe2d1fdc598c51ed))
+* **module:select:** fix multiple pop ups and close ([d595606](https://github.com/NG-NEST/ng-nest/commit/d595606d9faebe7f7b4dde35d53d094ae153ddcc))
 * **module:table:** fix table expand scroll ([1e6a5c9](https://github.com/NG-NEST/ng-nest/commit/1e6a5c9c2fe4142e49584ab40cb90d62621b1aeb))
+
+
+### Features
+
+* **module:pagination:** add enter/blur confirmation for simple mode page numbers ([6410c90](https://github.com/NG-NEST/ng-nest/commit/6410c90c795c5f1775c343cfb6ce24d06cfe6569))
+* **module:scrollable:** add max width and height ([7e6d488](https://github.com/NG-NEST/ng-nest/commit/7e6d488f30a330eedf057e5426bd77cd7acb2672))
 
 
 
@@ -1773,7 +1782,7 @@
 
 
 
-## [11.2.10](https://github.com/NG-NEST/ng-nest/compare/11.2.8...11.2.10) (2021-05-28)
+## [11.2.10](https://github.com/NG-NEST/ng-nest/compare/11.2.9...11.2.10) (2021-05-28)
 
 
 ### Bug Fixes
@@ -1787,7 +1796,7 @@
 
 
 
-## 11.2.9 (2021-05-26)
+## [11.2.9](https://github.com/NG-NEST/ng-nest/compare/11.2.8...11.2.9) (2021-05-26)
 
 
 

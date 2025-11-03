@@ -11327,6 +11327,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "clearable",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "清除按钮",
+        "default": "true",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "bordered",
         "type": "XBoolean",
         "toType": "boolean",
@@ -11343,6 +11361,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "inputStyle",
+        "type": "{ [style: string]: any }",
+        "toType": "{ [style: string]: any }",
+        "inputType": "InputSignal<{ [style: string]: any }>",
+        "signal": "input",
+        "label": "输入框样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "floatLabel",
@@ -30272,7 +30308,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<string, XNumber>",
         "signal": "input",
         "label": "简单分页输入框宽度",
-        "default": "'8.125rem'",
+        "default": "'4rem'",
         "withConfig": true,
         "description": "",
         "example": [
