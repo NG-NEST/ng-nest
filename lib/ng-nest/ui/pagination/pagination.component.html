@@ -1,13 +1,41 @@
 @if (simple()) {
   <div class="x-pagination-simple">
-    <x-input
-      [before]="previousTpl"
-      [after]="nextTpl"
-      [style.width]="simpleIndexWidth()"
-      [variant]="showBackground() ? 'filled' : 'outlined'"
-      [(ngModel)]="index"
-      (xKeydown)="onSimpleKeydown($event)"
-    ></x-input>
+    @if (showJumpTooltipText()) {
+      <x-input-group compact>
+        <ng-container *xOutlet="previousTpl"></ng-container>
+        <x-input
+          x-tooltip
+          [content]="jumpTooltip()"
+          
+          [style.width]="simpleIndexWidth()"
+          [variant]="showBackground() ? 'filled' : 'outlined'"
+          [(ngModel)]="jumpPage"
+          (xBlur)="onJumpBlur($event, true)"
+          (xKeydown)="onJumpKeydown($event, true)"
+          [type]="'number'"
+          [min]="1"
+          [max]="lastIndex()"
+        ></x-input>
+        <ng-container *xOutlet="nextTpl"></ng-container>
+      </x-input-group>
+    } @else {
+      <x-input-group compact>
+        <ng-container *xOutlet="previousTpl"></ng-container>
+        <x-input
+          [before]="previousTpl"
+          [after]="nextTpl"
+          [style.width]="simpleIndexWidth()"
+          [variant]="showBackground() ? 'filled' : 'outlined'"
+          [(ngModel)]="jumpPage"
+          (xBlur)="onJumpBlur($event, true)"
+          (xKeydown)="onJumpKeydown($event, true)"
+          [type]="'number'"
+          [min]="1"
+          [max]="lastIndex()"
+        ></x-input
+        ><ng-container *xOutlet="nextTpl"></ng-container>
+      </x-input-group>
+    }
     <span>/</span>
     <span>{{ lastIndex() }}</span>
   </div>
@@ -101,6 +129,9 @@
         [(ngModel)]="jumpPage"
         (xBlur)="onJumpBlur($event)"
         (xKeydown)="onJumpKeydown($event)"
+        [type]="'number'"
+        [min]="1"
+        [max]="lastIndex()"
       ></x-input>
     } @else {
       <x-input
@@ -109,6 +140,9 @@
         [(ngModel)]="jumpPage"
         (xBlur)="onJumpBlur($event)"
         (xKeydown)="onJumpKeydown($event)"
+        [type]="'number'"
+        [min]="1"
+        [max]="lastIndex()"
       ></x-input>
     }
   </div>

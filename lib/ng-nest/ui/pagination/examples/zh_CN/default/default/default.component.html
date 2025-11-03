@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <x-pagination [index]="index" [size]="size" [total]="total" (indexChange)="change($event)"></x-pagination>
 </div>
 <div class="row">
@@ -20,9 +20,10 @@
     showSize
     showJump
   ></x-pagination>
-</div>
+</div> -->
 <div class="row">
   <x-pagination
+    inputIndexSizeSureType="both"
     [index]="index"
     [size]="size"
     [total]="total"
@@ -32,7 +33,7 @@
     showInputSize
   ></x-pagination>
 </div>
-<div class="row">
+<!-- <div class="row">
   <x-pagination
     [index]="index"
     [size]="size"
@@ -42,4 +43,4 @@
     showInputSize
     showJump
   ></x-pagination>
-</div>
+</div> -->

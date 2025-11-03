@@ -144,7 +144,7 @@ export class XPaginationProperty extends XPropertyFunction(X_PAGINATION_CONFIG_N
    * @zh_CN 简单分页输入框宽度
    * @en_US Simple index with
    */
-  readonly simpleIndexWidth = input<string, XNumber>(this.config?.simpleIndexWidth ?? '8.125rem', {
+  readonly simpleIndexWidth = input<string, XNumber>(this.config?.simpleIndexWidth ?? '4rem', {
     transform: XToCssPixelValue
   });
   /**

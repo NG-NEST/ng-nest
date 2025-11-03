@@ -98,6 +98,16 @@
           @include focus();
           outline: 0;
         }
+        &[type='number'] {
+          -moz-appearance: textfield;
+          appearance: textfield;
+        }
+
+        &[type='number']::-webkit-outer-spin-button,
+        &[type='number']::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
       }
       > #{$x-prefix}-icon {
         color: $x-text-400;

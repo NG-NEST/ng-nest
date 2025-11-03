@@ -16,7 +16,7 @@ import { ENTER } from '@angular/cdk/keycodes';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent, XButtonsComponent } from '@ng-nest/ui/button';
 import { XSelectComponent } from '@ng-nest/ui/select';
-import { XInputComponent } from '@ng-nest/ui/input';
+import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XIsChange, XToDataArray } from '@ng-nest/ui/core';
 import { XTooltipModule } from '@ng-nest/ui/tooltip';
@@ -33,6 +33,7 @@ import { map } from 'rxjs';
     XSelectComponent,
     XInputComponent,
     XTooltipModule,
+    XInputGroupComponent,
     XOutletDirective
   ],
   templateUrl: './pagination.component.html',
@@ -51,7 +52,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
 
   indexFirst = signal(1);
   indexLast = signal(1);
-  jumpPage = signal<string>('');
+  jumpPage = signal<number | null>(null);
   inputSize = signal<string>('');
 
   lastIndex = computed(() => Math.ceil(this.total() / this.size()) || 1);
@@ -108,6 +109,7 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
 
   ngOnInit() {
     this.inputSize.set(this.size().toString());
+    if (this.simple()) this.jumpPage.set(this.index());
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -124,27 +126,30 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
   jump(index: number, isDiff = false) {
     const ix = this.validateIndex(isDiff ? this.index() + index : index);
     if (ix !== this.index()) {
+      if (this.simple()) {
+        this.jumpPage.set(ix);
+      }
       this.index.set(ix);
     }
   }
 
-  onJumpBlur(_event: MouseEvent) {
+  onJumpBlur(_event: MouseEvent, holdValue = false) {
     if (!['blur', 'both'].includes(this.inputIndexSizeSureType())) return;
-    const jumpPage = this.jumpPage().trim();
+    const jumpPage = this.jumpPage();
     const page = Number(jumpPage);
-    this.onJumpPageChange(page);
+    this.onJumpPageChange(page, holdValue);
   }
 
-  onJumpKeydown(event: KeyboardEvent) {
+  onJumpKeydown(event: KeyboardEvent, holdValue = false) {
     if (!['enter', 'both'].includes(this.inputIndexSizeSureType())) return;
-    const jumpPage = this.jumpPage().trim();
-    if (jumpPage !== '' && event.keyCode === ENTER) {
+    const jumpPage = this.jumpPage();
+    if (jumpPage && event.keyCode === ENTER) {
       const page = Number(jumpPage);
-      this.onJumpPageChange(page);
+      this.onJumpPageChange(page, holdValue);
     }
   }
 
-  onJumpPageChange(page: number) {
+  onJumpPageChange(page: number, holdValue = false) {
     if (page <= this.indexFirst()) {
       this.jump(this.indexFirst());
     } else if (page >= this.lastIndex()) {
@@ -152,7 +157,8 @@ export class XPaginationComponent extends XPaginationProperty implements OnInit 
     } else {
       this.jump(page);
     }
-    this.jumpPage.set('');
+    if (holdValue) return;
+    this.jumpPage.set(null);
   }
 
   onSimpleKeydown(event: KeyboardEvent) {
