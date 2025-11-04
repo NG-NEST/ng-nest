@@ -94,7 +94,8 @@ export class XThemeService {
     let result: XColorsTheme = {};
     const keys = includes ? Object.keys(this.colorsProp) : X_THEME_COLOR_KEYS.map((x) => `${prefix}${x}`);
     keys.forEach((x) => {
-      result[x.replace(prefix, '')] = this.declaration.getPropertyValue(`${x}`).trim();
+      const key = x.replace(prefix, '');
+      result[x.replace(prefix, '')] = this.declaration.getPropertyValue(`${x}`).trim() ?? X_THEME_COLORS[key];
     });
 
     return result;
