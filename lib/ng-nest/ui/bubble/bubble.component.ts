@@ -9,7 +9,8 @@ import {
   effect,
   SimpleChanges,
   inject,
-  Renderer2
+  Renderer2,
+  ChangeDetectorRef
 } from '@angular/core';
 import { XBubblePrefix, XBubbleProperty } from './bubble.property';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
@@ -17,9 +18,10 @@ import { XIsEmpty, XIsString, XIsTemplateRef } from '@ng-nest/ui/core';
 import { NgClass } from '@angular/common';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { XBubblesComponent } from './bubbles.component';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { isObservable } from 'rxjs';
 
 @Component({
   selector: 'x-bubble',
@@ -32,6 +34,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 export class XBubbleComponent extends XBubbleProperty {
   sanitizer = inject(DomSanitizer);
   renderer2 = inject(Renderer2);
+  cdr = inject(ChangeDetectorRef);
   private bubbles = inject(XBubblesComponent, { optional: true, host: true });
 
   contentRef = viewChild<ElementRef<HTMLElement>>('contentRef');
@@ -45,9 +48,11 @@ export class XBubbleComponent extends XBubbleProperty {
   }));
 
   typedContent = signal('');
+  typedContentObserver = toObservable(this.typedContent);
   pendingContent = signal('');
   pendingContentObserver = toObservable(this.pendingContent);
   private typingInterval: any = null;
+  renderedContent = signal<SafeHtml>('');
 
   sizeSignal = computed(() => {
     return this.bubbles?.size() || this.size();
@@ -74,6 +79,26 @@ export class XBubbleComponent extends XBubbleProperty {
         this.pendingContent.set('');
       }
     });
+
+    this.typedContentObserver.subscribe(() => {
+      const finalContent = this.typing() ? this.typedContent() : (this.content() as string) || '';
+      const setValue = (value: string) => {
+        this.renderedContent.set(this.sanitizer.bypassSecurityTrustHtml(value));
+      };
+
+      if (this.renderer()) {
+        const rendered = this.renderer()!(finalContent);
+        if (isObservable(rendered)) {
+          rendered.subscribe((value) => {
+            setValue(value);
+          });
+        } else {
+          setValue(rendered as string);
+        }
+      } else {
+        setValue(finalContent);
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -97,19 +122,6 @@ export class XBubbleComponent extends XBubbleProperty {
         this.startTyping();
       }
     }
-  }
-
-  get renderedContent() {
-    const finalContent = this.typing() ? this.typedContent() : (this.content() as string) || '';
-    let renderedString: string;
-
-    if (this.renderer()) {
-      renderedString = this.renderer()!(finalContent) || '';
-    } else {
-      renderedString = finalContent;
-    }
-
-    return this.sanitizer.bypassSecurityTrustHtml(renderedString);
   }
 
   private startTyping(): void {

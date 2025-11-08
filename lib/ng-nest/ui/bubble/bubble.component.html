@@ -24,7 +24,7 @@
         </div>
       }
       @if (isString()) {
-        <div class="x-bubble-content" #contentRef [innerHTML]="renderedContent"></div>
+        <div class="x-bubble-content" #contentRef [innerHTML]="renderedContent()"></div>
       } @else if (isTemplate()) {
         <div class="x-bubble-content" #contentRef>
           <ng-container *xOutlet="content()"></ng-container>

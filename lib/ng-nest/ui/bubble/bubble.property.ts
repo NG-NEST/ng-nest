@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { XBoolean, XNumber, XPropertyFunction, XSize, XTemplate, XToBoolean, XToNumber } from '@ng-nest/ui/core';
 import { XAvatarOption } from '@ng-nest/ui/avatar';
+import { Observable } from 'rxjs';
 
 /**
  * Bubble
@@ -150,4 +151,4 @@ export type XBubblePlacement = 'start' | 'end';
  * @zh_CN 内容渲染函数
  * @en_US Bubble content renderer
  */
-export type XBubbleContentRenderer = (content: string) => string | undefined;
+export type XBubbleContentRenderer = (content: string) => string | Observable<string> | undefined;
