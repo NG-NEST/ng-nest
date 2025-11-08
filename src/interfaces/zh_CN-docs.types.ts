@@ -6965,7 +6965,7 @@ export const zh_CN: {[key: string]: AppProp} = {
     ],
     "properties": [],
     "name": "XBubbleContentRenderer",
-    "value": "(content: string) => string | undefined"
+    "value": "(content: string) => string | Observable<string> | undefined"
   },
   "XButtonPrefix": {
     "type": "const",

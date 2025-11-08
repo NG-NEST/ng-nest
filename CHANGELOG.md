@@ -1,3 +1,19 @@
+## [20.2.4](https://github.com/NG-NEST/ng-nest/compare/20.2.3...20.2.4) (2025-11-08)
+
+
+### Bug Fixes
+
+* **module:base-form:** fix input validator ([b106874](https://github.com/NG-NEST/ng-nest/commit/b1068749d7a5294859d226acccf0edc1695d5fce))
+* **module:input:** fix input group style ([7bef98b](https://github.com/NG-NEST/ng-nest/commit/7bef98b58bac2f3995bcf5414ccdb104d9bbf866))
+* **module:theme:** fix config theme ([e19be29](https://github.com/NG-NEST/ng-nest/commit/e19be29c3e42b1b36f63531b827bf14c71fe108d))
+
+
+### Features
+
+* **module:bubble:** add observable renderer function ([1b5c836](https://github.com/NG-NEST/ng-nest/commit/1b5c836015c30f5a332f3e89aab92331a8c08d0a))
+
+
+
 ## [20.2.3](https://github.com/NG-NEST/ng-nest/compare/20.2.1...20.2.3) (2025-11-03)
 
 
