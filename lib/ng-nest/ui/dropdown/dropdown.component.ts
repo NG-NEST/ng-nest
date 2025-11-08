@@ -127,7 +127,6 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
       }
       if (!this.portalAttached() && [DOWN_ARROW].includes(keyCode)) {
         if (this.disabled()) return;
-        this.visibleClass.set(true);
         this.createPortal();
       }
     });
@@ -144,7 +143,6 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
           this.timeoutHide = null;
         }
         if (!this.portal || (this.portal && !this.portalOverlayRef()?.hasAttached())) {
-          this.visibleClass.set(true);
           this.createPortal();
         }
       });
@@ -156,8 +154,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     if (this.disabled() || this.trigger() === 'click') return;
     if (this.portalOverlayRef()?.hasAttached()) {
       this.timeoutHide = setTimeout(() => {
-        this.portalOverlayRef()?.dispose();
-        this.visibleClass.set(false);
+        this.closePortal();
       });
     }
   }
@@ -185,6 +182,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   }
 
   createPortal() {
+    this.visibleClass.set(true);
     let box = this.dropdown().nativeElement.getBoundingClientRect();
     this.minWidth.set(this.portalMinWidth() ? this.portalMinWidth() : `${box.width}px`);
     const config: OverlayConfig = {

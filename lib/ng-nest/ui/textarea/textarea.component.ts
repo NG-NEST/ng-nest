@@ -8,7 +8,7 @@ import {
   viewChild
 } from '@angular/core';
 import { XTextareaPrefix, XTextareaProperty } from './textarea.property';
-import { XIsEmpty, XConfigService } from '@ng-nest/ui/core';
+import { XIsEmpty, XConfigService, XIsFunction } from '@ng-nest/ui/core';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -68,6 +68,9 @@ export class XTextareaComponent extends XTextareaProperty {
 
   change(value: any) {
     if (this.onChange) this.onChange(value);
+    if (this.validatorComputed() && XIsFunction(this.inputValidator())) {
+      this.invalidInputValidator.set(!this.inputValidator()!(value));
+    }
   }
 
   onClear() {

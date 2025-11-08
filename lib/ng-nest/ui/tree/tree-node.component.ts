@@ -52,7 +52,7 @@ export class XTreeNodeComponent extends XTreeNodeProperty {
     this.nodeMouseenter.emit({ event: event, node: this.node(), ele: this.elementRef });
   }
 
-  @HostListener('mouseleave') onMouseleave(_event: MouseEvent) {
+  @HostListener('mouseleave', ['$event']) onMouseleave(_event: MouseEvent) {
     if (!this.tree.dragging()) return;
     const hoverTreeNode = this.tree.hoverTreeNode();
     hoverTreeNode && hoverTreeNode.change && hoverTreeNode.change();

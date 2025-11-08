@@ -16,7 +16,7 @@ export function XValueAccessor<T>(component: Type<T>) {
 
 export function XFormInputValidator(func: (value: any) => boolean): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const invalid = !func(control.value);
+    const invalid = func ? !func(control.value) : null;
     return invalid ? { inputValidator: true } : null;
   };
 }

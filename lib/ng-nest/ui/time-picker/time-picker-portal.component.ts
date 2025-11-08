@@ -38,11 +38,11 @@ export class XTimePickerPortalComponent {
   @HostBinding('animate.enter') animateEnter = 'x-connect-enter';
   @HostBinding('animate.leave') animateLeave = 'x-connect-leave';
 
-  @HostListener('animationend', ['$event']) done() {
+  @HostListener('animationend') done() {
     if (this.destroy()) return;
     this.animating.emit(false);
   }
-  @HostListener('animationstart', ['$event']) start() {
+  @HostListener('animationstart') start() {
     if (this.destroy()) return;
     this.animating.emit(true);
   }

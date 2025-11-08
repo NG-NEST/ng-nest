@@ -9,7 +9,10 @@ import { XButtonComponent } from '@ng-nest/ui/button';
   templateUrl: './prompt.component.html'
 })
 export class ExPromptComponent {
-  constructor(private msgBox: XMessageBoxService, private message: XMessageService) {}
+  constructor(
+    private msgBox: XMessageBoxService,
+    private message: XMessageService
+  ) {}
   prompt1() {
     this.msgBox.prompt({
       title: '提交内容',
@@ -36,6 +39,7 @@ export class ExPromptComponent {
       content: '请输入邮箱',
       inputValue: 'ngnest@163',
       inputValidator: (value: string) => {
+        if (value.trim() === '') return true;
         let reg = new RegExp(
           /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
         );

@@ -50,6 +50,11 @@
   &.x-required {
     @include border-error();
   }
+  &.x-focused {
+    .#{$x-sender}-wrapper {
+      @include focus();
+    }
+  }
 }
 
 @mixin sender-stop {

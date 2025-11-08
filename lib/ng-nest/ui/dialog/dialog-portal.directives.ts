@@ -6,7 +6,7 @@ import { CdkDragHandle } from '@angular/cdk/drag-drop';
   selector: `[x-dialog-close]`
 })
 export class XDialogCloseDirective {
-  @HostListener('click', ['$event']) onCloseClick() {
+  @HostListener('click') onCloseClick() {
     this.dialogRef && this.dialogRef.close();
   }
   dialogRef = inject(XDialogRef<any>, { optional: true });
@@ -53,7 +53,7 @@ export class XDialogDragHandleDirective {
   selector: `[x-dialog-fullscreen], x-dialog-fullscreen`
 })
 export class XDialogFullscreenDirective {
-  @HostListener('click', ['$event']) onFullscreenClick() {
+  @HostListener('click') onFullscreenClick() {
     this.dialogRef && this.dialogRef.onFullscreen();
   }
   dialogRef = inject(XDialogRef<any>, { optional: true });

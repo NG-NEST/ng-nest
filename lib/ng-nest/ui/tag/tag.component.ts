@@ -30,10 +30,10 @@ export class XTagComponent extends XTagProperty {
   @HostBinding('animate.enter') animateEnter = 'x-base-enter';
   @HostBinding('animate.leave') animateLeave = 'x-base-leave';
 
-  @HostListener('animationend', ['$event']) done() {
+  @HostListener('animationend') done() {
     this.animating.set(false);
   }
-  @HostListener('animationstart', ['$event']) start() {
+  @HostListener('animationstart') start() {
     this.animating.set(true);
   }
 

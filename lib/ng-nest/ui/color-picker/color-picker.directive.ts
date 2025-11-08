@@ -8,7 +8,7 @@ import { XColorPickerColorMap } from './color-map.data';
 export class XColorPickerOptionDirective {
   color = input.required<string>({ alias: 'x-color-picker-option' });
 
-  @HostListener('click', ['$event']) onSelectClick() {
+  @HostListener('click') onSelectClick() {
     if (!this.colorPicker) return;
     this.colorPicker.value.set(XColorPickerColorMap[this.color()] || this.color());
     if (this.colorPicker.onChange) this.colorPicker.onChange(this.colorPicker.value());

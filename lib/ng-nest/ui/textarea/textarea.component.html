@@ -38,7 +38,7 @@
       [style.height]="height()"
       [style.padding-left.rem]="paddingLeft()"
       [style.padding-right.rem]="paddingRight()"
-      (input)="formControlValidator()"
+      (keydown)="formControlValidator()"
     ></textarea>
     @if (clearShow()) {
       <x-icon class="x-textarea-clear" type="fto-x" (click)="onClear()"></x-icon>

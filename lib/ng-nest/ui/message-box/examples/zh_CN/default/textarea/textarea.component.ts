@@ -41,6 +41,8 @@ export class ExTextareaComponent {
       showTextarea: true,
       inputValue: 'ngnest@163',
       inputValidator: (value: string) => {
+        console.log(value);
+        if (value.trim() === '') return true;
         let reg = new RegExp(
           /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
         );

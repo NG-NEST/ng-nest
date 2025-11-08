@@ -5,7 +5,7 @@ import { XDrawerRef } from './drawer-ref';
   selector: `[x-drawer-close]`
 })
 export class XDrawerCloseDirective {
-  @HostListener('click', ['$event']) onCloseClick() {
+  @HostListener('click') onCloseClick() {
     this.drawerRef && this.drawerRef.close();
   }
   drawerRef = inject(XDrawerRef, { optional: true });

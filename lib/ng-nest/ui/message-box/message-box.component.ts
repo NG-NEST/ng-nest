@@ -142,7 +142,6 @@ export class XMessageBoxComponent implements OnInit {
     this.formGroup.addControl(
       'inputValue',
       new UntypedFormControl(this.msgInput.inputValue, [
-        Validators.required,
         Validators.pattern(this.msgInput.inputPattern as RegExp),
         XFormInputValidator(this.msgInput.inputValidator!)
       ])
