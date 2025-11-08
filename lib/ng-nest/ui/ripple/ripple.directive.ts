@@ -8,7 +8,7 @@ import {
   ChangeDetectorRef,
   effect
 } from '@angular/core';
-import { delay, fromEvent, of, Subject, Subscription, takeUntil, tap } from 'rxjs';
+import { delay, finalize, fromEvent, of, Subject, Subscription, takeUntil, tap } from 'rxjs';
 import { XRipplePrefix, XRippleProperty } from './ripple.property';
 import { XComputed } from '@ng-nest/ui/core';
 import { DOCUMENT } from '@angular/common';
@@ -69,20 +69,26 @@ export class XRippleDirective extends XRippleProperty implements OnDestroy {
         ripple.style.opacity = '0.3';
         const downTime = new Date().getTime();
 
-        this.upEvent = fromEvent<MouseEvent>(this.document.documentElement, 'mouseup')
+        let upEvent = fromEvent<MouseEvent>(this.document.documentElement, 'mouseup')
           .pipe(takeUntil(this.unsub))
           .subscribe(() => {
+            console.log(0);
             const upTime = new Date().getTime();
             of(true)
               .pipe(
                 delay(upTime - downTime > this.duration() ? 0 : this.duration() - (upTime - downTime)),
                 tap(() => {
-                  if (this.renderer.parentNode(ripple)) {
+                  if (this.elementRef.nativeElement.contains(ripple)) {
                     this.renderer.removeChild(this.elementRef.nativeElement, ripple);
                   }
                   // TODO: use zoneless, renderer removeChild will not take effect immediately
                   this.cdr.markForCheck();
-                  this.upEvent?.unsubscribe();
+                  upEvent.unsubscribe();
+                }),
+                finalize(() => {
+                  if (this.elementRef.nativeElement.contains(ripple)) {
+                    this.renderer.removeChild(this.elementRef.nativeElement, ripple);
+                  }
                 }),
                 takeUntil(this.unsub)
               )

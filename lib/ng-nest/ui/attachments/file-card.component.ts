@@ -84,7 +84,6 @@ export class XFileCardComponent extends XFileCardProperty {
     return index > -1 ? name.substring(index + 1).toLowerCase() : '';
   });
   defaultIcon = computed(() => {
-    console.log(this.nameSubfix());
     if (Object.keys(defaultIcon).includes(this.nameSubfix())) {
       return defaultIcon[this.nameSubfix()];
     } else {
