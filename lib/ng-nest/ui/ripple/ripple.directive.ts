@@ -72,7 +72,6 @@ export class XRippleDirective extends XRippleProperty implements OnDestroy {
         let upEvent = fromEvent<MouseEvent>(this.document.documentElement, 'mouseup')
           .pipe(takeUntil(this.unsub))
           .subscribe(() => {
-            console.log(0);
             const upTime = new Date().getTime();
             of(true)
               .pipe(
