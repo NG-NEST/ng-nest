@@ -22,6 +22,16 @@ export class XBubbleProperty extends XPropertyFunction(X_BUBBLE_CONFIG_NAME) {
    */
   readonly content = input<XTemplate>();
   /**
+   * @zh_CN 推理内容
+   * @en_US reasoning content
+   */
+  readonly reasoningContent = input<XTemplate>();
+  /**
+   * @zh_CN 推理标题
+   * @en_US reasoning title
+   */
+  readonly reasoningTitle = input<XTemplate>(this.config?.reasoningTitle ?? '深度思考');
+  /**
    * @zh_CN 头像
    * @en_US Avatar
    */

@@ -14,7 +14,7 @@
       ></x-avatar>
     </div>
   }
-  <div class="x-bubble-wrapper">
+  <div #wrapperRef class="x-bubble-wrapper">
     @if (loading()) {
       <div class="x-bubble-content" [x-loading]="true" [size]="'small'" inline></div>
     } @else {
@@ -23,6 +23,35 @@
           <ng-container *xOutlet="header()">{{ header() }}</ng-container>
         </div>
       }
+
+      @if (isReasoningString()) {
+        <div class="x-bubble-reasoning">
+          <ng-container *xOutlet="reasoningHeaderTpl"></ng-container>
+          @if (reasoningToggle()) {
+            <div class="x-bubble-reasoning-content" #reasoningContentRef [innerHTML]="reasoningRenderedContent()"></div>
+          }
+        </div>
+      } @else if (isReasoningTemplate()) {
+        <div class="x-bubble-reasoning">
+          <ng-container *xOutlet="reasoningHeaderTpl"></ng-container>
+          @if (reasoningToggle()) {
+            <div class="x-bubble-reasoning-content" #reasoningContentRef>
+              <ng-container *xOutlet="reasoningContent()"></ng-container>
+            </div>
+          }
+        </div>
+      }
+
+      <ng-template #reasoningHeaderTpl>
+        <div class="x-bubble-reasoning-header" (click)="onReasoningToggle()">
+          <x-icon
+            class="x-bubble-reasoning-toggle"
+            [type]="reasoningToggle() ? 'fto-chevron-down' : 'fto-chevron-right'"
+          ></x-icon>
+          <span>{{ reasoningTitle() }}</span>
+        </div>
+      </ng-template>
+
       @if (isString()) {
         <div class="x-bubble-content" #contentRef [innerHTML]="renderedContent()"></div>
       } @else if (isTemplate()) {
@@ -30,6 +59,7 @@
           <ng-container *xOutlet="content()"></ng-container>
         </div>
       }
+
       @if (footer()) {
         <div class="x-bubble-footer">
           <ng-container *xOutlet="footer()">{{ footer() }}</ng-container>

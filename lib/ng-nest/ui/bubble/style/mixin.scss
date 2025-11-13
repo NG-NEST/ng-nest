@@ -15,6 +15,45 @@
     max-width: 100%;
   }
 
+  &-reasoning {
+    background-color: $x-background-a100;
+    border-radius: $x-border-radius;
+    color: $x-text-400;
+    position: relative;
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+    font-size: $x-font-size-small;
+    border-radius: $x-border-radius;
+    word-break: break-word;
+    margin-bottom: 1rem;
+
+    &-header {
+      padding: 0.5rem 1rem 0.5rem 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+    &-toggle {
+      font-size: $x-font-size-large;
+    }
+    &-content {
+      position: relative;
+      padding: 0rem 1rem 0rem 2rem;
+      margin-bottom: 1rem;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 1rem;
+        content: ' ';
+        height: 100%;
+        border-left: $x-border-base;
+      }
+    }
+  }
+
   &-content {
     position: relative;
     box-sizing: border-box;

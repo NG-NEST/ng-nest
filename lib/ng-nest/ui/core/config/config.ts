@@ -234,6 +234,7 @@ export interface XButtonsConfig {
 }
 
 export interface XBubbleConfig {
+  reasoningTitle?: XTemplate;
   variant?: 'outlined' | 'filled' | 'shadow' | 'borderless';
   size?: XSize;
 }
@@ -776,6 +777,8 @@ export interface XTreeConfig {
 }
 
 export interface XTextareaConfig {
+  floatLabel?: XFloatLabel;
+  floatFixed?: boolean;
   variant?: XVariant;
   clearable?: boolean;
   iconLayout?: XPositionLeftRight;

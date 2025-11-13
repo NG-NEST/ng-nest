@@ -41,7 +41,11 @@ export class XBubblesComponent extends XBubblesProperty {
     const bubbles = this.bubbles();
     if (bubbles.length <= 0) return;
     const lastBubble = bubbles[bubbles.length - 1];
-    if (lastBubble && lastBubble.typing() && lastBubble.pendingContent().length > 0) {
+    if (
+      lastBubble &&
+      lastBubble.typing() &&
+      (lastBubble.pendingContent().length > 0 || lastBubble.reasoningPendingContent().length > 0)
+    ) {
       if (!this.typingObserver) {
         this.startTypingObserver(lastBubble);
       }
@@ -103,7 +107,7 @@ export class XBubblesComponent extends XBubblesProperty {
   }
 
   private startTypingObserver(bubble: XBubbleComponent): void {
-    const bubbleContent = bubble.contentRef()?.nativeElement;
+    const bubbleContent = bubble.wrapperRef()?.nativeElement;
     if (bubbleContent) {
       this.typingObserver = new MutationObserver(() => {
         if (this.isFollowing) {
