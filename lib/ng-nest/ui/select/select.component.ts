@@ -590,16 +590,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   closePortal() {
     if (this.portalAttached()) {
-      setTimeout(() => {
-        this.portal?.overlayRef?.detach();
-        this.active.set(false);
-        this.multipleSearchValue.set('');
-        this.portalAllData.set(true);
-        this.allowAgian.set(false);
-        of(true)
-          .pipe(delay(200))
-          .subscribe(() => this.allowAgian.set(true));
-      });
+      this.portal?.overlayRef?.detach();
+      this.active.set(false);
+      this.multipleSearchValue.set('');
+      this.portalAllData.set(true);
+      this.allowAgian.set(false);
+      of(true)
+        .pipe(delay(200))
+        .subscribe(() => this.allowAgian.set(true));
       return true;
     }
     return false;
