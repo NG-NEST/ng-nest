@@ -51,7 +51,7 @@
   "devDependencies": {
     "@angular-devkit/core": "^20.3.5",
     "@angular-devkit/schematics": "^20.3.5",
-    "@angular/build": "^20.3.5",
+    "@angular/build": "^20.3.6",
     "@angular/cli": "^20.3.5",
     "@angular/compiler-cli": "^20.3.4",
     "@stackblitz/sdk": "^1.10.0",
