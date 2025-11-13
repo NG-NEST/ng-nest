@@ -1,3 +1,18 @@
+## [20.2.5](https://github.com/NG-NEST/ng-nest/compare/20.2.4...20.2.5) (2025-11-13)
+
+
+### Bug Fixes
+
+* **module:select:** fix multiple clicks cause pop-up issues ([b2c6c41](https://github.com/NG-NEST/ng-nest/commit/b2c6c413f554cfc75b34f217bb00d8a7c5f2b862))
+
+
+### Features
+
+* **module:bubble:** add reasoning content ([3d7dbff](https://github.com/NG-NEST/ng-nest/commit/3d7dbff48a7e03438fc5e03c2f256911f8bff67e))
+* **module:textarea:** add float label ([b60b8da](https://github.com/NG-NEST/ng-nest/commit/b60b8dab768233b2298a8114e2a7b47ca518b656))
+
+
+
 ## [20.2.4](https://github.com/NG-NEST/ng-nest/compare/20.2.3...20.2.4) (2025-11-08)
 
 
@@ -11,6 +26,7 @@
 ### Features
 
 * **module:bubble:** add observable renderer function ([1b5c836](https://github.com/NG-NEST/ng-nest/commit/1b5c836015c30f5a332f3e89aab92331a8c08d0a))
+* **module:ripple:** fix ripple multiple quick clicks have not been eliminated ([9404654](https://github.com/NG-NEST/ng-nest/commit/9404654e0f3bf77dc174c199f6e0e69002d4b63a))
 
 
 

@@ -6547,6 +6547,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "reasoningContent",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "推理内容",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "reasoningTitle",
+        "type": "XTemplate",
+        "toType": "XTemplate",
+        "inputType": "InputSignal<XTemplate>",
+        "signal": "input",
+        "label": "推理标题",
+        "default": "'深度思考'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "avatar",
         "type": "XBubbleAvatarOption",
         "toType": "XBubbleAvatarOption",
@@ -42465,6 +42501,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
+        "name": "floatLabel",
+        "type": "XTextareaFloatLabel | null",
+        "toType": "XTextareaFloatLabel | null",
+        "inputType": "InputSignal<XTextareaFloatLabel | null>",
+        "signal": "input",
+        "label": "浮动标签",
+        "default": "null",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "floatFixed",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "固定浮动标签",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "placeholder",
         "type": "string | string[]",
         "toType": "string | string[]",
@@ -42733,6 +42805,40 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "properties": [
+      {
+        "name": "floatLabel",
+        "type": "XTextareaFloatLabel",
+        "label": "浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatLabel",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "floatFixed",
+        "type": "boolean",
+        "label": "固定浮动标签",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "floatFixed",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
       {
         "name": "variant",
         "type": "XTextareaVariant",
@@ -43225,6 +43331,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XTextareaVariant",
     "value": "XVariant"
+  },
+  "XTextareaFloatLabel": {
+    "type": "type",
+    "label": "浮动标签类型",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XTextareaFloatLabel",
+    "value": "XFloatLabel"
   },
   "XThemePrefix": {
     "type": "const",
