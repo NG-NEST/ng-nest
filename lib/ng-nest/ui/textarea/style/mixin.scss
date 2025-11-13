@@ -7,23 +7,25 @@
 @use './param.scss' as *;
 
 @mixin textarea {
-  width: 100%;
-  @include flex();
+  & {
+    width: 100%;
+    @include flex();
+  }
+
   > label {
     display: inline-block;
     white-space: nowrap;
-    height: $x-textarea-height;
-    line-height: $x-textarea-height;
     position: relative;
     color: $x-text-300;
     font-weight: 500;
+    height: $x-textarea-height;
+    line-height: $x-textarea-height;
     @include text-align();
   }
-  > .#{$x-textarea-prefix}-row {
+  &-row {
     flex: 1;
     display: flex;
     align-items: center;
-    position: relative;
     > textarea {
       flex: 1;
       width: 100%;
@@ -224,6 +226,87 @@
         background-color: transparent;
         border-width: 0 0 $x-border-width;
         border-radius: 0;
+      }
+    }
+  }
+  &-float-label {
+    position: relative;
+    display: flex !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    > label {
+      position: absolute;
+      pointer-events: none;
+      transition: all $x-animation-duration-base ease;
+      line-height: 1 !important;
+      height: initial !important;
+      z-index: 2;
+
+      &.#{$x-textarea-prefix}-label-required {
+        display: flex;
+        align-items: center;
+        padding-left: $x-font-size-mini;
+        &:before {
+          position: absolute;
+          left: 0;
+          top: 0.125rem;
+        }
+      }
+    }
+    &-over,
+    &-on,
+    &-in {
+      > label {
+        top: 0.75rem;
+      }
+    }
+    &-over {
+      &.#{$x-textarea-prefix}-focus,
+      &.#{$x-textarea-prefix}-has-value,
+      &.#{$x-textarea-prefix}-active,
+      &.#{$x-textarea-prefix}-float-fixed {
+        > label {
+          top: calc(0% - calc($x-font-size + calc($x-padding-medium * 0.5)));
+        }
+      }
+    }
+    &-on {
+      &.#{$x-textarea-prefix}-focus,
+      &.#{$x-textarea-prefix}-has-value,
+      &.#{$x-textarea-prefix}-active,
+      &.#{$x-textarea-prefix}-float-fixed {
+        > label {
+          font-size: $x-font-size-mini;
+          background-color: $x-background;
+          top: calc(0% - calc($x-font-size-small * 0.5));
+        }
+      }
+    }
+    &-in {
+      > label {
+        height: $x-textarea-height !important;
+        line-height: $x-textarea-height !important;
+        width: calc(100% - #{$x-border-width} * 2);
+        margin-left: 0 !important;
+        padding-left: 0.75rem;
+        background-color: $x-background;
+        top: $x-border-width;
+        left: $x-border-width;
+        border-top-left-radius: $x-border-radius;
+        border-top-right-radius: $x-border-radius;
+      }
+      &.#{$x-textarea-prefix}-focus,
+      &.#{$x-textarea-prefix}-has-value,
+      &.#{$x-textarea-prefix}-active,
+      &.#{$x-textarea-prefix}-float-fixed {
+        > label {
+          font-size: $x-font-size-mini;
+        }
+        .x-textarea-row {
+          > textarea {
+            padding-top: calc(0% + calc($x-padding-medium * 0.75) + 1rem);
+          }
+        }
       }
     }
   }

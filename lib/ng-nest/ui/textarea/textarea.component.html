@@ -7,28 +7,36 @@
   [class.x-invalid]="invalid()"
   [class.x-clearable]="clearable()"
   [class.x-clear-show]="clearShow()"
+  [class.x-textarea-active]="active()"
+  [class.x-textarea-focus]="focused()"
   [class.x-textarea-icon]="getIcon()"
   [class.x-textarea-filled]="variant() === 'filled'"
   [class.x-textarea-borderless]="variant() === 'borderless'"
   [class.x-textarea-underlined]="variant() === 'underlined'"
   [class.x-textarea-icon-left]="getIconLayoutLeft()"
   [class.x-textarea-icon-right]="getIconLayoutRight()"
+  [class.x-textarea-float-fixed]="floatFixed()"
+  [class.x-textarea-float-label]="!!floatLabel()"
+  [class.x-textarea-float-label-over]="floatLabel() === 'over'"
+  [class.x-textarea-float-label-in]="floatLabel() === 'in'"
+  [class.x-textarea-float-label-on]="floatLabel() === 'on'"
+  [class.x-textarea-has-value]="hasValue()"
   [ngClass]="classMap()"
 >
   @if (label()) {
     <label
       [class.x-textarea-label-required]="requiredComputed()"
       [style.width]="labelWidth()"
+      [style.margin-left]="!!floatLabel() ? paddingLeft() : null"
       [ngClass]="labelMapSignal()"
       *xOutlet="label()"
+      >{{ label() }}</label
     >
-      {{ label() }}
-    </label>
   }
   <div class="x-textarea-row">
     <textarea
       #textareaRef
-      [placeholder]="placeholder()"
+      [placeholder]="!floatLabel() ? placeholder() : ''"
       [required]="requiredComputed()"
       [disabled]="disabledComputed()"
       [readonly]="readonly()"
@@ -36,9 +44,11 @@
       [(ngModel)]="value"
       (ngModelChange)="change($event)"
       [style.height]="height()"
-      [style.padding-left.rem]="paddingLeft()"
-      [style.padding-right.rem]="paddingRight()"
+      [style.padding-left]="paddingLeft()"
+      [style.padding-right]="paddingRight()"
       (keydown)="formControlValidator()"
+      (focus)="onFocus($event)"
+      (blur)="onBlur($event)"
     ></textarea>
     @if (clearShow()) {
       <x-icon class="x-textarea-clear" type="fto-x" (click)="onClear()"></x-icon>

@@ -9,7 +9,8 @@ import type {
   XAlign,
   XJustify,
   XTemplate,
-  XVariant
+  XVariant,
+  XFloatLabel
 } from '@ng-nest/ui/core';
 
 /**
@@ -60,6 +61,16 @@ export class XTextareaProperty extends XFormControlFunction(X_TEXTAREA_CONFIG_NA
    * @en_US height
    */
   readonly height = input<string, XNumber>('6rem', { transform: XToCssPixelValue });
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  readonly floatLabel = input<XTextareaFloatLabel | null>(this.config?.floatLabel ?? null);
+  /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  readonly floatFixed = input<boolean, XBoolean>(this.config?.floatFixed ?? false, { transform: XToBoolean });
   /**
    * @zh_CN 输入提示信息
    * @en_US Enter prompt information
@@ -136,6 +147,16 @@ export class XTextareaProperty extends XFormControlFunction(X_TEXTAREA_CONFIG_NA
  * Textarea Option
  */
 export interface XTextareaOption extends XFormOption {
+  /**
+   * @zh_CN 浮动标签
+   * @en_US Float label
+   */
+  floatLabel?: XTextareaFloatLabel;
+  /**
+   * @zh_CN 固定浮动标签
+   * @en_US Fixed float label
+   */
+  floatFixed?: boolean;
   /**
    * @zh_CN 形态变体
    * @en_US Input variant
@@ -286,3 +307,9 @@ export type XTextareaIconLayoutType = XPositionLeftRight;
  * @en_US Input box variant
  */
 export type XTextareaVariant = XVariant;
+
+/**
+ * @zh_CN 浮动标签类型
+ * @en_US Float label type
+ */
+export type XTextareaFloatLabel = XFloatLabel;

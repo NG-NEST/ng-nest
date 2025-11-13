@@ -5,7 +5,8 @@ import {
   ElementRef,
   inject,
   computed,
-  viewChild
+  viewChild,
+  signal
 } from '@angular/core';
 import { XTextareaPrefix, XTextareaProperty } from './textarea.property';
 import { XIsEmpty, XConfigService, XIsFunction } from '@ng-nest/ui/core';
@@ -26,6 +27,7 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 })
 export class XTextareaComponent extends XTextareaProperty {
   textareaRef = viewChild.required<ElementRef<HTMLElement>>('textareaRef');
+  focused = signal(false);
 
   valueLength = computed(() => {
     if (this.maxlength()) {
@@ -47,12 +49,13 @@ export class XTextareaComponent extends XTextareaProperty {
       return false;
     }
   });
+  hasValue = computed(() => !XIsEmpty(this.value()));
 
   getIcon = computed(() => !XIsEmpty(this.icon()));
   getIconLayoutLeft = computed(() => !XIsEmpty(this.icon()) && this.iconLayout() === 'left');
   getIconLayoutRight = computed(() => !XIsEmpty(this.icon()) && this.iconLayout() === 'right');
-  paddingLeft = computed(() => (this.getIconLayoutLeft() ? 2.15 : 0.75));
-  paddingRight = computed(() => (this.getIconLayoutRight() ? 2.15 : 0.75));
+  paddingLeft = computed(() => (this.getIconLayoutLeft() ? `2.15rem` : `0.75rem`));
+  paddingRight = computed(() => (this.getIconLayoutRight() ? `2.15rem` : `0.75rem`));
 
   configService = inject(XConfigService);
 
@@ -79,5 +82,13 @@ export class XTextareaComponent extends XTextareaProperty {
     this.change(this.value());
     this.clearEmit.emit(clearValue);
     this.textareaRef().nativeElement.focus();
+  }
+
+  onFocus(_event: Event) {
+    this.focused.set(true);
+  }
+
+  onBlur(_event: Event) {
+    this.focused.set(false);
   }
 }
