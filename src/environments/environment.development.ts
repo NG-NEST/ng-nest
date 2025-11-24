@@ -1,6 +1,6 @@
 export const environment = {
   layout: 'test',
-  version: '20.2.5',
+  version: '21.0.0',
   defaultPage: 'color-picker',
   static: 'https://ngnest.com/static'
 };

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, computed, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Location } from '@angular/common';
 import { ConfigService } from '../../services/config.service';
@@ -16,6 +16,20 @@ import { XMenuComponent } from '@ng-nest/ui/menu';
   encapsulation: ViewEncapsulation.None
 })
 export class NsDocsComponent {
+  menus = computed(() => {
+    const menus = this.layout.menus();
+    const newMenus: AppMenu[] = [];
+    for (const menu of menus) {
+      let routerLink = menu.routerLink as string;
+      if (routerLink.startsWith('docs/')) {
+        routerLink = routerLink.replace('docs/', '');
+      }
+      Object.assign(menu, { routerLink });
+      newMenus.push(menu);
+    }
+    return newMenus;
+  });
+
   constructor(
     public layout: LayoutService,
     private router: Router,

@@ -4,7 +4,7 @@
 <div class="docs-left" ns-adaption [outerElement]="layout.headerRef()?.nativeElement">
   <section #scroll>
     <x-menu
-      [data]="layout.menus()"
+      [data]="menus()"
       layout="column"
       [expandedLevel]="0"
       [target]="scroll"
