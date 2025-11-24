@@ -18,7 +18,7 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   imports: [XSelectComponent],
@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
 class XTestSelectComponent {}
 
 @Component({
-  imports: [XSelectComponent, FormsModule, CommonModule],
+  imports: [XSelectComponent, FormsModule],
   template: `
     <x-select
       [(ngModel)]="model"

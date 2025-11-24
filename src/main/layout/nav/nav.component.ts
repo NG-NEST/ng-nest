@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, computed, inject, signal } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { XConfigService } from '@ng-nest/ui/core';
 import { ConfigService } from '@services';
@@ -15,7 +15,7 @@ import { XDialogService } from '@ng-nest/ui/dialog';
 
 @Component({
   selector: 'ns-nav',
-  imports: [CommonModule, FormsModule, XSliderComponent, XButtonComponent, XSelectComponent, XI18nPipe],
+  imports: [FormsModule, XSliderComponent, XButtonComponent, XSelectComponent, XI18nPipe],
   templateUrl: './nav.component.html',
   encapsulation: ViewEncapsulation.None
 })
