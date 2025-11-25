@@ -18,7 +18,6 @@
       [animate.leave]="`x-slide-${placement()}-leave`"
     >
       @if (title()) {
-        {{ hasContainer() }} {{ hasBackdrop() }}
         <div class="x-drawer-header">
           <div class="x-drawer-title">
             <ng-container *xOutlet="title()">{{ title() }}</ng-container>
