@@ -1,10 +1,10 @@
 {
   "name": "ng-nest",
-  "version": "20.2.5",
+  "version": "20.2.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4400 --host 0.0.0.0",
-    "build": "ng build --base-href /version/20.2.5/",
+    "build": "ng build --base-href /version/20.2.6/",
     "build:ng-nest-ui": "ng build ng-nest-ui && npm run copy:scss && npm run build:scss && npm run clear:examples",
     "build:docs": "npm run build:scripts && node ./scripts/build/generate/docs",
     "build:scripts": "tsc -p scripts",

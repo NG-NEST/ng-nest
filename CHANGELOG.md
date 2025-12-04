@@ -1,3 +1,14 @@
+## [20.2.6](https://github.com/NG-NEST/ng-nest/compare/20.2.5...20.2.6) (2025-12-04)
+
+
+### Bug Fixes
+
+* **module:bubble:** fix reasioning content ([0cd1075](https://github.com/NG-NEST/ng-nest/commit/0cd1075412018c332135c6118a3546d2bf91408a))
+* **module:drawer:** remove debugger code ([78fd74c](https://github.com/NG-NEST/ng-nest/commit/78fd74c9d3fe53749fcc5fff7423966abe02e615))
+* **module:table:** fix checkbox drag and click conflicts ([ed271bd](https://github.com/NG-NEST/ng-nest/commit/ed271bdab4d6154533390c7234140f9c3048faab))
+
+
+
 ## [20.2.5](https://github.com/NG-NEST/ng-nest/compare/20.2.4...20.2.5) (2025-11-13)
 
 
