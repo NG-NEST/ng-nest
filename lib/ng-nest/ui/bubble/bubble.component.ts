@@ -84,7 +84,7 @@ export class XBubbleComponent extends XBubbleProperty {
   });
 
   isReasoningString = computed(() => {
-    return XIsString(this.reasoningContent());
+    return XIsString(this.reasoningContent()) && !XIsEmpty(this.reasoningContent());
   });
 
   constructor() {
@@ -108,7 +108,7 @@ export class XBubbleComponent extends XBubbleProperty {
         this.reasoningRenderedContent.set(this.sanitizer.bypassSecurityTrustHtml(value));
       };
 
-      if (this.renderer()) {
+      if (this.renderer() && XIsString(finalReasoningContent)) {
         const rendered = this.renderer()!(finalReasoningContent);
         if (isObservable(rendered)) {
           rendered.subscribe((value) => {
@@ -128,7 +128,7 @@ export class XBubbleComponent extends XBubbleProperty {
         this.renderedContent.set(this.sanitizer.bypassSecurityTrustHtml(value));
       };
 
-      if (this.renderer()) {
+      if (this.renderer() && XIsString(finalContent)) {
         const rendered = this.renderer()!(finalContent);
         if (isObservable(rendered)) {
           rendered.subscribe((value) => {
