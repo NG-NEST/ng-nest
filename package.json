@@ -52,7 +52,7 @@
     "@angular-devkit/core": "^21.0.0",
     "@angular-devkit/schematics": "^21.0.0",
     "@angular/build": "^21.0.0",
-    "@angular/cli": "^21.0.0",
+    "@angular/cli": "^21.0.2",
     "@angular/compiler-cli": "^21.0.0",
     "@stackblitz/sdk": "^1.10.0",
     "@types/estree": "^1.0.5",
