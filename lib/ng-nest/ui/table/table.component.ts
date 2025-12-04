@@ -394,7 +394,6 @@ export class XTableComponent extends XTableProperty implements OnInit, OnDestroy
 
   setCheckbox(rows: XTableRow[], column: XTableColumn) {
     this.setCheckedValues(column);
-
     for (let row of rows) {
       this.bodyCheckboxChange.emit(row);
     }
