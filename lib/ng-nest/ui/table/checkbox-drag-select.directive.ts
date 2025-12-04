@@ -9,6 +9,7 @@ import { XTableCheckboxDragSelectService } from './checkbox-drag-select.service'
 export class XTableCheckboxDragSelectDirective {
   private dragSelectService = inject(XTableCheckboxDragSelectService);
   private document = inject(DOCUMENT);
+  private dragTimeout: any;
 
   checkbox = inject(XCheckboxComponent, { host: true });
 
@@ -27,9 +28,12 @@ export class XTableCheckboxDragSelectDirective {
     const target = event.target as HTMLElement;
 
     if (this.isCheckboxLike(target)) {
-      this.dragSelectService.downValue = !!this.checkbox.value();
-      this.dragSelectService.startIndex = this.dragRows().findIndex((row) => row.id === this.dragRow().id);
-      this.dragSelectService.isMouseDown = true;
+      this.dragTimeout = setTimeout(() => {
+        this.dragSelectService.downValue = !!this.checkbox.value();
+        this.dragSelectService.startIndex = this.dragRows().findIndex((row) => row.id === this.dragRow().id);
+        this.dragSelectService.isMouseDown = true;
+      }, 100);
+
       event.preventDefault();
     }
   }
@@ -37,6 +41,7 @@ export class XTableCheckboxDragSelectDirective {
   @HostListener('document:mouseup')
   onMouseUp() {
     if (this.dragDisabled()) return;
+    clearTimeout(this.dragTimeout);
     if (this.dragSelectService.isDragging) {
       this.dragEnd.emit(this.dragSelectService.changeRows);
     }
