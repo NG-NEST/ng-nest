@@ -1,3 +1,12 @@
+## [21.0.3](https://github.com/NG-NEST/ng-nest/compare/21.0.2...21.0.3) (2025-12-16)
+
+
+### Features
+
+* **module:steps:** add custom icon, label, description ([63f74f9](https://github.com/NG-NEST/ng-nest/commit/63f74f9558bb474601389892ceaf14edcc87d19f))
+
+
+
 ## [21.0.2](https://github.com/NG-NEST/ng-nest/compare/21.0.1...21.0.2) (2025-12-04)
 
 
