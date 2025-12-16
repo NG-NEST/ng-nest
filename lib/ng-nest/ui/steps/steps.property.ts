@@ -41,10 +41,25 @@ export class XStepsProperty extends XPropertyFunction(X_STEPS_CONFIG_NAME) {
    */
   readonly status = input<XStepsStatus>();
   /**
-   * @zh_CN 自定义节点
-   * @en_US Custom node
+   * @zh_CN 自定义节点（22 版本将废弃）
+   * @en_US Custom node (will be deprecated in version 22)
    */
   readonly customTpl = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 自定义节点图标
+   * @en_US Custom node icon
+   */
+  readonly customIconTpl = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 自定义节点标题
+   * @en_US Custom node label
+   */
+  readonly customLabelTpl = input<TemplateRef<any>>();
+  /**
+   * @zh_CN 自定义节点描述
+   * @en_US Custom node description
+   */
+  readonly customDescriptionTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 节点设置的状态优先，将不会自动计算当前节点，`activatedIndex` 和 `status` 将失效
    * @en_US the status set by the node takes precedence, and the current node will not be calculated, `activatedIndex` and `status` will be invalidated

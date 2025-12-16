@@ -2,7 +2,7 @@
   @for (node of nodes(); track node.id; let i = $index) {
     <div class="x-steps-node x-steps-{{ node.status }}">
       <div class="x-steps-header">
-        <ng-container *xOutlet="customTpl(); context: { $node: node, $index: i }">
+        <ng-container *xOutlet="customTpl() ?? customIconTpl(); context: { $node: node, $index: i }">
           <div class="x-steps-icon" [class.x-steps-only-icon]="node.icon">
             @if (node.icon) {
               <x-icon [type]="node.icon"></x-icon>
@@ -27,12 +27,21 @@
       </div>
       <div class="x-steps-content">
         <div class="x-steps-title">
-          <span class="x-steps-label">{{ node.label }}</span>
+          <span class="x-steps-label">
+            <ng-container *xOutlet="customLabelTpl(); context: { $node: node, $index: i }">{{
+              node.label
+            }}</ng-container>
+          </span>
+
           @if (layout() === 'row') {
             <span class="x-steps-line"></span>
           }
         </div>
-        <div class="x-steps-description">{{ node.description }}</div>
+        <div class="x-steps-description">
+          <ng-container *xOutlet="customDescriptionTpl(); context: { $node: node, $index: i }">{{
+            node.description
+          }}</ng-container>
+        </div>
       </div>
     </div>
   }
