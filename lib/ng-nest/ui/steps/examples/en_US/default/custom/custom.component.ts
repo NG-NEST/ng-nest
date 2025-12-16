@@ -5,7 +5,7 @@ import { XStepsComponent } from '@ng-nest/ui/steps';
   selector: 'ex-custom',
   imports: [XStepsComponent],
   templateUrl: './custom.component.html',
-  styleUrls: ['./custom.component.html']
+  styleUrls: ['./custom.component.scss']
 })
 export class ExCustomComponent {
   activatedIndex = signal(1);

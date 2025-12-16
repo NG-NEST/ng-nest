@@ -1,5 +1,13 @@
-<x-steps [data]="data()" [customTpl]="customTpl" [activatedIndex]="activatedIndex()"> </x-steps>
-<ng-template #customTpl let-node="$node" let-index="$index">
+<x-steps
+  [data]="data()"
+  [customIconTpl]="customIconTpl"
+  [customLabelTpl]="customLabelTpl"
+  [customDescriptionTpl]="customDescriptionTpl"
+  [activatedIndex]="activatedIndex()"
+>
+</x-steps>
+
+<ng-template #customIconTpl let-node="$node" let-index="$index">
   @switch (node.status) {
     @case ('process') {
       <svg class="custom-loading-circular" viewBox="25 25 50 50">
@@ -11,3 +19,6 @@
     }
   }
 </ng-template>
+
+<ng-template #customLabelTpl let-node="$node" let-index="$index"> {{ node.label }} - {{ index + 1 }} </ng-template>
+<ng-template #customDescriptionTpl let-node="$node" let-index="$index"> 描述 - {{ index + 1 }} </ng-template>
