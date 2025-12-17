@@ -43,6 +43,14 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
 
   isActive = signal(false);
 
+  isAtTop = signal(false);
+  isAtBottom = signal(false);
+  isAtLeft = signal(false);
+  isAtRight = signal(false);
+
+  hasVerticalScrollbar = signal(false);
+  hasHorizontalScrollbar = signal(false);
+
   private isDragging = false;
   private dragAxis: DragAxis | null = null;
   private dragStart = { x: 0, y: 0 };
@@ -79,6 +87,10 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
     const trackY = this.trackYRef().nativeElement;
     const content = this.contentRef().nativeElement;
     let { clientHeight, scrollHeight, scrollTop } = content;
+    this.isAtTop.set(scrollTop === 0);
+    this.isAtBottom.set(scrollTop + clientHeight >= scrollHeight);
+    this.hasVerticalScrollbar.set(scrollHeight > clientHeight);
+
     if (this.yOffsetTop() !== 0 && this.yOffsetBottom() === 0) {
       this.renderer.setStyle(trackY, 'top', `${this.yOffsetTop()}px`);
       this.renderer.setStyle(trackY, 'height', `calc(100% - ${this.yOffsetTop()}px)`);
@@ -120,6 +132,10 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
     const thumbX = this.thumbXRef().nativeElement;
     const trackX = this.trackXRef().nativeElement;
     let { clientWidth, scrollWidth, scrollLeft } = content;
+    this.isAtLeft.set(scrollLeft === 0);
+    this.isAtRight.set(scrollLeft + clientWidth >= scrollWidth);
+    this.hasHorizontalScrollbar.set(scrollWidth > clientWidth);
+
     if (this.xOffsetLeft() !== 0 && this.xOffsetRight() === 0) {
       this.renderer.setStyle(trackX, 'left', `${this.xOffsetLeft()}px`);
       this.renderer.setStyle(trackX, 'width', `calc(100% - ${this.xOffsetLeft()}px)`);
