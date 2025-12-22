@@ -149,6 +149,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./input-number/input-number.component').then((x) => x.TeInputNumberComponent)
       },
       {
+        path: 'i18n',
+        loadComponent: () => import('./i18n/i18n.component').then((x) => x.TeI18nComponent)
+      },
+      {
         path: 'layout',
         loadComponent: () => import('./layout/layout.component').then((x) => x.TeLayoutComponent)
       },
