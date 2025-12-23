@@ -1,19 +1,16 @@
-import { Injectable, inject, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { Injectable, inject } from '@angular/core';
 
 import zh_CN from './languages/zh_CN';
 import { XI18nLanguage, XI18nProperty, X_I18N } from './i18n.property';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class XI18nService {
-  private _locale = signal<XI18nProperty>(zh_CN);
+  private _locale: XI18nProperty = zh_CN;
 
-  get localeChange(): Observable<XI18nProperty> {
-    return toObservable(this._locale);
-  }
+  localeChange = new BehaviorSubject<XI18nProperty>(zh_CN);
 
   private locale = inject<XI18nProperty>(X_I18N, { optional: true });
 
@@ -24,7 +21,7 @@ export class XI18nService {
   }
 
   translate(path: string, data?: Record<string, any>) {
-    let content = this._getObjectPath(this._locale(), path) as string;
+    let content = this._getObjectPath(this._locale, path) as string;
     if (typeof content === 'string') {
       if (data) {
         Object.keys(data).forEach((key) => (content = content.replace(new RegExp(`%${key}%`, 'g'), data[key])));
@@ -35,19 +32,20 @@ export class XI18nService {
   }
 
   getLocale(): XI18nProperty {
-    return this._locale();
+    return this._locale;
   }
 
   getLocaleId(): XI18nLanguage {
-    return this._locale() ? this._locale()?.locale! : '';
+    return this._locale ? this._locale?.locale! : '';
   }
 
   setLocale(locale: XI18nProperty, forceRefresh = false) {
-    if (!forceRefresh && this._locale() && this._locale()?.locale === locale.locale) {
+    if (!forceRefresh && this._locale && this._locale?.locale === locale.locale) {
       return;
     }
 
-    this._locale.set(locale);
+    this._locale = locale;
+    this.localeChange.next(locale);
   }
 
   private _getObjectPath(obj: { [key: string]: any }, path: string): string | object | any {

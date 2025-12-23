@@ -12,6 +12,8 @@ export class TeI18nComponent {
   i18n = inject(XI18nService);
   cdk = inject(ChangeDetectorRef);
   model = signal('zh_CN');
+
+  L = this.i18n.L;
   change(value: any) {
     let lang: any = '';
     if (value === 'zh_CN') {
