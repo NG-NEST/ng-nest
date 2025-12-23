@@ -1,3 +1,17 @@
+## [21.0.4](https://github.com/NG-NEST/ng-nest/compare/21.0.3...21.0.4) (2025-12-22)
+
+
+### Bug Fixes
+
+* **module:i18n:** fix the refresh toggle issue ([3407fd3](https://github.com/NG-NEST/ng-nest/commit/3407fd3f5df6cb78ee964b9a1a03dca077a19144))
+
+
+### Features
+
+* **module:scrollable:** add scroll top, bottom, left and right params ([54c9a36](https://github.com/NG-NEST/ng-nest/commit/54c9a363d9ed4761120127f8cccb8048a089a02f))
+
+
+
 ## [21.0.3](https://github.com/NG-NEST/ng-nest/compare/21.0.2...21.0.3) (2025-12-16)
 
 
