@@ -2,7 +2,7 @@ import { XStatus, XPlace } from '@ng-nest/ui/core';
 import { XAlertOption } from '@ng-nest/ui/alert';
 import { Subscription, Subject } from 'rxjs';
 import { XPortalOverlayRef } from '@ng-nest/ui/portal';
-import { XMessageComponent } from './message.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 /**
  * Message
@@ -98,7 +98,20 @@ export interface XMessageOption extends XAlertOption {
  * @zh_CN 创建的消息对象
  * @en_US Message object created
  */
-export interface XMessageOverlayRef extends XPortalOverlayRef<XMessageComponent> {}
+export interface XMessageOverlayRef extends XPortalOverlayRef<XMessageHandle> {}
+
+/**
+ * @zh_CN 创建的消息组件定义
+ * @en_US Message object created
+ */
+export interface XMessageHandle {
+  message: XMessagePlacementRef;
+  cdr: ChangeDetectorRef;
+  onClose(item: XMessageOption): void;
+  moveDone($event: AnimationEvent): void;
+  onEnter(item: XMessageOption): void;
+  onLeave(item: XMessageOption): void;
+}
 
 /**
  * @zh_CN 九宫格中的消息对象
