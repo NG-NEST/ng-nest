@@ -35,6 +35,7 @@ import { CdkDrag, CdkDragEnd, CdkDragMove, CdkDragStart, CdkDropList, DragDropMo
 import { XTreeService } from './tree.service';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { DOCUMENT } from '@angular/common';
+import { X_TREE_CONTEXT, XTreeContext } from './tree.token';
 
 @Component({
   selector: `${XTreePrefix}`,
@@ -42,9 +43,15 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: X_TREE_CONTEXT,
+      useExisting: XTreeComponent
+    }
+  ]
 })
-export class XTreeComponent extends XTreeProperty implements OnChanges {
+export class XTreeComponent extends XTreeProperty implements OnChanges, XTreeContext {
   tree = viewChild('tree', { read: ElementRef<HTMLElement> });
   virtualBody = viewChild('virtualBody', { read: CdkVirtualScrollViewport });
   dropList = viewChild('dropList', { read: CdkDropList<HTMLElement> });
@@ -368,15 +375,17 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
 
   setExpandedAll() {
     if (this.expandedAll() && this.treeData().length === this.nodes().length) return;
-    const setChildren = (nodes: XTreeNode[]) => {
-      if (XIsEmpty(nodes)) return;
-      nodes.forEach((x) => {
-        x.open = this.expandedAll();
-        x.change && x.change();
-        setChildren(x.children as XTreeNode[]);
+
+    const updateNodeStates = (nodes: XTreeNode[]) => {
+      nodes.forEach((node) => {
+        node.open = this.expandedAll();
+        node.change && node.change();
+        if (node.children) {
+          updateNodeStates(node.children);
+        }
       });
     };
-    setChildren(this.nodes());
+    updateNodeStates(this.treeData());
 
     if (this.expandedAll() === false) {
       this.nodes.set(
@@ -387,14 +396,27 @@ export class XTreeComponent extends XTreeProperty implements OnChanges {
         )
       );
     } else {
-      if (this.virtualNodes().length === 0) {
-        this.virtualNodes.set([...this.nodes()]);
-      }
-      this.nodes.set(this.virtualNodes());
-      for (let item of this.virtualNodes()) {
-        this.setVirtualExpandedAll(item, this.expandedAll());
-      }
+      const allExpandedNodes: XTreeNode[] = [];
+      const traverse = (nodes: XTreeNode[]) => {
+        for (const node of nodes) {
+          allExpandedNodes.push(node);
+          if (node.children && node.children.length > 0) {
+            traverse(node.children);
+          }
+        }
+      };
+
+      const rootNodes = XOrderBy(
+        this.treeData().filter((x) => XIsEmpty(x.pid)),
+        this.order().map((x) => x.property),
+        this.order().map((x) => x.order)
+      );
+
+      traverse(rootNodes);
+      this.nodes.set(allExpandedNodes);
+      this.virtualNodes.set([...allExpandedNodes]);
     }
+
     this.virtualBody()?.checkViewportSize();
   }
 
