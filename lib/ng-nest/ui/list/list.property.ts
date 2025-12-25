@@ -11,8 +11,7 @@ import {
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, ElementRef, input, output, model } from '@angular/core';
 import { XFormControlFunction } from '@ng-nest/ui/base-form';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { XListOptionComponent } from './list-option.component';
+import type { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 /**
  * List
@@ -256,8 +255,19 @@ export interface XListNode extends XParentIdentityProperty<XListNode> {
    * @zh_CN 对应的节点组件
    * @en_US List option component
    */
-  component?: XListOptionComponent;
+  component?: XListOptionHandle;
 }
+
+/**
+ * @zh_CN 对应的节点组件
+ * @en_US List option component
+ */
+export type XListOptionHandle = {
+  setActiveStyles(): void;
+  setInactiveStyles(): void;
+  getLabel(): string;
+  getElementRef(): ElementRef<HTMLElement>;
+};
 
 /**
  * List Option
