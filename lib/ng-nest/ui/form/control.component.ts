@@ -27,7 +27,6 @@ import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { XI18nForm, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
-import { XFormComponent } from './form.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CdkPortalOutlet, ComponentPortal, Portal, PortalModule } from '@angular/cdk/portal';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -45,6 +44,7 @@ import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { XSwitchComponent } from '@ng-nest/ui/switch';
 import { XTextareaComponent } from '@ng-nest/ui/textarea';
 import { XTimePickerComponent } from '@ng-nest/ui/time-picker';
+import { X_FORM_CONTEXT } from './form.token';
 
 @Component({
   selector: 'x-control',
@@ -63,7 +63,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
   private _unSubject = new Subject<void>();
   value = signal<any>(null);
 
-  form = inject(XFormComponent, { optional: true })!;
+  form = inject(X_FORM_CONTEXT, { optional: true })!;
   locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.form as XI18nForm)), { initialValue: zh_CN.form });
   portal = signal<Portal<any> | null>(null);
   componentPortal!: ComponentPortal<XFormControlComponent>;

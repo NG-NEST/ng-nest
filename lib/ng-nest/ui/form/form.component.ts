@@ -23,6 +23,7 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XControlComponent } from './control.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
+import { X_FORM_CONTEXT, XFormContext } from './form.token';
 
 @Component({
   selector: `${XFormPrefix}`,
@@ -40,9 +41,15 @@ import { XIconComponent } from '@ng-nest/ui/icon';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: X_FORM_CONTEXT,
+      useExisting: XFormComponent
+    }
+  ]
 })
-export class XFormComponent extends XFormProperty implements OnChanges, AfterViewInit {
+export class XFormComponent extends XFormProperty implements OnChanges, AfterViewInit, XFormContext {
   controlsType = computed(() => {
     const controls = this.controls();
     return controls && controls.length > 0 && (controls[0] as XFormRow).controls ? 'rows' : 'controls';
