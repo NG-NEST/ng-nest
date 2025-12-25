@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { en_US, XEmptyComponent, XI18nService, XRadioComponent, zh_CN } from '@ng-nest/ui';
+import { en_US, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
+import { XEmptyComponent } from '@ng-nest/ui/empty';
+import { XRadioComponent } from '@ng-nest/ui/radio';
 
 @Component({
   selector: 'te-i18n',
