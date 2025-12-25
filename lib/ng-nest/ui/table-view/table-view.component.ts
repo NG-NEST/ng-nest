@@ -26,6 +26,7 @@ import { XTableViewProperty } from './table-view.property';
 import { XTableViewService } from './table-view.service';
 import { XTableViewCell, XTableColumnDef, XTableHeaderCell } from './cell';
 import { XTableHeaderRow, XTableHeaderRowDef, XTableViewRow } from './row';
+import { X_TABLE_VIEW_CONTEXT } from './table-view.token';
 
 @Component({
   selector: 'x-table-view, table[x-table-view]',
@@ -42,6 +43,10 @@ import { XTableHeaderRow, XTableHeaderRowDef, XTableViewRow } from './row';
     // Prevent nested tables from seeing this table's StickyPositioningListener.
     { provide: _VIEW_REPEATER_STRATEGY, useClass: _DisposeViewRepeaterStrategy },
     { provide: STICKY_POSITIONING_LISTENER, useValue: null },
+    {
+      provide: X_TABLE_VIEW_CONTEXT,
+      useExisting: XTableView
+    },
     XTableViewService
   ],
   encapsulation: ViewEncapsulation.None,
@@ -65,4 +70,28 @@ export class XTableView<T> extends XTableViewProperty<T> {
 
   /** Overrides the need to add position: sticky on every sticky cell element in `CdkTable`. */
   protected override needsPositionStickyOnElement = false;
+
+  getHeaderRows() {
+    return this.headerRows();
+  }
+
+  getHeaderRowRefs() {
+    return this.headerRowRefs();
+  }
+
+  getSentinelTop() {
+    return this.sentinelTop();
+  }
+
+  getHeaderCells() {
+    return this.headerCells();
+  }
+
+  getCells() {
+    return this.cells();
+  }
+
+  getRows() {
+    return this.rows();
+  }
 }
