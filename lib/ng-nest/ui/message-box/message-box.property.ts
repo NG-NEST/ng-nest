@@ -1,8 +1,7 @@
-import { XStatus, XPlace } from '@ng-nest/ui/core';
-import { XAlertOption } from '@ng-nest/ui/alert';
-import { XMessageBoxComponent } from './message-box.component';
-import { XPortalOverlayRef } from '@ng-nest/ui/portal';
-import { XInputType } from '@ng-nest/ui/input';
+import type { XStatus, XPlace } from '@ng-nest/ui/core';
+import type { XAlertOption } from '@ng-nest/ui/alert';
+import type { XPortalOverlayRef } from '@ng-nest/ui/portal';
+import type { XInputType } from '@ng-nest/ui/input';
 import { Observable } from 'rxjs';
 
 /**
@@ -173,7 +172,21 @@ export type XMessageBoxAction = 'confirm' | 'cancel' | 'close';
  * @zh_CN 创建的消息对象
  * @en_US Message object created
  */
-export interface XMessageBoxOverlayRef extends XPortalOverlayRef<XMessageBoxComponent> {}
+export interface XMessageBoxOverlayRef extends XPortalOverlayRef<XMessageBoxHandle> {}
+
+/**
+ * @zh_CN 创建的消息组件定义
+ * @en_US Message object created
+ */
+export interface XMessageBoxHandle {
+  messageBox: XMessageBoxRef;
+  onClose(): void;
+  onCancel(): void;
+  hideBox(): void;
+  onConfirm(): void;
+  moveDone($event: AnimationEvent): void;
+  getInputValue(): any;
+}
 
 export interface XMessageBoxRef {
   ref: XMessageBoxOverlayRef;

@@ -10,7 +10,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { XIsFunction } from '@ng-nest/ui/core';
-import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction } from './message-box.property';
+import { XMessageBoxPrefix, XMessageBoxRef, XMessageBoxAction, XMessageBoxHandle } from './message-box.property';
 import { UntypedFormGroup, UntypedFormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XFormInputValidator } from '@ng-nest/ui/base-form';
 import { XAlertComponent } from '@ng-nest/ui/alert';
@@ -38,7 +38,7 @@ import { XTextareaComponent } from '@ng-nest/ui/textarea';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMessageBoxComponent implements OnInit {
+export class XMessageBoxComponent implements OnInit, XMessageBoxHandle {
   messageBox!: XMessageBoxRef;
   action: XMessageBoxAction = 'close';
   formGroup: UntypedFormGroup = new UntypedFormGroup({});
