@@ -1,3 +1,12 @@
+## [20.2.8](https://github.com/NG-NEST/ng-nest/compare/20.2.7...20.2.8) (2025-12-25)
+
+
+### Bug Fixes
+
+* **module:tree:** fix expanded all ([32b6dc3](https://github.com/NG-NEST/ng-nest/commit/32b6dc3904ec78444fa0a1d16e0f800b19516de3))
+
+
+
 ## [20.2.7](https://github.com/NG-NEST/ng-nest/compare/20.2.6...20.2.7) (2025-12-16)
 
 
