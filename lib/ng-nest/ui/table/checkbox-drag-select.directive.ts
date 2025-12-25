@@ -1,6 +1,6 @@
 import { Directive, DOCUMENT, HostListener, inject, input, output } from '@angular/core';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
-import { XTableColumn, XTableRow } from './table.property';
+import type { XTableColumn, XTableRow } from './table.property';
 import { XTableCheckboxDragSelectService } from './checkbox-drag-select.service';
 
 @Directive({

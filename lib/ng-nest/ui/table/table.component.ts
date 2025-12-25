@@ -35,6 +35,7 @@ import { XTableHeadComponent } from './table-head.component';
 import { XTableFootComponent } from './table-foot.component';
 import { XTableBodyComponent } from './table-body.component';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { X_TABLE_CONTEXT, XTableContext } from './table.token';
 
 @Component({
   selector: `${XTablePrefix}`,
@@ -50,9 +51,15 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: X_TABLE_CONTEXT,
+      useExisting: XTableComponent
+    }
+  ]
 })
-export class XTableComponent extends XTableProperty implements OnInit, OnDestroy, AfterViewChecked {
+export class XTableComponent extends XTableProperty implements OnInit, OnDestroy, AfterViewChecked, XTableContext {
   renderer = inject(Renderer2);
   elementRef = inject(ElementRef<HTMLElement>);
   cdr = inject(ChangeDetectorRef);

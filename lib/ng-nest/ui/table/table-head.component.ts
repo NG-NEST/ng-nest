@@ -18,7 +18,7 @@ import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { FormsModule } from '@angular/forms';
-import { XTableComponent } from './table.component';
+import { X_TABLE_CONTEXT } from './table.token';
 
 @Component({
   selector: `${XTableHeadPrefix}`,
@@ -37,7 +37,7 @@ import { XTableComponent } from './table.component';
   encapsulation: ViewEncapsulation.None
 })
 export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
-  table = inject(XTableComponent, { optional: true })!;
+  table = inject(X_TABLE_CONTEXT, { optional: true })!;
   cdr = inject(ChangeDetectorRef);
 
   thead = viewChild.required<ElementRef<HTMLElement>>('thead');
