@@ -1,7 +1,6 @@
 import {
   Component,
   ViewEncapsulation,
-  ElementRef,
   ChangeDetectionStrategy,
   HostListener,
   ViewContainerRef,
@@ -239,7 +238,7 @@ export class XDropdownPortalComponent {
 
   setPlacement() {
     return this.portalService.setPlacement({
-      elementRef: new ElementRef(this.node()?.component?.elementRef?.nativeElement),
+      elementRef: this.node()?.component?.getElementRef(),
       placement: ['right-start', 'right-end', 'left-start', 'left-end'],
       transformOriginOn: 'x-dropdown-portal'
     });
