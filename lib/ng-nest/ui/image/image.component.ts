@@ -9,16 +9,16 @@ import {
   OnDestroy,
   effect
 } from '@angular/core';
-import { XImageNode, XImagePrefix, XImageProperty } from './image.property';
+import { XImageHandle, XImageNode, XImagePrefix, XImageProperty } from './image.property';
 import { XConfigService } from '@ng-nest/ui/core';
 import { XDialogService } from '@ng-nest/ui/dialog';
 import { XImagePreviewComponent } from './image-preview.component';
 import { XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { map } from 'rxjs';
-import { XImageGroupComponent } from './image-group.component';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { X_IMAGE_GROUP_CONTEXT } from './image-group.token';
 
 @Component({
   selector: `${XImagePrefix}`,
@@ -28,10 +28,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XImageComponent extends XImageProperty implements OnInit, OnDestroy {
+export class XImageComponent extends XImageProperty implements OnInit, OnDestroy, XImageHandle {
   private dialog = inject(XDialogService);
   private i18n = inject(XI18nService);
-  private group = inject(XImageGroupComponent, { optional: true });
+  private group = inject(X_IMAGE_GROUP_CONTEXT, { optional: true });
   configService = inject(XConfigService);
   isError = signal(false);
   isLoaded = signal(false);
