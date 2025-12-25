@@ -1,3 +1,7 @@
+## [21.0.6](https://github.com/NG-NEST/ng-nest/compare/21.0.5...21.0.6) (2025-12-25)
+
+
+
 ## [21.0.5](https://github.com/NG-NEST/ng-nest/compare/21.0.4...21.0.5) (2025-12-25)
 
 
