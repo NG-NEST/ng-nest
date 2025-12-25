@@ -8,7 +8,8 @@ import {
   ChangeDetectionStrategy,
   viewChild,
   signal,
-  input
+  input,
+  output
 } from '@angular/core';
 
 type DragAxis = 'x' | 'y';
@@ -33,6 +34,9 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
 
   maxHeight = input('100%');
   maxWidth = input('100%');
+
+  resizeChange = output<ResizeObserverEntry>();
+  scrollChange = output<Event>();
 
   private contentRef = viewChild.required<ElementRef<HTMLElement>>('content');
 
@@ -65,8 +69,11 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     setTimeout(() => this.updateScrollbars(), 0);
 
-    this.resizeObserver = new ResizeObserver(() => {
+    this.resizeObserver = new ResizeObserver((x) => {
       this.updateScrollbars();
+      if (x && x.length > 0) {
+        this.resizeChange.emit(x[0]);
+      }
     });
     this.resizeObserver.observe(this.contentRef().nativeElement);
   }
@@ -77,9 +84,12 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  updateScrollbars(): void {
+  updateScrollbars(scroll = false, event?: Event): void {
     this.updateVerticalScrollbar();
     this.updateHorizontalScrollbar();
+    if (scroll && event) {
+      this.scrollChange.emit(event);
+    }
   }
 
   private updateVerticalScrollbar(): void {

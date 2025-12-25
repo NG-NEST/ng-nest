@@ -4,7 +4,7 @@
     class="x-scrollable-content"
     [style.maxHeight]="maxHeight()"
     [style.maxWidth]="maxWidth()"
-    (scroll)="updateScrollbars()"
+    (scroll)="updateScrollbars(true, $event)"
   >
     <ng-content></ng-content>
   </div>
