@@ -1,8 +1,38 @@
-## [21.0.4](https://github.com/NG-NEST/ng-nest/compare/21.0.3...21.0.4) (2025-12-22)
+## [21.0.5](https://github.com/NG-NEST/ng-nest/compare/21.0.4...21.0.5) (2025-12-25)
 
 
 ### Bug Fixes
 
+* **docs:** fix circular dependency ([126686c](https://github.com/NG-NEST/ng-nest/commit/126686c3901562a64624b1bda03ed20860de845a))
+* **module:bubble:** fix circular dependency ([8b929b3](https://github.com/NG-NEST/ng-nest/commit/8b929b3d9b27b4b9b7e7c07e32dc9e20822f262a))
+* **module:bubble:** fix circular dependency and expanded all node ([107eb45](https://github.com/NG-NEST/ng-nest/commit/107eb457bd063ad44a6e21b32f2b995bb8883fc9))
+* **module:dialog:** fix circular dependency ([2794f1e](https://github.com/NG-NEST/ng-nest/commit/2794f1e9abd91c5370a580d3d9bfec5f315ec4d9))
+* **module:dropdown:** fix elementRef ([ea75964](https://github.com/NG-NEST/ng-nest/commit/ea759642fdb668767d3bb9aadfa526c17ead96a9))
+* **module:form:** fix circular dependency ([b9a1a2f](https://github.com/NG-NEST/ng-nest/commit/b9a1a2f896c8e2f7a4486d9fc0eb8abac0083e36))
+* **module:i18n:** fix inject i18n service ([6910a25](https://github.com/NG-NEST/ng-nest/commit/6910a25a957f0fbeb0c1c67657a041a400a3d18b))
+* **module:image:** fix circular dependency ([5ba30be](https://github.com/NG-NEST/ng-nest/commit/5ba30bea9cf0950f0f51b7fd364e92d0de909fab))
+* **module:input:** fix validator message ([483a4da](https://github.com/NG-NEST/ng-nest/commit/483a4da3b4dc69e0e6471a12fb5098aacf33580d))
+* **module:list:** fix circular dependency ([11b6c47](https://github.com/NG-NEST/ng-nest/commit/11b6c47dd7fccacd260ef4cb53996418b1cbd137))
+* **module:menu:** fix circular dependency ([3ae2e4e](https://github.com/NG-NEST/ng-nest/commit/3ae2e4e33cf9f58a000680b12bd7f5108faf27f1))
+* **module:message-box:** fix circular dependency ([8c4efce](https://github.com/NG-NEST/ng-nest/commit/8c4efce8e37a17525721fc07e81b57b7b05049cd))
+* **module:message:** fix circular dependency ([19b9cb0](https://github.com/NG-NEST/ng-nest/commit/19b9cb09baa73c48ba2e2c10de82fed7eebfcd82))
+* **module:notification:** fix circular dependency ([454cc26](https://github.com/NG-NEST/ng-nest/commit/454cc26d2800aca1c8c2547005c3ae24ef939480))
+* **module:table-view:** fix circular dependency ([0b84150](https://github.com/NG-NEST/ng-nest/commit/0b84150cef5593e9341f097c53ee172cc7f1251a))
+* **module:table:** fix circular dependency ([470c766](https://github.com/NG-NEST/ng-nest/commit/470c76627327f741de60699f502ed987c5126ccd))
+
+
+### Features
+
+* **module:scrollable:** add scroll event ([146fd3a](https://github.com/NG-NEST/ng-nest/commit/146fd3ae4eb8e67c04892cf8cb1fc0222dfcf27c))
+
+
+
+## [21.0.4](https://github.com/NG-NEST/ng-nest/compare/21.0.3...21.0.4) (2025-12-23)
+
+
+### Bug Fixes
+
+* **module:i18n:** fix compilation errors ([acf11eb](https://github.com/NG-NEST/ng-nest/commit/acf11ebe5fe11af9482eda7751863390e3f05b36))
 * **module:i18n:** fix the refresh toggle issue ([3407fd3](https://github.com/NG-NEST/ng-nest/commit/3407fd3f5df6cb78ee964b9a1a03dca077a19144))
 
 

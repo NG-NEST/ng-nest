@@ -18828,8 +18828,21 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDialogOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XDialogComponent>"
+      "XPortalOverlayRef<XDialogHandle>"
     ]
+  },
+  "XDialogHandle": {
+    "type": "interface",
+    "label": "创建的弹框组件定义",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDialogHandle"
   },
   "XDialogPortalOverlayRef": {
     "type": "interface",
@@ -18844,8 +18857,21 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDialogPortalOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XDialogPortalComponent>"
+      "XPortalOverlayRef<XDialogPortalHandle>"
     ]
+  },
+  "XDialogPortalHandle": {
+    "type": "interface",
+    "label": "创建的弹框对象定义",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDialogPortalHandle"
   },
   "XDialogType": {
     "type": "type",
@@ -27525,7 +27551,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "component",
-        "type": "XListOptionComponent",
+        "type": "XListOptionHandle",
         "label": "对应的节点组件",
         "default": "",
         "withConfig": false,
@@ -27545,6 +27571,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "extends": [
       "XParentIdentityProperty<XListNode>"
     ]
+  },
+  "XListOptionHandle": {
+    "type": "type",
+    "label": "对应的节点组件",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XListOptionHandle",
+    "value": "XListOptionHandle = {setActiveStyles(): void;setInactiveStyles(): void;getLabel(): string;getElementRef(): ElementRef<HTMLElement>;};"
   },
   "XListOptionPrefix": {
     "type": "const",
@@ -28876,8 +28916,21 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XMessageOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XMessageComponent>"
+      "XPortalOverlayRef<XMessageHandle>"
     ]
+  },
+  "XMessageHandle": {
+    "type": "interface",
+    "label": "创建的消息组件定义",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XMessageHandle"
   },
   "XMessagePlacement": {
     "type": "interface",
@@ -29480,8 +29533,21 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XMessageBoxOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XMessageBoxComponent>"
+      "XPortalOverlayRef<XMessageBoxHandle>"
     ]
+  },
+  "XMessageBoxHandle": {
+    "type": "interface",
+    "label": "创建的消息组件定义",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XMessageBoxHandle"
   },
   "XMessageBoxType": {
     "type": "type",
@@ -29713,8 +29779,21 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XNotificationOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XNotificationComponent>"
+      "XPortalOverlayRef<XNotificationHandle>"
     ]
+  },
+  "XNotificationHandle": {
+    "type": "interface",
+    "label": "创建的消息组件定义",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XNotificationHandle"
   },
   "XNotificationPlacement": {
     "type": "interface",
