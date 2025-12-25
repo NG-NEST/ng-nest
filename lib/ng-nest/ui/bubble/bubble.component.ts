@@ -14,15 +14,15 @@ import {
 } from '@angular/core';
 import { XBubblePrefix, XBubbleProperty } from './bubble.property';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { XIsEmpty, XIsString, XIsTemplateRef } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsString, XIsTemplateRef, XSize, XVariant } from '@ng-nest/ui/core';
 import { NgClass } from '@angular/common';
 import { XAvatarComponent } from '@ng-nest/ui/avatar';
 import { XLoadingComponent } from '@ng-nest/ui/loading';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { XBubblesComponent } from './bubbles.component';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { isObservable } from 'rxjs';
 import { XIconComponent } from '@ng-nest/ui/icon';
+import { X_BUBBLES_CONTEXT } from './bubbles.token';
 
 @Component({
   selector: 'x-bubble',
@@ -36,7 +36,7 @@ export class XBubbleComponent extends XBubbleProperty {
   sanitizer = inject(DomSanitizer);
   renderer2 = inject(Renderer2);
   cdr = inject(ChangeDetectorRef);
-  private bubbles = inject(XBubblesComponent, { optional: true, host: true });
+  private bubbles = inject(X_BUBBLES_CONTEXT, { optional: true });
 
   wrapperRef = viewChild<ElementRef<HTMLElement>>('wrapperRef');
 
@@ -64,11 +64,11 @@ export class XBubbleComponent extends XBubbleProperty {
   renderedContent = signal<SafeHtml>('');
 
   sizeSignal = computed(() => {
-    return this.bubbles?.size() || this.size();
+    return (this.bubbles?.size() || this.size()) as XSize;
   });
 
   variantSignal = computed(() => {
-    return this.bubbles?.variant() || this.variant();
+    return (this.bubbles?.variant() || this.variant()) as XVariant;
   });
 
   isTemplate = computed(() => {
