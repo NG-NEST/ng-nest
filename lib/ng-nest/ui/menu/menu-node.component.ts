@@ -12,7 +12,7 @@ import { XMenuNodeProperty, XMenuNodePrefix, XMenuNode } from './menu.property';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { RouterModule } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
-import { XMenuComponent } from './menu.component';
+import { X_MENU_CONTEXT } from './menu.token';
 
 @Component({
   selector: `${XMenuNodePrefix}`,
@@ -22,7 +22,7 @@ import { XMenuComponent } from './menu.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XMenuNodeComponent extends XMenuNodeProperty {
-  menu = inject(XMenuComponent, { optional: true })!;
+  menu = inject(X_MENU_CONTEXT, { optional: true })!;
   routerLink = input<string>();
   leaf = input<boolean>();
   icon = input<string>();
