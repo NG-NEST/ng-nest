@@ -5,8 +5,8 @@ import { XFillDefault, XConfigService, XDialogConfig } from '@ng-nest/ui/core';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { XDialogPortalComponent } from './dialog-portal.component';
 import { XDialogRef } from './dialog-ref';
-import { XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
-import { fromEvent, Subject, takeUntil } from 'rxjs';
+import { XDialogPortalOverlayRef, XDialogRefOption, X_DIALOG_CONFIG_NAME, X_DIALOG_DATA } from './dialog.property';
+import { fromEvent, takeUntil } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class XDialogService {
@@ -51,32 +51,35 @@ export class XDialogService {
         minHeight: option.minHeight,
         positionStrategy: this.portalService.setPlace(option.placement, option.offset!)
       }
-    });
+    }) as XDialogPortalOverlayRef;
 
     const { overlayRef, componentRef } = portal || {};
     const { instance } = componentRef! || {};
     const { hostElement, overlayElement } = overlayRef || {};
-    const dialogRef = new XDialogRef<T>(overlayRef!, instance, this.renderer, this.portalService);
+    let defaultMaximize = this.setMaximize(option);
     let dialogBox = {
       draggable: option.draggable
     };
-    let defaultMaximize = this.setMaximize(option);
     Object.assign(dialogBox, {
       width: defaultMaximize ? this.default.width : option.width,
       height: defaultMaximize ? null : option.height,
       minWidth: option.minWidth,
       minHeight: option.minHeight
     });
+    const dialogRef = new XDialogRef<T>({
+      overlayRef: overlayRef!,
+      containerInstance: instance,
+      renderer: this.renderer,
+      option,
+      fullscreen: defaultMaximize,
+      portalService: this.portalService
+    });
     componentRef?.setInput('placement', option.placement);
     instance.option = option;
-    instance.dialogRef = dialogRef;
     instance.defaultMaximize = defaultMaximize;
     instance.dialogBox = dialogBox;
     instance.hostElement = hostElement;
     instance.overlayElement = overlayElement;
-    dialogRef.option = option;
-    dialogRef.fullscreen = defaultMaximize;
-    dialogRef.unsubject = new Subject<void>();
     if (defaultMaximize) {
       this.renderer.addClass(overlayElement, 'x-dialog-portal-fullscreen');
     }

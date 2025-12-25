@@ -1,9 +1,19 @@
-import { Component, ViewContainerRef, InjectionToken, input, model, output } from '@angular/core';
+import {
+  Component,
+  ViewContainerRef,
+  InjectionToken,
+  input,
+  model,
+  output,
+  ComponentRef,
+  EmbeddedViewRef,
+  EventEmitter
+} from '@angular/core';
 import { XProperty, XPropertyFunction, XToCssPixelValue, XToBoolean, XToNumber } from '@ng-nest/ui/core';
-import { XPortalOverlayRef } from '@ng-nest/ui/portal';
-import { XDialogComponent } from './dialog.component';
-import { XDialogPortalComponent } from './dialog-portal.component';
+import type { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import type { XStatus, XPlace, XTemplate, XEffect, XBoolean, XNumber } from '@ng-nest/ui/core';
+import type { CdkDragEnd } from '@angular/cdk/drag-drop';
+import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 
 /**
  * Dialog
@@ -336,13 +346,63 @@ export type XDialogAction = 'confirm' | 'cancel' | 'close';
  * @zh_CN 创建的弹框对象
  * @en_US Dialog object created
  */
-export interface XDialogOverlayRef extends XPortalOverlayRef<XDialogComponent> {}
+export interface XDialogOverlayRef extends XPortalOverlayRef<XDialogHandle> {}
+
+/**
+ * @zh_CN 创建的弹框组件定义
+ * @en_US Dialog object created
+ */
+export interface XDialogHandle {
+  create(): void;
+  onClose(action: XDialogAction, execFunction?: boolean): void;
+  onDragEnded(event: CdkDragEnd): void;
+  onSize(): void;
+  onMaximize(): void;
+  onMinimize(): void;
+  moveDone(event: AnimationEvent): void;
+  portalAttached(): boolean;
+  setVisible(): void;
+  setWidthHeight(): void;
+}
 
 /**
  * @zh_CN 创建的弹框对象，通过服务
  * @en_US Dialog object created by service
  */
-export interface XDialogPortalOverlayRef extends XPortalOverlayRef<XDialogPortalComponent> {}
+export interface XDialogPortalOverlayRef extends XPortalOverlayRef<XDialogPortalHandle> {}
+
+/**
+ * @zh_CN 创建的弹框对象定义
+ * @en_US Dialog object created definition
+ */
+export interface XDialogPortalHandle {
+  option: XDialogRefOption;
+  defaultMaximize: boolean;
+  dialogBox: {
+    draggable?: boolean;
+    resizable?: boolean;
+    width?: string;
+    height?: string;
+    minWidth?: string;
+    minHeight?: string;
+    distance?: { x: number; y: number };
+    marginTop?: string;
+    marginLeft?: string;
+    marginRight?: string;
+    marginBottom?: string;
+  };
+  hostElement?: HTMLElement;
+  overlayElement?: HTMLElement;
+  distance: { x: number; y: number };
+  offsetLeft: number;
+  offsetTop: number;
+  initHeight: number;
+  dialogContent?: HTMLElement;
+  initContentHeight: number;
+  attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T>;
+  attachTemplatePortal<T>(portal: TemplatePortal<T>): EmbeddedViewRef<T>;
+  animationChanged: EventEmitter<XDialogAnimationEvent>;
+}
 
 /**
  * @zh_CN 类型

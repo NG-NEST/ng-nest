@@ -1,15 +1,15 @@
 import { Directive, HostBinding, HostListener, inject } from '@angular/core';
-import { XDialogRef } from './dialog-ref';
 import { CdkDragHandle } from '@angular/cdk/drag-drop';
+import { XDialogRef } from './dialog-ref';
 
 @Directive({
   selector: `[x-dialog-close]`
 })
 export class XDialogCloseDirective {
   @HostListener('click') onCloseClick() {
-    this.dialogRef && this.dialogRef.close();
+    this.dialogRef?.close();
   }
-  dialogRef = inject(XDialogRef<any>, { optional: true });
+  dialogRef = inject(XDialogRef, { optional: true });
 }
 
 @Directive({
@@ -46,7 +46,7 @@ export class XDialogDragHandleDirective {
   @HostBinding('class.x-dialog-portal-drag-handle') get getDraggable() {
     return !this.dialogRef?.fullscreen && this.dialogRef?.option.draggable;
   }
-  dialogRef = inject(XDialogRef<any>, { optional: true });
+  dialogRef = inject(XDialogRef, { optional: true });
 }
 
 @Directive({
@@ -54,7 +54,7 @@ export class XDialogDragHandleDirective {
 })
 export class XDialogFullscreenDirective {
   @HostListener('click') onFullscreenClick() {
-    this.dialogRef && this.dialogRef.onFullscreen();
+    this.dialogRef?.onFullscreen();
   }
-  dialogRef = inject(XDialogRef<any>, { optional: true });
+  dialogRef = inject(XDialogRef, { optional: true });
 }

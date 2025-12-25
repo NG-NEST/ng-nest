@@ -15,9 +15,8 @@ import {
   model,
   viewChild
 } from '@angular/core';
-import { XDialogAnimationEvent, XDialogAnimationState, XDialogRefOption } from './dialog.property';
+import { XDialogAnimationEvent, XDialogAnimationState, XDialogPortalHandle, XDialogRefOption } from './dialog.property';
 import { CdkDrag, CdkDragEnd, DragDropModule } from '@angular/cdk/drag-drop';
-import { XDialogRef } from './dialog-ref';
 import { XDialogDragHandleDirective } from './dialog-portal.directives';
 
 @Component({
@@ -28,7 +27,7 @@ import { XDialogDragHandleDirective } from './dialog-portal.directives';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDialogPortalComponent extends BasePortalOutlet {
+export class XDialogPortalComponent extends BasePortalOutlet implements XDialogPortalHandle {
   placement = model.required<XDialogAnimationState>();
   @HostBinding('animate.enter') public get enimateEnter() {
     return `x-move-${this.placement()}-enter`;
@@ -49,7 +48,6 @@ export class XDialogPortalComponent extends BasePortalOutlet {
   handles = contentChildren(XDialogDragHandleDirective, { descendants: true });
   animationChanged = new EventEmitter<XDialogAnimationEvent>();
   option!: XDialogRefOption;
-  dialogRef!: XDialogRef<any>;
 
   offsetLeft = 0;
   offsetTop = 0;

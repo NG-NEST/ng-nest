@@ -1,28 +1,39 @@
 import { OverlayRef } from '@angular/cdk/overlay';
-import { Renderer2 } from '@angular/core';
 import { Subject, filter, take } from 'rxjs';
+import { XDialogPortalHandle, XDialogRefOption } from './dialog.property';
+import { XDialogRefHandle } from './dialog-ref.token';
+import { Renderer2 } from '@angular/core';
 import { XPortalResizablePrefix, XPortalService } from '@ng-nest/ui/portal';
-import { XDialogPortalComponent } from './dialog-portal.component';
-import { XDialogRefOption } from './dialog.property';
-import { CdkDragHandle } from '@angular/cdk/drag-drop';
-import { XDialogDragHandleDirective } from './dialog-portal.directives';
 
 // TODO: add more function
-export class XDialogRef<C> {
+export class XDialogRef<C> implements XDialogRefHandle {
   componentInstance!: C;
   option!: XDialogRefOption;
   fullscreen = false;
-  dragHandleRefs: (XDialogDragHandleDirective | CdkDragHandle)[] = [];
   afterClose = new Subject<any>();
   unsubject = new Subject<void>();
   private _isFristFullscreen = true;
 
-  constructor(
-    public overlayRef: OverlayRef,
-    public containerInstance: XDialogPortalComponent,
-    public renderer: Renderer2,
-    public portalService: XPortalService
-  ) {}
+  overlayRef: OverlayRef;
+  containerInstance: XDialogPortalHandle;
+  renderer: Renderer2;
+  portalService: XPortalService;
+
+  constructor(params: {
+    overlayRef: OverlayRef;
+    containerInstance: XDialogPortalHandle;
+    renderer: Renderer2;
+    option: XDialogRefOption;
+    fullscreen: boolean;
+    portalService: XPortalService;
+  }) {
+    this.overlayRef = params.overlayRef;
+    this.containerInstance = params.containerInstance;
+    this.renderer = params.renderer;
+    this.option = params.option;
+    this.fullscreen = params.fullscreen;
+    this.portalService = params.portalService;
+  }
 
   close(result?: any) {
     this.containerInstance.animationChanged
@@ -42,67 +53,65 @@ export class XDialogRef<C> {
     });
   }
 
-  onFullscreen() {
-    let { dialogBox, dialogRef, overlayElement, distance, hostElement, defaultMaximize } = this.containerInstance;
-    if (!dialogRef.fullscreen) {
-      dialogRef.overlayRef.updateSize({
+  onFullscreen(): void {
+    let { dialogBox, overlayElement, distance, hostElement, defaultMaximize } = this.containerInstance;
+    if (!this.fullscreen) {
+      this.overlayRef.updateSize({
         width: '100%',
         height: '100%',
         minWidth: '100%',
         minHeight: '100%'
       });
-      dialogRef.fullscreen = true;
-      dialogBox['minWidth'] = '100%';
-      dialogBox['minHeight'] = '100%';
-      dialogBox['draggable'] = false;
-      dialogBox['resizable'] = false;
+      this.fullscreen = true;
+      dialogBox.minWidth = '100%';
+      dialogBox.minHeight = '100%';
+      dialogBox.draggable = false;
+      dialogBox.resizable = false;
       if (this.option.resizable) {
         this.renderer.setStyle(overlayElement, 'margin', '0 0 0 0');
       }
       if (this.option.draggable) {
-        dialogBox['distance'] = { x: 0, y: 0 };
+        dialogBox.distance = { x: 0, y: 0 };
       }
       this.renderer.addClass(overlayElement, 'x-dialog-portal-fullscreen');
     } else {
-      dialogBox['minWidth'] = this.option.minWidth;
-      dialogBox['minHeight'] = this.option.minHeight;
+      dialogBox.minWidth = this.option.minWidth;
+      dialogBox.minHeight = this.option.minHeight;
       if (this._isFristFullscreen && defaultMaximize) {
-        this.option.draggable = dialogBox['draggable'];
-        this.option.resizable = dialogBox['resizable'];
+        this.option.draggable = dialogBox.draggable;
+        this.option.resizable = dialogBox.resizable;
       } else {
-        dialogBox['draggable'] = this.option.draggable;
-        dialogBox['resizable'] = this.option.resizable;
+        dialogBox.draggable = this.option.draggable;
+        dialogBox.resizable = this.option.resizable;
       }
 
-      dialogRef.overlayRef?.updateSize({
+      this.overlayRef.updateSize({
         width: dialogBox['width'],
         height: dialogBox['height'],
         minWidth: dialogBox['minWidth'],
         minHeight: dialogBox['minHeight']
       });
-      dialogRef.fullscreen = false;
+      this.fullscreen = false;
       if (this.option.draggable) {
-        dialogBox['distance'] = { ...distance };
+        dialogBox.distance = { ...distance };
       }
       if (this.option.resizable) {
-        if (dialogBox['marginTop']) {
-          this.renderer.setStyle(overlayElement, 'margin-top', `${dialogBox['marginTop']}`);
+        if (dialogBox.marginTop) {
+          this.renderer.setStyle(overlayElement, 'margin-top', `${dialogBox.marginTop}`);
         }
-        if (dialogBox['marginLeft']) {
-          this.renderer.setStyle(overlayElement, 'margin-left', `${dialogBox['marginLeft']}`);
+        if (dialogBox.marginLeft) {
+          this.renderer.setStyle(overlayElement, 'margin-left', `${dialogBox.marginLeft}`);
         }
-        if (dialogBox['marginRight']) {
-          this.renderer.setStyle(overlayElement, 'margin-right', `${dialogBox['marginRight']}`);
+        if (dialogBox.marginRight) {
+          this.renderer.setStyle(overlayElement, 'margin-right', `${dialogBox.marginRight}`);
         }
-        if (dialogBox['marginBottom']) {
-          this.renderer.setStyle(overlayElement, 'margin-bottom', `${dialogBox['marginBottom']}`);
+        if (dialogBox.marginBottom) {
+          this.renderer.setStyle(overlayElement, 'margin-bottom', `${dialogBox.marginBottom}`);
         }
       }
       this.renderer.removeClass(overlayElement, 'x-dialog-portal-fullscreen');
       if (this._isFristFullscreen && defaultMaximize) {
-        dialogRef.overlayRef?.updatePositionStrategy(
-          this.portalService.setPlace(this.option.placement, this.option.offset!)
-        );
+        this.overlayRef.updatePositionStrategy(this.portalService.setPlace(this.option.placement, this.option.offset!));
         this.renderer.addClass(hostElement, XPortalResizablePrefix);
         setTimeout(() => {
           Object.assign(dialogBox, this.portalService.setResizable(overlayElement!, this.option.placement));

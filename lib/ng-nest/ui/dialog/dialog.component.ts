@@ -22,7 +22,8 @@ import {
   XDialogProperty,
   XDialogContainer,
   XDialogAction,
-  X_DIALOG_CONTAINER
+  X_DIALOG_CONTAINER,
+  XDialogHandle
 } from './dialog.property';
 import { XPortalService } from '@ng-nest/ui/portal';
 import { Subscription, Subject, fromEvent } from 'rxjs';
@@ -45,7 +46,7 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit {
+export class XDialogComponent extends XDialogProperty implements OnInit, AfterViewInit, XDialogHandle {
   private static dialogOverlayRefs: XDialogOverlayRef[] = [];
 
   private viewContainerRef = inject(ViewContainerRef);
@@ -207,7 +208,7 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   }
 
   portalAttached() {
-    return this.dialogRef?.overlayRef?.hasAttached();
+    return !!this.dialogRef?.overlayRef?.hasAttached();
   }
 
   onClose(action: XDialogAction, execFunction = true) {
