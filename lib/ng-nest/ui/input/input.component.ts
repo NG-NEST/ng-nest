@@ -43,6 +43,7 @@ export class XInputComponent extends XInputProperty implements OnInit {
 
   override writeValue(value: any) {
     this.value.set(value);
+    this.validatorValue(value);
     this.isWriteValue.set(true);
     this.valueChange.next(value);
     this.isWriteValue.set(false);
@@ -134,6 +135,7 @@ export class XInputComponent extends XInputProperty implements OnInit {
   ngOnInit() {
     this.setInheritedValue();
     this.setEvent();
+    this.validatorValue(this.value());
   }
 
   ngOnDestroy() {
@@ -217,8 +219,16 @@ export class XInputComponent extends XInputProperty implements OnInit {
       }
       this.onChange(value);
     }
-    if (this.validatorComputed() && XIsFunction(this.inputValidator())) {
-      this.invalidInputValidator.set(!this.inputValidator()!(value));
+    this.validatorValue(value);
+  }
+
+  validatorValue(value: any) {
+    if (this.validatorComputed()) {
+      if (XIsFunction(this.inputValidator())) {
+        this.invalidInputValidator.set(!this.inputValidator()!(value));
+      } else {
+        this.invalidInputValidator.set(this.requiredIsEmpty());
+      }
     }
   }
 

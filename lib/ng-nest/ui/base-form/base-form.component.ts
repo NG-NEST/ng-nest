@@ -27,7 +27,8 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
     cdr = inject(ChangeDetectorRef);
     invalid = computed(() => {
       return (
-        this.validatorComputed() && ((!XIsEmpty(this.value()) && this.invalidPattern()) || this.invalidInputValidator())
+        this.validatorComputed() &&
+        ((!XIsEmpty(this.value()) && this.invalidPattern()) || this.requiredIsEmpty() || this.invalidInputValidator())
       );
     });
     invalidPattern = computed(() => {
