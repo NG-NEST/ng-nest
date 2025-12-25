@@ -1,8 +1,8 @@
-import { XStatus, XCorner } from '@ng-nest/ui/core';
-import { XAlertOption } from '@ng-nest/ui/alert';
-import { XNotificationComponent } from './notification.component';
-import { XPortalOverlayRef } from '@ng-nest/ui/portal';
+import type { XStatus, XCorner } from '@ng-nest/ui/core';
+import type { XAlertOption } from '@ng-nest/ui/alert';
+import type { XPortalOverlayRef } from '@ng-nest/ui/portal';
 import { Subscription, Subject } from 'rxjs';
+import { ChangeDetectorRef } from '@angular/core';
 
 /**
  * Notification
@@ -80,7 +80,20 @@ export interface XNotificationOption extends XAlertOption {
  * @zh_CN 创建的消息对象
  * @en_US Message object created
  */
-export interface XNotificationOverlayRef extends XPortalOverlayRef<XNotificationComponent> {}
+export interface XNotificationOverlayRef extends XPortalOverlayRef<XNotificationHandle> {}
+
+/**
+ * @zh_CN 创建的消息组件定义
+ * @en_US Message object created
+ */
+export interface XNotificationHandle {
+  notification: XNotificationRef;
+  cdr: ChangeDetectorRef;
+  onClose(item: XNotificationOption): void;
+  moveDone($event: AnimationEvent): void;
+  onEnter(item: XNotificationOption): void;
+  onLeave(item: XNotificationOption): void;
+}
 
 /**
  * @zh_CN 九宫格中的消息对象

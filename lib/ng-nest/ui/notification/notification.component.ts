@@ -1,6 +1,11 @@
 import { Component, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
 import { XIsEmpty } from '@ng-nest/ui/core';
-import { XNotificationPrefix, XNotificationOption, XNotificationRef } from './notification.property';
+import {
+  XNotificationPrefix,
+  XNotificationOption,
+  XNotificationRef,
+  XNotificationHandle
+} from './notification.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { XAlertComponent } from '@ng-nest/ui/alert';
@@ -13,9 +18,8 @@ import { XAlertComponent } from '@ng-nest/ui/alert';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XNotificationComponent {
+export class XNotificationComponent implements XNotificationHandle {
   notification: XNotificationRef = { list: [] };
-
   cdr = inject(ChangeDetectorRef);
 
   onClose(item: XNotificationOption) {
