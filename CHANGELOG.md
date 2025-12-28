@@ -1,9 +1,14 @@
-## [20.2.8](https://github.com/NG-NEST/ng-nest/compare/20.2.7...20.2.8) (2025-12-25)
+## [20.2.9](https://github.com/NG-NEST/ng-nest/compare/20.2.7...20.2.9) (2025-12-28)
 
 
 ### Bug Fixes
 
 * **module:tree:** fix expanded all ([32b6dc3](https://github.com/NG-NEST/ng-nest/commit/32b6dc3904ec78444fa0a1d16e0f800b19516de3))
+
+
+### Features
+
+* **module:progress:** add info template ([3871f62](https://github.com/NG-NEST/ng-nest/commit/3871f627b6bb429200fad010a2fb918b8518f7f4))
 
 
 
