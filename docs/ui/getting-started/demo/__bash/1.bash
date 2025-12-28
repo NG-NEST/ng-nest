@@ -8,7 +8,7 @@ $ ng --version
                 |___/
 
 
-Angular CLI: 20.0.0
+Angular CLI: 21.0.0
 Node: 22.16.0
 OS: win32 x64
 
@@ -18,7 +18,7 @@ Ivy Workspace:
 
 Package                      Version
 ------------------------------------------------------
-@angular-devkit/architect    0.2000.0 (cli-only)
-@angular-devkit/core         20.0.0 (cli-only)
-@angular-devkit/schematics   20.0.0 (cli-only)
-@schematics/angular          20.0.0 (cli-only)
+@angular-devkit/architect    0.2100.0 (cli-only)
+@angular-devkit/core         21.0.0 (cli-only)
+@angular-devkit/schematics   21.0.0 (cli-only)
+@schematics/angular          21.0.0 (cli-only)

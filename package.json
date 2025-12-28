@@ -1,6 +1,6 @@
 {
   "name": "ng-nest",
-  "version": "21.0.7",
+  "version": "21.0.8",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4400 --host 0.0.0.0",

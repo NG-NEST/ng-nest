@@ -23,7 +23,7 @@ export const genDir = resolve(__dirname, '../../../../src/main/docs');
 export const genMenusDir = resolve(__dirname, '../../../../src/app');
 export const genCoreDir = resolve(__dirname, '../../../../src/interfaces');
 export const docsPrefix = 'docs';
-export const version = '21.0.7';
+export const version = '21.0.8';
 export const languages = ['zh_CN', 'en_US'];
 
 export class NcDocs {
