@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, TemplateRef } from '@angular/core';
 import { XPropertyFunction, XToNumber, XToCssPixelValue, XToBoolean } from '@ng-nest/ui/core';
 import type { XNumber, XBoolean } from '@ng-nest/ui/core';
 
@@ -35,6 +35,11 @@ export class XProgressProperty extends XPropertyFunction(X_PROGRESS_CONFIG_NAME)
    * @en_US Status
    */
   readonly status = input<XProgressStatus>('normal');
+  /**
+   * @zh_CN 自定义显示文字/图标
+   * @en_US Custom display info/icon
+   */
+  readonly infoTpl = input<TemplateRef<any>>();
   /**
    * @zh_CN 是否显示百分比文本信息
    * @en_US Whether to display percentage text

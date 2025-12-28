@@ -112,21 +112,25 @@
 
 <ng-template #textTpl>
   <span class="x-progress-text" [style.width]="infoWidth()">
-    @switch (status()) {
-      @case ('success') {
-        <x-icon type="fto-check-circle"></x-icon>
-      }
-      @case ('exception') {
-        <x-icon type="fto-x-circle"></x-icon>
-      }
-      @case ('warning') {
-        <x-icon type="fto-help-circle"></x-icon>
-      }
-      @default {
-        @if (format()) {
-          {{ format()!(percent()) }}
-        } @else {
-          {{ percent() }}%
+    @if (infoTpl()) {
+      <ng-container *ngTemplateOutlet="infoTpl()!; context: { $status: status(), $percent: percent() }"> </ng-container>
+    } @else {
+      @switch (status()) {
+        @case ('success') {
+          <x-icon type="fto-check-circle"></x-icon>
+        }
+        @case ('exception') {
+          <x-icon type="fto-x-circle"></x-icon>
+        }
+        @case ('warning') {
+          <x-icon type="fto-help-circle"></x-icon>
+        }
+        @default {
+          @if (format()) {
+            {{ format()!(percent()) }}
+          } @else {
+            {{ percent() }}%
+          }
         }
       }
     }
