@@ -90,7 +90,6 @@ export class XDialogComponent extends XDialogProperty implements OnInit, AfterVi
   });
 
   getStyle = computed(() => {
-    console.log(this.protalService.setContainerStyle(this.placement(), this.offset()));
     return this.container
       ? {
           ...this.protalService.setContainerStyle(this.placement(), this.offset()),
