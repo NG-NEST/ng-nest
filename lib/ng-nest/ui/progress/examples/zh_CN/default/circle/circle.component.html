@@ -7,3 +7,15 @@
   <x-progress percent="80" type="circle" status="warning"></x-progress>
   <x-progress percent="100" type="circle" status="success"></x-progress>
 </div>
+<div class="row">
+  <x-progress percent="100" type="circle" status="success" [infoTpl]="infoTpl"></x-progress>
+
+  <ng-template #infoTpl let-status="$status" let-percent="$percent">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+      @if (status === 'success') {
+        <x-icon [style.fontSize]="'2rem'" type="fto-check"></x-icon>
+      }
+      <span>{{ percent }}%</span>
+    </div>
+  </ng-template>
+</div>
