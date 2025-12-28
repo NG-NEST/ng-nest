@@ -1,3 +1,12 @@
+## [21.0.7](https://github.com/NG-NEST/ng-nest/compare/21.0.6...21.0.7) (2025-12-28)
+
+
+### Features
+
+* **module:progress:** add info template ([daa9145](https://github.com/NG-NEST/ng-nest/commit/daa914533161fecb1275d9071c9f2c6ffed79866))
+
+
+
 ## [21.0.6](https://github.com/NG-NEST/ng-nest/compare/21.0.5...21.0.6) (2025-12-25)
 
 
