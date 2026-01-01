@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { XButtonComponent } from '@ng-nest/ui/button';
 import { XDialogService } from '@ng-nest/ui/dialog';
-import { XImagePreviewComponent } from '@ng-nest/ui/image';
+import { XImageComponent, XImagePreviewComponent } from '@ng-nest/ui/image';
+import { XIconComponent } from '@ng-nest/ui/icon';
 
 @Component({
   selector: 'ex-custom',
-  imports: [XButtonComponent],
-  templateUrl: './custom.component.html'
+  imports: [XButtonComponent, XImageComponent, XIconComponent],
+  templateUrl: './custom.component.html',
+  styleUrl: './custom.component.scss'
 })
 export class ExCustomComponent {
   constructor(private dialogSewrvice: XDialogService) {}

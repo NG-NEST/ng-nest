@@ -1,1 +1,15 @@
 <x-button (click)="preview()">Preview</x-button>
+
+<x-image
+  width="100px"
+  height="100px"
+  src="https://ngnest.com/static/docs/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+  [previewTpl]="previewTpl"
+></x-image>
+
+<ng-template #previewTpl let-image="$image">
+  <div class="btns">
+    <x-icon type="fto-eye" title="preview"></x-icon>
+    <x-icon type="fto-trash-2" title="delete"></x-icon>
+  </div>
+</ng-template>
