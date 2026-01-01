@@ -60,27 +60,91 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
   private dragStart = { x: 0, y: 0 };
   private initialScroll = { left: 0, top: 0 };
   private resizeObserver!: ResizeObserver;
+  private mutationObserver!: MutationObserver;
+  private scrollListener!: () => void;
 
   private unlistenMouseMove!: () => void;
   private unlistenMouseUp!: () => void;
+
+  private resizeTimeoutId: number | null = null;
+  private mutationTimeoutId: number | null = null;
 
   constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
     setTimeout(() => this.updateScrollbars(), 0);
 
-    this.resizeObserver = new ResizeObserver((x) => {
-      this.updateScrollbars();
-      if (x && x.length > 0) {
-        this.resizeChange.emit(x[0]);
+    this.resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target === this.contentRef().nativeElement) {
+          if (this.resizeTimeoutId !== null) {
+            window.clearTimeout(this.resizeTimeoutId);
+          }
+
+          this.resizeTimeoutId = window.setTimeout(() => {
+            this.updateScrollbars();
+            if (entry && entry.borderBoxSize && entry.borderBoxSize.length > 0) {
+              this.resizeChange.emit(entry);
+            }
+          }, 16);
+        }
       }
     });
-    this.resizeObserver.observe(this.contentRef().nativeElement);
+
+    this.resizeObserver.observe(this.contentRef().nativeElement, { box: 'border-box' });
+
+    this.mutationObserver = new MutationObserver((mutations) => {
+      let shouldUpdate = false;
+
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList' || mutation.type === 'attributes') {
+          shouldUpdate = true;
+          break;
+        }
+      }
+
+      if (shouldUpdate) {
+        if (this.mutationTimeoutId !== null) {
+          window.clearTimeout(this.mutationTimeoutId);
+        }
+
+        this.mutationTimeoutId = window.setTimeout(() => {
+          this.updateScrollbars();
+        }, 16);
+      }
+    });
+
+    this.mutationObserver.observe(this.contentRef().nativeElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style', 'class']
+    });
+
+    this.scrollListener = this.renderer.listen(this.contentRef().nativeElement, 'scroll', (event: Event) => {
+      this.updateScrollbars(true, event);
+    });
   }
 
   ngOnDestroy(): void {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
+    }
+
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+    }
+
+    if (this.scrollListener) {
+      this.scrollListener();
+    }
+
+    if (this.resizeTimeoutId !== null) {
+      window.clearTimeout(this.resizeTimeoutId);
+    }
+
+    if (this.mutationTimeoutId !== null) {
+      window.clearTimeout(this.mutationTimeoutId);
     }
   }
 
@@ -125,6 +189,10 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
 
     let visibleRatioY = clientHeight / scrollHeight;
 
+    if (visibleRatioY > 0.99 && visibleRatioY < 1) {
+      visibleRatioY = 1;
+    }
+
     if (visibleRatioY >= 1) {
       this.renderer.setStyle(trackY, 'display', 'none');
     } else {
@@ -157,7 +225,7 @@ export class XScrollableComponent implements AfterViewInit, OnDestroy {
       scrollWidth -= this.xOffsetRight();
     } else if (this.xOffsetLeft() !== 0 && this.xOffsetRight() !== 0) {
       this.renderer.setStyle(trackX, 'left', `${this.xOffsetLeft()}px`);
-      this.renderer.setStyle(trackX, 'height', `calc(100% - ${this.xOffsetLeft() + this.xOffsetRight()}px)`);
+      this.renderer.setStyle(trackX, 'width', `calc(100% - ${this.xOffsetLeft() + this.xOffsetRight()}px)`);
       clientWidth -= this.xOffsetLeft() + this.xOffsetRight();
       scrollWidth -= this.xOffsetLeft() + this.xOffsetRight();
     }

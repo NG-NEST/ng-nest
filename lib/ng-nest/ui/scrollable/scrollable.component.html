@@ -1,11 +1,5 @@
 <div class="x-scrollable" [class.active]="isActive()" (mouseenter)="onHostEnter()" (mouseleave)="onHostLeave()">
-  <div
-    #content
-    class="x-scrollable-content"
-    [style.maxHeight]="maxHeight()"
-    [style.maxWidth]="maxWidth()"
-    (scroll)="updateScrollbars(true, $event)"
-  >
+  <div #content class="x-scrollable-content" [style.maxHeight]="maxHeight()" [style.maxWidth]="maxWidth()">
     <ng-content></ng-content>
   </div>
 
