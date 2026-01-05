@@ -1,3 +1,19 @@
+## [21.0.9](https://github.com/NG-NEST/ng-nest/compare/21.0.8...21.0.9) (2026-01-05)
+
+
+### Bug Fixes
+
+* **module:image:** fix preview template ([903a9a5](https://github.com/NG-NEST/ng-nest/commit/903a9a569cf81b3e69b8542443b86a97632b5413))
+* **module:scrollable:** fix the critical value 0.99 ([c9e05cd](https://github.com/NG-NEST/ng-nest/commit/c9e05cd99fd82a42aee39089bd13b49f7719687c))
+
+
+### Features
+
+* **module:input:** add auto width ([465f251](https://github.com/NG-NEST/ng-nest/commit/465f2510aeda0228efb7cb62c61ae540139b80a3))
+* **module:select:** add auto width ([c5860e0](https://github.com/NG-NEST/ng-nest/commit/c5860e0c355ad5a61b8d80272a83bf09bbfab582))
+
+
+
 ## [21.0.8](https://github.com/NG-NEST/ng-nest/compare/21.0.7...21.0.8) (2025-12-28)
 
 

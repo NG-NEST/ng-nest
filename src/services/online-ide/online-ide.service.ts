@@ -25,7 +25,7 @@ export class OnlineIdeService {
     'core-js': '^3.37.1',
     tslib: '^2.3.0',
     'zone.js': '~0.15.0',
-    '@ng-nest/ui': `^21.0.8`
+    '@ng-nest/ui': `^21.0.9`
   };
   openStackBlitz(
     selector: string,
