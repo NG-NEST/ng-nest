@@ -68,6 +68,7 @@
         class="x-input-frame"
         [class.x-input-has-value-template]="!!valueTpl()"
         [ngStyle]="inputStyle()"
+        [style.width]="autoWidth() ? inputWidth() : '100%'"
         [type]="type()"
         [placeholder]="!floatLabel() ? placeholder() : ''"
         [required]="requiredComputed()"
@@ -104,6 +105,16 @@
         <div class="x-border-error x-top-right"></div>
         <div class="x-border-error x-bottom-left"></div>
         <div class="x-border-error x-bottom-right"></div>
+      }
+      @if (autoWidth()) {
+        <span
+          #measureRef
+          class="x-input-measure"
+          [style.font]="inputRef.style.font"
+          [style.font-size.px]="inputRef.style.fontSize"
+          [style.font-family]="inputRef.style.fontFamily"
+          >{{ value() || placeholder() }}</span
+        >
       }
     </div>
     @if (after()) {

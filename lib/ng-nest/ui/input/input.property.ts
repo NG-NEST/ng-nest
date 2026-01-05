@@ -78,6 +78,21 @@ export class XInputProperty extends XFormControlFunction(X_INPUT_CONFIG_NAME) {
    */
   readonly width = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
+   * @zh_CN 自适应宽度，input 需要有默认值
+   * @en_US auto width，input needs a default value
+   */
+  readonly autoWidth = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 自适应最小的宽度
+   * @en_US auto min width
+   */
+  readonly autoMinWidth = input<number, XNumber>(40, { transform: XToNumber });
+  /**
+   * @zh_CN 自适应最大的宽度
+   * @en_US auto max width，input needs a default value
+   */
+  readonly autoMaxWidth = input<number | null, XNumber>(null, { transform: XToNumber });
+  /**
    * @zh_CN 显示边框
    * @en_US Display Border
    */
