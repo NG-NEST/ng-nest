@@ -13,7 +13,8 @@ import {
   ExRequiredComponent,
   ExSizeComponent,
   ExVariantComponent,
-  ExFloatLabelComponent
+  ExFloatLabelComponent,
+  ExAutoWidthComponent
 } from '@ng-nest/ui/input/examples';
 
 @Component({
@@ -32,7 +33,8 @@ import {
     ExRequiredComponent,
     ExSizeComponent,
     ExVariantComponent,
-    ExFloatLabelComponent
+    ExFloatLabelComponent,
+    ExAutoWidthComponent
   ],
   templateUrl: './input.component.html'
 })

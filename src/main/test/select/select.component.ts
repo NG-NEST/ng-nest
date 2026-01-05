@@ -12,7 +12,8 @@ import {
   ExSizeComponent,
   ExInputComponent,
   ExVariantComponent,
-  ExFloatLabelComponent
+  ExFloatLabelComponent,
+  ExAutoWidthComponent
 } from '@ng-nest/ui/select/examples';
 
 @Component({
@@ -30,7 +31,8 @@ import {
     ExSizeComponent,
     ExInputComponent,
     ExVariantComponent,
-    ExFloatLabelComponent
+    ExFloatLabelComponent,
+    ExAutoWidthComponent
   ],
   templateUrl: './select.component.html'
 })
