@@ -83,6 +83,11 @@ export class XInputProperty extends XFormControlFunction(X_INPUT_CONFIG_NAME) {
    */
   readonly autoWidth = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
+   * @zh_CN 自适应宽度对比的值，默认是 value 的值
+   * @en_US auto width contrast value, defaults to the value of value
+   */
+  readonly autoWidthValue = input<string | null>(null);
+  /**
    * @zh_CN 自适应最小的宽度
    * @en_US auto min width
    */
