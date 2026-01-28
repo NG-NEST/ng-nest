@@ -1,5 +1,4 @@
 import * as path from 'path';
-import { isString } from 'util';
 import { NcTplName, NcTemplate } from '../interfaces/template';
 import { NcPage } from '../interfaces/page';
 
@@ -19,7 +18,7 @@ export function handleTemplates(page: NcPage, fromDir: string, toDir: string, ..
   let tpls: NcTemplate[] = [];
   name.forEach((x) => {
     let tpl: NcTemplate;
-    if (isString(x)) {
+    if (typeof x === 'string') {
       tpl = new NcTemplate({ fileName: page.fileName, name: x });
     } else {
       x.fileName = page.fileName;

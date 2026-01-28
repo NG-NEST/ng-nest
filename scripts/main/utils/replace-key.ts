@@ -1,4 +1,3 @@
-import { isObject } from 'util';
 import { NcPage } from '../interfaces/page';
 
 /**
@@ -40,7 +39,7 @@ export function replaceKeyByPage(page: NcPage | any, prefix: string, template: s
  * @returns
  */
 export function replaceKeyByObject(content: string, object: any, prefix: string = '') {
-  if (!isObject(object)) {
+  if (!(object !== null && typeof object === 'object')) {
     return content;
   }
   for (let key in object) {

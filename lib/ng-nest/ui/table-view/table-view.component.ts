@@ -17,11 +17,7 @@ import {
   NoDataRowOutlet,
   FooterRowOutlet
 } from '@angular/cdk/table';
-import {
-  _DisposeViewRepeaterStrategy,
-  _RecycleViewRepeaterStrategy,
-  _VIEW_REPEATER_STRATEGY
-} from '@angular/cdk/collections';
+
 import { XTableViewProperty } from './table-view.property';
 import { XTableViewService } from './table-view.service';
 import { XTableViewCell, XTableColumnDef, XTableHeaderCell } from './cell';
@@ -40,8 +36,6 @@ import { X_TABLE_VIEW_CONTEXT } from './table-view.token';
   providers: [
     { provide: CdkTable, useExisting: XTableView },
     { provide: CDK_TABLE, useExisting: XTableView },
-    // Prevent nested tables from seeing this table's StickyPositioningListener.
-    { provide: _VIEW_REPEATER_STRATEGY, useClass: _DisposeViewRepeaterStrategy },
     { provide: STICKY_POSITIONING_LISTENER, useValue: null },
     {
       provide: X_TABLE_VIEW_CONTEXT,
