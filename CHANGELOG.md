@@ -1,3 +1,17 @@
+## [21.0.10](https://github.com/NG-NEST/ng-nest/compare/21.0.9...21.0.10) (2026-01-28)
+
+
+### Bug Fixes
+
+* **module:select:** fix auto width value ([c77465a](https://github.com/NG-NEST/ng-nest/commit/c77465a2de683eef08cac16e79560f03a435a395))
+
+
+### Features
+
+* **module:input:** add auto width value ([7bad8e4](https://github.com/NG-NEST/ng-nest/commit/7bad8e49239e1994adaf4170c4920dc543501933))
+
+
+
 ## [21.0.9](https://github.com/NG-NEST/ng-nest/compare/21.0.8...21.0.9) (2026-01-05)
 
 

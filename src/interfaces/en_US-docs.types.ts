@@ -23671,6 +23671,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "autoWidthValue",
+        "type": "string | null",
+        "toType": "string | null",
+        "inputType": "InputSignal<string | null>",
+        "signal": "input",
+        "label": "auto width contrast value, defaults to the value of value",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "autoMinWidth",
         "type": "XNumber",
         "toType": "number",

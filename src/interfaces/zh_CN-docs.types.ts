@@ -23671,6 +23671,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "autoWidthValue",
+        "type": "string | null",
+        "toType": "string | null",
+        "inputType": "InputSignal<string | null>",
+        "signal": "input",
+        "label": "自适应宽度对比的值，默认是 value 的值",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "autoMinWidth",
         "type": "XNumber",
         "toType": "number",

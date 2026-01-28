@@ -1,6 +1,6 @@
 {
   "name": "@ng-nest/ui",
-  "version": "21.0.9",
+  "version": "21.0.10",
   "license": "MIT",
   "homepage": "https://www.ngnest.com",
   "author": "ng-nest",
@@ -18,7 +18,6 @@
     "@angular/cdk": "^21.0.0"
   },
   "peerDependencies": {
-    "@angular/animations": "^21.0.0",
     "@angular/common": "^21.0.0",
     "@angular/core": "^21.0.0",
     "@angular/forms": "^21.0.0"
