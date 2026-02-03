@@ -155,8 +155,6 @@ export class XInputComponent extends XInputProperty implements OnInit {
         finalWidth = Math.min(finalWidth, this.autoMaxWidth()!);
       }
 
-      console.log(finalWidth);
-
       return finalWidth + 'px';
     }
 
