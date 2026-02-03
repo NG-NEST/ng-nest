@@ -507,12 +507,12 @@ export interface XFindOption extends XFormOption {
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
-  pattern?: RegExp | RegExp[];
+  pattern?: RegExp;
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verify not pass the prompt text
    */
-  message?: string | string[];
+  message?: string;
   /**
    * @zh_CN 激活状态
    * @en_US Activation state
