@@ -28,8 +28,8 @@ export class ExLabelRowComponent {
       label: 'user',
       clearable: true,
       required: true,
-      pattern: [/^-?\d+$/, /^[+]{0,1}(\d+)$/],
-      message: ['integer', 'positive integer'],
+      pattern: /^-?\d+$/,
+      message: 'integer',
       clearClick: (_value: any) => {}
     },
     {

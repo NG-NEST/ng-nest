@@ -186,22 +186,18 @@ export class XControlComponent extends XControlProperty implements OnInit, After
 
   setPattern() {
     const pattern = this.option().pattern;
-    if (Array.isArray(pattern)) {
-      for (const pt of pattern) {
-        this.validatorFns.update((x) => [...x, Validators.pattern(pt)]);
-      }
-    } else {
+    if (pattern) {
       this.validatorFns.update((x) => [...x, Validators.pattern(pattern as RegExp)]);
     }
+    return;
   }
 
   getPatternMsg(pattern: string) {
     const controlPattern = this.option().pattern;
-    if (Array.isArray(controlPattern)) {
-      return (this.option().message as Array<any>)[controlPattern.findIndex((x) => String(x) === pattern)];
-    } else {
+    if (controlPattern) {
       return this.option().message;
     }
+    return '';
   }
 
   setMessages(state: FormControlStatus) {

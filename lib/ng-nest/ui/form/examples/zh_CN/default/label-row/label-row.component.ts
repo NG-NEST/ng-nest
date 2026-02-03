@@ -28,8 +28,8 @@ export class ExLabelRowComponent {
       label: '账号',
       clearable: true,
       required: true,
-      pattern: [/^-?\d+$/, /^[+]{0,1}(\d+)$/],
-      message: ['整数', '正整数'],
+      pattern: /^-?\d+$/,
+      message: '整数',
       clearClick: (_value: any) => {}
     },
     {
