@@ -95,12 +95,12 @@ export interface XMessageBoxOption extends XAlertOption {
    * @zh_CN 匹配规则
    * @en_US Matching rules
    */
-  inputPattern?: RegExp | RegExp[];
+  inputPattern?: RegExp;
   /**
    * @zh_CN 匹配失败的信息提示
    * @en_US Information prompt for matching failure
    */
-  inputInvalidMessage?: string | string[];
+  inputInvalidMessage?: string;
   /**
    * @zh_CN 输入框的占位符
    * @en_US Placeholder for input box
