@@ -294,6 +294,18 @@ export interface XDialogRefOption {
    * @withConfig true
    */
   minHeight?: string;
+   /**
+   * @zh_CN 最大宽度
+   * @en_US max width
+   * @withConfig true
+   */
+  maxWidth?: string;
+  /**
+   * @zh_CN 最大高度
+   * @en_US Max height
+   * @withConfig true
+   */
+  maxHeight?: string;
   /**
    * @zh_CN 是否支持键盘 esc 关闭
    * @en_US Whether to support keyboard esc to close

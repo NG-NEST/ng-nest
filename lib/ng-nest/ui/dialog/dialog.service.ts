@@ -49,6 +49,8 @@ export class XDialogService {
         height: option.height,
         minWidth: option.minWidth,
         minHeight: option.minHeight,
+        maxWidth: option.maxWidth,
+        maxHeight: option.maxHeight,
         positionStrategy: this.portalService.setPlace(option.placement, option.offset!)
       }
     }) as XDialogPortalOverlayRef;
