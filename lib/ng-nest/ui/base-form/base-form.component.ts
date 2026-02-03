@@ -35,19 +35,11 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
       const pattern = this.patternComputed();
       if (!this.validatorComputed() || XIsUndefined(pattern) || XIsNull(pattern)) return false;
       let result = false;
-      let index = 0;
 
-      if (Array.isArray(pattern)) {
-        for (const pt of pattern) {
-          result = !new RegExp(pt).test(this.value() as any);
-          if (result) {
-            break;
-          }
-          index++;
-        }
-      } else {
+      if (pattern && pattern !== null) {
         result = !new RegExp(pattern as RegExp).test(this.value() as any);
       }
+
       return result;
     });
     requiredIsEmpty = computed(() => {
@@ -56,45 +48,29 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
     invalidMessage = computed(() => {
       if (!this.validatorComputed()) return '';
       const message = this.messageComputed();
-      if (Array.isArray(message)) {
-        return message.length > this.invalidIndex() ? message[this.invalidIndex()] : '';
-      } else {
-        return message as string;
-      }
-    });
-    invalidIndex = computed(() => {
-      let res = 0;
-      let index = 0;
-      const pattern = this.patternComputed();
-      if (!this.validatorComputed() || XIsUndefined(pattern) || XIsNull(pattern)) return 0;
-      if (Array.isArray(pattern)) {
-        for (const pt of pattern) {
-          const result = !new RegExp(pt).test(this.value() as any);
-          if (result) {
-            res = index;
-            break;
-          }
-          index++;
-        }
-        return res;
-      } else {
-        return 0;
-      }
+      return message as string;
     });
     value = signal<any | undefined>(undefined);
     valueObservable = toObservable(this.value);
     validatorSignal = signal(false);
     disabledSignal = signal(false);
     requiredSignal = signal(false);
-    patternSignal = signal<any>([]);
-    messageSignal = signal<string | string[]>([]);
+    patternSignal = signal<any>(null);
+    messageSignal = signal<string>('');
 
     requiredComputed = computed(() => this.requiredSignal() || this.required());
     disabledComputed = computed(() => this.disabledSignal() || this.disabled());
     validatorComputed = computed(() => this.validatorSignal() || this.validator());
     patternComputed = computed(() => {
-      if (XIsEmpty(this.patternSignal())) return this.pattern();
-      else return this.patternSignal();
+      const pattern = this.pattern();
+      if (Array.isArray(pattern) && pattern.length === 0) {
+        return null;
+      }
+      if (XIsEmpty(this.patternSignal())) {
+        return this.pattern();
+      } else {
+        return this.patternSignal();
+      }
     });
     messageComputed = computed(() => {
       if (XIsEmpty(this.messageSignal())) return this.message();

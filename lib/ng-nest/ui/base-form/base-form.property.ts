@@ -59,11 +59,11 @@ export interface XFormOption {
   /**
    * 正则验证规则
    */
-  pattern?: RegExp | RegExp[];
+  pattern?: RegExp;
   /**
    * 验证不通过提示文字
    */
-  message?: string | string[];
+  message?: string;
   /**
    * 激活状态
    */
@@ -167,12 +167,12 @@ export class XFormControlProp extends XProperty {
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
-  readonly pattern = input<RegExp | RegExp[]>([]);
+  readonly pattern = input<RegExp | null>(null);
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verify not pass the prompt text
    */
-  readonly message = input<string | string[]>([]);
+  readonly message = input<string>('');
   /**
    * @zh_CN 激活状态
    * @en_US Activation state
