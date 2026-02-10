@@ -10,10 +10,10 @@
       <x-icon type="fto-corner-up-right" (click)="onRotate(90)"></x-icon>
       <x-icon
         type="fto-zoom-out"
-        [class.x-image-preview-disabled]="imgScale3d().x === 1"
-        (click)="imgScale3d().x > 1 && onScale(-1)"
+        [class.x-image-preview-disabled]="imgScale3d().x <= 0.1"
+        (click)="imgScale3d().x > 0.1 && onScale(-1)"
       ></x-icon>
-      <x-icon type="fto-zoom-in" (click)="onScale(1)"></x-icon>
+      <x-icon type="fto-zoom-in" [class.x-image-preview-disabled]="imgScale3d().x >= 5" (click)="imgScale3d().x < 5 && onScale(1)"></x-icon>
     </div>
     <div class="x-image-preview-header-right">
       <x-icon type="fto-x" x-dialog-close></x-icon>
@@ -25,6 +25,7 @@
     [style.transform]="wrapperTransform()"
     [cdkDragFreeDragPosition]="position()"
     (cdkDragReleased)="onDragReleased()"
+    (wheel)="onWheel($event)"
   >
     <img
       #imageRef

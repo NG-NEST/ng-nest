@@ -195,7 +195,6 @@ export class XInputComponent extends XInputProperty implements OnInit {
         tap(({ resizeObserver }) => {
           this.resizeObserver = resizeObserver;
           this.measureRefChanged.update((x) => !x);
-          console.log(this.measureRefChanged());
         }),
         takeUntil(this.unSubject)
       )

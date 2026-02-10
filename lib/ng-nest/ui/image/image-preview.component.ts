@@ -7,7 +7,8 @@ import {
   OnInit,
   signal,
   computed,
-  viewChild
+  viewChild,
+  HostListener
 } from '@angular/core';
 import { XImageNode, XImagePreviewPrefix, XImagePreviewProperty } from './image.property';
 import { XDialogCloseDirective, X_DIALOG_DATA } from '@ng-nest/ui/dialog';
@@ -101,61 +102,106 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
   }
 
   onScale(zoom: number) {
-    this.imgScale3d.update((item) => {
-      item.x += zoom;
-      item.y += zoom;
-      return { ...item };
-    });
+    const currentScale = this.imgScale3d().x;
+    let newScale: number;
+    
+    if (zoom > 0) {
+      // 放大：使用指数增长，但限制最大值
+      newScale = Math.min(currentScale * 1.2, 5);
+    } else {
+      // 缩小：使用指数减少，但限制最小值
+      newScale = Math.max(currentScale / 1.2, 0.1);
+    }
+    
+    if (newScale !== currentScale) {
+      this.imgScale3d.update((item) => {
+        item.x = newScale;
+        item.y = newScale;
+        return { ...item };
+      });
+      // 缩放后重新计算位置，防止图片超出边界
+      setTimeout(() => this.adjustPosition(), 0);
+    }
+  }
+
+  onWheel(event: WheelEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const delta = event.deltaY > 0 ? -1 : 1;
+    this.onScale(delta);
   }
 
   onDragReleased() {
-    let width = this.imageRef().nativeElement.offsetWidth * this.imgScale3d().x;
-    let height = this.imageRef().nativeElement.offsetHeight * this.imgScale3d().x;
-    const clientWidth = this.document.documentElement.clientWidth;
-    const clientHeight = this.document.defaultView?.innerHeight || this.document.documentElement.clientHeight;
-    const isRotate = this.rotate() % 180 !== 0;
-    const box = this.imageRef().nativeElement.getBoundingClientRect();
-    const docElem = this.document.documentElement;
-    const left =
-      box.left +
-      (this.document.defaultView?.pageXOffset || docElem.scrollLeft) -
-      (docElem.clientLeft || this.document.body.clientLeft || 0);
-    const top =
-      box.top +
-      (this.document.defaultView?.pageYOffset || docElem.scrollTop) -
-      (docElem.clientTop || this.document.body.clientTop || 0);
-    width = isRotate ? height : width;
-    height = isRotate ? width : height;
-
-    let position = { x: 0, y: 0 };
-    if (width > clientWidth || height > clientHeight) {
-      const x = this.fitPoint(left, width, clientWidth);
-      const y = this.fitPoint(top, height, clientHeight);
-      position.x = x ? x : 0;
-      position.y = y ? y : 0;
-    }
-
-    this.position.update((x) => ({ ...x, ...position }));
+    this.adjustPosition();
   }
 
-  fitPoint(start: number, size: number, clientSize: number): number | null {
-    const startAddSize = start + size;
-    const offsetStart = (size - clientSize) / 2;
-    let distance: number | null = null;
-
-    if (size > clientSize) {
-      if (start > 0) {
-        distance = offsetStart;
-      }
-      if (start < 0 && startAddSize < clientSize) {
-        distance = -offsetStart;
+  private adjustPosition() {
+    const img = this.imageRef().nativeElement;
+    const scale = this.imgScale3d().x;
+    const rotation = this.rotate() % 360;
+    
+    // 获取图片的原始尺寸
+    const imgWidth = img.naturalWidth || img.offsetWidth;
+    const imgHeight = img.naturalHeight || img.offsetHeight;
+    
+    // 计算缩放后的尺寸
+    let scaledWidth = imgWidth * scale;
+    let scaledHeight = imgHeight * scale;
+    
+    // 如果图片旋转了90度或270度，交换宽高
+    const isRotated = Math.abs(rotation) === 90 || Math.abs(rotation) === 270;
+    if (isRotated) {
+      [scaledWidth, scaledHeight] = [scaledHeight, scaledWidth];
+    }
+    
+    // 获取容器尺寸
+    const containerWidth = this.document.documentElement.clientWidth;
+    const containerHeight = this.document.documentElement.clientHeight;
+    
+    // 获取当前图片的位置
+    const rect = img.getBoundingClientRect();
+    const currentX = this.position().x;
+    const currentY = this.position().y;
+    
+    // 计算图片中心点相对于容器中心的偏移
+    const imgCenterX = rect.left + rect.width / 2;
+    const imgCenterY = rect.top + rect.height / 2;
+    const containerCenterX = containerWidth / 2;
+    const containerCenterY = containerHeight / 2;
+    
+    let newX = currentX;
+    let newY = currentY;
+    
+    // 如果图片比容器大，限制拖拽范围
+    if (scaledWidth > containerWidth) {
+      const maxOffsetX = (scaledWidth - containerWidth) / 2;
+      const offsetX = imgCenterX - containerCenterX;
+      
+      if (offsetX > maxOffsetX) {
+        newX = currentX - (offsetX - maxOffsetX);
+      } else if (offsetX < -maxOffsetX) {
+        newX = currentX - (offsetX + maxOffsetX);
       }
     } else {
-      if (start < 0 || startAddSize > clientSize) {
-        distance = start < 0 ? offsetStart : -offsetStart;
-      }
+      // 如果图片比容器小，居中显示
+      newX = 0;
     }
-
-    return distance;
+    
+    if (scaledHeight > containerHeight) {
+      const maxOffsetY = (scaledHeight - containerHeight) / 2;
+      const offsetY = imgCenterY - containerCenterY;
+      
+      if (offsetY > maxOffsetY) {
+        newY = currentY - (offsetY - maxOffsetY);
+      } else if (offsetY < -maxOffsetY) {
+        newY = currentY - (offsetY + maxOffsetY);
+      }
+    } else {
+      // 如果图片比容器小，居中显示
+      newY = 0;
+    }
+    
+    this.position.set({ x: newX, y: newY });
   }
 }

@@ -63,11 +63,22 @@ export function XFormControlFunction<C extends XComponentConfigKey>(configName: 
     validatorComputed = computed(() => this.validatorSignal() || this.validator());
     patternComputed = computed(() => {
       const pattern = this.pattern();
+
       if (Array.isArray(pattern) && pattern.length === 0) {
         return null;
       }
+
       if (XIsEmpty(this.patternSignal())) {
-        return this.pattern();
+        if (Array.isArray(pattern)) {
+          if (pattern.length === 1) {
+            return pattern[0];
+          } else if (pattern.length > 1) {
+            const sources = pattern.map((regex) => `(${regex.source})`);
+            const combinedPattern = sources.join('|');
+            return new RegExp(combinedPattern);
+          }
+        }
+        return pattern;
       } else {
         return this.patternSignal();
       }

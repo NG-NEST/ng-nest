@@ -26,7 +26,7 @@
     </div>
   } @else {
     @if (!isError()) {
-      <div class="x-image-overlay">
+      <div class="x-image-overlay" (click)="onPreview()">
         <div class="x-image-text">
           <x-icon type="fto-eye"></x-icon>
           <span>{{ previewTextSignal() }}</span>
