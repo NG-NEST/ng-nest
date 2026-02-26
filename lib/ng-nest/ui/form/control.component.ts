@@ -192,7 +192,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     return;
   }
 
-  getPatternMsg(pattern: string) {
+  getPatternMsg(_pattern: string) {
     const controlPattern = this.option().pattern;
     if (controlPattern) {
       return this.option().message;

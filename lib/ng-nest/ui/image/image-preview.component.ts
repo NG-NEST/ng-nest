@@ -7,8 +7,7 @@ import {
   OnInit,
   signal,
   computed,
-  viewChild,
-  HostListener
+  viewChild
 } from '@angular/core';
 import { XImageNode, XImagePreviewPrefix, XImagePreviewProperty } from './image.property';
 import { XDialogCloseDirective, X_DIALOG_DATA } from '@ng-nest/ui/dialog';
