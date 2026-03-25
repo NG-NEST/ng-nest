@@ -1,0 +1,799 @@
+# NG-NEST UI - Full Documentation
+
+> NG-NEST UI 是一个基于 Angular 的企业级 UI 组件库，提供 80+ 高质量组件，支持响应式设计、主题定制和国际化。
+
+## Version
+
+21.0.10
+
+## Quick Start
+
+### Installation
+
+```bash
+npm install @ng-nest/ui
+```
+
+### Import Module
+
+```typescript
+import { XButtonModule } from '@ng-nest/ui/button';
+
+@NgModule({
+  imports: [XButtonModule]
+})
+export class AppModule {}
+```
+
+### Usage
+
+```html
+<x-button type="primary">Primary Button</x-button>
+<x-input [(ngModel)]="value" label="Input Label"></x-input>
+```
+
+## Core Concepts
+
+### Component Selector
+
+All component selectors follow the pattern `x-[name]`:
+- `x-button` - Button component
+- `x-input` - Input component
+- `x-table` - Table component
+
+### Input Properties
+
+Use `input()` function to define input properties:
+
+```typescript
+readonly type = input<XButtonType>('initial');
+readonly size = input<XSize>('medium');
+```
+
+### Output Events
+
+Use `output()` function to define output events:
+
+```typescript
+readonly onClick = output<MouseEvent>();
+```
+
+### Two-way Binding
+
+Use `model()` function for two-way binding:
+
+```typescript
+readonly value = model<string>('');
+```
+
+---
+
+# Components
+
+## Basic
+
+### x-button - Button 按钮
+
+**Selector:** `x-button`  
+**Class:** `XButtonComponent`
+
+定义按钮和按钮组的样式。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `type` | `XButtonType` | `'initial'` | 按钮类型。可选值: `initial`, `primary`, `success`, `warning`, `danger`, `info` |
+| `icon` | `string` | `''` | 图标名称 |
+| `title` | `string` | `''` | 提示信息 |
+| `direction` | `XDirection` | `'row'` | 按钮中元素的布局方式 |
+| `tabindex` | `number` | `0` | tab 键控制次序 |
+| `size` | `XSize` | `'medium'` | 尺寸。可选值: `big`, `large`, `medium`, `small`, `mini` |
+| `onlyIcon` | `boolean` | `false` | 仅显示图标 |
+| `activated` | `boolean` | `false` | 激活的按钮（样式差异） |
+| `disabled` | `boolean` | `false` | 禁用按钮 |
+| `plain` | `boolean` | `false` | 朴素按钮 |
+| `flat` | `boolean` | `false` | 平铺按钮 |
+| `text` | `boolean` | `false` | 文字按钮 |
+| `round` | `boolean` | `false` | 圆角按钮 |
+| `circle` | `boolean` | `false` | 圆型按钮（配合图标来使用） |
+| `loading` | `boolean` | `false` | 加载状态 |
+| `autofocus` | `boolean` | `false` | 自动获取焦点 |
+
+#### Output Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `onClick` | `EventEmitter<MouseEvent>` | 点击事件 |
+
+#### Examples
+
+```html
+<!-- 按钮类型 -->
+<x-button>Initial</x-button>
+<x-button type="primary">Primary</x-button>
+<x-button type="success">Success</x-button>
+<x-button type="warning">Warning</x-button>
+<x-button type="danger">Danger</x-button>
+<x-button type="info">Info</x-button>
+
+<!-- 按钮尺寸 -->
+<x-button size="big">Big</x-button>
+<x-button size="large">Large</x-button>
+<x-button size="medium">Medium</x-button>
+<x-button size="small">Small</x-button>
+<x-button size="mini">Mini</x-button>
+
+<!-- 按钮样式 -->
+<x-button plain>Plain</x-button>
+<x-button flat>Flat</x-button>
+<x-button text>Text</x-button>
+<x-button round>Round</x-button>
+<x-button circle icon="fto-edit"></x-button>
+
+<!-- 禁用状态 -->
+<x-button disabled>Disabled</x-button>
+
+<!-- 加载状态 -->
+<x-button loading>Loading</x-button>
+
+<!-- 带图标 -->
+<x-button icon="fto-edit">Edit</x-button>
+```
+
+---
+
+### x-input - Input 输入框
+
+**Selector:** `x-input`  
+**Class:** `XInputComponent`
+
+通过鼠标或键盘输入内容，是最基础的表单域的包装。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `type` | `XInputType` | `'text'` | 输入类型 |
+| `variant` | `XInputVariant` | `'outlined'` | 形态变体 |
+| `clearable` | `boolean` | `false` | 清除按钮 |
+| `icon` | `string` | - | 图标 |
+| `iconLayout` | `XInputIconLayoutType` | `'right'` | 图标布局方式 |
+| `iconSpin` | `boolean` | `false` | 图标动画 |
+| `maxlength` | `number \| null` | `null` | 输入最大长度 |
+| `max` | `number \| null` | `null` | 最大值 |
+| `min` | `number \| null` | `null` | 最小值 |
+| `width` | `string` | `''` | 宽度 |
+| `autoWidth` | `boolean` | `false` | 自适应宽度 |
+| `bordered` | `boolean` | `true` | 显示边框 |
+| `floatLabel` | `XInputFloatLabel \| null` | `null` | 浮动标签 |
+| `floatFixed` | `boolean` | `false` | 固定浮动标签 |
+| `validator` | `boolean` | `false` | 初始启用验证 |
+| `size` | `XSize` | `'medium'` | 尺寸 |
+| `pointer` | `boolean` | `false` | 输入框点击样式 |
+| `label` | `XTemplate` | `''` | 标签 |
+| `labelWidth` | `string` | `''` | 标签宽度 |
+| `labelAlign` | `XAlign` | `'start'` | 标签文字对齐方式 |
+| `justify` | `XJustify` | `'start'` | flex 布局下的子元素水平排列方式 |
+| `align` | `XAlign` | `'start'` | flex 布局下的子元素垂直排列方式 |
+| `direction` | `XDirection` | `'column'` | flex 布局下的子元素排列方向 |
+| `placeholder` | `string \| string[]` | `''` | 输入提示信息 |
+| `disabled` | `boolean` | `false` | 禁用 |
+| `required` | `boolean` | `false` | 必填 |
+| `readonly` | `boolean` | `false` | 只读 |
+
+#### Two-way Binding
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `string` | `''` | 输入值 |
+
+#### Output Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `valueChange` | `EventEmitter<string>` | 值变化事件 |
+| `clear` | `EventEmitter<void>` | 清除事件 |
+| `focus` | `EventEmitter<void>` | 获取焦点事件 |
+| `blur` | `EventEmitter<void>` | 失去焦点事件 |
+
+#### Examples
+
+```html
+<!-- 基础用法 -->
+<x-input label="用户名" placeholder="请输入用户名"></x-input>
+
+<!-- 带清除按钮 -->
+<x-input label="用户名" clearable placeholder="请输入用户名"></x-input>
+
+<!-- 禁用状态 -->
+<x-input label="用户名" disabled placeholder="禁用状态"></x-input>
+
+<!-- 只读状态 -->
+<x-input label="用户名" readonly value="只读内容"></x-input>
+
+<!-- 带图标 -->
+<x-input label="搜索" icon="fto-search" placeholder="请输入搜索内容"></x-input>
+
+<!-- 密码输入 -->
+<x-input type="password" label="密码" placeholder="请输入密码"></x-input>
+
+<!-- 文本域 -->
+<x-textarea label="描述" placeholder="请输入描述"></x-textarea>
+```
+
+---
+
+### x-select - Select 选择器
+
+**Selector:** `x-select`  
+**Class:** `XSelectComponent`
+
+下拉选择器组件，支持单选、多选、搜索、异步加载等功能。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `data` | `XData<XSelectNode>` | `[]` | 节点数据 |
+| `variant` | `XSelectVariant` | `'outlined'` | 形态变体 |
+| `width` | `string` | `''` | 宽度 |
+| `autoWidth` | `boolean` | `false` | 自适应宽度 |
+| `clearable` | `boolean` | `true` | 清除按钮 |
+| `async` | `boolean` | `false` | 异步加载 |
+| `placement` | `XPlacement` | `'bottom'` | 展示方位 |
+| `multiple` | `boolean` | `false` | 多选功能 |
+| `selectAll` | `boolean` | `false` | 多选添加全选功能 |
+| `selectAllText` | `string` | `''` | 全选的文字 |
+| `nodeTpl` | `TemplateRef<any>` | - | 节点模板 |
+| `bordered` | `boolean` | `true` | 显示边框 |
+| `portalMaxHeight` | `string` | `'12rem'` | 下拉框的最大高度 |
+| `portalHeight` | `string` | `''` | 下拉框的高度（虚拟滚动时必须设置） |
+| `portalWidth` | `string` | `''` | 下拉框的宽度 |
+| `search` | `boolean` | `false` | 输入搜索 |
+| `caseSensitive` | `boolean` | `true` | 匹配区分大小写 |
+| `debounceTime` | `number` | `200` | 输入延迟执行时间（ms） |
+| `size` | `XSize` | `'medium'` | 尺寸 |
+| `label` | `XTemplate` | `''` | 标签 |
+| `placeholder` | `string` | `''` | 输入提示信息 |
+| `disabled` | `boolean` | `false` | 禁用 |
+| `required` | `boolean` | `false` | 必填 |
+
+#### Two-way Binding
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `any` | - | 选中值 |
+
+#### Output Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `valueChange` | `EventEmitter<any>` | 值变化事件 |
+| `clear` | `EventEmitter<void>` | 清除事件 |
+
+#### Examples
+
+```html
+<!-- 基础用法 -->
+<x-select label="选择城市" [data]="cities" [(value)]="selectedCity"></x-select>
+
+<!-- 多选 -->
+<x-select label="选择城市" [data]="cities" multiple [(value)]="selectedCities"></x-select>
+
+<!-- 可搜索 -->
+<x-select label="选择城市" [data]="cities" search [(value)]="selectedCity"></x-select>
+
+<!-- 可清除 -->
+<x-select label="选择城市" [data]="cities" clearable [(value)]="selectedCity"></x-select>
+```
+
+---
+
+## Data
+
+### x-table - Table 表格
+
+**Selector:** `x-table`  
+**Class:** `XTableComponent`
+
+用于展示多条结构类似的数据，可对数据进行排序、筛选、对比或其他自定义操作。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `data` | `XData<XTableRow>` | `[]` | 行数据 |
+| `columns` | `XTableColumn[]` | `[]` | 列集合 |
+| `headerHeight` | `number \| null` | `null` | 表头高度（px） |
+| `rowHeight` | `number` | `42` | 行高（px） |
+| `loading` | `boolean` | `false` | 是否启用加载 loading |
+| `bordered` | `boolean` | `false` | 是否展示列边框 |
+| `showHeader` | `boolean` | `true` | 是否显示列头 |
+| `headerPosition` | `XTableHeaderPosition` | `'top'` | 列头显示位置 |
+| `bodyInnerHTML` | `boolean` | `false` | 列内容支持 innerHTML 渲染 |
+| `headColumnTpl` | `XTableTemplate` | `{}` | 列头自定义模板 |
+| `bodyColumnTpl` | `XTableTemplate` | `{}` | 列内容自定义模板 |
+| `rowClass` | `function` | - | 行条件样式 |
+| `allowSelectRow` | `boolean` | `true` | 允许行点击选中当前行 |
+| `allowCheckRow` | `boolean` | `true` | 允许行点击选中 checkbox |
+| `virtualScroll` | `boolean` | `false` | 开启虚拟滚动 |
+| `bodyHeight` | `number` | - | body 数据高度（虚拟滚动时生效） |
+
+#### Two-way Binding
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `activatedRow` | `XTableRow` | - | 当前选中行数据 |
+
+#### Output Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `sortChange` | `EventEmitter<XSort[]>` | 排序点击的事件 |
+| `headCheckboxChange` | `EventEmitter<XTableHeadCheckbox>` | 列头 checkbox 事件 |
+| `bodyCheckboxChange` | `EventEmitter<XTableRow>` | body checkbox 事件 |
+
+#### Examples
+
+```html
+<!-- 基础用法 -->
+<x-table [columns]="columns" [data]="data"></x-table>
+
+<!-- 带边框 -->
+<x-table [columns]="columns" [data]="data" bordered></x-table>
+
+<!-- 带加载状态 -->
+<x-table [columns]="columns" [data]="data" loading></x-table>
+
+<!-- 虚拟滚动 -->
+<x-table [columns]="columns" [data]="largeData" virtualScroll [bodyHeight]="400"></x-table>
+```
+
+---
+
+## Feedback
+
+### x-dialog - Dialog 对话框
+
+**Selector:** `x-dialog`  
+**Class:** `XDialogComponent`
+
+在保留当前页面状态的情况下，告知用户并承载相关操作。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `title` | `XTemplate` | - | 标题 |
+| `visible` | `boolean` | `false` | 显示/隐藏 |
+| `placement` | `XPlace` | `'center'` | 方位，九宫格 |
+| `offset` | `string` | `'1rem'` | 偏移距离 |
+| `type` | `XDialogType` | `'info'` | 类型 |
+| `hideClose` | `boolean` | `false` | 隐藏关闭按钮 |
+| `closeText` | `string` | - | 使用文本关闭按钮 |
+| `width` | `string` | `'32rem'` | 宽度 |
+| `height` | `string` | `''` | 高度 |
+| `minWidth` | `string` | `'18rem'` | 最小宽度 |
+| `minHeight` | `string` | `'8rem'` | 最小高度 |
+| `effect` | `XEffect` | `'white'` | 样式主题 |
+| `footer` | `XTemplate` | - | 底部自定义模板 |
+| `showCancel` | `boolean` | `true` | 显示取消按钮 |
+| `cancelText` | `string` | `'取消'` | 取消按钮文字 |
+| `showConfirm` | `boolean` | `true` | 显示确认按钮 |
+| `confirmText` | `string` | `'确认'` | 确认按钮文字 |
+| `backdropClose` | `boolean` | `true` | 点击遮罩关闭 |
+| `hasBackdrop` | `boolean` | `true` | 是否显示背景遮罩 |
+| `draggable` | `boolean` | `false` | 是否可拖拽 |
+
+#### Two-way Binding
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `visible` | `boolean` | `false` | 显示/隐藏 |
+
+#### Output Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `visibleChange` | `EventEmitter<boolean>` | 显示状态变化 |
+| `cancel` | `EventEmitter<void>` | 取消事件 |
+| `confirm` | `EventEmitter<void>` | 确认事件 |
+| `close` | `EventEmitter<void>` | 关闭事件 |
+
+#### Examples
+
+```html
+<!-- 基础用法 -->
+<x-dialog title="提示" [(visible)]="visible">
+  <p>这是一段内容</p>
+</x-dialog>
+
+<!-- 自定义底部 -->
+<x-dialog title="自定义底部" [(visible)]="visible" [footer]="footerTpl">
+  <p>这是一段内容</p>
+</x-dialog>
+
+<ng-template #footerTpl>
+  <x-button (onClick)="visible = false">取消</x-button>
+  <x-button type="primary" (onClick)="onConfirm()">确定</x-button>
+</ng-template>
+
+<!-- 可拖拽 -->
+<x-dialog title="可拖拽对话框" [(visible)]="visible" draggable>
+  <p>这是一段内容</p>
+</x-dialog>
+```
+
+---
+
+## Form
+
+### x-checkbox - Checkbox 多选框
+
+**Selector:** `x-checkbox`  
+**Class:** `XCheckboxComponent`
+
+多选框组件，支持多种样式。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `data` | `XData<XCheckboxNode>` | `[]` | 多选框数据 |
+| `button` | `boolean` | `false` | 按钮样式 |
+| `icon` | `boolean` | `false` | 图标样式 |
+| `tag` | `boolean` | `false` | tag 标签样式 |
+| `indeterminate` | `boolean` | `false` | 不确定状态的样式 |
+| `type` | `XButtonType` | `'initial'` | 按钮/图标/tag 样式时生效 |
+| `tagBordered` | `boolean` | `true` | tag 标签边框 |
+| `tagDark` | `boolean` | `false` | tag 标签深色主题 |
+| `single` | `boolean` | `false` | 只有一个选项，value 为 true/false |
+| `vertical` | `boolean` | `false` | 垂直布局 |
+| `label` | `XTemplate` | `''` | 标签 |
+| `disabled` | `boolean` | `false` | 禁用 |
+| `required` | `boolean` | `false` | 必填 |
+
+#### Two-way Binding
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `any[]` | - | 选中值 |
+
+#### Examples
+
+```html
+<!-- 基础用法 -->
+<x-checkbox [data]="options" [(value)]="selectedValues"></x-checkbox>
+
+<!-- 按钮样式 -->
+<x-checkbox [data]="options" button [(value)]="selectedValues"></x-checkbox>
+
+<!-- 图标样式 -->
+<x-checkbox [data]="options" icon [(value)]="selectedValues"></x-checkbox>
+
+<!-- Tag 样式 -->
+<x-checkbox [data]="options" tag [(value)]="selectedValues"></x-checkbox>
+
+<!-- 单个选项 -->
+<x-checkbox single [(value)]="checked">同意协议</x-checkbox>
+```
+
+---
+
+### x-radio - Radio 单选框
+
+**Selector:** `x-radio`  
+**Class:** `XRadioComponent`
+
+单选框组件，支持多种样式。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `data` | `XData<XRadioNode>` | `[]` | 单选框数据 |
+| `button` | `boolean` | `false` | 按钮样式 |
+| `icon` | `boolean` | `false` | 图标样式 |
+| `tag` | `boolean` | `false` | tag 标签样式 |
+| `type` | `XButtonType` | `'initial'` | 按钮/图标/tag 样式时生效 |
+| `tagBordered` | `boolean` | `true` | tag 标签边框 |
+| `tagDark` | `boolean` | `false` | tag 标签深色主题 |
+| `allowCancel` | `boolean` | `false` | 允许取消选中 |
+| `vertical` | `boolean` | `false` | 垂直布局 |
+| `label` | `XTemplate` | `''` | 标签 |
+| `disabled` | `boolean` | `false` | 禁用 |
+| `required` | `boolean` | `false` | 必填 |
+
+#### Two-way Binding
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `any` | - | 选中值 |
+
+#### Examples
+
+```html
+<!-- 基础用法 -->
+<x-radio [data]="options" [(value)]="selectedValue"></x-radio>
+
+<!-- 按钮样式 -->
+<x-radio [data]="options" button [(value)]="selectedValue"></x-radio>
+
+<!-- 图标样式 -->
+<x-radio [data]="options" icon [(value)]="selectedValue"></x-radio>
+
+<!-- Tag 样式 -->
+<x-radio [data]="options" tag [(value)]="selectedValue"></x-radio>
+```
+
+---
+
+### x-form - Form 表单
+
+**Selector:** `x-form`  
+**Class:** `XFormComponent`
+
+表单组件，用于收集、校验和提交数据。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `formGroup` | `UntypedFormGroup` | `new UntypedFormGroup({})` | 表单 FormGroup |
+| `title` | `string` | `''` | 表单名称 |
+| `space` | `string` | `'1.75rem'` | 控件间距 |
+| `span` | `number \| null` | `null` | 控件宽度（24栅格） |
+| `labelSuffix` | `string` | `''` | 标签后缀 |
+| `controls` | `XFormControlOption[] \| XFormRow[]` | `[]` | 表单控件 |
+| `width` | `string` | `'100%'` | 表单宽度 |
+| `controlTpl` | `XFormTemplate` | `{}` | 自定义模板 |
+| `disabled` | `boolean` | `false` | 禁用 |
+
+#### Output Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `xSubmit` | `EventEmitter<SubmitEvent>` | 提交事件 |
+
+#### Examples
+
+```html
+<!-- 基础用法 -->
+<x-form [formGroup]="form" [controls]="controls" (xSubmit)="onSubmit()">
+  <x-button type="primary" typeAttr="submit">提交</x-button>
+</x-form>
+
+<!-- 控件配置 -->
+controls = [
+  { id: 'name', label: '姓名', value: '', control: 'input', required: true },
+  { id: 'age', label: '年龄', value: '', control: 'input-number' },
+  { id: 'city', label: '城市', value: '', control: 'select', data: cities }
+];
+```
+
+---
+
+## Navigation
+
+### x-menu - Menu 导航菜单
+
+**Selector:** `x-menu`  
+**Class:** `XMenuComponent`
+
+导航菜单组件，支持横向/纵向布局。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `data` | `XMenuNode[]` | `[]` | 节点数据 |
+| `layout` | `XMenuLayout` | `'row'` | 布局方向 |
+| `size` | `XSize` | `'medium'` | 尺寸 |
+| `width` | `string` | `'16rem'` | 宽度（layout 为 column 时生效） |
+| `collapsed` | `boolean` | `false` | 缩起菜单 |
+| `trigger` | `XMenuTrigger` | `'hover'` | 触发方式（横向布局） |
+| `nodeTpl` | `TemplateRef<any>` | - | 节点模板 |
+| `expandedAll` | `boolean` | `false` | 展开所有层级 |
+| `expandedLevel` | `number` | `-1` | 默认展开的层级 |
+| `target` | `string \| HTMLElement` | - | 滚动容器 |
+| `portalMinWidth` | `string` | `''` | 弹框的最小宽度 |
+
+#### Two-way Binding
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `activatedId` | `string \| number` | - | 当前激活的节点 id |
+
+#### Output Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `nodeClick` | `EventEmitter<XMenuNode>` | 节点点击事件 |
+
+#### Examples
+
+```html
+<!-- 横向菜单 -->
+<x-menu [data]="menuData" [(activatedId)]="activeId"></x-menu>
+
+<!-- 纵向菜单 -->
+<x-menu [data]="menuData" layout="column" [(activatedId)]="activeId"></x-menu>
+
+<!-- 缩起菜单 -->
+<x-menu [data]="menuData" layout="column" collapsed [(activatedId)]="activeId"></x-menu>
+```
+
+---
+
+## Feedback
+
+### x-message - Message 全局提示
+
+**Selector:** `x-message`  
+**Class:** `XMessageComponent`
+
+全局展示操作反馈信息。
+
+#### Methods
+
+通过 `XMessageService` 调用：
+
+```typescript
+import { XMessageService } from '@ng-nest/ui/message';
+
+constructor(private message: XMessageService) {}
+
+// 基础用法
+this.message.info('这是一条消息');
+
+// 成功
+this.message.success('操作成功');
+
+// 警告
+this.message.warning('警告信息');
+
+// 错误
+this.message.error('错误信息');
+
+// 自定义配置
+this.message.info({
+  content: '这是一条消息',
+  duration: 5000,
+  placement: 'top'
+});
+```
+
+#### Options
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `content` | `string` | - | 内容 |
+| `type` | `XMessageType` | `'info'` | 类型 |
+| `placement` | `XPlace` | `'top'` | 方位 |
+| `offset` | `string \| string[]` | `'2rem'` | 偏移距离 |
+| `duration` | `number` | `3000` | 延迟关闭时间（ms） |
+| `hideClose` | `boolean` | `true` | 隐藏关闭按钮 |
+| `showIcon` | `boolean` | `true` | 显示图标 |
+| `width` | `string` | - | 宽度 |
+
+---
+
+### x-tooltip - Tooltip 文字提示
+
+**Selector:** `x-tooltip`  
+**Class:** `XTooltipDirective`
+
+简单的文字提示气泡框。
+
+#### Input Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `content` | `XTemplate` | - | 内容 |
+| `placement` | `XPlacement` | `'top'` | 显示位置 |
+| `visible` | `boolean` | `false` | 显示/隐藏 |
+| `panelClass` | `string \| string[]` | - | 内部样式 |
+| `backgroundColor` | `string` | - | 背景颜色 |
+| `color` | `string` | - | 文字颜色 |
+| `manual` | `boolean` | `false` | 手动处理关闭事件 |
+| `mouseEnterDelay` | `number` | `150` | 鼠标移入后延时显示（ms） |
+| `mouseLeaveDelay` | `number` | `100` | 鼠标移出后延时隐藏（ms） |
+| `disabled` | `boolean` | `false` | 禁用显示 |
+
+#### Examples
+
+```html
+<!-- 基础用法 -->
+<span x-tooltip content="提示内容">悬停显示</span>
+
+<!-- 指定位置 -->
+<span x-tooltip content="提示内容" placement="bottom">下方显示</span>
+
+<!-- 手动控制 -->
+<span x-tooltip content="提示内容" [(visible)]="visible" manual>手动控制</span>
+```
+
+---
+
+# Type Definitions
+
+## XSize
+
+```typescript
+type XSize = 'big' | 'large' | 'medium' | 'small' | 'mini';
+```
+
+组件尺寸类型。
+
+## XButtonType
+
+```typescript
+type XButtonType = 'initial' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
+```
+
+按钮类型。
+
+## XDirection
+
+```typescript
+type XDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+```
+
+布局方向。
+
+## XPlacement
+
+```typescript
+type XPlacement = 'bottom' | 'bottom-start' | 'bottom-end' | 'top' | 'top-start' | 'top-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end';
+```
+
+弹出位置。
+
+## XPlace
+
+```typescript
+type XPlace = 'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end' | 'right-start' | 'right-end' | 'center';
+```
+
+九宫格位置。
+
+## XEffect
+
+```typescript
+type XEffect = 'white' | 'dark';
+```
+
+样式主题效果。
+
+## XBoolean
+
+```typescript
+type XBoolean = '' | 'true' | 'false' | boolean;
+```
+
+布尔值类型（支持字符串）。
+
+## XNumber
+
+```typescript
+type XNumber = string | number | null;
+```
+
+数字类型（支持字符串）。
+
+## XTemplate
+
+```typescript
+type XTemplate = string | TemplateRef<any> | null;
+```
+
+模板类型。
+
+---
+
+# Links
+
+- [GitHub](https://github.com/NG-NEST/ng-nest)
+- [Documentation](https://ngnest.com)
+- [npm](https://www.npmjs.com/package/@ng-nest/ui)

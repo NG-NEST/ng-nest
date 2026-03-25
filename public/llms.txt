@@ -1,0 +1,180 @@
+# NG-NEST UI
+
+> NG-NEST UI 是一个基于 Angular 的企业级 UI 组件库，提供 80+ 高质量组件，支持响应式设计、主题定制和国际化。
+
+## Version
+
+21.0.10
+
+## Quick Start
+
+### Installation
+
+```bash
+npm install @ng-nest/ui
+```
+
+### Import Module
+
+```typescript
+import { XButtonModule } from '@ng-nest/ui/button';
+
+@NgModule({
+  imports: [XButtonModule]
+})
+export class AppModule {}
+```
+
+### Usage
+
+```html
+<x-button type="primary">Primary Button</x-button>
+<x-input [(ngModel)]="value" label="Input Label"></x-input>
+```
+
+## Core Concepts
+
+### Component Selector
+
+All component selectors follow the pattern `x-[name]`:
+- `x-button` - Button component
+- `x-input` - Input component
+- `x-table` - Table component
+
+### Input Properties
+
+Use `input()` function to define input properties:
+
+```typescript
+readonly type = input<XButtonType>('initial');
+readonly size = input<XSize>('medium');
+```
+
+### Output Events
+
+Use `output()` function to define output events:
+
+```typescript
+readonly onClick = output<MouseEvent>();
+```
+
+### Two-way Binding
+
+Use `model()` function for two-way binding:
+
+```typescript
+readonly value = model<string>('');
+```
+
+## Component Categories
+
+### Basic
+
+- `x-button` - Button 按钮
+- `x-icon` - Icon 图标
+- `x-color` - Color 颜色
+- `x-container` - Container 容器
+- `x-layout` - Layout 布局
+- `x-link` - Link 链接
+- `x-theme` - Theme 主题
+
+### Data
+
+- `x-table` - Table 表格
+- `x-table-view` - TableView 表格视图
+- `x-tree` - Tree 树形控件
+- `x-tree-file` - TreeFile 文件树
+- `x-pagination` - Pagination 分页
+- `x-tag` - Tag 标签
+- `x-badge` - Badge 徽标
+- `x-avatar` - Avatar 头像
+- `x-card` - Card 卡片
+- `x-carousel` - Carousel 走马灯
+- `x-collapse` - Collapse 折叠面板
+- `x-calendar` - Calendar 日历
+- `x-description` - Description 描述列表
+- `x-empty` - Empty 空状态
+- `x-image` - Image 图片
+- `x-progress` - Progress 进度条
+- `x-statistic` - Statistic 统计数值
+- `x-timeline` - Timeline 时间轴
+- `x-time-ago` - TimeAgo 相对时间
+- `x-time-range` - TimeRange 时间范围
+
+### Feedback
+
+- `x-dialog` - Dialog 对话框
+- `x-drawer` - Drawer 抽屉
+- `x-message` - Message 全局提示
+- `x-message-box` - MessageBox 消息弹框
+- `x-notification` - Notification 通知提醒框
+- `x-alert` - Alert 警告提示
+- `x-popconfirm` - Popconfirm 气泡确认框
+- `x-popover` - Popover 气泡卡片
+- `x-tooltip` - Tooltip 文字提示
+- `x-loading` - Loading 加载
+- `x-skeleton` - Skeleton 骨架屏
+- `x-result` - Result 结果
+
+### Form
+
+- `x-form` - Form 表单
+- `x-input` - Input 输入框
+- `x-textarea` - Textarea 文本域
+- `x-input-number` - InputNumber 数字输入框
+- `x-select` - Select 选择器
+- `x-checkbox` - Checkbox 多选框
+- `x-radio` - Radio 单选框
+- `x-switch` - Switch 开关
+- `x-slider-select` - SliderSelect 滑动选择器
+- `x-date-picker` - DatePicker 日期选择器
+- `x-time-picker` - TimePicker 时间选择器
+- `x-cascade` - Cascade 级联选择
+- `x-transfer` - Transfer 穿梭框
+- `x-tree-select` - TreeSelect 树选择
+- `x-upload` - Upload 上传
+- `x-rate` - Rate 评分
+- `x-color-picker` - ColorPicker 颜色选择器
+- `x-auto-complete` - AutoComplete 自动完成
+- `x-find` - Find 查找选择
+
+### Navigation
+
+- `x-menu` - Menu 导航菜单
+- `x-dropdown` - Dropdown 下拉菜单
+- `x-affix` - Affix 固钉
+- `x-anchor` - Anchor 锚点
+- `x-back-top` - BackTop 回到顶部
+- `x-crumb` - Crumb 面包屑
+- `x-page-header` - PageHeader 页头
+- `x-steps` - Steps 步骤条
+
+### Other
+
+- `x-api` - API 文档组件
+- `x-divider` - Divider 分割线
+- `x-typography` - Typography 排版
+- `x-highlight` - Highlight 代码高亮
+- `x-portal` - Portal 传送门
+- `x-outlet` - Outlet 插槽
+
+## Guides
+
+- [Getting Started](./docs/ui/getting-started) - Quick start guide
+- [Global Config](./docs/ui/global-config) - Global configuration
+- [Customize Theme](./docs/ui/customize-theme) - Theme customization
+- [Internationalization](./docs/ui/i18n) - i18n support
+
+## Full Documentation
+
+See [llms-full.txt](./llms-full.txt) for complete API documentation including:
+- All component properties, events, and methods
+- Type definitions
+- Example code
+- Usage guides
+
+## Links
+
+- [GitHub](https://github.com/NG-NEST/ng-nest)
+- [Documentation](https://ngnest.com)
+- [npm](https://www.npmjs.com/package/@ng-nest/ui)
