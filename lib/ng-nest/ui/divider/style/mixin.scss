@@ -1,0 +1,151 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+// Divider
+
+@mixin divider {
+  & {
+    display: flex;
+    align-items: center;
+    border-color: var(--x-divider-color, $x-divider-color);
+    border-style: var(--x-divider-border-style, solid);
+    border-width: var(--x-divider-border-width, $x-divider-border-width);
+    color: $x-divider-text-color;
+    font-size: $x-divider-font-size;
+  }
+
+  // 水平分割线
+  &-horizontal {
+    width: 100%;
+    flex-direction: row;
+    border-top-width: var(--x-divider-border-width, $x-divider-border-width);
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+  }
+
+  // 垂直分割线
+  &-vertical {
+    display: inline-block;
+    height: 1em;
+    margin: 0 0.5em;
+    vertical-align: middle;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-right-width: var(--x-divider-border-width, $x-divider-border-width);
+  }
+
+  // 变体样式
+  &-dashed {
+    border-style: dashed;
+    &.x-divider-with-text::before,
+    &.x-divider-with-text::after {
+      border-top-style: dashed;
+    }
+  }
+
+  &-dotted {
+    border-style: dotted;
+    &.x-divider-with-text::before,
+    &.x-divider-with-text::after {
+      border-top-style: dotted;
+    }
+  }
+
+  // 带文字的分割线
+  &-with-text {
+    border-top-color: transparent;
+    border-top-width: 0;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      border-top-width: var(--x-divider-border-width, $x-divider-border-width);
+      border-top-style: var(--x-divider-border-style, solid);
+      border-top-color: var(--x-divider-color, $x-divider-color);
+    }
+
+    &::before {
+      margin-right: 1em;
+    }
+
+    &::after {
+      margin-left: 1em;
+    }
+  }
+
+  // 文字位置
+  &-with-text-left {
+    &::before {
+      flex: 0 0 5%;
+    }
+  }
+
+  &-with-text-center {
+    &::before,
+    &::after {
+      flex: 1;
+    }
+  }
+
+  &-with-text-right {
+    &::after {
+      flex: 0 0 5%;
+    }
+  }
+
+  // 文字样式
+  &-text {
+    display: inline-block;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  // 尺寸
+  &.x-size-big {
+    &.x-divider-horizontal {
+      margin: var(--x-divider-margin, $x-padding-big) 0;
+    }
+    &.x-divider-vertical {
+      margin: 0 var(--x-divider-margin, $x-padding-big);
+    }
+  }
+
+  &.x-size-large {
+    &.x-divider-horizontal {
+      margin: var(--x-divider-margin, $x-padding-large) 0;
+    }
+    &.x-divider-vertical {
+      margin: 0 var(--x-divider-margin, $x-padding-large);
+    }
+  }
+
+  &.x-size-medium {
+    &.x-divider-horizontal {
+      margin: var(--x-divider-margin, $x-padding-medium) 0;
+    }
+    &.x-divider-vertical {
+      margin: 0 var(--x-divider-margin, $x-padding-medium);
+    }
+  }
+
+  &.x-size-small {
+    &.x-divider-horizontal {
+      margin: var(--x-divider-margin, $x-padding-small) 0;
+    }
+    &.x-divider-vertical {
+      margin: 0 var(--x-divider-margin, $x-padding-small);
+    }
+  }
+
+  &.x-size-mini {
+    &.x-divider-horizontal {
+      margin: var(--x-divider-margin, $x-padding-mini) 0;
+    }
+    &.x-divider-vertical {
+      margin: 0 var(--x-divider-margin, $x-padding-mini);
+    }
+  }
+}

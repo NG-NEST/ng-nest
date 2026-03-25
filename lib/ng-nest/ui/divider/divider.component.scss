@@ -1,0 +1,10 @@
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
+
+// Divider
+
+.#{$x-divider} {
+  @include reset-component();
+  @include divider();
+}

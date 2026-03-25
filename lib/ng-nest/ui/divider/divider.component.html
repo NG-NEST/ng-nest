@@ -1,0 +1,12 @@
+<div
+  class="x-divider"
+  [ngClass]="classMap()"
+  [class.x-divider-dashed]="variant() === 'dashed'"
+  [class.x-divider-dotted]="variant() === 'dotted'"
+>
+  @if (direction() === 'horizontal') {
+    <span #text class="x-divider-text">
+      <ng-content select="text"></ng-content>
+    </span>
+  }
+</div>

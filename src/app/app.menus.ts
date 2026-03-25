@@ -745,6 +745,15 @@ export const menus: AppMenu[] = [
     "category": "Other"
   },
   {
+    "id": "1-28",
+    "pid": "1",
+    "name": "divider",
+    "routerLink": "docs/en_US/components/divider",
+    "lang": "en_US",
+    "label": "Divider",
+    "category": "Others"
+  },
+  {
     "id": "2-0",
     "pid": "2",
     "name": "rbac",
@@ -1598,6 +1607,15 @@ export const menus: AppMenu[] = [
     "lang": "zh_CN",
     "label": "Highlight 代码高亮",
     "category": "Other"
+  },
+  {
+    "id": "1-28",
+    "pid": "1",
+    "name": "divider",
+    "routerLink": "docs/zh_CN/components/divider",
+    "lang": "zh_CN",
+    "label": "Divider 分割线",
+    "category": "Others"
   },
   {
     "id": "2-0",

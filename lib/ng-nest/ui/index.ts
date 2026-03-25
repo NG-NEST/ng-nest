@@ -116,6 +116,7 @@ export * from '@ng-nest/ui/thought-chain';
  * Others
  */
 export * from '@ng-nest/ui/doc';
+export * from '@ng-nest/ui/divider';
 export * from '@ng-nest/ui/examples';
 export * from '@ng-nest/ui/api';
 export * from '@ng-nest/ui/pattern';

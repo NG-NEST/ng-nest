@@ -109,6 +109,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./dialog/dialog.component').then((x) => x.TeDialogComponent)
       },
       {
+        path: 'divider',
+        loadComponent: () => import('./divider/divider.component').then((x) => x.TeDividerComponent)
+      },
+      {
         path: 'drawer',
         loadComponent: () => import('./drawer/drawer.component').then((x) => x.TeDrawerComponent)
       },

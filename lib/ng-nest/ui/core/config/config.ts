@@ -83,6 +83,7 @@ export interface XComponentConfig {
   datePicker?: XDatePickerConfig;
   dateRange?: XDateRangeConfig;
   dialog?: XDialogConfig;
+  divider?: XDividerConfig;
   drawer?: XDrawerConfig;
   dropdown?: XDropdownConfig;
   description?: XDescriptionConfig;
@@ -376,6 +377,13 @@ export interface XDialogConfig {
   keyboard?: boolean;
   className?: string;
   buttonsCenter?: boolean;
+}
+
+export interface XDividerConfig {
+  direction?: 'horizontal' | 'vertical';
+  position?: 'left' | 'center' | 'right';
+  variant?: 'solid' | 'dashed' | 'dotted';
+  size?: XSize;
 }
 
 export interface XDrawerConfig {
