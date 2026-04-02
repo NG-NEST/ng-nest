@@ -128,6 +128,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
 
     if (this.option().value !== undefined) {
       this.componentRef.instance.writeValue(this.option().value);
+      this.value.set(this.option().value);
     }
 
     this.componentRef.instance.valueObservable.subscribe((x) => {
