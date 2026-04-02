@@ -4927,9 +4927,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -4945,12 +4945,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -5476,7 +5476,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -5493,7 +5493,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -9235,9 +9235,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -9253,12 +9253,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -9767,7 +9767,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -9784,7 +9784,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -11742,9 +11742,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -11760,12 +11760,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -12188,7 +12188,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -12205,7 +12205,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -13919,9 +13919,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -13937,12 +13937,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -14502,7 +14502,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -14519,7 +14519,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -15106,9 +15106,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -15124,12 +15124,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -15637,7 +15637,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -15654,7 +15654,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -18887,6 +18887,189 @@ export const zh_CN: {[key: string]: AppProp} = {
     "name": "XDialogType",
     "value": "XStatus"
   },
+  "XDividerPrefix": {
+    "type": "const",
+    "label": "Divider",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDividerPrefix",
+    "selector": "x-divider",
+    "decorator": "component",
+    "value": "'x-divider'"
+  },
+  "XDividerProperty": {
+    "type": "class",
+    "label": "Divider Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "direction",
+        "type": "XDividerDirection",
+        "toType": "XDividerDirection",
+        "inputType": "InputSignal<XDividerDirection>",
+        "signal": "input",
+        "label": "分割线方向",
+        "default": "'horizontal'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-divider direction=\"horizontal\">Horizontal</x-divider>\n<x-divider direction=\"vertical\"></x-divider>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "position",
+        "type": "XDividerPosition",
+        "toType": "XDividerPosition",
+        "inputType": "InputSignal<XDividerPosition>",
+        "signal": "input",
+        "label": "标题位置",
+        "default": "'center'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-divider position=\"left\">Left</x-divider>\n<x-divider position=\"center\">Center</x-divider>\n<x-divider position=\"right\">Right</x-divider>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XDividerVariant",
+        "toType": "XDividerVariant",
+        "inputType": "InputSignal<XDividerVariant>",
+        "signal": "input",
+        "label": "分割线变体",
+        "default": "'solid'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-divider variant=\"solid\">Solid</x-divider>\n<x-divider variant=\"dashed\">Dashed</x-divider>\n<x-divider variant=\"dotted\">Dotted</x-divider>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "分割线尺寸（上下间隔）",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-divider size=\"big\">Big</x-divider>\n<x-divider size=\"large\">Large</x-divider>\n<x-divider size=\"medium\">Medium</x-divider>\n<x-divider size=\"small\">Small</x-divider>\n<x-divider size=\"mini\">Mini</x-divider>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XDividerProperty",
+    "extends": [
+      "XPropertyFunction(X_DIVIDER_CONFIG_NAME)"
+    ]
+  },
+  "XDividerDirection": {
+    "type": "type",
+    "label": "分割线方向",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDividerDirection",
+    "value": "'horizontal' | 'vertical'"
+  },
+  "XDividerPosition": {
+    "type": "type",
+    "label": "分割线标题位置",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDividerPosition",
+    "value": "'left' | 'center' | 'right'"
+  },
+  "XDividerVariant": {
+    "type": "type",
+    "label": "分割线变体",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDividerVariant",
+    "value": "'solid' | 'dashed' | 'dotted'"
+  },
   "XDrawerPrefix": {
     "type": "const",
     "label": "Drawer",
@@ -21329,7 +21512,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -21346,7 +21529,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -21794,7 +21977,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -21811,7 +21994,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -22029,7 +22212,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -22046,7 +22229,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -24140,9 +24323,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -24158,12 +24341,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -24952,7 +25135,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -24969,7 +25152,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -25745,9 +25928,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -25763,12 +25946,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -26190,7 +26373,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -26207,7 +26390,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -29360,7 +29543,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "inputPattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "匹配规则",
         "default": "",
         "withConfig": false,
@@ -29377,7 +29560,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "inputInvalidMessage",
-        "type": "string | string[]",
+        "type": "string",
         "label": "匹配失败的信息提示",
         "default": "",
         "withConfig": false,
@@ -34413,9 +34596,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -34431,12 +34614,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -35131,7 +35314,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -35148,7 +35331,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -35544,9 +35727,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -35562,12 +35745,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -35836,7 +36019,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -35853,7 +36036,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -42995,9 +43178,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -43013,12 +43196,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -43509,7 +43692,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -43526,7 +43709,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -44641,9 +44824,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -44659,12 +44842,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -45258,7 +45441,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -45275,7 +45458,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,
@@ -49534,9 +49717,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "正则验证规则",
         "default": "null",
@@ -49552,12 +49735,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "验证不通过提示文字",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -50286,7 +50469,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "正则验证规则",
         "default": "",
         "withConfig": false,
@@ -50303,7 +50486,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "验证不通过提示文字",
         "default": "",
         "withConfig": false,

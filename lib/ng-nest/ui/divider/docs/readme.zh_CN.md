@@ -1,6 +1,6 @@
 ---
 label: 'Divider 分割线'
-category: 'Others'
+category: 'Other'
 ---
 
 # Divider 分割线

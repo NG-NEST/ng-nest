@@ -1,3 +1,36 @@
+## [21.0.11](https://github.com/NG-NEST/ng-nest/compare/21.0.10...21.0.11) (2026-04-02)
+
+
+### Bug Fixes
+
+* fix unused parameters ([14422fd](https://github.com/NG-NEST/ng-nest/commit/14422fdf2144077b8bf466fba9a5b09db69c3437))
+* **module:auto-complete:** fix pattern error ([bb6c251](https://github.com/NG-NEST/ng-nest/commit/bb6c2514f55d6383af73f8f5b4d42d5a96044fa2))
+* **module:base-form:** fix pattern error ([d0519bf](https://github.com/NG-NEST/ng-nest/commit/d0519bf188d1a11d9f45d4c790ef5a4518fcca2a))
+* **module:base-form:** fix signal pattern ([a717b60](https://github.com/NG-NEST/ng-nest/commit/a717b601f0bd6b4dbf88651424db138166ed843f))
+* **module:cascade:** fix pattern error ([0411d0c](https://github.com/NG-NEST/ng-nest/commit/0411d0ce6e9b8e6f8993e3295d9543d61fd214aa))
+* **module:color-picker:** fix pattern error ([9f37047](https://github.com/NG-NEST/ng-nest/commit/9f37047f3277cd36951ada75669ceb3694a9f5e9))
+* **module:date-picker:** fix pattern error ([aba8d61](https://github.com/NG-NEST/ng-nest/commit/aba8d618c12d9e3b8b58d25e70a5cf9feb1f27c4))
+* **module:find:** fix pattern error ([5147ef2](https://github.com/NG-NEST/ng-nest/commit/5147ef2b8fd6b413b7690b2c45d740de4d0fba55))
+* **module:form:** fix pattern error ([301c7da](https://github.com/NG-NEST/ng-nest/commit/301c7da40a8c18757b3726921b95ed096cd60c31))
+* **module:input-number:** fix pattern error ([4c48dd3](https://github.com/NG-NEST/ng-nest/commit/4c48dd3a441786147c5b7ca20cb32fa637cb5ad4))
+* **module:input:** fix pattern error ([536b075](https://github.com/NG-NEST/ng-nest/commit/536b0757529340f1c74ef4dc51d0de03f9cb119e))
+* **module:message:** fix pattern error ([f32c738](https://github.com/NG-NEST/ng-nest/commit/f32c738c21e772cedff11ef28b5a920b2161a54d))
+* **module:select:** fix pattern error ([780eb7b](https://github.com/NG-NEST/ng-nest/commit/780eb7ba55cde60d16c8f71896eb374d79018000))
+* **module:sender:** fix pattern error ([533d984](https://github.com/NG-NEST/ng-nest/commit/533d984fced12ca4c08a74f3521f1da9a2feb43c))
+* **module:textarea:** fix pattern error ([65aef15](https://github.com/NG-NEST/ng-nest/commit/65aef15652ba365020f9fd136504be0bda0c8091))
+* **module:time-picker:** fix pattern error ([5bdd40b](https://github.com/NG-NEST/ng-nest/commit/5bdd40b4320251f08129300201d6101ee4863118))
+* **module:time-picker:** fix value is in date format ([0d11b1d](https://github.com/NG-NEST/ng-nest/commit/0d11b1d866c9eb9f95e1a3d5bb541a7a93a7f463)), closes [#249](https://github.com/NG-NEST/ng-nest/issues/249)
+* **module:tree-select:** fix pattern error ([a02b92e](https://github.com/NG-NEST/ng-nest/commit/a02b92e282b976d897dfd46fd292d95cf70e7aab))
+
+
+### Features
+
+* add llms.txt ([0ba8afd](https://github.com/NG-NEST/ng-nest/commit/0ba8afd75f64ef501aa42d2147d49fb42c173c1f))
+* **module:dialog:** add max width and max height ([6f20691](https://github.com/NG-NEST/ng-nest/commit/6f2069199740b267d92afc5d153bc7ad011a5e0a))
+* **module:divider:** add divider component ([200dfac](https://github.com/NG-NEST/ng-nest/commit/200dfac6cab36c7e30c7e6bf53614afa96d5a65e))
+
+
+
 ## [21.0.10](https://github.com/NG-NEST/ng-nest/compare/21.0.9...21.0.10) (2026-01-28)
 
 

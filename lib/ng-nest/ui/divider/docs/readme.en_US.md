@@ -1,6 +1,6 @@
 ---
 label: 'Divider'
-category: 'Others'
+category: 'Other'
 ---
 
 # Divider
