@@ -18,7 +18,7 @@ import {
   effect
 } from '@angular/core';
 import { XTimePickerPrefix, XTimePickerProperty } from './time-picker.property';
-import { XIsEmpty, XIsDate, XIsNumber, XCorner, XIsString, XParents, XPlacement } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsDate, XIsNumber, XCorner, XIsString, XParents, XPlacement, XIsNull } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { DOCUMENT, DatePipe } from '@angular/common';
 import {
@@ -54,6 +54,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
 
   datePicker = viewChild.required<ElementRef<HTMLElement>>('datePicker');
   inputCom = viewChild.required<XInputComponent>('inputCom');
+  numberValue = signal<number | string | null>(null);
 
   locale = toSignal(this.i18n.localeChange.pipe(map((x) => x.timePicker as XI18nTimePicker)), {
     initialValue: zh_CN.timePicker
@@ -61,23 +62,26 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
 
   override writeValue(value: any) {
     let valueType: 'date' | 'number' | 'string' = 'date';
-    if (XIsEmpty(value)) {
-      value = '';
+    if (XIsDate(value)) {
+      valueType = 'date';
+      this.numberValue.set(value.getTime());
     } else if (XIsNumber(value)) {
       valueType = 'number';
+      this.numberValue.set(value);
     } else if (XIsString(value)) {
-      value = new Date(value).getTime();
       valueType = 'string';
-    } else if (XIsDate(value)) {
-      value = value.getTime();
+      const valueTime = new Date(value).getTime();
+      this.numberValue.set(!isNaN(valueTime) ? valueTime : '');
+    } else if (XIsEmpty(value) || XIsNull(value)) {
+      this.numberValue.set('');
     }
     this.value.set(value);
     this.valueType.set(valueType);
   }
 
   displayValue = computed(() => {
-    const value = this.value();
-    if (!value) return;
+    const value = this.numberValue();
+    if (!value) return null;
     if (this.use12Hours()) {
       let dt = new Date(value);
       let hour = dt.getHours();
@@ -131,7 +135,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
 
   constructor() {
     super();
-    effect(() => this.portalComponent()?.setInput('value', this.value()));
+    effect(() => this.portalComponent()?.setInput('value', this.numberValue()));
     effect(() => this.portalComponent()?.setInput('placement', this.realPlacement()));
     effect(() => this.portalComponent()?.setInput('use12Hours', this.use12Hours()));
     effect(() => this.portalComponent()?.setInput('type', this.type()));
@@ -193,7 +197,7 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
   menter() {
     if (this.disabledComputed()) return;
     this.enter.set(true);
-    if (!XIsEmpty(this.value())) {
+    if (!XIsEmpty(this.numberValue())) {
       this.icon.set('');
       this.clearable.set(true);
     }
@@ -209,9 +213,10 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
   }
 
   clearEmit() {
-    this.value.set('');
+    this.value.set(null);
+    this.numberValue.set(null);
     this.mleave();
-    if (this.onChange) this.onChange(this.value());
+    this.modelChange();
   }
 
   portalAttached() {
@@ -277,14 +282,22 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
   }
 
   onNodeClick(date: Date) {
-    this.value.set(this.setValue(date));
-    if (this.onChange) this.onChange(this.value());
-    this.formControlValidator();
+    this.numberValue.set(date.getTime());
+    this.value.set(this.getValue());
+    this.modelChange();
     this.nodeEmit.emit(this.value());
   }
 
-  setValue(value: Date) {
-    return ['date', 'string'].includes(this.valueType()) ? new Date(value) : value.getTime();
+  modelChange() {
+    if (this.onChange) {
+      this.onChange(this.getValue());
+    }
+    this.formControlValidator();
+  }
+
+  getValue() {
+    if (this.numberValue() === '') return null;
+    return ['date', 'string'].includes(this.valueType()) ? new Date(this.numberValue()!) : this.numberValue();
   }
 
   setPlacement() {
