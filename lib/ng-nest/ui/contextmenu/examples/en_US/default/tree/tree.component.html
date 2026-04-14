@@ -1,0 +1,11 @@
+<div class="example-container">
+  <h3>Tree Menu</h3>
+  <p>Right-click the image to view multi-level menu, supports mouse hover expansion</p>
+  <img
+    #img
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="Right click image"
+    width="100%"
+  />
+  <x-contextmenu [target]="img" [data]="data()" [portalWidth]="'9rem'" (nodeClick)="onNodeClick($event)" />
+</div>

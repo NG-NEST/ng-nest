@@ -1,0 +1,32 @@
+<div class="example-container">
+  <h3>Custom Width (200px)</h3>
+  <img
+    #img
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="Right click image"
+    width="100%"
+  />
+  <x-contextmenu [target]="imgElement()" [data]="data()" portalWidth="200px" (nodeClick)="onNodeClick($event)" />
+</div>
+
+<div class="example-container">
+  <h3>Custom Max Height (10rem)</h3>
+  <img
+    #img2
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="Right click image"
+    width="100%"
+  />
+  <x-contextmenu [target]="img2()" [data]="data()" portalMaxHeight="10rem" (nodeClick)="onNodeClick($event)" />
+</div>
+
+<div class="example-container">
+  <h3>Custom Style Class</h3>
+  <img
+    #img3
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="Right click image"
+    width="100%"
+  />
+  <x-contextmenu [target]="img3()" [data]="data()" portalClass="custom-contextmenu" (nodeClick)="onNodeClick($event)" />
+</div>

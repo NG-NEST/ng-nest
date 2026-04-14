@@ -74,6 +74,7 @@ export interface XComponentConfig {
   colorPicker?: XColorPickerConfig;
   comment?: XCommentConfig;
   container?: XContainerConfig;
+  contextmenu?: XContextmenuConfig;
   coversations?: XCoversationsConfig;
   header?: XHeaderConfig;
   aside?: XAsideConfig;
@@ -150,6 +151,8 @@ export interface XComponentConfig {
   upload?: XUploadConfig;
   keyword?: XKeywordConfig;
   welcome?: XWelcomeConfig;
+  watermark?: XWatermarkConfig;
+  splitter?: XSplitterConfig;
 }
 
 export interface XAffixConfig {
@@ -398,6 +401,12 @@ export interface XDropdownConfig {
   trigger?: XTrigger;
   placement?: XPlacement;
   size?: XSize;
+}
+
+export interface XContextmenuConfig {
+  placement?: XPlacement;
+  size?: XSize;
+  portalMaxHeight?: string;
 }
 
 export interface XDescriptionConfig {
@@ -843,4 +852,26 @@ export interface XKeywordConfig {
 
 export interface XWelcomeConfig {
   variant?: 'outlined' | 'filled' | 'borderless';
+}
+
+export interface XSplitterConfig {
+  direction?: 'horizontal' | 'vertical';
+}
+
+export interface XWatermarkConfig {
+  content?: string;
+  width?: number;
+  height?: number;
+  rotate?: number;
+  fontSize?: number;
+  fontFamily?: string;
+  color?: string;
+  zIndex?: number;
+  alpha?: number;
+  gapX?: number;
+  gapY?: number;
+  offsetLeft?: number;
+  offsetTop?: number;
+  striped?: boolean;
+  disabled?: boolean;
 }

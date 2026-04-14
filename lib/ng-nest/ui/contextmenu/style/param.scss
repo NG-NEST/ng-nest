@@ -1,0 +1,5 @@
+// Contextmenu style paramters
+@use '../../style/params/index.scss' as *;
+
+$x-contextmenu: $x-prefix + '-contextmenu';
+$x-contextmenu-portal: $x-prefix + '-contextmenu-portal';

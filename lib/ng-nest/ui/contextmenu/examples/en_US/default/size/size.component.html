@@ -1,0 +1,32 @@
+<div class="example-container">
+  <h3>Small Size</h3>
+  <img
+    #img
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="Right click image"
+    width="100%"
+  />
+  <x-contextmenu [target]="imgElement()" [data]="data()" size="small" (nodeClick)="onNodeClick($event)" />
+</div>
+
+<div class="example-container">
+  <h3>Medium Size (Default)</h3>
+  <img
+    #img2
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="Right click image"
+    width="100%"
+  />
+  <x-contextmenu [target]="img2()" [data]="data()" size="medium" (nodeClick)="onNodeClick($event)" />
+</div>
+
+<div class="example-container">
+  <h3>Large Size</h3>
+  <img
+    #img3
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="Right click image"
+    width="100%"
+  />
+  <x-contextmenu [target]="img3()" [data]="data()" size="large" (nodeClick)="onNodeClick($event)" />
+</div>

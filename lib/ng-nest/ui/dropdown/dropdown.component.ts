@@ -187,6 +187,8 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
     this.minWidth.set(this.portalMinWidth() ? this.portalMinWidth() : `${box.width}px`);
     const config: OverlayConfig = {
       backdropClass: '',
+      panelClass: this.portalClass(),
+      width: this.portalWidth(),
       positionStrategy: this.setPlacement(),
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
       minWidth: this.minWidth()

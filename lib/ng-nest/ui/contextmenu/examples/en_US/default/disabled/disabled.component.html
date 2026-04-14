@@ -1,0 +1,23 @@
+<div class="example-container">
+  <h3>Enabled (Default)</h3>
+  <img
+    #img
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="Right click image"
+    width="100%"
+  />
+  <x-contextmenu [target]="imgElement()" [data]="data()" [disabled]="false" (nodeClick)="onNodeClick($event)" />
+  <p>✅ Context menu works normally</p>
+</div>
+
+<div class="example-container">
+  <h3>Disabled</h3>
+  <img
+    #img2
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="Right click image"
+    width="100%"
+  />
+  <x-contextmenu [target]="img2()" [data]="data()" [disabled]="true" (nodeClick)="onNodeClick($event)" />
+  <p>❌ Context menu is disabled, browser default menu will show</p>
+</div>

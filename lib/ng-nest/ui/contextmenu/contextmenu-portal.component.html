@@ -1,0 +1,17 @@
+<div
+  #contextmenuPortal
+  class="x-contextmenu-portal"
+  [style.maxHeight]="portalHeight() ? portalHeight() : portalMaxHeight()"
+  [style.height]="portalHeight()"
+>
+  <x-list
+    #list
+    [data]="data()"
+    (nodeClick)="onNodeClick($event)"
+    (keyManagerChange)="onActive($event)"
+    [inPortal]="true"
+    [size]="size()"
+    (nodeMouseenter)="onNodeMouseenter($event)"
+    (nodeMouseleave)="onNodeMouseleave()"
+  ></x-list>
+</div>
