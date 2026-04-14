@@ -89,6 +89,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./container/container.component').then((x) => x.TeContainerComponent)
       },
       {
+        path: 'contextmenu',
+        loadComponent: () => import('./contextmenu/contextmenu.component').then((x) => x.TeContextmenuComponent)
+      },
+      {
         path: 'coversations',
         loadComponent: () => import('./coversations/coversations.component').then((x) => x.TeCoversationsComponent)
       },
@@ -347,6 +351,10 @@ export const TestRoutes: Routes = [
       {
         path: 'welcome',
         loadComponent: () => import('./welcome/welcome.component').then((x) => x.TeWelcomeComponent)
+      },
+      {
+        path: 'watermark',
+        loadComponent: () => import('./watermark/watermark.component').then((x) => x.TeWatermarkComponent)
       }
     ]
   }

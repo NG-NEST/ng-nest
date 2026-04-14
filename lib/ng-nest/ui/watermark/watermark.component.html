@@ -1,0 +1,11 @@
+<div
+  class="x-watermark"
+  [class.x-watermark-disabled]="disabled()"
+  [style.z-index]="zIndex()"
+  [style.background-image]="backgroundImage() ? 'url(' + backgroundImage() + ')' : 'none'"
+  [style.background-repeat]="'repeat'"
+  [style.background-size]="watermarkWidth() + 'px ' + watermarkHeight() + 'px'"
+  [style.background-position]="offsetLeft() + 'px ' + offsetTop() + 'px'"
+>
+  <ng-content></ng-content>
+</div>

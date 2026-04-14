@@ -1,0 +1,16 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin watermark {
+  & {
+    font-size: $x-font-size;
+    display: inline-block;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  &-disabled {
+    pointer-events: none;
+    user-select: none;
+  }
+}
