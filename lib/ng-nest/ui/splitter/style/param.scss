@@ -1,0 +1,7 @@
+@use '../../style/params/index.scss' as *;
+
+// Splitter style parameters
+$x-splitter: $x-prefix + '-splitter';
+$x-splitter-bar-color: $x-border;
+$x-splitter-bar-hover-color: $x-primary;
+$x-splitter-bar-size: 4px;
