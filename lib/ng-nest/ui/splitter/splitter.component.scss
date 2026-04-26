@@ -3,7 +3,6 @@
 @use './style/param.scss' as *;
 
 // Splitter
-
 .#{$x-splitter} {
   @include reset-component();
   @include splitter();

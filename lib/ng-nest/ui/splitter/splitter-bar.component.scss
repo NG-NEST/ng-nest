@@ -1,1 +1,8 @@
-// Splitter Bar styles are handled in splitter mixin
+// Splitter Bar
+// Styles are primarily handled by the parent splitter component via mixin
+// This file is for any bar-specific overrides if needed
+
+.x-splitter-bar {
+  display: block;
+  box-sizing: border-box;
+}

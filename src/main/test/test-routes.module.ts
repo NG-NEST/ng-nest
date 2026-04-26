@@ -257,6 +257,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./statistic/statistic.component').then((x) => x.TeStatisticComponent)
       },
       {
+        path: 'splitter',
+        loadComponent: () => import('./splitter/splitter.component').then((x) => x.TeSplitterComponent)
+      },
+      {
         path: 'steps',
         loadComponent: () => import('./steps/steps.component').then((x) => x.TeStepsComponent)
       },

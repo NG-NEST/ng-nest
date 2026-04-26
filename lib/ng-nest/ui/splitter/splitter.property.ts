@@ -7,6 +7,21 @@ import { XPropertyFunction } from '@ng-nest/ui/core';
  * @decorator component
  */
 export const XSplitterPrefix = 'x-splitter';
+
+/**
+ * Splitter Bar
+ * @selector x-splitter-bar
+ * @decorator component
+ */
+export const XSplitterBarPrefix = 'x-splitter-bar';
+
+/**
+ * Splitter Panel
+ * @selector x-splitter-panel
+ * @decorator component
+ */
+export const XSplitterPanelPrefix = 'x-splitter-panel';
+
 const X_SPLITTER_CONFIG_NAME = 'splitter';
 
 /**

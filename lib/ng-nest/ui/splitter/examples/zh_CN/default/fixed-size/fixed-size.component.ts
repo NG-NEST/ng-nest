@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { XSplitterComponent, XSplitterPanelComponent, XSplitterBarComponent } from '@ng-nest/ui/splitter';
 
 @Component({
-  selector: 'ex-default',
+  selector: 'ex-fixed-size',
   imports: [XSplitterComponent, XSplitterPanelComponent, XSplitterBarComponent],
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+  templateUrl: './fixed-size.component.html',
+  styleUrls: ['./fixed-size.component.scss']
 })
-export class ExDefaultComponent {}
+export class ExFixedSizeComponent {}

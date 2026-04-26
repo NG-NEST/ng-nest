@@ -1,7 +1,26 @@
 <div class="example-container">
-  <x-splitter>
-    <x-splitter-panel>panel 1</x-splitter-panel>
-    <x-splitter-bar></x-splitter-bar>
-    <x-splitter-panel>panel 2</x-splitter-panel>
-  </x-splitter>
+  <h3>Horizontal Splitter</h3>
+  <div class="splitter1">
+    <x-splitter>
+      <x-splitter-panel [size]="'40%'" [min]="'20%'" [max]="'80%'">
+        <div class="panel-content">Left Panel (default 40%)</div>
+      </x-splitter-panel>
+      <x-splitter-bar></x-splitter-bar>
+      <x-splitter-panel [min]="'20%'" [max]="'80%'">
+        <div class="panel-content">Right Panel (auto fill)</div>
+      </x-splitter-panel>
+    </x-splitter>
+  </div>
+  <h3>Vertical Splitter</h3>
+  <div class="splitter2">
+    <x-splitter direction="vertical">
+      <x-splitter-panel [size]="'40%'" [min]="'20%'" [max]="'80%'">
+        <div class="panel-content">Top Panel (default 40%)</div>
+      </x-splitter-panel>
+      <x-splitter-bar></x-splitter-bar>
+      <x-splitter-panel [min]="'20%'" [max]="'80%'">
+        <div class="panel-content">Bottom Panel (auto fill)</div>
+      </x-splitter-panel>
+    </x-splitter>
+  </div>
 </div>
