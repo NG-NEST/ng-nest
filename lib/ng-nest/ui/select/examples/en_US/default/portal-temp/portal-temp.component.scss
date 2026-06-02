@@ -1,0 +1,20 @@
+:host {
+  .row:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.portal-temp-list {
+  width: 100%;
+  x-empty {
+    display: block;
+    margin: 1rem 0;
+  }
+  .portal-temp-item {
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { XToBoolean, XToCssPixelValue, XToDataConvert, XToNumber } from '@ng-nest/ui/core';
-import { Component, TemplateRef, input, model } from '@angular/core';
+import { Component, TemplateRef, input, model, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 import type {
   XParentIdentityProperty,
@@ -166,6 +166,11 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    */
   readonly allowInput = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
+   * @zh_CN 自定义下拉框中的内容
+   * @en_US Custom content in the drop-down box
+   */
+  readonly portalTemp = input<TemplateRef<any>>();
+  /**
    * @zh_CN 浮动标签
    * @en_US Float label
    */
@@ -275,6 +280,11 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    * @en_US Enter the verification function
    */
   override readonly inputValidator = input<(value: any) => boolean>();
+  /**
+   * @zh_CN 输入值变化事件
+   * @en_US Input value change event
+   */
+  readonly searchChange = output<any>();
 }
 
 /**
@@ -378,6 +388,11 @@ export interface XSelectOption extends XFormOption {
    * @en_US Allow the use of input values as selector values during search
    */
   allowInput?: boolean;
+  /**
+   * @zh_CN 自定义下拉框中的内容
+   * @en_US Custom content in the drop-down box
+   */
+  portalTemp?: TemplateRef<any>;
   /**
    * @zh_CN 浮动标签
    * @en_US Float label

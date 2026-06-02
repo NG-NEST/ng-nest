@@ -1,0 +1,40 @@
+<div class="row">
+  <x-select
+    [(ngModel)]="model1"
+    (ngModelChange)="change($event)"
+    [data]="data1()"
+    [portalTemp]="customPortal1"
+  ></x-select>
+
+  <ng-template #customPortal1 let-data="$data" let-close="$close" let-nodeClick="$nodeClick">
+    <div class="portal-temp-list">
+      @for (item of data; track item.id) {
+        <div class="portal-temp-item" (click)="nodeClick(item)">{{ item.label }}</div>
+      }
+    </div>
+  </ng-template>
+</div>
+
+<div class="row">
+  <x-select
+    #selectCom
+    [(ngModel)]="model2"
+    (ngModelChange)="change($event)"
+    [data]="data2()"
+    [portalTemp]="customPortal2"
+    search
+    (searchChange)="searchChange($event)"
+  ></x-select>
+
+  <ng-template #customPortal2 let-data="$data">
+    <div class="portal-temp-list">
+      @for (item of searchResult(); track item) {
+        <div class="portal-temp-item" (click)="selectCom.portalNodeClick({ id: item, label: item })">
+          {{ item }}
+        </div>
+      } @empty {
+        <x-empty></x-empty>
+      }
+    </div>
+  </ng-template>
+</div>

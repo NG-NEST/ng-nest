@@ -1,3 +1,21 @@
+## [21.0.12](https://github.com/NG-NEST/ng-nest/compare/21.0.11...21.0.12) (2026-06-02)
+
+
+### Bug Fixes
+
+* fix portal width of the pop-up box on the portal position ([0c980bf](https://github.com/NG-NEST/ng-nest/commit/0c980bfb2d560354576c97fbf941987510ec512e))
+
+
+### Features
+
+* **module:contextmenu:** add contextmenu component ([1210cd3](https://github.com/NG-NEST/ng-nest/commit/1210cd3b6fd436973ac3f7b97352627312b1e5a7))
+* **module:splitter:** add splitter component ([029624d](https://github.com/NG-NEST/ng-nest/commit/029624d0e450e299a77f23619a67baa5a873e1bf))
+* **module:splitter:** fully functional ([4918ecf](https://github.com/NG-NEST/ng-nest/commit/4918ecfb51746581f971f9556e4b36f1ea82704a))
+* **module:watermark:** add watermark component ([2776f92](https://github.com/NG-NEST/ng-nest/commit/2776f926b84f656aba41bde6b6b30d1ff13c4490))
+* **select:module:** add custom portal temp ([27a7871](https://github.com/NG-NEST/ng-nest/commit/27a7871e9163b9bb78a46128744151531d3f9823))
+
+
+
 ## [21.0.11](https://github.com/NG-NEST/ng-nest/compare/21.0.10...21.0.11) (2026-04-02)
 
 

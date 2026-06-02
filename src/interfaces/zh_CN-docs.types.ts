@@ -4423,12 +4423,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XPositionTopBottom",
-        "toType": "XPositionTopBottom",
-        "inputType": "InputSignal<XPositionTopBottom>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "展示方位",
-        "default": "'bottom'",
+        "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -5085,7 +5085,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XPositionTopBottom",
+        "type": "XPlacement",
         "label": "展示方位",
         "default": "",
         "withConfig": false,
@@ -8713,9 +8713,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "展示方位",
         "default": "'bottom-start'",
@@ -9410,7 +9410,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "展示方位",
         "default": "",
         "withConfig": false,
@@ -11346,9 +11346,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "展示方位",
         "default": "'bottom-start'",
@@ -11882,7 +11882,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "展示方位",
         "default": "",
         "withConfig": false,
@@ -13469,9 +13469,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "展示方位",
         "default": "'bottom-start'",
@@ -14128,7 +14128,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "展示方位",
         "default": "",
         "withConfig": false,
@@ -14692,9 +14692,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "展示方位",
         "default": "'bottom-start'",
@@ -15297,7 +15297,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "展示方位",
         "default": "",
         "withConfig": false,
@@ -19557,6 +19557,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "portalClass",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "下拉框设置样式名",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "portalMinWidth",
         "type": "XNumber",
         "toType": "string",
@@ -19617,6 +19635,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<string, XNumber>",
         "signal": "input",
         "label": "弹框的最大高度",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "弹框的宽度",
         "default": "''",
         "withConfig": false,
         "description": "",
@@ -33953,7 +33989,7 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "展示方位",
-        "default": "'bottom'",
+        "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -34269,6 +34305,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "portalTemp",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "自定义下拉框中的内容",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "floatLabel",
@@ -34665,6 +34719,24 @@ export const zh_CN: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "searchChange",
+        "type": "any",
+        "toType": "",
+        "inputType": "OutputEmitterRef<any>",
+        "signal": "output",
+        "label": "输入值变化事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XSelectProperty",
@@ -34998,6 +35070,23 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "allowInput",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "portalTemp",
+        "type": "TemplateRef<any>",
+        "label": "自定义下拉框中的内容",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "portalTemp",
         "propType": "",
         "example": [
           {
@@ -37719,6 +37808,112 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "name": "XSliderSelectMark"
+  },
+  "XSplitterPrefix": {
+    "type": "const",
+    "label": "Splitter",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSplitterPrefix",
+    "selector": "x-splitter",
+    "decorator": "component",
+    "value": "'x-splitter'"
+  },
+  "XSplitterBarPrefix": {
+    "type": "const",
+    "label": "Splitter Bar",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSplitterBarPrefix",
+    "selector": "x-splitter-bar",
+    "decorator": "component",
+    "value": "'x-splitter-bar'"
+  },
+  "XSplitterPanelPrefix": {
+    "type": "const",
+    "label": "Splitter Panel",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSplitterPanelPrefix",
+    "selector": "x-splitter-panel",
+    "decorator": "component",
+    "value": "'x-splitter-panel'"
+  },
+  "XSplitterProperty": {
+    "type": "class",
+    "label": "Splitter Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "direction",
+        "type": "XSplitterDirection",
+        "toType": "XSplitterDirection",
+        "inputType": "InputSignal<XSplitterDirection>",
+        "signal": "input",
+        "label": "分割方向",
+        "default": "'horizontal'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-splitter direction=\"horizontal\">\n  <x-splitter-panel>Panel 1</x-splitter-panel>\n  <x-splitter-panel>Panel 2</x-splitter-panel>\n</x-splitter>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XSplitterProperty",
+    "extends": [
+      "XPropertyFunction(X_SPLITTER_CONFIG_NAME)"
+    ]
+  },
+  "XSplitterDirection": {
+    "type": "type",
+    "label": "分割方向",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSplitterDirection",
+    "value": "'horizontal' | 'vertical'"
   },
   "XStatisticPrefix": {
     "type": "const",
@@ -44320,9 +44515,9 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "展示方位",
         "default": "'bottom-start'",
@@ -45016,7 +45211,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "展示方位",
         "default": "",
         "withConfig": false,
@@ -49033,12 +49228,12 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XPositionTopBottom",
-        "toType": "XPositionTopBottom",
-        "inputType": "InputSignal<XPositionTopBottom>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "展示方位",
-        "default": "'bottom'",
+        "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -49908,7 +50103,7 @@ export const zh_CN: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XPositionTopBottom",
+        "type": "XPlacement",
         "label": "展示方位",
         "default": "",
         "withConfig": false,
@@ -51352,6 +51547,566 @@ export const zh_CN: {[key: string]: AppProp} = {
     "selector": "x-upload-portal",
     "decorator": "component",
     "value": "'x-upload-portal'"
+  },
+  "XWatermarkPrefix": {
+    "type": "const",
+    "label": "Watermark",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XWatermarkPrefix",
+    "selector": "x-watermark",
+    "decorator": "component",
+    "value": "'x-watermark'"
+  },
+  "XWatermarkProperty": {
+    "type": "class",
+    "label": "Watermark Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "content",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "水印内容",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark content=\"NG-NEST\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "width",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "水印宽度",
+        "default": "120",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [width]=\"120\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "height",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "水印高度",
+        "default": "60",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [height]=\"60\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "rotate",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "旋转角度",
+        "default": "-22",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [rotate]=\"-22\"></x-watermark>\n<x-watermark [rotate]=\"0\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "fontSize",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "字体大小",
+        "default": "14",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [fontSize]=\"14\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "fontFamily",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "字体",
+        "default": "'Varela Round'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark fontFamily=\"Varela Round\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "字体颜色",
+        "default": "'rgba(0",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark color=\"rgba(0, 0, 0, 0.12)\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "zIndex",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "层级",
+        "default": "9999",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [zIndex]=\"9999\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "alpha",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "透明度",
+        "default": "1",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [alpha]=\"1\"></x-watermark>\n<x-watermark [alpha]=\"0.5\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "gapX",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "水平间距",
+        "default": "100",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [gapX]=\"100\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "gapY",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "垂直间距",
+        "default": "100",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [gapY]=\"100\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "offsetLeft",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "水平偏移",
+        "default": "0",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [offsetLeft]=\"0\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "offsetTop",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "垂直偏移",
+        "default": "0",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [offsetTop]=\"0\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "striped",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "是否交错显示",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [striped]=\"true\"></x-watermark>\n<x-watermark [striped]=\"false\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "是否禁用",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [disabled]=\"true\"></x-watermark>\n<x-watermark [disabled]=\"false\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "imageSrc",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "图片/图标 URL",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark imageSrc=\"/assets/logo.png\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "imageWidth",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "图片宽度",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [imageWidth]=\"40\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "imageHeight",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "图片高度",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [imageHeight]=\"40\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "imagePosition",
+        "type": "XWatermarkImagePosition",
+        "toType": "XWatermarkImagePosition",
+        "inputType": "InputSignal<XWatermarkImagePosition>",
+        "signal": "input",
+        "label": "图片相对文本的位置",
+        "default": "'center'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark imagePosition=\"top\"></x-watermark>\n<x-watermark imagePosition=\"center\"></x-watermark>\n<x-watermark imagePosition=\"bottom\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XWatermarkProperty",
+    "extends": [
+      "XPropertyFunction(X_WATERMARK_CONFIG_NAME)"
+    ]
+  },
+  "XWatermarkImagePosition": {
+    "type": "type",
+    "label": "图片相对文本的位置",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XWatermarkImagePosition",
+    "value": "'top' | 'center' | 'bottom'"
   },
   "XWelcomePrefix": {
     "type": "const",

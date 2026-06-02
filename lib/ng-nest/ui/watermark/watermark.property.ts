@@ -229,5 +229,11 @@ export class XWatermarkProperty extends XPropertyFunction(X_WATERMARK_CONFIG_NAM
    * ```
    *
    */
-  readonly imagePosition = input<'top' | 'center' | 'bottom'>('center');
+  readonly imagePosition = input<XWatermarkImagePosition>('center');
 }
+
+/**
+ * @zh_CN 图片相对文本的位置
+ * @en_US Image position relative to text
+ */
+export type XWatermarkImagePosition = 'top' | 'center' | 'bottom';

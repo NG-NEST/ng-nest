@@ -51,7 +51,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-23",
+    "id": "1-24",
     "pid": "1",
     "name": "coversations",
     "routerLink": "docs/en_US/components/coversations",
@@ -60,7 +60,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-65",
+    "id": "1-66",
     "pid": "1",
     "name": "prompts",
     "routerLink": "docs/en_US/components/prompts",
@@ -69,7 +69,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-74",
+    "id": "1-75",
     "pid": "1",
     "name": "sender",
     "routerLink": "docs/en_US/components/sender",
@@ -78,7 +78,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-81",
+    "id": "1-83",
     "pid": "1",
     "name": "suggestion",
     "routerLink": "docs/en_US/components/suggestion",
@@ -87,7 +87,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-90",
+    "id": "1-92",
     "pid": "1",
     "name": "thought-chain",
     "routerLink": "docs/en_US/components/thought-chain",
@@ -96,7 +96,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-106",
+    "id": "1-109",
     "pid": "1",
     "name": "welcome",
     "routerLink": "docs/en_US/components/welcome",
@@ -133,7 +133,7 @@ export const menus: AppMenu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-39",
+    "id": "1-40",
     "pid": "1",
     "name": "icon",
     "routerLink": "docs/en_US/components/icon",
@@ -142,7 +142,7 @@ export const menus: AppMenu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-47",
+    "id": "1-48",
     "pid": "1",
     "name": "layout",
     "routerLink": "docs/en_US/components/layout",
@@ -151,7 +151,7 @@ export const menus: AppMenu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-48",
+    "id": "1-49",
     "pid": "1",
     "name": "link",
     "routerLink": "docs/en_US/components/link",
@@ -223,7 +223,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-26",
+    "id": "1-27",
     "pid": "1",
     "name": "description",
     "routerLink": "docs/en_US/components/description",
@@ -232,7 +232,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-33",
+    "id": "1-34",
     "pid": "1",
     "name": "empty",
     "routerLink": "docs/en_US/components/empty",
@@ -241,7 +241,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-40",
+    "id": "1-41",
     "pid": "1",
     "name": "image",
     "routerLink": "docs/en_US/components/image",
@@ -250,7 +250,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-56",
+    "id": "1-57",
     "pid": "1",
     "name": "outlet",
     "routerLink": "docs/en_US/components/outlet",
@@ -259,7 +259,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-59",
+    "id": "1-60",
     "pid": "1",
     "name": "pagination",
     "routerLink": "docs/en_US/components/pagination",
@@ -268,7 +268,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-64",
+    "id": "1-65",
     "pid": "1",
     "name": "progress",
     "routerLink": "docs/en_US/components/progress",
@@ -277,7 +277,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-78",
+    "id": "1-80",
     "pid": "1",
     "name": "statistic",
     "routerLink": "docs/en_US/components/statistic",
@@ -286,7 +286,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-83",
+    "id": "1-85",
     "pid": "1",
     "name": "table",
     "routerLink": "docs/en_US/components/table",
@@ -295,7 +295,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-86",
+    "id": "1-88",
     "pid": "1",
     "name": "tag",
     "routerLink": "docs/en_US/components/tag",
@@ -304,7 +304,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-87",
+    "id": "1-89",
     "pid": "1",
     "name": "text-retract",
     "routerLink": "docs/en_US/components/text-retract",
@@ -313,7 +313,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-91",
+    "id": "1-93",
     "pid": "1",
     "name": "time-ago",
     "routerLink": "docs/en_US/components/time-ago",
@@ -322,7 +322,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-93",
+    "id": "1-95",
     "pid": "1",
     "name": "time-range",
     "routerLink": "docs/en_US/components/time-range",
@@ -331,7 +331,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-94",
+    "id": "1-96",
     "pid": "1",
     "name": "timeline",
     "routerLink": "docs/en_US/components/timeline",
@@ -340,7 +340,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-97",
+    "id": "1-99",
     "pid": "1",
     "name": "tree",
     "routerLink": "docs/en_US/components/tree",
@@ -349,7 +349,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-98",
+    "id": "1-100",
     "pid": "1",
     "name": "tree-file",
     "routerLink": "docs/en_US/components/tree-file",
@@ -367,7 +367,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-27",
+    "id": "1-28",
     "pid": "1",
     "name": "dialog",
     "routerLink": "docs/en_US/components/dialog",
@@ -376,7 +376,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-31",
+    "id": "1-32",
     "pid": "1",
     "name": "drawer",
     "routerLink": "docs/en_US/components/drawer",
@@ -385,7 +385,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-50",
+    "id": "1-51",
     "pid": "1",
     "name": "loading",
     "routerLink": "docs/en_US/components/loading",
@@ -394,7 +394,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-52",
+    "id": "1-53",
     "pid": "1",
     "name": "message",
     "routerLink": "docs/en_US/components/message",
@@ -403,7 +403,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-53",
+    "id": "1-54",
     "pid": "1",
     "name": "message-box",
     "routerLink": "docs/en_US/components/message-box",
@@ -412,7 +412,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-55",
+    "id": "1-56",
     "pid": "1",
     "name": "notification",
     "routerLink": "docs/en_US/components/notification",
@@ -421,7 +421,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-61",
+    "id": "1-62",
     "pid": "1",
     "name": "popconfirm",
     "routerLink": "docs/en_US/components/popconfirm",
@@ -430,7 +430,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-62",
+    "id": "1-63",
     "pid": "1",
     "name": "popover",
     "routerLink": "docs/en_US/components/popover",
@@ -439,7 +439,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-70",
+    "id": "1-71",
     "pid": "1",
     "name": "result",
     "routerLink": "docs/en_US/components/result",
@@ -448,7 +448,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-75",
+    "id": "1-76",
     "pid": "1",
     "name": "skeleton",
     "routerLink": "docs/en_US/components/skeleton",
@@ -457,7 +457,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-95",
+    "id": "1-97",
     "pid": "1",
     "name": "tooltip",
     "routerLink": "docs/en_US/components/tooltip",
@@ -502,7 +502,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-25",
+    "id": "1-26",
     "pid": "1",
     "name": "date-picker",
     "routerLink": "docs/en_US/components/date-picker",
@@ -511,7 +511,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-35",
+    "id": "1-36",
     "pid": "1",
     "name": "find",
     "routerLink": "docs/en_US/components/find",
@@ -520,7 +520,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-36",
+    "id": "1-37",
     "pid": "1",
     "name": "form",
     "routerLink": "docs/en_US/components/form",
@@ -529,7 +529,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-43",
+    "id": "1-44",
     "pid": "1",
     "name": "input",
     "routerLink": "docs/en_US/components/input",
@@ -538,7 +538,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-44",
+    "id": "1-45",
     "pid": "1",
     "name": "input-number",
     "routerLink": "docs/en_US/components/input-number",
@@ -547,7 +547,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-49",
+    "id": "1-50",
     "pid": "1",
     "name": "list",
     "routerLink": "docs/en_US/components/list",
@@ -556,7 +556,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-66",
+    "id": "1-67",
     "pid": "1",
     "name": "radio",
     "routerLink": "docs/en_US/components/radio",
@@ -565,7 +565,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-67",
+    "id": "1-68",
     "pid": "1",
     "name": "rate",
     "routerLink": "docs/en_US/components/rate",
@@ -574,7 +574,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-73",
+    "id": "1-74",
     "pid": "1",
     "name": "select",
     "routerLink": "docs/en_US/components/select",
@@ -583,7 +583,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-77",
+    "id": "1-78",
     "pid": "1",
     "name": "slider-select",
     "routerLink": "docs/en_US/components/slider-select",
@@ -592,7 +592,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-82",
+    "id": "1-84",
     "pid": "1",
     "name": "switch",
     "routerLink": "docs/en_US/components/switch",
@@ -601,7 +601,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-88",
+    "id": "1-90",
     "pid": "1",
     "name": "textarea",
     "routerLink": "docs/en_US/components/textarea",
@@ -610,7 +610,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-92",
+    "id": "1-94",
     "pid": "1",
     "name": "time-picker",
     "routerLink": "docs/en_US/components/time-picker",
@@ -619,7 +619,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-96",
+    "id": "1-98",
     "pid": "1",
     "name": "transfer",
     "routerLink": "docs/en_US/components/transfer",
@@ -628,7 +628,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-99",
+    "id": "1-101",
     "pid": "1",
     "name": "tree-select",
     "routerLink": "docs/en_US/components/tree-select",
@@ -637,7 +637,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-105",
+    "id": "1-107",
     "pid": "1",
     "name": "upload",
     "routerLink": "docs/en_US/components/upload",
@@ -673,7 +673,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-24",
+    "id": "1-25",
     "pid": "1",
     "name": "crumb",
     "routerLink": "docs/en_US/components/crumb",
@@ -682,7 +682,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-32",
+    "id": "1-33",
     "pid": "1",
     "name": "dropdown",
     "routerLink": "docs/en_US/components/dropdown",
@@ -691,7 +691,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-51",
+    "id": "1-52",
     "pid": "1",
     "name": "menu",
     "routerLink": "docs/en_US/components/menu",
@@ -700,7 +700,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-58",
+    "id": "1-59",
     "pid": "1",
     "name": "page-header",
     "routerLink": "docs/en_US/components/page-header",
@@ -709,7 +709,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-76",
+    "id": "1-77",
     "pid": "1",
     "name": "slider",
     "routerLink": "docs/en_US/components/slider",
@@ -718,7 +718,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-79",
+    "id": "1-81",
     "pid": "1",
     "name": "steps",
     "routerLink": "docs/en_US/components/steps",
@@ -727,7 +727,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-85",
+    "id": "1-87",
     "pid": "1",
     "name": "tabs",
     "routerLink": "docs/en_US/components/tabs",
@@ -736,7 +736,16 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-37",
+    "id": "1-29",
+    "pid": "1",
+    "name": "divider",
+    "routerLink": "docs/en_US/components/divider",
+    "lang": "en_US",
+    "label": "Divider",
+    "category": "Other"
+  },
+  {
+    "id": "1-38",
     "pid": "1",
     "name": "highlight",
     "routerLink": "docs/en_US/components/highlight",
@@ -745,13 +754,24 @@ export const menus: AppMenu[] = [
     "category": "Other"
   },
   {
-    "id": "1-28",
+    "id": "1-108",
     "pid": "1",
-    "name": "divider",
-    "routerLink": "docs/en_US/components/divider",
+    "name": "watermark",
+    "routerLink": "docs/en_US/components/watermark",
     "lang": "en_US",
-    "label": "Divider",
-    "category": "Others"
+    "label": "Watermark",
+    "category": "Other"
+  },
+  {
+    "id": "1-79",
+    "pid": "1",
+    "name": "splitter",
+    "routerLink": "docs/en_US/components/splitter",
+    "lang": "en_US",
+    "category": "Others",
+    "title": "Splitter",
+    "subtitle": "Used to separate panels and adjust their size",
+    "order": 1
   },
   {
     "id": "2-0",
@@ -915,7 +935,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-23",
+    "id": "1-24",
     "pid": "1",
     "name": "coversations",
     "routerLink": "docs/zh_CN/components/coversations",
@@ -924,7 +944,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-65",
+    "id": "1-66",
     "pid": "1",
     "name": "prompts",
     "routerLink": "docs/zh_CN/components/prompts",
@@ -933,7 +953,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-74",
+    "id": "1-75",
     "pid": "1",
     "name": "sender",
     "routerLink": "docs/zh_CN/components/sender",
@@ -942,7 +962,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-81",
+    "id": "1-83",
     "pid": "1",
     "name": "suggestion",
     "routerLink": "docs/zh_CN/components/suggestion",
@@ -951,7 +971,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-90",
+    "id": "1-92",
     "pid": "1",
     "name": "thought-chain",
     "routerLink": "docs/zh_CN/components/thought-chain",
@@ -960,7 +980,7 @@ export const menus: AppMenu[] = [
     "category": "AI"
   },
   {
-    "id": "1-106",
+    "id": "1-109",
     "pid": "1",
     "name": "welcome",
     "routerLink": "docs/zh_CN/components/welcome",
@@ -997,7 +1017,7 @@ export const menus: AppMenu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-39",
+    "id": "1-40",
     "pid": "1",
     "name": "icon",
     "routerLink": "docs/zh_CN/components/icon",
@@ -1006,7 +1026,7 @@ export const menus: AppMenu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-47",
+    "id": "1-48",
     "pid": "1",
     "name": "layout",
     "routerLink": "docs/zh_CN/components/layout",
@@ -1015,7 +1035,7 @@ export const menus: AppMenu[] = [
     "category": "Basic"
   },
   {
-    "id": "1-48",
+    "id": "1-49",
     "pid": "1",
     "name": "link",
     "routerLink": "docs/zh_CN/components/link",
@@ -1087,7 +1107,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-26",
+    "id": "1-27",
     "pid": "1",
     "name": "description",
     "routerLink": "docs/zh_CN/components/description",
@@ -1096,7 +1116,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-33",
+    "id": "1-34",
     "pid": "1",
     "name": "empty",
     "routerLink": "docs/zh_CN/components/empty",
@@ -1105,7 +1125,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-40",
+    "id": "1-41",
     "pid": "1",
     "name": "image",
     "routerLink": "docs/zh_CN/components/image",
@@ -1114,7 +1134,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-56",
+    "id": "1-57",
     "pid": "1",
     "name": "outlet",
     "routerLink": "docs/zh_CN/components/outlet",
@@ -1123,7 +1143,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-59",
+    "id": "1-60",
     "pid": "1",
     "name": "pagination",
     "routerLink": "docs/zh_CN/components/pagination",
@@ -1132,7 +1152,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-64",
+    "id": "1-65",
     "pid": "1",
     "name": "progress",
     "routerLink": "docs/zh_CN/components/progress",
@@ -1141,7 +1161,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-78",
+    "id": "1-80",
     "pid": "1",
     "name": "statistic",
     "routerLink": "docs/zh_CN/components/statistic",
@@ -1150,7 +1170,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-83",
+    "id": "1-85",
     "pid": "1",
     "name": "table",
     "routerLink": "docs/zh_CN/components/table",
@@ -1159,7 +1179,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-86",
+    "id": "1-88",
     "pid": "1",
     "name": "tag",
     "routerLink": "docs/zh_CN/components/tag",
@@ -1168,7 +1188,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-87",
+    "id": "1-89",
     "pid": "1",
     "name": "text-retract",
     "routerLink": "docs/zh_CN/components/text-retract",
@@ -1177,7 +1197,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-91",
+    "id": "1-93",
     "pid": "1",
     "name": "time-ago",
     "routerLink": "docs/zh_CN/components/time-ago",
@@ -1186,7 +1206,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-93",
+    "id": "1-95",
     "pid": "1",
     "name": "time-range",
     "routerLink": "docs/zh_CN/components/time-range",
@@ -1195,7 +1215,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-94",
+    "id": "1-96",
     "pid": "1",
     "name": "timeline",
     "routerLink": "docs/zh_CN/components/timeline",
@@ -1204,7 +1224,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-97",
+    "id": "1-99",
     "pid": "1",
     "name": "tree",
     "routerLink": "docs/zh_CN/components/tree",
@@ -1213,7 +1233,7 @@ export const menus: AppMenu[] = [
     "category": "Data"
   },
   {
-    "id": "1-98",
+    "id": "1-100",
     "pid": "1",
     "name": "tree-file",
     "routerLink": "docs/zh_CN/components/tree-file",
@@ -1231,7 +1251,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-27",
+    "id": "1-28",
     "pid": "1",
     "name": "dialog",
     "routerLink": "docs/zh_CN/components/dialog",
@@ -1240,7 +1260,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-31",
+    "id": "1-32",
     "pid": "1",
     "name": "drawer",
     "routerLink": "docs/zh_CN/components/drawer",
@@ -1249,7 +1269,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-50",
+    "id": "1-51",
     "pid": "1",
     "name": "loading",
     "routerLink": "docs/zh_CN/components/loading",
@@ -1258,7 +1278,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-52",
+    "id": "1-53",
     "pid": "1",
     "name": "message",
     "routerLink": "docs/zh_CN/components/message",
@@ -1267,7 +1287,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-53",
+    "id": "1-54",
     "pid": "1",
     "name": "message-box",
     "routerLink": "docs/zh_CN/components/message-box",
@@ -1276,7 +1296,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-55",
+    "id": "1-56",
     "pid": "1",
     "name": "notification",
     "routerLink": "docs/zh_CN/components/notification",
@@ -1285,7 +1305,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-61",
+    "id": "1-62",
     "pid": "1",
     "name": "popconfirm",
     "routerLink": "docs/zh_CN/components/popconfirm",
@@ -1294,7 +1314,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-62",
+    "id": "1-63",
     "pid": "1",
     "name": "popover",
     "routerLink": "docs/zh_CN/components/popover",
@@ -1303,7 +1323,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-70",
+    "id": "1-71",
     "pid": "1",
     "name": "result",
     "routerLink": "docs/zh_CN/components/result",
@@ -1312,7 +1332,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-75",
+    "id": "1-76",
     "pid": "1",
     "name": "skeleton",
     "routerLink": "docs/zh_CN/components/skeleton",
@@ -1321,7 +1341,7 @@ export const menus: AppMenu[] = [
     "category": "Feedback"
   },
   {
-    "id": "1-95",
+    "id": "1-97",
     "pid": "1",
     "name": "tooltip",
     "routerLink": "docs/zh_CN/components/tooltip",
@@ -1366,7 +1386,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-25",
+    "id": "1-26",
     "pid": "1",
     "name": "date-picker",
     "routerLink": "docs/zh_CN/components/date-picker",
@@ -1375,7 +1395,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-35",
+    "id": "1-36",
     "pid": "1",
     "name": "find",
     "routerLink": "docs/zh_CN/components/find",
@@ -1384,7 +1404,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-36",
+    "id": "1-37",
     "pid": "1",
     "name": "form",
     "routerLink": "docs/zh_CN/components/form",
@@ -1393,7 +1413,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-43",
+    "id": "1-44",
     "pid": "1",
     "name": "input",
     "routerLink": "docs/zh_CN/components/input",
@@ -1402,7 +1422,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-44",
+    "id": "1-45",
     "pid": "1",
     "name": "input-number",
     "routerLink": "docs/zh_CN/components/input-number",
@@ -1411,7 +1431,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-49",
+    "id": "1-50",
     "pid": "1",
     "name": "list",
     "routerLink": "docs/zh_CN/components/list",
@@ -1420,7 +1440,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-66",
+    "id": "1-67",
     "pid": "1",
     "name": "radio",
     "routerLink": "docs/zh_CN/components/radio",
@@ -1429,7 +1449,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-67",
+    "id": "1-68",
     "pid": "1",
     "name": "rate",
     "routerLink": "docs/zh_CN/components/rate",
@@ -1438,7 +1458,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-73",
+    "id": "1-74",
     "pid": "1",
     "name": "select",
     "routerLink": "docs/zh_CN/components/select",
@@ -1447,7 +1467,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-77",
+    "id": "1-78",
     "pid": "1",
     "name": "slider-select",
     "routerLink": "docs/zh_CN/components/slider-select",
@@ -1456,7 +1476,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-82",
+    "id": "1-84",
     "pid": "1",
     "name": "switch",
     "routerLink": "docs/zh_CN/components/switch",
@@ -1465,7 +1485,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-88",
+    "id": "1-90",
     "pid": "1",
     "name": "textarea",
     "routerLink": "docs/zh_CN/components/textarea",
@@ -1474,7 +1494,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-92",
+    "id": "1-94",
     "pid": "1",
     "name": "time-picker",
     "routerLink": "docs/zh_CN/components/time-picker",
@@ -1483,7 +1503,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-96",
+    "id": "1-98",
     "pid": "1",
     "name": "transfer",
     "routerLink": "docs/zh_CN/components/transfer",
@@ -1492,7 +1512,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-99",
+    "id": "1-101",
     "pid": "1",
     "name": "tree-select",
     "routerLink": "docs/zh_CN/components/tree-select",
@@ -1501,7 +1521,7 @@ export const menus: AppMenu[] = [
     "category": "Form"
   },
   {
-    "id": "1-105",
+    "id": "1-107",
     "pid": "1",
     "name": "upload",
     "routerLink": "docs/zh_CN/components/upload",
@@ -1537,7 +1557,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-24",
+    "id": "1-25",
     "pid": "1",
     "name": "crumb",
     "routerLink": "docs/zh_CN/components/crumb",
@@ -1546,7 +1566,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-32",
+    "id": "1-33",
     "pid": "1",
     "name": "dropdown",
     "routerLink": "docs/zh_CN/components/dropdown",
@@ -1555,7 +1575,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-51",
+    "id": "1-52",
     "pid": "1",
     "name": "menu",
     "routerLink": "docs/zh_CN/components/menu",
@@ -1564,7 +1584,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-58",
+    "id": "1-59",
     "pid": "1",
     "name": "page-header",
     "routerLink": "docs/zh_CN/components/page-header",
@@ -1573,7 +1593,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-76",
+    "id": "1-77",
     "pid": "1",
     "name": "slider",
     "routerLink": "docs/zh_CN/components/slider",
@@ -1582,7 +1602,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-79",
+    "id": "1-81",
     "pid": "1",
     "name": "steps",
     "routerLink": "docs/zh_CN/components/steps",
@@ -1591,7 +1611,7 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-85",
+    "id": "1-87",
     "pid": "1",
     "name": "tabs",
     "routerLink": "docs/zh_CN/components/tabs",
@@ -1600,7 +1620,16 @@ export const menus: AppMenu[] = [
     "category": "Navigation"
   },
   {
-    "id": "1-37",
+    "id": "1-29",
+    "pid": "1",
+    "name": "divider",
+    "routerLink": "docs/zh_CN/components/divider",
+    "lang": "zh_CN",
+    "label": "Divider 分割线",
+    "category": "Other"
+  },
+  {
+    "id": "1-38",
     "pid": "1",
     "name": "highlight",
     "routerLink": "docs/zh_CN/components/highlight",
@@ -1609,13 +1638,24 @@ export const menus: AppMenu[] = [
     "category": "Other"
   },
   {
-    "id": "1-28",
+    "id": "1-108",
     "pid": "1",
-    "name": "divider",
-    "routerLink": "docs/zh_CN/components/divider",
+    "name": "watermark",
+    "routerLink": "docs/zh_CN/components/watermark",
     "lang": "zh_CN",
-    "label": "Divider 分割线",
-    "category": "Others"
+    "label": "Watermark 水印",
+    "category": "Other"
+  },
+  {
+    "id": "1-79",
+    "pid": "1",
+    "name": "splitter",
+    "routerLink": "docs/zh_CN/components/splitter",
+    "lang": "zh_CN",
+    "category": "Others",
+    "title": "Splitter 分隔面板",
+    "subtitle": "用于分隔面板并调整其大小",
+    "order": 1
   },
   {
     "id": "2-0",
