@@ -4,11 +4,11 @@ import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 import type {
   XAlign,
   XBoolean,
-  XCorner,
   XDirection,
   XFloatLabel,
   XJustify,
   XNumber,
+  XPlacement,
   XSize,
   XTemplate,
   XVariant
@@ -36,7 +36,7 @@ export class XColorPickerProperty extends XFormControlFunction(X_COLOR_CONFIG_NA
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  readonly placement = input<XCorner>(this.config?.placement ?? 'bottom-start');
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom-start');
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
@@ -188,7 +188,7 @@ export interface XColorPickerOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XCorner;
+  placement?: XPlacement;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border

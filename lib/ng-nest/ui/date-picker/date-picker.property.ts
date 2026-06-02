@@ -3,7 +3,6 @@ import { TemplateRef, Component, input, model, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 import type {
   XBoolean,
-  XCorner,
   XSize,
   XTemplate,
   XData,
@@ -13,7 +12,8 @@ import type {
   XJustify,
   XNumber,
   XVariant,
-  XFloatLabel
+  XFloatLabel,
+  XPlacement
 } from '@ng-nest/ui/core';
 
 /**
@@ -53,7 +53,7 @@ export class XDatePickerProperty extends XFormControlFunction(X_DATA_PICKER_CONF
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  readonly placement = input<XCorner>(this.config?.placement ?? 'bottom-start');
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom-start');
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
@@ -239,7 +239,7 @@ export interface XDatePickerOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XCorner;
+  placement?: XPlacement;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
@@ -409,7 +409,7 @@ export class XDateRangeProperty extends XFormControlFunction(X_DATA_RANGE_CONFIG
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  readonly placement = input<XCorner>(this.config?.placement ?? 'bottom-start');
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom-start');
   /**
    * @zh_CN 显示边框
    * @en_US Display Border
@@ -580,7 +580,7 @@ export interface XDateRangeOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XCorner;
+  placement?: XPlacement;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border

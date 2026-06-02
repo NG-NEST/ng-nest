@@ -1,5 +1,5 @@
 import { XToBoolean, XToCssPixelValue, XToDataConvert, XToNumber } from '@ng-nest/ui/core';
-import { Component, TemplateRef, input, model } from '@angular/core';
+import { Component, TemplateRef, input, model, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 import type {
   XParentIdentityProperty,
@@ -45,6 +45,21 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    */
   readonly width = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
+   * @zh_CN 自适应宽度，需要有默认值
+   * @en_US auto width，needs a default value
+   */
+  readonly autoWidth = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 自适应最小的宽度
+   * @en_US auto min width
+   */
+  readonly autoMinWidth = input<number, XNumber>(40, { transform: XToNumber });
+  /**
+   * @zh_CN 自适应最大的宽度
+   * @en_US auto max width，input needs a default value
+   */
+  readonly autoMaxWidth = input<number | null, XNumber>(null, { transform: XToNumber });
+  /**
    * @zh_CN 清除按钮
    * @en_US Clear button
    */
@@ -58,7 +73,7 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom');
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom-start');
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice
@@ -150,6 +165,11 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    * @en_US Allow the use of input values as selector values during search
    */
   readonly allowInput = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 自定义下拉框中的内容
+   * @en_US Custom content in the drop-down box
+   */
+  readonly portalTemp = input<TemplateRef<any>>();
   /**
    * @zh_CN 浮动标签
    * @en_US Float label
@@ -260,6 +280,11 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    * @en_US Enter the verification function
    */
   override readonly inputValidator = input<(value: any) => boolean>();
+  /**
+   * @zh_CN 输入值变化事件
+   * @en_US Input value change event
+   */
+  readonly searchChange = output<any>();
 }
 
 /**
@@ -363,6 +388,11 @@ export interface XSelectOption extends XFormOption {
    * @en_US Allow the use of input values as selector values during search
    */
   allowInput?: boolean;
+  /**
+   * @zh_CN 自定义下拉框中的内容
+   * @en_US Custom content in the drop-down box
+   */
+  portalTemp?: TemplateRef<any>;
   /**
    * @zh_CN 浮动标签
    * @en_US Float label

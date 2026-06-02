@@ -53,6 +53,11 @@ export class XDropdownProperty extends XPropertyFunction(X_DROPDOWN_CONFIG_NAME)
    */
   readonly children = input<boolean, XBoolean>(false, { transform: XToBoolean });
   /**
+   * @zh_CN 下拉框设置样式名
+   * @en_US The style class name of the drop-down box
+   */
+  readonly portalClass = input<string | string[]>('');
+  /**
    * @zh_CN 弹框的最小宽度
    * @en_US Portal min-width
    */
@@ -72,6 +77,11 @@ export class XDropdownProperty extends XPropertyFunction(X_DROPDOWN_CONFIG_NAME)
    * @en_US Portal max-height
    */
   readonly portalMaxHeight = input<string, XNumber>('', { transform: XToCssPixelValue });
+  /**
+   * @zh_CN 弹框的宽度
+   * @en_US The width of the drop-down box
+   */
+  readonly portalWidth = input<string, XNumber>('', { transform: XToCssPixelValue });
   /**
    * @zh_CN hover 延迟触发时间，只有 trigger 为 'hover' 生效
    * @en_US Hover delay trigger time, only trigger is the 'hover'

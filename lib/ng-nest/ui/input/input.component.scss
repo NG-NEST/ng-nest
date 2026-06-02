@@ -7,6 +7,9 @@
 #{$x-input-prefix} {
   display: inline-block;
   width: 12rem;
+  &.x-input-auto-width {
+    display: inline-flex;
+  }
 }
 
 .#{$x-input-prefix} {

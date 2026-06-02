@@ -8,8 +8,8 @@ import {
   effect,
   inject
 } from '@angular/core';
-import { XListOptionPrefix, XListOptionProperty } from './list.property';
-import { Highlightable } from '@angular/cdk/a11y';
+import { XListOptionHandle, XListOptionPrefix, XListOptionProperty } from './list.property';
+import type { Highlightable } from '@angular/cdk/a11y';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XKeywordDirective } from '@ng-nest/ui/keyword';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
@@ -22,9 +22,9 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XListOptionComponent extends XListOptionProperty implements Highlightable {
+export class XListOptionComponent extends XListOptionProperty implements Highlightable, XListOptionHandle {
   @HostBinding('attr.role') role = 'option';
-  elementRef = inject(ElementRef);
+  elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
   classMap = computed(() => ({}));
   disabled = false;
 
@@ -53,5 +53,9 @@ export class XListOptionComponent extends XListOptionProperty implements Highlig
 
   getLabel() {
     return this.label() as string;
+  }
+
+  getElementRef() {
+    return this.elementRef;
   }
 }

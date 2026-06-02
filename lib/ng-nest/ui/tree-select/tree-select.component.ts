@@ -766,7 +766,15 @@ export class XTreeSelectComponent extends XTreeSelectProperty implements OnInit,
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom().inputRef(),
-      placement: [this.placement() as XPositionTopBottom, 'bottom', 'top'],
+      placement: [
+        this.placement() as XPositionTopBottom,
+        'bottom-start',
+        'bottom-end',
+        'bottom',
+        'top-start',
+        'top-end',
+        'top'
+      ],
       transformOriginOn: 'x-tree-select-portal'
     });
   }

@@ -13,14 +13,24 @@ import {
   computed
 } from '@angular/core';
 import { XInputPrefix, XInputProperty } from './input.property';
-import { XIsEmpty, XIsUndefined, XIsFunction, XSize, XIsArray } from '@ng-nest/ui/core';
-import { Subject, distinctUntilChanged, fromEvent, takeUntil } from 'rxjs';
+import {
+  XIsEmpty,
+  XIsUndefined,
+  XIsFunction,
+  XSize,
+  XIsArray,
+  XComputedStyle,
+  XResize,
+  XResizeObserver
+} from '@ng-nest/ui/core';
+import { Subject, debounceTime, distinctUntilChanged, fromEvent, takeUntil, tap } from 'rxjs';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { XInputGroupComponent } from './input-group.component';
 import { NgClass, NgStyle } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XInputPrefix}`,
@@ -36,13 +46,16 @@ export class XInputComponent extends XInputProperty implements OnInit {
   inputRef = viewChild.required('inputRef', { read: ElementRef<HTMLInputElement> });
   inputValueRef = viewChild('inputValueRef', { read: ElementRef<HTMLElement> });
   maxLengthRef = viewChild('maxLengthRef', { read: ElementRef<HTMLElement> });
+  measureRef = viewChild('measureRef', { read: ElementRef<HTMLElement> });
+  measureRefChanged = signal(false);
 
   @HostBinding('style.width') get getWidth() {
-    return this.width();
+    return this.autoWidth() ? 'auto' : this.width();
   }
 
   override writeValue(value: any) {
     this.value.set(value);
+    this.validatorValue(value);
     this.isWriteValue.set(true);
     this.valueChange.next(value);
     this.isWriteValue.set(false);
@@ -92,8 +105,10 @@ export class XInputComponent extends XInputProperty implements OnInit {
     }
   });
   valueChange = new Subject<any>();
+  valueChangeSignal = toSignal(this.valueChange);
   isComposition = signal(false);
   isWriteValue = signal(false);
+
   private unSubject = new Subject<void>();
 
   getIcon = computed(() => {
@@ -123,6 +138,29 @@ export class XInputComponent extends XInputProperty implements OnInit {
     return `calc(100% - ${this.paddingLeft()} - ${this.paddingRight()})`;
   });
 
+  inputWidth = computed(() => {
+    if (!this.autoWidth()) return 'auto';
+    this.measureRefChanged();
+    const measureElement = this.measureRef()?.nativeElement;
+    const inputRef = this.inputRef()?.nativeElement;
+    const paddingLeft = Number(XComputedStyle(inputRef, 'padding-left')) || 0;
+    const paddingRight = Number(XComputedStyle(inputRef, 'padding-right')) || 0;
+
+    if (measureElement) {
+      let finalWidth = measureElement.offsetWidth + paddingLeft + paddingRight + 2;
+      if (this.autoMinWidth()) {
+        finalWidth = Math.max(finalWidth, this.autoMinWidth()!);
+      }
+      if (this.autoMaxWidth()) {
+        finalWidth = Math.min(finalWidth, this.autoMaxWidth()!);
+      }
+
+      return finalWidth + 'px';
+    }
+
+    return 'auto';
+  });
+
   focused = signal(false);
   groupSize = signal<XSize | null>(null);
   groupBordered = signal<boolean | null>(null);
@@ -130,15 +168,37 @@ export class XInputComponent extends XInputProperty implements OnInit {
   override cdr = inject(ChangeDetectorRef);
   private inputGroup = inject(XInputGroupComponent, { optional: true });
   elementRef = inject(ElementRef);
+  private resizeObserver!: XResizeObserver;
 
   ngOnInit() {
     this.setInheritedValue();
     this.setEvent();
+    this.validatorValue(this.value());
+  }
+
+  ngAfterViewInit() {
+    this.setAutoElement();
   }
 
   ngOnDestroy() {
     this.unSubject.next();
     this.unSubject.complete();
+    this.resizeObserver?.disconnect();
+  }
+
+  setAutoElement() {
+    if (!this.autoWidth()) return;
+
+    XResize(this.measureRef()?.nativeElement)
+      .pipe(
+        debounceTime(16),
+        tap(({ resizeObserver }) => {
+          this.resizeObserver = resizeObserver;
+          this.measureRefChanged.update((x) => !x);
+        }),
+        takeUntil(this.unSubject)
+      )
+      .subscribe();
   }
 
   setEvent() {
@@ -217,8 +277,16 @@ export class XInputComponent extends XInputProperty implements OnInit {
       }
       this.onChange(value);
     }
-    if (this.validatorComputed() && XIsFunction(this.inputValidator())) {
-      this.invalidInputValidator.set(!this.inputValidator()!(value));
+    this.validatorValue(value);
+  }
+
+  validatorValue(value: any) {
+    if (this.validatorComputed()) {
+      if (XIsFunction(this.inputValidator())) {
+        this.invalidInputValidator.set(!this.inputValidator()!(value));
+      } else {
+        this.invalidInputValidator.set(this.requiredIsEmpty());
+      }
     }
   }
 

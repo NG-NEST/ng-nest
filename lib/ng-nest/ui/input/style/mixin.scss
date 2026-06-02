@@ -435,6 +435,14 @@
       }
     }
   }
+  &-measure {
+    visibility: hidden;
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    white-space: nowrap;
+    pointer-events: none;
+  }
   @include size('big', $x-height-big, $x-padding-big);
   @include size('large', $x-height-large, $x-padding-large);
   @include size('medium', $x-height-medium, $x-padding-medium);

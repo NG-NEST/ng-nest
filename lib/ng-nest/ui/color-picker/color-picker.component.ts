@@ -19,7 +19,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { XColorPickerProperty } from './color-picker.property';
-import { XIsEmpty, XCorner, XParents, XPlacement, XComputed } from '@ng-nest/ui/core';
+import { XIsEmpty, XParents, XPlacement, XComputed } from '@ng-nest/ui/core';
 import { XInputComponent } from '@ng-nest/ui/input';
 import {
   Overlay,
@@ -180,7 +180,7 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
     position.positionChanges.pipe(takeUntil(this.unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
       if (place !== this.realPlacement()) {
         this.realPlacement.set(place);
         this.portalOverlayRef()?.updatePosition();
@@ -236,7 +236,15 @@ export class XColorPickerComponent extends XColorPickerProperty implements OnIni
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom().inputRef(),
-      placement: [this.placement() as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [
+        this.placement() as XPlacement,
+        'bottom-start',
+        'bottom-end',
+        'bottom',
+        'top-start',
+        'top-end',
+        'top'
+      ],
       transformOriginOn: 'x-color-picker-portal'
     });
   }

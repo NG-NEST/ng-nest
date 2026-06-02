@@ -102,7 +102,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   getMaxTagContent = computed(() => this.maxTagContent() || this.locale()!.maxTagContent);
 
   noPortalWidthPlacements: XPlacement[] = ['bottom', 'top'];
-  hasPortalWidthPlacements: XPlacement[] = ['bottom-start', 'bottom-end', 'top-start', 'top-end'];
+  hasPortalWidthPlacements: XPlacement[] = ['bottom-start', 'bottom-end', 'bottom', 'top-start', 'top-end', 'top'];
 
   override writeValue(value: any) {
     if (this.multiple()) {
@@ -139,6 +139,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   closeSubject: Subject<void> = new Subject();
   keydownSubject: Subject<KeyboardEvent> = new Subject();
   inputChange: Subject<any> = new Subject();
+
   multipleInputSizeChange = new Subject<number>();
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
@@ -218,6 +219,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     effect(() => this.portalComponent()?.setInput('virtualScroll', this.virtualScroll()));
     effect(() => this.portalComponent()?.setInput('size', this.size()));
     effect(() => this.portalComponent()?.setInput('keywordText', this.keywordText()));
+    effect(() => this.portalComponent()?.setInput('portalTemp', this.portalTemp()));
   }
 
   ngOnInit() {
@@ -779,6 +781,14 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
     }
   }
 
+  portalClose() {
+    this.closeSubject.next();
+  }
+
+  portalNodeClick(node: XSelectNode, value?: XSelectNode[] | (string | number)[]) {
+    this.nodeClick(node, value);
+  }
+
   onFocus(_event: Event) {
     if (this.search() && this.multiple() && this.multipleInput()) {
       this.multipleInput()!.inputFocus();
@@ -789,6 +799,10 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
 
   onInput(_event: InputEvent) {
     this.formControlValidator();
-    setTimeout(() => this.inputChange.next(this.multiple() ? this.multipleSearchValue() : this.displayValue()));
+    setTimeout(() => {
+      const value = this.multiple() ? this.multipleSearchValue() : this.displayValue();
+      this.searchChange.emit(value);
+      this.inputChange.next(value);
+    });
   }
 }

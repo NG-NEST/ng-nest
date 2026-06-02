@@ -4423,12 +4423,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XPositionTopBottom",
-        "toType": "XPositionTopBottom",
-        "inputType": "InputSignal<XPositionTopBottom>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "Display position",
-        "default": "'bottom'",
+        "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -5085,7 +5085,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XPositionTopBottom",
+        "type": "XPlacement",
         "label": "Display position",
         "default": "",
         "withConfig": false,
@@ -8713,9 +8713,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "Display position",
         "default": "'bottom-start'",
@@ -9410,7 +9410,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "Display position",
         "default": "",
         "withConfig": false,
@@ -11346,9 +11346,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "Display position",
         "default": "'bottom-start'",
@@ -11882,7 +11882,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "Display position",
         "default": "",
         "withConfig": false,
@@ -13469,9 +13469,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "Display position",
         "default": "'bottom-start'",
@@ -14128,7 +14128,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "Display position",
         "default": "",
         "withConfig": false,
@@ -14692,9 +14692,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "Display position",
         "default": "'bottom-start'",
@@ -15297,7 +15297,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "Display position",
         "default": "",
         "withConfig": false,
@@ -19348,6 +19348,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToBoolean"
       },
       {
+        "name": "portalClass",
+        "type": "string | string[]",
+        "toType": "string | string[]",
+        "inputType": "InputSignal<string | string[]>",
+        "signal": "input",
+        "label": "The style class name of the drop-down box",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "portalMinWidth",
         "type": "XNumber",
         "toType": "string",
@@ -19408,6 +19426,24 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignalWithTransform<string, XNumber>",
         "signal": "input",
         "label": "Portal max-height",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToCssPixelValue"
+      },
+      {
+        "name": "portalWidth",
+        "type": "XNumber",
+        "toType": "string",
+        "inputType": "InputSignalWithTransform<string, XNumber>",
+        "signal": "input",
+        "label": "The width of the drop-down box",
         "default": "''",
         "withConfig": false,
         "description": "",
@@ -23627,6 +23663,78 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
+        "name": "autoWidth",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "auto width，input needs a default value",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "autoWidthValue",
+        "type": "string | null",
+        "toType": "string | null",
+        "inputType": "InputSignal<string | null>",
+        "signal": "input",
+        "label": "auto width contrast value, defaults to the value of value",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "autoMinWidth",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "auto min width",
+        "default": "40",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "autoMaxWidth",
+        "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
+        "signal": "input",
+        "label": "auto max width，input needs a default value",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
         "name": "bordered",
         "type": "XBoolean",
         "toType": "boolean",
@@ -27525,7 +27633,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "component",
-        "type": "XListOptionComponent",
+        "type": "XListOptionHandle",
         "label": "List option component",
         "default": "",
         "withConfig": false,
@@ -27545,6 +27653,20 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": [
       "XParentIdentityProperty<XListNode>"
     ]
+  },
+  "XListOptionHandle": {
+    "type": "type",
+    "label": "List option component",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XListOptionHandle",
+    "value": "XListOptionHandle = {setActiveStyles(): void;setInactiveStyles(): void;getLabel(): string;getElementRef(): ElementRef<HTMLElement>;};"
   },
   "XListOptionPrefix": {
     "type": "const",
@@ -33523,6 +33645,60 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": "XToCssPixelValue"
       },
       {
+        "name": "autoWidth",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "auto width，needs a default value",
+        "default": "false",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "autoMinWidth",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "auto min width",
+        "default": "40",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "autoMaxWidth",
+        "type": "XNumber",
+        "toType": "number | null",
+        "inputType": "InputSignalWithTransform<number | null, XNumber>",
+        "signal": "input",
+        "label": "auto max width，input needs a default value",
+        "default": "null",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
         "name": "clearable",
         "type": "XBoolean",
         "toType": "boolean",
@@ -33565,7 +33741,7 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "Display position",
-        "default": "'bottom'",
+        "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -33881,6 +34057,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": "XToBoolean"
+      },
+      {
+        "name": "portalTemp",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Custom content in the drop-down box",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       },
       {
         "name": "floatLabel",
@@ -34277,6 +34471,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "searchChange",
+        "type": "any",
+        "toType": "",
+        "inputType": "OutputEmitterRef<any>",
+        "signal": "output",
+        "label": "Input value change event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
       }
     ],
     "name": "XSelectProperty",
@@ -34610,6 +34822,23 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "allowInput",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "portalTemp",
+        "type": "TemplateRef<any>",
+        "label": "Custom content in the drop-down box",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "portalTemp",
         "propType": "",
         "example": [
           {
@@ -48645,12 +48874,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XPositionTopBottom",
-        "toType": "XPositionTopBottom",
-        "inputType": "InputSignal<XPositionTopBottom>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "Display position",
-        "default": "'bottom'",
+        "default": "'bottom-start'",
         "withConfig": true,
         "description": "",
         "example": [
@@ -49520,7 +49749,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XPositionTopBottom",
+        "type": "XPlacement",
         "label": "Display position",
         "default": "",
         "withConfig": false,

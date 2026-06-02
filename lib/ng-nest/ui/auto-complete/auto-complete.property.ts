@@ -1,7 +1,6 @@
 import {
   XParentIdentityProperty,
   XData,
-  XPositionTopBottom,
   XSize,
   XBoolean,
   XAlign,
@@ -13,7 +12,8 @@ import {
   XToBoolean,
   XToCssPixelValue,
   XVariant,
-  XFloatLabel
+  XFloatLabel,
+  XPlacement
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, model, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
@@ -50,7 +50,7 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  readonly placement = input<XPositionTopBottom>(this.config?.placement ?? 'bottom');
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom-start');
   /**
    * @zh_CN 节点模板
    * @en_US Node template
@@ -240,7 +240,7 @@ export interface XAutoCompleteOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XPositionTopBottom;
+  placement?: XPlacement;
   /**
    * @zh_CN 节点模板
    * @en_US Node template
