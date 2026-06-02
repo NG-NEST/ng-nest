@@ -6,26 +6,33 @@
   [style.maxHeight]="portalHeight() ? portalHeight() : portalMaxHeight()"
   [style.height]="portalHeight()"
 >
-  <x-list
-    #list
-    [data]="data()!"
-    [(ngModel)]="value"
-    (nodeClick)="onNodeClick($event)"
-    (keyManagerChange)="onActive($event)"
-    (keyManagerTabOut)="onTabOut()"
-    (onSelectAll)="onSelectAll($event)"
-    checked
-    [objectArray]="objectArray()"
-    [multiple]="multiple()"
-    [selectAll]="selectAll()"
-    [selectAllText]="getSelectAllText()!"
-    [nodeTpl]="nodeTpl()"
-    [scrollElement]="selectPortal"
-    [virtualScroll]="virtualScroll()"
-    [size]="size()!"
-    [heightAdaption]="selectPortal"
-    [keywordText]="keywordText()"
-    [caseSensitive]="caseSensitive()"
-    [inPortal]="true"
-  ></x-list>
+  @if (portalTemp(); as portalTpl) {
+    <ng-template
+      [ngTemplateOutlet]="portalTpl"
+      [ngTemplateOutletContext]="portalTempContext()"
+    ></ng-template>
+  } @else {
+    <x-list
+      #list
+      [data]="data()!"
+      [(ngModel)]="value"
+      (nodeClick)="onNodeClick($event)"
+      (keyManagerChange)="onActive($event)"
+      (keyManagerTabOut)="onTabOut()"
+      (onSelectAll)="onSelectAll($event)"
+      checked
+      [objectArray]="objectArray()"
+      [multiple]="multiple()"
+      [selectAll]="selectAll()"
+      [selectAllText]="getSelectAllText()!"
+      [nodeTpl]="nodeTpl()"
+      [scrollElement]="selectPortal"
+      [virtualScroll]="virtualScroll()"
+      [size]="size()!"
+      [heightAdaption]="selectPortal"
+      [keywordText]="keywordText()"
+      [caseSensitive]="caseSensitive()"
+      [inPortal]="true"
+    ></x-list>
+  }
 </div>

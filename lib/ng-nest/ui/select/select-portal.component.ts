@@ -23,11 +23,12 @@ import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
 import { XI18nSelect, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { FormsModule } from '@angular/forms';
+import { NgTemplateOutlet } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XSelectPortalPrefix}`,
-  imports: [FormsModule, XListComponent],
+  imports: [FormsModule, XListComponent, NgTemplateOutlet],
   templateUrl: './select-portal.component.html',
   styleUrls: ['./select-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -51,7 +52,7 @@ export class XSelectPortalComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private i18n = inject(XI18nService);
 
-  list = viewChild.required<XListComponent>('list');
+  list = viewChild<XListComponent>('list');
 
   value = model<any>();
   data = input<XSelectNode[]>();
@@ -70,6 +71,15 @@ export class XSelectPortalComponent implements OnInit {
   keywordText = input<any>('');
   size = input<XSize>();
   showPortal = signal(false);
+  portalTemp = input<TemplateRef<any>>();
+
+  portalTempContext = computed(() => ({
+    $implicit: this.data(),
+    $data: this.data(),
+    $value: this.value(),
+    $close: () => this.closeSubject.next(),
+    $nodeClick: (node: XSelectNode) => this.onNodeClick(node)
+  }));
 
   animating = output<boolean>();
   nodeClick = output<{ node: XSelectNode | null; value?: XSelectNode[] | (string | number)[] }>();
@@ -82,10 +92,16 @@ export class XSelectPortalComponent implements OnInit {
 
   ngOnInit(): void {
     this.closeSubject.pipe(takeUntil(this.unSubject)).subscribe(() => {
-      this.data() && this.data()!.length > 0 && this.list().setUnActive(this.active());
+      const list = this.list();
+      if (list) {
+        this.data() && this.data()!.length > 0 && list.setUnActive(this.active());
+      }
     });
     this.keydownSubject.pipe(takeUntil(this.unSubject)).subscribe((x) => {
-      this.data() && this.data()!.length > 0 && this.list().keydown(x);
+      const list = this.list();
+      if (list) {
+        this.data() && this.data()!.length > 0 && list.keydown(x);
+      }
     });
     this.destroyRef.onDestroy(() => {
       this.destroy.set(true);
@@ -95,7 +111,7 @@ export class XSelectPortalComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.list().keyManager.setFirstItemActive();
+    this.list()?.keyManager.setFirstItemActive();
   }
 
   stopPropagation(event: Event): void {
