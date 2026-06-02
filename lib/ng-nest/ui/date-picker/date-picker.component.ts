@@ -23,7 +23,6 @@ import {
   XIsDate,
   XIsNumber,
   XIsChange,
-  XCorner,
   XIsString,
   XIsNull,
   XDateYearWeek,
@@ -285,7 +284,7 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
     position.positionChanges.pipe(takeUntil(this.unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
       if (place !== this.realPlacement()) {
         this.realPlacement.set(place);
         this.portalOverlayRef()?.updatePosition();
@@ -343,7 +342,15 @@ export class XDatePickerComponent extends XDatePickerProperty implements OnInit,
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom().inputRef(),
-      placement: [this.placement() as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [
+        this.placement() as XPlacement,
+        'bottom-start',
+        'bottom-end',
+        'bottom',
+        'top-start',
+        'top-end',
+        'top'
+      ],
       transformOriginOn: 'x-date-picker-portal'
     });
   }

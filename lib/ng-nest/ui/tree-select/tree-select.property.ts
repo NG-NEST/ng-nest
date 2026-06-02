@@ -5,7 +5,6 @@ import type {
   XParentIdentityProperty,
   XData,
   XBoolean,
-  XPositionTopBottom,
   XSize,
   XNumber,
   XTemplate,
@@ -13,7 +12,8 @@ import type {
   XAlign,
   XJustify,
   XVariant,
-  XFloatLabel
+  XFloatLabel,
+  XPlacement
 } from '@ng-nest/ui/core';
 
 /**
@@ -62,7 +62,7 @@ export class XTreeSelectProperty extends XFormControlFunction(X_TREE_SELECT_CONF
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  readonly placement = input<XPositionTopBottom>(this.config?.placement ?? 'bottom');
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom-start');
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice
@@ -315,7 +315,7 @@ export interface XTreeSelectOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XPositionTopBottom;
+  placement?: XPlacement;
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice

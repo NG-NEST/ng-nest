@@ -49,7 +49,7 @@ export class XTreeSelectPortalComponent {
 
   value = model<any>();
   data = input<XTreeSelectNode[]>([]);
-  placement = input<XPlacement>('bottom');
+  placement = input<XPlacement>();
   multiple = input(false);
   nodeTpl = input<TemplateRef<any>>();
   inputCom = input<XInputComponent>();

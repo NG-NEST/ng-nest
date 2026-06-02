@@ -20,7 +20,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { XColorPickerPortalPrefix, XColorType } from './color-picker.property';
-import { XIsChange, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XIsChange, XPlacement } from '@ng-nest/ui/core';
 import { XSliderSelectComponent } from '@ng-nest/ui/slider-select';
 import { Subject } from 'rxjs';
 import { CdkDragMove } from '@angular/cdk/drag-drop';
@@ -65,7 +65,7 @@ export class XColorPickerPortalComponent implements OnInit, OnChanges, AfterView
   transparentCom = viewChild.required('transparentCom', { read: XSliderSelectComponent });
   value = model<string>('');
   inputCom = input<XInputComponent>();
-  placement = input<XPositionTopBottom>();
+  placement = input<XPlacement>();
   panelTemplate = input<TemplateRef<any>>();
 
   animating = output<boolean>();

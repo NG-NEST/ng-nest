@@ -14,7 +14,7 @@ import {
   OnInit
 } from '@angular/core';
 import { XCascadeNode, XCascadeNodeTrigger } from './cascade.property';
-import { XIsEmpty, XPositionTopBottom } from '@ng-nest/ui/core';
+import { XIsEmpty, XPlacement } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { delay, takeUntil, tap } from 'rxjs/operators';
 import { XInputComponent } from '@ng-nest/ui/input';
@@ -44,7 +44,7 @@ export class XCascadePortalComponent implements OnInit {
   }
 
   value = input<any>();
-  placement = input<XPositionTopBottom>();
+  placement = input<XPlacement>();
   nodeTpl = input<TemplateRef<any>>();
   inputCom = input<XInputComponent>();
   nodeTrigger = input<XCascadeNodeTrigger>();

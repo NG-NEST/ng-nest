@@ -18,7 +18,7 @@ import {
 } from '@angular/core';
 import { XDropdownPortalPrefix, XDropdownNode, XDropdownTrigger } from './dropdown.property';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
-import { XPositionTopBottom, XSize } from '@ng-nest/ui/core';
+import { XPlacement, XPositionTopBottom, XSize } from '@ng-nest/ui/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {
@@ -55,7 +55,7 @@ export class XDropdownPortalComponent {
 
   data = input<XDropdownNode[]>([]);
   trigger = input<XDropdownTrigger>('hover');
-  placement = input<XPositionTopBottom>();
+  placement = input<XPlacement>();
   size = input<XSize>('medium');
   minWidth = input<string>();
   maxWidth = input<string>();

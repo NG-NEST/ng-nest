@@ -299,7 +299,15 @@ export class XTimePickerComponent extends XTimePickerProperty implements OnInit,
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputCom().inputRef(),
-      placement: [this.placement() as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [
+        this.placement() as XPlacement,
+        'bottom-start',
+        'bottom-end',
+        'bottom',
+        'top-start',
+        'top-end',
+        'top'
+      ],
       transformOriginOn: 'x-time-picker-portal'
     });
   }

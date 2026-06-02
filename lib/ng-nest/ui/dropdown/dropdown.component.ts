@@ -15,15 +15,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { XDropdownPrefix, XDropdownNode, XDropdownProperty } from './dropdown.property';
-import {
-  XIsEmpty,
-  XHasChildren,
-  XGetChildren,
-  XPositionTopBottom,
-  XPlacement,
-  XIsChange,
-  XIsNull
-} from '@ng-nest/ui/core';
+import { XIsEmpty, XHasChildren, XGetChildren, XPlacement, XIsChange, XIsNull } from '@ng-nest/ui/core';
 import { of, Subject } from 'rxjs';
 import { XPortalConnectedPosition, XPortalOverlayRef, XPortalService } from '@ng-nest/ui/portal';
 import { XDropdownPortalComponent } from './dropdown-portal.component';
@@ -217,7 +209,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
     position.positionChanges.pipe(takeUntil(this.unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPositionTopBottom;
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
       if (place !== this.realPlacement()) {
         this.realPlacement.set(place);
         this.portalOverlayRef()?.updatePosition();
@@ -261,7 +253,7 @@ export class XDropdownComponent extends XDropdownProperty implements OnInit, OnD
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.dropdown(),
-      placement: [this.placement(), 'bottom-start', 'top-start', 'bottom-end', 'top-end'],
+      placement: [this.placement(), 'bottom-start', 'bottom-end', 'bottom', 'top-start', 'top-end', 'top'],
       transformOriginOn: 'x-dropdown-portal'
     });
   }

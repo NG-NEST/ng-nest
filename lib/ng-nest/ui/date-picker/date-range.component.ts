@@ -25,13 +25,12 @@ import {
   XIsDate,
   XIsNumber,
   XIsChange,
-  XCorner,
+  XPlacement,
   XIsString,
   XIsNull,
   XDateYearWeek,
   XDateYearQuarter,
-  XParents,
-  XPlacement
+  XParents
 } from '@ng-nest/ui/core';
 import { XInputComponent, XInputGroupComponent } from '@ng-nest/ui/input';
 import { DOCUMENT, DatePipe, NgClass } from '@angular/common';
@@ -48,7 +47,7 @@ import { XDateRangePortalComponent } from './date-range-portal.component';
 import { XI18nDatePicker, XI18nService, zh_CN } from '@ng-nest/ui/i18n';
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { XOutletDirective } from "@ng-nest/ui/outlet";
+import { XOutletDirective } from '@ng-nest/ui/outlet';
 
 @Component({
   selector: `${XDateRangePrefix}`,
@@ -372,7 +371,7 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   setPosition(config: OverlayConfig) {
     let position = config.positionStrategy as FlexibleConnectedPositionStrategy;
     position.positionChanges.pipe(takeUntil(this.unSubject)).subscribe((pos: ConnectedOverlayPositionChange) => {
-      const place = XPortalConnectedPosition.get(pos.connectionPair) as XCorner;
+      const place = XPortalConnectedPosition.get(pos.connectionPair) as XPlacement;
       if (place !== this.realPlacement()) {
         this.realPlacement.set(place);
         this.portalOverlayRef()?.updatePosition();
@@ -470,7 +469,15 @@ export class XDateRangeComponent extends XDateRangeProperty implements OnInit, O
   setPlacement() {
     return this.portalService.setPlacement({
       elementRef: this.inputGroup().elementRef,
-      placement: [this.placement() as XCorner, 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [
+        this.placement() as XPlacement,
+        'bottom-start',
+        'bottom-end',
+        'bottom',
+        'top-start',
+        'top-end',
+        'top'
+      ],
       transformOriginOn: 'x-date-range-portal'
     });
   }

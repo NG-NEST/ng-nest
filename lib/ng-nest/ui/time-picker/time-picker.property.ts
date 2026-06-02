@@ -4,13 +4,13 @@ import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 import type {
   XAlign,
   XBoolean,
-  XCorner,
   XData,
   XDirection,
   XFloatLabel,
   XIdentityProperty,
   XJustify,
   XNumber,
+  XPlacement,
   XSize,
   XTemplate,
   XVariant
@@ -48,7 +48,7 @@ export class XTimePickerProperty extends XFormControlFunction(X_TIME_PICKER_CONF
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  readonly placement = input<XCorner>(this.config?.placement ?? 'bottom-start');
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom-start');
   /**
    * @zh_CN 使用12小时制
    * @en_US Use 12 hour clock
@@ -244,7 +244,7 @@ export interface XTimePickerOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XCorner;
+  placement?: XPlacement;
   /**
    * @zh_CN 使用12小时制
    * @en_US Use 12 hour clock

@@ -73,7 +73,7 @@ export class XSelectProperty extends XFormControlFunction(X_SELECT_CONFIG_NAME) 
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom');
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom-start');
   /**
    * @zh_CN 多选功能
    * @en_US Multiple choice

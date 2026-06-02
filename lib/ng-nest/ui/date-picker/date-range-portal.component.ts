@@ -24,7 +24,7 @@ import {
 } from './date-picker.property';
 import {
   XIsEmpty,
-  XPositionTopBottom,
+  XPlacement,
   XAddMonths,
   XAddYears,
   XIsNull,
@@ -89,7 +89,7 @@ export class XDateRangePortalComponent implements AfterViewInit {
   timePickerFrame = viewChild<XTimePickerFrameComponent>('timePickerFrame');
 
   value = model<(number | null)[]>([]);
-  placement = input<XPositionTopBottom>();
+  placement = input<XPlacement>();
   type = model<XDatePickerType>('date');
   preset = input<XDateRangePreset[]>([]);
   extraFooter = input<XTemplate>();

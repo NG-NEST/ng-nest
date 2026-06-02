@@ -21,7 +21,7 @@ import {
   XDatePickerPreset,
   XDatePickerType
 } from './date-picker.property';
-import { XIsEmpty, XPositionTopBottom, XAddDays, XTemplate, XIsUndefined } from '@ng-nest/ui/core';
+import { XIsEmpty, XPlacement, XAddDays, XTemplate, XIsUndefined } from '@ng-nest/ui/core';
 import { map } from 'rxjs/operators';
 import { DatePipe, LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { XI18nService, XI18nDatePicker, zh_CN } from '@ng-nest/ui/i18n';
@@ -79,7 +79,7 @@ export class XDatePickerPortalComponent implements AfterViewInit {
   type = model<XDatePickerType>('date');
   preset = input<XDatePickerPreset[]>([]);
   extraFooter = input<XTemplate>();
-  placement = input<XPositionTopBottom>();
+  placement = input<XPlacement>();
   inputCom = input<XInputComponent>();
   disabledDate = input<XDatePickerDisabledDate>();
   disabledTime = input<XDatePickerDisabledTime>();

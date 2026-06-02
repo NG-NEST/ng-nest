@@ -216,7 +216,7 @@ export class XContextmenuComponent extends XContextmenuProperty implements OnIni
     const positionElement = this.positionElement || document.body;
     return this.portalService.setPlacement({
       elementRef: { nativeElement: positionElement } as ElementRef,
-      placement: [this.placement(), 'bottom-start', 'bottom-end', 'top-start', 'top-end'],
+      placement: [this.placement(), 'bottom-start', 'bottom-end', 'bottom', 'top-start', 'top-end', 'top'],
       transformOriginOn: 'x-contextmenu-portal'
     });
   }

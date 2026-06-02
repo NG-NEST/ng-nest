@@ -4,7 +4,6 @@ import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
 import type {
   XParentIdentityProperty,
   XData,
-  XCorner,
   XSize,
   XBoolean,
   XTrigger,
@@ -14,7 +13,8 @@ import type {
   XDirection,
   XJustify,
   XVariant,
-  XFloatLabel
+  XFloatLabel,
+  XPlacement
 } from '@ng-nest/ui/core';
 
 /**
@@ -44,7 +44,7 @@ export class XCascadeProperty extends XFormControlFunction(X_CASCADE_CONFIG_NAME
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  readonly placement = input<XCorner>(this.config?.placement ?? 'bottom-start');
+  readonly placement = input<XPlacement>(this.config?.placement ?? 'bottom-start');
   /**
    * @zh_CN 清除按钮
    * @en_US Clear button
@@ -244,7 +244,7 @@ export interface XCascadeOption extends XFormOption {
    * @zh_CN 展示方位
    * @en_US Display position
    */
-  placement?: XCorner;
+  placement?: XPlacement;
   /**
    * @zh_CN 显示边框
    * @en_US Display Border

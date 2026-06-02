@@ -102,7 +102,7 @@ export class XSelectComponent extends XSelectProperty implements OnInit, OnChang
   getMaxTagContent = computed(() => this.maxTagContent() || this.locale()!.maxTagContent);
 
   noPortalWidthPlacements: XPlacement[] = ['bottom', 'top'];
-  hasPortalWidthPlacements: XPlacement[] = ['bottom-start', 'bottom-end', 'top-start', 'top-end'];
+  hasPortalWidthPlacements: XPlacement[] = ['bottom-start', 'bottom-end', 'bottom', 'top-start', 'top-end', 'top'];
 
   override writeValue(value: any) {
     if (this.multiple()) {
