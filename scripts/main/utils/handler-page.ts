@@ -11,7 +11,7 @@ export function handlerPage(page: NcPage) {
     extension: 'html',
     type: page.type
   });
-  handleTemplates(page, tplDir, page.genDir, ...templates);
+  handleTemplates(page, tplDir, page.genDir!, ...templates);
 }
 
 export function handleTemplates(page: NcPage, fromDir: string, toDir: string, ...name: NcTplName[]): NcTemplate[] {
@@ -28,7 +28,7 @@ export function handleTemplates(page: NcPage, fromDir: string, toDir: string, ..
     tpl.genPath = path.join(toDir, `${tpl.genName}`);
     tpls.push(tpl);
   });
-  page.templates = [...page.templates, ...tpls];
+  page.templates = [...page.templates ?? [], ...tpls];
   return tpls;
 }
 
@@ -43,7 +43,7 @@ export function createRouterOutlet(name: string) {
 
 export function pageAddChildren(page: NcPage, children: NcPage[]) {
   if (page && children) {
-    let routes = page.templates.find((x) => x.name === 'routes-module');
+    let routes = page.templates!.find((x) => x.name === 'routes-module');
     if (routes) {
       children.forEach((x, index) => {
         let route = `      {
@@ -57,7 +57,7 @@ export function pageAddChildren(page: NcPage, children: NcPage[]) {
         pathMatch: 'full'
       },\n${route}`;
         }
-        routes.syswords.loadChildren += `\n${route}${index !== children.length - 1 ? ',' : '\n    '}`;
+        routes.syswords!.loadChildren += `\n${route}${index !== children.length - 1 ? ',' : '\n    '}`;
       });
     }
   }

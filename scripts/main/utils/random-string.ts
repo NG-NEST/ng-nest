@@ -7,7 +7,7 @@
  */
 export function randomString(num: number = 6) {
   if (num < 0) return '';
-  var result = [];
+  var result: string[] = [];
   for (var i = 0; i < num; i++) {
     var ranXm = Math.ceil(Math.random() * 25);
     result.push(String.fromCharCode(65 + ranXm));

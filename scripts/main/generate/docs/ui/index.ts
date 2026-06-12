@@ -15,7 +15,7 @@ export class NcUiPage extends NcPage {
 
 export class NcUi {
   components = new NcComponents();
-  page: NcPage;
+  page!: NcPage;
   children: NcPage[] = [];
   init() {
     this.genComponent();

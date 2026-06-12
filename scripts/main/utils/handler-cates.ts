@@ -14,11 +14,11 @@ import { existsSync } from 'fs-extra';
  */
 export function hanlderCates(cates: NcCates, page: NcPage) {
   cates.list = [];
-  if (!existsSync(cates.folderPath)) return;
-  let folder = fs.readdirSync(cates.folderPath, 'utf8');
-  let component = page.templates.find((x) => x.type == 'default' && x.name == 'component');
+  if (!existsSync(cates.folderPath!)) return;
+  let folder = fs.readdirSync(cates.folderPath!, 'utf8');
+  let component = page.templates!.find((x) => x.type == 'default' && x.name == 'component');
   folder.forEach((x) => {
-    let catePath = path.join(cates.folderPath, x);
+    let catePath = path.join(cates.folderPath!, x);
     if (fs.lstatSync(catePath).isDirectory()) {
       let readme = parseMdDoc(path.join(catePath, 'readme.md'));
       if (readme) {
@@ -29,9 +29,9 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
           path: catePath,
           dynamic: readme.meta.dynamic
         };
-        handlerCodeBoxes(cate, readme, component, page);
-        cates.list.push(cate);
-        cates.list = orderBy(cates.list, ['order'], ['asc']);
+        handlerCodeBoxes(cate, readme, component!, page);
+        cates.list!.push(cate);
+        cates.list = orderBy(cates.list!, ['order'], ['asc']);
       }
     }
   });
@@ -45,7 +45,7 @@ export function hanlderCates(cates: NcCates, page: NcPage) {
  * @param {*} readme
  */
 export function handlerCodeBoxes(cate: NcCate, readme, component: NcTemplate, page: NcPage) {
-  let folder = fs.readdirSync(cate.path, 'utf8');
+  let folder = fs.readdirSync(cate.path!, 'utf8');
   let box: NcCodeBox = {
     codes: [],
     description: readme.content
@@ -57,30 +57,30 @@ export function handlerCodeBoxes(cate: NcCate, readme, component: NcTemplate, pa
         name: x,
         type: x.slice(x.lastIndexOf('.') + 1, x.length),
         subType: subType.slice(subType.lastIndexOf('.') + 1, subType.length),
-        content: fs.readFileSync(path.join(cate.path, x), 'utf8')
+        content: fs.readFileSync(path.join(cate.path!, x), 'utf8')
       };
 
       if (code.type === 'ts' && code.subType === 'component') {
-        const matchSelector = code.content.match(/selector: \'(\S*)\',/);
-        const matchClassName = code.content.match(/export class (\S*) /);
-        if (matchSelector.length > 1) cate.selector = matchSelector[1];
-        if (matchClassName.length > 1) cate.className = matchClassName[1];
-        cate.rootPath = `./${cate.path
-          .slice(cate.path.lastIndexOf('examples'), cate.path.length)
+        const matchSelector = code.content!.match(/selector: \'(\S*)\',/);
+        const matchClassName = code.content!.match(/export class (\S*) /);
+        if (matchSelector!.length > 1) cate.selector = matchSelector![1];
+        if (matchClassName!.length > 1) cate.className = matchClassName![1];
+        cate.rootPath = `./${cate.path!
+          .slice(cate.path!.lastIndexOf('examples'), cate.path!.length)
           .replace(/\\/g, '/')}/${x.slice(0, x.lastIndexOf(code.type) - 1)}`;
         if (cate.className) {
           if (cate.dynamic && cate.dynamic.includes(cate.className)) {
             // Dynamic components are generally created using services and do not need to be imported into the component
           } else {
-            component.syswords.declarations += `, ${cate.className}`;
-            component.syswords.imports += `import { ${cate.className} } from '${cate.rootPath.replace(
-              `/${page.lang}/`,
+            component.syswords!.declarations += `, ${cate.className}`;
+            component.syswords!.imports += `import { ${cate.className} } from '${cate.rootPath.replace(
+              `/${page.lang!}/`,
               '/'
             )}';\n`;
           }
         }
       }
-      box.codes.push(code);
+      box.codes!.push(code);
     }
   });
   cate.codeBoxes = box;

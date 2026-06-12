@@ -12,7 +12,7 @@ import { NcProp } from '../interfaces/prop';
 export function generateCore(genDir: string, lang: string, core: NcCore) {
   const types: { [key: string]: NcProp } = {};
   for (let item of core) {
-    types[item.name] = item;
+    types[item.name!] = item;
   }
   writeFileSync(
     `${genDir}/${lang}-docs.types.ts`,

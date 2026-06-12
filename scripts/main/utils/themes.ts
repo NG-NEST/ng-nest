@@ -26,7 +26,7 @@ export function getThemes(): Promise<NcPattern[]> {
       lines.on('line', (line: string) => {
         line = line.trim();
         if (line.startsWith('/*') && line.endsWith('*/')) {
-          docItem[index] = line.match(/(?<=\/\*).*?(?=\*\/)/)[0].trim();
+          docItem[index] = line.match(/(?<=\/\*).*?(?=\*\/)/)![0].trim();
         } else if (line.startsWith('$')) {
           let spt = line.split(':');
           let name = spt[0].trim();

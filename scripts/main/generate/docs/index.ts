@@ -23,11 +23,11 @@ export const genDir = resolve(__dirname, '../../../../src/main/docs');
 export const genMenusDir = resolve(__dirname, '../../../../src/app');
 export const genCoreDir = resolve(__dirname, '../../../../src/interfaces');
 export const docsPrefix = 'docs';
-export const version = '21.0.12';
+export const version = '22.0.0';
 export const languages = ['zh_CN', 'en_US'];
 
 export class NcDocs {
-  page: NcPage;
+  page!: NcPage;
   genDir: string = genDir;
   menus: NcMenu[] = [];
   props: NcProp[] = [];
@@ -73,20 +73,20 @@ export class NcDocs {
         if (stat.isDirectory()) {
           const read = parseMdDoc(join(dir, `${isComponent ? 'docs/' : ''}readme.${lang}.md`));
           if (read && read.meta) {
-            const folder = join(page.genDir, x);
+            const folder = join(page.genDir!, x);
             const child = this.createChild(read, x, folder, lang);
             child.genDir = folder;
             child.path = dir;
             child.lang = lang;
             child.hidden = !!read.meta.hidden;
-            page.children = [...page.children, child];
+            page.children = [...page.children ?? [], child];
             const thisRouter = `${router}/${x}`;
-            const menu = this.createMenu(read, x, index, i, thisRouter, lang);
+            const menu = this.createMenu(read, x, index!, i, thisRouter, lang);
             if (x === 'components') {
               child.path = componentsDir;
-              await this.addChildren(child, componentsDir, menu.routerLink, lang, menu.id, 1, true);
+              await this.addChildren(child, componentsDir, menu.routerLink!, lang, menu.id, 1, true);
             } else if (level !== 0) {
-              await this.addChildren(child, dir, menu.routerLink, lang, menu.id, level);
+              await this.addChildren(child, dir, menu.routerLink!, lang, menu.id, level);
             }
             if (dir.indexOf(componentsDir) === 0 && typeof read.meta.type === 'undefined') {
               await handlerComponent(child);
@@ -100,8 +100,8 @@ export class NcDocs {
         }
       }
     }
-    page.children = orderBy(page.children, ['order']);
-    pageAddChildren(page, page.children);
+    page.children = orderBy(page.children!, ['order']);
+    pageAddChildren(page, page.children!);
   }
 
   createChild(read: { meta: any; content: any }, dirName: string, folder: string, lang: string) {

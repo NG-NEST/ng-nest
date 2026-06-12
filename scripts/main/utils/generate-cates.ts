@@ -16,9 +16,9 @@ const tplDir = path.resolve(__dirname, '../../main/templates');
  * @returns
  */
 export async function generateCates(cates: NcCates, comTpl: NcTemplate): Promise<NcCates> {
-  if (cates.list.length > 0) {
+  if (cates.list!.length > 0) {
     let subFunc = '';
-    while (subFunc == '' || hasIn(comTpl.syswords.constant, subFunc)) subFunc = randomString();
+    while (subFunc == '' || hasIn(comTpl.syswords!.constant, subFunc)) subFunc = randomString();
     let catesTabs = handlerTabs({
       layout: NcTabsLayoutEnum.Top,
       nodeJustify: NcTabsNodeJustifyEnum.Center,
@@ -27,12 +27,12 @@ export async function generateCates(cates: NcCates, comTpl: NcTemplate): Promise
       tabsLinkRouter: false,
       folderPath: cates.folderPath
     });
-    catesTabs.tabs.forEach(async (x) => {
+    catesTabs.tabs!.forEach(async (x) => {
       await generateFiles(
         x,
-        cates.list.find((y) => y.name == x.name),
+        cates.list!.find((y) => y.name == x.name),
         comTpl,
-        path.join(cates.folderPath, x.name),
+        path.join(cates.folderPath!, x.name!),
         subFunc
       );
     });
@@ -47,7 +47,7 @@ export async function generateCates(cates: NcCates, comTpl: NcTemplate): Promise
  * @export
  * @param {NcTab} tab
  */
-export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, folderPath: string, func: string) {
+export function generateFiles(tab: NcTab, cate: NcCate | undefined, comTpl: NcTemplate, folderPath: string, func: string) {
   let highlightTpl = fs.readFileSync(path.join(tplDir, 'highlight-component.template.html'), 'utf8');
   if (!comTpl) return;
   let childTabs = handlerTabsByFiles({
@@ -61,37 +61,37 @@ export function generateFiles(tab: NcTab, cate: NcCate, comTpl: NcTemplate, fold
     id: func
   });
   let html = '';
-  let files = [];
-  let providers = [];
-  let otherNames = [];
-  childTabs.tabs.forEach((x, index) => {
+  let files: string[] = [];
+  let providers: string[] = [];
+  let otherNames: string[] = [];
+  childTabs.tabs!.forEach((x, index) => {
     let param = '';
-    while (param == '' || hasIn(comTpl.syswords.constant, param)) param = randomString();
+    while (param == '' || hasIn(comTpl.syswords!.constant, param)) param = randomString();
     let tpl = highlightTpl;
     let content =
-      x.content.lastIndexOf('\n') == x.content.length - 1 ? x.content.slice(0, x.content.length - 1) : x.content;
-    let ext = x.name.slice(x.name.lastIndexOf('.') + 1, x.name.length);
+      x.content!.lastIndexOf('\n') == x.content!.length - 1 ? x.content!.slice(0, x.content!.length - 1) : x.content!;
+    let ext = x.name!.slice(x.name!.lastIndexOf('.') + 1, x.name!.length);
     let type = extToType[ext];
     tpl = replaceKey(tpl, '__type', type);
     tpl = replaceKey(tpl, '__data', param);
     if (type == extToType.ts) {
       content = handlerContent(content);
     }
-    comTpl.syswords.constant += `${param}=\`${content}\`;\n`;
+    comTpl.syswords!.constant += `${param}=\`${content}\`;\n`;
     files.push(`'src/app/${tab.name}/${x.name}': ${param}`);
-    if (x.name.lastIndexOf('.service.ts') == x.name.length - 11)
-      providers.push(`'${x.name.replace('.service.ts', '')}'`);
-    if (childTabs.tabs.length - 1 !== index) comTpl.syswords.constant += `  `;
+    if (x.name!.lastIndexOf('.service.ts') == x.name!.length - 11)
+      providers.push(`'${x.name!.replace('.service.ts', '')}'`);
+    if (childTabs.tabs!.length - 1 !== index) comTpl.syswords!.constant += `  `;
     if (x.name == `${tab.name}.component.ts`) {
-      html = `<${cate.selector}></${cate.selector}>`;
-    } else if (x.name.lastIndexOf('.component.ts') > 0) {
-      otherNames.push(`'${x.name.replace('.component.ts', '')}'`);
+      html = `<${cate!.selector}></${cate!.selector}>`;
+    } else if (x.name!.lastIndexOf('.component.ts') > 0) {
+      otherNames.push(`'${x.name!.replace('.component.ts', '')}'`);
     }
     x.content = tpl;
   });
   tab.content = `
   ${tab.content ? `<div class="x-examples-info">${tab.content}</div>\n` : ''}
-  <div class="x-examples-html">${html}${generateTools(tab.name, otherNames, providers, files)}</div>\n
+  <div class="x-examples-html">${html}${generateTools(tab.name!, otherNames, providers, files)}</div>\n
   <div class="x-examples-code">${generateTabs(childTabs).content}</div>\n
   `;
 
