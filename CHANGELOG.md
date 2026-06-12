@@ -1,4 +1,4 @@
-## [21.0.12](https://github.com/NG-NEST/ng-nest/compare/21.0.11...21.0.12) (2026-06-02)
+# [22.0.0](https://github.com/NG-NEST/ng-nest/compare/21.0.12...22.0.0) (2026-06-12)
 
 
 ### Bug Fixes
@@ -12,6 +12,7 @@
 * **module:splitter:** add splitter component ([029624d](https://github.com/NG-NEST/ng-nest/commit/029624d0e450e299a77f23619a67baa5a873e1bf))
 * **module:splitter:** fully functional ([4918ecf](https://github.com/NG-NEST/ng-nest/commit/4918ecfb51746581f971f9556e4b36f1ea82704a))
 * **module:watermark:** add watermark component ([2776f92](https://github.com/NG-NEST/ng-nest/commit/2776f926b84f656aba41bde6b6b30d1ff13c4490))
+* **select:module:** add custom portal temp ([74bc9eb](https://github.com/NG-NEST/ng-nest/commit/74bc9ebd2108dd7f9b22da6b57c9ec8533934b3c))
 * **select:module:** add custom portal temp ([27a7871](https://github.com/NG-NEST/ng-nest/commit/27a7871e9163b9bb78a46128744151531d3f9823))
 
 

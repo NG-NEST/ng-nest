@@ -60,7 +60,8 @@
         "./src/interfaces/*"
       ]
     },
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "ignoreDeprecations": "6.0"
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

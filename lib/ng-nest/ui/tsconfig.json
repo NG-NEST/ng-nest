@@ -4,6 +4,7 @@
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "rootDir": ".",
     "paths": {
       "@ng-nest/ui": ["./"],

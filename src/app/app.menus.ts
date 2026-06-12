@@ -754,6 +754,15 @@ export const menus: AppMenu[] = [
     "category": "Other"
   },
   {
+    "id": "1-79",
+    "pid": "1",
+    "name": "splitter",
+    "routerLink": "docs/en_US/components/splitter",
+    "lang": "en_US",
+    "label": "Splitter",
+    "category": "Other"
+  },
+  {
     "id": "1-108",
     "pid": "1",
     "name": "watermark",
@@ -761,17 +770,6 @@ export const menus: AppMenu[] = [
     "lang": "en_US",
     "label": "Watermark",
     "category": "Other"
-  },
-  {
-    "id": "1-79",
-    "pid": "1",
-    "name": "splitter",
-    "routerLink": "docs/en_US/components/splitter",
-    "lang": "en_US",
-    "category": "Others",
-    "title": "Splitter",
-    "subtitle": "Used to separate panels and adjust their size",
-    "order": 1
   },
   {
     "id": "2-0",
@@ -1638,6 +1636,15 @@ export const menus: AppMenu[] = [
     "category": "Other"
   },
   {
+    "id": "1-79",
+    "pid": "1",
+    "name": "splitter",
+    "routerLink": "docs/zh_CN/components/splitter",
+    "lang": "zh_CN",
+    "label": "Splitter 分隔面板",
+    "category": "Other"
+  },
+  {
     "id": "1-108",
     "pid": "1",
     "name": "watermark",
@@ -1645,17 +1652,6 @@ export const menus: AppMenu[] = [
     "lang": "zh_CN",
     "label": "Watermark 水印",
     "category": "Other"
-  },
-  {
-    "id": "1-79",
-    "pid": "1",
-    "name": "splitter",
-    "routerLink": "docs/zh_CN/components/splitter",
-    "lang": "zh_CN",
-    "category": "Others",
-    "title": "Splitter 分隔面板",
-    "subtitle": "用于分隔面板并调整其大小",
-    "order": 1
   },
   {
     "id": "2-0",
