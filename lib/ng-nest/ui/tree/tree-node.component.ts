@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { XKeywordDirective } from '@ng-nest/ui/keyword';
 import { XLinkComponent } from '@ng-nest/ui/link';
 import { XOutletDirective } from '@ng-nest/ui/outlet';
-import { XTreeComponent } from './tree.component';
+import { X_TREE_CONTEXT } from './tree.token';
 
 @Component({
   selector: `${XTreeNodePrefix}, [${XTreeNodePrefix}]`,
@@ -41,7 +41,7 @@ import { XTreeComponent } from './tree.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XTreeNodeComponent extends XTreeNodeProperty {
-  tree = inject(XTreeComponent, { optional: true, host: true })!;
+  tree = inject(X_TREE_CONTEXT, { optional: true })!;
   nodeMouseenter = output<{ event: MouseEvent; node: XTreeNode; ele: ElementRef }>();
   @HostBinding('class.x-tree-node') rootClass = true;
   private document = inject(DOCUMENT);

@@ -1,0 +1,11 @@
+<div class="example-container">
+  <h3>树形菜单</h3>
+  <p>右键点击图片查看多级菜单,支持鼠标悬停展开</p>
+  <img
+    #img
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="右键点击图片"
+    width="100%"
+  />
+  <x-contextmenu [target]="img" [data]="data()" [portalWidth]="'9rem'" (nodeClick)="onNodeClick($event)" />
+</div>

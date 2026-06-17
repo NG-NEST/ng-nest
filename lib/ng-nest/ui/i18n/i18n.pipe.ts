@@ -1,23 +1,30 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { inject, Pipe, PipeTransform } from '@angular/core';
 import { XI18nService } from './i18n.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Pipe({
   name: 'xI18n',
   pure: false
 })
 export class XI18nPipe implements PipeTransform {
-  private localeId: any;
-  private catchContent: any;
-  constructor(private locale: XI18nService) {}
+  private i18n = inject(XI18nService);
+  private lastKey?: string;
+  private lastLang?: string;
+  private lastValue?: string;
 
-  transform(path: string, keyValue?: object) {
-    const localeId = this.locale.getLocaleId();
-    const content = this.locale.translate(path, keyValue);
-    if (this.localeId !== localeId || this.catchContent !== content) {
-      this.catchContent = content;
-      this.localeId = localeId;
+  locale = toSignal(this.i18n.localeChange);
+
+  transform(key: string, params?: object): string {
+    const lang = this.locale()?.locale;
+
+    if (key === this.lastKey && lang === this.lastLang) {
+      return this.lastValue!;
     }
 
-    return this.catchContent;
+    this.lastKey = key;
+    this.lastLang = lang;
+    this.lastValue = this.i18n.translate(key, params);
+
+    return this.lastValue;
   }
 }

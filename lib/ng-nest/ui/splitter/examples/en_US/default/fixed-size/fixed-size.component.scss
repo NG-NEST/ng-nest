@@ -1,0 +1,22 @@
+:host {
+  .example-container {
+    h3 {
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .splitter1,
+    .splitter2 {
+      height: 300px;
+      border: 1px solid var(--x-border);
+    }
+
+    .panel-content {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+  }
+}

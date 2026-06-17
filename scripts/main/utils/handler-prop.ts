@@ -45,7 +45,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
     let props: NcProp[] = [];
     let prop: NcProp = {};
     let index = 1;
-    let doc = [];
+    let doc: any[] = [];
     let isReadDoc = false;
     let isReadClassInterface = false;
     let isReadComDir = false;
@@ -66,7 +66,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
     const addParams = (str: string) => {
       const paramRegex = /(\w+): (\w+(?:\[\]|<.*?>)?)/g;
       let paramMap: { [key: string]: string } = {};
-      let match: RegExpExecArray;
+      let match: RegExpExecArray | null;
       while ((match = paramRegex.exec(str)) !== null) {
         paramMap[match[1]] = match[2];
       }
@@ -140,7 +140,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
         propertyLine += ` ${line}`;
         if (line.endsWith(';')) {
           const property = getProperty(propertyLine.trim(), propertyDocItem, lang);
-          if (property) prop.properties.push(property);
+          if (property) prop.properties!.push(property);
           isReadProperty = false;
           propertyLine = '';
         }
@@ -177,7 +177,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
             case NcPropType.Const:
               if (!isReadConst) {
                 isReadConst = true;
-                prop.name = eline.match(/^\S+/)[0];
+                prop.name = eline.match(/^\S+/)![0];
                 if (prop.name.endsWith(':')) {
                   prop.name = prop.name.slice(0, prop.name.indexOf(':'));
                 }
@@ -185,7 +185,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
                   prop.selector = getDocs(docItem, '@selector') as string;
                   prop.decorator = getDocs(docItem, '@decorator') as NcDecorator;
                 }
-                prop.value = eline.match(/=\s*(.*)/)[1].trim();
+                prop.value = eline.match(/=\s*(.*)/)![1].trim();
                 if (prop.value.endsWith(';')) {
                   prop.value = prop.value.slice(0, prop.value.length - 1);
                   isReadConst = false;
@@ -197,7 +197,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
             case NcPropType.Class:
               if (!isReadClassInterface) {
                 isReadClassInterface = true;
-                prop.name = eline.match(/^\S+/)[0];
+                prop.name = eline.match(/^\S+/)![0];
                 eline = eline.replace(prop.name, '').trim();
                 if (eline.startsWith('extends ')) {
                   eline = eline.replace('extends', '').trim();
@@ -223,7 +223,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
             case NcPropType.Type:
               if (!isReadType) {
                 isReadType = true;
-                prop.name = eline.match(/^\S+/)[0];
+                prop.name = eline.match(/^\S+/)![0];
                 if (eline.endsWith('=')) {
                   prop.value = '';
                 } else {
@@ -259,7 +259,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
             case NcPropType.Enum:
               if (!isReadEnum) {
                 isReadEnum = true;
-                prop.name = eline.match(/^\S+/)[0];
+                prop.name = eline.match(/^\S+/)![0];
               }
               break;
           }
@@ -279,7 +279,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
             isReadProperty = true;
             if (line.endsWith(';')) {
               const property = getProperty(line, docItem, lang);
-              if (property) prop.properties.push(property);
+              if (property) prop.properties!.push(property);
               isReadProperty = false;
               propertyLine = '';
             } else {
@@ -339,7 +339,7 @@ export function hanlderProp(fsPath: string, lang = ''): Promise<NcProp[]> {
               example
             };
 
-            prop.properties.push(property);
+            prop.properties!.push(property);
           }
         }
       }

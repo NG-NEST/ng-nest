@@ -20,7 +20,11 @@
       <x-icon type="fto-image"></x-icon>
     </div>
   }
-  <ng-container *xOutlet="previewTpl(); context: { $image: this }">
+  @if (previewTpl()) {
+    <div class="x-image-overlay">
+      <ng-container *xOutlet="previewTpl(); context: { $image: this }"> </ng-container>
+    </div>
+  } @else {
     @if (!isError()) {
       <div class="x-image-overlay" (click)="onPreview()">
         <div class="x-image-text">
@@ -29,5 +33,5 @@
         </div>
       </div>
     }
-  </ng-container>
+  }
 </div>

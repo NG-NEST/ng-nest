@@ -10,22 +10,22 @@ export function handlerDemo(page: NcPage, docDir: string, router: string, versio
   const demoPath = path.join(docDir, 'demo');
   const children = fs.readdirSync(path.join(docDir, 'demo'));
   router = router.replace(`/${page.lang}/`, `/${version}/`);
-  let temp = page.templates.find((x) => x.name === 'component' && x.type === 'default');
-  if (temp !== null) {
-    temp.syswords.imports += `import { environment } from '@environments';\n`;
-    temp.syswords.constant += `static = environment.static;\n`;
+  let temp = page.templates!.find((x) => x.name === 'component' && x.type === 'default');
+  if (temp !== null && temp !== undefined) {
+    temp.syswords!.imports += `import { environment } from '@environments';\n`;
+    temp.syswords!.constant += `static = environment.static;\n`;
     for (let child of children) {
       const treeFile = getTreeFile(demoPath, child, router);
       let tpl = fs.readFileSync(path.join(tplDir, 'tree-file.component.template.html'), 'utf8');
       let constant = randomString(8);
-      let params = getKeys(page.custom, child);
+      let params = getKeys(page.custom!, child);
       tpl = replaceKey(tpl, '__data', constant);
-      tpl = replaceKey(tpl, '__activatedId', params?.length > 0 ? `${child}/${params[0]}` : '');
-      tpl = replaceKey(tpl, '__showTree', params?.length > 1 ? `${params[1]}` : 'true');
-      tpl = replaceKey(tpl, '__showCrumb', params?.length > 2 ? `${params[2]}` : 'true');
-      tpl = replaceKey(tpl, '__maxHeight', params?.length > 3 ? `${params[3]}` : '37.5rem');
-      temp.syswords.constant += `${constant} = ${JSON.stringify(treeFile)};\n`;
-      page.custom = replaceKey(page.custom, `__${child}${params?.length > 0 ? ':' + params.join(':') : ''}`, `${tpl}`);
+      tpl = replaceKey(tpl, '__activatedId', params != null && params.length > 0 ? `${child}/${params[0]}` : '');
+      tpl = replaceKey(tpl, '__showTree', params != null && params.length > 1 ? `${params[1]}` : 'true');
+      tpl = replaceKey(tpl, '__showCrumb', params != null && params.length > 2 ? `${params[2]}` : 'true');
+      tpl = replaceKey(tpl, '__maxHeight', params != null && params.length > 3 ? `${params[3]}` : '37.5rem');
+      temp.syswords!.constant += `${constant} = ${JSON.stringify(treeFile)};\n`;
+      page.custom = replaceKey(page.custom!, `__${child}${params != null && params.length > 0 ? ':' + params.join(':') : ''}`, `${tpl}`);
     }
   }
   // if (children.length > 0) {
@@ -66,7 +66,7 @@ export function getTreeFile(demoPath: string, demo: string, router: string) {
     }
     sortNodes = orderBy(
       sortNodes.map((x) => {
-        x.label = x.label.toLowerCase();
+        x.label = (x.label || '').toLowerCase();
         return x;
       }),
       ['leaf', 'label'],

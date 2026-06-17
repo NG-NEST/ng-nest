@@ -220,12 +220,12 @@ export class XInputProperty extends XFormControlFunction(X_INPUT_CONFIG_NAME) {
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
-  override readonly pattern = input<RegExp | RegExp[] | any>(null);
+  override readonly pattern = input<RegExp | null>(null);
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verify not pass the prompt text
    */
-  override readonly message = input<string | string[]>([]);
+  override readonly message = input<string>('');
   /**
    * @zh_CN 激活状态
    * @en_US Activation state
@@ -456,12 +456,12 @@ export interface XInputOption extends XFormOption {
    * @zh_CN 正则验证规则
    * @en_US Regular verification rules
    */
-  pattern?: RegExp | RegExp[];
+  pattern?: RegExp;
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verify not pass the prompt text
    */
-  message?: string | string[];
+  message?: string;
   /**
    * @zh_CN 激活状态
    * @en_US Activation state

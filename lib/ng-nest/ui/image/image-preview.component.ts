@@ -101,61 +101,94 @@ export class XImagePreviewComponent extends XImagePreviewProperty implements OnI
   }
 
   onScale(zoom: number) {
-    this.imgScale3d.update((item) => {
-      item.x += zoom;
-      item.y += zoom;
-      return { ...item };
-    });
+    const currentScale = this.imgScale3d().x;
+    let newScale: number;
+
+    if (zoom > 0) {
+      newScale = Math.min(currentScale * 1.2, 5);
+    } else {
+      newScale = Math.max(currentScale / 1.2, 0.1);
+    }
+
+    if (newScale !== currentScale) {
+      this.imgScale3d.update((item) => {
+        item.x = newScale;
+        item.y = newScale;
+        return { ...item };
+      });
+      setTimeout(() => this.adjustPosition(), 0);
+    }
+  }
+
+  onWheel(event: WheelEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const delta = event.deltaY > 0 ? -1 : 1;
+    this.onScale(delta);
   }
 
   onDragReleased() {
-    let width = this.imageRef().nativeElement.offsetWidth * this.imgScale3d().x;
-    let height = this.imageRef().nativeElement.offsetHeight * this.imgScale3d().x;
-    const clientWidth = this.document.documentElement.clientWidth;
-    const clientHeight = this.document.defaultView?.innerHeight || this.document.documentElement.clientHeight;
-    const isRotate = this.rotate() % 180 !== 0;
-    const box = this.imageRef().nativeElement.getBoundingClientRect();
-    const docElem = this.document.documentElement;
-    const left =
-      box.left +
-      (this.document.defaultView?.pageXOffset || docElem.scrollLeft) -
-      (docElem.clientLeft || this.document.body.clientLeft || 0);
-    const top =
-      box.top +
-      (this.document.defaultView?.pageYOffset || docElem.scrollTop) -
-      (docElem.clientTop || this.document.body.clientTop || 0);
-    width = isRotate ? height : width;
-    height = isRotate ? width : height;
-
-    let position = { x: 0, y: 0 };
-    if (width > clientWidth || height > clientHeight) {
-      const x = this.fitPoint(left, width, clientWidth);
-      const y = this.fitPoint(top, height, clientHeight);
-      position.x = x ? x : 0;
-      position.y = y ? y : 0;
-    }
-
-    this.position.update((x) => ({ ...x, ...position }));
+    this.adjustPosition();
   }
 
-  fitPoint(start: number, size: number, clientSize: number): number | null {
-    const startAddSize = start + size;
-    const offsetStart = (size - clientSize) / 2;
-    let distance: number | null = null;
+  private adjustPosition() {
+    const img = this.imageRef().nativeElement;
+    const scale = this.imgScale3d().x;
+    const rotation = this.rotate() % 360;
 
-    if (size > clientSize) {
-      if (start > 0) {
-        distance = offsetStart;
-      }
-      if (start < 0 && startAddSize < clientSize) {
-        distance = -offsetStart;
-      }
-    } else {
-      if (start < 0 || startAddSize > clientSize) {
-        distance = start < 0 ? offsetStart : -offsetStart;
-      }
+    const imgWidth = img.naturalWidth || img.offsetWidth;
+    const imgHeight = img.naturalHeight || img.offsetHeight;
+
+    let scaledWidth = imgWidth * scale;
+    let scaledHeight = imgHeight * scale;
+
+    const isRotated = Math.abs(rotation) === 90 || Math.abs(rotation) === 270;
+    if (isRotated) {
+      [scaledWidth, scaledHeight] = [scaledHeight, scaledWidth];
     }
 
-    return distance;
+    const containerWidth = this.document.documentElement.clientWidth;
+    const containerHeight = this.document.documentElement.clientHeight;
+
+    const rect = img.getBoundingClientRect();
+    const currentX = this.position().x;
+    const currentY = this.position().y;
+
+    const imgCenterX = rect.left + rect.width / 2;
+    const imgCenterY = rect.top + rect.height / 2;
+    const containerCenterX = containerWidth / 2;
+    const containerCenterY = containerHeight / 2;
+
+    let newX = currentX;
+    let newY = currentY;
+
+    if (scaledWidth > containerWidth) {
+      const maxOffsetX = (scaledWidth - containerWidth) / 2;
+      const offsetX = imgCenterX - containerCenterX;
+
+      if (offsetX > maxOffsetX) {
+        newX = currentX - (offsetX - maxOffsetX);
+      } else if (offsetX < -maxOffsetX) {
+        newX = currentX - (offsetX + maxOffsetX);
+      }
+    } else {
+      newX = 0;
+    }
+
+    if (scaledHeight > containerHeight) {
+      const maxOffsetY = (scaledHeight - containerHeight) / 2;
+      const offsetY = imgCenterY - containerCenterY;
+
+      if (offsetY > maxOffsetY) {
+        newY = currentY - (offsetY - maxOffsetY);
+      } else if (offsetY < -maxOffsetY) {
+        newY = currentY - (offsetY + maxOffsetY);
+      }
+    } else {
+      newY = 0;
+    }
+
+    this.position.set({ x: newX, y: newY });
   }
 }

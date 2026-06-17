@@ -9,7 +9,7 @@ import { XTemplate } from '@ng-nest/ui/core';
 export const XI18nPrefix = 'xI18n';
 
 export interface XI18nProperty {
-  locale: XI18nLanguage;
+  locale?: XI18nLanguage;
   comment?: XI18nComment;
   theme?: XI18nTheme;
   calendar?: XI18nCalendar;

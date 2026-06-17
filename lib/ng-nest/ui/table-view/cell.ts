@@ -9,7 +9,8 @@ import {
   CdkHeaderCellDef
 } from '@angular/cdk/table';
 import { XTableViewService } from './table-view.service';
-import { XTableView } from './table-view.component';
+import { X_TABLE_VIEW_CONTEXT } from './table-view.token';
+import type { XTableHeaderCellHandle, XTableViewCellHandle } from './table-view.property';
 
 @Directive({
   selector: '[xTableCellDef]',
@@ -54,9 +55,9 @@ export class XTableColumnDef extends CdkColumnDef {
     role: 'columnheader'
   }
 })
-export class XTableHeaderCell extends CdkHeaderCell {
+export class XTableHeaderCell extends CdkHeaderCell implements XTableHeaderCellHandle {
   tableViewService = inject(XTableViewService, { optional: true })!;
-  tableView = inject(XTableView, { optional: true });
+  tableView = inject(X_TABLE_VIEW_CONTEXT, { optional: true });
   elementRef = inject(ElementRef);
 
   @HostBinding('class.x-table-header-cell-actived') get isActived() {
@@ -66,18 +67,18 @@ export class XTableHeaderCell extends CdkHeaderCell {
   @HostListener('click') onClick() {
     this.tableViewService.activedHeaderCells = [this];
 
-    const headerCells = this.tableView?.headerCells() ?? [];
+    const headerCells = this.tableView?.getHeaderCells() ?? [];
     const index = headerCells.indexOf(this);
 
-    const cells = this.tableView?.cells() ?? [];
-    const columnsCount = (this.tableView?.headerRowRef()?.columns as string[]).length ?? 0;
-    const rowsCount = this.tableView?.rows().length ?? 0;
+    const cells = this.tableView?.getCells() ?? [];
+    const columnsCount = (this.tableView?.getHeaderRowRef()?.getColumns() as string[]).length ?? 0;
+    const rowsCount = this.tableView?.getRows().length ?? 0;
 
     if (columnsCount === 0 || rowsCount === 0) {
       return;
     }
 
-    const columnCells: XTableViewCell[] = [];
+    const columnCells: XTableViewCellHandle[] = [];
     for (let i = 0; i < rowsCount; i++) {
       const cellIndex = index * rowsCount + i;
       if (cellIndex < cells.length) {
@@ -108,9 +109,9 @@ export class XTableFooterCell extends CdkFooterCell {}
     class: 'x-table-cell'
   }
 })
-export class XTableViewCell extends CdkCell {
+export class XTableViewCell extends CdkCell implements XTableViewCellHandle {
   tableViewService = inject(XTableViewService, { optional: true })!;
-  tableView = inject(XTableView, { optional: true });
+  tableView = inject(X_TABLE_VIEW_CONTEXT, { optional: true });
   elementRef = inject(ElementRef);
   @HostBinding('class.x-table-cell-selected') get isSelected() {
     return this.tableViewService.selectedCells.includes(this);
@@ -123,8 +124,8 @@ export class XTableViewCell extends CdkCell {
     this.setActivedColumn(this);
   }
 
-  setActivedRow(cell: XTableViewCell) {
-    const rows = this.tableView?.rows() ?? [];
+  setActivedRow(cell: XTableViewCellHandle) {
+    const rows = this.tableView?.getRows() ?? [];
     if (rows.length > 0) {
       const rowIndex = this.getRowIndex(cell);
       if (rowIndex >= 0 && rowIndex < rows.length) {
@@ -134,9 +135,9 @@ export class XTableViewCell extends CdkCell {
     }
   }
 
-  setActivedColumn(cell: XTableViewCell) {
-    const headerCells = (this.tableView?.headerCells() ?? []) as XTableHeaderCell[];
-    const headerRowRefs = this.tableView?.headerRowRefs() ?? [];
+  setActivedColumn(cell: XTableViewCellHandle) {
+    const headerCells = (this.tableView?.getHeaderCells() ?? []) as XTableHeaderCell[];
+    const headerRowRefs = this.tableView?.getHeaderRowRefs() ?? [];
     const headerCellsArray = this.convertToColumnBasedArray(headerCells, headerRowRefs.length);
     const activedHeaderCells: XTableHeaderCell[] = [];
     for (let cells of headerCellsArray) {
@@ -165,25 +166,25 @@ export class XTableViewCell extends CdkCell {
     return result;
   }
 
-  private getColumnIndex(cell: XTableViewCell): number {
-    if (!this.tableView || !this.tableView.cells()) return -1;
-    const cellsArray = this.tableView.cells();
+  private getColumnIndex(cell: XTableViewCellHandle): number {
+    if (!this.tableView || !this.tableView.getCells()) return -1;
+    const cellsArray = this.tableView.getCells();
     const selectedIndex = cellsArray.indexOf(cell);
     if (selectedIndex === -1) return -1;
-    const columnsPerRow = (this.tableView.headerRowRef()?.columns as string[]).length ?? 0;
-    const rowsCount = this.tableView.rows().length;
+    const columnsPerRow = (this.tableView.getHeaderRowRef()?.getColumns() as string[]).length ?? 0;
+    const rowsCount = this.tableView.getRows().length;
     if (columnsPerRow === 0 || rowsCount === 0) return -1;
 
     return Math.floor(selectedIndex / rowsCount);
   }
 
-  private getRowIndex(cell: XTableViewCell): number {
-    if (!this.tableView || !this.tableView.cells()) return -1;
-    const cellsArray = this.tableView.cells();
+  private getRowIndex(cell: XTableViewCellHandle): number {
+    if (!this.tableView || !this.tableView.getCells()) return -1;
+    const cellsArray = this.tableView.getCells();
     const selectedIndex = cellsArray.indexOf(cell);
     if (selectedIndex === -1) return -1;
-    const columnsPerRow = (this.tableView.headerRowRef()?.columns as string[]).length ?? 0;
-    const rowsCount = this.tableView.rows().length;
+    const columnsPerRow = (this.tableView.getHeaderRowRef()?.getColumns() as string[]).length ?? 0;
+    const rowsCount = this.tableView.getRows().length;
     if (columnsPerRow === 0 || rowsCount === 0) return -1;
 
     return selectedIndex % rowsCount;

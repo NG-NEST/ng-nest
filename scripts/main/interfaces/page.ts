@@ -5,9 +5,9 @@ import { NcTemplate, NcTemplateType } from './template';
 export const ncPrefix = 'ns';
 
 export class NcPage {
-  prefix: string;
+  prefix!: string;
   label?: string;
-  name: string;
+  name!: string;
   fileName?: string;
   comName?: string;
   capName?: string;
@@ -26,7 +26,7 @@ export class NcPage {
   constructor(param: NcPage) {
     Object.assign(this, param);
     if (!this.fileName) {
-      this.fileName = !this.fileName && `${this.prefix}-${this.name}`;
+      this.fileName = `${this.prefix}-${this.name}`;
     }
     if (!this.comName) {
       this.comName = `${ncPrefix}-${this.fileName}`;

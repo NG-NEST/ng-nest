@@ -94,6 +94,7 @@ export * from '@ng-nest/ui/affix';
 export * from '@ng-nest/ui/anchor';
 export * from '@ng-nest/ui/back-top';
 export * from '@ng-nest/ui/crumb';
+export * from '@ng-nest/ui/contextmenu';
 export * from '@ng-nest/ui/dropdown';
 export * from '@ng-nest/ui/menu';
 export * from '@ng-nest/ui/page-header';
@@ -116,6 +117,7 @@ export * from '@ng-nest/ui/thought-chain';
  * Others
  */
 export * from '@ng-nest/ui/doc';
+export * from '@ng-nest/ui/divider';
 export * from '@ng-nest/ui/examples';
 export * from '@ng-nest/ui/api';
 export * from '@ng-nest/ui/pattern';
@@ -123,3 +125,5 @@ export * from '@ng-nest/ui/slider';
 export * from '@ng-nest/ui/scrollable';
 export * from '@ng-nest/ui/highlight';
 export * from '@ng-nest/ui/inner';
+export * from '@ng-nest/ui/watermark';
+export * from '@ng-nest/ui/splitter';

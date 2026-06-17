@@ -143,12 +143,12 @@ export interface XControlOption {
    * @zh_CN 正则验证规则
    * @en_US Regular validation rules
    */
-  pattern?: RegExp | RegExp[];
+  pattern?: RegExp;
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verification failed prompt text
    */
-  message?: string | string[];
+  message?: string;
   /**
    * @zh_CN 输入框的验证函数
    * @en_US Validation function of input box
@@ -215,12 +215,12 @@ export class XControl extends XIdentity implements XControlOption {
    * @zh_CN 正则验证规则
    * @en_US Regular validation rules
    */
-  pattern?: RegExp | RegExp[];
+  pattern?: RegExp;
   /**
    * @zh_CN 验证不通过提示文字
    * @en_US Verification failed prompt text
    */
-  message?: string | string[];
+  message?: string;
   /**
    * @zh_CN 输入框的验证函数
    * @en_US Validation function of input box

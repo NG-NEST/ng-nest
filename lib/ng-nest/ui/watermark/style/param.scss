@@ -1,0 +1,4 @@
+// Watermark style parameters
+@use '../../style/params/index.scss' as *;
+
+$x-watermark-prefix: $x-prefix + '-watermark';

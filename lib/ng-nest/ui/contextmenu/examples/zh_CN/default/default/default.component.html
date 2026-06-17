@@ -1,0 +1,9 @@
+<div class="example-container">
+  <img
+    #img
+    src="https://ngnest.com/static/docs/21.0.10/course/rbac/1-introduction/demo/1__ng-nest-admin/light.png"
+    alt="右键点击图片"
+    width="100%"
+  />
+  <x-contextmenu [target]="img" [data]="data()" (nodeClick)="onNodeClick($event)" />
+</div>

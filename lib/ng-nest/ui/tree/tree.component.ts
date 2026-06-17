@@ -35,6 +35,7 @@ import { CdkDrag, CdkDragEnd, CdkDragMove, CdkDragStart, CdkDropList, DragDropMo
 import { XTreeService } from './tree.service';
 import { XIconComponent } from '@ng-nest/ui/icon';
 import { DOCUMENT } from '@angular/common';
+import { X_TREE_CONTEXT, XTreeContext } from './tree.token';
 
 @Component({
   selector: `${XTreePrefix}`,
@@ -42,9 +43,15 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: X_TREE_CONTEXT,
+      useExisting: XTreeComponent
+    }
+  ]
 })
-export class XTreeComponent extends XTreeProperty implements OnChanges {
+export class XTreeComponent extends XTreeProperty implements OnChanges, XTreeContext {
   tree = viewChild('tree', { read: ElementRef<HTMLElement> });
   virtualBody = viewChild('virtualBody', { read: CdkVirtualScrollViewport });
   dropList = viewChild('dropList', { read: CdkDropList<HTMLElement> });

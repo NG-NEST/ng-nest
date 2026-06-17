@@ -4927,9 +4927,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -4945,12 +4945,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -5476,7 +5476,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -5493,7 +5493,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -9235,9 +9235,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -9253,12 +9253,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -9767,7 +9767,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -9784,7 +9784,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -11742,9 +11742,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -11760,12 +11760,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -12188,7 +12188,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -12205,7 +12205,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -13919,9 +13919,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -13937,12 +13937,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -14502,7 +14502,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -14519,7 +14519,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -15106,9 +15106,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -15124,12 +15124,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -15637,7 +15637,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -15654,7 +15654,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -18828,8 +18828,21 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDialogOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XDialogComponent>"
+      "XPortalOverlayRef<XDialogHandle>"
     ]
+  },
+  "XDialogHandle": {
+    "type": "interface",
+    "label": "Dialog object created",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDialogHandle"
   },
   "XDialogPortalOverlayRef": {
     "type": "interface",
@@ -18844,8 +18857,21 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDialogPortalOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XDialogPortalComponent>"
+      "XPortalOverlayRef<XDialogPortalHandle>"
     ]
+  },
+  "XDialogPortalHandle": {
+    "type": "interface",
+    "label": "Dialog object created definition",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDialogPortalHandle"
   },
   "XDialogType": {
     "type": "type",
@@ -18860,6 +18886,189 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XDialogType",
     "value": "XStatus"
+  },
+  "XDividerPrefix": {
+    "type": "const",
+    "label": "Divider",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDividerPrefix",
+    "selector": "x-divider",
+    "decorator": "component",
+    "value": "'x-divider'"
+  },
+  "XDividerProperty": {
+    "type": "class",
+    "label": "Divider Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "direction",
+        "type": "XDividerDirection",
+        "toType": "XDividerDirection",
+        "inputType": "InputSignal<XDividerDirection>",
+        "signal": "input",
+        "label": "Divider direction",
+        "default": "'horizontal'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-divider direction=\"horizontal\">Horizontal</x-divider>\n<x-divider direction=\"vertical\"></x-divider>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "position",
+        "type": "XDividerPosition",
+        "toType": "XDividerPosition",
+        "inputType": "InputSignal<XDividerPosition>",
+        "signal": "input",
+        "label": "Title position",
+        "default": "'center'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-divider position=\"left\">Left</x-divider>\n<x-divider position=\"center\">Center</x-divider>\n<x-divider position=\"right\">Right</x-divider>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "variant",
+        "type": "XDividerVariant",
+        "toType": "XDividerVariant",
+        "inputType": "InputSignal<XDividerVariant>",
+        "signal": "input",
+        "label": "Divider variant",
+        "default": "'solid'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-divider variant=\"solid\">Solid</x-divider>\n<x-divider variant=\"dashed\">Dashed</x-divider>\n<x-divider variant=\"dotted\">Dotted</x-divider>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "size",
+        "type": "XSize",
+        "toType": "XSize",
+        "inputType": "InputSignal<XSize>",
+        "signal": "input",
+        "label": "Divider size (margin)",
+        "default": "'medium'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-divider size=\"big\">Big</x-divider>\n<x-divider size=\"large\">Large</x-divider>\n<x-divider size=\"medium\">Medium</x-divider>\n<x-divider size=\"small\">Small</x-divider>\n<x-divider size=\"mini\">Mini</x-divider>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XDividerProperty",
+    "extends": [
+      "XPropertyFunction(X_DIVIDER_CONFIG_NAME)"
+    ]
+  },
+  "XDividerDirection": {
+    "type": "type",
+    "label": "Divider direction",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDividerDirection",
+    "value": "'horizontal' | 'vertical'"
+  },
+  "XDividerPosition": {
+    "type": "type",
+    "label": "Divider title position",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDividerPosition",
+    "value": "'left' | 'center' | 'right'"
+  },
+  "XDividerVariant": {
+    "type": "type",
+    "label": "Divider variant",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XDividerVariant",
+    "value": "'solid' | 'dashed' | 'dotted'"
   },
   "XDrawerPrefix": {
     "type": "const",
@@ -21339,7 +21548,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -21356,7 +21565,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -21804,7 +22013,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular validation rules",
         "default": "",
         "withConfig": false,
@@ -21821,7 +22030,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verification failed prompt text",
         "default": "",
         "withConfig": false,
@@ -22039,7 +22248,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular validation rules",
         "default": "",
         "withConfig": false,
@@ -22056,7 +22265,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verification failed prompt text",
         "default": "",
         "withConfig": false,
@@ -24150,9 +24359,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -24168,12 +24377,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -24962,7 +25171,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -24979,7 +25188,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -25755,9 +25964,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -25773,12 +25982,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -26200,7 +26409,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -26217,7 +26426,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -28998,8 +29207,21 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XMessageOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XMessageComponent>"
+      "XPortalOverlayRef<XMessageHandle>"
     ]
+  },
+  "XMessageHandle": {
+    "type": "interface",
+    "label": "Message object created",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XMessageHandle"
   },
   "XMessagePlacement": {
     "type": "interface",
@@ -29357,7 +29579,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "inputPattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Matching rules",
         "default": "",
         "withConfig": false,
@@ -29374,7 +29596,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "inputInvalidMessage",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Information prompt for matching failure",
         "default": "",
         "withConfig": false,
@@ -29602,8 +29824,21 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XMessageBoxOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XMessageBoxComponent>"
+      "XPortalOverlayRef<XMessageBoxHandle>"
     ]
+  },
+  "XMessageBoxHandle": {
+    "type": "interface",
+    "label": "Message object created",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XMessageBoxHandle"
   },
   "XMessageBoxType": {
     "type": "type",
@@ -29835,8 +30070,21 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [],
     "name": "XNotificationOverlayRef",
     "extends": [
-      "XPortalOverlayRef<XNotificationComponent>"
+      "XPortalOverlayRef<XNotificationHandle>"
     ]
+  },
+  "XNotificationHandle": {
+    "type": "interface",
+    "label": "Message object created",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XNotificationHandle"
   },
   "XNotificationPlacement": {
     "type": "interface",
@@ -34402,9 +34650,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -34420,12 +34668,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -35155,7 +35403,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -35172,7 +35420,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -35568,9 +35816,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -35586,12 +35834,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -35860,7 +36108,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -35877,7 +36125,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -37560,6 +37808,112 @@ export const en_US: {[key: string]: AppProp} = {
       }
     ],
     "name": "XSliderSelectMark"
+  },
+  "XSplitterPrefix": {
+    "type": "const",
+    "label": "Splitter",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSplitterPrefix",
+    "selector": "x-splitter",
+    "decorator": "component",
+    "value": "'x-splitter'"
+  },
+  "XSplitterBarPrefix": {
+    "type": "const",
+    "label": "Splitter Bar",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSplitterBarPrefix",
+    "selector": "x-splitter-bar",
+    "decorator": "component",
+    "value": "'x-splitter-bar'"
+  },
+  "XSplitterPanelPrefix": {
+    "type": "const",
+    "label": "Splitter Panel",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSplitterPanelPrefix",
+    "selector": "x-splitter-panel",
+    "decorator": "component",
+    "value": "'x-splitter-panel'"
+  },
+  "XSplitterProperty": {
+    "type": "class",
+    "label": "Splitter Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "direction",
+        "type": "XSplitterDirection",
+        "toType": "XSplitterDirection",
+        "inputType": "InputSignal<XSplitterDirection>",
+        "signal": "input",
+        "label": "Split direction",
+        "default": "'horizontal'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-splitter direction=\"horizontal\">\n  <x-splitter-panel>Panel 1</x-splitter-panel>\n  <x-splitter-panel>Panel 2</x-splitter-panel>\n</x-splitter>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XSplitterProperty",
+    "extends": [
+      "XPropertyFunction(X_SPLITTER_CONFIG_NAME)"
+    ]
+  },
+  "XSplitterDirection": {
+    "type": "type",
+    "label": "Split direction",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XSplitterDirection",
+    "value": "'horizontal' | 'vertical'"
   },
   "XStatisticPrefix": {
     "type": "const",
@@ -43019,9 +43373,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -43037,12 +43391,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -43533,7 +43887,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -43550,7 +43904,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -44161,9 +44515,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
-        "toType": "XCorner",
-        "inputType": "InputSignal<XCorner>",
+        "type": "XPlacement",
+        "toType": "XPlacement",
+        "inputType": "InputSignal<XPlacement>",
         "signal": "input",
         "label": "Display position",
         "default": "'bottom-start'",
@@ -44665,9 +45019,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -44683,12 +45037,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -44857,7 +45211,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "placement",
-        "type": "XCorner",
+        "type": "XPlacement",
         "label": "Display position",
         "default": "",
         "withConfig": false,
@@ -45282,7 +45636,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -45299,7 +45653,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -49558,9 +49912,9 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[] | any",
-        "toType": "RegExp | RegExp[] | any",
-        "inputType": "InputSignal<RegExp | RegExp[] | any>",
+        "type": "RegExp | null",
+        "toType": "RegExp | null",
+        "inputType": "InputSignal<RegExp | null>",
         "signal": "input",
         "label": "Regular verification rules",
         "default": "null",
@@ -49576,12 +49930,12 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
-        "toType": "string | string[]",
-        "inputType": "InputSignal<string | string[]>",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
         "signal": "input",
         "label": "Verify not pass the prompt text",
-        "default": "[]",
+        "default": "''",
         "withConfig": false,
         "description": "",
         "example": [
@@ -50310,7 +50664,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "pattern",
-        "type": "RegExp | RegExp[]",
+        "type": "RegExp",
         "label": "Regular verification rules",
         "default": "",
         "withConfig": false,
@@ -50327,7 +50681,7 @@ export const en_US: {[key: string]: AppProp} = {
       },
       {
         "name": "message",
-        "type": "string | string[]",
+        "type": "string",
         "label": "Verify not pass the prompt text",
         "default": "",
         "withConfig": false,
@@ -51193,6 +51547,566 @@ export const en_US: {[key: string]: AppProp} = {
     "selector": "x-upload-portal",
     "decorator": "component",
     "value": "'x-upload-portal'"
+  },
+  "XWatermarkPrefix": {
+    "type": "const",
+    "label": "Watermark",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XWatermarkPrefix",
+    "selector": "x-watermark",
+    "decorator": "component",
+    "value": "'x-watermark'"
+  },
+  "XWatermarkProperty": {
+    "type": "class",
+    "label": "Watermark Property",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "content",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Watermark content",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark content=\"NG-NEST\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "width",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Watermark width",
+        "default": "120",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [width]=\"120\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "height",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Watermark height",
+        "default": "60",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [height]=\"60\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "rotate",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Rotation angle",
+        "default": "-22",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [rotate]=\"-22\"></x-watermark>\n<x-watermark [rotate]=\"0\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "fontSize",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Font size",
+        "default": "14",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [fontSize]=\"14\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "fontFamily",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Font family",
+        "default": "'Varela Round'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark fontFamily=\"Varela Round\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Font color",
+        "default": "'rgba(0",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark color=\"rgba(0, 0, 0, 0.12)\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "zIndex",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Z-index",
+        "default": "9999",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [zIndex]=\"9999\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "alpha",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Opacity",
+        "default": "1",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [alpha]=\"1\"></x-watermark>\n<x-watermark [alpha]=\"0.5\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "gapX",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Horizontal gap",
+        "default": "100",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [gapX]=\"100\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "gapY",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Vertical gap",
+        "default": "100",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [gapY]=\"100\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "offsetLeft",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Horizontal offset",
+        "default": "0",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [offsetLeft]=\"0\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "offsetTop",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Vertical offset",
+        "default": "0",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [offsetTop]=\"0\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "striped",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Whether to stagger display",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [striped]=\"true\"></x-watermark>\n<x-watermark [striped]=\"false\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "disabled",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Whether to disable",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [disabled]=\"true\"></x-watermark>\n<x-watermark [disabled]=\"false\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "imageSrc",
+        "type": "string",
+        "toType": "string",
+        "inputType": "InputSignal<string>",
+        "signal": "input",
+        "label": "Image/icon URL",
+        "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark imageSrc=\"/assets/logo.png\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "imageWidth",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Image width",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [imageWidth]=\"40\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "imageHeight",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Image height",
+        "default": "0",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark [imageHeight]=\"40\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "imagePosition",
+        "type": "XWatermarkImagePosition",
+        "toType": "XWatermarkImagePosition",
+        "inputType": "InputSignal<XWatermarkImagePosition>",
+        "signal": "input",
+        "label": "Image position relative to text",
+        "default": "'center'",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-watermark imagePosition=\"top\"></x-watermark>\n<x-watermark imagePosition=\"center\"></x-watermark>\n<x-watermark imagePosition=\"bottom\"></x-watermark>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      }
+    ],
+    "name": "XWatermarkProperty",
+    "extends": [
+      "XPropertyFunction(X_WATERMARK_CONFIG_NAME)"
+    ]
+  },
+  "XWatermarkImagePosition": {
+    "type": "type",
+    "label": "Image position relative to text",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XWatermarkImagePosition",
+    "value": "'top' | 'center' | 'bottom'"
   },
   "XWelcomePrefix": {
     "type": "const",

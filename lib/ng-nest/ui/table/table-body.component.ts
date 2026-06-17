@@ -25,10 +25,10 @@ import { XOutletDirective } from '@ng-nest/ui/outlet';
 import { XCheckboxComponent } from '@ng-nest/ui/checkbox';
 import { FormsModule } from '@angular/forms';
 import { XButtonComponent } from '@ng-nest/ui/button';
-import { XTableComponent } from './table.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { XInnerHTMLComponent } from '@ng-nest/ui/core';
 import { XTableCheckboxDragSelectDirective } from './checkbox-drag-select.directive';
+import { X_TABLE_CONTEXT } from './table.token';
 
 @Component({
   selector: `${XTableBodyPrefix}`,
@@ -54,7 +54,7 @@ export class XTableBodyComponent extends XTableBodyProperty implements OnInit, A
   cdr = inject(ChangeDetectorRef);
   tbody = viewChild.required<ElementRef<HTMLElement>>('tbody');
   virtualBody = viewChild(CdkVirtualScrollViewport);
-  table = inject(XTableComponent, { optional: true })!;
+  table = inject(X_TABLE_CONTEXT, { optional: true })!;
   private doc = inject(DOCUMENT);
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;

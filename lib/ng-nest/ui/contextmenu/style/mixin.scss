@@ -1,0 +1,24 @@
+// Contextmenu
+
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+@mixin contextmenu {
+  & {
+    display: inline-block;
+  }
+}
+
+@mixin contextmenu-portal {
+  & {
+    margin: 0.0625rem 0;
+    color: $x-text;
+    width: 100%;
+    background-color: $x-background-100;
+    border-radius: $x-border-small-radius;
+    box-shadow: $x-box-shadow;
+    position: relative;
+    display: flex;
+    overflow: auto;
+  }
+}

@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-import type { XTableViewCell, XTableHeaderCell } from './cell';
-import type { XTableHeaderRow, XTableViewRow } from './row';
+import type {
+  XTableHeaderCellHandle,
+  XTableHeaderRowHandle,
+  XTableViewCellHandle,
+  XTableViewRowHandle
+} from './table-view.property';
 
 @Injectable()
 export class XTableViewService {
-  selectedCells: XTableViewCell[] = [];
-  activedRows: XTableViewRow[] = [];
-  selectedHeaderCell: XTableHeaderCell | null = null;
-  activedHeaderCells: XTableHeaderCell[] = [];
-  stickyHeaderRows: XTableHeaderRow[] = [];
+  selectedCells: XTableViewCellHandle[] = [];
+  activedRows: XTableViewRowHandle[] = [];
+  selectedHeaderCell: XTableHeaderCellHandle | null = null;
+  activedHeaderCells: XTableHeaderCellHandle[] = [];
+  stickyHeaderRows: XTableHeaderRowHandle[] = [];
 }

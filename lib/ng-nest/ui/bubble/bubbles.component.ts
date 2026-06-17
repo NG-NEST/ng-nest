@@ -10,6 +10,7 @@ import {
 import { XBubblesProperty } from './bubble.property';
 import { XBubbleComponent } from './bubble.component';
 import { fromEvent, Subject, Subscription, takeUntil } from 'rxjs';
+import { X_BUBBLES_CONTEXT, XBubblesContext } from './bubbles.token';
 
 @Component({
   selector: 'x-bubbles',
@@ -17,9 +18,15 @@ import { fromEvent, Subject, Subscription, takeUntil } from 'rxjs';
   styleUrls: ['./bubbles.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: []
+  imports: [],
+  providers: [
+    {
+      provide: X_BUBBLES_CONTEXT,
+      useExisting: XBubblesComponent
+    }
+  ]
 })
-export class XBubblesComponent extends XBubblesProperty {
+export class XBubblesComponent extends XBubblesProperty implements XBubblesContext {
   elementRef = inject(ElementRef);
   renderer = inject(Renderer2);
 

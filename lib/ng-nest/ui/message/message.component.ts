@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
 import { XIsEmpty } from '@ng-nest/ui/core';
-import { XMessagePrefix, XMessageOption, XMessagePlacementRef } from './message.property';
+import { XMessagePrefix, XMessageOption, XMessagePlacementRef, XMessageHandle } from './message.property';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { XAlertComponent } from '@ng-nest/ui/alert';
@@ -13,7 +13,7 @@ import { XAlertComponent } from '@ng-nest/ui/alert';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XMessageComponent {
+export class XMessageComponent implements XMessageHandle {
   message: XMessagePlacementRef = { ref: {}, list: [], closeAll: () => {} };
   cdr = inject(ChangeDetectorRef);
 

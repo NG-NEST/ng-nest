@@ -22,7 +22,7 @@ export function hanlderPattern(fsPath: string): Promise<NcPattern[]> {
     lines.on('line', async (line: string) => {
       line = line.trim();
       if (line.startsWith('/*') && line.endsWith('*/')) {
-        docItem[index] = line.match(/(?<=\/\*).*?(?=\*\/)/)[0].trim();
+        docItem[index] = line.match(/(?<=\/\*).*?(?=\*\/)/)![0].trim();
       } else if (line.startsWith('$')) {
         let spt = line.split(':');
         let name = spt[0].trim();
@@ -46,7 +46,7 @@ export function hanlderPattern(fsPath: string): Promise<NcPattern[]> {
 }
 
 export function paramReplace(pattern: NcPattern) {
-  let spt = pattern.value.split(' ');
+  let spt = pattern.value!.split(' ');
   let newSpt = spt.map((x: string) => {
     if (x.startsWith('$')) {
       return getParam(x);

@@ -1,0 +1,82 @@
+@use '../../style/params/index.scss' as *;
+@use './param.scss' as *;
+
+// Splitter
+
+@mixin splitter {
+  & {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  // 水平分割
+  &-horizontal {
+    flex-direction: row;
+
+    > .x-splitter-panel {
+      height: 100%;
+    }
+
+    > .x-splitter-bar {
+      width: var(--x-splitter-bar-size, #{$x-splitter-bar-size});
+      height: 100%;
+      cursor: col-resize;
+      flex-shrink: 0;
+    }
+  }
+
+  // 垂直分割
+  &-vertical {
+    flex-direction: column;
+
+    > .x-splitter-panel {
+      width: 100%;
+    }
+
+    > .x-splitter-bar {
+      width: 100%;
+      height: var(--x-splitter-bar-size, #{$x-splitter-bar-size});
+      cursor: row-resize;
+      flex-shrink: 0;
+    }
+  }
+
+  // 分隔条
+  &-bar {
+    position: relative;
+    background-color: var(--x-splitter-bar-color, $x-splitter-bar-color);
+    transition: background-color 0.2s;
+    z-index: 1;
+
+    &:hover {
+      background-color: var(--x-splitter-bar-hover-color, $x-splitter-bar-hover-color);
+    }
+
+    &:active {
+      background-color: var(--x-splitter-bar-hover-color, $x-splitter-bar-hover-color);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  // 水平分隔条指示器
+  .x-splitter-horizontal &-bar::before {
+    width: 0.125rem;
+    height: 1.25rem;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  // 垂直分隔条指示器
+  .x-splitter-vertical &-bar::before {
+    width: 0.125rem;
+    height: 0.125rem;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}

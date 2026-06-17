@@ -6,10 +6,9 @@ export function parseMdDoc(path: string) {
   let lstat = existsSync(path);
   if (!lstat) return false;
   const file = readFileSync(path, 'utf8');
-  const meta = loadFront(file);
+  const meta: Record<string, any> = loadFront(file);
   const content = meta.__content;
-  const mt = { ...meta };
-  delete mt.__content;
+  const { __content, ...mt } = meta;
 
   const remark = require('remark')();
   const ast = remark.parse(content);

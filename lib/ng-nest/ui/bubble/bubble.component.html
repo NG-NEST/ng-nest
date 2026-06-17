@@ -5,7 +5,7 @@
         [icon]="avatar()?.icon!"
         [label]="avatar()?.label!"
         [src]="avatar()?.src!"
-        [size]="avatar()?.size ?? size()"
+        [size]="avatar()?.size ?? sizeSignal()"
         [gap]="avatar()?.gap ?? '0.25rem'"
         [fit]="avatar()?.fit ?? 'cover'"
         [backgroundColor]="avatar()?.backgroundColor ?? '#999999'"

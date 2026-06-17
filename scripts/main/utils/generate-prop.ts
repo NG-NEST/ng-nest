@@ -10,18 +10,18 @@ export function generateProps(...types: NcProp[]) {
     types.forEach((x) => {
       switch (x.type) {
         case NcPropType.Const:
-          if (x.name.endsWith('Prefix')) {
+          if (x.name!.endsWith('Prefix')) {
             let selector = `<h3 class="x-api-selector"><span>${x.selector}</span> <span>${x.decorator}</span></h3>
-            <p>${replaceSpecial(x.description)}</p>`;
+            <p>${replaceSpecial(x.description!)}</p>`;
             result += selector;
           }
           break;
         case NcPropType.Interface:
         case NcPropType.Class:
           let table = '';
-          x.properties.forEach((y) => {
+          x.properties!.forEach((y) => {
             const description = y.description ? `<br/><p [innerHTML]="'${replaceEscape(y.description)}'"></p>` : '';
-            let ty = y.type.startsWith('X')
+            let ty = y.type!.startsWith('X')
               ? `<code class="x-api-popover"
               (click)="types.reference('${y.type}','${x.name}')" [innerText]="'${y.type}'"></code>`
               : `<code [innerText]="'${y.type}'"></code>`;
@@ -29,10 +29,10 @@ export function generateProps(...types: NcProp[]) {
               ? `<span class="x-api-signal">${(y.signal as string).slice(0, 1).toUpperCase()}</span>`
               : '<span class="x-api-signal">P</span>';
             let tr = `<tr>
-              <td>${signal}<code class="x-api-name" (click)="types.name('${y.name}', '${x.name}')">${replaceSpecial(y.name)}</code></td>
+              <td>${signal}<code class="x-api-name" (click)="types.name('${y.name}', '${x.name}')">${replaceSpecial(y.name!)}</code></td>
               <td>${y.label}${description}</td>
               <td>${ty}</td>
-              <td><code [innerHTML]="'${replaceEscape(y.default)}'"></code></td>
+              <td><code [innerHTML]="'${replaceEscape(y.default!)}'"></code></td>
               <td>${y.withConfig ? '✔️' : ''}</td>
             </tr>`;
 
@@ -41,7 +41,7 @@ export function generateProps(...types: NcProp[]) {
           let head = '';
           if (table !== '') {
             head = `<h3>${x.name}</h3>
-            <p>${replaceSpecial(x.description)}</p>`;
+            <p>${replaceSpecial(x.description!)}</p>`;
           }
           if (table !== '') {
             table = `<table class="x-api-interface">

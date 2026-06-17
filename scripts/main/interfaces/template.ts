@@ -23,9 +23,9 @@ export class NcTemplate {
     }
     let name = '',
       type = '';
-    let slt = this.name.split('-');
+    let slt = (this.name || '').split('-');
     type = slt[slt.length - 1];
-    name = this.fileName;
+    name = this.fileName || '';
     if (slt.length > 1) {
       name += `-${slt.slice(0, slt.length - 1).join('-')}`;
     }

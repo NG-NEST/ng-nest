@@ -19,7 +19,8 @@ import {
   CdkRowDef
 } from '@angular/cdk/table';
 import { XTableViewService } from './table-view.service';
-import { XTableView } from './table-view.component';
+import type { XTableHeaderRowDefHandle, XTableHeaderRowHandle, XTableViewRowHandle } from './table-view.property';
+import { X_TABLE_VIEW_CONTEXT } from './table-view.token';
 
 const ROW_TEMPLATE = `<ng-container cdkCellOutlet></ng-container>`;
 
@@ -31,7 +32,15 @@ const ROW_TEMPLATE = `<ng-container cdkCellOutlet></ng-container>`;
     { name: 'sticky', alias: 'xTableHeaderRowDefSticky', transform: booleanAttribute }
   ]
 })
-export class XTableHeaderRowDef extends CdkHeaderRowDef {}
+export class XTableHeaderRowDef extends CdkHeaderRowDef implements XTableHeaderRowDefHandle {
+  getSticky(): boolean {
+    return this.sticky;
+  }
+
+  getColumns() {
+    return this.columns as string[];
+  }
+}
 
 @Directive({
   selector: '[xTableFooterRowDef]',
@@ -66,8 +75,8 @@ export class XTableViewRowDef<T> extends CdkRowDef<T> {}
   providers: [{ provide: CdkHeaderRow, useExisting: XTableHeaderRow }],
   imports: [CdkCellOutlet]
 })
-export class XTableHeaderRow extends CdkHeaderRow {
-  tableView = inject(XTableView, { optional: true });
+export class XTableHeaderRow extends CdkHeaderRow implements XTableHeaderRowHandle {
+  tableView = inject(X_TABLE_VIEW_CONTEXT, { optional: true });
   tableViewService = inject(XTableViewService, { optional: true })!;
   sticking = signal(false);
 
@@ -80,13 +89,13 @@ export class XTableHeaderRow extends CdkHeaderRow {
   }
 
   listenerSticky() {
-    const index = this.tableView?.headerRows().findIndex((x) => x === this);
+    const index = this.tableView?.getHeaderRows().findIndex((x) => x === this);
     if (index === undefined || index < 0) return;
-    const rowLen = this.tableView?.headerRowRefs()?.length ?? 0;
+    const rowLen = this.tableView?.getHeaderRowRefs()?.length ?? 0;
     if (rowLen === 0 || rowLen < index) return;
-    const sticky = this.tableView?.headerRowRefs()[index].sticky;
+    const sticky = this.tableView?.getHeaderRowRefs()[index].getSticky();
     if (!sticky) return;
-    const sentinel = this.tableView?.sentinelTop()!.nativeElement!;
+    const sentinel = this.tableView?.getSentinelTop()?.nativeElement!;
     const observer = new IntersectionObserver(
       ([entry]) => {
         const sticking = !entry.isIntersecting;
@@ -138,7 +147,7 @@ export class XTableFooterRow extends CdkFooterRow {}
   providers: [{ provide: CdkRow, useExisting: XTableViewRow }],
   imports: [CdkCellOutlet]
 })
-export class XTableViewRow extends CdkRow {
+export class XTableViewRow extends CdkRow implements XTableViewRowHandle {
   tableViewService = inject(XTableViewService, { optional: true })!;
 
   @HostBinding('class.x-table-row-actived') get isActived() {

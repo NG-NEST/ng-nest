@@ -15,10 +15,10 @@ const tplDir = path.resolve(__dirname, '../../main/templates');
  */
 export function handlerTabs(tabs: NcTabs) {
   tabs.tplPath = path.join(tplDir, 'tabs-component.template.html');
-  let folder = fs.readdirSync(tabs.folderPath, 'utf8');
+  let folder = fs.readdirSync(tabs.folderPath!, 'utf8');
   tabs.tabs = [];
   folder.forEach((x) => {
-    let folder = path.join(tabs.folderPath, x);
+    let folder = path.join(tabs.folderPath!, x);
     if (fs.lstatSync(folder).isDirectory()) {
       let readme = parseMdDoc(path.join(folder, 'readme.md'));
       if (readme) {
@@ -28,7 +28,7 @@ export function handlerTabs(tabs: NcTabs) {
           order: readme.meta.order,
           content: readme.content
         };
-        tabs.tabs.push(tab);
+        tabs.tabs!.push(tab);
       }
     }
   });
@@ -47,18 +47,18 @@ export function handlerTabs(tabs: NcTabs) {
  */
 export function handlerTabsByFiles(tabs: NcTabs) {
   tabs.tplPath = path.join(tplDir, 'tabs-component.template.html');
-  let folder = fs.readdirSync(tabs.folderPath, 'utf8');
+  let folder = fs.readdirSync(tabs.folderPath!, 'utf8');
   tabs.tabs = [];
   folder.forEach((x) => {
     if (x != 'readme.md') {
-      let file = fs.readFileSync(path.join(tabs.folderPath, x), 'utf8');
+      let file = fs.readFileSync(path.join(tabs.folderPath!, x), 'utf8');
       let tab: NcTab = {
         name: x,
         label: x,
         order: x,
         content: file
       };
-      tabs.tabs.push(tab);
+      tabs.tabs!.push(tab);
     }
   });
   tabs.tabs = orderBy(tabs.tabs, ['order']);

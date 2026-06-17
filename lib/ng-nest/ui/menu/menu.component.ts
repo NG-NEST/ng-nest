@@ -16,6 +16,7 @@ import { DOCUMENT, NgClass, NgTemplateOutlet } from '@angular/common';
 import { XSliderComponent } from '@ng-nest/ui/slider';
 import { XDropdownComponent } from '@ng-nest/ui/dropdown';
 import { XMenuNodeComponent } from './menu-node.component';
+import { X_MENU_CONTEXT, XMenuContext } from './menu.token';
 
 @Component({
   selector: `${XMenuPrefix}`,
@@ -23,9 +24,15 @@ import { XMenuNodeComponent } from './menu-node.component';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: X_MENU_CONTEXT,
+      useExisting: XMenuComponent
+    }
+  ]
 })
-export class XMenuComponent extends XMenuProperty implements OnChanges {
+export class XMenuComponent extends XMenuProperty implements OnChanges, XMenuContext {
   showCategory = signal(false);
   get scroll(): HTMLElement {
     return this._target;

@@ -2,7 +2,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { checkMkdir } from './check-mkdir';
 
-export function copyDir(from: string, to: string, exclude = []) {
+export function copyDir(from: string, to: string, exclude: string[] = []) {
   if (!fs.existsSync(from)) return;
   let dir = fs.readdirSync(from, 'utf8');
   checkMkdir(to);

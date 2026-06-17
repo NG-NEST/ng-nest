@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, InputSignal, output } from '@angular/core';
 import { XProperty, XPropertyFunction, XToCssPixelValue } from '@ng-nest/ui/core';
 import type { XNumber, XTemplate } from '@ng-nest/ui/core';
 
@@ -211,3 +211,13 @@ export class XImagePreviewProperty extends XProperty {}
  * @decorator component
  */
 export const XImageGroupPrefix = 'x-image-group';
+
+/**
+ * @zh_CN 图片组件定义
+ * @en_US Image component definition
+ */
+export interface XImageHandle {
+  src: InputSignal<string | undefined>;
+  alt: InputSignal<string | undefined>;
+  fallback: InputSignal<string | undefined>;
+}

@@ -1,0 +1,8 @@
+@use '../../style/params/index.scss' as *;
+
+// Divider style parameters
+$x-divider: $x-prefix + '-divider';
+$x-divider-color: $x-border;
+$x-divider-text-color: $x-text;
+$x-divider-font-size: $x-font-size;
+$x-divider-border-width: 1px;

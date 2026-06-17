@@ -9,7 +9,7 @@ import { NcModule } from '../interfaces/module';
  * @export
  * @param {string} fsPath
  */
-export function hanlderModule(fsPath: string): Promise<NcModule> {
+export function hanlderModule(fsPath: string): Promise<NcModule | null> {
   return new Promise((res, rej) => {
     if (!fs.existsSync(fsPath)) {
       res(null);
@@ -30,7 +30,7 @@ export function hanlderModule(fsPath: string): Promise<NcModule> {
           for (let i = 0; i < coms.length; i++) {
             const com = coms[i].trim();
             if (com.length > 0) {
-              module.exports.push(com);
+              module.exports!.push(com);
             }
           }
         } else {
@@ -41,13 +41,13 @@ export function hanlderModule(fsPath: string): Promise<NcModule> {
         if (line.startsWith(']')) {
           startExports = false;
         } else if (!line.startsWith('exports: [')) {
-          module.exports.push(line.replace(/,/g, ''));
+          module.exports!.push(line.replace(/,/g, ''));
         }
       }
       if (line.startsWith('export class ')) {
         let pattern = /export class (.*) {/;
         let re = line.match(pattern);
-        module.module = re[1];
+        module.module = re![1];
       }
     });
     lines.on('close', () => {

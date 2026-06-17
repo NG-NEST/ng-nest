@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { UntypedFormGroup } from '@angular/forms';
 import { XControl, XFormComponent } from '@ng-nest/ui/form';
 
 @Component({
@@ -7,6 +8,16 @@ import { XControl, XFormComponent } from '@ng-nest/ui/form';
   templateUrl: './label-row.component.html'
 })
 export class ExLabelRowComponent {
+  form = new UntypedFormGroup({});
+
+  ngAfterViewInit() {
+    this.form.valueChanges.subscribe((xx) => {
+      console.log(xx);
+    });
+
+    this.form.patchValue({ id: 888 });
+  }
+
   controls = signal<XControl[]>([
     {
       control: 'input',
@@ -28,8 +39,8 @@ export class ExLabelRowComponent {
       label: '账号',
       clearable: true,
       required: true,
-      pattern: [/^-?\d+$/, /^[+]{0,1}(\d+)$/],
-      message: ['整数', '正整数'],
+      pattern: /^-?\d+$/,
+      message: '整数',
       clearClick: (_value: any) => {}
     },
     {

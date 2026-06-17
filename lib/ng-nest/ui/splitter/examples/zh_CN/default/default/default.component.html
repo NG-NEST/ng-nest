@@ -1,0 +1,26 @@
+<div class="example-container">
+  <h3>水平分割器</h3>
+  <div class="splitter1">
+    <x-splitter>
+      <x-splitter-panel [size]="'40%'" [min]="'20%'" [max]="'80%'">
+        <div class="panel-content">左侧面板 (默认 40%)</div>
+      </x-splitter-panel>
+      <x-splitter-bar></x-splitter-bar>
+      <x-splitter-panel [min]="'20%'" [max]="'80%'">
+        <div class="panel-content">右侧面板 (自动填充)</div>
+      </x-splitter-panel>
+    </x-splitter>
+  </div>
+  <h3>垂直分割器</h3>
+  <div class="splitter2">
+    <x-splitter direction="vertical">
+      <x-splitter-panel [size]="'40%'" [min]="'20%'" [max]="'80%'">
+        <div class="panel-content">上方面板 (默认 40%)</div>
+      </x-splitter-panel>
+      <x-splitter-bar></x-splitter-bar>
+      <x-splitter-panel [min]="'20%'" [max]="'80%'">
+        <div class="panel-content">下方面板 (自动填充)</div>
+      </x-splitter-panel>
+    </x-splitter>
+  </div>
+</div>

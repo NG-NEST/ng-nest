@@ -4,7 +4,7 @@ import { mdToHtml } from '../../../utils';
 import { NcUiPage } from '.';
 
 export class NcComponents {
-  private componentsPath: string;
+  private componentsPath!: string;
   init(folder: string) {
     this.componentsPath = path.resolve(__dirname, folder);
     const componentsFolder = fs.readdirSync(this.componentsPath);

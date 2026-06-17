@@ -1,0 +1,30 @@
+<div class="example-container">
+  <h3>嵌套使用</h3>
+  <div class="splitter1">
+    <x-splitter>
+      <x-splitter-panel [size]="'300px'" [min]="'200px'"></x-splitter-panel>
+      <x-splitter-bar></x-splitter-bar>
+      <x-splitter-panel [min]="'100px'">
+        <x-splitter direction="vertical">
+          <x-splitter-panel [size]="'200px'"></x-splitter-panel>
+          <x-splitter-bar></x-splitter-bar>
+          <x-splitter-panel> </x-splitter-panel>
+        </x-splitter>
+      </x-splitter-panel>
+    </x-splitter>
+  </div>
+
+  <div class="splitter1">
+    <x-splitter>
+      <x-splitter-panel [size]="'300px'" [min]="'200px'"></x-splitter-panel>
+      <x-splitter-bar></x-splitter-bar>
+      <x-splitter-panel [min]="'100px'">
+        <x-splitter>
+          <x-splitter-panel [size]="'200px'"></x-splitter-panel>
+          <x-splitter-bar></x-splitter-bar>
+          <x-splitter-panel> </x-splitter-panel>
+        </x-splitter>
+      </x-splitter-panel>
+    </x-splitter>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+// Contextmenu
+
+@use '../style/mixins/reset.scss' as *;
+@use './style/mixin.scss' as *;
+@use './style/param.scss' as *;
+
+.#{$x-contextmenu} {
+  @include reset-component();
+  @include contextmenu();
+}

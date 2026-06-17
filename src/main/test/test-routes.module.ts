@@ -89,6 +89,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./container/container.component').then((x) => x.TeContainerComponent)
       },
       {
+        path: 'contextmenu',
+        loadComponent: () => import('./contextmenu/contextmenu.component').then((x) => x.TeContextmenuComponent)
+      },
+      {
         path: 'coversations',
         loadComponent: () => import('./coversations/coversations.component').then((x) => x.TeCoversationsComponent)
       },
@@ -107,6 +111,10 @@ export const TestRoutes: Routes = [
       {
         path: 'dialog',
         loadComponent: () => import('./dialog/dialog.component').then((x) => x.TeDialogComponent)
+      },
+      {
+        path: 'divider',
+        loadComponent: () => import('./divider/divider.component').then((x) => x.TeDividerComponent)
       },
       {
         path: 'drawer',
@@ -147,6 +155,10 @@ export const TestRoutes: Routes = [
       {
         path: 'input-number',
         loadComponent: () => import('./input-number/input-number.component').then((x) => x.TeInputNumberComponent)
+      },
+      {
+        path: 'i18n',
+        loadComponent: () => import('./i18n/i18n.component').then((x) => x.TeI18nComponent)
       },
       {
         path: 'layout',
@@ -245,6 +257,10 @@ export const TestRoutes: Routes = [
         loadComponent: () => import('./statistic/statistic.component').then((x) => x.TeStatisticComponent)
       },
       {
+        path: 'splitter',
+        loadComponent: () => import('./splitter/splitter.component').then((x) => x.TeSplitterComponent)
+      },
+      {
         path: 'steps',
         loadComponent: () => import('./steps/steps.component').then((x) => x.TeStepsComponent)
       },
@@ -339,6 +355,10 @@ export const TestRoutes: Routes = [
       {
         path: 'welcome',
         loadComponent: () => import('./welcome/welcome.component').then((x) => x.TeWelcomeComponent)
+      },
+      {
+        path: 'watermark',
+        loadComponent: () => import('./watermark/watermark.component').then((x) => x.TeWatermarkComponent)
       }
     ]
   }

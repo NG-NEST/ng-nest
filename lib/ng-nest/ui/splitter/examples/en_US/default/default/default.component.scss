@@ -1,0 +1,13 @@
+:host {
+  .example-container {
+    .splitter1,
+    .splitter2 {
+      height: 300px;
+      border: 1px solid var(--x-border);
+    }
+
+    .panel-content {
+      padding: 16px;
+    }
+  }
+}
