@@ -1,9 +1,14 @@
+## [22.0.1](https://github.com/NG-NEST/ng-nest/compare/22.0.0...22.0.1) (2026-06-17)
+
+
+
 # [22.0.0](https://github.com/NG-NEST/ng-nest/compare/21.0.12...22.0.0) (2026-06-12)
 
 
 ### Bug Fixes
 
 * fix portal width of the pop-up box on the portal position ([0c980bf](https://github.com/NG-NEST/ng-nest/commit/0c980bfb2d560354576c97fbf941987510ec512e))
+* **script:** fix script type error ([85c074e](https://github.com/NG-NEST/ng-nest/commit/85c074e656e79f3cd70bf88964b75c64560bc052))
 
 
 ### Features
