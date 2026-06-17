@@ -58,7 +58,6 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
     return null;
   });
 
-  override value = signal<number | number[]>(0);
   starting = signal(false);
 
   startOffset = signal(0);
@@ -205,8 +204,8 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
     if (this.isNumber()) {
       startVal = value as number;
     } else if (XIsArray(value) && value.length > 1) {
-      startVal = value[0];
-      endVal = value[1];
+      startVal = value[0] as number;
+      endVal = value[1] as number;
       this.endOffset.set(this.getOffset(endVal));
       this.end.set(this.endOffset());
     }
@@ -227,11 +226,11 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
     } else {
       if (XIsArray(value) && value.length > 1) {
         if (this.startOffset() > this.endOffset()) {
-          this.startDisplayValue.set(displayVal(value[1]));
-          this.endDisplayValue.set(displayVal(value[0]));
+          this.startDisplayValue.set(displayVal(value[1] as number));
+          this.endDisplayValue.set(displayVal(value[0] as number));
         } else {
-          this.startDisplayValue.set(displayVal(value[0]));
-          this.endDisplayValue.set(displayVal(value[1]));
+          this.startDisplayValue.set(displayVal(value[0] as number));
+          this.endDisplayValue.set(displayVal(value[1] as number));
         }
       }
     }

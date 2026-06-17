@@ -11,11 +11,11 @@ export class ExLabelRowComponent {
   form = new UntypedFormGroup({});
 
   ngAfterViewInit() {
+    this.form.patchValue({ id: 888 });
+
     this.form.valueChanges.subscribe((xx) => {
       console.log(xx);
     });
-
-    this.form.patchValue({ id: 888 });
   }
 
   controls = signal<XControl[]>([

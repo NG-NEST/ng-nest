@@ -1,9 +1,13 @@
+## [20.3.1](https://github.com/NG-NEST/ng-nest/compare/20.3.0...20.3.1) (2026-06-17)
+
+
+
 # [20.3.0](https://github.com/NG-NEST/ng-nest/compare/20.2.9...20.3.0) (2026-06-02)
 
 
 ### Bug Fixes
 
-* fix portal width ([84c2b90](https://github.com/NG-NEST/ng-nest/commit/84c2b90ba4ae35ec0d279254e9c58e65be1cbfac))
+* fix portal width ([6cb10d8](https://github.com/NG-NEST/ng-nest/commit/6cb10d8f0e133f25b9dfa282109063d1e3227c15))
 
 
 
