@@ -196,6 +196,7 @@ export interface XAutoCompleteConfig {
   floatFixed?: boolean;
   variant?: XVariant;
   placement?: XPositionTopBottom;
+  iconLayout?: XPositionLeftRight;
   debounceTime?: number;
   size?: XSize;
   bordered?: boolean;
