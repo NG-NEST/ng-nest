@@ -4494,6 +4494,42 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "icon",
+        "type": "string",
+        "toType": "string",
+        "inputType": "ModelSignal<string>",
+        "signal": "model",
+        "label": "Icon",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "iconLayout",
+        "type": "XAutoCompleteIconLayoutType",
+        "toType": "XAutoCompleteIconLayoutType",
+        "inputType": "InputSignal<XAutoCompleteIconLayoutType>",
+        "signal": "input",
+        "label": "Icon layout",
+        "default": "'right'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "portalMaxHeight",
         "type": "XNumber",
         "toType": "string",
@@ -4555,6 +4591,24 @@ export const en_US: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "The style class name of the drop-down box",
         "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "portalTemp",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "Custom content in the drop-down box",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": [
@@ -5004,6 +5058,24 @@ export const en_US: {[key: string]: AppProp} = {
         "inputType": "OutputEmitterRef<XAutoCompleteNode>",
         "signal": "output",
         "label": "Node click event",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "searchChange",
+        "type": "any",
+        "toType": "",
+        "inputType": "OutputEmitterRef<any>",
+        "signal": "output",
+        "label": "Input value change event",
         "default": "",
         "withConfig": false,
         "description": "",
@@ -5564,6 +5636,20 @@ export const en_US: {[key: string]: AppProp} = {
     "extends": [
       "XFormOption"
     ]
+  },
+  "XAutoCompleteIconLayoutType": {
+    "type": "type",
+    "label": "Icon layout, refers to the position in the input box",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAutoCompleteIconLayoutType",
+    "value": "XPositionLeftRight"
   },
   "XAutoCompleteFloatLabel": {
     "type": "type",

@@ -1,3 +1,12 @@
+## [21.0.14](https://github.com/NG-NEST/ng-nest/compare/21.0.13...21.0.14) (2026-06-21)
+
+
+### Features
+
+* **module:auto-complete:** add portal temp ([c1d4b1a](https://github.com/NG-NEST/ng-nest/commit/c1d4b1a416d56577cf53061f9015c77a020dd414))
+
+
+
 ## [21.0.13](https://github.com/NG-NEST/ng-nest/compare/21.0.12...21.0.13) (2026-06-12)
 
 
