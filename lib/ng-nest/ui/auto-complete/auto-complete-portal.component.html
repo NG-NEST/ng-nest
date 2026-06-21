@@ -6,16 +6,20 @@
   [style.maxHeight]="portalHeight() ? portalHeight() : portalMaxHeight()"
   [style.height]="portalHeight()"
 >
-  <x-list
-    #list
-    [data]="data()!"
-    (nodeClick)="onNodeClick($event)"
-    (keyManagerChange)="onActive($event)"
-    (keyManagerTabOut)="onTabOut()"
-    [nodeTpl]="nodeTpl()"
-    [scrollElement]="autoCompletePortal"
-    [keywordText]="keywordText()"
-    [caseSensitive]="caseSensitive()"
-    [inPortal]="true"
-  ></x-list>
+  @if (portalTemp(); as portalTpl) {
+    <ng-template [ngTemplateOutlet]="portalTpl" [ngTemplateOutletContext]="portalTempContext()"></ng-template>
+  } @else {
+    <x-list
+      #list
+      [data]="data()!"
+      (nodeClick)="onNodeClick($event)"
+      (keyManagerChange)="onActive($event)"
+      (keyManagerTabOut)="onTabOut()"
+      [nodeTpl]="nodeTpl()"
+      [scrollElement]="autoCompletePortal"
+      [keywordText]="keywordText()"
+      [caseSensitive]="caseSensitive()"
+      [inPortal]="true"
+    ></x-list>
+  }
 </div>

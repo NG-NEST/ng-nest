@@ -12,7 +12,8 @@ import {
   model,
   output,
   DestroyRef,
-  inject
+  inject,
+  computed
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompletePortalPrefix } from './auto-complete.property';
 import { Subject } from 'rxjs';
@@ -20,10 +21,11 @@ import { XPositionTopBottom } from '@ng-nest/ui/core';
 import { takeUntil } from 'rxjs/operators';
 import { XListComponent } from '@ng-nest/ui/list';
 import { XInputComponent } from '@ng-nest/ui/input';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: `${XAutoCompletePortalPrefix}`,
-  imports: [XListComponent],
+  imports: [XListComponent, NgTemplateOutlet],
   templateUrl: './auto-complete-portal.component.html',
   styleUrls: ['./auto-complete-portal.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -42,7 +44,7 @@ export class XAutoCompletePortalComponent implements OnInit {
     this.animating.emit(true);
   }
 
-  list = viewChild.required('list', { read: XListComponent });
+  list = viewChild('list', { read: XListComponent });
 
   data = input<XAutoCompleteNode[]>();
   value = input<any>();
@@ -60,16 +62,25 @@ export class XAutoCompletePortalComponent implements OnInit {
   keydownSubject!: Subject<KeyboardEvent>;
   active = signal(-1);
   destroy = signal(false);
+  portalTemp = input<TemplateRef<any>>();
+
+  portalTempContext = computed(() => ({
+    $implicit: this.data(),
+    $data: this.data(),
+    $value: this.value(),
+    $close: () => this.closeSubject.next(),
+    $nodeClick: (node: XAutoCompleteNode) => this.onNodeClick(node)
+  }));
 
   private unSubject = new Subject<void>();
   private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
     this.closeSubject.pipe(takeUntil(this.unSubject)).subscribe(() => {
-      this.list().setUnActive(this.active());
+      this.list()?.setUnActive(this.active());
     });
     this.keydownSubject.pipe(takeUntil(this.unSubject)).subscribe((x) => {
-      this.list().keydown(x);
+      this.list()?.keydown(x);
     });
     this.destroyRef.onDestroy(() => {
       this.destroy.set(true);
@@ -79,7 +90,7 @@ export class XAutoCompletePortalComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.list().keyManager.setFirstItemActive();
+    this.list()?.keyManager.setFirstItemActive();
   }
 
   stopPropagation(event: Event): void {
