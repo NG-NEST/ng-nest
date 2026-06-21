@@ -13,7 +13,8 @@ import {
   XToCssPixelValue,
   XVariant,
   XFloatLabel,
-  XPlacement
+  XPlacement,
+  XPositionLeftRight
 } from '@ng-nest/ui/core';
 import { Component, TemplateRef, input, model, output } from '@angular/core';
 import { XFormControlFunction, XFormOption } from '@ng-nest/ui/base-form';
@@ -67,6 +68,16 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    */
   readonly inputStyle = input<{ [style: string]: any }>();
   /**
+   * @zh_CN 图标
+   * @en_US Icon
+   */
+  readonly icon = model<string>();
+  /**
+   * @zh_CN 图标布局方式
+   * @en_US Icon layout
+   */
+  readonly iconLayout = input<XAutoCompleteIconLayoutType>(this.config?.iconLayout ?? 'right');
+  /**
    * @zh_CN 下拉框的最大高度
    * @en_US The biggest height of the drop-down box
    */
@@ -90,6 +101,11 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    * @en_US The style class name of the drop-down box
    */
   readonly portalClass = input<string | string[]>('');
+  /**
+   * @zh_CN 自定义下拉框中的内容
+   * @en_US Custom content in the drop-down box
+   */
+  readonly portalTemp = input<TemplateRef<any>>();
   /**
    * @zh_CN 匹配区分大小写
    * @en_US Case-sensitive
@@ -215,6 +231,11 @@ export class XAutoCompleteProperty extends XFormControlFunction(X_AUTOCOMPLETE_C
    * @en_US Node click event
    */
   readonly nodeEmit = output<XAutoCompleteNode>();
+  /**
+   * @zh_CN 输入值变化事件
+   * @en_US Input value change event
+   */
+  readonly searchChange = output<any>();
 }
 
 /**
@@ -377,6 +398,14 @@ export interface XAutoCompleteOption extends XFormOption {
    */
   nodeEmit?: (node: XAutoCompleteNode) => void;
 }
+
+/**
+ * @zh_CN 图标布局方式，指在输入框中的位置
+ * @en_US Icon layout, refers to the position in the input box
+ * @value "left" 靠左
+ * @value "right" 靠右
+ */
+export type XAutoCompleteIconLayoutType = XPositionLeftRight;
 
 /**
  * @zh_CN 浮动标签类型

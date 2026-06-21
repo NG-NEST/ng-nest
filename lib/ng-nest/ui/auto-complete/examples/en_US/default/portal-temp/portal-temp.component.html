@@ -1,0 +1,40 @@
+<div class="row">
+  <x-auto-complete
+    [(ngModel)]="model1"
+    (ngModelChange)="change($event)"
+    [data]="data1()"
+    [portalTemp]="customPortal1"
+  ></x-auto-complete>
+
+  <ng-template #customPortal1 let-data="$data" let-close="$close" let-nodeClick="$nodeClick">
+    <div class="portal-temp-list">
+      @for (item of data; track item.id) {
+        <div class="portal-temp-item" (click)="nodeClick(item)">{{ item.label }}</div>
+      }
+    </div>
+  </ng-template>
+</div>
+
+<div class="row">
+  <x-auto-complete
+    #autoCompleteCom
+    [(ngModel)]="model2"
+    (ngModelChange)="change($event)"
+    [data]="data2()"
+    [portalTemp]="customPortal2"
+    (searchChange)="searchChange($event)"
+    [inputStyle]="{ border: '1px solid red', borderRadius: '2px', height: '40px', width: '400px' }"
+  ></x-auto-complete>
+
+  <ng-template #customPortal2 let-data="$data">
+    <div class="portal-temp-list">
+      @for (item of searchResult(); track item) {
+        <div class="portal-temp-item" (click)="autoCompleteCom.portalNodeClick({ id: item, label: item })">
+          {{ item }}
+        </div>
+      } @empty {
+        <x-empty></x-empty>
+      }
+    </div>
+  </ng-template>
+</div>
