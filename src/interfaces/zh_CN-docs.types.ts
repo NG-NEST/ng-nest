@@ -4494,6 +4494,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "icon",
+        "type": "string",
+        "toType": "string",
+        "inputType": "ModelSignal<string>",
+        "signal": "model",
+        "label": "图标",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "iconLayout",
+        "type": "XAutoCompleteIconLayoutType",
+        "toType": "XAutoCompleteIconLayoutType",
+        "inputType": "InputSignal<XAutoCompleteIconLayoutType>",
+        "signal": "input",
+        "label": "图标布局方式",
+        "default": "'right'",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "portalMaxHeight",
         "type": "XNumber",
         "toType": "string",
@@ -4555,6 +4591,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "下拉框设置样式名",
         "default": "''",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "portalTemp",
+        "type": "TemplateRef<any>",
+        "toType": "TemplateRef<any>",
+        "inputType": "InputSignal<TemplateRef<any>>",
+        "signal": "input",
+        "label": "自定义下拉框中的内容",
+        "default": "",
         "withConfig": false,
         "description": "",
         "example": [
@@ -5004,6 +5058,24 @@ export const zh_CN: {[key: string]: AppProp} = {
         "inputType": "OutputEmitterRef<XAutoCompleteNode>",
         "signal": "output",
         "label": "选择节点事件",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
+        "name": "searchChange",
+        "type": "any",
+        "toType": "",
+        "inputType": "OutputEmitterRef<any>",
+        "signal": "output",
+        "label": "输入值变化事件",
         "default": "",
         "withConfig": false,
         "description": "",
@@ -5564,6 +5636,20 @@ export const zh_CN: {[key: string]: AppProp} = {
     "extends": [
       "XFormOption"
     ]
+  },
+  "XAutoCompleteIconLayoutType": {
+    "type": "type",
+    "label": "图标布局方式，指在输入框中的位置",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [],
+    "name": "XAutoCompleteIconLayoutType",
+    "value": "XPositionLeftRight"
   },
   "XAutoCompleteFloatLabel": {
     "type": "type",

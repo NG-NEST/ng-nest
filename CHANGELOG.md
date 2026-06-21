@@ -1,3 +1,13 @@
+## [22.0.2](https://github.com/NG-NEST/ng-nest/compare/22.0.1...22.0.2) (2026-06-21)
+
+
+### Features
+
+* **moduale:auto-complete:** add portal temp ([9231ea8](https://github.com/NG-NEST/ng-nest/commit/9231ea89ee558e6cd562fb3372cf114b69af7e73))
+* **moduale:auto-complete:** add portal temp ([8ce32e1](https://github.com/NG-NEST/ng-nest/commit/8ce32e1e1357da6e5a78ca9795818a93fe324900))
+
+
+
 ## [22.0.1](https://github.com/NG-NEST/ng-nest/compare/22.0.0...22.0.1) (2026-06-17)
 
 
