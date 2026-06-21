@@ -10,8 +10,7 @@ import {
   signal,
   ViewContainerRef,
   ComponentRef,
-  OutputEmitterRef,
-  effect
+  OutputEmitterRef
 } from '@angular/core';
 import { XControlProperty, XFormControlOption, XFormControlComponent, XFormControl } from './form.property';
 import {
@@ -72,10 +71,6 @@ export class XControlComponent extends XControlProperty implements OnInit, After
 
   constructor() {
     super();
-
-    effect(() => {
-      this.formControl()!.patchValue(this.value());
-    });
   }
 
   ngOnInit() {
@@ -129,10 +124,12 @@ export class XControlComponent extends XControlProperty implements OnInit, After
     if (this.option().value !== undefined) {
       this.componentRef.instance.writeValue(this.option().value);
       this.value.set(this.option().value);
+      this.formControl()!.patchValue(this.option().value, { emitEvent: false });
     }
 
     this.componentRef.instance.valueObservable.subscribe((x) => {
       this.value.set(x);
+      this.formControl()!.patchValue(x);
     });
 
     this.form.controlTypes[this.option().id] = this.option();
@@ -161,7 +158,7 @@ export class XControlComponent extends XControlProperty implements OnInit, After
       this.validatorFns.update((x) => [...x, XFormInputValidator(this.option().inputValidator!)]);
     }
     this.formControl()!.setValidators(this.validatorFns());
-    this.formControl()!.updateValueAndValidity();
+    this.formControl()!.updateValueAndValidity({ onlySelf: true });
   }
 
   setOption() {

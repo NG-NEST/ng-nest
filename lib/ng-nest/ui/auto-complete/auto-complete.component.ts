@@ -13,7 +13,8 @@ import {
   viewChild,
   ComponentRef,
   effect,
-  computed
+  computed,
+  HostBinding
 } from '@angular/core';
 import { XAutoCompleteNode, XAutoCompleteProperty, XAutoCompletePrefix } from './auto-complete.property';
 import {
@@ -56,7 +57,6 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
 
   nodes = signal<XAutoCompleteNode[]>([]);
   searchNodes = signal<XAutoCompleteNode[]>([]);
-  icon = signal('');
   iconSpin = signal(false);
   animating = signal(false);
 
@@ -64,6 +64,15 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   valueTplContextComputed = computed(() => {
     return this.valueTplContext() ? this.valueTplContext() : this.valueTplContextSignal();
   });
+
+  widthComputed = computed(() => {
+    const inputStyle = this.inputStyle() || {};
+    return !!inputStyle?.['width'];
+  });
+
+  @HostBinding('style.width') get hostWidth() {
+    return this.widthComputed() ? this.inputStyle()?.['width'] : null;
+  }
 
   inputChange = new BehaviorSubject<any>(null);
   closeSubject: Subject<void> = new Subject();
@@ -91,6 +100,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     effect(() => this.portalComponent()?.setInput('caseSensitive', this.caseSensitive()));
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
     effect(() => this.portalComponent()?.setInput('keywordText', this.inputChanged()));
+    effect(() => this.portalComponent()?.setInput('portalTemp', this.portalTemp()));
   }
 
   ngOnInit() {
@@ -196,10 +206,11 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     if (XIsEmpty(this.value()) || this.disabledComputed() || this.iconSpin() || this.animating()) return;
     this.active.set(true);
     if ((XIsObservable(this.data()) && this.nodes.length === 0) || XIsFunction(this.data())) {
+      const beforeIcon = this.icon() || '';
       this.icon.set('fto-loader');
       this.iconSpin.set(true);
       XSetData<XAutoCompleteNode>(this.data(), this.unSubject, true, this.value()).subscribe((x) => {
-        this.icon.set('');
+        this.icon.set(beforeIcon);
         this.iconSpin.set(false);
         this.nodes.set(x);
         this.createPortal();
@@ -318,10 +329,11 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         if (XIsEmpty(value)) {
           this.closeSubject.next();
         } else {
+          const beforeIcon = this.icon() || '';
           this.icon.set('fto-loader');
           this.iconSpin.set(true);
           XSetData<XAutoCompleteNode>(this.data(), this.unSubject, true, value as any).subscribe((x) => {
-            this.icon.set('');
+            this.icon.set(beforeIcon);
             this.iconSpin.set(false);
             this.nodes.set(x);
             this.searchNodes.set(this.nodes());
@@ -353,9 +365,18 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.keydownSubject.next($event);
   }
 
+  portalClose() {
+    this.closeSubject.next();
+  }
+
+  portalNodeClick(node: XAutoCompleteNode) {
+    this.onNodeClick(node);
+  }
+
   onInput(_event: Event) {
     this.formControlValidator();
     setTimeout(() => {
+      this.searchChange.emit(this.value());
       this.inputChange.next(this.value());
     });
   }

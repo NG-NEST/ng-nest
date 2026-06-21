@@ -1,8 +1,6 @@
 ---
-category: Others
-title: Splitter 分隔面板
-subtitle: 用于分隔面板并调整其大小
-order: 1
+label: 'Splitter 分隔面板'
+category: 'Other'
 ---
 
 ## 何时使用

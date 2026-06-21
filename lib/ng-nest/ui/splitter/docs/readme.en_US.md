@@ -1,8 +1,6 @@
 ---
-category: Others
-title: Splitter
-subtitle: Used to separate panels and adjust their size
-order: 1
+label: 'Splitter'
+category: 'Other'
 ---
 
 ## When To Use
