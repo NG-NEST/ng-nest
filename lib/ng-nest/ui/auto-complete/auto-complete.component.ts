@@ -41,7 +41,6 @@ import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/oper
 import { DOWN_ARROW, UP_ARROW, ENTER, MAC_ENTER, ESCAPE } from '@angular/cdk/keycodes';
 import { XValueAccessor } from '@ng-nest/ui/base-form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: `${XAutoCompletePrefix}`,
@@ -59,6 +58,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   searchNodes = signal<XAutoCompleteNode[]>([]);
   iconSpin = signal(false);
   animating = signal(false);
+  private lastValidValue: any = null;
 
   valueTplContextSignal = signal<{ $node: any; $isValue: boolean }>({ $node: null, $isValue: true });
   valueTplContextComputed = computed(() => {
@@ -86,7 +86,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
   private realPlacement = signal<XPlacement | null>(null);
   portalComponent = signal<ComponentRef<XAutoCompletePortalComponent> | null>(null);
   portalOverlayRef = signal<OverlayRef | null>(null);
-  inputChanged = toSignal(this.inputChange.pipe(filter((x) => x !== null)));
+  private keywordText = signal<any>(null);
 
   constructor() {
     super();
@@ -99,7 +99,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     effect(() => this.portalComponent()?.setInput('portalWidth', this.portalWidth()));
     effect(() => this.portalComponent()?.setInput('caseSensitive', this.caseSensitive()));
     effect(() => this.portalComponent()?.setInput('inputCom', this.inputCom()));
-    effect(() => this.portalComponent()?.setInput('keywordText', this.inputChanged()));
+    effect(() => this.portalComponent()?.setInput('keywordText', this.keywordText()));
     effect(() => this.portalComponent()?.setInput('portalTemp', this.portalTemp()));
   }
 
@@ -196,9 +196,10 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
         .map((x) => x.label)
         .includes(this.value())
     ) {
-      this.value.set('');
-      if (this.onChange) this.onChange(this.value());
-      this.inputChange.next(this.value());
+      const restored = this.lastValidValue ?? '';
+      this.value.set(restored);
+      this.keywordText.set(restored);
+      if (this.onChange) this.onChange(restored);
     }
   }
 
@@ -281,6 +282,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
       return;
     }
     this.value.set(node.label);
+    this.lastValidValue = node.label;
     this.valueTplContextSignal.update((x) => {
       x.$node = node;
       return { ...x };
@@ -377,6 +379,7 @@ export class XAutoCompleteComponent extends XAutoCompleteProperty implements OnI
     this.formControlValidator();
     setTimeout(() => {
       this.searchChange.emit(this.value());
+      this.keywordText.set(this.value());
       this.inputChange.next(this.value());
     });
   }
