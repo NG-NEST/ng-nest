@@ -1,6 +1,6 @@
 export const environment = {
   layout: 'index',
-  version: '20.3.2',
+  version: '20.3.3',
   defaultPage: 'docs',
   static: 'https://ngnest.com/static'
 };
