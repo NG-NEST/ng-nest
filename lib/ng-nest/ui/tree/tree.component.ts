@@ -74,6 +74,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges, XTreeCon
   draggingTreeNode = signal<XTreeNode | null>(null);
 
   isEmpty = computed(() => XIsEmpty(this.nodes()));
+  hasChecked = signal(false);
 
   private unSubject = new Subject<void>();
   private resizeObserver!: XResizeObserver;
@@ -248,7 +249,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges, XTreeCon
     lazyParant?: XTreeNode,
     out = false
   ) {
-    if (XIsEmpty(this.checked())) this.checked.set([]);
+    if (XIsEmpty(this.checked()) || !this.hasChecked()) this.checked.set([]);
     const getChildren = (node: XTreeNode, level: number) => {
       if (init) {
         const open = this.expandedAll() || level <= this.expandedLevel() || this.expanded().includes(node.id);
@@ -360,7 +361,7 @@ export class XTreeComponent extends XTreeProperty implements OnChanges, XTreeCon
   }
 
   setCheckedKeys(keys: any[] = []) {
-    // if (!XIsEmpty(keys)) this.hasChecked.set(true);
+    if (!XIsEmpty(keys)) this.hasChecked.set(true);
     const setChildren = (nodes: XTreeNode[], clear = false) => {
       if (XIsEmpty(nodes)) return;
       nodes.forEach((x) => {
