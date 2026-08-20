@@ -1,3 +1,12 @@
+## [21.0.15](https://github.com/NG-NEST/ng-nest/compare/21.0.14...21.0.15) (2026-08-20)
+
+
+### Bug Fixes
+
+* **module:tree:** fix resetting the data issue ([8e49c62](https://github.com/NG-NEST/ng-nest/commit/8e49c62c2549a6da9b8d5c9b4867d6711044a8ae))
+
+
+
 ## [21.0.14](https://github.com/NG-NEST/ng-nest/compare/21.0.13...21.0.14) (2026-06-21)
 
 
