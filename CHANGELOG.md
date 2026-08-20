@@ -1,3 +1,13 @@
+## [22.0.3](https://github.com/NG-NEST/ng-nest/compare/22.0.2...22.0.3) (2026-08-20)
+
+
+### Bug Fixes
+
+* **module:auto-complete:** fix only select ([be91220](https://github.com/NG-NEST/ng-nest/commit/be91220143bf7258cd70551144dda5b126d76e56))
+* **module:tree:** fix resetting the data issue ([d6e7e0a](https://github.com/NG-NEST/ng-nest/commit/d6e7e0a21b420e198792967c0d66904e894def3a))
+
+
+
 ## [22.0.2](https://github.com/NG-NEST/ng-nest/compare/22.0.1...22.0.2) (2026-06-21)
 
 
