@@ -288,6 +288,9 @@ export class XTreeComponent extends XTreeProperty implements OnChanges, XTreeCon
         this.order().map((x) => x.order)
       ).map((x) => getChildren(x, 0))
     );
+    if (this.levelCheck()) {
+      this.syncParentCheckboxState();
+    }
     if (parentOpen) {
       for (let item of value) {
         if (!item.leaf && item.open) {
@@ -297,6 +300,43 @@ export class XTreeComponent extends XTreeProperty implements OnChanges, XTreeCon
     }
     this.setExpanded();
     this.cdr.markForCheck();
+  }
+
+  private syncParentCheckboxState(nodes: XTreeNode[] = this.treeData()) {
+    const setState = (node: XTreeNode) => {
+      if (XIsEmpty(node.children) || !node.children?.length) return;
+      const checkedList = node.children.filter((y: XTreeNode) => y.checked);
+      const indeterminateList = node.children.filter((y: XTreeNode) => y.indeterminate);
+      node.checked = checkedList.length === node.children.length;
+      node.indeterminate = checkedList.length > 0 || indeterminateList.length > 0;
+      node.children.forEach((item) => setState(item));
+    };
+
+    nodes.forEach((node) => setState(node));
+    const parentMap = new Map<any, XTreeNode>();
+    for (const item of this.treeData()) {
+      if (!XIsEmpty(item.pid)) {
+        const parent = this.treeData().find((x) => x.id === item.pid);
+        if (parent) parentMap.set(item.id, parent);
+      }
+    }
+
+    const updateParent = (node: XTreeNode): void => {
+      const parent = parentMap.get(node.id);
+      if (!parent) return;
+      const parentChildren = parent.children ?? [];
+      const checkedChildren = parentChildren.filter((x) => x.checked);
+      const indeterminateChildren = parentChildren.filter((x) => x.indeterminate);
+      parent.checked = parentChildren.length > 0 && checkedChildren.length === parentChildren.length;
+      parent.indeterminate = checkedChildren.length > 0 || indeterminateChildren.length > 0;
+      updateParent(parent);
+    };
+
+    for (const item of this.treeData()) {
+      if (!XIsEmpty(item.pid)) {
+        updateParent(item);
+      }
+    }
   }
 
   nodeMouseenter($event: { event: MouseEvent; node: XTreeNode; ele: ElementRef }) {
@@ -371,6 +411,9 @@ export class XTreeComponent extends XTreeProperty implements OnChanges, XTreeCon
       });
     };
     setChildren(this.nodes(), XIsEmpty(keys));
+    if (this.levelCheck()) {
+      this.syncParentCheckboxState();
+    }
     this.cdr.markForCheck();
   }
 
