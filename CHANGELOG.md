@@ -1,3 +1,12 @@
+## [20.3.4](https://github.com/NG-NEST/ng-nest/compare/20.3.3...20.3.4) (2026-08-23)
+
+
+### Bug Fixes
+
+* **module:tree:** fix level tree ([a388db7](https://github.com/NG-NEST/ng-nest/commit/a388db73dc361c63a03bcf3f7c8ac2b00fe22707))
+
+
+
 ## [20.3.3](https://github.com/NG-NEST/ng-nest/compare/20.3.2...20.3.3) (2026-08-20)
 
 
