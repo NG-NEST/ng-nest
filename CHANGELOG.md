@@ -1,3 +1,12 @@
+## [22.0.4](https://github.com/NG-NEST/ng-nest/compare/22.0.3...22.0.4) (2026-08-23)
+
+
+### Bug Fixes
+
+* **module:tree:** fix level checkbox ([69d5ec7](https://github.com/NG-NEST/ng-nest/commit/69d5ec7d41b5f62b95be6ecbab0d85fecf7ec785))
+
+
+
 ## [22.0.3](https://github.com/NG-NEST/ng-nest/compare/22.0.2...22.0.3) (2026-08-20)
 
 
