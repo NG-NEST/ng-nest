@@ -1,3 +1,21 @@
+## [21.0.17](https://github.com/NG-NEST/ng-nest/compare/21.0.16...21.0.17) (2026-08-27)
+
+
+### Features
+
+* **module:calendar:** add value param ([81d004c](https://github.com/NG-NEST/ng-nest/commit/81d004c05a5e8f787fd7cec6c18ebd12802db196))
+
+
+
+## [21.0.16](https://github.com/NG-NEST/ng-nest/compare/21.0.15...21.0.16) (2026-08-23)
+
+
+### Bug Fixes
+
+* **module:tree:** fix level checkbox ([a695df8](https://github.com/NG-NEST/ng-nest/commit/a695df8e5728bcd6dc11dc3457a29c2c9539ad72))
+
+
+
 ## [21.0.15](https://github.com/NG-NEST/ng-nest/compare/21.0.14...21.0.15) (2026-08-20)
 
 
