@@ -102,12 +102,12 @@ export function generateProps(...types: NcProp[]) {
 export function replaceEscape(str: string) {
   let map = {
     "'": "\\'",
-    '"': '\\"',
+    '"': '&quot;',
     '<': '\\<',
     '>': '\\>',
     '/': '\\/',
-    '{': '\\{',
-    '}': '\\}'
+    '{': '&#123;',
+    '}': '&#125;'
   };
   return str.replace(/['"<>/{}]/g, (m) => map[m]);
 }
