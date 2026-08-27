@@ -1,3 +1,12 @@
+## [22.0.5](https://github.com/NG-NEST/ng-nest/compare/22.0.4...22.0.5) (2026-08-27)
+
+
+### Features
+
+* **module:calendar:** add value param ([798a3b7](https://github.com/NG-NEST/ng-nest/commit/798a3b74c15e91aa405b0ee414f9d1c37b6cbc03))
+
+
+
 ## [22.0.4](https://github.com/NG-NEST/ng-nest/compare/22.0.3...22.0.4) (2026-08-23)
 
 

@@ -7859,6 +7859,33 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "value",
+        "type": "Date",
+        "toType": "Date",
+        "inputType": "InputSignal<Date>",
+        "signal": "input",
+        "label": "指定初始显示的日期",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-calendar [value]=\"new Date(2020, 1, 22)\"></x-calendar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "headerLeftTemp",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
@@ -7976,11 +8003,11 @@ export const zh_CN: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "[property: string]",
-        "type": "XCalendarNode[]",
-        "label": "key-value",
+        "type": "XCalendarDataItem",
+        "label": "key 为日期(例如 \"2020-2-22\")，value 支持两种格式：",
         "default": "",
         "withConfig": false,
-        "description": "",
+        "description": "1. 数组格式：[{ id:\"1\", label:\"1\" }]\n2. 对象格式：{ class: \"\", style: {}, list: [{ id:\"1\", label:\"1\" }] }",
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
@@ -7994,9 +8021,9 @@ export const zh_CN: {[key: string]: AppProp} = {
     ],
     "name": "XCalendarData"
   },
-  "XCalendarNode": {
-    "type": "interface",
-    "label": "Calendar 数据对象",
+  "XCalendarDataItem": {
+    "type": "type",
+    "label": "Calendar 日历对象",
     "description": "",
     "example": [
       {
@@ -8005,7 +8032,121 @@ export const zh_CN: {[key: string]: AppProp} = {
       }
     ],
     "properties": [],
-    "name": "XCalendarNode",
+    "name": "XCalendarDataItem",
+    "value": "XCalendarNodeItem[] | XCalendarNode"
+  },
+  "XCalendarNode": {
+    "type": "interface",
+    "label": "Calendar 日期对象（对象格式）",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "class",
+        "type": "string",
+        "label": "作用于该日期单元格的自定义 class",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "class",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "style",
+        "type": "{ [klass: string]: any }",
+        "label": "作用于该日期单元格的自定义样式",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "style",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "list",
+        "type": "XCalendarNodeItem[]",
+        "label": "节点中的列表数据",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "list",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XCalendarNode"
+  },
+  "XCalendarNodeItem": {
+    "type": "interface",
+    "label": "Calendar 节点数据",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "class",
+        "type": "string",
+        "label": "自定义 class，作用于该节点",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "class",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "style",
+        "type": "{ [klass: string]: any }",
+        "label": "自定义样式，作用于该节点",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "style",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XCalendarNodeItem",
     "extends": [
       "XIdentityProperty"
     ]

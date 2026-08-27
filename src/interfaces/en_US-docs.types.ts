@@ -7859,6 +7859,33 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "value",
+        "type": "Date",
+        "toType": "Date",
+        "inputType": "InputSignal<Date>",
+        "signal": "input",
+        "label": "Specify the initially displayed date",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          },
+          {
+            "type": "code",
+            "language": "html",
+            "content": "<x-calendar [value]=\"new Date(2020, 1, 22)\"></x-calendar>"
+          },
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": ""
+      },
+      {
         "name": "headerLeftTemp",
         "type": "TemplateRef<any>",
         "toType": "TemplateRef<any>",
@@ -7976,11 +8003,11 @@ export const en_US: {[key: string]: AppProp} = {
     "properties": [
       {
         "name": "[property: string]",
-        "type": "XCalendarNode[]",
-        "label": "key-value",
+        "type": "XCalendarDataItem",
+        "label": "key is a date (e.g. \"2020-2-22\"), value supports two formats:",
         "default": "",
         "withConfig": false,
-        "description": "",
+        "description": "1. array format: [{ id:\"1\", label:\"1\" }]\n2. object format: { class: \"\", style: {}, list: [{ id:\"1\", label:\"1\" }] }",
         "decorator": [],
         "attr": "[property: string]",
         "propType": "",
@@ -7994,9 +8021,9 @@ export const en_US: {[key: string]: AppProp} = {
     ],
     "name": "XCalendarData"
   },
-  "XCalendarNode": {
-    "type": "interface",
-    "label": "Calendar data object",
+  "XCalendarDataItem": {
+    "type": "type",
+    "label": "Calendar date object",
     "description": "",
     "example": [
       {
@@ -8005,7 +8032,121 @@ export const en_US: {[key: string]: AppProp} = {
       }
     ],
     "properties": [],
-    "name": "XCalendarNode",
+    "name": "XCalendarDataItem",
+    "value": "XCalendarNodeItem[] | XCalendarNode"
+  },
+  "XCalendarNode": {
+    "type": "interface",
+    "label": "Calendar date object (object format)",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "class",
+        "type": "string",
+        "label": "Custom class applied to the date cell",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "class",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "style",
+        "type": "{ [klass: string]: any }",
+        "label": "Custom style applied to the date cell",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "style",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "list",
+        "type": "XCalendarNodeItem[]",
+        "label": "List data in the node",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "list",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XCalendarNode"
+  },
+  "XCalendarNodeItem": {
+    "type": "interface",
+    "label": "Calendar node data",
+    "description": "",
+    "example": [
+      {
+        "type": "text",
+        "content": ""
+      }
+    ],
+    "properties": [
+      {
+        "name": "class",
+        "type": "string",
+        "label": "Custom class applied to the node",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "class",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "style",
+        "type": "{ [klass: string]: any }",
+        "label": "Custom style applied to the node",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "style",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      }
+    ],
+    "name": "XCalendarNodeItem",
     "extends": [
       "XIdentityProperty"
     ]

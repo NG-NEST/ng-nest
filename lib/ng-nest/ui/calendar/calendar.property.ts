@@ -126,8 +126,14 @@ export interface XCalendarData {
    * 1. array format: [{ id:"1", label:"1" }]
    * 2. object format: { class: "", style: {}, list: [{ id:"1", label:"1" }] }
    */
-  [property: string]: XCalendarNodeItem[] | XCalendarNode;
+  [property: string]: XCalendarDataItem;
 }
+
+/**
+ * @zh_CN Calendar 日历对象
+ * @en_US Calendar date object
+ */
+export type XCalendarDataItem = XCalendarNodeItem[] | XCalendarNode;
 
 /**
  * @zh_CN Calendar 日期对象（对象格式）
