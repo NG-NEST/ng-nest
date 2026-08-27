@@ -46,7 +46,12 @@
 </div>
 
 <ng-template #dateTemp let-date="date$">
-  <div class="x-calendar-date" [class.x-activated]="(date | date: 'yyyyMMdd') === (activatedDate() | date: 'yyyyMMdd')">
+  <div
+    class="x-calendar-date"
+    [class.x-activated]="(date | date: 'yyyyMMdd') === (activatedDate() | date: 'yyyyMMdd')"
+    [class]="getCellClass(date)"
+    [style]="getCellStyle(date)"
+  >
     <span [title]="date | date: 'yyyy-MM-dd'">{{ date | date: 'd' }}</span>
     @if (displayType() === 'calendar') {
       <div class="x-calendar-date-content">
@@ -65,7 +70,12 @@
 </ng-template>
 
 <ng-template #monthTemp let-date="date$">
-  <div class="x-calendar-month" [class.x-activated]="(date | date: 'yyyyMM') === (activatedDate() | date: 'yyyyMM')">
+  <div
+    class="x-calendar-month"
+    [class.x-activated]="(date | date: 'yyyyMM') === (activatedDate() | date: 'yyyyMM')"
+    [class]="getMonthClass(date)"
+    [style]="getMonthStyle(date)"
+  >
     <span [title]="date | date: 'yyyy-MM'">{{ getLocaleMonth(date) }}</span>
     @if (displayType() === 'calendar') {
       <div class="x-calendar-month-content">

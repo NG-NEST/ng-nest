@@ -185,7 +185,7 @@ export class XPickerMonthComponent extends XPickerMonthProperty implements OnCha
     this.dates.set(dates);
     this.chunkDates.set(XChunk(dates, 4));
 
-    if (this.dates.length > 0) {
+    if (dates.length > 0) {
       this.rangeChange.emit([dates[0].date!, dates[dates.length - 1].date!]);
     }
   }
