@@ -192,9 +192,10 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
   }
 
   getOffset(val: number) {
-    return Math.abs(
-      Math.round(((val + (this.reverse() ? -this.min() : this.min())) * 100) / (this.max() - this.min()))
-    );
+    const range = this.max() - this.min();
+    if (range <= 0) return 0;
+    const offset = Math.round(((val - this.min()) * 100) / range);
+    return Math.min(100, Math.max(0, offset));
   }
 
   setLeft() {
@@ -293,7 +294,12 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
     if (typeof this.railRef().nativeElement.getBoundingClientRect !== 'function') return;
     let railBox = this.railRef().nativeElement.getBoundingClientRect();
     let railBoxLength = this.vertical() ? railBox.height : railBox.width;
-    let stepLength = railBoxLength / ((this.max() - this.min()) / this.step());
+    if (!railBoxLength) {
+      this.setDragStyles();
+      return;
+    }
+    const steps = (this.max() - this.min()) / this.step();
+    let stepLength = steps > 0 && isFinite(steps) ? railBoxLength / steps : railBoxLength;
     let offset = Math.abs(distance % stepLength);
     let dis =
       offset < stepLength / 2
@@ -311,7 +317,7 @@ export class XSliderSelectComponent extends XSliderSelectProperty implements OnD
       } else {
         x1 += this.reverse() ? -dis : dis;
       }
-      return Math.round((x1 / railBoxLength) * 100);
+      return Math.min(100, Math.max(0, Math.round((x1 / railBoxLength) * 100)));
     };
 
     if (type === 'both') {
