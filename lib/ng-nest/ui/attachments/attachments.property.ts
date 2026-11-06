@@ -121,6 +121,11 @@ export class XAttachmentsProperty extends XFormControlFunction(X_ATTACHMENTS_CON
    * @en_US Start upload event
    */
   readonly uploadError = output<XUploadNode>();
+  /**
+   * @zh_CN 初始启用验证，在输入值都自动开启
+   * @en_US Initial enable validation, which is automatically enabled when the input value is
+   */
+  override readonly validator = input<boolean, XBoolean>(this.config?.validator ?? false, { transform: XToBoolean });
 }
 
 /**
