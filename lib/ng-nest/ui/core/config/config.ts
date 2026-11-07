@@ -192,6 +192,7 @@ export interface XAvatarConfig {
 }
 
 export interface XAutoCompleteConfig {
+  validator?: boolean;
   floatLabel?: XFloatLabel;
   floatFixed?: boolean;
   variant?: XVariant;
@@ -206,6 +207,7 @@ export interface XAutoCompleteConfig {
 }
 
 export interface XAttachmentsConfig {
+  validator?: boolean;
   download?: boolean;
   multipleModel?: 'cover' | 'add';
 }
@@ -264,6 +266,7 @@ export interface XCarouselConfig {
 }
 
 export interface XCascadeConfig {
+  validator?: boolean;
   floatLabel?: XFloatLabel;
   floatFixed?: boolean;
   variant?: XVariant;
@@ -278,6 +281,7 @@ export interface XCascadeConfig {
 }
 
 export interface XCheckboxConfig {
+  validator?: boolean;
   size?: XSize;
 }
 
@@ -294,6 +298,7 @@ export interface XColorConfig {
 }
 
 export interface XColorPickerConfig {
+  validator?: boolean;
   floatLabel?: XFloatLabel;
   floatFixed?: boolean;
   variant?: XVariant;
@@ -339,6 +344,7 @@ export interface XCrumbComfig {
 }
 
 export interface XDatePickerConfig {
+  validator?: boolean;
   floatLabel?: XFloatLabel;
   floatFixed?: boolean;
   variant?: XVariant;
@@ -350,6 +356,7 @@ export interface XDatePickerConfig {
 }
 
 export interface XDateRangeConfig {
+  validator?: boolean;
   floatLabel?: XFloatLabel;
   floatFixed?: boolean;
   variant?: XVariant;
@@ -421,6 +428,7 @@ export interface XEmptyConfig {
 }
 
 export interface XFindConfig {
+  validator?: boolean;
   size?: XSize;
   bordered?: boolean;
   columnLabel?: string;
@@ -454,6 +462,7 @@ export interface XInnerConfig {
 }
 
 export interface XInputConfig {
+  validator?: boolean;
   floatFixed?: boolean;
   floatLabel?: XFloatLabel;
   variant?: XVariant;
@@ -472,6 +481,7 @@ export interface XInputGroupConfig {
 }
 
 export interface XInputNumberConfig {
+  validator?: boolean;
   variant?: XVariant;
   size?: XSize;
   bordered?: boolean;
@@ -608,16 +618,19 @@ export interface XPromptsConfig {
 }
 
 export interface XRadioConfig {
+  validator?: boolean;
   size?: XSize;
 }
 
 export interface XRateConfig {
+  validator?: boolean;
   color?: string | { [color: string]: (rate: number) => boolean };
 }
 
 export interface XResultConfig {}
 
 export interface XSelectConfig {
+  validator?: boolean;
   floatLabel?: XFloatLabel;
   floatFixed?: boolean;
   variant?: XVariant;
@@ -636,6 +649,7 @@ export interface XSelectConfig {
 }
 
 export interface XSenderConfig {
+  validator?: boolean;
   submitType?: 'enter' | 'shiftEnter';
 }
 
@@ -650,7 +664,9 @@ export interface XSliderConfig {
   expandMaxHeight?: string;
 }
 
-export interface XSliderSelectConfig {}
+export interface XSliderSelectConfig {
+  validator?: boolean;
+}
 
 export interface XStatisticConfig {}
 
@@ -661,6 +677,7 @@ export interface XCountdownConfig {
 export interface XStepsConfig {}
 
 export interface XSwitchConfig {
+  validator?: boolean;
   size?: XSize;
 }
 
@@ -742,6 +759,7 @@ export interface XThemeConfig {
 export interface XTimeAgoConfig {}
 
 export interface XTimePickerConfig {
+  validator?: boolean;
   floatLabel?: XFloatLabel;
   floatFixed?: boolean;
   variant?: XVariant;
@@ -770,6 +788,7 @@ export interface XTooltipConfig {
 }
 
 export interface XTransferConfig {
+  validator?: boolean;
   titles?: string[];
   drag?: boolean;
   virtualScroll?: boolean;
@@ -795,6 +814,7 @@ export interface XTreeConfig {
 }
 
 export interface XTextareaConfig {
+  validator?: boolean;
   floatLabel?: XFloatLabel;
   floatFixed?: boolean;
   variant?: XVariant;
@@ -815,6 +835,7 @@ export interface XTreeFileConfig {
 }
 
 export interface XTreeSelectConfig {
+  validator?: boolean;
   floatLabel?: XFloatLabel;
   floatFixed?: boolean;
   variant?: XVariant;
@@ -841,6 +862,7 @@ export interface XTreeSelectConfig {
 }
 
 export interface XUploadConfig {
+  validator?: boolean;
   download?: boolean;
   multipleModel?: 'cover' | 'add';
 }

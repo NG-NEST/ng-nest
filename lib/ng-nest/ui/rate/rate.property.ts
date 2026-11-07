@@ -42,6 +42,11 @@ export class XRateProperty extends XFormControlFunction(X_RATE_CONFIG_NAME) {
    */
   override readonly label = input<XTemplate>('');
   /**
+   * @zh_CN 初始启用验证，在输入值都自动开启
+   * @en_US Initial enable validation, which is automatically enabled when the input value is
+   */
+  override readonly validator = input<boolean, XBoolean>(this.config?.validator ?? false, { transform: XToBoolean });
+  /**
    * @zh_CN 标签宽度
    * @en_US Label width
    */

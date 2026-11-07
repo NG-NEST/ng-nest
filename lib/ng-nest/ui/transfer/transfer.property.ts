@@ -103,6 +103,11 @@ export class XTransferProperty extends XFormControlFunction(X_TRANSFER_CONFIG_NA
    * @en_US Inverse select
    */
   readonly inverse = input<boolean, XBoolean>(false, { transform: XToBoolean });
+  /**
+   * @zh_CN 初始启用验证，在输入值都自动开启
+   * @en_US Initial enable validation, which is automatically enabled when the input value is
+   */
+  override readonly validator = input<boolean, XBoolean>(this.config?.validator ?? false, { transform: XToBoolean });
 }
 
 /**
