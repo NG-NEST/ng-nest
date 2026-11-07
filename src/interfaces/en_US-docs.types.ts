@@ -4128,6 +4128,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       }
     ],
     "name": "XAttachmentsProperty",
@@ -4708,6 +4726,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "pointer",
@@ -9191,6 +9227,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
@@ -10381,6 +10435,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "labelWidth",
@@ -11696,6 +11768,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "pointer",
@@ -13875,6 +13965,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
@@ -15096,6 +15204,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "pointer",
@@ -20848,6 +20974,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "label",
         "type": "XTemplate",
         "toType": "XTemplate",
@@ -24286,7 +24430,7 @@ export const en_US: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "Initial enable validation, which is automatically enabled when the input value is",
         "default": "false",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
         "example": [
           {
@@ -25972,6 +26116,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "label",
@@ -32553,6 +32715,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "labelWidth",
         "type": "XNumber",
         "toType": "string",
@@ -33244,6 +33424,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "labelWidth",
@@ -34604,6 +34802,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "pointer",
@@ -35986,6 +36202,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "disabled",
@@ -37376,6 +37610,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "labelWidth",
@@ -39028,6 +39280,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       },
       {
         "name": "label",
@@ -43437,6 +43707,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "label",
         "type": "XTemplate",
         "toType": "XTemplate",
@@ -44982,7 +45270,7 @@ export const en_US: {[key: string]: AppProp} = {
         "signal": "input",
         "label": "Initial enable validation, which is automatically enabled when the input value is",
         "default": "false",
-        "withConfig": false,
+        "withConfig": true,
         "description": "",
         "example": [
           {
@@ -46970,6 +47258,24 @@ export const en_US: {[key: string]: AppProp} = {
         "label": "Inverse select",
         "default": "false",
         "withConfig": false,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
         "description": "",
         "example": [
           {
@@ -49868,6 +50174,24 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
+      },
+      {
         "name": "pointer",
         "type": "XBoolean",
         "toType": "boolean",
@@ -51611,6 +51935,24 @@ export const en_US: {[key: string]: AppProp} = {
           }
         ],
         "transform": ""
+      },
+      {
+        "name": "validator",
+        "type": "XBoolean",
+        "toType": "boolean",
+        "inputType": "InputSignalWithTransform<boolean, XBoolean>",
+        "signal": "input",
+        "label": "Initial enable validation, which is automatically enabled when the input value is",
+        "default": "false",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToBoolean"
       }
     ],
     "name": "XUploadProperty",

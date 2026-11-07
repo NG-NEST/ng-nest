@@ -1,4 +1,9 @@
-## [20.3.7](https://github.com/NG-NEST/ng-nest/compare/20.3.5...20.3.7) (2026-11-05)
+## [20.3.8](https://github.com/NG-NEST/ng-nest/compare/20.3.5...20.3.8) (2026-11-06)
+
+
+### Features
+
+* **form:** add validator ([008fd15](https://github.com/NG-NEST/ng-nest/commit/008fd15b9c411348a82ece70e37795f6be68ca0e))
 
 
 
