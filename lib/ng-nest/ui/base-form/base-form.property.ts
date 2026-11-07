@@ -57,6 +57,10 @@ export interface XFormOption {
    */
   required?: boolean;
   /**
+   * 初始启用验证，在输入值都自动开启
+   */
+  validator?: boolean;
+  /**
    * 正则验证规则
    */
   pattern?: RegExp;
