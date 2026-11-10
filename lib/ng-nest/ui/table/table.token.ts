@@ -7,13 +7,15 @@ import {
   Signal,
   WritableSignal
 } from '@angular/core';
-import type { XBoolean, XSize, XSort, XTemplate } from '@ng-nest/ui/core';
+import type { XBoolean, XNumber, XSize, XSort, XTemplate } from '@ng-nest/ui/core';
 import type { XTableCell, XTableColumn, XTableDragWidthEvent, XTableRow } from './table.property';
 import type { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import type { XPaginationComponent } from '@ng-nest/ui/pagination';
 
 export interface XTableContext {
   rowSize: InputSignal<XSize>;
+  dragWidthMin: InputSignalWithTransform<number, XNumber>;
+  dragWidthMax: InputSignalWithTransform<number | undefined, XNumber>;
   theads: WritableSignal<ElementRef<HTMLElement>[]>;
   tfoot: WritableSignal<ElementRef<HTMLElement> | null>;
   headSearchTpl: InputSignal<XTemplate | undefined>;

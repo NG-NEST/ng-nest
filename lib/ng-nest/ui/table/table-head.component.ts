@@ -10,7 +10,7 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { XTableHeadPrefix, XTableHeadProperty, XTableColumn, XTableCell, XTablePrefix } from './table.property';
-import { XIsEmpty, XSort, XNumber, XIsFunction, XRemoveNgTag } from '@ng-nest/ui/core';
+import { XIsEmpty, XIsNull, XIsUndefined, XSort, XNumber, XIsFunction, XRemoveNgTag } from '@ng-nest/ui/core';
 import { CdkDragDrop, CdkDragSortEvent, CdkDragStart, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { XDragDirective } from '@ng-nest/ui/drag';
@@ -123,8 +123,12 @@ export class XTableHeadComponent extends XTableHeadProperty implements OnInit {
     column: XTableColumn | XTableCell
   ) {
     if (column.width) {
-      (column.width as number) += position.offsetX;
-      if (column.width < 60) column.width = 60;
+      const min = column.dragWidthMin ?? this.table.dragWidthMin();
+      const max = column.dragWidthMax ?? this.table.dragWidthMax();
+      let width = (column.width as number) + position.offsetX;
+      if (!XIsUndefined(min) && !XIsNull(min) && width < min) width = min;
+      if (!XIsUndefined(max) && !XIsNull(max) && width > max) width = max;
+      column.width = width;
       XIsFunction(column.dragWidthMoved) && column.dragWidthMoved({ position, column });
       this.table.columnDragWidthMoved.emit({ position, column });
       this.table.detectChanges();

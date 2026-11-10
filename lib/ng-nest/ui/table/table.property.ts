@@ -212,6 +212,16 @@ export class XTableProperty extends XPropertyFunction(X_TABLE_CONFIG_NAME) {
    */
   readonly cellConfig = input<XTableCellConfig>();
   /**
+   * @zh_CN 拖动列宽的最小宽度，单位 px，列上的 dragWidthMin 优先级更高
+   * @en_US Minimum width when dragging the column width, unit px, dragWidthMin on the column has higher priority
+   */
+  readonly dragWidthMin = input<number, XNumber>(this.config?.dragWidthMin ?? 60, { transform: XToNumber });
+  /**
+   * @zh_CN 拖动列宽的最大宽度，单位 px，为空则不限制，列上的 dragWidthMax 优先级更高
+   * @en_US Maximum width when dragging the column width, unit px, no limit if empty, dragWidthMax on the column has higher priority
+   */
+  readonly dragWidthMax = input<number | undefined, XNumber>(this.config?.dragWidthMax, { transform: XToNumber });
+  /**
    * @zh_CN 尺寸
    * @en_US Size
    */
@@ -551,6 +561,16 @@ export interface XTableColumn extends XIdentityProperty {
    */
   draggingWidth?: boolean;
   /**
+   * @zh_CN 当前列拖动列宽的最小宽度，单位 px，优先于表格的 dragWidthMin
+   * @en_US Minimum width for dragging this column, unit px, takes precedence over the table dragWidthMin
+   */
+  dragWidthMin?: number;
+  /**
+   * @zh_CN 当前列拖动列宽的最大宽度，单位 px，优先于表格的 dragWidthMax
+   * @en_US Maximum width for dragging this column, unit px, takes precedence over the table dragWidthMax
+   */
+  dragWidthMax?: number;
+  /**
    * @zh_CN 开始拖动列宽的事件
    * @en_US Event to started drag column width
    */
@@ -710,6 +730,16 @@ export interface XTableCell {
    * @en_US Drag the column width
    */
   dragWidth?: boolean;
+  /**
+   * @zh_CN 拖动列宽的最小宽度，单位 px，优先于表格的 dragWidthMin
+   * @en_US Minimum width for dragging, unit px, takes precedence over the table dragWidthMin
+   */
+  dragWidthMin?: number;
+  /**
+   * @zh_CN 拖动列宽的最大宽度，单位 px，优先于表格的 dragWidthMax
+   * @en_US Maximum width for dragging, unit px, takes precedence over the table dragWidthMax
+   */
+  dragWidthMax?: number;
   /**
    * @zh_CN 自定义属性
    * @en_US Custom attributes
