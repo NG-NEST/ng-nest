@@ -1,3 +1,18 @@
+## [22.0.6](https://github.com/NG-NEST/ng-nest/compare/22.0.5...22.0.6) (2026-11-10)
+
+
+### Bug Fixes
+
+* **module:slider-select:** initial error ([01b4361](https://github.com/NG-NEST/ng-nest/commit/01b4361a475a1b33b6f71e5a8860c911bc5a66db))
+
+
+### Features
+
+* **form:** add validator ([8ae63eb](https://github.com/NG-NEST/ng-nest/commit/8ae63eb9bc00288eef82582fa952e2bc0af25cb8))
+* **module:table:** add drag width min and max ([d1a636b](https://github.com/NG-NEST/ng-nest/commit/d1a636bb425ec782402435c3fcc1364ac3981808))
+
+
+
 ## [22.0.5](https://github.com/NG-NEST/ng-nest/compare/22.0.4...22.0.5) (2026-08-27)
 
 

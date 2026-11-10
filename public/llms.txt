@@ -4,7 +4,7 @@
 
 ## Version
 
-22.0.5
+22.0.6
 
 ## Quick Start
 
