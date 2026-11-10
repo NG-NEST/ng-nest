@@ -1,3 +1,13 @@
+## [21.0.18](https://github.com/NG-NEST/ng-nest/compare/21.0.17...21.0.18) (2026-11-10)
+
+
+### Features
+
+* **form:** add validator ([bf9b881](https://github.com/NG-NEST/ng-nest/commit/bf9b881c00ba5c3ef35e3bb06d9dc45a87e138d7))
+* **module:table:** add drag width min and max ([fdb55d9](https://github.com/NG-NEST/ng-nest/commit/fdb55d946c79ffb9e4cafb1612b651ca50723f57))
+
+
+
 ## [21.0.17](https://github.com/NG-NEST/ng-nest/compare/21.0.16...21.0.17) (2026-08-27)
 
 
