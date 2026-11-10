@@ -40345,6 +40345,42 @@ export const en_US: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "dragWidthMin",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "Minimum width when dragging the column width, unit px, dragWidthMin on the column has higher priority",
+        "default": "60",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "dragWidthMax",
+        "type": "XNumber",
+        "toType": "number | undefined",
+        "inputType": "InputSignalWithTransform<number | undefined, XNumber>",
+        "signal": "input",
+        "label": "Maximum width when dragging the column width, unit px, no limit if empty, dragWidthMax on the column has higher priority",
+        "default": "this.config?.dragWidthMax",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
         "name": "rowSize",
         "type": "XSize",
         "toType": "XSize",
@@ -41444,6 +41480,40 @@ export const en_US: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "dragWidthMin",
+        "type": "number",
+        "label": "Minimum width for dragging this column, unit px, takes precedence over the table dragWidthMin",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragWidthMin",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "dragWidthMax",
+        "type": "number",
+        "label": "Maximum width for dragging this column, unit px, takes precedence over the table dragWidthMax",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragWidthMax",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "dragWidthStarted",
         "type": "(event: XTableDragWidthEvent) => void",
         "label": "Event to started drag column width",
@@ -41933,6 +42003,40 @@ export const en_US: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dragWidth",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "dragWidthMin",
+        "type": "number",
+        "label": "Minimum width for dragging, unit px, takes precedence over the table dragWidthMin",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragWidthMin",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "dragWidthMax",
+        "type": "number",
+        "label": "Maximum width for dragging, unit px, takes precedence over the table dragWidthMax",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragWidthMax",
         "propType": "",
         "example": [
           {

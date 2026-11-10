@@ -40345,6 +40345,42 @@ export const zh_CN: {[key: string]: AppProp} = {
         "transform": ""
       },
       {
+        "name": "dragWidthMin",
+        "type": "XNumber",
+        "toType": "number",
+        "inputType": "InputSignalWithTransform<number, XNumber>",
+        "signal": "input",
+        "label": "拖动列宽的最小宽度，单位 px，列上的 dragWidthMin 优先级更高",
+        "default": "60",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
+        "name": "dragWidthMax",
+        "type": "XNumber",
+        "toType": "number | undefined",
+        "inputType": "InputSignalWithTransform<number | undefined, XNumber>",
+        "signal": "input",
+        "label": "拖动列宽的最大宽度，单位 px，为空则不限制，列上的 dragWidthMax 优先级更高",
+        "default": "this.config?.dragWidthMax",
+        "withConfig": true,
+        "description": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ],
+        "transform": "XToNumber"
+      },
+      {
         "name": "rowSize",
         "type": "XSize",
         "toType": "XSize",
@@ -41444,6 +41480,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         ]
       },
       {
+        "name": "dragWidthMin",
+        "type": "number",
+        "label": "当前列拖动列宽的最小宽度，单位 px，优先于表格的 dragWidthMin",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragWidthMin",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "dragWidthMax",
+        "type": "number",
+        "label": "当前列拖动列宽的最大宽度，单位 px，优先于表格的 dragWidthMax",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragWidthMax",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
         "name": "dragWidthStarted",
         "type": "(event: XTableDragWidthEvent) => void",
         "label": "开始拖动列宽的事件",
@@ -41933,6 +42003,40 @@ export const zh_CN: {[key: string]: AppProp} = {
         "description": "",
         "decorator": [],
         "attr": "dragWidth",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "dragWidthMin",
+        "type": "number",
+        "label": "拖动列宽的最小宽度，单位 px，优先于表格的 dragWidthMin",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragWidthMin",
+        "propType": "",
+        "example": [
+          {
+            "type": "text",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "name": "dragWidthMax",
+        "type": "number",
+        "label": "拖动列宽的最大宽度，单位 px，优先于表格的 dragWidthMax",
+        "default": "",
+        "withConfig": false,
+        "description": "",
+        "decorator": [],
+        "attr": "dragWidthMax",
         "propType": "",
         "example": [
           {
