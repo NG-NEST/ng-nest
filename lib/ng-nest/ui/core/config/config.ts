@@ -696,6 +696,8 @@ export interface XTableConfig {
   virtualScroll?: boolean;
   rowHeight?: number;
   headerHeight?: number;
+  dragWidthMin?: number;
+  dragWidthMax?: number;
   itemSize?: number;
   bordered?: boolean;
   allowSelectRow?: boolean;
